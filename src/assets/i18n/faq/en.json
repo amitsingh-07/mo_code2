@@ -312,7 +312,7 @@
                     },
                     {
                         "QUESTION": "How are my returns calculated?",
-                        "ANSWER": "The returns are calculated based on a time-weighted return approach. This is in line with how fund managers measure the performance of their funds."
+                        "ANSWER": "The total returns are based on time-weighted return approach, which is calculated by multiplying the daily returns of your portfolio and linking them together to show how the returns are compounded over time. It shows you how much $1 of your investment would have grown throughout your investment period, without considering the size and timing of interim cash inflows or outflows. This is in line with how fund managers measure the performance of their funds. <br/><br/>Mathematically, if the period 1 return on your investment is represented by r<sub>1</sub>, and period 2 is represented by r<sub>2</sub> and so on, the Time-Weighted Return is determined by the formula below: <br/>Total Returns = [(1+r<sub>1</sub>) (1+r<sub>2</sub>) (1+r<sub>3</sub>) (1+r<sub>4</sub>) .... (1+r<sub>n</sub>)] – 1 <br/><br/><u>Example:</u><br/>Suppose Peter invests $10,000 into a portfolio on 1 Jan. On 1 July, his portfolio is valued at $11,500 and at this point he adds another $1,000 bringing his portfolio value to $12,500 ($11,500 + $1,000). By the end of the year, the portfolio has decreased in value to $12,000. <br/><br/>Period Return (1 Jan to 30 Jun) = ($11,500 - $10,000)/$10,000 = 15% <br/>Period Return (1 Jul to 31 Dec) = ($12,000 - $12,500)/$12,500 = -4% <br/><br/>Therefore, the Time-Weighted Return during this entire period (1 Jan to 31 Dec) is 10.4%, which is computed by geometrically linking the returns of the two periods, i.e. [(1+0.15) (1-0.04)] - 1 = 10.4%"
                     },
                     {
                         "QUESTION": "What is rebalancing? How often is rebalancing done?",
@@ -328,7 +328,7 @@
                     },
                     {
                         "QUESTION": "How do I submit a monthly buy request?",
-                        "ANSWER": "<p>You can login to your MoneyOwl Account and submit a monthly buy request. We will process all monthly buy requests on the 15<sup>th</sup> of every month, or the next working day, if the 15<sup>th</sup> is not a working day, provided that there are sufficient monies in your Investment Cash Account. <u>To ensure that your investment can be executed, we strongly advise you to transfer your money at least 1-2 working days before the 15<sup>th</sup> of the month (with complete information, including the Reference Code) to ensure that there are sufficient monies in your Investment Cash Account before the 15<sup>th</sup> of the month.</u> If there are insufficient monies in your Investment Cash Account by the 15<sup>th</sup> of the month, the monthly investment request will be processed on the 15<sup>th</sup> of the following month. </p>"
+                        "ANSWER": "<p>You can login to your MoneyOwl Account and submit a monthly buy request. We will process all monthly buy requests on the 15<sup>th</sup> of every month, or the next working day, if the 15<sup>th</sup> is not a working day, provided that there are sufficient monies in your Investment Cash Account. <u>To ensure that your investment can be executed, we strongly advise you to transfer your money on the 10<sup>th</sup> of the month (with complete information, including the Reference Code) to ensure that there are sufficient monies in your Investment Cash Account before the 15<sup>th</sup> of the month.</u> If there are insufficient monies in your Investment Cash Account by the 15<sup>th</sup> of the month, the monthly investment request will be processed on the 15<sup>th</sup> of the following month. </p>"
                     },
                     {
                         "QUESTION": "How fast will my buy request be processed?",
@@ -341,6 +341,24 @@
                     {
                         "QUESTION": "I have funded my Investment Account but have decided not to proceed with the investment. How do I get my monies back?",
                         "ANSWER": "<p>If there is a buy request which has been processed, you can get your monies back by selling your investments and subsequently withdrawing your monies from your Investment Cash Account.</p>"
+                    }
+                ],
+                "Multiple Portfolios": [
+                    {
+                        "QUESTION": "Can I set up multiple portfolios to cater to my different financial goals?",
+                        "ANSWER": "Yes, you can set up to a maximum of 20 different investment portfolios."
+                    },
+                    {
+                        "QUESTION": "Can I rename my portfolios?",
+                        "ANSWER": "Yes, you can rename your portfolios to differentiate between different financial goals which the portfolios  were set up for."
+                    },
+                    {
+                        "QUESTION": "How many investment cash accounts will I have?",
+                        "ANSWER": "Each portfolio will have a unique investment cash account number  tagged to it. Hence, please ensure that you indicate the correct  investment cash account number (starting with Gxxxxxxx) that  is  specific  to  the  particular  portfolio     which  you  wish  to  fund  when  you  do  your investments."
+                    },
+                    {
+                        "QUESTION": "Can I transfer funds from one investment cash account to another?",
+                        "ANSWER": "If you have  unintentionally funded the wrong investment cash account, you  will not be able to transfer  the  funds  from  the  wrongly  funded  investment  cash  account  to  the  intended investment cash account on your own. Please email <a href=\"mailto:clientsupport@moneyowl.com.sg\">clientsupport@moneyowl.com.sg</a> or talk to your client adviser for further assistance."
                     }
                 ],
                 "Joint or SRS Accounts | Joint or SRS (Supplementary Retirement Schemes) Accounts": [

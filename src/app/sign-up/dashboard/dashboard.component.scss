@@ -144,7 +144,8 @@ app-dashboard{
                         .portfolio_value{
                             color: #2d8289;
                             .value{
-                                font-size: 24px;
+                                font-family: $muli-bold;
+                                font-size: 18px;
                                 letter-spacing: -0.3px;
                                 color: #00a7a7;
                                 margin-bottom: 11px;
@@ -171,6 +172,7 @@ app-dashboard{
                                     font-family: $muli;
                                 }
                                 .portfolio_footer_value{
+                                    font-family: $muli-bold;
                                     font-size: 18px;
                                     letter-spacing: -0.2px;
                                     color: #00a7a7;

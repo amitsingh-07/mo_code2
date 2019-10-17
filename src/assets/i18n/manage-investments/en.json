@@ -81,7 +81,34 @@
     "REF_LABEL": "Ref Code:",
     "INVESTED": "Invested",
     "LIST_ALL": "List All",
-    "SHOW_LESS": "Show Less"
+    "SHOW_LESS": "Show Less",
+    "MP_WALKTHROUGH": {
+      "NEW_INVESTMENT_UPDATE": "We’ve new investment updates.",
+      "SHOW_ME_AROUND": "Show me around!",
+      "MP_WALKTHROUGH_SLIDES": [{
+          "IMAGE": "mp-walkthrough/portfolio-view.svg",
+          "IMG_TITLE": "Improved Portfolio View",
+          "TEXT": "See your portfolio value and returns, buy requests and cash balance at a glance."
+        },
+        {
+          "IMAGE": "mp-walkthrough/multiple-portfolios.svg",
+          "IMG_TITLE": "Multiple Portfolios",
+          "TEXT": "Add up to 20 portfolios for your different financial needs."
+        },
+        {
+          "IMAGE": "mp-walkthrough/manage-request.svg",
+          "IMG_TITLE": "Manage Requests",
+          "TEXT": "See your top up and withdrawal requests status and amount."
+        },
+        {
+          "IMAGE": "mp-walkthrough/more-button.svg",
+          "IMG_TITLE": "Manage with More Button",
+          "TEXT": "Use the More button to manage your portfolio. Top up, withdraw, rename portfolio and more…"
+        }
+      ],
+      "START_BTN": "Skip",
+      "END_BTN": "Got it!"
+    }
   },
   "YOUR_PORTFOLIO": {
     "TITLE": "Your Portfolio",
@@ -100,7 +127,7 @@
     "MODAL": {
       "TOTAL_RETURNS": {
         "TITLE": "Total Returns",
-        "MESSAGE": "The total returns are calculated by geometrically linking the periodic returns between all your transactions. This return is also known as the time-weighted return."
+        "MESSAGE": "This shows you how much $1 of your investment would have grown throughout your investment period, without considering the size and timing of interim cash inflows or outflows. This is also known as the time-weighted return."
       },
       "CASH_ACCOUNT_BALANCE": {
         "TITLE": "Cash Account",

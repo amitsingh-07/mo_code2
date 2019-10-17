@@ -1,42 +1,47 @@
 <div class="modal-body white-bg">
-  <div class="title-div">
-    <img *ngIf="slides[currentSlide]['TITLE_IMG']" src="{{imgUrl}}{{slides[currentSlide]['TITLE_IMG']}}" class="title-img" />
+  <div *ngIf="slides[currentSlide]['TITLE']" class="title-div">
+    <img *ngIf="slides[currentSlide]['TITLE_IMG']" src="{{imgUrl}}{{slides[currentSlide]['TITLE_IMG']}}"
+      class="title-img" />
     <div class="title-txt">{{slides[currentSlide]['TITLE']}}</div>
   </div>
   <ngx-slick class="carousel" #carousel [config]="slideConfig" (beforeChange)="beforeSlideChange($event)">
     <div ngxSlickItem *ngFor="let slide of slides, let i = index;">
       <div class="slide-item">
-        <img *ngIf="slide.IMAGE" class="img" src="{{imgUrl}}{{slide.IMAGE}}" alt="">
-        <div *ngIf="slide.IMG_TITLE" class="img-title">{{slide.IMG_TITLE}}</div>
-        <div *ngIf="slide.TEXT" [ngClass]="{'extra-margin-top-18': i==2}" class="slide-txt">{{slide.TEXT}}</div>
-        <a *ngIf="slide.URL" class="url-txt" href="" target="_blank" [routerLink]="['/faq']"
-          fragment="srs-joint-account">{{slide.URL_TEXT}}</a>
+        <div *ngIf="slide.IMAGE" [ngClass]="imgClass">
+          <img src="{{imgUrl}}{{slide.IMAGE}}" alt="">
+        </div>
+        <div *ngIf="slide.IMG_TITLE" [ngClass]="imgTitleClass">{{slide.IMG_TITLE}}</div>
+        <div *ngIf="slide.TEXT" [ngStyle]="textStyle" [ngClass]="{'extra-margin-top-18': slide.CONTACT}" class="slide-txt">{{slide.TEXT}}</div>
+        <a *ngIf="slide.URL" class="url-txt" href="" target="_blank" [routerLink]="[slide.URL]"
+          fragment="{{slide.URL_FRAGMENT}}">{{slide.URL_TEXT}}</a>
         <div *ngIf="slide.CONTACT" class="contact-div">
           <div class="contact-txt">{{slide.CONTACT}}</div>
           <div class="contact-tel-div">
-            <img class="margin-right" src="{{imgUrl}}phone.svg">
+            <img class="margin-right" src="{{imgUrl}}srs-joint-account/phone.svg">
             <a href="tel:{{slide.TEL}}" onclick="return false;" class="contact-tel">{{slide.TEL}}</a>
           </div>
           <div class="contact-email-div">
-            <img class="margin-right" src="{{imgUrl}}email.svg">
+            <img class="margin-right" src="{{imgUrl}}srs-joint-account/email.svg">
             <a href="mailto:{{slide.EMAIL}}" target="_top" class="contact-email">{{slide.EMAIL}}</a>
           </div>
         </div>
       </div>
     </div>
   </ngx-slick>
-  <div class="btn-div">
-    <ng-container *ngIf="currentSlide === 0">
-      <div class="dismiss-txt" (click)="closePopup()">{{startBtnTxt}}</div>
-      <input type="image" src="{{imgUrl}}forward.svg" (click)="nextSlide()" />
-    </ng-container>
-    <ng-container *ngIf="(currentSlide > 0) && (currentSlide < slides.length - 1)">
-      <input type="image" src="{{imgUrl}}backward.svg" class="img-margin-right" (click)="prevSlide()" />
-      <input type="image" src="{{imgUrl}}forward.svg" (click)="nextSlide()" />
-    </ng-container>
-    <ng-container *ngIf="currentSlide === slides.length - 1">
-      <input type="image" src="{{imgUrl}}backward.svg" class="img-margin-right" (click)="prevSlide()" />
-      <div class="got-it-txt" (click)="closePopup()">{{endBtnTxt}}</div>
-    </ng-container>
+  <div [ngStyle]="btnDivStyle" class="btn-div">
+    <div class="btn-inner-div">
+      <ng-container *ngIf="currentSlide === 0">
+        <div class="dismiss-txt" (click)="closePopup()">{{startBtnTxt}}</div>
+        <input type="image" src="{{imgUrl}}srs-joint-account/forward.svg" (click)="nextSlide()" />
+      </ng-container>
+      <ng-container *ngIf="(currentSlide > 0) && (currentSlide < slides.length - 1)">
+        <input type="image" src="{{imgUrl}}srs-joint-account/backward.svg" (click)="prevSlide()" />
+        <input type="image" src="{{imgUrl}}srs-joint-account/forward.svg" (click)="nextSlide()" />
+      </ng-container>
+      <ng-container *ngIf="currentSlide === slides.length - 1">
+        <input type="image" src="{{imgUrl}}srs-joint-account/backward.svg" (click)="prevSlide()" />
+        <div class="got-it-txt" (click)="closePopup(true)">{{endBtnTxt}}</div>
+      </ng-container>
+    </div>
   </div>
 </div>
