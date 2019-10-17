@@ -79,7 +79,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
           }
           const submittedDateAPI = lastSubmittedDate;
           this.submittedDate = this.datePipe.transform(submittedDateAPI, 'dd MMM` yy');
-        } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+        } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
           this.comprehensivePlanning = 0;
         }
         //  else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
