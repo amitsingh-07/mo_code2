@@ -70,7 +70,7 @@ export class FAQComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked() {
     this.route.fragment.subscribe((fragment) => {
       if (fragment === 'srs-joint-account' && this.viewChecked === false) {
-        this.navigateToSection();
+        this.navigateToSection('FAQ.CONTENT.Investment', 'Joint or SRS Accounts ');
       }
     });
   }
@@ -208,25 +208,28 @@ export class FAQComponent implements OnInit, AfterViewChecked {
     }
 
   // For navigating to a specific section of faq
-  navigateToSection() {
+  // faqContentTitle > Ex: Insurance, Will Writing, Invest
+  // faqSectionTitle > Ex: Getting Started, Joint or SRS Accounts
+  navigateToSection(faqContentTitle, faqSectionTitle) {
     setTimeout(() => {
       if (document.getElementsByClassName('faq-category__body active')[0]) {
         const faq_element = document.querySelectorAll('.faq-selection__element');
         const qns_panel = document.querySelectorAll('.questions__panel');
-        const investmentContent = this.translate.instant('FAQ.CONTENT.Investment');
-        const jointSrsContent = this.validateTitle(Object.keys(investmentContent)[2], 0);
+        const faqContent = this.translate.instant(faqContentTitle);
         for ( let i = 0; i < faq_element.length; i ++) {
-          if (faq_element[i]['innerHTML'] === Object.keys(investmentContent)[0]) {
+          // Remove the active on content first item
+          if (faq_element[i]['innerHTML'] === Object.keys(faqContent)[0]) {
             faq_element[i].classList.remove('active');
             qns_panel[i].classList.remove('active');
           }
-          if (faq_element[i]['innerHTML'] === jointSrsContent) {
+          // Set active on the required item
+          if (faq_element[i]['innerHTML'] === faqSectionTitle) {
             faq_element[i].className += ' active';
             qns_panel[i].className += ' active';
           }
         }
         const btnDropdownEle = document.getElementsByClassName('btn-dropdown');
-        btnDropdownEle[2].innerHTML = jointSrsContent;
+        btnDropdownEle[2].innerHTML = faqSectionTitle;
         const selectedSection = document.getElementsByClassName('faq-category__body active')[0].getBoundingClientRect();
         const elemOffsetTop = selectedSection.top - document.getElementsByTagName('nav')[0].offsetHeight;
         window.scrollTo({ top: elemOffsetTop, behavior: 'smooth' });
