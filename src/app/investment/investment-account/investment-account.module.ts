@@ -37,6 +37,7 @@ import { SingPassComponent } from './sing-pass/sing-pass.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { UploadDocumentBOComponent } from './upload-document-bo/upload-document-bo.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
+import { FundingAccountDetailsComponent } from './funding-account-details/funding-account-details.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
@@ -80,6 +81,7 @@ export function createTranslateLoader(http: HttpClient) {
     AdditionalDeclaration1Component,
     AccountStatusComponent,
     UploadDocumentBOComponent,
+    FundingAccountDetailsComponent,
   ],
   entryComponents: [],
   providers: [CurrencyPipe]

@@ -15,7 +15,10 @@ import {
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinancialDetailsComponent } from './financial-details/financial-details.component';
 import {
-   InvestmentAccountGuardService as InvestmentAccountGuard
+    FundingAccountDetailsComponent
+} from './funding-account-details/funding-account-details.component';
+import {
+    InvestmentAccountGuardService as InvestmentAccountGuard
 } from './investment-account-guard.service';
 import { INVESTMENT_ACCOUNT_ROUTES } from './investment-account-routes.constants';
 import { NationalityComponent } from './nationality/nationality.component';
@@ -104,6 +107,11 @@ const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.UPLOAD_DOCUMENTS_BO,
     component: UploadDocumentBOComponent,
+    canActivate: [InvestmentAccountGuard]
+  },
+  {
+    path: INVESTMENT_ACCOUNT_ROUTES.FUNDING_ACCOUNT_DETAILS,
+    component: FundingAccountDetailsComponent,
     canActivate: [InvestmentAccountGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }

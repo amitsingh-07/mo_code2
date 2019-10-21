@@ -30,6 +30,7 @@ import { YourFinancialsComponent } from './your-financials/your-financials.compo
 import {
     YourInvestmentAmountComponent
 } from './your-investment-amount/your-investment-amount.component';
+import { FundingMethodComponent } from './funding-method/funding-method.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
@@ -68,7 +69,8 @@ export function createTranslateLoader(http: HttpClient) {
     CurrencyInputPortfolioDirective,
     PortfolioExistComponent,
     StartJourneyComponent,
-    YourInvestmentAmountComponent
+    YourInvestmentAmountComponent,
+    FundingMethodComponent
   ],
   providers: [CurrencyPipe]
 })
