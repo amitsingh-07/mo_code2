@@ -243,12 +243,17 @@ line-height: lineHeightRem($size);
 
 /* iPhoneX */
 @mixin iphonex {
-	@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3)  and (orientation: portrait)  {
-	  @content;
-	}
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3)  and (orientation: portrait)  {
+	@content;
   }
+}
 
-
+/* iPhone11 */
+@mixin iphone11 {
+  @media only screen and (min-device-width: 414px) and (max-device-width: 896px) and (-webkit-min-device-pixel-ratio: 2)  and (orientation: portrait)  {
+	@content;
+  }
+}
 /* IE 11 mixin */
 
 @mixin ieSpecific {

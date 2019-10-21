@@ -119,7 +119,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         this.signUpService.setUserProfileInfo(null);
         this.authService.clearSession();
         this.authService.clearAuthDetails();
-        this.signUpService.logoutUser();
+        this.navbarService.logoutUser();
         this.appService.clearData();
         this.appService.startAppSession();
         this.authService.authenticate().subscribe((token) => {
