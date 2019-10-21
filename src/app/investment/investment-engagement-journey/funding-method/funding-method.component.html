@@ -1,3 +1,37 @@
-<p>
-  funding-method works!
-</p>
+<div class="container-fluid max-width--1024 investment">
+  <div class="row">
+    <div class="col-lg-7 col-md-6" >
+      <h6 class="text-center">How do you want to fund this portfolio?</h6>
+      <div class="banner-image">
+        <img src="assets/images/investment-account/qn-1.svg"/>
+      </div>
+    </div>
+    <div class="col-lg-5 col-md-6">
+      <form name="riskAssessmentForm" [formGroup]="riskAssessmentForm" id="riskAssessmentForm">
+        <div class="form-group-single-column flex-col">
+          <div class="question-title mb10">I Want to fund this portfolio using</div>
+          <!-- NORMAL CASE -->
+          <div class="row">
+            <div class="col-12">
+              <div class="checkbox-button one-label">
+                <input type="radio" class="field radio">
+                <label>
+                  <div><span class="input-label-grey">Cash</span></div>
+                </label>
+              </div>
+              <div class="checkbox-button one-label">
+                <input type="radio" class="field radio">
+                <label>
+                  <div><span class="input-label-grey">SRS</span></div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" (click)="goToNext()" class="btn btn-primary btn__footer--fixed width100"
+           >{{ 'LABEL.CONTINUE' | translate}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
