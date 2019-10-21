@@ -497,7 +497,9 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   handleAccountCreationSuccess() {
     if (this.isSubsequentPortfolio) {
-      this.investmentAccountService.setAccountSuccussModalCounter(0);
+      this.investmentAccountService.setAccountSuccussModalCounter(1); // Do not show splash screen
+    } else {
+      this.investmentAccountService.setAccountSuccussModalCounter(0); // Show splash screen
     }
     this.accountCreationStatus = true;
     this.navigationRoute = INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO;
