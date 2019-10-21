@@ -550,9 +550,9 @@ export class GuideMeService {
     const data: any = {};
     let customDob = response.enquiryData.dateOfBirth.split('T')[0].split('-');
     const dob = {
-      day: Number(customDob[0]),
+      day: Number(customDob[2]),
       month: Number(customDob[1]),
-      year: Number(customDob[2])
+      year: Number(customDob[0])
     };
     customDob = customDob.join('/');
     data.myProfile = response.enquiryData.profileStatusId.toString();

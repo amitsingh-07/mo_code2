@@ -78,7 +78,8 @@ const routes: Routes = [
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.START,
     component: StartJourneyComponent,
     canActivate: [InvestmentEngagementJourneyGuard]
-  }
+  },
+  { path: '**', redirectTo: '/page-not-found' }
 ];
 
 @NgModule({
