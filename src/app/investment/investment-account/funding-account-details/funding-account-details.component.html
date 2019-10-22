@@ -1,3 +1,95 @@
-<p>
-  funding-account-details works!
-</p>
+<div class="app-tax-info investment-account">
+  <div class="step-indicator-container">
+    <div class="container-fluid max-width--1024">
+      <app-step-indicator [count]="2" [activeStepIndex]="" [mode]="1"></app-step-indicator>
+    </div>
+  </div>
+  <div class="container-fluid max-width--1024">
+    <div class="content">
+      <div class="row">
+            <div class="col-md-12">
+                <div class="srs-block">
+                  <div class="funding-type mb10">
+                    <h4>Funding Method</h4>
+                    <div class="flex-row">
+                        <div class="flex-col-12">
+                          <label for="name" class="country_text"
+                            id="tax-info-label">You have selected the following funding method for this portfolio.</label>
+                        </div>
+                        <div class="flex-col-12">
+                            <div class="dropdown-control">
+                                <div ngbDropdown>
+                                  <button class="btn btn-dropdown" id="additional_declaration_sourse-drpdown"
+                                    ngbDropdownToggle>
+                                    {{sourceObj ? sourceObj :'select'}}
+                                  </button>
+                                  <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                                    <button class="dropdown-item" *ngFor="let sourceObj of sourceOfIncomeList; let i = index;"
+                                      (click)="selectSource(sourceObj)"
+                                      id="additional_declaration_sourse-drpdown-option-{{i}}">{{sourceObj}}</button>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="widget">
+                    <div class="pb10">Please provide your account details.</div>
+                    <div class="widget-title">
+                      <span>SRS Account Details</span>
+                    </div>
+                    <div class="widget-body">
+                      <div class="flex-row">
+                        <div class="flex-col-4">
+                          <label for="name" class="country_text"
+                            id="tax-info-label">SRS Operator</label>
+                        </div>
+                        <div class="flex-col-8">
+                            <div class="dropdown-control">
+                                <div ngbDropdown>
+                                  <button class="btn btn-dropdown" id="additional_declaration_sourse-drpdown"
+                                    ngbDropdownToggle>
+                                    {{sourceObj ? sourceObj :'select'}}
+                                  </button>
+                                  <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                                    <button class="dropdown-item" *ngFor="let sourceObj of sourceOfIncomeList; let i = index;"
+                                      (click)="selectSource(sourceObj)"
+                                      id="additional_declaration_sourse-drpdown-option-{{i}}">{{sourceObj}}</button>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                      </div>
+                      <div class="flex-row">
+                        <div class="flex-col-4">
+                          <label for="name" class="country_text"
+                            id="tax-info-label">SRS Account Number</label>
+                        </div>
+                        <div class="flex-col-8">
+                            <input type="text" placeholder="Enter Account Number" class="form-control" maxLength="30">
+                          <!-- <div class="dropdown-control"
+                            [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.taxCountry)}">
+                            <app-dropdown-with-search [form]="taxInfoItem" controlName="taxCountry"
+                              [optionList]="countries" displayKey="name" placement="bottom"
+                              placeholderText="{{'INVESTMENT_ACCOUNT_COMMON.SELECT_COUNTRY' | translate}}"
+                              (itemSelected)="selectCountry($event, taxInfoItem)">
+                            </app-dropdown-with-search>
+                          </div> -->
+                        </div>
+                      </div>
+                      <div>Please ensure you have entered correct SRS account information</div>
+                    </div>
+                    <div class="tax-lbl">{{ 'TAX_INFO.TAX_OTHER_COUNTRY' | translate}}</div>
+                  </div>
+                </div>
+              <div class="text-center">
+                <button type="button" id="personalInforNextBtn" (click)="goToNext(taxInfoForm)"
+                  class="btn btn__footer--fixed btn-ftr-get-started btn-primary"
+                  id="getStrdBtn3">{{ 'TAX_INFO.CONTINUE' | translate}}</button>
+              </div>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+
