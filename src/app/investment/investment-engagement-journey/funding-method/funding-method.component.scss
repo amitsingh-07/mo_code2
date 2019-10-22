@@ -2,5 +2,29 @@
 @import '../../../../_mixins.scss';
 
 app-funding-method{
+    banner-image{
+        width: 250px;
+        height: 250px;
+        align-items: center;
+        margin: auto;
+    }
+    .input-label-grey {
+        color: $question-info-input-lbl-color;
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+      }
+      .btn {
+        &:disabled {
+          background-color: $btn-disabled-light-bg;
+          color: $btn-disabled-teal-color;
+          cursor: pointer;
+      
+          &:hover {
+            background-color: $btn-disabled-light-bg !important;
+            color: $btn-disabled-teal-color;
+      
+          }
+        }
+      }
 
 }

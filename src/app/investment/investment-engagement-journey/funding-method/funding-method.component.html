@@ -1,35 +1,36 @@
 <div class="container-fluid max-width--1024 investment">
   <div class="row">
-    <div class="col-lg-7 col-md-6" >
+    <div class="col-lg-7 col-md-6">
       <h6 class="text-center">How do you want to fund this portfolio?</h6>
       <div class="banner-image">
-        <img src="assets/images/investment-account/qn-1.svg"/>
+        <img src="assets/images/investment-account/qn-1.svg" />
       </div>
     </div>
     <div class="col-lg-5 col-md-6">
-      <form name="riskAssessmentForm" [formGroup]="riskAssessmentForm" id="riskAssessmentForm">
+      <form name="riskAssessmentForm" [formGroup]="fundingMethodForm" id="riskAssessmentForm">
         <div class="form-group-single-column flex-col">
           <div class="question-title mb10">I Want to fund this portfolio using</div>
-          <!-- NORMAL CASE -->
           <div class="row">
-            <div class="col-12">
+            <div class="col-12" *ngFor="let option of options; let i = index">
               <div class="checkbox-button one-label">
-                <input type="radio" class="field radio">
-                <label>
-                  <div><span class="input-label-grey">Cash</span></div>
-                </label>
-              </div>
-              <div class="checkbox-button one-label">
-                <input type="radio" class="field radio">
-                <label>
-                  <div><span class="input-label-grey">SRS</span></div>
+                <input id="risk-assessment_option{{i+1}}_radio" name="fundingMethod" formControlName="fundingMethod"
+                  type="radio" class="field radio" value="{{option}}" tabindex="{{i+1}}" (change)="fundChange(option)">
+                <label for="risk-assessment_option{{i+1}}_radio" id="riskAssessLbl_{{i}}">
+                  <div><span id="risk-assessment_option-text{{i+1}}_lbl" class="input-label-grey">{{option}}</span>
+                  </div>
                 </label>
               </div>
             </div>
+            <div>
+              <div *ngIf="fundingMethodForm.get('fundingMethod').value === 'Cash'">cash content cash content cash
+                content</div>
+              <div *ngIf="fundingMethodForm.get('fundingMethod').value === 'SRS'"> srs content srs content srs content
+                srs content </div>
+            </div>
           </div>
-
-          <button type="button" (click)="goToNext()" class="btn btn-primary btn__footer--fixed width100"
-           >{{ 'LABEL.CONTINUE' | translate}}</button>
+          <button type="button" (click)="goToNext(fundingMethodForm)"
+            [disabled]="(!fundingMethodForm.controls.fundingMethod.value)"
+            class="btn btn-primary btn__footer--fixed width100">{{ 'LABEL.CONTINUE' | translate}}</button>
         </div>
       </form>
     </div>
