@@ -1,0 +1,58 @@
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
+
+app-funding-account-details{
+    .srs-block {
+        position: relative;
+        border-radius: 6px;
+        margin-top: 20px;
+  
+        .tax-lbl {
+          color: $white-color;
+          padding-top: 24px;
+          display: none;
+        }
+  
+        &:first-child {
+          margin-top: 0px;
+  
+          .thumb-close-icon {
+            display: none;
+          }
+  
+          .tax-lbl {
+            display: flex;
+          }
+        }
+  
+        .widget-title {
+          background-color: $white-color;
+          font-family: $muli-bold;
+          letter-spacing: -0.3px;
+          color: $black-color;
+          border-top-left-radius: 6px;
+          border-top-right-radius: 6px;
+          padding: 25px 30px;
+          display: flex;
+          justify-content: space-between;
+          .delete-icon{
+            cursor: pointer;
+          }
+        }
+  
+        .widget-body {
+          padding: 20px 30px 35px;
+          background-color: $bond-container-bg;
+          font-family: $muli-semi-bold;
+          font-size: 18px;
+          font-weight: 400;
+          letter-spacing: -0.34px;
+          color: $dark-teal-color;
+          border-bottom-left-radius: 6px;
+          border-bottom-right-radius: 6px;
+        }
+      }
+      .dropdown-control .btn-dropdown {
+        padding-right: 28px;
+      }
+}
