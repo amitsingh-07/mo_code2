@@ -1,31 +1,35 @@
 <div class="container-fluid max-width--1024 investment">
   <div class="row">
     <div class="col-lg-7 col-md-6">
-      <h6 class="text-center">How do you want to fund this portfolio?</h6>
+      <h2 class="hidden-sm">Select Funding Method</h2>
+      <div class="text-lyt">How do you want to fund this portfolio?</div>
       <div class="banner-image">
-        <img src="assets/images/investment-account/qn-1.svg" />
+        <img src="assets/images/investment-account/choose-fund.svg" />
       </div>
     </div>
     <div class="col-lg-5 col-md-6">
       <form name="riskAssessmentForm" [formGroup]="fundingMethodForm" id="riskAssessmentForm">
         <div class="form-group-single-column flex-col">
-          <div class="question-title mb10">I Want to fund this portfolio using</div>
+          <div class="fund-question">I Want to fund this portfolio using my</div>
           <div class="row">
             <div class="col-12" *ngFor="let option of options; let i = index">
               <div class="checkbox-button one-label">
                 <input id="risk-assessment_option{{i+1}}_radio" name="fundingMethod" formControlName="fundingMethod"
                   type="radio" class="field radio" value="{{option}}" tabindex="{{i+1}}" (change)="fundChange(option)">
                 <label for="risk-assessment_option{{i+1}}_radio" id="riskAssessLbl_{{i}}">
-                  <div><span id="risk-assessment_option-text{{i+1}}_lbl" class="input-label-grey">{{option}}</span>
+                  <div><span id="risk-assessment_option-text{{i+1}}_lbl" class="input-label-black">{{option}}</span>
+                    <span><i class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModal()"></i></span>
                   </div>
                 </label>
               </div>
             </div>
-            <div>
-              <div *ngIf="fundingMethodForm.get('fundingMethod').value === 'Cash'">cash content cash content cash
-                content</div>
-              <div *ngIf="fundingMethodForm.get('fundingMethod').value === 'SRS'"> srs content srs content srs content
-                srs content </div>
+            <div class="col-12">
+              <div *ngIf="fundingMethodForm.get('fundingMethod').value === 'Cash'">
+                <div class="note-info"><span class="note-icon"><img src="assets/images/investment-account/note-icon-white.svg" /></span><span>You can fund using any bank account (registered under your name).</span></div>
+              </div>
+              <div *ngIf="fundingMethodForm.get('fundingMethod').value === 'SRS'">
+                <div class="note-info"><span class="note-icon"><img src="assets/images/investment-account/note-icon-white.svg" /></span><span>Please have your SRS account number ready before you continue from here. You <u>MUST</u> also ensure sufficient fund in your SRS Account. Amount will be deducted immediately and invest within 2-3 working days.</span></div>
+              </div>
             </div>
           </div>
           <button type="button" (click)="goToNext(fundingMethodForm)"

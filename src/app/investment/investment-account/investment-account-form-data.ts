@@ -151,4 +151,6 @@ export class InvestmentAccountFormData {
   dashboardInitMessageShow: boolean;
   dashboardInitMessageTitle: string;
   dashboardInitMessageDesc: string;
+  // fund account details
+  fundingMethod: string;
 }

@@ -1,52 +1,52 @@
-<div class="portfolio-naming-modal-backdrop"></div>
-<div class="portfolio-naming-modal-wrapper">
-  <form [formGroup]="portfolioNameFormGroup">
-    <div class="portfolio-block">
-      <div class="portfolio-naming">
-        <div *ngIf="!accountCreationStatus" class="title">{{
-              'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.TITLE' | translate}}</div>
-        <div *ngIf="accountCreationStatus" class="title">{{
-                'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.TITLE_TWO' | translate}}</div>
-        <div *ngIf="!accountCreationStatus" class="portfolio-success mb30">
-          <img src={{profileIcon}} id="riskProfileImg" />
-        </div>
-        <div *ngIf="accountCreationStatus" class="portfolio-success mb30">
-          <img src={{portfolioSuccessIcon}} id="riskProfileImg" />
-        </div>
-        <div class="portfolio_name_title">{{defaultPortfolioName}}</div>
-      </div>
-      <div class="portfolio-naming--content">
-        <div>
-          <div class="desc">{{
-              'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.ADD_PORTFOLIO_NAME_LAB' | translate}}</div>
-          <div class="form-control mt20" [ngClass]="{'inline-error': showErrorMessage}">
-            <input class="input-control" type="text" placeholder="Enter a unique portfolio name" #portfolioName
-              formControlName="portfolioName" (keyup)="showLength($event)" maxlength="50">
+<div class="portfolio-naming-backdrop">
+  <div class="container-fluid max-width--1024">
+    <div class="portfolio-naming-wrapper">
+      <form [formGroup]="portfolioNameFormGroup">
+        <div class="portfolio-block">
+          <div class="portfolio-naming">
+            <div class="hidden-sm">Name your portfolio</div>
+            <div class="title">Your portfolio is almost ready.</div>
+            <div *ngIf="!accountCreationStatus" class="portfolio-success mb30">
+              <img src={{profileIcon}} id="riskProfileImg" />
+            </div>
+            <div *ngIf="accountCreationStatus" class="portfolio-success mb30">
+              <img src={{portfolioSuccessIcon}} id="riskProfileImg" />
+            </div>
+            <div class="portfolio_name_title">PortfolioName</div>
           </div>
-          <div
-            *ngIf="!portfolioNameFormGroup.get('portfolioName').valid && !portfolioNameFormGroup.get('portfolioName').pristine"
-            class="error-message">
-            {{
+          <div class="portfolio-naming--content">
+            <div>
+              <div class="desc">
+                PORTFOLIO RECOMMENDATION ADD PORTFOLIO NAME ADD PORTFOLIO NAME LAB</div>
+              <div class="form-control mt20" [ngClass]="{'inline-error': showErrorMessage}">
+                <input class="input-control" type="text" placeholder="Enter a unique portfolio name" #portfolioName
+                  formControlName="portfolioName" (keyup)="showLength($event)" maxlength="50">
+              </div>
+              <div
+                *ngIf="!portfolioNameFormGroup.get('portfolioName').valid && !portfolioNameFormGroup.get('portfolioName').pristine"
+                class="error-message">
+                {{
               'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.VALIDATION_MESSAGE' | translate}}
-          </div>
-          <div *ngIf="showErrorMessage" class="error-message">
-            <span><img class="success-tick"
-                src="../../../assets/images/investment-account/portfolio-naming-indicator.svg" /></span>
-            <span>{{
+              </div>
+              <div *ngIf="showErrorMessage" class="error-message">
+                <span><img class="success-tick"
+                    src="../../../assets/images/investment-account/portfolio-naming-indicator.svg" /></span>
+                <span>{{
               'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.ERROR_MESSAGE' | translate}}</span>
+              </div>
+            </div>
+            <div class="characters">{{characterLength ? characterLength : (userPortfolioName ? userPortfolioName :0)}}
+              / 50 characters</div>
+
+            <button type="button" class="btn btn__footer--fixed btn-primary width100  mt20"
+              (click)="addPortfolioName(portfolioNameFormGroup)" id="prfBtn1">CONTINUE</button>
+
+            <!-- <button type="button" class="btn btn-primary width100  mt20"
+            (click)="addPortfolioName(portfolioNameFormGroup)" id="prfBtn1" *ngIf="accountCreationStatus">
+            {{'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.DONE' | translate}}</button> -->
           </div>
         </div>
-        <div class="characters">{{characterLength ? characterLength : (userPortfolioName ? userPortfolioName :0)}}
-          / 50 characters</div>
-
-        <button type="button" class="btn btn-primary width100  mt20" (click)="addPortfolioName(portfolioNameFormGroup)"
-          id="prfBtn1" *ngIf="!accountCreationStatus">{{
-            'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.CONTINUE' | translate}}</button>
-
-        <button type="button" class="btn btn-primary width100  mt20" (click)="addPortfolioName(portfolioNameFormGroup)"
-          id="prfBtn1" *ngIf="accountCreationStatus">
-          {{'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.DONE' | translate}}</button>
-      </div>
+      </form>
     </div>
-  </form>
+  </div>
 </div>
