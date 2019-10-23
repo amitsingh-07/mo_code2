@@ -44,12 +44,12 @@ export class LoginCreateAccountModelComponent implements OnInit {
     });
     this.activeModal.close();
     if (page === 'signup') {
-      if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
-      } else {
-        this.signUpService.clearData();
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT], { skipLocationChange: true });
-      }
+      // if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
+      //   this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
+      // } else {
+      this.signUpService.clearData();
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT], { skipLocationChange: true });
+      //   }
 
     }
     if (page === 'login') {
