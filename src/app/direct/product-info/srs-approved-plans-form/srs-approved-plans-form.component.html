@@ -29,7 +29,7 @@
         <div class="datepicker-control">
           <div class="input-group date-picker mb0" [ngClass]="{'inline-error': doberror && !srsApprovedPlansForm.get('dob').valid  && !srsApprovedPlansForm.get('dob').pristine}">
             <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" name="dp"
-              ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" [minDate]="dpMinDate" [maxDate]="dpMaxDate">
+              ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
             <div class="input-group-append">
               <button (click)="d.toggle()" class="btn btn-primary" type="button">
                 <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="srsApprovedPlansForm.get('dob').valid || srsApprovedPlansForm.get('dob').pristine || !doberror"

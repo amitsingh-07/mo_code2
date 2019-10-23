@@ -74,6 +74,10 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
         }
       }
     });
+    this.directService.userInfoSet.subscribe((data) => {
+      this.retirementIncomeForm.controls.gender.setValue(data['gender']);
+      this.retirementIncomeForm.controls.dob.setValue(data['dob']);
+    });
   }
 
   ngOnDestroy(): void {

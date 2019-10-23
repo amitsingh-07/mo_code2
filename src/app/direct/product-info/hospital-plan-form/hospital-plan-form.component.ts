@@ -63,6 +63,10 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
         }
       }
     });
+    this.directService.userInfoSet.subscribe((data) => {
+      this.hospitalForm.controls.gender.setValue(data['gender']);
+      this.hospitalForm.controls.dob.setValue(data['dob']);
+    });
   }
 
   ngOnDestroy(): void {
