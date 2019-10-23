@@ -9,8 +9,8 @@ export const environment: IEnvironment = {
   isDebugMode: false,
   apiBaseUrl: 'https://bfa-uat3.ntucbfa.com',
   myInfoClientId: 'STG-201820691C-MONEYOWL-BFA',
-  myInfoCallbackBaseUrl: 'https://bfa-uat3.ntucbfa.com/myinfo',
-  myInfoAuthorizeUrl: 'https://myinfosgstg.api.gov.sg/test/v2/authorise',
+  myInfoCallbackBaseUrl: 'https://bfa-uat.ntucbfa.com/myinfo',
+  myInfoAuthorizeUrl: 'https://test.api.myinfo.gov.sg/com/v3/authorise',
   gAdPropertyId: 'AW-782920447',
   gaPropertyId: 'UA-125256446-1'
 };
