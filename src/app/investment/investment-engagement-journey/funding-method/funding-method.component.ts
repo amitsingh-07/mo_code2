@@ -54,14 +54,14 @@ export class FundingMethodComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.formValues = this.investmentEngagementJourneyService.getFundingMethod();
+    this.formValues = this.investmentAccountService.getFundingMethod();
     this.fundingMethodForm = new FormGroup({
       fundingMethod: new FormControl(
         this.formValues.fundingMethod, Validators.required)
     });
   }
   goToNext(form) {
-    this.investmentEngagementJourneyService.setFundingMethod(form.value);
+    this.investmentAccountService.setFundingMethod(form.value);
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
   setPageTitle(title: string) {
