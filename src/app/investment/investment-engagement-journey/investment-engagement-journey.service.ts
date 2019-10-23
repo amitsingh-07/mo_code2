@@ -49,6 +49,16 @@ export class InvestmentEngagementJourneyService {
       investmentPeriod: this.investmentEngagementJourneyFormData.investmentPeriod
     };
   }
+  getFundingMethod() {
+    return {
+      fundingMethod: this.investmentEngagementJourneyFormData.fundingMethod
+    };
+  }
+  setFundingMethod(data) {
+    this.investmentEngagementJourneyFormData.fundingMethod = data.fundingMethod;
+      this.commit();
+  
+  }
 
   // Risk Profile
   getRiskProfile() {
