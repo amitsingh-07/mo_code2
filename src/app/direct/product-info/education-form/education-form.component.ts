@@ -58,6 +58,17 @@ export class EducationFormComponent implements OnInit, OnDestroy {
         }
       }
     });
+    this.directService.userInfoSet.subscribe((data) => {
+      this.educationForm.controls.childgender.setValue(data['gender']);
+      this.educationForm.controls.childdob.setValue(data['dob']);
+    });
+  }
+
+  onGenderDobChange() {
+    const userInfo = this.directService.getUserInfo();
+    userInfo.dob = this.educationForm.controls.childdob.value;
+    userInfo.gender = this.educationForm.controls.childgender.value;
+    this.directService.updateUserInfo(userInfo);
   }
 
   ngOnDestroy(): void {
@@ -75,6 +86,7 @@ export class EducationFormComponent implements OnInit, OnDestroy {
   setdefaultUniversityAge() {
     this.selectedunivercityEntryAge = this.educationForm.controls['childgender'].value === 'male' ? '20' : '18';
     this.educationForm.controls.selectedunivercityEntryAge.setValue(this.selectedunivercityEntryAge);
+    this.onGenderDobChange();
   }
 
   setselfform() {
