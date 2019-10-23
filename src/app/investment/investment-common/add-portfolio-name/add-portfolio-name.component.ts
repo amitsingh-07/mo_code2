@@ -67,10 +67,10 @@ export class AddPortfolioNameComponent implements OnInit {
     this.portfolio = this.manageInvestmentsService.getFundingDetails();
     this.profileIcon = ProfileIcons[1]['icon'];
     this.portfolioSuccessIcon = SuccessIcons[1]['icon'];
-    // this.portfolioNameFormGroup = this.formBuilder.group({
-    //   portfolioName: new FormControl(this.userPortfolioName,
-    //     [Validators.pattern(RegexConstants.portfolioName)])
-    // });
+    this.portfolioNameFormGroup = this.formBuilder.group({
+      portfolioName: new FormControl(this.userPortfolioName,
+        [Validators.pattern(RegexConstants.portfolioName)])
+    });
   }
 
   addPortfolioName(form) {

@@ -28,13 +28,14 @@ app-add-portfolio-name {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 60px;
+    color: $black-color;
+    //padding-top: 60px;
     // height: 100vh;
 
-    @include allmobiles {
-      padding-top: 0 ;
-      // align-items: flex-end;
-    }
+    // @include allmobiles {
+    //   padding-top: 0 ;
+    //   align-items: flex-end;
+    // }
 
     // .modal .close {
     //   top: 25px !important;
@@ -52,7 +53,8 @@ app-add-portfolio-name {
 
       .portfolio-naming {
         // max-width: 320px;
-        margin: 0 auto 60px;
+        margin: 0 auto;
+        padding-bottom: 40px;
 
         // @include allmobiles {
         //   margin: 0px auto;
@@ -75,13 +77,12 @@ app-add-portfolio-name {
           font-size: 18px;
           letter-spacing: -0.34px;
           text-align: center;
-          color: $black-color;
         }
       }
 
       .portfolio-naming--content {
         // max-width: 320px;
-        padding-bottom: 50px;
+        // padding-bottom: 50px;
         // @include allmobiles {
         //   position: absolute;
         //   display: flex;
@@ -105,12 +106,15 @@ app-add-portfolio-name {
 
     .title {
       font-family: $muli-bold;
-      font-size: 30px;
+      font-size: 32px;
       letter-spacing: -0.3px;
       text-align: center;
       color: $custom-modal-title-color;
-      padding-bottom: 20px;
+      padding:10px 0 20px;
       line-height: 40px;
+      @include allmobiles{
+        font-size: 28px;
+      }
     }
 
     .portfolio-success {
@@ -129,10 +133,13 @@ app-add-portfolio-name {
 
     .desc {
       font-family: $muli-regular;
-      font-size: 18px;
-      letter-spacing: -0.34px;
+      font-size: 21px;
+      letter-spacing: -0.39px;
       text-align: center;
-      color: $black-color;
+      @include allmobiles{
+        font-size: 18px;
+        letter-spacing: -0.34px;
+      }
     }
 
     .characters {
