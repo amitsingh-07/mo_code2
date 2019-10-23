@@ -80,7 +80,6 @@ export class DirectService {
 
   setUserInfo(userInfo: UserInfo) {
     this.directFormData.userInfo = userInfo;
-    this.updateUserInfo(userInfo);
     this.commit();
   }
 

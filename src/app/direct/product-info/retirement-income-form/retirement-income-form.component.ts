@@ -80,6 +80,13 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
     });
   }
 
+  onGenderDobChange() {
+    const userInfo = this.directService.getUserInfo();
+    userInfo.dob = this.retirementIncomeForm.controls.dob.value;
+    userInfo.gender = this.retirementIncomeForm.controls.gender.value;
+    this.directService.updateUserInfo(userInfo);
+  }
+
   ngOnDestroy(): void {
     this.categorySub.unsubscribe();
   }

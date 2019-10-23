@@ -95,6 +95,13 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
     });
   }
 
+  onGenderDobChange() {
+    const userInfo = this.directService.getUserInfo();
+    userInfo.dob = this.ocpDisabilityForm.controls.dob.value;
+    userInfo.gender = this.ocpDisabilityForm.controls.gender.value;
+    this.directService.updateUserInfo(userInfo);
+  }
+
   ngAfterViewInit() {
     if (this.formValues.employmentType !== undefined) {
       this.selectEmployeeType(this.formValues.employmentType, true);

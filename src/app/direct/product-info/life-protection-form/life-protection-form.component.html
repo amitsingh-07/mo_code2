@@ -9,12 +9,12 @@
             <div class="flex-row mb0">
               <div>
                 <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl2">
-                  <input ngbButton type="radio" value="male" id="getStrdInpt1"> {{ 'COMMON.LBL_MALE' | translate}}
+                  <input ngbButton type="radio" value="male" (change)="onGenderDobChange()" id="getStrdInpt1"> {{ 'COMMON.LBL_MALE' | translate}}
                 </label>
                 </div>
               <div>
                 <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl3">
-                  <input ngbButton type="radio" value="female" id="getStrdInpt2"> {{ 'COMMON.LBL_FEMALE' | translate}}
+                  <input ngbButton type="radio" value="female" (change)="onGenderDobChange()" id="getStrdInpt2"> {{ 'COMMON.LBL_FEMALE' | translate}}
                 </label>
                 </div>
               </div>
@@ -29,7 +29,7 @@
           <div class="datepicker-control">
             <div class="input-group date-picker mb0"  [ngClass]="{'inline-error': doberror && !lifeProtectionForm.get('dob').valid  && !lifeProtectionForm.get('dob').pristine}">
               <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob"
-              name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+              name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" (dateSelect)="onGenderDobChange()">
               <div class="input-group-append">
                 <button (click)="d.toggle()" class="btn btn-primary" type="button">
                     <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="lifeProtectionForm.get('dob').valid || lifeProtectionForm.get('dob').pristine || !doberror" src="./assets/images/calendar-normal.svg"

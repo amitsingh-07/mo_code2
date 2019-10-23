@@ -60,6 +60,13 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
     });
   }
 
+  onGenderDobChange() {
+    const userInfo = this.directService.getUserInfo();
+    userInfo.dob = this.longTermCareForm.controls.dob.value;
+    userInfo.gender = this.longTermCareForm.controls.gender.value;
+    this.directService.updateUserInfo(userInfo);
+  }
+
   ngOnDestroy(): void {
     this.categorySub.unsubscribe();
   }

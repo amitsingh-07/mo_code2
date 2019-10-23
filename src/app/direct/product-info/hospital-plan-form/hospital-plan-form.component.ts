@@ -69,6 +69,13 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
     });
   }
 
+  onGenderDobChange() {
+    const userInfo = this.directService.getUserInfo();
+    userInfo.dob = this.hospitalForm.controls.dob.value;
+    userInfo.gender = this.hospitalForm.controls.gender.value;
+    this.directService.updateUserInfo(userInfo);
+  }
+
   ngOnDestroy(): void {
     this.categorySub.unsubscribe();
   }

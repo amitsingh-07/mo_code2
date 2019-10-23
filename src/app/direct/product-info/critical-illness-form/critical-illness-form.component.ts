@@ -94,6 +94,13 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     });
   }
 
+  onGenderDobChange() {
+    const userInfo = this.directService.getUserInfo();
+    userInfo.dob = this.criticalIllnessForm.controls.dob.value;
+    userInfo.gender = this.criticalIllnessForm.controls.gender.value;
+    this.directService.updateUserInfo(userInfo);
+  }
+
   ngOnDestroy(): void {
     if (this.categorySub) {
       this.categorySub.unsubscribe();

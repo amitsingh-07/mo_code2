@@ -80,6 +80,13 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
     });
   }
 
+  onGenderDobChange() {
+    const userInfo = this.directService.getUserInfo();
+    userInfo.dob = this.srsApprovedPlansForm.controls.dob.value;
+    userInfo.gender = this.srsApprovedPlansForm.controls.gender.value;
+    this.directService.updateUserInfo(userInfo);
+  }
+
   ngOnDestroy(): void {
     this.categorySub.unsubscribe();
   }
