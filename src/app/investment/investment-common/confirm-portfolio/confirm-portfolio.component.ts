@@ -31,7 +31,7 @@ import { ProfileIcons } from '../../investment-engagement-journey/recommendation
 import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-investments-routes.constants';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
-import { AddPortfolioNameComponent } from '../add-portfolio-name/add-portfolio-name.component';
+import { AddPortfolioNameComponent } from "../add-portfolio-name/AddPortfolioNameComponent";
 import { IAccountCreationActions } from '../investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
@@ -280,29 +280,26 @@ export class ConfirmPortfolioComponent implements OnInit {
   }
 
   showAddPortfolioNameModal() {
-    const ref = this.modal.open(AddPortfolioNameComponent, {
-      centered: true,
-      backdropClass: 'portfolio-naming-backdrop',
-      windowClass: 'portfolio-naming custom-full-height'
-    });
-    ref.componentInstance.riskProfileId = this.portfolio.riskProfile.id;
-    ref.componentInstance.defaultPortfolioName = this.defaultPortfolioName;
-    ref.componentInstance.showErrorMessage = this.showErrorMessage;
-    ref.componentInstance.userPortfolioName = this.userPortfolioName;
-    ref.componentInstance.accountCreationStatus = this.isAccountCreated();
-    ref.componentInstance.addPortfolioBtn.subscribe((portfolioName) => {
-      if (portfolioName && portfolioName.toUpperCase() !== this.defaultPortfolioName.toUpperCase()) {
-        this.userGivenPortfolioName = portfolioName;
-        this.investmentCommonService.setConfirmPortfolioName(portfolioName);
-        this.showToastMessage();
-        this.savePortfolioName(portfolioName);
-      } else {
-        this.userGivenPortfolioName = this.defaultPortfolioName;
-        this.investmentCommonService.setConfirmPortfolioName(this.defaultPortfolioName);
-        this.showToastMessage();
-        this.goToNext();
-        }
-    });
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
+  
+    // ref.componentInstance.riskProfileId = this.portfolio.riskProfile.id;
+    // ref.componentInstance.defaultPortfolioName = this.defaultPortfolioName;
+    // ref.componentInstance.showErrorMessage = this.showErrorMessage;
+    // ref.componentInstance.userPortfolioName = this.userPortfolioName;
+    // ref.componentInstance.accountCreationStatus = this.isAccountCreated();
+    // ref.componentInstance.addPortfolioBtn.subscribe((portfolioName) => {
+    //   if (portfolioName && portfolioName.toUpperCase() !== this.defaultPortfolioName.toUpperCase()) {
+    //     this.userGivenPortfolioName = portfolioName;
+    //     this.investmentCommonService.setConfirmPortfolioName(portfolioName);
+    //     this.showToastMessage();
+    //     this.savePortfolioName(portfolioName);
+    //   } else {
+    //     this.userGivenPortfolioName = this.defaultPortfolioName;
+    //     this.investmentCommonService.setConfirmPortfolioName(this.defaultPortfolioName);
+    //     this.showToastMessage();
+    //     this.goToNext();
+    //     }
+    // });
   }
 
   constructSavePortfolioName(portfolioNameValue) {
