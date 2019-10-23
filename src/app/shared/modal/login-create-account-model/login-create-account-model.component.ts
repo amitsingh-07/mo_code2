@@ -6,6 +6,8 @@ import { filter } from 'rxjs/operators';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { LoaderService } from '../../components/loader/loader.service';
+import { AppService } from '../../../app.service';
+import { appConstants } from '../../../app.constants';
 
 @Component({
   selector: 'app-login-create-account-model',
@@ -20,7 +22,7 @@ export class LoginCreateAccountModelComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     public signUpService: SignUpService, private loaderService: LoaderService,
-    private router: Router) {
+    private router: Router, private appService: AppService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.activeModal.dismiss();
@@ -42,8 +44,13 @@ export class LoginCreateAccountModelComponent implements OnInit {
     });
     this.activeModal.close();
     if (page === 'signup') {
-      this.signUpService.clearData();
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT], { skipLocationChange: true });
+      if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
+      } else {
+        this.signUpService.clearData();
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT], { skipLocationChange: true });
+      }
+
     }
     if (page === 'login') {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN], { skipLocationChange: true });
