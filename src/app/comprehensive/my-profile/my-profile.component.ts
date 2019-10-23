@@ -161,7 +161,6 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     getUserProfileData() {
         this.userDetails = this.comprehensiveService.getMyProfile();
-        this.userDetails.gender = '';
         this.userDetails.gender = (this.userDetails.gender.toLowerCase() === 'male' ||
             this.userDetails.gender.toLowerCase() === 'female') ? this.userDetails.gender : '';
         this.disableDOB = this.getComprehensiveEnquiry.isDobUpdated;
