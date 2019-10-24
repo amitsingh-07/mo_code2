@@ -96,7 +96,7 @@
               </div>
             </div>
           </div>
-          <div class="flex-row add-rsp" *ngIf="!viewMode">
+          <!-- <div class="flex-row add-rsp" *ngIf="!viewMode">
             <div class="flex-col-12">
               <div class="with-help-icon" for="name"><u (click)="addRSP()">{{
                     'CMP.RSP.ADD_RSP' | translate}}</u>
@@ -104,6 +104,11 @@
                 <span class="help-icon" (click)="showToolTipModal('OTHER_RSP_TITLE','OTHER_RSP_MESSAGE')"></span>
               </div>
             </div>
+          </div> -->
+
+          <div class="sticky-footer add-rsp" *ngIf="!viewMode">
+            <div class="with-help-icon" for="name"><u (click)="addRSP()">{{'CMP.RSP.ADD_RSP' | translate}}</u></div>
+            <div class="help-icon" (click)="showToolTipModal('OTHER_RSP_TITLE','OTHER_RSP_MESSAGE')"></div>
           </div>
         </section>
       </div>
