@@ -1,49 +1,53 @@
-<div class="app-tax-info investment-account">
+<div class="funding-account-details investment-account">
   <div class="step-indicator-container">
     <div class="container-fluid max-width--1024">
       <app-step-indicator [count]="2" [activeStepIndex]="1" [mode]="1"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid max-width--1024">
+  <div class="container-fluid invest-web-width">
     <div class="content">
+      <div class="hidden-sm-md page-details">
+        <div>Step 2</div>
+        <div class="page-title">Confirm Account Details</div>
+      </div>
       <div class="row">
         <div class="col-md-12">
           <form name="funding account-details" [formGroup]="fundingAccountDetailsFrom">
-            <div class="srs-block">
-              <div class="funding-type mb10">
-                <h4>Funding Method</h4>
-                <div class="flex-row">
+              <div class="funding-type mb20">
                   <div class="flex-col-12">
-                    <label for="name" class="country_text" id="tax-info-label">You have selected the following funding
-                      method for this portfolio.</label>
+                    <div class="funding-lbl">Funding Method</div>
+                    <div>You have selected the following funding
+                      method for this portfolio.</div>
                   </div>
-                  <div class="flex-col-12">
-                    <div class="dropdown-control">
-                      <div ngbDropdown>
-                        <button class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
-                          {{fundingAccountDetailsFrom.controls.fundingAccountMethod.value}}
-                        </button>
-                        <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                          <button class="dropdown-item" *ngFor="let fundingMethod of fundingMethods; let i = index;"
-                            (click)="selectSource('fundingAccountMethod', fundingMethod)"
-                            id="additional_declaration_sourse-drpdown-option-{{i}}">{{fundingMethod}}</button>
+                  <div class="flex-row">
+                    <div class="flex-col-12">
+                      <div class="dropdown-control">
+                        <div ngbDropdown>
+                          <button class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
+                            {{fundingAccountDetailsFrom.controls.fundingAccountMethod.value}}
+                          </button>
+                          <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                            <button class="dropdown-item" *ngFor="let fundingMethod of fundingMethods; let i = index;"
+                              (click)="selectSource('fundingAccountMethod', fundingMethod)"
+                              id="additional_declaration_sourse-drpdown-option-{{i}}">{{fundingMethod}}</button>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+            <div class="srs-block">
               <!-- srs block -->
               <div *ngIf="fundingAccountDetailsFrom.controls.fundingAccountMethod.value === 'SRS'" class="widget"
                 formGroupName="srsFundingDetails">
-                <div class="pb10">Please provide your account details.</div>
+                <div class="mb15">Please provide your account details.</div>
                 <div class="widget-title">
                   <span>SRS Account Details</span>
                 </div>
                 <div class="widget-body">
                   <div class="flex-row">
-                    <div class="flex-col-4">
-                      <label for="name" class="country_text" id="tax-info-label">SRS Operator</label>
+                    <div class="flex-col-3">
+                      <label for="name">SRS Operator</label>
                     </div>
                     <div class="flex-col-8">
                       <div class="dropdown-control">
@@ -53,7 +57,8 @@
                               fundingAccountDetailsFrom.controls.srsFundingDetails.controls.srsOperatorBank.value :'select'}}
                           </button>
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                            <button class="dropdown-item" *ngFor="let srsOperatorBank of srsOperatorList; let i = index;"
+                            <button class="dropdown-item"
+                              *ngFor="let srsOperatorBank of srsOperatorList; let i = index;"
                               (click)="selectSrsOperator('srsOperatorBank', srsOperatorBank,'srsFundingDetails')"
                               id="additional_declaration_sourse-drpdown-option-{{i}}">{{srsOperatorBank}}</button>
                           </div>
@@ -62,32 +67,33 @@
                     </div>
                   </div>
                   <div class="flex-row">
-                    <div class="flex-col-4">
-                      <label for="name" class="country_text" placeholder="account number" id="tax-info-label">SRS
+                    <div class="flex-col-3">
+                      <label for="name" placeholder="account number">SRS
                         Account Number</label>
                     </div>
                     <div class="flex-col-8">
-                      <input type="text" placeholder="Enter Account Number" class="form-control" maxLength="30" formControlName="srsAccountNumber">
+                      <input type="text" placeholder="Enter Account Number" class="form-control" maxLength="30"
+                        formControlName="srsAccountNumber">
 
                     </div>
                   </div>
-                  <div>Please ensure you have entered correct SRS account information</div>
+                  <div class="txt-italic">Please ensure you have entered correct SRS account information</div>
                 </div>
-                <div>
-
-                  <div> srs content srs content srs content
-                    srs content </div>
+                <div class="note-info mt20"><span class="note-icon"><img
+                      src="assets/images/investment-account/note-icon-white.svg" /></span>
+                  <span>You <u>MUST</u> ensure sufficient fund in your SRS Account. Amount will be deducted
+                    immediately and invest within 2-3 working days.</span>
                 </div>
               </div>
               <!-- srs -->
             </div>
-            <div *ngIf="fundingAccountDetailsFrom.controls.fundingAccountMethod.value === 'Cash'"> cash content cash
-              content cash cash cash 
-               content </div>
+            <div *ngIf="fundingAccountDetailsFrom.controls.fundingAccountMethod.value === 'Cash'" class="note-info">
+              <span class="note-icon"><img src="assets/images/investment-account/note-icon-white.svg" /></span>
+              <span>You can fund using any bank account (registered under your name).</span>
+            </div>
             <div class="text-center">
               <button type="button" id="personalInforNextBtn" (click)="goToNext(fundingAccountDetailsFrom)"
-                class="btn btn__footer--fixed btn-ftr-get-started btn-primary"
-                id="getStrdBtn3">Continue</button>
+                class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="getStrdBtn3">Continue</button>
             </div>
           </form>
         </div>

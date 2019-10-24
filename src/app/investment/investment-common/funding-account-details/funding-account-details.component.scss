@@ -2,23 +2,35 @@
 @import '../../../../_mixins.scss';
 
 app-funding-account-details {
+.funding-account-details{
+  .page-details{
+    font-size: 14px;
+    letter-spacing: -0.15px;
+    text-align: center;
+    padding-bottom: 30px;
+    .page-title{
+      font-family: $muli-semi-bold;
+      font-size: 18px;
+      letter-spacing: -0.19px;
+    }
+  }
+  .funding-type{
+    line-height: 1.38;
+    letter-spacing: -0.16px;
+    .funding-lbl{
+      font-family: $muli-bold;
+      font-size: 18px;
+      line-height: normal;
+      letter-spacing: -0.34px;
+      margin-bottom: 15px;
+    }
+    .flex-row{
+      margin-top: 37px;
+    }
+  }
   .srs-block {
     position: relative;
     border-radius: 6px;
-    .funding-type{
-      line-height: 1.38;
-      letter-spacing: -0.16px;
-      .funding-lbl{
-        font-family: $muli-bold;
-        font-size: 18px;
-        line-height: normal;
-        letter-spacing: -0.34px;
-        margin-bottom: 17px;
-      }
-      .flex-row{
-        margin-top: 37px;
-      }
-    }
 
     .widget {
       .widget-title {
@@ -32,7 +44,7 @@ app-funding-account-details {
       }
 
       .widget-body {
-        padding: 20px 16px 26px 20px;
+        padding: 20px 20px 26px;
         background-color: $bond-container-bg;
         font-family: $muli-semi-bold;
         font-size: 18px;
@@ -40,17 +52,54 @@ app-funding-account-details {
         color: $dark-teal-color;
         border-bottom-left-radius: 6px;
         border-bottom-right-radius: 6px;
+        @include allmobiles{
+          padding: 20px 16px 26px 20px;
+        }
+        .flex-row{
+          justify-content: space-between;
+          align-items: center;
+          line-height: normal;
+          margin-bottom: 6px;
+        }
+        .txt-italic{
+          font-family: $muli-italic;
+          font-size: 14px;
+          line-height: normal;
+          letter-spacing: -0.15px;
+          color: #5e5e5e;
+          margin-top: 15px;
+        }
       }
     }
+  }
 
-    .tax-lbl {
-      color: $white-color;
-      padding-top: 24px;
-      display: none;
+
+  .note-info{
+    @extend .flex;
+    font-size: 13px;
+    letter-spacing: -0.11px;
+    padding-bottom:16px;
+    u{
+      font-family: $muli-bold;
+    }
+    .note-icon{
+      @extend .flex;
+      width: 24px;
+      height: 24px;
+      margin-right: 15px;
     }
   }
 
   .dropdown-control .btn-dropdown {
     padding-right: 28px;
+  }
+
+  .btn-primary{
+    max-width: 340px;
+    @include allmobiles{
+      max-width: 100%;
+    }
+  }
+
   }
 }
