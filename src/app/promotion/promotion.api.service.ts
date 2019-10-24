@@ -36,7 +36,7 @@ export class PromotionApiService {
       lastName: payload.lastName,
       emailAddress: payload.emailAddress,
       contactNumber: payload.contactNumber,
-      dateOfBirth: padNumber(payload.dateOfBirth['day']) + '-' + padNumber(payload.dateOfBirth['month']) + '-' + payload.dateOfBirth['year'],
+      dateOfBirth: payload.dateOfBirth['year'] + '-' + padNumber(payload.dateOfBirth['month']) + '-' + padNumber(payload.dateOfBirth['day']),
       gender: payload.gender,
       enquiryType: payload.enquiryType,
       receiveMarketingEmails: payload.receiveMarketingEmails
