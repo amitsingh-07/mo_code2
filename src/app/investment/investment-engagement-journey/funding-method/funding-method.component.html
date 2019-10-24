@@ -25,10 +25,10 @@
             </div>
             <div class="col-12">
               <div *ngIf="fundingMethodForm.get('fundingMethod').value === 'Cash'">
-                <div class="note-info"><span class="note-icon"><img src="assets/images/investment-account/note-icon-white.svg" /></span innerHTML="{{'fUNDING_METHOD.cASH_DESC' | translate}}"><span></span></div>
+                <div class="note-info"><span class="note-icon"><img src="assets/images/investment-account/note-icon-white.svg" /></span><span [innerHTML]="'fUNDING_METHOD.CASH_DESC' | translate"></span></div>
               </div>
               <div *ngIf="fundingMethodForm.get('fundingMethod').value === 'SRS'">
-                <div class="note-info"><span class="note-icon"><img src="assets/images/investment-account/note-icon-white.svg" /></span innerHTML="{{'fUNDING_METHOD.SRS_DESC' | translate}}"><span></span></div>
+                <div class="note-info"><span class="note-icon"><img src="assets/images/investment-account/note-icon-white.svg" /></span><span [innerHTML]="'fUNDING_METHOD.SRS_DESC' | translate"></span></div>
               </div>
             </div>
           </div>

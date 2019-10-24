@@ -18,7 +18,7 @@
     "TITLE": "Select Funding Method",
     "DESC": "I want to fund this portfolio using my",
     "SRS_DESC":"Please have your SRS account number ready before you continue from here. You <u>MUST</u> also ensure sufficient fund in your SRS Account. Amount will be deducted immediately and invest within 2-3 working days.",
-    "cASH_DESC":"You can fund using any bank account (registered under your name)."
+    "CASH_DESC":"You can fund using any bank account (registered under your name)."
    },
   "GETSTARTED_STEP1": {
     "TITLE": "Step 1",
