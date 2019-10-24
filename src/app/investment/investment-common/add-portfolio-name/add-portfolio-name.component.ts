@@ -37,7 +37,6 @@ import { SuccessIcons } from './successIcon';
 })
 export class AddPortfolioNameComponent implements OnInit {
   riskProfileIcon;
-  riskProfileIconSuccess;
   characterLength;
   form: FormGroup;
   pageTitle;
@@ -45,7 +44,6 @@ export class AddPortfolioNameComponent implements OnInit {
   userPortfolioName;
   userGivenPortfolioName;
   showErrorMessage = false;
-  isAccountCreated = false;
   isSubsequentPortfolio = false;
   isRequestSubmitted = false;
   formValues;
@@ -73,9 +71,7 @@ export class AddPortfolioNameComponent implements OnInit {
 
   ngOnInit() {
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
-    debugger;
     this.riskProfileIcon = ProfileIcons[this.formValues.recommendedRiskProfileId - 1]['icon'];
-    this.riskProfileIconSuccess = SuccessIcons[this.formValues.recommendedRiskProfileId - 1]['icon'];
     this.defaultPortfolioName = this.formValues.defaultPortfolioName;
     this.form = this.formBuilder.group({
       portfolioName: new FormControl(this.userPortfolioName, [Validators.pattern(RegexConstants.portfolioName)])
@@ -157,7 +153,6 @@ export class AddPortfolioNameComponent implements OnInit {
         const pepData = this.investmentAccountService.getPepData();
         const OldPepData = this.investmentAccountService.getOldPepData();
         if (pepData && !OldPepData) {
-          this.isAccountCreated = false;
           this.goToAdditionalDeclaration();
         } else {
           this.createInvestmentAccount(cddCheckFailed);
@@ -216,7 +211,6 @@ export class AddPortfolioNameComponent implements OnInit {
           ) {
             this.createInvestmentAccount(false);
           } else {
-            this.isAccountCreated = false;
             this.goToAdditionalDeclaration();
           }
         },
@@ -286,7 +280,6 @@ export class AddPortfolioNameComponent implements OnInit {
                 this.investmentAccountService.setAccountCreationStatus(
                   INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_pending
                 );
-                this.isAccountCreated = false;
                 this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
               }
               this.investmentCommonService.clearJourneyData();
@@ -310,7 +303,6 @@ export class AddPortfolioNameComponent implements OnInit {
     } else {
       this.investmentAccountService.setAccountSuccussModalCounter(0); // Show splash screen
     }
-    this.isAccountCreated = true;
     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);
   }
 

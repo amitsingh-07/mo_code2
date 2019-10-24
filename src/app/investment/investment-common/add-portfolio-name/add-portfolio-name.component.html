@@ -6,11 +6,8 @@
           <div class="portfolio-naming">
             <div class="hidden-sm">{{'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.NAME_YOUR_PORTFOLIO' | translate}}</div>
             <div class="title">{{'PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.PORTFOLIO_READY' | translate}}</div>
-            <div *ngIf="!accountCreationStatus" class="portfolio-success mb30">
+            <div class="portfolio-success mb30">
               <img src={{riskProfileIcon}} id="riskProfileImg" />
-            </div>
-            <div *ngIf="accountCreationStatus" class="portfolio-success mb30">
-              <img src={{riskProfileIconSuccess}} id="riskProfileImg" />
             </div>
             <div class="portfolio_name_title">{{defaultPortfolioName}}</div>
           </div>
