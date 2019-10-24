@@ -7,6 +7,10 @@ export class InvestmentCommonFormData {
     accountCreationActions: IAccountCreationActions;
     investmentsSummary: any;
     portfolioName: string;
+    fundingMethod: string;
+    fundingAccountMethod: string;
+    srsOperatorBank: any;
+    srsAccountNumber: string;
 }
 
 export interface IAccountCreationActions {

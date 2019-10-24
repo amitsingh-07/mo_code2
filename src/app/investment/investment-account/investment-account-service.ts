@@ -596,15 +596,7 @@ export class InvestmentAccountService {
   uploadDocument(formData) {
     return this.investmentApiService.uploadDocument(formData);
   }
-  getFundingMethod() {
-    return {
-      fundingMethod: this.investmentAccountFormData.fundingMethod
-    };
-  }
-  setFundingMethod(data) {
-    this.investmentAccountFormData.fundingMethod = data.fundingMethod;
-    this.commit();
-    }
+ 
   saveAdditionalDeclarations() {
     const payload = this.additionalDeclarationsRequest();
     return this.investmentApiService.saveInvestmentAccount(payload);

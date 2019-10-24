@@ -198,4 +198,30 @@ export class InvestmentCommonService {
     }
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
+  getFundingMethod() {
+    return {
+      fundingMethod: this.investmentCommonFormData.fundingMethod
+    };
+  }
+  setFundingMethod(data) {
+    this.investmentCommonFormData.fundingMethod = data.fundingMethod;
+    this.commit();
+  }
+  // tslint:disable-next-line:no-identical-functions
+  getFundingAccountDetails() {
+    return {
+      fundingAccountMethod: this.investmentCommonFormData.fundingAccountMethod,
+      srsOperatorBank: this.investmentCommonFormData.srsOperatorBank,
+      srsAccountNumber: this.investmentCommonFormData.srsAccountNumber
+    };
+  }
+  setFundingAccountDetails(data) {
+    this.investmentCommonFormData.fundingAccountMethod = data.fundingAccountMethod;
+    if (this.investmentCommonFormData.fundingAccountMethod === 'SRS') {
+      this.investmentCommonFormData.srsOperatorBank = data.srsOperatorBank;
+      this.investmentCommonFormData.srsAccountNumber = data.srsAccountNumber;
+    }
+
+    this.commit();
+  }
 }

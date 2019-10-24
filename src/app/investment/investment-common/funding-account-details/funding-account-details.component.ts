@@ -11,18 +11,12 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../../../shared/footer/footer.service';
-import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
-import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import {
-  AccountCreationErrorModalComponent
-} from '../../investment-common/confirm-portfolio/account-creation-error-modal/account-creation-error-modal.component';
 import {
   InvestmentEngagementJourneyService
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
-import { InvestmentAccountService } from '../investment-account-service';
-import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
+import { INVESTMENT_COMMON_ROUTE_PATHS, INVESTMENT_COMMON_ROUTES } from '../investment-common-routes.constants';
+import { InvestmentCommonService } from '../investment-common.service';
 
 @Component({
   selector: 'app-funding-account-details',
@@ -33,21 +27,19 @@ import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
 export class FundingAccountDetailsComponent implements OnInit {
   pageTitle: string;
   formValues;
+  FundValue;
   fundingMethods = ['Cash', 'SRS'];
   srsOperatorList = ['a', 'b', 'c'];
   fundingAccountDetailsFrom: FormGroup;
-
   constructor(
+    public readonly translate: TranslateService,
+    private router: Router,
+    private modal: NgbModal,
+    private formBuilder: FormBuilder,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    public activeModal: NgbActiveModal,
-    private router: Router,
-    private formBuilder: FormBuilder,
-    private investmentAccountService: InvestmentAccountService,
-    private modal: NgbModal,
-    public authService: AuthenticationService,
-    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    public readonly translate: TranslateService
+    public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
+    private investmentCommonService: InvestmentCommonService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -63,7 +55,8 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.formValues = this.investmentAccountService.getFundingMethod();
+    this.FundValue = this.investmentCommonService.getFundingMethod();
+    this.formValues = this.investmentCommonService.getFundingAccountDetails();
     this.fundingAccountDetailsFrom = this.buildForm();
     this.addAndRemoveSrsForm(this.fundingAccountDetailsFrom.get('fundingAccountMethod').value);
 
@@ -71,7 +64,8 @@ export class FundingAccountDetailsComponent implements OnInit {
 
   buildForm() {
     return this.formBuilder.group({
-      fundingAccountMethod: [this.formValues.fundingMethod, Validators.required]
+      // tslint:disable-next-line:max-line-length
+      fundingAccountMethod: [this.formValues.fundingAccountMethod ? this.formValues.fundingAccountMethod : this.FundValue.fundingMethod, Validators.required]
     });
   }
   addAndRemoveSrsForm(FundingMethod) {
@@ -114,7 +108,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     ref.componentInstance.closeBtn = false;
     ref.componentInstance.yesClickAction.subscribe((emittedValue) => {
       ref.close();
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
+      this.router.navigate([INVESTMENT_COMMON_ROUTES.FUNDING_INSTRUCTIONS]);
     });
     ref.componentInstance.noClickAction.subscribe((emittedValue) => {
       ref.close();
@@ -123,8 +117,9 @@ export class FundingAccountDetailsComponent implements OnInit {
   goToNext(form) {
     if (!form.valid) {
       return false;
-    } else if (this.investmentAccountService.setAdditionDeclaration(form.getRawValue())) {
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
+    } else  {
+      this.investmentCommonService.setFundingAccountDetails(form.getRawValue());
+      this.router.navigate([INVESTMENT_COMMON_ROUTES.ADD_PORTFOLIO_NAME]);
     }
   }
 

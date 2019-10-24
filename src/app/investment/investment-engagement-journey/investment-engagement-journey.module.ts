@@ -31,6 +31,7 @@ import {
     YourInvestmentAmountComponent
 } from './your-investment-amount/your-investment-amount.component';
 import { FundingMethodComponent } from './funding-method/funding-method.component';
+import { SrsTooltipComponent } from './srs-tooltip/srs-tooltip.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
@@ -70,9 +71,11 @@ export function createTranslateLoader(http: HttpClient) {
     PortfolioExistComponent,
     StartJourneyComponent,
     YourInvestmentAmountComponent,
-    FundingMethodComponent
+    FundingMethodComponent,
+    SrsTooltipComponent
   ],
-  providers: [CurrencyPipe]
+  providers: [CurrencyPipe],
+  entryComponents:[SrsTooltipComponent]
 })
 
 export class InvestmentEngagementJourneyModule {
