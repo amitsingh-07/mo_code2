@@ -45,7 +45,7 @@ export class ComprehensiveFormError {
                 },
                 pattern: {
                     errorTitle: this.invalidName,
-                    errorMessage: this.invalidNameCharacters
+                    errorMessage: 'Full Name must not contain numbers'
                 },
                 minlength: {
                     errorTitle: this.invalidName,

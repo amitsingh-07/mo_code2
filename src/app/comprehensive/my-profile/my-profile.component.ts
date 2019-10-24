@@ -50,6 +50,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     subscription: Subscription;
     disableDOB = false;
     public showToolTip = false;
+    getComprehensiveEnquiry: any;
 
     public onCloseClick(): void {
         this.comprehensiveService.setProgressToolTipShown(true);
@@ -103,6 +104,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.loaderService.showLoader({ title: 'Fetching Data' });
         this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
             this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
+            this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
             if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
 
             }
@@ -159,12 +161,22 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     getUserProfileData() {
         this.userDetails = this.comprehensiveService.getMyProfile();
-        this.disableDOB = !this.userDetails.dobUpdateable;
+        this.disableDOB = this.getComprehensiveEnquiry.isDobUpdated;
         this.setUserProfileData();
         this.buildProfileForm();
         this.myProfileShow = true;
         this.progressService.updateValue(this.router.url, this.userDetails.firstName);
         this.progressService.refresh();
+        if (this.getComprehensiveEnquiry.isDobUpdated) {
+            this.validateDOB(this.userDetails.ngbDob);
+        }
+        /*if (this.getComprehensiveEnquiry.dobPopUpEnable) {
+            const toolTipParams = {
+                TITLE: '',
+                DESCRIPTION: this.translate.instant('COMPREHENSIVE.DASHBOARD.WARNING_POPUP')
+            };
+            this.comprehensiveService.openTooltipModal(toolTipParams);
+        }*/
     }
 
     setUserProfileData() {
