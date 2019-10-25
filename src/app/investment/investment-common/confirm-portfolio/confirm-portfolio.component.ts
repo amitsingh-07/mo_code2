@@ -77,9 +77,8 @@ export class ConfirmPortfolioComponent implements OnInit {
   }
 
   getPortfolioDetails() {
-    const params = this.constructgetPortfolioParams();
     this.investmentAccountService
-      .getPortfolioAllocationDetailsWithAuth(params)
+      .getPortfolioAllocationDetailsWithAuth({})
       .subscribe((data) => {
         this.portfolio = data.objectList;
         this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
@@ -117,11 +116,6 @@ export class ConfirmPortfolioComponent implements OnInit {
       isAmountExceedBalance: 0,
       exceededAmount: 0,
       customerPortfolioId: data.customerPortfolioId
-    };
-  }
-
-  constructgetPortfolioParams() {
-    return {
     };
   }
 

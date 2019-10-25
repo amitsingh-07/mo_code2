@@ -26,7 +26,6 @@ import {
 import { IAccountCreationActions } from '../investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
-import { SuccessIcons } from './successIcon';
 
 @Component({
   selector: 'app-add-portfolio-name',
@@ -40,9 +39,8 @@ export class AddPortfolioNameComponent implements OnInit {
   characterLength;
   form: FormGroup;
   pageTitle;
-  defaultPortfolioName;
-  userPortfolioName;
-  userGivenPortfolioName;
+
+  portfolioNameToBeSaved;
   showErrorMessage = false;
   isSubsequentPortfolio = false;
   isRequestSubmitted = false;
@@ -72,45 +70,30 @@ export class AddPortfolioNameComponent implements OnInit {
   ngOnInit() {
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.riskProfileIcon = ProfileIcons[this.formValues.recommendedRiskProfileId - 1]['icon'];
-    this.defaultPortfolioName = this.formValues.defaultPortfolioName;
     this.form = this.formBuilder.group({
-      portfolioName: new FormControl(this.userPortfolioName, [Validators.pattern(RegexConstants.portfolioName)])
+      portfolioName: new FormControl('', [Validators.pattern(RegexConstants.portfolioName)])
     });
   }
 
   submitForm() {
     if (this.form.valid) {
       if (this.form.controls.portfolioName.value) {
-        const portfolioNameTitleCase = this.convertToTitleCase(this.form.controls.portfolioName.value);
-        this.saveNameOrContinueAccountCreation(portfolioNameTitleCase);
+        const userPortfolioNameTitleCase = this.convertToTitleCase(this.form.controls.portfolioName.value);
+        this.saveNameOrContinueAccountCreation(userPortfolioNameTitleCase);
       } else {
         this.saveNameOrContinueAccountCreation(null);
       }
     }
   }
 
-  saveNameOrContinueAccountCreation(portfolioName) {
-    this.setPortfolioSuccessToastMessage();
-    if (portfolioName && portfolioName.toUpperCase() !== this.formValues.defaultPortfolioName.toUpperCase()) {
-      this.userGivenPortfolioName = portfolioName;
-      this.investmentCommonService.setConfirmPortfolioName(portfolioName);
-      this.savePortfolioName(portfolioName);
+  saveNameOrContinueAccountCreation(userPortfolioName) {
+    if (userPortfolioName && userPortfolioName.toUpperCase() !== this.formValues.defaultPortfolioName.toUpperCase()) {
+      this.portfolioNameToBeSaved = userPortfolioName;
+      this.savePortfolioName(userPortfolioName);
     } else {
-      this.userGivenPortfolioName = this.formValues.defaultPortfolioName;
-      this.investmentCommonService.setConfirmPortfolioName(this.formValues.defaultPortfolioName);
+      this.portfolioNameToBeSaved = this.formValues.defaultPortfolioName;
       this.checkAmlAndCreateAccount();
     }
-  }
-
-  setPortfolioSuccessToastMessage() {
-    const toastMessage: IToastMessage = {
-      isShown: false,
-      desc: this.translate.instant('TOAST_MESSAGES.ADD_PORTFOLIO_SUCCESS', {userGivenPortfolioName : this.userGivenPortfolioName} ),
-      link_label: this.translate.instant('TOAST_MESSAGES.VIEW'),
-      link_url: MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO,
-      id: this.formValues.recommendedCustomerPortfolioId,
-    };
-    this.manageInvestmentsService.setToastMessage(toastMessage);
   }
 
   constructSavePortfolioNameParams(portfolioNameValue) {
@@ -129,11 +112,11 @@ export class AddPortfolioNameComponent implements OnInit {
     this.investmentCommonService.savePortfolioName(param).subscribe((response) => {
       this.loaderService.hideLoader();
       if (response.responseMessage.responseCode === 6000) {
+        this.investmentAccountService.setDefaultPortfolioName(portfolioName);
         this.showErrorMessage = false;
         this.checkAmlAndCreateAccount();
       } else if (response.responseMessage.responseCode === 5120) {
         this.showErrorMessage = true;
-        this.userPortfolioName = portfolioName;
       }  else {
         this.investmentAccountService.showGenericErrorModal();
       }
@@ -298,12 +281,20 @@ export class AddPortfolioNameComponent implements OnInit {
   }
 
   handleAccountCreationSuccess() {
-    if (this.isSubsequentPortfolio) {
-      this.investmentAccountService.setAccountSuccussModalCounter(1); // Do not show splash screen
-    } else {
-      this.investmentAccountService.setAccountSuccussModalCounter(0); // Show splash screen
-    }
+    this.investmentCommonService.setConfirmPortfolioName(this.portfolioNameToBeSaved); /* Needed data for Funding Instructions screen */
+    this.setPortfolioSuccessToastMessage(); /* Needed for Investment Overview toast message */
     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);
+  }
+
+  setPortfolioSuccessToastMessage() {
+    const toastMessage: IToastMessage = {
+      isShown: false,
+      desc: this.translate.instant('TOAST_MESSAGES.ADD_PORTFOLIO_SUCCESS', {userGivenPortfolioName : this.portfolioNameToBeSaved} ),
+      link_label: this.translate.instant('TOAST_MESSAGES.VIEW'),
+      link_url: MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO,
+      id: this.formValues.recommendedCustomerPortfolioId,
+    };
+    this.manageInvestmentsService.setToastMessage(toastMessage);
   }
 
   constructCreateInvAccountParams(cddFailedStatus) {

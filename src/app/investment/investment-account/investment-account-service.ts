@@ -1499,6 +1499,11 @@ export class InvestmentAccountService {
     this.commit();
   }
 
+  setDefaultPortfolioName(portfolioName) {
+    this.investmentAccountFormData.defaultPortfolioName = portfolioName;
+    this.commit();
+  }
+
   getMyInfoStatus() {
     return this.investmentAccountFormData.isMyInfoEnabled;
   }
