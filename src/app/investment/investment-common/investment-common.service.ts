@@ -29,6 +29,7 @@ export class InvestmentCommonService {
     private router: Router,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService
   ) {
+    this.getInvestmentCommonFormData();
   }
   savePortfolioName(data) {
     return this.investmentApiService.savePortfolioName(data);
@@ -217,11 +218,10 @@ export class InvestmentCommonService {
   }
   setFundingAccountDetails(data) {
     this.investmentCommonFormData.fundingAccountMethod = data.fundingAccountMethod;
-    if (this.investmentCommonFormData.fundingAccountMethod === 'SRS') {
-      this.investmentCommonFormData.srsOperatorBank = data.srsOperatorBank;
-      this.investmentCommonFormData.srsAccountNumber = data.srsAccountNumber;
+    if (this.investmentCommonFormData.fundingAccountMethod  === 'SRS') {
+      this.investmentCommonFormData.srsOperatorBank = data.srsFundingDetails.srsOperatorBank;
+      this.investmentCommonFormData.srsAccountNumber = data.srsFundingDetails.srsAccountNumber;
     }
-
     this.commit();
   }
 }

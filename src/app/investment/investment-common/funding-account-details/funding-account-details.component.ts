@@ -55,8 +55,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.FundValue = this.investmentCommonService.getFundingMethod();
-    this.formValues = this.investmentCommonService.getFundingAccountDetails();
+    this.formValues = this.investmentCommonService.getInvestmentCommonFormData();
     this.fundingAccountDetailsFrom = this.buildForm();
     this.addAndRemoveSrsForm(this.fundingAccountDetailsFrom.get('fundingAccountMethod').value);
 
@@ -65,12 +64,18 @@ export class FundingAccountDetailsComponent implements OnInit {
   buildForm() {
     return this.formBuilder.group({
       // tslint:disable-next-line:max-line-length
-      fundingAccountMethod: [this.formValues.fundingAccountMethod ? this.formValues.fundingAccountMethod : this.FundValue.fundingMethod, Validators.required]
+      fundingAccountMethod: [this.formValues.fundingAccountMethod ? this.formValues.fundingAccountMethod : this.formValues.fundingMethod, Validators.required]
     });
   }
   addAndRemoveSrsForm(FundingMethod) {
     if (FundingMethod === 'SRS') {
       this.buildForSrsForm();
+    } else if (FundingMethod === 'Cash' && this.fundingAccountDetailsFrom.get('srsFundingDetails')) {
+      const srsFormGroup = this.fundingAccountDetailsFrom.get('srsFundingDetails') as FormGroup;
+      this.fundingAccountDetailsFrom.removeControl('srsFundingDetails');
+      srsFormGroup.removeControl('srsOperatorBank');
+      srsFormGroup.removeControl('srsAccountNumber');
+
     }
     this.observeFundingMethodChange();
   }
@@ -78,13 +83,13 @@ export class FundingAccountDetailsComponent implements OnInit {
   buildForSrsForm() {
     this.fundingAccountDetailsFrom.addControl(
       'srsFundingDetails', this.formBuilder.group({
-        srsOperatorBank: ['', Validators.required],
-        srsAccountNumber: ['', Validators.required],
+        srsOperatorBank: [this.formValues.srsOperatorBank, Validators.required],
+        srsAccountNumber: [this.formValues.srsAccountNumber, Validators.required],
       })
     );
   }
 
- observeFundingMethodChange() {
+  observeFundingMethodChange() {
     this.fundingAccountDetailsFrom
       .get('fundingAccountMethod')
       .valueChanges.subscribe((value) => {
@@ -93,13 +98,16 @@ export class FundingAccountDetailsComponent implements OnInit {
   }
 
   selectSource(key, value) {
+    if (this.fundingAccountDetailsFrom.get('fundingAccountMethod').value !== value) {
+      this.changingFundMethod(value);
+  }
     this.fundingAccountDetailsFrom.controls[key].setValue(value);
   }
   selectSrsOperator(key, value, nestedKey) {
     this.fundingAccountDetailsFrom.controls[nestedKey]['controls'][key].setValue(value);
   }
 
-  changingFundMethod() {
+  changingFundMethod(value) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('Reassess the Risk profile');
     // tslint:disable-next-line:max-line-length
@@ -108,18 +116,19 @@ export class FundingAccountDetailsComponent implements OnInit {
     ref.componentInstance.closeBtn = false;
     ref.componentInstance.yesClickAction.subscribe((emittedValue) => {
       ref.close();
-      this.router.navigate([INVESTMENT_COMMON_ROUTES.FUNDING_INSTRUCTIONS]);
+      this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
     });
     ref.componentInstance.noClickAction.subscribe((emittedValue) => {
       ref.close();
+      this.addAndRemoveSrsForm(value);
     });
   }
   goToNext(form) {
     if (!form.valid) {
       return false;
-    } else  {
+    } else {
       this.investmentCommonService.setFundingAccountDetails(form.getRawValue());
-      this.router.navigate([INVESTMENT_COMMON_ROUTES.ADD_PORTFOLIO_NAME]);
+      this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
     }
   }
 
