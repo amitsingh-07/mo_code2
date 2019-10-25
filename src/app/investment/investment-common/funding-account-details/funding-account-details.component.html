@@ -28,7 +28,7 @@
                           </button>
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                             <button class="dropdown-item" *ngFor="let fundingMethod of fundingMethods; let i = index;"
-                              (click)="selectSource('fundingAccountMethod', fundingMethod)"
+                              (click)="selectFundingMethod('fundingAccountMethod', fundingMethod)"
                               id="additional_declaration_sourse-drpdown-option-{{i}}">{{fundingMethod}}</button>
                           </div>
                         </div>

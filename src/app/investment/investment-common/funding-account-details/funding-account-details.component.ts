@@ -97,7 +97,7 @@ export class FundingAccountDetailsComponent implements OnInit {
       });
   }
 
-  selectSource(key, value) {
+  selectFundingMethod(key, value) {
     if (this.fundingAccountDetailsFrom.get('fundingAccountMethod').value !== value) {
       this.changingFundMethod(value);
   }
