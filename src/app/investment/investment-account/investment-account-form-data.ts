@@ -123,12 +123,6 @@ export class InvestmentAccountFormData {
   isMyInfoEnabled: boolean;
   disableAttributes: any;
 
-  // confirm portfolio
-  invOneTime: number;
-  invMonthly: number;
-  riskProfileId: number;
-  riskProfileType: string;
-
   // Fund Your Account
   Investment: string;
   oneTimeInvestmentAmount: number;
@@ -151,4 +145,9 @@ export class InvestmentAccountFormData {
   dashboardInitMessageShow: boolean;
   dashboardInitMessageTitle: string;
   dashboardInitMessageDesc: string;
+
+  // portfolio naming
+  defaultPortfolioName: string;
+  recommendedCustomerPortfolioId: number;
+  recommendedRiskProfileId: number;
 }

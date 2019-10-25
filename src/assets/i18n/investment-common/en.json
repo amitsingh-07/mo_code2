@@ -60,13 +60,15 @@
       "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time investment or Monthly Investment."
     },
      "ADD_PORTFOLIO_NAME": {
-      "TITLE": "Your portfolio is almost ready.",
-      "TITLE_TWO":"Your portfolio is created successfully!",
+      "TITLE": "Name Your Portfolio",
+      "PORTFOLIO_READY": "Your portfolio is almost ready.",
       "ADD_PORTFOLIO_NAME_LAB": "Let’s name this portfolio! (optional)",
-      "CONTINUE":"Continue",
       "DONE":"Done",
       "VALIDATION_MESSAGE":"First character should not be space",
-      "ERROR_MESSAGE": "Sorry, this portfolio name is taken up by another existing portfolio. Please think of another name."
+      "ERROR_MESSAGE": "Sorry, this portfolio name is taken up by another existing portfolio. Please think of another name.",
+      "NAME_YOUR_PORTFOLIO": "Name your portfolio",
+      "CREATE_PORTFOLIO": "Create Portfolio"
+
    },
      "ADD_PORTFOLIO_STATUS": {
       "TITLE": "Portfolio created successfully!",

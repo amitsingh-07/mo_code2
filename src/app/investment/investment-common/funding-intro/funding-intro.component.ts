@@ -25,6 +25,7 @@ export class FundingIntroComponent implements OnInit, AfterViewInit {
   hideStaticModal = false;
   pageTitle: string;
   time: any;
+
   constructor(
     public readonly translate: TranslateService,
     public authService: AuthenticationService,
@@ -46,25 +47,8 @@ export class FundingIntroComponent implements OnInit, AfterViewInit {
     this.investmentAccountService.restrictBackNavigation();
   }
   ngAfterViewInit() {
-    if (this.investmentAccountService.getAccountSuccussModalCounter() === 0) {
-      this.investmentAccountService.setAccountSuccussModalCounter(1);
-      this.time = setTimeout(() => {
-        this.animateStaticModal = true;
-      }, 3000);
-
-      setTimeout(() => {
-        this.hideStaticModal = true;
-      }, 4000);
-    } else {
-      this.hideStaticModal = true;
-    }
     this.cd.detectChanges();
   }
-  dismissFlashScreen()  {
-    clearTimeout(this.time);
-    this.animateStaticModal = true;
-    this.hideStaticModal = true;
-   }
   goNext() {
     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
   }

@@ -1460,14 +1460,6 @@ export class InvestmentAccountService {
     };
   }
 
-  setPortfolioFormData(data) {
-    this.investmentAccountFormData.invOneTime = data.initialInvestment;
-    this.investmentAccountFormData.invMonthly = data.monthlyInvestment;
-    this.investmentAccountFormData.riskProfileId = data.riskProfile.id;
-    this.investmentAccountFormData.riskProfileType = data.riskProfile.type;
-    this.commit();
-  }
-
   getAllNotifications() {
     return this.apiService.getAllNotifications();
   }
@@ -1498,6 +1490,18 @@ export class InvestmentAccountService {
 
   getAccountCreationStatus() {
     return this.investmentAccountFormData.accountCreationStatus;
+  }
+
+  setPortfolioNamingFormData(data) {
+    this.investmentAccountFormData.defaultPortfolioName = data.defaultPortfolioName;
+    this.investmentAccountFormData.recommendedCustomerPortfolioId = data.recommendedCustomerPortfolioId;
+    this.investmentAccountFormData.recommendedRiskProfileId = data.recommendedRiskProfileId;
+    this.commit();
+  }
+
+  setDefaultPortfolioName(portfolioName) {
+    this.investmentAccountFormData.defaultPortfolioName = portfolioName;
+    this.commit();
   }
 
   getMyInfoStatus() {
