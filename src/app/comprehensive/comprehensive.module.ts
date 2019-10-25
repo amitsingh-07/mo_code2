@@ -92,9 +92,11 @@ export class ComprehensiveModule {
 
   constructor(private signUpService: SignUpService) {
     const isUnsupportedNoteShown = this.signUpService.getUnsupportedNoteShownFlag();
-    if (!this.signUpService.isMobileDevice() && !isUnsupportedNoteShown) {
-      this.signUpService.showUnsupportedDeviceModal();
-      this.signUpService.setUnsupportedNoteShownFlag();
-    }
+    this.signUpService.mobileOptimizedObservable$.subscribe((mobileOptimizedView) => {
+      if (!this.signUpService.isMobileDevice() && !mobileOptimizedView && !isUnsupportedNoteShown) {
+        this.signUpService.showUnsupportedDeviceModal();
+        this.signUpService.setUnsupportedNoteShownFlag();
+      }
+    });
   }
 }
