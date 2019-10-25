@@ -29,7 +29,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   formValues;
   FundValue;
   fundingMethods = ['Cash', 'SRS'];
-  srsOperatorList = ['a', 'b', 'c'];
+  srsOperatorList = ['DBS', 'UOB', 'OCBC'];
   fundingAccountDetailsFrom: FormGroup;
   constructor(
     public readonly translate: TranslateService,
@@ -110,7 +110,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   changingFundMethod(value) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('Reassess the Risk profile');
-    // tslint:disable-next-line:max-line-length
+     // tslint:disable-next-line:max-line-length
     ref.componentInstance.errorMessage = this.translate.instant('you want change the risk fund method you can risk  reassess the risk profile');
     ref.componentInstance.yesOrNoButton = true;
     ref.componentInstance.closeBtn = false;
