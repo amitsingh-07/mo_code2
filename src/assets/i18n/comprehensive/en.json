@@ -358,8 +358,8 @@
       "YEARS_LATER": "Years later",
       "LOCATION": "Location",
       "COURSE_OF_STUDY": "Course of study",
-      "MATURITY_AMOUNT": "Maturity Amount",
-      "MATURITY_YEAR": "Maturity Year",
+      "MATURITY_AMOUNT": "Maturity<br> Amount",
+      "MATURITY_YEAR": "Maturity<br> Year",
       "I_AM_A": "I am a",
       "HDB": "HDB",
       "PRIVATE": "Private",
@@ -394,7 +394,7 @@
       "HEADER": "Regular Saving Plan",
       "OTHER": "Other ",
       "ADD_RSP": "Add Other Regular Saving Plan",
-      "UNIT_TRUST_TYPE": "Type of Unit Trust",
+      "UNIT_TRUST_TYPE": "Type of <br>Unit Trust",
       "PAID_BY_CASH": "Paid By Cash",
       "PAID_BY_CPF": "Paid By CPF",
       "MONTH": "mth",
@@ -617,9 +617,9 @@
       "FORM_PLACEHOLDER_AGE": "Enter Age",
       "FORM_LABEL": {
         "AGE": "yrs old",
-        "MONTHLY_PAYOUT": "Monthly Payout",
-        "MONTHLY_PAYOUT_START_AGE": "Payout Start Age",
-        "MONTHLY_PAYOUT_DURATION": "Payout Duration"
+        "MONTHLY_PAYOUT": "Monthly<br> Payout",
+        "MONTHLY_PAYOUT_START_AGE": "Payout<br> Start Age",
+        "MONTHLY_PAYOUT_DURATION": "Payout<br> Duration"
       },
       "PAYOUT_DURATION_YEARS": [
         "10 years",
