@@ -18,9 +18,9 @@
                   type="radio" class="field radio" value="{{option}}" tabindex="{{i+1}}" (change)="fundChange(option)">
                 <label for="risk-assessment_option{{i+1}}_radio" id="riskAssessLbl_{{i}}">
                   <div><span id="risk-assessment_option-text{{i+1}}_lbl" class="input-label-black">{{option}}</span>
-                    <span><i  *ngIf="i===1"class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModal()"></i></span>
                   </div>
                 </label>
+                <i *ngIf="i===1"class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModal()"></i>
               </div>
             </div>
             <div class="col-12">
