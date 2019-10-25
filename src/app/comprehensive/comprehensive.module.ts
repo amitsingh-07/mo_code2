@@ -93,8 +93,6 @@ export class ComprehensiveModule {
   constructor(private signUpService: SignUpService) {
     const isUnsupportedNoteShown = this.signUpService.getUnsupportedNoteShownFlag();
     this.signUpService.mobileOptimizedObservable$.subscribe((mobileOptimizedView) => {
-      console.log(mobileOptimizedView);
-      console.log(isUnsupportedNoteShown);
       if (!this.signUpService.isMobileDevice() && !mobileOptimizedView && !isUnsupportedNoteShown) {
         this.signUpService.showUnsupportedDeviceModal();
         this.signUpService.setUnsupportedNoteShownFlag();
