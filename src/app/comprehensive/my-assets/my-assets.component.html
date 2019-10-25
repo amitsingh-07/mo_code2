@@ -34,12 +34,12 @@
       <!--Form Content-->
       <div class="form-group-with-bg--content">
         <div class="flex-row">
-          <div class="flex-col-6">
+          <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{'CMP.MY_ASSETS.CASH_IN_BANK'|translate}}<div
                 class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
-          <div class="flex-col-6">
+          <div class="flex-col-7">
             <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input type="text" maxLength="7" class="input-control" appCurrencyInput #cashInBank
@@ -48,12 +48,12 @@
           </div>
         </div>
         <div class="flex-row">
-          <div class="flex-col-6">
+          <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_ASSETS.SINGAPORE_SAVING_BONDS' |
               translate}}<div class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
-          <div class="flex-col-6">
+          <div class="flex-col-7">
             <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input type="text" maxLength="7" class="input-control" appCurrencyInput #savingsBonds
@@ -77,12 +77,12 @@
       <!--Form Content-->
       <div class="form-group-with-bg--content">
         <div class="flex-row">
-          <div class="flex-col-6">
+          <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{'CMP.MY_ASSETS.CPF_OA'|translate}}<div
                 class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
-          <div class="flex-col-6">
+          <div class="flex-col-7">
             <div class="form-control" [ngClass]="{'view-mode': viewMode, 'readonly-disabled': cpfFromMyInfo}">
               <i>$</i>
               <input type="text" class="input-control" [readonly]="cpfFromMyInfo"
@@ -92,12 +92,12 @@
           </div>
         </div>
         <div class="flex-row">
-          <div class="flex-col-6">
+          <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_ASSETS.CPF_SA' | translate}}<div
                 class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
-          <div class="flex-col-6">
+          <div class="flex-col-7">
             <div class="form-control" [ngClass]="{'view-mode': viewMode, 'readonly-disabled': cpfFromMyInfo}">
               <i>$</i>
               <input type="text" class="input-control" [readonly]="cpfFromMyInfo"
@@ -107,12 +107,12 @@
           </div>
         </div>
         <div class="flex-row">
-          <div class="flex-col-6">
+          <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_ASSETS.CPF_MA' | translate}}<div
                 class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
-          <div class="flex-col-6">
+          <div class="flex-col-7">
             <div class="form-control" [ngClass]="{'view-mode': viewMode, 'readonly-disabled': cpfFromMyInfo}">
               <i>$</i>
               <input type="text" class="input-control" [readonly]="cpfFromMyInfo"
@@ -144,12 +144,12 @@
       <!--Form Content-->
       <div class="form-group-with-bg--content">
         <div class="flex-row">
-          <div class="flex-col-6">
+          <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{'CMP.FORM_LABEL.AMOUNT'|translate}}<div
                 class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
-          <div class="flex-col-6">
+          <div class="flex-col-7">
             <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput #homeMarketValue maxLength="7"
@@ -184,12 +184,12 @@
           </div>
 
           <div class="flex-row">
-            <div class="flex-col-6">
+            <div class="flex-col-5">
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div
                   class="form-group-with-bg--content-sub-label"></div>
               </div>
             </div>
-            <div class="flex-col-6">
+            <div class="flex-col-7">
               <div class="form-control"
                 [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && addAssetsValid.investmentPropertiesValue.invalid}">
                 <i>$</i>
@@ -233,12 +233,12 @@
           </div>
           <div class="form-group" [formGroupName]="i">
             <div class="flex-row">
-              <div class="flex-col-6">
+              <div class="flex-col-5">
                 <div class="form-group-with-bg--content-label" for="name">{{'CMP.MY_ASSETS.INVESTMENT_TYPE'|translate}}
                   <div class="form-group-with-bg--content-sub-label"></div>
                 </div>
               </div>
-              <div class="flex-col-6">
+              <div class="flex-col-7">
                 <div class="dropdown-control"
                   [ngClass]="{'inline-error': submitted && otherInvestment['controls'].typeOfInvestment.invalid}">
                   <div ngbDropdown id="investTypeDropDown">
@@ -259,12 +259,12 @@
               </div>
             </div>
             <div class="flex-row">
-              <div class="flex-col-6">
+              <div class="flex-col-5">
                 <div class="form-group-with-bg--content-label" for="name">{{ ('CMP.FORM_LABEL.AMOUNT' | translate)}}<div
                     class="form-group-with-bg--content-sub-label"></div>
                 </div>
               </div>
-              <div class="flex-col-6">
+              <div class="flex-col-7">
                 <div class="form-control"
                   [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && otherInvestment['controls'].investmentAmount.invalid}">
                   <i>$</i>
@@ -301,12 +301,12 @@
       <!--Form Content-->
       <div class="form-group-with-bg--content">
         <div class="flex-row">
-          <div class="flex-col-6">
+          <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{'CMP.FORM_LABEL.AMOUNT'|translate}}<div
                 class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
-          <div class="flex-col-6">
+          <div class="flex-col-7">
             <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput maxLength="7" #otherAssetsValue

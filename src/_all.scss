@@ -2308,10 +2308,17 @@ select:-webkit-autofill:focus {
     }
   }
 
+  .bucket-notes, .bucket-notes-dollar {
+    font-family: $muli-bold;
+  }
   .bucket-notes-dollar {
     font-size: 20px;
   }
-
+  .sticky-footer {
+    @extend .flex;
+    @extend .space-btwn;
+    align-items: center;
+}
   .slider-dark {
     .noUi-horizontal .noUi-handle {
       width: 30px !important;

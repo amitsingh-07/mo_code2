@@ -212,3 +212,11 @@ color: $dark-teal-color;
     max-height: 100% !important;
     white-space: normal !important;
 }
+.sticky-footer {
+    @extend .flex;
+    @extend .space-btwn;
+    align-items: center;
+}
+.bucket-notes {
+    font-family: $muli-bold;
+}

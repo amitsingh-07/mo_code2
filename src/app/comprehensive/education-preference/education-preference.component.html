@@ -81,7 +81,7 @@
               </div>
             </div>
           </div>
-          <div class="flex-row  sharePercentFamily">
+          <!-- <div class="flex-row  sharePercentFamily">
             <div class="mt20 with-help-icon">
               <div class="flex-col-12 form-group-with-bg--content-label" for="name">{{
                 'CMP.FORM_LABEL.SHARE_CHILD_EDUCATION_EXPENSES' | translate}}
@@ -89,6 +89,12 @@
                   (click)="showToolTipModal('CHILD_EDUCATION_EXPENSES_TITLE','CHILD_EDUCATION_EXPENSES_MESSAGE')"></div>
               </div>
             </div>
+          </div> -->
+          <div class="title-with-tooltip">
+            <div class="form-group-with-bg--content-label" for="name">{{
+              'CMP.FORM_LABEL.SHARE_CHILD_EDUCATION_EXPENSES' | translate}}</div>
+            <div class="tooltip-icon"
+              (click)="showToolTipModal('CHILD_EDUCATION_EXPENSES_TITLE','CHILD_EDUCATION_EXPENSES_MESSAGE')"></div>
           </div>
           <div class="flex-row">
             <div class="flex-col-6">
