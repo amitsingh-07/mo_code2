@@ -17,6 +17,7 @@ import {
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { INVESTMENT_COMMON_ROUTE_PATHS, INVESTMENT_COMMON_ROUTES } from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 
 @Component({
   selector: 'app-funding-account-details',
@@ -28,9 +29,10 @@ export class FundingAccountDetailsComponent implements OnInit {
   pageTitle: string;
   formValues;
   FundValue;
-  fundingMethods = ['Cash', 'SRS'];
-  srsOperatorList = ['DBS', 'UOB', 'OCBC'];
+  fundingMethods: any;
+  srsAgentBankList;
   fundingAccountDetailsFrom: FormGroup;
+
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -39,7 +41,8 @@ export class FundingAccountDetailsComponent implements OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    private investmentCommonService: InvestmentCommonService
+    private investmentCommonService: InvestmentCommonService,
+    public investmentAccountService: InvestmentAccountService,
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -56,9 +59,18 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.formValues = this.investmentCommonService.getInvestmentCommonFormData();
+    this.getSrsAgentBank();
     this.fundingAccountDetailsFrom = this.buildForm();
     this.addAndRemoveSrsForm(this.fundingAccountDetailsFrom.get('fundingAccountMethod').value);
-
+  }
+  getSrsAgentBank() {
+    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+      this.fundingMethods = data.objectList.portfolioFundingMethod;
+      this.srsAgentBankList = data.objectList.srsAgentBank;
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   buildForm() {
@@ -100,7 +112,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   selectFundingMethod(key, value) {
     if (this.fundingAccountDetailsFrom.get('fundingAccountMethod').value !== value) {
       this.changingFundMethod(value);
-  }
+    }
     this.fundingAccountDetailsFrom.controls[key].setValue(value);
   }
   selectSrsOperator(key, value, nestedKey) {
@@ -110,7 +122,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   changingFundMethod(value) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('Reassess the Risk profile');
-     // tslint:disable-next-line:max-line-length
+    // tslint:disable-next-line:max-line-length
     ref.componentInstance.errorMessage = this.translate.instant('you want change the risk fund method you can risk  reassess the risk profile');
     ref.componentInstance.yesOrNoButton = true;
     ref.componentInstance.closeBtn = false;

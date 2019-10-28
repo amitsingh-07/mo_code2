@@ -13,29 +13,29 @@
       <div class="row">
         <div class="col-md-12">
           <form name="funding account-details" [formGroup]="fundingAccountDetailsFrom">
-              <div class="funding-type mb20">
-                  <div class="flex-col-12">
-                    <div class="funding-lbl">Funding Method</div>
-                    <div>You have selected the following funding
-                      method for this portfolio.</div>
-                  </div>
-                  <div class="flex-row mt15">
-                    <div class="flex-col-12">
-                      <div class="dropdown-control">
-                        <div ngbDropdown>
-                          <button class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
-                            {{fundingAccountDetailsFrom.controls.fundingAccountMethod.value}}
-                          </button>
-                          <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                            <button class="dropdown-item" *ngFor="let fundingMethod of fundingMethods; let i = index;"
-                              (click)="selectFundingMethod('fundingAccountMethod', fundingMethod)"
-                              id="additional_declaration_sourse-drpdown-option-{{i}}">{{fundingMethod}}</button>
-                          </div>
-                        </div>
+            <div class="funding-type mb20">
+              <div class="flex-col-12">
+                <div class="funding-lbl">Funding Method</div>
+                <div>You have selected the following funding
+                  method for this portfolio.</div>
+              </div>
+              <div class="flex-row mt15">
+                <div class="flex-col-12">
+                  <div class="dropdown-control">
+                    <div ngbDropdown>
+                      <button class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
+                        {{this.fundingAccountDetailsFrom.controls.fundingAccountMethod.value}}
+                      </button>
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                        <button class="dropdown-item" *ngFor="let fundingMethod of fundingMethods; let i = index;"
+                          (click)="selectFundingMethod('fundingAccountMethod', fundingMethod.name)"
+                          id="additional_declaration_sourse-drpdown-option-{{i}}">{{fundingMethod.name}}</button>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
             <div class="srs-block">
               <!-- srs block -->
               <div *ngIf="fundingAccountDetailsFrom.controls.fundingAccountMethod.value === 'SRS'" class="widget"
@@ -54,13 +54,13 @@
                         <div ngbDropdown>
                           <button class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
                             {{fundingAccountDetailsFrom.controls.srsFundingDetails.controls.srsOperatorBank.value ?
-                              fundingAccountDetailsFrom.controls.srsFundingDetails.controls.srsOperatorBank.value :'select'}}
+                              fundingAccountDetailsFrom.controls.srsFundingDetails.controls.srsOperatorBank.value.name :'select'}}
                           </button>
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                             <button class="dropdown-item"
-                              *ngFor="let srsOperatorBank of srsOperatorList; let i = index;"
+                              *ngFor="let srsOperatorBank of srsAgentBankList; let i = index;"
                               (click)="selectSrsOperator('srsOperatorBank', srsOperatorBank,'srsFundingDetails')"
-                              id="additional_declaration_sourse-drpdown-option-{{i}}">{{srsOperatorBank}}</button>
+                              id="additional_declaration_sourse-drpdown-option-{{i}}">{{srsOperatorBank.key}}</button>
                           </div>
                         </div>
                       </div>
@@ -93,7 +93,8 @@
             </div>
             <div class="text-center">
               <button type="button" id="personalInforNextBtn" (click)="goToNext(fundingAccountDetailsFrom)"
-                class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="getStrdBtn3">Continue</button>
+                class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" [disabled]="!fundingAccountDetailsFrom"
+                id="getStrdBtn3">Continue</button>
             </div>
           </form>
         </div>
