@@ -3,7 +3,7 @@
 
 app-portfolio-details {
   .container-fluid {
-    padding-bottom: 120px !important;
+    // padding-bottom: 120px !important;
 
     @include allmobiles {
       padding-right: 15px !important;
@@ -101,7 +101,7 @@ app-portfolio-details {
     font-weight: 400;
     letter-spacing: -0.2px;
     text-align: center;
-    padding: 21px 0 105px;
+    padding: 21px 0 75px;
 
     @include allmobiles {
       padding: 21px 0 50px;
@@ -128,15 +128,15 @@ app-portfolio-details {
       margin-bottom: 0;
     }
 
-    .review-italic {
-      font-family: $muli-italic;
-      font-size: 11px;
-      font-style: italic;
-      line-height: 1.36;
-      letter-spacing: -0.1px;
-      color: $review-text-color;
-      padding-top: 10px;
-    }
+    // .review-italic {
+    //   font-family: $muli-italic;
+    //   font-size: 11px;
+    //   font-style: italic;
+    //   line-height: 1.36;
+    //   letter-spacing: -0.1px;
+    //   color: $review-text-color;
+    //   padding-top: 10px;
+    // }
   }
 
   .btn__footer--fixed {
@@ -163,6 +163,7 @@ app-portfolio-details {
     .footer-content {
       display: flex;
       justify-content: space-around;
+      align-items: center;
       padding-top: 0 !important;
       padding-bottom: 0 !important;
 
@@ -181,13 +182,13 @@ app-portfolio-details {
       padding-bottom: 5px;
     }
 
-    .text-two {
-      font-family: $muli-regular;
-      font-size: 13px;
-      line-height: 1.15;
-      letter-spacing: -0.1px;
-      color: $recommend-footer-txt2-color;
-      padding-bottom: 5px;
-    }
+    // .text-two {
+    //   font-family: $muli-regular;
+    //   font-size: 13px;
+    //   line-height: 1.15;
+    //   letter-spacing: -0.1px;
+    //   color: $recommend-footer-txt2-color;
+    //   padding-bottom: 5px;
+    // }
   }
 }

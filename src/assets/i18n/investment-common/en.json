@@ -24,6 +24,7 @@
     "MONTHLY_INVESTMENT": "monthly investment",
     "FOR": "for",
     "CONFIRM": "Confirm",
+    "CONTINUE": "Continue",
     "EDIT_INVESTMENT": {
       "TITLE": "Review My Inputs",
       "ONE_TIME_INVESTMENT": "One-time Investment",
@@ -95,7 +96,7 @@
   },
   "FUND_INTRO": {
     "TITLE": "Fund Your Account",
-    "DESC": "In the next step, you can select the method to fund your account.",
+    "DESC": "In the next step, follow the transfer instructions to fund your account.",
     "BACK": "Proceed",
     "SUCCESS": "Investment Account <br>Setup Successful"
   },
