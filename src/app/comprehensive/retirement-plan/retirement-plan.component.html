@@ -36,16 +36,16 @@
               <div class="form-group-with-bg">
                 <!--Form Header-->
                 <div class="form-group-with-bg--header retirement-border-top">
-                  <div class="flex-row">
-                    <div class="flex-col-12 with-help-icon">
+                  <div class="flex space-btwn">
+                    <div class="with-help-icon">
                       <div class="form-group-with-bg--header-label">
                         {{'CMP.RETIREMENT_PLAN.RETIREMENT_INCOME'|translate}}
                         <span>{{i + 1}}</span>
                         <div class="form-group-with-bg--header-sub-label"></div>
                       </div>
-                      <span class="delete-icon" (click)="deleteRetirementDetails(i,'retirementIncomeSet')"
-                        id="retirementDeleteIcon" *ngIf="!viewMode "></span>
-
+                    </div>
+                    <div class="delete-icon" (click)="deleteRetirementDetails(i,'retirementIncomeSet')"
+                      id="retirementDeleteIcon" *ngIf="!viewMode ">
                     </div>
                   </div>
                 </div>
