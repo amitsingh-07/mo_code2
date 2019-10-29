@@ -178,6 +178,7 @@
   },
   "WITHDRAW": {
     "TITLE": "Withdrawal",
+    "SRS_NOTE": "Please note that withdrawal for SRS portfolio is currently handled offline, please email <a target='_blank' href='mailto:clientsupport@moneyowl.com.sg'>clientsupport@moneyowl.com.sg</a> for further assistance.",
     "WITHDRAW_TYPE": "Withdraw Type",
     "WITHDRAWAL_AMOUNT": "Withdrawal Amount",
     "WITHDRAW_TYPE_DESC": "You may withdraw money from your cash account after transferring funds from your portfolio.",
