@@ -409,7 +409,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   checkNonSRSAccount(portfolios) {
     if (portfolios && portfolios.length) {
       for (const portfolio of portfolios) {
-        if (!portfolio.srsmethod) {
+        if (!portfolio.portfolioType) {
           return false;
         }
       }

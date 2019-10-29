@@ -102,7 +102,7 @@ export class PortfolioListComponent implements OnInit {
   }
 
   detail(portfolio) {
-    if (portfolio.srsmethod && !this.topClickedFlag) {
+    if (portfolio.portfolioType && !this.topClickedFlag) {
       this.openModal();
     } else {
       const selectedFlag = window.getSelection().toString();
@@ -113,7 +113,7 @@ export class PortfolioListComponent implements OnInit {
     this.topClickedFlag = false;
   }
   gotoTopUp(portfolio) {
-    if (!portfolio.srsmethod) {
+    if (!portfolio.portfolioType) {
       this.topClickedFlag = true;
       this.topUpSelected.emit(portfolio);
     }
