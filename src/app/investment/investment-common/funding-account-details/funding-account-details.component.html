@@ -8,16 +8,17 @@
     <div class="content">
       <div class="hidden-sm-md page-details">
         <div>Step 2</div>
-        <div class="page-title">Confirm Account Details</div>
+        <div class="page-title">{{pageTitle}}</div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <form name="funding account-details" [formGroup]="fundingAccountDetailsFrom">
             <div class="funding-type mb20">
               <div class="flex-col-12">
-                <div class="funding-lbl">Funding Method</div>
-                <div>You have selected the following funding
-                  method for this portfolio.</div>
+                <div class="funding-lbl">{{
+                  'CONFIRM_ACCOUNT_DETAILS.FUND_METHOD' | translate}}</div>
+                <div>{{
+                  'CONFIRM_ACCOUNT_DETAILS.SELECT_FUNDING_LAB' | translate}}</div>
               </div>
               <div class="flex-row mt15">
                 <div class="flex-col-12">
@@ -40,27 +41,30 @@
               <!-- srs block -->
               <div *ngIf="fundingAccountDetailsFrom.controls.fundingAccountMethod.value === 'SRS'" class="widget"
                 formGroupName="srsFundingDetails">
-                <div class="mb15">Please provide your account details.</div>
+                <div class="mb15">{{
+                  'CONFIRM_ACCOUNT_DETAILS.ACCOUNT_DETAILS' | translate}}</div>
                 <div class="widget-title">
-                  <span>SRS Account Details</span>
+                  <span>{{
+                    'CONFIRM_ACCOUNT_DETAILS.SRS_ACCOUNT_DETAILS' | translate}}</span>
                 </div>
                 <div class="widget-body">
                   <div class="flex-row">
                     <div class="flex-col-3">
-                      <label for="name">SRS Operator</label>
+                      <label for="name">{{
+                        'CONFIRM_ACCOUNT_DETAILS.SRS_OPERATOR' | translate}}</label>
                     </div>
                     <div class="flex-col-8">
                       <div class="dropdown-control">
                         <div ngbDropdown>
                           <button class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
-                            {{fundingAccountDetailsFrom.controls.srsFundingDetails.controls.srsOperatorBank.value ?
-                              fundingAccountDetailsFrom.controls.srsFundingDetails.controls.srsOperatorBank.value.name :'select'}}
+                            {{fundingAccountDetailsFrom.controls.srsFundingDetails.controls.srsOperator.value ?
+                              fundingAccountDetailsFrom.controls.srsFundingDetails.controls.srsOperator.value.name :'select'}}
                           </button>
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                             <button class="dropdown-item"
-                              *ngFor="let srsOperatorBank of srsAgentBankList; let i = index;"
-                              (click)="selectSrsOperator('srsOperatorBank', srsOperatorBank,'srsFundingDetails')"
-                              id="additional_declaration_sourse-drpdown-option-{{i}}">{{srsOperatorBank.key}}</button>
+                              *ngFor="let srsOperator of srsAgentBankList; let i = index;"
+                              (click)="selectSrsOperator('srsOperator', srsOperator,'srsFundingDetails')"
+                              id="additional_declaration_sourse-drpdown-option-{{i}}">{{srsOperator.key}}</button>
                           </div>
                         </div>
                       </div>
@@ -68,16 +72,20 @@
                   </div>
                   <div class="flex-row">
                     <div class="flex-col-3">
-                      <label for="name" placeholder="account number">SRS
-                        Account Number</label>
+                      <label for="name" placeholder="account number">{{
+                        'CONFIRM_ACCOUNT_DETAILS.SRS_ACCOUNT_NUMBER' | translate}}</label>
                     </div>
                     <div class="flex-col-8">
-                      <input type="text" placeholder="Enter Account Number" class="form-control" maxLength="30"
-                        formControlName="srsAccountNumber">
+                      <input type="text" [textMask]="validateBankAccNo()" placeholder="Enter Account Number"
+                        class="form-control" formControlName="srsAccountNumber" (keyup)="showLength($event)">
 
                     </div>
+
                   </div>
-                  <div class="txt-italic">Please ensure you have entered correct SRS account information</div>
+                  <div class="characters" *ngIf="srsBank">{{characterLength ? characterLength :0}} / {{showMaxLength}}
+                  </div>
+                  <div class="txt-italic">{{
+                    'CONFIRM_ACCOUNT_DETAILS.CORRECT_SRS_ACCOUNT_DETAILS_DESC' | translate}}</div>
                 </div>
                 <div class="note-info mt20"><span class="note-icon"><img
                       src="assets/images/investment-account/note-icon-white.svg" /></span>
@@ -89,12 +97,13 @@
             </div>
             <div *ngIf="fundingAccountDetailsFrom.controls.fundingAccountMethod.value === 'Cash'" class="note-info">
               <span class="note-icon"><img src="assets/images/investment-account/note-icon-white.svg" /></span>
-              <span>You can fund using any bank account (registered under your name).</span>
+              <span>{{
+                'CONFIRM_ACCOUNT_DETAILS.CASH_DESC' | translate}}</span>
             </div>
             <div class="text-center">
               <button type="button" id="personalInforNextBtn" (click)="goToNext(fundingAccountDetailsFrom)"
-                class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" [disabled]="!fundingAccountDetailsFrom"
-                id="getStrdBtn3">Continue</button>
+                class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+                [disabled]="!fundingAccountDetailsFrom.valid" id="getStrdBtn3">Continue</button>
             </div>
           </form>
         </div>

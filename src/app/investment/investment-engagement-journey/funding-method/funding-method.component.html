@@ -10,25 +10,30 @@
     <div class="col-lg-5 col-md-6">
       <form name="riskAssessmentForm" [formGroup]="fundingMethodForm" id="riskAssessmentForm">
         <div class="form-group-single-column flex-col">
-          <div class="fund-question">  {{'fUNDING_METHOD.DESC' | translate}}</div>
+          <div class="fund-question"> {{'fUNDING_METHOD.DESC' | translate}}</div>
           <div class="row">
-            <div class="col-12" *ngFor="let option of options; let i = index">
+            <div class="col-12" *ngFor="let fundingMethod of fundingMethods; let i = index">
               <div class="checkbox-button one-label">
                 <input id="risk-assessment_option{{i+1}}_radio" name="fundingMethod" formControlName="fundingMethod"
-                  type="radio" class="field radio" value="{{option}}" tabindex="{{i+1}}" (change)="fundChange(option)">
+                  type="radio" class="field radio" value="{{fundingMethod}}" tabindex="{{i+1}}">
                 <label for="risk-assessment_option{{i+1}}_radio" id="riskAssessLbl_{{i}}">
-                  <div><span id="risk-assessment_option-text{{i+1}}_lbl" class="input-label-black">{{option}}</span>
+                  <div><span id="risk-assessment_option-text{{i+1}}_lbl"
+                      class="input-label-black">{{fundingMethod}}</span>
                   </div>
                 </label>
-                <i *ngIf="i===1"class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModal()"></i>
+                <i *ngIf="i===1" class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModal()"></i>
               </div>
             </div>
             <div class="col-12">
               <div *ngIf="fundingMethodForm.get('fundingMethod').value === 'Cash'">
-                <div class="note-info"><span class="note-icon"><img src="assets/images/investment-account/note-icon-white.svg" /></span><span [innerHTML]="'fUNDING_METHOD.CASH_DESC' | translate"></span></div>
+                <div class="note-info"><span class="note-icon"><img
+                      src="assets/images/investment-account/note-icon-white.svg" /></span><span
+                    [innerHTML]="'fUNDING_METHOD.CASH_DESC' | translate"></span></div>
               </div>
               <div *ngIf="fundingMethodForm.get('fundingMethod').value === 'SRS'">
-                <div class="note-info"><span class="note-icon"><img src="assets/images/investment-account/note-icon-white.svg" /></span><span [innerHTML]="'fUNDING_METHOD.SRS_DESC' | translate"></span></div>
+                <div class="note-info"><span class="note-icon"><img
+                      src="assets/images/investment-account/note-icon-white.svg" /></span><span
+                    [innerHTML]="'fUNDING_METHOD.SRS_DESC' | translate"></span></div>
               </div>
             </div>
           </div>

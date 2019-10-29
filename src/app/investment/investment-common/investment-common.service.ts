@@ -224,4 +224,31 @@ export class InvestmentCommonService {
     }
     this.commit();
   }
+
+  //  saving Funding data
+  saveFundingMethodDetails() {
+    const data = this.constructFundingMethodSaveRequest();
+    return this.investmentApiService.saveFundingMethodDetails(data);
+  }
+  constructFundingMethodSaveRequest() {
+    const formData = this.getFundingAccountDetails();
+    return {
+    fundTypeId : formData.fundingAccountMethod,
+    operatorId: formData.srsOperatorBank,
+    accountNumber: formData.srsAccountNumber
+      };
+    }
+
+    // get the Funding method detaild
+    getFundingMethosDetails() {
+      return this.investmentApiService.getUserFundingDetails();
+    }
+    setFundingDetails(FundDetails) {
+      if (FundDetails) {
+        this.investmentCommonFormData.fundingAccountMethod = FundDetails.fundingAccountMethod;
+        this.investmentCommonFormData.srsOperatorBank = FundDetails.srsOperatorBank;
+        this.investmentCommonFormData.srsAccountNumber = FundDetails.srsAccountNumber;
+      }
+      this.commit();
+    }
 }

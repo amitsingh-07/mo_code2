@@ -10,9 +10,10 @@ import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { SrsTooltipComponent } from '../srs-tooltip/srs-tooltip.component';
@@ -27,12 +28,11 @@ export class FundingMethodComponent implements OnInit {
   pageTitle: string;
   fundingMethodForm: FormGroup;
   formBuilder: any;
-  options = ['Cash', 'SRS'];
+  fundingMethods;
   showContentCash = false;
   showContentSrs = false;
-
   formValues;
- 
+
   constructor(
     public readonly translate: TranslateService,
     public authService: AuthenticationService,
@@ -44,7 +44,8 @@ export class FundingMethodComponent implements OnInit {
     public footerService: FooterService,
     public signUpService: SignUpService,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    private investmentCommonService: InvestmentCommonService
+    private investmentCommonService: InvestmentCommonService,
+    private investmentAccountService: InvestmentAccountService,
   ) {
     this.translate.use('en');
     const self = this;
@@ -58,37 +59,38 @@ export class FundingMethodComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
+    this.getFundingMethods();
     this.formValues = this.investmentCommonService.getFundingMethod();
     this.fundingMethodForm = new FormGroup({
       fundingMethod: new FormControl(
         this.formValues.fundingMethod, Validators.required)
     });
   }
+
+  getFundingMethods() {
+    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+      this.fundingMethods = data.objectList.portfolioFundingMethod;
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  }
+
   goToNext(form) {
     this.investmentCommonService.setFundingMethod(form.value);
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
+
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
-  fundChange(value) {
-    if (value === 'Cash') {
-        this.showContentCash = true;
-        this.showContentSrs = false;
-    } else {
-      this.showContentSrs = true;
-      this.showContentCash = false;
 
-    }
-  }
- 
   showHelpModal() {
     const ref = this.modal.open(SrsTooltipComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant(
-      'Supplementary Retirement Scheme (SRS)'
+    ref.componentInstance.errorTitle = this.translate.instant('fUNDING_METHOD.HELP_MODAL.TITLE'
     );
     ref.componentInstance.errorMessage = this.translate.instant(
-      'The SRS is a voluntary savings scheme that helps you boost your savings for your golden years, while giving you tax relief.'
+      'fUNDING_METHOD.HELP_MODAL.DESC1'
     );
   }
 }

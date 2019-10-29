@@ -346,4 +346,19 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  saveFundingMethodDetails(data) {
+    // # return this.http.post(investmentApiConstants.endpoint.investmentAccount.savePortfolioName, data)
+    // .pipe(
+    //   catchError((error: HttpErrorResponse) => this.handleError(error))
+    // );
+    console.log(data);
+  }
+  getUserFundingDetails() {
+    const url = '../../../assets/mock-data/financial.json';
+    console.log(url);
+    return this.http.getMock(url)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
 }

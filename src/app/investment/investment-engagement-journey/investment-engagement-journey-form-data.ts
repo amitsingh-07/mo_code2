@@ -32,5 +32,5 @@ export class InvestmentEngagementJourneyFormData {
   
 
   // FUNDING METHOD
-  fundingMethod : string;
+  fundingMethod: any;
 }

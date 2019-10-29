@@ -12,12 +12,17 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../../../shared/footer/footer.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import {
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+} from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
 import {
   InvestmentEngagementJourneyService
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
-import { INVESTMENT_COMMON_ROUTE_PATHS, INVESTMENT_COMMON_ROUTES } from '../investment-common-routes.constants';
+import {
+  INVESTMENT_COMMON_ROUTE_PATHS, INVESTMENT_COMMON_ROUTES
+} from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 
 @Component({
   selector: 'app-funding-account-details',
@@ -27,11 +32,14 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 })
 export class FundingAccountDetailsComponent implements OnInit {
   pageTitle: string;
+  fundingAccountDetailsFrom: FormGroup;
   formValues;
-  FundValue;
   fundingMethods: any;
   srsAgentBankList;
-  fundingAccountDetailsFrom: FormGroup;
+  characterLength;
+  srsBank;
+  showMaxLength;
+  fundingSubText;
 
   constructor(
     public readonly translate: TranslateService,
@@ -50,6 +58,7 @@ export class FundingAccountDetailsComponent implements OnInit {
       this.setPageTitle(this.pageTitle);
     });
   }
+
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
@@ -63,6 +72,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.fundingAccountDetailsFrom = this.buildForm();
     this.addAndRemoveSrsForm(this.fundingAccountDetailsFrom.get('fundingAccountMethod').value);
   }
+
   getSrsAgentBank() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.fundingMethods = data.objectList.portfolioFundingMethod;
@@ -79,62 +89,61 @@ export class FundingAccountDetailsComponent implements OnInit {
       fundingAccountMethod: [this.formValues.fundingAccountMethod ? this.formValues.fundingAccountMethod : this.formValues.fundingMethod, Validators.required]
     });
   }
-  addAndRemoveSrsForm(FundingMethod) {
-    if (FundingMethod === 'SRS') {
+
+  addAndRemoveSrsForm(fundingMethod) {
+    if (fundingMethod === 'SRS') {
       this.buildForSrsForm();
-    } else if (FundingMethod === 'Cash' && this.fundingAccountDetailsFrom.get('srsFundingDetails')) {
+    } else if (fundingMethod === 'Cash' && this.fundingAccountDetailsFrom.get('srsFundingDetails')) {
       const srsFormGroup = this.fundingAccountDetailsFrom.get('srsFundingDetails') as FormGroup;
       this.fundingAccountDetailsFrom.removeControl('srsFundingDetails');
-      srsFormGroup.removeControl('srsOperatorBank');
+      srsFormGroup.removeControl('srsOperator');
       srsFormGroup.removeControl('srsAccountNumber');
-
     }
-    this.observeFundingMethodChange();
   }
 
   buildForSrsForm() {
     this.fundingAccountDetailsFrom.addControl(
       'srsFundingDetails', this.formBuilder.group({
-        srsOperatorBank: [this.formValues.srsOperatorBank, Validators.required],
-        srsAccountNumber: [this.formValues.srsAccountNumber, Validators.required],
+        srsOperator: [this.formValues.srsOperator, Validators.required],
+        srsAccountNumber: [this.formValues.srsAccountNumber, [Validators.required]],
       })
     );
   }
 
-  observeFundingMethodChange() {
-    this.fundingAccountDetailsFrom
-      .get('fundingAccountMethod')
-      .valueChanges.subscribe((value) => {
-        this.addAndRemoveSrsForm(value);
-      });
+  selectFundingMethod(key, value) {
+    if (this.formValues.fundingMethod !== value) {
+      this.fundingSubText = {
+        userGivenPortfolioName: 'Growth portfolio',  // TODO
+        userFundingMethod: value
+      };
+      this.changingFundMethod(key, value);
+    }
   }
 
-  selectFundingMethod(key, value) {
-    if (this.fundingAccountDetailsFrom.get('fundingAccountMethod').value !== value) {
-      this.changingFundMethod(value);
-    }
-    this.fundingAccountDetailsFrom.controls[key].setValue(value);
-  }
   selectSrsOperator(key, value, nestedKey) {
     this.fundingAccountDetailsFrom.controls[nestedKey]['controls'][key].setValue(value);
+    this.showBankAccountLength(value);
   }
 
-  changingFundMethod(value) {
+  changingFundMethod(key, value) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant('Reassess the Risk profile');
+    ref.componentInstance.errorTitle = this.translate.instant('CONFIRM_ACCOUNT_DETAILS.SHOW_MODAL.TITLE');
     // tslint:disable-next-line:max-line-length
-    ref.componentInstance.errorMessage = this.translate.instant('you want change the risk fund method you can risk  reassess the risk profile');
+    ref.componentInstance.errorMessage = this.translate.instant('CONFIRM_ACCOUNT_DETAILS.SHOW_MODAL.DESC', { userGivenPortfolioName: this.fundingSubText.userGivenPortfolioName, userFundingMethod: this.fundingSubText.userFundingMethod });
     ref.componentInstance.yesOrNoButton = true;
     ref.componentInstance.closeBtn = false;
     ref.componentInstance.yesClickAction.subscribe((emittedValue) => {
       ref.close();
-      this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
+      this.investmentCommonService.setFundingMethod(value);
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
     });
     ref.componentInstance.noClickAction.subscribe((emittedValue) => {
       ref.close();
+      this.fundingAccountDetailsFrom.controls[key].setValue(value);
       this.addAndRemoveSrsForm(value);
     });
   }
+
   goToNext(form) {
     if (!form.valid) {
       return false;
@@ -144,4 +153,48 @@ export class FundingAccountDetailsComponent implements OnInit {
     }
   }
 
+  validateBankAccNo() {
+    if (this.fundingAccountDetailsFrom.get('srsFundingDetails').get('srsOperator').value) {
+      const operator = this.fundingAccountDetailsFrom.get('srsFundingDetails').get('srsOperator').value.name;
+      switch (operator) {
+        case 'DBS':
+          return {
+            mask: [/\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
+          };
+        case 'OCBC':
+          return {
+            mask: [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/],
+          };
+        case 'UOB':
+          return {
+            mask: [/\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/],
+          };
+      }
+    }
+  }
+
+  showLength(event) {
+    if (this.srsBank) {
+      const operator = this.srsBank;
+      if (event.currentTarget.value) {
+        this.characterLength = event.currentTarget.value.match(/\d/g).join('').length;
+      }
+    }
+  }
+
+  showBankAccountLength(value) {
+    this.srsBank = value.name;
+    switch (this.srsBank) {
+      case 'DBS':
+        this.showMaxLength = 14;
+        break;
+      case 'OCBC':
+        this.showMaxLength = 12;
+        break;
+      case 'UOB':
+        this.showMaxLength = 9;
+        break;
+    }
+
+  }
 }

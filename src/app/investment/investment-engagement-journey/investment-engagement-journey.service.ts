@@ -383,6 +383,9 @@ export class InvestmentEngagementJourneyService {
   getUserFinancialDetails() {
     return this.investmentApiService.getUserFinancialDetails();
   }
+  getFundingDetailsDetails() {
+    return this.investmentApiService.getAllDropdownList();
+  }
   setFinancialDetails(financialDetails) {
     if (financialDetails) {
       this.investmentEngagementJourneyFormData.monthlyIncome = financialDetails.monthlyIncome;

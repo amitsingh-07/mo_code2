@@ -8,7 +8,7 @@ export class InvestmentCommonFormData {
     investmentsSummary: any;
     portfolioName: string;
     fundingMethod: string;
-    fundingAccountMethod: string;
+    fundingAccountMethod: any;
     srsOperatorBank: any;
     srsAccountNumber: string;
 }

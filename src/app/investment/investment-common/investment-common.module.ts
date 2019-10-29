@@ -24,6 +24,7 @@ import { InvestmentCommonRoutingModule } from './investment-common-routing.modul
 import {
     FundingAccountDetailsComponent
 } from './funding-account-details/funding-account-details.component';
+import { TextMaskModule } from 'angular2-text-mask';
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
     { prefix: './assets/i18n/app/', suffix: '.json' },
@@ -38,6 +39,7 @@ export function createTranslateLoader(http: HttpClient) {
     ReactiveFormsModule,
     NgbModule.forRoot(),
     FormsModule,
+    TextMaskModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
