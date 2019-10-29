@@ -14,6 +14,11 @@
           </div>
         </div>
         <div class="max-width col-lg-6 col-md-6">
+          <!-- SRS NOTE -->
+          <div class="srs-div">
+            <img src="assets/images/alert-black.svg" />
+            <div class="srs-note" innerHTML="{{'WITHDRAW.SRS_NOTE' | translate}}"></div>
+          </div>
           <form id="withdraw_form" name="withdrawForm" [formGroup]="withdrawForm">
             <!-- PORTFOLIO -->
             <div class="form-group" *ngIf="withdrawForm.get('withdrawPortfolio')">
