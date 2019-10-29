@@ -99,5 +99,15 @@
     margin-bottom: 20px!important;
   }
 }
-  
+.align-item-start {
+  align-items: flex-start;
+}
+.tooltip-icon {
+  position: absolute;
+  right: 0;
+  top: -2px;
+}
+.pos-relative {
+  position: relative;
+}
 }

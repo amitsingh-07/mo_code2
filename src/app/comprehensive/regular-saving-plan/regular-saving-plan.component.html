@@ -36,7 +36,8 @@
             <div class="form-group form-group-with-bg--content" [formGroupName]="i">
               <div class="flex-row">
                 <div class="flex-col-5">
-                  <label for="unitTypeTrust" id="myDependantFormLb2">{{ 'CMP.RSP.UNIT_TRUST_TYPE' | translate}}</label>
+                  <label for="unitTypeTrust" id="myDependantFormLb2"
+                    [innerHtml]=" 'CMP.RSP.UNIT_TRUST_TYPE' | translate"></label>
                 </div>
                 <div class="flex-col-7">
                   <div class="dropdown-control"
