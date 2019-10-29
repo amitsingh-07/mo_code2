@@ -82,6 +82,8 @@
     "INVESTED": "Invested",
     "LIST_ALL": "List All",
     "SHOW_LESS": "Show Less",
+    "SRS_MSG": "SRS account portfolio currently handled offline.",
+    "SRS_HYPERLINK": "Click here",
     "MP_WALKTHROUGH": {
       "NEW_INVESTMENT_UPDATE": "We’ve new investment updates.",
       "SHOW_ME_AROUND": "Show me around!",
@@ -144,6 +146,10 @@
       "INVESTMENT_OVERVIEW": {
         "TITLE": "Loading.",
         "MESSAGE": "Please wait."
+      },
+      "SRS_MODAL": {
+        "TITLE": "Sorry, SRS account portfolio currently handled offline",
+        "Message": "<div class='srs-modal-offline'> <div class='mb30'>Viewing of your SRS investment portfolio, top-ups & withdrawals are currently handled offline.</div><div class='mb30'>Adding of SRS funding portfolio is still available. Go to <span class='txt-italic'>Your Investment > Add Portfolio.<span></div><div>For assistance, contact <span class='contact-details mail'>enquiries@moneyowl.com.sg</span> or call <span class='contact-details'>6329 9188.</span></div></div>"
       }
     },
     "PENDING_REQUEST_INFO": "You have {{count}} Buy Requests",

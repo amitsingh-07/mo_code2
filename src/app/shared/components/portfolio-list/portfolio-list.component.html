@@ -10,9 +10,12 @@
                       <div (click)="detail(portfolio)" class="portfolio" *ngIf="(i <= 4) || showAllForNotInvested">
                           <div class="portfolio-icon"><img [src]="getImg(portfolio?.riskProfileId)" /></div>
                           <div class="portfolio-details">
-                              <div class="portfolio-name">{{portfolio.portfolioName}}</div>
+                              <div class="portfolio-name">
+                                <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
+                                <span class="portfolio-fund-type" *ngIf="portfolio?.srsmethod"><img src="assets/images/investment-account/srs-type.svg" alt="" /></span>
+                              </div>
                               <div class="ref-code">{{'YOUR_INVESTMENT.REF_LABEL' | translate}} {{portfolio.refNo}}</div>
-                              <div class="portfolio-value">
+                              <div *ngIf="!portfolio?.srsmethod" class="portfolio-value">
                                   <span *ngIf="!portfolio?.portfolioValue">$0</span>
                                   <span *ngIf="portfolio?.portfolioValue">{{portfolio?.portfolioValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
                                   <span *ngIf="portfolio?.buyRequestCount" class="buy-request cursorPointer" (click)="gotoBuyRequest()">
@@ -21,11 +24,12 @@
                                      <span *ngIf="portfolio?.buyRequestCount > 1"> {{'YOUR_INVESTMENT.BUY_REQUESTS' | translate}}</span>
                                   </span>
                               </div>
-                              <div class="portfolio-btn" >
-                                <span (click)="gotoTopUp(portfolio)" *ngIf="!portfolio?.buyRequestCount" class="top-up-btn cursorPointer">{{'YOUR_INVESTMENT.TOP_UP' | translate}}</span>
+                              <div *ngIf="!portfolio?.srsmethod" class="portfolio-btn" >
+                                <span (click)="gotoTopUp(portfolio)" *ngIf="!portfolio?.buyRequestCount && !portfolio?.srsmethod" class="top-up-btn cursorPointer">{{'YOUR_INVESTMENT.TOP_UP' | translate}}</span>
                                 <span *ngIf="!portfolio?.cashAccountBalance" class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} $0</span>
                                 <span *ngIf="portfolio?.cashAccountBalance" class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} {{portfolio?.cashAccountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
                               </div>
+                              <div *ngIf="portfolio?.srsmethod" class="srs-note flex"><div class="srs-note-icon mr5"><img src="assets/images/investment-account/note-icon-grey.svg" alt="" /></div><div>{{'YOUR_INVESTMENT.SRS_MSG' | translate}} <span (click)="gotToFAQ()">{{'YOUR_INVESTMENT.SRS_HYPERLINK' | translate}} </span></div></div>
                           </div>
                       </div>
                   </div>
@@ -40,22 +44,26 @@
                       <div *ngIf="(i <= 4) || showAllForInvested" class="portfolio">
                           <div class="portfolio-icon"><img [src]="getImg(portfolio?.riskProfileId)" /></div>
                           <div class="portfolio-details">
-                              <div class="portfolio-name">{{portfolio?.portfolioName}}</div>
+                              <div class="portfolio-name">
+                                <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
+                                <span *ngIf="portfolio?.srsmethod" class="portfolio-fund-type"><img src="assets/images/investment-account/srs-type.svg" alt="" /></span>
+                              </div>
                               <div class="ref-code">{{'YOUR_INVESTMENT.REF_LABEL' | translate}} {{portfolio?.refNo}}</div>
                               <div class="portfolio-value">
-                                <span *ngIf="!portfolio?.portfolioValue">$0</span>
-                                <span *ngIf="portfolio?.portfolioValue">{{portfolio?.portfolioValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
-                                <span class="buy-request cursorPointer" *ngIf="portfolio?.buyRequestCount" (click)="gotoBuyRequest()">{{portfolio?.buyRequestCount}}
+                                <span *ngIf="!portfolio?.portfolioValue && !portfolio?.srsmethod">$0</span>
+                                <span *ngIf="portfolio?.portfolioValue && !portfolio?.srsmethod">{{portfolio?.portfolioValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
+                                <span class="buy-request cursorPointer" *ngIf="portfolio?.buyRequestCount && !portfolio?.srsmethod" (click)="gotoBuyRequest()">{{portfolio?.buyRequestCount}}
                                   <span *ngIf="portfolio?.buyRequestCount == 1"> {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span>
                                   <span *ngIf="portfolio?.buyRequestCount > 1"> {{'YOUR_INVESTMENT.BUY_REQUESTS' | translate}}</span>
                                 </span>
                               </div>
-                              <div class="portfolio-btn">
+                              <div class="portfolio-btn" *ngIf="!portfolio?.srsmethod">
                                 <span *ngIf="!portfolio?.totalReturns && showTotalReturn" class="total-returns" >0%</span>
                                 <span *ngIf="portfolio?.totalReturns && showTotalReturn"   [class.negativeValue]="portfolio?.totalReturns < 0" class="total-returns" >{{formatReturns(portfolio?.totalReturns)}}{{portfolio?.totalReturns | number : '1.0-2'}}%</span>
                                 <span *ngIf="!portfolio?.cashAccountBalance" class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} $0</span>
                                 <span *ngIf="portfolio?.cashAccountBalance" class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} {{portfolio?.cashAccountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
                               </div>
+                              <div *ngIf="portfolio?.srsmethod" class="srs-note flex"><div class="srs-note-icon mr5"><img src="assets/images/investment-account/note-icon-grey.svg" alt="" /></div><div>{{'YOUR_INVESTMENT.SRS_MSG' | translate}} <span (click)="gotToFAQ()">{{'YOUR_INVESTMENT.SRS_HYPERLINK' | translate}} </span></div></div>
                           </div>
                       </div>
                   </div>
