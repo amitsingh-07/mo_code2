@@ -1,3 +1,4 @@
+
 .retirement-plan-container{
     .title {
         font-size: 18px;
@@ -82,5 +83,17 @@
     .form-control i.right {
        top: 52%;
        font-family: "muli regular";
+    }
+    .form-group-with-bg {
+        background: transparent;
+    }
+    .form-group-with-bg--header {
+        padding-left: 5px !important;
+    }
+    .form-group-with-bg--content {
+        padding: 5px !important;
+    }
+    .rsp-border-top {
+        border-top: solid 1px #cee5e4;
     }
 }
