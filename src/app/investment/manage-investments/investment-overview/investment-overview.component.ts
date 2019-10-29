@@ -287,7 +287,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   }
 
   gotoTopUp(portfolio?) {
-    if (this.nonSrsProfilePresent) {
+    if (!this.nonSrsProfilePresent) {
       // Added check if got portfolio, set it as selected one else set null for the main top up button
       if (portfolio) {
         this.manageInvestmentsService.setSelectedCustomerPortfolioId(portfolio['customerPortfolioId']);
