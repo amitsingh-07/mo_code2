@@ -1,4 +1,14 @@
+<div class="app-confirm-portfolio investment-account">
+<div class="step-indicator-container">
+  <div class="container-fluid max-width--1024">
+    <app-step-indicator [count]="2" [activeStepIndex]="1" [mode]="1"></app-step-indicator>
+  </div>
+</div>
 <div class="container-fluid max-width--1024" *ngIf="portfolio">
+    <div class="hidden-sm-md page-details">
+        <div>Step 1</div>
+        <div class="page-title">Confirm Portfolio</div>
+    </div>
   <div class="portfolio-allocation-details">
     <div class="flex-col-12 portfolio-allocation-details__container">
       <div class="portfolio-allocation-details__content white-bg">
@@ -29,24 +39,9 @@
     <div class="faq_link"><a target="_blank" routerLink="/faq" fragment="investment">{{
         'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a></div>
   </div>
-  <div class="row hidden-lg">
-    <div class="flex-col-12 review-block">
-      <div>{{ 'PORTFOLIO_RECOMMENDATION.CONFIRM_SUB_TEXT' | translate}}</div>
-      <div class="review-italic">{{ 'PORTFOLIO_RECOMMENDATION.INVESTMENT_FUND_CONDITION' | translate}}</div>
-    </div>
+  <div class="text-center">
+  <button type="button" (click)="confirmPortfolio()" class="btn btn__footer--fixed btn-primary width100">{{
+    'PORTFOLIO_RECOMMENDATION.CONTINUE' | translate}}</button>
   </div>
-  <button type="button" (click)="confirmPortfolio()" class="btn btn__footer--fixed btn-primary width100 hidden-lg">{{
-    'PORTFOLIO_RECOMMENDATION.CONFIRM' | translate}}</button>
 </div>
-
-<div class="recommend-footer hidden-sm-md cont" *ngIf="portfolio">
-  <div class="footer-content container-fluid max-width--1024">
-    <div>
-      <div class="text-one">{{ 'PORTFOLIO_RECOMMENDATION.CONFIRM_SUB_TEXT' | translate}}</div>
-      <div class="text-two">{{ 'PORTFOLIO_RECOMMENDATION.INVESTMENT_FUND_CONDITION' | translate}}</div>
-    </div>
-    <div>
-      <button type="button" (click)="confirmPortfolio()" class="btn btn__footer--fixed btn-primary width100">{{'PORTFOLIO_RECOMMENDATION.CONFIRM' | translate}}</button>
-    </div>
-  </div>
 </div>
