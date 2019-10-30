@@ -64,7 +64,6 @@
       "TITLE": "Name Your Portfolio",
       "PORTFOLIO_READY": "Your portfolio is almost ready.",
       "ADD_PORTFOLIO_NAME_LAB": "Let’s name this portfolio! (optional)",
-      "DONE":"Done",
       "VALIDATION_MESSAGE":"First character should not be space",
       "ERROR_MESSAGE": "Sorry, this portfolio name is taken up by another existing portfolio. Please think of another name.",
       "NAME_YOUR_PORTFOLIO": "Name your portfolio",

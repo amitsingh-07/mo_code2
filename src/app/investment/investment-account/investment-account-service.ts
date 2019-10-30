@@ -920,7 +920,7 @@ export class InvestmentAccountService {
     this.investmentAccountFormData.topupportfolioamount = data.topupportfolioamount;
     this.investmentAccountFormData.MonthlyInvestmentAmount = data.MonthlyInvestmentAmount;
   }
-  getPortfolioAllocationDetailsWithAuth(params) {
+  getPortfolioAllocationDetailsWithAuth() {
     return this.investmentApiService.getPortfolioDetailsWithAuth();
   }
 

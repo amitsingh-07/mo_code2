@@ -78,7 +78,7 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   getPortfolioDetails() {
     this.investmentAccountService
-      .getPortfolioAllocationDetailsWithAuth({})
+      .getPortfolioAllocationDetailsWithAuth()
       .subscribe((data) => {
         this.portfolio = data.objectList;
         this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
