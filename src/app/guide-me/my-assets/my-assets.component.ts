@@ -30,6 +30,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
   cpfValue: number;
   useMyInfo: boolean;
   cpfFromMyInfo = false;
+  private myInfoSubscription: Subscription;
 
   constructor(
     private router: Router, public navbarService: NavbarService,
@@ -65,7 +66,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
     this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '') {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
-          this.myInfoService.getMyInfoData().subscribe((data) => {
+          this.myInfoSubscription = this.myInfoService.getMyInfoData().subscribe((data) => {
             if (data && data['objectList']) {
               this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
               this.assetsForm.controls['cpf'].setValue(this.cpfValue);
@@ -92,6 +93,9 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.myinfoChangeListener) {
       this.myinfoChangeListener.unsubscribe();
+    }
+    if (this.myInfoSubscription) {
+      this.myInfoSubscription.unsubscribe();
     }
   }
 
