@@ -127,6 +127,14 @@
                 padding:18px 10px;
             }
         } 
+        &.manulife-padding{
+            padding-left: 0;
+            padding-right: 0;
+            .brdr-btm{
+                padding-bottom: 10px;
+                border-bottom: 1px solid #ffffff;
+            }
+        }
     }
     .text--bold{
         font-family: $muli-bold;
