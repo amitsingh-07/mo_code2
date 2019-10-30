@@ -1,6 +1,6 @@
 <div class="promo-content__container">
+<p>To qualify for the premium discount, you have to sign up for the product during the promotion period and issued by the deadline.</p>
 <div class="promo__table">
-    <p class="text-center mb20">To qualify for the premium discount, you have to sign up for the product during the promotion period and issued by the deadline.</p>
     <table class="promo__inner-table">
         <tr>
             <td class="cell--header text--center" rowspan="2" colspan="1">Main Category</td>
@@ -13,7 +13,7 @@
             <td class="cell--header text--center">Premium Term</td>
             <td class="cell--header text--center manulife-padding">
               <div class="brdr-btm">Minimum Single or</div>
-              <div>Annualised Premium#</div>
+              <div>Annualised Premium<span class="bundle-icon">#</span></div>
             </td>
             <td class="cell--header text--center manulife-padding">
               <div class="brdr-btm">Expressed as a % of</div>
