@@ -36,8 +36,6 @@ import { ResultComponent } from './result/result.component';
 import { RetirementPlanComponent } from './retirement-plan/retirement-plan.component';
 import { ValidateResultComponent } from './validate-result/validate-result.component';
 import { SignUpService } from '../sign-up/sign-up.service';
-import { AppService } from '../app.service';
-import { appConstants } from '../app.constants';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -92,7 +90,9 @@ export function createTranslateLoader(http: HttpClient) {
 })
 export class ComprehensiveModule {
 
-  constructor(private signUpService: SignUpService, private appService: AppService) {
-  
+
+
+  constructor() {
+
   }
 }
