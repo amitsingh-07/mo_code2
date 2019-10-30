@@ -55,7 +55,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   selected;
   showMpPopup = false;
   showAnimation = false;
-  srsPortfolioPresent: boolean;
+  cashPortfolioPresent: boolean;
 
   // transfer instructions
   bankDetails;
@@ -187,7 +187,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
       total: this.totalPortfolio
     };
     this.manageInvestmentsService.setUserPortfolioList(this.portfolioList);
-    this.srsPortfolioPresent = this.checkSRSAccount(this.portfolioList);
+    this.cashPortfolioPresent = this.checkForCashAccount(this.portfolioList);
     if (this.investmentoverviewlist.cashAccountDetails) {
       this.manageInvestmentsService.setUserCashBalance(
         this.investmentoverviewlist.cashAccountDetails.availableBalance
@@ -287,7 +287,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   }
 
   gotoTopUp(portfolio?) {
-    if (!this.srsPortfolioPresent) {
+    if (!this.cashPortfolioPresent) {
       // Added check if got portfolio, set it as selected one else set null for the main top up button
       if (portfolio) {
         this.manageInvestmentsService.setSelectedCustomerPortfolioId(portfolio['customerPortfolioId']);
@@ -406,10 +406,10 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     }
   }
 
-  checkSRSAccount(portfolios) {
+  checkForCashAccount(portfolios) {
     if (portfolios && portfolios.length) {
       for (const portfolio of portfolios) {
-        if (!portfolio.portfolioType) {
+        if (portfolio.portfolioType !== 'SRS') {
           return false;
         }
       }
