@@ -4,7 +4,7 @@
         "META": {
             "META_DESCRIPTION": "Questions on Insurance",
             "META_KEYWORDS": "FAQ, Insurance, Will Writing, MoneyOwl, Financial Advisor"
-            }
+        }
     },
     "FAQ": {
         "TITLE": "FAQs",
@@ -143,7 +143,7 @@
                         "ANSWER": "<p>The SRS is a voluntary scheme to encourage individuals to save more for their retirement, over and above their Central Provident Fund (CPF) savings, with the benefit of tax relief. It began in 2001 and is operated by the private sector.</p><p>SRS members can contribute any amount up to a yearly cap of $15,300 for Singaporeans and PRs and $35,700 for foreigners. Every amount of SRS contribution will be eligible for tax relief in the following year of assessment for income tax. SRS contributions may be used to purchase various investment instruments.</p>"
                     },
                     {
-                        "QUESTION":  "What are the benefits of using SRS?",
+                        "QUESTION": "What are the benefits of using SRS?",
                         "ANSWER": "<p>The SRS offers attractive tax benefits as contributions to SRS are eligible for tax relief in the following year of assessment for tax. However, do note that with effect from 1 Jan 2017, there is a cap on personal income tax relief of $80,000 per year of assessment, so if your personal relief have exceeded $80,000 for the year, further contribution to SRS would not attract any tax benefit.</p><p>Investment returns are accumulated tax-free. SRS, however, are taxable but only at withdrawals. Only 50% of the withdrawals <strong>after</strong> the statutory retirement age* from SRS are taxable (referred to as a “50% tax concession”).</p><p><small>*The statutory retirement age is the prevailing age when you made your first SRS contribution. Currently, it is 62.</small></p>"
                     },
                     {
@@ -194,7 +194,7 @@
                     }
                 ]
             },
-            "Will Writing":{
+            "Will Writing": {
                 "Why Write a Will?": [
                     {
                         "QUESTION": "Is It necessary to have a Will?",
@@ -263,10 +263,10 @@
                         "ANSWER": "<ul><li>CPF nomination – you can read more from CPF website and download the form here.<br><a href=\"https://www.cpf.gov.sg/Members/Schemes/schemes/other-matters/cpf-nomination-scheme\">https://www.cpf.gov.sg/Members/Schemes/schemes/other-matters/cpf-nomination-scheme</a></li><li>Schedule of assets – this is a list of assets that you have, eg, property, bank accounts, investment, overseas assets. </li></ul>"
                     }
                 ],
-                "Disclaimer":[
+                "Disclaimer": [
                     {
                         "QUESTION": "Disclaimer",
-                        "ANSWER": "MoneyOwl is not a law firm and does not give legal advice. This service is provided as a general service over the Internet and the information provided is not to be construed as legal advice and is not guaranteed to be correct, complete or up-to-date and which may change from time to time. By using this service, you acknowledge that the information, materials and content provided is for information purposes only and should not be construed nor relied upon as legal advice. This service is meant as a publishing service, and all documents provided and produced through this service are meant to provide a guideline for common and standard situations and are provided on an “as is” basis.<br><br>Please note that each person’s situation is unique and your use of this service and the Will(s) produced for your use, may not necessarily fit your particular circumstances. If you have any legal questions or if you are unsure whether the service will be suitable to meet your needs, you are advised to seek specific legal or professional advice.<br><br>MoneyOwl is not responsible for any loss, claim, liability, or damage related to your use of this." 
+                        "ANSWER": "MoneyOwl is not a law firm and does not give legal advice. This service is provided as a general service over the Internet and the information provided is not to be construed as legal advice and is not guaranteed to be correct, complete or up-to-date and which may change from time to time. By using this service, you acknowledge that the information, materials and content provided is for information purposes only and should not be construed nor relied upon as legal advice. This service is meant as a publishing service, and all documents provided and produced through this service are meant to provide a guideline for common and standard situations and are provided on an “as is” basis.<br><br>Please note that each person’s situation is unique and your use of this service and the Will(s) produced for your use, may not necessarily fit your particular circumstances. If you have any legal questions or if you are unsure whether the service will be suitable to meet your needs, you are advised to seek specific legal or professional advice.<br><br>MoneyOwl is not responsible for any loss, claim, liability, or damage related to your use of this."
                     }
                 ]
             },
@@ -320,7 +320,7 @@
                     },
                     {
                         "QUESTION": "How do I submit an investment top-up request?",
-                        "ANSWER": "You can login to your MoneyOwl Investment Account to submit a top-up request. The top up request will be processed when there are sufficient monies in your Investment Cash Account." 
+                        "ANSWER": "You can login to your MoneyOwl Investment Account to submit a top-up request. The top up request will be processed when there are sufficient monies in your Investment Cash Account."
                     },
                     {
                         "QUESTION": "When will my top-up request expire? ",
@@ -362,23 +362,23 @@
                     }
                 ],
                 "Joint or SRS Accounts | Joint or SRS (Supplementary Retirement Schemes) Accounts": [
-                  {
-                      "QUESTION": "Can I open Joint or SRS Investment Accounts?",
-                      "ANSWER": "<p>Yes, you can. However, please note that we are currently handling the management of these accounts, including the portfolio account statements, offline. It is also a pre-requisite to set up your Personal Investment Account <a href=\"https://www.moneyowl.com.sg/invest/start\" target='_blank'>https://www.moneyowl.com.sg/invest/start</a> before opening your Joint or SRS Investment Accounts. <br/><br/>Please email <a href=\"mailto:clientsupport@moneyowl.com.sg\">clientsupport@moneyowl.com.sg</a> for an application form and assistance on next steps.</p>"
-                  },
-                  {
-                      "QUESTION": "I already have an existing Personal Investment Account. Can I convert this to a Joint or SRS Investment Account?",
-                      "ANSWER": "No, you can’t. You need to set up a separate Joint or SRS Investment Account. Alternatively, you can redeem all investment holdings in your Personal Investment Account and invest the proceeds into your Joint Investment Account."
-                  },
-                  {
-                      "QUESTION": "Can a person below 18 years of age open a Joint Investment Account?",
-                      "ANSWER": "Yes. However, please note that the main applicant must be above 18 years of age and we will only take instructions from the main applicant."
-                  },
-                  {
-                      "QUESTION": "Can I use SRS to invest for my Joint Investment Account?",
-                      "ANSWER": "No. Only cash can be used for Joint Investment Account investments."
-                  }
-              ],
+                    {
+                        "QUESTION": "Can I open Joint or SRS Investment Accounts?",
+                        "ANSWER": "<p>Yes, you can. However, please note that we are currently handling the management of these accounts, including the portfolio account statements, offline. It is also a pre-requisite to set up your Personal Investment Account <a href=\"https://www.moneyowl.com.sg/invest/start\" target='_blank'>https://www.moneyowl.com.sg/invest/start</a> before opening your Joint or SRS Investment Accounts. <br/><br/>Please email <a href=\"mailto:clientsupport@moneyowl.com.sg\">clientsupport@moneyowl.com.sg</a> for an application form and assistance on next steps.</p>"
+                    },
+                    {
+                        "QUESTION": "I already have an existing Personal Investment Account. Can I convert this to a Joint or SRS Investment Account?",
+                        "ANSWER": "No, you can’t. You need to set up a separate Joint or SRS Investment Account. Alternatively, you can redeem all investment holdings in your Personal Investment Account and invest the proceeds into your Joint Investment Account."
+                    },
+                    {
+                        "QUESTION": "Can a person below 18 years of age open a Joint Investment Account?",
+                        "ANSWER": "Yes. However, please note that the main applicant must be above 18 years of age and we will only take instructions from the main applicant."
+                    },
+                    {
+                        "QUESTION": "Can I use SRS to invest for my Joint Investment Account?",
+                        "ANSWER": "No. Only cash can be used for Joint Investment Account investments."
+                    }
+                ],
                 "Withdrawals": [
                     {
                         "QUESTION": "How do I withdraw monies?",
@@ -403,7 +403,7 @@
                         "ANSWER": "The total annual fees you have to pay are as follows:<table class=\"table--bordered\"><tr><td class=\"cell--teal\">MoneyOwl Advisory Fees<br/><small><i>(*Or your special promo rate)</i></small></td><td>0.65% p.a.*</td></tr><tr><td class=\"cell--teal\"><span>Platform Fees</span><br/><small><i>(Paid to iFast)</i></small></td><td>0.18% p.a.</td></tr><tr><td class=\"cell--teal\"><span>Fund Expense Ratio <i>(Estimated)</i></span><br/><small><i>(Payable to Dimensional Fund Advisors)</i></small></td><td>0.3% to 0.4% p.a.</td></tr></table>"
                     },
                     {
-                        "QUESTION": "How are fees deducted?", 
+                        "QUESTION": "How are fees deducted?",
                         "ANSWER": "The fees are deducted from the units in your portfolio on a quarterly basis. For MoneyOwl, projected returns are net of Total Fees."
                     },
                     {
@@ -424,21 +424,87 @@
                         "QUESTION": "I already have an existing iFAST account before starting my MoneyOwl Investment Account. Do I still need to open a new iFAST account?",
                         "ANSWER": "<p>Yes, you are required to open a new iFAST account if you wish to start your MoneyOwl Investment Account.</p>"
                     },
-                    { 
+                    {
                         "QUESTION": "How can I get help when I need it?",
                         "ANSWER": "<p>Our Client Advisers are ready to assist you. Ask us over LiveChat, give us a call at 6329 9188 (advisory matters), 6329 9189 (general enquiries) between Mondays-Fridays (excluding public holidays), 9am-6pm or send us an email at <a href=\"mailto:enquiries@moneyowl.com.sg\">enquiries@moneyowl.com.sg</a>.</p>"
                     },
-                    { 
+                    {
                         "QUESTION": "Forward Pricing",
                         "ANSWER": "<p>As with most unit trusts, buy and sell orders for the funds making up the portfolio are transacted at end-of-day prices. The exact price at which you will transact is therefore not known at the point of your placing an order. The price of the fund that you see on screen is from the previous one or two business days before, depending on the fund, not the actual price at which you will transact. The actual price at which you will transact will only be known one or two business days later.</p><p>For example:<br/>You redeem $100 of the portfolio (T day). The indicative price of one of the portfolio’s underlying funds, Fund A, is $1 on T day. Based on this indicative price, you will redeem $100 / $1 = 100 units. The actual price of the fund at the end of T day is $1.01. This price is only reflected on T+1 day. You will transact at $1.01 and your redemption proceeds will be $1.01 x 100 = $101.</p>"
                     },
-                    { 
+                    {
                         "QUESTION": "Full redemptions of portfolio holdings",
                         "ANSWER": "<p>Outstanding fees on a pro-rated basis apply and will be deducted prior to redemption, if you choose to redeem all your portfolio holdings.</p>"
                     },
                     {
                         "QUESTION": "Fund Holidays",
                         "ANSWER": "<p>On fund holidays, Dimensional Funds will not be priced. Transactions on a non-valuation day will be processed the following business day. For a full list of dates please see <a target=\"_blank\" href=\"./assets/docs/faq/Dimensional_fund_holidays_2019_16_May_2019.pdf\">Dimensional Fund Holidays 2019</a></p>"
+                    }
+                ]
+            },
+            "Comprehensive": {
+                "General": [
+                    {
+                        "QUESTION": "What is Comprehensive Financial Planning?",
+                        "ANSWER": "<p>Comprehensive financial planning is a process of reviewing your current financial situation, analysing your financial goals and developing a plan to achieve them. It involves improving your cash flow, protecting your assets, growing your wealth for retirement and children’s education funding, and eventual passing of assets efficiently to your heirs.</p>"
+                    },
+                    {
+                        "QUESTION": "Who is eligible for MoneyOwl’s Comprehensive Financial Planning service?",
+                        "ANSWER": "<p>The Comprehensive Financial Planning service is currently available for people between 18 to 54 years old.</br></br>For those age 55 and above, you may drop us an enquiry at <a>enquiries@moneyowl.com.sg</a> and our client adviser will get in touch with you on how to proceed.</p>"
+                    },
+                    {
+                        "QUESTION": "How is MoneyOwl’s Comprehensive Financial Planning different from others?",
+                        "ANSWER": "<p><ol type='a'><li>  Resource-based planning vs Goal-based planning</br></br><span>Common approach to financial planning is goal based. Goal-based planning for children education and retirement require one to know what you want and identify any gap based on your existing resources to result in a recommendation plan. From our experience, most people find it difficult to conceptualise what or how much they want for the future. Rather it is more meaningful to know how much they can have in the future with what is now available. </span></br></br><span class='text-underline text-italic'>As an example:</span></br></br><span>In goal-based retirement planning, you are asked 2 key questions:</span></br></br><span>&nbsp;&nbsp; -&nbsp;&nbsp;when you would like to retire; and</span></br><span>&nbsp;&nbsp; -&nbsp;&nbsp;how much you want in your retirement.</span></br></br><span>Depending on your answers, an analysis and recommendation plan is created. Disadvantages of this approach is that many people don’t know when they can retire, let alone how much they can or should have. Hence any resultant solution may not be most appropriate.</span></br></br><span>At MoneyOwl, we use resource-based planning. You are asked one key question:</span></br></br><span>&nbsp;&nbsp;-&nbsp;&nbsp;when would you like to retire</span></br></br><span>An analysis-cum-recommendation is developed based on the resources you have and the various retirement scenarios should you increase your savings or delay your retirement. In this way, you are likely to make better informed decisions and the resultant solution would be more in line with your current lifestyle and future needs.</span></li></br><li> Integration with national schemes</br></br><span>Our  recommendations  incorporate  national  schemes  into  your  financial  plan  in  a  holistic  and sophisticated  way  using  our  proprietary  MoneyOwl  CPF  Analyser  to  project  your  CPF  balances, considering your contributions, mortgage payments, as well as the complex rules and limits in the CPF system. This will provide you with an estimate of what your CPF LIFE payout will be with a high degree of accuracy.</span></br></br><li>Fit-for-purpose, low cost solution, bigger savings</li></br></br><span>Our recommendations are use cost-effective solutions, fit-for-purpose rather than expensive financial products. For insurance gaps, our recommendation typically uses low-cost term policy, and with up to 50%  rebate  of  basic  commission  in  cash,  it  brings  down  your  cost  of  insurance  even  lower.  Our investment  solution  is  based  on  time-tested  principles  of  asset-allocation  focus  and  market-based returns, implementing using low-cost instrument and the discipline of staying invested.</span></li></br></br><li>Conflict-free financial advice</br></br><span>Our advisers are fully salaried, conflict-free and competent. Most of our advisers are accredited Associate Wealth Planners or Certified Financial Planner by the Financial Planning Association of Singapore. Your client adviser will understand your priorities, ascertain your objectives, then guide and encourage you towards taking positive action to achieve your financial goals.</span></li></ol></p>"
+                    },
+                    {
+                        "QUESTION": "What kind of financial advice can I seek from your client adviser?",
+                        "ANSWER": "<p>Your client adviser will be able to provide advice on –</p> </br><ol type='a'><li><span>Budgeting</span></li><li><span>Review of financial health</span></li><li><span>Review of insurance needs and recommendation</span></li><li><span>Children education planning</span></li><li><span>Retirement adequacy planning</span></li><li><span>Investment recommendation suitable to your risk profile</span></li><li><span>Optimising your CPF savings</span></li><li><span>Will writing</span></li></br></br></ol><p>On investment service, our client advisers will advise you on in-house investment solutions that is suitable for you to achieve your goal in a comfortable, cost-effective and confident way. However, we do not advise on specific investment securities or funds you may have. Read more on our investment philosophy [link:<a href='https://advice.moneyowl.com.sg/investment/' target='_blank'> https://advice.moneyowl.com.sg/investment/</a>].</p></br></br><p>In addition, the financial advice provided will be limited to your personal situation only. If you are enquiring on behalf of your family members or friends, it would be more effective and useful that they go through the Comprehensive Financial Planning themselves.</p>"
+                    },
+                    {
+                        "QUESTION": "Can I do joint planning with my spouse?",
+                        "ANSWER": "<p>Currently, our planning approach is on individual basis. For planning as a couple, each member can create his or her own Comprehensive Financial plans and the client adviser can advise them in the same meeting session.</p>"
+                    }
+                ],
+                "Getting Started": [
+                    {
+                        "QUESTION": "What is the Comprehensive Financial Planning process like?",
+                        "ANSWER": "<p>MoneyOwl Comprehensive Financial Planning benefits you with a holistic view of your financial situation and goals and a roadmap to achieve it, through the efficiency and convenience of technology and the competency and empathy of a trusted human adviser.</br></br><strong>Step 1: Create a MoneyOwl account</strong></br></br><strong>Step 2: Guided factfinding journey (about 20mins)</strong></br></br> <span>&nbsp; &nbsp; - &nbsp; Provide information on personal profile, finances, insurance needs, children education and retirement aspirations.</span></br></br> <span>&nbsp; &nbsp; - &nbsp; If you need more time to gather information, you can always save and come back again.<span></br></br><strong>Step 3: Submit your inputs and make payment for Comprehensive Financial Planning fee</strong></br></br> <span>&nbsp; &nbsp; - &nbsp; After submission and payment, a customised comprehensive financial report will be prepared and emailed to you within 1 to 2 business days by your assigned client adviser. Your client adviser may also contact you to clarify your inputs. The report includes: </span></br><ul class='comprehensive'><li><span>a)&nbsp;    Your Cashflow statement</span></li><li><span>b)&nbsp;     Net Worth Statement</span></li><li><span>c)&nbsp; Financial Health Check</span></li><li><span>d)&nbsp; Analysis of insurance needs and gaps</span></li> <li><span>e)&nbsp; Analysis of your provision for child’s education funding (if applicable)  </span></li><li><span>f)&nbsp; Analysis of your retirement income at your desired retirement age and throughout retirement period</span></li><li><span>g)&nbsp;  Scenarios of how your retirement can improve by increasing funding, moderating children’s education funding (if applicable) or delaying retirement   </span></li><li><span>h)&nbsp; Analysis and recommendation from MoneyOwl’s proprietary CPF Analyser Tool for in-depth understanding on how you can optimise your CPF for your retirement funding.</span></li><li><span>i)&nbsp; Summary of Action Plan</span></li><li><span>j)&nbsp; Specific recommendation for insurance to close gap   </span></li><li><span>k)&nbsp;Specific recommendation for investment to close gap</span></li></ul></br></br><strong>Step 4: Consultation session with our client adviser at our office (23 Keong Saik Road, S089130). </strong></br></br><span>This should typically take about 2 hours. In this session, your client advisers will clarify any questions you may have on your Comprehensive Financial Planning report, highlight areas you should pay attention to, and recommend an action plan to kickstart your journey to achieve your goals. </span></br></br><strong>Step 5: Implementation of action plan when you are ready to begin.</strong></p>"
+                    },
+                    {
+                        "QUESTION": "Can I revise my inputs after I have submitted them? How many versions of the report can I generate?",
+                        "ANSWER": "<p>Your comprehensive financial planning account will be locked after you submit your inputs so that the system can generate your report for you. Should you wish to unlock it to revise your inputs, please contact your client adviser or drop an email to <a href='enquiries@moneyowl.com.sg' target='_blank'>enquiries@moneyowl.com.sg</a>. You can generate as many versions of the report as you want so long as it is based on your personal particulars.</p>"
+                    },
+                    {
+                        "QUESTION": "Must I purchase any product with MoneyOwl after I go through the Comprehensive Financial Planning?",
+                        "ANSWER": "<p>No, there is no requirement.</br></br>Typically, in a Comprehensive Financial Planning report, there will be a recommended action plan for you to meet your financial goals like retirement and children’s education funding or close any protection gap. It will be beneficial for you to discuss these recommendations and, if necessary, customise it further accordingly to your priority and budget.</p>"
+                    }
+                ],
+                "Fees & Payment": [
+                    {
+                        "QUESTION": "Why is MoneyOwl charging for Comprehensive Financial Planning service?",
+                        "ANSWER": "<p>We believe in providing you with independent, conflict-free financial advice that is founded on sound financial planning philosophy coupled with fit-for-purpose solutions. These services require your client adviser to spend sufficient time to understand your financial situation, go through the report with you face to face and help you to prioritise between your goals, amongst others.</br></br>A fee-based model, whilst uncommon in Singapore, is not unique to the rest of the world. In the US and Australia, financial planning services are offered mostly on fee-based model as it has been proven to provide best value to its clients since financial advisers are remunerated based on their professionalism and quality of work done for you, and not by the products you procure from them. This assures you that your client adviser is always on the lookout for your best interest.</p>"
+                    },
+                    {
+                        "QUESTION": "Are there additional fees to implement insurance, investment and will writing?",
+                        "ANSWER": "<p>It depends. Please refer to the respective FAQs for more information.</br></br> <span class='text-underline'>Insurance</span></br></br>There is no additional fee for insurance implementation. On the contrary, for every eligible insurance policy you purchase with MoneyOwl, we will rebate you, up to 50% of the basic commission, except the following:</br></br><ul><li>Integrated Shield Plans</li><li>ElderShield Supplements</li><li>Plans using CPF monies</li></ul></br></br>It helps to lower your cost of insurance.</br></br><span class='text-underline'>Investment</span></br></br>There is no upfront sales charge (typically 1% to 2%) for investing into MoneyOwl’s investment portfolio. </br></br> There are,however, fees and costs involve in investing. These are: </br></br><ul><li>MoneyOwl’s advisory fees: &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; 0.65% p.a. (or special promo rate)</li><li>Platform fees (payable to IFAST): &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; 0.18% p.a.</li></ul></br></br>These fees are deducted directly from the units in your portfolio on quarterly basis.</br></br> <span class='text-underline'>Will Writing </span></br></br>MoneyOwl’s will writing service is valued at $99 per user. However, this is complimentary when you use the Comprehensive Financial Planning service.</p>"
+                    },
+                    {
+                        "QUESTION": "What is fee rebate and how can I be eligible for it?",
+                        "ANSWER": "<p>For a limited period only, clients who take up MoneyOwl’s Comprehensive Financial Planning service will be entitled to a fee rebate which will be credited into their investment account.</br></br>To be eligible for up to 100% fee rebate, clients will need to follow through on the complete planning process which includes the 2-hour meeting with the client adviser.</p>"
+                    },
+                    {
+                        "QUESTION": " Can I get a full refund if I am dissatisfied with the service or do not agree with the recommendations?",
+                        "ANSWER": "<p>No, as work has been carried out to provide the service. Nonetheless, your feedback is important to us. If you are dissatisfied with our service, we will certainly appreciate your time to let us know how we can improve our service.</br></br>In addition, for a limited time only, the full planning fee you paid will be rebated into your own investment account to encourage you to begin your investment journey with MoneyOwl.</p>"
+                    }
+                ],
+                "Privacy & Security": [
+                    {
+                        "QUESTION": "How will MoneyOwl ensure that my personal particulars are securely stored?",
+                        "ANSWER": "Your privacy is our priority. We do not sell or refer your personal information to a third party. MoneyOwl’s platform is built by an experienced technology team led by our very own Chief Technology Officer, undergoes rigorous penetration testing and meets technology risk management guidelines set by MAS to ensure highest security and data protection, so that you can have peace of mind. Our risk management processes are also ISO27001 certified."
+                    },
+                    {
+                        "QUESTION": "Can I close my MoneyOwl account and purge all the information on it?",
+                        "ANSWER": "If you wish to close your MoneyOwl account and remove all your data on it, you can do so by dropping a request through <a>enquiries@moneyowl.com.sg</a>. Our customer service will be in touch with you to facilitate the process."
                     }
                 ]
             }

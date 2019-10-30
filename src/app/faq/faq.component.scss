@@ -455,3 +455,12 @@ ol.text--normal{
         font-family:$muli-regular;
     }
 }
+.text-underline{
+    text-decoration: underline!important;
+}
+.text-italic{
+    font-family: $muli-italic;
+}
+.comprehensive li{
+list-style-type: none!important;
+}
