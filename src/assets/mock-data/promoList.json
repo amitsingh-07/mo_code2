@@ -276,6 +276,18 @@
         "date_expiry": "1572201000000",
         "tag": ["Insurance", "Retirement"],
         "external": false
+    },    
+    {
+        "promoId": 22,
+        "type": 1,
+        "owner": "Manulife",
+        "title": "Receive CapitaVouchers worth up to 20% of the premiums on selected Manulife's plans",
+        "thumbnail": "/assets/promotions/images/22/thumbnail.jpg",
+        "desc": "Cover your loved ones, reward yourself",
+        "date_created": "1569868200000",
+        "date_expiry": "1576348200000",
+        "tag": [],
+        "external": false
     },
     {
         "promoId": 23,
@@ -286,18 +298,6 @@
         "desc": "Buy qualifying plans to get Cashback!",
         "date_created": "1569868200000",
         "date_expiry": "1577730600000",
-        "tag": [],
-        "external": false
-    },
-    {
-        "promoId": 22,
-        "type": 1,
-        "owner": "Manulife",
-        "title": "Receive CapitaVouchers worth up to 20% of the premiums on selected Manulife's plans",
-        "thumbnail": "/assets/promotions/images/22/thumbnail.jpg",
-        "desc": "",
-        "date_created": "1569868200000",
-        "date_expiry": "1576348200000",
         "tag": [],
         "external": false
     }
