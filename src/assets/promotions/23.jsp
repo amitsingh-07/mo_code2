@@ -37,7 +37,7 @@
 
       <tr>   
         <td rowspan="4">
-            <b>All <u>O</u>ther Qualifying Plans</b>
+            <b>All Other Qualifying Plans</b>
         </td>
         <td rowspan="3">MyLifeIncome</td>
     </tr>
