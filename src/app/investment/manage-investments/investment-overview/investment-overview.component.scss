@@ -108,7 +108,7 @@ app-investment-overview {
                     border: 1px solid #f1f1f1;
                     display: flex;
                     justify-content: center;
-                    &:active {
+                    &:active, &:focus {
                         outline: none;
                         background-color: $white-color;
                     }
@@ -301,9 +301,9 @@ app-investment-overview {
                                     line-height: normal;
                                     letter-spacing: -0.13px;
                                     color: #9b9b9b;
-                                    padding-top: 48px;
+                                    padding-top: 22px;
                                     @include allmobiles {
-                                        padding-top: 22px;
+                                        padding-top: 13px;
                                         align-items: center;
                                     }
                                     span {
