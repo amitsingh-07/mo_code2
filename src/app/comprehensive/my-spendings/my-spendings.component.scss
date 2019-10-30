@@ -41,7 +41,7 @@ color: $dark-teal-color;
 }
 .delete-icon {      
         background: url("/assets/images/comprehensive/delete-icon.svg") no-repeat;
-        width: 20px;
+        width: 16px;
         height: 20px;
         cursor: pointer;
         background-repeat: no-repeat;
@@ -123,12 +123,12 @@ color: $dark-teal-color;
     font-size:20px;
 }
 .both-icon{  
-     .delete-icon { 
-        left: 95% !important;
-     }
-    .help-icon {
-        left: 80% !important;
-    }
+    //  .delete-icon { 
+    //     left: 95% !important;
+    //  }
+    // .help-icon {
+    //     left: 80% !important;
+    // }
     .form-group-with-bg--content-label{
         color:$black-color;
      }

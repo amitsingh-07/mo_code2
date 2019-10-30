@@ -35,9 +35,9 @@
             <div [hidden]="!showRetirementIncome">
               <div class="form-group-with-bg">
                 <!--Form Header-->
-                <div class="form-group-with-bg--header retirement-border-top">
+                <div class="form-group-with-bg--header retirement-border-top pr0">
                   <div class="flex space-btwn">
-                    <div class="with-help-icon">
+                    <div>
                       <div class="form-group-with-bg--header-label">
                         {{'CMP.RETIREMENT_PLAN.RETIREMENT_INCOME'|translate}}
                         <span>{{i + 1}}</span>
@@ -122,17 +122,15 @@
               <div class="form-group-with-bg">
                 <!--Form Header-->
                 <div class="form-group-with-bg--header rsp-border-top">
-                  <div class="flex-row">
-                    <div class="flex-col-12 with-help-icon">
-                      <div class="form-group-with-bg--header-label">
-                        {{'CMP.RETIREMENT_PLAN.LUMP_SUM_BENEFIT'|translate}}
-                        <span>{{i + 1}}</span>
-                        <div class="form-group-with-bg--header-sub-label"></div>
-                      </div>
-                      <span class="delete-icon" (click)="deleteRetirementDetails(i,'lumpSumBenefitSet')"
-                        id="retirementDeleteIcon" *ngIf="!viewMode "></span>
-
+                  <div class="flex space-btwn">
+                    <div class="form-group-with-bg--header-label">
+                      {{'CMP.RETIREMENT_PLAN.LUMP_SUM_BENEFIT'|translate}}
+                      <span>{{i + 1}}</span>
+                      <div class="form-group-with-bg--header-sub-label"></div>
                     </div>
+                    <div class="delete-icon" (click)="deleteRetirementDetails(i,'lumpSumBenefitSet')"
+                      id="retirementDeleteIcon" *ngIf="!viewMode "></div>
+
                   </div>
                 </div>
               </div>
@@ -175,20 +173,18 @@
             </div>
           </div>
           <div *ngIf="!this.viewMode && retirementPlanForm['controls'].retirementIncomeSet['controls'].length < 5"
-            class="flex-col-12 mt20 addRetirement">
+            class="flex space-btwn mt20 addRetirement">
             <div class="with-help-icon" for="name"><u (click)="addRetirementIncome()">{{
                 'CMP.RETIREMENT_PLAN.ADD_RETIREMENT' | translate}}</u>
-
-              <span class="help-icon" (click)="showToolTipModal('RENTAL_INCOME_TITLE','RENTAL_INCOME_MESSAGE')"></span>
             </div>
+            <div class="help-icon" (click)="showToolTipModal('RENTAL_INCOME_TITLE','RENTAL_INCOME_MESSAGE')"></div>
           </div>
           <div *ngIf="!this.viewMode && retirementPlanForm['controls'].lumpSumBenefitSet['controls'].length < 5"
-            class="flex-col-12 mt20 addRetirement">
+            class="flex space-btwn mt20 addRetirement">
             <div class="with-help-icon" for="name"><u (click)="addLumpSumAmount()">{{
                 'CMP.RETIREMENT_PLAN.ADD_LUMP_SUM' | translate}}</u>
-
-              <span class="help-icon" (click)="showToolTipModal('LUMP_SUMP_TITLE','LUMP_SUMP_MESSAGE')"></span>
             </div>
+            <div class="help-icon" (click)="showToolTipModal('LUMP_SUMP_TITLE','LUMP_SUMP_MESSAGE')"></div>
           </div>
         </div>
       </div>
