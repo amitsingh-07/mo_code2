@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { GuideMeService } from '../guide-me/guide-me.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment/investment-account/investment-account-routes.constants';
@@ -12,7 +12,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './call-back.component.html',
   styleUrls: ['./call-back.component.scss']
 })
-export class CallBackComponent implements OnInit {
+export class CallBackComponent implements OnInit, OnDestroy {
 
   data: any;
   myInfoSubscription: any;
@@ -56,6 +56,11 @@ export class CallBackComponent implements OnInit {
         }
       }
     });
+  }
+  ngOnDestroy(): void {
+    if (this.myInfoSubscription) {
+      this.myInfoSubscription.unsubscribe();
+    }
   }
   cancelMyInfo() {
     this.myInfoService.isMyInfoEnabled = false;
