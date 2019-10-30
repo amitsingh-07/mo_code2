@@ -8,7 +8,6 @@ import { SignUpService } from '../../../sign-up/sign-up.service';
 import { LoaderService } from '../../components/loader/loader.service';
 import { AppService } from '../../../app.service';
 import { appConstants } from '../../../app.constants';
-import { ComprehensiveService } from 'src/app/comprehensive/comprehensive.service';
 
 @Component({
   selector: 'app-login-create-account-model',
@@ -23,7 +22,7 @@ export class LoginCreateAccountModelComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     public signUpService: SignUpService, private loaderService: LoaderService,
-    private router: Router, private appService: AppService, private cmpService: ComprehensiveService) {
+    private router: Router, private appService: AppService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.activeModal.dismiss();
