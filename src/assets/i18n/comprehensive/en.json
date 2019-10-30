@@ -245,7 +245,7 @@
     },
     "ENDOWMENT_PLAN": {
       "ABOUT": "Select which child has education endowment plan",
-      "DESCRIPTION": "Do have any existing education endowment plan?",
+      "DESCRIPTION": "Do you have any existing education endowment plan?",
       "SKIP_ENDOWMENT_PLAN": "Skip, I do not have any",
       "TOOLTIP_TITLE": "Education Endowment",
       "TOOLTIP_MESSAGE": "An education endowment plan is typically an insurance policy that matures and pays out around the time of the child’s entry into university.<br/><br/>If you bought a plan to fund more than one child’s education expenses, please allocate the maturity value among the children.",
