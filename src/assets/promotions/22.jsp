@@ -1,3 +1,4 @@
+<div class="promo-content__container">
 <div class="promo__table">
     <p class="text-center mb20">To qualify for the premium discount, you have to sign up for the product during the promotion period and issued by the deadline.</p>
     <table class="promo__inner-table">
@@ -120,9 +121,9 @@
           </tr>
         </table>
         </div>
-<div class="promo-content__container">
+
     
-<div class="disclaimer"><br/><span>#</span> <span>The Minimum Annualised Premium is defined as the total premium due in a year for the basic policy and rider(s) including the additional premium due to sub-standard life rating on the Qualifying Products.</span>
+<div class="disclaimer"><span>#</span> <span>The Minimum Annualised Premium is defined as the total premium due in a year for the basic policy and rider(s) including the additional premium due to sub-standard life rating on the Qualifying Products.</span>
             </div>
             <div class="disclaimer"><span>*</span> <span>The Rewards Amount will be computed based on the Qualifying Premium amount paid by the policyholder for the applicable Qualifying Products rounded- down.</span></div>
   </div>

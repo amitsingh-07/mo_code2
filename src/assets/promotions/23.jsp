@@ -37,7 +37,7 @@
 
       <tr>   
         <td rowspan="4">
-            <b>All other Qualifying Plans</b>
+            <b>All <u>O</u>ther Qualifying Plans</b>
         </td>
         <td rowspan="3">MyLifeIncome</td>
     </tr>
@@ -68,7 +68,7 @@
   </tr>
           </table>
           </div>
-          <div class="disclaimer"><br/><span>*</span> <span>Cashback value to be rounded up to S$10</span>
-          </div>
-          <div class="disclaimer"><span>^</span> <span>The monthly premium does not include the amount that can be funded by CPF for the Hospitalisation benefit.</span></div>
+<div class="disclaimer"><span>*</span><span>Cashback value to be rounded up to S$10</span>
+</div>
+<div class="disclaimer"><span>^</span><span>Maximum Cashback value for MyLifeIncome is capped at S$15,000</span></div>   
 </div>
