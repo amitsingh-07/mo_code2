@@ -14,7 +14,7 @@
     "PAGE_TITLE": "Welcome",
     "PROMO_ERROR": "Invalid promo code. Please try again."
   },
-  "fUNDING_METHOD": {
+  "FUNDING_METHOD": {
     "TITLE": "Select Funding Method",
     "DESC": "I want to fund this portfolio using my",
     "SRS_DESC":"Please have your SRS account number ready before you continue from here. You <u>MUST</u> also ensure sufficient fund in your SRS Account. Amount will be deducted immediately and invest within 2-3 working days.",

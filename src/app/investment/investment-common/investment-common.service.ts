@@ -230,15 +230,17 @@ export class InvestmentCommonService {
     const data = this.constructFundingMethodSaveRequest();
     return this.investmentApiService.saveFundingMethodDetails(data);
   }
-  constructFundingMethodSaveRequest() {
-    const formData = this.getFundingAccountDetails();
-    return {
-    fundTypeId : formData.fundingAccountMethod,
-    operatorId: formData.srsOperatorBank,
-    accountNumber: formData.srsAccountNumber
-      };
+ 
+    constructFundingMethodSaveRequest() {
+      const formData = this.getFundingAccountDetails();
+      return {
+        fundTypeId : formData.fundingAccountMethod,
+       srsDetails: {
+        srsOperatorBank: formData.srsOperatorBank,
+        accountNumber: formData.srsAccountNumber,
+        },
+       };
     }
-
     // get the Funding method detaild
     getFundingMethosDetails() {
       return this.investmentApiService.getUserFundingDetails();

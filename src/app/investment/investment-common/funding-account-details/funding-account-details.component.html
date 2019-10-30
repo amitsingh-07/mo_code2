@@ -82,7 +82,7 @@
                     </div>
 
                   </div>
-                  <div class="characters" *ngIf="srsBank">{{characterLength ? characterLength :0}} / {{showMaxLength}}
+                  <div class="characters" *ngIf="this.fundingAccountDetailsFrom.get('srsFundingDetails').get('srsOperator').value">{{characterLength ? characterLength :0}} / {{showMaxLength}}
                   </div>
                   <div class="txt-italic">{{
                     'CONFIRM_ACCOUNT_DETAILS.CORRECT_SRS_ACCOUNT_DETAILS_DESC' | translate}}</div>

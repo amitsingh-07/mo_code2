@@ -1,10 +1,10 @@
 import {
-  ModelWithButtonComponent
+    ModelWithButtonComponent
 } from 'src/app/shared/modal/model-with-button/model-with-button.component';
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {
-  AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators
+    AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -12,15 +12,16 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../../../shared/footer/footer.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
+import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import {
-  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
 import {
-  InvestmentEngagementJourneyService
+    InvestmentEngagementJourneyService
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import {
-  INVESTMENT_COMMON_ROUTE_PATHS, INVESTMENT_COMMON_ROUTES
+    INVESTMENT_COMMON_ROUTE_PATHS, INVESTMENT_COMMON_ROUTES
 } from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
 
@@ -159,23 +160,23 @@ export class FundingAccountDetailsComponent implements OnInit {
       switch (operator) {
         case 'DBS':
           return {
-            mask: [/\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
+            mask: RegexConstants.operatorMask.DBS,
           };
         case 'OCBC':
           return {
-            mask: [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/],
+            mask: RegexConstants.operatorMask.OCBC,
           };
         case 'UOB':
           return {
-            mask: [/\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/],
+            mask: RegexConstants.operatorMask.UOB,
           };
       }
     }
   }
 
   showLength(event) {
-    if (this.srsBank) {
-      const operator = this.srsBank;
+    if (this.fundingAccountDetailsFrom.get('srsFundingDetails').get('srsOperator').value) {
+      const operator = this.fundingAccountDetailsFrom.get('srsFundingDetails').get('srsOperator').value.name;
       if (event.currentTarget.value) {
         this.characterLength = event.currentTarget.value.match(/\d/g).join('').length;
       }
@@ -184,7 +185,7 @@ export class FundingAccountDetailsComponent implements OnInit {
 
   showBankAccountLength(value) {
     this.srsBank = value.name;
-    switch (this.srsBank) {
+    switch (this.fundingAccountDetailsFrom.get('srsFundingDetails').get('srsOperator').value.name) {
       case 'DBS':
         this.showMaxLength = 14;
         break;

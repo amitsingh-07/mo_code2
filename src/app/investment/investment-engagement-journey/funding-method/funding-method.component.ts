@@ -29,8 +29,6 @@ export class FundingMethodComponent implements OnInit {
   fundingMethodForm: FormGroup;
   formBuilder: any;
   fundingMethods;
-  showContentCash = false;
-  showContentSrs = false;
   formValues;
 
   constructor(
@@ -87,10 +85,10 @@ export class FundingMethodComponent implements OnInit {
 
   showHelpModal() {
     const ref = this.modal.open(SrsTooltipComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant('fUNDING_METHOD.HELP_MODAL.TITLE'
+    ref.componentInstance.errorTitle = this.translate.instant('FUNDING_METHOD.HELP_MODAL.TITLE'
     );
     ref.componentInstance.errorMessage = this.translate.instant(
-      'fUNDING_METHOD.HELP_MODAL.DESC1'
+      'FUNDING_METHOD.HELP_MODAL.DESC1'
     );
   }
 }
