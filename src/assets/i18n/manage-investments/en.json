@@ -150,7 +150,7 @@
       },
       "SRS_MODAL": {
         "TITLE": "Sorry, SRS account portfolio currently handled offline",
-        "Message": "<div class='srs-modal-offline'> <div class='mb30'>Viewing of your SRS investment portfolio, top-ups & withdrawals are currently handled offline.</div><div class='mb30'>Adding of SRS funding portfolio is still available. Go to <span class='txt-italic'>Your Investment > Add Portfolio.</span></div><div>For assistance, contact <a class='contact-details mail' target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> or call <span class='contact-details'>6329 9188.</span></div></div>"
+        "Message": "<div class='srs-modal-offline'> <div class='mb30'>Viewing of your SRS investment portfolio, top-ups & withdrawals are currently handled offline.</div><div class='mb30'>Adding of SRS funding portfolio is still available. Go to <span class='txt-italic'>Your Investment > Add Portfolio.</span></div><div>For assistance, contact <a class='contact-details mail' target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> or call <a class='contact-details'target='_blank' href='tel:6329 9188'>6329 9188.</a></div></div>"
       }
     },
     "PENDING_REQUEST_INFO": "You have {{count}} Buy Requests",
