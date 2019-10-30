@@ -143,6 +143,6 @@ export class PortfolioListComponent implements OnInit {
 
   gotToFAQ() {
     this.topClickedFlag = true;
-    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.FAQ]);
+    window.open(MANAGE_INVESTMENTS_ROUTE_PATHS.FAQ, '_blank');
   }
 }

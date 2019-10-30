@@ -19,6 +19,9 @@ app-srs-offline-error-modal{
           &.mail {
               color: #ff872f;
           }
+          &:focus, &:hover {
+            text-decoration: none;
+          }
       }
     }
   }
