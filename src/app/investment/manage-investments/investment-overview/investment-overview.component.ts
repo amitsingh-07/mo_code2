@@ -287,7 +287,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   }
 
   gotoTopUp(portfolio?) {
-    if (!this.cashPortfolioPresent) {
+    if (this.cashPortfolioPresent) {
       // Added check if got portfolio, set it as selected one else set null for the main top up button
       if (portfolio) {
         this.manageInvestmentsService.setSelectedCustomerPortfolioId(portfolio['customerPortfolioId']);
@@ -410,11 +410,11 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     if (portfolios && portfolios.length) {
       for (const portfolio of portfolios) {
         if (portfolio.portfolioType !== 'SRS') {
-          return false;
+          return true;
         }
       }
-      return true;
+      return false;
     }
-    return false;
+    return true;
   }
 }

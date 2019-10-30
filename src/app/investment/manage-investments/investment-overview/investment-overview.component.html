@@ -59,7 +59,7 @@
                     </div>
                   </div>
                   <div class="flex-row">
-                    <button type="button" class="btn-with-icon top_up_btn" [ngClass]="{'disabled': cashPortfolioPresent}" id="top-up_button" (click)="gotoTopUp()">
+                    <button type="button" class="btn-with-icon top_up_btn" [ngClass]="{'disabled': !cashPortfolioPresent}" id="top-up_button" (click)="gotoTopUp()">
                       <span class="topup-btn-img"><img id="top-up_img"
                           src="../../../assets/images/investment-account/money-white-topup.svg" alt="" /></span>
                       <span>{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</span>
