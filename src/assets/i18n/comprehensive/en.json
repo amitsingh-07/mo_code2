@@ -274,7 +274,8 @@
       "ADD_MONTHLY_INCOME_NOTE": "You have added all types of income",
       "ADD_DIVIDENDS": "Add dividends & other annual income",
       "ADD_DIVIDENDS_NOTE": "You have added all types of annual income",
-      "BUCKET_NOTE": "Your annual income bucket (take-home)",
+      "BUCKET_NOTE": "Your annual income bucket",
+      "BUCKET_NOTE_TAKEHOME": "(take-home)",
       "EMPLOYMENT_TYPE_LIST": [
         {
           "text": "Employed",

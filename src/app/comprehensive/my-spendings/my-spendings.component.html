@@ -30,26 +30,25 @@
     <div class="form-group-with-bg">
       <!--Form Header-->
       <div class="form-group-with-bg--header">
-        <div class="flex-row">
-          <div class="flex-col-12 with-help-icon">
+        <div class="flex space-btwn pos-relative">
+          <div>
             <div class="form-group-with-bg--header-label">{{
     'CMP.MY_SPENDINGS.MONTHLY_LIVING_EXPENSES' | translate}}<div class="form-group-with-bg--header-sub-label">{{
             'CMP.MY_SPENDINGS.MONTHLY_LIVING_EXPENSES_HINT' | translate}}</div>
             </div>
-            <span class="help-icon"
-              (click)="showToolTipModal('LIVING_EXPENSES_TITLE','LIVING_EXPENSES_MESSAGE')"></span>
           </div>
+          <div class="help-icon" (click)="showToolTipModal('LIVING_EXPENSES_TITLE','LIVING_EXPENSES_MESSAGE')"></div>
         </div>
       </div>
       <!--Form Content-->
       <div class="form-group-with-bg--content">
         <div class="flex-row">
-          <div class="flex-col-6">
+          <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div
                 class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
-          <div class="flex-col-6">
+          <div class="flex-col-7">
             <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput
@@ -74,12 +73,12 @@
       <!--Form Content-->
       <div class="form-group-with-bg--content">
         <div class="flex-row">
-          <div class="flex-col-6">
+          <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div
                 class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
-          <div class="flex-col-6">
+          <div class="flex-col-7">
             <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput
@@ -91,7 +90,7 @@
     </div>
     <div class="form-group-with-bg">
       <!--Form Header-->
-      <div class="form-group-with-bg--header">
+      <!-- <div class="form-group-with-bg--header">
         <div class="flex-row">
           <div class="flex-col-12 with-help-icon">
             <div class="form-group-with-bg--header-label">{{
@@ -100,17 +99,28 @@
             <span class="help-icon" (click)="showToolTipModal('HOME_LOAN_TITLE','HOME_LOAN_MESSAGE')"></span>
           </div>
         </div>
+      </div> -->
+      <div class="form-group-with-bg--header">
+        <div class="flex space-btwn pos-relative">
+          <div>
+            <div class="form-group-with-bg--header-label">{{
+                  'CMP.MY_SPENDINGS.MONTHLY_HOME_LOAN_PAYMENT' | translate}}<div
+                class="form-group-with-bg--header-sub-label"></div>
+            </div>
+          </div>
+          <div class="help-icon" (click)="showToolTipModal('HOME_LOAN_TITLE','HOME_LOAN_MESSAGE')"></div>
+        </div>
       </div>
       <!--Form Content-->
       <div class="form-group-with-bg--content">
         <div class="flex-row">
-          <div class="flex-col-6">
+          <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">
               {{ 'CMP.MY_SPENDINGS.MORTAGE_PAYMENT_CPF' | translate}}<div class="form-group-with-bg--content-sub-label">
               </div>
             </div>
           </div>
-          <div class="flex-col-6">
+          <div class="flex-col-7">
             <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput
@@ -119,13 +129,13 @@
           </div>
         </div>
         <div class="flex-row">
-          <div class="flex-col-6">
+          <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">
               {{ 'CMP.MY_SPENDINGS.MORTAGE_PAYMENT_CASH' | translate}}<div
                 class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
-          <div class="flex-col-6">
+          <div class="flex-col-7">
             <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput
@@ -134,12 +144,12 @@
           </div>
         </div>
         <div class="flex-row">
-          <div class="flex-col-6">
+          <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.HOME_TYPE' | translate}}<div
                 class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
-          <div class="flex-col-6">
+          <div class="flex-col-7">
             <div class="dropdown-control">
               <div ngbDropdown id="homeTypeDropDown" placement="top-right">
                 <button type="button" class="btn btn-dropdown" id="dropdownHomeType" ngbDropdownToggle
@@ -159,12 +169,12 @@
           </div>
         </div>
         <div class="flex-row">
-          <div class="flex-col-6">
+          <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.TO_PAY_OFF' | translate}}<div
                 class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
-          <div class="flex-col-6">
+          <div class="flex-col-7">
             <div class="form-control"
               [ngClass]="{'inline-error': submitted && addSpendValid.homeLoanPayOffUntil.invalid, 'view-mode': viewMode}">
               <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text"
@@ -173,7 +183,7 @@
             </div>
           </div>
         </div>
-        <div class="flex-row otherMortage" [hidden]="!otherMortage" *ngIf="!viewMode">
+        <!-- <div class="flex-row otherMortage" [hidden]="!otherMortage" *ngIf="!viewMode">
           <div class="flex-col-12 mt20">
             <div class="with-help-icon" for="name"><u (click)="addOtherMortage()">{{
                   'CMP.MY_SPENDINGS.ADD_OTHER_MORTAGE' | translate}}</u>
@@ -182,26 +192,30 @@
                 (click)="showToolTipModal('MORTAGE_PAYMENT_TITLE','MORTAGE_PAYMENT_MESSAGE')"></span>
             </div>
           </div>
+        </div> -->
+        <div class="flex space-btwn pos-relative" [hidden]="!otherMortage" *ngIf="!viewMode">
+          <div class="with-help-icon" for="name"><u (click)="addOtherMortage()">{{
+                    'CMP.MY_SPENDINGS.ADD_OTHER_MORTAGE' | translate}}</u></div>
+          <div class="help-icon" (click)="showToolTipModal('MORTAGE_PAYMENT_TITLE','MORTAGE_PAYMENT_MESSAGE')"></div>
         </div>
-        <div class='otherMortage' [hidden]="otherMortage">
-          <div class="flex-row mt-2" [ngClass]="{'both-icon': !viewMode}">
-            <div class="flex-col-12 form-group-with-bg--content-label">
-              <div class="with-help-icon" for="name"><b>{{
-                      'CMP.MY_SPENDINGS.OTHER_MORTAGE_PAYMENT' | translate}}</b>
-                <span class="help-icon"
-                  (click)="showToolTipModal('MORTAGE_PAYMENT_TITLE','MORTAGE_PAYMENT_MESSAGE')"></span>
-                <span *ngIf="!viewMode" class="delete-icon" (click)="addOtherMortage()"> </span>
-              </div>
+        <div [hidden]="otherMortage" class="mortgage-block">
+          <div class="flex space-btwn mt30 mb30" [ngClass]="{'both-icon': !viewMode}">
+            <div class="form-group-with-bg--content-label"><b>{{
+                'CMP.MY_SPENDINGS.OTHER_MORTAGE_PAYMENT' | translate}}</b></div>
+            <div class="pos-relative otherMortage" for="name">
+              <span class="help-icon"
+                (click)="showToolTipModal('MORTAGE_PAYMENT_TITLE','MORTAGE_PAYMENT_MESSAGE')"></span>
+              <span *ngIf="!viewMode" class="delete-icon" (click)="addOtherMortage()"> </span>
             </div>
           </div>
           <div class="flex-row">
-            <div class="flex-col-6">
+            <div class="flex-col-5">
               <div class="form-group-with-bg--content-label" for="name">
                 {{ 'CMP.MY_SPENDINGS.MORTAGE_PAYMENT_CPF' | translate}}<div
                   class="form-group-with-bg--content-sub-label"></div>
               </div>
             </div>
-            <div class="flex-col-6">
+            <div class="flex-col-7">
               <div class="form-control"
                 [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && addSpendValid.mortgagePaymentUsingCPF.invalid}">
                 <i>$</i>
@@ -211,13 +225,13 @@
             </div>
           </div>
           <div class="flex-row">
-            <div class="flex-col-6">
+            <div class="flex-col-5">
               <div class="form-group-with-bg--content-label" for="name">
                 {{ 'CMP.MY_SPENDINGS.MORTAGE_PAYMENT_CASH' | translate}}<div
                   class="form-group-with-bg--content-sub-label"></div>
               </div>
             </div>
-            <div class="flex-col-6">
+            <div class="flex-col-7">
               <div class="form-control"
                 [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && addSpendValid.mortgagePaymentUsingCash.invalid}">
                 <i>$</i>
@@ -227,12 +241,12 @@
             </div>
           </div>
           <div class="flex-row">
-            <div class="flex-col-6">
+            <div class="flex-col-5">
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.HOME_TYPE' | translate}}
                 <div class="form-group-with-bg--content-sub-label"></div>
               </div>
             </div>
-            <div class="flex-col-6">
+            <div class="flex-col-7">
               <div class="dropdown-control">
                 <div ngbDropdown id="homeTypeDropDown" placement="top-right">
                   <button type="button" class="btn btn-dropdown" id="dropdownHomeType" ngbDropdownToggle
@@ -252,12 +266,12 @@
             </div>
           </div>
           <div class="flex-row">
-            <div class="flex-col-6">
+            <div class="flex-col-5">
               <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.TO_PAY_OFF' | translate}}
                 <div class="form-group-with-bg--content-sub-label"></div>
               </div>
             </div>
-            <div class="flex-col-6">
+            <div class="flex-col-7">
               <div class="form-control"
                 [ngClass]="{'inline-error': submitted && addSpendValid.mortgagePayOffUntil.invalid, 'view-mode': viewMode}">
                 <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text"
@@ -283,12 +297,12 @@
       <!--Form Content-->
       <div class="form-group-with-bg--content">
         <div class="flex-row">
-          <div class="flex-col-6">
+          <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div
                 class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
-          <div class="flex-col-6">
+          <div class="flex-col-7">
             <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput
@@ -297,12 +311,12 @@
           </div>
         </div>
         <div class="flex-row">
-          <div class="flex-col-6">
+          <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.TO_PAY_OFF' | translate}}<div
                 class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
-          <div class="flex-col-6">
+          <div class="flex-col-7">
             <div class="form-control"
               [ngClass]="{'inline-error': submitted && addSpendValid.carLoanPayoffUntil.invalid, 'view-mode': viewMode}">
               <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text"
@@ -315,7 +329,7 @@
     </div>
     <div class="form-group-with-bg">
       <!--Form Header-->
-      <div class="form-group-with-bg--header">
+      <!-- <div class="form-group-with-bg--header">
         <div class="flex-row">
           <div class="flex-col-12 with-help-icon">
             <div class="form-group-with-bg--header-label">{{
@@ -325,16 +339,34 @@
             <span class="help-icon" (click)="showToolTipModal('OTHER_LOAN_TITLE','OTHER_LOAN_MESSAGE')"></span>
           </div>
         </div>
+      </div> -->
+
+
+
+      <div class="form-group-with-bg--header">
+        <div class="flex space-btwn pos-relative">
+          <div>
+            <div class="form-group-with-bg--header-label">{{
+                  'CMP.MY_SPENDINGS.MONTHLY_OTHER_CAR_LOAN_PAYMENT' | translate}}<div
+                class="form-group-with-bg--header-sub-label"></div>
+            </div>
+          </div>
+          <div class="help-icon" (click)="showToolTipModal('OTHER_LOAN_TITLE','OTHER_LOAN_MESSAGE')"></div>
+        </div>
       </div>
+
+
+
+
       <!--Form Content-->
       <div class="form-group-with-bg--content">
         <div class="flex-row">
-          <div class="flex-col-6">
+          <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div
                 class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
-          <div class="flex-col-6">
+          <div class="flex-col-7">
             <div class="form-control" [ngClass]="{'view-mode': viewMode}">
               <i>$</i>
               <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput
@@ -343,12 +375,12 @@
           </div>
         </div>
         <div class="flex-row">
-          <div class="flex-col-6">
+          <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.TO_PAY_OFF' | translate}}<div
                 class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
-          <div class="flex-col-6">
+          <div class="flex-col-7">
             <div class="form-control"
               [ngClass]="{'inline-error': submitted && addSpendValid.otherLoanPayoffUntil.invalid, 'view-mode': viewMode}">
               <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text"
@@ -372,11 +404,11 @@
 
   </form>
   <!--Page form /-->
-  <div class="flex-row footer-notes btn__footer--fixed width100" id="prfBtn1">
-    <div class="flex-col-8 text-left bucket-notes">{{ 'CMP.MY_SPENDINGS.BUCKET_NOTE'|translate}}
+  <div class="sticky-footer footer-notes btn__footer--fixed width100" id="prfBtn1">
+    <div class="text-left bucket-notes">{{ 'CMP.MY_SPENDINGS.BUCKET_NOTE'|translate}}
       <span>{{'CMP.MY_SPENDINGS.SPEND_SUB_TITLE'|translate}}</span>
     </div>
-    <div class="flex-col-4 text-right bucket-notes-dollar"> {{totalSpending | currency:'USD':'symbol-narrow':'1.0-2'}}
+    <div class="text-right bucket-notes-dollar"> {{totalSpending | currency:'USD':'symbol-narrow':'1.0-2'}}
     </div>
   </div>
 </div>
