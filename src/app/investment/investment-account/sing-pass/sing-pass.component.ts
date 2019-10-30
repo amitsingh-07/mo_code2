@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -19,7 +19,7 @@ import { InvestmentAccountService } from '../investment-account-service';
   styleUrls: ['./sing-pass.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class SingPassComponent implements OnInit, OnDestroy {
+export class SingPassComponent implements OnInit {
   @Input('label') label;
   @Input('position') position;
   modelTitle: string;
@@ -83,11 +83,6 @@ export class SingPassComponent implements OnInit, OnDestroy {
         }
       }
     });
-  }
-  ngOnDestroy(): void {
-    if (this.myInfoSubscription) {
-      this.myInfoSubscription.unsubscribe();
-    }
   }
 
   cancelMyInfo() {
