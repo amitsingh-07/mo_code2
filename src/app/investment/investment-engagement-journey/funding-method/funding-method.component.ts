@@ -57,25 +57,25 @@ export class FundingMethodComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.getFundingMethods();
+    this.getOptionListCollection();
     this.formValues = this.investmentCommonService.getFundingMethod();
     this.fundingMethodForm = new FormGroup({
-      fundingMethod: new FormControl(
-        this.formValues.fundingMethod, Validators.required)
+      initialFundingMethodId: new FormControl(
+        this.formValues.initialFundingMethodId, Validators.required)
     });
   }
 
-  getFundingMethods() {
+  getOptionListCollection() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.fundingMethods = data.objectList.portfolioFundingMethod;
-    },
+     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
   }
 
   goToNext(form) {
-    this.investmentCommonService.setFundingMethod(form.value);
+    this.investmentCommonService.setInitialFundingMethod(form.value);
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
 

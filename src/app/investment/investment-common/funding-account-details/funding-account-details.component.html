@@ -10,9 +10,9 @@
         <div>Step 2</div>
         <div class="page-title">{{pageTitle}}</div>
       </div>
-      <div class="row">
+      <div class="row" *ngIf="fundingMethods">
         <div class="col-md-12">
-          <form name="funding account-details" [formGroup]="fundingAccountDetailsFrom">
+          <form name="funding account-details" [formGroup]="fundingAccountDetailsForm">
             <div class="funding-type mb20">
               <div class="flex-col-12">
                 <div class="funding-lbl">{{
@@ -25,11 +25,11 @@
                   <div class="dropdown-control">
                     <div ngbDropdown>
                       <button class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
-                        {{this.fundingAccountDetailsFrom.controls.fundingAccountMethod.value}}
+                        {{getFundingMethodNameById(this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods) }}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let fundingMethod of fundingMethods; let i = index;"
-                          (click)="selectFundingMethod('fundingAccountMethod', fundingMethod.name)"
+                          (click)="selectFundingMethod('confirmedFundingMethodId', fundingMethod.id)"
                           id="additional_declaration_sourse-drpdown-option-{{i}}">{{fundingMethod.name}}</button>
                       </div>
                     </div>
@@ -39,7 +39,7 @@
             </div>
             <div class="srs-block">
               <!-- srs block -->
-              <div *ngIf="fundingAccountDetailsFrom.controls.fundingAccountMethod.value === 'SRS'" class="widget"
+              <div *ngIf="isSRSAccount(fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods)" class="widget"
                 formGroupName="srsFundingDetails">
                 <div class="mb15">{{
                   'CONFIRM_ACCOUNT_DETAILS.ACCOUNT_DETAILS' | translate}}</div>
@@ -57,13 +57,13 @@
                       <div class="dropdown-control">
                         <div ngbDropdown>
                           <button class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
-                            {{fundingAccountDetailsFrom.controls.srsFundingDetails.controls.srsOperator.value ?
-                              fundingAccountDetailsFrom.controls.srsFundingDetails.controls.srsOperator.value.name :'select'}}
+                            {{fundingAccountDetailsForm.controls.srsFundingDetails.controls.srsOperatorBank.value ?
+                              fundingAccountDetailsForm.controls.srsFundingDetails.controls.srsOperatorBank.value.name :'select'}}
                           </button>
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                             <button class="dropdown-item"
                               *ngFor="let srsOperator of srsAgentBankList; let i = index;"
-                              (click)="selectSrsOperator('srsOperator', srsOperator,'srsFundingDetails')"
+                              (click)="selectSrsOperator('srsOperatorBank', srsOperator,'srsFundingDetails')"
                               id="additional_declaration_sourse-drpdown-option-{{i}}">{{srsOperator.key}}</button>
                           </div>
                         </div>
@@ -82,7 +82,7 @@
                     </div>
 
                   </div>
-                  <div class="characters" *ngIf="this.fundingAccountDetailsFrom.get('srsFundingDetails').get('srsOperator').value">{{characterLength ? characterLength :0}} / {{showMaxLength}}
+                  <div class="characters" *ngIf="this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value">{{characterLength ? characterLength :0}} / {{showMaxLength}}
                   </div>
                   <div class="txt-italic">{{
                     'CONFIRM_ACCOUNT_DETAILS.CORRECT_SRS_ACCOUNT_DETAILS_DESC' | translate}}</div>
@@ -95,15 +95,15 @@
               </div>
               <!-- srs -->
             </div>
-            <div *ngIf="fundingAccountDetailsFrom.controls.fundingAccountMethod.value === 'Cash'" class="note-info">
+            <div *ngIf="isCashAccount(fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods)" class="note-info">
               <span class="note-icon"><img src="assets/images/investment-account/note-icon-white.svg" /></span>
               <span>{{
                 'CONFIRM_ACCOUNT_DETAILS.CASH_DESC' | translate}}</span>
             </div>
             <div class="text-center">
-              <button type="button" id="personalInforNextBtn" (click)="goToNext(fundingAccountDetailsFrom)"
+              <button type="button" id="personalInforNextBtn" (click)="goToNext(fundingAccountDetailsForm)"
                 class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-                [disabled]="!fundingAccountDetailsFrom.valid" id="getStrdBtn3">Continue</button>
+                [disabled]="!fundingAccountDetailsForm.valid" id="getStrdBtn3">Continue</button>
             </div>
           </form>
         </div>

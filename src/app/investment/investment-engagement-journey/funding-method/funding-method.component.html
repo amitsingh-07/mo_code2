@@ -1,4 +1,4 @@
-<div class="container-fluid max-width--1024 investment">
+<div class="container-fluid max-width--1024 investment" *ngIf="fundingMethods">
   <div class="row">
     <div class="col-lg-7 col-md-6">
       <h2 class="hidden-sm">{{'FUNDING_METHOD.TITLE' | translate}}</h2>
@@ -8,29 +8,29 @@
       </div>
     </div>
     <div class="col-lg-5 col-md-6">
-      <form name="riskAssessmentForm" [formGroup]="fundingMethodForm" id="riskAssessmentForm">
+      <form name="fundingMethodForm" [formGroup]="fundingMethodForm" id="fundingMethodForm">
         <div class="form-group-single-column flex-col">
           <div class="fund-question"> {{'FUNDING_METHOD.DESC' | translate}}</div>
           <div class="row">
-            <div class="col-12" *ngFor="let fundingMethod of fundingMethods; let i = index">
+            <div class="col-12" *ngFor="let fundingMethodOption of fundingMethods; let i = index">
               <div class="checkbox-button one-label">
-                <input id="risk-assessment_option{{i+1}}_radio" name="fundingMethod" formControlName="fundingMethod"
-                  type="radio" class="field radio" value="{{fundingMethod}}" tabindex="{{i+1}}">
-                <label for="risk-assessment_option{{i+1}}_radio" id="riskAssessLbl_{{i}}">
+                <input id="funding_method_option{{i+1}}_radio" name="initialFundingMethodId" formControlName="initialFundingMethodId"
+                  type="radio" class="field radio" [value]=fundingMethodOption.id tabindex="{{i+1}}">
+                <label for="funding_method_option{{i+1}}_radio" id="riskAssessLbl_{{i}}">
                   <div><span id="risk-assessment_option-text{{i+1}}_lbl"
-                      class="input-label-black">{{fundingMethod.name}}</span>
+                      class="input-label-black">{{fundingMethodOption.name}}</span>
                   </div>
                 </label>
                 <i *ngIf="i===1" class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModal()"></i>
               </div>
             </div>
             <div class="col-12">
-              <div *ngIf="fundingMethodForm.get('fundingMethod').value === 'Cash'">
+              <div *ngIf="fundingMethodForm.get('initialFundingMethodId').value === 'Cash'">
                 <div class="note-info"><span class="note-icon"><img
                       src="assets/images/investment-account/note-icon-white.svg" /></span><span
                     [innerHTML]="'FUNDING_METHOD.CASH_DESC' | translate"></span></div>
               </div>
-              <div *ngIf="fundingMethodForm.get('fundingMethod').value === 'SRS'">
+              <div *ngIf="fundingMethodForm.get('initialFundingMethodId').value === 'SRS'">
                 <div class="note-info"><span class="note-icon"><img
                       src="assets/images/investment-account/note-icon-white.svg" /></span><span
                     [innerHTML]="'FUNDING_METHOD.SRS_DESC' | translate"></span></div>
@@ -38,7 +38,7 @@
             </div>
           </div>
           <button type="button" (click)="goToNext(fundingMethodForm)"
-            [disabled]="(!fundingMethodForm.controls.fundingMethod.value)"
+            [disabled]="(!fundingMethodForm.controls.initialFundingMethodId.value)"
             class="btn btn-primary btn__footer--fixed width100">{{ 'LABEL.CONTINUE' | translate}}</button>
         </div>
       </form>

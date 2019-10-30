@@ -7,8 +7,8 @@ export class InvestmentCommonFormData {
     accountCreationActions: IAccountCreationActions;
     investmentsSummary: any;
     portfolioName: string;
-    fundingMethod: string;
-    fundingAccountMethod: any;
+    initialFundingMethodId: number;
+    confirmedFundingMethodId: number;
     srsOperatorBank: any;
     srsAccountNumber: string;
 }

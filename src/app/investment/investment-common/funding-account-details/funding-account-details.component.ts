@@ -33,7 +33,7 @@ import { InvestmentCommonService } from '../investment-common.service';
 })
 export class FundingAccountDetailsComponent implements OnInit {
   pageTitle: string;
-  fundingAccountDetailsFrom: FormGroup;
+  fundingAccountDetailsForm: FormGroup;
   formValues;
   fundingMethods: any;
   srsAgentBankList;
@@ -41,6 +41,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   srsBank;
   showMaxLength;
   fundingSubText;
+  selectedFundingMethod;
 
   constructor(
     public readonly translate: TranslateService,
@@ -69,15 +70,15 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.formValues = this.investmentCommonService.getInvestmentCommonFormData();
-    this.getSrsAgentBank();
-    this.fundingAccountDetailsFrom = this.buildForm();
-    this.addAndRemoveSrsForm(this.fundingAccountDetailsFrom.get('fundingAccountMethod').value);
+    this.getOptionListCollection();
   }
 
-  getSrsAgentBank() {
+  getOptionListCollection() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.fundingMethods = data.objectList.portfolioFundingMethod;
       this.srsAgentBankList = data.objectList.srsAgentBank;
+      this.buildForm();
+      this.addAndRemoveSrsForm(this.fundingAccountDetailsForm.get('confirmedFundingMethodId').value);
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
@@ -85,64 +86,88 @@ export class FundingAccountDetailsComponent implements OnInit {
   }
 
   buildForm() {
-    return this.formBuilder.group({
+    this.fundingAccountDetailsForm = this.formBuilder.group({
       // tslint:disable-next-line:max-line-length
-      fundingAccountMethod: [this.formValues.fundingAccountMethod ? this.formValues.fundingAccountMethod : this.formValues.fundingMethod, Validators.required]
+      confirmedFundingMethodId: [this.formValues.confirmedFundingMethodId ? this.formValues.confirmedFundingMethodId : this.formValues.initialFundingMethodId, Validators.required]
     });
   }
 
-  addAndRemoveSrsForm(fundingMethod) {
-    if (fundingMethod === 'SRS') {
+  addAndRemoveSrsForm(fundingMethodId) {
+    if (this.isSRSAccount(fundingMethodId, this.fundingMethods)) {
       this.buildForSrsForm();
-    } else if (fundingMethod === 'Cash' && this.fundingAccountDetailsFrom.get('srsFundingDetails')) {
-      const srsFormGroup = this.fundingAccountDetailsFrom.get('srsFundingDetails') as FormGroup;
-      this.fundingAccountDetailsFrom.removeControl('srsFundingDetails');
-      srsFormGroup.removeControl('srsOperator');
-      srsFormGroup.removeControl('srsAccountNumber');
+    } else if (this.isCashAccount(fundingMethodId, this.fundingMethods)) {
+      const srsFormGroup = this.fundingAccountDetailsForm.get('srsFundingDetails') as FormGroup;
+      this.fundingAccountDetailsForm.removeControl('srsFundingDetails');
+      //srsFormGroup.removeControl('srsOperator');
+      //srsFormGroup.removeControl('srsAccountNumber');
+    }
+  }
+
+  isCashAccount(fundingMethodId, fundingMethods) {
+    const fundingMethodName = this.getFundingMethodNameById(fundingMethodId, fundingMethods);
+    if (fundingMethodName.toUpperCase() === 'CASH') {
+      return true;
+    }
+  }
+
+  // tslint:disable-next-line:no-identical-functions
+  isSRSAccount(fundingMethodId, fundingMethods) {
+    const fundingMethodName = this.getFundingMethodNameById(fundingMethodId, fundingMethods);
+    if (fundingMethodName.toUpperCase() === 'SRS') {
+      return true;
     }
   }
 
   buildForSrsForm() {
-    this.fundingAccountDetailsFrom.addControl(
+    this.fundingAccountDetailsForm.addControl(
       'srsFundingDetails', this.formBuilder.group({
-        srsOperator: [this.formValues.srsOperator, Validators.required],
+        srsOperatorBank: [this.formValues.srsOperatorBank, Validators.required],
         srsAccountNumber: [this.formValues.srsAccountNumber, [Validators.required]],
       })
     );
   }
 
   selectFundingMethod(key, value) {
-    if (this.formValues.fundingMethod !== value) {
-      this.fundingSubText = {
-        userGivenPortfolioName: 'Growth portfolio',  // TODO
-        userFundingMethod: value
-      };
-      this.changingFundMethod(key, value);
+    if (value !== this.formValues.confirmedFundingMethodId) {
+      this.investmentCommonService.setConfirmedFundingMethod({confirmedFundingMethodId: value });
+      this.fundingAccountDetailsForm.controls[key].setValue(value);
+      this.addAndRemoveSrsForm(value);
+      if ((value !== this.formValues.initialFundingMethodId)) {
+        this.fundingSubText = {
+          userGivenPortfolioName: 'Growth portfolio',  // TODO
+          userFundingMethod: value
+        };
+        this.showReassessRiskModal(key, value);
+      }
     }
   }
 
   selectSrsOperator(key, value, nestedKey) {
-    this.fundingAccountDetailsFrom.controls[nestedKey]['controls'][key].setValue(value);
+    this.fundingAccountDetailsForm.controls[nestedKey]['controls'][key].setValue(value);
     this.showBankAccountLength(value);
   }
 
-  changingFundMethod(key, value) {
+  showReassessRiskModal(key, value) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('CONFIRM_ACCOUNT_DETAILS.SHOW_MODAL.TITLE');
     // tslint:disable-next-line:max-line-length
     ref.componentInstance.errorMessage = this.translate.instant('CONFIRM_ACCOUNT_DETAILS.SHOW_MODAL.DESC', { userGivenPortfolioName: this.fundingSubText.userGivenPortfolioName, userFundingMethod: this.fundingSubText.userFundingMethod });
     ref.componentInstance.yesOrNoButton = true;
     ref.componentInstance.closeBtn = false;
-    ref.componentInstance.yesClickAction.subscribe((emittedValue) => {
+    ref.componentInstance.yesClickAction.subscribe((emittedValue) => { // Yes Reassess
       ref.close();
-      this.investmentCommonService.setFundingMethod(value);
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
     });
-    ref.componentInstance.noClickAction.subscribe((emittedValue) => {
+    ref.componentInstance.noClickAction.subscribe((emittedValue) => { // No do not Reassess
       ref.close();
-      this.fundingAccountDetailsFrom.controls[key].setValue(value);
-      this.addAndRemoveSrsForm(value);
     });
+  }
+
+  getFundingMethodNameById(fundingMethodId, fundingOptions) {
+    const fundingMethod = fundingOptions.filter(
+      (prop) => prop.id === fundingMethodId
+    );
+    return fundingMethod[0].name;
   }
 
   goToNext(form) {
@@ -155,8 +180,8 @@ export class FundingAccountDetailsComponent implements OnInit {
   }
 
   validateBankAccNo() {
-    if (this.fundingAccountDetailsFrom.get('srsFundingDetails').get('srsOperator').value) {
-      const operator = this.fundingAccountDetailsFrom.get('srsFundingDetails').get('srsOperator').value.name;
+    if (this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value) {
+      const operator = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value.name;
       switch (operator) {
         case 'DBS':
           return {
@@ -175,8 +200,8 @@ export class FundingAccountDetailsComponent implements OnInit {
   }
 
   showLength(event) {
-    if (this.fundingAccountDetailsFrom.get('srsFundingDetails').get('srsOperator').value) {
-      const operator = this.fundingAccountDetailsFrom.get('srsFundingDetails').get('srsOperator').value.name;
+    if (this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value) {
+      const operator = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value.name;
       if (event.currentTarget.value) {
         this.characterLength = event.currentTarget.value.match(/\d/g).join('').length;
       }
@@ -185,7 +210,7 @@ export class FundingAccountDetailsComponent implements OnInit {
 
   showBankAccountLength(value) {
     this.srsBank = value.name;
-    switch (this.fundingAccountDetailsFrom.get('srsFundingDetails').get('srsOperator').value.name) {
+    switch (this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value.name) {
       case 'DBS':
         this.showMaxLength = 14;
         break;

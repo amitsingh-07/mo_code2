@@ -201,27 +201,29 @@ export class InvestmentCommonService {
   }
   getFundingMethod() {
     return {
-      fundingMethod: this.investmentCommonFormData.fundingMethod
+     fundingMethod: this.investmentCommonFormData.initialFundingMethodId
     };
   }
-  setFundingMethod(data) {
-    this.investmentCommonFormData.fundingMethod = data.fundingMethod;
+  setInitialFundingMethod(data) {
+    this.investmentCommonFormData.initialFundingMethodId = data.initialFundingMethodId;
+    this.commit();
+  }
+  setConfirmedFundingMethod(data) {
+    this.investmentCommonFormData.confirmedFundingMethodId = data.confirmedFundingMethodId;
     this.commit();
   }
   // tslint:disable-next-line:no-identical-functions
   getFundingAccountDetails() {
     return {
-      fundingAccountMethod: this.investmentCommonFormData.fundingAccountMethod,
+      fundingAccountMethod: this.investmentCommonFormData.confirmedFundingMethodId,
       srsOperatorBank: this.investmentCommonFormData.srsOperatorBank,
       srsAccountNumber: this.investmentCommonFormData.srsAccountNumber
     };
   }
   setFundingAccountDetails(data) {
-    this.investmentCommonFormData.fundingAccountMethod = data.fundingAccountMethod;
-    if (this.investmentCommonFormData.fundingAccountMethod  === 'SRS') {
-      this.investmentCommonFormData.srsOperatorBank = data.srsFundingDetails.srsOperatorBank;
-      this.investmentCommonFormData.srsAccountNumber = data.srsFundingDetails.srsAccountNumber;
-    }
+    this.investmentCommonFormData.confirmedFundingMethodId = data.confirmedFundingMethodId;
+    this.investmentCommonFormData.srsOperatorBank = data.srsFundingDetails ? data.srsFundingDetails.srsOperatorBank : null;
+    this.investmentCommonFormData.srsAccountNumber = data.srsFundingDetails ? data.srsFundingDetails.srsAccountNumber : null;
     this.commit();
   }
 
@@ -241,16 +243,6 @@ export class InvestmentCommonService {
         },
        };
     }
-    // get the Funding method detaild
-    getFundingMethosDetails() {
-      return this.investmentApiService.getUserFundingDetails();
-    }
-    setFundingDetails(FundDetails) {
-      if (FundDetails) {
-        this.investmentCommonFormData.fundingAccountMethod = FundDetails.fundingAccountMethod;
-        this.investmentCommonFormData.srsOperatorBank = FundDetails.srsOperatorBank;
-        this.investmentCommonFormData.srsAccountNumber = FundDetails.srsAccountNumber;
-      }
-      this.commit();
-    }
+   
+    
 }
