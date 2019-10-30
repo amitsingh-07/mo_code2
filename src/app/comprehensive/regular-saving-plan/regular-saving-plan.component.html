@@ -18,18 +18,15 @@
             *ngFor="let comprehensiveRegularSavingsList of RSPForm['controls'].comprehensiveRegularSavingsList['controls']; let i = index;">
             <div class="form-group-with-bg">
               <!--Form Header-->
-              <div class="form-group-with-bg--header rsp-border-top">
-                <div class="flex-row">
-                  <div class="flex-col-12 with-help-icon">
-                    <div class="form-group-with-bg--header-label"><span
-                        *ngIf="i > 0">{{'CMP.RSP.OTHER'|translate}}</span>{{'CMP.RSP.HEADER'|translate}} <span
-                        *ngIf="i > 0">{{i}}</span>
-                      <div class="form-group-with-bg--header-sub-label"></div>
-                    </div>
-                    <span class="delete-icon" (click)="removeRSP(i)" id="moDpdnt2FrmDeleteIcon"
-                      *ngIf="!viewMode && RSPForm['controls'].comprehensiveRegularSavingsList['controls'].length>1"></span>
-
+              <div class="form-group-with-bg--header rsp-border-top pr0">
+                <div class="flex space-btwn">
+                  <div class="form-group-with-bg--header-label"><span
+                      *ngIf="i > 0">{{'CMP.RSP.OTHER'|translate}}</span>{{'CMP.RSP.HEADER'|translate}} <span
+                      *ngIf="i > 0">{{i}}</span>
+                    <div class="form-group-with-bg--header-sub-label"></div>
                   </div>
+                  <div class="delete-icon" (click)="removeRSP(i)" id="moDpdnt2FrmDeleteIcon"
+                    *ngIf="!viewMode && RSPForm['controls'].comprehensiveRegularSavingsList['controls'].length>1"></div>
                 </div>
               </div>
             </div>
