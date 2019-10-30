@@ -2,6 +2,7 @@
   "TOPUP": {
     "TITLE": "Buy Request",
     "DESC": "Submit a buy request and transfer money into your cash account.",
+    "SRS_NOTE": "Please note that top-up for SRS portfolio is currently handled offline, please email <a target='_blank' href='mailto:clientsupport@moneyowl.com.sg'>clientsupport@moneyowl.com.sg</a> for further assistance.",
     "SELECT_PORTFOLIO": "1. Select Portfolio ",
     "ENTER_INVESTMENT_AMOUNT": "2. Enter Investment Amount ",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance: ",
@@ -184,6 +185,7 @@
   },
   "WITHDRAW": {
     "TITLE": "Withdrawal",
+    "SRS_NOTE": "Please note that withdrawal for SRS portfolio is currently handled offline, please email <a target='_blank' href='mailto:clientsupport@moneyowl.com.sg'>clientsupport@moneyowl.com.sg</a> for further assistance.",
     "WITHDRAW_TYPE": "Withdraw Type",
     "WITHDRAWAL_AMOUNT": "Withdrawal Amount",
     "WITHDRAW_TYPE_DESC": "You may withdraw money from your cash account after transferring funds from your portfolio.",
