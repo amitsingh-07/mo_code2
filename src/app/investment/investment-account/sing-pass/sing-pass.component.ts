@@ -74,7 +74,7 @@ export class SingPassComponent implements OnInit, OnDestroy {
     this.showConfirmation = false;
     this.investmentData = this.investmentAccountService.getInvestmentAccountFormData();
     this.showSingPass = this.investmentData.isMyInfoEnabled ? false : true;
-    this.myInfoSubscription = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
+    this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '' &&
         this.myInfoService.getMyInfoAttributes() === this.investmentAccountService.myInfoAttributes.join()) {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
