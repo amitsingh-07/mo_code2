@@ -237,16 +237,19 @@ export class InvestmentCommonService {
     return this.investmentApiService.saveFundingMethodDetails(data);
   }
  
-    constructFundingMethodSaveRequest() {
-      const formData = this.getFundingAccountDetails();
-      return {
-        fundTypeId : formData.fundingAccountMethod,
-       srsDetails: {
+  constructFundingMethodSaveRequest() {
+    const formData = this.getFundingAccountDetails();
+    return {
+      fundTypeId : formData.fundingAccountMethod,
+      srsDetails: {
         srsOperatorBank: formData.srsOperatorBank,
         accountNumber: formData.srsAccountNumber,
-        },
-       };
-    }
-   
-    
+      },
+    };
+  }
+
+  saveSrsAccountDetails(params, customerPortfolioId) {
+    return this.investmentApiService.saveSrsAccountDetails(params, customerPortfolioId);
+  }
+
 }

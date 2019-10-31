@@ -142,8 +142,8 @@ export class FundingAccountDetailsComponent implements OnInit {
   buildForSrsForm() {
     this.fundingAccountDetailsForm.addControl(
       'srsFundingDetails', this.formBuilder.group({
-         srsOperatorBank: [{value:this.formValues.srsOperatorBank,  disabled: this.isDisable()}, Validators.required],
-         srsAccountNumber: [{value:this.formValues.srsAccountNumber, disabled: this.isDisable()}, Validators.required],
+         srsOperatorBank: [{value: this.formValues.srsOperatorBank,  disabled: this.isDisable()}, Validators.required],
+         srsAccountNumber: [{value: this.formValues.srsAccountNumber, disabled: this.isDisable()}, Validators.required],
           })
     );
   }
@@ -206,8 +206,33 @@ export class FundingAccountDetailsComponent implements OnInit {
       return false;
     } else {
       this.investmentCommonService.setFundingAccountDetails(form.getRawValue());
-      this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
+      if (this.isSRSAccount(form.value.confirmedFundingMethodId, this.fundingMethods) && !this.srsFormData) {
+        this.saveSRSAccountDetails(form);
+      } else {
+        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
+      }
     }
+  }
+
+  saveSRSAccountDetails(form) {
+    const params = this.constructSaveSrsAccountParams(form.value);
+    const customerPortfolioId = this.investmentAccountFormValues.recommendedCustomerPortfolioId;
+    this.investmentCommonService.saveSrsAccountDetails(params, customerPortfolioId).subscribe((data) => {
+      this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
+    });
+  }
+
+  constructSaveSrsAccountParams(data) {
+    return {
+      fundTypeId: data.confirmedFundingMethodId,
+      srsDetails: {
+          accountNumber: data.srsFundingDetails ? data.srsFundingDetails.srsAccountNumber.replace(/[-]/g, '') : null,
+          operatorId: data.srsFundingDetails ? data.srsFundingDetails.srsOperatorBank.id : null
+      }
+    };
   }
 
   maskConfig() {
@@ -264,10 +289,10 @@ export class FundingAccountDetailsComponent implements OnInit {
   }
 
   addorRemoveAccNoValidator() {
-    const bankName = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value.name.toUpperCase();
     const accNoControl = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsAccountNumber');
-    if (bankName) {
-      switch (bankName) {
+    const selectedBank = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value;
+    if (selectedBank) {
+      switch (selectedBank.name.toUpperCase()) {
         case 'DBS':
           accNoControl.setValidators(
             [Validators.pattern(RegexConstants.operatorMaskForValidation.DBS)]);
