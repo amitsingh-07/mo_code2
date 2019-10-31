@@ -76,12 +76,15 @@
                       <label for="name" placeholder="account number">{{
                         'CONFIRM_ACCOUNT_DETAILS.SRS_ACCOUNT_NUMBER' | translate}}</label>
                     </div>
-                    <div class="flex-col-8">
-                      <input  type="text" [textMask]="validateBankAccNo()" placeholder="Enter Account Number"
-                        class="form-control" formControlName="srsAccountNumber" (keyup)="showLength($event)" [attr.disabled]="isDisable() == true ? true : null" >
-                        </div>
-                        </div>
-                  <div class="characters" >{{characterLength ? characterLength :0}} / {{showMaxLength}}
+                    <div class="flex-col-8"
+                    [ngClass]="{'inline-error':getInlineErrorStatus(fundingAccountDetailsForm.controls.srsFundingDetails.controls.srsAccountNumber)}">
+                      <input type="text" [textMask]="maskConfig()" placeholder="Enter Account Number" [attr.disabled]="isDisable() == true ? true : null"
+                        class="form-control" formControlName="srsAccountNumber">
+
+                    </div>
+
+                  </div>
+                  <div class="characters" *ngIf="this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value">{{getAccNoLength() ? getAccNoLength() :0}} / {{getAccNoMaxLength(fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value)}}
                   </div>
                   <div class="txt-italic">{{
                     'CONFIRM_ACCOUNT_DETAILS.CORRECT_SRS_ACCOUNT_DETAILS_DESC' | translate}}</div>

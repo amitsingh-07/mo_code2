@@ -212,6 +212,10 @@ export class InvestmentCommonService {
     this.investmentCommonFormData.confirmedFundingMethodId = data.confirmedFundingMethodId;
     this.commit();
   }
+  clearConfirmedFundingMethod() {
+    this.investmentCommonFormData.confirmedFundingMethodId = null;
+    this.commit();
+  }
   // tslint:disable-next-line:no-identical-functions
   getFundingAccountDetails() {
     return {

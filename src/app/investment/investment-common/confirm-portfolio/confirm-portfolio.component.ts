@@ -224,7 +224,7 @@ export class ConfirmPortfolioComponent implements OnInit {
           recommendedRiskProfileId: this.portfolio.riskProfile.id
         };
         this.investmentAccountService.setPortfolioNamingFormData(namingFormData);
-        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
+        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_ACCOUNT_DETAILS]);
       } else {
         this.investmentAccountService.showGenericErrorModal();
       }
