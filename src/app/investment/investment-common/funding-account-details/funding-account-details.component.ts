@@ -35,6 +35,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   pageTitle: string;
   fundingAccountDetailsForm: FormGroup;
   formValues;
+  investmentAccountFormValues;
   fundingMethods: any;
   srsAgentBankList;
   characterLength;
@@ -70,6 +71,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.formValues = this.investmentCommonService.getInvestmentCommonFormData();
+    this.investmentAccountFormValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.getOptionListCollection();
   }
 
@@ -129,13 +131,13 @@ export class FundingAccountDetailsComponent implements OnInit {
 
   selectFundingMethod(key, value) {
     if (value !== this.formValues.confirmedFundingMethodId) {
-      this.investmentCommonService.setConfirmedFundingMethod({confirmedFundingMethodId: value });
+      //this.investmentCommonService.setConfirmedFundingMethod({confirmedFundingMethodId: value });
       this.fundingAccountDetailsForm.controls[key].setValue(value);
       this.addAndRemoveSrsForm(value);
       if ((value !== this.formValues.initialFundingMethodId)) {
         this.fundingSubText = {
-          userGivenPortfolioName: 'Growth portfolio',  // TODO
-          userFundingMethod: value
+          userGivenPortfolioName: this.investmentAccountFormValues.defaultPortfolioName,
+          userFundingMethod: this.getFundingMethodNameById(value, this.fundingMethods)
         };
         this.showReassessRiskModal(key, value);
       }
@@ -156,6 +158,8 @@ export class FundingAccountDetailsComponent implements OnInit {
     ref.componentInstance.closeBtn = false;
     ref.componentInstance.yesClickAction.subscribe((emittedValue) => { // Yes Reassess
       ref.close();
+      this.investmentCommonService.setInitialFundingMethod({initialFundingMethodId: value });
+      this.investmentCommonService.clearConfirmedFundingMethod();
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
     });
     ref.componentInstance.noClickAction.subscribe((emittedValue) => { // No do not Reassess
