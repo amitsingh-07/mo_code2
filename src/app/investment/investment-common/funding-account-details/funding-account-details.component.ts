@@ -103,6 +103,7 @@ export class FundingAccountDetailsComponent implements OnInit {
       //srsFormGroup.removeControl('srsOperator');
       //srsFormGroup.removeControl('srsAccountNumber');
     }
+    this.addorRemoveAccNoValidator();
   }
 
   isCashAccount(fundingMethodId, fundingMethods) {
@@ -146,7 +147,9 @@ export class FundingAccountDetailsComponent implements OnInit {
 
   selectSrsOperator(key, value, nestedKey) {
     this.fundingAccountDetailsForm.controls[nestedKey]['controls'][key].setValue(value);
-    this.showBankAccountLength(value);
+    this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsAccountNumber').setValue('');
+    this.getAccNoMaxLength(value);
+    this.addorRemoveAccNoValidator();
   }
 
   showReassessRiskModal(key, value) {
@@ -183,48 +186,80 @@ export class FundingAccountDetailsComponent implements OnInit {
     }
   }
 
-  validateBankAccNo() {
+  maskConfig() {
+    const config = {
+      mask: RegexConstants.operatorMask.DBS,
+      guide: false
+    };
     if (this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value) {
       const operator = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value.name;
-      switch (operator) {
+      switch (operator.toUpperCase()) {
         case 'DBS':
-          return {
-            mask: RegexConstants.operatorMask.DBS,
-          };
+          config.mask = RegexConstants.operatorMask.DBS;
+          break;
         case 'OCBC':
-          return {
-            mask: RegexConstants.operatorMask.OCBC,
-          };
+          config.mask = RegexConstants.operatorMask.OCBC;
+          break;
         case 'UOB':
-          return {
-            mask: RegexConstants.operatorMask.UOB,
-          };
+          config.mask = RegexConstants.operatorMask.UOB;
+          break;
       }
     }
+    return config;
   }
 
-  showLength(event) {
+  getAccNoLength() {
     if (this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value) {
-      const operator = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value.name;
-      if (event.currentTarget.value) {
-        this.characterLength = event.currentTarget.value.match(/\d/g).join('').length;
+      const accNo = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsAccountNumber').value;
+      if (accNo) {
+        return accNo.match(/\d/g).join('').length;
+      } else {
+        return 0;
       }
     }
   }
 
-  showBankAccountLength(value) {
-    this.srsBank = value.name;
+  getAccNoMaxLength(value) {
+    let accNoMaxLength;
     switch (this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value.name) {
       case 'DBS':
-        this.showMaxLength = 14;
+        accNoMaxLength = 14;
         break;
       case 'OCBC':
-        this.showMaxLength = 12;
+        accNoMaxLength = 12;
         break;
       case 'UOB':
-        this.showMaxLength = 9;
+        accNoMaxLength = 9;
         break;
     }
+    return accNoMaxLength;
+  }
 
+  getInlineErrorStatus(control) {
+    return !control.pristine && !control.valid;
+  }
+
+  addorRemoveAccNoValidator() {
+    const bankName = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value.name.toUpperCase();
+    const accNoControl = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsAccountNumber');
+    if (bankName) {
+      switch (bankName) {
+        case 'DBS':
+          accNoControl.setValidators(
+            [Validators.pattern(RegexConstants.operatorMaskForValidation.DBS)]);
+          break;
+        case 'OCBC':
+          accNoControl.setValidators(
+            [Validators.pattern(RegexConstants.operatorMaskForValidation.OCBC)]);
+          break;
+        case 'UOB':
+          accNoControl.setValidators(
+            [Validators.pattern(RegexConstants.operatorMaskForValidation.UOB)]);
+          break;
+      }
+    } else {
+      accNoControl.clearValidators();
+    }
+    this.fundingAccountDetailsForm.updateValueAndValidity();
   }
 }
