@@ -63,7 +63,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
       otherAssets: new FormControl(this.assetsFormValues.otherAssets)
     });
     this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
-      if (myinfoObj && myinfoObj !== '') {
+      if (myinfoObj && myinfoObj !== '' && this.myInfoService.getMyInfoAttributes() === 'cpfbalances') {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
             if (data && data['objectList']) {
