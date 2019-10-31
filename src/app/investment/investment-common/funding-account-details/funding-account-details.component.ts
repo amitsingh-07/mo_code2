@@ -112,8 +112,8 @@ export class FundingAccountDetailsComponent implements OnInit {
     if (data.responseMessage.responseCode >= 6000) {
       this.investmentEngagementJourneyService.setFinancialDetails(data.objectList);
       this.srsFormData = data.objectList;
-     this.isDisable();
-     //this.setSrsDetails(data.objectList);
+      this.isDisable();
+      this.setSrsAccountDetails(data.objectList);
     }
   },
       (err) => {
@@ -314,12 +314,12 @@ export class FundingAccountDetailsComponent implements OnInit {
       this.fundingAccountDetailsForm.updateValueAndValidity();
     }
   }
-  setSrsDetails(formData) {
+
+  setSrsAccountDetails(formData) {
     if (formData) {
-     const operatorBank = this.getOperatorIdByName(formData.srsDetails.operatorId, this.srsAgentBankList);
+     const operatorBank = this.getOperatorIdByName(formData.srsBankOperator.id, this.srsAgentBankList);
      this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsOperatorBank').setValue(operatorBank);
-     this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsAccountNumber').setValue(formData.srsDetails.accountNumber);
-      }
+     this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsAccountNumber').setValue(formData.accountNumber);
+    }
   }
-  
 }
