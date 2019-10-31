@@ -1934,5 +1934,16 @@ export class InvestmentAccountService {
   getSrsAccountDetails() {
     return this.investmentApiService.getSrsAccountDetails();
   }
-  
+
+  activateReassess() {
+    this.investmentAccountFormData.isReassessActive = true;
+    this.commit();
+  }
+  deactivateReassess() {
+    this.investmentAccountFormData.isReassessActive = false;
+    this.commit();
+  }
+  isReassessActive() {
+    return this.investmentAccountFormData.isReassessActive;
+  }
 }

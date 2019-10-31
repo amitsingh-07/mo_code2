@@ -113,7 +113,7 @@ export class FundingAccountDetailsComponent implements OnInit {
       this.investmentEngagementJourneyService.setFinancialDetails(data.objectList);
       this.srsFormData = data.objectList;
      this.isDisable();
-     this.setSrsDetails(data.objectList);
+     //this.setSrsDetails(data.objectList);
     }
   },
       (err) => {
@@ -179,6 +179,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     ref.componentInstance.closeBtn = false;
     ref.componentInstance.yesClickAction.subscribe((emittedValue) => { // Yes Reassess
       ref.close();
+      this.investmentAccountService.activateReassess();
       this.investmentCommonService.setInitialFundingMethod({initialFundingMethodId: value });
       this.investmentCommonService.clearConfirmedFundingMethod();
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
@@ -289,27 +290,29 @@ export class FundingAccountDetailsComponent implements OnInit {
   }
 
   addorRemoveAccNoValidator() {
-    const accNoControl = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsAccountNumber');
-    const selectedBank = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value;
-    if (selectedBank) {
-      switch (selectedBank.name.toUpperCase()) {
-        case 'DBS':
-          accNoControl.setValidators(
-            [Validators.pattern(RegexConstants.operatorMaskForValidation.DBS)]);
-          break;
-        case 'OCBC':
-          accNoControl.setValidators(
-            [Validators.pattern(RegexConstants.operatorMaskForValidation.OCBC)]);
-          break;
-        case 'UOB':
-          accNoControl.setValidators(
-            [Validators.pattern(RegexConstants.operatorMaskForValidation.UOB)]);
-          break;
+    if (this.fundingAccountDetailsForm.get('srsFundingDetails')) {
+      const accNoControl = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsAccountNumber');
+      const selectedBank = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value;
+      if (selectedBank) {
+        switch (selectedBank.name.toUpperCase()) {
+          case 'DBS':
+            accNoControl.setValidators(
+              [Validators.pattern(RegexConstants.operatorMaskForValidation.DBS)]);
+            break;
+          case 'OCBC':
+            accNoControl.setValidators(
+              [Validators.pattern(RegexConstants.operatorMaskForValidation.OCBC)]);
+            break;
+          case 'UOB':
+            accNoControl.setValidators(
+              [Validators.pattern(RegexConstants.operatorMaskForValidation.UOB)]);
+            break;
+        }
+      } else {
+        accNoControl.clearValidators();
       }
-    } else {
-      accNoControl.clearValidators();
+      this.fundingAccountDetailsForm.updateValueAndValidity();
     }
-    this.fundingAccountDetailsForm.updateValueAndValidity();
   }
   setSrsDetails(formData) {
     if (formData) {

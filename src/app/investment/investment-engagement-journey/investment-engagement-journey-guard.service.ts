@@ -19,7 +19,7 @@ export class InvestmentEngagementJourneyGuardService implements CanActivate {
     private investmentCommonService: InvestmentCommonService
   ) {}
   canActivate() {
-    if (this.authService.isSignedUser()) {
+    if (this.authService.isSignedUser() && !this.investmentAccountService.isReassessActive()) {
       return this.investmentCommonService.getAccountCreationActions().map((data) => {
         if (this.investmentCommonService.isUserNotAllowed(data)) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
