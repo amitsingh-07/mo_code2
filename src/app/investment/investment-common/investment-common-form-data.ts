@@ -9,6 +9,7 @@ export class InvestmentCommonFormData {
     portfolioName: string;
     initialFundingMethodId: number;
     confirmedFundingMethodId: number;
+    fundingType: string;
     srsOperatorBank: any;
     srsAccountNumber: string;
 }

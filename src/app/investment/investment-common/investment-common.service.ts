@@ -199,9 +199,9 @@ export class InvestmentCommonService {
     }
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
-  getFundingMethod() {
+  getInitialFundingMethod() {
     return {
-     fundingMethod: this.investmentCommonFormData.initialFundingMethodId
+    initialFundingMethodId: this.investmentCommonFormData.initialFundingMethodId
     };
   }
   setInitialFundingMethod(data) {
@@ -211,6 +211,9 @@ export class InvestmentCommonService {
   setConfirmedFundingMethod(data) {
     this.investmentCommonFormData.confirmedFundingMethodId = data.confirmedFundingMethodId;
     this.commit();
+  }
+  getConfirmedFundingMethodName() {
+    return this.investmentCommonFormData.fundingType;
   }
   clearConfirmedFundingMethod() {
     this.investmentCommonFormData.confirmedFundingMethodId = null;
@@ -224,7 +227,8 @@ export class InvestmentCommonService {
       srsAccountNumber: this.investmentCommonFormData.srsAccountNumber
     };
   }
-  setFundingAccountDetails(data) {
+  setFundingAccountDetails(data, fundingType) {
+    this.investmentCommonFormData.fundingType = fundingType;
     this.investmentCommonFormData.confirmedFundingMethodId = data.confirmedFundingMethodId;
     this.investmentCommonFormData.srsOperatorBank = data.srsFundingDetails ? data.srsFundingDetails.srsOperatorBank : null;
     this.investmentCommonFormData.srsAccountNumber = data.srsFundingDetails ? data.srsFundingDetails.srsAccountNumber : null;

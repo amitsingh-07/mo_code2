@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-investments-routes.constants';
+
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
@@ -19,11 +22,14 @@ import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
 })
 export class AccountStatusComponent implements OnInit {
   status: string;
+  fundingMethod: string;
   pageTitle: string;
   pageDesc: string;
-  showAccountCreationpending = false;
+  showAccountCreationPending = false;
   showDocumentsPending = false;
-  
+  showSrsAccountSuccess = false;
+  showCashAccountSuccess = false;
+
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -43,14 +49,33 @@ export class AccountStatusComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
+    this.fundingMethod = this.investmentCommonService.getConfirmedFundingMethodName();
     this.status = this.investmentAccountService.getAccountCreationStatus();
     this.investmentAccountService.clearInvestmentAccountFormData();
     this.investmentCommonService.clearJourneyData();
     this.investmentAccountService.restrictBackNavigation();
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      if (this.status.toUpperCase() === INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_pending.toUpperCase()) {
-        this.showAccountCreationpending = true;
+      if (this.status.toUpperCase() === INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_confirmed.toUpperCase()) {
+        if ((this.fundingMethod).toUpperCase() === 'CASH') {
+          this.showCashAccountSuccess = true;
+          this.pageTitle = this.translate.instant(
+            'ACCOUNT_CREATION_STATUS.CASH_ACCOUNT_SUCCESS.TITLE'
+          );
+          this.pageDesc = this.translate.instant(
+            'ACCOUNT_CREATION_STATUS.CASH_ACCOUNT_SUCCESS.DESC'
+          );
+        } else {
+          this.showSrsAccountSuccess = true;
+          this.pageTitle = this.translate.instant(
+            'ACCOUNT_CREATION_STATUS.SRS_ACCOUNT_SUCCESS.TITLE'
+          );
+          this.pageDesc = this.translate.instant(
+            'ACCOUNT_CREATION_STATUS.SRS_ACCOUNT_SUCCESS.DESC'
+          );
+        }
+      } else if (this.status.toUpperCase() === INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_pending.toUpperCase()) {
+        this.showAccountCreationPending = true;
         this.pageTitle = this.translate.instant(
           'ACCOUNT_CREATION_STATUS.ACCOUNT_CREATION_PENDING.TITLE'
         );
@@ -65,8 +90,8 @@ export class AccountStatusComponent implements OnInit {
         this.pageDesc = this.translate.instant(
           'ACCOUNT_CREATION_STATUS.DOCUMENTS_PENDING.DESC'
         );
-      } else {
-        this.showAccountCreationpending = true;
+        } else {
+        this.showAccountCreationPending = true;
         this.pageTitle = this.translate.instant(
           'ACCOUNT_CREATION_STATUS.ADDITIONAL_DECLARATION_SUBMITTED.TITLE'
         );
@@ -78,6 +103,12 @@ export class AccountStatusComponent implements OnInit {
   }
   redirectToDashboard() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+  }
+  redirectToFundAccount() {
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);
+  }
+  redirectToYourInvestment() {
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
   }
 
 }

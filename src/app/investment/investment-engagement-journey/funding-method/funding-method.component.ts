@@ -30,6 +30,10 @@ export class FundingMethodComponent implements OnInit {
   formBuilder: any;
   fundingMethods;
   formValues;
+  fundingMethodNameCash;
+  fundingMethodNameSrs;
+  showSrsContent = false;
+  showCashContent = false;
 
   constructor(
     public readonly translate: TranslateService,
@@ -58,20 +62,43 @@ export class FundingMethodComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.getOptionListCollection();
-    this.formValues = this.investmentCommonService.getFundingMethod();
+    this.formValues = this.investmentCommonService.getInitialFundingMethod();
     this.fundingMethodForm = new FormGroup({
       initialFundingMethodId: new FormControl(
         this.formValues.initialFundingMethodId, Validators.required)
     });
   }
-
   getOptionListCollection() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.fundingMethods = data.objectList.portfolioFundingMethod;
-     },
+      this.investmentEngagementJourneyService.sortByProperty(this.fundingMethods, 'name', 'asc');
+
+    },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
+  }
+  getFundingMethodNameById(fundingMethodId, fundingOptions) {
+    const fundingMethod = fundingOptions.filter(
+      (prop) => prop.id === fundingMethodId
+    );
+    return fundingMethod[0].name;
+  }
+
+  selectFundingMethod(value) {
+    if (value.name === 'SRS' || (this.formValues && this.formValues.initialFundingMethodId) === 'SRS') {
+      this.showSrsContent = true;
+      this.showCashContent = false;
+    } else {
+      this.showSrsContent = false;
+      this.showCashContent = true;
+    }
+  }
+  getOperatorIdByName(operatorId, OperatorOptions) {
+    const OperatorBank = OperatorOptions.filter(
+      (prop) => prop.id === operatorId
+    );
+    return OperatorBank[0];
   }
 
   goToNext(form) {

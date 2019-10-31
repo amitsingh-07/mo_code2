@@ -73,6 +73,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.formValues = this.investmentCommonService.getInvestmentCommonFormData();
+    
     this.investmentAccountFormValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.getOptionListCollection();
    }
@@ -128,6 +129,8 @@ export class FundingAccountDetailsComponent implements OnInit {
     const fundingMethodName = this.getFundingMethodNameById(fundingMethodId, fundingMethods);
     if (fundingMethodName.toUpperCase() === 'CASH') {
       return true;
+    } else {
+      return false;
     }
   }
 
@@ -136,6 +139,8 @@ export class FundingAccountDetailsComponent implements OnInit {
     const fundingMethodName = this.getFundingMethodNameById(fundingMethodId, fundingMethods);
     if (fundingMethodName.toUpperCase() === 'SRS') {
       return true;
+    } else {
+      return false;
     }
   }
 
@@ -205,7 +210,8 @@ export class FundingAccountDetailsComponent implements OnInit {
     if (!form.valid) {
       return false;
     } else {
-      this.investmentCommonService.setFundingAccountDetails(form.getRawValue());
+      const fundingMethod = this.getFundingMethodNameById(form.getRawValue().confirmedFundingMethodId, this.fundingMethods);
+      this.investmentCommonService.setFundingAccountDetails(form.getRawValue(), fundingMethod);
       this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
     }
   }
