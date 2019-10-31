@@ -56,15 +56,16 @@
                     <div class="flex-col-8">
                       <div class="dropdown-control">
                         <div ngbDropdown>
-                          <button class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
+                          <button [disabled]=isDisable() class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
                             {{fundingAccountDetailsForm.controls.srsFundingDetails.controls.srsOperatorBank.value ?
-                              fundingAccountDetailsForm.controls.srsFundingDetails.controls.srsOperatorBank.value.name :'select'}}
+                              fundingAccountDetailsForm.controls.srsFundingDetails.controls.srsOperatorBank.value.name :
+                              'select'}}
                           </button>
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                             <button class="dropdown-item"
                               *ngFor="let srsOperator of srsAgentBankList; let i = index;"
                               (click)="selectSrsOperator('srsOperatorBank', srsOperator,'srsFundingDetails')"
-                              id="additional_declaration_sourse-drpdown-option-{{i}}">{{srsOperator.key}}</button>
+                              id="additional_declaration_sourse-drpdown-option-{{i}}">{{srsOperator.name}}</button>
                           </div>
                         </div>
                       </div>
@@ -76,13 +77,11 @@
                         'CONFIRM_ACCOUNT_DETAILS.SRS_ACCOUNT_NUMBER' | translate}}</label>
                     </div>
                     <div class="flex-col-8">
-                      <input type="text" [textMask]="validateBankAccNo()" placeholder="Enter Account Number"
-                        class="form-control" formControlName="srsAccountNumber" (keyup)="showLength($event)">
-
-                    </div>
-
-                  </div>
-                  <div class="characters" *ngIf="this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value">{{characterLength ? characterLength :0}} / {{showMaxLength}}
+                      <input  type="text" [textMask]="validateBankAccNo()" placeholder="Enter Account Number"
+                        class="form-control" formControlName="srsAccountNumber" (keyup)="showLength($event)" [attr.disabled]="isDisable() == true ? true : null" >
+                        </div>
+                        </div>
+                  <div class="characters" >{{characterLength ? characterLength :0}} / {{showMaxLength}}
                   </div>
                   <div class="txt-italic">{{
                     'CONFIRM_ACCOUNT_DETAILS.CORRECT_SRS_ACCOUNT_DETAILS_DESC' | translate}}</div>
@@ -104,7 +103,7 @@
               <button type="button" id="personalInforNextBtn" (click)="goToNext(fundingAccountDetailsForm)"
                 class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
                 [disabled]="!fundingAccountDetailsForm.valid" id="getStrdBtn3">Continue</button>
-            </div>
+               </div>
           </form>
         </div>
       </div>

@@ -353,12 +353,10 @@ export class InvestmentApiService {
     // );
     console.log(data);
   }
-  getUserFundingDetails() {
-    const url = '../../../assets/mock-data/financial.json';
-    console.log(url);
-    return this.http.getMock(url)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
-  }
+  getSrsAccountDetails() {
+    return this.http.get(investmentApiConstants.endpoint.investmentAccount.gerSrsDetails)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+   }
 }

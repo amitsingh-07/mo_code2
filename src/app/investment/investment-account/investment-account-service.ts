@@ -1931,5 +1931,8 @@ export class InvestmentAccountService {
     }
     return (event.which !== 13);
   }
+  getSrsAccountDetails() {
+    return this.investmentApiService.getSrsAccountDetails();
+  }
   
 }

@@ -25,6 +25,7 @@ import {
 } from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
 
+
 @Component({
   selector: 'app-funding-account-details',
   templateUrl: './funding-account-details.component.html',
@@ -42,6 +43,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   showMaxLength;
   fundingSubText;
   selectedFundingMethod;
+  srsFormData;
 
   constructor(
     public readonly translate: TranslateService,
@@ -71,7 +73,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.formValues = this.investmentCommonService.getInvestmentCommonFormData();
     this.getOptionListCollection();
-  }
+   }
 
   getOptionListCollection() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
@@ -94,15 +96,31 @@ export class FundingAccountDetailsComponent implements OnInit {
 
   addAndRemoveSrsForm(fundingMethodId) {
     if (this.isSRSAccount(fundingMethodId, this.fundingMethods)) {
-      this.buildForSrsForm();
+     this.getSrsAccountDetails();
+     this.buildForSrsForm();
     } else if (this.isCashAccount(fundingMethodId, this.fundingMethods)) {
       const srsFormGroup = this.fundingAccountDetailsForm.get('srsFundingDetails') as FormGroup;
       this.fundingAccountDetailsForm.removeControl('srsFundingDetails');
-      //srsFormGroup.removeControl('srsOperator');
-      //srsFormGroup.removeControl('srsAccountNumber');
+     
     }
   }
-
+  getSrsAccountDetails() {
+   this.investmentAccountService.getSrsAccountDetails().subscribe((data) => {
+    if (data.responseMessage.responseCode >= 6000) {
+      this.investmentEngagementJourneyService.setFinancialDetails(data.objectList);
+      this.srsFormData = data.objectList;
+     this.isDisable();
+     this.setSrsDetails(data.objectList);
+    }
+  },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
+    }
+  isDisable() {
+         const srsFormDataValue = this.srsFormData ? true : false;
+         return srsFormDataValue;
+      }
   isCashAccount(fundingMethodId, fundingMethods) {
     const fundingMethodName = this.getFundingMethodNameById(fundingMethodId, fundingMethods);
     if (fundingMethodName.toUpperCase() === 'CASH') {
@@ -121,9 +139,9 @@ export class FundingAccountDetailsComponent implements OnInit {
   buildForSrsForm() {
     this.fundingAccountDetailsForm.addControl(
       'srsFundingDetails', this.formBuilder.group({
-        srsOperatorBank: [this.formValues.srsOperatorBank, Validators.required],
-        srsAccountNumber: [this.formValues.srsAccountNumber, [Validators.required]],
-      })
+         srsOperatorBank: [{value:this.formValues.srsOperatorBank,  disabled: this.isDisable()}, Validators.required],
+         srsAccountNumber: [{value:this.formValues.srsAccountNumber, disabled: this.isDisable()}, Validators.required],
+          })
     );
   }
 
@@ -168,6 +186,12 @@ export class FundingAccountDetailsComponent implements OnInit {
       (prop) => prop.id === fundingMethodId
     );
     return fundingMethod[0].name;
+  }
+  getOperatorIdByName(operatorId, OperatorOptions) {
+    const OperatorBank = OperatorOptions.filter(
+      (prop) => prop.id === operatorId
+    );
+    return OperatorBank[0];
   }
 
   goToNext(form) {
@@ -223,4 +247,12 @@ export class FundingAccountDetailsComponent implements OnInit {
     }
 
   }
+  setSrsDetails(formData) {
+    if (formData) {
+     const operatorBank = this.getOperatorIdByName(formData.srsDetails.operatorId, this.srsAgentBankList);
+     this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsOperatorBank').setValue(operatorBank);
+     this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsAccountNumber').setValue(formData.srsDetails.accountNumber);
+      }
+  }
+  
 }
