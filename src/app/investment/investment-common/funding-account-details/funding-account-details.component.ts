@@ -206,11 +206,7 @@ export class FundingAccountDetailsComponent implements OnInit {
       return false;
     } else {
       this.investmentCommonService.setFundingAccountDetails(form.getRawValue());
-      if (this.isSRSAccount(form.value.confirmedFundingMethodId, this.fundingMethods) && !this.srsFormData) {
-        this.saveSRSAccountDetails(form);
-      } else {
-        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
-      }
+      this.saveSRSAccountDetails(form);
     }
   }
 
@@ -226,13 +222,17 @@ export class FundingAccountDetailsComponent implements OnInit {
   }
 
   constructSaveSrsAccountParams(data) {
-    return {
-      fundTypeId: data.confirmedFundingMethodId,
-      srsDetails: {
-          accountNumber: data.srsFundingDetails ? data.srsFundingDetails.srsAccountNumber.replace(/[-]/g, '') : null,
-          operatorId: data.srsFundingDetails ? data.srsFundingDetails.srsOperatorBank.id : null
-      }
-    };
+    const reqParams = {};
+    reqParams['fundTypeId'] =  data.confirmedFundingMethodId;
+    if (this.isSRSAccount(data.confirmedFundingMethodId, this.fundingMethods) && !this.srsFormData) {
+      reqParams['srsDetails'] = {
+        accountNumber: data.srsFundingDetails ? data.srsFundingDetails.srsAccountNumber.replace(/[-]/g, '') : null,
+        operatorId: data.srsFundingDetails ? data.srsFundingDetails.srsOperatorBank.id : null
+      };
+    } else {
+      reqParams['srsDetails'] = null;
+    }
+    return reqParams;
   }
 
   maskConfig() {
