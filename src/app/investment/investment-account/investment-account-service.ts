@@ -596,7 +596,7 @@ export class InvestmentAccountService {
   uploadDocument(formData) {
     return this.investmentApiService.uploadDocument(formData);
   }
-
+ 
   saveAdditionalDeclarations() {
     const payload = this.additionalDeclarationsRequest();
     return this.investmentApiService.saveInvestmentAccount(payload);
@@ -1931,5 +1931,19 @@ export class InvestmentAccountService {
     }
     return (event.which !== 13);
   }
-  
+  getSrsAccountDetails() {
+    return this.investmentApiService.getSrsAccountDetails();
+  }
+
+  activateReassess() {
+    this.investmentAccountFormData.isReassessActive = true;
+    this.commit();
+  }
+  deactivateReassess() {
+    this.investmentAccountFormData.isReassessActive = false;
+    this.commit();
+  }
+  isReassessActive() {
+    return this.investmentAccountFormData.isReassessActive;
+  }
 }

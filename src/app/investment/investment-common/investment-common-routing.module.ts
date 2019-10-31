@@ -7,6 +7,9 @@ import { AcknowledgementComponent } from './acknowledgement/acknowledgement.comp
 import { AddPortfolioNameComponent } from './add-portfolio-name/add-portfolio-name.component';
 import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
 import {
+    FundingAccountDetailsComponent
+} from './funding-account-details/funding-account-details.component';
+import {
     FundingInstructionsComponent
 } from './funding-instructions/funding-instructions.component';
 import { InvestmentCommonGuardService } from './investment-common-guard.service';
@@ -38,9 +41,14 @@ const routes: Routes = [
     component: FundingIntroComponent,
     canActivate: [AuthGuard]
   },
-  {
+ {
     path: INVESTMENT_COMMON_ROUTES.FUNDING_INSTRUCTIONS,
     component: FundingInstructionsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: INVESTMENT_COMMON_ROUTES.FUNDING_ACCOUNT_DETAILS,
+    component: FundingAccountDetailsComponent,
     canActivate: [AuthGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }

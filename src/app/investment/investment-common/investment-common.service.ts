@@ -29,6 +29,7 @@ export class InvestmentCommonService {
     private router: Router,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService
   ) {
+    this.getInvestmentCommonFormData();
   }
   savePortfolioName(data) {
     return this.investmentApiService.savePortfolioName(data);
@@ -198,4 +199,61 @@ export class InvestmentCommonService {
     }
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
+  getInitialFundingMethod() {
+    return {
+    initialFundingMethodId: this.investmentCommonFormData.initialFundingMethodId
+    };
+  }
+  setInitialFundingMethod(data) {
+    this.investmentCommonFormData.initialFundingMethodId = data.initialFundingMethodId;
+    this.commit();
+  }
+  setConfirmedFundingMethod(data) {
+    this.investmentCommonFormData.confirmedFundingMethodId = data.confirmedFundingMethodId;
+    this.commit();
+  }
+  getConfirmedFundingMethodName() {
+    return this.investmentCommonFormData.fundingType;
+  }
+  clearConfirmedFundingMethod() {
+    this.investmentCommonFormData.confirmedFundingMethodId = null;
+    this.commit();
+  }
+  // tslint:disable-next-line:no-identical-functions
+  getFundingAccountDetails() {
+    return {
+      fundingAccountMethod: this.investmentCommonFormData.confirmedFundingMethodId,
+      srsOperatorBank: this.investmentCommonFormData.srsOperatorBank,
+      srsAccountNumber: this.investmentCommonFormData.srsAccountNumber
+    };
+  }
+  setFundingAccountDetails(data, fundingType) {
+    this.investmentCommonFormData.fundingType = fundingType;
+    this.investmentCommonFormData.confirmedFundingMethodId = data.confirmedFundingMethodId;
+    this.investmentCommonFormData.srsOperatorBank = data.srsFundingDetails ? data.srsFundingDetails.srsOperatorBank : null;
+    this.investmentCommonFormData.srsAccountNumber = data.srsFundingDetails ? data.srsFundingDetails.srsAccountNumber : null;
+    this.commit();
+  }
+
+  //  saving Funding data
+  saveFundingMethodDetails() {
+    const data = this.constructFundingMethodSaveRequest();
+    return this.investmentApiService.saveFundingMethodDetails(data);
+  }
+ 
+  constructFundingMethodSaveRequest() {
+    const formData = this.getFundingAccountDetails();
+    return {
+      fundTypeId : formData.fundingAccountMethod,
+      srsDetails: {
+        srsOperatorBank: formData.srsOperatorBank,
+        accountNumber: formData.srsAccountNumber,
+      },
+    };
+  }
+
+  saveSrsAccountDetails(params, customerPortfolioId) {
+    return this.investmentApiService.saveSrsAccountDetails(params, customerPortfolioId);
+  }
+
 }

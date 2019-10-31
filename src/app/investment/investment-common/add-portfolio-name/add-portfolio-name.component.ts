@@ -32,8 +32,8 @@ import { InvestmentCommonService } from '../investment-common.service';
   templateUrl: './add-portfolio-name.component.html',
   styleUrls: ['./add-portfolio-name.component.scss'],
   encapsulation: ViewEncapsulation.None
-
 })
+
 export class AddPortfolioNameComponent implements OnInit {
   riskProfileIcon;
   characterLength;
@@ -263,7 +263,7 @@ export class AddPortfolioNameComponent implements OnInit {
                 this.investmentAccountService.setAccountCreationStatus(
                   INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_pending
                 );
-                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
+                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.STATUS]);
               }
               this.investmentCommonService.clearJourneyData();
             } else {
@@ -283,7 +283,10 @@ export class AddPortfolioNameComponent implements OnInit {
   handleAccountCreationSuccess() {
     this.investmentCommonService.setConfirmPortfolioName(this.portfolioNameToBeSaved); /* Needed data for Funding Instructions screen */
     this.setPortfolioSuccessToastMessage(); /* Needed for Investment Overview toast message */
-    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);
+    this.investmentAccountService.setAccountCreationStatus(
+      INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_confirmed
+    );
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.STATUS]);
   }
 
   setPortfolioSuccessToastMessage() {
@@ -323,7 +326,7 @@ export class AddPortfolioNameComponent implements OnInit {
 
   updateCharacterCount(event) {
     if (this.characterLength !== event.currentTarget.value.length) {
-      this.showErrorMessage = false;
+      //this.showErrorMessage = false;
     }
     this.characterLength = event.currentTarget.value.length;
   }

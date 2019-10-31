@@ -231,7 +231,7 @@ export class UploadDocumentsComponent implements OnInit {
         this.investmentAccountService.setAccountCreationStatus(
           INVESTMENT_ACCOUNT_CONSTANTS.status.documents_pending
         );
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.STATUS]);
       });
     } else {
       this.proceed(form);

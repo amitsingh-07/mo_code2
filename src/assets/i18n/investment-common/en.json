@@ -180,5 +180,20 @@
   "TOAST_MESSAGES": {
     "ADD_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been added.",
     "VIEW": "View"
-  }
+  },
+  "CONFIRM_ACCOUNT_DETAILS": {
+    "TITLE":"Confirm Account Details",
+    "FUND_METHOD": "Funding Method",
+    "SELECT_FUNDING_LAB": "You have selected the following funding method for this portfolio.",
+    "ACCOUNT_DETAILS": "Please provide your account details.",
+    "SRS_ACCOUNT_DETAILS": "SRS Account Details",
+    "SRS_OPERATOR": "SRS Operator",
+    "SRS_ACCOUNT_NUMBER": "SRS Account Number",
+    "CORRECT_SRS_ACCOUNT_DETAILS_DESC":"Please ensure you have entered correct SRS account information",
+    "CASH_DESC":"You can fund using any bank account (registered under your name).",
+   "SHOW_MODAL": {
+        "TITLE": "Reassess the Risk profile",
+        "DESC": "You have just changed how you want to fund this {{userGivenPortfolioName}} to using {{userFundingMethod}}. Do you want to reassess your risk profile?"
+        }
+    }
 }

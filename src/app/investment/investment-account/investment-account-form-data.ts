@@ -145,9 +145,14 @@ export class InvestmentAccountFormData {
   dashboardInitMessageShow: boolean;
   dashboardInitMessageTitle: string;
   dashboardInitMessageDesc: string;
+  // fund account details
+  fundingMethod: string;
 
   // portfolio naming
   defaultPortfolioName: string;
   recommendedCustomerPortfolioId: number;
   recommendedRiskProfileId: number;
+
+  // Reasses Risk Profile
+  isReassessActive: boolean;
 }

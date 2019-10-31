@@ -110,6 +110,7 @@ import { NavbarService } from './shared/navbar/navbar.service';
 
 import { RestrictAddPortfolioModalComponent } from './investment/manage-investments/investment-overview/restrict-add-portfolio-modal/restrict-add-portfolio-modal.component';
 
+
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(

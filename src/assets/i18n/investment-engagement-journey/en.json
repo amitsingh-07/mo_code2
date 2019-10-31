@@ -14,6 +14,22 @@
     "PAGE_TITLE": "Welcome",
     "PROMO_ERROR": "Invalid promo code. Please try again."
   },
+  "FUNDING_METHOD": {
+    "TITLE": "Select Funding Method",
+    "DESC": "I want to fund this portfolio using my",
+    "HOW_TO_FUND_PORTFOLIO":"How do you want to fund this portfolio?",
+    "SRS_DESC":"Please have your SRS account number ready before you continue from here. You <u>MUST</u> also ensure sufficient fund in your SRS Account. Amount will be deducted immediately and invest within 2-3 working days.",
+    "CASH_DESC":"You can fund using any bank account (registered under your name).",
+    "HELP_MODAL": {
+      "TITLE": "Supplementary Retirement Scheme (SRS)",
+      "DESC1": "The SRS is a voluntary savings scheme by the government to encourage people to save for their retirement. You can contribute annually to your SRS account up to a cap. These contributions are eligible for tax relief.",
+      "DESC2":"How do I set up a SRS account?",
+      "DESC3":"You can open a SRS account at any of the three local banks - DBS, OCBC and UOB online via their website.Monies in your SRS account earns an interest of only 0.05% p.a. so you should certainly look into investing these savings for better returns.",
+      "DESC4":"How to invest your SRS with MoneyOwl",
+      "DESC5":"After you have set up your SRS account, simply select SRS as your source of funds when you create your investment portfolio. We will then deduct the funds from your SRS account to fund your investment.<br>Do take note that your investment returns are accumulated tax-free and only 50% of the withdrawals from SRS are taxable at retirement.",
+      "DESC6":"For assistance on updating your SRS account number with us, please email to <span class=\"txt-orange\"><a target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a></span> or call 6xxx xxxx"
+    }
+   },
   "GETSTARTED_STEP1": {
     "TITLE": "Step 1",
     "CAPTION": "Your Risk Ability",
