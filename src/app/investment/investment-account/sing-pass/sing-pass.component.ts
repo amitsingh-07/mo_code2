@@ -1,8 +1,9 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { Subscription } from 'rxjs';
 import { ConfigService, IConfig } from '../../../config/config.service';
 import {
     ModelWithButtonComponent
@@ -19,7 +20,7 @@ import { InvestmentAccountService } from '../investment-account-service';
   styleUrls: ['./sing-pass.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class SingPassComponent implements OnInit {
+export class SingPassComponent implements OnInit, OnDestroy {
   @Input('label') label;
   @Input('position') position;
   modelTitle: string;
@@ -33,6 +34,7 @@ export class SingPassComponent implements OnInit {
   investmentData: any;
   myInfoSubscription: any;
   isInvestmentMyInfoEnabled = false;
+  myinfoChangeListener: Subscription;
 
   constructor(
     private configService: ConfigService,
@@ -72,7 +74,7 @@ export class SingPassComponent implements OnInit {
     this.showConfirmation = false;
     this.investmentData = this.investmentAccountService.getInvestmentAccountFormData();
     this.showSingPass = this.investmentData.isMyInfoEnabled ? false : true;
-    this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
+    this.myInfoSubscription = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '' &&
         this.myInfoService.getMyInfoAttributes() === this.investmentAccountService.myInfoAttributes.join()) {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
@@ -84,6 +86,12 @@ export class SingPassComponent implements OnInit {
         }
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.myinfoChangeListener) {
+      this.myinfoChangeListener.unsubscribe();
+    }
   }
 
   cancelMyInfo() {
