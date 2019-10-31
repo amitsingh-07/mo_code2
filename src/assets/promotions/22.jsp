@@ -1,7 +1,7 @@
 <div class="promo-content__container">
 <p>To qualify for the premium discount, you have to sign up for the product during the promotion period and issued by the deadline.</p>
 <div class="promo__table">
-    <table class="promo__inner-table">
+    <table class="promo__inner-table manulife-table">
         <tr>
             <td class="cell--header text--center" rowspan="2" colspan="1">Main Category</td>
             <td class="cell--header text--center" rowspan="2" colspan="1">Qualifying Products</td>
