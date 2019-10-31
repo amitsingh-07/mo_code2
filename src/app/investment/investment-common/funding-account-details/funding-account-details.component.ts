@@ -149,7 +149,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   }
 
   selectFundingMethod(key, value) {
-    if (value !== this.formValues.confirmedFundingMethodId) {
+    if (value !== this.fundingAccountDetailsForm.get('confirmedFundingMethodId').value) {
       //this.investmentCommonService.setConfirmedFundingMethod({confirmedFundingMethodId: value });
       this.fundingAccountDetailsForm.controls[key].setValue(value);
       this.addAndRemoveSrsForm(value);
