@@ -128,11 +128,14 @@
             }
         } 
         &.manulife-padding{
-            padding-left: 0;
-            padding-right: 0;
+            padding: 0px !important;
+            vertical-align: baseline;
             .brdr-btm{
-                padding-bottom: 10px;
-                border-bottom: 1px solid #ffffff;
+                padding: 20px;
+                border-bottom: 1px solid #cdeae6;
+                & + div{
+                    padding: 20px;
+                }
             }
         }
     }
@@ -155,7 +158,13 @@
             margin-bottom:0px;
         }
     }
-
+    &.manulife-table{
+        td{
+            &.cell--header{
+                padding:20px 65px;
+            }
+        }
+    }
 
 }
 
