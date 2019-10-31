@@ -113,8 +113,8 @@ export class FundingAccountDetailsComponent implements OnInit {
     if (data.responseMessage.responseCode >= 6000) {
       this.investmentEngagementJourneyService.setFinancialDetails(data.objectList);
       this.srsFormData = data.objectList;
-     this.isDisable();
-     this.setSrsDetails(data.objectList);
+      this.isDisable();
+      this.setSrsAccountDetails(data.objectList);
     }
   },
       (err) => {
@@ -147,14 +147,14 @@ export class FundingAccountDetailsComponent implements OnInit {
   buildForSrsForm() {
     this.fundingAccountDetailsForm.addControl(
       'srsFundingDetails', this.formBuilder.group({
-         srsOperatorBank: [{value:this.formValues.srsOperatorBank,  disabled: this.isDisable()}, Validators.required],
-         srsAccountNumber: [{value:this.formValues.srsAccountNumber, disabled: this.isDisable()}, Validators.required],
+         srsOperatorBank: [{value: this.formValues.srsOperatorBank,  disabled: this.isDisable()}, Validators.required],
+         srsAccountNumber: [{value: this.formValues.srsAccountNumber, disabled: this.isDisable()}, Validators.required],
           })
     );
   }
 
   selectFundingMethod(key, value) {
-    if (value !== this.formValues.confirmedFundingMethodId) {
+    if (value !== this.fundingAccountDetailsForm.get('confirmedFundingMethodId').value) {
       //this.investmentCommonService.setConfirmedFundingMethod({confirmedFundingMethodId: value });
       this.fundingAccountDetailsForm.controls[key].setValue(value);
       this.addAndRemoveSrsForm(value);
@@ -184,6 +184,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     ref.componentInstance.closeBtn = false;
     ref.componentInstance.yesClickAction.subscribe((emittedValue) => { // Yes Reassess
       ref.close();
+      this.investmentAccountService.activateReassess();
       this.investmentCommonService.setInitialFundingMethod({initialFundingMethodId: value });
       this.investmentCommonService.clearConfirmedFundingMethod();
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
@@ -212,8 +213,33 @@ export class FundingAccountDetailsComponent implements OnInit {
     } else {
       const fundingMethod = this.getFundingMethodNameById(form.getRawValue().confirmedFundingMethodId, this.fundingMethods);
       this.investmentCommonService.setFundingAccountDetails(form.getRawValue(), fundingMethod);
-      this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
+      this.saveSRSAccountDetails(form);
     }
+  }
+
+  saveSRSAccountDetails(form) {
+    const params = this.constructSaveSrsAccountParams(form.value);
+    const customerPortfolioId = this.investmentAccountFormValues.recommendedCustomerPortfolioId;
+    this.investmentCommonService.saveSrsAccountDetails(params, customerPortfolioId).subscribe((data) => {
+      this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
+    });
+  }
+
+  constructSaveSrsAccountParams(data) {
+    const reqParams = {};
+    reqParams['fundTypeId'] =  data.confirmedFundingMethodId;
+    if (this.isSRSAccount(data.confirmedFundingMethodId, this.fundingMethods) && !this.srsFormData) {
+      reqParams['srsDetails'] = {
+        accountNumber: data.srsFundingDetails ? data.srsFundingDetails.srsAccountNumber.replace(/[-]/g, '') : null,
+        operatorId: data.srsFundingDetails ? data.srsFundingDetails.srsOperatorBank.id : null
+      };
+    } else {
+      reqParams['srsDetails'] = null;
+    }
+    return reqParams;
   }
 
   maskConfig() {
@@ -270,34 +296,36 @@ export class FundingAccountDetailsComponent implements OnInit {
   }
 
   addorRemoveAccNoValidator() {
-    const bankName = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value.name.toUpperCase();
-    const accNoControl = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsAccountNumber');
-    if (bankName) {
-      switch (bankName) {
-        case 'DBS':
-          accNoControl.setValidators(
-            [Validators.pattern(RegexConstants.operatorMaskForValidation.DBS)]);
-          break;
-        case 'OCBC':
-          accNoControl.setValidators(
-            [Validators.pattern(RegexConstants.operatorMaskForValidation.OCBC)]);
-          break;
-        case 'UOB':
-          accNoControl.setValidators(
-            [Validators.pattern(RegexConstants.operatorMaskForValidation.UOB)]);
-          break;
+    if (this.fundingAccountDetailsForm.get('srsFundingDetails')) {
+      const accNoControl = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsAccountNumber');
+      const selectedBank = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value;
+      if (selectedBank) {
+        switch (selectedBank.name.toUpperCase()) {
+          case 'DBS':
+            accNoControl.setValidators(
+              [Validators.pattern(RegexConstants.operatorMaskForValidation.DBS)]);
+            break;
+          case 'OCBC':
+            accNoControl.setValidators(
+              [Validators.pattern(RegexConstants.operatorMaskForValidation.OCBC)]);
+            break;
+          case 'UOB':
+            accNoControl.setValidators(
+              [Validators.pattern(RegexConstants.operatorMaskForValidation.UOB)]);
+            break;
+        }
+      } else {
+        accNoControl.clearValidators();
       }
-    } else {
-      accNoControl.clearValidators();
+      this.fundingAccountDetailsForm.updateValueAndValidity();
     }
-    this.fundingAccountDetailsForm.updateValueAndValidity();
   }
-  setSrsDetails(formData) {
+
+  setSrsAccountDetails(formData) {
     if (formData) {
-     const operatorBank = this.getOperatorIdByName(formData.srsDetails.operatorId, this.srsAgentBankList);
+     const operatorBank = this.getOperatorIdByName(formData.srsBankOperator.id, this.srsAgentBankList);
      this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsOperatorBank').setValue(operatorBank);
-     this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsAccountNumber').setValue(formData.srsDetails.accountNumber);
-      }
+     this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsAccountNumber').setValue(formData.accountNumber);
+    }
   }
-  
 }

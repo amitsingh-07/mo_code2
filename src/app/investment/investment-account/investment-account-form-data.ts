@@ -152,4 +152,7 @@ export class InvestmentAccountFormData {
   defaultPortfolioName: string;
   recommendedCustomerPortfolioId: number;
   recommendedRiskProfileId: number;
+
+  // Reasses Risk Profile
+  isReassessActive: boolean;
 }
