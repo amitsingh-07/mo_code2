@@ -62,7 +62,7 @@
                             id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
                             {{fundingAccountDetailsForm.controls.srsFundingDetails.controls.srsOperatorBank.value ?
                               fundingAccountDetailsForm.controls.srsFundingDetails.controls.srsOperatorBank.value.name :
-                              'Select'}}
+                              'Select SRS Operator'}}
                           </button>
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                             <button class="dropdown-item" *ngFor="let srsOperator of srsAgentBankList; let i = index;"
@@ -80,7 +80,7 @@
                     </div>
                     <div class="flex-col-8"
                       [ngClass]="{'inline-error':getInlineErrorStatus(fundingAccountDetailsForm.controls.srsFundingDetails.controls.srsAccountNumber)}">
-                      <input type="text" [textMask]="maskConfig()" placeholder="Enter Account Number"
+                      <input type="text" [textMask]="maskConfig()" placeholder="Enter Account No."
                         [attr.disabled]="isDisable() == true ? true : null" class="form-control"
                         formControlName="srsAccountNumber">
                     </div>

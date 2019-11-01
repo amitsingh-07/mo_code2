@@ -297,7 +297,9 @@ export class InvestmentAccountService {
   getAllDropDownList() {
     return this.investmentApiService.getAllDropdownList();
   }
-
+  getFundMethodList() {
+    return this.investmentApiService.getFundMethodList();
+  }
   getInvestmentsSummary() {
     return this.investmentApiService.getInvestmentsSummary();
   }
@@ -673,7 +675,7 @@ export class InvestmentAccountService {
     }
 
     // Occupation
-    if (data.occupation && data.occupation.occupationDetails) {
+    if (data.occupation && data.occupation.occupationDetails && data.occupation.occupationDetails.occupation) {
       this.investmentAccountFormData.occupation = data.occupation.occupationDetails;
       this.disableAttributes.push('occupation');
       if (data.occupation.occupationDetails.occupation &&

@@ -20,6 +20,8 @@
     "HOW_TO_FUND_PORTFOLIO": "How do you want to fund this portfolio?",
     "SRS_DESC": "Please have your SRS account number ready before you continue from here. You <u>MUST</u> also ensure sufficient fund in your SRS Account. Amount will be deducted immediately and invest within 2-3 working days.",
     "CASH_DESC": "You can fund using any bank account (registered under your name).",
+    "LOADER_TITLE": "Loading...",
+    "LOADER_DESC": "Please wait while we load the data.",
     "HELP_MODAL": {
       "TITLE": "Supplementary Retirement Scheme (SRS)",
       "DESC1": "The SRS is a voluntary savings scheme by the government to encourage people to save for their retirement. You can contribute annually to your SRS account up to a cap. These contributions are eligible for tax relief.",
