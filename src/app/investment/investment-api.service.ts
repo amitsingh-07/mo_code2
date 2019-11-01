@@ -346,4 +346,17 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  getSrsAccountDetails() {
+    return this.http.get(investmentApiConstants.endpoint.investmentAccount.gerSrsDetails)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  saveSrsAccountDetails(data, customerPortfolioId) {
+    return this.http.post(
+      investmentApiConstants.endpoint.investmentAccount.saveSrsAccountDetails.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId), data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

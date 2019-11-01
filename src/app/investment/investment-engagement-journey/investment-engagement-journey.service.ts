@@ -49,6 +49,7 @@ export class InvestmentEngagementJourneyService {
       investmentPeriod: this.investmentEngagementJourneyFormData.investmentPeriod
     };
   }
+ 
 
   // Risk Profile
   getRiskProfile() {
@@ -381,6 +382,9 @@ export class InvestmentEngagementJourneyService {
   // #SET THE FINANCIAL PAGE.
   getUserFinancialDetails() {
     return this.investmentApiService.getUserFinancialDetails();
+  }
+  getFundingDetailsDetails() {
+    return this.investmentApiService.getAllDropdownList();
   }
   setFinancialDetails(financialDetails) {
     if (financialDetails) {

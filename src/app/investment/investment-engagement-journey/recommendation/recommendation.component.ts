@@ -18,6 +18,7 @@ import { AuthenticationService } from './../../../shared/http/auth/authenticatio
 import { InvestmentCommonService } from './../../investment-common/investment-common.service';
 import { ProfileIcons } from './profileIcons';
 import { RiskProfile } from './riskprofile';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 
 @Component({
   selector: 'app-recommendation',
@@ -56,7 +57,8 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
     public footerService: FooterService,
     private modal: NgbModal,
     private cd: ChangeDetectorRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private investmentAccountService: InvestmentAccountService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -108,9 +110,12 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
       this.investmentCommonService.getAccountCreationActions().subscribe((data) => {
         if (this.investmentCommonService.isUserNotAllowed(data)) {
           this.investmentCommonService.goToDashboard();
-        } else if (this.investmentCommonService.isUsersFirstPortfolio(data)) {
+        } else if (this.investmentCommonService.isUsersFirstPortfolio(data) && !this.investmentAccountService.isReassessActive()) {
           this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
         } else {
+          if (this.investmentAccountService.isReassessActive()) {
+            this.investmentAccountService.deactivateReassess();
+          }
           this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
         }
       });
