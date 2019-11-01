@@ -16,7 +16,7 @@
   },
   "FUNDING_METHOD": {
     "TITLE": "Select Funding Method",
-    "DESC": "I want to fund this portfolio using",
+    "DESC": "I want to fund this portfolio using my",
     "HOW_TO_FUND_PORTFOLIO": "How do you want to fund this portfolio?",
     "SRS_DESC": "Please have your SRS account number ready before you continue from here. You <u>MUST</u> also ensure sufficient fund in your SRS Account. Amount will be deducted immediately and invest within 2-3 working days.",
     "CASH_DESC": "You can fund using any bank account (registered under your name).",
@@ -53,7 +53,7 @@
     "TIME_HORIZON_DESC_TITLE_ASSET": "Potential Asset Allocation ",
     "LIST_LBL_1": "Less than 4",
     "LIST_LBL_2": "4 to 5",
-    "LIST_LBL_3": "Up to 8",
+    "LIST_LBL_3": "Up to 7",
     "LIST_LBL_4": "Up to 11",
     "LIST_LBL_5": "Up to 14",
     "LIST_LBL_6": "15 or more",
