@@ -121,7 +121,7 @@
             <div [hidden]="!showLumpSumBenefit">
               <div class="form-group-with-bg">
                 <!--Form Header-->
-                <div class="form-group-with-bg--header rsp-border-top">
+                <div class="form-group-with-bg--header rsp-border-top pr0">
                   <div class="flex space-btwn">
                     <div class="form-group-with-bg--header-label">
                       {{'CMP.RETIREMENT_PLAN.LUMP_SUM_BENEFIT'|translate}}
@@ -173,7 +173,7 @@
             </div>
           </div>
           <div *ngIf="!this.viewMode && retirementPlanForm['controls'].retirementIncomeSet['controls'].length < 5"
-            class="flex space-btwn mt20 addRetirement">
+            class="flex space-btwn mt20 addRetirement retirement-border-top">
             <div class="with-help-icon" for="name"><u (click)="addRetirementIncome()">{{
                 'CMP.RETIREMENT_PLAN.ADD_RETIREMENT' | translate}}</u>
             </div>

@@ -66,7 +66,7 @@
           <p class="how-it-works__box__caption--review"></p>
         </div>
       </div>
-      <div [hidden]="promoCodeValidated" class="desc-box">
+      <!-- <div [hidden]="promoCodeValidated" class="desc-box">
         <div class="desc-box__heading"> {{ 'CMP.COMPREHENSIVE.DESCRIPTION' | translate}}</div>
         <div class="desc-box__free-text">
           <div>{{ 'CMP.COMPREHENSIVE.COMPREHENSIVE_PLAN' | translate}}</div>
@@ -75,8 +75,17 @@
         </div>
         <div class="desc-box__limited-time">{{'CMP.COMPREHENSIVE.FREE' | translate}}
           {{ 'CMP.COMPREHENSIVE.FREE_LIMITED' | translate}} </div>
+      </div> -->
+
+      <div class="cfp">
+        <div class="cfp__heading">{{'CMP.COMPREHENSIVE.CFP' | translate}}</div>
+        <div class="free-tag"><span class="strikethrough-new">{{'CMP.COMPREHENSIVE.ONE_TIME_FEE' | translate}}</span>
+        </div>
+        <div class="cfp__desc" [innerHtml]="'CMP.COMPREHENSIVE.CFP_DESC' | translate"></div>
       </div>
+
       <div class="text-center promo-code-box">
+        <div class="promo-code-heading"><span class="promo-code-heading__text">Enter Promo Code</span></div>
         <form [hidden]="promoCodeValidated" [formGroup]="promoCodeForm" id="promoCodeForm" name="promoCodeForm"
           class="promoCodeForm">
           <div class="promo-code-box__promo-input">
@@ -95,9 +104,9 @@
       <div *ngIf="!promoCodeValidated" class="onetime-free-box">
         <div class="onetime-free-box__inner">
           <div>
-            <div><span class="strikethrough">$500</span>{{'CMP.COMPREHENSIVE.ONE_TIME_FEE' | translate}} </div>
-            <div class="onetime-free-box__inner__limited"><span
-                class="text-bold">{{'CMP.COMPREHENSIVE.FREE' | translate}}</span>
+            <div class="free-tag"><span
+                class="strikethrough-new">{{'CMP.COMPREHENSIVE.ONE_TIME_FEE' | translate}}</span> </div>
+            <div class="onetime-free-box__inner__limited"><span>{{'CMP.COMPREHENSIVE.FREE' | translate}}</span>
               {{'CMP.COMPREHENSIVE.FREE_LIMITED' | translate}}</div>
           </div>
           <div>
