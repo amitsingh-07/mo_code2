@@ -194,7 +194,7 @@
     "CONTINUE": "Continue",
     "STEP_2": "Step 2",
     "SHOW_MODAL": {
-      "TITLE": "Reassess the Risk profile",
+      "TITLE": "Reassess Risk Profile?",
       "DESC": "You have just changed how you want to fund this {{userGivenPortfolioName}} to using {{userFundingMethod}}. Do you want to reassess your risk profile?"
     }
   }
