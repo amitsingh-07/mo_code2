@@ -103,10 +103,10 @@ export class FundingAccountDetailsComponent implements OnInit {
     }
     this.addorRemoveAccNoValidator();
   }
+
   getSrsAccountDetails() {
     this.investmentAccountService.getSrsAccountDetails().subscribe((data) => {
       if (data.responseMessage.responseCode >= 6000) {
-        this.investmentEngagementJourneyService.setFinancialDetails(data.objectList);
         this.srsFormData = data.objectList;
         this.isDisable();
         this.setSrsAccountDetails(data.objectList);
@@ -298,15 +298,15 @@ export class FundingAccountDetailsComponent implements OnInit {
         switch (selectedBank.name.toUpperCase()) {
           case 'DBS':
             accNoControl.setValidators(
-              [Validators.pattern(RegexConstants.operatorMaskForValidation.DBS)]);
+              [Validators.pattern(RegexConstants.operatorMaskForValidation.DBS), Validators.required]);
             break;
           case 'OCBC':
             accNoControl.setValidators(
-              [Validators.pattern(RegexConstants.operatorMaskForValidation.OCBC)]);
+              [Validators.pattern(RegexConstants.operatorMaskForValidation.OCBC), Validators.required]);
             break;
           case 'UOB':
             accNoControl.setValidators(
-              [Validators.pattern(RegexConstants.operatorMaskForValidation.UOB)]);
+              [Validators.pattern(RegexConstants.operatorMaskForValidation.UOB), Validators.required]);
             break;
         }
       } else {
