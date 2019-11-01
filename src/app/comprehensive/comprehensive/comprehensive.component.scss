@@ -167,7 +167,7 @@ app-comprehensive {
   .promo-code-box {
     text-align: center;
     padding: 0 30px;
-    padding-bottom: 150px;
+    padding-bottom: 130px;
     input {
       text-align: center;
     }
@@ -181,7 +181,7 @@ app-comprehensive {
     &__no-promo {
       color: $dark-teal-color;
       font-size: 14px;
-      margin: 20px 0 40px 0;
+      margin: 10px 0 30px 0;
     }
     &__get-now {
       color: $dark-teal-color;
@@ -207,16 +207,78 @@ app-comprehensive {
     &__inner {
       @extend .flex;
       justify-content: space-between;
+      align-items: center;
       color: $black-color;
       font-family: $muli-bold;
       &__limited {
         color: $limited;
-        font-size: 16px;
-        font-family: $muli-regular;
+        font-size: 11px;
+        font-family: $muli-semi-bold;
       }
       .btn {
         font-size: 14px;
       }
     }
+    .free-tag {
+      margin: 0 0 5px 0;
+      background-position: 0 0;
+      font-size: 14px;
+      font-family: $muli-bold;
+      @include iphoneX; @include iphone6 {
+        font-size: 13px;
+      }
+    }
   }
+  //Product page Comprehensive Financial Planning Section Changes
+  .cfp {
+      color: $black-color;
+      padding: 24px 20px 30px 20px;
+      font-size: 16px;
+    &__heading {
+      font-family: $muli-bold;
+    }
+    &__desc {
+      color: $limited-text;
+      font-size: 14px;
+    }
+  }
+  .promo-code-heading {
+    font-family: $muli-bold;
+    color: $app-backgrnd-color;
+    padding: 0 15px;
+    position: relative;
+    border-top: 2px solid $app-backgrnd-color;
+    margin-bottom: 20px;
+    .promo-code-heading__text {
+      position: absolute;
+      left: 50%;
+      background: $white-color;
+      width: 200px;
+      height: 20px;
+      top: -15PX;
+      transform: translate(-50%, 0);
+    }
+  }
+  .strikethrough-new {
+    position: relative;
+    margin-right: 10px;
+    &::before {
+      position: absolute;
+      content: "";
+      left: 0;
+      top: 60%;
+      right: 0;
+      border-top: 1px solid;
+      border-color: inherit;
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+  }
+}
+.free-tag {
+  margin: 10px 0 16px 0;
+  background: url("../../../assets/images/comprehensive/free-tag.svg") no-repeat;
+  padding-left: 60px;
+  font-family: $muli-semi-bold;
+  background-position: 0 2px;
+}
 }

@@ -68,6 +68,9 @@
    
     .addRetirement{
         color:#066360;
+        &.retirement-border-top {
+            padding-top: 15px;
+        }
     }
     #payoutStartAge{
         padding-right: 52px;
@@ -95,5 +98,8 @@
     }
     .rsp-border-top {
         border-top: solid 1px #cee5e4;
+    }
+    .form-control-right input {
+        text-align: left;
     }
 }
