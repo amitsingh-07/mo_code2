@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { SignUpApiService } from './../sign-up.api.service';
+import { FooterService } from 'src/app/shared/footer/footer.service';
 
 @Component({
   selector: 'app-email-verification',
@@ -23,6 +24,7 @@ export class EmailVerificationComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService,
+    private footerService: FooterService,
     private authService: AuthenticationService, private configService: ConfigService
   ) {
     this.translate.use('en');
@@ -46,6 +48,7 @@ export class EmailVerificationComponent implements OnInit {
       } else {
         this.verifyEmail(queryParams.confirmation_token);
       }
+      this.footerService.setFooterVisibility(false);
     });
   }
 
