@@ -126,8 +126,13 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-
-  getInvestmentsSummary() {
+  getFundMethodList() {
+    return this.http.get(investmentApiConstants.endpoint.investmentAccount.fundingMethodList)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+ getInvestmentsSummary() {
     return this.http.get(investmentApiConstants.endpoint.investmentAccount.investmentsSummary)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
