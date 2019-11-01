@@ -80,7 +80,7 @@
                     </div>
                     <div class="flex-col-8"
                       [ngClass]="{'inline-error':getInlineErrorStatus(fundingAccountDetailsForm.controls.srsFundingDetails.controls.srsAccountNumber)}">
-                      <input type="text" [textMask]="maskConfig()" placeholder="Enter Account Number"
+                      <input type="text" [textMask]="maskConfig()" placeholder="Enter Account No."
                         [attr.disabled]="isDisable() == true ? true : null" class="form-control"
                         formControlName="srsAccountNumber">
                     </div>
