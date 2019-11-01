@@ -64,6 +64,14 @@ export class InvestmentCommonService {
     }
   }
 
+  clearFundingDetails() {
+    this.investmentCommonFormData.initialFundingMethodId = null;
+    this.investmentCommonFormData.confirmedFundingMethodId = null;
+    this.investmentCommonFormData.fundingType = null;
+    this.investmentCommonFormData.srsOperatorBank = null;
+    this.investmentCommonFormData.srsAccountNumber = null;
+  }
+
   clearInvestmentCommonFormData() {
     this.investmentCommonFormData = new InvestmentCommonFormData();
     this.commit();
