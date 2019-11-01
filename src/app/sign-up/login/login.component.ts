@@ -58,6 +58,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   hideForgotPassword = false;
   duplicateError: any;
   progressModal = false;
+  investmentEnquiryId;
 
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
 
@@ -110,6 +111,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
+    this.investmentEnquiryId = this.authService.getEnquiryId();
     this.buildLoginForm();
     if (!this.authService.isAuthenticated()) {
       this.loaderService.showLoader({ title: 'Loading' });
@@ -430,7 +432,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
         if (journeyType === appConstants.JOURNEY_TYPE_INVESTMENT) {
-          this.investmentCommonService.redirectToInvestmentFromLogin();
+          this.investmentCommonService.redirectToInvestmentFromLogin(this.investmentEnquiryId);
         } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING) {
           this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
         } else {

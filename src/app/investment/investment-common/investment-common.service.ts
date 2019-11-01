@@ -79,12 +79,12 @@ export class InvestmentCommonService {
     this.commit();
   }
 
-  getAccountCreationActions(): Observable<IAccountCreationActions> {
+  getAccountCreationActions(enquiryId?): Observable<IAccountCreationActions> {
     const accStatusInfoFromSession = this.getInvestmentCommonFormData().accountCreationActions;
     if (accStatusInfoFromSession) {
       return Observable.of(accStatusInfoFromSession);
     } else {
-      return this.getFirstInvAccountCreationStatus().map((data: any) => {
+      return this.getFirstInvAccountCreationStatus(enquiryId).map((data: any) => {
         if (data && data.objectList) {
           this.setAccountCreationActionsToSession(data.objectList);
           return {
@@ -103,14 +103,14 @@ export class InvestmentCommonService {
     }
   }
 
-  getFirstInvAccountCreationStatus() {
-    return this.investmentApiService.getFirstInvAccountCreationStatus();
+  getFirstInvAccountCreationStatus(enquiryId?) {
+    return this.investmentApiService.getFirstInvAccountCreationStatus(enquiryId);
   }
 
   /* Login Redirection Logic */
-  redirectToInvestmentFromLogin() {
-    this.getAccountCreationActions().subscribe((data: IAccountCreationActions) => {
-      if (this.isUserNotAllowed(data)) {
+  redirectToInvestmentFromLogin(enquiryId) {
+    this.getAccountCreationActions(enquiryId).subscribe((data: IAccountCreationActions) => {
+      if (enquiryId && !data.enquiryMappedToCustomer) { /* enquiryId will not be available only in sign up flow */
         this.goToDashboard();
       } else if (this.isUsersFirstPortfolio(data)) {// FIRST PORTFOLIO
         this.goToFirstAccountCreation(data);
@@ -121,12 +121,7 @@ export class InvestmentCommonService {
   }
 
   goToFirstAccountCreation(data) {
-    if (data.allowEngagementJourney) { // ACCOUNT CREATION NOT PENDING ?
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
-    } else {
-      this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_TITLE',
-        'INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_ERROR');
-    }
   }
 
   goToAdditionalAccountCreation(data) {
