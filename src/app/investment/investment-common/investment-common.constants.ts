@@ -17,11 +17,13 @@ export let INVESTMENT_COMMON_CONSTANTS = {
         'ACCOUNT_SUSPENDED',
         'EDD_CHECK_CLEARED'
     ],
-    FUNDING_DETAILS: {
+    FUNDING_METHODS: {
         CASH: 'CASH',
-        SRS: 'SRS',
+        SRS: 'SRS'
+     },
+    SRS_OPERATOR: {
         DBS: 'DBS',
         OCBC: 'OCBC',
         UOB: 'UOB'
-    },
+    }
 };

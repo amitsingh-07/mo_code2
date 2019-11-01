@@ -122,7 +122,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   }
   isCashAccount(fundingMethodId, fundingMethods) {
     const fundingMethodName = this.getFundingMethodNameById(fundingMethodId, fundingMethods);
-    if (fundingMethodName.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.FUNDING_DETAILS.CASH) {
+    if (fundingMethodName.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CASH) {
       return true;
     } else {
       return false;
@@ -132,7 +132,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   // tslint:disable-next-line:no-identical-functions
   isSRSAccount(fundingMethodId, fundingMethods) {
     const fundingMethodName = this.getFundingMethodNameById(fundingMethodId, fundingMethods);
-    if (fundingMethodName.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.FUNDING_DETAILS.SRS) {
+    if (fundingMethodName.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.SRS) {
       return true;
     } else {
       return false;
@@ -245,13 +245,13 @@ export class FundingAccountDetailsComponent implements OnInit {
     if (this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value) {
       const operator = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value.name;
       switch (operator.toUpperCase()) {
-        case INVESTMENT_COMMON_CONSTANTS.FUNDING_DETAILS.DBS:
+        case INVESTMENT_COMMON_CONSTANTS.SRS_OPERATOR.DBS:
           config.mask = RegexConstants.operatorMask.DBS;
           break;
-        case INVESTMENT_COMMON_CONSTANTS.FUNDING_DETAILS.OCBC:
+        case INVESTMENT_COMMON_CONSTANTS.SRS_OPERATOR.OCBC:
           config.mask = RegexConstants.operatorMask.OCBC;
           break;
-        case INVESTMENT_COMMON_CONSTANTS.FUNDING_DETAILS.UOB:
+        case INVESTMENT_COMMON_CONSTANTS.SRS_OPERATOR.UOB:
           config.mask = RegexConstants.operatorMask.UOB;
           break;
       }
@@ -273,13 +273,13 @@ export class FundingAccountDetailsComponent implements OnInit {
   getAccNoMaxLength(value) {
     let accNoMaxLength;
     switch (this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value.name) {
-      case INVESTMENT_COMMON_CONSTANTS.FUNDING_DETAILS.DBS:
+      case INVESTMENT_COMMON_CONSTANTS.SRS_OPERATOR.DBS:
         accNoMaxLength = 14;
         break;
-      case INVESTMENT_COMMON_CONSTANTS.FUNDING_DETAILS.OCBC:
+      case INVESTMENT_COMMON_CONSTANTS.SRS_OPERATOR.OCBC:
         accNoMaxLength = 12;
         break;
-      case INVESTMENT_COMMON_CONSTANTS.FUNDING_DETAILS.UOB:
+      case INVESTMENT_COMMON_CONSTANTS.SRS_OPERATOR.UOB:
         accNoMaxLength = 9;
         break;
     }
