@@ -127,6 +127,17 @@
                 padding:18px 10px;
             }
         } 
+        &.manulife-padding{
+            padding: 0px !important;
+            vertical-align: baseline;
+            .brdr-btm{
+                padding: 20px;
+                border-bottom: 1px solid #cdeae6;
+                & + div{
+                    padding: 20px;
+                }
+            }
+        }
     }
     .text--bold{
         font-family: $muli-bold;
@@ -147,7 +158,13 @@
             margin-bottom:0px;
         }
     }
-
+    &.manulife-table{
+        td{
+            &.cell--header{
+                padding:20px 65px;
+            }
+        }
+    }
 
 }
 
@@ -306,7 +323,16 @@
             }
         }
     }
-    .disclaimer{
+}
+
+.bundle-icon{
+    position: relative;
+    top: -5px;
+    font-size: 12px;
+    line-height: 25px;
+}
+
+.disclaimer{
         font-size: 14px;
         line-height: 1.29;
         letter-spacing: -0.1px;
@@ -314,6 +340,7 @@
         display: flex;
         padding-top: 20px;
         font-family: $muli-regular;
+        text-align: left;
         span{
             &:first-child{                
                 letter-spacing: -0.1px;
@@ -322,9 +349,6 @@
             }
         }
     }
-}
-
-
 .promo-content__container.retire-bundle{
     @include minMobilemaxPhablet{
         padding:0px;

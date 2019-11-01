@@ -32,8 +32,7 @@ export class FundingMethodComponent implements OnInit {
   formValues;
   fundingMethodNameCash;
   fundingMethodNameSrs;
-  showSrsContent = false;
-  showCashContent = false;
+
 
   constructor(
     public readonly translate: TranslateService,
@@ -52,7 +51,7 @@ export class FundingMethodComponent implements OnInit {
     this.translate.use('en');
     const self = this;
     this.translate.get('COMMON').subscribe((result: string) => {
-      self.pageTitle = this.translate.instant('Select Funding Method');
+      self.pageTitle = this.translate.instant('FUNDING_METHOD.TITLE');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -78,44 +77,35 @@ export class FundingMethodComponent implements OnInit {
         this.investmentAccountService.showGenericErrorModal();
       });
   }
-  getFundingMethodNameById(fundingMethodId, fundingOptions) {
-    const fundingMethod = fundingOptions.filter(
-      (prop) => prop.id === fundingMethodId
-    );
-    return fundingMethod[0].name;
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
   }
-
-  selectFundingMethod(value) {
-    if (value.name === 'SRS' || (this.formValues && this.formValues.initialFundingMethodId) === 'SRS') {
-      this.showSrsContent = true;
-      this.showCashContent = false;
-    } else {
-      this.showSrsContent = false;
-      this.showCashContent = true;
+  getFundingMethodNameById(fundingMethodId, fundingOptions) {
+    if (fundingMethodId && fundingOptions) {
+      const fundingMethod = fundingOptions.filter(
+        (prop) => prop.id === fundingMethodId
+      );
+      return fundingMethod[0].name;
     }
   }
-  getOperatorIdByName(operatorId, OperatorOptions) {
+
+getOperatorIdByName(operatorId, OperatorOptions) {
     const OperatorBank = OperatorOptions.filter(
       (prop) => prop.id === operatorId
     );
     return OperatorBank[0];
   }
 
-  goToNext(form) {
-    this.investmentCommonService.setInitialFundingMethod(form.value);
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
-  }
-
-  setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
-  }
-
-  showHelpModal() {
+ showHelpModal() {
     const ref = this.modal.open(SrsTooltipComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('FUNDING_METHOD.HELP_MODAL.TITLE'
     );
     ref.componentInstance.errorMessage = this.translate.instant(
       'FUNDING_METHOD.HELP_MODAL.DESC1'
     );
+  }
+  goToNext(form) {
+    this.investmentCommonService.setInitialFundingMethod(form.value);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
 }

@@ -3,11 +3,9 @@ import {
 } from 'src/app/shared/modal/model-with-button/model-with-button.component';
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {
-    AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -20,11 +18,9 @@ import {
 import {
     InvestmentEngagementJourneyService
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
-import {
-    INVESTMENT_COMMON_ROUTE_PATHS, INVESTMENT_COMMON_ROUTES
-} from '../investment-common-routes.constants';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
+import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
 import { InvestmentCommonService } from '../investment-common.service';
-
 
 @Component({
   selector: 'app-funding-account-details',
@@ -73,10 +69,10 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.formValues = this.investmentCommonService.getInvestmentCommonFormData();
-    
+
     this.investmentAccountFormValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.getOptionListCollection();
-   }
+  }
 
   getOptionListCollection() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
@@ -99,35 +95,34 @@ export class FundingAccountDetailsComponent implements OnInit {
 
   addAndRemoveSrsForm(fundingMethodId) {
     if (this.isSRSAccount(fundingMethodId, this.fundingMethods)) {
-     this.getSrsAccountDetails();
-     this.buildForSrsForm();
+      this.getSrsAccountDetails();
+      this.buildForSrsForm();
     } else if (this.isCashAccount(fundingMethodId, this.fundingMethods)) {
       const srsFormGroup = this.fundingAccountDetailsForm.get('srsFundingDetails') as FormGroup;
       this.fundingAccountDetailsForm.removeControl('srsFundingDetails');
-     
     }
     this.addorRemoveAccNoValidator();
   }
   getSrsAccountDetails() {
-   this.investmentAccountService.getSrsAccountDetails().subscribe((data) => {
-    if (data.responseMessage.responseCode >= 6000) {
-      this.investmentEngagementJourneyService.setFinancialDetails(data.objectList);
-      this.srsFormData = data.objectList;
-      this.isDisable();
-      this.setSrsAccountDetails(data.objectList);
-    }
-  },
+    this.investmentAccountService.getSrsAccountDetails().subscribe((data) => {
+      if (data.responseMessage.responseCode >= 6000) {
+        this.investmentEngagementJourneyService.setFinancialDetails(data.objectList);
+        this.srsFormData = data.objectList;
+        this.isDisable();
+        this.setSrsAccountDetails(data.objectList);
+      }
+    },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
-    }
+  }
   isDisable() {
-         const srsFormDataValue = this.srsFormData ? true : false;
-         return srsFormDataValue;
-      }
+    const srsFormDataValue = this.srsFormData ? true : false;
+    return srsFormDataValue;
+  }
   isCashAccount(fundingMethodId, fundingMethods) {
     const fundingMethodName = this.getFundingMethodNameById(fundingMethodId, fundingMethods);
-    if (fundingMethodName.toUpperCase() === 'CASH') {
+    if (fundingMethodName.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CASH) {
       return true;
     } else {
       return false;
@@ -137,7 +132,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   // tslint:disable-next-line:no-identical-functions
   isSRSAccount(fundingMethodId, fundingMethods) {
     const fundingMethodName = this.getFundingMethodNameById(fundingMethodId, fundingMethods);
-    if (fundingMethodName.toUpperCase() === 'SRS') {
+    if (fundingMethodName.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.SRS) {
       return true;
     } else {
       return false;
@@ -147,15 +142,15 @@ export class FundingAccountDetailsComponent implements OnInit {
   buildForSrsForm() {
     this.fundingAccountDetailsForm.addControl(
       'srsFundingDetails', this.formBuilder.group({
-         srsOperatorBank: [{value: this.formValues.srsOperatorBank,  disabled: this.isDisable()}, Validators.required],
-         srsAccountNumber: [{value: this.formValues.srsAccountNumber, disabled: this.isDisable()}, Validators.required],
-          })
+        srsOperatorBank: [{ value: this.formValues.srsOperatorBank, disabled: this.isDisable() }, Validators.required],
+        srsAccountNumber: [{ value: this.formValues.srsAccountNumber, disabled: this.isDisable() }, Validators.required],
+      })
     );
   }
 
   selectFundingMethod(key, value) {
     if (value !== this.fundingAccountDetailsForm.get('confirmedFundingMethodId').value) {
-      //this.investmentCommonService.setConfirmedFundingMethod({confirmedFundingMethodId: value });
+      // #this.investmentCommonService.setConfirmedFundingMethod({confirmedFundingMethodId: value });
       this.fundingAccountDetailsForm.controls[key].setValue(value);
       this.addAndRemoveSrsForm(value);
       if ((value !== this.formValues.initialFundingMethodId)) {
@@ -185,7 +180,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     ref.componentInstance.yesClickAction.subscribe((emittedValue) => { // Yes Reassess
       ref.close();
       this.investmentAccountService.activateReassess();
-      this.investmentCommonService.setInitialFundingMethod({initialFundingMethodId: value });
+      this.investmentCommonService.setInitialFundingMethod({ initialFundingMethodId: value });
       this.investmentCommonService.clearConfirmedFundingMethod();
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
     });
@@ -223,14 +218,14 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.investmentCommonService.saveSrsAccountDetails(params, customerPortfolioId).subscribe((data) => {
       this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   constructSaveSrsAccountParams(data) {
     const reqParams = {};
-    reqParams['fundTypeId'] =  data.confirmedFundingMethodId;
+    reqParams['fundTypeId'] = data.confirmedFundingMethodId;
     if (this.isSRSAccount(data.confirmedFundingMethodId, this.fundingMethods) && !this.srsFormData) {
       reqParams['srsDetails'] = {
         accountNumber: data.srsFundingDetails ? data.srsFundingDetails.srsAccountNumber.replace(/[-]/g, '') : null,
@@ -250,13 +245,13 @@ export class FundingAccountDetailsComponent implements OnInit {
     if (this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value) {
       const operator = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value.name;
       switch (operator.toUpperCase()) {
-        case 'DBS':
+        case INVESTMENT_COMMON_CONSTANTS.SRS_OPERATOR.DBS:
           config.mask = RegexConstants.operatorMask.DBS;
           break;
-        case 'OCBC':
+        case INVESTMENT_COMMON_CONSTANTS.SRS_OPERATOR.OCBC:
           config.mask = RegexConstants.operatorMask.OCBC;
           break;
-        case 'UOB':
+        case INVESTMENT_COMMON_CONSTANTS.SRS_OPERATOR.UOB:
           config.mask = RegexConstants.operatorMask.UOB;
           break;
       }
@@ -278,13 +273,13 @@ export class FundingAccountDetailsComponent implements OnInit {
   getAccNoMaxLength(value) {
     let accNoMaxLength;
     switch (this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value.name) {
-      case 'DBS':
+      case INVESTMENT_COMMON_CONSTANTS.SRS_OPERATOR.DBS:
         accNoMaxLength = 14;
         break;
-      case 'OCBC':
+      case INVESTMENT_COMMON_CONSTANTS.SRS_OPERATOR.OCBC:
         accNoMaxLength = 12;
         break;
-      case 'UOB':
+      case INVESTMENT_COMMON_CONSTANTS.SRS_OPERATOR.UOB:
         accNoMaxLength = 9;
         break;
     }
@@ -323,9 +318,9 @@ export class FundingAccountDetailsComponent implements OnInit {
 
   setSrsAccountDetails(formData) {
     if (formData) {
-     const operatorBank = this.getOperatorIdByName(formData.srsBankOperator.id, this.srsAgentBankList);
-     this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsOperatorBank').setValue(operatorBank);
-     this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsAccountNumber').setValue(formData.accountNumber);
+      const operatorBank = this.getOperatorIdByName(formData.srsBankOperator.id, this.srsAgentBankList);
+      this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsOperatorBank').setValue(operatorBank);
+      this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsAccountNumber').setValue(formData.accountNumber);
     }
   }
 }
