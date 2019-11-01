@@ -95,14 +95,9 @@ export class FundingMethodComponent implements OnInit {
         (prop) => prop.id === fundingMethodId
       );
       return fundingMethod[0].name;
+    } else {
+      return '';
     }
-  }
-
-  getOperatorIdByName(operatorId, OperatorOptions) {
-    const OperatorBank = OperatorOptions.filter(
-      (prop) => prop.id === operatorId
-    );
-    return OperatorBank[0];
   }
 
   showHelpModal() {

@@ -69,7 +69,6 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.formValues = this.investmentCommonService.getInvestmentCommonFormData();
-
     this.investmentAccountFormValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.getOptionListCollection();
   }
@@ -327,8 +326,10 @@ export class FundingAccountDetailsComponent implements OnInit {
   setSrsAccountDetails(formData) {
     if (formData) {
       const operatorBank = this.getOperatorIdByName(formData.srsBankOperator.id, this.srsAgentBankList);
-      this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsOperatorBank').setValue(operatorBank);
-      this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsAccountNumber').setValue(formData.accountNumber);
+      if (operatorBank) {
+        this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsOperatorBank').setValue(operatorBank);
+        this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsAccountNumber').setValue(formData.accountNumber);
+      }
     }
   }
 }
