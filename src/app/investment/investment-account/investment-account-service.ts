@@ -297,7 +297,9 @@ export class InvestmentAccountService {
   getAllDropDownList() {
     return this.investmentApiService.getAllDropdownList();
   }
-
+  getFundMethodList() {
+    return this.investmentApiService.getFundMethodList();
+  }
   getInvestmentsSummary() {
     return this.investmentApiService.getInvestmentsSummary();
   }

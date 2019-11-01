@@ -190,17 +190,23 @@ export class FundingAccountDetailsComponent implements OnInit {
   }
 
   getFundingMethodNameById(fundingMethodId, fundingOptions) {
+    if (fundingMethodId && fundingOptions ) {
     const fundingMethod = fundingOptions.filter(
       (prop) => prop.id === fundingMethodId
     );
     return fundingMethod[0].name;
   }
+    return false;
+ }
   getOperatorIdByName(operatorId, OperatorOptions) {
+    if (operatorId && OperatorOptions) {
     const OperatorBank = OperatorOptions.filter(
       (prop) => prop.id === operatorId
     );
     return OperatorBank[0];
   }
+    return false;
+}
 
   goToNext(form) {
     if (!form.valid) {
