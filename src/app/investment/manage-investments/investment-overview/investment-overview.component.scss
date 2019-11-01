@@ -1,543 +1,499 @@
 @import '../../../../_variables.scss';
 @import '../../../../_mixins.scss';
-
 app-investment-overview {
-  .invest-bg-content{
-    .container-fluid{
-      padding-bottom: 20px !important;
-    }
-  }
-  .user_summary {
-    font-family: $muli-regular;
-    font-size: 18px;
-    line-height: 1.28;
-    letter-spacing: -0.2px;
-    padding: 0 15px 30px 0;
-    position: relative;
-    max-width: 300px;
-
-    @include allmobiles {
-      padding: 0 15px 30px 15px;
-    }
-  }
-
-  .cursor_pointer {
-    cursor: pointer;
-  }
-
-  .your_portfolio_label {
-    font-size: 21px;
-    font-family: $muli-bold;
-    letter-spacing: -0.21px;
-    color: $white-color;
-  }
-
-  .add_portfolio_label {
-    font-size: 16px;
-    font-family: $muli-bold;
-    letter-spacing: -0.3px;
-    color: $white-color;
-    text-align: right;
-    display: flex;
-    align-items: center;
-    z-index: 1;
-  }
-
-  .form-group-with-bg {
-    box-shadow: 0 10px 14px 0 $btn-proceed-shadow-color;
-    background-color: $white-color;
-    margin-bottom: 20px;
-
-    .your_total_value {
-      background-color: $withdrawal-amount-panel-bg-color;
-      padding: 20px 20px 17px;
-
-      .total_values {
-        font-family: $muli-bold;
-        font-size: 32px;
-        letter-spacing: -0.4px;
-        text-align: center;
-        color: $white-color;
-        word-break: break-all;
-
-        @include allmobiles {
-          font-size: 30px;
+    .invest-bg-content {
+        .container-fluid {
+            padding-bottom: 20px !important;
         }
-      }
-
-      .total_values_label {
+    }
+    .user_summary {
         font-family: $muli-regular;
-        font-size: 16px;
-        line-height: 0.88;
-        letter-spacing: -0.1px;
-        text-align: center;
-        color: $white-color;
-        margin-top: 6px;
-      }
+        font-size: 18px;
+        line-height: 1.28;
+        letter-spacing: -0.2px;
+        padding: 0 15px 30px 0;
+        position: relative;
+        max-width: 300px;
+        @include allmobiles {
+            padding: 0 15px 30px 15px;
+        }
     }
-
-    .form-group-with-bg--content {
-      .flex-row {
-        align-items: flex-start;
-        justify-content: space-between;
-      }
-
-      .total_cash_balance {
-        font-size: 16px;
-        color: $dark-teal-color;
-
-        .total_cash_label {
-          line-height: 1.31;
-          letter-spacing: -0.15px;
-
-          img {
-            cursor: pointer;
-          }
-        }
-
-        .total_cash_value {
-          font-family: $muli-bold;
-          letter-spacing: -0.2px;
-          text-align: right;
-          color: $teal-color;
-        }
-      }
-
-      .btn-with-icon {
-        border-radius: 6px;
-        box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.21) !important;
-        background-color: $btn-primary-backgrnd-color;
-        font-family: $muli-bold;
-        font-size: 21px;
-        line-height: normal;
-        letter-spacing: -0.3px;
-        text-align: center;
-        color: $white-color;
-        width: 100%;
-        padding: 18px 0px;
+    .cursor_pointer {
         cursor: pointer;
-
-        &.top_up_btn {
-          font-size: 18px;
-          line-height: 23px;
-          background-color: $white-color;
-          color: $secondary-action-color;
-          border: 1px solid #f1f1f1;
-          display: flex;
-          justify-content: center;
-
-          &:active {
-            outline: none;
-            background-color: $white-color;
-          }
-
-          .topup-btn-img {
-            height: 25px;
-            width: 42px;
-            margin-right: 10px;
-            display: flex;
-
-            img {
-              width: 100%;
-              height: auto;
-              margin: 0;
-            }
-          }
-        }
-
-        &:active {
-          outline: none;
-          background-color: $btn-primary-backgrnd-color;
-        }
-
-        &:hover {
-          outline: none;
-        }
-
-        &:focus {
-          outline: none;
-          background-color: $btn-primary-backgrnd-color;
-        }
-
-        img {
-          margin-left: 8px;
-          margin-top: -1px;
-        }
-      }
     }
-  }
-
-  .container-fluid {
-    &.max-width--1024 {
-      @include allmobiles {
-        padding-left: 15px !important;
-        padding-right: 15px !important;
-        padding-bottom: 20px !important;
-      }
-      &.no-portfolio-container{
-        padding-bottom: 0 !important;
-        padding-top: 20px !important;
-        @include allmobiles{
-          padding-top: 80px !important;
-          padding-bottom: 20px !important;
-        }
-      }
+    .your_portfolio_label {
+        font-size: 21px;
+        font-family: $muli-bold;
+        letter-spacing: -0.21px;
+        color: $white-color;
     }
-  }
-
-  .multiple-portfolio-container {
-    position: relative;
-    top: 10px;
-    padding-bottom: 10px;
-    @include allmobiles{
-      top: 70px;
-      padding-bottom: 70px;
-    }
-    .container-fluid {
-      &.max-width--1024 {
-        padding-top: 0 !important;
-        padding-bottom: 10px !important;
-
-        @include allmobiles {
-         padding: 0 !important;
-         padding-bottom: 10px !important;
-        }
-      }
-    }
-
-    .multiple-portfolio-block {
-      .multiple-portfolio-header {
-        font-family: $muli-regular;
-        font-size: 13px;
-        letter-spacing: -0.24px;
+    .add_portfolio_label {
+        font-size: 16px;
+        font-family: $muli-bold;
+        letter-spacing: -0.3px;
+        color: $white-color;
         text-align: right;
-        color: #ffffff;
-        padding: 20px 30px;
-        background-color: #3bbfbf;
-
-        @include allmobiles {
-          padding: 10px 15px;
+        display: flex;
+        align-items: center;
+        z-index: 1;
+    }
+    .form-group-with-bg {
+        box-shadow: 0 10px 14px 0 $btn-proceed-shadow-color;
+        background-color: $white-color;
+        margin-bottom: 20px;
+        .your_total_value {
+            background-color: $withdrawal-amount-panel-bg-color;
+            padding: 20px 20px 17px;
+            .total_values {
+                font-family: $muli-bold;
+                font-size: 32px;
+                letter-spacing: -0.4px;
+                text-align: center;
+                color: $white-color;
+                word-break: break-all;
+                @include allmobiles {
+                    font-size: 30px;
+                }
+            }
+            .total_values_label {
+                font-family: $muli-regular;
+                font-size: 16px;
+                line-height: 0.88;
+                letter-spacing: -0.1px;
+                text-align: center;
+                color: $white-color;
+                margin-top: 6px;
+            }
         }
-      }
-
-      .multiple-portfolio-content {
-        .multiple-portfolio-type {
-          font-family: $muli-regular;
-
-          .multiple-portfolio-type-title {
-            font-size: 14px;
-            letter-spacing: -0.15px;
-            color: #007d7d;
-            background-color: #e4f1f1;
-            padding: 5px 30px;
-            line-height: normal;
-
-            @include allmobiles {
-              padding: 5px 15px;
+        .form-group-with-bg--content {
+            .flex-row {
+                align-items: flex-start;
+                justify-content: space-between;
             }
-          }
-
-          .portfolio-list {
-            background-color: #f7f7f7;
-
-            &.invested {
-              background-color: #ffffff;
-            }
-
-            .portfolio {
-              font-family: $muli-regular;
-              color: #000000;
-              border-bottom: 1px solid #e5e5e5;
-              padding: 30px 25px;
-              display: flex;
-              cursor: pointer;
-
-              @include allmobiles {
-                padding: 20px 15px;
-              }
-
-              .portfolio-icon {
-                max-width: 32px !important;
-                max-height: 32px !important;
-                margin-top: 8px;
-
-                img {
-                  width: 100%;
-                  height: auto;
-                }
-              }
-
-              .portfolio-details {
-                display: flex;
-                flex-direction: column;
-                width: calc(100% - 32px);
-                padding-left: 13px;
-
-                .portfolio-name {
-                  font-family: $muli-bold;
-                  font-size: 16px;
-                  letter-spacing: -0.3px;
-                  white-space: normal;
-                  word-wrap: break-word;
-                  text-transform: capitalize;
-                  @include allmobiles{
-                    padding-right: 55px;
-                  }
-                }
-
-                .ref-code {
-                  font-size: 14px;
-                  letter-spacing: -0.26px;
-                }
-
-                .portfolio-value {
-                  font-family: $muli-bold;
-                  font-size: 18px;
-                  letter-spacing: -0.19px;
-                  color: #00a7a7;
-                  display: inline;
-
-                  .buy-request {
-                    font-family: $muli-regular;
-                    font-size: 13px;
-                    letter-spacing: -0.23px;
-                    float: right;
-                    margin-top: 9px;
-                  }
-                }
-
-                .portfolio-btn {
-                  display: inline;
-                  font-family: $muli-bold;
-                  font-size: 16px;
-                  letter-spacing: -0.3px;
-
-                  .top-up-btn {
-                    color: #ff872f;
-                  }
-
-                  .total-returns {
-                    color: #11b600;
-
-                    &.negativeValue {
-                      color: #d0021b;
+            .total_cash_balance {
+                font-size: 16px;
+                color: $dark-teal-color;
+                .total_cash_label {
+                    line-height: 1.31;
+                    letter-spacing: -0.15px;
+                    img {
+                        cursor: pointer;
                     }
-                  }
-
-                  .cash-account-value {
-                    font-family: $muli-regular;
-                    font-size: 14px;
-                    letter-spacing: -0.26px;
-                    float: right;
-                    color: #9b9b9b;
-                    margin-top: 3px;
-                  }
                 }
-              }
+                .total_cash_value {
+                    font-family: $muli-bold;
+                    letter-spacing: -0.2px;
+                    text-align: right;
+                    color: $teal-color;
+                }
             }
-          }
-
-          .list-btn {
-            font-family: $muli-regular;
-            font-size: 14px;
-            letter-spacing: -0.15px;
-            color: #9b9b9b;
-            border: 1px solid #e5e5e5;
-            border-top: none;
-            background-color: #ffffff;
-            padding: 16px;
-            display: flex;
-            justify-content: center;
-            cursor: pointer;
-
-            img {
-              margin-left: 8px;
+            .btn-with-icon {
+                border-radius: 6px;
+                box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.21) !important;
+                background-color: $btn-primary-backgrnd-color;
+                font-family: $muli-bold;
+                font-size: 21px;
+                line-height: normal;
+                letter-spacing: -0.3px;
+                text-align: center;
+                color: $white-color;
+                width: 100%;
+                padding: 18px 0px;
+                cursor: pointer;
+                &.top_up_btn {
+                    font-size: 18px;
+                    line-height: 23px;
+                    background-color: $white-color;
+                    color: $secondary-action-color;
+                    border: 1px solid #f1f1f1;
+                    display: flex;
+                    justify-content: center;
+                    &:active, &:focus {
+                        outline: none;
+                        background-color: $white-color;
+                    }
+                    &.disabled{
+                      cursor: not-allowed;
+                    }
+                    .topup-btn-img {
+                        height: 25px;
+                        width: 42px;
+                        margin-right: 10px;
+                        display: flex;
+                        img {
+                            width: 100%;
+                            height: auto;
+                            margin: 0;
+                        }
+                    }
+                }
+                &:active {
+                    outline: none;
+                    background-color: $btn-primary-backgrnd-color;
+                }
+                &:hover {
+                    outline: none;
+                }
+                &:focus {
+                    outline: none;
+                    background-color: $btn-primary-backgrnd-color;
+                }
+                img {
+                    margin-left: 8px;
+                    margin-top: -1px;
+                }
             }
-
-            .show-less {
-              transform: rotate(180deg);
-            }
-          }
         }
-      }
     }
-  }
-
-  .no-portfolio {
-    padding: 30px 28px;
-    text-align: center;
-
-    @include allmobiles {
-      padding: 30px 15px 12px;
-      margin-bottom: 0 !important;
-    }
-
-    .msg {
-      color: #5e5e5e;
-      font-size: 15px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .add-portfolio-icon {
-      width: 96px;
-      height: 70px;
-      margin-bottom: 20px;
-    }
-
-    .btn-primary {
-      width: 250px;
-      font-family: $muli-bold;
-      font-size: 18px;
-      letter-spacing: -0.34px;
-
-      @include allmobiles {
-        width: 100%;
-      }
-    }
-  }
-
-  .btn-primary {
-    &.scroll-btn {
-      width: 100%;
-      margin: 0 auto !important;
-      font-family: $muli-regular !important;
-      font-size: 14px;
-      letter-spacing: -0.26px;
-      border-radius: 0px;
-      text-align: center;
-      color: #3ec5c5 !important;
-      background-color: #00a0a0 !important;
-
-      &:hover,
-      &:active,
-      &:focus {
-        color: #3ec5c5 !important;
-        background-color: #00a0a0 !important;
-      }
-    }
-  }
-
-  .hidden {
-    display: none;
-  }
-
-  .srs-block {
     .container-fluid {
-      &.max-width--1024 {
-        padding-top: 0px !important;
-        padding-bottom: 20px !important;
-
+        &.max-width--1024 {
+            @include allmobiles {
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+                padding-bottom: 20px !important;
+            }
+            &.no-portfolio-container {
+                padding-bottom: 0 !important;
+                padding-top: 20px !important;
+                @include allmobiles {
+                    padding-top: 80px !important;
+                    padding-bottom: 20px !important;
+                }
+            }
+        }
+    }
+    .multiple-portfolio-container {
+        position: relative;
+        top: 10px;
+        padding-bottom: 10px;
         @include allmobiles {
-          padding-bottom: 0px !important;
+            top: 70px;
+            padding-bottom: 70px;
         }
-      }
-    }
-
-    .srs-reminder {
-      display: flex;
-      align-items: center;
-      padding: 15px 45px 15px 25px;
-      background-color: #3ec5c5;
-
-      @include allmobiles {
-        padding: 25px 30px 25px 15px;
-        margin: 0px -15px;
-      }
-
-      .srs-txt {
-        font-family: $muli-italic;
-        font-size: 13px;
-        font-weight: normal;
-        letter-spacing: -0.13px;
-        line-height: 1.23;
-        color: $white-color;
-      }
-
-      .mail-img {
-        margin-right: 20px;
-      }
-    }
-  }
-  .mp-walkthrough-container {
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    .new-investment-div {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      max-width: 373px;
-      margin-top: -16px;
-      @include allmobiles {
-        margin-top: 0px;
-        max-width: 100%;
-      }
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      padding: 7px 17px;
-      border-radius: 6px;
-      border: solid 3px #ffa32c;
-      box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.25);
-      background-color: $dark-cyan-color;
-      cursor: pointer;
-  
-      .owl-stars-img {
-        width: 37px;
-        height: 42px;
-        margin-right: 15px;
-      }
-  
-      .cross-img {
-        height: auto;
-        width: 13px;
-      }
-  
-      .new-investment-txt {
-        flex: 1;
-        font-family: $muli-regular;
-        font-size: 14px;
-        letter-spacing: normal;
-        line-height: normal;
-        color: $white-color;
-        span {
-          font-family: $muli-bold;
+        .container-fluid {
+            &.max-width--1024 {
+                padding-top: 0 !important;
+                padding-bottom: 10px !important;
+                @include allmobiles {
+                    padding: 0 !important;
+                    padding-bottom: 10px !important;
+                }
+            }
         }
-      }
+        .multiple-portfolio-block {
+            .multiple-portfolio-header {
+                font-family: $muli-regular;
+                font-size: 13px;
+                letter-spacing: -0.24px;
+                text-align: right;
+                color: #ffffff;
+                padding: 20px 30px;
+                background-color: #3bbfbf;
+                @include allmobiles {
+                    padding: 10px 15px;
+                }
+            }
+            .multiple-portfolio-content {
+                .multiple-portfolio-type {
+                    font-family: $muli-regular;
+                    .multiple-portfolio-type-title {
+                        font-size: 14px;
+                        letter-spacing: -0.15px;
+                        color: #007d7d;
+                        background-color: #e4f1f1;
+                        padding: 5px 30px;
+                        line-height: normal;
+                        @include allmobiles {
+                            padding: 5px 15px;
+                        }
+                    }
+                    .portfolio-list {
+                        background-color: #f7f7f7;
+                        &.invested {
+                            background-color: #ffffff;
+                        }
+                        .portfolio {
+                            font-family: $muli-regular;
+                            color: #000000;
+                            border-bottom: 1px solid #e5e5e5;
+                            padding: 30px 25px;
+                            display: flex;
+                            cursor: pointer;
+                            @include allmobiles {
+                                padding: 20px 15px;
+                            }
+                            .portfolio-icon {
+                                max-width: 32px !important;
+                                max-height: 32px !important;
+                                margin-top: 8px;
+                                img {
+                                    width: 100%;
+                                    height: auto;
+                                }
+                            }
+                            .portfolio-details {
+                                display: flex;
+                                flex-direction: column;
+                                width: calc(100% - 32px);
+                                padding-left: 13px;
+                                .portfolio-name {
+                                    font-family: $muli-bold;
+                                    font-size: 16px;
+                                    letter-spacing: -0.3px;
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    .portfolio-lbl {
+                                        white-space: normal;
+                                        word-wrap: break-word;
+                                        text-transform: capitalize;
+                                    }
+                                    .portfolio-fund-type {
+                                        width: 28px;
+                                        height: 18px;
+                                        display: flex;
+                                    }
+                                }
+                                .ref-code {
+                                    font-size: 14px;
+                                    letter-spacing: -0.26px;
+                                }
+                                .portfolio-value {
+                                    font-family: $muli-bold;
+                                    font-size: 18px;
+                                    letter-spacing: -0.19px;
+                                    color: #00a7a7;
+                                    display: inline;
+                                    .buy-request {
+                                        font-family: $muli-regular;
+                                        font-size: 13px;
+                                        letter-spacing: -0.23px;
+                                        float: right;
+                                        margin-top: 9px;
+                                    }
+                                }
+                                .portfolio-btn {
+                                    display: inline;
+                                    font-family: $muli-bold;
+                                    font-size: 16px;
+                                    letter-spacing: -0.3px;
+                                    .top-up-btn {
+                                        color: #ff872f;
+                                    }
+                                    .total-returns {
+                                        color: #11b600;
+                                        &.negativeValue {
+                                            color: #d0021b;
+                                        }
+                                    }
+                                    .cash-account-value {
+                                        font-family: $muli-regular;
+                                        font-size: 14px;
+                                        letter-spacing: -0.26px;
+                                        float: right;
+                                        color: #9b9b9b;
+                                        margin-top: 3px;
+                                    }
+                                }
+                                .srs-note {
+                                    font-family: $muli-italic;
+                                    font-size: 12px;
+                                    line-height: normal;
+                                    letter-spacing: -0.13px;
+                                    color: #9b9b9b;
+                                    padding-top: 22px;
+                                    @include allmobiles {
+                                        padding-top: 13px;
+                                        align-items: center;
+                                    }
+                                    span {
+                                        color: #ff872f;
+                                    }
+                                    .srs-note-icon {
+                                        width: 16px;
+                                        height: 16px;
+                                        display: flex;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .list-btn {
+                        font-family: $muli-regular;
+                        font-size: 14px;
+                        letter-spacing: -0.15px;
+                        color: #9b9b9b;
+                        border: 1px solid #e5e5e5;
+                        border-top: none;
+                        background-color: #ffffff;
+                        padding: 16px;
+                        display: flex;
+                        justify-content: center;
+                        cursor: pointer;
+                        img {
+                            margin-left: 8px;
+                        }
+                        .show-less {
+                            transform: rotate(180deg);
+                        }
+                    }
+                }
+            }
+        }
     }
-  }
-
-  .mp-animation {
-    animation-name: fadeInSlideDown;
-    -webkit-animation-name: fadeInSlideDown;
-    animation-duration: 1s;
-    -webkit-animation-duration: 1s;
-    animation-timing-function: ease-in-out;
-    -webkit-animation-timing-function: ease-in-out;
-  }
- 
-  @keyframes fadeInSlideDown {
-    0% {
-      opacity: 0;
-      transform: translateY(-30%);
+    .no-portfolio {
+        padding: 30px 28px;
+        text-align: center;
+        @include allmobiles {
+            padding: 30px 15px 12px;
+            margin-bottom: 0 !important;
+        }
+        .msg {
+            color: #5e5e5e;
+            font-size: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .add-portfolio-icon {
+            width: 96px;
+            height: 70px;
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            width: 250px;
+            font-family: $muli-bold;
+            font-size: 18px;
+            letter-spacing: -0.34px;
+            @include allmobiles {
+                width: 100%;
+            }
+        }
     }
-
-    100% {
-      opacity: 1;
-      transform: translateY(0%);
+    .btn-primary {
+        &.scroll-btn {
+            width: 100%;
+            margin: 0 auto !important;
+            font-family: $muli-regular !important;
+            font-size: 14px;
+            letter-spacing: -0.26px;
+            border-radius: 0px;
+            text-align: center;
+            color: #3ec5c5 !important;
+            background-color: #00a0a0 !important;
+            &:hover,
+            &:active,
+            &:focus {
+                color: #3ec5c5 !important;
+                background-color: #00a0a0 !important;
+            }
+        }
     }
-  }
-
-  @-webkit-keyframes fadeInSlideDown {
-    0% {
-      opacity: 0;
-      -webkit-transform: translateY(-50%);
+    .hidden {
+        display: none;
     }
-
-    100% {
-      opacity: 1;
-      -webkit-transform: translateY(0%);
+    .srs-block {
+        .container-fluid {
+            &.max-width--1024 {
+                padding-top: 0px !important;
+                padding-bottom: 20px !important;
+                @include allmobiles {
+                    padding-bottom: 0px !important;
+                }
+            }
+        }
+        .srs-reminder {
+            display: flex;
+            align-items: center;
+            padding: 15px 45px 15px 25px;
+            background-color: #3ec5c5;
+            @include allmobiles {
+                padding: 25px 30px 25px 15px;
+                margin: 0px -15px;
+            }
+            .srs-txt {
+                font-family: $muli-italic;
+                font-size: 13px;
+                font-weight: normal;
+                letter-spacing: -0.13px;
+                line-height: 1.23;
+                color: $white-color;
+            }
+            .mail-img {
+                margin-right: 20px;
+            }
+        }
     }
-  }
+    .mp-walkthrough-container {
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+        .new-investment-div {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            max-width: 373px;
+            margin-top: -16px;
+            @include allmobiles {
+                margin-top: 0px;
+                max-width: 100%;
+            }
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            padding: 7px 17px;
+            border-radius: 6px;
+            border: solid 3px #ffa32c;
+            box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.25);
+            background-color: $dark-cyan-color;
+            cursor: pointer;
+            .owl-stars-img {
+                width: 37px;
+                height: 42px;
+                margin-right: 15px;
+            }
+            .cross-img {
+                height: auto;
+                width: 13px;
+            }
+            .new-investment-txt {
+                flex: 1;
+                font-family: $muli-regular;
+                font-size: 14px;
+                letter-spacing: normal;
+                line-height: normal;
+                color: $white-color;
+                span {
+                    font-family: $muli-bold;
+                }
+            }
+        }
+    }
+    .mp-animation {
+        animation-name: fadeInSlideDown;
+        -webkit-animation-name: fadeInSlideDown;
+        animation-duration: 1s;
+        -webkit-animation-duration: 1s;
+        animation-timing-function: ease-in-out;
+        -webkit-animation-timing-function: ease-in-out;
+    }
+    @keyframes fadeInSlideDown {
+        0% {
+            opacity: 0;
+            transform: translateY(-30%);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0%);
+        }
+    }
+    @-webkit-keyframes fadeInSlideDown {
+        0% {
+            opacity: 0;
+            -webkit-transform: translateY(-50%);
+        }
+        100% {
+            opacity: 1;
+            -webkit-transform: translateY(0%);
+        }
+    }
 }

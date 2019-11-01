@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { FundingMethodComponent } from './funding-method/funding-method.component';
 import { GetStartedStep1Component } from './get-started-step1/get-started-step1.component';
 import { GetStartedStep2Component } from './get-started-step2/get-started-step2.component';
 import {
@@ -25,6 +26,11 @@ const routes: Routes = [
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.ROOT,
     redirectTo: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.START,
     pathMatch: 'full',
+    canActivate: [InvestmentEngagementJourneyGuard]
+  },
+  {
+    path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.FUNDING_METHOD,
+    component: FundingMethodComponent,
     canActivate: [InvestmentEngagementJourneyGuard]
   },
   {
