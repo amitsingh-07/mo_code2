@@ -53,6 +53,7 @@ export class AccountStatusComponent implements OnInit {
     this.status = this.investmentAccountService.getAccountCreationStatus();
     this.investmentAccountService.clearInvestmentAccountFormData();
     this.investmentCommonService.clearJourneyData();
+    this.investmentCommonService.clearFundingDetails();
     this.investmentAccountService.restrictBackNavigation();
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
