@@ -234,24 +234,6 @@ export class InvestmentCommonService {
     this.investmentCommonFormData.srsAccountNumber = data.srsFundingDetails ? data.srsFundingDetails.srsAccountNumber : null;
     this.commit();
   }
-
-  //  saving Funding data
-  saveFundingMethodDetails() {
-    const data = this.constructFundingMethodSaveRequest();
-    return this.investmentApiService.saveFundingMethodDetails(data);
-  }
- 
-  constructFundingMethodSaveRequest() {
-    const formData = this.getFundingAccountDetails();
-    return {
-      fundTypeId : formData.fundingAccountMethod,
-      srsDetails: {
-        srsOperatorBank: formData.srsOperatorBank,
-        accountNumber: formData.srsAccountNumber,
-      },
-    };
-  }
-
   saveSrsAccountDetails(params, customerPortfolioId) {
     return this.investmentApiService.saveSrsAccountDetails(params, customerPortfolioId);
   }

@@ -79,8 +79,8 @@ const routes: Routes = [
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.STATUS,
-    component: AccountStatusComponent
-    //canActivate: [AuthGuard]
+    component: AccountStatusComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.PERSONAL_DECLARATION,
