@@ -1,5 +1,5 @@
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from 'src/app/shared/modal/model-with-button/model-with-button.component';
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
@@ -13,10 +13,10 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
 import {
-    InvestmentEngagementJourneyService
+  InvestmentEngagementJourneyService
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
@@ -190,23 +190,23 @@ export class FundingAccountDetailsComponent implements OnInit {
   }
 
   getFundingMethodNameById(fundingMethodId, fundingOptions) {
-    if (fundingMethodId && fundingOptions ) {
-    const fundingMethod = fundingOptions.filter(
-      (prop) => prop.id === fundingMethodId
-    );
-    return fundingMethod[0].name;
-  }
+    if (fundingMethodId && fundingOptions) {
+      const fundingMethod = fundingOptions.filter(
+        (prop) => prop.id === fundingMethodId
+      );
+      return fundingMethod[0].name;
+    }
     return false;
- }
+  }
   getOperatorIdByName(operatorId, OperatorOptions) {
     if (operatorId && OperatorOptions) {
-    const OperatorBank = OperatorOptions.filter(
-      (prop) => prop.id === operatorId
-    );
-    return OperatorBank[0];
-  }
+      const OperatorBank = OperatorOptions.filter(
+        (prop) => prop.id === operatorId
+      );
+      return OperatorBank[0];
+    }
     return false;
-}
+  }
 
   goToNext(form) {
     if (!form.valid) {

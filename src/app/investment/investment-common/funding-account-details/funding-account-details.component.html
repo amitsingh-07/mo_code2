@@ -62,7 +62,7 @@
                             id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
                             {{fundingAccountDetailsForm.controls.srsFundingDetails.controls.srsOperatorBank.value ?
                               fundingAccountDetailsForm.controls.srsFundingDetails.controls.srsOperatorBank.value.name :
-                              'Select'}}
+                              'Select SRS Operator'}}
                           </button>
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                             <button class="dropdown-item" *ngFor="let srsOperator of srsAgentBankList; let i = index;"
