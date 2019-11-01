@@ -1,10 +1,10 @@
-import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
@@ -32,14 +32,15 @@ export class FundingMethodComponent implements OnInit {
   formValues;
   fundingMethodNameCash;
   fundingMethodNameSrs;
-
+  loaderTitle: string;
+  loaderDesc: string;
 
   constructor(
     public readonly translate: TranslateService,
     public authService: AuthenticationService,
     private router: Router,
     private modal: NgbModal,
-    private _location: Location,
+    private loaderService: LoaderService,
     public navbarService: NavbarService,
     public headerService: HeaderService,
     public footerService: FooterService,
@@ -52,6 +53,8 @@ export class FundingMethodComponent implements OnInit {
     const self = this;
     this.translate.get('COMMON').subscribe((result: string) => {
       self.pageTitle = this.translate.instant('FUNDING_METHOD.TITLE');
+      self.loaderTitle = this.translate.instant('FUNDING_METHOD.LOADER_TITLE');
+      self.loaderDesc = this.translate.instant('FUNDING_METHOD.LOADER_DESC');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -68,12 +71,18 @@ export class FundingMethodComponent implements OnInit {
     });
   }
   getOptionListCollection() {
-    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+    this.loaderService.showLoader({
+      title: this.loaderTitle,
+      desc: this.loaderDesc
+    });
+    this.investmentAccountService.getFundMethodList().subscribe((data) => {
+      this.loaderService.hideLoader();
       this.fundingMethods = data.objectList.portfolioFundingMethod;
       this.investmentEngagementJourneyService.sortByProperty(this.fundingMethods, 'name', 'asc');
 
     },
       (err) => {
+        this.loaderService.hideLoader();
         this.investmentAccountService.showGenericErrorModal();
       });
   }
@@ -86,17 +95,12 @@ export class FundingMethodComponent implements OnInit {
         (prop) => prop.id === fundingMethodId
       );
       return fundingMethod[0].name;
+    } else {
+      return '';
     }
   }
 
-getOperatorIdByName(operatorId, OperatorOptions) {
-    const OperatorBank = OperatorOptions.filter(
-      (prop) => prop.id === operatorId
-    );
-    return OperatorBank[0];
-  }
-
- showHelpModal() {
+  showHelpModal() {
     const ref = this.modal.open(SrsTooltipComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('FUNDING_METHOD.HELP_MODAL.TITLE'
     );
