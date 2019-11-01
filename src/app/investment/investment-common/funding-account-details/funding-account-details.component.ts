@@ -195,8 +195,9 @@ export class FundingAccountDetailsComponent implements OnInit {
         (prop) => prop.id === fundingMethodId
       );
       return fundingMethod[0].name;
+    } else {
+      return '';
     }
-    return false;
   }
   getOperatorIdByName(operatorId, OperatorOptions) {
     if (operatorId && OperatorOptions) {
@@ -204,8 +205,9 @@ export class FundingAccountDetailsComponent implements OnInit {
         (prop) => prop.id === operatorId
       );
       return OperatorBank[0];
+    } else {
+      return '';
     }
-    return false;
   }
 
   goToNext(form) {
