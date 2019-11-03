@@ -171,15 +171,13 @@
 
           <div class="flex-row mt20">
             <div class="flex-col-12 with-help-icon" [ngClass]="{'both-icon': !viewMode}">
-              <div class="flex-col-12 form-group-with-bg--content-label" for="name">{{
+              <div class="form-group-with-bg--content-label" for="name">{{
                 'CMP.MY_ASSETS.INVESTMENT_PROPERTIES' | translate}}<div class="form-group-with-bg--content-sub-label">{{
                   'CMP.MY_ASSETS.MARKET_VALUE' | translate}}</div>
-
-                <span class="help-icon"
-                  (click)="showToolTipModal('INVESTMENT_PROPERTIES_TITLE','INVESTMENT_PROPERTIES_MESSAGE')"></span>
-                <span *ngIf="!viewMode" class="delete-icon" (click)="addOtherInvestment()"> </span>
-
               </div>
+              <div> <span class="help-icon"
+                  (click)="showToolTipModal('INVESTMENT_PROPERTIES_TITLE','INVESTMENT_PROPERTIES_MESSAGE')"></span>
+                <span *ngIf="!viewMode" class="delete-icon" (click)="addOtherInvestment()"> </span></div>
             </div>
           </div>
 
