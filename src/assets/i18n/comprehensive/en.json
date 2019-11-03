@@ -139,7 +139,7 @@
       "DESCRIPTION": "Description",
       "COMPREHENSIVE_PLAN": "Comprehensive Financial Planning",
       "FREE": "Free ",
-      "FREE_LIMITED": "for a limited time only!",
+      "FREE_LIMITED": "100% fee rebate for limited time only!",
       "ENTER_PROMO": "Enter your promo code",
       "NO_PROMO": "No promo code?",
       "GET_NEW": " Get one now!",
@@ -147,7 +147,7 @@
       "GET_PROMO": "Get Promo Code",
       "VIDEO_LINK": "https://www.youtube.com/embed/EjeYBT1I8jw",
       "CFP": "Comprehensive Financial Planning",
-      "CFP_DESC": "For a limited time only, 100% fee rebate<br> when you go through the full comprehensive<br> financial planning process."
+      "CFP_DESC": "For a limited time only, 100% fee rebate when you go through the full comprehensive financial planning process."
     },
     "COMPREHENSIVE_STEPS": {
       "STEP": "Step",
@@ -196,7 +196,7 @@
       "HOUSEHOLD_TITLE": "How many total number of people are there in your household?",
       "HOUSEHOLD_DESC": "Number of people includes your spouse, children, parents, grandparents, siblings and/or other relatives.",
       "HOUSEHOLD_HEADER": "Household Information",
-      "HOUSEHOLD_LABEL_1": "No. of Household Members",
+      "HOUSEHOLD_LABEL_1": "No. of<br> Household Members",
       "HOUSEHOLD_LABEL_2": "Estimated Household Income",
       "HOUSEHOLD_MEMBERS_VALUES": [
         "0",
