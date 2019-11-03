@@ -224,7 +224,19 @@ app-comprehensive {
       background-position: 0 0;
       font-size: 14px;
       font-family: $muli-bold;
-      @include iphoneX; @include iphone6 {
+      @include max360 {
+        font-size: 13px;
+      }
+      @include iphoneX {
+        font-size: 13px;
+      }
+      @include iphone6 {
+        font-size: 13px;
+      }
+    }
+    .btn-primary-dark {
+      @include max360 {
+        padding: 10px;
         font-size: 13px;
       }
     }
@@ -240,6 +252,16 @@ app-comprehensive {
     &__desc {
       color: $limited-text;
       font-size: 14px;
+      font-family: $muli-semi-bold;
+      @include iphone6plus {
+        padding-right: 16%;
+      }
+      @include iphoneX {
+        padding-right: 6%;
+      }
+      @include iphone6 {
+        padding-right: 6%;
+      }
     }
   }
   .promo-code-heading {
