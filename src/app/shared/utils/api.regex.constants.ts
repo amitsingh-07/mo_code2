@@ -58,9 +58,9 @@ export const RegexConstants = {
         UOB: [/\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/], /* 2-5-2 */
     },
     operatorMaskForValidation: {
-        DBS: /^\d{4}-\d{6}-\d{4}$/, /* 4-6-4 */
-        OCBC: /^\d{3}-\d{6}-\d{3}$/, /* 3-6-3 */
-        UOB: /^\d{2}-\d{5}-\d{2}$/, /* 2-5-2 */
+        DBS: /^\d{4}-?\d{6}-?\d{4}$/, /* 4-6-4 */
+        OCBC: /^\d{3}-?\d{6}-?\d{3}$/, /* 3-6-3 */
+        UOB: /^\d{2}-?\d{5}-?\d{2}$/, /* 2-5-2 */
     },
     MobileNumber: /^(8|9)\d{7}$/,
     portfolioName: /^\S.*$/

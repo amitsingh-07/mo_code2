@@ -126,8 +126,13 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-
-  getInvestmentsSummary() {
+  getFundMethodList() {
+    return this.http.get(investmentApiConstants.endpoint.investmentAccount.fundingMethodList)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+ getInvestmentsSummary() {
     return this.http.get(investmentApiConstants.endpoint.investmentAccount.investmentsSummary)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
@@ -340,8 +345,12 @@ export class InvestmentApiService {
       );
     }
 
-  getFirstInvAccountCreationStatus() {
-    return this.http.get(investmentApiConstants.endpoint.investment.getFirstInvAccountCreationStatus)
+  getFirstInvAccountCreationStatus(enquiryId?) {
+    let url = investmentApiConstants.endpoint.investment.getFirstInvAccountCreationStatus;
+    if (enquiryId) {
+      url = url + '?enquiryId=' + enquiryId;
+    }
+    return this.http.get(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
