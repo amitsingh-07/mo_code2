@@ -12,7 +12,7 @@ export const MANAGE_INVESTMENTS_ROUTES = {
   HOLDINGS: 'portfolio/holdings',
   ASSET_ALLOCATION: 'portfolio/asset-allocation',
   FUND_DETAILS: 'fund-details',
-  FAQ_ROOT_PATH: '/faq'
+  FAQ_ROOT_PATH: '/faq#srs-joint-account'
 };
 export const MANAGE_INVESTMENTS_ROUTE_PATHS = {
   ROOT: MANAGE_INVESTMENTS_BASE_ROUTE + MANAGE_INVESTMENTS_ROUTES.ROOT,

@@ -91,7 +91,7 @@ export class StartJourneyComponent implements OnInit {
       this.verifyPromoCode(this.promoCodeForm.controls.promoCode.value);
     } else {
       this.authService.saveEnquiryId(null);
-      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
+      this.redirectToNextScreen();
     }
   }
 
@@ -111,7 +111,7 @@ export class StartJourneyComponent implements OnInit {
       this.promoCode = data.responseMessage;
       if (this.promoCode.responseCode === 6005) {
         this.authService.saveEnquiryId(data.objectList[0].enquiryId);
-        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+       this.redirectToNextScreen();
       } else if (this.promoCode.responseCode === 5017) {
         this.showErrorModal();
         this.isDisabled = false;
@@ -124,6 +124,11 @@ export class StartJourneyComponent implements OnInit {
       this.isDisabled = false;
     });
   }
+  
+  redirectToNextScreen(){
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
+  }
+  
 
   showErrorModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });

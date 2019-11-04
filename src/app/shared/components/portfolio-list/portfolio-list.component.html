@@ -15,10 +15,10 @@
                                 <span class="portfolio-fund-type" *ngIf="portfolio?.portfolioType == 'SRS'"><img src="assets/images/investment-account/srs-type.svg" alt="" /></span>
                               </div>
                               <div class="ref-code">{{'YOUR_INVESTMENT.REF_LABEL' | translate}} {{portfolio.refNo}}</div>
-                              <div *ngIf="portfolio?.portfolioType != 'SRS'" class="portfolio-value">
+                              <div class="portfolio-value">
                                   <span *ngIf="!portfolio?.portfolioValue">$0</span>
                                   <span *ngIf="portfolio?.portfolioValue">{{portfolio?.portfolioValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
-                                  <span *ngIf="portfolio?.buyRequestCount" class="buy-request cursorPointer" (click)="gotoBuyRequest()">
+                                  <span *ngIf="portfolio?.buyRequestCount && portfolio?.portfolioType != 'SRS'" class="buy-request cursorPointer" (click)="gotoBuyRequest()">
                                      {{portfolio?.buyRequestCount}}
                                      <span *ngIf="portfolio?.buyRequestCount == 1"> {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span>
                                      <span *ngIf="portfolio?.buyRequestCount > 1"> {{'YOUR_INVESTMENT.BUY_REQUESTS' | translate}}</span>
