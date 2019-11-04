@@ -193,6 +193,7 @@
     "SRS_DESC": "You <u>MUST</u> ensure sufficient fund in your SRS Account. Amount will be deducted immediately and invest within 2-3 working days.",
     "CONTINUE": "Continue",
     "STEP_2": "Step 2",
+    "SELECT" :"Select Funding Method",
     "SELECT_SRS_OPERATOR":"Select SRS Operator",
     "SHOW_MODAL": {
       "TITLE": "Reassess Risk Profile?",

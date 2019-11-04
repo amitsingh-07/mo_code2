@@ -84,6 +84,9 @@ export class ConfirmPortfolioComponent implements OnInit {
         this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
         const fundingParams = this.constructFundingParams(data.objectList);
         this.manageInvestmentsService.setFundingDetails(fundingParams);
+        if (this.portfolio.fundingTypeId) {
+          this.investmentCommonService.setInitialFundingMethod(this.portfolio.fundingTypeId);
+        }
         this.userInputSubtext = {
           onetime: this.currencyPipe.transform(
             this.portfolio.initialInvestment,
