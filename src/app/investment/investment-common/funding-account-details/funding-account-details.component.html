@@ -25,7 +25,12 @@
                 <div class="flex-col-12">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
+                      <button *ngIf="!this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value"
+                        class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
+                        {{ 'CONFIRM_ACCOUNT_DETAILS.SELECT' | translate}}
+                      </button>
+                      <button  *ngIf="this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value"
+                       class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
                         {{getFundingMethodNameById(this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods) }}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
