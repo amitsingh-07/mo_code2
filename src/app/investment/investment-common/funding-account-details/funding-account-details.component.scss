@@ -67,6 +67,7 @@ app-funding-account-details {
           padding-right: 8px;
           font-family: $muli-italic;
           font-size: 15px;
+          color: #74c1c1;
         }
         .txt-italic{
           font-family: $muli-italic;
@@ -75,6 +76,23 @@ app-funding-account-details {
           letter-spacing: -0.15px;
           color: #5e5e5e;
           margin-top: 15px;
+        }
+        .form-control{
+          color: #00a7a7;
+          font-family: $muli-regular;
+          &:disabled{
+            background-color: #d9f2f2 !important;
+            border-color: #94cccc !important;
+          }
+          &:focus{
+            border-color: #94cccc !important;
+          }
+        }
+        .btn-dropdown{
+          &:disabled{
+            background-color: #d9f2f2 !important;
+            border-color: #94cccc !important;
+          }
         }
       }
     }

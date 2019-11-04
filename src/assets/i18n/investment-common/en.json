@@ -188,7 +188,7 @@
     "SRS_ACCOUNT_DETAILS": "SRS Account Details",
     "SRS_OPERATOR": "SRS Operator",
     "SRS_ACCOUNT_NUMBER": "SRS Account Number",
-    "CORRECT_SRS_ACCOUNT_DETAILS_DESC": "Please ensure you have entered correct SRS account information",
+    "CORRECT_SRS_ACCOUNT_DETAILS_DESC": "Please ensure you have entered the correct SRS account information.",
     "CASH_DESC": "You can fund using any bank account (registered under your name).",
     "SRS_DESC": "You <u>MUST</u> ensure sufficient fund in your SRS Account. Amount will be deducted immediately and invest within 2-3 working days.",
     "CONTINUE": "Continue",
