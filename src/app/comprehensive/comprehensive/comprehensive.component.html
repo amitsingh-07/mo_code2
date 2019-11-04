@@ -84,8 +84,9 @@
         <div class="cfp__desc">{{'CMP.COMPREHENSIVE.CFP_DESC' | translate}}</div>
       </div>
 
-      <div class="text-center promo-code-box">
-        <div class="promo-code-heading"><span class="promo-code-heading__text">Enter Promo Code</span></div>
+      <div class="text-center promo-code-box" [ngClass]="{'with-login': promoCodeValidated}">
+        <div [hidden]="promoCodeValidated" class="promo-code-heading"><span
+            class="promo-code-heading__text">{{'CMP.COMPREHENSIVE.ENTER_PROMO_HEADER' | translate}}</span></div>
         <form [hidden]="promoCodeValidated" [formGroup]="promoCodeForm" id="promoCodeForm" name="promoCodeForm"
           class="promoCodeForm">
           <div class="promo-code-box__promo-input">
@@ -106,7 +107,7 @@
           <div>
             <div class="free-tag"><span
                 class="strikethrough-new">{{'CMP.COMPREHENSIVE.ONE_TIME_FEE' | translate}}</span> </div>
-            <div class="onetime-free-box__inner__limited"><span>{{'CMP.COMPREHENSIVE.FREE' | translate}}</span>
+            <div class="onetime-free-box__inner__limited">
               {{'CMP.COMPREHENSIVE.FREE_LIMITED' | translate}}</div>
           </div>
           <div>
