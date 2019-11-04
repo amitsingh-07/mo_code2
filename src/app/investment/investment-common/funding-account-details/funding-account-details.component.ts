@@ -77,6 +77,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.fundingMethods = data.objectList.portfolioFundingMethod;
       this.srsAgentBankList = data.objectList.srsAgentBank;
+      this.investmentEngagementJourneyService.sortByProperty(this.fundingMethods, 'name', 'asc');
       this.buildForm();
       this.addAndRemoveSrsForm(this.fundingAccountDetailsForm.get('confirmedFundingMethodId').value);
     },
@@ -88,7 +89,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   buildForm() {
     this.fundingAccountDetailsForm = this.formBuilder.group({
       // tslint:disable-next-line:max-line-length
-      confirmedFundingMethodId: [this.formValues.confirmedFundingMethodId ? this.formValues.confirmedFundingMethodId : this.formValues.initialFundingMethodId, Validators.required]
+      confirmedFundingMethodId: [this.formValues.confirmedFundingMethodId ? this.formValues.confirmedFundingMethodId : this.formValues.initialFundingMethodId , Validators.required]
     });
   }
 
