@@ -1,15 +1,18 @@
 import { ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { Router } from '@angular/router';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
-import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
+import {
+    ModelWithButtonComponent
+} from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
+import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
@@ -36,6 +39,7 @@ export class NationalityComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private investmentAccountService: InvestmentAccountService,
+    private investmentCommonService: InvestmentCommonService
     private modal: NgbModal,
     public authService: AuthenticationService,
     public readonly translate: TranslateService,
@@ -172,6 +176,7 @@ export class NationalityComponent implements OnInit {
   saveNationality(form) {
     this.investmentAccountService.saveNationality(form.controls.nationality.value).subscribe(
       (data) => {
+        this.investmentCommonService.clearAccountCreationActions();
         this.investmentAccountService.setAccountCreationStatus(
           INVESTMENT_ACCOUNT_CONSTANTS.status.nationality_selected
         );
