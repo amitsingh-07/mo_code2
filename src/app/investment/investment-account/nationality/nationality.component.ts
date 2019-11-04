@@ -39,7 +39,7 @@ export class NationalityComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private investmentAccountService: InvestmentAccountService,
-    private investmentCommonService: InvestmentCommonService
+    private investmentCommonService: InvestmentCommonService,
     private modal: NgbModal,
     public authService: AuthenticationService,
     public readonly translate: TranslateService,
