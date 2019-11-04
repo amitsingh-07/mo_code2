@@ -246,8 +246,7 @@ export class FundingAccountDetailsComponent implements OnInit {
 
   maskConfig() {
     const config = {
-      mask: RegexConstants.operatorMask.DBS,
-      guide: false
+      mask: RegexConstants.operatorMask.DBS
     };
     if (this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value) {
       const operator = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value.name;
