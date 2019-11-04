@@ -29,5 +29,8 @@ export class InvestmentEngagementJourneyFormData {
   alternateRiskProfileType: string;
   fundDetails;
   selectedriskProfileId: number;
-  // SELECTNATIONLITY
+  
+
+  // FUNDING METHOD
+  fundingMethod: any;
 }

@@ -49,6 +49,7 @@ export class InvestmentEngagementJourneyService {
       investmentPeriod: this.investmentEngagementJourneyFormData.investmentPeriod
     };
   }
+ 
 
   // Risk Profile
   getRiskProfile() {
@@ -274,11 +275,11 @@ export class InvestmentEngagementJourneyService {
   }
 
   // SAVE FOR STEP 1
-  savePersonalInfo() {
-    const payload = this.constructInvObjectiveRequest();
+  savePersonalInfo(invCommonFormValues) {
+    const payload = this.constructInvObjectiveRequest(invCommonFormValues);
     return this.investmentApiService.savePersonalInfo(payload);
   }
-  constructInvObjectiveRequest() {
+  constructInvObjectiveRequest(invCommonFormValues) {
     const formData = this.getPortfolioFormData();
     const enquiryIdValue = Number(this.authService.getEnquiryId());
     return {
@@ -289,7 +290,8 @@ export class InvestmentEngagementJourneyService {
       percentageOfSaving: formData.percentageOfSaving,
       totalAssets: formData.totalAssets,
       totalLiabilities: formData.totalLiabilities,
-      enquiryId: enquiryIdValue
+      enquiryId: enquiryIdValue,
+      fundingTypeId: invCommonFormValues.initialFundingMethodId
     };
   }
 
@@ -381,6 +383,9 @@ export class InvestmentEngagementJourneyService {
   // #SET THE FINANCIAL PAGE.
   getUserFinancialDetails() {
     return this.investmentApiService.getUserFinancialDetails();
+  }
+  getFundingDetailsDetails() {
+    return this.investmentApiService.getAllDropdownList();
   }
   setFinancialDetails(financialDetails) {
     if (financialDetails) {

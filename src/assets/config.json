@@ -11,7 +11,7 @@
   "promotionEnabled": true,
   "articleEnabled": true,
   "maintenanceEnabled": false,
-  "marqueeEnabled": false,
+  "marqueeEnabled": true,
   "resetPasswordUrl": "/accounts/reset-password",
   "verifyEmailUrl": "/accounts/email-verification",
   "hospitalPlanData": [{

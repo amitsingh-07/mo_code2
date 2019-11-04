@@ -84,4 +84,40 @@ app-withdrawal {
   .capital-letter {
     text-transform: capitalize;
   }
+  .max-width.col-lg-6.col-md-6 {
+    padding: 0;
+    @include allmobiles {
+      padding: 0 15px;
+    }
+  }
+  .srs-div {
+    background-color: $white-color;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+    @include allmobiles {
+      width: 100vw;
+      margin-left: -20px;
+      margin-top: -20px;
+      border-radius: 0px;
+    }
+    img {
+      width: 16px;
+      height: auto;
+      margin-right: 10px;
+    }
+    .srs-note {
+      font-family: $muli-italic;
+      font-size: 13px;
+      line-height: normal;
+      letter-spacing: -0.14px;
+      color: $dark-grey-color;
+      a {
+        font-family: $muli-bold-italic;
+        color: $crusta-orange-color;
+      }
+    }
+  }
 }

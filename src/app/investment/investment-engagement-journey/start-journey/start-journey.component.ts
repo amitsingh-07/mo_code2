@@ -84,7 +84,7 @@ export class StartJourneyComponent implements OnInit {
       this.verifyPromoCode(this.promoCodeForm.controls.promoCode.value);
     } else {
       this.authService.saveEnquiryId(null);
-      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
     }
   }
 

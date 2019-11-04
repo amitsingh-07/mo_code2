@@ -7,6 +7,11 @@ export class InvestmentCommonFormData {
     accountCreationActions: IAccountCreationActions;
     investmentsSummary: any;
     portfolioName: string;
+    initialFundingMethodId: number;
+    confirmedFundingMethodId: number;
+    fundingType: string;
+    srsOperatorBank: any;
+    srsAccountNumber: string;
 }
 
 export interface IAccountCreationActions {
@@ -14,4 +19,5 @@ export interface IAccountCreationActions {
     allowEngagementJourney: boolean;
     portfolioLimitExceeded: boolean;
     showInvestmentAccountCreationForm: boolean;
+    enquiryMappedToCustomer?: boolean;
 }

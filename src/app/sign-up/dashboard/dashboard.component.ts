@@ -273,7 +273,8 @@ export class DashboardComponent implements OnInit {
         break;
       }
       case SIGN_UP_CONFIG.INVESTMENT.INVESTMENT_ACCOUNT_DETAILS_SAVED:
-      case SIGN_UP_CONFIG.INVESTMENT.DOCUMENTS_UPLOADED: {
+      case SIGN_UP_CONFIG.INVESTMENT.DOCUMENTS_UPLOADED:
+      case SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_CONFIRMED: {
         this.showInvestmentDetailsSaved = true;
         this.enableInvestment();
         break;

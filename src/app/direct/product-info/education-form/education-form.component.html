@@ -33,7 +33,7 @@
           <div class="datepicker-control">
             <div class="input-group date-picker mb0"  [ngClass]="{'inline-error': doberror && !educationForm.get('childdob').valid  && !educationForm.get('childdob').pristine}">
               <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="childdob" name="dp1"
-                ngbDatepicker #e="ngbDatepicker" (click)="e.toggle()">
+                ngbDatepicker #e="ngbDatepicker" (click)="e.toggle()" (dateSelect)="onGenderDobChange()">
               <div class="input-group-append">
                 <button (click)="e.toggle()" class="btn btn-primary" type="button">
                     <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="educationForm.get('childdob').valid || educationForm.get('childdob').pristine || !doberror" src="./assets/images/calendar-normal.svg"
