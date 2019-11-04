@@ -104,7 +104,7 @@ export class StartJourneyComponent implements OnInit {
       this.promoCode = data.responseMessage;
       if (this.promoCode.responseCode === 6005) {
         this.authService.saveEnquiryId(data.objectList[0].enquiryId);
-        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
       } else if (this.promoCode.responseCode === 5017) {
         this.showErrorModal();
         this.isDisabled = false;
