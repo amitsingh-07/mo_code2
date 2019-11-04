@@ -95,7 +95,8 @@
     "TITLE": "Settings",
     "SORT_BY": "Sort by",
     "APPLY_FILTERS": "Apply Filters",
-    "SORT": [{
+    "SORT": [
+      {
         "displayText": "Highest Ranking",
         "value": "premium.ranking"
       },
@@ -398,7 +399,7 @@
       "DEFAULT_ESTIMATED": "Estimated 20 mins",
       "COMPREHENSIVE_PLANNING_LAST_SUBMITTED_DATE": "Last Submitted LAST_SUBMITTED_DATE",
       "WARNING_POPUP": "Note that your DOB/Gender is different from Investment journey. Reach adviser on how to proceed",
-      "COMPREHENSIVE_PLANNING_SUBMITTED": "Once your report is ready, our advisers will be in touch with you"
+      "COMPREHENSIVE_PLANNING_SUBMITTED": "Once your report is ready, our advisers will be in touch with you."
     }
   },
   "TRANSFER_INSTRUCTION": {

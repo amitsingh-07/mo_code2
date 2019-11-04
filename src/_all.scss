@@ -2210,7 +2210,7 @@ select:-webkit-autofill:focus {
     background: url("./assets/images/comprehensive/delete-icon.svg");
     background-repeat: no-repeat;
     height: 20px;
-    width: 20px;
+    width: 16px !important;
     display: inline-block;
   }
 
@@ -2310,6 +2310,10 @@ select:-webkit-autofill:focus {
 
   .bucket-notes, .bucket-notes-dollar {
     font-family: $muli-bold;
+  }
+  .bucket-notes span {
+    font-family: $muli-regular;
+    display: block;
   }
   .bucket-notes-dollar {
     font-size: 20px;
