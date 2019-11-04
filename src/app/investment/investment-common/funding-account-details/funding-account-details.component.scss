@@ -3,6 +3,10 @@
 
 app-funding-account-details {
 .funding-account-details{
+  .container-fluid{
+      padding-left: 15px !important;
+      padding-right: 15px !important;
+  }
   .page-details{
     font-size: 14px;
     letter-spacing: -0.15px;
@@ -99,6 +103,7 @@ app-funding-account-details {
 
   .btn-primary{
     max-width: 340px;
+    font-family: $muli-bold !important;
     @include allmobiles{
       max-width: 100%;
     }
