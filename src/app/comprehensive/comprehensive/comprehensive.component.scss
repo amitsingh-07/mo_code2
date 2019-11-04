@@ -50,7 +50,7 @@ app-comprehensive {
             background-repeat: no-repeat;
             padding-left: 40px;
             background-position: 0 1px;
-            height: 30px;
+            min-height: 30px;
           }
           &.national-scheme {
             background-image: url('../../../assets/images/comprehensive/homepage/national-scheme.svg');
@@ -168,6 +168,9 @@ app-comprehensive {
     text-align: center;
     padding: 0 30px;
     padding-bottom: 130px;
+    &.with-login {
+      padding-bottom: 40px;
+    }
     input {
       text-align: center;
     }
@@ -252,7 +255,7 @@ app-comprehensive {
     &__desc {
       color: $limited-text;
       font-size: 14px;
-      font-family: $muli-semi-bold;
+      font-family: $muli-regular;
       @include iphone6plus {
         padding-right: 16%;
       }
