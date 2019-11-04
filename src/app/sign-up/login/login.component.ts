@@ -230,6 +230,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
         this.loginForm.value.captchaValue).subscribe((data) => {
           if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+            this.investmentCommonService.clearAccountCreationActions();
             try {
               if (data.objectList[0].customerId) {
                 this.appService.setCustomerId(data.objectList[0].customerId);

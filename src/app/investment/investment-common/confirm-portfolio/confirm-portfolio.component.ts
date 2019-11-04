@@ -218,6 +218,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   confirmPortfolio() {
     this.investmentCommonService.confirmPortfolio(this.portfolio.customerPortfolioId).subscribe((data) => {
       if (data.responseMessage.responseCode === 6000 || data.responseMessage.responseCode === 5119) {
+        this.investmentCommonService.clearAccountCreationActions();
         const namingFormData = {
           defaultPortfolioName: data.objectList.portfolioName,
           recommendedCustomerPortfolioId: this.portfolio.customerPortfolioId,
