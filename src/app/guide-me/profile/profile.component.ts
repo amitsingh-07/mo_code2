@@ -19,6 +19,7 @@ import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
+import { SeoServiceService } from './../../shared/Services/seo-service.service';
 
 const assetImgPath = './assets/images/';
 
@@ -51,12 +52,17 @@ export class ProfileComponent implements IPageComponent, OnInit {
     private modal: NgbModal, public headerService: HeaderService, public navbarService: NavbarService, public footerService: FooterService,
     public readonly translate: TranslateService, public authService: AuthenticationService,
     public log: LoggerService, private guideMeApiService: GuideMeApiService, private googleAnalytics: GoogleAnalyticsService,
-    private appService: AppService) {
+    private appService: AppService, private seoService: SeoServiceService) {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_GUIDED);
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('PROFILE.TITLE');
       this.setPageTitle(this.pageTitle);
+      // Meta Tag and Title Methods
+      this.seoService.setTitle(this.translate.instant('PROFILE.META.META_TITLE'));
+      this.seoService.setBaseSocialMetaTags(this.translate.instant('PROFILE.META.META_TITLE'),
+        this.translate.instant('PROFILE.META.META_DESCRIPTION'),
+        this.translate.instant('PROFILE.META.META_KEYWORDS'));
     });
   }
 
