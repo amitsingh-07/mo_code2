@@ -99,7 +99,8 @@ export class InvestmentCommonService {
             accountCreationState: data.objectList.accountCreationState,
             allowEngagementJourney: data.objectList.allowEngagementJourney,
             portfolioLimitExceeded: data.objectList.portfolioLimitExceeded,
-            showInvestmentAccountCreationForm: data.objectList.showInvestmentAccountCreationForm
+            showInvestmentAccountCreationForm: data.objectList.showInvestmentAccountCreationForm,
+            enquiryMappedToCustomer: data.objectList.enquiryMappedToCustomer
           };
         } else {
           this.investmentAccountService.showGenericErrorModal();
