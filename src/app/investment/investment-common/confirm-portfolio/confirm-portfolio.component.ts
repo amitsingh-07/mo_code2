@@ -85,7 +85,7 @@ export class ConfirmPortfolioComponent implements OnInit {
         const fundingParams = this.constructFundingParams(data.objectList);
         this.manageInvestmentsService.setFundingDetails(fundingParams);
         if (this.portfolio.fundingTypeId) {
-          this.investmentCommonService.setInitialFundingMethod(this.portfolio.fundingTypeId);
+          this.investmentCommonService.setInitialFundingMethod({initialFundingMethodId: this.portfolio.fundingTypeId});
         }
         this.userInputSubtext = {
           onetime: this.currencyPipe.transform(
