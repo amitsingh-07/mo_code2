@@ -8,6 +8,7 @@ import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { PromotionApiService } from './../promotion.api.service';
 
+import { SeoServiceService } from './../../shared/Services/seo-service.service';
 import { IPromoCategory } from './promo-category.interface';
 
 @Component({
@@ -27,11 +28,19 @@ export class PromotionLandingComponent implements OnInit {
     public footerService: FooterService, private configService: ConfigService,
     private translate: TranslateService,
     private promotionService: PromotionService,
-    private promotionApiService: PromotionApiService) {
+    private promotionApiService: PromotionApiService,
+    private seoService: SeoServiceService) {
       this.selectCategory(0);
       this.configService.getConfig().subscribe((config) => {
         this.translate.setDefaultLang(config.language);
         this.translate.use(config.language);
+      });
+      this.translate.get('COMMON').subscribe((result: string) => {
+        // Meta Tag and Title Methods
+        this.seoService.setTitle(this.translate.instant('PROMO_LANDING.META.META_TITLE'));
+        this.seoService.setBaseSocialMetaTags(this.translate.instant('PROMO_LANDING.META.META_TITLE'),
+          this.translate.instant('PROMO_LANDING.META.META_DESCRIPTION'),
+          this.translate.instant('PROMO_LANDING.META.META_KEYWORDS'));
       });
     }
 

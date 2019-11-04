@@ -12,7 +12,12 @@
     "DESC3": "In the following steps, we help you discover your Risk Profile – your ability and willingness to take risks – and recommend the most suitable portfolio for you.",
     "GETSTARTED": "Get Started",
     "PAGE_TITLE": "Welcome",
-    "PROMO_ERROR": "Invalid promo code. Please try again."
+    "PROMO_ERROR": "Invalid promo code. Please try again.",
+    "META": {
+      "META_TITLE": "Online Investment | Invest With Whom You Can Trust | MoneyOwl",
+      "META_DESCRIPTION": "Invest with MoneyOwl today! | Start from $50 RSP or $100 One Time | Dimensional Funds | Gain access to low-cost and globally diversified portfolio.",
+      "META_KEYWORDS": ""
+    }
   },
   "FUNDING_METHOD": {
     "TITLE": "Select Funding Method",

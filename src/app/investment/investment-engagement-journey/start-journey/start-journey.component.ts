@@ -18,6 +18,7 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
+import { SeoServiceService } from './../../../shared/Services/seo-service.service';
 
 @Component({
   selector: 'app-start-journey',
@@ -45,13 +46,19 @@ export class StartJourneyComponent implements OnInit {
     public authService: AuthenticationService,
     private _location: Location,
     private formBuilder: FormBuilder,
-    private modal: NgbModal
+    private modal: NgbModal,
+    private seoService: SeoServiceService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('START.PAGE_TITLE');
       this.setPageTitle(this.pageTitle);
       this.errorMsg = this.translate.instant('START.PROMO_ERROR');
+      // Meta Tag and Title Methods
+      this.seoService.setTitle(this.translate.instant('START.META.META_TITLE'));
+      this.seoService.setBaseSocialMetaTags(this.translate.instant('START.META.META_TITLE'),
+        this.translate.instant('START.META.META_DESCRIPTION'),
+        this.translate.instant('START.META.META_KEYWORDS'));
     });
   }
 
