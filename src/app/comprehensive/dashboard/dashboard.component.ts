@@ -32,6 +32,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
   items: any;
   isLoadComplete = false;
   islocked: boolean;
+  isComprehensiveEnabled = false;
+  isComprehensiveLiveEnabled = false;
   // tslint:disable-next-line:cognitive-complexity
   constructor(
     private router: Router,
@@ -45,6 +47,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
+      this.isComprehensiveEnabled = config.comprehensiveEnabled;
+      this.isComprehensiveLiveEnabled = config.comprehensiveLiveEnabled;
     });
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(100);

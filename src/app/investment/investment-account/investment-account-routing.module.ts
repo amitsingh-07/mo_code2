@@ -14,8 +14,9 @@ import {
 } from './additional-declaration2/additional-declaration2.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinancialDetailsComponent } from './financial-details/financial-details.component';
+
 import {
-   InvestmentAccountGuardService as InvestmentAccountGuard
+    InvestmentAccountGuardService as InvestmentAccountGuard
 } from './investment-account-guard.service';
 import { INVESTMENT_ACCOUNT_ROUTES } from './investment-account-routes.constants';
 import { NationalityComponent } from './nationality/nationality.component';
@@ -77,7 +78,7 @@ const routes: Routes = [
     canActivate: [InvestmentAccountGuard]
   },
   {
-    path: INVESTMENT_ACCOUNT_ROUTES.SETUP_PENDING,
+    path: INVESTMENT_ACCOUNT_ROUTES.STATUS,
     component: AccountStatusComponent,
     canActivate: [AuthGuard]
   },

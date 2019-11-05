@@ -323,9 +323,22 @@
     }
   },
   "ACCOUNT_CREATION_STATUS": {
+    "BUTTON_LBL": {
+      "CONTINUE": "Continue",
+      "OKAY": "Okay, Got It!",
+      "DASHBOARD": "Back To Dashboard"
+    },
+    "CASH_ACCOUNT_SUCCESS": {
+      "TITLE": "Investment Account Setup Successful",
+      "DESC": "Your portfolio is ready to be funded!"
+    },
+    "SRS_ACCOUNT_SUCCESS": {
+      "TITLE": "Investment Account Setup Successful",
+      "DESC": "Your buy request(s) will complete in 1 - 2 working days."
+    },
     "ADDITIONAL_DECLARATION_SUBMITTED": {
       "TITLE": "Your form has been submitted",
-      "DESC": "We will get back to you on your application in 1 - 2 working days."
+      "DESC": "We will get back to you on your application in 1 - 2 working days. Your portfolio will be shown on your dashboard once your application is approved."
     },
     "ACCOUNT_CREATION_PENDING": {
       "TITLE": "Almost There!",

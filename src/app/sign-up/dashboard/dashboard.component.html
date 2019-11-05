@@ -20,7 +20,7 @@
             </div>
           </div>
           <div class="widgets">
-            <app-comprehensive-dashboard></app-comprehensive-dashboard>
+            <app-comprehensive-dashboard *ngIf='isComprehensiveEnabled'></app-comprehensive-dashboard>
             <div class="widget">
               <ng-container *ngIf="isInvestmentEnabled; else loader">
                 <div class="widget-title">

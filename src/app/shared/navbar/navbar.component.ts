@@ -6,6 +6,7 @@ import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { appConstants } from '../../app.constants';
+import { APP_ROUTES } from '../../app-routes.constants';
 import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
@@ -84,6 +85,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   isInvestmentEnabled = false;
   isNotificationEnabled = false;
   isComprehensiveEnabled = false;
+  isComprehensiveLiveEnabled = false;
 
   showComprehensiveTitle = false;
   // Signed In
@@ -125,6 +127,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.isWillWritingEnabled = moduleConfig.willWritingEnabled;
       this.isInvestmentEnabled = moduleConfig.investmentEnabled;
       this.isComprehensiveEnabled = moduleConfig.comprehensiveEnabled;
+      this.isComprehensiveLiveEnabled = moduleConfig.comprehensiveLiveEnabled;
     });
 
     // User Information Check Authentication
@@ -238,7 +241,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   onPageChanged() {
-    this.isComprehensivePath = (window.location.href.indexOf('/comprehensive/') !== -1);
+    const comprehensiveUrlPath = '/' + APP_ROUTES.COMPREHENSIVE + '/';
+    this.isComprehensivePath = (window.location.href.indexOf(comprehensiveUrlPath) !== -1);
     this.showComprehensiveTitle = this.isComprehensiveEnabled && this.isComprehensivePath
       && this.journeyType === appConstants.JOURNEY_TYPE_COMPREHENSIVE
       && !Util.isEmptyOrNull(this.pageTitle);

@@ -111,7 +111,7 @@
               <img src="/assets/images/nav/nav-compre-icon.svg" />
               <div class="navbar--text">
                 <span>Comprehensive (integrating national schemes)</span>
-                <span *ngIf="!isComprehensiveEnabled" class="sub">(Coming Soon)</span>
+                <span *ngIf="!isComprehensiveEnabled || !isComprehensiveLiveEnabled" class="sub">(Coming Soon)</span>
               </div>
             </button>
             <div class="tip"></div>

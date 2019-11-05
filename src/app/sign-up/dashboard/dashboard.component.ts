@@ -73,6 +73,8 @@ export class DashboardComponent implements OnInit {
   transferInstructionModal;
   investmentsSummary;
 
+  isComprehensiveEnabled = false;
+
   constructor(
     private router: Router,
     private configService: ConfigService,
@@ -105,6 +107,7 @@ export class DashboardComponent implements OnInit {
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.isInvestmentConfigEnabled = config.investmentEnabled;
+      this.isComprehensiveEnabled = config.comprehensiveEnabled;
     });
   }
 
@@ -273,7 +276,8 @@ export class DashboardComponent implements OnInit {
         break;
       }
       case SIGN_UP_CONFIG.INVESTMENT.INVESTMENT_ACCOUNT_DETAILS_SAVED:
-      case SIGN_UP_CONFIG.INVESTMENT.DOCUMENTS_UPLOADED: {
+      case SIGN_UP_CONFIG.INVESTMENT.DOCUMENTS_UPLOADED:
+      case SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_CONFIRMED: {
         this.showInvestmentDetailsSaved = true;
         this.enableInvestment();
         break;

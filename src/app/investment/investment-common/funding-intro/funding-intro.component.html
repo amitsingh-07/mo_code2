@@ -1,19 +1,4 @@
-<!-- popup -->
-<div [ngClass]="{'fade-out-animation': animateStaticModal, 'hide-custom-modal': hideStaticModal}">
-  <div class="custom-modal-backdrop"></div>
-  <div class="custom-modal-wrapper">
-    <div class="custom-modal--icon">
-      <img src="../../../assets/images/investment-account/account-complete.svg"
-        id="portfolioRecommenadtionCustModalImg1" />
-    </div>
-    <div class="custom-modal--content">
-      <p class="custom-modal--title" id="fund-intro-flash-desc" innerHTML="{{'FUND_INTRO.SUCCESS' | translate}}"></p>
-      <button type="button" class="btn btn-primary" (click)="dismissFlashScreen()"
-        id="prfBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
-    </div>
-  </div>
-</div>
-<!-- popUp -->
+
 <div class="container-fluid max-width--1024 app-additional-declaration">
   <div class="intro-block__content">
     <div class="row text-center">
