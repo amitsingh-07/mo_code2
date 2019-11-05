@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Renderer2 } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -24,6 +24,7 @@ import {
     AccountCreationErrorModalComponent
 } from '../confirm-portfolio/account-creation-error-modal/account-creation-error-modal.component';
 import { IAccountCreationActions } from '../investment-common-form-data';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
 
 @Component({
@@ -33,7 +34,7 @@ import { InvestmentCommonService } from '../investment-common.service';
   encapsulation: ViewEncapsulation.None
 })
 
-export class AddPortfolioNameComponent implements OnInit {
+export class AddPortfolioNameComponent implements OnInit, OnDestroy {
   riskProfileIcon;
   characterLength;
   form: FormGroup;
@@ -77,10 +78,6 @@ export class AddPortfolioNameComponent implements OnInit {
       portfolioName: new FormControl('', [Validators.pattern(RegexConstants.portfolioName)])
     });
   }
-
-  ngOnDestroy() {
-    this.renderer.removeClass(document.body, 'portfolioname-bg');
-  }  
 
   submitForm() {
     if (this.form.valid) {
@@ -342,9 +339,6 @@ export class AddPortfolioNameComponent implements OnInit {
   }
 
   updateCharacterCount(event) {
-    if (this.characterLength !== event.currentTarget.value.length) {
-      //this.showErrorMessage = false;
-    }
     this.characterLength = event.currentTarget.value.length;
   }
 
@@ -367,6 +361,10 @@ export class AddPortfolioNameComponent implements OnInit {
     this.investmentCommonService.clearJourneyData();
     this.investmentCommonService.clearFundingDetails();
     this.investmentCommonService.clearAccountCreationActions();
+  }
+
+  ngOnDestroy() {
+    this.renderer.removeClass(document.body, 'portfolioname-bg');
   }
 
 }
