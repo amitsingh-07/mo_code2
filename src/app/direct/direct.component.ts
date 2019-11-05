@@ -21,6 +21,7 @@ import { FooterService } from './../shared/footer/footer.service';
 import { IPageComponent } from './../shared/interfaces/page-component.interface';
 import { NavbarService } from './../shared/navbar/navbar.service';
 import { SelectedPlansService } from './../shared/Services/selected-plans.service';
+import { SeoServiceService } from './../shared/Services/seo-service.service';
 import { StateStoreService } from './../shared/Services/state-store.service';
 import { DirectResultsComponent } from './direct-results/direct-results.component';
 import { DirectService } from './direct.service';
@@ -50,7 +51,7 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
     public modal: NgbModal, private route: ActivatedRoute,
     private factoryResolver: ComponentFactoryResolver, private appService: AppService,
     private planService: SelectedPlansService, private stateStoreService: StateStoreService,
-    private location: Location) {
+    private location: Location, private seoService: SeoServiceService) {
 
     /* ************** STATE HANDLING - START ***************** */
     this.componentName = DirectComponent.name;
@@ -93,6 +94,11 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
       this.pageTitle = this.translate.instant('PROFILE.TITLE');
       this.setPageTitle(this.pageTitle, null, false);
       this.directService.setModalFreeze(false);
+      // Meta Tag and Title Methods
+      this.seoService.setTitle(this.translate.instant('DIRECT_GET_STARTED.META.META_TITLE'));
+      this.seoService.setBaseSocialMetaTags(this.translate.instant('DIRECT_GET_STARTED.META.META_TITLE'),
+        this.translate.instant('DIRECT_GET_STARTED.META.META_DESCRIPTION'),
+        this.translate.instant('DIRECT_GET_STARTED.META.META_KEYWORDS'));
     });
     this.directService.modalFreezeCheck.subscribe((freezeCheck) => this.state.modalFreeze = freezeCheck);
     this.showProductInfo();

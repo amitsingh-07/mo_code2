@@ -64,7 +64,7 @@
             </div>
             <div class="flex-col-7">
               <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" appNumberOnly
-                [ngClass]="{'inline-error': submitted && educationPlan['controls'].endowmentMaturityYears.invalid}"
+                [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && educationPlan['controls'].endowmentMaturityYears.invalid}"
                 id="endowmentListFormInpt2" [placeholder]="'CMP.MY_SPENDINGS.ENTER_YEAR'| translate"
                 class="form-control" #endowmentMaturityYears formControlName="endowmentMaturityYears" maxlength="4">
             </div>
