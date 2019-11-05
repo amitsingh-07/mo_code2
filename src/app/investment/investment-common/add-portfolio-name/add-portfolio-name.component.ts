@@ -366,6 +366,7 @@ export class AddPortfolioNameComponent implements OnInit {
     this.investmentAccountService.clearInvestmentAccountFormData();
     this.investmentCommonService.clearJourneyData();
     this.investmentCommonService.clearFundingDetails();
+    this.investmentCommonService.clearAccountCreationActions();
   }
 
 }
