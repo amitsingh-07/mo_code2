@@ -55,6 +55,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   selected;
   showMpPopup = false;
   showAnimation = false;
+  cashPortfolioPresent: boolean;
 
   // transfer instructions
   bankDetails;
@@ -186,6 +187,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
       total: this.totalPortfolio
     };
     this.manageInvestmentsService.setUserPortfolioList(this.portfolioList);
+    this.cashPortfolioPresent = this.checkForCashAccount(this.portfolioList);
     if (this.investmentoverviewlist.cashAccountDetails) {
       this.manageInvestmentsService.setUserCashBalance(
         this.investmentoverviewlist.cashAccountDetails.availableBalance
@@ -281,20 +283,22 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   addPortfolio() {
     this.authService.saveEnquiryId(null);
     this.investmentCommonService.clearJourneyData();
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
   }
 
   gotoTopUp(portfolio?) {
-    // Added check if got portfolio, set it as selected one else set null for the main top up button
-    if (portfolio) {
-      this.manageInvestmentsService.setSelectedCustomerPortfolioId(portfolio['customerPortfolioId']);
-      this.manageInvestmentsService.setSelectedCustomerPortfolio(portfolio);
-    } else {
-      this.manageInvestmentsService.setSelectedCustomerPortfolioId(null);
-      this.manageInvestmentsService.setSelectedCustomerPortfolio(null);
+    if (this.cashPortfolioPresent) {
+      // Added check if got portfolio, set it as selected one else set null for the main top up button
+      if (portfolio) {
+        this.manageInvestmentsService.setSelectedCustomerPortfolioId(portfolio['customerPortfolioId']);
+        this.manageInvestmentsService.setSelectedCustomerPortfolio(portfolio);
+      } else {
+        this.manageInvestmentsService.setSelectedCustomerPortfolioId(null);
+        this.manageInvestmentsService.setSelectedCustomerPortfolio(null);
+      }
+      // GO TO TOP-UP
+      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
     }
-     // GO TO TOP-UP
-    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
   }
 
   getUserProfileInfo() {
@@ -400,5 +404,17 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     if (event) {
       event.stopPropagation();
     }
+  }
+
+  checkForCashAccount(portfolios) {
+    if (portfolios && portfolios.length) {
+      for (const portfolio of portfolios) {
+        if (portfolio.portfolioType !== 'SRS') {
+          return true;
+        }
+      }
+      return false;
+    }
+    return true;
   }
 }

@@ -1,17 +1,18 @@
 {
   "language": "en",
-  "common":"COMMON",
+  "common": "COMMON",
   "useMyInfo": true,
   "willWritingEnabled": true,
   "investmentEnabled": true,
   "investmentEngagementEnabled": true,
   "investmentMyInfoEnabled": true,
   "comprehensiveEnabled": true,
+  "comprehensiveLiveEnabled": true,
   "srsEnabled": true,
   "promotionEnabled": true,
   "articleEnabled": true,
   "maintenanceEnabled": false,
-  "marqueeEnabled": false,
+  "marqueeEnabled": true,
   "resetPasswordUrl": "/accounts/reset-password",
   "verifyEmailUrl": "/accounts/email-verification",
   "hospitalPlanData": [{
@@ -93,5 +94,3 @@
     }
   ]
 }
-
-

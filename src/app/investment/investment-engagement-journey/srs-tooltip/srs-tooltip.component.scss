@@ -1,0 +1,25 @@
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
+
+app-srs-tooltip{
+    .modal-body{
+        &.srs-tooltip-width{
+            width: 375px;
+            margin: 0 auto;
+            @include allmobiles{
+                width: 100%;
+            }
+        }
+    }
+    .txt-semi{
+        font-family: $muli-semi-bold;
+        color: #00a7a7;
+        margin-bottom: 30px;
+    }
+    .txt-orange{
+        a{
+        color: #ff872f;
+        font-family: $muli-bold;
+        }
+    }
+}

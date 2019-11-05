@@ -41,8 +41,8 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder, private config: NgbDatepickerConfig, private currencyPipe: CurrencyPipe,
     private router: Router) {
     const today: Date = new Date();
-    this.minDate = { year: (today.getFullYear() - 55), month: (today.getMonth() + 1), day: today.getDate() };
-    this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
+    config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
     this.translate.use('en');
 
@@ -88,6 +88,17 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
         }
       }
     });
+    this.directService.userInfoSet.subscribe((data) => {
+      this.criticalIllnessForm.controls.gender.setValue(data['gender']);
+      this.criticalIllnessForm.controls.dob.setValue(data['dob']);
+    });
+  }
+
+  onGenderDobChange() {
+    const userInfo = this.directService.getUserInfo();
+    userInfo.dob = this.criticalIllnessForm.controls.dob.value;
+    userInfo.gender = this.criticalIllnessForm.controls.gender.value;
+    this.directService.updateUserInfo(userInfo);
   }
 
   ngOnDestroy(): void {

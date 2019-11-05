@@ -47,9 +47,19 @@ import {
 } from './guide-me/recommendations/create-account-model/create-account-model.component';
 import { HammerConfig } from './hammer.config';
 import { HomeComponent } from './home/home.component';
-import { FundDetailsComponent } from './investment/investment-common/fund-details/fund-details.component';
-import { InvestmentChildEnableGuard } from './investment/investment-engagement-journey/investment-child-enable-guard';
-import { InvestmentEnableGuard } from './investment/investment-engagement-journey/investment-enable-guard';
+import {
+  FundDetailsComponent
+} from './investment/investment-common/fund-details/fund-details.component';
+import {
+  InvestmentChildEnableGuard
+} from './investment/investment-engagement-journey/investment-child-enable-guard';
+import {
+  InvestmentEnableGuard
+} from './investment/investment-engagement-journey/investment-enable-guard';
+import {
+  RestrictAddPortfolioModalComponent
+} from './investment/manage-investments/investment-overview/restrict-add-portfolio-modal/restrict-add-portfolio-modal.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
 import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { TermsComponent } from './shared/components/terms/terms.component';
@@ -81,7 +91,6 @@ import {
 import { ComprehensiveChildEnableGuard } from './comprehensive/comprehensive-child-enable-guard';
 import { ComprehensiveEnableGuard } from './comprehensive/comprehensive-enable-guard';
 import { EmailEnquirySuccessComponent } from './email-enquiry-success/email-enquiry-success.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 import {
   LoginCreateAccountModelComponent
 } from './shared/modal/login-create-account-model/login-create-account-model.component';
@@ -95,6 +104,7 @@ import {
 import {
   UnsupportedDeviceModalComponent
 } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 import { NavbarService } from './shared/navbar/navbar.service';
 import { RoutingService } from './shared/Services/routing.service';
 import { StateStoreService } from './shared/Services/state-store.service';
@@ -111,8 +121,6 @@ import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
-
-import { RestrictAddPortfolioModalComponent } from './investment/manage-investments/investment-overview/restrict-add-portfolio-modal/restrict-add-portfolio-modal.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -240,3 +248,5 @@ export class AppModule {
     routingService.loadRouting();
   }
 }
+
+

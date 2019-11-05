@@ -1,6 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 import { UserInfo } from './../guide-me/get-started/get-started-form/user-info';
 import { HospitalPlan } from './../guide-me/hospital-plan/hospital-plan';
@@ -38,12 +38,14 @@ export class DirectService {
   private prodSearchInfo = new BehaviorSubject('');
   private searchBtn = new BehaviorSubject('');
   private modalToolTip = new BehaviorSubject(this.tooltipData);
+  private userInfo = new Subject();
 
   modalFreezeCheck = this.modalFreeze.asObservable();
   prodCategoryIndex = this.prodCategory.asObservable();
   prodSearchInfoData = this.prodSearchInfo.asObservable();
   searchBtnTrigger = this.searchBtn.asObservable();
   modalToolTipTrigger = this.modalToolTip.asObservable();
+  userInfoSet = this.userInfo.asObservable();
   currentIndexValue: number;
 
   constructor(private currencyPipe: CurrencyPipe, private googleAnalyticsService: GoogleAnalyticsService) {
@@ -86,6 +88,14 @@ export class DirectService {
       this.directFormData.userInfo = {} as UserInfo;
     }
     return this.directFormData.userInfo;
+  }
+
+  updateUserInfo(userInfo?: UserInfo) {
+    if (userInfo) {
+      this.userInfo.next(userInfo);
+    } else if (Object.keys(this.getUserInfo()).length !== 0) {
+      this.userInfo.next(this.getUserInfo());
+    }
   }
 
   /* Setting Freeze for manual modal, Edit Profile */

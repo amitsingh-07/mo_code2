@@ -219,4 +219,39 @@ app-top-up {
   .capital-letter {
     text-transform: capitalize;
   }
+  .srs-div {
+    background-color: $white-color;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+
+    @include allmobiles {
+      width: 100vw;
+      margin-left: -18px;
+      margin-top: -20px;
+      border-radius: 0px;
+    }
+
+    img {
+      width: 16px;
+      height: auto;
+      margin-right: 10px;
+    }
+
+    .srs-note {
+      font-family: $muli-italic;
+      font-size: 13px;
+      line-height: normal;
+      letter-spacing: -0.14px;
+      color: $dark-grey-color;
+
+      a {
+        font-family: $muli-bold-italic;
+        color: $crusta-orange-color;
+      }
+    }
+  }
+  
 }

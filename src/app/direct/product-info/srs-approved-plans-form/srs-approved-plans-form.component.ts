@@ -38,8 +38,8 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
     private parserFormatter: NgbDateParserFormatter, private translate: TranslateService,
     private formBuilder: FormBuilder, private config: NgbDatepickerConfig, private currencyPipe: CurrencyPipe) {
     const today: Date = new Date();
-    this.dpMinDate = { year: (today.getFullYear() - 55), month: (today.getMonth() + 1), day: today.getDate() };
-    this.dpMaxDate = { year: (today.getFullYear() - 30), month: (today.getMonth() + 1), day: today.getDate() };
+    config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
+    config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -74,6 +74,17 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
         }
       }
     });
+    this.directService.userInfoSet.subscribe((data) => {
+      this.srsApprovedPlansForm.controls.gender.setValue(data['gender']);
+      this.srsApprovedPlansForm.controls.dob.setValue(data['dob']);
+    });
+  }
+
+  onGenderDobChange() {
+    const userInfo = this.directService.getUserInfo();
+    userInfo.dob = this.srsApprovedPlansForm.controls.dob.value;
+    userInfo.gender = this.srsApprovedPlansForm.controls.gender.value;
+    this.directService.updateUserInfo(userInfo);
   }
 
   ngOnDestroy(): void {
