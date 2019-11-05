@@ -108,7 +108,12 @@
       "FAQ_LINK": "http://www.moneyowl.com.sg/faqs",
       "GET_ONE_NOW_LINK": "http://www.moneyowl.com.sg/home#subscribe",
       "SUBSCRIBE": "Subscribe to our mailing list and ",
-      "PROMO_ERROR": "Invalid promo code. Please try again."
+      "PROMO_ERROR": "Invalid promo code. Please try again.",
+      "META": {
+        "META_TITLE": "Online Will Writing | MoneyOwl",
+        "META_DESCRIPTION": "Protect and provide for your loved ones even after you pass on. Write a legally binding, simple will in just 10 minutes!",
+        "META_KEYWORDS": ""
+      }
     },
     "TELL_US_YOURSELF": {
       "TITLE": "Tell Us About Yourself",

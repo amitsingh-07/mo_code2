@@ -162,6 +162,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     const invCommonFormValues = this.investmentCommonService.getInvestmentCommonFormData();
     this.investmentEngagementJourneyService.setYourFinancial(form.value);
     this.investmentEngagementJourneyService.savePersonalInfo(invCommonFormValues).subscribe((data) => {
+      this.investmentCommonService.clearAccountCreationActions();
       if (data) {
         this.authService.saveEnquiryId(data.objectList.enquiryId);
         this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP2]);
