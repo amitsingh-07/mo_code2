@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Renderer2 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavigationEnd, Router } from '@angular/router';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
@@ -24,7 +24,6 @@ import {
     AccountCreationErrorModalComponent
 } from '../confirm-portfolio/account-creation-error-modal/account-creation-error-modal.component';
 import { IAccountCreationActions } from '../investment-common-form-data';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
 
 @Component({
@@ -56,11 +55,13 @@ export class AddPortfolioNameComponent implements OnInit {
     private investmentCommonService: InvestmentCommonService,
     private manageInvestmentsService: ManageInvestmentsService,
     private loaderService: LoaderService,
+    private renderer: Renderer2,
     private navbarService: NavbarService, ) {
       this.translate.use('en');
       this.translate.get('COMMON').subscribe((result: string) => {
         this.pageTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.TITLE');
         this.setPageTitle(this.pageTitle);
+        this.renderer.addClass(document.body, 'portfolioname-bg');
       });
   }
 
@@ -76,6 +77,10 @@ export class AddPortfolioNameComponent implements OnInit {
       portfolioName: new FormControl('', [Validators.pattern(RegexConstants.portfolioName)])
     });
   }
+
+  ngOnDestroy() {
+    this.renderer.removeClass(document.body, 'portfolioname-bg');
+  }  
 
   submitForm() {
     if (this.form.valid) {
