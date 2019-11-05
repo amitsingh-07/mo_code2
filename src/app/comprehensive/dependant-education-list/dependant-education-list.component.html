@@ -5,14 +5,13 @@
     <app-step-indicator [count]="5" [activeStepIndex]="4" [mode]="1"></app-step-indicator>
   </div>
   <!--Step indicator-->
-  <div class="flex-row">
-    <div class="flex-col-12">
-      <div class="comprehensive__page-sub-heading mt30 pb0" for="name">{{
+  <div class="flex space-btwn align-items-start mt30 ">
+    <div class="comprehensive__page-sub-heading pb0 pr10" for="name">{{
         'CMP.ENDOWMENT_PLAN.DESCRIPTION' | translate}}
-        <span class="help-icon" (click)="showToolTipModal()"></span>
-      </div>
     </div>
+    <div class="help-icon" (click)="showToolTipModal()"></div>
   </div>
+
   <!--Page form-->
   <form [formGroup]="endowmentListForm" id="endowmentListForm" name="endowmentListForm" class="endowmentListForm">
     <div formArrayName="endowmentPlan" class="education-support-array  mb-2"

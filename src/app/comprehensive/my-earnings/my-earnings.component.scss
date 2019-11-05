@@ -67,7 +67,10 @@ color: $dark-teal-color;
      color:$text-grey-color!important;
     }
     .earnings-dropdown{
-        color:#5e5e5e!important;
+        color:$silver-grey-color !important;
+        &[disabled] {
+            color: $dusty-grey-color !important;
+        }
     }
 }
 .mb-10{
