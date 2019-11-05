@@ -10,7 +10,12 @@ app-add-portfolio-name {
     justify-content: center;
     align-items: center;
     @include allmobiles{
-      min-height: calc(100vh - 46px);
+      min-height: calc(100vh - 100px);
+    }
+    .container-fluid{
+      @include allmobiles{
+        padding: 0;
+      }
     }
   }
 
