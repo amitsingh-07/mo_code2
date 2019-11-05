@@ -1,12 +1,12 @@
-import { ConfigService } from './../../config/config.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConfigService } from './../../config/config.service';
 
 import { TranslateService } from '@ngx-translate/core';
+import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { SignUpApiService } from './../sign-up.api.service';
-import { FooterService } from 'src/app/shared/footer/footer.service';
 
 @Component({
   selector: 'app-email-verification',
