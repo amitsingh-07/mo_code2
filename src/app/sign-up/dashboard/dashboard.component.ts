@@ -73,6 +73,8 @@ export class DashboardComponent implements OnInit {
   transferInstructionModal;
   investmentsSummary;
 
+  isComprehensiveEnabled = false;
+
   constructor(
     private router: Router,
     private configService: ConfigService,
@@ -105,6 +107,7 @@ export class DashboardComponent implements OnInit {
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.isInvestmentConfigEnabled = config.investmentEnabled;
+      this.isComprehensiveEnabled = config.comprehensiveEnabled;
     });
   }
 
