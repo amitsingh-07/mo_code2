@@ -45,8 +45,9 @@ export class AddPortfolioNameComponent implements OnInit {
   isSubsequentPortfolio = false;
   isRequestSubmitted = false;
   formValues;
+  fundingMethod: string;
 
-  constructor (
+  constructor(
     public investmentAccountService: InvestmentAccountService,
     private formBuilder: FormBuilder,
     private router: Router,
@@ -69,6 +70,7 @@ export class AddPortfolioNameComponent implements OnInit {
 
   ngOnInit() {
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
+    this.fundingMethod = this.investmentCommonService.getConfirmedFundingMethodName();
     this.riskProfileIcon = ProfileIcons[this.formValues.recommendedRiskProfileId - 1]['icon'];
     this.form = this.formBuilder.group({
       portfolioName: new FormControl('', [Validators.pattern(RegexConstants.portfolioName)])
@@ -286,7 +288,17 @@ export class AddPortfolioNameComponent implements OnInit {
     this.investmentAccountService.setAccountCreationStatus(
       INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_confirmed
     );
-    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.STATUS]);
+    this.manageInvestmentsService.activateToastMessage();
+    if (this.isSubsequentPortfolio) {
+      this.clearData();
+      if ((this.fundingMethod).toUpperCase() === 'CASH') {
+        this.redirectToFundAccount();
+      } else {
+        this.redirectToYourInvestment();
+      }
+    } else {
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.STATUS]);
+    }
   }
 
   setPortfolioSuccessToastMessage() {
@@ -335,6 +347,20 @@ export class AddPortfolioNameComponent implements OnInit {
     return str.toLowerCase().split(' ')
             .map((name) => name.charAt(0).toUpperCase() + name.substring(1))
             .join(' ').trim().replace(/  +/g, ' ');
+  }
+
+  redirectToFundAccount() {
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);
+  }
+
+  redirectToYourInvestment() {
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
+  }
+
+  clearData() {
+    this.investmentAccountService.clearInvestmentAccountFormData();
+    this.investmentCommonService.clearJourneyData();
+    this.investmentCommonService.clearFundingDetails();
   }
 
 }
