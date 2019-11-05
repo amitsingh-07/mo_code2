@@ -99,7 +99,8 @@ export class InvestmentCommonService {
             accountCreationState: data.objectList.accountCreationState,
             allowEngagementJourney: data.objectList.allowEngagementJourney,
             portfolioLimitExceeded: data.objectList.portfolioLimitExceeded,
-            showInvestmentAccountCreationForm: data.objectList.showInvestmentAccountCreationForm
+            showInvestmentAccountCreationForm: data.objectList.showInvestmentAccountCreationForm,
+            enquiryMappedToCustomer: data.objectList.enquiryMappedToCustomer
           };
         } else {
           this.investmentAccountService.showGenericErrorModal();
@@ -119,7 +120,15 @@ export class InvestmentCommonService {
   redirectToInvestmentFromLogin(enquiryId) {
     this.getAccountCreationActions(enquiryId).subscribe((data: IAccountCreationActions) => {
       if (enquiryId && !data.enquiryMappedToCustomer) { /* enquiryId will not be available only in sign up flow */
-        this.goToDashboard();
+        if (data.portfolioLimitExceeded) { // HAVE LESS THAN 20 PORTFOLIOS?
+          this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_TITLE',
+            'INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_ERROR');
+        } else if (!data.allowEngagementJourney) { // ACCOUNT CREATION PENDING ?
+          this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_TITLE',
+            'INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_ERROR');
+        } else {
+          this.goToDashboard();
+        }
       } else if (this.isUsersFirstPortfolio(data)) {// FIRST PORTFOLIO
         this.goToFirstAccountCreation(data);
       } else { // SECOND PORTFOLIO
@@ -129,19 +138,11 @@ export class InvestmentCommonService {
   }
 
   goToFirstAccountCreation(data) {
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
   }
 
   goToAdditionalAccountCreation(data) {
-    if (data.portfolioLimitExceeded) { // HAVE LESS THAN 20 PORTFOLIOS?
-      this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_TITLE',
-        'INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_ERROR');
-    } else if (!data.allowEngagementJourney) { // ACCOUNT CREATION PENDING ?
-      this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_TITLE',
-        'INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_ERROR');
-    } else {
-      this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
-    }
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
   }
 
   setInvestmentsSummary(investmentsSummary) {

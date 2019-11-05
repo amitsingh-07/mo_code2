@@ -1,7 +1,12 @@
 {
   "PROFILE": {
     "TITLE": "What’s Your Profile?",
-    "DESCRIPTION": "Please choose the profile that best describes you."
+    "DESCRIPTION": "Please choose the profile that best describes you.",
+    "META": {
+      "META_TITLE": "Insurance Guide Me Journey | MoneyOwl",
+      "META_DESCRIPTION": "Complete our insurance journey to find the most suitable and affordable insurance for you and your family. Get 50% Basic Commission Rebates!",
+      "META_KEYWORDS": ""
+    }
   },
   "GET_STARTED": {
     "TITLE": "Get Started",

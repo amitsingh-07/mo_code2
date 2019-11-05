@@ -98,8 +98,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     this.translate.get('HOME').subscribe((result: string) => {
       // Meta Tag and Title Methods
-      this.seoService.setTitle(this.translate.instant('GENERAL.TITLE'));
-      this.seoService.setBaseSocialMetaTags(this.translate.instant('GENERAL.TITLE'),
+      this.seoService.setTitle(this.translate.instant('GENERAL.META.META_TITLE'));
+      this.seoService.setBaseSocialMetaTags(this.translate.instant('GENERAL.META.META_TITLE'),
         this.translate.instant('GENERAL.META.META_DESCRIPTION'),
         this.translate.instant('GENERAL.META.META_KEYWORDS'));
       this.meta.addTag({ name: 'copyright', content: this.translate.instant('GENERAL.META.META_COPYRIGHT') });
