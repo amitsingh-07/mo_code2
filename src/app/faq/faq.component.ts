@@ -1,9 +1,11 @@
-import {  AfterViewChecked, Component,
-         ElementRef,
-         OnInit,
-         Renderer2,
-         ViewChild,
-         ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewChecked, Component,
+  ElementRef,
+  OnInit,
+  Renderer2,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfigService, IConfig } from './../config/config.service';
@@ -36,22 +38,22 @@ export class FAQComponent implements OnInit, AfterViewChecked {
   @ViewChild('faqContainer') FaqElement: ElementRef;
 
   constructor(private navbarService: NavbarService, private footerService: FooterService, private seoService: SeoServiceService,
-              public translate: TranslateService, public renderer: Renderer2, private configService: ConfigService,
-              public route: ActivatedRoute) {
-                this.configService.getConfig().subscribe((config: IConfig) => {
-                  this.isWillWritingEnabled = config.willWritingEnabled;
-                  this.isInvestmentEnabled = config.investmentEnabled;
-                  this.isComprehensiveEnabled = config.comprehensiveEnabled;
-                  this.route.fragment.subscribe((fragment) => {
-                    this.goToRoute(fragment);
-                  });
-                  this.route.queryParams.subscribe((params) => {
-                    if (params['category']) {
-                      this.goToSection(params['category']);
-                    }
-                  });
-                });
-              }
+    public translate: TranslateService, public renderer: Renderer2, private configService: ConfigService,
+    public route: ActivatedRoute) {
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.isWillWritingEnabled = config.willWritingEnabled;
+      this.isInvestmentEnabled = config.investmentEnabled;
+      this.isComprehensiveEnabled = config.comprehensiveEnabled && config.comprehensiveLiveEnabled;
+      this.route.fragment.subscribe((fragment) => {
+        this.goToRoute(fragment);
+      });
+      this.route.queryParams.subscribe((params) => {
+        if (params['category']) {
+          this.goToSection(params['category']);
+        }
+      });
+    });
+  }
 
   ngOnInit() {
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -59,8 +61,8 @@ export class FAQComponent implements OnInit, AfterViewChecked {
       this.sections = this.getFAQSections(this.translate.instant('FAQ.CONTENT'));
       this.seoService.setTitle(this.translate.instant('FAQ_GENERAL.TITLE'));
       this.seoService.setBaseSocialMetaTags(this.translate.instant('FAQ_GENERAL.TITLE'),
-                                            this.translate.instant('FAQ_GENERAL.DESCRIPTION'),
-                                            this.translate.instant('FAQ_GENERAL.KEYWORDS'));
+        this.translate.instant('FAQ_GENERAL.DESCRIPTION'),
+        this.translate.instant('FAQ_GENERAL.KEYWORDS'));
     });
     this.navbarService.setNavbarMode(1);
     this.navbarService.setNavbarMobileVisibility(false);
@@ -70,7 +72,7 @@ export class FAQComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked() {
     this.route.fragment.subscribe((fragment) => {
       if (fragment === 'srs-joint-account' && this.viewChecked === false) {
-        this.navigateToSection();
+        this.navigateToSection('FAQ.CONTENT.Investment', 'Joint or SRS Accounts ');
       }
     });
   }
@@ -82,17 +84,17 @@ export class FAQComponent implements OnInit, AfterViewChecked {
     if (fragment === 'will-writing' && this.isWillWritingEnabled) {
       this.activeSection = 1;
     } else
-    if (fragment === 'investment' && this.isInvestmentEnabled) {
-      this.activeSection = 2;
-    } else
-    if (fragment === 'comprehensive' && this.isComprehensiveEnabled) {
-      this.activeSection = 3;
-    } else
-    if (fragment === 'srs-joint-account' && this.isInvestmentEnabled) {
-      this.activeSection = 2;
-    } else {
-      this.activeSection = 0;
-    }
+      if (fragment === 'investment' && this.isInvestmentEnabled) {
+        this.activeSection = 2;
+      } else
+        if (fragment === 'comprehensive' && this.isComprehensiveEnabled) {
+          this.activeSection = 3;
+        } else
+          if (fragment === 'srs-joint-account' && this.isInvestmentEnabled) {
+            this.activeSection = 2;
+          } else {
+            this.activeSection = 0;
+          }
   }
 
   toggleActive(event: any) {
@@ -173,60 +175,63 @@ export class FAQComponent implements OnInit, AfterViewChecked {
       const sectionChildren = sectionParent.childNodes;
       // Deactivating
       for (let i = 1; i < children.length; i++) {
-          const selected = children[i];
-          if (selected.classList.contains('active')) {
-            const active_section = sectionChildren[i + 2];
-            this.renderer.removeClass(active_section, 'active');
-            this.renderer.removeClass(selected, 'active');
-          }
+        const selected = children[i];
+        if (selected.classList.contains('active')) {
+          const active_section = sectionChildren[i + 2];
+          this.renderer.removeClass(active_section, 'active');
+          this.renderer.removeClass(selected, 'active');
+        }
 
-          if (selected === event.srcElement) {
-            const selected_text = event.srcElement.innerHTML;
-            this.renderer.setProperty(button, 'innerHTML', selected_text);
-            const selected_section = sectionChildren[i + 2];
-            this.renderer.addClass(selected_section, 'active');
-          }
-       }
+        if (selected === event.srcElement) {
+          const selected_text = event.srcElement.innerHTML;
+          this.renderer.setProperty(button, 'innerHTML', selected_text);
+          const selected_section = sectionChildren[i + 2];
+          this.renderer.addClass(selected_section, 'active');
+        }
+      }
 
       // Activating
       this.renderer.addClass(event.srcElement, 'active');
     }
   }
 
-    goToSection(elementName) {
-      if (elementName === 'insurance') {
-        this.activeSection = 0;
-      } else if (elementName === 'will') {
-        this.activeSection = 1;
-      } else if (elementName === 'investment') {
-        this.activeSection = 2;
-      } else if (elementName === 'comprehensive') {
-        this.activeSection = 3;
-      } else {
-        this.activeSection = 0;
-      }
+  goToSection(elementName) {
+    if (elementName === 'insurance') {
+      this.activeSection = 0;
+    } else if (elementName === 'will') {
+      this.activeSection = 1;
+    } else if (elementName === 'investment') {
+      this.activeSection = 2;
+    } else if (elementName === 'comprehensive') {
+      this.activeSection = 3;
+    } else {
+      this.activeSection = 0;
     }
+  }
 
   // For navigating to a specific section of faq
-  navigateToSection() {
+  // faqContentTitle > Ex: Insurance, Will Writing, Invest
+  // faqSectionTitle > Ex: Getting Started, Joint or SRS Accounts
+  navigateToSection(faqContentTitle, faqSectionTitle) {
     setTimeout(() => {
       if (document.getElementsByClassName('faq-category__body active')[0]) {
         const faq_element = document.querySelectorAll('.faq-selection__element');
         const qns_panel = document.querySelectorAll('.questions__panel');
-        const investmentContent = this.translate.instant('FAQ.CONTENT.Investment');
-        const jointSrsContent = this.validateTitle(Object.keys(investmentContent)[2], 0);
-        for ( let i = 0; i < faq_element.length; i ++) {
-          if (faq_element[i]['innerHTML'] === Object.keys(investmentContent)[0]) {
+        const faqContent = this.translate.instant(faqContentTitle);
+        for (let i = 0; i < faq_element.length; i++) {
+          // Remove the active on content first item
+          if (faq_element[i]['innerHTML'] === Object.keys(faqContent)[0]) {
             faq_element[i].classList.remove('active');
             qns_panel[i].classList.remove('active');
           }
-          if (faq_element[i]['innerHTML'] === jointSrsContent) {
+          // Set active on the required item
+          if (faq_element[i]['innerHTML'] === faqSectionTitle) {
             faq_element[i].className += ' active';
             qns_panel[i].className += ' active';
           }
         }
         const btnDropdownEle = document.getElementsByClassName('btn-dropdown');
-        btnDropdownEle[2].innerHTML = jointSrsContent;
+        btnDropdownEle[2].innerHTML = faqSectionTitle;
         const selectedSection = document.getElementsByClassName('faq-category__body active')[0].getBoundingClientRect();
         const elemOffsetTop = selectedSection.top - document.getElementsByTagName('nav')[0].offsetHeight;
         window.scrollTo({ top: elemOffsetTop, behavior: 'smooth' });

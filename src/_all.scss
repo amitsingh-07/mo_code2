@@ -2078,7 +2078,7 @@ select:-webkit-autofill:focus {
           width: 35px;
           height: 35px;
           position: absolute;
-          left: -68px;
+          left: -71px;
           background-color: transparent;
           border: 2px solid $screen-separator-bar-color;
           background-size: 100%;
@@ -2210,7 +2210,7 @@ select:-webkit-autofill:focus {
     background: url("./assets/images/comprehensive/delete-icon.svg");
     background-repeat: no-repeat;
     height: 20px;
-    width: 20px;
+    width: 16px !important;
     display: inline-block;
   }
 
@@ -2308,10 +2308,21 @@ select:-webkit-autofill:focus {
     }
   }
 
+  .bucket-notes, .bucket-notes-dollar {
+    font-family: $muli-bold;
+  }
+  .bucket-notes span {
+    font-family: $muli-regular;
+    display: block;
+  }
   .bucket-notes-dollar {
     font-size: 20px;
   }
-
+  .sticky-footer {
+    @extend .flex;
+    @extend .space-btwn;
+    align-items: center;
+}
   .slider-dark {
     .noUi-horizontal .noUi-handle {
       width: 30px !important;

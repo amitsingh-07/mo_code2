@@ -2,12 +2,12 @@
 @import '../../../mixins';
 .myDependant {
   .myDependantFormArray {
-    background: #f0ffff !important;
-    color: #005960 !important;
+    background: $black-squeeze-grey-color !important;
+    //color: #005960 !important; /*Not used anywhere*/
     border-radius: 10px;
 
     h5 {
-      color: #000 !important;
+      color: $black-color !important;
     }
   }
   .dependant-name-wrap {
@@ -33,7 +33,7 @@
   content: "";
 }
 .content-editable {
-    border: 1px solid #94CCCC;
+    border: 1px solid $content-editable-border-color;
     border-radius: 6px;
     padding: .90rem;
     background: $white-color;
@@ -44,12 +44,12 @@
     }
     &.inline-error {
       color: #e57300 !important;
-      background: #fff3e9;
+      background: $inline-error-bg-color;
       &[placeholder]:empty::before {
-        color: #e57300 !important;
+        color: $mango-tango-color !important;
       }
     }
     &[placeholder]:empty::before {
-       color:#9b9b9b!important;
+       color:$dusty-grey-color !important;
     }
 }

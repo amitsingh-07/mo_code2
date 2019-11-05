@@ -108,7 +108,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.isWillWritingEnabled = config.willWritingEnabled;
       this.isInvestmentEnabled = config.investmentEnabled;
-      this.isComprehensiveEnabled = config.comprehensiveEnabled;
+      this.isComprehensiveEnabled = config.comprehensiveEnabled && config.comprehensiveLiveEnabled;
       this.isSrsEnabled = config.srsEnabled;
       this.isMarqueeEnabled = config.marqueeEnabled;
     });

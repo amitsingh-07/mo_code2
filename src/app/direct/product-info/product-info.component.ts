@@ -268,6 +268,8 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     if (this.innerWidth >= this.mobileThreshold) {
       this.openProductCategory(0);
     }
+
+    this.directService.updateUserInfo();
   }
 
   search(index) {

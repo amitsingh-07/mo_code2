@@ -232,6 +232,18 @@ export class ComprehensiveService {
     }
     return this.comprehensiveFormData.comprehensiveDetails;
   }
+  /**
+   * 
+   * @return
+   * ComprehensiveEnquiry
+   */
+
+  getComprehensiveEnquiry() {
+    if (!this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry) {
+      this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry = {} as IComprehensiveEnquiry;
+    }
+    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry;
+  }
 
   /**
    * Set the comprehensive summary object.
@@ -698,6 +710,22 @@ export class ComprehensiveService {
     ref.componentInstance.tooltipTitle = toolTipParam.TITLE;
     ref.componentInstance.tooltipMessage = toolTipParam.DESCRIPTION;
   }
+  openTooltipModalWithDismiss(toolTipParam) {
+    const ref = this.modal.open(ToolTipModalComponent, {
+      centered: true
+    });
+    ref.componentInstance.tooltipTitle = toolTipParam.TITLE;
+    ref.componentInstance.tooltipMessage = toolTipParam.DESCRIPTION;
+    ref.result.then(
+      result => { },
+      reason => {
+        if (reason === 'Cross click' && toolTipParam.URL) {
+          this.router.navigate([toolTipParam.URL]);
+        }
+      }
+    );
+    return false;
+  }
   openSummaryPopUpModal(summaryModalDetails) {
     const ref = this.modal.open(SummaryModalComponent, {
       centered: true,
@@ -784,6 +812,7 @@ export class ComprehensiveService {
 
     const profileData = this.getMyProfile();
     const cmpSummary = this.getComprehensiveSummary();
+
     const enquiry = this.getComprehensiveSummary().comprehensiveEnquiry;
     const childEndowmentData: IChildEndowment[] = this.getChildEndowment();
 
@@ -792,6 +821,18 @@ export class ComprehensiveService {
     const fireProofingProgressData = this.getFireproofingProgressData();
     const retirementProgressData = this.getRetirementProgressData();
     const reportStatusData = this.getReportStatus();
+    const stepCompleted = this.getMySteps();
+
+    const userAge = this.aboutAge.calculateAge(
+      cmpSummary.baseProfile.dateOfBirth,
+      new Date()
+    );
+
+    let accessPage = true;
+    if (userAge < COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MIN_AGE
+      || userAge > COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MAX_AGE) {
+      accessPage = false;
+    }
 
     for (let index = currentUrlIndex; index >= 0; index--) {
       if (accessibleUrl !== '') {
@@ -819,7 +860,7 @@ export class ComprehensiveService {
           case 1:
           // 'dependant-selection'
           case 2:
-            if (profileData.nationalityStatus) {
+            if (accessPage && profileData.nationalityStatus) {
               accessibleUrl = urlList[index];
             }
             break;
@@ -827,7 +868,7 @@ export class ComprehensiveService {
           // 'dependant-selection/summary'
           case 3:
             if (
-              enquiry.hasDependents === false &&
+              accessPage && enquiry.hasDependents === false &&
               dependantProgressData.subItems[2].value === '0'
             ) {
               accessibleUrl = urlList[index];
@@ -837,7 +878,7 @@ export class ComprehensiveService {
           // 'dependant-details'
           case 4:
             if (
-              enquiry.hasDependents !== null &&
+              accessPage && enquiry.hasDependents !== null &&
               enquiry.hasDependents !== false
             ) {
               accessibleUrl = urlList[index];
@@ -846,14 +887,14 @@ export class ComprehensiveService {
 
           // 'dependant-details/summary'
           case 5:
-            if (!this.hasChildDependant() && enquiry.hasDependents) {
+            if (accessPage && !this.hasChildDependant() && enquiry.hasDependents) {
               accessibleUrl = urlList[index];
             }
             break;
 
           // 'dependant-education-selection'
           case 6:
-            if (this.hasChildDependant()) {
+            if (accessPage && this.hasChildDependant()) {
               accessibleUrl = urlList[index];
             }
             break;
@@ -861,7 +902,7 @@ export class ComprehensiveService {
           // 'dependant-education-selection/summary'
           case 7:
             if (
-              this.hasChildDependant() &&
+              accessPage && this.hasChildDependant() &&
               (this.hasEndowment() === '0' || this.hasEndowment() === '2')
             ) {
               accessibleUrl = urlList[index];
@@ -870,7 +911,7 @@ export class ComprehensiveService {
 
           // 'dependant-education-preference'
           case 8:
-            if (this.hasChildDependant() && this.hasEndowment() === '1') {
+            if (accessPage && this.hasChildDependant() && this.hasEndowment() === '1') {
               accessibleUrl = urlList[index];
             }
             break;
@@ -887,7 +928,7 @@ export class ComprehensiveService {
               eduPref = childEndowmentData[0].location;
             }
             if (
-              this.hasChildDependant() &&
+              accessPage && this.hasChildDependant() &&
               this.hasEndowment() === '1' &&
               eduPref !== ''
             ) {
@@ -897,39 +938,43 @@ export class ComprehensiveService {
 
           // 'steps/2'
           case 11:
+            if (accessPage && canAccess) {
+              accessibleUrl = urlList[index];
+            }
+            break;
           // 'my-earnings'
           case 12:
-            if (canAccess) {
+            if (accessPage && canAccess && stepCompleted > 0) {
               accessibleUrl = urlList[index];
             }
             break;
           // 'my-spendings'
           case 13:
-            if (canAccess && financeProgressData.subItems[0].completed) {
+            if (accessPage && canAccess && financeProgressData.subItems[0].completed && stepCompleted > 0) {
               accessibleUrl = urlList[index];
             }
             break;
           // 'regular-saving-plan'
           case 14:
-            if (canAccess && financeProgressData.subItems[1].completed) {
+            if (accessPage && canAccess && financeProgressData.subItems[1].completed && stepCompleted > 0) {
               accessibleUrl = urlList[index];
             }
             break;
           // 'bad-mood-fund'
           case 15:
-            if (canAccess && financeProgressData.subItems[2].completed) {
+            if (accessPage && canAccess && financeProgressData.subItems[2].completed && stepCompleted > 0) {
               accessibleUrl = urlList[index];
             }
             break;
           // 'my-assets'
           case 16:
-            if (canAccess && financeProgressData.subItems[4].completed) {
+            if (accessPage && canAccess && financeProgressData.subItems[4].completed && stepCompleted > 0) {
               accessibleUrl = urlList[index];
             }
             break;
           // 'my-liabilities'
           case 17:
-            if (canAccess && financeProgressData.subItems[5].completed) {
+            if (accessPage && canAccess && financeProgressData.subItems[5].completed && stepCompleted > 0) {
               accessibleUrl = urlList[index];
             }
             break;
@@ -937,9 +982,13 @@ export class ComprehensiveService {
           case 18:
           // 'steps/3'
           case 19:
+            if (accessPage && canAccess && financeProgressData.subItems[6].completed && stepCompleted > 0) {
+              accessibleUrl = urlList[index];
+            }
+            break;
           // 'insurance-plan'
           case 20:
-            if (canAccess && financeProgressData.subItems[6].completed) {
+            if (accessPage && canAccess && financeProgressData.subItems[6].completed && stepCompleted > 1) {
               accessibleUrl = urlList[index];
             }
             break;
@@ -947,9 +996,13 @@ export class ComprehensiveService {
           case 21:
           // 'steps/4'
           case 22:
+            if (accessPage && canAccess && fireProofingProgressData.subItems[0].completed && stepCompleted > 1) {
+              accessibleUrl = urlList[index];
+            }
+            break;
           // 'retirement-plan'
           case 23:
-            if (canAccess && fireProofingProgressData.subItems[0].completed) {
+            if (accessPage && canAccess && fireProofingProgressData.subItems[0].completed && stepCompleted > 2) {
               accessibleUrl = urlList[index];
             }
             break;
@@ -958,13 +1011,13 @@ export class ComprehensiveService {
           // 'result'
           case 25:
           case 26:
-            if (canAccess && retirementProgressData.subItems[0].completed) {
+            if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted >= 3) {
               accessibleUrl = urlList[index];
             }
             break;
           case 27:
             if (
-              canAccess &&
+              accessPage && canAccess &&
               retirementProgressData.subItems[0].completed &&
               reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED
             ) {
@@ -1098,8 +1151,8 @@ export class ComprehensiveService {
             title: item.name,
             value:
               (item.location === null ? '' : item.location) +
-              (item.educationCourse === null ? '' : ', ' + item.educationCourse) //+
-            //(item.educationSpendingShare === null ? '' : ', ' + item.educationSpendingShare) + '%'
+              (item.educationCourse === null ? '' : ', ' + item.educationCourse) +
+              (item.educationSpendingShare === null ? '' : ', ' + item.educationSpendingShare) + '% Share'
           });
         });
       }

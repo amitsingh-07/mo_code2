@@ -25,13 +25,11 @@
     <div class="form-group-with-bg">
       <!--Form Header-->
       <div class="form-group-with-bg--header">
-        <div class="flex-row ">
-          <div class="flex-col-12 with-help-icon">
-            <div class="form-group-with-bg--header-label">{{'CMP.MY_EARNINGS.MONTHLY_SALARY' | translate}}<div
-                class="form-group-with-bg--header-sub-label"></div>
-            </div>
-            <span class="help-icon" (click)="showToolTipModal('MONTHLY_SALARY_TITLE','MONTHLY_SALARY_MESSAGE')"></span>
+        <div class="flex space-btwn">
+          <div class="form-group-with-bg--header-label">{{'CMP.MY_EARNINGS.MONTHLY_SALARY' | translate}}<div
+              class="form-group-with-bg--header-sub-label"></div>
           </div>
+          <div class="help-icon" (click)="showToolTipModal('MONTHLY_SALARY_TITLE','MONTHLY_SALARY_MESSAGE')"></div>
         </div>
       </div>
       <!--Form header /-->
@@ -240,13 +238,11 @@
     <div class="form-group-with-bg">
       <!--Form Header-->
       <div class="form-group-with-bg--header">
-        <div class="flex-row">
-          <div class="flex-col-12 with-help-icon">
-            <div class="form-group-with-bg--header-label">{{
+        <div class="flex space-btwn">
+          <div class="form-group-with-bg--header-label">{{
 'CMP.MY_EARNINGS.ANNUAL_BONUS' | translate}}<div class="form-group-with-bg--header-sub-label"></div>
-            </div>
-            <span class="help-icon" (click)="showToolTipModal('ANNUAL_BONUS_TITLE','ANNUAL_BONUS_MESSAGE')"></span>
           </div>
+          <div class="help-icon" (click)="showToolTipModal('ANNUAL_BONUS_TITLE','ANNUAL_BONUS_MESSAGE')"></div>
         </div>
       </div>
       <!--Form Content-->
@@ -377,9 +373,11 @@
         </div>
       </div>
     </div>
-    <div class="flex-row footer-notes btn__footer--fixed width100" id="prfBtn1">
-      <div class="flex-col-7 bucket-notes text-left">{{ 'CMP.MY_EARNINGS.BUCKET_NOTE'|translate}}</div>
-      <div class="flex-col-5 text-right bucket-notes-dollar">
+    <div class="sticky-footer footer-notes btn__footer--fixed width100" id="prfBtn1">
+      <div class="bucket-notes text-left">
+        {{ 'CMP.MY_EARNINGS.BUCKET_NOTE'|translate}}<span>{{ 'CMP.MY_EARNINGS.BUCKET_NOTE_TAKEHOME'|translate}}</span>
+      </div>
+      <div class="text-right bucket-notes-dollar">
         {{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
     </div>
     <!--div class=" btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{ 'CMP.MY_EARNINGS.BUCKET_NOTE'|translate}}{{totalAnnualIncomeBucket | currency:'USD':'symbol-narrow':'1.0-2'}}</div-->

@@ -1,0 +1,30 @@
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
+
+app-funding-method{
+  .text-lyt{
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.18px;
+  }
+  .fund-question{
+    font-family: $muli-semi-bold;
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+  .note-info{
+    @extend .flex;
+    font-size: 13px;
+    letter-spacing: -0.11px;
+    padding: 4px 0 16px;
+    u{
+      font-family: $muli-bold;
+    }
+    .note-icon{
+      @extend .flex;
+      width: 24px;
+      height: 24px;
+      margin-right: 15px;
+    }
+  }
+}

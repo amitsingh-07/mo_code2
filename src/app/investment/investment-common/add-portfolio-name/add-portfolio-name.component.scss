@@ -2,101 +2,54 @@
 @import '../../../../mixins';
 
 app-add-portfolio-name {
-  .portfolio-naming-modal-backdrop {
+  .portfolio-naming-backdrop {
     background-color: rgba(255, 255, 255, 0.95);
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    top: 0;
-    min-height: 100vh;
-  }
-
-  .portfolio-naming-modal-wrapper {
-    top: 0;
-    width: 100%;
-    position: fixed;
-    z-index: 10000;
+    min-height: calc(100vh - 84px);
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-
-    @include allmobiles {
-      align-items: flex-end;
+    @include allmobiles{
+      min-height: calc(100vh - 46px);
     }
+  }
 
-    .modal .close {
-      top: 25px !important;
-    }
+  .portfolio-naming-wrapper {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $black-color;
 
     .portfolio-block {
-      @include allmobiles {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
+      max-width: 320px;
+      margin: 0px auto;
+      position: relative;
 
       .portfolio-naming {
-        max-width: 320px;
-        margin: 0 auto 60px;
-
-        @include allmobiles {
-          margin: 0px auto;
-          height: calc(100vh - 320px);
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-
-        @include iphonex{
-          height: calc(100vh - 360px) !important;
-        }
-
-        @include iphone11{
-          height: calc(100vh - 400px);
-        }
+        margin: 0 auto;
+        padding-bottom: 40px;
 
         .portfolio_name_title {
           font-family: $muli-bold;
           font-size: 18px;
           letter-spacing: -0.34px;
           text-align: center;
-          color: $black-color;
         }
-      }
-
-      .portfolio-naming--content {
-        max-width: 320px;
-
-        @include allmobiles {
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          height: 320px;
-          padding-bottom: 50px;
-        }
-
-        @include iphonex{
-          height: 360px !important;
-        }
-
-        @include iphone11{
-          height: 400px;
-        }
-
       }
     }
 
     .title {
       font-family: $muli-bold;
-      font-size: 30px;
+      font-size: 32px;
       letter-spacing: -0.3px;
       text-align: center;
       color: $custom-modal-title-color;
-      padding-bottom: 20px;
+      padding:10px 0 20px;
       line-height: 40px;
+      @include allmobiles{
+        font-size: 28px;
+      }
     }
 
     .portfolio-success {
@@ -115,10 +68,13 @@ app-add-portfolio-name {
 
     .desc {
       font-family: $muli-regular;
-      font-size: 18px;
-      letter-spacing: -0.34px;
+      font-size: 21px;
+      letter-spacing: -0.39px;
       text-align: center;
-      color: $black-color;
+      @include allmobiles{
+        font-size: 18px;
+        letter-spacing: -0.34px;
+      }
     }
 
     .characters {
@@ -168,5 +124,10 @@ app-add-portfolio-name {
         background-color: $secondary-action-color !important;
       }
     }
+  }
+
+  .btn-primary{
+    font-family: $muli-bold;
+    font-size: 22px;
   }
 }

@@ -64,6 +64,14 @@ export class ComprehensiveComponent implements OnInit {
     this.navbarService.setNavbarMode(1);
     this.footerService.setFooterVisibility(false);
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
+    const isUnsupportedNoteShown = this.signUpService.getUnsupportedNoteShownFlag();
+    this.signUpService.mobileOptimizedObservable$.subscribe((mobileOptimizedView) => {
+      if (!this.signUpService.isMobileDevice() && !mobileOptimizedView && !isUnsupportedNoteShown) {
+        this.signUpService.showUnsupportedDeviceModal();
+        this.signUpService.setUnsupportedNoteShownFlag();
+      }
+    });
+
     if (this.authService.isSignedUser()) {
       this.userDetails = this.cmpService.getMyProfile();
       if (!this.userDetails || !this.userDetails.firstName) {
@@ -95,7 +103,9 @@ export class ComprehensiveComponent implements OnInit {
     this.appService.clearPromoCode();
     const redirectUrl = this.signUpService.getRedirectUrl();
     const cmpData = this.cmpService.getComprehensiveSummary();
-    if (redirectUrl && cmpData.comprehensiveEnquiry.isValidatedPromoCode) {
+    if (cmpData.comprehensiveEnquiry.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED && cmpData.comprehensiveEnquiry.isValidatedPromoCode) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
+    } else if (redirectUrl && cmpData.comprehensiveEnquiry.isValidatedPromoCode) {
       this.router.navigate([redirectUrl]);
     } else if (cmpData.comprehensiveEnquiry.isValidatedPromoCode) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);

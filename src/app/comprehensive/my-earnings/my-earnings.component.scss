@@ -26,9 +26,9 @@ color: $dark-teal-color;
     height: 20px;
     cursor: pointer;
     background-repeat: no-repeat;
-    position: absolute;
-    left: 93%;
-    top: 5px;
+    //position: absolute;
+    //left: 93%;
+    //top: 5px;
 }  
 .earn-btn-dropdown{
     background: none;
@@ -106,7 +106,6 @@ color: $dark-teal-color;
     background: url("/assets/images/comprehensive/money.svg") no-repeat;
     width: 40px;
     height: 40px;
-    cursor: pointer;
     background-repeat: no-repeat;
     position: absolute;
     left: 0;
@@ -212,4 +211,12 @@ color: $dark-teal-color;
 .earn-btn-dropdown {
     max-height: 100% !important;
     white-space: normal !important;
+}
+.sticky-footer {
+    @extend .flex;
+    @extend .space-btwn;
+    align-items: center;
+}
+.bucket-notes {
+    font-family: $muli-bold;
 }

@@ -32,6 +32,8 @@ export interface IComprehensiveEnquiry {
     homeLoanUpdatedByLiabilities?: boolean;
     isLocked: boolean;
     reportSubmittedTimeStamp: string;
+    isDobUpdated: boolean;
+    dobPopUpEnable: boolean;
 }
 export interface IPromoCode {
     comprehensivePromoCodeToken: string;

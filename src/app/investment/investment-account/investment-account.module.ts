@@ -38,6 +38,7 @@ import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { UploadDocumentBOComponent } from './upload-document-bo/upload-document-bo.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
 
+
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
     { prefix: './assets/i18n/app/', suffix: '.json' },
@@ -79,7 +80,7 @@ export function createTranslateLoader(http: HttpClient) {
     AdditionalDeclarationInfoComponent,
     AdditionalDeclaration1Component,
     AccountStatusComponent,
-    UploadDocumentBOComponent,
+    UploadDocumentBOComponent
   ],
   entryComponents: [],
   providers: [CurrencyPipe]

@@ -48,7 +48,10 @@
   }
 
   .delete-icon {
-    margin-left: 10px;
+    //margin-left: 10px;
+    width: 16px;
+    position: relative;
+    top: 2px;
   }
 
   @include desktop {

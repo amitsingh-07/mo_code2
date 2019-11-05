@@ -17,6 +17,7 @@ import { FooterService } from './../../shared/footer/footer.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 import { ValidateRange } from './range.validator';
+import { ConfigService, IConfig } from 'src/app/config/config.service';
 
 @Component({
   selector: 'app-update-user-id',
@@ -25,6 +26,7 @@ import { ValidateRange } from './range.validator';
   encapsulation: ViewEncapsulation.None
 })
 export class UpdateUserIdComponent implements OnInit {
+  private distribution: any;
   private pageTitle: string;
 
   updateUserIdForm: FormGroup;
@@ -49,7 +51,8 @@ export class UpdateUserIdComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     private _location: Location,
-    private investmentAccountService: InvestmentAccountService
+    private investmentAccountService: InvestmentAccountService,
+    private configService: ConfigService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -58,6 +61,9 @@ export class UpdateUserIdComponent implements OnInit {
     });
     this.route.params.subscribe((params) => {
       this.editNumber = params.editNumber;
+    });
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.distribution = config.distribution;
     });
   }
 
@@ -147,7 +153,16 @@ export class UpdateUserIdComponent implements OnInit {
    * request one time password.
    */
   updateUserAccount() {
-    this.signUpApiService.updateAccount(this.updateUserIdForm.value).subscribe((data: any) => {
+    let formValues = this.updateUserIdForm.value;
+    if (this.distribution) {
+      const newValues = {
+        'countryCode' : this.updateUserIdForm.controls['countryCode'].value,
+        'mobileNumber' : this.updateUserIdForm.controls['mobileNumber'].value,
+        'email' : this.updateUserIdForm.controls['email'].value
+      };
+      formValues = newValues;
+    }
+    this.signUpApiService.updateAccount(formValues).subscribe((data: any) => {
       if (data.responseMessage.responseCode === 6000) {
         this.signUpService.setContactDetails(this.updateUserIdForm.value.countryCode,
           this.updateUserIdForm.value.mobileNumber, this.updateUserIdForm.value.email);

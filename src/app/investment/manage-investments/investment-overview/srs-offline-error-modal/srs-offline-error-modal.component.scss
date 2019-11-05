@@ -1,0 +1,29 @@
+@import '../../../../../variables';
+@import '../../../../../mixins';
+app-srs-offline-error-modal{
+  .srs-modal-offline-body{
+    width: 375px;
+    margin: 0 auto;
+    @include allmobiles{
+      width: 100%;
+    }
+    .modal-body-title{
+      margin-bottom: 20px;
+    }
+    .srs-modal-offline {
+      .txt-italic {
+          font-family: $muli-italic;
+      }
+      .contact-details {
+          font-family: $muli-bold;
+          color: #5e5e5e;
+          &.mail {
+              color: #ff872f;
+          }
+          &:focus, &:hover {
+            text-decoration: none;
+          }
+      }
+    }
+  }
+}

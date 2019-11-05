@@ -32,6 +32,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
   items: any;
   isLoadComplete = false;
   islocked: boolean;
+  isComprehensiveEnabled = false;
+  isComprehensiveLiveEnabled = false;
   // tslint:disable-next-line:cognitive-complexity
   constructor(
     private router: Router,
@@ -45,6 +47,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
+      this.isComprehensiveEnabled = config.comprehensiveEnabled;
+      this.isComprehensiveLiveEnabled = config.comprehensiveLiveEnabled;
     });
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(100);
@@ -91,7 +95,6 @@ export class ComprehensiveDashboardComponent implements OnInit {
           ? this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted : 0;
 
         this.isLoadComplete = true;
-
       }
     });
   }
@@ -119,20 +122,32 @@ export class ComprehensiveDashboardComponent implements OnInit {
   }
 
   goToCurrentStep() {
-    if (this.currentStep >= 0 && this.currentStep < 4) {
+    if (this.currentStep === 0 && this.getComprehensiveSummary.comprehensiveEnquiry.isDobUpdated) {
+      this.goToEditProfile();
+    } else if (this.currentStep >= 0 && this.currentStep < 4) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep + 1)]);
     } else if (this.currentStep === 4) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep)]);
     }
   }
   goToEditComprehensivePlan(viewMode: boolean) {
-    if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+    if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED
+      || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
       this.comprehensiveService.setViewableMode(true);
       if (!this.islocked) {
         this.getComprehensiveCall();
 
       }
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+      if (this.getComprehensiveSummary.comprehensiveEnquiry.dobPopUpEnable) {
+        const toolTipParams = {
+          TITLE: '',
+          DESCRIPTION: this.translate.instant('COMPREHENSIVE.DASHBOARD.WARNING_POPUP'),
+          URL: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED
+        };
+        this.comprehensiveService.openTooltipModalWithDismiss(toolTipParams);
+      } else {
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+      }
     }
     //  else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
     //   this.getComprehensiveCall();
@@ -148,7 +163,6 @@ export class ComprehensiveDashboardComponent implements OnInit {
           if (summaryData) {
             this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
             this.comprehensiveService.setViewableMode(true);
-            console.log(summaryData, "summaryData")
             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
           }
         });

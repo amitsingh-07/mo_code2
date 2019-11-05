@@ -297,7 +297,9 @@ export class InvestmentAccountService {
   getAllDropDownList() {
     return this.investmentApiService.getAllDropdownList();
   }
-
+  getFundMethodList() {
+    return this.investmentApiService.getFundMethodList();
+  }
   getInvestmentsSummary() {
     return this.investmentApiService.getInvestmentsSummary();
   }
@@ -596,7 +598,7 @@ export class InvestmentAccountService {
   uploadDocument(formData) {
     return this.investmentApiService.uploadDocument(formData);
   }
-
+ 
   saveAdditionalDeclarations() {
     const payload = this.additionalDeclarationsRequest();
     return this.investmentApiService.saveInvestmentAccount(payload);
@@ -673,7 +675,7 @@ export class InvestmentAccountService {
     }
 
     // Occupation
-    if (data.occupation && data.occupation.occupationDetails) {
+    if (data.occupation && data.occupation.occupationDetails && data.occupation.occupationDetails.occupation) {
       this.investmentAccountFormData.occupation = data.occupation.occupationDetails;
       this.disableAttributes.push('occupation');
       if (data.occupation.occupationDetails.occupation &&
@@ -920,7 +922,7 @@ export class InvestmentAccountService {
     this.investmentAccountFormData.topupportfolioamount = data.topupportfolioamount;
     this.investmentAccountFormData.MonthlyInvestmentAmount = data.MonthlyInvestmentAmount;
   }
-  getPortfolioAllocationDetailsWithAuth(params) {
+  getPortfolioAllocationDetailsWithAuth() {
     return this.investmentApiService.getPortfolioDetailsWithAuth();
   }
 
@@ -1460,14 +1462,6 @@ export class InvestmentAccountService {
     };
   }
 
-  setPortfolioFormData(data) {
-    this.investmentAccountFormData.invOneTime = data.initialInvestment;
-    this.investmentAccountFormData.invMonthly = data.monthlyInvestment;
-    this.investmentAccountFormData.riskProfileId = data.riskProfile.id;
-    this.investmentAccountFormData.riskProfileType = data.riskProfile.type;
-    this.commit();
-  }
-
   getAllNotifications() {
     return this.apiService.getAllNotifications();
   }
@@ -1498,6 +1492,18 @@ export class InvestmentAccountService {
 
   getAccountCreationStatus() {
     return this.investmentAccountFormData.accountCreationStatus;
+  }
+
+  setPortfolioNamingFormData(data) {
+    this.investmentAccountFormData.defaultPortfolioName = data.defaultPortfolioName;
+    this.investmentAccountFormData.recommendedCustomerPortfolioId = data.recommendedCustomerPortfolioId;
+    this.investmentAccountFormData.recommendedRiskProfileId = data.recommendedRiskProfileId;
+    this.commit();
+  }
+
+  setDefaultPortfolioName(portfolioName) {
+    this.investmentAccountFormData.defaultPortfolioName = portfolioName;
+    this.commit();
   }
 
   getMyInfoStatus() {
@@ -1927,5 +1933,19 @@ export class InvestmentAccountService {
     }
     return (event.which !== 13);
   }
-  
+  getSrsAccountDetails() {
+    return this.investmentApiService.getSrsAccountDetails();
+  }
+
+  activateReassess() {
+    this.investmentAccountFormData.isReassessActive = true;
+    this.commit();
+  }
+  deactivateReassess() {
+    this.investmentAccountFormData.isReassessActive = false;
+    this.commit();
+  }
+  isReassessActive() {
+    return this.investmentAccountFormData.isReassessActive;
+  }
 }

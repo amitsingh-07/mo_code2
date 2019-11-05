@@ -9,7 +9,7 @@
     <div class="form-group-with-bg">
       <!--Form Content-->
       <div class="form-group-with-bg--content-white">
-        <div class="flex-row ">
+        <div class="flex-row">
           <div class="flex-col-12">
             <div class="form-group-with-bg--content-white--title">
               <div class="hospital-plan">{{'CMP.INSURANCE_PLAN.HOSPITAL_PLAN' | translate}}</div>
@@ -20,8 +20,11 @@
             </div>
           </div>
         </div>
-        <div class="form-group-with-bg--content-white--desc">1.
-          {{'CMP.INSURANCE_PLAN.HOSPITAL_PLAN_LABEL_1' | translate}}
+        <div class="form-group-with-bg--content-white--desc">
+          <div class="flex-row align-item-start">
+            <div class="flex-col-1">1.</div>
+            <div class="flex-col-11">{{'CMP.INSURANCE_PLAN.HOSPITAL_PLAN_LABEL_1' | translate}}</div>
+          </div>
         </div>
         <div class="flex-col-8" [ngClass]="{'mb20' : insurancePlanForm.get('haveHospitalPlan').value}">
           <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="haveHospitalPlan">
@@ -46,9 +49,9 @@
         </div>
 
         <div *ngIf="insurancePlanForm.get('haveHospitalPlan').value ">
-          <div class="form-group-with-bg--content-white--desc flex-row">
+          <div class="form-group-with-bg--content-white--desc flex-row align-item-start">
             <div class="flex-col-1">2.</div>
-            <div class="flex-col-10"> {{'CMP.INSURANCE_PLAN.HOSPITAL_PLAN_LABEL_2' | translate}}</div>
+            <div class="flex-col-11">{{'CMP.INSURANCE_PLAN.HOSPITAL_PLAN_LABEL_2' | translate}}</div>
           </div>
           <div class="flex-col-12">
             <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="haveHospitalPlanWithRider">
@@ -89,10 +92,13 @@
             </div>
           </div>
         </div>
-        <div class="form-group-with-bg--content-white--desc flex-row">
-          <div class="flex-col-1">1.</div>
-          <div class="flex-col-10"> {{'CMP.INSURANCE_PLAN.LIFE_PROTECTION_LABEL_1' | translate}}</div>
-          <div class="help-icon flex-col-1" (click)="showToolTipModal('CPF_TITLE','CPF_MESSAGE')"></div>
+        <div class="pos-relative">
+          <div class="form-group-with-bg--content-white--desc flex-row align-item-start">
+            <div class="flex-col-1">1.</div>
+            <div class="flex-col-11">{{'CMP.INSURANCE_PLAN.LIFE_PROTECTION_LABEL_1' | translate}}</div>
+          </div>
+          <span class="tooltip-icon" (click)="showToolTipModal('CPF_TITLE','CPF_MESSAGE')"><img
+              src="/assets/images/comprehensive/tool-tip-white.svg" width="20" height="20"></span>
         </div>
         <div class="flex-col-12 mb-3">
           <div class="btn-group--toggle" ngbRadioGroup name="radioGender"
@@ -139,12 +145,28 @@
           </div>
         </div>
         <div [hidden]="!haveHDB">
-          <div class="form-group-with-bg--content-white--desc flex-row">
+          <!-- <div class="form-group-with-bg--content-white--desc flex-row align-item-start">
             <div class="flex-col-1">2.</div>
-            <div class="flex-col-10"> {{'CMP.INSURANCE_PLAN.LIFE_PROTECTION_LABEL_2' | translate}}</div>
+            <div class="flex-col-10">
+              {{'CMP.INSURANCE_PLAN.LIFE_PROTECTION_LABEL_2' | translate}}
+            </div>
             <div class="help-icon flex-col-1"
               (click)="showToolTipModal('HOME_PROTECTION_SCHEME_TITLE','HOME_PROTECTION_SCHEME_MESSAGE')"></div>
+          </div> -->
+
+
+          <div class="pos-relative">
+            <div class="form-group-with-bg--content-white--desc flex-row align-item-start">
+              <div class="flex-col-1">2.</div>
+              <div class="flex-col-11 pr10">{{'CMP.INSURANCE_PLAN.LIFE_PROTECTION_LABEL_2' | translate}}</div>
+            </div>
+            <span class="tooltip-icon"
+              (click)="showToolTipModal('HOME_PROTECTION_SCHEME_TITLE','HOME_PROTECTION_SCHEME_MESSAGE')"><img
+                src="/assets/images/comprehensive/tool-tip-white.svg" width="20" height="20"></span>
           </div>
+
+
+
           <div class="flex-col-12 mb-3">
             <div class="btn-group--toggle" ngbRadioGroup name="radioGender"
               formControlName="haveHDBHomeProtectionScheme">
@@ -191,13 +213,25 @@
           </div>
         </div>
 
-        <div class="form-group-with-bg--content-white--desc flex-row mt10">
+        <!-- <div class="form-group-with-bg--content-white--desc flex-row mt10">
           <div class="flex-col-1"><span [hidden]="!haveHDB">3.</span> <span [hidden]="haveHDB">2.</span></div>
           <div class="flex-col-10">
             {{'CMP.INSURANCE_PLAN.LIFE_PROTECTION_LABEL_3' | translate}}</div>
           <div class="help-icon flex-col-1"
             (click)="showToolTipModal('OTHER_LIFE_INSURANCE_TITLE','OTHER_LIFE_INSURANCE_MESSAGE')"></div>
+        </div> -->
+
+
+        <div class="pos-relative mt20">
+          <div class="form-group-with-bg--content-white--desc flex-row align-item-start">
+            <div class="flex-col-1"><span [hidden]="!haveHDB">3.</span><span [hidden]="haveHDB">2.</span></div>
+            <div class="flex-col-11">{{'CMP.INSURANCE_PLAN.LIFE_PROTECTION_LABEL_3' | translate}}</div>
+          </div>
+          <span class="tooltip-icon"
+            (click)="showToolTipModal('OTHER_LIFE_INSURANCE_TITLE','OTHER_LIFE_INSURANCE_MESSAGE')"><img
+              src="/assets/images/comprehensive/tool-tip-white.svg" width="20" height="20"></span>
         </div>
+
         <div class="flex-row">
           <div class="flex-col-5 pr5">
             <label for="name" id="myDependantFormLb1">
@@ -210,11 +244,9 @@
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput maxLength="8"
                 formControlName="otherLifeProtectionCoverageAmount" value="0">
-
             </div>
           </div>
         </div>
-
       </div>
     </div>
     <div class="form-group-with-bg">
@@ -239,9 +271,7 @@
                   <i>$</i>
                   <input type="text" class="input-control" appCurrencyInput maxLength="8"
                     formControlName="criticalIllnessCoverageAmount" value="0">
-
                 </div>
-
               </div>
             </div>
           </div>
@@ -290,8 +320,10 @@
                   (click)="showToolTipModal('LONG_TERM_CARE_INSURANCE_TITLE','LONG_TERM_CARE_INSURANCE_MESSAGE')"></span>
               </div>
             </div>
-            <div class="form-group-with-bg--content-white--desc">1.
-              {{'CMP.INSURANCE_PLAN.LONG_TERM_INSURANCE_LABEL' | translate}}</div>
+            <div class="form-group-with-bg--content-white--desc flex-row align-item-start">
+              <div class="flex-col-1">1.</div>
+              <div class="flex-col-11">{{'CMP.INSURANCE_PLAN.LONG_TERM_INSURANCE_LABEL' | translate}}</div>
+            </div>
             <div class="flex-col-12 mb-3">
               <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="haveLongTermElderShield">
                 <div class="flex-row mb0 insurance-input-radio">

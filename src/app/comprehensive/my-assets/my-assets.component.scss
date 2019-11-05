@@ -62,8 +62,16 @@ $grey-color-notes: #9f9f9f;
 }
 
 .investmentProperties {
+  &.add-invest {
+    .help-icon {
+      margin-right: 0;
+    }
+  }
   border-top: 1px solid rgba(134, 205, 206, 0.3);
   margin-top: 10px;
+  .help-icon {
+    margin-right: 25px;
+  }
 }
 .finance-assets {
   background: url("/assets/images/comprehensive/finance-assets.svg") no-repeat;
@@ -119,13 +127,13 @@ $grey-color-notes: #9f9f9f;
 }
 
 .both-icon {
-  .help-icon {
-    left: 80% !important;
-  }
+  // .help-icon {
+  //   left: 80% !important;
+  // }
 
-  .delete-icon {
-    left: 95% !important;
-  }
+  // .delete-icon {
+  //   left: 95% !important;
+  // }
 
   .form-group-with-bg--content-label {
     color: $black-color;
@@ -142,15 +150,18 @@ $grey-color-notes: #9f9f9f;
 
 .auto-fill-cpf {
   border-radius: 8px;
-  border: solid 1px #ff872f;
-  background-color: #ffffff;
+  border: solid 1px $crusta-orange-color;
+  background-color: $white-color;
   font-size: 16px;
   font-weight: bold;
   font-style: normal;
   font-stretch: normal;
   line-height: normal;
   letter-spacing: -0.1px;
-  color: #e57300;
+  color: $mango-tango-color;
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
 }
 
 .auto-fill-logo {

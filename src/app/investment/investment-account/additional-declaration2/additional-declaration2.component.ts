@@ -219,7 +219,7 @@ export class AdditionalDeclaration2Component implements OnInit {
         this.investmentAccountService.setAccountCreationStatus(
           INVESTMENT_ACCOUNT_CONSTANTS.status.ddc_submitted
         );
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.STATUS]);
       },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
