@@ -12,7 +12,9 @@
                           <div class="portfolio-details">
                               <div class="portfolio-name">
                                 <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
-                                <span class="portfolio-fund-type" *ngIf="portfolio?.portfolioType == 'SRS'"><img src="assets/images/investment-account/srs-type.svg" alt="" /></span>
+                                <span class="portfolio-fund-type" *ngIf="portfolio?.portfolioType == 'SRS'">
+                                  {{'YOUR_INVESTMENT.SRS' | translate}}
+                                </span>
                               </div>
                               <div class="ref-code">{{'YOUR_INVESTMENT.REF_LABEL' | translate}} {{portfolio.refNo}}</div>
                               <div class="portfolio-value">
@@ -46,7 +48,9 @@
                           <div class="portfolio-details">
                               <div class="portfolio-name">
                                 <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
-                                <span *ngIf="portfolio?.portfolioType == 'SRS'" class="portfolio-fund-type"><img src="assets/images/investment-account/srs-type.svg" alt="" /></span>
+                                <span *ngIf="portfolio?.portfolioType == 'SRS'" class="portfolio-fund-type">
+                                  {{'YOUR_INVESTMENT.SRS' | translate}}
+                                </span>
                               </div>
                               <div class="ref-code">{{'YOUR_INVESTMENT.REF_LABEL' | translate}} {{portfolio?.refNo}}</div>
                               <div class="portfolio-value">
