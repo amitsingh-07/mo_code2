@@ -102,7 +102,8 @@
                 {{ 'CMP.FORM_LABEL.YOUR_SHARE' | translate}}</div>
             </div>
             <div class="flex-col-6">
-              <input id="sharePercent-{{i}}" type="text" appComprehensiveViewMode="{{viewMode}}" mode=1
+              <input [ngClass]="{'view-mode': viewMode}" 
+              id="sharePercent-{{i}}" type="text" appComprehensiveViewMode="{{viewMode}}" mode=1
                 [readonly]="true" name="sharePercent" class="text-right form-control with-input-style"
                 [value]="sliderValue[i]+'%'" />
             </div>

@@ -128,9 +128,9 @@
                           <div ngbDropdown>
                             <button [disabled]="isDisabled('occupation')" class="btn btn-dropdown without-border"
                               id="employement_details_status-drpdown" ngbDropdownToggle>
-                              <span *ngIf="!employementDetailsForm.controls.occupation.value">{{
+                              <span *ngIf="!employementDetailsForm?.controls?.occupation?.value?.occupation">{{
                                     'EMPLOYMENT_DETAILS.SELECT_OCCUPATION' | translate}}</span>
-                              <span *ngIf="employementDetailsForm.controls.occupation.value">{{employementDetailsForm.controls.occupation.value.occupation
+                              <span *ngIf="employementDetailsForm?.controls?.occupation?.value?.occupation">{{employementDetailsForm.controls.occupation.value.occupation
                                     }}</span>
                             </button>
                             <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
