@@ -1,0 +1,172 @@
+  <!-- Sub Header -->
+  <div class="navbar-sub-header hidden-sm-md">
+    <span>Personalise Your Retirement</span>
+  </div>
+  <div class="intro-block">
+    <div class="step-indicator-container">
+      <div class="container-fluid max-width--1024">
+        <app-step-indicator [count]="2" [activeStepIndex]="0" [mode]="0"></app-step-indicator>
+      </div>
+    </div>
+    <div class="container-fluid max-width--1024">
+      <div class="intro-block__content">
+        <div class="flex-row">
+          <div class="col-lg-6 col-md-6 col-sm-12 intro-block__content__desc">
+            <div class="intro-block__content__desc-container">
+              <div class="step">{{ 'RETIREMENT_PLANNING.STEP_1.LABEL' | translate}}</div>
+              <h2 class="hidden-sm-md title" id="plan-retirement-title">
+                {{ 'RETIREMENT_PLANNING.STEP_1.TITLE' | translate}}</h2>
+              <div class="sub-title">
+                <div class="web" id="plan-retirement-sub-title">
+                  <span>{{ 'RETIREMENT_PLANNING.STEP_1.SUB_TITLE' | translate}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-5 col-md-5 col-sm-12 intro-block__content__form">
+            <div class="form-container">
+              <form name="retirementNeeds" id="retirementNeeds" [formGroup]="retirementNeedsForm">
+
+                <!-- Your Desired Retirement Needs -->
+                <div class="form-panel">
+                  <!-- Title -->
+                  <div class="flex-row title" id="retirement-form-title">Your Desired Retirement Needs</div>
+
+                  <!-- Retirement Age -->
+                  <div class="flex-row section mt20">
+                    <div class="pl0 col-5">
+                      <label for="RetirementAge" id="aboutMeFormLbl1">
+                        <div>{{ 'RETIREMENT_PLANNING.CREATE.FORM.RETIREMENT_AGE.LABEL' | translate}}</div>
+                      </label>
+                    </div>
+                    <div class="pr0 flex-col-7">
+                      <div class="form-control">
+                        <input class="input-control retirement-age" appNumberOnly #retirementAge
+                          formControlName="retirementAge" type="text" placeholder="Enter Age">
+                        <i>yrs old</i>
+                      </div>
+                    </div>
+
+                    <!-- Retirement Age validation -->
+                    <div class="alert-msg"
+                      *ngIf="submitted && retirementNeedsForm.controls.retirementAge.errors?.required">
+                      <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                      <span
+                        class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.RETIREMENT_AGE.ERROR.REQUIRED' | translate}}</span>
+                    </div>
+                  </div>
+
+                  <!-- Monthly Retirement Income -->
+                  <div class="flex-row section">
+                    <div class="pl0 col-5">
+                      <label for="MonthlyRetirementIncome" id="aboutMeFormLbl1">
+                        <div>{{ 'RETIREMENT_PLANNING.CREATE.FORM.RETIREMENT_INCOME.LABEL' | translate}}</div>
+                      </label>
+                    </div>
+                    <div class="pr0 flex-col-7">
+                      <div class="form-control form-control-right">
+                        <i>$</i>
+                        <div>
+                          <input class="input-control" appCurrencyInput type="text" formControlName="retirementIncome"
+                            placeholder="0">
+                          <i>/mth</i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Retirement Income validation -->
+                    <div class="alert-msg"
+                      *ngIf="submitted && retirementNeedsForm.controls.retirementIncome.errors?.required">
+                      <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                      <span
+                        class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.RETIREMENT_INCOME.ERROR.REQUIRED' | translate}}</span>
+                    </div>
+                  </div>
+
+                  <!-- DOB -->
+                  <div class="flex-row section">
+                    <div class="col-5 pl0">
+                      <label for="name" id="myFamilyFormLbl7">{{ 'RETIREMENT_PLANNING.CREATE.FORM.DOB.LABEL' | translate}}</label>
+                    </div>
+                    <div class="col-7 pl0 pr0">
+                      <div class="datepicker-control">
+                        <div class="input-group date-picker mb0 date-picker-above"
+                          [ngClass]="{'inline-error': retirementNeedsForm.controls.customerDob.errors?.invalidAge }">
+                          <input readonly class="form-control" placeholder="DD/MM/YYYY" formControlName="customerDob"
+                            ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                          <div class="input-group-append">
+                            <button (click)="d.toggle()" class="btn btn-primary" type="button">
+                              <img class="date-picker-image--valid" id="getStrdImg1"
+                                *ngIf="retirementNeedsForm.controls.customerDob.valid || retirementNeedsForm.controls.customerDob.pristine"
+                                src="./assets/images/calendar-normal.svg" />
+                              <img class="date-picker-image--invalid" id="getStrdImg1"
+                                *ngIf="retirementNeedsForm.controls.customerDob.invalid && !retirementNeedsForm.controls.customerDob.pristine"
+                                src="./assets/images/calendar-error.svg" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- DOB validation -->
+                    <div class="alert-msg" *ngIf="retirementNeedsForm.controls.customerDob.errors?.invalidAge">
+                      <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                      <span
+                        class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.DOB.ERROR.INVALID_AGE' | translate}}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Your Retirement Amount Available -->
+                <div class="form-panel">
+                  <!-- Title -->
+                  <div class="flex-row title" id="retirement-form-title">{{ 'RETIREMENT_PLANNING.STEP_1.RETIREMENT_NEEDS.TITLE' | translate}}</div>
+
+                  <!-- Retirement Age -->
+                  <div class="flex-row section mt20">
+                    <div class="pl0 col-5">
+                      <label for="MonthlyRetirementIncome" id="aboutMeFormLbl1">
+                        <div>Lump Sum Amount</div>
+                      </label>
+                    </div>
+                    <div class="pr0 flex-col-7">
+                      <div class="form-control form-control-right no-padding">
+                        <i>$</i>
+                        <div>
+                          <input class="input-control" type="text" appCurrencyInput formControlName="lumpsumAmount" placeholder="0">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Retirement Age -->
+                  <div class="flex-row section">
+                    <div class="pl0 col-5">
+                      <label for="MonthlyRetirementIncome" id="aboutMeFormLbl1">
+                        <div>Monthly Amount</div>
+                      </label>
+                    </div>
+                    <div class="pr0 flex-col-7">
+                      <div class="form-control form-control-right">
+                        <i>$</i>
+                        <div>
+                          <input class="input-control" type="text" appCurrencyInput formControlName="monthlyAmount" placeholder="0">
+                          <i>/mth</i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Proceed button -->
+                <button id="nextStep" type="button" [disabled]="false" (click)="save(retirementNeedsForm)"
+                  class="btn btn__footer--fixed btn-primary width100">{{'RETIREMENT_PLANNING.CREATE.FORM.PROCEED' | translate }}</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
