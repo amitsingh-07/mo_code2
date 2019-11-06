@@ -213,7 +213,6 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                     this.comprehensiveApiService.savePersonalDetails(this.userDetails).subscribe((data) => {
                         this.comprehensiveService.setMyProfile(this.userDetails);
                         const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
-                        cmpSummary.comprehensiveEnquiry.hasComprehensive = true;
                         cmpSummary.baseProfile = this.comprehensiveService.getMyProfile();
                         this.comprehensiveService.setComprehensiveSummary(cmpSummary);
                         this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.NEW);
