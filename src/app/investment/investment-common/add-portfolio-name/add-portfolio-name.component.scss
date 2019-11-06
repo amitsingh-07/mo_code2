@@ -1,20 +1,18 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 
+
+.portfolioname-bg {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
 app-add-portfolio-name {
   .portfolio-naming-backdrop {
-    background-color: rgba(255, 255, 255, 0.95);
-    min-height: calc(100vh - 84px);
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    @include allmobiles{
-      min-height: calc(100vh - 100px);
-    }
     .container-fluid{
       @include allmobiles{
         padding: 0;
+      }
+      @include min350max375{
+        padding-top: 30px;
       }
     }
   }
@@ -25,6 +23,23 @@ app-add-portfolio-name {
     justify-content: center;
     align-items: center;
     color: $black-color;
+    height: calc(100vh - 84px);
+    
+    @include allmobiles{
+      height: calc(100vh - 46px);
+    }
+    @include min350max375{
+      height: 100vh;
+    }
+    @include iphone6plus{
+      height: calc(100vh - 108px);
+    }
+    @include iphonex{
+      height: calc(100vh - 108px);
+    }
+    @include iphone11{
+      height: calc(100vh - 108px);
+    }
 
     .portfolio-block {
       max-width: 320px;

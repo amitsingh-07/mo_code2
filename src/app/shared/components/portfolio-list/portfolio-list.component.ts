@@ -104,7 +104,7 @@ export class PortfolioListComponent implements OnInit {
   detail(portfolio) {
     if (portfolio.portfolioType === 'SRS' && !this.topClickedFlag) {
       this.openModal();
-    } else {
+     } else {
       const selectedFlag = window.getSelection().toString();
       if (!this.topClickedFlag && !selectedFlag) {
         this.detailSelected.emit(portfolio);
