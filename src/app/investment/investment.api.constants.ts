@@ -2,6 +2,7 @@ const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/api';
 const ACCOUNT_API_BASE_URL = 'account/account-microservice/api';
 
 
+
 export let investmentApiConstants = {
     endpoint: {
         portfolio: {
@@ -18,6 +19,7 @@ export let investmentApiConstants = {
             lndustrylist: INVESTMENT_API_BASE_URL + '/industrylist',
             occupationlist: INVESTMENT_API_BASE_URL + '/occupationlist',
             allDropdownlist: INVESTMENT_API_BASE_URL + '/optionListCollection',
+            fundingMethodList: INVESTMENT_API_BASE_URL + '/optionListCollection?groupName=portfolioFundingMethod',
             investmentsSummary: INVESTMENT_API_BASE_URL + '/customers/investment-profile/summary',
             updateInvestment: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/UpdateCustomerInvestmentObjective',
             createInvestmentAccount: INVESTMENT_API_BASE_URL + '/customers/investment-accounts?handleError=true',
@@ -35,7 +37,9 @@ export let investmentApiConstants = {
             saveInvestmentAccount: ACCOUNT_API_BASE_URL + '/saveCustomerDetails',
             confirmPortfolio: INVESTMENT_API_BASE_URL + '/customer/portfolios/$customerPortfolioId$/accept?handleError=true',
             savePortfolioName: INVESTMENT_API_BASE_URL + '/customer/saveOrUpdatePortfolioName?handleError=true',
-            getPortfolioDetailsWithAuth: INVESTMENT_API_BASE_URL + '/portfolios/recent'
+            getPortfolioDetailsWithAuth: INVESTMENT_API_BASE_URL + '/portfolios/recent',
+            gerSrsDetails : ACCOUNT_API_BASE_URL + '/customer/getSrsBankDetails',
+            saveSrsAccountDetails: ACCOUNT_API_BASE_URL + '/customer/$CUSTOMER_PORTFOLIO_ID$/srsbankDetails'
         },
         investment: {
             getUserAddress: ACCOUNT_API_BASE_URL + '/customer/address',

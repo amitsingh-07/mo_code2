@@ -21,7 +21,10 @@ import {
 } from './funding-instructions/funding-instructions.component';
 import { FundingIntroComponent } from './funding-intro/funding-intro.component';
 import { InvestmentCommonRoutingModule } from './investment-common-routing.module';
-
+import {
+    FundingAccountDetailsComponent
+} from './funding-account-details/funding-account-details.component';
+import { TextMaskModule } from 'angular2-text-mask';
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
     { prefix: './assets/i18n/app/', suffix: '.json' },
@@ -36,6 +39,7 @@ export function createTranslateLoader(http: HttpClient) {
     ReactiveFormsModule,
     NgbModule.forRoot(),
     FormsModule,
+    TextMaskModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -52,7 +56,8 @@ export function createTranslateLoader(http: HttpClient) {
     FundingInstructionsComponent,
     AccountCreationErrorModalComponent,
     AddPortfolioNameComponent,
-    FundingIntroComponent
+    FundingIntroComponent,
+    FundingAccountDetailsComponent
   ],
   entryComponents: [AccountCreationErrorModalComponent],
   providers: [CurrencyPipe]

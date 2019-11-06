@@ -12,6 +12,7 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { WillWritingApiService } from '../will-writing.api.service';
 import { WillWritingService } from '../will-writing.service';
+import { SeoServiceService } from './../../shared/Services/seo-service.service';
 
 @Component({
   selector: 'app-introduction',
@@ -40,7 +41,8 @@ export class IntroductionComponent implements OnInit {
     public footerService: FooterService,
     public authService: AuthenticationService,
     private willWritingService: WillWritingService,
-    private willWritingApiService: WillWritingApiService
+    private willWritingApiService: WillWritingApiService,
+    private seoService: SeoServiceService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -48,6 +50,11 @@ export class IntroductionComponent implements OnInit {
       this.faqLink = this.translate.instant('WILL_WRITING.INTRODUCTION.FAQ_LINK');
       this.getNowLink = this.translate.instant('WILL_WRITING.INTRODUCTION.GET_ONE_NOW_LINK');
       this.errorMsg = this.translate.instant('WILL_WRITING.INTRODUCTION.PROMO_ERROR');
+      // Meta Tag and Title Methods
+      this.seoService.setTitle(this.translate.instant('WILL_WRITING.INTRODUCTION.META.META_TITLE'));
+      this.seoService.setBaseSocialMetaTags(this.translate.instant('WILL_WRITING.INTRODUCTION.META.META_TITLE'),
+        this.translate.instant('WILL_WRITING.INTRODUCTION.META.META_DESCRIPTION'),
+        this.translate.instant('WILL_WRITING.INTRODUCTION.META.META_KEYWORDS'));
     });
   }
 

@@ -59,7 +59,7 @@
                     </div>
                   </div>
                   <div class="flex-row">
-                    <button type="button" class="btn-with-icon top_up_btn" id="top-up_button" (click)="gotoTopUp()">
+                    <button type="button" class="btn-with-icon top_up_btn" [ngClass]="{'disabled': !cashPortfolioPresent}" id="top-up_button" (click)="gotoTopUp()">
                       <span class="topup-btn-img"><img id="top-up_img"
                           src="../../../assets/images/investment-account/money-white-topup.svg" alt="" /></span>
                       <span>{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</span>
@@ -108,7 +108,7 @@
   <div class="container-fluid max-width--1024">
     <div class="srs-reminder">
       <img class="mail-img" src="../../../assets/images/srs-joint-account/mail.svg" />
-      <div class="srs-txt">{{'YOUR_INVESTMENT.SRS_JOINT_ACCOUNT_REMINDER' | translate}}</div>
+      <div class="srs-txt" innerHTML="{{'YOUR_INVESTMENT.SRS_JOINT_ACCOUNT_REMINDER' | translate}}"></div>
     </div>
   </div>
 </div>

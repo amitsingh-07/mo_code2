@@ -6,8 +6,8 @@
       "RETRIEVE": "Retrieve",
       "VIEW_DETAILS": "View Details",
       "SAVE_AND_CONTINUE": "Save and Continue",
-      "PROCEED":"Proceed",
-      "OR":"OR"
+      "PROCEED": "Proceed",
+      "OR": "OR"
     }
   },
   "ACKNOWLEDGEMENT": {
@@ -24,6 +24,7 @@
     "MONTHLY_INVESTMENT": "monthly investment",
     "FOR": "for",
     "CONFIRM": "Confirm",
+    "CONTINUE": "Continue",
     "EDIT_INVESTMENT": {
       "TITLE": "Review My Inputs",
       "ONE_TIME_INVESTMENT": "One-time Investment",
@@ -59,19 +60,19 @@
       "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
       "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time investment or Monthly Investment."
     },
-     "ADD_PORTFOLIO_NAME": {
-      "TITLE": "Your portfolio is almost ready.",
-      "TITLE_TWO":"Your portfolio is created successfully!",
+    "ADD_PORTFOLIO_NAME": {
+      "TITLE": "Name Your Portfolio",
+      "PORTFOLIO_READY": "Your portfolio is almost ready.",
       "ADD_PORTFOLIO_NAME_LAB": "Let’s name this portfolio! (optional)",
-      "CONTINUE":"Continue",
-      "DONE":"Done",
-      "VALIDATION_MESSAGE":"First character should not be space",
-      "ERROR_MESSAGE": "Sorry, this portfolio name is taken up by another existing portfolio. Please think of another name."
-   },
-     "ADD_PORTFOLIO_STATUS": {
+      "VALIDATION_MESSAGE": "First character should not be space",
+      "ERROR_MESSAGE": "Sorry, this portfolio name is taken up by another existing portfolio. Please think of another name.",
+      "NAME_YOUR_PORTFOLIO": "Name your portfolio",
+      "CREATE_PORTFOLIO": "Create Portfolio"
+    },
+    "ADD_PORTFOLIO_STATUS": {
       "TITLE": "Portfolio created successfully!",
       "ADD_PORTFOLIO_NAME": "Jason’s Education Fund",
-      "CONTINUE":"Continue",
+      "CONTINUE": "Continue",
       "ADD_PORTFOLIO_NAME_LAB": "has been added to your account."
     },
     "ACCOUNT_CREATION_ERROR_MODAL": {
@@ -93,7 +94,7 @@
   },
   "FUND_INTRO": {
     "TITLE": "Fund Your Account",
-    "DESC": "In the next step, you can select the method to fund your account.",
+    "DESC": "In the next step, follow the transfer instructions to fund your account.",
     "BACK": "Proceed",
     "SUCCESS": "Investment Account <br>Setup Successful"
   },
@@ -119,7 +120,7 @@
     "VIEW_TRANSFER_INST": "View Transfer Instructions",
     "PROCESS_TIME_INFO": "Fund your account within 7 days to kickstart your investment!",
     "SUCCESSFUL_TOPUP": "Your request will be processed within 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
-    "MONTHLY_TIME_INFO":"You have a monthly investment of {{month}}. Fund 1 or 2 days before 15th of the month.",
+    "MONTHLY_TIME_INFO": "You have a monthly investment of {{month}}. Fund 1 or 2 days before 15th of the month.",
     "RECIPENTS_NAME": "Recipient's Name",
     "BANK_NAME": "Bank Name",
     "BANK_ACC_NO": "Bank Account No.",
@@ -129,12 +130,12 @@
     "VIA_PAYNOW_ONE": "Sending money via PayNow:",
     "ONE_TIME_INVESTMENT": "One-time Investment",
     "MONTHLY_INVESTMENT": "Monthly Investment",
-    "BANK_TRANSFER":"Bank Transfer",
-    "DESC":"Please transfer the following amount using your preferred payment method details:",
-    "FUNDING_DESC":"Please transfer the following amount using Bank Transfer or PayNow.",
-    "NOTE":"<span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments”</span> section in your funds transfer / PayNow screen.",
-    "CASH_ACCOUNT_BALANCE_LBL":"Cash Account Balance:",
-    "REFERENCE_CODE_LBL":"Reference Code: ",
+    "BANK_TRANSFER": "Bank Transfer",
+    "DESC": "Please transfer the following amount using your preferred payment method details:",
+    "FUNDING_DESC": "Please transfer the following amount using Bank Transfer or PayNow.",
+    "NOTE": "<span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments”</span> section in your funds transfer / PayNow screen.",
+    "CASH_ACCOUNT_BALANCE_LBL": "Cash Account Balance:",
+    "REFERENCE_CODE_LBL": "Reference Code: ",
     "MODAL": {
       "SHOW_BANK_TRANSCTIONS": {
         "STEP_1": "STEP 1",
@@ -178,5 +179,25 @@
   "TOAST_MESSAGES": {
     "ADD_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been added.",
     "VIEW": "View"
+  },
+  "CONFIRM_ACCOUNT_DETAILS": {
+    "TITLE": "Confirm Account Details",
+    "FUND_METHOD": "Funding Method",
+    "SELECT_FUNDING_LAB": "You have selected the following funding method for this portfolio.",
+    "ACCOUNT_DETAILS": "Please provide your account details.",
+    "SRS_ACCOUNT_DETAILS": "SRS Account Details",
+    "SRS_OPERATOR": "SRS Operator",
+    "SRS_ACCOUNT_NUMBER": "SRS Account Number",
+    "CORRECT_SRS_ACCOUNT_DETAILS_DESC": "Please ensure you have entered the correct SRS account information.",
+    "CASH_DESC": "You can fund using any bank account (registered under your name).",
+    "SRS_DESC": "You <u>MUST</u> ensure sufficient fund in your SRS Account. Amount will be deducted immediately to process the buy request.",
+    "CONTINUE": "Continue",
+    "STEP_2": "Step 2",
+    "SELECT" :"Select Funding Method",
+    "SELECT_SRS_OPERATOR":"Select SRS Operator",
+    "SHOW_MODAL": {
+      "TITLE": "Reassess Risk Profile?",
+      "DESC": "You have just changed how you want to fund this {{userGivenPortfolioName}} to using {{userFundingMethod}}. Do you want to reassess your risk profile?"
+    }
   }
 }
