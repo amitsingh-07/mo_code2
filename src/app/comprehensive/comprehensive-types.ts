@@ -19,7 +19,6 @@ export interface IComprehensiveDetails {
 export interface IComprehensiveEnquiry {
     customerId: number;
     enquiryId: number;
-    hasComprehensive: boolean;
     hasDependents: boolean;
     hasEndowments: string;
     hasRegularSavingsPlans: boolean;
