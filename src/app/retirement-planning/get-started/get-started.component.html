@@ -1,0 +1,209 @@
+<div class="container-fluid">
+  <div class="container-fluid max-width--1024">
+    <div class="content">
+      <div class="flex-row main-container">
+        <div class="col-lg-6 col-md-6 col-sm-12 header-container">
+          <div class="header-container-part1">
+            <div class="get-started hidden-sm-md">{{ 'RETIREMENT_PLANNING.GET_STARTED.LABEL' | translate}}</div>
+            <h2 class="title" id="plan-retirement-title">{{ 'RETIREMENT_PLANNING.GET_STARTED.TITLE' | translate}}</h2>
+            <div class="sub-title">
+              <div class="web" id="plan-retirement-sub-title">
+                <span>{{ 'RETIREMENT_PLANNING.GET_STARTED.SUB_TITLE' | translate}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="header-container-part2">
+            <div class="banner-image hidden-sm-md" id="plan-retirement-img">
+              <img src="assets/images/retirement-planning/retirement-planning-get-started.svg" />
+            </div>
+            <div class="mobile-logo hidden-lg" id="plan-retirement-mobile-img"><img
+                src="assets/images/retirement-planning/get-started-mobile.png" /></div>
+          </div>
+        </div>
+        <!-- Retirement Plan Form -->
+        <div class="col-lg-5 col-md-5 col-sm-12 retirementPlanForm">
+          <form name="retirementPlanningForm" id="retirementPlanningForm" [formGroup]="retirementPlanningForm"
+            class="flex-row">
+            <div class="form-group direct-form flex-col-12">
+              <!-- First Name and Last Name -->
+              <div class="flex-row mb10">
+                <div class="flex-col-5 stretch mr15">
+                  <div class="form-group-floating-label"
+                    [ngClass]="{'inline-error': submitted && retirementPlan.firstName.errors}">
+                    <input type="text" id="" class="form-control" #firstName formControlName="firstName" required>
+                    <label class="form-control-placeholder"
+                      for="firstName">{{ 'RETIREMENT_PLANNING.CREATE.FORM.FIRST_NAME.LABEL' | translate}}</label>
+                  </div>
+                </div>
+
+                <div class="flex-col-5 stretch">
+                  <div class="form-group-floating-label"
+                    [ngClass]="{'inline-error': submitted && retirementPlan.lastName.errors}">
+                    <input type="text" id="" class="form-control" #lastName formControlName="lastName" required>
+                    <label class="form-control-placeholder"
+                      for="lastName">{{ 'RETIREMENT_PLANNING.CREATE.FORM.LAST_NAME.LABEL' | translate}}</label>
+                  </div>
+                </div>
+
+
+                <!-- First Name error validation -->
+                <div class="alert-msg flex-col-12" *ngIf="submitted && retirementPlan.firstName.errors">
+                  <div *ngIf="retirementPlan.firstName.errors?.required">
+                    <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                    <span
+                      class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.FIRST_NAME.ERROR.REQUIRED' | translate}}</span>
+                  </div>
+                  <div *ngIf="retirementPlan.firstName.errors?.minlength || retirementPlan.firstName.errors?.maxlength">
+                    <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                    <span
+                      class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.FIRST_NAME.ERROR.MIN_MAX_LENGTH' | translate}}</span>
+                  </div>
+                  <div *ngIf="retirementPlan.firstName.errors?.pattern">
+                    <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                    <span
+                      class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.FIRST_NAME.ERROR.INVALID' | translate}}</span>
+                  </div>
+                </div>
+
+                <!-- Last Name error validation -->
+                <div class="alert-msg flex-col-12" *ngIf="submitted && retirementPlan.lastName.errors">
+                  <div *ngIf="retirementPlan.lastName.errors?.required">
+                    <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                    <span
+                      class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.LAST_NAME.ERROR.REQUIRED' | translate}}</span>
+                  </div>
+                  <div *ngIf="retirementPlan.lastName.errors?.minlength  || retirementPlan.lastName.errors?.maxlength">
+                    <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                    <span
+                      class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.LAST_NAME.ERROR.MIN_MAX_LENGTH' | translate}}</span>
+                  </div>
+                  <div *ngIf="retirementPlan.lastName.errors?.pattern">
+                    <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                    <span
+                      class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.LAST_NAME.ERROR.INVALID' | translate}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Email address -->
+              <div class="flex-row mb10">
+                <div class="flex-col-12 stretch">
+                  <div class="form-group-floating-label"
+                    [ngClass]="{'inline-error': submitted && retirementPlan.email.errors}">
+                    <input type="text" id="" class="form-control" #email formControlName="email" required>
+                    <label class="form-control-placeholder"
+                      for="email">{{ 'RETIREMENT_PLANNING.CREATE.FORM.EMAIL.LABEL' | translate}}</label>
+                  </div>
+
+                  <!-- Email error validation -->
+                  <div class="alert-msg" *ngIf="submitted && retirementPlan.email.errors">
+                    <div *ngIf="retirementPlan.email.errors?.required">
+                      <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                      <span
+                        class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.EMAIL.ERROR.REQUIRED' | translate}}</span>
+                    </div>
+                    <div *ngIf="retirementPlan.email.errors?.email">
+                      <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                      <span
+                        class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.EMAIL.ERROR.INVALID' | translate}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Confirm Email address -->
+              <div class="flex-row mb10">
+                <div class="flex-col-12 stretch">
+                  <div class="form-group-floating-label"
+                    [ngClass]="{'inline-error': (submitted && retirementPlan.confirmEmail.errors?.required) || (!confirmEmailFocus && !retirementPlan.email.errors && retirementPlan.confirmEmail.errors?.notEquivalent)}">
+                    <input type="text" id="" class="form-control" (blur)="showValidity('confirmEmail')"
+                      (focus)="showValidity('confirmEmail')" #confirmEmail formControlName="confirmEmail" required>
+                    <label class="form-control-placeholder"
+                      for="confirmEmail">{{ 'RETIREMENT_PLANNING.CREATE.FORM.CONFIRM_EMAIL.LABEL' | translate}}</label>
+
+                    <!-- Confirm Email error tooltip -->
+                    <div class="error-tooltip"
+                      *ngIf="confirmEmailFocus && !retirementPlan.email.errors && retirementPlan.confirmEmail.errors?.notEquivalent">
+                      <div class="error-tooltip__desc">
+                        <p class="error-tooltip__title"><span class="error-tooltip__title__warning-icon">!</span>{{
+                      'RETIREMENT_PLANNING.CREATE.ERROR_MESSAGE.TITLE' | translate}}</p>
+                        <p class="error-tooltip__desc-one">{{ 'RETIREMENT_PLANNING.CREATE.ERROR_MESSAGE.MATCH' | translate}}</p>
+                        <span class="error-tooltip__arrow"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Confirm Email error validation -->
+                  <div class="alert-msg" *ngIf="retirementPlan.confirmEmail.errors">
+                    <div *ngIf="submitted && retirementPlan.confirmEmail.errors?.required">
+                      <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                      <span
+                        class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.CONFIRM_EMAIL.ERROR.REQUIRED' | translate}}</span>
+                    </div>
+                    <div
+                      *ngIf="!confirmEmailFocus && !retirementPlan.email.errors && retirementPlan.confirmEmail.errors?.notEquivalent">
+                      <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                      <span
+                        class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.CONFIRM_EMAIL.ERROR.MATCH' | translate}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Mobile -->
+              <div class="flex-row mb20">
+                <div class="flex-col-12 stretch">
+                  <div class="form-group-floating-label"
+                    [ngClass]="{'inline-error': submitted && retirementPlan.mobileNumber.errors}">
+                    <input type="number" maxlength="15" id="" #mobileNumber formControlName="mobileNumber"
+                    (keyup)="onlyNumber(mobileNumber)" class="form-control" required>
+                    <label class="form-control-placeholder"
+                      for="name">{{ 'RETIREMENT_PLANNING.CREATE.FORM.MOBILE_NUMBER.LABEL' | translate}}</label>
+                  </div>
+
+                  <!-- Mobile error validation -->
+                  <div class="alert-msg" *ngIf="submitted && retirementPlan.mobileNumber.errors">
+                    <div *ngIf="retirementPlan.mobileNumber.errors?.required">
+                      <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                      <span
+                        class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.MOBILE_NUMBER.ERROR.REQUIRED' | translate}}</span>
+                    </div>
+                    <div *ngIf="retirementPlan.mobileNumber.errors?.mobileRange">
+                      <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                      <span
+                        class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.MOBILE_NUMBER.ERROR.INVALID' | translate}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Marketing Material -->
+              <div class="checkbox-button one-label mb15">
+                <input id="marketingAcceptance" name="marketingAcceptance" formControlName="marketingAcceptance"
+                  type="checkbox" class="field checkbox">
+                <label for="marketingAcceptance">
+                  <div class="title">{{ 'RETIREMENT_PLANNING.CREATE.FORM.MARKETING.MATERIAL' | translate }}
+                  </div>
+                </label>
+              </div>
+
+              <!-- Consent -->
+              <div class="checkbox-button one-label">
+                <input id="consent" name="consent" formControlName="consent" type="checkbox" class="field checkbox">
+                <label for="consent">
+                  <div class="title">{{ 'RETIREMENT_PLANNING.CREATE.FORM.MARKETING.CONSENT' | translate }}
+                  </div>
+                </label>
+              </div>
+
+              <!-- Proceed button -->
+              <button id="nextStep" type="button" (click)="save(retirementPlanningForm)"
+                class="btn btn__footer--fixed btn-primary width100">{{ 'RETIREMENT_PLANNING.CREATE.FORM.PROCEED' | translate }}</button>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

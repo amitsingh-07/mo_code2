@@ -623,3 +623,82 @@ _:-ms-fullscreen, :root .flex-col-12, :root .flex-col-7 {
 		}
 	}
 }
+
+/* 
+*  Step indicator
+*/
+@mixin step-indicator() {
+  .step-indicator-container {
+    padding: 20px 0px;
+    position: relative;
+
+    .container-fluid {
+      padding-top: 0px !important;
+      padding-bottom: 0px !important;
+    }
+
+    @include allmobiles {
+      top: 11px;
+      background-color: $white-color;
+      padding: 10px 0px;
+    }
+
+    .page-caption {
+      color: $text-color-secondary;
+      font-size: 16px;
+      font-family: $muli;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    @include step-item();
+  }
+}
+
+@mixin step-item() {
+  .container-fluid {
+    .step-item {
+      margin-right: 15px !important;
+      @include stepcolor;
+
+      &:last-child {
+        margin-right: 0 !important;
+      }
+
+      @include tablet {
+        @include stepcolor;
+      }
+    }
+  }
+
+  @include allmobiles {
+    .step-item {
+      &.active {
+        opacity: 1;
+        background-color: $step-indicator-active;
+      }
+    }
+  }
+}
+
+@mixin navbar-sub-header() {
+  .navbar-sub-header {
+    position: fixed;
+    width: 100%;
+    height: 47px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $white-color;
+    z-index: 3;
+
+    span {
+      color: $teal-color;
+      font-family: $muli-bold;
+      font-size: 16px;
+      letter-spacing: normal;
+      line-height: normal;
+    }
+  }
+
+}
