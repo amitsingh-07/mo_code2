@@ -1,5 +1,5 @@
 <div class="container-fluid max-width--1024 comprehensive"
-  *ngIf="(getComprehensiveSummary.comprehensiveEnquiry.isValidatedPromoCode || isComprehensiveLiveEnabled) && isComprehensiveEnabled">
+  *ngIf="((getComprehensiveSummary && getComprehensiveSummary.comprehensiveEnquiry.isValidatedPromoCode) || isComprehensiveLiveEnabled) && isComprehensiveEnabled">
   <div class="widget">
     <div class="form-group-with-bg overlay-bg">
       <div [ngClass]="{'hidden': !isLoadComplete}">
