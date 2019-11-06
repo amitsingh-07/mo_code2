@@ -23,6 +23,12 @@ app-add-portfolio-name {
     height: calc(100vh - 84px);
     
     @include allmobiles{
+      height: calc(100vh - 46px);
+    }
+    @include iphonex{
+      height: calc(100vh - 108px);
+    }
+    @include iphone11{
       height: calc(100vh - 108px);
     }
 
