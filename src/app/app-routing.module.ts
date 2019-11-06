@@ -83,6 +83,12 @@ const routes: Routes = [
         canActivate: [PromotionEnableGuard],
         canActivateChild: [PromotionChildEnableGuard]
       },
+      {
+        path: 'retirement-planning',
+        loadChildren: './retirement-planning/retirement-planning.module#RetirementPlanningModule',
+        canActivate: [],
+        canActivateChild: []
+      },
       // Legacy Routes
       { path: 'terms-of-use', component: TermsOfUseComponent },
       { path: 'privacy-policy', component: PrivacyPolicyComponent },

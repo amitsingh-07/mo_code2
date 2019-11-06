@@ -57,6 +57,8 @@ import { CarouselModalComponent } from '../shared/modal/carousel-modal/carousel-
 import { SlickModule } from 'ngx-slick';
 import { ReviewBuyRequestModalComponent } from '../shared/modal/review-buy-request-modal/review-buy-request-modal.component';
 
+import { NumberOnlyDirective } from './directives/number-only.directive';
+
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
@@ -81,13 +83,13 @@ export function createTranslateLoader(http: HttpClient) {
     ReactiveFormsModule,
     SlickModule.forRoot()
   ],
-  exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
+  exports: [CurrencyInputDirective, NumberOnlyDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
     BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, TimeAgoPipe, FormatDatePipe, DistributePercentDirective,
     GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent,
     InvestmentTitleBarComponent, RoundPipe, EditMobileNumberComponent,
     DropdownWithSearchComponent, StartsWithPipe, RoadmapComponent, SecurePipe, PortfolioListComponent, InstructionStepsComponent],
-  declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
+  declarations: [CurrencyInputDirective, NumberOnlyDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
     PrivacyPolicyComponent,

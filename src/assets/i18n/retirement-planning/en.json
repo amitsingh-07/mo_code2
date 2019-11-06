@@ -1,0 +1,110 @@
+{
+  "RETIREMENT_PLANNING": {
+    "CREATE": {
+      "FORM": {
+        "MOBILE_NUMBER": {
+          "LABEL": "Mobile Number",
+          "ERROR": {
+            "REQUIRED": "Enter a mobile number",
+            "INVALID": "Enter a valid mobile number"
+          }
+        },
+        "FIRST_NAME": {
+          "LABEL": "First Name",
+          "ERROR": {
+            "REQUIRED": "Enter first name",
+            "INVALID": "First name must not contain numbers",
+            "MIN_MAX_LENGTH": "First name must be 2 - 40 characters"
+          }
+        },
+        "LAST_NAME": {
+          "LABEL": "Last Name",
+          "ERROR": {
+            "REQUIRED": "Enter last name",
+            "INVALID": "Last name must not contain numbers",
+            "MIN_MAX_LENGTH": "Last name must be 2 - 40 characters"
+          }
+        },
+        "EMAIL": {
+          "LABEL": "Email Address",
+          "ERROR": {
+            "REQUIRED": "Enter an email address",
+            "INVALID": "Enter a valid email address"
+          }
+        },
+        "CONFIRM_EMAIL": {
+          "LABEL": "Confirm Email Address",
+          "ERROR": {
+            "REQUIRED": "Enter a confirm email address",
+            "MATCH": "Email address does not match confirmation"
+          }
+        },
+        "MARKETING": {
+          "MATERIAL": "I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl",
+          "CONSENT": "I also give my consent to be contacted via my mobile phone with regards to this insurance enquiry"
+        },
+        "DOB": {
+          "LABEL": "Date of Birth",
+          "ERROR": {
+            "REQUIRED": "Enter date of birth",
+            "INVALID_AGE": "Your Retirement Age needs to be older than the age you are now"
+          }
+        },
+        "RETIREMENT_AGE": {
+          "LABEL": "Retirement Age",
+          "ERROR": {
+            "REQUIRED": "Enter retirement age"
+          }
+        },
+        "RETIREMENT_INCOME": {
+          "LABEL": "Retirement Income",
+          "ERROR": {
+            "REQUIRED": "Enter retirement income"
+          }
+        },
+        "SUBMIT": "Submit",
+        "PROCEED": "Proceed"
+      },
+      "ERROR_MESSAGE": {
+        "TITLE": "Email Address Criteria",
+        "MATCH": "Email address does not match confirmation"
+      }
+    },
+    "GET_STARTED": {
+      "LABEL": "Get Started",
+      "TITLE": "Plan Your Retirement",
+      "SUB_TITLE": "Are you prepared for your golden years? Go through our guided journey and receive a customised plan based on your retirement needs via e-mail."
+    },
+    "STEP_1": {
+      "LABEL": "Step 1",
+      "TITLE": "How Would You Like To Retire",
+      "SUB_TITLE": "Help us understand your retirement needs - like when you would like to retire and how much you will need realistically for your living expenses in today’s dollars?",
+      "RETIREMENT_NEEDS": {
+        "TITLE": "Your Retirement Amount Available"
+      }
+
+    },
+    "STEP_2": {
+      "LABEL": "Step 2",
+      "TITLE": "Personalise Your Retirement",
+      "SUB_TITLE": "Next, indicate your preferences on payout features. Choose 2 out of the 3 options that you think is more important to you.",
+      "CHECKBOX_OPTIONS": {
+        "OPTION1": {
+          "TITLE": "Stable Income Stream",
+          "SUB_TITLE": "Higher guarantee in income stream",
+          "VALUE": "STABLE_INCOME_STREAM"
+        },
+        "OPTION2": {
+          "TITLE": "Flexible Income Stream",
+          "SUB_TITLE": "More flexibility to vary income stream",
+          "VALUE": "FLEXIBLE_INCOME_STREAM"
+        },
+        "OPTION3": {
+          "TITLE": "Longer Period of Income",
+          "SUB_TITLE": "Income to last more than 20 years",
+          "VALUE": "LONGER_PERIOD_OF_INCOME"
+        }
+      }
+    }
+  }
+}
