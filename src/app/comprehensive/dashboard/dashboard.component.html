@@ -1,13 +1,13 @@
 <div class="container-fluid max-width--1024 comprehensive"
-  *ngIf="(getComprehensiveSummary.comprehensiveEnquiry.isValidatedPromoCode || isComprehensiveLiveEnabled) && isComprehensiveEnabled">
+  *ngIf="((getComprehensiveSummary && getComprehensiveSummary.comprehensiveEnquiry.isValidatedPromoCode) || isComprehensiveLiveEnabled) && isComprehensiveEnabled">
   <div class="widget">
     <div class="form-group-with-bg overlay-bg">
       <div [ngClass]="{'hidden': !isLoadComplete}">
         <!--Form Header-->
         <div class="form-group-with-bg--header">
-          <div class="flex space-btwn align-center">
+          <div class="flex space-btwn align-items-start">
             <div>
-              <div class="form-group-with-bg--header-label">{{
+              <div class="form-group-with-bg--header-label pr10">{{
                 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_TITLE' | translate}}
               </div>
             </div>

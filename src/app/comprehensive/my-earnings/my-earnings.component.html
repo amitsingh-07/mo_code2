@@ -267,14 +267,15 @@
       <div class="form-group-with-bg" [hidden]="!annualDividendsType">
         <!--Form Header-->
         <div class="form-group-with-bg--header">
-          <div class="flex-row">
-            <div class="flex-col-12 with-delete-icon" [ngClass]="{'both-icon': !viewMode}">
-              <div class="form-group-with-bg--header-label">{{
+          <div class="flex space-btwn" [ngClass]="{'both-icon': !viewMode}">
+            <div class="form-group-with-bg--header-label">{{
 'CMP.MY_EARNINGS.ANNUAL_DIVIDENDS' | translate}}<div class="form-group-with-bg--header-sub-label"></div>
-              </div>
+            </div>
+            <div>
               <span class="help-icon" (click)="showToolTipModal('ADD_DIVIDENDS_TITLE','ADD_DIVIDENDS_MESSAGE')"></span>
-              <span class="delete-icon" *ngIf="!viewMode" (click)="SelectEarningsType('annualDividendsType', false)"
-                appComprehensiveViewMode="{{viewMode}}" mode=1></span>
+              <span class="delete-icon ml10" *ngIf="!viewMode"
+                (click)="SelectEarningsType('annualDividendsType', false)" appComprehensiveViewMode="{{viewMode}}"
+                mode=1></span>
             </div>
           </div>
         </div>
@@ -346,8 +347,8 @@
                   <span> {{'CMP.MY_EARNINGS.ANNUAL_DIVIDENDS'|translate}} <span [hidden]="!annualDividendsType">
                       {{'CMP.MY_EARNINGS.SELECTED'|translate}} </span></span>
                 </button>
-                <span class="help-icon"
-                  (click)="showToolTipModal('ADD_DIVIDENDS_TITLE','ADD_DIVIDENDS_MESSAGE')"></span>
+                <!-- <span class="help-icon"
+                  (click)="showToolTipModal('ADD_DIVIDENDS_TITLE','ADD_DIVIDENDS_MESSAGE')"></span> -->
               </div>
               <button [disabled]="otherAnnualIncomeType" type="button" class="dropdown-item earnings-dropdown"
                 (click)="SelectEarningsType('otherAnnualIncomeType', true)">

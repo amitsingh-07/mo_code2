@@ -30,7 +30,14 @@ input[type='checkbox']:checked+label {
   .dependant-title {
       font-size: 18px;
   }
-
+  .help-icon {
+    background: url("/assets/images/comprehensive/tool-tip-white.svg") no-repeat;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    top: 5px;
+    cursor: pointer;
+  }
 }
 .age {
   color: #8d9aa8!important;
