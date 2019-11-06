@@ -26,6 +26,7 @@ import {
 import { IAccountCreationActions } from '../investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
+import { FooterService } from '../../../shared/footer/footer.service';
 
 @Component({
   selector: 'app-add-portfolio-name',
@@ -57,6 +58,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
     private manageInvestmentsService: ManageInvestmentsService,
     private loaderService: LoaderService,
     private renderer: Renderer2,
+    public footerService: FooterService,
     private navbarService: NavbarService, ) {
       this.translate.use('en');
       this.translate.get('COMMON').subscribe((result: string) => {
@@ -71,6 +73,9 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.fundingMethod = this.investmentCommonService.getConfirmedFundingMethodName();
     this.riskProfileIcon = ProfileIcons[this.formValues.recommendedRiskProfileId - 1]['icon'];
