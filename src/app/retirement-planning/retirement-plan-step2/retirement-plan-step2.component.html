@@ -1,0 +1,52 @@
+  <!-- Sub Header -->
+  <div class="navbar-sub-header hidden-sm-md">
+    <span>{{ 'RETIREMENT_PLANNING.STEP_2.TITLE' | translate}}</span>
+  </div>
+  <div class="intro-block">
+    <div class="step-indicator-container">
+      <div class="container-fluid max-width--1024">
+        <app-step-indicator [count]="2" [activeStepIndex]="2" [mode]="1"></app-step-indicator>
+      </div>
+    </div>
+    <div class="container-fluid max-width--1024">
+
+      <div class="intro-block__content">
+        <div class="flex-row">
+          <div class="col-lg-6 col-md-6 col-sm-12 intro-block__content__desc">
+            <div class="intro-block__content__desc-container">
+              <div class="step">{{ 'RETIREMENT_PLANNING.STEP_2.LABEL' | translate}}</div>
+              <h2 class="title hidden-sm-md" id="plan-retirement-title">
+                {{ 'RETIREMENT_PLANNING.STEP_2.TITLE' | translate}}</h2>
+              <div class="sub-title">
+                <div class="web" id="plan-retirement-sub-title">
+                  <span>{{ 'RETIREMENT_PLANNING.STEP_2.SUB_TITLE' | translate}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-5 col-md-5 col-sm-12 intro-block__content__form">
+            <div class="form-container">
+              <!-- Personalise Your Retirement -->
+              <form name="personalizeYourRetireForm" id="personalizeYourRetireForm" [formGroup]="personalizeYourRetireForm" >
+                <div class="form-group-single-column  mb0 flex-col" formArrayName="personalizeYourRetireArray">
+                  <div class="checkbox-button two-label" [formGroupName]="i">
+                    <input name="personalize" type="checkbox" class="field checkbox" formControlName="stableIncomeStream" value="{{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION1.VALUE' | translate}}" >
+                    <label for="personalize" id="personalizeLbl">
+                      <div class="input-label-black">label1</div>
+                      <div class="input-label-normal">sub label</div>
+                    </label>
+                  </div>
+                </div>
+              </form>
+
+              <!-- Proceed button -->
+              <button id="nextStep" type="button" [disabled]="false"
+                class="btn btn__footer--fixed btn-primary width100">{{ 'RETIREMENT_PLANNING.CREATE_ACCOUNT.FORM.SUBMIT' | translate}}</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

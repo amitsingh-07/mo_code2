@@ -1,0 +1,211 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+app-navbar {
+  nav {
+    border-bottom: solid 1px rgba(141, 154, 168, 0.16);
+    box-shadow: none !important;
+  }
+}
+
+app-retirement-plan-step2 {
+  @include navbar-sub-header();
+
+  .intro-block {
+    @include desktop {
+      padding-top: 50px;
+    }
+
+    @include allmobiles {
+      padding-top: 50px;
+    }
+
+    @include step-indicator();
+
+    .container-fluid {
+      @include desktop {
+        padding-top: 0px !important;
+      }
+
+      @include allmobiles {
+        padding-top: 30px !important;
+      }
+
+      .max-width--1024 {
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+    }
+
+    .intro-block__tab-container {
+      @extend .flex;
+      @extend .space-btwn;
+      width: 100%;
+
+      .intro-block__tab {
+        width: calc(50% - 10px);
+        opacity: 0.2;
+        margin-right: 10px;
+
+        @include allmobiles {
+          margin-right: 10px;
+        }
+
+        background-color:$app-backgrnd-secondary-color;
+        min-height:5px;
+
+        &.active {
+          opacity: 1;
+        }
+
+        &.active-prev {
+          opacity: 1 !important;
+          background-color: #02908e !important;
+        }
+      }
+
+    }
+
+    .intro-block__content {
+      .flex-row {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      @include tablet {
+        .banner-image img {
+          max-width: 90%;
+        }
+      }
+
+      @include allmobiles {
+        .banner-image img {
+          max-width: 251px;
+        }
+      }
+
+      @include iPadProPortrait {
+        .banner-image img {
+          max-width: 80%;
+        }
+      }
+
+      .intro-block__content__desc {
+        margin: 0;
+
+        @include desktop {
+          padding: 0;
+        }
+
+        @include allmobiles {
+          padding: 0;
+        }
+
+        .intro-block__content__desc-container {
+          @include desktop {
+            margin-top: 40px;
+          }
+
+          .step {
+            margin-bottom: 5px;
+            font-size: 18px;
+            letter-spacing: -0.19px;
+            font-weight: 300;
+            line-height: normal;
+
+            @include allmobiles {
+              font-family: $muli-semi-bold;
+            }
+
+            @include desktop {
+              font-family: $muli-light;
+            }
+          }
+
+          .title {
+            font-family: $muli-semi-bold;
+            font-size: 24px;
+            line-height: normal;
+            letter-spacing: -0.25px;
+            margin-bottom: 10px;
+            font-weight: 600;
+          }
+
+          .sub-title {
+            @include allmobiles {
+              font-family: $muli-regular;
+              font-size: 16px;
+              letter-spacing: -0.17pt;
+            }
+
+            @include desktop {
+              width: 372px;
+              font-family: $muli-semi-bold;
+              font-size: 18px;
+              letter-spacing: -0.18px;
+              font-weight: 600;
+              line-height: 1.22;
+            }
+          }
+        }
+      }
+
+      .intro-block__content__form {
+
+        @include allmobiles {
+          padding: 0;
+        }
+
+        .form-container {
+          @include allmobiles {
+            margin-top: 30px;
+          }
+
+          @include desktop {
+            margin-top: 40px;
+          }
+
+          .form-group-single-column {
+            .checkbox-button {
+              &.two-label {
+                label {
+                  .input-label-normal {
+                    color: #9b9b9b;
+                  }
+                }
+              }
+            }
+          }
+
+          .btn__footer--fixed {
+            background-color: #00c5c4;
+            font-size: 22px;
+            font-family: $muli-bold;
+            letter-spacing: -0.17px;
+            box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14);
+            color: $white-color;
+            margin-top: 30px !important;
+
+            &:disabled {
+              opacity: 0.5 !important;
+              color: $white-color !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .back-btn {
+    background-image: url("../../../assets/images/back-web.svg");
+    width: 43px;
+    height: 43px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    margin-top: 21px;
+
+    @include allmobiles {
+      margin-top: 15px;
+    }
+  }
+}
