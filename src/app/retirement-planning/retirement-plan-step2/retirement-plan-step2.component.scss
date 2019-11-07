@@ -67,6 +67,10 @@ app-retirement-plan-step2 {
     }
 
     .intro-block__content {
+      @include allmobiles {
+        margin-top: 10px;
+      }
+
       .flex-row {
         display: flex;
         justify-content: space-between;
@@ -132,6 +136,8 @@ app-retirement-plan-step2 {
           }
 
           .sub-title {
+            line-height: 1.22;
+
             @include allmobiles {
               font-family: $muli-regular;
               font-size: 16px;
@@ -144,7 +150,6 @@ app-retirement-plan-step2 {
               font-size: 18px;
               letter-spacing: -0.18px;
               font-weight: 600;
-              line-height: 1.22;
             }
           }
         }
@@ -168,9 +173,20 @@ app-retirement-plan-step2 {
           .form-group-single-column {
             .checkbox-button {
               &.two-label {
+                padding: 10px;
+
                 label {
+                  .input-label-black {
+                    font-family: $muli-semi-bold;
+                    line-height: normal;
+                    letter-spacing: -0.34px;
+                  }
+
                   .input-label-normal {
+                    font-family: $muli-regular;
                     color: #9b9b9b;
+                    line-height: 1.25;
+                    letter-spacing: -0.16px;
                   }
                 }
               }
