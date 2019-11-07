@@ -505,8 +505,10 @@ export class ManageInvestmentsService {
   }
 
   activateToastMessage() {
-    this.manageInvestmentsFormData.toastMessage.isShown = true;
-    this.commit();
+    if (this.manageInvestmentsFormData.toastMessage) {
+      this.manageInvestmentsFormData.toastMessage.isShown = true;
+      this.commit();
+    }
   }
 
   clearToastMessage() {
