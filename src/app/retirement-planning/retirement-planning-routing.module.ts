@@ -6,6 +6,7 @@ import { RETIREMENT_PLANNING_ROUTES } from './retirement-planning-routes.constan
 import { GetStartedComponent } from './get-started/get-started.component';
 import { RetirementPlanStep1Component } from './retirement-plan-step1/retirement-plan-step1.component';
 import { RetirementPlanStep2Component } from './retirement-plan-step2/retirement-plan-step2.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path: RETIREMENT_PLANNING_ROUTES.STEP_2,
     component: RetirementPlanStep2Component,
+    canActivate: []
+  },
+  {
+    path: RETIREMENT_PLANNING_ROUTES.CONFIRMATION,
+    component: ConfirmationComponent,
     canActivate: []
   },
   { path: '**', redirectTo: '/page-not-found' }

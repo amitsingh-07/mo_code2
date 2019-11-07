@@ -62,6 +62,12 @@
             "REQUIRED": "Enter retirement income"
           }
         },
+        "LUMPSUM_AMOUNT": {
+          "LABEL": "Lump Sum Amount"
+        },
+        "MONTHLY_AMOUNT": {
+          "LABEL": "Monthly Amount"
+        },
         "SUBMIT": "Submit",
         "PROCEED": "Proceed"
       },
@@ -80,6 +86,9 @@
       "TITLE": "How Would You Like To Retire",
       "SUB_TITLE": "Help us understand your retirement needs - like when you would like to retire and how much you will need realistically for your living expenses in today’s dollars?",
       "RETIREMENT_NEEDS": {
+        "TITLE": "Your Desired Retirement Needs"
+      },
+      "RETIREMENT_AMOUNT_AVAILABLE": {
         "TITLE": "Your Retirement Amount Available"
       }
 
@@ -105,6 +114,13 @@
           "VALUE": "LONGER_PERIOD_OF_INCOME"
         }
       }
+    },
+    "CONFIRMATION": {
+      "THANKYOU": "Thank you!",
+      "TITLE": "Your interest in the selected insurance plan(s) has been submitted. Our advisors will contact you by the end of the next working day.",
+      "FOR_ENQUIRY": "For enquiries, please contact us at:",
+      "BACK_TO_HOME": "Back To Home",
+      "BACK_TO_DASHBOARD": "Back To Dashboard"
     }
   }
 }

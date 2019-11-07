@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { IUserDetails, IRetirementNeeds } from './retirement-planning-types';
+import { IUserDetails, IRetirementPlan, IRetirementNeedsGroup } from './retirement-planning-types';
 import { RetirementPlanningData } from './retirement-planning-form-data';
+
+import { ApiService } from '../shared/http/api.service';
 
 const SESSION_STORAGE_KEY = 'app_retirement_planning_session';
 
@@ -12,9 +14,24 @@ const SESSION_STORAGE_KEY = 'app_retirement_planning_session';
 export class RetirementPlanningService {
     private retirementPlanningForm: RetirementPlanningData = new RetirementPlanningData();
 
-    constructor() {
+    private scheme: any = new Map([
+        ['stableIncomeStream', 'STABLE_INCOME_STREAM'],
+        ['flexibleIncomeStream', 'FLEXIBLE_INCOME_STREAM'],
+        ['longerPeriodOfIncome', 'LONGER_PERIOD_OF_INCOME']
+    ]);
+
+    constructor(private apiService: ApiService) {
         // get data from session storage
         this.getRetirementPlanningFormData();
+    }
+
+    /**
+     * save data in session storage.
+     */
+    commit() {
+        if (window.sessionStorage) {
+            sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.retirementPlanningForm));
+        }
     }
 
     /**
@@ -25,15 +42,6 @@ export class RetirementPlanningService {
             this.retirementPlanningForm = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
         }
         return this.retirementPlanningForm;
-    }
-
-    /**
-     * save data in session storage.
-     */
-    commit() {
-        if (window.sessionStorage) {
-            sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.retirementPlanningForm));
-        }
     }
 
     /**
@@ -54,5 +62,76 @@ export class RetirementPlanningService {
             this.retirementPlanningForm.userDetails = {} as IUserDetails;
         }
         return this.retirementPlanningForm.userDetails;
+    }
+
+    /**
+    * set retirement needs detail.
+    * @param data - user  retirement needs detail.
+    */
+    setRetirementNeeds(data: IRetirementNeedsGroup) {
+        this.retirementPlanningForm.retirementNeedsGroup = data;
+        this.commit();
+    }
+
+    /**
+    * get retirement needs detail.
+    * @param data - user  retirement needs detail.
+    */
+    getRetirementNeeds() {
+        if (!this.retirementPlanningForm.retirementNeedsGroup) {
+            this.retirementPlanningForm.retirementNeedsGroup = {} as IRetirementNeedsGroup;
+        }
+        return this.retirementPlanningForm.retirementNeedsGroup;
+    }
+
+    /**
+    * set retirement plan payload detail.
+    * @param data - retirement plan payload details.
+    */
+    retirementPlanPayload(incomeStream) {
+        const { retirementNeeds: retirementNeed, retirementAmountAvailable: retirementAmount } = this.retirementPlanningForm.retirementNeedsGroup;
+        const schemeList = incomeStream.map((e) => this.scheme.get(e));
+
+        const retirementPayload: IRetirementPlan = {
+            basicCustomerDetails: {
+                firstName: this.retirementPlanningForm.userDetails.firstName,
+                lastName: this.retirementPlanningForm.userDetails.lastName,
+                mobileNumber: this.retirementPlanningForm.userDetails.mobileNumber,
+                emailAddress: this.retirementPlanningForm.userDetails.emailAddress
+            },
+            retirementNeeds: {
+                retirementAge: retirementNeed.retirementAge,
+                monthlyRetirementIncome: retirementNeed.monthlyRetirementIncome,
+                dateOfBirth: this.convertDate(retirementNeed.dateOfBirth)
+            },
+            retirementAmountAvailable: {
+                lumpSumAmount: retirementAmount.lumpSumAmount,
+                monthlyAmount: retirementAmount.monthlyAmount
+            },
+            retirementSchemeList: schemeList
+        }
+
+        return retirementPayload;
+    }
+
+    /**
+    * create retirement plan.
+    * @param data - retirement plan.
+    */
+    createRetirementPlan(incomeStream) {
+        const payload: IRetirementPlan = this.retirementPlanPayload(incomeStream);
+        return this.apiService.enquireRetirementPlan(payload);
+    }
+
+    /**
+    * convert date format.
+    * @param dateObject - convert date to DD/MM/YYYY format.
+    */
+    convertDate(dateObject) {
+        let convertedDate = '';
+        if (dateObject && dateObject.day && dateObject.month && dateObject.year) {
+            convertedDate = dateObject.day + '-' + dateObject.month + '-' + dateObject.year;
+        }
+        return convertedDate;
     }
 }
