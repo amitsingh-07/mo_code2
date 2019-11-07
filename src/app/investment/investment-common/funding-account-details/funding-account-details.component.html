@@ -1,0 +1,126 @@
+<div class="funding-account-details investment-account">
+  <div class="step-indicator-container">
+    <div class="container-fluid max-width--1024">
+      <app-step-indicator [count]="2" [activeStepIndex]="1" [mode]="0"></app-step-indicator>
+    </div>
+  </div>
+  <div class="container-fluid invest-web-width">
+    <div class="content">
+      <div class="hidden-sm-md page-details">
+        <div>{{
+          'CONFIRM_ACCOUNT_DETAILS.STEP_2' | translate}}</div>
+        <div class="page-title">{{pageTitle}}</div>
+      </div>
+      <div class="row" *ngIf="fundingMethods">
+        <div class="col-md-12">
+          <form name="funding account-details" [formGroup]="fundingAccountDetailsForm">
+            <div class="funding-type mb20">
+              <div class="flex-col-12">
+                <div class="funding-lbl">{{
+                  'CONFIRM_ACCOUNT_DETAILS.FUND_METHOD' | translate}}</div>
+                <div>{{
+                  'CONFIRM_ACCOUNT_DETAILS.SELECT_FUNDING_LAB' | translate}}</div>
+              </div>
+              <div class="flex-row mt15">
+                <div class="flex-col-12">
+                  <div class="dropdown-control">
+                    <div ngbDropdown>
+                      <button *ngIf="!this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value"
+                        class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
+                        {{ 'CONFIRM_ACCOUNT_DETAILS.SELECT' | translate}}
+                      </button>
+                      <button  *ngIf="this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value"
+                       class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
+                        {{getFundingMethodNameById(this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods) }}
+                      </button>
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                        <button class="dropdown-item" *ngFor="let fundingMethod of fundingMethods; let i = index;"
+                          (click)="selectFundingMethod('confirmedFundingMethodId', fundingMethod.id)"
+                          id="additional_declaration_sourse-drpdown-option-{{i}}">{{fundingMethod.name}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="srs-block">
+              <!-- SRS bLOCK -->
+              <div
+                *ngIf="isSRSAccount(fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods)"
+                class="widget" formGroupName="srsFundingDetails">
+                <div class="mb15">{{
+                  'CONFIRM_ACCOUNT_DETAILS.ACCOUNT_DETAILS' | translate}}</div>
+                <div class="widget-title">
+                  <span>{{
+                    'CONFIRM_ACCOUNT_DETAILS.SRS_ACCOUNT_DETAILS' | translate}}</span>
+                </div>
+                <div class="widget-body">
+                  <div class="flex-row">
+                    <div class="flex-col-3">
+                      <label for="name">{{
+                        'CONFIRM_ACCOUNT_DETAILS.SRS_OPERATOR' | translate}}</label>
+                    </div>
+                    <div class="flex-col-8">
+                      <div class="dropdown-control">
+                        <div ngbDropdown>
+                          <button [disabled]=isDisable() class="btn btn-dropdown"
+                            id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
+                            {{fundingAccountDetailsForm.controls.srsFundingDetails.controls.srsOperatorBank.value ?
+                              fundingAccountDetailsForm.controls.srsFundingDetails.controls.srsOperatorBank.value.name :
+                              'Select SRS Operator'}}
+                          </button>
+                          <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                            <button class="dropdown-item" *ngFor="let srsOperator of srsAgentBankList; let i = index;"
+                              (click)="selectSrsOperator('srsOperatorBank', srsOperator,'srsFundingDetails')"
+                              id="additional_declaration_sourse-drpdown-option-{{i}}">{{srsOperator.name}}</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex-row">
+                    <div class="flex-col-3">
+                      <label for="name" placeholder="account number">{{
+                        'CONFIRM_ACCOUNT_DETAILS.SRS_ACCOUNT_NUMBER' | translate}}</label>
+                    </div>
+                    <div class="flex-col-8"
+                      [ngClass]="{'inline-error':getInlineErrorStatus(fundingAccountDetailsForm.controls.srsFundingDetails.controls.srsAccountNumber)}">
+                      <input type="text" [textMask]="maskConfig()" placeholder="Enter Account No."
+                        [attr.disabled]="isDisable() == true ? true : null" class="form-control"
+                        formControlName="srsAccountNumber">
+                    </div>
+                  </div>
+                  <div class="characters"
+                    *ngIf="this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value">
+                    {{getAccNoLength() ? getAccNoLength() :0}} /
+                    {{getAccNoMaxLength(fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value)}}
+                  </div>
+                  <div class="txt-italic">{{
+                    'CONFIRM_ACCOUNT_DETAILS.CORRECT_SRS_ACCOUNT_DETAILS_DESC' | translate}}</div>
+                </div>
+                <div class="note-info mt20"><span class="note-icon"><img
+                      src="assets/images/investment-account/note-icon-white.svg" /></span>
+                  <span [innerHTML]="'CONFIRM_ACCOUNT_DETAILS.SRS_DESC' | translate"></span>
+                </div>
+              </div>
+              <!-- SRS bLOCK -->
+            </div>
+            <div
+              *ngIf="isCashAccount(fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods)"
+              class="note-info">
+              <span class="note-icon"><img src="assets/images/investment-account/note-icon-white.svg" /></span>
+              <span>{{
+                'CONFIRM_ACCOUNT_DETAILS.CASH_DESC' | translate}}</span>
+            </div>
+            <div class="text-center">
+              <button type="button" id="personalInforNextBtn" (click)="goToNext(fundingAccountDetailsForm)"
+                class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+                [disabled]="!fundingAccountDetailsForm.valid" id="getStrdBtn3">{{
+                  'CONFIRM_ACCOUNT_DETAILS.CONTINUE' | translate}}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

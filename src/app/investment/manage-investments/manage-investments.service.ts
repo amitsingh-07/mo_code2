@@ -186,9 +186,13 @@ export class ManageInvestmentsService {
     this.commit();
   }
   getUserPortfolioList() {
-    return this.manageInvestmentsFormData.userPortfolios.sort((a, b) => {
+    // Sort portfolio by ascending alphabetical order order
+    const sortedArray = this.manageInvestmentsFormData.userPortfolios.sort((a, b) => {
       return a.portfolioName.toLowerCase().localeCompare(b.portfolioName.toLowerCase());
     });
+    // Hide SRS portfolios
+    return sortedArray.filter((array) => array.portfolioType !== 'SRS');
+
   }
   setUserCashBalance(amount) {
     this.manageInvestmentsFormData.cashAccountBalance = amount;
@@ -500,8 +504,10 @@ export class ManageInvestmentsService {
   }
 
   activateToastMessage() {
-    this.manageInvestmentsFormData.toastMessage.isShown = true;
-    this.commit();
+    if (this.manageInvestmentsFormData.toastMessage) {
+      this.manageInvestmentsFormData.toastMessage.isShown = true;
+      this.commit();
+    }
   }
 
   clearToastMessage() {

@@ -10,16 +10,17 @@ import { AuthenticationService } from '../../../shared/http/auth/authentication.
 import { IPageComponent } from '../../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import {
-  ModelWithButtonComponent
+    ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import {
-  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../investment-engagement-journey-routes.constants';
 import {
-  INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
+    INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
 } from '../investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 
@@ -49,6 +50,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     public authService: AuthenticationService,
     public readonly translate: TranslateService,
     private investmentAccountService: InvestmentAccountService,
+    private investmentCommonService: InvestmentCommonService,
     private cd: ChangeDetectorRef,
     private signUpService: SignUpService,
     private loaderService: LoaderService
@@ -157,8 +159,10 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   }
 
   saveAndProceed(form: any) {
+    const invCommonFormValues = this.investmentCommonService.getInvestmentCommonFormData();
     this.investmentEngagementJourneyService.setYourFinancial(form.value);
-    this.investmentEngagementJourneyService.savePersonalInfo().subscribe((data) => {
+    this.investmentEngagementJourneyService.savePersonalInfo(invCommonFormValues).subscribe((data) => {
+      this.investmentCommonService.clearAccountCreationActions();
       if (data) {
         this.authService.saveEnquiryId(data.objectList.enquiryId);
         this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP2]);

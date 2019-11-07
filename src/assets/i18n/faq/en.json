@@ -3,7 +3,7 @@
         "TITLE": "FAQ",
         "META": {
             "META_DESCRIPTION": "Questions on Insurance",
-            "META_KEYWORDS": "FAQ, Insurance, Will Writing, MoneyOwl, Financial Advisor"
+            "META_KEYWORDS": ""
             }
     },
     "FAQ": {
@@ -332,7 +332,7 @@
                     },
                     {
                         "QUESTION": "How fast will my buy request be processed?",
-                        "ANSWER": "<p>As soon as there are sufficient monies in your Investment Cash Account, we will process the online request by 3pm on the current business day. If the buy request is received after 3pm, the request will be processed by the next business day.</p><p>You will receive an email notifying you on the transaction within 2 business days after request is processed. The holdings will be reflected in your Investment Account within 4 business days after the request is processed.</p>"
+                        "ANSWER": "<p>As soon as there are sufficient monies in your Investment Cash Account, we will process the online request by 3pm on the current business day. If the buy request is received after 3pm, the request will be processed by the next business day.</p><p>You will receive an email notifying you on the transaction within 2 business days after request is processed. The holdings will be reflected in your Investment Account within 4 business days after the request is processed.</p><p>Please note: Buy requests for SRS Investments will be submitted for processing immediately. Hence, please ensure there are sufficient funds in your SRS account before submitting your buy order.</p>"
                     },
                     {
                         "QUESTION": "How soon will my sell request be processed? ",
@@ -364,7 +364,7 @@
                 "Joint or SRS Accounts | Joint or SRS (Supplementary Retirement Schemes) Accounts": [
                   {
                       "QUESTION": "Can I open Joint or SRS Investment Accounts?",
-                      "ANSWER": "<p>Yes, you can. However, please note that we are currently handling the management of these accounts, including the portfolio account statements, offline. It is also a pre-requisite to set up your Personal Investment Account <a href=\"https://www.moneyowl.com.sg/invest/start\" target='_blank'>https://www.moneyowl.com.sg/invest/start</a> before opening your Joint or SRS Investment Accounts. <br/><br/>Please email <a href=\"mailto:clientsupport@moneyowl.com.sg\">clientsupport@moneyowl.com.sg</a> for an application form and assistance on next steps.</p>"
+                      "ANSWER": "<p>Yes, you can. However, please note that we are currently handling the management of these accounts, including the portfolio account statements, offline. It is also a pre-requisite to set up your Personal Investment Account <a href=\"https://www.moneyowl.com.sg/investment/engagement/start-journey\" target='_blank'>https://www.moneyowl.com.sg/investment</a> before opening your Joint Investment Account. <br/><br/>Please email <a href=\"mailto:clientsupport@moneyowl.com.sg\">clientsupport@moneyowl.com.sg</a> for an application form and assistance on next steps.</p>"
                   },
                   {
                       "QUESTION": "I already have an existing Personal Investment Account. Can I convert this to a Joint or SRS Investment Account?",
@@ -445,7 +445,7 @@
         },
         "EXTRA": {
             "Investment": {
-                "CONTENT": "<p class='disclaimer--sub-title'>Some Notes:</p><p>For an illustration of the transaction flow and timeline, please visit <a href='https://advice.moneyowl.com.sg/investment/transacting' target='_blank'>https://advice.moneyowl.com.sg/investment/transacting</a>  or read the FAQs below.</p><p>To read about keys to a successful investing experience, MoneyOwl’s portfolios, Dimensional Fund Advisors and other information, please visit our investment information page at <a href='https://advice.moneyowl.com.sg/investment' target='_blank'>https://advice.moneyowl.com.sg/investment</a></p><p class='disclaimer--sub-title'>IMPORTANT NOTE ON FUNDING:</p><p>To get to the funding instructions or top-up instructions after your Investment Account has been successfully set up, look out for a right arrow and/or an orange alert triangle in the My Investment > My Portfolio page.</p><p>In the funding instructions, there is a “Reference Code”. You <u>MUST</u> indicate the “Reference Code” in the \"Remarks/ Descriptions/ Comments\" of your fund transfer, even if the bank says it is optional, otherwise we cannot trace your transaction easily and there will be a delay.</p>"
+                "CONTENT": "<p class='disclaimer--sub-title'>Some Notes:</p><p>For an illustration of the transaction flow and timeline, please visit <a href='https://advice.moneyowl.com.sg/investment/transacting' target='_blank'>https://advice.moneyowl.com.sg/investment/transacting</a>  or read the FAQs below.</p><p>To read about keys to a successful investing experience, MoneyOwl’s portfolios, Dimensional Fund Advisors and other information, please visit our investment information page at <a href='https://advice.moneyowl.com.sg/investment' target='_blank'>https://advice.moneyowl.com.sg/investment</a></p><p class='disclaimer--sub-title'>IMPORTANT NOTE ON FUNDING:</p><p>To get to the funding instructions or top-up instructions after your Investment Account has been successfully set up, login to your MoneyOwl Account >> “Investment” section >> this will bring you to “Your Investment” page >> click on “Portfolio Card” -> “under Tab” Pending Requests/Cash Account -> View Transfer Instructions.</p><p>In the funding instructions, there is a “Reference Code”. You <u>MUST</u> indicate the “Reference Code” in the \"Remarks/ Descriptions/ Comments\" of your fund transfer, even if the bank says it is optional, otherwise we cannot trace your transaction easily and there will be a delay.</p>"
             }
         }
     }

@@ -4,10 +4,11 @@
 	"responseDescription": "Successful response"
 },
 	"objectList": {
-		"monthlyIncome": 900000,
-		"incomePercentageSaved": 60,
-		"totalAssets": 800000,
-		"totalLoans": 700000
+		"fundTypeId": "SRS",
+		"srsDetails":{
+			"accountNumber":"2345-5678-9814-567",
+			"operatorId":"OBC"
+		}
 	}
   
 }

@@ -16,6 +16,7 @@ app-account-status {
 
     .custom-modal-wrapper {
       top: 0;
+      bottom: 0;
       width: 100%;
       height: 100%;
       position: fixed;
@@ -24,18 +25,22 @@ app-account-status {
     }
 
     .custom-modal-content {
-      width: 100%;
-      height: 100%;
+      // width: 100%;
+      // height: 100%;
     }
 
     .custom-modal--icon {
       width: 100%;
       height: 100%;
-      position: absolute;
-      top: 20%;
+      // position: absolute;
+      // top: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
 
       @include allmobiles {
-        top: 40px;
+        height: calc( 100vh - 60px);
       }
     }
 
@@ -62,6 +67,7 @@ app-account-status {
       text-align: center;
       color: $white-color;
       margin: 0 auto;
+      width: 340px;
 
       @include allmobiles {
         width: 283px;
