@@ -1,0 +1,147 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+app-confirmation {
+  .container-fluid {
+    background-color: #f6f6f6;
+    text-align: center;
+
+    @include allmobiles {
+      padding-top: 60px;
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+    }
+
+    @include phablet {
+      padding-top: 60px;
+    }
+  }
+
+  .enquiry-panel {
+    background-color: #f6f6f6;
+    min-height: 100vh;
+
+    .email-enquiry-bg {
+      position: absolute;
+      top: 84px;
+      left: 0;
+      right: 0;
+
+      @include allmobiles {
+        top: 0;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .enquiry-card {
+      max-width: 420px;
+      margin: 200px auto 0;
+      background: $white-color;
+      font-size: 21px;
+      padding: 30px 35px;
+      line-height: 21px;
+      letter-spacing: -0.21px;
+      text-align: center;
+      color: #066360;
+      z-index: 1;
+      position: relative;
+      border-radius: 6px;
+      box-shadow: 0 8px 16px 2px rgba(0, 0, 0, 0.14);
+
+      @include allmobiles {
+        margin: 0px 15px;
+        padding: 30px 20px;
+        font-size: 14px;
+        letter-spacing: -0.14px;
+      }
+
+      h2 {
+        font-family: $muli-bold;
+        letter-spacing: -0.36px;
+        text-align: center;
+        padding-bottom: 10px;
+
+        @include desktop {
+          font-size: 36px;
+        }
+
+        @include allmobiles {
+          padding-bottom: 10px;
+          font-size: 24px;
+        }
+      }
+
+      .enquiry-description {
+        letter-spacing: -0.16px;
+        text-align: center;
+        font-size: 16px;
+      }
+
+      .contact-block {
+        margin-top: 20px;
+        padding: 25px;
+        border-radius: 6px;
+        background-color: #f7f5f5;
+        line-height: 0.95;
+        letter-spacing: -0.21px;
+        text-align: center;
+        color: #00a7a7;
+        padding-bottom: 10px;
+
+        @include allmobiles {
+          margin-top: 25px;
+          padding: 10px;
+          font-size: 16px;
+        }
+
+        @include desktop {
+          font-size: 16px;
+        }
+
+        .txt-bold {
+          font-family: $muli-bold;
+
+          @include desktop {
+            font-size: 18px;
+          }
+        }
+
+        div {
+          padding-bottom: 15px;
+
+          @include allmobiles {
+            padding-bottom: 15px;
+          }
+
+          img {
+            margin-right: 10px;
+            width: 15px;
+            height: 15px;
+
+            @include allmobiles {
+              margin-right: 8px;
+            }
+          }
+
+          &.enquiry-email {
+            img {
+              width: 20px;
+              height: 13px;
+            }
+          }
+        }
+      }
+    }
+
+    .btn-primary {
+      min-width: 315px;
+      font-family: $muli-bold;
+      font-size: 22px;
+      margin-top: 40px;
+      background: $teal-color;
+    }
+  }
+}

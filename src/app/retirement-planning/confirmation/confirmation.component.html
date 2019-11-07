@@ -1,0 +1,20 @@
+<div class="enquiry-panel">
+  <div class="container-fluid">
+    <div class="email-enquiry-bg">
+      <img src="../../assets/images/enquiry-bg.svg" />
+    </div>
+    <div class="enquiry-card">
+      <h2>{{ 'RETIREMENT_PLANNING.CONFIRMATION.THANKYOU' | translate}}</h2>
+      <div class="enquiry-description">{{'RETIREMENT_PLANNING.CONFIRMATION.TITLE' | translate}}</div>
+      <div class="contact-block">
+        <div class="txt-bold">{{'RETIREMENT_PLANNING.CONFIRMATION.FOR_ENQUIRY' | translate}}</div>
+        <div><span><img src="../../assets/images/icon_call.svg" /></span><span>(65) 6329 9188</span></div>
+        <div class="enquiry-email"><span><img src="../../assets/images/icon_email.svg" /></span><span>enquiries@moneyowl.com.sg</span></div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="redirectTo()">
+      <span *ngIf="!isSignedUser">{{'RETIREMENT_PLANNING.CONFIRMATION.BACK_TO_HOME' | translate}}</span>
+      <span *ngIf="isSignedUser">{{'RETIREMENT_PLANNING.CONFIRMATION.BACK_TO_DASHBOARD' | translate}}</span>
+    </button>
+  </div>
+</div>
