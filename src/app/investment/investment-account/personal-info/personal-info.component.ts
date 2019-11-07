@@ -362,7 +362,7 @@ export class PersonalInfoComponent implements OnInit {
   }
 
   onKeyPressEvent(event: any, content: any) {
-    this.investmentAccountService.onKeyPressEvent(event, content);
+    this.investmentAccountService.onKeyPressEvent(event , content);
   }
 
   @HostListener('input', ['$event'])
