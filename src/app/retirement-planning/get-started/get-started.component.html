@@ -89,20 +89,20 @@
               <div class="flex-row mb10">
                 <div class="flex-col-12 stretch">
                   <div class="form-group-floating-label"
-                    [ngClass]="{'inline-error': submitted && retirementPlan.email.errors}">
-                    <input type="text" id="" class="form-control" #email formControlName="email" required>
+                    [ngClass]="{'inline-error': submitted && retirementPlan.emailAddress.errors}">
+                    <input type="text" id="" class="form-control" #emailAddress formControlName="emailAddress" required>
                     <label class="form-control-placeholder"
                       for="email">{{ 'RETIREMENT_PLANNING.CREATE.FORM.EMAIL.LABEL' | translate}}</label>
                   </div>
 
                   <!-- Email error validation -->
-                  <div class="alert-msg" *ngIf="submitted && retirementPlan.email.errors">
-                    <div *ngIf="retirementPlan.email.errors?.required">
+                  <div class="alert-msg" *ngIf="submitted && retirementPlan.emailAddress.errors">
+                    <div *ngIf="retirementPlan.emailAddress.errors?.required">
                       <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                       <span
                         class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.EMAIL.ERROR.REQUIRED' | translate}}</span>
                     </div>
-                    <div *ngIf="retirementPlan.email.errors?.email">
+                    <div *ngIf="retirementPlan.emailAddress.errors?.email">
                       <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                       <span
                         class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.EMAIL.ERROR.INVALID' | translate}}</span>
@@ -115,7 +115,7 @@
               <div class="flex-row mb10">
                 <div class="flex-col-12 stretch">
                   <div class="form-group-floating-label"
-                    [ngClass]="{'inline-error': (submitted && retirementPlan.confirmEmail.errors?.required) || (!confirmEmailFocus && !retirementPlan.email.errors && retirementPlan.confirmEmail.errors?.notEquivalent)}">
+                    [ngClass]="{'inline-error': (submitted && retirementPlan.confirmEmail.errors?.required) || (!confirmEmailFocus && !retirementPlan.emailAddress.errors && retirementPlan.confirmEmail.errors?.notEquivalent)}">
                     <input type="text" id="" class="form-control" (blur)="showValidity('confirmEmail')"
                       (focus)="showValidity('confirmEmail')" #confirmEmail formControlName="confirmEmail" required>
                     <label class="form-control-placeholder"
@@ -123,7 +123,7 @@
 
                     <!-- Confirm Email error tooltip -->
                     <div class="error-tooltip"
-                      *ngIf="confirmEmailFocus && !retirementPlan.email.errors && retirementPlan.confirmEmail.errors?.notEquivalent">
+                      *ngIf="confirmEmailFocus && !retirementPlan.emailAddress.errors && retirementPlan.confirmEmail.errors?.notEquivalent">
                       <div class="error-tooltip__desc">
                         <p class="error-tooltip__title"><span class="error-tooltip__title__warning-icon">!</span>{{
                       'RETIREMENT_PLANNING.CREATE.ERROR_MESSAGE.TITLE' | translate}}</p>
@@ -141,7 +141,7 @@
                         class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.CONFIRM_EMAIL.ERROR.REQUIRED' | translate}}</span>
                     </div>
                     <div
-                      *ngIf="!confirmEmailFocus && !retirementPlan.email.errors && retirementPlan.confirmEmail.errors?.notEquivalent">
+                      *ngIf="!confirmEmailFocus && !retirementPlan.emailAddress.errors && retirementPlan.confirmEmail.errors?.notEquivalent">
                       <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                       <span
                         class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.CONFIRM_EMAIL.ERROR.MATCH' | translate}}</span>

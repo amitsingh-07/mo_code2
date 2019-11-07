@@ -59,7 +59,7 @@ export class GetStartedComponent implements OnInit {
       Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]],
       lastName: [this.formValues.lastName, [Validators.required, Validators.minLength(2),
       Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]],
-      email: [this.formValues.email, [Validators.required, Validators.email]],
+      emailAddress: [this.formValues.emailAddress, [Validators.required, Validators.email]],
       confirmEmail: [this.formValues.confirmEmail],
       mobileNumber: [this.formValues.mobileNumber, [Validators.required]],
       marketingAcceptance: [this.formValues.marketingAcceptance],
@@ -85,7 +85,7 @@ export class GetStartedComponent implements OnInit {
    */
   private validateMatchEmail() {
     return (group: FormGroup) => {
-      const emailInput = group.controls['email'];
+      const emailInput = group.controls['emailAddress'];
       const emailConfirmationInput = group.controls['confirmEmail'];
       if (!emailConfirmationInput.value) {
         emailConfirmationInput.setErrors({ required: true });
