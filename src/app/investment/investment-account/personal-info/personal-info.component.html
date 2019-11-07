@@ -56,15 +56,14 @@
                         </div>
                       </label>
                     </div>
-                    <div class="flex-col-7"
-                      [ngClass]="{'inline-error': invPersonalInfoForm.get('fullName').enabled && !invPersonalInfoForm.get('fullName').valid && !invPersonalInfoForm.get('fullName').pristine}">
-                      <div [attr.contenteditable]="!isDisabled('fullName')" id="fullname"
-                        [textContent]="invPersonalInfoForm.get('fullName').value"
-                        (focusout)="setControlValue($event.target.textContent, 'fullName', invPersonalInfoForm);"
-                        maxlength="100" (keypress)="onKeyPressEvent($event, $event.target.textContent)"
-                        class="content-editable" [class.fullName-disabled]="isDisabled('fullName')"
-                        placeholder="Full Name">
-                      </div>
+                    <div class="flex-col-7" [ngClass]="{'inline-error': invPersonalInfoForm.get('fullName').enabled && !invPersonalInfoForm.get('fullName').valid && !invPersonalInfoForm.get('fullName').pristine}">
+                      <div [attr.contenteditable]="!isDisabled('fullName')"
+                           id="fullname" [textContent]="invPersonalInfoForm.get('fullName').value"
+                           (focusout)="setControlValue($event.target.textContent, 'fullName', invPersonalInfoForm);" maxlength="100"
+                           (keypress)="onKeyPressEvent($event, $event.target.textContent)"  class="content-editable"
+                           [class.fullName-disabled]="isDisabled('fullName')"
+                            placeholder="Full Name">
+                         </div>
                     </div>
                   </div>
                   <div class="flex-row" *ngIf="showNric">
@@ -135,10 +134,13 @@
                             | translate}}</label>
                     </div>
                     <div class="flex-col-7">
-                      <div class="dropdown-control"
-                        [ngClass]="{'inline-error': invPersonalInfoForm.get('birthCountry').enabled && !invPersonalInfoForm.get('birthCountry').valid && !invPersonalInfoForm.get('birthCountry').pristine}">
-                        <app-dropdown-with-search [disabled]="isDisabled('birthCountry')" controlName="birthCountry"
-                          [optionList]="countries" displayKey="name" placement="top-right"
+                      <div class="dropdown-control" [ngClass]="{'inline-error': invPersonalInfoForm.get('birthCountry').enabled && !invPersonalInfoForm.get('birthCountry').valid && !invPersonalInfoForm.get('birthCountry').pristine}">
+                        <app-dropdown-with-search 
+                          [disabled]="isDisabled('birthCountry')"
+                          controlName="birthCountry"
+                          [optionList]="countries"
+                          displayKey="name"
+                          placement="top-right"
                           placeholderText="{{'PERSONAL_INFO.SELECT_BIRTH_COUNTRY' | translate}}"
                           (itemSelected)="setDropDownValue($event, 'birthCountry', $event)">
                         </app-dropdown-with-search>
@@ -223,13 +225,14 @@
                   <!-- Race end -->
                 </div>
                 <div class="text-center">
-                  <button type="button" (click)="validatePersonalInfo(invPersonalInfoForm)"
+                  <button type="button" (click)="goToNext(invPersonalInfoForm)"
                     class="btn btn__footer--fixed btn-ftr-get-started btn-primary" id="invPersInfoBtn3">{{
                         'LABEL.CONTINUE' | translate}}</button>
                 </div>
               </form>
             </div>
           </div>
+
         </div>
       </div>
     </div>
