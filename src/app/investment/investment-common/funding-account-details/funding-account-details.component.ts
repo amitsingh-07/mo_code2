@@ -1,7 +1,3 @@
-import {
-  ModelWithButtonComponent
-} from 'src/app/shared/modal/model-with-button/model-with-button.component';
-
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,6 +5,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../../../shared/footer/footer.service';
+import {
+  ModelWithButtonComponent
+} from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
