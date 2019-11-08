@@ -36,7 +36,7 @@ export class AddUpdateBankComponent implements OnInit {
   queryParams: any;
   buttonTitle;
   updateId: any;
-  isAccountEdited: boolean;
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -82,7 +82,6 @@ export class AddUpdateBankComponent implements OnInit {
       this.bankForm.get('accountNo').setValidators([Validators.required,
         this.signUpService.validateBankAccNo]);
       this.bankForm.get('accountNo').updateValueAndValidity();
-      this.isAccountEdited = true;
     });
   }
   buildBankForm() {
@@ -153,10 +152,7 @@ export class AddUpdateBankComponent implements OnInit {
         });
       } else {
         // tslint:disable-next-line:max-line-length
-        let accountNum = null;
-        if (this.isAccountEdited) {
-          accountNum = form.value.accountNo;
-        }
+        const accountNum = form.value.accountNo;
         this.loaderService.showLoader({
           title: this.translate.instant('GENERAL_LOADER.TITLE'),
           desc: this.translate.instant('GENERAL_LOADER.DESC')
