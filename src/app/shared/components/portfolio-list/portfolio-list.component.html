@@ -68,7 +68,7 @@
                                 <span *ngIf="portfolio?.cashAccountBalance && (portfolio?.portfolioType != 'SRS')" class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} {{portfolio?.cashAccountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
                               </div>
                               <div *ngIf="portfolio?.portfolioType" class="srs-note flex"><div class="srs-note-icon mr5"><img src="assets/images/investment-account/note-icon-grey.svg" alt="" /></div><div>{{'YOUR_INVESTMENT.SRS_MSG' | translate}} <span>{{'YOUR_INVESTMENT.SRS_HYPERLINK' | translate}} </span></div></div>
-                              <div (click)="gotoRebalance()" class="reblancing-lbl mt10 flex">
+                              <div *ngIf="portfolio?.rebalance" (click)="gotoRebalance()" class="reblancing-lbl mt10 flex">
                                 <span class="rebalance-logo"><img src="assets/images/investment-account/rebalancing.svg" alt="" /></span>
                                 <span>{{'YOUR_INVESTMENT.REBALANCE' | translate}}</span>
                               </div>

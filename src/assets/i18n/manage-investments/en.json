@@ -156,7 +156,7 @@
       },
       "RBL_MODAL": {
         "TITLE": "Quarterly Rebalancing In-progress",
-        "Message": "<div class='srs-modal-offline'><div class='mb30'>Please note that your portfolio is being rebalanced. This Process will be completed in 6 to 7 working days. <span>Requests for redemptions from portfolio(s) will only be submitted for processing after rebalancing is completed.</span></div><div><a class='contact-details mail' target='_blank' href='/faq'>For more information, visit our FAQs.</a></div></div>"
+        "Message": "<div class='srs-modal-offline'><div class='mb15'>Please note that your portfolio is being rebalanced. This Process will be completed in 6 to 7 working days. <span class='txt-bold'>Requests for redemptions from portfolio(s) will only be submitted for processing after rebalancing is completed.</span></div><div><a class='contact-details mail' target='_blank' href='/faq'>For more information, visit our FAQs.</a></div></div>"
       }
     },
     "PENDING_REQUEST_INFO": "You have {{count}} Buy Requests",
@@ -173,6 +173,7 @@
     "TRY_ANOTHER_RECOMMENDATION": "Try Another Recommendation",
     "PENDING_REQUESTS_CASH_ACCOUNT": "Pending Requests / <span>Cash Account</span>",
     "WITHDRAWALS_IN_PROGRESS": "You have withdrawals in process.",
+    "REBALANCING_IN_PROGRESS": "Quarterly Rebalancing In-progress",
     "ONE_TIME": "One-time",
     "FUND_BY": "Fund by",
     "FUND_RECIEVED_AND_PROCESSED": "Fund received & will process in 1-2 working days.",
@@ -187,7 +188,10 @@
     "VIEW_TRANSFER_INSTRUCTIONS": "View Transfer Instructions",
     "PORTFOLIO_TO_BANK_ACCOUNT": "Portfolio to Bank Account",
     "PORTFOLIO_TO_CASH_ACCOUNT": "Portfolio to Cash Account",
-    "CASH_ACCOUNT_TO_BANK_ACCOUNT": "Cash Account to Bank Account"
+    "CASH_ACCOUNT_TO_BANK_ACCOUNT": "Cash Account to Bank Account",
+    "REBALANCE_MESSAGE_1": "Please note that this portfolio is being rebalanced. This process will be completed in 6 to 7 working days.",
+    "REBALANCE_MESSAGE_2": "Requests for redemptions will only be submitted for processing after rebalancing is completed.",
+    "VIST_FAQ": "For more information, visit our FAQs."
   },
   "WITHDRAW": {
     "TITLE": "Withdrawal",

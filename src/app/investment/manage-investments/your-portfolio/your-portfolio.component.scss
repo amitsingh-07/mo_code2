@@ -120,7 +120,7 @@ app-your-portfolio {
                 letter-spacing: -0.2px;
                 color: #000000 !important;
                 border-bottom: solid 1px #e7e7e7 !important;
-                
+
                 &.hide {
                   display:none;
                 }
@@ -133,7 +133,7 @@ app-your-portfolio {
           }
         }
       }
-      
+
     }
   }
   .portfolio-panel{
@@ -227,7 +227,7 @@ app-your-portfolio {
             padding: 10px;
             display: flex;
             justify-content: center;
-            align-items: center;    
+            align-items: center;
             position: absolute;
             right: 0px;
             top: 0px;
@@ -735,7 +735,11 @@ app-your-portfolio {
                 }
               }
               .txt-orange{
-                color: #ff872f;
+                a{
+                  color: #ff872f;
+                  text-decoration: none;
+                  cursor: pointer;
+                }
               }
               .info-icon{
                 width: 24px;
