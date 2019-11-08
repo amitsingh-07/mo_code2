@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateCustomParserFormatter } from 'src/app/shared/utils/ngb-date-custom-parser-formatter';
 
@@ -11,15 +11,15 @@ import { RetirementPlanningService } from '../retirement-planning.service';
 import { RETIREMENT_PLANNING_ROUTE_PATHS } from '../retirement-planning-routes.constants';
 
 @Component({
-  selector: 'app-retirement-plan-step1',
-  templateUrl: './retirement-plan-step1.component.html',
-  styleUrls: ['./retirement-plan-step1.component.scss'],
+  selector: 'app-retirement-needs',
+  templateUrl: './retirement-needs.component.html',
+  styleUrls: ['./retirement-needs.component.scss'],
   providers: [
     { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class RetirementPlanStep1Component implements OnInit {
+export class RetirementNeedsComponent implements OnInit {
   pageTitle: string;
   retirementAgeFlag: boolean;
   submitted: boolean = false;
@@ -39,14 +39,7 @@ export class RetirementPlanStep1Component implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RETIREMENT_PLANNING.STEP_1.TITLE');
-      this.navbarService.setPageTitle(
-        this.pageTitle,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-      );
+      this.navbarService.setPageTitle(this.pageTitle, undefined, undefined, undefined, undefined, undefined);
     });
 
     const today: Date = new Date();
@@ -56,13 +49,13 @@ export class RetirementPlanStep1Component implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMode(6);
-    this.navbarService.setNavbarShadowVisibility(false);
-    this.formValues = this.retirementPlanningService.getRetirementNeeds();
-    this.buildFormData();
+    this.navbarService.setNavbarMode(7);
+    this.navbarService.setNavbarShadowVisibility(false);    
+    this.buildForm();
   }
 
-  buildFormData() {
+  buildForm() {
+    this.formValues = this.retirementPlanningService.getRetirementNeeds();
     this.retirementNeedsForm = this.formBuilder.group({
       retirementAge: [this.formValues.retirementNeeds && this.formValues.retirementNeeds.retirementAge, [Validators.required]],
       monthlyRetirementIncome: [this.formValues.retirementNeeds && this.formValues.retirementNeeds.monthlyRetirementIncome, [Validators.required]],
@@ -97,22 +90,22 @@ export class RetirementPlanStep1Component implements OnInit {
     };
   }
 
-  save(form) {
+  save() {
     this.submitted = true;
-    if (form.valid) {
+    if (this.retirementNeedsForm.valid) {
       const retirementNeedsGroup = {
         retirementNeeds: {
-          retirementAge: form.value.retirementAge,
-          monthlyRetirementIncome: form.value.monthlyRetirementIncome,
-          dateOfBirth: form.value.dateOfBirth
+          retirementAge: this.retirementNeedsForm.value.retirementAge,
+          monthlyRetirementIncome: this.retirementNeedsForm.value.monthlyRetirementIncome,
+          dateOfBirth: this.retirementNeedsForm.value.dateOfBirth
         },
         retirementAmountAvailable: {
-          lumpSumAmount: form.value.lumpSumAmount,
-          monthlyAmount: form.value.monthlyAmount
+          lumpSumAmount: this.retirementNeedsForm.value.lumpSumAmount,
+          monthlyAmount: this.retirementNeedsForm.value.monthlyAmount
         }
       };
       this.retirementPlanningService.setRetirementNeeds(retirementNeedsGroup);
-      this.router.navigate([RETIREMENT_PLANNING_ROUTE_PATHS.STEP_2]);
+      this.router.navigate([RETIREMENT_PLANNING_ROUTE_PATHS.PERSONALIZE_YOUR_RETIREMENT]);
     }
   }
 }

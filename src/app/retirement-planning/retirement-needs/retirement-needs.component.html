@@ -41,7 +41,8 @@
                       </label>
                     </div>
                     <div class="pr0 flex-col-7">
-                      <div class="form-control">
+                      <div class="form-control"
+                      [ngClass]="{'inline-error': submitted && retirementNeedsForm.controls.retirementAge.errors}">
                         <input class="input-control retirement-age" appNumberOnly #retirementAge
                           formControlName="retirementAge" type="text" placeholder="Enter Age">
                         <i>yrs old</i>
@@ -65,7 +66,8 @@
                       </label>
                     </div>
                     <div class="pr0 flex-col-7">
-                      <div class="form-control form-control-right">
+                      <div class="form-control form-control-right"
+                      [ngClass]="{'inline-error': submitted && retirementNeedsForm.controls.monthlyRetirementIncome.errors}">
                         <i>$</i>
                         <div>
                           <input class="input-control" appCurrencyInput decimalFormat="1.2-2" allowDecimal="true" type="text" formControlName="monthlyRetirementIncome"
