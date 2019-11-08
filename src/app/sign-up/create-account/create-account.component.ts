@@ -25,6 +25,7 @@ import { WillWritingApiService } from '../../will-writing/will-writing.api.servi
 import { WillWritingService } from '../../will-writing/will-writing.service';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
 import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
@@ -60,6 +61,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   constructor(
     private formBuilder: FormBuilder,
     private modal: NgbModal,
+    private loaderService: LoaderService,
     private configService: ConfigService,
     public navbarService: NavbarService,
     public footerService: FooterService,
@@ -99,7 +101,16 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.refreshCaptcha();
+    if (!this.authService.isAuthenticated()) {
+      this.loaderService.showLoader({title: 'Loading'});
+      this.authService.authenticate().subscribe((token) => {
+        this.refreshCaptcha();
+        this.loaderService.hideLoader();
+      });
+    } else {
+      this.refreshCaptcha();
+      this.loaderService.hideLoader();
+    }
   }
 
   refreshToken() {

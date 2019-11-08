@@ -10,7 +10,7 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { CustomErrorHandlerService } from '../../shared/http/custom-error-handler.service';
 import {
-    EditMobileNumberComponent
+  EditMobileNumberComponent
 } from '../../shared/modal/edit-mobile-number/edit-mobile-number.component';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -22,6 +22,8 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { DirectService } from './../../direct/direct.service';
 import { GuideMeService } from './../../guide-me/guide-me.service';
+import { appConstants } from './../../../app/app.constants';
+import { AppService } from './../../../app/app.service';
 
 @Component({
   selector: 'app-verify-mobile',
@@ -57,7 +59,8 @@ export class VerifyMobileComponent implements OnInit {
     private selectedPlansService: SelectedPlansService,
     private willWritingService: WillWritingService,
     private directService: DirectService,
-    private guidemeService: GuideMeService) {
+    private guidemeService: GuideMeService,
+    private appService: AppService) {
     this.translate.use('en');
     this.translate.get('VERIFY_MOBILE').subscribe((result: any) => {
       this.errorModal['title'] = result.ERROR_MODAL.ERROR_TITLE;
@@ -160,12 +163,21 @@ export class VerifyMobileComponent implements OnInit {
    */
   redirectToPasswordPage() {
     const redirect_url = this.signUpService.getRedirectUrl();
+    const journeyType = this.appService.getJourneyType();
     if (redirect_url && redirect_url === SIGN_UP_ROUTE_PATHS.EDIT_PROFILE) {
       this.signUpService.clearRedirectUrl();
       this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED]);
     } else {
+      if (journeyType === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
+        this.sendWelcomeEmail();
+      }
       this.resendEmailVerification();
     }
+  }
+
+  sendWelcomeEmail() {
+    const mobileNo = this.mobileNumber.number.toString();
+    this.signUpApiService.sendWelcomeEmail(mobileNo, false).subscribe((data) => { });
   }
 
   resendEmailVerification() {

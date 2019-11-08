@@ -1,0 +1,87 @@
+@import '../../../variables';
+@import '../../../mixins';
+.comprehensive {
+
+  .dependant-title {
+    font-size: 18px;
+  }
+
+  .dependant-desc {
+    font-size: 16px;
+    padding-bottom: 16px;
+  }
+
+  .form-group-with-bg--header-label {
+
+    background: #fff;
+    color: #313644;
+    font-size: 18px;
+    font-weight: 600;
+
+    .age {
+      color: #9B9B9B !important;
+      font-size: 16px;
+    }
+
+  }
+
+  .EducationPreferenceForm {
+    border-radius: 6px;
+
+  }
+
+  .form-content {
+    font-size: 16px;
+    background-color: #f4fafb;
+    color: #2d8289;
+    border: 1px solid #f4fafb;
+  }
+
+  .with-help-icon {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+
+    //font-size: 18px;
+    .help-icon {
+      background: url("/assets/images/tool-help-icon.svg") no-repeat;
+      cursor: pointer;
+      background-repeat: no-repeat;
+      position: absolute;
+      right: 0;
+      top: 5px;
+      width: 20px;
+    }
+  }
+
+  .sharePercentFamily {
+    border-top: 1px solid rgba(134, 205, 206, 0.3);
+    margin-top: 10px;
+    padding-top: 15px;
+    .form-group-with-bg--content-label{
+      color: #5e5e5e!important;
+    }
+  }
+
+  .with-input-style {
+    background: #fff;
+    font-size: 16px;
+    color: #00a7a7;
+    font-family: $muli-regular;
+  }
+
+}
+
+.title-with-tooltip {
+  @extend .flex;
+  @extend .space-btwn;
+  margin-bottom: 20px;
+  .tooltip-icon {
+    background: url("/assets/images/comprehensive/tool-tip-white.svg");
+    background-repeat: no-repeat;
+    //height: 20px;
+    width: 20px;
+    cursor: pointer;
+    background-position: 0 2px;
+  }
+}

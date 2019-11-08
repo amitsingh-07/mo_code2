@@ -1,0 +1,99 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+
+.rspSelectionList {
+  margin-top: 15px;
+}
+
+.comprehensive {
+  .form-group-with-bg {
+    background: $white-color;
+
+    label {
+      font-family: normal;
+      font-family: $muli-regular;
+      font-size: 16px;
+    }
+
+    .form-group-with-bg--header {
+      padding-left: 0;
+    }
+
+    .form-group-with-bg--content {
+      padding: 0;
+    }
+  }
+
+  .rsp-border-top {
+    border-top: 1px solid #cee5e4 !important;
+    border-radius: 0px !important;
+  }
+
+  .add-rsp {
+    border-top: 1px solid #cee5e4;
+    margin: 20px 0 10px 0;
+    color: #066360;
+    text-decoration: underline;
+    padding-top: 15px;
+    font-family: $muli-regular;
+    font-size: 16px;
+  }
+
+  .rsp-header {
+    @extend .flex;
+    justify-content: space-between;
+    border-top: 1px solid #cee5e4;
+    padding: 15px 0;
+  }
+
+  .delete-icon {
+    //margin-left: 10px;
+    width: 16px;
+    position: relative;
+    top: 2px;
+  }
+
+  @include desktop {
+    .help-icon {
+      height: 20px !important;
+    }
+  }
+
+  .with-help-icon {
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    margin-right: 10px;
+    position: relative;
+
+    //font-size: 18px;
+    .help-icon {
+      background: url("/assets/images/tool-help-icon.svg") no-repeat;
+      width: 40px;
+      height: 20px;
+      cursor: pointer;
+      background-repeat: no-repeat;
+      position: absolute;
+      left: 93%;
+      top: 5px;
+    }
+
+    .delete-icon {
+      background: url("/assets/images/comprehensive/delete-icon.svg") no-repeat;
+      width: 40px;
+      height: 20px;
+      cursor: pointer;
+      background-repeat: no-repeat;
+      position: absolute;
+      left: 95%;
+      top: 3px !important;
+    }
+  }
+  .rsp {
+    .help-icon {
+      position: relative;
+      top: 5px;
+    }
+  }
+}

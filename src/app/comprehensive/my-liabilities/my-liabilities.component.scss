@@ -1,0 +1,146 @@
+@import '../../../variables';
+@import '../../../mixins';
+$grey-color-notes: #9f9f9f;
+
+.liabilities-section {
+  background: $white-color;
+  color: $black-color;
+  border-radius: 5px;
+}
+
+.liabilities-field {
+  background: $bond-container-bg;
+  color: $dark-teal-color;
+}
+
+.with-help-icon {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  //font-size: 18px;
+  .help-icon {
+    background: url("/assets/images/tool-help-icon.svg") no-repeat;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    //position: absolute;
+    right: 0;
+    top: 5px;
+    width: 20px;
+  }
+}
+
+.delete-icon {
+  background: url("/assets/images/comprehensive/delete-icon.svg") no-repeat;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  //position: absolute;
+  right: 0;
+  margin-left: 10px;
+  top: 5px;
+}
+
+.comprehensive {
+  .liabilities-field .btn-outline-primary {
+    color: $teal-color;
+  }
+
+  .form-group-with-bg {
+    padding: 0px;
+  }
+
+  .form-group-with-bg .form-group-with-bg--header .form-group-with-bg--header-sub-label {
+    color: $text-grey-color !important;
+  }
+}
+
+.p-50 {
+  padding: 75px;
+}
+
+.investmentProperties {
+  border-top: 1px solid rgba(134, 205, 206, 0.3);
+  margin-top: 10px;
+}
+
+.finance-liabilities {
+  background: url("/assets/images/comprehensive/finance-liabilities.svg") no-repeat;
+  display: inline-block;
+  width: 243px;
+  height: 150px;
+}
+
+/*
+.emptyBucket{
+    background: url("/assets/images/comprehensive/finance-liabilities-empty.svg") no-repeat;
+    display: inline-block;
+    width: 243px;
+    height: 150px;
+}
+.filledBucket{
+    background: url("/assets/images/comprehensive/finance-liabilities-filled.svg") no-repeat;
+    display: inline-block;
+    width: 243px;
+    height: 150px;
+}
+.middleBucket{
+    background: url("/assets/images/comprehensive/finance-liabilities-middle.svg") no-repeat;
+    display: inline-block;
+    width: 243px;
+    height: 150px;
+}*/
+.income-modal-notes {
+  color: $grey-color-notes;
+}
+
+.bucket-notes {
+  font-size: 16px;
+}
+
+.bucket-notes-dollar {
+  font-size: 20px;
+}
+
+.both-icon {
+  .help-icon {
+    top: 3px !important;
+    right: 0 !important;
+    width: 20px;
+  }
+
+  .delete-icon {
+    top: 3px !important;
+    right: 0 !important;
+    margin-left: 10px;
+  }
+
+  .form-group-with-bg--content-label {
+    color: $black-color;
+  }
+
+  .form-group-with-bg--content-sub-label {
+    color: $text-grey-color;
+  }
+}
+
+.home-loan {
+  u {
+    color: $post-login-widget-title;
+  }
+
+  .help-icon {
+    top: 3px !important;
+  }
+}
+
+.footer-notes {
+  background: $btn-primary-backgrnd-color;
+}
+
+.mb-10 {
+  margin-bottom: 100px;
+}
+
+.otherTypeLoanLabel {
+  color: $black-color !important;
+}
