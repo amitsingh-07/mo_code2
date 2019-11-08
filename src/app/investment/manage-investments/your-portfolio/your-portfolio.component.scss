@@ -714,6 +714,35 @@ app-your-portfolio {
                 padding-bottom: 0; 
               }
             }
+
+            .rebalancing-info{
+              border-radius: 6px;
+              background-color: #f7f7f7;
+              padding: 20px;
+              display: flex;
+              font-family: $muli-bold;
+              font-size: 13px;
+              font-style: normal;
+              line-height: normal;
+              letter-spacing: -0.11px;
+              @include allmobiles{
+                padding: 20px 15px;
+              }
+              .txt-grey{
+                color: #4a4a4a;
+                span{
+                  font-family: $muli-regular;
+                }
+              }
+              .txt-orange{
+                color: #ff872f;
+              }
+              .info-icon{
+                width: 24px;
+                height: 24px;
+                display: flex;
+              }
+            }
           }
           .cash-account-content{
             padding-top: 5px;
