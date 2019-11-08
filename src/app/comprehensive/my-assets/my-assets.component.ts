@@ -47,6 +47,8 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   showConfirmation: boolean;
   cpfFromMyInfo = false;
   viewMode: boolean;
+  myinfoChangeListener: Subscription;
+
   // tslint:disable-next-line:cognitive-complexity
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -68,7 +70,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         this.validationFlag = this.translate.instant('CMP.MY_ASSETS.OPTIONAL_VALIDATION_FLAG');
       });
     });
-    this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
+    this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '') {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
@@ -178,6 +180,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     this.menuClickSubscription.unsubscribe();
     this.navbarService.unsubscribeBackPress();
     this.navbarService.unsubscribeMenuItemClick();
+    this.myinfoChangeListener.unsubscribe();
   }
 
   buildMyAssetsForm() {
