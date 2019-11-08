@@ -8,12 +8,12 @@ import { RetirementPlanningService } from '../retirement-planning.service';
 import { RETIREMENT_PLANNING_ROUTE_PATHS } from '../retirement-planning-routes.constants';
 
 @Component({
-  selector: 'app-retirement-plan-step2',
-  templateUrl: './retirement-plan-step2.component.html',
-  styleUrls: ['./retirement-plan-step2.component.scss'],
+  selector: 'app-personalize-your-retirement',
+  templateUrl: './personalize-your-retirement.component.html',
+  styleUrls: ['./personalize-your-retirement.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class RetirementPlanStep2Component implements OnInit {
+export class PersonalizeYourRetirementComponent implements OnInit {
   pageTitle: string;
   personalizeYourRetireForm: FormGroup;
 
@@ -34,9 +34,12 @@ export class RetirementPlanStep2Component implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMode(7);
     this.navbarService.setNavbarShadowVisibility(false);
+    this.buildForm();
+  }
 
+  buildForm() {
     this.personalizeYourRetireForm = this.formBuilder.group({
       stableIncomeStream: [false],
       flexibleIncomeStream: [false],
@@ -66,14 +69,17 @@ export class RetirementPlanStep2Component implements OnInit {
     };
   }
 
-  save(form) {
+  save() {
     this.submitted = true;
-    if (form.valid) {
-      const scheme = Object.keys(form.value).filter(e => {
-        return form.value[e] === true;
+    if (this.personalizeYourRetireForm.valid) {
+      const scheme = Object.keys(this.personalizeYourRetireForm.value).filter(e => {
+        return this.personalizeYourRetireForm.value[e] === true;
       });
       this.retirementPlanningService.createRetirementPlan(scheme).subscribe((response) => {
-        this.router.navigate([RETIREMENT_PLANNING_ROUTE_PATHS.CONFIRMATION]);
+        if (response.responseMessage.responseCode === 6000) {
+          this.retirementPlanningService.clearData();
+          this.router.navigate([RETIREMENT_PLANNING_ROUTE_PATHS.ENQUIRY_SUCCESS]);
+        }
       });
     }
   }
