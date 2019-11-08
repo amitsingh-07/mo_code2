@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { IUserDetails, IRetirementPlan, IRetirementNeedsGroup } from './retirement-planning-types';
+import { IUserDetails, IRetirementPlanPayload, IRetirementNeedsGroup } from './retirement-planning-types';
 import { RetirementPlanningData } from './retirement-planning-form-data';
 
 import { ApiService } from '../shared/http/api.service';
@@ -26,22 +26,29 @@ export class RetirementPlanningService {
     }
 
     /**
+    * set retirement planning form data from session storage when reload happens.
+    */
+   getRetirementPlanningFormData(): RetirementPlanningData {
+    if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
+        this.retirementPlanningForm = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
+    }
+    return this.retirementPlanningForm;
+}
+
+    /**
      * save data in session storage.
      */
     commit() {
         if (window.sessionStorage) {
             sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.retirementPlanningForm));
         }
-    }
-
-    /**
-    * set retirement planning form data from session storage when reload happens.
-    */
-    getRetirementPlanningFormData(): RetirementPlanningData {
-        if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
-            this.retirementPlanningForm = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
+    }   
+    
+    clearData() {
+        this.retirementPlanningForm = {} as RetirementPlanningData;
+        if (window.sessionStorage) {            
+            sessionStorage.removeItem(SESSION_STORAGE_KEY);
         }
-        return this.retirementPlanningForm;
     }
 
     /**
@@ -88,11 +95,11 @@ export class RetirementPlanningService {
     * set retirement plan payload detail.
     * @param data - retirement plan payload details.
     */
-    retirementPlanPayload(incomeStream) {
+    retirementPlanPayload(incomeStream: Array<string>): IRetirementPlanPayload {
         const { retirementNeeds: retirementNeed, retirementAmountAvailable: retirementAmount } = this.retirementPlanningForm.retirementNeedsGroup;
-        const schemeList = incomeStream.map((e) => this.scheme.get(e));
+        const schemeList = incomeStream.map((e: string) => this.scheme.get(e));
 
-        const retirementPayload: IRetirementPlan = {
+        return  {
             basicCustomerDetails: {
                 firstName: this.retirementPlanningForm.userDetails.firstName,
                 lastName: this.retirementPlanningForm.userDetails.lastName,
@@ -110,16 +117,14 @@ export class RetirementPlanningService {
             },
             retirementSchemeList: schemeList
         }
-
-        return retirementPayload;
     }
 
     /**
     * create retirement plan.
     * @param data - retirement plan.
     */
-    createRetirementPlan(incomeStream) {
-        const payload: IRetirementPlan = this.retirementPlanPayload(incomeStream);
+    createRetirementPlan(incomeStream: Array<string>) {
+        const payload: IRetirementPlanPayload = this.retirementPlanPayload(incomeStream);
         return this.apiService.enquireRetirementPlan(payload);
     }
 
@@ -127,11 +132,7 @@ export class RetirementPlanningService {
     * convert date format.
     * @param dateObject - convert date to DD/MM/YYYY format.
     */
-    convertDate(dateObject) {
-        let convertedDate = '';
-        if (dateObject && dateObject.day && dateObject.month && dateObject.year) {
-            convertedDate = dateObject.day + '-' + dateObject.month + '-' + dateObject.year;
-        }
-        return convertedDate;
+    private convertDate(dateObject) {
+        return dateObject.day + '-' + dateObject.month + '-' + dateObject.year;
     }
 }

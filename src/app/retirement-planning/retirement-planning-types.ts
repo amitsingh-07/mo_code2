@@ -6,11 +6,6 @@ export interface IUserDetails {
     marketingAcceptance?: boolean;
 }
 
-export interface IRetirementNeedsGroup {
-    retirementNeeds: IRetirementNeeds;
-    retirementAmountAvailable: IRetirementAmountAvailable;
-}
-
 export interface IRetirementNeeds {
     retirementAge: number;
     monthlyRetirementIncome: number;
@@ -23,7 +18,12 @@ export interface IRetirementAmountAvailable {
     monthlyAmount: string;
 }
 
-export interface IRetirementPlan {
+export interface IRetirementNeedsGroup {
+    retirementNeeds: IRetirementNeeds;
+    retirementAmountAvailable: IRetirementAmountAvailable;
+}
+
+export interface IRetirementPlanPayload {
     basicCustomerDetails: IUserDetails;
     retirementNeeds: IRetirementNeeds;
     retirementAmountAvailable: IRetirementAmountAvailable;

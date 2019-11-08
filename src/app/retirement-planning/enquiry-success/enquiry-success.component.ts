@@ -1,16 +1,16 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 
 import { NavbarService } from 'src/app/shared/navbar/navbar.service';
 
 @Component({
-  selector: 'app-confirmation',
-  templateUrl: './confirmation.component.html',
-  styleUrls: ['./confirmation.component.scss'],
+  selector: 'app-enquiry-success',
+  templateUrl: './enquiry-success.component.html',
+  styleUrls: ['./enquiry-success.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ConfirmationComponent implements OnInit {
+export class EnquirySuccessComponent implements OnInit {
 
   constructor(
     public navbarService: NavbarService,
@@ -20,8 +20,13 @@ export class ConfirmationComponent implements OnInit {
     this.translate.use('en');
   }
 
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    this.redirectTo();
+  }
+
   ngOnInit() {
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(7);
   }
 
   redirectTo() {

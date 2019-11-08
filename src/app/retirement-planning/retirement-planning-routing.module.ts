@@ -4,9 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { RETIREMENT_PLANNING_ROUTES } from './retirement-planning-routes.constants';
 
 import { GetStartedComponent } from './get-started/get-started.component';
-import { RetirementPlanStep1Component } from './retirement-plan-step1/retirement-plan-step1.component';
-import { RetirementPlanStep2Component } from './retirement-plan-step2/retirement-plan-step2.component';
-import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { RetirementNeedsComponent } from "./retirement-needs/retirement-needs.component";
+import { PersonalizeYourRetirementComponent } from './personalize-your-retirement/personalize-your-retirement.component';
+import { EnquirySuccessComponent } from './enquiry-success/enquiry-success.component';
 
 const routes: Routes = [
   {
@@ -19,21 +19,21 @@ const routes: Routes = [
     component: GetStartedComponent
   },
   {
-    path: RETIREMENT_PLANNING_ROUTES.STEP_1,
-    component: RetirementPlanStep1Component,
-    canActivate: []
+    path: RETIREMENT_PLANNING_ROUTES.RETIREMENT_NEEDS,
+    component: RetirementNeedsComponent
   },
   {
-    path: RETIREMENT_PLANNING_ROUTES.STEP_2,
-    component: RetirementPlanStep2Component,
-    canActivate: []
+    path: RETIREMENT_PLANNING_ROUTES.PERSONALIZE_YOUR_RETIREMENT,
+    component: PersonalizeYourRetirementComponent
   },
   {
-    path: RETIREMENT_PLANNING_ROUTES.CONFIRMATION,
-    component: ConfirmationComponent,
-    canActivate: []
+    path: RETIREMENT_PLANNING_ROUTES.ENQUIRY_SUCCESS,
+    component: EnquirySuccessComponent
   },
-  { path: '**', redirectTo: '/page-not-found' }
+  {
+    path: '**',
+    redirectTo: '/page-not-found'
+  }
 ];
 
 @NgModule({

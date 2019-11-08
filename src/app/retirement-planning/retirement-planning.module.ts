@@ -11,9 +11,9 @@ import { RetirementPlanningRoutingModule } from './retirement-planning-routing.m
 import { SharedModule } from './../shared/shared.module';
 
 import { GetStartedComponent } from './get-started/get-started.component';
-import { RetirementPlanStep1Component } from './retirement-plan-step1/retirement-plan-step1.component';
-import { RetirementPlanStep2Component } from './retirement-plan-step2/retirement-plan-step2.component';
-import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { RetirementNeedsComponent } from "./retirement-needs/retirement-needs.component";
+import { PersonalizeYourRetirementComponent } from './personalize-your-retirement/personalize-your-retirement.component';
+import { EnquirySuccessComponent } from './enquiry-success/enquiry-success.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -42,9 +42,9 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   declarations: [
     GetStartedComponent,
-    RetirementPlanStep1Component,
-    RetirementPlanStep2Component,
-    ConfirmationComponent
+    RetirementNeedsComponent,
+    PersonalizeYourRetirementComponent,
+    EnquirySuccessComponent
   ]
 })
 

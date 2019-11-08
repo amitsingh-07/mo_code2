@@ -80,6 +80,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   isInvestmentEnabled = false;
   isNotificationEnabled = false;
   isComprehensiveEnabled = false;
+  isRetirementPlanningEnabled = false;
 
   // Signed In
   isLoggedIn = false;
@@ -111,6 +112,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.isWillWritingEnabled = moduleConfig.willWritingEnabled;
       this.isInvestmentEnabled = moduleConfig.investmentEnabled;
       this.isComprehensiveEnabled = moduleConfig.comprehensiveEnabled;
+      this.isRetirementPlanningEnabled = moduleConfig.retirementPlanningEnabled;
     });
 
     // User Information Check Authentication

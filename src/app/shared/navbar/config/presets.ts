@@ -128,4 +128,21 @@ export class NavbarConfig {
       },
       showExitCheck: true
     };
+
+    // Retirement Planning (Robo1.5)
+    '7': object = {
+      showNavBackBtn: true,
+      showHeaderBackBtn: true,
+      showMenu: false,
+      showLogin: false,
+      showLogout: true,
+      showNavShadow: true,
+      showSearchBar: false,
+      showNotifications: false,
+      showHeaderNavbar: false,
+      showLabel: {
+        primary: 'Retirement Planning'
+      },
+      showExitCheck: true
+    };
 }
