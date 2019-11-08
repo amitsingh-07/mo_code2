@@ -1,3 +1,7 @@
+import 'rxjs/add/observable/forkJoin';
+
+import { Observable } from 'rxjs/Observable';
+
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -6,16 +10,16 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../../../shared/footer/footer.service';
 import {
-  ModelWithButtonComponent
+    ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import {
-  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
 import {
-  InvestmentEngagementJourneyService
+    InvestmentEngagementJourneyService
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
@@ -70,36 +74,40 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.formValues = this.investmentCommonService.getInvestmentCommonFormData();
     this.investmentAccountFormValues = this.investmentAccountService.getInvestmentAccountFormData();
-    this.getSrsAccountDetails();
+    this.getSrsAccDetailsAndOptionListCol();
   }
 
-  getSrsAccountDetails() {
-    this.investmentAccountService.getSrsAccountDetails().subscribe((data) => {
-      if (data.responseMessage.responseCode >= 6000 && data.objectList) {
-        if (data.objectList.accountNumber && data.objectList.srsBankOperator) {
-          this.isSrsAccountAvailable = true;
-          this.srsAccountDetails = data.objectList;
-          this.setSrsAccountDetails(this.srsAccountDetails);
-        }
-        this.getOptionListCollection();
-      }
+  getSrsAccDetailsAndOptionListCol() {
+    Observable.forkJoin(
+      this.investmentAccountService.getSrsAccountDetails(),
+      this.investmentAccountService.getAllDropDownList()
+    ).subscribe((response) => {
+      this.callbackForGetSrsAccountDetails(response[0]);
+      this.callbackForOptionListCollection(response[1]);
     },
     (err) => {
       this.investmentAccountService.showGenericErrorModal();
     });
   }
 
-  getOptionListCollection() {
-    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+  callbackForGetSrsAccountDetails(data) {
+    if (data.responseMessage.responseCode >= 6000 && data.objectList) {
+      if (data.objectList.accountNumber && data.objectList.srsBankOperator) {
+        this.isSrsAccountAvailable = true;
+        this.srsAccountDetails = data.objectList;
+        this.setSrsAccountDetails(this.srsAccountDetails);
+      }
+    }
+  }
+
+  callbackForOptionListCollection(data) {
+    if (data.responseMessage.responseCode >= 6000 && data.objectList) {
       this.fundingMethods = data.objectList.portfolioFundingMethod;
       this.srsAgentBankList = data.objectList.srsAgentBank;
       this.investmentEngagementJourneyService.sortByProperty(this.fundingMethods, 'name', 'asc');
       this.buildForm();
       this.addAndRemoveSrsForm(this.fundingAccountDetailsForm.get('confirmedFundingMethodId').value);
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+    }
   }
 
   buildForm() {
