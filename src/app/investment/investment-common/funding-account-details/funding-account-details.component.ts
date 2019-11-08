@@ -70,8 +70,23 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.formValues = this.investmentCommonService.getInvestmentCommonFormData();
     this.investmentAccountFormValues = this.investmentAccountService.getInvestmentAccountFormData();
-    this.getOptionListCollection();
     this.getSrsAccountDetails();
+  }
+
+  getSrsAccountDetails() {
+    this.investmentAccountService.getSrsAccountDetails().subscribe((data) => {
+      if (data.responseMessage.responseCode >= 6000 && data.objectList) {
+        if (data.objectList.accountNumber && data.objectList.srsBankOperator) {
+          this.isSrsAccountAvailable = true;
+          this.srsAccountDetails = data.objectList;
+          this.setSrsAccountDetails(this.srsAccountDetails);
+        }
+        this.getOptionListCollection();
+      }
+    },
+    (err) => {
+      this.investmentAccountService.showGenericErrorModal();
+    });
   }
 
   getOptionListCollection() {
@@ -101,21 +116,6 @@ export class FundingAccountDetailsComponent implements OnInit {
       this.fundingAccountDetailsForm.removeControl('srsFundingDetails');
     }
     this.addorRemoveAccNoValidator();
-  }
-
-  getSrsAccountDetails() {
-    this.investmentAccountService.getSrsAccountDetails().subscribe((data) => {
-      if (data.responseMessage.responseCode >= 6000 && data.objectList) {
-        if (data.objectList.accountNumber && data.objectList.srsBankOperator) {
-          this.isSrsAccountAvailable = true;
-          this.srsAccountDetails = data.objectList;
-          this.setSrsAccountDetails(this.srsAccountDetails);
-        }
-      }
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
   }
 
   isCashAccount(fundingMethodId, fundingMethods) {
