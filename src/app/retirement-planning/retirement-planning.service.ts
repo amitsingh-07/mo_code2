@@ -115,7 +115,9 @@ export class RetirementPlanningService {
                 lumpSumAmount: retirementAmount.lumpSumAmount,
                 monthlyAmount: retirementAmount.monthlyAmount
             },
-            retirementSchemeList: schemeList
+            retirementSchemeList: schemeList,
+            receiveMarketingMaterials: this.retirementPlanningForm.userDetails.marketingAcceptance,
+            consentToContactByMobile: this.retirementPlanningForm.userDetails.consent
         }
     }
 

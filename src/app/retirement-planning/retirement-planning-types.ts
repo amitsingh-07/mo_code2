@@ -4,6 +4,7 @@ export interface IUserDetails {
     lastName: string;
     emailAddress: string;
     marketingAcceptance?: boolean;
+    consent?: boolean;
 }
 
 export interface IRetirementNeeds {
@@ -27,7 +28,9 @@ export interface IRetirementPlanPayload {
     basicCustomerDetails: IUserDetails;
     retirementNeeds: IRetirementNeeds;
     retirementAmountAvailable: IRetirementAmountAvailable;
-    retirementSchemeList: any
+    retirementSchemeList: any,
+    receiveMarketingMaterials: boolean,
+    consentToContactByMobile: boolean
 }
 
 
