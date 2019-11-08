@@ -141,6 +141,13 @@ export class PortfolioListComponent implements OnInit {
     ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.SRS_MODAL.Message');
   }
 
+  gotoRebalance() {
+    const ref = this.modal.open(SRSOfflineErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.Message');
+    this.topClickedFlag = true;
+  }
+
   gotToFAQ() {
     this.topClickedFlag = true;
     window.open(MANAGE_INVESTMENTS_ROUTE_PATHS.FAQ, '_blank');
