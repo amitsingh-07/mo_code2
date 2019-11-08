@@ -39,7 +39,8 @@ export class FundingAccountDetailsComponent implements OnInit {
   showMaxLength;
   fundingSubText;
   selectedFundingMethod;
-  srsFormData;
+  isSrsAccountAvailable = false;
+  srsAccountDetails;
 
   constructor(
     public readonly translate: TranslateService,
@@ -70,6 +71,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.formValues = this.investmentCommonService.getInvestmentCommonFormData();
     this.investmentAccountFormValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.getOptionListCollection();
+    this.getSrsAccountDetails();
   }
 
   getOptionListCollection() {
@@ -94,10 +96,8 @@ export class FundingAccountDetailsComponent implements OnInit {
 
   addAndRemoveSrsForm(fundingMethodId) {
     if (this.isSRSAccount(fundingMethodId, this.fundingMethods)) {
-      this.getSrsAccountDetails();
-      this.buildForSrsForm();
+      this.buildSrsForm();
     } else if (this.isCashAccount(fundingMethodId, this.fundingMethods)) {
-      const srsFormGroup = this.fundingAccountDetailsForm.get('srsFundingDetails') as FormGroup;
       this.fundingAccountDetailsForm.removeControl('srsFundingDetails');
     }
     this.addorRemoveAccNoValidator();
@@ -105,20 +105,19 @@ export class FundingAccountDetailsComponent implements OnInit {
 
   getSrsAccountDetails() {
     this.investmentAccountService.getSrsAccountDetails().subscribe((data) => {
-      if (data.responseMessage.responseCode >= 6000) {
-        this.srsFormData = data.objectList;
-        this.isDisable();
-        this.setSrsAccountDetails(data.objectList);
+      if (data.responseMessage.responseCode >= 6000 && data.objectList) {
+        if (data.objectList.accountNumber && data.objectList.srsBankOperator) {
+          this.isSrsAccountAvailable = true;
+          this.srsAccountDetails = data.objectList;
+          this.setSrsAccountDetails(this.srsAccountDetails);
+        }
       }
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
   }
-  isDisable() {
-    const srsFormDataValue = this.srsFormData ? true : false;
-    return srsFormDataValue;
-  }
+
   isCashAccount(fundingMethodId, fundingMethods) {
     const fundingMethodName = this.getFundingMethodNameById(fundingMethodId, fundingMethods);
     if (fundingMethodName.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CASH) {
@@ -138,13 +137,14 @@ export class FundingAccountDetailsComponent implements OnInit {
     }
   }
 
-  buildForSrsForm() {
+  buildSrsForm() {
     this.fundingAccountDetailsForm.addControl(
       'srsFundingDetails', this.formBuilder.group({
-        srsOperatorBank: [{ value: this.formValues.srsOperatorBank, disabled: this.isDisable() }, Validators.required],
-        srsAccountNumber: [{ value: this.formValues.srsAccountNumber, disabled: this.isDisable() }, Validators.required],
+        srsOperatorBank: [{ value: this.formValues.srsOperatorBank, disabled: this.isSrsAccountAvailable }, Validators.required],
+        srsAccountNumber: [{ value: this.formValues.srsAccountNumber, disabled: this.isSrsAccountAvailable }, Validators.required],
       })
     );
+    this.setSrsAccountDetails(this.srsAccountDetails);
   }
 
   selectFundingMethod(key, value) {
@@ -164,7 +164,7 @@ export class FundingAccountDetailsComponent implements OnInit {
 
   selectSrsOperator(key, value, nestedKey) {
     this.fundingAccountDetailsForm.controls[nestedKey]['controls'][key].setValue(value);
-    this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsAccountNumber').setValue('');
+    this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsAccountNumber').setValue(null);
     this.getAccNoMaxLength(value);
     this.addorRemoveAccNoValidator();
   }
@@ -209,16 +209,6 @@ export class FundingAccountDetailsComponent implements OnInit {
     }
   }
 
-  goToNext(form) {
-    if (!form.valid) {
-      return false;
-    } else {
-      const fundingMethod = this.getFundingMethodNameById(form.getRawValue().confirmedFundingMethodId, this.fundingMethods);
-      this.investmentCommonService.setFundingAccountDetails(form.getRawValue(), fundingMethod);
-      this.saveSRSAccountDetails(form);
-    }
-  }
-
   saveSRSAccountDetails(form) {
     const params = this.constructSaveSrsAccountParams(form.value);
     const customerPortfolioId = this.investmentAccountFormValues.recommendedCustomerPortfolioId;
@@ -233,7 +223,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   constructSaveSrsAccountParams(data) {
     const reqParams = {};
     reqParams['fundTypeId'] = data.confirmedFundingMethodId;
-    if (this.isSRSAccount(data.confirmedFundingMethodId, this.fundingMethods) && !this.srsFormData) {
+    if (this.isSRSAccount(data.confirmedFundingMethodId, this.fundingMethods) && !this.isSrsAccountAvailable) {
       reqParams['srsDetails'] = {
         accountNumber: data.srsFundingDetails ? data.srsFundingDetails.srsAccountNumber.replace(/[-]/g, '') : null,
         operatorId: data.srsFundingDetails ? data.srsFundingDetails.srsOperatorBank.id : null
@@ -302,33 +292,43 @@ export class FundingAccountDetailsComponent implements OnInit {
       const selectedBank = this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value;
       if (selectedBank) {
         switch (selectedBank.name.toUpperCase()) {
-          case 'DBS':
+          case INVESTMENT_COMMON_CONSTANTS.SRS_OPERATOR.DBS:
             accNoControl.setValidators(
-              [Validators.pattern(RegexConstants.operatorMaskForValidation.DBS), Validators.required]);
+              [Validators.required, Validators.pattern(RegexConstants.operatorMaskForValidation.DBS)]);
             break;
-          case 'OCBC':
+          case INVESTMENT_COMMON_CONSTANTS.SRS_OPERATOR.OCBC:
             accNoControl.setValidators(
-              [Validators.pattern(RegexConstants.operatorMaskForValidation.OCBC), Validators.required]);
+              [Validators.required, Validators.pattern(RegexConstants.operatorMaskForValidation.OCBC)]);
             break;
-          case 'UOB':
+          case INVESTMENT_COMMON_CONSTANTS.SRS_OPERATOR.UOB:
             accNoControl.setValidators(
-              [Validators.pattern(RegexConstants.operatorMaskForValidation.UOB), Validators.required]);
+              [Validators.required, Validators.pattern(RegexConstants.operatorMaskForValidation.UOB)]);
             break;
         }
       } else {
-        accNoControl.clearValidators();
+        accNoControl.setValidators([Validators.required]);
       }
       this.fundingAccountDetailsForm.updateValueAndValidity();
     }
   }
 
-  setSrsAccountDetails(formData) {
-    if (formData) {
-      const operatorBank = this.getOperatorIdByName(formData.srsBankOperator.id, this.srsAgentBankList);
-      if (operatorBank) {
+  setSrsAccountDetails(data) {
+    if (data) {
+      const operatorBank = this.getOperatorIdByName(data.srsBankOperator.id, this.srsAgentBankList);
+      if (operatorBank && this.fundingAccountDetailsForm.get('srsFundingDetails')) {
         this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsOperatorBank').setValue(operatorBank);
-        this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsAccountNumber').setValue(formData.accountNumber);
+        this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsAccountNumber').setValue(data.accountNumber);
       }
+    }
+  }
+
+  goToNext(form) {
+    if (!form.valid) {
+      return false;
+    } else {
+      const fundingMethod = this.getFundingMethodNameById(form.getRawValue().confirmedFundingMethodId, this.fundingMethods);
+      this.investmentCommonService.setFundingAccountDetails(form.getRawValue(), fundingMethod);
+      this.saveSRSAccountDetails(form);
     }
   }
 }
