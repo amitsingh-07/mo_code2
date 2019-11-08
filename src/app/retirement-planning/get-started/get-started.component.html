@@ -127,7 +127,8 @@
                       <div class="error-tooltip__desc">
                         <p class="error-tooltip__title"><span class="error-tooltip__title__warning-icon">!</span>{{
                       'RETIREMENT_PLANNING.CREATE.ERROR_MESSAGE.TITLE' | translate}}</p>
-                        <p class="error-tooltip__desc-one">{{ 'RETIREMENT_PLANNING.CREATE.ERROR_MESSAGE.MATCH' | translate}}</p>
+                        <p class="error-tooltip__desc-one">
+                          {{ 'RETIREMENT_PLANNING.CREATE.ERROR_MESSAGE.MATCH' | translate}}</p>
                         <span class="error-tooltip__arrow"></span>
                       </div>
                     </div>
@@ -156,7 +157,7 @@
                   <div class="form-group-floating-label"
                     [ngClass]="{'inline-error': submitted && retirementPlan.mobileNumber.errors}">
                     <input type="number" maxlength="15" id="" #mobileNumber formControlName="mobileNumber"
-                    (keyup)="onlyNumber(mobileNumber)" class="form-control" required>
+                      (keyup)="onlyNumber(mobileNumber)" class="form-control" required>
                     <label class="form-control-placeholder"
                       for="name">{{ 'RETIREMENT_PLANNING.CREATE.FORM.MOBILE_NUMBER.LABEL' | translate}}</label>
                   </div>
@@ -197,9 +198,9 @@
               </div>
 
               <!-- Proceed button -->
-              <button id="nextStep" type="button" (click)="save(retirementPlanningForm)"
-                class="btn btn__footer--fixed btn-primary width100">{{ 'RETIREMENT_PLANNING.CREATE.FORM.PROCEED' | translate }}</button>
-
+              <button id="nextStep" type="button" (click)="save()" class="btn btn__footer--fixed btn-primary width100">
+                {{ 'RETIREMENT_PLANNING.CREATE.FORM.PROCEED' | translate }}
+              </button>
             </div>
           </form>
         </div>

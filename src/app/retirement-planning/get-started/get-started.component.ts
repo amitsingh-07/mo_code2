@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
 import { NavbarService } from 'src/app/shared/navbar/navbar.service';
 import { RetirementPlanningService } from '../retirement-planning.service';
+import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 import { RETIREMENT_PLANNING_ROUTE_PATHS } from '../retirement-planning-routes.constants';
 
 @Component({
@@ -24,16 +25,13 @@ export class GetStartedComponent implements OnInit {
   submitted: boolean = false;
   confirmEmailFocus = false;
 
-  get retirementPlan() {
-    return this.retirementPlanningForm.controls;
-  }
-
   constructor(
     public navbarService: NavbarService,
     private translate: TranslateService,
     private formBuilder: FormBuilder,
     public retirementPlanningService: RetirementPlanningService,
-    private router: Router
+    private router: Router,
+    private authService: AuthenticationService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -42,9 +40,16 @@ export class GetStartedComponent implements OnInit {
     });
   }
 
+  get retirementPlan() {
+    return this.retirementPlanningForm.controls;
+  }
+
   ngOnInit() {
-    this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMode(7);
     this.buildFormData();
+    if (!this.authService.isAuthenticated()) {
+      this.authService.authenticate();
+    }
   }
 
   buildFormData() {
@@ -53,7 +58,6 @@ export class GetStartedComponent implements OnInit {
       this.formValues.marketingAcceptance = true;
       this.formValues.consent = true;
     }
-
     this.retirementPlanningForm = this.formBuilder.group({
       firstName: [this.formValues.firstName, [Validators.required, Validators.minLength(2),
       Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]],
@@ -68,14 +72,14 @@ export class GetStartedComponent implements OnInit {
   }
 
   /**
-  * validate retirementPlanningForm.
-  * @param form - retirement plan - user form detail.
+  * save retirementPlanningForm.
+  * @param form - retirement plan - user form details.
   */
-  save(form: any) {
+  save() {
     this.submitted = true;
-    if (form.valid) {
-      this.retirementPlanningService.setUserDetails(form.value);
-      this.router.navigate([RETIREMENT_PLANNING_ROUTE_PATHS.STEP_1]);
+    if (this.retirementPlanningForm.valid) {
+      this.retirementPlanningService.setUserDetails(this.retirementPlanningForm.value);
+      this.router.navigate([RETIREMENT_PLANNING_ROUTE_PATHS.RETIREMENT_NEEDS]);
     }
   }
 
