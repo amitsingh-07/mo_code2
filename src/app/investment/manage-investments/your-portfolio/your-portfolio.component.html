@@ -232,7 +232,7 @@
                               </div>
                             </div>
                           </div>
-                          <div class="rebalancing-info">
+                          <div *ngIf="portfolio?.rebalance" class="rebalancing-info">
                             <div class="mr15 info-icon"><img src="assets/images/investment-account/rebalance-info.svg"  /></div>
                             <div>
                               <div>{{'YOUR_PORTFOLIO.REBALANCING_IN_PROGRESS' | translate}}</div>
