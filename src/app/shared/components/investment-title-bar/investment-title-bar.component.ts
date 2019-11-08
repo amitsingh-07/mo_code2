@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { NavbarService } from '../../navbar/navbar.service';
 
 @Component({
@@ -17,9 +18,9 @@ export class InvestmentTitleBarComponent implements OnInit {
     this.navbarService.currentPageTitle.subscribe((title) => {
       this.pageTitle = title;
     });
-  this.navbarService.investmentPageSuperTitle.subscribe((subTitle) => {
-    this.pageSuperTitle = subTitle;
-  });
+    this.navbarService.investmentPageSuperTitle.subscribe((subTitle) => {
+      this.pageSuperTitle = subTitle;
+    });
   }
 
 }

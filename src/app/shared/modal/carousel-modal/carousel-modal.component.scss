@@ -22,11 +22,12 @@ app-carousel-modal {
     align-items: center;
     justify-content: center;
     height: 40px;
+
     .title-img {
       margin-right: 4px;
     }
   }
-  
+
   .title-txt {
     font-family: $muli-bold;
     font-size: 22px;
@@ -49,11 +50,13 @@ app-carousel-modal {
     object-fit: cover;
     overflow: hidden;
     border-radius: 6px 6px 0 0;
+
     @include allmobiles {
       // height: 440px;
       height: 54.2vh;
       object-fit: contain;
       border-radius: 0;
+
       img {
         width: 100%;
       }
@@ -77,6 +80,7 @@ app-carousel-modal {
     letter-spacing: normal;
     text-align: center;
     margin-top: 44px;
+
     @include allmobiles {
       margin-top: 5.42vh;
     }
@@ -198,7 +202,7 @@ app-carousel-modal {
   .btn-inner-div {
     width: 140px;
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: space-between;
   }
 

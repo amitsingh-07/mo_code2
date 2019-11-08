@@ -1,25 +1,28 @@
-import { Location } from '@angular/common';
 import {
-    AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2,
-    ViewChild
+  AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2,
+  ViewChild
 } from '@angular/core';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { appConstants } from '../../app.constants';
+import { APP_ROUTES } from '../../app-routes.constants';
 import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import {
-    TransactionModalComponent
+  TransactionModalComponent
 } from '../../shared/modal/transaction-modal/transaction-modal.component';
 import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
 import {
-    DASHBOARD_PATH, EDIT_PROFILE_PATH, SIGN_UP_ROUTE_PATHS
+  DASHBOARD_PATH, EDIT_PROFILE_PATH, SIGN_UP_ROUTE_PATHS
 } from '../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { DefaultErrors } from '../modal/error-modal/default-errors';
+import { ProgressTrackerService } from '../modal/progress-tracker/progress-tracker.service';
+import { Util } from '../utils/util';
+import { ComprehensiveService } from './../../comprehensive/comprehensive.service';
 import { INavbarConfig } from './config/navbar.config.interface';
 import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
@@ -38,6 +41,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   navbarMode = 1; // Main Navbar Mode
   // Navbar Configuration (New)
   navbarConfig: any;
+  constants: any;
 
   showNavBackBtn = false; // Show Navbar1 Backbtn
   showHeaderBackBtn = true; // Show Navbar2 Backbtn
@@ -51,6 +55,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   showHelpIcon = false; // Help Icon for Mobile (Direct/ Guide Me)
   showSettingsIcon = false; // Settings Icon for Mobile (Direct)
   showNotificationClear = false; // Notification Clear all Button
+  closeIcon = false;
   showLabel: any;
 
   // Navbar Configurations
@@ -80,15 +85,24 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   isInvestmentEnabled = false;
   isNotificationEnabled = false;
   isComprehensiveEnabled = false;
+  isComprehensiveLiveEnabled = false;
 
+  showComprehensiveTitle = false;
   // Signed In
   isLoggedIn = false;
   userInfo: any;
 
+  showMenuItem = false;
+  menuItemClass = '';
+  pageId: any;
+
+  journeyType: string;
+  isComprehensivePath: boolean;
+
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
   constructor(
-    private navbarService: NavbarService, private _location: Location,
+    private navbarService: NavbarService,
     private config: NgbDropdownConfig, private renderer: Renderer2,
     private cdr: ChangeDetectorRef, private router: Router, private configService: ConfigService,
     private signUpService: SignUpService, private authService: AuthenticationService,
@@ -97,7 +111,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     public defaultError: DefaultErrors,
     private investmentAccountService: InvestmentAccountService,
     private errorHandler: CustomErrorHandlerService,
-    private selectedPlansService: SelectedPlansService) {
+    private selectedPlansService: SelectedPlansService,
+    private progressTrackerService: ProgressTrackerService,
+    private comprehensiveService: ComprehensiveService) {
     this.browserCheck();
     this.matrixResolver();
     config.autoClose = true;
@@ -111,6 +127,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.isWillWritingEnabled = moduleConfig.willWritingEnabled;
       this.isInvestmentEnabled = moduleConfig.investmentEnabled;
       this.isComprehensiveEnabled = moduleConfig.comprehensiveEnabled;
+      this.isComprehensiveLiveEnabled = moduleConfig.comprehensiveLiveEnabled;
     });
 
     // User Information Check Authentication
@@ -125,6 +142,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         if (this.authService.isSignedUser()) {
           this.isLoggedIn = true;
         }
+      }
+    });
+
+    this.constants = appConstants;
+    this.journeyType = this.appService.getJourneyType();
+    this.appService.journeyType$.subscribe((type: string) => {
+      if (type && type !== '') {
+        this.journeyType = type;
       }
     });
 
@@ -148,14 +173,17 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.notificationLimit = SIGN_UP_CONFIG.NOTIFICATION_MAX_LIMIT;
     this.innerWidth = window.innerWidth;
     this.navbarService.currentPageTitle.subscribe((title) => {
-        this.pageTitle = title;
-      });
+      this.pageTitle = title;
+      // Workaround for delayed title text load. Trigger onPageChanged();
+      this.onPageChanged();
+    });
     this.navbarService.currentPageSubTitle.subscribe((subTitle) => {
       this.subTitle = subTitle;
     });
     this.navbarService.currentPageHelpIcon.subscribe((showHelpIcon) => {
       this.showHelpIcon = showHelpIcon;
-      });
+    });
+    this.navbarService.currentPageProdInfoIcon.subscribe((closeIcon) => this.closeIcon = closeIcon);
     this.navbarService.currentPageClearNotify.subscribe((showClearNotify) => {
       this.showNotificationClear = showClearNotify;
     });
@@ -165,8 +193,20 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.isBackPressSubscribed = subscribed;
     });
     this.navbarService.currentPageSuperTitle.subscribe((superTitle) => this.pageSuperTitle = superTitle);
+
+    this.navbarService.currentMenuItem.subscribe((menuItem) => {
+      if (menuItem && typeof menuItem.iconClass !== 'undefined') {
+        this.showMenuItem = true;
+        this.menuItemClass = menuItem.iconClass;
+        this.pageId = menuItem.id;
+      } else {
+        this.showMenuItem = false;
+      }
+    });
+
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
+        this.onPageChanged();
         if (this.router.url !== this.currentUrl) {
           this.currentUrl = this.router.url;
           this.hideMenu();
@@ -198,6 +238,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.showNavShadow = showNavShadow;
       this.cdr.detectChanges();
     });
+  }
+
+  onPageChanged() {
+    const comprehensiveUrlPath = '/' + APP_ROUTES.COMPREHENSIVE + '/';
+    this.isComprehensivePath = (window.location.href.indexOf(comprehensiveUrlPath) !== -1);
+    this.showComprehensiveTitle = this.isComprehensiveEnabled && this.isComprehensivePath
+      && this.journeyType === appConstants.JOURNEY_TYPE_COMPREHENSIVE
+      && !Util.isEmptyOrNull(this.pageTitle);
   }
 
   // MATRIX RESOLVER --- DO NOT DELETE IT'S IMPORTANT
@@ -248,11 +296,15 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.showMobilePopUp(this.pageTitle);
   }
 
+  onMenuItemClicked() {
+    this.navbarService.menuItemClicked(this.pageId);
+  }
+
   goBack() {
     if (this.isBackPressSubscribed) {
       this.navbarService.backPressed(this.pageTitle);
     } else {
-      this._location.back();
+      this.navbarService.goBack();
     }
   }
 
@@ -294,8 +346,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
     if (!this.isNotificationHidden && innerWidth < this.mobileThreshold) {
       this.isNotificationHidden = true;
-      }
     }
+  }
 
   // Notification Methods
   getRecentNotifications() {
@@ -306,9 +358,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         message.time = parseInt(message.time, 10);
       });
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   toggleRecentNotification() {
@@ -316,14 +368,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (!this.isNotificationHidden) { // When Opened
       if (this.recentMessages && this.recentMessages.length) {
         this.updateNotifications(this.recentMessages, SIGN_UP_CONFIG.NOTIFICATION.READ_PAYLOAD_KEY);
-        }
+      }
     } else { // When closed
       this.getRecentNotifications();
     }
     // Checking navbar collapsed
     if (!this.isNavbarCollapsed && innerWidth < this.mobileThreshold) {
       this.isNavbarCollapsed = true;
-      }
+    }
   }
 
   updateNotifications(messages, type) {
@@ -340,8 +392,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     return (
       this.router.url === DASHBOARD_PATH ||
       this.router.url === EDIT_PROFILE_PATH
-      );
+    );
   }
+
   clearNotifications() {
     this.navbarService.clearNotification();
   }
@@ -366,6 +419,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.signUpService.setUserProfileInfo(null);
     this.isLoggedIn = false;
     this.authService.clearAuthDetails();
+    this.authService.clearSession();
     this.appService.clearData();
     this.appService.startAppSession();
     this.selectedPlansService.clearData();
@@ -399,8 +453,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     const ua = navigator.userAgent;
     /* MSIE used to detect old browsers and Trident used to newer ones*/
     const is_ie = ua.indexOf('MSIE ') > -1 ||
-                  ua.indexOf('Trident/') > -1 ||
-                  ua.toLowerCase().indexOf('firefox') > -1;
+      ua.indexOf('Trident/') > -1 ||
+      ua.toLowerCase().indexOf('firefox') > -1;
     if (is_ie) {
       this.browserError = true;
     } else {
@@ -409,5 +463,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
   closeBrowserError() {
     this.browserError = false;
+  }
+  reloadProgressTracker() {
+    this.progressTrackerService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
   }
 }

@@ -11,7 +11,8 @@
           <img src="{{imgUrl}}{{slide.IMAGE}}" alt="">
         </div>
         <div *ngIf="slide.IMG_TITLE" [ngClass]="imgTitleClass">{{slide.IMG_TITLE}}</div>
-        <div *ngIf="slide.TEXT" [ngStyle]="textStyle" [ngClass]="{'extra-margin-top-18': slide.CONTACT}" class="slide-txt">{{slide.TEXT}}</div>
+        <div *ngIf="slide.TEXT" [ngStyle]="textStyle" [ngClass]="{'extra-margin-top-18': slide.CONTACT}"
+          class="slide-txt">{{slide.TEXT}}</div>
         <a *ngIf="slide.URL" class="url-txt" href="" target="_blank" [routerLink]="[slide.URL]"
           fragment="{{slide.URL_FRAGMENT}}">{{slide.URL_TEXT}}</a>
         <div *ngIf="slide.CONTACT" class="contact-div">

@@ -26,6 +26,7 @@ export class CurrencyInputDirective implements AfterViewInit {
     onKeyUp(event: KeyboardEvent) {
         const regPattern = this.allowDecimal ? /[^0-9.]/g : /[^0-9]/g;
         this.el.nativeElement.value = this.el.nativeElement.value.replace(regPattern, '');
+        this.el.nativeElement.dispatchEvent(new Event('input'));
     }
 
     @HostListener('focus', ['$event'])
