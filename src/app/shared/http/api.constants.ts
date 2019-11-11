@@ -41,7 +41,7 @@ export let apiConstants = {
         enquiryByEmail: ACCOUNT_API_BASE_URL + '/enquiryByEmail',
         getPopupStatus: ACCOUNT_API_BASE_URL + '/getTrackStatus',
         setPopupStatus: ACCOUNT_API_BASE_URL + '/setTrackStatus',
-        enquireRetirementPlan: ACCOUNT_API_BASE_URL + '/setTrackStatus',
+        enquireRetirementPlan: ACCOUNT_API_BASE_URL + '/ads/postRetirementPlanning',
         article: {
             getRecentArticles: ARTICLE_API_BASE_URL + '/getTop8Articles',
             getArticleCategory: ARTICLE_API_BASE_URL + '/getCountForAllTags',

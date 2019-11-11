@@ -25,12 +25,16 @@ export interface IRetirementNeedsGroup {
 }
 
 export interface IRetirementPlanPayload {
-    basicCustomerDetails: IUserDetails;
-    retirementNeeds: IRetirementNeeds;
-    retirementAmountAvailable: IRetirementAmountAvailable;
-    retirementSchemeList: any,
+    firstName: string;
+    lastName: string;
+    emailAddress: string;
+    mobileNumber: string;
     receiveMarketingMaterials: boolean,
     consentToContactByMobile: boolean
+    retirementAge: number;
+    monthlyRetirementIncome: number;
+    dateOfBirth: string;
+    lumpSumAmount: number;
+    monthlyAmount: string;
+    retirementSchemeList: any
 }
-
-

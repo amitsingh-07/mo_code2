@@ -28,12 +28,12 @@ export class RetirementPlanningService {
     /**
     * set retirement planning form data from session storage when reload happens.
     */
-   getRetirementPlanningFormData(): RetirementPlanningData {
-    if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
-        this.retirementPlanningForm = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
+    getRetirementPlanningFormData(): RetirementPlanningData {
+        if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
+            this.retirementPlanningForm = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
+        }
+        return this.retirementPlanningForm;
     }
-    return this.retirementPlanningForm;
-}
 
     /**
      * save data in session storage.
@@ -42,11 +42,11 @@ export class RetirementPlanningService {
         if (window.sessionStorage) {
             sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.retirementPlanningForm));
         }
-    }   
-    
+    }
+
     clearData() {
         this.retirementPlanningForm = {} as RetirementPlanningData;
-        if (window.sessionStorage) {            
+        if (window.sessionStorage) {
             sessionStorage.removeItem(SESSION_STORAGE_KEY);
         }
     }
@@ -99,22 +99,16 @@ export class RetirementPlanningService {
         const { retirementNeeds: retirementNeed, retirementAmountAvailable: retirementAmount } = this.retirementPlanningForm.retirementNeedsGroup;
         const schemeList = incomeStream.map((e: string) => this.scheme.get(e));
 
-        return  {
-            basicCustomerDetails: {
-                firstName: this.retirementPlanningForm.userDetails.firstName,
-                lastName: this.retirementPlanningForm.userDetails.lastName,
-                mobileNumber: this.retirementPlanningForm.userDetails.mobileNumber,
-                emailAddress: this.retirementPlanningForm.userDetails.emailAddress
-            },
-            retirementNeeds: {
-                retirementAge: retirementNeed.retirementAge,
-                monthlyRetirementIncome: retirementNeed.monthlyRetirementIncome,
-                dateOfBirth: this.convertDate(retirementNeed.dateOfBirth)
-            },
-            retirementAmountAvailable: {
-                lumpSumAmount: retirementAmount.lumpSumAmount,
-                monthlyAmount: retirementAmount.monthlyAmount
-            },
+        return {
+            firstName: this.retirementPlanningForm.userDetails.firstName,
+            lastName: this.retirementPlanningForm.userDetails.lastName,
+            mobileNumber: this.retirementPlanningForm.userDetails.mobileNumber,
+            emailAddress: this.retirementPlanningForm.userDetails.emailAddress,
+            retirementAge: retirementNeed.retirementAge,
+            monthlyRetirementIncome: retirementNeed.monthlyRetirementIncome,
+            dateOfBirth: this.convertDate(retirementNeed.dateOfBirth),
+            lumpSumAmount: retirementAmount.lumpSumAmount,
+            monthlyAmount: retirementAmount.monthlyAmount,
             retirementSchemeList: schemeList,
             receiveMarketingMaterials: this.retirementPlanningForm.userDetails.marketingAcceptance,
             consentToContactByMobile: this.retirementPlanningForm.userDetails.consent
