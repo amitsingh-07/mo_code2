@@ -47,9 +47,8 @@ export class GetStartedComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMode(7);
     this.buildFormData();
-    if (!this.authService.isAuthenticated()) {
-      this.authService.authenticate();
-    }
+    this.authService.authenticate().subscribe((token) => {
+    });
   }
 
   buildFormData() {
