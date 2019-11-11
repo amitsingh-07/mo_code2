@@ -21,7 +21,7 @@
         </div>
         <div *ngIf="isWillWritingEnabled" class="navbar__btn" [ngClass]="{'active': activeSection == 1}" #homeNavWill
           (click)="goToSection('will')">
-          <span class="navbar__btn--title">{{'WILL.WILL_WRITING' | translate}}</span>
+          <span class="navbar__btn--title">{{'WILL.LABEL' | translate}}</span>
         </div>
         <div *ngIf="isInvestmentEnabled" class="navbar__btn" [ngClass]="{'active': activeSection == 2}" #homeNavInvest
           (click)="goToSection('investment')">
