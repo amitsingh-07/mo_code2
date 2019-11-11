@@ -1,0 +1,171 @@
+@import '../../../variables';
+@import '../../../mixins';
+$grey-color-notes: #9f9f9f;
+
+.assets-section {
+  background: $white-color;
+  color: $black-color;
+  border-radius: 5px;
+}
+
+.assets-field {
+  background: $bond-container-bg;
+  color: $dark-teal-color;
+}
+
+.with-help-icon {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  //font-size: 18px;
+  .help-icon {
+    background: url("/assets/images/tool-help-icon.svg") no-repeat;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 0;
+    top: 0;    
+    width: 20px;
+  }
+}
+
+.delete-icon {
+  background: url("/assets/images/comprehensive/delete-icon.svg") no-repeat;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.comprehensive {
+  .form-group-with-bg {
+    padding: 0px;
+  }
+
+  .form-group-with-bg .form-group-with-bg--header .form-group-with-bg--header-sub-label {
+    color: $text-grey-color !important;
+  }
+
+  .assets-field .btn-outline-primary {
+    color: $teal-color;
+  }
+}
+
+.p-50 {
+  padding: 75px;
+}
+
+.assets-section .flex-row {
+  padding: 5px !important;
+}
+
+.investmentProperties {
+  &.add-invest {
+    .help-icon {
+      margin-right: 0;
+    }
+  }
+  border-top: 1px solid rgba(134, 205, 206, 0.3);
+  margin-top: 10px;
+  .help-icon {
+    margin-right: 25px;
+  }
+}
+.finance-assets {
+  background: url("/assets/images/comprehensive/finance-assets.svg") no-repeat;
+  display: inline-block;
+  width: 243px;
+  height: 150px;
+}
+/*
+.filledBucket {
+  background: url("/assets/images/comprehensive/finance-assets-filled.svg") no-repeat;
+  display: inline-block;
+  width: 243px;
+  height: 150px;
+}
+
+.middleBucket {
+  background: url("/assets/images/comprehensive/finance-assets-middle.svg") no-repeat;
+  display: inline-block;
+  width: 243px;
+  height: 150px;
+}
+
+.emptyBucket {
+  background: url("/assets/images/comprehensive/finance-assets-empty.svg") no-repeat;
+  display: inline-block;
+  width: 243px;
+  height: 150px;
+}
+*/
+.income-modal-notes {
+  color: $grey-color-notes;
+}
+
+.bucket-notes {
+  font-size: 16px;
+}
+
+.bucket-notes-dollar {
+  font-size: 20px;
+}
+.footer-notes {
+  background: $btn-primary-backgrnd-color;
+}
+
+.add-invest .help-icon {
+  top: 3px !important;
+}
+
+.add-invest-link {
+  color: $post-login-widget-title;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.both-icon {
+  // .help-icon {
+  //   left: 80% !important;
+  // }
+
+  // .delete-icon {
+  //   left: 95% !important;
+  // }
+
+  .form-group-with-bg--content-label {
+    color: $black-color;
+  }
+
+  .form-group-with-bg--content-sub-label {
+    color: $text-grey-color;
+  }
+}
+
+.mb-10 {
+  margin-bottom: 100px;
+}
+
+.auto-fill-cpf {
+  border-radius: 8px;
+  border: solid 1px $crusta-orange-color;
+  background-color: $white-color;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.1px;
+  color: $mango-tango-color;
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
+}
+
+.auto-fill-logo {
+  width: 92px;
+  height: 35px;
+  object-fit: contain;
+}

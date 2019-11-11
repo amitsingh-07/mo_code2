@@ -6,11 +6,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { APP_ROUTES } from 'src/app/app-routes.constants';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { MyInfoService } from '../../shared/Services/my-info.service';
-import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
+import { GUIDE_ME_ROUTE_PATHS, GUIDE_ME_ROUTES } from '../guide-me-routes.constants';
 import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
 import { ConfigService, IConfig } from './../../config/config.service';
@@ -63,7 +64,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
       otherAssets: new FormControl(this.assetsFormValues.otherAssets)
     });
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
-      if (myinfoObj && myinfoObj !== '' && this.myInfoService.getMyInfoAttributes() === 'cpfbalances') {
+      if (myinfoObj && myinfoObj !== '' && this.checkMyInfoSourcePage()) {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
             if (data && data['objectList']) {
@@ -151,6 +152,16 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
   goToNext(form) {
     if (this.save(form)) {
       this.router.navigate([GUIDE_ME_ROUTE_PATHS.LIABILITIES]);
+    }
+  }
+
+  checkMyInfoSourcePage() {
+    const currentPath = APP_ROUTES.GUIDE_ME + '/' + GUIDE_ME_ROUTES.ASSETS;
+    if (this.myInfoService.getMyInfoAttributes() === 'cpfbalances'
+      && window.sessionStorage.getItem('currentUrl') === currentPath) {
+      return true;
+    } else {
+      return false;
     }
   }
 }

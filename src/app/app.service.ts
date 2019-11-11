@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+
+import { appConstants } from './app.constants';
+import { ComprehensiveService } from './comprehensive/comprehensive.service';
 import { DirectService } from './direct/direct.service';
 import { GuideMeService } from './guide-me/guide-me.service';
 import { InvestmentAccountService } from './investment/investment-account/investment-account-service';
@@ -10,6 +14,8 @@ import { InvestmentCommonService } from './investment/investment-common/investme
 
 export const SESSION_STORAGE_KEY = 'app_journey_type';
 export const SESSION_KEY = 'app_session';
+const PROMO_CODE_ACTION_TYPE = 'app_promo_code_action_type';
+const PROMO_CODE = 'app_promo_code';
 const SESSION_CUSTOMER = 'app_customer_id';
 
 @Injectable({
@@ -23,6 +29,8 @@ export class AppService {
     id: ''
   };
 
+  private journeyTypeSubject: BehaviorSubject<string> = new BehaviorSubject('');
+  journeyType$: Observable<string>;
   constructor(
     private directService: DirectService,
     private guideMeService: GuideMeService,
@@ -31,8 +39,11 @@ export class AppService {
     private investmentAccountService: InvestmentAccountService,
     private manageInvestmentsService: ManageInvestmentsService,
     private willWritingService: WillWritingService,
-    private investmentCommonService: InvestmentCommonService
-  ) { }
+    private investmentCommonService: InvestmentCommonService,
+    private comprehensiveService: ComprehensiveService
+  ) {
+    this.journeyType$ = this.journeyTypeSubject.asObservable();
+  }
 
   commit(key, data) {
     if (window.sessionStorage) {
@@ -60,10 +71,12 @@ export class AppService {
     this.investmentAccountService.clearData();
     this.manageInvestmentsService.clearData();
     this.investmentCommonService.clearData();
+    this.comprehensiveService.clearFormData();
   }
 
   setJourneyType(type: string) {
     this.journeyType = type;
+    this.journeyTypeSubject.next(type);
     this.commit(SESSION_STORAGE_KEY, this.journeyType);
   }
 
@@ -71,10 +84,39 @@ export class AppService {
     if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
       this.journeyType = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
     }
+    this.journeyTypeSubject.next(this.journeyType);
     return this.journeyType;
   }
 
+  getAction() {
+    let promoCodeActionType = '';
+    if (window.sessionStorage && sessionStorage.getItem(PROMO_CODE_ACTION_TYPE)) {
+      promoCodeActionType = JSON.parse(sessionStorage.getItem(PROMO_CODE_ACTION_TYPE));
+    }
+    return promoCodeActionType;
+
+  }
+  setAction(promoCodeActionType: string) {
+    this.commit(PROMO_CODE_ACTION_TYPE, promoCodeActionType);
+  }
+  getPromoCode() {
+    let promoCode = '';
+    if (window.sessionStorage && sessionStorage.getItem(PROMO_CODE)) {
+      promoCode = JSON.parse(sessionStorage.getItem(PROMO_CODE));
+    }
+    return promoCode;
+  }
+  setPromoCode(promoCode: string) {
+    this.commit(PROMO_CODE, promoCode);
+  }
+  clearPromoCode() {
+    if (window.sessionStorage) {
+      sessionStorage.removeItem(PROMO_CODE);
+      sessionStorage.removeItem(PROMO_CODE_ACTION_TYPE);
+    }
+  }
   clearJourneys() {
+    this.journeyType = ''
     if (window.sessionStorage) {
       // App data
       sessionStorage.removeItem(SESSION_STORAGE_KEY);
@@ -86,6 +128,10 @@ export class AppService {
       sessionStorage.removeItem('app_guided_session');
       // Insurance results
       sessionStorage.removeItem('insurance_results_counter');
+      // Comprehensive Journey
+      sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE);
+      // Clear comprehensive promo code
+      this.clearPromoCode();
       // User mobile no for resend email verification link
       sessionStorage.removeItem('user_mobile');
     }

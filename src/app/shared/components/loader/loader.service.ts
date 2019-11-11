@@ -8,7 +8,7 @@ import { Subject } from 'rxjs/internal/Subject';
 export class LoaderService {
 
   /* Header Params */
-  private loaderParams = new BehaviorSubject('');
+  private loaderParams = new BehaviorSubject({} as any);
 
   loaderParamChange = this.loaderParams.asObservable();
 
@@ -20,6 +20,10 @@ export class LoaderService {
 
   hideLoader() {
     this.loaderParams.next('');
+  }
+
+  hideLoaderForced() {
+    this.loaderParams.next({hideForced: true});
   }
 
 }

@@ -1,0 +1,105 @@
+
+.retirement-plan-container{
+    .title {
+        font-size: 18px;
+    }
+   .retirementImg{
+    background: url("/assets/images/comprehensive/retirement.svg") no-repeat;
+    display: inline-block;
+    width: 218px;
+    height: 150px;
+    }
+    .income-bucket-panel__desc {
+        padding-bottom: 25px;
+        font-size: 18px;
+    }
+    .income-bucket-panel__value {
+        font-size: 18px;
+    }
+    .custom-slider-left{
+        width: 4%; 
+    }
+    .custom-slider-middle{
+        width: 24.5%; 
+    }
+    .custom-slider-right{
+        width: 22%; 
+    }
+    .noUi-marker-large, .noUi-marker-sub, .noUi-marker {
+        background: none!important;
+    }
+    .noUi-pips {
+        color:#fff!important;
+    }
+    .noUi-pips-horizontal {
+        top: -325%!important;
+    }
+    .noUi-value {
+    margin-left:5px;
+    font-size: 14px;
+    }
+    .lastSliderPips{
+        left:90%!important;
+        text-align: right;
+    }
+    .with-help-icon{
+        display:flex;
+        align-items: flex-end;
+        position: relative;        
+        margin-right: 10px;
+        position: relative;
+        //font-size: 18px;
+        .help-icon {      
+            background: url("/assets/images/tool-help-icon.svg") no-repeat;
+            width: 40px;
+            height: 20px;
+            cursor: pointer;
+            background-repeat: no-repeat;
+            position: absolute;
+            left: 93%;
+            top: 3px;
+        }    
+    }
+    #retirementDeleteIcon{
+        position: relative;
+        right: 0;
+        top: 3px;
+    }
+   
+    .addRetirement{
+        color:#066360;
+        &.retirement-border-top {
+            padding-top: 15px;
+        }
+    }
+    #payoutStartAge{
+        padding-right: 52px;
+    }
+    #maturityYear{
+        text-align: left;
+        font-family: "muli light"
+    }
+    .retirement-border-top{
+        border-top: solid 1px #cee5e4;
+        border-radius: 0px!important;
+    }
+    .form-control i.right {
+       top: 52%;
+       font-family: "muli regular";
+    }
+    .form-group-with-bg {
+        background: transparent;
+    }
+    .form-group-with-bg--header {
+        padding-left: 5px !important;
+    }
+    .form-group-with-bg--content {
+        padding: 5px !important;
+    }
+    .rsp-border-top {
+        border-top: solid 1px #cee5e4;
+    }
+    .form-control-right input {
+        text-align: left;
+    }
+}

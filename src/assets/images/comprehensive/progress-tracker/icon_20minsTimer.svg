@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>Group 2 Copy 3</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M0.411764706,0 L0.411764706,9.04955478 L6.33642851,15.2629177 C9.91026338,10.0876392 10.178295,6.25584766 7.14052339,3.76754298 C4.10275177,1.2792383 1.85983221,0.0233906384 0.411764706,0 Z" id="path-1"></path>
+    </defs>
+    <g id="1.-Profiling" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Progress-Tracker(First-time)" transform="translate(-245.000000, -264.000000)">
+            <g id="Group-2-Copy-3" transform="translate(246.000000, 265.000000)">
+                <g id="Group-11-Copy-3" transform="translate(9.000000, 0.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Mask" fill="#00A7A7" fill-rule="nonzero" xlink:href="#path-1"></use>
+                </g>
+                <circle id="Oval-2" stroke="#00A7A7" cx="9" cy="9" r="9"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

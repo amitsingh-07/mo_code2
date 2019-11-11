@@ -1,0 +1,55 @@
+@import '../../../variables';
+@import '../../../mixins';
+.myDependant {
+  .myDependantFormArray {
+    background: $black-squeeze-grey-color !important;
+    //color: #005960 !important; /*Not used anywhere*/
+    border-radius: 10px;
+
+    h5 {
+      color: $black-color !important;
+    }
+  }
+  .dependant-name-wrap {
+    resize: none;
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    background-clip: padding-box;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+}
+
+.comprehensive .form-group-with-bg {
+  padding: 0;
+}
+[placeholder]:empty::before {
+  content: attr(placeholder);
+  color: $app-backgrnd-color; 
+}
+
+[placeholder]:empty:focus::before {
+  content: "";
+}
+.content-editable {
+    border: 1px solid $content-editable-border-color;
+    border-radius: 6px;
+    padding: .90rem;
+    background: $white-color;
+    color: $app-backgrnd-color;
+    word-break: break-word;
+    &.view-mode {
+      background-color: rgba(0, 167, 167, 0.15) !important;
+    }
+    &.inline-error {
+      color: #e57300 !important;
+      background: $inline-error-bg-color;
+      &[placeholder]:empty::before {
+        color: $mango-tango-color !important;
+      }
+    }
+    &[placeholder]:empty::before {
+       color:$dusty-grey-color !important;
+    }
+}

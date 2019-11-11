@@ -1,58 +1,66 @@
 <div class="faq__wrapper">
   <div class="about-us__header">
-    <div class="about-us__header--inner"> 
+    <div class="about-us__header--inner">
       <div class="sub-navigation">
         <div class="sub-navigation--inner">
-            <span routerLink="/">Home</span>
-            <i class="material-icons">keyboard_arrow_right</i>
-            <span routerLink="/about-us">FAQs</span>
-          </div>
+          <span routerLink="/">Home</span>
+          <i class="material-icons">keyboard_arrow_right</i>
+          <span routerLink="/about-us">FAQs</span>
         </div>
       </div>
     </div>
-    <div class="faq-img mb15"><img src="assets/images/faq.svg"/></div>
-+   <div class="faq-title">{{ 'FAQ.PAGE_TITLE' | translate}}</div>
+  </div>
+  <div class="faq-img mb15"><img src="assets/images/faq.svg" /></div>
+  + <div class="faq-title">{{ 'FAQ.PAGE_TITLE' | translate}}</div>
   <div class="faq__container">
     <div class="home__navbar" #homeNavBar>
       <div class="home__navbar--inner">
-        <div class="navbar__btn" [ngClass]="{'active': activeSection == 0}" #homeNavInsurance (click)="goToSection('insurance')">
+        <div class="navbar__btn" [ngClass]="{'active': activeSection == 0}" #homeNavInsurance
+          (click)="goToSection('insurance')">
           <span class="navbar__btn--title">{{'INSURANCE.INSURANCE' | translate}}</span>
-          </div>
-        <div *ngIf="isWillWritingEnabled" class="navbar__btn" [ngClass]="{'active': activeSection == 1}" #homeNavWill (click)="goToSection('will')">
-            <span class="navbar__btn--title">{{'WILL.WILL_WRITING' | translate}}</span>
-            </div>
-        <div *ngIf="isInvestmentEnabled" class="navbar__btn" [ngClass]="{'active': activeSection == 2}" #homeNavInvest (click)="goToSection('investment')">
-          <span class="navbar__btn--title">{{'INVESTMENT.LABEL' | translate}}</span>
-          </div>
-        <div *ngIf="isComprehensiveEnabled" class="navbar__btn" [ngClass]="{'active' : activeSession == 3 }" #homeNavComprehensive (click)="goToSection('comprehensive')">
-          <span class="navbar__btn--title">{{'COMPREHENSIVE.LABEL' | translate}}</span>
-          <span class="navbar__btn--subtitle">{{'COMPREHENSIVE.SUB_LABEL' | translate}}</span> 
-          </div>
-        <div class="home__navbar--border"></div>
         </div>
+        <div *ngIf="isWillWritingEnabled" class="navbar__btn" [ngClass]="{'active': activeSection == 1}" #homeNavWill
+          (click)="goToSection('will')">
+          <span class="navbar__btn--title">{{'WILL.WILL_WRITING' | translate}}</span>
+        </div>
+        <div *ngIf="isInvestmentEnabled" class="navbar__btn" [ngClass]="{'active': activeSection == 2}" #homeNavInvest
+          (click)="goToSection('investment')">
+          <span class="navbar__btn--title">{{'INVESTMENT.LABEL' | translate}}</span>
+        </div>
+        <div *ngIf="isComprehensiveEnabled" class="navbar__btn" [ngClass]="{'active' : activeSection == 3 }"
+          #homeNavComprehensive (click)="goToSection('comprehensive')">
+          <span class="navbar__btn--title">{{'COMPREHENSIVE.LABEL' | translate}}</span>
+          <span class="navbar__btn--subtitle">{{'COMPREHENSIVE.SUB_LABEL' | translate}}</span>
+        </div>
+        <div class="home__navbar--border"></div>
       </div>
+    </div>
     <div class="faq-category__container" *ngFor="let section of sections; let i = index">
-      <div *ngIf="section.extra" class="faq-category__header faq-disclaimer" [ngClass]="{'active': activeSection == i}" innerHtml={{section.extra}}>
+      <div *ngIf="section.extra" class="faq-category__header faq-disclaimer" [ngClass]="{'active': activeSection == i}"
+        innerHtml={{section.extra}}>
       </div>
       <div class="faq-category__body" [ngClass]="{'active': activeSection == i}">
         <div class="faq-selection__panel" ngbDropdown *ngIf="section.groups.length > 0">
-          <button class="btn btn-dropdown form-control hidden-lg" id="dropdownBasic1" ngbDropdownToggle>{{section.groups[0]}}</button>
+          <button class="btn btn-dropdown form-control hidden-lg" id="dropdownBasic1"
+            ngbDropdownToggle>{{section.groups[0]}}</button>
           <div ngbDropdownMenu>
-            <div class="faq-selection__element" *ngFor="let group of section.groups; let isFirstRow=first" [ngClass]="{'active' : isFirstRow}" (click)="toggleSection($event)">{{validateTitle(group, 0)}}</div>
-            </div>
+            <div class="faq-selection__element" *ngFor="let group of section.groups; let isFirstRow=first"
+              [ngClass]="{'active' : isFirstRow}" (click)="toggleSection($event)">{{validateTitle(group, 0)}}</div>
           </div>
-        <div class="questions__panel" *ngFor="let question_set of section.questions; let questionRow=first; let i=index" [ngClass]="{'active': questionRow}">
+        </div>
+        <div class="questions__panel" *ngFor="let question_set of section.questions; let questionRow=first; let i=index"
+          [ngClass]="{'active': questionRow}">
           <h3>{{validateTitle(section.groups[i], 1)}}</h3>
           <div class="question__element" *ngFor="let question of question_set">
-            <div class="question"  (click)="toggleActive($event)">
+            <div class="question" (click)="toggleActive($event)">
               <i class="material-icons">keyboard_arrow_right</i>
               {{question.QUESTION}}
-              </div>
+            </div>
             <div class="answer" innerHTML="{{question.ANSWER}}">
-              </div> 
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
