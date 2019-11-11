@@ -31,7 +31,8 @@
                 <!-- Your Desired Retirement Needs -->
                 <div class="form-panel">
                   <!-- Title -->
-                  <div class="flex-row title" id="retirement-form-title">{{ 'RETIREMENT_PLANNING.STEP_1.RETIREMENT_NEEDS.TITLE' | translate}}</div>
+                  <div class="flex-row title" id="retirement-form-title">
+                    {{ 'RETIREMENT_PLANNING.STEP_1.RETIREMENT_NEEDS.TITLE' | translate}}</div>
 
                   <!-- Retirement Age -->
                   <div class="flex-row section mt20">
@@ -42,8 +43,8 @@
                     </div>
                     <div class="pr0 flex-col-7">
                       <div class="form-control"
-                      [ngClass]="{'inline-error': submitted && retirementNeedsForm.controls.retirementAge.errors}">
-                        <input class="input-control retirement-age" appNumberOnly #retirementAge
+                        [ngClass]="{'inline-error': submitted && retirementNeedsForm.controls.retirementAge.errors}">
+                        <input id="retirementAge" class="input-control retirement-age" appNumberOnly #retirementAge
                           formControlName="retirementAge" type="text" placeholder="Enter Age">
                         <i>yrs old</i>
                       </div>
@@ -67,11 +68,11 @@
                     </div>
                     <div class="pr0 flex-col-7">
                       <div class="form-control form-control-right"
-                      [ngClass]="{'inline-error': submitted && retirementNeedsForm.controls.monthlyRetirementIncome.errors}">
+                        [ngClass]="{'inline-error': submitted && retirementNeedsForm.controls.monthlyRetirementIncome.errors}">
                         <i>$</i>
                         <div>
-                          <input class="input-control" appCurrencyInput decimalFormat="1.2-2" allowDecimal="true" type="text" formControlName="monthlyRetirementIncome"
-                            placeholder="0">
+                          <input id="monthlyRetirementIncome" class="input-control" appCurrencyInput decimalFormat="1.2-2" allowDecimal="true"
+                            type="text" formControlName="monthlyRetirementIncome" placeholder="0">
                           <i>/mth</i>
                         </div>
                       </div>
@@ -89,14 +90,16 @@
                   <!-- DOB -->
                   <div class="flex-row section">
                     <div class="col-5 pl0">
-                      <label for="name" id="myFamilyFormLbl7">{{ 'RETIREMENT_PLANNING.CREATE.FORM.DOB.LABEL' | translate}}</label>
+                      <label for="name"
+                        id="myFamilyFormLbl7">{{ 'RETIREMENT_PLANNING.CREATE.FORM.DOB.LABEL' | translate}}</label>
                     </div>
                     <div class="col-7 pl0 pr0">
                       <div class="datepicker-control">
                         <div class="input-group date-picker mb0 date-picker-above"
                           [ngClass]="{'inline-error': retirementNeedsForm.controls.dateOfBirth.errors?.invalidAge }">
-                          <input readonly class="form-control" placeholder="DD/MM/YYYY" formControlName="dateOfBirth"
+                          <input id="dateOfBirth" class="form-control" placeholder="DD/MM/YYYY" formControlName="dateOfBirth"
                             ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+
                           <div class="input-group-append">
                             <button (click)="d.toggle()" class="btn btn-primary" type="button">
                               <img class="date-picker-image--valid" id="getStrdImg1"
@@ -123,7 +126,8 @@
                 <!-- Your Retirement Amount Available -->
                 <div class="form-panel">
                   <!-- Title -->
-                  <div class="flex-row title" id="retirement-form-title">{{ 'RETIREMENT_PLANNING.STEP_1.RETIREMENT_AMOUNT_AVAILABLE.TITLE' | translate}}</div>
+                  <div class="flex-row title" id="retirement-form-title">
+                    {{ 'RETIREMENT_PLANNING.STEP_1.RETIREMENT_AMOUNT_AVAILABLE.TITLE' | translate}}</div>
 
                   <!-- Lump Sum Amount -->
                   <div class="flex-row section mt20">
@@ -136,7 +140,8 @@
                       <div class="form-control form-control-right no-padding">
                         <i>$</i>
                         <div>
-                          <input class="input-control" type="text" appCurrencyInput decimalFormat="1.2-2" allowDecimal="true" formControlName="lumpSumAmount" placeholder="0">
+                          <input id="lumpSumAmount" class="input-control" type="text" appCurrencyInput decimalFormat="1.2-2"
+                            allowDecimal="true" formControlName="lumpSumAmount" placeholder="0">
                         </div>
                       </div>
                     </div>
@@ -153,7 +158,8 @@
                       <div class="form-control form-control-right">
                         <i>$</i>
                         <div>
-                          <input class="input-control" type="text" appCurrencyInput decimalFormat="1.2-2" allowDecimal="true" formControlName="monthlyAmount" placeholder="0">
+                          <input id="monthlyAmount" class="input-control" type="text" appCurrencyInput decimalFormat="1.2-2"
+                            allowDecimal="true" formControlName="monthlyAmount" placeholder="0">
                           <i>/mth</i>
                         </div>
                       </div>

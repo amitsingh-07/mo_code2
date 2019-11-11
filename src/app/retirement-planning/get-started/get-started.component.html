@@ -30,7 +30,7 @@
                 <div class="flex-col-5 stretch mr15">
                   <div class="form-group-floating-label"
                     [ngClass]="{'inline-error': submitted && retirementPlan.firstName.errors}">
-                    <input type="text" id="" class="form-control" #firstName formControlName="firstName" required>
+                    <input type="text" id="firstName" class="form-control" #firstName formControlName="firstName" required>
                     <label class="form-control-placeholder"
                       for="firstName">{{ 'RETIREMENT_PLANNING.CREATE.FORM.FIRST_NAME.LABEL' | translate}}</label>
                   </div>
@@ -39,7 +39,7 @@
                 <div class="flex-col-5 stretch">
                   <div class="form-group-floating-label"
                     [ngClass]="{'inline-error': submitted && retirementPlan.lastName.errors}">
-                    <input type="text" id="" class="form-control" #lastName formControlName="lastName" required>
+                    <input type="text" id="lastName" class="form-control" #lastName formControlName="lastName" required>
                     <label class="form-control-placeholder"
                       for="lastName">{{ 'RETIREMENT_PLANNING.CREATE.FORM.LAST_NAME.LABEL' | translate}}</label>
                   </div>
@@ -90,7 +90,7 @@
                 <div class="flex-col-12 stretch">
                   <div class="form-group-floating-label"
                     [ngClass]="{'inline-error': submitted && retirementPlan.emailAddress.errors}">
-                    <input type="text" id="" class="form-control" #emailAddress formControlName="emailAddress" required>
+                    <input type="text" id="emailAddress" class="form-control" #emailAddress formControlName="emailAddress" required>
                     <label class="form-control-placeholder"
                       for="email">{{ 'RETIREMENT_PLANNING.CREATE.FORM.EMAIL.LABEL' | translate}}</label>
                   </div>
@@ -116,7 +116,7 @@
                 <div class="flex-col-12 stretch">
                   <div class="form-group-floating-label"
                     [ngClass]="{'inline-error': (submitted && retirementPlan.confirmEmail.errors?.required) || (!confirmEmailFocus && !retirementPlan.emailAddress.errors && retirementPlan.confirmEmail.errors?.notEquivalent)}">
-                    <input type="text" id="" class="form-control" (blur)="showValidity('confirmEmail')"
+                    <input type="text" id="confirmEmail" class="form-control" (blur)="showValidity('confirmEmail')"
                       (focus)="showValidity('confirmEmail')" #confirmEmail formControlName="confirmEmail" required>
                     <label class="form-control-placeholder"
                       for="confirmEmail">{{ 'RETIREMENT_PLANNING.CREATE.FORM.CONFIRM_EMAIL.LABEL' | translate}}</label>
@@ -156,7 +156,7 @@
                 <div class="flex-col-12 stretch">
                   <div class="form-group-floating-label"
                     [ngClass]="{'inline-error': submitted && retirementPlan.mobileNumber.errors}">
-                    <input type="number" maxlength="15" id="" #mobileNumber formControlName="mobileNumber"
+                    <input type="number" maxlength="15" id="mobileNumber" #mobileNumber formControlName="mobileNumber"
                       (keyup)="onlyNumber(mobileNumber)" class="form-control" required>
                     <label class="form-control-placeholder"
                       for="name">{{ 'RETIREMENT_PLANNING.CREATE.FORM.MOBILE_NUMBER.LABEL' | translate}}</label>
