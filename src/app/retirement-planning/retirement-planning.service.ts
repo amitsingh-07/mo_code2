@@ -15,9 +15,9 @@ export class RetirementPlanningService {
     private retirementPlanningForm: RetirementPlanningData = new RetirementPlanningData();
 
     private scheme: any = new Map([
-        ['stableIncomeStream', 'STABLE_INCOME_STREAM'],
-        ['flexibleIncomeStream', 'FLEXIBLE_INCOME_STREAM'],
-        ['longerPeriodOfIncome', 'LONGER_PERIOD_OF_INCOME']
+        ['stableIncomeStream', 'Stable Income Stream'],
+        ['flexibleIncomeStream', 'Flexible Income Stream'],
+        ['longerPeriodOfIncome', 'Longer Period Of Income']
     ]);
 
     constructor(private apiService: ApiService) {
@@ -111,7 +111,7 @@ export class RetirementPlanningService {
             monthlyAmount: retirementAmount.monthlyAmount,
             retirementSchemeList: schemeList,
             receiveMarketingMaterials: this.retirementPlanningForm.userDetails.marketingAcceptance,
-            consentToContactByMobile: this.retirementPlanningForm.userDetails.consent
+            contactedByMobile: this.retirementPlanningForm.userDetails.consent
         }
     }
 

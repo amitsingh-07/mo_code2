@@ -30,7 +30,7 @@ export interface IRetirementPlanPayload {
     emailAddress: string;
     mobileNumber: string;
     receiveMarketingMaterials: boolean,
-    consentToContactByMobile: boolean
+    contactedByMobile: boolean
     retirementAge: number;
     monthlyRetirementIncome: number;
     dateOfBirth: string;
