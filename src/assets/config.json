@@ -7,7 +7,7 @@
   "investmentEngagementEnabled": true,
   "investmentMyInfoEnabled": true,
   "comprehensiveEnabled": true,
-  "comprehensiveLiveEnabled": true,
+  "comprehensiveLiveEnabled": false,
   "srsEnabled": true,
   "promotionEnabled": true,
   "articleEnabled": true,
@@ -15,28 +15,35 @@
   "marqueeEnabled": true,
   "resetPasswordUrl": "/accounts/reset-password",
   "verifyEmailUrl": "/accounts/email-verification",
-  "hospitalPlanData": [{
-    "id": 0,
-    "hospitalClass": "None",
-    "hospitalClassDescription": ""
-  }, {
-    "id": 1,
-    "hospitalClass": "Private Hospital",
-    "hospitalClassDescription": "Choose any doctor, Stay in any hospital"
-  }, {
-    "id": 2,
-    "hospitalClass": "Government Hospital Ward A",
-    "hospitalClassDescription": "Choose any doctor, Stay in single ward"
-  }, {
-    "id": 3,
-    "hospitalClass": "Government Hospital Ward B1",
-    "hospitalClassDescription": "Choose any doctor, Up to 4-bedded ward"
-  }, {
-    "id": 4,
-    "hospitalClass": "Government Hospital Ward B2/C",
-    "hospitalClassDescription": "Assigned doctor, Up to 9-bedded ward"
-  }],
-  "productCategory": [{
+  "hospitalPlanData": [
+    {
+      "id": 0,
+      "hospitalClass": "None",
+      "hospitalClassDescription": ""
+    },
+    {
+      "id": 1,
+      "hospitalClass": "Private Hospital",
+      "hospitalClassDescription": "Choose any doctor, Stay in any hospital"
+    },
+    {
+      "id": 2,
+      "hospitalClass": "Government Hospital Ward A",
+      "hospitalClassDescription": "Choose any doctor, Stay in single ward"
+    },
+    {
+      "id": 3,
+      "hospitalClass": "Government Hospital Ward B1",
+      "hospitalClassDescription": "Choose any doctor, Up to 4-bedded ward"
+    },
+    {
+      "id": 4,
+      "hospitalClass": "Government Hospital Ward B2/C",
+      "hospitalClassDescription": "Assigned doctor, Up to 9-bedded ward"
+    }
+  ],
+  "productCategory": [
+    {
       "id": 1,
       "prodCatName": "Life Protection",
       "prodCatIcon": "LifeProtection-icon--teal.svg",
