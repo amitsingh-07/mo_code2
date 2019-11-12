@@ -89,7 +89,8 @@
     "MP_WALKTHROUGH": {
       "NEW_INVESTMENT_UPDATE": "We’ve new investment updates.",
       "SHOW_ME_AROUND": "Show me around!",
-      "MP_WALKTHROUGH_SLIDES": [{
+      "MP_WALKTHROUGH_SLIDES": [
+        {
           "IMAGE": "mp-walkthrough/portfolio-view.svg",
           "IMG_TITLE": "Improved Portfolio View",
           "TEXT": "See your portfolio value and returns, buy requests and cash balance at a glance."
@@ -224,6 +225,12 @@
         "PORTFOLIO_REF_NO": "Portfolio Reference No. :",
         "CASH_ACC_REF_CODE": "Cash Account (Ref Code):",
         "TRANSFER_TO_BANK_AC_NO": "Transfer to Bank Account No. :"
+        "RE_BALANCE": {
+          "TITLE": "Quarterly Rebalancing In-progress",
+          "DESC": "Please note that this portfolio is being rebalanced. This process will be completed in 6 to 7 working days.",
+          "DESC_ONE": "Requests for redemptions will only be submitted for processing after rebalancing is completed. ",
+          "FAQ_LINK": "For more information, visit our FAQs."
+        }
       }
     },
     "WITHDRAW_REQUEST_LOADER": {

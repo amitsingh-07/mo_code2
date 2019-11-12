@@ -1,12 +1,13 @@
 @import '../../../../../variables.scss';
 @import '../../../../../mixins';
+
 app-confirm-withdrawal-modal {
   .edit-investment-modal {
     font-family: $muli;
 
     .modal-body-message {
       .warning {
-        padding:6px 0 20px 0;
+        padding: 6px 0 20px 0;
         font-size: 16px;
         font-weight: normal;
         font-style: normal;
@@ -21,28 +22,32 @@ app-confirm-withdrawal-modal {
       }
 
       .forward-pricing-info {
-        background-color:#00a7a7;
+        background-color: #00a7a7;
         margin: 0 -20px 15px -25px;
         font-size: 13px;
-        color:#fff;
+        color: #fff;
         padding: 20px;
+
         div {
-          padding-left:30px;
-          position:relative;
+          padding-left: 30px;
+          position: relative;
+
           img {
-            position:absolute;
-            left:0px;
-            top:0px;
+            position: absolute;
+            left: 0px;
+            top: 0px;
           }
+
           span.head {
-            font-weight:bold;
-            display:block;
-            margin-bottom:2px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 2px;
           }
+
           span.link {
-            font-weight:bold;
+            font-weight: bold;
             white-space: nowrap;
-            cursor:pointer;
+            cursor: pointer;
           }
         }
       }
@@ -50,25 +55,67 @@ app-confirm-withdrawal-modal {
       .withdraw-details {
         margin: 25px 0px;
         font-family: $muli;
+
         span.head {
           font-size: 14px;
           font-weight: bold;
           color: #000;
           margin-bottom: 15px;
-          display:block;
+          display: block;
         }
+
         .caption-values {
           .caption {
-            display:block;
+            display: block;
             font-size: 14px;
             color: #5e5e5e;
           }
+
           .values {
-            display:block;
+            display: block;
             color: #00a7a7;
             font-weight: bold;
             font-size: 18px;
-            margin-bottom:10px;
+            margin-bottom: 10px;
+          }
+
+          .rebalancing-info {
+            border-radius: 6px;
+            background-color: #f7f7f7;
+            padding: 20px;
+            display: flex;
+            font-family: $muli-bold;
+            font-size: 13px;
+            letter-spacing: -0.11px;
+            color:#000000; 
+
+            @include allmobiles {
+              padding: 20px 15px;
+            }
+
+            .txt-grey {
+              color: #4a4a4a; 
+             
+
+              span {
+                font-family: $muli-regular;
+              }
+            }
+
+            .txt-orange {
+              a {
+                color: #ff872f;
+                text-decoration: none;
+                cursor: pointer;
+                font-family: $muli-bold;
+              }
+            }
+
+            .info-icon {
+              width: 24px;
+              height: 24px;
+              display: flex;
+            }
           }
         }
       }
@@ -86,7 +133,7 @@ app-confirm-withdrawal-modal {
       margin: 20px -25px 0;
       text-align: center;
 
-      @include allmobiles{
+      @include allmobiles {
         width: 100vw;
       }
 
@@ -109,9 +156,11 @@ app-confirm-withdrawal-modal {
         font-family: $muli-bold;
       }
     }
+
     .border-btm {
       border-bottom: 1px solid $spindle-color;
     }
+
     .capital-letter {
       text-transform: capitalize;
       word-break: break-word;
