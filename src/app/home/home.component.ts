@@ -94,9 +94,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.navbarService.setNavbarMobileVisibility(false);
       this.navbarService.setNavbarShadowVisibility(true);
       this.footerService.setFooterVisibility(true);
-    });
-
-    this.translate.get('HOME').subscribe((result: string) => {
       // Meta Tag and Title Methods
       this.seoService.setTitle(this.translate.instant('GENERAL.META.META_TITLE'));
       this.seoService.setBaseSocialMetaTags(this.translate.instant('GENERAL.META.META_TITLE'),
