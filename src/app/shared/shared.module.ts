@@ -61,8 +61,6 @@ import { CarouselModalComponent } from '../shared/modal/carousel-modal/carousel-
 import { SlickModule } from 'ngx-slick';
 import { ReviewBuyRequestModalComponent } from '../shared/modal/review-buy-request-modal/review-buy-request-modal.component';
 
-import { NumberOnlyDirective } from './directives/number-only.directive';
-
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,

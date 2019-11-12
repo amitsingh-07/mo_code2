@@ -71,8 +71,9 @@
                         [ngClass]="{'inline-error': submitted && retirementNeedsForm.controls.monthlyRetirementIncome.errors}">
                         <i>$</i>
                         <div>
-                          <input id="monthlyRetirementIncome" class="input-control" appCurrencyInput decimalFormat="1.2-2" allowDecimal="true"
-                            type="text" formControlName="monthlyRetirementIncome" placeholder="0">
+                          <input id="monthlyRetirementIncome" class="input-control" appCurrencyInput
+                            decimalFormat="1.2-2" allowDecimal="true" type="text"
+                            formControlName="monthlyRetirementIncome" placeholder="0">
                           <i>/mth</i>
                         </div>
                       </div>
@@ -97,8 +98,8 @@
                       <div class="datepicker-control">
                         <div class="input-group date-picker mb0 date-picker-above"
                           [ngClass]="{'inline-error': retirementNeedsForm.controls.dateOfBirth.errors?.invalidAge }">
-                          <input id="dateOfBirth" class="form-control" placeholder="DD/MM/YYYY" formControlName="dateOfBirth"
-                            ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                          <input readonly id="dateOfBirth" class="form-control" placeholder="DD/MM/YYYY"
+                            formControlName="dateOfBirth" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
 
                           <div class="input-group-append">
                             <button (click)="d.toggle()" class="btn btn-primary" type="button">
@@ -140,8 +141,8 @@
                       <div class="form-control form-control-right no-padding">
                         <i>$</i>
                         <div>
-                          <input id="lumpSumAmount" class="input-control" type="text" appCurrencyInput decimalFormat="1.2-2"
-                            allowDecimal="true" formControlName="lumpSumAmount" placeholder="0">
+                          <input id="lumpSumAmount" class="input-control" type="text" appCurrencyInput
+                            decimalFormat="1.2-2" allowDecimal="true" formControlName="lumpSumAmount" placeholder="0">
                         </div>
                       </div>
                     </div>
@@ -158,8 +159,8 @@
                       <div class="form-control form-control-right">
                         <i>$</i>
                         <div>
-                          <input id="monthlyAmount" class="input-control" type="text" appCurrencyInput decimalFormat="1.2-2"
-                            allowDecimal="true" formControlName="monthlyAmount" placeholder="0">
+                          <input id="monthlyAmount" class="input-control" type="text" appCurrencyInput
+                            decimalFormat="1.2-2" allowDecimal="true" formControlName="monthlyAmount" placeholder="0">
                           <i>/mth</i>
                         </div>
                       </div>
