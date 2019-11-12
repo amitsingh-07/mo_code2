@@ -8,19 +8,20 @@ import { TranslateService } from '@ngx-translate/core';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
+import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import {
-    EditInvestmentModalComponent
+  EditInvestmentModalComponent
 } from '../../../shared/modal/edit-investment-modal/edit-investment-modal.component';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
 import {
-    InvestmentEngagementJourneyService
+  InvestmentEngagementJourneyService
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
@@ -56,7 +57,8 @@ export class ConfirmPortfolioComponent implements OnInit {
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     public manageInvestmentsService: ManageInvestmentsService,
     public investmentAccountService: InvestmentAccountService,
-    private investmentCommonService: InvestmentCommonService
+    private investmentCommonService: InvestmentCommonService,
+    private authService: AuthenticationService,
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -84,11 +86,12 @@ export class ConfirmPortfolioComponent implements OnInit {
           this.authService.saveEnquiryId(data.objectList.enquiryId);
         }
         this.portfolio = data.objectList;
+        this.authService.saveEnquiryId(data.objectList.enquiryId);
         this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
         const fundingParams = this.constructFundingParams(data.objectList);
         this.manageInvestmentsService.setFundingDetails(fundingParams);
         if (this.portfolio.fundingTypeId) {
-          this.investmentCommonService.setInitialFundingMethod({initialFundingMethodId: this.portfolio.fundingTypeId});
+          this.investmentCommonService.setInitialFundingMethod({ initialFundingMethodId: this.portfolio.fundingTypeId });
         }
         this.userInputSubtext = {
           onetime: this.currencyPipe.transform(
