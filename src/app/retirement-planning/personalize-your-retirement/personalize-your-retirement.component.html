@@ -1,0 +1,83 @@
+  <!-- Sub Header -->
+  <div class="navbar-sub-header hidden-sm-md">
+    <span>{{ 'RETIREMENT_PLANNING.STEP_2.TITLE' | translate}}</span>
+  </div>
+  <div class="intro-block">
+    <div class="step-indicator-container">
+      <div class="container-fluid max-width--1024">
+        <app-step-indicator [count]="2" [activeStepIndex]="2" [mode]="1"></app-step-indicator>
+      </div>
+    </div>
+    <div class="container-fluid max-width--1024">
+
+      <div class="intro-block__content">
+        <div class="flex-row">
+          <div class="col-lg-6 col-md-6 col-sm-12 intro-block__content__desc">
+            <div class="intro-block__content__desc-container">
+              <div class="step">{{ 'RETIREMENT_PLANNING.STEP_2.LABEL' | translate}}</div>
+              <h2 class="title hidden-sm-md" id="plan-retirement-title">
+                {{ 'RETIREMENT_PLANNING.STEP_2.TITLE' | translate}}</h2>
+              <div class="sub-title">
+                <div class="web" id="plan-retirement-sub-title">
+                  <span>{{ 'RETIREMENT_PLANNING.STEP_2.SUB_TITLE' | translate}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-5 col-md-5 col-sm-12 intro-block__content__form">
+            <div class="form-container">
+              <!-- Personalise Your Retirement -->
+              <form name="personalizeYourRetireForm" id="personalizeYourRetireForm"
+                [formGroup]="personalizeYourRetireForm">
+
+                <div class="form-group-single-column mb0 flex-col">
+                  <div class="checkbox-button two-label">
+                    <input id="stableIncomeStream" name="stableIncomeStream" type="checkbox" class="field checkbox"
+                      formControlName="stableIncomeStream"
+                      value="{{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION1.VALUE' | translate}}">
+                    <label for="stableIncomeStream" id="stableIncomeStreamLbl">
+                      <div class="input-label-black">
+                        {{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION1.TITLE' | translate}}"</div>
+                      <div class="input-label-normal">
+                        {{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION1.SUB_TITLE' | translate}}"</div>
+                    </label>
+                  </div>
+
+                  <div class="checkbox-button two-label mb15">
+                    <input id="flexibleIncomeStream" name="flexibleIncomeStream" type="checkbox" class="field checkbox"
+                      formControlName="flexibleIncomeStream"
+                      value="{{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION2.VALUE' | translate}}">
+                    <label for="flexibleIncomeStream">
+                      <div class="input-label-black">
+                        {{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION2.TITLE' | translate}}"</div>
+                      <div class="input-label-normal">
+                        {{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION2.SUB_TITLE' | translate}}"</div>
+                    </label>
+                  </div>
+
+                  <div class="checkbox-button two-label mb15">
+                    <input id="longerPeriodOfIncome" name="longerPeriodOfIncome" type="checkbox" class="field checkbox"
+                      formControlName="longerPeriodOfIncome"
+                      value="{{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION3.VALUE' | translate}}">
+                    <label for="longerPeriodOfIncome">
+                      <div class="input-label-black">
+                        {{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION3.TITLE' | translate}}"</div>
+                      <div class="input-label-normal">
+                        {{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION3.SUB_TITLE' | translate}}"</div>
+                    </label>
+                  </div>
+                </div>
+              </form>
+
+              <!-- Proceed button -->
+              <button id="nextStep" type="button" [disabled]="personalizeYourRetireForm.invalid"
+                (click)="save()"
+                class="btn btn__footer--fixed btn-primary width100">{{ 'RETIREMENT_PLANNING.CREATE.FORM.SUBMIT' | translate}}</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
