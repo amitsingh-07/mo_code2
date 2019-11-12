@@ -64,7 +64,7 @@ export class GetStartedComponent implements OnInit {
       Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]],
       emailAddress: [this.formValues.emailAddress, [Validators.required, Validators.email]],
       confirmEmail: [this.formValues.confirmEmail],
-      mobileNumber: [this.formValues.mobileNumber, [Validators.required, Validators.pattern(RegexConstants.MobileNumber)]],
+      mobileNumber: [this.formValues.mobileNumber, [Validators.required]],
       marketingAcceptance: [this.formValues.marketingAcceptance],
       consent: [this.formValues.consent]
     }, { validator: this.validateMatchEmail() });
