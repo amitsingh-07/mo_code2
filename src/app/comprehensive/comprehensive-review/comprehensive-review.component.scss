@@ -1,0 +1,54 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.comprehensive.review {
+  background: #fff;
+  height: 95vh !important;
+
+  @include desktop {
+    &.container-fluid {
+      padding: 90px 20px 20px 20px;
+    }
+  }
+
+  .header {
+    color: #066360;
+    font-size: 24px;
+    font-family: $muli-bold;
+  }
+
+  .reviewImg {
+    background: url("/assets/images/comprehensive/comprehensive_review.svg") no-repeat;
+    display: inline-block;
+    width: 174px;
+    height: 133px;
+    background-position: center center;
+    margin-bottom: 20px;
+  }
+
+  .result-panel {
+    &__about {
+      font-size: 14px;
+      color: #9f9f9f;
+      font-family: $muli-italic;
+    }
+  }
+
+  .about {
+    font-size: 16px;
+    color: #066360;
+    font-family: $muli-regular;
+  }
+
+  .reviewInput {
+    margin: 0px !important;
+    border-radius: 6px;
+    border: solid 1px $btn-primary-backgrnd-color;
+    background-color: $white-color;
+    color: $modal-txt-highlight-color;
+    font-size: 18px!important;
+  }
+  .confirmBtn{
+    margin-top: 20px;
+  }
+}

@@ -49,8 +49,8 @@ export class RetirementNeedsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMode(7);
-    this.navbarService.setNavbarShadowVisibility(false);    
+    this.navbarService.setNavbarMode(8);
+    this.navbarService.setNavbarShadowVisibility(false);
     this.buildForm();
   }
 

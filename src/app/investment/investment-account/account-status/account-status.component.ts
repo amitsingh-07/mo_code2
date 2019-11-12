@@ -3,14 +3,18 @@ import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
-import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-investments-routes.constants';
-
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
+import {
+    INVESTMENT_COMMON_ROUTE_PATHS
+} from '../../investment-common/investment-common-routes.constants';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
+import {
+    MANAGE_INVESTMENTS_ROUTE_PATHS
+} from '../../manage-investments/manage-investments-routes.constants';
+import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
 
@@ -39,7 +43,8 @@ export class AccountStatusComponent implements OnInit {
     private modal: NgbModal,
     public footerService: FooterService,
     public readonly translate: TranslateService,
-    private investmentCommonService: InvestmentCommonService
+    private investmentCommonService: InvestmentCommonService,
+    private manageInvestmentsService: ManageInvestmentsService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {});
@@ -53,6 +58,7 @@ export class AccountStatusComponent implements OnInit {
     this.status = this.investmentAccountService.getAccountCreationStatus();
     this.investmentAccountService.clearInvestmentAccountFormData();
     this.investmentCommonService.clearJourneyData();
+    this.investmentCommonService.clearFundingDetails();
     this.investmentAccountService.restrictBackNavigation();
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -108,6 +114,7 @@ export class AccountStatusComponent implements OnInit {
     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);
   }
   redirectToYourInvestment() {
+    this.manageInvestmentsService.activateToastMessage(); /* Activating Toast message for SRS Portfolio success */
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
   }
 

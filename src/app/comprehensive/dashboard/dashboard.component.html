@@ -1,0 +1,151 @@
+<div class="container-fluid max-width--1024 comprehensive"
+  *ngIf="((getComprehensiveSummary && getComprehensiveSummary.comprehensiveEnquiry.isValidatedPromoCode) || isComprehensiveLiveEnabled) && isComprehensiveEnabled">
+  <div class="widget">
+    <div class="form-group-with-bg overlay-bg">
+      <div [ngClass]="{'hidden': !isLoadComplete}">
+        <!--Form Header-->
+        <div class="form-group-with-bg--header">
+          <div class="flex space-btwn align-items-start">
+            <div>
+              <div class="form-group-with-bg--header-label pr10">{{
+                'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_TITLE' | translate}}
+              </div>
+            </div>
+            <div>
+              <div class="form-group-with-bg--header-label plan-view-icon text-right comprehensive-plan-view"
+                [hidden]="comprehensivePlanning !== 0" (click)="goToEditComprehensivePlan(true)">
+                {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_VIEW' | translate }}</div>
+              <div class="form-group-with-bg--header-label plan-view-icon text-right comprehensive-plan-view"
+                [hidden]="!(comprehensivePlanning === 5 || comprehensivePlanning === 1 || comprehensivePlanning === 2)"
+                (click)="goToEditComprehensivePlan(false)">
+                {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_EDIT' | translate }}</div>
+            </div>
+          </div>
+        </div>
+        <!--Form Content-->
+        <div class="form-group-with-bg--content">
+          <div class="flex-row align-start"
+            [hidden]="comprehensivePlanning === 5 || comprehensivePlanning === 3 || comprehensivePlanning === 4 || comprehensivePlanning === 0">
+            <div class="flex-col-8">
+              <div class="form-group-with-bg--content-label" for="name">
+                {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_COMPLETED_DESC' | translate}}
+              </div>
+            </div>
+            <div class="flex-col-4 text-right">
+              <img src='assets/images/comprehensive/dashboard-comprehensive.svg'>
+            </div>
+          </div>
+          <div class="flex-row align-start" [hidden]="comprehensivePlanning !== 0">
+            <div class="flex-col-8">
+              <div class="form-group-with-bg--content-label" for="name">
+                {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_SUBMITTED' | translate}}
+              </div>
+            </div>
+            <div class="flex-col-4 text-right">
+              <img src='assets/images/comprehensive/dashboard-comprehensive.svg'>
+            </div>
+          </div>
+          <div class="flex-row align-start" [hidden]="comprehensivePlanning !== 3">
+            <div class="flex-col-8">
+              <div class="form-group-with-bg--content-label" for="name">
+                {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_PENDING_DESC' | translate}}
+              </div>
+            </div>
+            <div class="flex-col-4 text-right">
+              <img src='assets/images/comprehensive/dashboard-comprehensive.svg'>
+            </div>
+          </div>
+          <div class="flex-row align-start" [hidden]="comprehensivePlanning !== 2">
+            <div class="flex-col-12">
+              <div class="form-group-with-bg--content-label" for="name">
+                <u>{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_NEXT_STEP' | translate}}</u>
+              </div>
+              <div class="form-group-with-bg--content-label" for="name">
+                {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_NEXT_STEP_DESC' | translate}}
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-row align-start" [hidden]="comprehensivePlanning !== 2">
+            <div class="flex-col-12">
+              <button type="button" class="btn btn-primary width100" id="prfBtn1">
+                <div class="ft-18" for="name">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_ADVISOR' | translate}}
+                </div>
+              </button>
+            </div>
+          </div>
+          <div class="flex-row align-start" [hidden]="!(comprehensivePlanning === 1 || comprehensivePlanning === 2)">
+            <div class="flex-col-12">
+              <button (click)="downloadComprehensiveReport()" type="button" class="btn btn-view width100" id="prfBtn1">
+                <div class="ft-18" for="name">
+                  {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_VIEW_REPORT' | translate}}
+                  <div class="label-grey ft-13" for="name">
+                    {{ ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_LAST_UPDATED' | translate).replace('LAST_UPDATED_DATE', reportDate)}}
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+          <div class="flex-row align-start" [hidden]="comprehensivePlanning !== 3">
+            <div class="flex-col-12">
+              <button type="button" class="btn btn-primary width100" id="prfBtn1" (click)="goToCurrentStep()">
+                <div class="ft-18" for="name">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_CONTINUE' | translate}}
+                  <div class="ft-13" for="name" [hidden]="this.currentStep > 4">
+                    {{ ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_STEPS_PENDING' | translate).replace('CURRENT_STEP', currentStep)}}
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex-row align-start" [hidden]="comprehensivePlanning !== 4">
+            <div class="flex-col-8">
+              <div class="form-group-with-bg--content-label" for="name">
+                {{ 'COMPREHENSIVE.DASHBOARD.DEFAULT_CONTENT' | translate}}
+              </div>
+            </div>
+            <div class="flex-col-4 text-right">
+              <img src='assets/images/comprehensive/dashboard-comprehensive.svg'>
+            </div>
+          </div>
+          <div class="flex-row align-start" [hidden]="comprehensivePlanning !== 4">
+            <div class="flex-col-12">
+              <button type="button" class="btn btn-primary width100" id="prfBtn1" (click)="goToEditProfile()">
+                <div class="ft-18" for="name">{{ 'COMPREHENSIVE.DASHBOARD.DEFAULT_START' | translate}}
+                  <div class="ft-13" for="name">{{ 'COMPREHENSIVE.DASHBOARD.DEFAULT_ESTIMATED' | translate}}
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+          <div class="flex-row align-start" [hidden]="comprehensivePlanning !== 5">
+            <div class="flex-col-8">
+              <div class="form-group-with-bg--content-label" for="name">
+                {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_MAKE_CHANGES_CONTENT' | translate}}
+              </div>
+            </div>
+            <div class="flex-col-4 text-right">
+              <img src='assets/images/comprehensive/dashboard-comprehensive.svg'>
+            </div>
+          </div>
+          <div class="flex-row align-start" [hidden]="comprehensivePlanning !== 5">
+            <div class="flex-col-12">
+              <button type="button" class="btn btn-primary width100" id="prfBtn1"
+                (click)="goToEditComprehensivePlan(false)">
+                <div class="ft-18" for="name">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_MAKE_CHANGES' | translate}}
+                  <div class="ft-13 submittedDate " for="name">
+                    {{ ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_LAST_SUBMITTED_DATE' | translate).replace('LAST_SUBMITTED_DATE', submittedDate)}}
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [ngClass]="{'hidden': isLoadComplete}" class="ajax-loader-card-inline">
+        <img alt="loader" src="assets/styles/ajax-loader.gif" />
+      </div>
+    </div>
+
+  </div>
+</div>

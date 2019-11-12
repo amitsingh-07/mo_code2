@@ -34,7 +34,7 @@ export class PersonalizeYourRetirementComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMode(7);
+    this.navbarService.setNavbarMode(8);
     this.navbarService.setNavbarShadowVisibility(false);
     this.buildForm();
   }

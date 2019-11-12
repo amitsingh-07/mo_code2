@@ -8,7 +8,7 @@ import { ApiService } from '../../shared/http/api.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-    TransferInstructionsModalComponent
+  TransferInstructionsModalComponent
 } from '../../shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
@@ -17,7 +17,7 @@ import { InvestmentEngagementJourneyService } from '../investment-engagement-jou
 import { ManageInvestmentsFormData } from './manage-investments-form-data';
 import { ManageInvestmentsFormError } from './manage-investments-form-error';
 import {
-    MANAGE_INVESTMENTS_ROUTE_PATHS
+  MANAGE_INVESTMENTS_ROUTE_PATHS
 } from './manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from './manage-investments.constants';
 import { TopUPFormError } from './top-up/top-up-form-error';
@@ -94,6 +94,7 @@ export class ManageInvestmentsService {
     return this.investmentApiService.getCustomerPortfolioDetailsById(portfolioId);
   }
 
+
   doFinancialValidations(form, allowMonthlyZero) {
     const invalid = [];
     // tslint:disable-next-line:triple-equals
@@ -107,7 +108,7 @@ export class ManageInvestmentsService {
     } else if (
       Number(form.value.MonthlyInvestmentAmount) < this.manageInvestmentsFormData.minimumBalanceOfTopup
       && form.value.Investment === 'Monthly Investment'
-      && ( (Number(form.value.MonthlyInvestmentAmount) === 0 && !allowMonthlyZero) || (Number(form.value.MonthlyInvestmentAmount) !== 0))
+      && ((Number(form.value.MonthlyInvestmentAmount) === 0 && !allowMonthlyZero) || (Number(form.value.MonthlyInvestmentAmount) !== 0))
     ) {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['more']);
       return this.topUPFormError.formFieldErrors['topupValidations']['more'];
@@ -413,23 +414,23 @@ export class ManageInvestmentsService {
   /*
   * Method to get details based on bank or paynow
   */
- setBankPayNowDetails(data) {
-   if (data) {
-  this.bankDetails = data.filter(
-    (transferType) => transferType.institutionType === this.translate.instant('TRANSFER_INSTRUCTION.INSTITUTION_TYPE_BANK')
-  )[0];
-  this.paynowDetails = data.filter(
-    (transferType) => transferType.institutionType === this.translate.instant('TRANSFER_INSTRUCTION.INSTITUTION_TYPE_PAY_NOW')
-  )[0];
-   }
-}
+  setBankPayNowDetails(data) {
+    if (data) {
+      this.bankDetails = data.filter(
+        (transferType) => transferType.institutionType === this.translate.instant('TRANSFER_INSTRUCTION.INSTITUTION_TYPE_BANK')
+      )[0];
+      this.paynowDetails = data.filter(
+        (transferType) => transferType.institutionType === this.translate.instant('TRANSFER_INSTRUCTION.INSTITUTION_TYPE_PAY_NOW')
+      )[0];
+    }
+  }
 
   /*
   * Method to show transfer instruction steps modal
   */
   showTransferInstructionModal(numberOfPendingRequest) {
     this.transferInstructionModal = this.modal.open(TransferInstructionsModalComponent, {
-            windowClass : 'transfer-steps-modal custom-full-height'
+      windowClass: 'transfer-steps-modal custom-full-height'
     });
     this.transferInstructionModal.componentInstance.bankDetails = this.bankDetails;
     this.transferInstructionModal.componentInstance.paynowDetails = this.paynowDetails;
@@ -449,7 +450,7 @@ export class ManageInvestmentsService {
     this.transferInstructionModal.componentInstance.topUpActionBtn.subscribe(() => {
       this.transferInstructionModal.dismiss();
       this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
-     });
+    });
   }
 
   /*
@@ -504,8 +505,10 @@ export class ManageInvestmentsService {
   }
 
   activateToastMessage() {
-    this.manageInvestmentsFormData.toastMessage.isShown = true;
-    this.commit();
+    if (this.manageInvestmentsFormData.toastMessage) {
+      this.manageInvestmentsFormData.toastMessage.isShown = true;
+      this.commit();
+    }
   }
 
   clearToastMessage() {

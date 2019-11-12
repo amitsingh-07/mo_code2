@@ -32,10 +32,11 @@ import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
-import { InvestmentAccountService } from './../../investment/investment-account/investment-account-service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { HelperService } from './../../shared/http/helper.service';
 import { IError } from './../../shared/http/interfaces/error.interface';
+import { COMPREHENSIVE_ROUTE_PATHS } from './../../comprehensive/comprehensive-routes.constants';
+import { InvestmentAccountService } from './../../investment/investment-account/investment-account-service';
 import { StateStoreService } from './../../shared/Services/state-store.service';
 import { LoginFormError } from './login-form-error';
 @Component({
@@ -58,6 +59,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   hideForgotPassword = false;
   duplicateError: any;
   progressModal = false;
+  investmentEnquiryId;
 
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
 
@@ -110,6 +112,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
+    this.investmentEnquiryId = this.authService.getEnquiryId();
     this.buildLoginForm();
     if (!this.authService.isAuthenticated()) {
       this.loaderService.showLoader({ title: 'Loading' });
@@ -228,6 +231,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
         this.loginForm.value.captchaValue).subscribe((data) => {
           if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+            this.investmentCommonService.clearAccountCreationActions();
             try {
               if (data.objectList[0].customerId) {
                 this.appService.setCustomerId(data.objectList[0].customerId);
@@ -281,7 +285,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.START];
     const redirect_url = this.signUpService.getRedirectUrl();
     const journeyType = this.appService.getJourneyType();
-    if (redirect_url && investmentRoutes.indexOf(redirect_url) >= 0) {
+    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
+      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
+    } else if (redirect_url && investmentRoutes.indexOf(redirect_url) >= 0) {
       this.signUpService.clearRedirectUrl();
       this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_INVESTMENT);
     } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
@@ -429,8 +435,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
-        if (journeyType === appConstants.JOURNEY_TYPE_INVESTMENT) {
-          this.investmentCommonService.redirectToInvestmentFromLogin();
+        if (journeyType === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
+          this.loaderService.showLoader({ title: 'Loading', autoHide: false });
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT], { skipLocationChange: true });
+        } else if (journeyType === appConstants.JOURNEY_TYPE_INVESTMENT) {
+          this.investmentCommonService.redirectToInvestmentFromLogin(this.investmentEnquiryId);
         } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING) {
           this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
         } else {

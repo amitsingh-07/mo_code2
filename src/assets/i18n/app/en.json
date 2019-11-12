@@ -14,7 +14,7 @@
     "LBL_YES": "Yes",
     "LBL_NO": "No",
     "LBL_CONTINUE": "Continue",
-    "SUBLBL_MAX4":" (Max 4)",
+    "SUBLBL_MAX4": " (Max 4)",
     "LBL_SELECT": "Select",
     "LBL_PREMIUM": "Premium",
     "LBL_SINGLE_PREMIUM": "Single Premium",
@@ -22,6 +22,8 @@
     "LBL_PROJECTED_RETURN": "Projected Return",
     "LBL_GUARANTEED_PAYOUT": "Guaranteed Payout",
     "LBL_PROJECTED_PAYOUT": "Projected Payout",
+    "CREATE_ACCOUNT": "Create Account",
+    "LOGIN": "Log In",
     "OKAY": "Ok"
   },
   "SUFFIX": {
@@ -46,14 +48,14 @@
     "SAVE": "Save",
     "SUPPORT_AMOUNT": "Support Amount",
     "YEARS_NEEDED": "Years Needed",
-    "TRY_AGAIN":"Try Again",
-    "PROCEED":"Proceed",
+    "TRY_AGAIN": "Try Again",
+    "PROCEED": "Proceed",
     "SAVE_CONTINUE": "Save and Continue",
     "SEND": "Send",
     "BACK_TO_HOME": "Back To Home",
     "BACK_TO_DASHBOARD": "Back To Dashboard"
   },
-  "ADD_EXISTING_COVERAGES" : {
+  "ADD_EXISTING_COVERAGES": {
     "TITLE": "Add Existing Coverage",
     "LIFE_PROTECTION": "Life Protection",
     "CRITICAL_ILLNESS": "Critical Illness",
@@ -77,7 +79,7 @@
   },
   "CUSTOM_MODAL": {
     "MODAL_TITLE": "Insurance Results",
-    "MODAL_DESC":"In the final step, we will be sharing with you the coverage you need based on our assessment."
+    "MODAL_DESC": "In the final step, we will be sharing with you the coverage you need based on our assessment."
   },
   "PRODUCT_DETAILS": {
     "LBL_ABOUT_POLICY": "About Policy",
@@ -93,12 +95,27 @@
     "TITLE": "Settings",
     "SORT_BY": "Sort by",
     "APPLY_FILTERS": "Apply Filters",
-    "SORT" : [
-      {"displayText": "Highest Ranking", "value": "premium.ranking" },
-      {"displayText": "Insurer Name (A-Z)", "value": "+insurer.insurerName" },
-      {"displayText": "Insurer Name (Z-A)", "value": "-insurer.insurerName" },
-      {"displayText": "Financial Rating (Highest-Lowest)", "value": "+insurer.rating" },
-      {"displayText": "Financial Rating (Lowest-Highest)", "value": "-insurer.rating" }
+    "SORT": [
+      {
+        "displayText": "Highest Ranking",
+        "value": "premium.ranking"
+      },
+      {
+        "displayText": "Insurer Name (A-Z)",
+        "value": "+insurer.insurerName"
+      },
+      {
+        "displayText": "Insurer Name (Z-A)",
+        "value": "-insurer.insurerName"
+      },
+      {
+        "displayText": "Financial Rating (Highest-Lowest)",
+        "value": "+insurer.rating"
+      },
+      {
+        "displayText": "Financial Rating (Lowest-Highest)",
+        "value": "-insurer.rating"
+      }
     ],
     "TYPES": {
       "INSURERS": "Insurers",
@@ -116,13 +133,13 @@
   },
   "PROD_INFO_TOOLTIP": {
     "COMMISSION": {
-          "TITLE": "Commission Rebate",
-          "MESSAGE": "<div><div class='rebate'><div>We give you a <span>50% rebate</span> on the agent commission that we receive from the insurer when you purchase a policy through us.</div><div>This excludes an admin charge of $26.75 per policy and is limited to the period that the insurer pays us commission.</div></div></div>"
-      },
+      "TITLE": "Commission Rebate",
+      "MESSAGE": "<div><div class='rebate'><div>We give you a <span>50% rebate</span> on the agent commission that we receive from the insurer when you purchase a policy through us.</div><div>This excludes an admin charge of $26.75 per policy and is limited to the period that the insurer pays us commission.</div></div></div>"
+    },
     "RATING": {
-          "TITLE": "Insurer’s Financial Strength Rating",
-          "MESSAGE": "<div> <div class='mb20'>This is a forward-looking opinion about the financial security characteristics of an insurance company with respect to its ability to pay under its insurance policies and contracts in accordance with their terms.</div><div class='insurer-rating'> <div class='rating title'> <span>S&P Rating</span> </div><div class='rating-desc title'> <span>Description</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>AAA</span> </div><div class='rating-desc'> <span>The insurer rated 'AAA' has extremely strong financial security characteristics.</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>AA+</span> <span>AA</span> <span>AA-</span> </div><div class='rating-desc'> <span>An insurer rated 'AA' has very strong financial security characteristics, differing only slightly from those rated higher.</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>A+</span> <span>A</span> <span>A-</span> </div><div class='rating-desc'> <span>An insurer rated 'A' has strong financial security characteristics but is somewhat more likely to be affected by adverse business conditions than are insurers with higher ratings.</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>BBB+</span> <span>BBB</span> <span>BBB-</span> </div><div class='rating-desc'> <span>An insurer rated 'BBB' has good financial security characteristics but is more likely to be affected by adverse business conditions than are higher-rated insurers.</span> </div></div><div class='insurer-rating-source'>Source: <a href=\"http://www.standardandpoors.com/RATINGSDIRECT' target=\"_blank\">http://www.standardandpoors.com/RATINGSDIRECT</a></div></div>"
-      }
+      "TITLE": "Insurer’s Financial Strength Rating",
+      "MESSAGE": "<div> <div class='mb20'>This is a forward-looking opinion about the financial security characteristics of an insurance company with respect to its ability to pay under its insurance policies and contracts in accordance with their terms.</div><div class='insurer-rating'> <div class='rating title'> <span>S&P Rating</span> </div><div class='rating-desc title'> <span>Description</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>AAA</span> </div><div class='rating-desc'> <span>The insurer rated 'AAA' has extremely strong financial security characteristics.</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>AA+</span> <span>AA</span> <span>AA-</span> </div><div class='rating-desc'> <span>An insurer rated 'AA' has very strong financial security characteristics, differing only slightly from those rated higher.</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>A+</span> <span>A</span> <span>A-</span> </div><div class='rating-desc'> <span>An insurer rated 'A' has strong financial security characteristics but is somewhat more likely to be affected by adverse business conditions than are insurers with higher ratings.</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>BBB+</span> <span>BBB</span> <span>BBB-</span> </div><div class='rating-desc'> <span>An insurer rated 'BBB' has good financial security characteristics but is more likely to be affected by adverse business conditions than are higher-rated insurers.</span> </div></div><div class='insurer-rating-source'>Source: <a href=\"http://www.standardandpoors.com/RATINGSDIRECT' target=\"_blank\">http://www.standardandpoors.com/RATINGSDIRECT</a></div></div>"
+    }
   },
   "LEGAL": {
     "TNC": {
@@ -222,15 +239,14 @@
         "CONTACT": "I also give my consent to be contacted via my mobile phone with regards to this insurance enquiry"
       }
     }
-
   },
   "FOOTER": {
     "TOP_SECTION": {
       "ABOUT_US": {
-          "TITLE": "About Us"
+        "TITLE": "About Us"
       },
       "LIVE_CHAT": {
-          "TITLE": "Live Chat"
+        "TITLE": "Live Chat"
       }
     },
     "MIDDLE_SECTION": {
@@ -251,7 +267,7 @@
         },
         "EMAIL": {
           "LABEL": "Email",
-          "LINK_LABEL":"enquiries@moneyowl.com.sg",
+          "LINK_LABEL": "enquiries@moneyowl.com.sg",
           "LINK": "enquiries@moneyowl.com.sg"
         },
         "CORPORATE": {
@@ -269,7 +285,7 @@
         "FACEBOOK": "Facebook",
         "LINKEDIN": "LinkedIn"
       },
-      "MAINTENANCE":{
+      "MAINTENANCE": {
         "MSG1": "Dear users, our website will be undergoing a weekly scheduled maintenance every Thursday, 10.30pm - 12.30am. ",
         "MSG2": "Thank you for your patience and understanding!"
       }
@@ -324,22 +340,77 @@
   },
   "IFAST_ERROR_TITLE": "Error !",
   "UNSUPPORTED_DEVICE_MODAL": {
-      "TITLE": "Note !",
-      "DESC": "This website is optimized for mobile viewing. Please use mobile browsers such as Safari or Chrome for best experience."
+    "TITLE": "Note !",
+    "DESC": "This is mobile optimized web-page and recommended to view in mobile browsers such as safari or chrome for better experience."
   },
   "COMMON_LOADER": {
     "TITLE": "Loading",
     "DESC": "Please wait while we load the data"
   },
+  "MYINFO": {
+    "OPEN_MODAL_DATA": {
+      "TITLE": "Login via MyInfo",
+      "DESCRIPTION": "You will now proceed to login via MyInfo and retrieve your details."
+    },
+    "ERROR_MODAL_DATA": {
+      "TITLE": "Oops, Error!",
+      "DESCRIPTION": "We weren't able to fetch your data from MyInfo."
+    },
+    "FETCH_MODAL_DATA": {
+      "TITLE": "Fetching Data...",
+      "DESCRIPTION": "Please be patient while we fetch your required data from MyInfo."
+    }
+  },
+  "COMPREHENSIVE": {
+    "DASHBOARD": {
+      "WELCOME_TITLE": "Welcome back,",
+      "EDIT_PROFILE": "Edit Profile",
+      "COMPREHENSIVE_PLANNING_TITLE": "Comprehensive Planning",
+      "COMPREHENSIVE_PLANNING_VIEW": "View",
+      "COMPREHENSIVE_PLANNING_EDIT": "Edit",
+      "COMPREHENSIVE_PLANNING_COMPLETED_DESC": "Your comprehensive planning is completed!",
+      "COMPREHENSIVE_PLANNING_CALCULATE_REPORT": "We are preparing your report!",
+      "COMPREHENSIVE_PLANNING_ESTIMATE": "Estimated time: 1-2 working day(s)",
+      "COMPREHENSIVE_PLANNING_VIEW_REPORT": "View Report",
+      "COMPREHENSIVE_PLANNING_LAST_UPDATED": "Last Updated LAST_UPDATED_DATE",
+      "COMPREHENSIVE_PLANNING_NEXT_STEP": "Next step:",
+      "COMPREHENSIVE_PLANNING_NEXT_STEP_DESC": "You can set up a face-to-face consultation with our client advisers to go through your report as well as implement a customised plan to achieve your financial goals.",
+      "COMPREHENSIVE_PLANNING_ADVISOR": "I want my adviser to contact me",
+      "COMPREHENSIVE_PLANNING_PENDING_DESC": "You are almost there! Complete your journey and get your financial report!",
+      "COMPREHENSIVE_PLANNING_CONTINUE": "Continue",
+      "COMPREHENSIVE_PLANNING_STEPS_PENDING": "Completed CURRENT_STEP out of 4 steps",
+      "COMPREHENSIVE_MAKE_CHANGES_CONTENT": "You can now make further edits to your inputs and/or resubmit them to generate another report.",
+      "COMPREHENSIVE_MAKE_CHANGES": "Make Changes",
+      "INSURANCE": "Insurance",
+      "INSURANCE_DESC": "Assess your insurance coverage to find out what you really need.",
+      "INSURANCE_ACCESS_MY_NEEDS": "Assess My Needs",
+      "INSURANCE_ACCESS_MY_NEEDS_ESTIMATE": "Estimated 5 mins",
+      "INSURANCE_NEED_MY_PLAN": "I know my needs, find my plan.",
+      "INVESTMENT": "Investment",
+      "INVESTMENT_DESC": "Answer a few questions to  determine the portfolio most suited to you!",
+      "INVESTMENT_PORTFOLIO": "Add Portfolio",
+      "INVESTMENT_PORTFOLIO_ESTIMATED": "Estimated 3 mins",
+      "WILL_WRITING": "Will Writing",
+      "WILL_WRITING_DESC": "Write a legally-binding Will online, anytime & anywhere!",
+      "WILL_WRITING_START": "Start Writing",
+      "WILL_WRITING_ESTIMATED": "Estimated 10 mins",
+      "DEFAULT_CONTENT": "Get a holistic financial assessment and trusted financial advice today!",
+      "DEFAULT_START": "Start Planning",
+      "DEFAULT_ESTIMATED": "Estimated 20 mins",
+      "COMPREHENSIVE_PLANNING_LAST_SUBMITTED_DATE": "Last Submitted LAST_SUBMITTED_DATE",
+      "WARNING_POPUP": "Note that your DOB/Gender is different from Investment journey. Reach adviser on how to proceed",
+      "COMPREHENSIVE_PLANNING_SUBMITTED": "Once your report is ready, our advisers will be in touch with you."
+    }
+  },
   "TRANSFER_INSTRUCTION": {
     "INSTITUTION_TYPE_BANK": "bank",
     "INSTITUTION_TYPE_PAY_NOW": "PayNow",
-    "TOP_UP_REQUEST_LBL":"You do not have any Top Up Requests.",
-    "TOP_UP":"Top Up",
-    "TRANSFER_INSTRUCTION_LBL":"Please transfer using Bank Transfer or PayNow.",
-    "REFERENCE_CODE_LBL":"Reference Code: ",
-    "OKAY_GOT_IT_BTN":"Okay, Got It!",
-    "NOTE":"<span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments”</span> section in your funds transfer / PayNow screen.",
+    "TOP_UP_REQUEST_LBL": "You do not have any Top Up Requests.",
+    "TOP_UP": "Top Up",
+    "TRANSFER_INSTRUCTION_LBL": "Please transfer using Bank Transfer or PayNow.",
+    "REFERENCE_CODE_LBL": "Reference Code: ",
+    "OKAY_GOT_IT_BTN": "Okay, Got It!",
+    "NOTE": "<span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments”</span> section in your funds transfer / PayNow screen.",
     "TRANSFER_FUND_TITLE": "Transfer Funds to your Cash Account",
     "TRANSFER_FUND_DESCRIPTION": "Simply follow the instructions below to transfer funds to your cash account. Bank transfer and PayNow are available.",
     "STEPS_TITLE_BANK": "Steps via Bank Transfer",
@@ -392,4 +463,3 @@
     "NOT_ALLOW_USER_ERROR": "Your investment account set up is unsuccessful and portfolio creation is not allowed."
   }
 }
-

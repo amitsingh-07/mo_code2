@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavigationEnd, Router } from '@angular/router';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
@@ -26,6 +26,7 @@ import {
 import { IAccountCreationActions } from '../investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
+import { FooterService } from '../../../shared/footer/footer.service';
 
 @Component({
   selector: 'app-add-portfolio-name',
@@ -34,7 +35,7 @@ import { InvestmentCommonService } from '../investment-common.service';
   encapsulation: ViewEncapsulation.None
 })
 
-export class AddPortfolioNameComponent implements OnInit {
+export class AddPortfolioNameComponent implements OnInit, OnDestroy {
   riskProfileIcon;
   characterLength;
   form: FormGroup;
@@ -45,8 +46,9 @@ export class AddPortfolioNameComponent implements OnInit {
   isSubsequentPortfolio = false;
   isRequestSubmitted = false;
   formValues;
+  fundingMethod: string;
 
-  constructor (
+  constructor(
     public investmentAccountService: InvestmentAccountService,
     private formBuilder: FormBuilder,
     private router: Router,
@@ -55,11 +57,14 @@ export class AddPortfolioNameComponent implements OnInit {
     private investmentCommonService: InvestmentCommonService,
     private manageInvestmentsService: ManageInvestmentsService,
     private loaderService: LoaderService,
+    private renderer: Renderer2,
+    public footerService: FooterService,
     private navbarService: NavbarService, ) {
       this.translate.use('en');
       this.translate.get('COMMON').subscribe((result: string) => {
         this.pageTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.TITLE');
         this.setPageTitle(this.pageTitle);
+        this.renderer.addClass(document.body, 'portfolioname-bg');
       });
   }
 
@@ -68,7 +73,11 @@ export class AddPortfolioNameComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
+    this.fundingMethod = this.investmentCommonService.getConfirmedFundingMethodName();
     this.riskProfileIcon = ProfileIcons[this.formValues.recommendedRiskProfileId - 1]['icon'];
     this.form = this.formBuilder.group({
       portfolioName: new FormControl('', [Validators.pattern(RegexConstants.portfolioName)])
@@ -286,7 +295,17 @@ export class AddPortfolioNameComponent implements OnInit {
     this.investmentAccountService.setAccountCreationStatus(
       INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_confirmed
     );
-    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.STATUS]);
+    this.manageInvestmentsService.activateToastMessage();
+    if (this.isSubsequentPortfolio) {
+      this.clearData();
+      if ((this.fundingMethod).toUpperCase() === 'CASH') {
+        this.redirectToFundAccount();
+      } else {
+        this.redirectToYourInvestment();
+      }
+    } else {
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.STATUS]);
+    }
   }
 
   setPortfolioSuccessToastMessage() {
@@ -325,9 +344,6 @@ export class AddPortfolioNameComponent implements OnInit {
   }
 
   updateCharacterCount(event) {
-    if (this.characterLength !== event.currentTarget.value.length) {
-      //this.showErrorMessage = false;
-    }
     this.characterLength = event.currentTarget.value.length;
   }
 
@@ -335,6 +351,25 @@ export class AddPortfolioNameComponent implements OnInit {
     return str.toLowerCase().split(' ')
             .map((name) => name.charAt(0).toUpperCase() + name.substring(1))
             .join(' ').trim().replace(/  +/g, ' ');
+  }
+
+  redirectToFundAccount() {
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);
+  }
+
+  redirectToYourInvestment() {
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
+  }
+
+  clearData() {
+    this.investmentAccountService.clearInvestmentAccountFormData();
+    this.investmentCommonService.clearJourneyData();
+    this.investmentCommonService.clearFundingDetails();
+    this.investmentCommonService.clearAccountCreationActions();
+  }
+
+  ngOnDestroy() {
+    this.renderer.removeClass(document.body, 'portfolioname-bg');
   }
 
 }

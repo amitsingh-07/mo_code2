@@ -25,6 +25,7 @@ export interface IConfig {
   hospitalPlanData: HospitalPlan[];
   productCategory: IProductCategory[];
   distribution: any;
+  comprehensiveLiveEnabled: boolean;
 }
 
 const CACHE_SIZE = 1;
@@ -33,7 +34,7 @@ const CACHE_SIZE = 1;
   providedIn: 'root'
 })
 export class ConfigService {
-  private cache$: Observable <IConfig> = null;
+  private cache$: Observable<IConfig> = null;
   private configUrl = 'assets/config.json';
 
   constructor(private http: HttpClient) { }

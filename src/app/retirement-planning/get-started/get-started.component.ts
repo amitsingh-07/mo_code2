@@ -45,7 +45,7 @@ export class GetStartedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMode(7);
+    this.navbarService.setNavbarMode(8);
     this.buildFormData();
     this.authService.authenticate().subscribe((token) => {
     });
@@ -104,8 +104,8 @@ export class GetStartedComponent implements OnInit {
     if (from === 'confirmEmail') {
       this.confirmEmailFocus = !this.confirmEmailFocus;
     }
-  } 
-  
+  }
+
   onlyNumber(el) {
     this.retirementPlanningForm.controls['mobileNumber'].setValue(el.value.replace(RegexConstants.OnlyNumeric, ''));
   }

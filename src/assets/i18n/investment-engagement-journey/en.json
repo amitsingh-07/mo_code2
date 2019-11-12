@@ -12,13 +12,18 @@
     "DESC3": "In the following steps, we help you discover your Risk Profile – your ability and willingness to take risks – and recommend the most suitable portfolio for you.",
     "GETSTARTED": "Get Started",
     "PAGE_TITLE": "Welcome",
-    "PROMO_ERROR": "Invalid promo code. Please try again."
+    "PROMO_ERROR": "Invalid promo code. Please try again.",
+    "META": {
+      "META_TITLE": "Online Investment | Invest With Whom You Can Trust | MoneyOwl",
+      "META_DESCRIPTION": "Invest with MoneyOwl today! | Start from $50 RSP or $100 One Time | Dimensional Funds | Gain access to low-cost and globally diversified portfolio.",
+      "META_KEYWORDS": ""
+    }
   },
   "FUNDING_METHOD": {
     "TITLE": "Select Funding Method",
-    "DESC": "I want to fund this portfolio using my",
+    "DESC": "I want to fund this portfolio using",
     "HOW_TO_FUND_PORTFOLIO": "How do you want to fund this portfolio?",
-    "SRS_DESC": "Please have your SRS account number ready before you continue from here. You <u>MUST</u> also ensure sufficient fund in your SRS Account. Amount will be deducted immediately and invest within 2-3 working days.",
+    "SRS_DESC": "Please have your SRS account number ready before you continue from here. You <u>MUST</u> also ensure sufficient fund in your SRS Account. Amount will be deducted immediately to process the buy request.",
     "CASH_DESC": "You can fund using any bank account (registered under your name).",
     "LOADER_TITLE": "Loading...",
     "LOADER_DESC": "Please wait while we load the data.",
@@ -55,7 +60,7 @@
     "TIME_HORIZON_DESC_TITLE_ASSET": "Potential Asset Allocation ",
     "LIST_LBL_1": "Less than 4",
     "LIST_LBL_2": "4 to 5",
-    "LIST_LBL_3": "Up to 8",
+    "LIST_LBL_3": "Up to 7",
     "LIST_LBL_4": "Up to 11",
     "LIST_LBL_5": "Up to 14",
     "LIST_LBL_6": "15 or more",

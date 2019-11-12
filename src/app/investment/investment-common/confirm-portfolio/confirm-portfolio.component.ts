@@ -84,6 +84,9 @@ export class ConfirmPortfolioComponent implements OnInit {
         this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
         const fundingParams = this.constructFundingParams(data.objectList);
         this.manageInvestmentsService.setFundingDetails(fundingParams);
+        if (this.portfolio.fundingTypeId) {
+          this.investmentCommonService.setInitialFundingMethod({initialFundingMethodId: this.portfolio.fundingTypeId});
+        }
         this.userInputSubtext = {
           onetime: this.currencyPipe.transform(
             this.portfolio.initialInvestment,
@@ -218,6 +221,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   confirmPortfolio() {
     this.investmentCommonService.confirmPortfolio(this.portfolio.customerPortfolioId).subscribe((data) => {
       if (data.responseMessage.responseCode === 6000 || data.responseMessage.responseCode === 5119) {
+        this.investmentCommonService.clearAccountCreationActions();
         const namingFormData = {
           defaultPortfolioName: data.objectList.portfolioName,
           recommendedCustomerPortfolioId: this.portfolio.customerPortfolioId,

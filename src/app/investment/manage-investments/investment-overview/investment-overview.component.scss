@@ -251,7 +251,15 @@ app-investment-overview {
                                     .portfolio-fund-type {
                                         width: 28px;
                                         height: 18px;
-                                        display: flex;
+                                        padding: 3px;
+                                        border-radius: 3px;
+                                        background-color: #bd10e0;                                      
+                                        font-family: $muli-bold;
+                                        font-size: 11px;
+                                        line-height: 12px;
+                                        letter-spacing: -0.21px;
+                                        text-align: center;
+                                        color: #ffffff;
                                     }
                                 }
                                 .ref-code {

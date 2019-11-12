@@ -64,6 +64,14 @@ export class InvestmentCommonService {
     }
   }
 
+  clearFundingDetails() {
+    this.investmentCommonFormData.initialFundingMethodId = null;
+    this.investmentCommonFormData.confirmedFundingMethodId = null;
+    this.investmentCommonFormData.fundingType = null;
+    this.investmentCommonFormData.srsOperatorBank = null;
+    this.investmentCommonFormData.srsAccountNumber = null;
+  }
+
   clearInvestmentCommonFormData() {
     this.investmentCommonFormData = new InvestmentCommonFormData();
     this.commit();
@@ -79,19 +87,20 @@ export class InvestmentCommonService {
     this.commit();
   }
 
-  getAccountCreationActions(): Observable<IAccountCreationActions> {
+  getAccountCreationActions(enquiryId?): Observable<IAccountCreationActions> {
     const accStatusInfoFromSession = this.getInvestmentCommonFormData().accountCreationActions;
     if (accStatusInfoFromSession) {
       return Observable.of(accStatusInfoFromSession);
     } else {
-      return this.getFirstInvAccountCreationStatus().map((data: any) => {
+      return this.getFirstInvAccountCreationStatus(enquiryId).map((data: any) => {
         if (data && data.objectList) {
           this.setAccountCreationActionsToSession(data.objectList);
           return {
             accountCreationState: data.objectList.accountCreationState,
             allowEngagementJourney: data.objectList.allowEngagementJourney,
             portfolioLimitExceeded: data.objectList.portfolioLimitExceeded,
-            showInvestmentAccountCreationForm: data.objectList.showInvestmentAccountCreationForm
+            showInvestmentAccountCreationForm: data.objectList.showInvestmentAccountCreationForm,
+            enquiryMappedToCustomer: data.objectList.enquiryMappedToCustomer
           };
         } else {
           this.investmentAccountService.showGenericErrorModal();
@@ -103,15 +112,23 @@ export class InvestmentCommonService {
     }
   }
 
-  getFirstInvAccountCreationStatus() {
-    return this.investmentApiService.getFirstInvAccountCreationStatus();
+  getFirstInvAccountCreationStatus(enquiryId?) {
+    return this.investmentApiService.getFirstInvAccountCreationStatus(enquiryId);
   }
 
   /* Login Redirection Logic */
-  redirectToInvestmentFromLogin() {
-    this.getAccountCreationActions().subscribe((data: IAccountCreationActions) => {
-      if (this.isUserNotAllowed(data)) {
-        this.goToDashboard();
+  redirectToInvestmentFromLogin(enquiryId) {
+    this.getAccountCreationActions(enquiryId).subscribe((data: IAccountCreationActions) => {
+      if (enquiryId && !data.enquiryMappedToCustomer) { /* enquiryId will not be available only in sign up flow */
+        if (data.portfolioLimitExceeded) { // HAVE LESS THAN 20 PORTFOLIOS?
+          this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_TITLE',
+            'INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_ERROR');
+        } else if (!data.allowEngagementJourney) { // ACCOUNT CREATION PENDING ?
+          this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_TITLE',
+            'INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_ERROR');
+        } else {
+          this.goToDashboard();
+        }
       } else if (this.isUsersFirstPortfolio(data)) {// FIRST PORTFOLIO
         this.goToFirstAccountCreation(data);
       } else { // SECOND PORTFOLIO
@@ -121,24 +138,11 @@ export class InvestmentCommonService {
   }
 
   goToFirstAccountCreation(data) {
-    if (data.allowEngagementJourney) { // ACCOUNT CREATION NOT PENDING ?
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
-    } else {
-      this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_TITLE',
-        'INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_ERROR');
-    }
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
   }
 
   goToAdditionalAccountCreation(data) {
-    if (data.portfolioLimitExceeded) { // HAVE LESS THAN 20 PORTFOLIOS?
-      this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_TITLE',
-        'INVESTMENT_ADD_PORTFOLIO_ERROR.MAX_PORTFOLIO_LIMIT_ERROR');
-    } else if (!data.allowEngagementJourney) { // ACCOUNT CREATION PENDING ?
-      this.goToDashboard('INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_TITLE',
-        'INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_ERROR');
-    } else {
-      this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
-    }
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
   }
 
   setInvestmentsSummary(investmentsSummary) {

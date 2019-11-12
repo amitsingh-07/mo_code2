@@ -26,7 +26,7 @@ export class EnquirySuccessComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMode(7);
+    this.navbarService.setNavbarMode(8);
   }
 
   redirectTo() {

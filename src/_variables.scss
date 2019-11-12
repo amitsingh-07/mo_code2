@@ -1,14 +1,24 @@
 // font usage of muli
-$muli: 'Muli',sans-serif;
-$muli-regular : 'Muli Regular',sans-serif;
-$muli-light: 'Muli Light',sans-serif;
-$muli-bold: 'Muli Bold',sans-serif;
-$muli-semi-bold: 'Muli Semi Bold',sans-serif;
-$muli-italic : 'Muli Italic',sans-serif;
-$muli-extra-light : 'Muli Extra Light',sans-serif;
-$muli-extra-bold : 'Muli Extra Bold',sans-serif;
-$muli-bold-italic : 'Muli Bold Italic',sans-serif;
-$muli-light-italic : 'Muli Light Italic',sans-serif;
+$muli: 'Muli',
+sans-serif;
+$muli-regular : 'Muli Regular',
+sans-serif;
+$muli-light: 'Muli Light',
+sans-serif;
+$muli-bold: 'Muli Bold',
+sans-serif;
+$muli-semi-bold: 'Muli Semi Bold',
+sans-serif;
+$muli-italic : 'Muli Italic',
+sans-serif;
+$muli-extra-light : 'Muli Extra Light',
+sans-serif;
+$muli-extra-bold : 'Muli Extra Bold',
+sans-serif;
+$muli-bold-italic : 'Muli Bold Italic',
+sans-serif;
+$muli-light-italic : 'Muli Light Italic',
+sans-serif;
 
 /* SCSS Variables */
 $white-color: #ffffff;
@@ -34,6 +44,7 @@ $orange-color:#ff9c39;
 $red-color:#d0021b;
 $dark-red-color: #e50000;
 $green-color:#049723;
+$summary-modal-heading-bg: #118c8c;
 $light-green-color: #11b600;
 $watercourse-color: #066360;
 $cinderella-color: #fbdbdb;
@@ -160,6 +171,13 @@ $radio-btn-active-border-color: $white-color;
 $btn-proceed-shadow-color : $btn-dark-shadow-color;
 /*** end of button colors ***/
 
+$btn-comprehensive: #066360;
+$btn-comprehensive-disabled-bg: #b9d1d0;
+
+//Comprehensive variables
+$screen-separator-bar-color: #047070;
+
+
 // modal colors
 $modal-txt-highlight-color: #00a7a7;
 $modal-body-title-color: $persian-green-color;
@@ -229,7 +247,7 @@ $step-indicator-bg : #31e5db;
 $step-indicator-active : #00908e;
 
 // Common panel colors
-$portfolio-panel-bg-color:  $pardiso-green-color;
+$portfolio-panel-bg-color: $pardiso-green-color;
 
 // Investment Overview - portfolio colors
 $wgt-shadow-color: $btn-dark-shadow-color;
@@ -472,3 +490,16 @@ $col-lg: 992px;
 $col-md: 768px;
 $col-sm: 576px;
 $col-xs: 450px;
+
+//Comprehensive
+$light-grey-color: #f5f5f5;
+$text-grey-color: #9f9f9f;
+$cmp-padding-top: 90px;
+$incomplete-list: #9fd4d4;
+$separator-color: #ededed;
+$advisory-heading: #797979;
+$text-free: #e12727;
+$limited-text: #989898;
+$limited: #078b8b;
+$col-xs: 450px;
+

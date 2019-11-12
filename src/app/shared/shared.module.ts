@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -14,9 +15,6 @@ import { PercentageInputDirective } from '../shared/directives/percentage-input.
 import {
   EditInvestmentModalComponent
 } from '../shared/modal/edit-investment-modal/edit-investment-modal.component';
-import {
-  IfastErrorModalComponent
-} from '../shared/modal/ifast-error-modal/ifast-error-modal.component';
 import { TimeAgoPipe } from '../shared/Pipes/time-ago.pipe';
 import { AllocationComponent } from './components/allocation/allocation.component';
 import { AnnualFeesComponent } from './components/annual-fees/annual-fees.component';
@@ -34,24 +32,30 @@ import { TermsComponent } from './components/terms/terms.component';
 import { WillDisclaimerComponent } from './components/will-disclaimer/will-disclaimer.component';
 import { CurrencyInputDirective } from './directives/currency-input.directive';
 import { DistributePercentDirective } from './directives/distribute-percent.directive';
+import { NumberOnlyDirective } from './directives/number-only.directive';
 import { DropdownWithSearchComponent } from './dropdown-with-search/dropdown-with-search.component';
 import { InstructionStepsComponent } from './modal/bank-details/instruction-steps/instruction-steps.component';
 import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
 import { EditMobileNumberComponent } from './modal/edit-mobile-number/edit-mobile-number.component';
+import { IfastErrorModalComponent } from './modal/ifast-error-modal/ifast-error-modal.component';
+import { ProgressTrackerModalComponent } from './modal/progress-tracker/progress-tracker-modal.component';
+import { ProgressTrackerComponent } from './modal/progress-tracker/progress-tracker.component';
+import { ProgressTrackerService } from './modal/progress-tracker/progress-tracker.service';
 import { RecommendationsModalComponent } from './modal/recommendations-modal/recommendations-modal.component';
+import { TermsModalComponent } from './modal/terms-modal/terms-modal.component';
 import { TransferInstructionsModalComponent } from './modal/transfer-instructions-modal/transfer-instructions-modal.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { FormatDatePipe } from './Pipes/date-format.pipe';
 import { GroupByPipe } from './Pipes/group-by.pipe';
 import { OrderByPipe } from './Pipes/order-by.pipe';
 import { PlanFilterPipe } from './Pipes/plan-filter.pipe';
 import { RoundPipe } from './Pipes/round.pipe';
+import { SecurePipe } from './Pipes/secure.pipe';
 import { TruncatePipe } from './Pipes/truncate.pipe';
 import { StartsWithPipe } from './utils/starts-with.pipe';
 import { PlanDetailsWidgetComponent } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
-import { TermsModalComponent } from './modal/terms-modal/terms-modal.component';
-import { SecurePipe } from './Pipes/secure.pipe';
 import { PortfolioListComponent } from './components/portfolio-list/portfolio-list.component';
 import { CarouselModalComponent } from '../shared/modal/carousel-modal/carousel-modal.component';
 import { SlickModule } from 'ngx-slick';
@@ -83,13 +87,33 @@ export function createTranslateLoader(http: HttpClient) {
     ReactiveFormsModule,
     SlickModule.forRoot()
   ],
-  exports: [CurrencyInputDirective, NumberOnlyDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
-    PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
-    BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, TimeAgoPipe, FormatDatePipe, DistributePercentDirective,
-    GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent,
-    InvestmentTitleBarComponent, RoundPipe, EditMobileNumberComponent,
-    DropdownWithSearchComponent, StartsWithPipe, RoadmapComponent, SecurePipe, PortfolioListComponent, InstructionStepsComponent],
-  declarations: [CurrencyInputDirective, NumberOnlyDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
+  exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
+    PlanFilterPipe,
+    OrderByPipe,
+    ProductDetailComponent,
+    PlanDetailsWidgetComponent,
+    LoaderComponent,
+    BreakdownBarComponent,
+    BreakdownAccordionComponent,
+    TruncatePipe,
+    TimeAgoPipe,
+    FormatDatePipe,
+    DistributePercentDirective,
+    GroupByPipe,
+    AllocationComponent,
+    AnnualFeesComponent,
+    PortfolioInfoComponent,
+    NumberOnlyDirective,
+    ProgressTrackerModalComponent,
+    InvestmentTitleBarComponent,
+    RoundPipe,
+    NavbarComponent,
+    EditMobileNumberComponent,
+    DropdownWithSearchComponent,
+    StartsWithPipe,
+    RoadmapComponent,
+    SecurePipe, PortfolioListComponent, InstructionStepsComponent],
+  declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
     PrivacyPolicyComponent,
@@ -108,9 +132,13 @@ export function createTranslateLoader(http: HttpClient) {
     AnnualFeesComponent,
     PortfolioInfoComponent,
     EditInvestmentModalComponent,
+    NumberOnlyDirective,
+    ProgressTrackerComponent,
+    ProgressTrackerModalComponent,
     IfastErrorModalComponent,
     InvestmentTitleBarComponent,
     RoundPipe,
+    NavbarComponent,
     RoadmapComponent,
     EditMobileNumberComponent,
     TransferInstructionsModalComponent,
@@ -126,12 +154,20 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   entryComponents: [
     EditInvestmentModalComponent,
+    ProgressTrackerModalComponent,
     IfastErrorModalComponent,
     TransferInstructionsModalComponent,
     InstructionStepsComponent,
     CarouselModalComponent,
     ReviewBuyRequestModalComponent
   ],
-  providers: [RoundPipe]
+  providers: [ProgressTrackerService, RoundPipe]
 })
-export class SharedModule { }
+export class SharedModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [ProgressTrackerService]
+    };
+  }
+}

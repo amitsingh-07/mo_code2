@@ -116,6 +116,7 @@ button:active:focus {
       color: $app-backgrnd-color !important;
       background-color: transparent !important;
     }
+
     &.absolute {
       position: absolute;
       right: 10px;
@@ -483,12 +484,15 @@ button:active:focus {
     line-height: 1.2;
     letter-spacing: -0.3px;
   }
-  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+  @media all and (-ms-high-contrast: none),
+  (-ms-high-contrast: active) {
     .result__block--title {
       width: 80%;
       height: 45px;
     }
   }
+
   .result__block--data {
     color: $teal-color;
     font-family: $muli-bold;
@@ -502,11 +506,14 @@ button:active:focus {
       @include fontSize(21px);
     }
   }
-  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+  @media all and (-ms-high-contrast: none),
+  (-ms-high-contrast: active) {
     .result__block--data {
-      width:60%;
+      width: 60%;
     }
   }
+
   .result__block--postfix {
     color: $dark-teal-color;
     line-height: 1.0;
@@ -1031,5 +1038,64 @@ button:active:focus {
         font-size: 11px;
       }
     }
+  }
+}
+
+/*Comprehensive button styles*/
+.comprehensive {
+  .fixed-btn--sm-comprehensive {
+    border: 1px solid $fixed-btn-brdr-color;
+    color: $fixed-btn-txt-color;
+    font-size: 16px;
+    font-family: $muli-regular;
+    font-weight: normal !important;
+    //width: 133px;
+    padding: .90rem;
+    @extend .align-center;
+    @extend .flex;
+    @extend .justify-center;
+    height: 50px;
+    margin: 0;
+    background: $white-color;
+
+    //margin-bottom: 5px;
+    &.active {
+      border: 1px solid $app-backgrnd-color !important;
+      color: $white-color !important;
+      background: $app-backgrnd-color !important;
+    }
+
+    .acive:hover,
+    &:active,
+    &:focus {
+      background: $app-backgrnd-color !important;
+      border-color: $app-backgrnd-color;
+    }
+  }
+
+  .datepicker-control .input-group-append .btn-primary {
+    box-shadow: none !important;
+    margin: 0;
+  }
+
+  .btn {
+    &.btn-primary {
+      font-size: 18px;
+      background: $btn-comprehensive;
+      box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14) !important;
+      margin: 30px 0 50px 0;
+      font-family: $muli-bold;
+
+      &:disabled {
+        background: $btn-comprehensive-disabled-bg;
+        color: $white-color;
+      }
+    }
+  }
+
+  .fixed-button {
+    position: absolute;
+    bottom: 50px;
+    width: calc(100% - 40px);
   }
 }

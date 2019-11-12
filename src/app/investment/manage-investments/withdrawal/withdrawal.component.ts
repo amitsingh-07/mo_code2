@@ -161,6 +161,7 @@ export class WithdrawalComponent implements OnInit {
           ])
         );
         this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
+          amtValue = amtValue.replace(/[,]+/g, '').trim();
           this.isRedeemAll = ((amtValue == roundOffValue) && roundOffValue > 0);
         });
       } else {
@@ -196,6 +197,7 @@ export class WithdrawalComponent implements OnInit {
           ])
         )
         this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
+          amtValue = amtValue.replace(/[,]+/g, '').trim();
           this.isRedeemAll = ((amtValue == roundOffValue) && roundOffValue > 0);
         });
       } else { 
@@ -227,6 +229,7 @@ export class WithdrawalComponent implements OnInit {
       ])
     );
     this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
+      amtValue = amtValue.replace(/[,]+/g, '').trim();
       this.isRedeemAll = ( (amtValue == roundOffValue) && roundOffValue > 0 );
     });
   }
@@ -244,6 +247,7 @@ export class WithdrawalComponent implements OnInit {
       ])
     );
     this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
+      amtValue = amtValue.replace(/[,]+/g, '').trim();
       this.isRedeemAll =  ( (amtValue == this.cashBalance) && this.cashBalance > 0 );
     });
   }
@@ -384,6 +388,10 @@ export class WithdrawalComponent implements OnInit {
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
+      const amtControl = this.withdrawForm.get('withdrawAmount');
+      if (amtControl) {
+        amtControl.setValue(amtControl.value.replace(/,/g, '').trim());
+      }
       this.manageInvestmentsService.setWithdrawalTypeFormData(form.getRawValue(), this.isRedeemAll);
       if (
         form.value.withdrawType.id ===

@@ -19,4 +19,5 @@ export interface IAccountCreationActions {
     allowEngagementJourney: boolean;
     portfolioLimitExceeded: boolean;
     showInvestmentAccountCreationForm: boolean;
+    enquiryMappedToCustomer?: boolean;
 }

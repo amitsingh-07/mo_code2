@@ -332,9 +332,9 @@
       "FIND_OUT_MORE": "Click here to find out more on our new SRS & Joint Account updates!",
       "SRS_JOINT_ACCOUNT_SLIDES":  [
         {"TITLE": "New Updates", "TITLE_IMG": "srs-joint-account/speaker.svg", "IMAGE": "srs-joint-account/srs.svg",
-          "IMG_TITLE": "Start Investing Your SRS!",
-          "TEXT": "Invest your Supplementary Retirement Scheme (SRS) savings to get potentially higher returns while enjoying tax savings.",
-          "URL": "/faq", "URL_FRAGMENT": "srs-joint-account", "URL_TEXT": "Learn More About SRS Account"},
+          "IMG_TITLE": "You can now open your SRS Investment Account online!",
+          "TEXT": "Invest your Supplementary Retirement Scheme (SRS) savings to get potentially higher returns while enjoying tax savings."
+          },
           {"TITLE": "New Updates",  "TITLE_IMG": "srs-joint-account/speaker.svg", "IMAGE": "srs-joint-account/joint-account.svg",
           "IMG_TITLE": "Apply For A Joint Account!",
           "TEXT": "Apply for a Joint Investment Account with your loved ones today and enjoy all the good things that come in pairs.",

@@ -67,7 +67,7 @@
     "START_PORTFOLIO": "Start a Portfolio",
     "INVEST_AGAIN": "Invest Again",
     "NO_PORTFOLIO": "You do not have any portfolios.",
-    "SRS_JOINT_ACCOUNT_REMINDER": "Please be reminded that SRS and Joint Investment Accounts are currently handled offline and not ready to be viewed in your dashboard.",
+    "SRS_JOINT_ACCOUNT_REMINDER": "You can now open your SRS Investment Account online. Kick-start your retirement planning now! <br/><br/>Currently handled offline: (1) Joint Investment Accounts. (2) Viewing of portfolio, top-ups/withdrawals for SRS Investment Accounts.",
     "NO_PORTFOLIOS_YET": "You have no portfolios yet.",
     "ADD_PORTFOLIO_START_INVEST": "Add a portfolio to start investing!",
     "SCROLL_TO_TOP": "Scroll To Top",
@@ -85,6 +85,7 @@
     "SHOW_LESS": "Show Less",
     "SRS_MSG": "SRS account portfolio currently handled offline.",
     "SRS_HYPERLINK": "Click here",
+    "SRS": "SRS",
     "MP_WALKTHROUGH": {
       "NEW_INVESTMENT_UPDATE": "We’ve new investment updates.",
       "SHOW_ME_AROUND": "Show me around!",
