@@ -83,8 +83,8 @@
                       <div class="start-investing-info">
                         <div class="flex-col">
                           <div class="pb10">
-                              <span *ngIf="portfolio.portfolioStatus !== 'PURCHASED'">{{'YOUR_PORTFOLIO.WHATS_NEXT_DESC_NOT_FUNDED' | translate: {portfolioName: portfolio.portfolioName} }}</span>
-                              <span *ngIf="portfolio.portfolioStatus === 'PURCHASED'">{{'YOUR_PORTFOLIO.WHATS_NEXT_DESC_FUNDED' | translate: {portfolioName: portfolio.portfolioName} }}</span>
+                              <span *ngIf="portfolio.portfolioStatus !== 'PURCHASED' && portfolio.portfolioStatus !== 'REBALANCING'">{{'YOUR_PORTFOLIO.WHATS_NEXT_DESC_NOT_FUNDED' | translate: {portfolioName: portfolio.portfolioName} }}</span>
+                              <span *ngIf="portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING'  || portfolio.portfolioStatus === 'REBALANCING'">{{'YOUR_PORTFOLIO.WHATS_NEXT_DESC_FUNDED' | translate: {portfolioName: portfolio.portfolioName} }}</span>
                           </div>
                           <div class="txt-lyt" (click)="goToTopupInstructionLink()">
                             {{'YOUR_PORTFOLIO.HOW_TO_TOPUP' | translate }}</div>
@@ -104,7 +104,7 @@
               </div>
               <!--  ALREADY FUNDED PORTFOLIO-->
               <div class="row">
-                <div class="col-lg-12 col-md-12" *ngIf="portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING'">
+                <div class="col-lg-12 col-md-12" *ngIf="portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING' || portfolio.portfolioStatus === 'REBALANCING'">
                   <div class="form-group-with-bg">
                     <div class="form-group-with-bg--header your_total_value"
                       [ngClass]="{'no-returns': !portfolio.showTotalReturn}">
@@ -151,7 +151,7 @@
               </div>
               <!-- NOT FUNDED PORTFOLIO  -->
               <div class="row">
-                <div class="col-lg-12 col-md-12" *ngIf="portfolio.portfolioStatus !== 'PURCHASED' && portfolio.portfolioStatus !== 'REDEEMING'">
+                <div class="col-lg-12 col-md-12" *ngIf="portfolio.portfolioStatus !== 'PURCHASED' && portfolio.portfolioStatus !== 'REDEEMING'  && portfolio.portfolioStatus !== 'REBALANCING'">
                   <div class="form-group-with-bg">
                     <div class="form-group-with-bg--header your_total_value">
                       <div id="your_portfolio_total_lb" class="total_values">$0</div>
@@ -177,7 +177,7 @@
                 </div>
               </div>
               <button
-                *ngIf="portfolio.portfolioStatus === 'PURCHASED' && portfolio.dPMSPortfolio && portfolio.dPMSPortfolio.dpmsDetailsDisplay"
+                *ngIf="(portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING' || portfolio.portfolioStatus === 'REBALANCING') && portfolio.dPMSPortfolio && portfolio.dPMSPortfolio.dpmsDetailsDisplay"
                 type="button" class="asset_allocation_btn mb10" id="holdings_btn" (click)="goToHoldings()">
                 {{'YOUR_PORTFOLIO.HOLDINGS' | translate}}
                 <img src="../../../assets/images/investment-account/forward.svg" alt="" />
@@ -233,7 +233,7 @@
                             </div>
                           </div>
                         </div>
-                        <div *ngIf="portfolio?.rebalance" class="rebalancing-info">
+                        <div *ngIf="portfolio?.portfolioStatus === 'REBALANCING'" class="rebalancing-info">
                           <div class="mr15 info-icon"><img src="assets/images/investment-account/rebalance-info.svg"  /></div>
                           <div>
                             <div>{{'YOUR_PORTFOLIO.REBALANCING_IN_PROGRESS' | translate}}</div>
