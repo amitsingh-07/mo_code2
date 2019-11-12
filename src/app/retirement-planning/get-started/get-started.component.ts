@@ -64,7 +64,7 @@ export class GetStartedComponent implements OnInit {
       Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]],
       emailAddress: [this.formValues.emailAddress, [Validators.required, Validators.email]],
       confirmEmail: [this.formValues.confirmEmail],
-      mobileNumber: [this.formValues.mobileNumber, [Validators.required]],
+      mobileNumber: [this.formValues.mobileNumber, [Validators.required, Validators.pattern(RegexConstants.MobileNumber)]],
       marketingAcceptance: [this.formValues.marketingAcceptance],
       consent: [this.formValues.consent]
     }, { validator: this.validateMatchEmail() });
@@ -90,12 +90,26 @@ export class GetStartedComponent implements OnInit {
     return (group: FormGroup) => {
       const emailInput = group.controls['emailAddress'];
       const emailConfirmationInput = group.controls['confirmEmail'];
+
+      const mobileNumberInput = group.controls['mobileNumber'];
+      const SINGAPORE_MOBILE_REGEXP = RegexConstants.MobileNumber;
+
+      // Confirm E-mail
       if (!emailConfirmationInput.value) {
         emailConfirmationInput.setErrors({ required: true });
       } else if (emailInput.value && emailInput.value.toLowerCase() !== emailConfirmationInput.value.toLowerCase()) {
         emailConfirmationInput.setErrors({ notEquivalent: true });
       } else {
         emailConfirmationInput.setErrors(null);
+      }
+
+      // Mobile Number
+      if (!mobileNumberInput.value) {
+        mobileNumberInput.setErrors({ required: true });
+      } else if (!SINGAPORE_MOBILE_REGEXP.test(mobileNumberInput.value)) {
+        mobileNumberInput.setErrors({ mobileRange: true });
+      } else {
+        mobileNumberInput.setErrors(null);
       }
     };
   }
