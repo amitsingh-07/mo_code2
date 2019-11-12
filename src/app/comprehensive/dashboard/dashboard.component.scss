@@ -1,0 +1,146 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.comprehensive {
+    .widget {
+        background:$white-color;
+        margin: 0px 15px 20px;
+        border-radius: 6px;
+        box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25);
+    }
+    .comprehensive-plan-view{
+        cursor: pointer;
+    }
+    .hidden {
+        display: none;
+    }
+    .form-group-with-bg--header-label {
+        font-family: $muli-bold;
+        font-size: 22px !important;
+    }
+    &.container-fluid {
+        padding: 0!important;
+        @include allmobiles {
+            padding: 0 !important
+        }
+        @include tablet {
+            padding: 0 !important
+        }
+        width: auto;
+    }
+    .welcome-title {
+        font-size: 20px;        
+    }
+    .welcome-user {
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .edit-profile{        
+        background-image: url('/assets/images/edit-icon.svg');
+        height: 22px;
+        border: none;
+        background-repeat: no-repeat; 
+        display: inline-block;
+    }
+    .form-group-with-bg .form-group-with-bg--header-label{
+        font-size:20px;
+        color:$teal-color;
+    }
+    .plan-view-icon{
+        font-size:16px!important;
+        font-family: $muli-regular;
+        margin:10px 0 2px 0;
+        min-width: 60px;
+    }
+    .form-group-with-bg .form-group-with-bg--content .form-group-with-bg--content-label{
+        font-size:15px;
+        color:$dark-teal-color;
+    }
+    .form-group-with-bg .form-group-with-bg--content{
+        padding:10px 20px 20px 20px!important;
+    }
+    .form-group-with-bg{
+        padding:0px;
+        background: $white-color;
+    }
+    .form-group-with-bg .form-group-with-bg--header .form-group-with-bg--header-sub-label{
+     color:$text-grey-color!important;
+    }
+    .disabled-plan-report{
+        color:rgba(0,167,167,0.6);
+        border-radius: 6px;
+        border:1px solid $btn-disabled;
+        padding: 10px;
+    }
+    .btn.btn-primary{
+        background: $teal-color!important;
+        margin: 0px;
+    }
+    .btn.btn-primary:hover{
+        background: $teal-color!important;
+    }
+    .btn-view{
+        background: $white-color!important;
+        border:1px solid $btn-primary-backgrnd-color;
+        color:$teal-color;
+    }
+    .label-grey{
+        color:$text-grey-color;
+        font-size: 13px;
+    }
+    .ft-18{
+        font-size: 18px!important;
+        white-space:normal;
+    }
+    .ft-13{
+        font-size: 13px!important;
+    }
+    .ml25{
+        margin-left:25px;
+    }
+    .grass_bg {
+        width: 157px;
+        height: 113px;
+        object-fit: contain;
+        position: relative;
+        top: 50px;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .overlap-grass{
+        position: relative;
+        display: flex;
+        justify-content: space-between;    
+    }    
+    .overlay-bg{
+        position: relative;
+    }
+    .form-group-with-bg--header {
+        padding: 15px 20px 5px;
+    }
+
+    .ajax-loader-card-inline {
+        min-height: 210px; 
+        text-align: center;
+        img {
+            margin-top: 90px;
+        }
+    }
+    .submittedDate{
+        font-family: $muli-regular!important;
+    }
+    .form-group-with-bg--content-label {
+        font-family: $muli-regular !important;
+    }
+    .align-start {
+        align-items: flex-start;
+    }
+    .form-group-with-bg .form-group-with-bg--content {
+        padding-top: 0 !important;
+    }
+    .btn.btn-primary:hover {
+        background-color: #00c5c4 !important;
+    }
+}

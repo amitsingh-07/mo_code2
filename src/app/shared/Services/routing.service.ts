@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs/operators';
 
 @Injectable()
@@ -24,9 +23,10 @@ export class RoutingService {
     }
 
     public getPreviousUrl(): string {
-        const previousUrl = this.history[this.history.length - 2] || '';
-        this.history.pop();
-        this.history.pop(); // Pop twice
-        return previousUrl;
+        return this.history[this.history.length - 2] || '';
+    }
+
+    public getCurrentUrl(): string {
+        return this.history[this.history.length - 1] || '';
     }
 }

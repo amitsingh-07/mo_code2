@@ -7,12 +7,13 @@ import { ConfigService, IConfig } from '../../config/config.service';
 // Insurance
 import { GuideMeApiService } from '../../guide-me/guide-me.api.service';
 import {
-    INVESTMENT_ACCOUNT_ROUTE_PATHS
+  INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment/investment-common/investment-common-routes.constants';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
- } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+import {
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+} from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
 import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
 import { FooterService } from '../../shared/footer/footer.service';
@@ -72,6 +73,8 @@ export class DashboardComponent implements OnInit {
   transferInstructionModal;
   investmentsSummary;
 
+  isComprehensiveEnabled = false;
+
   constructor(
     private router: Router,
     private configService: ConfigService,
@@ -101,9 +104,10 @@ export class DashboardComponent implements OnInit {
         ref.componentInstance.errorTitle = initialMessage.dashboardInitMessageTitle;
         ref.componentInstance.errorMessage = initialMessage.dashboardInitMessageDesc;
       }
-     });
+    });
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.isInvestmentConfigEnabled = config.investmentEnabled;
+      this.isComprehensiveEnabled = config.comprehensiveEnabled;
     });
   }
 
@@ -193,9 +197,9 @@ export class DashboardComponent implements OnInit {
         this.investmentAccountService.showGenericErrorModal();
       }
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   goToEngagement() {

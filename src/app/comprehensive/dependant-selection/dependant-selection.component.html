@@ -1,0 +1,115 @@
+<!--Container fluid-->
+<div class="container-fluid max-width--1024 comprehensive">
+  <!--Step indicator-->
+  <div class="step-indicator-container">
+    <app-step-indicator [count]="5" [activeStepIndex]="0"></app-step-indicator>
+  </div>
+  <!--Step indicator /-->
+  <!--Page sub-heading-->
+  <div class="comprehensive__page-sub-heading mt30">{{'CMP.DEPENDANT_SELECTION.DEPENDANTS'|translate}}</div>
+  <!--Page sub-heading /-->
+  <!--Page desc-->
+  <div class="comprehensive__page-content">{{'CMP.DEPENDANT_SELECTION.DEPENDANTS_DESC'|translate}}</div>
+  <!--Page desc-->
+  <!--Page form-->
+  <form name="dependantSelectionForm" [formGroup]="dependantSelectionForm">
+    <!--Formgroup single col-->
+    <div class="form-group-single-column  flex-col">
+      <!--Form label-->
+      <div class="checkbox-button one-label">
+        <input id="dependantYesInput" name="dependantSelection" formControlName="dependantSelection" type="radio"
+          [value]=true class="field radio" appComprehensiveViewMode="{{viewMode}}" mode=1>
+        <label id="dependantYesLabel" for="dependantYesInput">
+          <span class="input-label-grey">{{'CMP.FORM_LABEL.YES'|translate}}</span>
+        </label>
+      </div>
+      <!--Form label /-->
+      <!--Form label-->
+      <div class="checkbox-button one-label">
+        <input id="dependantNoInput" name="dependantSelection" formControlName="dependantSelection" type="radio"
+          [value]=false class="field radio" appComprehensiveViewMode="{{viewMode}}" mode=1>
+        <label id="dependantNoLabel" for="dependantNoInput">
+          <span class="input-label-grey">{{'CMP.FORM_LABEL.NO'|translate}}</span>
+        </label>
+      </div>
+      <!--Form label /-->
+      <div class="comprehensive__page-sub-heading f18">{{'CMP.DEPENDANT_SELECTION.HOUSEHOLD_TITLE'|translate}}</div>
+      <div class="mt10">{{'CMP.DEPENDANT_SELECTION.HOUSEHOLD_DESC'|translate}}</div>
+      <div class="mt10 form-group-with-bg">
+        <div class="form-group-with-bg--header">
+          <div class="form-group-with-bg--header-label">{{'CMP.DEPENDANT_SELECTION.HOUSEHOLD_HEADER'|translate}}
+          </div>
+        </div>
+        <div class="form-group-with-bg--content">
+          <div class="flex-row">
+            <div class="flex-col-5">
+              <div class="form-group-with-bg--content-label"
+                [innerHtml]="'CMP.DEPENDANT_SELECTION.HOUSEHOLD_LABEL_1' | translate"></div>
+            </div>
+            <div class="flex-col-7">
+              <div class="dropdown-control"
+                [ngClass]="{'inline-error': submitted &&  dependantSelectionForm['controls'].noOfHouseholdMembers.invalid}">
+                <div ngbDropdown id="locationDropDown">
+                  <button type="button" class="btn btn-dropdown" id="dropdownMembers" ngbDropdownToggle
+                    appComprehensiveViewMode="{{viewMode}}" mode=1>
+                    <span class="grey-text"
+                      *ngIf="dependantSelectionForm.get('noOfHouseholdMembers'). value ==='' || dependantSelectionForm.get('noOfHouseholdMembers').value === null">{{'COMMON.LBL_SELECT' | translate}}</span>
+                    <span
+                      *ngIf="dependantSelectionForm.get('noOfHouseholdMembers'). value !=='' && dependantSelectionForm.get('noOfHouseholdMembers').value !== null">{{dependantSelectionForm.get('noOfHouseholdMembers').value === null ? 'Select' : dependantSelectionForm.get('noOfHouseholdMembers').value}}</span>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownMembers">
+                    <button class="dropdown-item" (click)="selectHouseHoldMembers('')">Select</button>
+                    <button type="button" class="dropdown-item" *ngFor="let houseHoldMembers of householdMembersList;"
+                      (click)="selectHouseHoldMembers(houseHoldMembers)">
+                      {{houseHoldMembers}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="flex-col-5">
+              <div class="form-group-with-bg--content-label">
+                {{ 'CMP.DEPENDANT_SELECTION.HOUSEHOLD_LABEL_2' | translate}}
+              </div>
+            </div>
+            <div class="flex-col-7">
+              <div class="dropdown-control"
+                [ngClass]="{'inline-error': submitted &&  dependantSelectionForm['controls'].houseHoldIncome.invalid}">
+                <div ngbDropdown id="EducationDropDown">
+                  <button type="button" class="btn btn-dropdown" id="dropdownEducationCourse" ngbDropdownToggle
+                    appComprehensiveViewMode="{{viewMode}}" mode=1>
+                    <span class="grey-text"
+                      *ngIf="dependantSelectionForm.get('houseHoldIncome'). value ==='' || dependantSelectionForm.get('houseHoldIncome').value === null">{{'COMMON.LBL_SELECT' | translate}}</span>
+                    <span
+                      *ngIf="dependantSelectionForm.get('houseHoldIncome'). value !=='' && dependantSelectionForm.get('houseHoldIncome').value !== null">{{dependantSelectionForm.get('houseHoldIncome').value === null ? 'Select' : dependantSelectionForm.get('houseHoldIncome').value}}</span>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownRelation">
+                    <button class="dropdown-item" (click)="selectHouseHoldIncome('')">Select</button>
+                    <button type="button" class="dropdown-item" *ngFor="let houseHoldIncome of householdIncomeList;"
+                      (click)="selectHouseHoldIncome(houseHoldIncome)">
+                      {{houseHoldIncome}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Formgroup single col /-->
+  </form>
+  <!--Page form /-->
+  <!--Footer CTA-->
+  <div class="footer-cta">
+    <button type="button" [disabled]="!dependantSelectionForm.valid" (click)="goToNext(dependantSelectionForm)"
+      class="btn btn-primary width100" id="dependantSelectionBtn
+          ">{{
+            (!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.NEXT'|translate)}}</button>
+  </div>
+  <!--Footer CTA /-->
+</div>
+<!--Container fluid /-->

@@ -1,0 +1,269 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+$finance-pop-title:#035e5e;
+$minus-content-color:#ff872f;
+
+.summary-modal {
+  &__box-content-head {
+    margin-bottom: 10px;
+  }
+
+  &__pop-content-head {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: $finance-pop-title;
+    font-weight: bold;
+    position: relative;
+  }
+
+  &__pop-content-body {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  &__pop-button {
+    width: 25px !important;
+    height: 25px !important;
+    background: url("../../../../assets/images/close-button-dark.svg") !important;
+    background-repeat: no-repeat !important;
+    border: 0;
+    position: absolute;
+    right: -5px;
+  }
+
+  &__minus-content {
+    color: $minus-content-color !important;
+    font-size: 14px;
+  }
+
+  &__main-content {
+    position: relative;
+    padding: 0px 0px 0px 25%;
+    text-align: left;
+    font-size: 14px;
+  }
+
+  &__main-content_dollar {
+    font-size: 16px;
+    font-weight: bold;
+    color: $finance-pop-title;
+  }
+
+  &__details--label-black {
+    color: $black-color;
+  }
+
+  .step-num {
+    color: #000000;
+    font-size: 14px !important;
+    margin-bottom: 5px;
+  }
+
+  .modal-body-title {
+    font-size: 18px !important;
+    margin-right: 0px!important;
+    display:block!important;
+  }
+
+  .modal-body {
+    @include allmobiles {
+      padding: 25px 20px 40px !important;
+      max-height: calc(100vh - 80px);
+      padding-bottom: 50px !important;
+    }
+    @include iphoneX {
+      padding: 25px 20px 40px !important;
+      max-height: calc(100vh - 80px);
+      padding-bottom: 70px !important;
+    }
+  }
+
+  &__sub-title {
+    font-family: $muli-bold;
+    font-size: 14px;
+  }
+}
+
+.summary-modal .btn {
+  box-shadow: none !important;
+  border: none !important;
+  background: $dark-teal-color !important;
+  color: $white-color !important;
+  font-size: 18px; 
+}
+
+
+.spare-cash {
+  width: 34px;
+  height: 34px;
+  background: url("../../../../assets/images/comprehensive/summary-page/spare-cash.svg");
+  background-repeat: no-repeat;
+  border: 0;
+  position: absolute;
+  left: 8%;
+  top: 5px;
+}
+
+.liquid-cash {
+  width: 34px;
+  height: 34px;
+  background: url("../../../../assets/images/comprehensive/summary-page/liquid-cash.svg");
+  background-repeat: no-repeat;
+  border: 0;
+  position: absolute;
+  left: 8%;
+  top: 5px;
+}
+
+.liquid-alert {
+  width: 34px;
+  height: 34px;
+  background: url("../../../../assets/images/comprehensive/summary-page/topup-alert.svg");
+  background-repeat: no-repeat;
+  border: 0;
+  position: absolute;
+  right: 8%;
+  top: 5px;
+}
+
+.loss-of-income {
+  background: $light-grey-color;
+  border-radius: 6px;
+  padding: 8px 3px 3px 5px;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.retirement-section {
+  .retire-content {
+    position: relative;
+  }
+
+  .retire-bd {
+    font-weight: bold;
+    letter-spacing: -0.1px;
+    margin-left: 30px;
+  }
+
+  .retire-sub-content {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: -0.1px;
+    margin-left: 30px;
+  }
+
+  .retire-house {
+    width: 25px;
+    height: 34px;
+    background: url("../../../../assets/images/comprehensive/summary-page/retire-house.svg");
+    background-repeat: no-repeat;
+    position: absolute;
+    left: -24px;
+    top: -3px;
+  }
+
+  .retire-money {
+    width: 25px;
+    height: 34px;
+    background: url("../../../../assets/images/comprehensive/summary-page/retire-money.svg");
+    background-repeat: no-repeat;
+    position: absolute;
+    left: -24px;
+    top: -3px;
+  }
+
+  .retire-medical-expenses {
+    width: 34px;
+    height: 34px;
+    background: url("../../../../assets/images/comprehensive/summary-page/retire-medical-expenses.svg");
+    background-repeat: no-repeat;
+    position: absolute;
+    left: -24px;
+    top: 0px;
+  }
+}
+
+.explanation-graph {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+
+  &__insurance-indicator {
+    position: absolute;
+    top: 7px;
+    right: 0;
+    border:0.5px solid #004472;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(-30deg);
+    width: 20px;
+  }
+
+  &__insurance-indicator1 {
+    position: absolute;
+    top: 2px;
+    right: -18px;
+    border:0.5px solid #004472;
+    width: 20px;
+  }
+
+  &__insurance-details {
+    position: absolute;
+    top: -5px;
+    right: -120px;
+    min-width: 100px;
+    text-align: left;
+    font-size: 12px;
+    font-family:$muli-light;
+    color:#004472!important;
+  }
+
+  &__investment-indicator {
+    position: absolute;
+    top: 65px;
+    left: -10px;
+    border-top: 1px solid #035e5e;
+    width: 15px;
+    height: 1px;
+  }
+
+  &__investment-value {
+    position: absolute;
+    top: 57px;
+    left: -114px;
+    width: 15px;
+    height: 1px;
+    min-width: 100px;
+    text-align: right;
+    font-size: 12px;
+    font-family:$muli-light;
+  }
+}
+
+.f13 {
+  font-size: 13px;
+}
+.modal-body-message{
+  .description{
+    font-weight: bold;
+    font-family: $muli-bold;
+    letter-spacing: -0.17px;
+
+  }
+}
+.insurance-planning-section{
+  .summary-modal__page-title{
+    font-size: 16px!important;
+  }
+}
+.f12{
+  font-size: 12px!important;
+}
+.muli-light{
+  font-family: $muli-italic;
+}
+.summary-modal .btn-primary{
+  background-color:#066360!important;
+}

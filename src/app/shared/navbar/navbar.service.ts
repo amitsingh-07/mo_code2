@@ -1,6 +1,11 @@
+import { Location } from '@angular/common';
 import { ElementRef, Injectable, ViewChild } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
+import { filter } from 'rxjs/operators';
+
+import { IHeaderMenuItem } from './navbar.types';
 
 @Injectable({
   providedIn: 'root'
@@ -28,12 +33,12 @@ export class NavbarService {
   /* Header Params */
   private pageTitle = new BehaviorSubject('');
   private pageSubTitle = new BehaviorSubject('');
-  private pageHelpIcon = new BehaviorSubject(true);
+  private pageHelpIcon = new BehaviorSubject(false);
   private pageProdInfoIcon = new BehaviorSubject(false);
   private pageClearNotify = new BehaviorSubject(false);
 
   private investPageTitle = new BehaviorSubject('');
-  private investPageSuperTitle = new BehaviorSubject('');  
+  private investPageSuperTitle = new BehaviorSubject('');
 
   private mobileModal = new BehaviorSubject('');
   private clearNotificationEvent = new BehaviorSubject(false);
@@ -41,6 +46,8 @@ export class NavbarService {
   private pageSettingsIcon = new BehaviorSubject(true);
   private pageFilterIcon = new BehaviorSubject(true);
   private pageSuperTitle = new BehaviorSubject('');
+  private menuItem = new BehaviorSubject({} as IHeaderMenuItem);
+  private $menuItemClick = new BehaviorSubject('');
 
   currentPageTitle = this.pageTitle.asObservable();
   currentPageSubTitle = this.pageSubTitle.asObservable();
@@ -53,16 +60,23 @@ export class NavbarService {
   currentPageSettingsIcon = this.pageSettingsIcon.asObservable();
   currentPageFilterIcon = this.pageFilterIcon.asObservable();
   currentPageSuperTitle = this.pageSuperTitle.asObservable();
+  currentMenuItem = this.menuItem.asObservable();
 
+  onMenuItemClicked = this.$menuItemClick.asObservable();
   investmentPageTitle = this.investPageTitle.asObservable();
   investmentPageSuperTitle = this.investPageSuperTitle.asObservable();
 
   // logout
   private logoutSubject = new Subject();
   logoutObservable$ = this.logoutSubject.asObservable();
-  
 
-  constructor() { }
+  constructor(private router: Router, private _location: Location) {
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationStart)
+    ).subscribe((event: NavigationStart) => {
+      this.unsubscribeBackPress();
+    });
+  }
 
   /* Navbar Generic Element Details*/
   setNavbarDetails(navbar: ElementRef) {
@@ -72,6 +86,14 @@ export class NavbarService {
   getNavbarDetails() {
     this.getNavEvent.next(true);
   }
+
+  setNavbarComprehensive(secondaryVisible: boolean) {
+    this.setNavbarVisibility(true);
+    this.setNavbarMode(7);
+    this.setNavbarMobileVisibility(secondaryVisible);
+    this.setNavbarShadowVisibility(false);
+  }
+
   /* Visibility Functions */
   setNavbarDirectGuided(secondaryVisible: boolean) {
     this.setNavbarVisibility(true);
@@ -108,6 +130,13 @@ export class NavbarService {
     this.pageProdInfoIcon.next(isVisible);
   }
 
+  setPageTitleWithIcon(title: string, menuItem: IHeaderMenuItem) {
+    this.pageTitle.next(title);
+    this.menuItem.next(menuItem);
+    this.pageHelpIcon.next(false);
+    this.pageSettingsIcon.next(false);
+    this.pageFilterIcon.next(false);
+  }
   setClearAllNotify(isVisible: boolean) {
     this.pageClearNotify.next(isVisible);
   }
@@ -120,7 +149,7 @@ export class NavbarService {
   /* Header Functions*/
   // Setting Page Title
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean, filterIcon?: boolean, superTitle?: string) {
-    this.setInvestPageTitle(title, superTitle ? superTitle : ''); //Investment - Desktop/Tablet page tile
+    this.setInvestPageTitle(title, superTitle ? superTitle : '');
     this.pageTitle.next(title);
     if (subTitle) {
       this.pageSubTitle.next(subTitle);
@@ -147,15 +176,26 @@ export class NavbarService {
     } else {
       this.pageSuperTitle.next('');
     }
+
+    // Reset/Hide menuItem
+    this.menuItem.next({} as IHeaderMenuItem);
   }
   // Showing Mobile PopUp Trigger
   showMobilePopUp(event) {
     this.mobileModal.next(event);
   }
 
+  menuItemClicked(pageId) {
+    this.$menuItemClick.next(pageId);
+  }
+
   // Hiding Product Info Modal Trigger
   backPressed(pageTitle: string) {
     this.backListener.next(pageTitle);
+  }
+
+  goBack() {
+    this._location.back();
   }
 
   // Clearing Notification
@@ -171,6 +211,11 @@ export class NavbarService {
   unsubscribeBackPress() {
     this.isBackPressSubscribed.next(false);
     this.backListener.next('');
+  }
+
+  unsubscribeMenuItemClick() {
+    this.menuItem.next(null);
+    this.$menuItemClick.next('');
   }
 
   logoutUser() {

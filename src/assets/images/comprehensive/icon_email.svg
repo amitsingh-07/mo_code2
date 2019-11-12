@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="20px" viewBox="0 0 26 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54 (76480) - https://sketchapp.com -->
+    <title>Group 3</title>
+    <desc>Created with Sketch.</desc>
+    <g id="5.0-Result+Dashboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="5.2.1-Insurance-(Thankyou)" transform="translate(-78.000000, -446.000000)" fill="#00A7A7">
+            <g id="Group-3" transform="translate(78.000000, 446.651680)">
+                <path d="M0.574643448,0.621522267 L13,11.2132442 L25.4395328,0.571399075 C25.0997154,0.216344222 24.738924,0.0314231197 24.3571586,0.0166357692 C23.7845105,-0.00554525641 2.62088618,-0.00554525641 1.7517592,0.0166357692 C1.17234121,0.0314231197 0.779969294,0.233051952 0.574643448,0.621522267 Z" id="Path-2"></path>
+                <polygon id="Path-3" points="-4.88498131e-14 1.66808319 -4.88498131e-14 17.1678191 8.99533147 9.486757"></polygon>
+                <polygon id="Path-3-Copy" transform="translate(21.497666, 9.417951) scale(-1, 1) translate(-21.497666, -9.417951) " points="17 1.66808319 17 17.1678191 25.9953315 9.486757"></polygon>
+                <path d="M9.77366126,10.2429203 L13.0070881,13.0870944 L16.2236139,10.2429203 L25.4112854,18.1326985 C25.0038452,18.4565409 24.671697,18.6184621 24.4148407,18.6184621 C24.0295563,18.6184621 2.31475668,18.6307252 1.7068634,18.6184621 C1.30160122,18.6102867 0.924194566,18.4394788 0.574643448,18.1060383 L9.77366126,10.2429203 Z" id="Path-4"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,302 @@
+{
+	"male": {
+	 "18": {
+		   "WHOLELIFE":"1,019",
+		   "TERM":113
+		},
+	  "19": {
+		   "WHOLELIFE":"1,044",
+		   "TERM":116
+		},
+	  "20": {
+		   "WHOLELIFE":"1,069",
+		   "TERM":118
+		},
+	  "21": {
+		   "WHOLELIFE":"1,101",
+		   "TERM":124
+		},
+	  "22": {
+		   "WHOLELIFE":"1,132",
+		   "TERM":128
+		},
+	  "23": {
+		   "WHOLELIFE":"1,164",
+		   "TERM":132
+		},
+	  "24": {
+		   "WHOLELIFE":"1,195",
+		   "TERM":136
+		},
+	  "25": {
+		   "WHOLELIFE":"1,226",
+		   "TERM":138
+		},
+	  "26": {
+		   "WHOLELIFE":"1,263",
+		   "TERM":142
+		},
+	  "27": {
+		   "WHOLELIFE":"1,300",
+		   "TERM":144
+		},
+	  "28": {
+		   "WHOLELIFE":"1,336",
+		   "TERM":145
+		},
+	  "29": {
+		   "WHOLELIFE":"1,373",
+		   "TERM":144
+		},
+	  "30": {
+		   "WHOLELIFE":"1,410",
+		   "TERM":141
+		},
+	  "31": {
+		   "WHOLELIFE":"1,453",
+		   "TERM":160
+		},
+	  "32": {
+		   "WHOLELIFE":"1,497",
+		   "TERM":178
+		},
+	  "33": {
+		   "WHOLELIFE":"1,540",
+		   "TERM":194
+		},
+	  "34": {
+		   "WHOLELIFE":"1,583",
+		   "TERM":208
+		},
+	  "35": {
+		   "WHOLELIFE":"1,627",
+		   "TERM":219
+		},
+	  "36": {
+		   "WHOLELIFE":"1,678",
+		   "TERM":232
+		},
+	  "37": {
+		   "WHOLELIFE":"1,730",
+		   "TERM":242
+		},
+	  "38": {
+		   "WHOLELIFE":"1,781",
+		   "TERM":248
+		},
+	  "39": {
+		   "WHOLELIFE":"1,833",
+		   "TERM":250
+		},
+	  "40": {
+		   "WHOLELIFE":"1,884",
+		   "TERM":249
+		},
+	  "41": {
+		   "WHOLELIFE":"1,946",
+		   "TERM":278
+		},
+	  "42": {
+		   "WHOLELIFE":"2,007",
+		   "TERM":302
+		},
+	  "43": {
+		   "WHOLELIFE":"2,069",
+		   "TERM":321
+		},
+	  "44": {
+		   "WHOLELIFE":"2,130",
+		   "TERM":336
+		},
+	  "45": {
+		   "WHOLELIFE":"2,191",
+		   "TERM":346
+		},
+	  "46": {
+		   "WHOLELIFE":"2,264",
+		   "TERM":378
+		},
+	  "47": {
+		   "WHOLELIFE":"2,338",
+		   "TERM":404
+		},
+	  "48": {
+		   "WHOLELIFE":"2,411",
+		   "TERM":423
+		},
+	  "49": {
+		   "WHOLELIFE":"2,484",
+		   "TERM":435
+		},
+	  "50": {
+		   "WHOLELIFE":"2,557",
+		   "TERM":441
+		},
+	  "51": {
+		   "WHOLELIFE":"2,647",
+		   "TERM":497
+		},
+	  "52": {
+		   "WHOLELIFE":"2,737",
+		   "TERM":541
+		},
+	  "53": {
+		   "WHOLELIFE":"2,827",
+		   "TERM":574
+		},
+	  "54": {
+		   "WHOLELIFE":"2,917",
+		   "TERM":595
+		}
+	},
+	"female": {
+		 "18": {
+		   "WHOLELIFE":"989",
+		   "TERM":82
+		},
+	  "19": {
+		   "WHOLELIFE":"1,015",
+		   "TERM":84
+		},
+	  "20": {
+		   "WHOLELIFE":"1,040",
+		   "TERM":86
+		},
+	  "21": {
+		   "WHOLELIFE":"1,071",
+		   "TERM":92
+		},
+	  "22": {
+		   "WHOLELIFE":"1,101",
+		   "TERM":97
+		},
+	  "23": {
+		   "WHOLELIFE":"1,131",
+		   "TERM":101
+		},
+	  "24": {
+		   "WHOLELIFE":"1,161",
+		   "TERM":105
+		},
+	  "25": {
+		   "WHOLELIFE":"1,192",
+		   "TERM":109
+		},
+	  "26": {
+		   "WHOLELIFE":"1,227",
+		   "TERM":114
+		},
+	  "27": {
+		   "WHOLELIFE":"1,262",
+		   "TERM":118
+		},
+	  "28": {
+		   "WHOLELIFE":"1,298",
+		   "TERM":121
+		},
+	  "29": {
+		   "WHOLELIFE":"1,333",
+		   "TERM":122
+		},
+	  "30": {
+		   "WHOLELIFE":"1,369",
+		   "TERM":123
+		},
+	  "31": {
+		   "WHOLELIFE":"1,410",
+		   "TERM":135
+		},
+	  "32": {
+		   "WHOLELIFE":"1,452",
+		   "TERM":145
+		},
+	  "33": {
+		   "WHOLELIFE":"1,493",
+		   "TERM":155
+		},
+	  "34": {
+		   "WHOLELIFE":"1,535",
+		   "TERM":163
+		},
+	  "35": {
+		   "WHOLELIFE":"1,577",
+		   "TERM":170
+		},
+	  "36": {
+		   "WHOLELIFE":"1,626",
+		   "TERM":179
+		},
+	  "37": {
+		   "WHOLELIFE":"1,675",
+		   "TERM":186
+		},
+	  "38": {
+		   "WHOLELIFE":"1,723",
+		   "TERM":190
+		},
+	  "39": {
+		   "WHOLELIFE":"1,772",
+		   "TERM":193
+		},
+	  "40": {
+		   "WHOLELIFE":"1,821",
+		   "TERM":193
+		},
+	  "41": {
+		   "WHOLELIFE":"1,879",
+		   "TERM":210
+		},
+	  "42": {
+		   "WHOLELIFE":"1,936",
+		   "TERM":224
+		},
+	  "43": {
+		   "WHOLELIFE":"1,994",
+		   "TERM":236
+		},
+	  "44": {
+		   "WHOLELIFE":"2,051",
+		   "TERM":245
+		},
+	  "45": {
+		   "WHOLELIFE":"2,109",
+		   "TERM":251
+		},
+	  "46": {
+		   "WHOLELIFE":"2,177",
+		   "TERM":269
+		},
+	  "47": {
+		   "WHOLELIFE":"2,245",
+		   "TERM":284
+		},
+	  "48": {
+		   "WHOLELIFE":"2,313",
+		   "TERM":295
+		},
+	  "49": {
+		   "WHOLELIFE":"2,381",
+		   "TERM":304
+		},
+	  "50": {
+		   "WHOLELIFE":"2,449",
+		   "TERM":309
+		},
+	  "51": {
+		   "WHOLELIFE":"2,531",
+		   "TERM":345
+		},
+	  "52": {
+		   "WHOLELIFE":"2,614",
+		   "TERM":374
+		},
+	  "53": {
+		   "WHOLELIFE":"2,697",
+		   "TERM":397
+		},
+	  "54": {
+		   "WHOLELIFE":"2,780",
+		   "TERM":413
+		}
+	}
+}

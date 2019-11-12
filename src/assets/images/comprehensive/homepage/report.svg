@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="20px" viewBox="0 0 19 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>Icon/Result/Report Copy 3</title>
+    <desc>Created with Sketch.</desc>
+    <g id="1.-Profiling" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Product-Page" transform="translate(-25.000000, -602.000000)">
+            <g id="Icon/Product/Report" transform="translate(24.000000, 599.000000)">
+                <g id="Group-30" transform="translate(1.235294, 2.439024)">
+                    <path d="M16.7941176,9.53986517 L10.0486515,2.93902439 L2,2.93902439 C1.17157288,2.93902439 0.5,3.61059727 0.5,4.43902439 L0.5,18.1219512 C0.5,18.9503783 1.17157288,19.6219512 2,19.6219512 L15.2941176,19.6219512 C16.1225448,19.6219512 16.7941176,18.9503783 16.7941176,18.1219512 L16.7941176,9.53986517 Z" id="Path" stroke="#00A7A7"></path>
+                    <g id="Group-29" transform="translate(11.424619, 8.238276) rotate(-319.000000) translate(-11.424619, -8.238276) translate(9.571678, -0.298309)" fill="#00A7A7">
+                        <polygon id="Rectangle" points="0 3.39342524 3.48128342 3.39342524 3.48128342 13.6797455 0 13.6797455"></polygon>
+                        <polygon id="Rectangle" points="3.48128342 14.5281018 1.74064171 16.9671262 0 14.5281018"></polygon>
+                        <path d="M1,0 L2.48128342,0 C3.03356817,-1.01453063e-16 3.48128342,0.44771525 3.48128342,1 L3.48128342,2.54506893 L0,2.54506893 L0,1 C-6.76353751e-17,0.44771525 0.44771525,-1.20591542e-16 1,-2.22044605e-16 Z" id="Rectangle"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

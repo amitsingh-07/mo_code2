@@ -20,8 +20,11 @@ export class ErrorModalComponent implements OnInit {
   @Input() isError: boolean;
   @Input() navToHome: boolean;
   @Input() unSaved: boolean;
+  @Input() promoSuccess: boolean;
   @Input() hasImpact: any;
   @Input() formName: any;
+  @Input() promoSuccessMsg: string;
+  @Input() email: string;
   @Input() buttonLabel: string;
   @Input() enableResendEmail: boolean;
   @Output() selected: EventEmitter<any> = new EventEmitter();
@@ -51,6 +54,9 @@ export class ErrorModalComponent implements OnInit {
   }
 
   goToHome() {
+    this.activeModal.close();
+  }
+  gotoComprehensive() {
     this.activeModal.close();
   }
 

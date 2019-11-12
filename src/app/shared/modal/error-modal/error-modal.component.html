@@ -8,6 +8,7 @@
       </button>
     <div class="modal-body-message" id="error_message">
       <span *ngIf="errorMessage" [innerHTML]="errorMessage" id="error_message_one"></span>
+     <div *ngIf="promoSuccess"  class="text-center my-3" > <span class="promo-success" [innerHTML]="promoSuccessMsg"> </span> <span  class="email-promo" [innerHTML]="email"></span></div>
       <ng-container *ngIf="errorMessageList" id="error_message_list">
         <p class="label">{{formName  | titlecase}}</p>
         <p *ngFor="let errorMessage of errorMessageList"><span [innerHTML]="errorMessage"></span></p>
@@ -26,6 +27,8 @@
     <button *ngIf="isError" id="error_try_again" type="button" class="btn btn-primary width100 mt10" (click)="tryAgain()">Try Again</button>
     <button *ngIf="isError" type="button" id="error_enter_manually" (click)="activeModal.dismiss('Close click')" class="btn btn-secondary width100 mt10">Enter Manually</button>
     <button *ngIf="navToHome" type="button" id="error_back_to_home" class="btn btn-primary width100 mt10" (click)="goToHome()">Back To Homepage</button>
+    <button *ngIf="promoSuccess" type="button" id="success_promo" class="btn btn-primary width100 mt10" (click)="gotoComprehensive()">Back To Product page</button>
+
     <div class="yes_r_no">
       <button *ngIf="unSaved" type="button"  id="error_no" class="btn width100 mt10 col-5" (click)="activeModal.close('no')">No</button>
       <button *ngIf="unSaved" type="button" id="error_yes" class="btn btn-primary width100 mt10 col-5" (click)="activeModal.close('yes')">Yes</button>

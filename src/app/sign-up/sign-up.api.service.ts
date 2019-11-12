@@ -15,6 +15,7 @@ import { AppService } from './../app.service';
 import { DirectService } from './../direct/direct.service';
 import { SignUpFormData } from './sign-up-form-data';
 import { SignUpService } from './sign-up.service';
+import { Util } from '../shared/utils/util';
 
 @Injectable({
   providedIn: 'root'
@@ -49,22 +50,26 @@ export class SignUpApiService {
   createAccountBodyRequest(captcha: string, pwd: string): ISignUp {
     const getAccountInfo = this.signUpService.getAccountInfo();
     const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-    let journeyType = 'signup';
+    let journeyType = this.appService.getJourneyType();
     let enquiryId = -1;
 
     if ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
       this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) && (insuranceEnquiry &&
         insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)) {
-      journeyType = 'insurance';
       enquiryId = insuranceEnquiry.enquiryId;
     } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
       this.willWritingService.getWillCreatedPrelogin()) {
-      journeyType = 'will-writing';
       enquiryId = this.willWritingService.getEnquiryId();
     } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_INVESTMENT) {
-      journeyType = 'investment';
       enquiryId = Number(this.authService.getEnquiryId());
     }
+
+    // If the journeyType is not set, default it to 'signup'
+    if (Util.isEmptyOrNull(journeyType)) {
+      journeyType = 'signup';
+    }
+
+    journeyType = journeyType.toLowerCase();
 
     return {
       customer: {
@@ -198,15 +203,13 @@ export class SignUpApiService {
    */
   verifyLogin(userEmail, userPassword, captcha) {
     let enqId = -1;
-    let journeyType = 'direct';
+    let journeyType = this.appService.getJourneyType();
     const sessionId = this.authService.getSessionId();
     if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
       this.willWritingService.getWillCreatedPrelogin()) {
       enqId = this.willWritingService.getEnquiryId();
-      journeyType = 'will-writing';
     } else if (this.authService.getEnquiryId()) {
       enqId = Number(this.authService.getEnquiryId());
-      journeyType = 'investment';
     } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
       this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
       const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
@@ -216,6 +219,14 @@ export class SignUpApiService {
         enqId = insuranceEnquiry.enquiryId;
       }
     }
+
+    // If the journeyType is not set, default it to 'direct'
+    if (Util.isEmptyOrNull(journeyType)) {
+      journeyType = 'direct';
+    }
+
+    journeyType = journeyType.toLowerCase();
+
     return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId, enqId, journeyType);
   }
 
@@ -239,6 +250,15 @@ export class SignUpApiService {
       hostedServerName: window.location.hostname
     } as IResendEmail;
     return this.apiService.resendEmailVerification(payload);
+  }
+  sendWelcomeEmail(value: any, isEmail: boolean) {
+    const payload = {
+      mobileNumber: isEmail ? '' : value,
+      emailAddress: isEmail ? value : '',
+      callbackUrl: environment.apiBaseUrl + '/comprehensive',
+      hostedServerName: window.location.hostname
+    } as IResendEmail;
+    return this.apiService.sendWelcomeEmail(payload);
   }
 
   editMobileNumber(mobileNo) {
