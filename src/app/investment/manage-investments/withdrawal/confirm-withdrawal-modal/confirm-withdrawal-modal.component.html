@@ -41,8 +41,8 @@
             *ngIf="bankAccountNo">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.TRANSFER_TO_BANK_AC_NO' | translate}}</span>
           <span class="values" *ngIf="bankAccountNo">{{bankAccountNo}}</span>
 
-
-          <div *ngIf="portfolio" class="rebalancing-info">
+          <!-- Re-Balancing -->
+          <div *ngIf="portfolio.portfolioStatus === 'PURCHASED'" class="rebalancing-info">
             <div class="mr15 info-icon"><img src="assets/images/investment-account/rebalance_info.svg" /></div>
             <div>
               <div>{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.RE_BALANCE.TITLE' | translate}}</div>
@@ -53,6 +53,7 @@
                   href="/faq">{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.RE_BALANCE.FAQ_LINK' | translate}}</a></div>
             </div>
           </div>
+           <!-- Re-Balancing -->
         </div>
       </div>
       <button type="button" (click)="confirmWithdrawal($event)" class="btn btn-primary-dark width100 mt5"
