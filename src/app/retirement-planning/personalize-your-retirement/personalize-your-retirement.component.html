@@ -38,9 +38,9 @@
                       value="{{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION1.VALUE' | translate}}">
                     <label for="stableIncomeStream" id="stableIncomeStreamLbl">
                       <div class="input-label-black">
-                        {{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION1.TITLE' | translate}}</div>
+                        {{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION1.TITLE' | translate}}"</div>
                       <div class="input-label-normal">
-                        {{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION1.SUB_TITLE' | translate}}</div>
+                        {{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION1.SUB_TITLE' | translate}}"</div>
                     </label>
                   </div>
 
@@ -50,9 +50,9 @@
                       value="{{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION2.VALUE' | translate}}">
                     <label for="flexibleIncomeStream">
                       <div class="input-label-black">
-                        {{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION2.TITLE' | translate}}</div>
+                        {{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION2.TITLE' | translate}}"</div>
                       <div class="input-label-normal">
-                        {{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION2.SUB_TITLE' | translate}}</div>
+                        {{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION2.SUB_TITLE' | translate}}"</div>
                     </label>
                   </div>
 
@@ -62,16 +62,17 @@
                       value="{{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION3.VALUE' | translate}}">
                     <label for="longerPeriodOfIncome">
                       <div class="input-label-black">
-                        {{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION3.TITLE' | translate}}</div>
+                        {{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION3.TITLE' | translate}}"</div>
                       <div class="input-label-normal">
-                        {{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION3.SUB_TITLE' | translate}}</div>
+                        {{ 'RETIREMENT_PLANNING.STEP_2.CHECKBOX_OPTIONS.OPTION3.SUB_TITLE' | translate}}"</div>
                     </label>
                   </div>
                 </div>
               </form>
 
               <!-- Proceed button -->
-              <button id="nextStep" type="button" [disabled]="personalizeYourRetireForm.invalid" (click)="save()"
+              <button id="nextStep" type="button" [disabled]="personalizeYourRetireForm.invalid"
+                (click)="save()"
                 class="btn btn__footer--fixed btn-primary width100">{{ 'RETIREMENT_PLANNING.CREATE.FORM.SUBMIT' | translate}}</button>
 
             </div>
