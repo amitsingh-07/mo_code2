@@ -7,6 +7,7 @@ import { NgbDateCustomParserFormatter } from 'src/app/shared/utils/ngb-date-cust
 
 import { NavbarService } from 'src/app/shared/navbar/navbar.service';
 import { RetirementPlanningService } from '../retirement-planning.service';
+import { RegexConstants } from './../../shared/utils/api.regex.constants';
 
 import { RETIREMENT_PLANNING_ROUTE_PATHS } from '../retirement-planning-routes.constants';
 
@@ -81,7 +82,7 @@ export class RetirementNeedsComponent implements OnInit {
           age--;
         }
 
-        if (age && retirementAge.value < age) {
+        if (age && retirementAge.value <= age) {
           dateOfBirth.setErrors({ invalidAge: true });
         } else if (age && retirementAge.value > age) {
           dateOfBirth.setErrors(null);
@@ -90,9 +91,15 @@ export class RetirementNeedsComponent implements OnInit {
     };
   }
 
+  onlyNumber(el) {
+    this.retirementNeedsForm.controls['retirementAge'].setValue(el.value.replace(RegexConstants.OnlyNumeric, ''));
+  }
+
   save() {
     this.submitted = true;
     if (this.retirementNeedsForm.valid) {
+      const lumpSumAmount = this.retirementNeedsForm.value.lumpSumAmount || 0;
+      const monthlyAmount = this.retirementNeedsForm.value.monthlyAmount || 0;
       const retirementNeedsGroup = {
         retirementNeeds: {
           retirementAge: this.retirementNeedsForm.value.retirementAge,
@@ -100,8 +107,8 @@ export class RetirementNeedsComponent implements OnInit {
           dateOfBirth: this.retirementNeedsForm.value.dateOfBirth
         },
         retirementAmountAvailable: {
-          lumpSumAmount: this.retirementNeedsForm.value.lumpSumAmount,
-          monthlyAmount: this.retirementNeedsForm.value.monthlyAmount
+          lumpSumAmount,
+          monthlyAmount
         }
       };
       this.retirementPlanningService.setRetirementNeeds(retirementNeedsGroup);

@@ -45,8 +45,9 @@
                       <div class="form-control"
                         [ngClass]="{'inline-error': submitted && retirementNeedsForm.controls.retirementAge.errors}">
                         <input id="retirementAge" class="input-control retirement-age" appNumberOnly #retirementAge
-                          formControlName="retirementAge" type="text" placeholder="Enter Age">
-                        <i>yrs old</i>
+                          formControlName="retirementAge" (keyup)="onlyNumber(retirementAge)" type="text"
+                          placeholder="Enter Age">
+                        <i>yrs old</i>'
                       </div>
                     </div>
 
