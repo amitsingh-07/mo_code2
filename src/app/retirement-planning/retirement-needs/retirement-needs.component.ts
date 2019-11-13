@@ -7,6 +7,7 @@ import { NgbDateCustomParserFormatter } from 'src/app/shared/utils/ngb-date-cust
 
 import { NavbarService } from 'src/app/shared/navbar/navbar.service';
 import { RetirementPlanningService } from '../retirement-planning.service';
+import { RegexConstants } from './../../shared/utils/api.regex.constants';
 
 import { RETIREMENT_PLANNING_ROUTE_PATHS } from '../retirement-planning-routes.constants';
 
@@ -60,8 +61,8 @@ export class RetirementNeedsComponent implements OnInit {
       retirementAge: [this.formValues.retirementNeeds && this.formValues.retirementNeeds.retirementAge, [Validators.required]],
       monthlyRetirementIncome: [this.formValues.retirementNeeds && this.formValues.retirementNeeds.monthlyRetirementIncome, [Validators.required]],
       dateOfBirth: [this.formValues.retirementNeeds && this.formValues.retirementNeeds.dateOfBirth, [Validators.required]],
-      lumpSumAmount: [this.formValues.retirementAmountAvailable && this.formValues.retirementAmountAvailable.lumpSumAmount || 0],
-      monthlyAmount: [this.formValues.retirementAmountAvailable && this.formValues.retirementAmountAvailable.monthlyAmount || 0]
+      lumpSumAmount: [this.formValues.retirementAmountAvailable && this.formValues.retirementAmountAvailable.lumpSumAmount],
+      monthlyAmount: [this.formValues.retirementAmountAvailable && this.formValues.retirementAmountAvailable.monthlyAmount]
     }, { validator: this.checkAge() });
   }
 
@@ -90,9 +91,15 @@ export class RetirementNeedsComponent implements OnInit {
     };
   }
 
+  onlyNumber(el) {
+    this.retirementNeedsForm.controls['retirementAge'].setValue(el.value.replace(RegexConstants.OnlyNumeric, ''));
+  }
+
   save() {
     this.submitted = true;
     if (this.retirementNeedsForm.valid) {
+      const lumpSumAmount = this.retirementNeedsForm.value.lumpSumAmount || 0;
+      const monthlyAmount = this.retirementNeedsForm.value.monthlyAmount || 0;
       const retirementNeedsGroup = {
         retirementNeeds: {
           retirementAge: this.retirementNeedsForm.value.retirementAge,
@@ -100,8 +107,8 @@ export class RetirementNeedsComponent implements OnInit {
           dateOfBirth: this.retirementNeedsForm.value.dateOfBirth
         },
         retirementAmountAvailable: {
-          lumpSumAmount: this.retirementNeedsForm.value.lumpSumAmount,
-          monthlyAmount: this.retirementNeedsForm.value.monthlyAmount
+          lumpSumAmount,
+          monthlyAmount
         }
       };
       this.retirementPlanningService.setRetirementNeeds(retirementNeedsGroup);
