@@ -60,8 +60,8 @@ export class RetirementNeedsComponent implements OnInit {
       retirementAge: [this.formValues.retirementNeeds && this.formValues.retirementNeeds.retirementAge, [Validators.required]],
       monthlyRetirementIncome: [this.formValues.retirementNeeds && this.formValues.retirementNeeds.monthlyRetirementIncome, [Validators.required]],
       dateOfBirth: [this.formValues.retirementNeeds && this.formValues.retirementNeeds.dateOfBirth, [Validators.required]],
-      lumpSumAmount: [this.formValues.retirementAmountAvailable && this.formValues.retirementAmountAvailable.lumpSumAmount],
-      monthlyAmount: [this.formValues.retirementAmountAvailable && this.formValues.retirementAmountAvailable.monthlyAmount]
+      lumpSumAmount: [this.formValues.retirementAmountAvailable && this.formValues.retirementAmountAvailable.lumpSumAmount || 0],
+      monthlyAmount: [this.formValues.retirementAmountAvailable && this.formValues.retirementAmountAvailable.monthlyAmount || 0]
     }, { validator: this.checkAge() });
   }
 
@@ -71,7 +71,7 @@ export class RetirementNeedsComponent implements OnInit {
       const dateOfBirth = group.controls['dateOfBirth'];
       const retirementAge = group.controls['retirementAge'];
 
-      if (dateOfBirth.value || retirementAge.value) {
+      if (dateOfBirth.value) {
         const dob = dateOfBirth.value;
         const today = new Date();
         const birthDate = new Date(dob['year'] + '/' + dob['month'] + '/' + dob['day']);
