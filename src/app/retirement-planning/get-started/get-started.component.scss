@@ -1,0 +1,194 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+app-get-started {
+  .container-fluid {
+    background-color: $white-color;
+    padding: 50px 60px 65px;
+
+    .container-fluid {
+      &.max-width--1024 {
+        @include allmobiles {
+          padding-top: 15px;
+          padding-left: 0px !important;
+          padding-right: 0px !important;
+        }
+
+        @include desktop {
+          padding-top: 0px;
+          padding-bottom: 0px;
+        }
+      }
+    }
+
+    @include allmobiles {
+      border-radius: 0;
+    }
+  }
+
+  .main-container {
+    display: flex;
+    justify-content: space-between;
+
+    @include desktop {
+      padding: 0 8px;
+    }
+
+    .header-container {
+      display: flex;
+      flex-direction: column;
+
+      .get-started {
+        font-family: $muli-light;
+        font-size: 18px;
+        letter-spacing: -0.19px;
+        color: $teal-color;
+      }
+
+      .title {
+        color: $teal-color;
+        margin-bottom: 10px;
+        font-family: $muli-semi-bold;
+
+        @include allmobiles {
+          font-size: 24px;
+          letter-spacing: -0.25pt;
+        }
+
+        @include desktop {
+          font-size: 36px;
+          letter-spacing: -0.38px;
+        }
+      }
+
+      .sub-title {
+        font-size: 18px;
+        line-height: 1.22;
+        margin-bottom: 56px;
+        margin-bottom: 12px !important;
+        margin: 0 auto;
+
+        @include allmobiles {
+          font-family: $muli-regular;
+          font-size: 16px;
+          color: $black-color;
+          letter-spacing: -0.17pt;
+          text-align: center;
+        }
+
+        @include desktop {
+          font-family: $muli-semi-bold;
+          font-size: 18px;
+          color: $bright-grey-color;
+          letter-spacing: -0.18px;
+        }
+
+        .web {
+          @include desktop {
+            width: 396px;
+          }
+        }
+      }
+
+      h2 {
+        color: #00a7a7;
+
+        @include allmobiles {
+          font-size: 20px;
+          letter-spacing: -0.4px;
+          text-align: center;
+          color: #066360;
+        }
+      }
+
+      .banner-image {
+        @include desktop {
+          margin-top: 55px;
+        }
+
+        img {
+          padding-top: 0vh;
+          object-fit: contain;
+        }
+      }
+
+      .mobile-logo {
+        @include allmobiles {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: 20px;
+          margin-bottom: 30px;
+        }
+      }
+
+      @include allmobiles {
+        flex-direction: column-reverse;
+      }
+    }
+
+    .retirementPlanForm {
+      @include desktop {
+        margin-top: 12px;
+      }
+
+      @include allmobiles {
+        margin-top: 18px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+
+      .form-group {
+        .form-group-floating-label {
+          border: solid 1px rgba(94, 94, 94, 0.3);
+        }
+
+        .checkbox-button {
+          &:first-child {
+            margin-bottom: 15px;
+          }
+
+          &:nth-last-child(2) {
+            margin-bottom: 30px;
+          }
+
+          .title {
+            color: #5e5e5e;
+            font-family: $muli-semi-bold;
+            font-size: 16px;
+            letter-spacing: -0.3px;
+          }
+
+          input[type='checkbox']+label {
+            background-position: left top;
+          }
+        }
+
+        .alert-msg {
+          .err-msg {
+            font-family: $muli-italic;
+            color: #e57300;
+            margin-left: 5px;
+            font-size: 14px;
+            line-height: normal;
+            letter-spacing: -0.26px;
+          }
+        }
+
+        button {
+          background-color: #00a7a7 !important;
+          font-size: 22px;
+          font-family: $muli-bold;
+          letter-spacing: -0.17px;
+          box-shadow: none !important;
+
+          &:disabled {
+            background-color: #00a7a7;
+            opacity: 0.5 !important;
+            color: $white-color !important;
+          }
+        }
+      }
+    }
+  }
+}

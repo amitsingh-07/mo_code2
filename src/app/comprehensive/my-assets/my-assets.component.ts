@@ -5,11 +5,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
+import { APP_ROUTES } from 'src/app/app-routes.constants';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { MyInfoService } from '../../shared/Services/my-info.service';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
-import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { COMPREHENSIVE_ROUTE_PATHS, COMPREHENSIVE_ROUTES } from '../comprehensive-routes.constants';
 import { IMyAssets } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
@@ -72,7 +73,8 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     });
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '') {
-        if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
+        if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled
+          && this.checkMyInfoSourcePage()) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
             if (data && data['objectList']) {
               const cpfValues = data.objectList[0].cpfbalances;
@@ -180,7 +182,9 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     this.menuClickSubscription.unsubscribe();
     this.navbarService.unsubscribeBackPress();
     this.navbarService.unsubscribeMenuItemClick();
-    this.myinfoChangeListener.unsubscribe();
+    if (this.myinfoChangeListener) {
+      this.myinfoChangeListener.unsubscribe();
+    }
   }
 
   buildMyAssetsForm() {
@@ -352,5 +356,15 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     });
     this.totalAssets = this.comprehensiveService.additionOfCurrency(assetFormObject);
     this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, assetFormObject, this.totalAssets);
+  }
+
+  checkMyInfoSourcePage() {
+    const currentPath = APP_ROUTES.COMPREHENSIVE + '/' + COMPREHENSIVE_ROUTES.MY_ASSETS;
+    if (this.myInfoService.getMyInfoAttributes() === 'cpfbalances'
+      && window.sessionStorage.getItem('currentUrl') === currentPath) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

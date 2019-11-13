@@ -128,6 +128,7 @@ export class NavbarConfig {
     },
     showExitCheck: true
   };
+
   // Comprehensive (Robo3)
   '7': object = {
     showNavBackBtn: true,
@@ -142,5 +143,22 @@ export class NavbarConfig {
     showLabel: {
       primary: 'Comprehensive Planning'
     }
+  };
+
+  // Retirement Planning (Robo1)
+  '8': object = {
+    showNavBackBtn: true,
+    showHeaderBackBtn: true,
+    showMenu: true,
+    showLogin: false,
+    showLogout: true,
+    showNavShadow: true,
+    showSearchBar: false,
+    showNotifications: false,
+    showHeaderNavbar: true,
+    showLabel: {
+      primary: 'Retirement Planning'
+    },
+    showExitCheck: true
   };
 }
