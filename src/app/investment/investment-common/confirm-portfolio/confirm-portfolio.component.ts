@@ -82,8 +82,10 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.investmentAccountService
       .getPortfolioAllocationDetailsWithAuth()
       .subscribe((data) => {
+        if (data.objectList && data.objectList.enquiryId) { /* Overwriting enquiry id */
+          this.authService.saveEnquiryId(data.objectList.enquiryId);
+        }
         this.portfolio = data.objectList;
-        this.authService.saveEnquiryId(data.objectList.enquiryId);
         this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
         const fundingParams = this.constructFundingParams(data.objectList);
         this.manageInvestmentsService.setFundingDetails(fundingParams);
