@@ -149,13 +149,13 @@ export class NavbarConfig {
   '8': object = {
     showNavBackBtn: true,
     showHeaderBackBtn: true,
-    showMenu: true,
+    showMenu: false,
     showLogin: false,
     showLogout: true,
     showNavShadow: true,
     showSearchBar: false,
     showNotifications: false,
-    showHeaderNavbar: true,
+    showHeaderNavbar: false,
     showLabel: {
       primary: 'Retirement Planning'
     },
