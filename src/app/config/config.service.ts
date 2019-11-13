@@ -18,7 +18,6 @@ export interface IConfig {
   investmentEngagementEnabled: boolean;
   investmentMyInfoEnabled: boolean;
   comprehensiveEnabled: boolean;
-  retirementPlanningEnabled: boolean;
   srsEnabled: boolean;
   resetPasswordUrl: string;
   verifyEmailUrl: string;
