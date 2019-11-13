@@ -170,7 +170,7 @@ export function tokenGetterFn() {
     DiyModalComponent,
     NotFoundComponent,
     EmailEnquirySuccessComponent,
-    RestrictAddPortfolioModalComponent,
+    RestrictAddPortfolioModalComponent
   ],
   imports: [
     BrowserModule,

@@ -589,12 +589,4 @@ export class ApiService {
       );
   }
 
-  // Set customer pop up status
-  enquireRetirementPlan(payload) {
-    return this.http.post(apiConstants.endpoint.enquireRetirementPlan, payload)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
-
 }
