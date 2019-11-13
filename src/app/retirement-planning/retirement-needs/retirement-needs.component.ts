@@ -71,7 +71,7 @@ export class RetirementNeedsComponent implements OnInit {
       const dateOfBirth = group.controls['dateOfBirth'];
       const retirementAge = group.controls['retirementAge'];
 
-      if (dateOfBirth.value) {
+      if (dateOfBirth.value || retirementAge.value) {
         const dob = dateOfBirth.value;
         const today = new Date();
         const birthDate = new Date(dob['year'] + '/' + dob['month'] + '/' + dob['day']);
@@ -81,7 +81,7 @@ export class RetirementNeedsComponent implements OnInit {
           age--;
         }
 
-        if (age && retirementAge.value < age) {
+        if (age && retirementAge.value <= age) {
           dateOfBirth.setErrors({ invalidAge: true });
         } else if (age && retirementAge.value > age) {
           dateOfBirth.setErrors(null);
