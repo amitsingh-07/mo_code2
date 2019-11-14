@@ -1,6 +1,14 @@
 @import '../../../variables';
 @import '../../../mixins';
 
+app-navbar {
+  nav {
+    .navbar__title--mobile {
+      font-family: $muli-semi-bold !important;
+    }
+  }
+}
+
 app-get-started {
   .container-fluid {
     background-color: $white-color;
