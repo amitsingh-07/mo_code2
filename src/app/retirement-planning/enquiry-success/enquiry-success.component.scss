@@ -21,6 +21,10 @@ app-enquiry-success {
     background-color: #f6f6f6;
     min-height: 100vh;
 
+    @include allmobiles {
+      margin-top: 45px;
+    }
+
     .email-enquiry-bg {
       position: absolute;
       top: 84px;
@@ -93,7 +97,7 @@ app-enquiry-success {
 
         @include allmobiles {
           margin-top: 25px;
-          padding: 10px;
+          padding: 20px 10px 10px;
           font-size: 16px;
         }
 

@@ -47,7 +47,7 @@
           "LABEL": "Date of Birth",
           "ERROR": {
             "REQUIRED": "Enter date of birth",
-            "INVALID_AGE": "Your Retirement Age needs to be older than the age you are now"
+            "INVALID_AGE": "Your desired retirement age must be older than your current age"
           }
         },
         "RETIREMENT_AGE": {
