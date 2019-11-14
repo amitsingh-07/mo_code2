@@ -275,6 +275,7 @@
     "CASH_WITHDRAWAL": "Cash Account Withdrawal",
     "UNIT_PRICE": "Unit Price:",
     "UNITS": "Units:",
+    "TRANSACTION_ID": "Transaction ID:",
     "MODAL": {
       "TRANSACTION_FETCH_LOADER": {
         "TITLE": "Loading transaction history",
