@@ -214,7 +214,8 @@
                             <span class="widthdrawal-icon">
                               <img src="../../../assets/images/investment-account/portfolio-withdrawal.svg" />
                             </span>
-                            <span>{{'YOUR_PORTFOLIO.WITHDRAWALS_IN_PROGRESS' | translate}}</span>
+                            <span *ngIf="portfolio?.portfolioStatus !== 'REBALANCING'">{{'YOUR_PORTFOLIO.WITHDRAWALS_IN_PROGRESS' | translate}}</span>
+                            <span *ngIf="portfolio?.portfolioStatus === 'REBALANCING'">{{'YOUR_PORTFOLIO.WITHDRAWALS_IN_QUEUE' | translate}}</span>
                           </div>
                           <div><span class="downward-icon"><img src="../../../assets/images/dropdown-icon.svg" /></span>
                           </div>

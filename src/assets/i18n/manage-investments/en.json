@@ -173,6 +173,7 @@
     "TRY_ANOTHER_RECOMMENDATION": "Try Another Recommendation",
     "PENDING_REQUESTS_CASH_ACCOUNT": "Pending Requests / <span>Cash Account</span>",
     "WITHDRAWALS_IN_PROGRESS": "You have withdrawals in process.",
+    "WITHDRAWALS_IN_QUEUE": "You have withdrawals in queue.",
     "REBALANCING_IN_PROGRESS": "Quarterly Rebalancing In-progress",
     "ONE_TIME": "One-time",
     "FUND_BY": "Fund by",
