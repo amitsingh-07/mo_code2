@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {
-    AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators
+  AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -109,21 +109,14 @@ export class TaxInfoComponent implements OnInit {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.noTinReasonlist = data.objectList.noTinReason;
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   selectCountry(country, taxInfoItem) {
     taxInfoItem.controls.taxCountry.setValue(country);
-    if (taxInfoItem.controls.tinNumber) {
-      taxInfoItem.controls.tinNumber.updateValueAndValidity();
-      if (country.countryCode === 'SG') {
-        this.singPlaceHolder = 'e.g S****5678C';
-      } else {
-        this.singPlaceHolder = '';
-      }
-    }
+    this.setDefaultTinNoAndPlaceholder(taxInfoItem);
     this.showHint(country.countryCode, taxInfoItem);
   }
 
@@ -167,6 +160,7 @@ export class TaxInfoComponent implements OnInit {
           this.validateTin.bind(this)
         ])
       );
+      this.setDefaultTinNoAndPlaceholder(formgroup);
       formgroup.removeControl('noTinReason');
     } else {
       formgroup.addControl(
@@ -270,5 +264,20 @@ export class TaxInfoComponent implements OnInit {
       }
     }
     return null;
+  }
+
+  setDefaultTinNoAndPlaceholder(taxInfoItem) {
+    if (taxInfoItem.controls.tinNumber) {
+      if (taxInfoItem.controls.taxCountry.value.countryCode === INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_COUNTRY_CODE) {
+        this.singPlaceHolder = 'e.g S****5678C';
+        if (this.investmentAccountService.isSingaporeResident()) {
+          taxInfoItem.controls.tinNumber.setValue(this.taxInfoFormValues.nricNumber);
+        }
+      } else {
+        taxInfoItem.controls.tinNumber.setValue(null);
+        this.singPlaceHolder = '';
+      }
+      taxInfoItem.controls.tinNumber.updateValueAndValidity();
+    }
   }
 }
