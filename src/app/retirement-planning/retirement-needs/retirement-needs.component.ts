@@ -89,6 +89,8 @@ export class RetirementNeedsComponent implements OnInit {
         } else if (age && retirementAge.value > age) {
           dateOfBirth.setErrors(null);
         }
+      } else {
+        this.doberror = false;
       }
     };
   }

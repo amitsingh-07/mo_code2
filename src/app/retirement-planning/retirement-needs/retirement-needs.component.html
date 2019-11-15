@@ -105,10 +105,10 @@
                           <div class="input-group-append">
                             <button (click)="d.toggle()" class="btn btn-primary" type="button">
                               <img class="date-picker-image--valid" id="getStrdImg1"
-                                *ngIf="retirementNeedsForm.controls.dateOfBirth.valid || retirementNeedsForm.controls.dateOfBirth.pristine || !doberror"
+                                *ngIf="retirementNeedsForm.controls.dateOfBirth.valid || !doberror"
                                 src="./assets/images/calendar-normal.svg" />
                               <img class="date-picker-image--invalid" id="getStrdImg1"
-                                *ngIf="doberror && !retirementNeedsForm.controls.dateOfBirth.valid && !retirementNeedsForm.controls.dateOfBirth.pristine"
+                                *ngIf="doberror && !retirementNeedsForm.controls.dateOfBirth.valid"
                                 src="./assets/images/calendar-error.svg" />
                             </button>
                           </div>
@@ -118,7 +118,7 @@
 
                     <!-- DOB validation -->
                     <div class="alert-msg"
-                      *ngIf="retirementNeedsForm.controls.retirementAge.valid && retirementNeedsForm.controls.dateOfBirth.errors?.invalidAge">
+                      *ngIf="doberror && retirementNeedsForm.controls.dateOfBirth.errors?.invalidAge">
                       <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                       <span
                         class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.DOB.ERROR.INVALID_AGE' | translate}}</span>
