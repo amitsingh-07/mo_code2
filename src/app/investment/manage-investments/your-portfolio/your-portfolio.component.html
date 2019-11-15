@@ -28,7 +28,7 @@
                     <div class="user_portfolio flex-col">
                         <div class="user_portfolio_lbl">{{portfolio.portfolioName}}</div>
                       <div class="flex-row space-between">
-                        <div class="portfolio-type">{{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type} }}</div>
+                        <div class="portfolio-type flex align-center"><span class="portfolio-fund-type mr10">SRS</span>{{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type} }}</div>
                         <div class="more-menu">
                           <div class="dropdown-control">
                             <div ngbDropdown>
@@ -50,10 +50,7 @@
                       </div>
                     </div>
               </div>
-              
-             
-            </div>
-
+             </div>
           </div>
         </div>
       </div>
@@ -417,6 +414,23 @@
                 </div>
               </div>
             </div>
+            <!-- srs a/c -->
+            <div class="srs-account">
+                <div class="srs-account-lbl">SRS Account</div>
+                <div class="form-group-with-bg">
+                  <!--Form Content-->
+                  <div class="form-group-with-bg--content">
+                    <div class="srs-account-content">
+                      <div class="srs-detail-lbl">Bank Operator
+                        <div>Oversea-Chinese Banking Corporation (OCBC)</div>
+                      </div>
+                      <div class="srs-detail-lbl mt15">Account Number
+                        <div>0001-23456-6789</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
           </div>
         </ng-template>
       </ngb-tab>

@@ -525,12 +525,12 @@ app-your-portfolio {
         color: #ffffff;
         padding-bottom: 14px;
       }
-      .cash-account-lbl{
+      .cash-account-lbl, .srs-account-lbl{
         font-family: $muli-bold;
         font-size: 16px;
         letter-spacing: -0.15px;
         color: #ffffff;
-        padding-bottom: 14px;
+        padding-bottom: 15px;
       }
       .withdrawal{
         .card{
@@ -765,6 +765,18 @@ app-your-portfolio {
               border: 1px solid rgba(0, 135, 134, 0.4);
               background-color: #00a7a7;
               cursor: pointer;
+            }
+          }
+          .srs-account-content{
+            padding-top: 10px;
+            .srs-detail-lbl{
+              color: #007d7d;
+              div{
+                font-family: $muli-semi-bold;
+                line-height: 21px;
+                letter-spacing: -0.15px;
+                color: #000000;
+              }
             }
           }
         }
