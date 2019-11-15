@@ -301,7 +301,7 @@ app-retirement-needs {
 
                 .datepicker-control {
                   .input-group {
-                    height: 52px;
+                    height: 56px;
 
                     &.inline-error {
                       .input-group-append {
@@ -310,6 +310,9 @@ app-retirement-needs {
                     }
 
                     .form-control {
+                      padding-top: 18px;
+                      height: 100%;
+
                       &:focus {
                         border-right: 0;
                       }
@@ -329,11 +332,12 @@ app-retirement-needs {
                       border-top-right-radius: 6px;
                       border-bottom-right-radius: 6px;
                       margin-left: -3px;
+                      height: 100%;
 
                       .btn-primary {
                         box-shadow: none !important;
-                        padding: 0px 15px 0 7px;
-                        height: 52px;
+                        padding: 0px 15px 2px 7px;
+                        height: 100%;
                       }
                     }
                   }
