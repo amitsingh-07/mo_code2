@@ -27,6 +27,7 @@ export class RetirementNeedsComponent implements OnInit {
 
   retirementNeedsForm: FormGroup;
   formValues: any;
+  doberror = false;
 
   constructor(
     public navbarService: NavbarService,
@@ -72,7 +73,7 @@ export class RetirementNeedsComponent implements OnInit {
       const dateOfBirth = group.controls['dateOfBirth'];
       const retirementAge = group.controls['retirementAge'];
 
-      if (dateOfBirth.value) {
+      if (dateOfBirth.value && retirementAge.value) {
         const dob = dateOfBirth.value;
         const today = new Date();
         const birthDate = new Date(dob['year'] + '/' + dob['month'] + '/' + dob['day']);
@@ -84,6 +85,7 @@ export class RetirementNeedsComponent implements OnInit {
 
         if (age && retirementAge.value <= age) {
           dateOfBirth.setErrors({ invalidAge: true });
+          this.doberror = true;
         } else if (age && retirementAge.value > age) {
           dateOfBirth.setErrors(null);
         }
@@ -97,7 +99,16 @@ export class RetirementNeedsComponent implements OnInit {
 
   save() {
     this.submitted = true;
-    if (this.retirementNeedsForm.valid) {
+    const form = this.retirementNeedsForm;
+    if (!form.valid) {
+      Object.keys(form.controls).forEach((key) => {
+        form.get(key).markAsDirty();
+      });
+      if (!form.controls['dateOfBirth'].valid) {
+        this.doberror = true;
+      }
+      return false;
+    } else {
       const lumpSumAmount = this.retirementNeedsForm.value.lumpSumAmount || 0;
       const monthlyAmount = this.retirementNeedsForm.value.monthlyAmount || 0;
       const retirementNeedsGroup = {
