@@ -98,17 +98,17 @@
                     <div class="col-7 pl0 pr0">
                       <div class="datepicker-control">
                         <div class="input-group date-picker mb0 date-picker-above"
-                          [ngClass]="{'inline-error': retirementNeedsForm.controls.dateOfBirth.errors?.invalidAge }">
+                          [ngClass]="{'inline-error': doberror && retirementNeedsForm.controls.dateOfBirth.invalid }">
                           <input readonly id="dateOfBirth" class="form-control" placeholder="DD/MM/YYYY"
                             formControlName="dateOfBirth" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
 
                           <div class="input-group-append">
                             <button (click)="d.toggle()" class="btn btn-primary" type="button">
                               <img class="date-picker-image--valid" id="getStrdImg1"
-                                *ngIf="retirementNeedsForm.controls.dateOfBirth.valid"
+                                *ngIf="retirementNeedsForm.controls.dateOfBirth.valid || retirementNeedsForm.controls.dateOfBirth.pristine || !doberror"
                                 src="./assets/images/calendar-normal.svg" />
                               <img class="date-picker-image--invalid" id="getStrdImg1"
-                                *ngIf="retirementNeedsForm.controls.dateOfBirth.invalid"
+                                *ngIf="doberror && !retirementNeedsForm.controls.dateOfBirth.valid && !retirementNeedsForm.controls.dateOfBirth.pristine"
                                 src="./assets/images/calendar-error.svg" />
                             </button>
                           </div>
@@ -117,10 +117,16 @@
                     </div>
 
                     <!-- DOB validation -->
-                    <div class="alert-msg" *ngIf="retirementNeedsForm.controls.dateOfBirth.errors?.invalidAge">
+                    <div class="alert-msg"
+                      *ngIf="retirementNeedsForm.controls.retirementAge.valid && retirementNeedsForm.controls.dateOfBirth.errors?.invalidAge">
                       <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                       <span
                         class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.DOB.ERROR.INVALID_AGE' | translate}}</span>
+                    </div>
+                    <div class="alert-msg"
+                      *ngIf="submitted && retirementNeedsForm.controls.dateOfBirth.errors?.required">
+                      <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                      <span class="err-msg">{{ 'RETIREMENT_PLANNING.CREATE.FORM.DOB.ERROR.REQUIRED' | translate}}</span>
                     </div>
                   </div>
                 </div>
