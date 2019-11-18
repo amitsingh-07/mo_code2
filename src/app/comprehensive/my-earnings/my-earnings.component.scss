@@ -1,0 +1,225 @@
+@import '../../../variables';
+@import '../../../mixins';
+.earnings-section {
+    background:$white-color;
+    color:$black-color;
+    border-radius: 5px;
+}
+.earnings-field{
+background: $bond-container-bg;
+color: $dark-teal-color;
+}
+.with-help-icon{
+    display:flex;
+    align-items: flex-end;
+    position: relative;        
+    margin-right: 10px;
+    &.dividend-icon {
+        .help-icon {
+            top: 12px;
+        }
+    }
+}
+.help-icon {      
+    background: url("/assets/images/comprehensive/tool-tip-white.svg") no-repeat;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    //position: absolute;
+    //left: 93%;
+    //top: 5px;
+}  
+.earn-btn-dropdown{
+    background: none;
+    color: $white-color !important;
+    border:none;
+    border-bottom: 1px solid;
+    border-radius: 0px;
+}
+
+.dropdown-control .earn-btn-dropdown:after {
+    background-image: url('/assets/images/dropdown_white.svg');
+    width: 16px;
+    height: 10px;
+    border: none;
+    position: absolute;
+    top: 24px;
+    right: 13px;
+    background-repeat: no-repeat;
+    @include iphone5 {
+      top: 24px;
+      right: 5px;
+    }
+  }  
+.comprehensive {
+    .dependant-title {
+        font-size: 18px;        
+    }
+    .dependant-desc {
+        font-size: 16px;
+        padding-bottom: 16px;
+    }
+    .form-group-with-bg{
+        padding:0px;
+    }
+    .form-group-with-bg .form-group-with-bg--header .form-group-with-bg--header-sub-label{
+     color:$text-grey-color!important;
+    }
+    .earnings-dropdown{
+        color:$silver-grey-color !important;
+        &[disabled] {
+            color: $dusty-grey-color !important;
+        }
+    }
+}
+.mb-10{
+    margin-bottom:100px;
+}
+.with-delete-icon{
+    display:flex;
+    align-items: flex-end;
+    position: relative;        
+    margin-right: 10px;
+    position: relative;
+    //font-size: 18px;
+    .delete-icon {      
+        background: url("/assets/images/comprehensive/delete-icon.svg") no-repeat;
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        position: absolute;
+        left: 95%;
+        top: 5px;
+    } 
+    .help-icon {
+        right:30px;
+    }
+    &.both-icon{
+        .delete-icon { 
+            left: 95% !important;
+        }
+        .help-icon {
+            left: 80% !important;
+        }
+    }   
+}
+.earn-dollar-icon{
+    background: url("/assets/images/comprehensive/money.svg") no-repeat;
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    top:-8px;
+}
+.earn-dollar-help{
+    display:flex;
+    align-items: flex-end;
+    position: relative;
+}
+.dollar-help {
+    position: relative;
+    span.arrow {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+    .dropdown-menu {
+        border-radius: 6px;
+        border: 1px solid #99cfce;
+    }
+}
+.earn-notes{
+    font-size: 16px;
+    padding-left: 40px;
+}
+.bucket-notes{
+    font-size:16px;
+}
+.bucket-notes-dollar{
+    font-size:20px;
+}
+.earn-monthly-income-dollar{
+    top:8px;
+}
+.earn-monthly-income-help{
+    top: 17px!important;
+    right: 28px !important;
+    position: absolute;
+    left: auto !important;
+}
+.income-modal-notes{
+    color:$light-grey-color;
+}
+.emptyBucket{
+    background: url("/assets/images/comprehensive/empty-earnings-bucket.svg") no-repeat;
+    display: inline-block;
+    width: 117px;
+    height: 112px;
+}
+.filledBucket{
+    background: url("/assets/images/comprehensive/filled-earnings-bucket.svg") no-repeat;
+    display: inline-block;
+    width: 117px;
+    height: 112px;
+}
+.middleBucket{
+    background: url("/assets/images/comprehensive/middle-earnings-bucket.svg") no-repeat;
+    display: inline-block;
+    width: 117px;
+    height: 112px;
+}
+.footer-notes{
+    background: $btn-primary-backgrnd-color;
+}
+.dividend-icon .help-icon{
+    top:10px!important;
+}
+.custom-dd {
+    border-radius: 6px;
+    border: 1px solid #99cfce;
+    &.dropdown-menu.show {
+        overflow: visible !important;
+    }
+    &:after, &:before {
+        bottom: 100%;
+        left: 90%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+    
+    &:after {
+        border-color: rgba(136, 183, 213, 0);
+        border-bottom-color: $white-color;
+        border-width: 12px;
+        margin-left: -12px;
+    }
+    &:before {
+        border-color: rgba(194, 225, 245, 0);
+        border-bottom-color: #99cfce;
+        border-width: 14px;
+        margin-left: -14px;
+    }
+}
+.dividend-icon .help-icon {
+     top: 12px!important;
+}
+.earn-btn-dropdown {
+    max-height: 100% !important;
+    white-space: normal !important;
+}
+.sticky-footer {
+    @extend .flex;
+    @extend .space-btwn;
+    align-items: center;
+}
+.bucket-notes {
+    font-family: $muli-bold;
+}

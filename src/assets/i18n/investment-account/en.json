@@ -6,23 +6,23 @@
       "RETRIEVE": "Retrieve",
       "VIEW_DETAILS": "View Details",
       "SAVE_AND_CONTINUE": "Save and Continue",
-      "PROCEED":"Proceed",
-      "OR":"OR"
+      "PROCEED": "Proceed",
+      "OR": "OR"
     }
   },
   "POSTLOGIN": {
     "TITLE": "Next, set up a MoneyOwl investment account!",
     "PROCEED": "Proceed with",
     "PROCEED_WITHOUT": "Proceed without SingPass",
-    "APPLY_USING_MYINFO":"Apply Using MyInfo",
-    "AUTOFILL_QUICKLY":"Autofill your information quickly. Supporting documents are not required.",
-    "APPLY_WITHOUT_MYINFO":"Apply Without MyInfo",
-    "FILL_MANUALLY":"Fill in your information manually. Takes at least 1 working day to get your account approved.",
-    "MANUALLY":"Fill Form Manually",
-    "ESTIMATE_TIME":"Estimate about 10 mins",
-    "INVESTMENT_OPENING":"Investment Account Opening",
-    "START_INVESTING":"Next, set up your investment account to start investing!"
-},
+    "APPLY_USING_MYINFO": "Apply Using MyInfo",
+    "AUTOFILL_QUICKLY": "Autofill your information quickly. Supporting documents are not required.",
+    "APPLY_WITHOUT_MYINFO": "Apply Without MyInfo",
+    "FILL_MANUALLY": "Fill in your information manually. Takes at least 1 working day to get your account approved.",
+    "MANUALLY": "Fill Form Manually",
+    "ESTIMATE_TIME": "Estimate about 10 mins",
+    "INVESTMENT_OPENING": "Investment Account Opening",
+    "START_INVESTING": "Next, set up your investment account to start investing!"
+  },
   "PERSONAL_INFO": {
     "TITLE": "Personal Information",
     "DESCRIPTION": "Please choose the profile that best describes you.",
@@ -56,8 +56,8 @@
     "ZIPCODE": "Zip Code",
     "REASON": "Reason",
     "SELECT_REASON": "Select Reason",
-    "MAILING_ADDRESS":"Mailing Address",
-    "SAME_AS_RESIDENTIAL_ADDRESS":"Same as Residential Address",
+    "MAILING_ADDRESS": "Mailing Address",
+    "SAME_AS_RESIDENTIAL_ADDRESS": "Same as Residential Address",
     "YOUR_MAILING_ADDRESS": "Your mailing address:",
     "PLEASE_INDECATE_THE_REASON": "Please indicate the reason:",
     "ERROR": {
@@ -79,9 +79,9 @@
     "EMPLOYEMEN_STATUS": "Employment Status",
     "COMPANY_NAME": "Company Name",
     "INDUSTRY": "Industry",
-    "SELECT":"Select",
-    "SELECT_INDUSTRY":"Select Industry",
-    "SELECT_OCCUPATION":"Select Occupation",
+    "SELECT": "Select",
+    "SELECT_INDUSTRY": "Select Industry",
+    "SELECT_OCCUPATION": "Select Occupation",
     "OTHER_INDUSTRY": "Please enter your industry in the input box provided.",
     "OTHER_OCCUPATION": "Please enter your occupation in the input box provided.",
     "OCCUPATION": "Occupation",
@@ -95,7 +95,7 @@
     "FLOOR": "Floor",
     "STATE": "State / Province / Region",
     "ZIPCODE": "Zip Code",
-    "YOUR_OFFICE_ADDRESS":"Your office address:",
+    "YOUR_OFFICE_ADDRESS": "Your office address:",
     "EMPLOYERS_ADDRESS": "Employer's Address",
     "SAME_AS_MAILING_ADDRESS": "Same as Mailing Address",
     "CONTINUE": "Continue",
@@ -114,7 +114,7 @@
   },
   "SELECT_NATIONALITY": {
     "SELECT_NATIONALITY_LBL": "Nationality",
-    "SELECT_NATIONALITY":"Select Nationality",
+    "SELECT_NATIONALITY": "Select Nationality",
     "QUESTION_ONE": "Are you a United States Permanent Resident / Tax Resident?",
     "QUESTION_TWO": "Are you a Singaporean Permanent Resident?",
     "NATIONALITY_LEB": "Nationality",
@@ -122,8 +122,8 @@
     "YES_lABEL": "Yes",
     "NO_LABEL": "No",
     "CONTINUE": "Continue",
-    "BEFORE_WE_PROCEED":"Before We Proceed...",
-    "WHATS_YOUR_NATIONALITY":"What's your nationality?",
+    "BEFORE_WE_PROCEED": "Before We Proceed...",
+    "WHATS_YOUR_NATIONALITY": "What's your nationality?",
     "blockedNationality": {
       "blockedNationalityTitle": "Oops, Unable To Proceed",
       "blockedNationalityMessage": "Due to compliance issues, MoneyOwl is unable to accept customers from the selected country.",
@@ -156,8 +156,8 @@
     "COUNTRY_ERROR": "Country can not be same",
     "COUNTRY_ERROR_MSG": "Please check your selected countries",
     "SELECT_COUNTRY": "Select Country",
-    "TAX_OTHER_COUNTRY":"Are you paying tax in another country?",
-    "ADD_TAX_RESIDENCE":"Add Tax Residence",
+    "TAX_OTHER_COUNTRY": "Are you paying tax in another country?",
+    "ADD_TAX_RESIDENCE": "Add Tax Residence",
     "SG_COUNTRY_CODE": "SG",
     "NRIC_HINT": "For Singaporean taxpayers, TIN is usually NRIC."
   },
@@ -218,7 +218,7 @@
     "SOURCE": "Source Of Investment Funds",
     "TITLE": "Personal Declaration",
     "PEP": "Politically Exposed Person",
-    "SELECT_SOURCE":"Select Source",
+    "SELECT_SOURCE": "Select Source",
     "PEP_DESC": "Also known as a political figure, this person has been entrusted with a prominent role in governing bodies and/or state-owned enterprises.",
     "BENEFICIAL": "Beneficial Owner",
     "BENEFICIAL_DESC": "This person is the decision maker of the investment funds and has full control over the assets.",
@@ -251,17 +251,17 @@
   },
   "ADDITIONAL_DECLARATION": {
     "TITLE": "Additional Declaration",
-    "PEP_DETAILS":"PEP Details",
+    "PEP_DETAILS": "PEP Details",
     "YES": "Yes",
     "NO": "No",
-    "PEP_FULL_NAME":"Full Name",
-    "AS_PER_NRIC_PASSPORT":"(as per NRIC/ Passport)",
+    "PEP_FULL_NAME": "Full Name",
+    "AS_PER_NRIC_PASSPORT": "(as per NRIC/ Passport)",
     "SELECT_OCCUPATION": "Select Occupation",
     "PEP_INFO": "Please provide the following details for the PEP",
     "PEP_INFO_NO": "Please complete this page only if you or any of your family member is a Politically Exposed Person (\"PEP\")",
     "PEP_MORE_DETAILS": "Just a Few More Questions",
     "YOUR_OFFICE_ADDRESS": "PEP’s office address:",
-    "INVESTMENTS":"Investments"
+    "INVESTMENTS": "Investments"
   },
   "ACCOUNT_SETUP_COMPLETE": {
     "TITLE": "Investment Account Setup Complete!",
@@ -303,6 +303,12 @@
   },
   "INVESTMENT_ACCOUNT_COMMON": {
     "SELECT_COUNTRY": "Select Country",
+    "PERSONAL_INFO_ERROR": {
+      "TITLE": "Oops, Error!",
+      "DESCRIPTION": "We note that your personal details are different from what has been used for Comprehensive Planning. Should you proceed, please take note that your Comprehensive Planning report may be inaccurate. We encourage you to review your inputs again to ensure they are accurate.",
+      "CANCEL_BTN_LBL": "Cancel",
+      "PROCEED_BTN_LBL": "Proceed"
+    },
     "ACCOUNT_CREATION_ERROR_MODAL": {
       "TITLE": "Error !",
       "DESCRIPTION": "Please fix the below list of errors and then proceed."

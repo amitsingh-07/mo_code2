@@ -1,4 +1,4 @@
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -40,6 +40,8 @@ export class SignUpService {
   private signUpFormData: SignUpFormData = new SignUpFormData();
   private createAccountFormError: any = new CreateAccountFormError();
   private resetPasswordUrl: string;
+  private mobileOptimized = new BehaviorSubject(false);
+  mobileOptimizedObservable$ = this.mobileOptimized.asObservable();
   constructor(
     private http: HttpClient,
     private apiService: ApiService,
@@ -261,6 +263,10 @@ export class SignUpService {
     this.userSubject.next(userInfo);
     this.signUpFormData.userProfileInfo = userInfo;
     this.commit();
+  }
+
+  logoutUser() {
+    this.userSubject.next('LOGGED_OUT');
   }
 
   setRedirectUrl(url) {
@@ -530,6 +536,7 @@ export class SignUpService {
   }
 
   setUnsupportedNoteShownFlag() {
+    this.mobileOptimized.next(true);
     this.signUpFormData.isUnsupportedNoteShown = true;
     this.commit();
   }

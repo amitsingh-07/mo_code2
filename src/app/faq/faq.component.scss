@@ -226,7 +226,7 @@
                             transform:translateY(-2px) rotate(90deg);
                         }
                         & + .answer{
-                            max-height:2500px;
+                            max-height:3000px;
                             transition: max-height 0.3s ease-in;
                             padding:20px 0px 20px 26px;
                             line-height:1.6;
@@ -245,6 +245,7 @@
                     font-size:16px;
                     a{
                         color:$orange-color !important;
+                        word-break: break-word;
                         &:hover{
                             color:$orange-color !important;
                             text-decoration:underline;
@@ -454,4 +455,13 @@ ol.text--normal{
         font-weight:normal !important;
         font-family:$muli-regular;
     }
+}
+.text-underline{
+    text-decoration: underline!important;
+}
+.text-italic{
+    font-family: $muli-italic;
+}
+.comprehensive li{
+list-style-type: none!important;
 }

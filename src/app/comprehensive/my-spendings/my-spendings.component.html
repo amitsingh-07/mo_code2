@@ -1,0 +1,415 @@
+<!--Container fluid-->
+<div class="container-fluid max-width--1024 comprehensive">
+  <!--Step indicator-->
+  <div class="step-indicator-container" id="moDpdnt2StepIndctr">
+    <app-step-indicator [count]="6" [activeStepIndex]="1" [mode]="1"></app-step-indicator>
+  </div>
+  <!--Step indicator /-->
+  <!--Page sub-heading-->
+  <div class="comprehensive__page-sub-heading mt30">{{'CMP.MY_SPENDINGS.HEADER'|translate}}</div>
+  <!--Page sub-heading /-->
+  <!--Page desc-->
+  <div class="comprehensive__page-content">{{'CMP.MY_SPENDINGS.ABOUT'|translate}}</div>
+  <!--Page desc /-->
+  <!--Income bucket-->
+  <div class='income-bucket-panel'>
+    <div class="income-bucket-panel__img {{ bucketImage }}"></div>
+    <div class="income-bucket-panel__content">{{'CMP.MY_SPENDINGS.SPEND_TITLE1'|translate}} <span
+        class='income-bucket-panel__value'>{{ totalSpending | currency:'USD':'symbol-narrow':'1.0-2' }}
+      </span>
+      {{'CMP.MY_SPENDINGS.SPEND_TITLE2'|translate}} </div>
+    <span>{{'CMP.MY_SPENDINGS.SPEND_SUB_TITLE'|translate}}</span>
+    <div class="income-bucket-panel__desc pb30"> {{'CMP.MY_SPENDINGS.SPEND_DESC1'|translate}}
+      {{ calculatedSpending | currency:'USD':'symbol-narrow':'1.0-2' }} {{'CMP.MY_SPENDINGS.SPEND_DESC2'|translate}}
+    </div>
+    <div class="income-bucket-panel__value-desc mb-3">{{'CMP.MY_SPENDINGS.BUCKET_DESC'|translate}}</div>
+  </div>
+  <!--Income bucket /-->
+  <!--Page form-->
+  <form [formGroup]="mySpendingsForm" id="mySpendingsForm" name="mySpendingsForm" class="mySpendingsForm">
+    <div class="form-group-with-bg">
+      <!--Form Header-->
+      <div class="form-group-with-bg--header">
+        <div class="flex space-btwn pos-relative">
+          <div>
+            <div class="form-group-with-bg--header-label">{{
+    'CMP.MY_SPENDINGS.MONTHLY_LIVING_EXPENSES' | translate}}<div class="form-group-with-bg--header-sub-label">{{
+            'CMP.MY_SPENDINGS.MONTHLY_LIVING_EXPENSES_HINT' | translate}}</div>
+            </div>
+          </div>
+          <div class="help-icon" (click)="showToolTipModal('LIVING_EXPENSES_TITLE','LIVING_EXPENSES_MESSAGE')"></div>
+        </div>
+      </div>
+      <!--Form Content-->
+      <div class="form-group-with-bg--content">
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div
+                class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-7">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode}">
+              <i>$</i>
+              <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput
+                maxLength="5" #monthlyLivingExpenses formControlName="monthlyLivingExpenses" value="0">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group-with-bg">
+      <!--Form Header-->
+      <div class="form-group-with-bg--header">
+        <div class="flex-row">
+          <div class="flex-col-12 with-help-icon">
+            <div class="form-group-with-bg--header-label">{{
+    'CMP.MY_SPENDINGS.YEARLY_AD_HOC_EXPENSES' | translate}}<div class="form-group-with-bg--header-sub-label">{{
+            'CMP.MY_SPENDINGS.YEARLY_AD_HOC_EXPENSES_HINT' | translate}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Form Content-->
+      <div class="form-group-with-bg--content">
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div
+                class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-7">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode}">
+              <i>$</i>
+              <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput
+                maxLength="6" #adHocExpenses formControlName="adHocExpenses" value="0">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group-with-bg">
+      <!--Form Header-->
+      <!-- <div class="form-group-with-bg--header">
+        <div class="flex-row">
+          <div class="flex-col-12 with-help-icon">
+            <div class="form-group-with-bg--header-label">{{
+    'CMP.MY_SPENDINGS.MONTHLY_HOME_LOAN_PAYMENT' | translate}}<div class="form-group-with-bg--header-sub-label"></div>
+            </div>
+            <span class="help-icon" (click)="showToolTipModal('HOME_LOAN_TITLE','HOME_LOAN_MESSAGE')"></span>
+          </div>
+        </div>
+      </div> -->
+      <div class="form-group-with-bg--header">
+        <div class="flex space-btwn pos-relative">
+          <div>
+            <div class="form-group-with-bg--header-label">{{
+                  'CMP.MY_SPENDINGS.MONTHLY_HOME_LOAN_PAYMENT' | translate}}<div
+                class="form-group-with-bg--header-sub-label"></div>
+            </div>
+          </div>
+          <div class="help-icon" (click)="showToolTipModal('HOME_LOAN_TITLE','HOME_LOAN_MESSAGE')"></div>
+        </div>
+      </div>
+      <!--Form Content-->
+      <div class="form-group-with-bg--content">
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <div class="form-group-with-bg--content-label" for="name">
+              {{ 'CMP.MY_SPENDINGS.MORTAGE_PAYMENT_CPF' | translate}}<div class="form-group-with-bg--content-sub-label">
+              </div>
+            </div>
+          </div>
+          <div class="flex-col-7">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode}">
+              <i>$</i>
+              <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput
+                maxLength="5" #HLMortgagePaymentUsingCPF formControlName="HLMortgagePaymentUsingCPF" value="0">
+            </div>
+          </div>
+        </div>
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <div class="form-group-with-bg--content-label" for="name">
+              {{ 'CMP.MY_SPENDINGS.MORTAGE_PAYMENT_CASH' | translate}}<div
+                class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-7">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode}">
+              <i>$</i>
+              <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput
+                maxLength="5" #HLMortgagePaymentUsingCash formControlName="HLMortgagePaymentUsingCash" value="0">
+            </div>
+          </div>
+        </div>
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.HOME_TYPE' | translate}}<div
+                class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-7">
+            <div class="dropdown-control">
+              <div ngbDropdown id="homeTypeDropDown" placement="top-right">
+                <button type="button" class="btn btn-dropdown" id="dropdownHomeType" ngbDropdownToggle
+                  appComprehensiveViewMode="{{viewMode}}" mode=1>
+                  <span class="grey-text" *ngIf="HLTypeOfHome === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                  <span *ngIf="HLTypeOfHome !== ''">{{HLTypeOfHome}}</span>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownHomeType">
+
+                  <button type="button" class="dropdown-item" *ngFor="let homeType of homeTypeList; let i=index"
+                    (click)="selectHLHomeType(homeType)">
+                    {{homeType}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.TO_PAY_OFF' | translate}}<div
+                class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-7">
+            <div class="form-control"
+              [ngClass]="{'inline-error': submitted && addSpendValid.homeLoanPayOffUntil.invalid, 'view-mode': viewMode}">
+              <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text"
+                placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}" class="input-control text-left"
+                #homeLoanPayOffUntil appNumberOnly maxLength="4" formControlName="homeLoanPayOffUntil">
+            </div>
+          </div>
+        </div>
+        <!-- <div class="flex-row otherMortage" [hidden]="!otherMortage" *ngIf="!viewMode">
+          <div class="flex-col-12 mt20">
+            <div class="with-help-icon" for="name"><u (click)="addOtherMortage()">{{
+                  'CMP.MY_SPENDINGS.ADD_OTHER_MORTAGE' | translate}}</u>
+
+              <span class="help-icon"
+                (click)="showToolTipModal('MORTAGE_PAYMENT_TITLE','MORTAGE_PAYMENT_MESSAGE')"></span>
+            </div>
+          </div>
+        </div> -->
+        <div class="flex space-btwn pos-relative" [hidden]="!otherMortage" *ngIf="!viewMode">
+          <div class="with-help-icon" for="name"><u (click)="addOtherMortage()">{{
+                    'CMP.MY_SPENDINGS.ADD_OTHER_MORTAGE' | translate}}</u></div>
+          <div class="help-icon" (click)="showToolTipModal('MORTAGE_PAYMENT_TITLE','MORTAGE_PAYMENT_MESSAGE')"></div>
+        </div>
+        <div [hidden]="otherMortage" class="mortgage-block">
+          <div class="flex space-btwn mt30 mb30" [ngClass]="{'both-icon': !viewMode}">
+            <div class="form-group-with-bg--content-label"><b>{{
+                'CMP.MY_SPENDINGS.OTHER_MORTAGE_PAYMENT' | translate}}</b></div>
+            <div class="pos-relative otherMortage" for="name">
+              <span class="help-icon"
+                (click)="showToolTipModal('MORTAGE_PAYMENT_TITLE','MORTAGE_PAYMENT_MESSAGE')"></span>
+              <span *ngIf="!viewMode" class="delete-icon" (click)="addOtherMortage()"> </span>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="flex-col-5">
+              <div class="form-group-with-bg--content-label" for="name">
+                {{ 'CMP.MY_SPENDINGS.MORTAGE_PAYMENT_CPF' | translate}}<div
+                  class="form-group-with-bg--content-sub-label"></div>
+              </div>
+            </div>
+            <div class="flex-col-7">
+              <div class="form-control"
+                [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && addSpendValid.mortgagePaymentUsingCPF.invalid}">
+                <i>$</i>
+                <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput
+                  maxLength="5" #mortgagePaymentUsingCPF formControlName="mortgagePaymentUsingCPF" value="0">
+              </div>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="flex-col-5">
+              <div class="form-group-with-bg--content-label" for="name">
+                {{ 'CMP.MY_SPENDINGS.MORTAGE_PAYMENT_CASH' | translate}}<div
+                  class="form-group-with-bg--content-sub-label"></div>
+              </div>
+            </div>
+            <div class="flex-col-7">
+              <div class="form-control"
+                [ngClass]="{'view-mode': viewMode, 'inline-error': submitted && addSpendValid.mortgagePaymentUsingCash.invalid}">
+                <i>$</i>
+                <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput
+                  maxLength="5" #mortgagePaymentUsingCash formControlName="mortgagePaymentUsingCash" value="0">
+              </div>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="flex-col-5">
+              <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.HOME_TYPE' | translate}}
+                <div class="form-group-with-bg--content-sub-label"></div>
+              </div>
+            </div>
+            <div class="flex-col-7">
+              <div class="dropdown-control">
+                <div ngbDropdown id="homeTypeDropDown" placement="top-right">
+                  <button type="button" class="btn btn-dropdown" id="dropdownHomeType" ngbDropdownToggle
+                    appComprehensiveViewMode="{{viewMode}}" mode=1>
+                    <span class="grey-text" *ngIf="mortgageTypeOfHome === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                    <span *ngIf="mortgageTypeOfHome !== ''">{{mortgageTypeOfHome}}</span>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownHomeType">
+
+                    <button type="button" class="dropdown-item" *ngFor="let homeType of homeTypeList; let i=index"
+                      (click)="selectMortgageHomeType(homeType)">
+                      {{homeType}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="flex-col-5">
+              <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.TO_PAY_OFF' | translate}}
+                <div class="form-group-with-bg--content-sub-label"></div>
+              </div>
+            </div>
+            <div class="flex-col-7">
+              <div class="form-control"
+                [ngClass]="{'inline-error': submitted && addSpendValid.mortgagePayOffUntil.invalid, 'view-mode': viewMode}">
+                <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text"
+                  placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}" class="input-control text-left"
+                  #mortgagePayOffUntil appNumberOnly maxLength="4" formControlName="mortgagePayOffUntil">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group-with-bg">
+      <!--Form Header-->
+      <div class="form-group-with-bg--header">
+        <div class="flex-row">
+          <div class="flex-col-12 with-help-icon">
+            <div class="form-group-with-bg--header-label">{{
+    'CMP.MY_SPENDINGS.MONTHLY_CAR_LOAN_PAYMENT' | translate}}<div class="form-group-with-bg--header-sub-label"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Form Content-->
+      <div class="form-group-with-bg--content">
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div
+                class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-7">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode}">
+              <i>$</i>
+              <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput
+                maxLength="5" #carLoanPayment formControlName="carLoanPayment" value="0">
+            </div>
+          </div>
+        </div>
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.TO_PAY_OFF' | translate}}<div
+                class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-7">
+            <div class="form-control"
+              [ngClass]="{'inline-error': submitted && addSpendValid.carLoanPayoffUntil.invalid, 'view-mode': viewMode}">
+              <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text"
+                placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}" class="input-control text-left"
+                #carLoanPayoffUntil appNumberOnly maxLength="4" formControlName="carLoanPayoffUntil">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group-with-bg">
+      <!--Form Header-->
+      <!-- <div class="form-group-with-bg--header">
+        <div class="flex-row">
+          <div class="flex-col-12 with-help-icon">
+            <div class="form-group-with-bg--header-label">{{
+    'CMP.MY_SPENDINGS.MONTHLY_OTHER_CAR_LOAN_PAYMENT' | translate}}<div class="form-group-with-bg--header-sub-label">
+              </div>
+            </div>
+            <span class="help-icon" (click)="showToolTipModal('OTHER_LOAN_TITLE','OTHER_LOAN_MESSAGE')"></span>
+          </div>
+        </div>
+      </div> -->
+
+
+
+      <div class="form-group-with-bg--header">
+        <div class="flex space-btwn pos-relative">
+          <div>
+            <div class="form-group-with-bg--header-label">{{
+                  'CMP.MY_SPENDINGS.MONTHLY_OTHER_CAR_LOAN_PAYMENT' | translate}}<div
+                class="form-group-with-bg--header-sub-label"></div>
+            </div>
+          </div>
+          <div class="help-icon" (click)="showToolTipModal('OTHER_LOAN_TITLE','OTHER_LOAN_MESSAGE')"></div>
+        </div>
+      </div>
+
+
+
+
+      <!--Form Content-->
+      <div class="form-group-with-bg--content">
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.FORM_LABEL.AMOUNT' | translate}}<div
+                class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-7">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode}">
+              <i>$</i>
+              <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control" appCurrencyInput
+                maxLength="5" #otherLoanPayment formControlName="otherLoanPayment" value="0">
+            </div>
+          </div>
+        </div>
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.TO_PAY_OFF' | translate}}<div
+                class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-7">
+            <div class="form-control"
+              [ngClass]="{'inline-error': submitted && addSpendValid.otherLoanPayoffUntil.invalid, 'view-mode': viewMode}">
+              <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text"
+                placeholder="{{ 'CMP.MY_SPENDINGS.ENTER_YEAR' | translate}}" class="input-control text-left"
+                #otherLoanPayoffUntil appNumberOnly maxLength="4" formControlName="otherLoanPayoffUntil">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='mb-10'>
+      <div class="flex-row">
+        <div class="flex-col-12">
+          <div class="footer-cta">
+            <button type="button" (click)="goToNext(mySpendingsForm)" class="btn btn-primary width100" id="prfBtn1">
+              {{(!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.NEXT'|translate)}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+  <!--Page form /-->
+  <div class="sticky-footer footer-notes btn__footer--fixed width100" id="prfBtn1">
+    <div class="text-left bucket-notes">{{ 'CMP.MY_SPENDINGS.BUCKET_NOTE'|translate}}
+      <span>{{'CMP.MY_SPENDINGS.SPEND_SUB_TITLE'|translate}}</span>
+    </div>
+    <div class="text-right bucket-notes-dollar"> {{totalSpending | currency:'USD':'symbol-narrow':'1.0-2'}}
+    </div>
+  </div>
+</div>
+<!--Container fluid /-->

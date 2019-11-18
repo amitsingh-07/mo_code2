@@ -8,6 +8,7 @@ import { catchError } from 'rxjs/operators';
 import { ConfigService } from '../../config/config.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
 import { IEnquiryUpdate, ISignUp, IVerifyRequestOTP } from '../../sign-up/signup-types';
+import { LoaderService } from './../components/loader/loader.service';
 import { IRecommendationRequest } from './../interfaces/recommendations.request';
 import { apiConstants } from './api.constants';
 import { AuthenticationService } from './auth/authentication.service';
@@ -21,6 +22,9 @@ import { investmentApiConstants } from '../../investment/investment.api.constant
 export class ApiService {
   private errorMessage = new BehaviorSubject({});
   public newErrorMessage = this.errorMessage.asObservable();
+  private handleErrorFlag = '?handleError=true';
+  private errorTag = 'An error occurred:';
+  private errorTryAgain = 'Something bad happened; please try again later.';
 
   constructor(
     private configService: ConfigService,
@@ -29,13 +33,15 @@ export class ApiService {
     private modal: NgbModal,
     private guideMeService: GuideMeService,
     private httpClient: HttpClient,
-    private router: Router) { }
+    private router: Router,
+    private loaderService: LoaderService) { }
 
   private handleError(error: HttpErrorResponse) {
+    this.loaderService.hideLoader();
     if (error) {
       if (error.error instanceof ErrorEvent) {
         // A client-side or network error occurred. Handle it accordingly.
-        console.error('An error occurred:', error.error.message);
+        console.error(this.errorTag, error.error.message);
       } else {
         // The backend returned an unsuccessful response code.
         // The response body may contain clues as to what went wrong,
@@ -47,7 +53,7 @@ export class ApiService {
     }
     // return an observable with a user-facing error message
     return throwError(
-      'Something bad happened; please try again later.');
+      this.errorTryAgain);
   }
 
   getProfileList() {
@@ -64,8 +70,12 @@ export class ApiService {
       );
   }
 
-  getHospitalPlanList() {
-    return this.http.get(apiConstants.endpoint.getHospitalPlanList)
+  getHospitalPlanList(queryParam?: string) {
+    let query = '';
+    if (queryParam) {
+      query = '?' + queryParam;
+    }
+    return this.http.get(apiConstants.endpoint.getHospitalPlanList + query)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -197,7 +207,7 @@ export class ApiService {
   /* Subscribe Newsletter */
   subscribeNewsletter(data) {
     const payload = data;
-    return this.http.post(apiConstants.endpoint.subscription.base + '?handleError=true', payload)
+    return this.http.post(apiConstants.endpoint.subscription.base + this.handleErrorFlag, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.throwSubscribeError(error))
       );
@@ -253,13 +263,13 @@ export class ApiService {
   }
 
   createAccount(payload: ISignUp) {
-    return this.http.post(apiConstants.endpoint.signUp + '?handleError=true', payload)
+    return this.http.post(apiConstants.endpoint.signUp + this.handleErrorFlag, payload)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
+            console.error(this.errorTag, error.error.message);
           } else {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
@@ -268,7 +278,7 @@ export class ApiService {
             );
           }
           // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
+          return throwError(this.errorTryAgain);
         })
       );
   }
@@ -287,7 +297,7 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
+            console.error(this.errorTag, error.error.message);
           } else {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
@@ -296,19 +306,19 @@ export class ApiService {
             );
           }
           // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
+          return throwError(this.errorTryAgain);
         })
       );
   }
 
   verifyOTP(payload: IVerifyRequestOTP) {
-    return this.http.post(apiConstants.endpoint.verifyOTP + '?handleError=true', payload)
+    return this.http.post(apiConstants.endpoint.verifyOTP + this.handleErrorFlag, payload)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
+            console.error(this.errorTag, error.error.message);
           } else {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
@@ -317,36 +327,27 @@ export class ApiService {
             );
           }
           // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
+          return throwError(this.errorTryAgain);
         })
       );
   }
 
   emailValidityCheck(payload) {
-    return this.http.post(apiConstants.endpoint.emailValidityCheck + '?handleError=true', payload);
+    return this.http.post(apiConstants.endpoint.emailValidityCheck + this.handleErrorFlag, payload);
   }
 
   verifyEmail(payload) {
     return this.http.post(apiConstants.endpoint.verifyEmail + '?handleError=true', payload)
       .pipe(
-        // tslint:disable-next-line:no-identical-functions
-        catchError((error: HttpErrorResponse) => {
-          if (error.error instanceof ErrorEvent) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
-          } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong,
-            console.error(
-              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-            );
-          }
-          // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
-        })
+        catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-
+  sendWelcomeEmail(payload: any) {
+    return this.http.post(apiConstants.endpoint.sendWelcomeMail + '?handleError=true', payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
   /** Post Login */
   updateInsuranceEnquiry(payload: IEnquiryUpdate) {
     return this.http.post(apiConstants.endpoint.updateProductEnquiry, payload)
@@ -368,16 +369,15 @@ export class ApiService {
       );
   }
 
- 
+
   getGeneratedFrom() {
     const url = '../assets/mock-data/generatedFrom.json';
-    // return this.http.get(apiConstants.endpoint.investmentAccount.lndustrylist)
     return this.http.get(url)
       .pipe( // tslint:disable-next-line
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
+            console.error(this.errorTag, error.error.message);
           } else {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
@@ -387,12 +387,12 @@ export class ApiService {
             return this.httpClient.get<IServerResponse>(url);
           }
           // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
+          return throwError(this.errorTryAgain);
         })
       );
   }
 
- 
+
   // tslint:disable-next-line:no-identical-functions
   requestForgotPasswordLink(data) {
     return this.http.post(apiConstants.endpoint.forgotPassword, data)
@@ -410,8 +410,6 @@ export class ApiService {
 
   // tslint:disable-next-line:no-identical-functions
   getDirectSearch(payload) {
-    // const url = '../assets/mock-data/directResults.json';
-    // return this.httpClient.get<IServerResponse>(url);
     return this.http.post(apiConstants.endpoint.getRecommendations, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => {
@@ -537,25 +535,24 @@ export class ApiService {
   }
 
 
+
   // Resend Email Verification Link
   resendEmailVerification(payload) {
-    return this.http.post(apiConstants.endpoint.resendEmailVerification + '?handleError=true', payload)
+    return this.http.post(apiConstants.endpoint.resendEmailVerification + this.handleErrorFlag, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-
   // Update Mobile Number
   editMobileNumber(payload) {
-    return this.http.post(apiConstants.endpoint.editMobileNumber + '?handleError=true', payload)
+    return this.http.post(apiConstants.endpoint.editMobileNumber + this.handleErrorFlag, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-
   // send bundle enquiry
   sendBundleEnquiry(payload) {
-    return this.http.post(apiConstants.endpoint.registerBundleEnquiry + '?handleError=true', payload)
+    return this.http.post(apiConstants.endpoint.registerBundleEnquiry + this.handleErrorFlag, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

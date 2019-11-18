@@ -1,0 +1,126 @@
+<!--Container fluid-->
+<div class="container-fluid comprehensive max-width--1024 ">
+  <!--Step indicator-->
+  <div class="step-indicator-container" id="moDpdnt2StepIndctr">
+    <app-step-indicator [count]="5" [activeStepIndex]="3" [mode]="1"></app-step-indicator>
+  </div>
+  <!--Step indicator /-->
+  <!--Page sub-heading-->
+  <div class="comprehensive__page-sub-heading mt30 pb0">{{'CMP.EDUCATION_PREFERENCE.HEADER'|translate}}</div>
+  <!--Page sub-heading /-->
+  <!--Page form-->
+  <form [formGroup]="EducationPreferenceForm" id="EducationPreferenceForm" name="EducationPreferenceForm"
+    class="EducationPreferenceForm">
+    <div formArrayName="preference"
+      *ngFor="let preferencePlan of EducationPreferenceForm['controls'].preference['controls']; let i = index;">
+      <div class="form-group-with-bg mt20" [formGroupName]="i">
+        <!--Form Header-->
+        <div class="form-group-with-bg--header">
+          <div class="flex-row">
+            <div class="flex-col-12 bg-title">
+              <div class="form-group-with-bg--header-label">{{preferencePlan.get('name').value}}<div
+                  class="form-group-with-bg--header-sub-label age">
+                  {{ 'CMP.EDUCATION_PREFERENCE.ABOUT' | translate}}
+                  {{preferencePlan.get('age').value}} {{
+                    'CMP.FORM_LABEL.YEARS_LATER' | translate}} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Form Content-->
+        <div class="form-group-with-bg--content">
+          <div class="flex-row">
+            <div class="flex-col-6">
+              <div class="form-group-with-bg--content-label">{{ 'CMP.FORM_LABEL.LOCATION' | translate}}</div>
+            </div>
+            <div class="flex-col-6">
+              <div class="dropdown-control"
+                [ngClass]="{'inline-error': submitted &&  preferencePlan['controls'].location.invalid}">
+                <div ngbDropdown id="locationDropDown">
+                  <button type="button" class="btn btn-dropdown" id="dropdownLocation" ngbDropdownToggle
+                    appComprehensiveViewMode="{{viewMode}}" mode=1>
+                    <span class="grey-text"
+                      *ngIf="preferencePlan.get('location'). value ==='' || preferencePlan.get('location').value === null">{{'COMMON.LBL_SELECT' | translate}}</span>
+                    <span
+                      *ngIf="preferencePlan.get('location'). value !=='' && preferencePlan.get('location').value !== null">{{preferencePlan.get('location').value === null ? 'Select' : preferencePlan.get('location').value}}</span>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownLocation">
+                    <button class="dropdown-item" (click)="selectLocation('',i)">Select</button>
+                    <button type="button" class="dropdown-item" *ngFor="let location of locationList;"
+                      (click)="selectLocation(location, i)">
+                      {{location}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="flex-col-6">
+              <div class="form-group-with-bg--content-label">{{ 'CMP.FORM_LABEL.COURSE_OF_STUDY' | translate}}</div>
+            </div>
+            <div class="flex-col-6">
+              <div class="dropdown-control"
+                [ngClass]="{'inline-error': submitted &&  preferencePlan['controls'].educationCourse.invalid}">
+                <div ngbDropdown id="EducationDropDown">
+                  <button type="button" class="btn btn-dropdown" id="dropdownEducationCourse" ngbDropdownToggle
+                    appComprehensiveViewMode="{{viewMode}}" mode=1>
+                    <span class="grey-text"
+                      *ngIf="preferencePlan.get('educationCourse'). value ==='' || preferencePlan.get('educationCourse').value === null">{{'COMMON.LBL_SELECT' | translate}}</span>
+                    <span
+                      *ngIf="preferencePlan.get('educationCourse'). value !=='' && preferencePlan.get('educationCourse').value !== null">{{preferencePlan.get('educationCourse').value === null ? 'Select' : preferencePlan.get('educationCourse').value}}</span>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownRelation">
+                    <button class="dropdown-item" (click)="selectCourse('',i)">Select</button>
+                    <button type="button" class="dropdown-item" *ngFor="let course of courseList;"
+                      (click)="selectCourse(course, i)">
+                      {{course}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="flex-row  sharePercentFamily">
+            <div class="mt20 with-help-icon">
+              <div class="flex-col-12 form-group-with-bg--content-label" for="name">{{
+                'CMP.FORM_LABEL.SHARE_CHILD_EDUCATION_EXPENSES' | translate}}
+                <div class="help-icon"
+                  (click)="showToolTipModal('CHILD_EDUCATION_EXPENSES_TITLE','CHILD_EDUCATION_EXPENSES_MESSAGE')"></div>
+              </div>
+            </div>
+          </div> -->
+          <div class="title-with-tooltip sharePercentFamily">
+            <div class="form-group-with-bg--content-label" for="name">{{
+              'CMP.FORM_LABEL.SHARE_CHILD_EDUCATION_EXPENSES' | translate}}</div>
+            <div class="tooltip-icon"
+              (click)="showToolTipModal('CHILD_EDUCATION_EXPENSES_TITLE','CHILD_EDUCATION_EXPENSES_MESSAGE')"></div>
+          </div>
+          <div class="flex-row">
+            <div class="flex-col-6">
+              <div class="form-group-with-bg--content-label">
+                {{ 'CMP.FORM_LABEL.YOUR_SHARE' | translate}}</div>
+            </div>
+            <div class="flex-col-6">
+              <input [ngClass]="{'view-mode': viewMode}" 
+              id="sharePercent-{{i}}" type="text" appComprehensiveViewMode="{{viewMode}}" mode=1
+                [readonly]="true" name="sharePercent" class="text-right form-control with-input-style"
+                [value]="sliderValue[i]+'%'" />
+            </div>
+          </div>
+          <div class="width100">
+            <nouislider id="sharePercentSlider-{{i}}" [disabled]="(viewMode)?true:false" #ciMultiplierSlider
+              (slide)="onSliderChange($event, i)" [config]="ciSliderConfig" [min]="0" [max]="100" [step]="1">
+            </nouislider>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-cta">
+      <button type="button" (click)="goToNext(EducationPreferenceForm)" class="btn btn-primary width100">{{
+          (!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.NEXT'|translate)}}</button>
+    </div>
+  </form>
+  <!--Page form /-->
+</div>
+<!--Container fluid /-->

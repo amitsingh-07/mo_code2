@@ -11,26 +11,37 @@ import { LoaderService } from './loader.service';
 export class LoaderComponent implements OnInit, OnChanges {
 
   isVisible = false;
+  autoHide = true;
   params;
   @ViewChild('anim') anim: ElementRef;
   interval;
   constructor(
     private loaderService: LoaderService,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.loaderService.loaderParamChange.subscribe((param) => {
       if (param) {
         this.params = param;
-        this.showLoader();
+        if (typeof param.hideForced !== 'undefined' && param.hideForced) {
+          this.hideLoaderForced();
+          return;
+        } else {
+          if (typeof param.autoHide !== 'undefined') {
+            this.autoHide = param.autoHide;
+          } else {
+            this.autoHide = true;
+          }
+          this.showLoader();
+        }
       } else {
         this.hideLoader();
       }
     });
 
     this.router.events.subscribe((val) => {
-      if (val instanceof NavigationEnd) {
+      if (val instanceof NavigationEnd && this.autoHide && this.isVisible) {
         this.hideLoader();
       }
     });
@@ -45,16 +56,28 @@ export class LoaderComponent implements OnInit, OnChanges {
   }
 
   hideLoader() {
+    if (this.autoHide) {
+      this.hide();
+    }
+  }
+
+  hideLoaderForced() {
+    this.hide();
+  }
+
+  private hide() {
     this.isVisible = false;
     clearInterval(this.interval);
   }
 
   animate() {
     this.interval = setInterval(() => {
-      if (this.anim.nativeElement.innerHTML.length < 3) {
-        this.anim.nativeElement.innerHTML += '.';
-      } else {
-        this.anim.nativeElement.innerHTML = '';
+      if (this.anim) {
+        if (this.anim.nativeElement.innerHTML.length < 3) {
+          this.anim.nativeElement.innerHTML += '.';
+        } else {
+          this.anim.nativeElement.innerHTML = '';
+        }
       }
     }, 500);
   }

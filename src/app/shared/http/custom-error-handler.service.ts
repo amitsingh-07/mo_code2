@@ -66,7 +66,7 @@ export class CustomErrorHandlerService {
     if (httpError.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', httpError.error.message);
-    } else {
+    } else if (httpError.error && httpError.error.error) {
       const error: IError = {
         error: httpError.error.error,
         message: httpError.error.message

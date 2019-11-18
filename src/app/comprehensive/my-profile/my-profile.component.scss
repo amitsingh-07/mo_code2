@@ -1,0 +1,26 @@
+@import '../../../variables';
+@import '../../../mixins';
+app-cmp-my-profile {
+  #dropdownNationality {
+    text-transform: capitalize;
+  }
+  .dob-valid-error {
+    color: #ff9141 !important;
+    position: relative;
+
+    .dob-alert-icon {
+      width: 34px;
+      height: 34px;
+      background: url("/assets/images/comprehensive/summary-page/topup-alert.svg");
+      background-repeat: no-repeat;
+      border: 0;
+      position: absolute;
+      left: 1%;
+      top: 1%;
+    }
+
+    .dob-alert-text {
+      margin-left: 10%;
+    }
+  }
+}

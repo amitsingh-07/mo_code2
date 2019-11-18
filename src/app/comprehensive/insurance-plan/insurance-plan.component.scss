@@ -1,0 +1,113 @@
+@import '../../../variables';
+@import '../../../mixins';
+.comprehensive {
+  .title {
+    font-size: 18px;
+  }
+
+  .insurance {
+    color: #066360 !important;
+  }
+
+  .sub-heading {
+    letter-spacing: -0.2px;
+    font-weight: 600;
+    font-family: muli-bold;
+    font-size: 20px !important;
+    color: #066360 !important;
+
+  }
+
+  .sub-desc {
+    font-size: 16px !important;
+    font-weight: bold;
+  }
+
+  .payout-width{
+      width:100%;
+      max-width: 100%;
+  }
+  .insurance-border{
+      border-radius: 6px!important;
+  }
+  .fixed-btn--sm-comprehensive {
+    width: 100%;
+  }
+  .fixed-btn--sm-comprehensive {
+    &.full-width {
+      width: 100% !important;
+    }
+  }
+  .hospital-plan, .life-protection, .critical-illness, .disability-income, .long-term-care {
+    @extend .flex;
+    &.with-help-icon {
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+  .hospital-plan, .life-protection, .critical-illness, .disability-income, .long-term-care {
+    background-image: url('../../../assets/images/comprehensive/insurance-plan/hospital-plan.svg');
+    background-repeat: no-repeat;
+    padding-left: 35px;
+    height: 27px;
+    line-height: 30px;
+  }
+  .life-protection {
+    background-image: url('../../../assets/images/comprehensive/insurance-plan/life-protection.svg');
+  }
+  .critical-illness {
+    background-image: url('../../../assets/images/comprehensive/insurance-plan/critical-illness.svg');
+  }
+  .disability-income {
+    background-image: url('../../../assets/images/comprehensive/insurance-plan/disability-income.svg');
+  }
+  .long-term-care {
+    background-image: url('../../../assets/images/comprehensive/insurance-plan/long-term-care.svg');
+  }
+  .form-group-with-bg--content-white--title {
+    @include allmobiles {
+      font-size: 18px;
+    }
+    @include iphone5{
+      margin-bottom: 40px!important;
+    }
+  }
+  .insurance-input-radio{
+    .flex-col-4,.flex-col-6{
+      padding-right: 10px;
+      max-width: 105px;
+      @include iphone5 {
+        max-width: 82px;
+      }
+      @include min360{
+        max-width:105px;
+      }
+    }
+    .flex-col-4:last-child,.flex-col-6:last-child {
+      padding-right: 0px;
+    }
+  }
+  .insurancePlanForm{
+    .form-group-with-bg--content-white--desc{
+      margin-bottom: 20px!important;
+    }
+  }
+.form-group-with-bg--content-white{
+  padding-bottom: 30px!important;
+  padding-top: 30px!important;
+  .mb-3{
+    margin-bottom: 20px!important;
+  }
+}
+.align-item-start {
+  align-items: flex-start;
+}
+.tooltip-icon {
+  position: absolute;
+  right: 0;
+  top: -2px;
+}
+.pos-relative {
+  position: relative;
+}
+}
