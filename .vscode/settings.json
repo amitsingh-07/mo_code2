@@ -5,7 +5,7 @@
     "prefs"
   ],
   "files.autoSave": "off",
-  "workbench.colorTheme": "Visual Studio Light",
+  "workbench.colorTheme": "Visual Studio Dark",
   "git.enableSmartCommit": true,
   "team.showWelcomeMessage": false,
   "files.exclude": {
@@ -18,7 +18,7 @@
   "prettier.singleQuote": true,
   "prettier.useTabs": false,
   "typescriptHero.imports.multiLineTrailingComma": false,
-  "window.zoomLevel": 0,
+  "window.zoomLevel": -1,
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
