@@ -41,7 +41,7 @@
                           <div class="flex-col-7">
                             <div class="transaction-panel__history--details--transaction-id">
                               {{ 'TRANSACTIONS.TRANSACTION_ID' | translate}}
-                              {{transaction.transactionType.key}}</div>
+                              {{transaction.contractNo}}</div>
                             <div class="history-type-transaction">
                               <div [class.buy]="transaction.transactionType.name.toUpperCase() === 'BUY'"
                                 class="transaction-panel__history--details--title--sale"
