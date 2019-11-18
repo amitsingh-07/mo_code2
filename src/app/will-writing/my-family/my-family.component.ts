@@ -40,6 +40,8 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
   unsavedMsg: string;
   toolTip;
   formName: string[] = [];
+  minDate;
+  maxDate;
 
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
@@ -55,8 +57,8 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     private willWritingService: WillWritingService
   ) {
     const today: Date = new Date();
-    config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
-    config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    this.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
+    this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {

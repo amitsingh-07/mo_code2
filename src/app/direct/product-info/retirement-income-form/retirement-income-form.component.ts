@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from '../../direct.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-retirement-income-form',
@@ -29,11 +30,19 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
   payoutFeatureList;
   doberror = false;
 
+  minDate;
+  maxDate;
+  private userInfoSubscription: Subscription;
+
   constructor(
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter,
     private translate: TranslateService,
     private formBuilder: FormBuilder, private config: NgbDatepickerConfig) {
+    const today: Date = new Date();
+    this.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
+    this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    config.outsideDays = 'collapsed';
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.payoutDurationList = this.translate.instant('RETIREMENT_INCOME.PAYOUT_DURATION_LIST');
@@ -74,21 +83,29 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
         }
       }
     });
-    this.directService.userInfoSet.subscribe((data) => {
+    this.userInfoSubscription = this.directService.userInfoSet.subscribe((data) => {
       this.retirementIncomeForm.controls.gender.setValue(data['gender']);
       this.retirementIncomeForm.controls.dob.setValue(data['dob']);
     });
   }
 
-  onGenderDobChange() {
+  onGenderChange() {
     const userInfo = this.directService.getUserInfo();
-    userInfo.dob = this.retirementIncomeForm.controls.dob.value;
     userInfo.gender = this.retirementIncomeForm.controls.gender.value;
     this.directService.updateUserInfo(userInfo);
   }
 
+  onDobChange() {
+    if (this.retirementIncomeForm.controls.dob.valid) {
+      const userInfo = this.directService.getUserInfo();
+      userInfo.dob = this.retirementIncomeForm.controls.dob.value;
+      this.directService.updateUserInfo(userInfo);
+    }
+  }
+
   ngOnDestroy(): void {
     this.categorySub.unsubscribe();
+    this.userInfoSubscription.unsubscribe();
   }
 
   selectRetirementIncome(selectedRetirementIncome) {

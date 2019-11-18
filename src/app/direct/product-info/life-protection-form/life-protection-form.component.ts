@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ErrorModalComponent } from './../../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from './../../direct.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-life-protection-form',
@@ -30,10 +31,11 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
   coverageAmtValuesTemp: number[] = Array(10).fill(100000).map((x, i) => x += i * 100000);
   coverageAmtValues = Array(12);
   durationValues = ['5 Years', '10 Years', 'Till Age 55',
-                    'Till Age 60', 'Till Age 65', 'Till Age 70',
-                    'Whole Life', 'Whole life w/Multiplier'];
+    'Till Age 60', 'Till Age 65', 'Till Age 70',
+    'Whole Life', 'Whole life w/Multiplier'];
   minDate;
   maxDate;
+  private userInfoSubscription: Subscription;
 
   constructor(
     private directService: DirectService, private modal: NgbModal,
@@ -41,8 +43,8 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder, private config: NgbDatepickerConfig, private currencyPipe: CurrencyPipe,
     private router: Router) {
     const today: Date = new Date();
-    config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
-    config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    this.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
+    this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
     this.translate.use('en');
     this.coverageAmtValuesTemp.push(1500000);
@@ -86,21 +88,30 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
         }
       }
     });
-    this.directService.userInfoSet.subscribe((data) => {
+
+    this.userInfoSubscription = this.directService.userInfoSet.subscribe((data) => {
       this.lifeProtectionForm.controls.gender.setValue(data['gender']);
       this.lifeProtectionForm.controls.dob.setValue(data['dob']);
     });
   }
 
-  onGenderDobChange() {
+  onGenderChange() {
     const userInfo = this.directService.getUserInfo();
-    userInfo.dob = this.lifeProtectionForm.controls.dob.value;
     userInfo.gender = this.lifeProtectionForm.controls.gender.value;
     this.directService.updateUserInfo(userInfo);
   }
 
+  onDobChange() {
+    if (this.lifeProtectionForm.controls.dob.valid) {
+      const userInfo = this.directService.getUserInfo();
+      userInfo.dob = this.lifeProtectionForm.controls.dob.value;
+      this.directService.updateUserInfo(userInfo);
+    }
+  }
+
   ngOnDestroy(): void {
     this.categorySub.unsubscribe();
+    this.userInfoSubscription.unsubscribe();
   }
 
   selectCoverageAmt(in_coverage_amt) {
