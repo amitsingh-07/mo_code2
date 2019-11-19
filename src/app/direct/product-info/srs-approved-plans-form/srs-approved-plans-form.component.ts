@@ -78,7 +78,9 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
     });
     this.userInfoSubscription = this.directService.userInfoSet.subscribe((data) => {
       this.srsApprovedPlansForm.controls.gender.setValue(data['gender']);
-      this.srsApprovedPlansForm.controls.dob.setValue(data['dob']);
+      if (data['dob']) {
+        this.srsApprovedPlansForm.controls.dob.setValue(data['dob']);
+      }
     });
   }
 

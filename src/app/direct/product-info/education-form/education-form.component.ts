@@ -65,7 +65,9 @@ export class EducationFormComponent implements OnInit, OnDestroy {
     });
     this.userInfoSubscription = this.directService.userInfoSet.subscribe((data) => {
       this.educationForm.controls.childgender.setValue(data['gender']);
-      this.educationForm.controls.childdob.setValue(data['dob']);
+      if (data['dob']) {
+        this.educationForm.controls.childdob.setValue(data['dob']);
+      }
     });
   }
 

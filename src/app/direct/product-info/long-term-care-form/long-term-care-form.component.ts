@@ -61,7 +61,9 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
     });
     this.userInfoSubscription = this.directService.userInfoSet.subscribe((data) => {
       this.longTermCareForm.controls.gender.setValue(data['gender']);
-      this.longTermCareForm.controls.dob.setValue(data['dob']);
+      if (data['dob']) {
+        this.longTermCareForm.controls.dob.setValue(data['dob']);
+      }
     });
   }
 

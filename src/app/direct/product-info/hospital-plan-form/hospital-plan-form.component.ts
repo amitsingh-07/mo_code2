@@ -70,7 +70,9 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
     });
     this.userInfoSubscription = this.directService.userInfoSet.subscribe((data) => {
       this.hospitalForm.controls.gender.setValue(data['gender']);
-      this.hospitalForm.controls.dob.setValue(data['dob']);
+      if (data['dob']) {
+        this.hospitalForm.controls.dob.setValue(data['dob']);
+      }
     });
   }
 

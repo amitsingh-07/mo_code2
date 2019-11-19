@@ -100,7 +100,9 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
     });
     this.userInfoSubscription = this.directService.userInfoSet.subscribe((data) => {
       this.ocpDisabilityForm.controls.gender.setValue(data['gender']);
-      this.ocpDisabilityForm.controls.dob.setValue(data['dob']);
+      if (data['dob']) {
+        this.ocpDisabilityForm.controls.dob.setValue(data['dob']);
+      }
     });
   }
 
