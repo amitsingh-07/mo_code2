@@ -268,7 +268,12 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       }
     });
   }
-
+  editSrsDetails(){
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS]);
+  }
+  addSrsDetail() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS]);
+  }
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.navbarService.unsubscribeBackPress();

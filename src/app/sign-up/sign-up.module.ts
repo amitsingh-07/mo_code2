@@ -41,6 +41,8 @@ import {
     ViewAllNotificationsComponent
 } from './view-all-notifications/view-all-notifications.component';
 import { EditMobileNumberComponent } from '../shared/modal/edit-mobile-number/edit-mobile-number.component';
+import { AddUpdateSrsComponent } from './add-update-srs/add-update-srs.component';
+import { TextMaskModule } from 'angular2-text-mask';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -57,6 +59,7 @@ export function createTranslateLoader(http: HttpClient) {
     SignUpRoutingModule,
     ReactiveFormsModule,
     SharedModule,
+    TextMaskModule,
     ComprehensiveModule,
     NgbModule.forRoot(),
     TranslateModule.forRoot({
@@ -87,7 +90,8 @@ export function createTranslateLoader(http: HttpClient) {
     ViewAllNotificationsComponent,
     TopBarWithClearButtonComponent,
     AccountUpdatedComponent,
-    AddUpdateBankComponent
+    AddUpdateBankComponent,
+    AddUpdateSrsComponent
   ],
   providers: [SignUpAccessGuard, AuthGuardService],
   entryComponents: [EditMobileNumberComponent]
