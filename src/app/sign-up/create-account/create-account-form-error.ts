@@ -212,5 +212,34 @@ export class CreateAccountFormError {
                         errorMessage: 'Enter valid Name.'
                 }
         },
+        srsAccountHolderName: {
+                required : {
+                        errorTitle: 'Account Holder Name required',
+                        errorMessage: 'Enter your Name.'
+                },
+                pattern : {
+                        errorTitle: 'Invalid Name',
+                        // tslint:disable-next-line:max-line-length
+                        errorMessage: 'Enter valid Name.'
+                }
+        },
+        srsAccountNumber: {
+                required : {
+                        errorTitle: 'Account Holder Name required',
+                        errorMessage: 'Enter your Name.'
+                },
+                // pattern : {
+                //         errorTitle: 'Invalid Name',
+                //         // tslint:disable-next-line:max-line-length
+                //         errorMessage: 'Enter valid Name.'
+                // }
+        },
+        srsOperatorBank: {
+                required : {
+                        errorTitle: 'srs bank operator is required',
+                        errorMessage: 'secet SRS operator.'
+                },
+                
+        }
     };
 }

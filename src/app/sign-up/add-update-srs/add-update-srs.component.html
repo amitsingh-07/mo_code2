@@ -11,7 +11,7 @@
           </div>
           <div class="flex-col-12">
             <div>
-              <div contenteditable="true" id="fullname" [textContent]="addUpdateSrsFrom.get('accountHolderName').value"
+              <div contenteditable="true" id="fullname" [textContent]="addUpdateSrsFrom.get('srsAccountHolderName').value"
                 (focusout)="setAccountHolderName($event.target.textContent);" maxlength="100"
                 (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
                 placeholder="Enter AccountHolder Name">
@@ -39,12 +39,13 @@
                 <div ngbDropdown>
                     <button class="btn btn-dropdown without-border " id="residentialAddress-country-drpdown"
                       ngbDropdownToggle>
-                      <span *ngIf="!addUpdateSrsFrom.controls.srsOperatorBank.value">Select SRS Operator</span>
-                      <span *ngIf="addUpdateSrsFrom.controls.srsOperatorBank.value">Select SRS Operator</span>
+                      <span>{{addUpdateSrsFrom.controls.srsOperatorBank.value ? 
+                          addUpdateSrsFrom.controls.srsOperatorBank.value.name :
+                         'Select SRS Operator'}}</span>
                     </button>
                     <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                       <button class="dropdown-item" *ngFor="let operator of srsAgentBankList; let i = index;"
-                        (click)="selectSrsOperator('srsOperatorBank',operator.name)"
+                        (click)="selectSrsOperator('srsOperatorBank',operator)"
                         id="residentialAddress-country-option-{{i}}">{{operator.name}}</button>
                     </div>
                   </div>
@@ -60,8 +61,7 @@
             <label class="form-lbl bank_text">SRS Account Number</label>
           </div>
           <div class="flex-col-6">
-            <div
-              [ngClass]="{'inline-error':getInlineErrorStatus(addUpdateSrsFrom.controls.srsFundingDetails.controls.srsAccountNumber)}">
+            <div>
               <input type="text" [textMask]="maskConfig()" placeholder="Enter Account No." class="form-control"
                 formControlName="srsAccountNumber">
             </div>

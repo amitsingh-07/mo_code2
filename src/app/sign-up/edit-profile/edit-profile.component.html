@@ -531,7 +531,7 @@
                 </div>
               </div>
               <div class="dots" #showHideBank>
-                <div>
+                <div *ngIf="srsDetails">
                   <div class="flex-row">
                     <div class="flex-col-4">
                       <div class="bank-account">SRS Operator</div>
@@ -552,7 +552,7 @@
                     {{'EDIT_PROFILE.EDIT' | translate}}
                   </button>
                 </div>
-                <div class="no-details">
+                <div class="no-details" *ngIf="!srsDetails">
                   <div class="flex-row">
                     <div class="flex-col-12">
                       <div class="no-srs-account">No account added</div>

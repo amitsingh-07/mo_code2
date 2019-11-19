@@ -51,6 +51,7 @@ export class AddUpdateSrsComponent implements OnInit {
   selectedFundingMethod;
   isSrsAccountAvailable = false;
   srsAccountDetails;
+  queryParams;
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
@@ -78,13 +79,15 @@ export class AddUpdateSrsComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
+    this.queryParams = this.route.snapshot.queryParams;
+    this.srsBank = this.queryParams.srsBank;
     this.getSrsBankOperator();
     this.buildForm();
   }
 
   buildForm() {
     this.addUpdateSrsFrom = this.formBuilder.group({
-      accountHolderName: ['', [Validators.required]],
+      srsAccountHolderName: ['', [Validators.required,, Validators.pattern(RegexConstants.NameWithSymbol)]],
       srsOperatorBank: ['', [Validators.required]],
       srsAccountNumber: ['', [Validators.required]]
     });
@@ -112,6 +115,7 @@ export class AddUpdateSrsComponent implements OnInit {
     };
     if (this.addUpdateSrsFrom.get('srsOperatorBank').value) {
       const operator = this.addUpdateSrsFrom.get('srsOperatorBank').value.name;
+      if(operator) {
       switch (operator.toUpperCase()) {
         case 'DBS':
           config.mask = RegexConstants.operatorMask.DBS;
@@ -123,6 +127,7 @@ export class AddUpdateSrsComponent implements OnInit {
           config.mask = RegexConstants.operatorMask.UOB;
           break;
       }
+    }
     }
     return config;
   }
@@ -167,7 +172,7 @@ export class AddUpdateSrsComponent implements OnInit {
   setAccountHolderName(accountHolderName: any) {
     if (accountHolderName !== undefined) {
       accountHolderName = accountHolderName.replace(/\n/g, '');
-      this.addUpdateSrsFrom.controls.accountHolderName.setValue(accountHolderName);
+      this.addUpdateSrsFrom.controls.srsAccountHolderName.setValue(accountHolderName);
       return accountHolderName;
     }
   }
@@ -183,10 +188,27 @@ export class AddUpdateSrsComponent implements OnInit {
       const content = event.target.innerText;
       if (content.length >= 100) {
         const contentList = content.substring(0, 100);
-        this.addUpdateSrsFrom.controls.accountHolderName.setValue(contentList);
+        this.addUpdateSrsFrom.controls.srsAccountHolderName.setValue(contentList);
         const el = document.querySelector('#' + id);
         this.investmentAccountService.setCaratTo(el, 100, contentList);
       }
     }
   }
+
+  applyChanges(form: any) {
+    if (!form.valid) {
+      Object.keys(form.controls).forEach((key) => {
+        form.get(key).markAsDirty();
+      });
+      const error = this.signUpService.getFormErrorList(form);
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = error.title;
+      ref.componentInstance.errorMessageList = error.errorMessages;
+      return false;
+    } else {
+      console.log(form.value);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+      }
+    }
+  
 }

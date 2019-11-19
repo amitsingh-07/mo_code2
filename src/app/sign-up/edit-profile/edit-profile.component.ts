@@ -269,11 +269,13 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     });
   }
   editSrsDetails(){
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS]);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS], { queryParams: { srsBank: false }, fragment: 'bank' });
   }
   addSrsDetail() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS]);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS], { queryParams: { srsBank: true }, fragment: 'bank' });
+    
   }
+  
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.navbarService.unsubscribeBackPress();
