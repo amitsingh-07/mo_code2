@@ -85,6 +85,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   isInvestmentEnabled = false;
   isNotificationEnabled = false;
   isComprehensiveEnabled = false;
+  isRetirementPlanningEnabled = false;
   isComprehensiveLiveEnabled = false;
 
   showComprehensiveTitle = false;
@@ -127,6 +128,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.isWillWritingEnabled = moduleConfig.willWritingEnabled;
       this.isInvestmentEnabled = moduleConfig.investmentEnabled;
       this.isComprehensiveEnabled = moduleConfig.comprehensiveEnabled;
+      this.isRetirementPlanningEnabled = moduleConfig.retirementPlanningEnabled;
       this.isComprehensiveLiveEnabled = moduleConfig.comprehensiveLiveEnabled;
     });
 
