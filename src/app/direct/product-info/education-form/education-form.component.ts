@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from './../../direct.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-education-form',
@@ -26,13 +27,17 @@ export class EducationFormComponent implements OnInit, OnDestroy {
   monthlyContribution = Array(9).fill(100).map((x, i) => x += i * 50);
   univercityEntryAge = Array(5).fill(18).map((x, i) => x += i);
   doberror = false;
+  minDate;
+  maxDate;
+  private userInfoSubscription: Subscription;
+
   constructor(
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter,
     private formBuilder: FormBuilder, private translate: TranslateService, private config: NgbDatepickerConfig) {
     const today: Date = new Date();
-    config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
-    config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    this.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
+    this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
   }
 
@@ -58,21 +63,29 @@ export class EducationFormComponent implements OnInit, OnDestroy {
         }
       }
     });
-    this.directService.userInfoSet.subscribe((data) => {
+    this.userInfoSubscription = this.directService.userInfoSet.subscribe((data) => {
       this.educationForm.controls.childgender.setValue(data['gender']);
       this.educationForm.controls.childdob.setValue(data['dob']);
     });
   }
 
-  onGenderDobChange() {
+  onGenderChange() {
     const userInfo = this.directService.getUserInfo();
-    userInfo.dob = this.educationForm.controls.childdob.value;
     userInfo.gender = this.educationForm.controls.childgender.value;
     this.directService.updateUserInfo(userInfo);
   }
 
+  onDobChange() {
+    if (this.educationForm.controls.childdob.valid) {
+      const userInfo = this.directService.getUserInfo();
+      userInfo.dob = this.educationForm.controls.childdob.value;
+      this.directService.updateUserInfo(userInfo);
+    }
+  }
+
   ngOnDestroy(): void {
     this.categorySub.unsubscribe();
+    this.userInfoSubscription.unsubscribe();
   }
 
   selectMonthlyContribution(contribution) {
@@ -86,7 +99,7 @@ export class EducationFormComponent implements OnInit, OnDestroy {
   setdefaultUniversityAge() {
     this.selectedunivercityEntryAge = this.educationForm.controls['childgender'].value === 'male' ? '20' : '18';
     this.educationForm.controls.selectedunivercityEntryAge.setValue(this.selectedunivercityEntryAge);
-    this.onGenderDobChange();
+    this.onGenderChange();
   }
 
   setselfform() {

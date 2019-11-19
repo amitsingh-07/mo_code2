@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from '../../direct.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-long-term-care-form',
@@ -22,6 +23,10 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
   monthlyPayoutList = Array(21).fill(500).map((x, i) => x += i * 100);
   selectedMonthlyPayout = '';
   doberror = false;
+  minDate;
+  maxDate;
+  private userInfoSubscription: Subscription;
+
   constructor(
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter,
@@ -30,8 +35,8 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
     private config: NgbDatepickerConfig) {
     this.translate.use('en');
     const today: Date = new Date();
-    config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
-    config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    this.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
+    this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
   }
 
@@ -54,21 +59,29 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
         }
       }
     });
-    this.directService.userInfoSet.subscribe((data) => {
+    this.userInfoSubscription = this.directService.userInfoSet.subscribe((data) => {
       this.longTermCareForm.controls.gender.setValue(data['gender']);
       this.longTermCareForm.controls.dob.setValue(data['dob']);
     });
   }
 
-  onGenderDobChange() {
+  onGenderChange() {
     const userInfo = this.directService.getUserInfo();
-    userInfo.dob = this.longTermCareForm.controls.dob.value;
     userInfo.gender = this.longTermCareForm.controls.gender.value;
     this.directService.updateUserInfo(userInfo);
   }
 
+  onDobChange() {
+    if (this.longTermCareForm.controls.dob.valid) {
+      const userInfo = this.directService.getUserInfo();
+      userInfo.dob = this.longTermCareForm.controls.dob.value;
+      this.directService.updateUserInfo(userInfo);
+    }
+  }
+
   ngOnDestroy(): void {
     this.categorySub.unsubscribe();
+    this.userInfoSubscription.unsubscribe();
   }
 
   selectMonthlyPayout(selectedMonthlyPayout) {
