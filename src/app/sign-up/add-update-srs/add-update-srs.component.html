@@ -67,6 +67,12 @@
             </div>
           </div>
         </div>
+        <!-- <div class="characters"
+          *ngIf="this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value">
+          {{getAccNoLength() ? getAccNoLength() :0}} /
+          {{getAccNoMaxLength(fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value)}}
+        </div> -->
+        <div class="characters">0 / 14</div>
       </div>
     </div>
     <button (click)="applyChanges(addUpdateSrsFrom)" type="button" class="btn btn__footer--fixed btn-primary width100"
