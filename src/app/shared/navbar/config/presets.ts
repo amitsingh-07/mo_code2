@@ -128,7 +128,6 @@ export class NavbarConfig {
     },
     showExitCheck: true
   };
-
   // Comprehensive (Robo3)
   '7': object = {
     showNavBackBtn: true,

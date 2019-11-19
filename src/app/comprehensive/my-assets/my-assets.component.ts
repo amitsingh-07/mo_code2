@@ -5,13 +5,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-import { APP_ROUTES } from 'src/app/app-routes.constants';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { MyInfoService } from '../../shared/Services/my-info.service';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS, COMPREHENSIVE_ROUTES } from '../comprehensive-routes.constants';
 import { IMyAssets } from '../comprehensive-types';
+import { APP_ROUTES } from './../../app-routes.constants';
 import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
