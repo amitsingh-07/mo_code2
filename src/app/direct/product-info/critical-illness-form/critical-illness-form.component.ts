@@ -90,10 +90,12 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
         }
       }
     });
-    
+
     this.userInfoSubscription = this.directService.userInfoSet.subscribe((data) => {
       this.criticalIllnessForm.controls.gender.setValue(data['gender']);
-      this.criticalIllnessForm.controls.dob.setValue(data['dob']);
+      if (data['dob']) {
+        this.criticalIllnessForm.controls.dob.setValue(data['dob']);
+      }
     });
   }
 

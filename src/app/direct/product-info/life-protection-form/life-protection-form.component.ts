@@ -91,7 +91,9 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
 
     this.userInfoSubscription = this.directService.userInfoSet.subscribe((data) => {
       this.lifeProtectionForm.controls.gender.setValue(data['gender']);
-      this.lifeProtectionForm.controls.dob.setValue(data['dob']);
+      if (data['dob']) {
+        this.lifeProtectionForm.controls.dob.setValue(data['dob']);
+      }
     });
   }
 

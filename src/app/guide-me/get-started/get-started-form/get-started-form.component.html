@@ -29,7 +29,7 @@
         <div #usrFrmDp class="flex-col-8">
           <div class="datepicker-control">
             <div class="input-group date-picker mb0" [ngClass]="{'inline-error': doberror && !userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine}">
-              <input (click)="d.toggle()" class="form-control" placeholder="DD / MM / YYYY" [minDate]="minDate" [maxDate]="maxDate" formControlName="dob" name="dp" ngbDatepicker #d="ngbDatepicker"
+              <input autocomplete="off" class="form-control" placeholder="DD / MM / YYYY" [minDate]="minDate" [maxDate]="maxDate" formControlName="dob" name="dp" ngbDatepicker #d="ngbDatepicker"
                 required id="getStrdInpt3">
               <div class="input-group-append">
                 <button (click)="d.toggle()" class="btn btn-primary" type="button" id="getStrdBtn1">
