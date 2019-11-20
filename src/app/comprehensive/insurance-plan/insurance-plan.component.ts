@@ -79,6 +79,9 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
     this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
     this.buildInsuranceForm();
+    if (this.insurancePlanFormValues && this.insurancePlanFormValues.haveCPFDependentsProtectionScheme !== 1) {
+      this.resetLifeProtectionAmount();
+    }
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
   }
 
@@ -206,7 +209,15 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         }
 
         form.value.enquiryId = this.comprehensiveService.getEnquiryId();
+
+        if (form.value.haveCPFDependentsProtectionScheme !== 1 || form.value.lifeProtectionAmount == '') {
+          form.value.lifeProtectionAmount = 0;
+        }
+
         this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
+          if (form.value.haveCPFDependentsProtectionScheme !== 1) {
+            form.value.lifeProtectionAmount = 46000;
+          }
           this.comprehensiveService.setInsurancePlanningList(form.value);
           this.showSummaryModal();
         });

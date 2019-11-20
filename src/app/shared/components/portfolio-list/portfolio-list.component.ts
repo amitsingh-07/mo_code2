@@ -88,7 +88,7 @@ export class PortfolioListComponent implements OnInit {
         this.userProfileInfo.investementDetails.portfolios[index].monthlyInvestment,
         'USD',
         'symbol-narrow',
-        '1.0-2'
+        '1.2-2'
       );
       return true;
     }
@@ -105,7 +105,7 @@ export class PortfolioListComponent implements OnInit {
   detail(portfolio) {
     if (portfolio.portfolioType === 'SRS' && !this.topClickedFlag) {
       this.openModal();
-     } else {
+    } else {
       const selectedFlag = window.getSelection().toString();
       if (!this.topClickedFlag && !selectedFlag) {
         this.detailSelected.emit(portfolio);
