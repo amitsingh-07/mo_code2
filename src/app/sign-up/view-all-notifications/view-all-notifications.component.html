@@ -1,39 +1,41 @@
 <div class="notification-panel">
-<!-- <app-top-bar-with-clear-button [pageTitle]="pageTitle" (clearAll)="clearAllNotifications()"></app-top-bar-with-clear-button> -->
-<div class="container-fluid max-width--1024">
-  <div class="content">
+  <!-- <app-top-bar-with-clear-button [pageTitle]="pageTitle" (clearAll)="clearAllNotifications()"></app-top-bar-with-clear-button> -->
+  <div class="container-fluid max-width--1024">
+    <div class="content">
       <div class="web_title hidden-sm-md">{{pageTitle}}
-      <button  *ngIf="allMessages && allMessages.length > 0" (click)="clearNotifications()">{{ 'NOTIFICATIONS.CLEAR_ALL' | translate}}</button></div>
-    <div>
-      <div class="notifications-block">
-        <!--Notifications container-->
-        <div class="notifications-container" *ngFor="let group of allMessages">
-          <!--Notifications Header-->
+        <button *ngIf="allMessages && allMessages.length > 0"
+          (click)="clearNotifications()">{{ 'NOTIFICATIONS.CLEAR_ALL' | translate}}</button></div>
+      <div>
+        <div class="notifications-block">
+          <!--Notifications container-->
+          <div class="notifications-container" *ngFor="let group of allMessages">
+            <!--Notifications Header-->
 
-          <div class="notifications-container__header">
-            {{group.groupName}}
-          </div>
-          <!--Notifications Header //-->
-          <!--Notifications lists-->
-          <div class="notifications-container__lists" [hidden]="IsHidden" *ngFor="let message of group.value">
-            <div class="notifications-container__lists--close" (click)="clearNotification(message, group)"><img src="../../../assets/images/close-button.svg" alt="x" /></div>
-            <div class="notifications-container__lists--desc">
-              {{message.message}}
-              <div class="notifications-container__lists--duration" *ngIf="message.time">
-                {{message.time | timeAgo}}
+            <div class="notifications-container__header">
+              {{group.groupName}}
+            </div>
+            <!--Notifications Header //-->
+            <!--Notifications lists-->
+            <div class="notifications-container__lists" [hidden]="IsHidden" *ngFor="let message of group.value">
+              <div class="notifications-container__lists--close" (click)="clearNotification(message, group)"><img
+                  src="../../../assets/images/close-button.svg" alt="x" /></div>
+              <div class="notifications-container__lists--desc">
+                {{message.message}}
+                <div class="notifications-container__lists--duration" *ngIf="message.time">
+                  {{message.time | date : "dd MMM yyyy"}}
+                </div>
               </div>
             </div>
-          </div>
 
-          <!--Notifications lists //-->
+            <!--Notifications lists //-->
+          </div>
+          <div *ngIf="allMessages && allMessages.length <= 0" class="notifications-container__no-notification">
+            <p class="pt50"><img src="./assets/images/noNotificationIcon.svg"> </p>
+            <p>{{ 'NOTIFICATIONS.EMPTY' | translate}}</p>
+          </div>
+          <!--Notifications container //-->
         </div>
-        <div *ngIf="allMessages && allMessages.length <= 0" class="notifications-container__no-notification">
-          <p class="pt50"><img src="./assets/images/noNotificationIcon.svg"> </p>
-          <p>{{ 'NOTIFICATIONS.EMPTY' | translate}}</p>
-        </div>
-        <!--Notifications container //-->
       </div>
     </div>
   </div>
-</div>
 </div>
