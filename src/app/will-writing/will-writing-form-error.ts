@@ -119,6 +119,10 @@ export class WillWritingFormError {
                                         required: {
                                                 errorTitle: 'Invalid Date of Birth',
                                                 errorMessage: 'Date of Birth'
+                                        },
+                                        ngbDate : {
+                                                errorTitle: 'Invalid Date of Birth',
+                                                errorMessage: 'Please re-check your entry. You have keyed in an invalid Date of Birth'
                                         }
                                 }
                         }
