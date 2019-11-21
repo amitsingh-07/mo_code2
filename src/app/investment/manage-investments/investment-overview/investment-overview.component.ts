@@ -138,11 +138,12 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.loaderService.showLoader({
         title: this.translate.instant('YOUR_PORTFOLIO.MODAL.INVESTMENT_OVERVIEW.TITLE'),
-        desc: this.translate.instant('YOUR_PORTFOLIO.MODAL.INVESTMENT_OVERVIEW.MESSAGE')
+        desc: this.translate.instant('YOUR_PORTFOLIO.MODAL.INVESTMENT_OVERVIEW.MESSAGE'),
+        autoHide: false
       });
     });
     this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
-      this.loaderService.hideLoader();
+      this.loaderService.hideLoaderForced();
       if (data.responseMessage.responseCode >= 6000) {
         data.objectList.totalValue = 1042;
         data.objectList.totalCashAccountBalance = 200;
@@ -166,7 +167,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
       }
     },
       (err) => {
-        this.loaderService.hideLoader();
+        this.loaderService.hideLoaderForced();
         this.investmentAccountService.showGenericErrorModal();
       });
   }

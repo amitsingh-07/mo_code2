@@ -62,7 +62,8 @@ export class PortfolioListComponent implements OnInit {
     this.investedList = [];
     if (this.portfolioList) {
       for (const portfolio of this.portfolioList) {
-        if (portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING') {
+        if (portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING'
+        || portfolio.portfolioStatus === 'REBALANCING') {
           this.investedList.push(portfolio);
         } else {
           this.notInvestedList.push(portfolio);
@@ -141,9 +142,10 @@ export class PortfolioListComponent implements OnInit {
     ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.SRS_MODAL.Message');
   }
 
-  gotToFAQ() {
+  showRebalanceMessage() {
+    const ref = this.modal.open(SRSOfflineErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.Message');
     this.topClickedFlag = true;
-    window.open(MANAGE_INVESTMENTS_ROUTE_PATHS.FAQ, '_blank');
   }
 }
-
