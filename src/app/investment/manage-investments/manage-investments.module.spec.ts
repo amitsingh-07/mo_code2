@@ -1,13 +1,6 @@
-import { GuideMeModule } from './guide-me.module';
+import { ManageInvestmentsModule } from './manage-investments.module';
+import { TestBed } from '@angular/core/testing';
+import { NavbarService } from 'src/app/shared/navbar/navbar.service';
 
-describe('GuideMeModule', () => {
-  let guideMeModule: GuideMeModule;
-
-  beforeEach(() => {
-    guideMeModule = new GuideMeModule();
-  });
-
-  it('should create an instance', () => {
-    expect(guideMeModule).toBeTruthy();
-  });
+describe('ManageInvestmentsModule', () => {
 });

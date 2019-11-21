@@ -12,19 +12,19 @@ import { SharedModule } from '../../shared/shared.module';
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
 import { AddPortfolioNameComponent } from './add-portfolio-name/add-portfolio-name.component';
 
+import { TextMaskModule } from 'angular2-text-mask';
 import {
-    AccountCreationErrorModalComponent
+  AccountCreationErrorModalComponent
 } from './confirm-portfolio/account-creation-error-modal/account-creation-error-modal.component';
 import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
 import {
-    FundingInstructionsComponent
+  FundingAccountDetailsComponent
+} from './funding-account-details/funding-account-details.component';
+import {
+  FundingInstructionsComponent
 } from './funding-instructions/funding-instructions.component';
 import { FundingIntroComponent } from './funding-intro/funding-intro.component';
 import { InvestmentCommonRoutingModule } from './investment-common-routing.module';
-import {
-    FundingAccountDetailsComponent
-} from './funding-account-details/funding-account-details.component';
-import { TextMaskModule } from 'angular2-text-mask';
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
     { prefix: './assets/i18n/app/', suffix: '.json' },
