@@ -46,7 +46,7 @@ app-your-portfolio {
           @include allmobiles{
             font-size: 21px;
             line-height: 26px;
-            letter-spacing: -0.28px;            
+            letter-spacing: -0.28px;
             max-width: 250px;
             padding-right: 15px;
           }
@@ -55,7 +55,7 @@ app-your-portfolio {
           width: calc(100% - 67px);
           @include allmobiles{
             width: calc(100% - 61px);
-          }       
+          }
           .portfolio-type{
             font-family: $muli-regular;
             font-size: 18px;
@@ -120,7 +120,7 @@ app-your-portfolio {
                 letter-spacing: -0.2px;
                 color: #000000 !important;
                 border-bottom: solid 1px #e7e7e7 !important;
-                
+
                 &.hide {
                   display:none;
                 }
@@ -133,7 +133,7 @@ app-your-portfolio {
           }
         }
       }
-      
+
     }
   }
   .portfolio-panel{
@@ -227,7 +227,7 @@ app-your-portfolio {
             padding: 10px;
             display: flex;
             justify-content: center;
-            align-items: center;    
+            align-items: center;
             position: absolute;
             right: 0px;
             top: 0px;
@@ -525,12 +525,12 @@ app-your-portfolio {
         color: #ffffff;
         padding-bottom: 14px;
       }
-      .cash-account-lbl{
+      .cash-account-lbl, .srs-account-lbl{
         font-family: $muli-bold;
         font-size: 16px;
         letter-spacing: -0.15px;
         color: #ffffff;
-        padding-bottom: 14px;
+        padding-bottom: 15px;
       }
       .withdrawal{
         .card{
@@ -587,7 +587,7 @@ app-your-portfolio {
                 height: auto;
               }
             }
-          }    
+          }
           .widthdrawal-header{
             display: flex;
             align-items: center;
@@ -604,7 +604,7 @@ app-your-portfolio {
               display: flex;
               margin-right: 10px;
             }
-          } 
+          }
           .downward-icon{
             width: 16px;
             height: 10px;
@@ -613,7 +613,7 @@ app-your-portfolio {
               width: 100%;
               height: auto;
             }
-          } 
+          }
           .cash-account-header{
             font-size: 16px;
             padding-bottom: 15px;
@@ -629,7 +629,7 @@ app-your-portfolio {
               letter-spacing: -0.17px;
               color: #007d7d;
             }
-          }        
+          }
         }
         .form-group-with-bg--content{
           font-family: $muli-semi-bold;
@@ -640,7 +640,7 @@ app-your-portfolio {
           .flex-col{
             padding-top: 15px;
             &:first-child{
-              padding-top: 0; 
+              padding-top: 0;
             }
             & + .processing-state{
               margin-top: 20px;
@@ -711,7 +711,7 @@ app-your-portfolio {
               padding-bottom: 15px;
               &:last-child{
                 border-bottom: none;
-                padding-bottom: 0; 
+                padding-bottom: 0;
               }
             }
           }
@@ -767,9 +767,21 @@ app-your-portfolio {
               cursor: pointer;
             }
           }
+          .srs-account-content{
+            padding-top: 10px;
+            .srs-detail-lbl{
+              color: #007d7d;
+              div{
+                font-family: $muli-semi-bold;
+                line-height: 21px;
+                letter-spacing: -0.15px;
+                color: #000000;
+              }
+            }
+          }
         }
       }
     }
 
-  } 
+  }
 }
