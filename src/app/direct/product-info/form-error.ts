@@ -7,6 +7,10 @@ export class FormError {
                         required: {
                                 errorTitle: 'Invalid Date of Birth',
                                 errorMessage: 'You have selected an invalid date of birth. Please check your entry.'
+                        },
+                        ngbDate: {
+                                errorTitle: 'Invalid Date of Birth',
+                                errorMessage: 'Please re-check your entry. You have keyed in an invalid date of birth.'
                         }
                 },
                 premiumWaiver: {
@@ -22,6 +26,10 @@ export class FormError {
                         required: {
                                 errorTitle: 'Invalid Date of Birth',
                                 errorMessage: 'You have selected an invalid date of birth. Please check your entry.'
+                        },
+                        ngbDate: {
+                                errorTitle: 'Invalid Date of Birth',
+                                errorMessage: 'You have selected an invalid date of birth. Please check your entry.'
                         }
                 },
                 earlyCI: {
@@ -30,13 +38,13 @@ export class FormError {
                                 errorMessage: 'Please select an option.'
                         }
                 },
-                employmentType : {
+                employmentType: {
                         required: {
                                 errorTitle: 'Invalid Employment Type',
                                 errorMessage: 'You have selected an invalid employment type. Please check your entry.'
                         }
                 },
-                monthlySalary : {
+                monthlySalary: {
                         required: {
                                 errorTitle: 'Invalid Monthly Salary',
                                 errorMessage: 'Please enter a number greater than 0.'
