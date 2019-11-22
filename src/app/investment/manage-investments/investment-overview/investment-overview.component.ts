@@ -325,18 +325,11 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
         }
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
-        /* First portfolio's entitlement is considered for now as global entitlement,
-            need to change when multiple portfolio logic is implemented */
-        // this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioList[0]);
       }
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
-  }
-
-  getEntitlementsFromPortfolio(portfolio) {
-    return this.manageInvestmentsService.getEntitlementsFromPortfolio(portfolio);
   }
 
   scrollTop() {

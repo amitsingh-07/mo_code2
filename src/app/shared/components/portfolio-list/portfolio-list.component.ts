@@ -64,7 +64,7 @@ export class PortfolioListComponent implements OnInit {
     if (this.portfolioList) {
       for (const portfolio of this.portfolioList) {
         if (portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING'
-        || portfolio.portfolioStatus === 'REBALANCING') {
+          || portfolio.portfolioStatus === 'REBALANCING') {
           this.investedList.push(portfolio);
         } else {
           this.notInvestedList.push(portfolio);
@@ -78,25 +78,6 @@ export class PortfolioListComponent implements OnInit {
     return myArray.sort(
       (d1, d2) => new Date(d2.createdDate).getTime() - new Date(d1.createdDate).getTime()
     );
-  }
-  getMonthlyInvestValidity(index: number) {
-    if (this.userProfileInfo && this.userProfileInfo.investementDetails
-      && this.userProfileInfo.investementDetails.portfolios
-      && this.userProfileInfo.investementDetails.portfolios[index]
-      && this.userProfileInfo.investementDetails.portfolios[index].initialInvestment <= 0
-      && this.userProfileInfo.investementDetails.portfolios[index].monthlyInvestment > 0) {
-      this.monthlyInvestment = this.currencyPipe.transform(
-        this.userProfileInfo.investementDetails.portfolios[index].monthlyInvestment,
-        'USD',
-        'symbol-narrow',
-        '1.2-2'
-      );
-      return true;
-    }
-    return false;
-  }
-  getEntitlementsFromPortfolio(portfolio) {
-    return this.manageInvestmentsService.getEntitlementsFromPortfolio(portfolio);
   }
 
   formatReturns(value) {
