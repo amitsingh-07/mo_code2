@@ -71,6 +71,9 @@ app-your-portfolio {
             @include allmobiles {
               margin-right: 25px;
             }
+            @include max360 {
+              margin-right: 15px;
+            }
             .dropdown-control{
               .btn-dropdown{
                 background-color: #009999;
