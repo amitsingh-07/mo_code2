@@ -248,9 +248,9 @@ export class DashboardComponent implements OnInit {
       this.investmentAccountService.setInvestmentAccountFormData(customerData.objectList);
       const beneficialOwner = customerData.objectList.additionalDetails
         && customerData.objectList.additionalDetails.beneficialOwner ? customerData.objectList.additionalDetails.beneficialOwner : false;
-      const myInfoVerified = customerData.objectList.myInfoVerified ?
-        customerData.objectList.myInfoVerified : false;
-      this.investmentAccountService.setMyInfoStatus(customerData.objectList.myInfoVerified);
+      const myInfoVerified = customerData.objectList.isMyInfoVerified ?
+        customerData.objectList.isMyInfoVerified : false;
+      this.investmentAccountService.setMyInfoStatus(customerData.objectList.isMyInfoVerified);
       if (myInfoVerified) {
         if (beneficialOwner) {
           this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
