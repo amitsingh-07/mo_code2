@@ -13,6 +13,7 @@ import {
 } from '../../../investment/manage-investments/investment-overview/srs-offline-error-modal/srs-offline-error-modal.component';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../../investment/manage-investments/manage-investments-routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
+import { ErrorModalComponent } from '../../modal/error-modal/error-modal.component';
 
 @Component({
   selector: 'app-portfolio-list',
@@ -143,7 +144,7 @@ export class PortfolioListComponent implements OnInit {
   }
 
   showRebalanceMessage() {
-    const ref = this.modal.open(SRSOfflineErrorModalComponent, { centered: true });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.TITLE');
     ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.Message');
     this.topClickedFlag = true;
