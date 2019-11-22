@@ -16,10 +16,10 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
 import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
 import {
-    MANAGE_INVESTMENTS_ROUTE_PATHS
+  MANAGE_INVESTMENTS_ROUTE_PATHS
 } from '../../manage-investments/manage-investments-routes.constants';
 import {
-    MANAGE_INVESTMENTS_CONSTANTS
+  MANAGE_INVESTMENTS_CONSTANTS
 } from '../../manage-investments/manage-investments.constants';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import { InvestmentCommonService } from '../investment-common.service';
@@ -47,7 +47,7 @@ export class FundingInstructionsComponent implements OnInit {
   timelineMessage;
   showBankTransferSteps = true;
   PortfolioName: any;
-  
+
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -98,9 +98,9 @@ export class FundingInstructionsComponent implements OnInit {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.bankDetailsList = data.objectList.bankList;
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   showBankTransctionDetails() {
@@ -153,9 +153,9 @@ export class FundingInstructionsComponent implements OnInit {
     this.manageInvestmentsService.getTransferDetails(customerPortfolioId).subscribe((data) => {
       this.setBankPayNowDetails(data.objectList);
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   selectFundingMethod(mode) {
@@ -171,7 +171,7 @@ export class FundingInstructionsComponent implements OnInit {
     );
   }
   showTipModal() {
-   this.showPopUp();
+    this.showPopUp();
   }
   setBankPayNowDetails(data) {
     this.bankDetails = data.filter(
@@ -187,7 +187,7 @@ export class FundingInstructionsComponent implements OnInit {
       (this.fundDetails.fundingType ===
         MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.ONETIME ||
         this.fundDetails.fundingType ===
-          MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.MONTHLY) &&
+        MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.MONTHLY) &&
       !this.fundDetails.isAmountExceedBalance
     );
   }
@@ -222,7 +222,7 @@ export class FundingInstructionsComponent implements OnInit {
   }
   // ONETIME INVESTMENT
   topUpOneTime() {
-    if(!this.isRequestSubmitted) {
+    if (!this.isRequestSubmitted) {
       this.isRequestSubmitted = true;
       this.loaderService.showLoader({
         title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
@@ -235,10 +235,10 @@ export class FundingInstructionsComponent implements OnInit {
           if (response.responseMessage.responseCode < 6000) {
             if (
               response.objectList &&
-                response.objectList.length &&
-                response.objectList[response.objectList.length - 1].serverStatus &&
-                response.objectList[response.objectList.length - 1].serverStatus.errors &&
-                response.objectList[response.objectList.length - 1].serverStatus.errors.length
+              response.objectList.length &&
+              response.objectList[response.objectList.length - 1].serverStatus &&
+              response.objectList[response.objectList.length - 1].serverStatus.errors &&
+              response.objectList[response.objectList.length - 1].serverStatus.errors.length
             ) {
               this.showCustomErrorModal(
                 'Error!',
@@ -272,7 +272,7 @@ export class FundingInstructionsComponent implements OnInit {
   }
   // MONTHLY INVESTMENT
   topUpMonthly() {
-    if(!this.isRequestSubmitted) {
+    if (!this.isRequestSubmitted) {
       this.isRequestSubmitted = true;
       this.loaderService.showLoader({
         title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
@@ -329,7 +329,7 @@ export class FundingInstructionsComponent implements OnInit {
           this.fundDetails.monthlyInvestment,
           'USD',
           'symbol-narrow',
-          '1.0-2'
+          '1.2-2'
         )
       };
       timelineMessage = this.translate.instant('FUNDING_INSTRUCTIONS.MONTHLY_TIME_INFO', monthlyAmount);

@@ -97,13 +97,13 @@ export class ConfirmPortfolioComponent implements OnInit {
             this.portfolio.initialInvestment,
             'USD',
             'symbol-narrow',
-            '1.0-2'
+            '1.2-2'
           ),
           monthly: this.currencyPipe.transform(
             this.portfolio.monthlyInvestment,
             'USD',
             'symbol-narrow',
-            '1.0-2'
+            '1.2-2'
           ),
           period: this.portfolio.investmentPeriod
         };
