@@ -1,3 +1,7 @@
+import 'rxjs/add/observable/forkJoin';
+
+import { Observable } from 'rxjs/Observable';
+
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -6,20 +10,35 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfigService, IConfig } from '../../config/config.service';
 // Insurance
 import { GuideMeApiService } from '../../guide-me/guide-me.api.service';
+import { GuideMeService } from '../../guide-me/guide-me.service';
 import {
   INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment/investment-account/investment-account-routes.constants';
-import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment/investment-common/investment-common-routes.constants';
+import {
+  InvestmentAccountService
+} from '../../investment/investment-account/investment-account-service';
+import {
+  INVESTMENT_COMMON_ROUTE_PATHS
+} from '../../investment/investment-common/investment-common-routes.constants';
+import {
+  InvestmentCommonService
+} from '../../investment/investment-common/investment-common.service';
 import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
-import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
-import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
+import {
+  MANAGE_INVESTMENTS_ROUTE_PATHS
+} from '../../investment/manage-investments/manage-investments-routes.constants';
+import {
+  ManageInvestmentsService
+} from '../../investment/manage-investments/manage-investments.service';
 import { FooterService } from '../../shared/footer/footer.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { CustomErrorHandlerService } from '../../shared/http/custom-error-handler.service';
 import { CarouselModalComponent } from '../../shared/modal/carousel-modal/carousel-modal.component';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
 // Will Writing
 import { WillWritingApiService } from '../../will-writing/will-writing.api.service';
@@ -28,11 +47,6 @@ import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
-import { GuideMeService } from './../../guide-me/guide-me.service';
-import { InvestmentCommonService } from './../../investment/investment-common/investment-common.service';
-import { AuthenticationService } from './../../shared/http/auth/authentication.service';
-import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
-import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -222,29 +236,30 @@ export class DashboardComponent implements OnInit {
 
   // tslint:disable-next-line:cognitive-complexity
   goToDocUpload() {
-    this.signUpService.getDetailedCustomerInfo().subscribe((customerData) => {
-      this.investmentAccountService.getNationalityCountryList().subscribe((nationalityData) => {
-        const nationalityList = nationalityData.objectList;
-        const countryList = this.investmentAccountService.getCountryList(nationalityData.objectList);
-        this.investmentAccountService.setNationalitiesCountries(nationalityList, countryList);
-        this.investmentAccountService.setInvestmentAccountFormData(customerData.objectList);
-        const beneficialOwner = this.userProfileInfo.investementDetails
-          && this.userProfileInfo.investementDetails.beneficialOwner ? this.userProfileInfo.investementDetails.beneficialOwner : false;
-        const pep = this.userProfileInfo.investementDetails && this.userProfileInfo.investementDetails.isPoliticallyExposed ?
-          this.userProfileInfo.investementDetails.isPoliticallyExposed : false;
-        const myInfoVerified = this.userProfileInfo.investementDetails && this.userProfileInfo.investementDetails.myInfoVerified ?
-          this.userProfileInfo.investementDetails.myInfoVerified : false;
-        this.investmentAccountService.setDataForDocUpload(this.userProfileInfo.nationality, beneficialOwner, pep, myInfoVerified);
-        if (myInfoVerified) {
-          if (beneficialOwner) {
-            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
-          } else {
-            this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
-          }
+    Observable.forkJoin(
+      this.signUpService.getDetailedCustomerInfo(),
+      this.investmentAccountService.getNationalityCountryList()
+    ).subscribe((response) => {
+      const customerData = response[0];
+      const nationalityData = response[1];
+      const nationalityList = nationalityData.objectList;
+      const countryList = this.investmentAccountService.getCountryList(nationalityData.objectList);
+      this.investmentAccountService.setNationalitiesCountries(nationalityList, countryList);
+      this.investmentAccountService.setInvestmentAccountFormData(customerData.objectList);
+      const beneficialOwner = customerData.objectList.additionalDetails
+        && customerData.objectList.additionalDetails.beneficialOwner ? customerData.objectList.additionalDetails.beneficialOwner : false;
+      const myInfoVerified = customerData.objectList.myInfoVerified ?
+        customerData.objectList.myInfoVerified : false;
+      this.investmentAccountService.setMyInfoStatus(customerData.objectList.myInfoVerified);
+      if (myInfoVerified) {
+        if (beneficialOwner) {
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
         } else {
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
+          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
         }
-      });
+      } else {
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
+      }
     });
   }
 
@@ -325,14 +340,17 @@ export class DashboardComponent implements OnInit {
   }
 
   verifyCustomerDetails() {
-    this.signUpService.getDetailedCustomerInfo().subscribe((customerData) => {
-      this.investmentAccountService.getNationalityCountryList().subscribe((nationalityData) => {
-        const nationalityList = nationalityData.objectList;
-        const countryList = this.investmentAccountService.getCountryList(nationalityData.objectList);
-        this.investmentAccountService.setNationalitiesCountries(nationalityList, countryList);
-        this.investmentAccountService.setInvestmentAccountFormData(customerData.objectList);
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
-      });
+    Observable.forkJoin(
+      this.signUpService.getDetailedCustomerInfo(),
+      this.investmentAccountService.getNationalityCountryList()
+    ).subscribe((response) => {
+      const customerData = response[0];
+      const nationalityData = response[1];
+      const nationalityList = nationalityData.objectList;
+      const countryList = this.investmentAccountService.getCountryList(nationalityData.objectList);
+      this.investmentAccountService.setNationalitiesCountries(nationalityList, countryList);
+      this.investmentAccountService.setInvestmentAccountFormData(customerData.objectList);
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
     });
   }
 

@@ -77,25 +77,6 @@ export class PortfolioListComponent implements OnInit {
       (d1, d2) => new Date(d2.createdDate).getTime() - new Date(d1.createdDate).getTime()
     );
   }
-  getMonthlyInvestValidity(index: number) {
-    if (this.userProfileInfo && this.userProfileInfo.investementDetails
-      && this.userProfileInfo.investementDetails.portfolios
-      && this.userProfileInfo.investementDetails.portfolios[index]
-      && this.userProfileInfo.investementDetails.portfolios[index].initialInvestment <= 0
-      && this.userProfileInfo.investementDetails.portfolios[index].monthlyInvestment > 0) {
-      this.monthlyInvestment = this.currencyPipe.transform(
-        this.userProfileInfo.investementDetails.portfolios[index].monthlyInvestment,
-        'USD',
-        'symbol-narrow',
-        '1.0-2'
-      );
-      return true;
-    }
-    return false;
-  }
-  getEntitlementsFromPortfolio(portfolio) {
-    return this.manageInvestmentsService.getEntitlementsFromPortfolio(portfolio);
-  }
 
   formatReturns(value) {
     return this.investmentAccountService.formatReturns(value);
@@ -104,7 +85,7 @@ export class PortfolioListComponent implements OnInit {
   detail(portfolio) {
     if (portfolio.portfolioType === 'SRS' && !this.topClickedFlag) {
       this.openModal();
-     } else {
+    } else {
       const selectedFlag = window.getSelection().toString();
       if (!this.topClickedFlag && !selectedFlag) {
         this.detailSelected.emit(portfolio);
