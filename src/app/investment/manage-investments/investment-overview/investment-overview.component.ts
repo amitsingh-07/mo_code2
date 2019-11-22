@@ -145,8 +145,6 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
       this.loaderService.hideLoaderForced();
       if (data.responseMessage.responseCode >= 6000) {
-        data.objectList.totalValue = 1042;
-        data.objectList.totalCashAccountBalance = 200;
         this.setInvestmentData(data);
       } else if (
         data.objectList &&
