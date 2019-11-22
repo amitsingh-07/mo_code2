@@ -16,14 +16,14 @@ import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import {
-    INVESTMENT_COMMON_ROUTE_PATHS
+  INVESTMENT_COMMON_ROUTE_PATHS
 } from '../../investment-common/investment-common-routes.constants';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
 import {
-    InvestmentEngagementJourneyService
+  InvestmentEngagementJourneyService
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
@@ -122,8 +122,8 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
 
   yourPortfolio(portfolio) {
     if (portfolio.portfolioStatus !== 'EXPIRED') {
-     this.manageInvestmentsService.setSelectedCustomerPortfolioId(portfolio.customerPortfolioId);
-     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO]);
+      this.manageInvestmentsService.setSelectedCustomerPortfolioId(portfolio.customerPortfolioId);
+      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO]);
     }
   }
 
@@ -138,11 +138,12 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.loaderService.showLoader({
         title: this.translate.instant('YOUR_PORTFOLIO.MODAL.INVESTMENT_OVERVIEW.TITLE'),
-        desc: this.translate.instant('YOUR_PORTFOLIO.MODAL.INVESTMENT_OVERVIEW.MESSAGE')
+        desc: this.translate.instant('YOUR_PORTFOLIO.MODAL.INVESTMENT_OVERVIEW.MESSAGE'),
+        autoHide: false
       });
     });
     this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
-      this.loaderService.hideLoader();
+      this.loaderService.hideLoaderForced();
       if (data.responseMessage.responseCode >= 6000) {
         this.setInvestmentData(data);
       } else if (
@@ -164,7 +165,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
       }
     },
       (err) => {
-        this.loaderService.hideLoader();
+        this.loaderService.hideLoaderForced();
         this.investmentAccountService.showGenericErrorModal();
       });
   }
@@ -202,13 +203,13 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
 
   getCustomerPortfolioDetailsById(portfolioid) {   // CALLING THE API
     this.manageInvestmentsService.getCustomerPortfolioDetailsById(portfolioid).subscribe((data) => {
-        const fundingParams = this.constructFundingParams(data.objectList);
-        this.manageInvestmentsService.setFundingDetails(fundingParams);
-        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
+      const fundingParams = this.constructFundingParams(data.objectList);
+      this.manageInvestmentsService.setFundingDetails(fundingParams);
+      this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_INSTRUCTIONS]);
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   constructFundingParams(data) {   // SET FUND DETAILS VAlUES
@@ -385,8 +386,8 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     ref.componentInstance.endBtnTxt = this.translate.instant('YOUR_INVESTMENT.MP_WALKTHROUGH.END_BTN');
     ref.componentInstance.imgClass = 'mp-walkthrough-img';
     ref.componentInstance.imgTitleClass = 'mp-walkthrough-img-title';
-    ref.componentInstance.textStyle = {'margin-top': '10px', 'padding': '0 30px'};
-    ref.componentInstance.btnDivStyle = {'padding-bottom': '40px'};
+    ref.componentInstance.textStyle = { 'margin-top': '10px', 'padding': '0 30px' };
+    ref.componentInstance.btnDivStyle = { 'padding-bottom': '40px' };
     ref.componentInstance.closeAction.subscribe((emittedValue) => {
       this.closeMpPopup();
     });
