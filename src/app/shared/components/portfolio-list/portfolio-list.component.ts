@@ -13,6 +13,7 @@ import {
 } from '../../../investment/manage-investments/investment-overview/srs-offline-error-modal/srs-offline-error-modal.component';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../../investment/manage-investments/manage-investments-routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
+import { ErrorModalComponent } from '../../modal/error-modal/error-modal.component';
 
 @Component({
   selector: 'app-portfolio-list',
@@ -62,7 +63,8 @@ export class PortfolioListComponent implements OnInit {
     this.investedList = [];
     if (this.portfolioList) {
       for (const portfolio of this.portfolioList) {
-        if (portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING') {
+        if (portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING'
+          || portfolio.portfolioStatus === 'REBALANCING') {
           this.investedList.push(portfolio);
         } else {
           this.notInvestedList.push(portfolio);
@@ -122,9 +124,10 @@ export class PortfolioListComponent implements OnInit {
     ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.SRS_MODAL.Message');
   }
 
-  gotToFAQ() {
+  showRebalanceMessage() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.Message');
     this.topClickedFlag = true;
-    window.open(MANAGE_INVESTMENTS_ROUTE_PATHS.FAQ, '_blank');
   }
 }
-

@@ -52,7 +52,8 @@
         <ul class="notification-tooltip__container--desc" *ngIf="recentMessages && recentMessages.length">
           <li class="notification-tooltip__container--message" *ngFor="let message of recentMessages">
             <span>{{message.message}}</span>
-            <div class="notification-tooltip__container--time" *ngIf="message.time">{{message.time | timeAgo}}</div>
+            <div class="notification-tooltip__container--time" *ngIf="message.time">
+              {{message.time | date : "dd MMM yyyy"}}</div>
           </li>
         </ul>
         <div class="no-notification" *ngIf="!recentMessages || !recentMessages.length">
@@ -178,7 +179,8 @@
               <ul class="notification-tooltip__container--desc" *ngIf="recentMessages && recentMessages.length">
                 <li class="notification-tooltip__container--message" *ngFor="let message of recentMessages">
                   <span>{{message.message}}</span>
-                  <div class="notification-tooltip__container--time" *ngIf="message.time">{{message.time | timeAgo}}
+                  <div class="notification-tooltip__container--time" *ngIf="message.time">
+                    {{message.time | date : "dd MMM yyyy"}}
                   </div>
                 </li>
               </ul>

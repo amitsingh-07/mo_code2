@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {
-    AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators
+  AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -39,6 +39,7 @@ export class TaxInfoComponent implements OnInit {
   formCount: number;
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   showNricHint = false;
+
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -90,7 +91,14 @@ export class TaxInfoComponent implements OnInit {
     this.showHint(newFormGroup.controls.taxCountry.value.countryCode, newFormGroup);
     control.push(newFormGroup);
     if (data) {
-      this.isTinNumberAvailChanged(data.radioTin, newFormGroup, data);
+      let tinNoOrReasonValue;
+      if (data.radioTin) {
+        tinNoOrReasonValue = data.tinNumber ? data.tinNumber.toUpperCase() : null;
+      } else {
+        tinNoOrReasonValue = data.noTinReason ? data.noTinReason : null;
+      }
+      this.isTinNumberAvailChanged(data.radioTin, newFormGroup, tinNoOrReasonValue);
+      this.setDefaultTinNoAndPlaceholder(newFormGroup, data);
     }
     this.formCount = this.taxInfoForm.controls.addTax.value.length;
   }
@@ -109,21 +117,14 @@ export class TaxInfoComponent implements OnInit {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.noTinReasonlist = data.objectList.noTinReason;
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   selectCountry(country, taxInfoItem) {
     taxInfoItem.controls.taxCountry.setValue(country);
-    if (taxInfoItem.controls.tinNumber) {
-      taxInfoItem.controls.tinNumber.updateValueAndValidity();
-      if (country.countryCode === 'SG') {
-        this.singPlaceHolder = 'e.g S****5678C';
-      } else {
-        this.singPlaceHolder = '';
-      }
-    }
+    this.setDefaultTinNoAndPlaceholder(taxInfoItem, null);
     this.showHint(country.countryCode, taxInfoItem);
   }
 
@@ -162,7 +163,7 @@ export class TaxInfoComponent implements OnInit {
     if (flag) {
       formgroup.addControl(
         'tinNumber',
-        new FormControl(data ? data.tinNumber.toUpperCase() : '', [
+        new FormControl(data, [
           Validators.required,
           this.validateTin.bind(this)
         ])
@@ -171,7 +172,7 @@ export class TaxInfoComponent implements OnInit {
     } else {
       formgroup.addControl(
         'noTinReason',
-        new FormControl(data ? data.noTinReason : '', Validators.required)
+        new FormControl(data, Validators.required)
       );
       formgroup.removeControl('tinNumber');
     }
@@ -241,7 +242,7 @@ export class TaxInfoComponent implements OnInit {
   validateTin(control: AbstractControl) {
     const value = control.value;
     let isValidTin;
-    if (value !== undefined) {
+    if (value) {
       if (control && control.parent && control.parent.controls && control.parent.controls['taxCountry'].value) {
         const countryCode = control.parent.controls['taxCountry'].value.countryCode;
         switch (countryCode) {
@@ -270,5 +271,44 @@ export class TaxInfoComponent implements OnInit {
       }
     }
     return null;
+  }
+
+  setDefaultTinNoAndPlaceholder(taxInfoItem, data) {
+    if (taxInfoItem.controls.taxCountry.value.countryCode === INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_COUNTRY_CODE) {
+      this.singPlaceHolder = 'e.g S****5678C';
+      if (this.investmentAccountService.isSingaporeResident()) {
+        taxInfoItem.controls.radioTin.setValue(true);
+        this.isTinNumberAvailChanged(true, taxInfoItem, this.taxInfoFormValues.nricNumber);
+        this.setControlEnableDisable(taxInfoItem, 'radioTin', false);
+        this.setControlEnableDisable(taxInfoItem, 'tinNumber', false);
+      } else {
+        this.setTinNoValue(taxInfoItem, data ? data.tinNumber : null);
+        this.singPlaceHolder = '';
+        this.setControlEnableDisable(taxInfoItem, 'radioTin', true);
+        this.setControlEnableDisable(taxInfoItem, 'tinNumber', true);
+      }
+    } else {
+      this.setTinNoValue(taxInfoItem, data ? data.tinNumber : null);
+      this.singPlaceHolder = '';
+      this.setControlEnableDisable(taxInfoItem, 'radioTin', true);
+      this.setControlEnableDisable(taxInfoItem, 'tinNumber', true);
+    }
+    taxInfoItem.controls.tinNumber.updateValueAndValidity();
+  }
+
+  setTinNoValue(taxInfoItem, value) {
+    if (taxInfoItem.controls.tinNumber) {
+      taxInfoItem.controls.tinNumber.setValue(value);
+    }
+  }
+
+  setControlEnableDisable(taxInfoItem, controlName, enableFlag) {
+    if (taxInfoItem.controls[controlName]) {
+      if (enableFlag) {
+        taxInfoItem.controls[controlName].enable(true);
+      } else {
+        taxInfoItem.controls[controlName].disable(true);
+      }
+    }
   }
 }
