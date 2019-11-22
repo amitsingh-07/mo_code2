@@ -28,7 +28,7 @@
                     <div class="user_portfolio flex-col">
                         <div class="user_portfolio_lbl">{{portfolio.portfolioName}}</div>
                       <div class="flex-row space-between">
-                        <div class="portfolio-type flex align-center"><span *ngIf="portfolio?.portfolioType === 'SRS'" class="portfolio-fund-type mr10">{{'YOUR_INVESTMENT.SRS' | translate}}</span>{{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type} }}</div>
+                        <div class="portfolio-type flex align-center"><span *ngIf="portfolio?.fundingTypeValue === 'SRS'" class="portfolio-fund-type mr10">{{'YOUR_INVESTMENT.SRS' | translate}}</span>{{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type} }}</div>
                         <div class="more-menu">
                           <div class="dropdown-control">
                             <div ngbDropdown>
@@ -191,13 +191,13 @@
       </ngb-tab>
       <ngb-tab id="tab-2">
         <ng-template ngbTabTitle>
-          <div *ngIf="portfolio?.portfolioType !== 'SRS'" class="pending-request">
+          <div *ngIf="portfolio?.fundingTypeValue !== 'SRS'" class="pending-request">
             <div class="your-portfolio-tab-title" innerHTML="{{'YOUR_PORTFOLIO.PENDING_REQUESTS_CASH_ACCOUNT' | translate}}"></div>
             <div class="circle" *ngIf="pendingBuyRequests && pendingBuyRequests.value">
               <span>{{pendingBuyRequests.value.length}}</span>
             </div>
           </div>
-          <div *ngIf="portfolio?.portfolioType === 'SRS'" class="pending-request">
+          <div *ngIf="portfolio?.fundingTypeValue === 'SRS'" class="pending-request">
             <div class="your-portfolio-tab-title" innerHTML="{{'YOUR_PORTFOLIO.PENDING_REQUESTS_SRS_ACCOUNT' | translate}}"></div>
             <div class="circle" *ngIf="pendingBuyRequests && pendingBuyRequests.value">
               <span>{{pendingBuyRequests.value.length}}</span>
@@ -393,7 +393,7 @@
               <!-- buy request -->
             </div>
             <!-- cash a/c -->
-            <div *ngIf="portfolio?.portfolioType !== 'SRS'" class="cash-account">
+            <div *ngIf="portfolio?.fundingTypeValue !== 'SRS'" class="cash-account">
               <div class="cash-account-lbl">{{'YOUR_PORTFOLIO.CASH_ACCOUNT' | translate}}</div>
               <div class="form-group-with-bg">
                 <div class="form-group-with-bg--header">
@@ -421,7 +421,7 @@
               </div>
             </div>
             <!-- srs a/c -->
-            <div *ngIf="portfolio?.portfolioType === 'SRS'" class="srs-account">
+            <div *ngIf="portfolio?.fundingTypeValue === 'SRS'" class="srs-account">
                 <div class="srs-account-lbl">{{'YOUR_PORTFOLIO.SRS_ACCOUNT' | translate}}</div>
                 <div class="form-group-with-bg">
                   <!--Form Content-->
