@@ -24,6 +24,9 @@ export class GetStartedFormComponent implements OnInit {
   dependents = 0;
   dependentItems = Array(6).fill(0).map((x, i) => i);
   hideDependants;
+  doberror = false;
+  minDate;
+  maxDate;
 
   constructor(
     private router: Router,
@@ -33,8 +36,8 @@ export class GetStartedFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private config: NgbDatepickerConfig) {
     const today: Date = new Date();
-    config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
-    config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    this.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
+    this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
   }
 
@@ -68,7 +71,9 @@ export class GetStartedFormComponent implements OnInit {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-
+      if (!form.controls['dob'].valid && form.controls['gender'].valid) {
+        this.doberror = true;
+      }
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = this.guideMeService.currentFormError(form)['errorTitle'];
       ref.componentInstance.errorMessage = this.guideMeService.currentFormError(form)['errorMessage'];

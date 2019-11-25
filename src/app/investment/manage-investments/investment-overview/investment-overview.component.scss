@@ -309,6 +309,25 @@ app-investment-overview {
                                         display: flex;
                                     }
                                 }
+                                .reblancing-lbl{
+                                    width: 105px;
+                                    padding: 5px;
+                                    border-radius: 3px;
+                                    border: 1px solid #cae4df;
+                                    font-family: $muli-semi-bold;
+                                    font-size: 12px;
+                                    line-height: normal;
+                                    letter-spacing: normal;
+                                    color: #00a7a7;
+                                    align-items: center;
+                                    .rebalance-logo{
+                                        width: 18px;
+                                        height: 18px;
+                                        object-fit: contain;
+                                        display: flex;
+                                        margin-right: 5px;
+                                    }
+                                }
                             }
                         }
                     }
@@ -490,4 +509,20 @@ app-investment-overview {
             -webkit-transform: translateY(0%);
         }
     }
+}
+
+.rebalancing-modal-msg{
+  .txt-bold {
+    font-family: $muli-bold;
+  }
+  .contact-details {
+    font-family: $muli-bold;
+    color: #5e5e5e;
+    &.mail {
+        color: #ff872f;
+    }
+    &:focus, &:hover {
+      text-decoration: none;
+    }
+  }
 }
