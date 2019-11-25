@@ -163,17 +163,19 @@ export class TaxInfoComponent implements OnInit {
     if (flag) {
       formgroup.addControl(
         'tinNumber',
-        new FormControl(data, [
+        new FormControl('', [
           Validators.required,
           this.validateTin.bind(this)
         ])
       );
+      formgroup.controls.tinNumber.setValue(data);
       formgroup.removeControl('noTinReason');
     } else {
       formgroup.addControl(
         'noTinReason',
-        new FormControl(data, Validators.required)
+        new FormControl('', Validators.required)
       );
+      formgroup.controls.noTinReason.setValue(data);
       formgroup.removeControl('tinNumber');
     }
   }
