@@ -33,7 +33,6 @@ import {
 } from './withdrawal/forward-pricing-modal/forward-pricing-modal.component';
 import { WithdrawalComponent } from './withdrawal/withdrawal.component';
 import { YourPortfolioComponent } from './your-portfolio/your-portfolio.component';
-import { SRSOfflineErrorModalComponent } from './investment-overview/srs-offline-error-modal/srs-offline-error-modal.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
@@ -75,11 +74,10 @@ export function createTranslateLoader(http: HttpClient) {
     TransactionsComponent,
     HoldingsComponent,
     AssetAllocationComponent,
-    RenameInvestmentModalComponent,
-    SRSOfflineErrorModalComponent
+    RenameInvestmentModalComponent
   ],
   entryComponents: [ConfirmWithdrawalModalComponent, AddBankModalComponent, ForwardPricingModalComponent,
-    RenameInvestmentModalComponent, SRSOfflineErrorModalComponent],
+    RenameInvestmentModalComponent],
   providers: [CurrencyPipe]
 })
 export class ManageInvestmentsModule {
