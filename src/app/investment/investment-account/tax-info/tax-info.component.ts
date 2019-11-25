@@ -295,12 +295,12 @@ export class TaxInfoComponent implements OnInit {
       this.setControlEnableDisable(taxInfoItem, 'radioTin', true);
       this.setControlEnableDisable(taxInfoItem, 'tinNumber', true);
     }
-    taxInfoItem.controls.tinNumber.updateValueAndValidity();
   }
 
   setTinNoValue(taxInfoItem, value) {
     if (taxInfoItem.controls.tinNumber) {
       taxInfoItem.controls.tinNumber.setValue(value);
+      taxInfoItem.controls.tinNumber.updateValueAndValidity();
     }
   }
 
