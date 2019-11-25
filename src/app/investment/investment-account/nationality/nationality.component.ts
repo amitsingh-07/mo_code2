@@ -8,7 +8,7 @@ import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
@@ -75,9 +75,9 @@ export class NationalityComponent implements OnInit {
       }
       this.buildAdditionalControls();
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   getSelectedNationality(nationalityCode) {
@@ -114,6 +114,8 @@ export class NationalityComponent implements OnInit {
 
   selectNationality(nationality) {
     this.selectNationalityForm.get('nationality').setValue(nationality);
+    this.investmentAccountService.clearNationalityQuestionsSelection(); /* Clearing previously selection for questions */
+    this.selectNationalityFormValues = this.investmentAccountService.getInvestmentAccountFormData(); /* Updating variable with form data */
     this.buildAdditionalControls();
   }
 
