@@ -386,6 +386,12 @@ export class InvestmentAccountService {
     this.commit();
   }
 
+  clearNationalityQuestionsSelection() {
+    this.investmentAccountFormData.unitedStatesResident = null;
+    this.investmentAccountFormData.singaporeanResident = null;
+    this.commit();
+  }
+
   clearPersonalInfo() {
     this.investmentAccountFormData.salutation = null;
     this.investmentAccountFormData.fullName = null;
@@ -598,7 +604,7 @@ export class InvestmentAccountService {
   uploadDocument(formData) {
     return this.investmentApiService.uploadDocument(formData);
   }
- 
+
   saveAdditionalDeclarations() {
     const payload = this.additionalDeclarationsRequest();
     return this.investmentApiService.saveInvestmentAccount(payload);
@@ -1885,7 +1891,7 @@ export class InvestmentAccountService {
   }
 
   getInitialMessageToShowDashboard() {
-    if(this.investmentAccountFormData.dashboardInitMessageTitle) {
+    if (this.investmentAccountFormData.dashboardInitMessageTitle) {
       return {
         dashboardInitMessageShow: this.investmentAccountFormData.dashboardInitMessageShow,
         dashboardInitMessageTitle: this.investmentAccountFormData.dashboardInitMessageTitle,
