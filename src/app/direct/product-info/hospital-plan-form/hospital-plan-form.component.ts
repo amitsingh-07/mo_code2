@@ -7,6 +7,7 @@ import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-mod
 import { HospitalPlan } from './../../../guide-me/hospital-plan/hospital-plan';
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from './../../direct.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-hospital-plan-form',
@@ -24,13 +25,17 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
   selectedHospitalPlan: HospitalPlan;
   planType;
   doberror = false;
+  minDate;
+  maxDate;
+  private userInfoSubscription: Subscription;
+
   constructor(
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter,
     private formBuilder: FormBuilder, private translate: TranslateService, private config: NgbDatepickerConfig) {
     const today: Date = new Date();
-    config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
-    config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    this.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
+    this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -63,21 +68,31 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
         }
       }
     });
-    this.directService.userInfoSet.subscribe((data) => {
+    this.userInfoSubscription = this.directService.userInfoSet.subscribe((data) => {
       this.hospitalForm.controls.gender.setValue(data['gender']);
-      this.hospitalForm.controls.dob.setValue(data['dob']);
+      if (data['dob']) {
+        this.hospitalForm.controls.dob.setValue(data['dob']);
+      }
     });
   }
 
-  onGenderDobChange() {
+  onGenderChange() {
     const userInfo = this.directService.getUserInfo();
-    userInfo.dob = this.hospitalForm.controls.dob.value;
     userInfo.gender = this.hospitalForm.controls.gender.value;
     this.directService.updateUserInfo(userInfo);
   }
 
+  onDobChange() {
+    if (this.hospitalForm.controls.dob.valid) {
+      const userInfo = this.directService.getUserInfo();
+      userInfo.dob = this.hospitalForm.controls.dob.value;
+      this.directService.updateUserInfo(userInfo);
+    }
+  }
+
   ngOnDestroy(): void {
     this.categorySub.unsubscribe();
+    this.userInfoSubscription.unsubscribe();
   }
 
   selectHospitalPlan(plan, index) {
