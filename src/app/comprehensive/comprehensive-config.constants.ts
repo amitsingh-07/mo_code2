@@ -72,7 +72,7 @@ export const COMPREHENSIVE_CONST = {
                         'Australia': 163600,
                         'Others': 96000
                     },
-                    'PERCENT': 6
+                    'PERCENT': 4
                 },
                 LIVING_EXPENSES: {
                     'Medicine': {
