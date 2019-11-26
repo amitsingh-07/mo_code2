@@ -46,6 +46,7 @@ export class YourPortfolioComponent implements OnInit {
   showErrorMessage: boolean;
   toastMsg: any;
   activeTab: string;
+  srsAccDetail;
 
   constructor(
     public readonly translate: TranslateService,
@@ -113,6 +114,7 @@ export class YourPortfolioComponent implements OnInit {
           this.pendingMonthlyBuyRequests = this.groupBuyRequests(this.pendingBuyRequests, 'MONTHLY');
         }
       }
+      this.getSrsAccDetails();
       this.showOrHideWhatsNextSection();
     },
       (err) => {
@@ -408,4 +410,16 @@ export class YourPortfolioComponent implements OnInit {
       this.activeTab = 'tab-1';
     }
   }
+  getSrsAccDetails() {
+    if (this.portfolio.fundingTypeValue === 'SRS') {
+      this.investmentAccountService.getSrsAccountDetails().subscribe((data) => {
+        if (data.objectList && data.objectList.accountNumber) {
+          this.srsAccDetail = data.objectList;
+          const accNumber = this.srsAccDetail.accountNumber.toString();
+          this.srsAccDetail['accountNumber'] = accNumber.substring(0, 2) +
+           '-' + accNumber.substring(2, 7) + '-' + accNumber.substring(7, 9);
+        }
+      });
+    }
+   }
 }
