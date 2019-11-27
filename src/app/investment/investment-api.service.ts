@@ -271,12 +271,14 @@ export class InvestmentApiService {
       );
   }
   getOneTimeInvestmentInfo(customerPortfolioId) {
+    // tslint:disable-next-line:max-line-length
     const url = investmentApiConstants.endpoint.portfolio.setOneTimeInvestmentObjective.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
     return this.http.get(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+ 
  // #GET FINANCIAL DETAILS
   // tslint:disable-next-line:no-identical-functions
   getUserFinancialDetails() {
@@ -367,5 +369,19 @@ export class InvestmentApiService {
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
+  }
+
+  // SRS ONe time API Service
+ 
+  // tslint:disable-next-line:no-identical-functions
+  getAwaitingAndPendingInfo(customerPortfolioId, AwaitingAndPendingParam) {
+    // # tslint:disable-next-line:max-line-length
+    // # const url = investmentApiConstants.endpoint.portfolio.setAwaitingAndPendingInfo.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId).replace('$AWAITING_PENDING_PARAM$', AwaitingAndPendingParam);
+   // # console.log(url);
+    const url = '../../../assets/mock-data/financial.json';
+    return this.http.getMock(url)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
   }
 }

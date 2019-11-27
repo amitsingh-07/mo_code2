@@ -192,7 +192,8 @@ export class ManageInvestmentsService {
       return a.portfolioName.toLowerCase().localeCompare(b.portfolioName.toLowerCase());
     });
     // Hide SRS portfolios
-    return sortedArray.filter((array) => array.portfolioType !== 'SRS');
+   // return sortedArray.filter((array) => array.portfolioType !== 'SRS');
+    return sortedArray;
 
   }
   setUserCashBalance(amount) {
@@ -542,6 +543,12 @@ export class ManageInvestmentsService {
       }
     });
     this.commit();
+  }
+  
+
+  // SRS Onetime Request
+  getAwaitingAndPendingInfo(customerProfileId , AwaitingAndPendingParam) {
+    return this.investmentApiService.getAwaitingAndPendingInfo(customerProfileId , AwaitingAndPendingParam);
   }
 
 }

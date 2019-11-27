@@ -5,7 +5,7 @@
     <div class="buy-request-submitted">{{ 'TOPUP_REQUEST.BUY_REQUEST_SUBMITTED' | translate}}</div>
     <div *ngIf="status === 'success'" class="buy-request-msg">{{oneTimeMonthlyMsg}}</div>
 
-    <div *ngIf=!oneTimeOrMonthlySufficient() class="cash-account">
+    <div *ngIf="!oneTimeOrMonthlySufficient() && this.fundDetails.portfolio.fundingTypeValue === 'Cash'"class="cash-account">
       <div class="transfer-text">{{ 'TOPUP_REQUEST.FUNDING_DESC' | translate }}</div>
       <div class="cash-account-summary">
         <div class="cash-account-content">
@@ -24,7 +24,7 @@
       </div>
     </div>
     <!-- TRANSFER DETAILS -->
-    <div *ngIf=!oneTimeOrMonthlySufficient() class="transfer-details">
+    <div *ngIf="!oneTimeOrMonthlySufficient() && this.fundDetails.portfolio.fundingTypeValue === 'Cash'" class="transfer-details">
       <div class="tab-links">
         <div class="tab-link-item active" [class.active]="activeMode == 'BANK'" (click)="selectFundingMethod('BANK')">
           <div class="pay-tab">{{ 'TOPUP_REQUEST.BANK_TRANSFER' | translate }}</div>
