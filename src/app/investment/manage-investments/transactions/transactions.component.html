@@ -39,8 +39,7 @@
                           [class.cursor_pointer]="transaction.fundInvestmentSplits && transaction.fundInvestmentSplits.length"
                           (click)="expandCollapseAccordion(i, j)">
                           <div class="flex-col-7">
-                            <div class="transaction-panel__history--details--transaction-id">
-                              {{ 'TRANSACTIONS.TRANSACTION_ID' | translate}}
+                            <div class="transaction-panel__history--details--transaction-id">{{ 'TRANSACTIONS.TRANSACTION_ID' | translate}}
                               {{transaction.contractNo}}</div>
                             <div class="history-type-transaction">
                               <div [class.buy]="transaction.transactionType.name.toUpperCase() === 'BUY'"
