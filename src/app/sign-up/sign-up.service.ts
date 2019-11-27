@@ -609,4 +609,37 @@ export class SignUpService {
     this.commit();
   }
 
+  //srs details
+
+  setEditProfileSrsDetails(fullName, accountNumber, srsBankOperator, isAddSrsBank) {
+    if (isAddSrsBank) {
+      this.signUpFormData.srsAccountHolderName = fullName;
+    } else {
+      if (fullName) {
+        this.signUpFormData.srsAccountHolderName = fullName;
+      }
+      if (accountNumber) {
+        this.signUpFormData.srsAccountNumber = accountNumber;
+      }
+      if (srsBankOperator) {
+        this.signUpFormData.srsOperatorBank = srsBankOperator;
+      }
+      this.commit();
+    }
+  }
+
+
+  setSrsDetails(data) {
+    this.signUpFormData.srsAccountNumber = data.accountNumber;
+    this.signUpFormData.srsOperatorBank = data.srsBankOperator;
+    this.commit();
+  }
+
+  getSrsDetails() {
+    return {
+      srsAccountHolderName: this.signUpFormData.srsAccountHolderName,
+      srsAccountNumber: this.signUpFormData.srsAccountNumber,
+      srsOperatorBank: this.signUpFormData.srsOperatorBank
+    };
+  }
 }

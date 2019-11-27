@@ -53,6 +53,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   showAddbank = false;
   dobFormat: any;
   private subscription: Subscription;
+  srsDetails;
+  formatedAccountNumber;
+
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -85,6 +88,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.isMailingAddressSame = true;
     this.investmentStatus = this.investmentCommonService.getInvestmentStatus();
     this.showAddBankDetails(this.investmentStatus);
+    this.getSrsDetails();
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
@@ -268,14 +272,27 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       }
     });
   }
-  editSrsDetails(){
+  editSrsDetails() {
+    let srsAccountHolderName;
+    if (this.srsDetails && this.srsDetails.accountName) {
+      srsAccountHolderName = this.srsDetails.accountName;
+    } else {
+      srsAccountHolderName = this.fullName;
+    }
+    this.signUpService.setEditProfileSrsDetails(srsAccountHolderName, this.srsDetails.accountNumber, this.srsDetails.srsBankOperator, false);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS], { queryParams: { srsBank: false }, fragment: 'bank' });
   }
   addSrsDetail() {
+    let srsAccountHolderName;
+    if (this.srsDetails && this.srsDetails.accountName) {
+      srsAccountHolderName = this.srsDetails.accountName;
+    } else {
+      srsAccountHolderName = this.fullName;
+    }
+    this.signUpService.setEditProfileSrsDetails(srsAccountHolderName, null, null, true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS], { queryParams: { srsBank: true }, fragment: 'bank' });
-    
   }
-  
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.navbarService.unsubscribeBackPress();
@@ -289,4 +306,33 @@ export class EditProfileComponent implements OnInit, OnDestroy {
      }
     }
   }
+
+  getSrsDetails() {
+    this.investmentAccountService.getSrsAccountDetails().subscribe((data) => {
+      this.srsDetails = data.objectList;
+      this.signUpService.setSrsDetails(this.srsDetails);
+      this.srsAccountDetails(this.srsDetails.accountNumber);
+      console.log(this.srsDetails);
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  }
+  
+  srsAccountDetails(accNub) {
+    this.formatedAccountNumber = '';
+    switch (this.srsDetails.srsBankOperator.name) {
+    case 'DBS':
+    this.formatedAccountNumber = [accNub.slice(0, 4), '-', accNub.slice(4, 8), '-', accNub.slice(8, 9), '-', accNub.slice(9)].join('');
+    break;
+    case 'OCBC':
+    this.formatedAccountNumber = [accNub.slice(0, 3), '-', accNub.slice(3, 8), '-', accNub.slice(8)].join('');
+    break;
+    case 'UOB':
+    this.formatedAccountNumber = [accNub.slice(0, 2), '-', accNub.slice(2, 7), '-', accNub.slice(7)].join('');
+    break;
+    }
+    return this.formatedAccountNumber;
+    }
+  
 }

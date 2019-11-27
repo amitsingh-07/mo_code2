@@ -11,7 +11,7 @@
           </div>
           <div class="flex-col-12">
             <div contenteditable="true" id="fullname" [textContent]="addUpdateSrsFrom.get('srsAccountHolderName').value"
-              (focusout)="setAccountHolderName($event.target.textContent);" maxlength="100"
+              (focusout)="setsrsAccountHolderName($event.target.textContent);" maxlength="100"
               (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
               placeholder="Enter Account Holder Name">
             </div>
@@ -36,13 +36,13 @@
                 <div ngbDropdown>
                     <button class="btn btn-dropdown without-border " id="residentialAddress-country-drpdown"
                       ngbDropdownToggle>
-                      <span>{{addUpdateSrsFrom.controls.srsOperatorBank.value ? 
-                          addUpdateSrsFrom.controls.srsOperatorBank.value.name :
+                      <span>{{addUpdateSrsFrom.controls.srsOperator.value ? 
+                          addUpdateSrsFrom.controls.srsOperator.value.name :
                          'Select SRS Operator'}}</span>
                     </button>
                     <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                       <button class="dropdown-item" *ngFor="let operator of srsAgentBankList; let i = index;"
-                        (click)="selectSrsOperator('srsOperatorBank',operator)"
+                        (click)="selectSrsOperator('srsOperator',operator)"
                         id="residentialAddress-country-option-{{i}}">{{operator.name}}</button>
                     </div>
                   </div>
@@ -60,19 +60,19 @@
           <div class="flex-col-6">
             <div>
               <input id="srs-act-num-value" type="text" [textMask]="maskConfig()" placeholder="Enter Account No." class="form-control"
-                formControlName="srsAccountNumber">
+                formControlName="srsAccount">
             </div>
           </div>
         </div>
-        <!-- <div class="characters" id="srs-act-num-lmit"
-          *ngIf="this.fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value">
+        <div class="characters" id="srs-act-num-lmit"
+          *ngIf="addUpdateSrsFrom.get('srsOperator').value">
           {{getAccNoLength() ? getAccNoLength() :0}} /
-          {{getAccNoMaxLength(fundingAccountDetailsForm.get('srsFundingDetails').get('srsOperatorBank').value)}}
-        </div> -->
-        <div id="srs-act-num-lmit" class="characters">0 / 14</div>
+          {{getAccNoMaxLength(addUpdateSrsFrom.get('srsOperator').value)}}
+        </div>
+        <!-- <div id="srs-act-num-lmit" class="characters">0 / 14</div> -->
       </div>
     </div>
     <button (click)="applyChanges(addUpdateSrsFrom)" type="button" class="btn btn__footer--fixed btn-primary width100"
-      id="forgotPasswordButton">Apply Changes</button>
+      id="forgotPasswordButton">{{buttonTitle}}</button>
   </form>
 </div>

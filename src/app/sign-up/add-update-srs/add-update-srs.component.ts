@@ -43,7 +43,7 @@ export class AddUpdateSrsComponent implements OnInit {
   formValues;
   investmentAccountFormValues;
   fundingMethods: any;
-  srsAgentBankList ;
+  srsAgentBankList;
   characterLength;
   srsBank;
   showMaxLength;
@@ -52,6 +52,9 @@ export class AddUpdateSrsComponent implements OnInit {
   isSrsAccountAvailable = false;
   srsAccountDetails;
   queryParams;
+  buttonTitle;
+  srsDetails;
+  srsDetail;
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
@@ -81,25 +84,38 @@ export class AddUpdateSrsComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.queryParams = this.route.snapshot.queryParams;
     this.srsBank = this.queryParams.srsBank;
+    this.translate.get('COMMON').subscribe(() => {
+      if (this.srsBank === 'true') {
+        this.pageTitle = this.translate.instant('Add SRS Account');
+        this.buttonTitle = this.translate.instant('Add Now');
+      } else {
+        this.pageTitle = this.translate.instant('Update SRS Account');
+        this.buttonTitle = this.translate.instant('Apply Changes');
+      }
+      this.setPageTitle(this.pageTitle);
+    });
+    this.footerService.setFooterVisibility(false);
+    //this.formValues = this.signUpService.getSrsDetails();
+    this.srsDetail = this.signUpService.getSrsDetails();
     this.getSrsBankOperator();
     this.buildForm();
   }
 
   buildForm() {
     this.addUpdateSrsFrom = this.formBuilder.group({
-      srsAccountHolderName: ['', [Validators.required,, Validators.pattern(RegexConstants.NameWithSymbol)]],
-      srsOperatorBank: ['', [Validators.required]],
-      srsAccountNumber: ['', [Validators.required]]
+      srsAccountHolderName: [this.srsDetail.srsAccountHolderName, [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
+      srsOperator: [ this.srsDetail && this.srsDetail.srsOperatorBank, [Validators.required]],
+      srsAccount: [this.srsDetail && this.srsDetail.srsAccountNumber, [Validators.required]]
     });
   }
 
-  
+
 
   getSrsBankOperator() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.srsAgentBankList = data.objectList.srsAgentBank;
       console.log(this.srsAgentBankList);
-     },
+    },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
@@ -113,28 +129,51 @@ export class AddUpdateSrsComponent implements OnInit {
     const config = {
       mask: RegexConstants.operatorMask.DBS
     };
-    if (this.addUpdateSrsFrom.get('srsOperatorBank').value) {
-      const operator = this.addUpdateSrsFrom.get('srsOperatorBank').value.name;
-      if(operator) {
-      switch (operator.toUpperCase()) {
-        case 'DBS':
-          config.mask = RegexConstants.operatorMask.DBS;
-          break;
-        case 'OCBC':
-          config.mask = RegexConstants.operatorMask.OCBC;
-          break;
-        case 'UOB':
-          config.mask = RegexConstants.operatorMask.UOB;
-          break;
+    if (this.addUpdateSrsFrom.get('srsOperator').value) {
+      const operator = this.addUpdateSrsFrom.get('srsOperator').value.name;
+      if (operator) {
+        switch (operator.toUpperCase()) {
+          case 'DBS':
+            config.mask = RegexConstants.operatorMask.DBS;
+            break;
+          case 'OCBC':
+            config.mask = RegexConstants.operatorMask.OCBC;
+            break;
+          case 'UOB':
+            config.mask = RegexConstants.operatorMask.UOB;
+            break;
+        }
       }
-    }
     }
     return config;
   }
 
+  getAccNoLength() {
+    if (this.addUpdateSrsFrom.get('srsOperator').value) {
+      const accNo = this.addUpdateSrsFrom.get('srsAccount').value;
+      if (accNo) {
+        return accNo.match(/\d/g).join('').length;
+      } else {
+        return 0;
+      }
+    }
+  }
 
-
-
+  getAccNoMaxLength(value) {
+    let accNoMaxLength;
+    switch (this.addUpdateSrsFrom.get('srsOperator').value.name) {
+      case 'DBS':
+        accNoMaxLength = 14;
+        break;
+      case 'OCBC':
+        accNoMaxLength = 12;
+        break;
+      case 'UOB':
+        accNoMaxLength = 9;
+        break;
+    }
+    return accNoMaxLength;
+  }
 
   getInlineErrorStatus(control) {
     return !control.pristine && !control.valid;
@@ -142,8 +181,8 @@ export class AddUpdateSrsComponent implements OnInit {
 
   addorRemoveAccNoValidator() {
     if (this.addUpdateSrsFrom.get('srsFundingDetails')) {
-      const accNoControl = this.addUpdateSrsFrom.get('srsAccountNumber');
-      const selectedBank = this.addUpdateSrsFrom.get('srsOperatorBank').value;
+      const accNoControl = this.addUpdateSrsFrom.get('srsAccount');
+      const selectedBank = this.addUpdateSrsFrom.get('srsOperator').value;
       if (selectedBank) {
         switch (selectedBank.name.toUpperCase()) {
           case 'DBS':
@@ -208,7 +247,17 @@ export class AddUpdateSrsComponent implements OnInit {
     } else {
       console.log(form.value);
       this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
-      }
     }
-  
+  }
+  getOperatorIdByName(operatorId, OperatorOptions) {
+    if (operatorId && OperatorOptions) {
+      const OperatorBank = OperatorOptions.filter(
+        (prop) => prop.id === operatorId
+      );
+      return OperatorBank[0];
+    } else {
+      return '';
+    }
+  }
+
 }
