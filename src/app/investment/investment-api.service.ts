@@ -374,9 +374,9 @@ export class InvestmentApiService {
   // SRS ONe time API Service
  
   // tslint:disable-next-line:no-identical-functions
-  getAwaitingAndPendingInfo(customerPortfolioId, AwaitingAndPendingParam) {
+  getAwaitingOrPendingInfo(customerPortfolioId, AwaitingAndPendingParam) {
     // # tslint:disable-next-line:max-line-length
-    // # const url = investmentApiConstants.endpoint.portfolio.setAwaitingAndPendingInfo.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId).replace('$AWAITING_PENDING_PARAM$', AwaitingAndPendingParam);
+    // # const url = investmentApiConstants.endpoint.portfolio.setAwaitingOrPendingInfo.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId).replace('$AWAITING_PENDING_PARAM$', AwaitingAndPendingParam);
    // # console.log(url);
     const url = '../../../assets/mock-data/financial.json';
     return this.http.getMock(url)

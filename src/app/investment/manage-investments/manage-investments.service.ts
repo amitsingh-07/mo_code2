@@ -547,8 +547,8 @@ export class ManageInvestmentsService {
   
 
   // SRS Onetime Request
-  getAwaitingAndPendingInfo(customerProfileId , AwaitingAndPendingParam) {
-    return this.investmentApiService.getAwaitingAndPendingInfo(customerProfileId , AwaitingAndPendingParam);
+  getAwaitingOrPendingInfo(customerProfileId , AwaitingAndPendingParam) {
+    return this.investmentApiService.getAwaitingOrPendingInfo(customerProfileId , AwaitingAndPendingParam);
   }
 
 }
