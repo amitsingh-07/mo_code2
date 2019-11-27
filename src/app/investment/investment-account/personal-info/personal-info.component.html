@@ -56,14 +56,15 @@
                         </div>
                       </label>
                     </div>
-                    <div class="flex-col-7" [ngClass]="{'inline-error': invPersonalInfoForm.get('fullName').enabled && !invPersonalInfoForm.get('fullName').valid && !invPersonalInfoForm.get('fullName').pristine}">
-                      <div [attr.contenteditable]="!isDisabled('fullName')"
-                           id="fullname" [textContent]="invPersonalInfoForm.get('fullName').value"
-                           (focusout)="setControlValue($event.target.textContent, 'fullName', invPersonalInfoForm);" maxlength="100"
-                           (keypress)="onKeyPressEvent($event, $event.target.textContent)"  class="content-editable"
-                           [class.fullName-disabled]="isDisabled('fullName')"
-                            placeholder="Full Name">
-                         </div>
+                    <div class="flex-col-7"
+                      [ngClass]="{'inline-error': invPersonalInfoForm.get('fullName').enabled && !invPersonalInfoForm.get('fullName').valid && !invPersonalInfoForm.get('fullName').pristine}">
+                      <div [attr.contenteditable]="!isDisabled('fullName')" id="fullname"
+                        [textContent]="invPersonalInfoForm.get('fullName').value"
+                        (focusout)="setControlValue($event.target.textContent, 'fullName', invPersonalInfoForm);"
+                        maxlength="100" (keypress)="onKeyPressEvent($event, $event.target.textContent)"
+                        class="content-editable" [class.fullName-disabled]="isDisabled('fullName')"
+                        placeholder="Full Name">
+                      </div>
                     </div>
                   </div>
                   <div class="flex-row" *ngIf="showNric">
@@ -84,7 +85,7 @@
                       <div class="datepicker-control">
                         <div class="input-group date-picker mb0"
                           [ngClass]="{'inline-error': invPersonalInfoForm.get('dob').enabled && !invPersonalInfoForm.get('dob').valid && !invPersonalInfoForm.get('dob').pristine}">
-                          <input readonly (click)="toggleDate(dobInput, expiryInput)" class="form-control"
+                          <input [minDate]="minDate" [maxDate]="maxDate" class="form-control"
                             placeholder="DD / MM / YYYY" formControlName="dob" name="dp" ngbDatepicker
                             #dobInput="ngbDatepicker" id="invPersInfoInpt7">
                           <div class="input-group-append">
@@ -134,13 +135,10 @@
                             | translate}}</label>
                     </div>
                     <div class="flex-col-7">
-                      <div class="dropdown-control" [ngClass]="{'inline-error': invPersonalInfoForm.get('birthCountry').enabled && !invPersonalInfoForm.get('birthCountry').valid && !invPersonalInfoForm.get('birthCountry').pristine}">
-                        <app-dropdown-with-search 
-                          [disabled]="isDisabled('birthCountry')"
-                          controlName="birthCountry"
-                          [optionList]="countries"
-                          displayKey="name"
-                          placement="top-right"
+                      <div class="dropdown-control"
+                        [ngClass]="{'inline-error': invPersonalInfoForm.get('birthCountry').enabled && !invPersonalInfoForm.get('birthCountry').valid && !invPersonalInfoForm.get('birthCountry').pristine}">
+                        <app-dropdown-with-search [disabled]="isDisabled('birthCountry')" controlName="birthCountry"
+                          [optionList]="countries" displayKey="name" placement="top-right"
                           placeholderText="{{'PERSONAL_INFO.SELECT_BIRTH_COUNTRY' | translate}}"
                           (itemSelected)="setDropDownValue($event, 'birthCountry', $event)">
                         </app-dropdown-with-search>
@@ -186,9 +184,8 @@
                       <div class="datepicker-control">
                         <div class="input-group date-picker mb0"
                           [ngClass]="{'inline-error': invPersonalInfoForm.get('passportExpiry').enabled && !invPersonalInfoForm.get('passportExpiry').valid && !invPersonalInfoForm.get('passportExpiry').pristine}">
-                          <input readonly (click)="toggleDate(expiryInput, dobInput)" class="form-control"
-                            placeholder="DD / MM / YYYY" formControlName="passportExpiry" name="passportExpiry"
-                            [minDate]=this.passportMinDate [maxDate]=this.passportMaxDate ngbDatepicker
+                          <input class="form-control" placeholder="DD / MM / YYYY" formControlName="passportExpiry"
+                            name="passportExpiry" [minDate]=passportMinDate [maxDate]=passportMaxDate ngbDatepicker
                             #expiryInput="ngbDatepicker" id="invPersInfoInpt6">
                           <div class="input-group-append">
                             <button (click)="toggleDate(expiryInput, dobInput)" class="btn btn-primary" type="button"

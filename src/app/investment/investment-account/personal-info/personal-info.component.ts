@@ -41,6 +41,8 @@ export class PersonalInfoComponent implements OnInit {
   salutaionList: any;
   countries: any;
   raceList: any;
+  minDate: any;
+  maxDate: any;
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
     private cdr: ChangeDetectorRef,
@@ -60,12 +62,12 @@ export class PersonalInfoComponent implements OnInit {
       this.pageTitle = this.translate.instant('PERSONAL_INFO.TITLE');
       this.setPageTitle(this.pageTitle);
       const today: Date = new Date();
-      config.minDate = {
+      this.minDate = {
         year: today.getFullYear() - 100,
         month: today.getMonth() + 1,
         day: today.getDate()
       };
-      config.maxDate = {
+      this.maxDate = {
         year: today.getFullYear(),
         month: today.getMonth() + 1,
         day: today.getDate()
@@ -280,7 +282,7 @@ export class PersonalInfoComponent implements OnInit {
 
   private validateMinimumAge(control: AbstractControl) {
     const value = control.value;
-    if (control.value !== undefined && isNaN(control.value)) {
+    if (control.value !== undefined && isNaN(control.value) && !(control.errors && control.errors.ngbDate)) {
       const isMinAge =
         new Date(
           value.year + INVESTMENT_ACCOUNT_CONSTANTS.personal_info.min_age,
@@ -297,7 +299,7 @@ export class PersonalInfoComponent implements OnInit {
   private validateExpiry(control: AbstractControl) {
     const value = control.value;
     const today = new Date();
-    if (control.value !== undefined && isNaN(control.value)) {
+    if (control.value !== undefined && isNaN(control.value) && !(control.errors && control.errors.ngbDate)) {
       const isMinExpiry =
         new Date(value.year, value.month - 1, value.day) >=
         new Date(
@@ -362,7 +364,7 @@ export class PersonalInfoComponent implements OnInit {
   }
 
   onKeyPressEvent(event: any, content: any) {
-    this.investmentAccountService.onKeyPressEvent(event , content);
+    this.investmentAccountService.onKeyPressEvent(event, content);
   }
 
   @HostListener('input', ['$event'])
