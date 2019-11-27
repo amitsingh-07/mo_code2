@@ -77,6 +77,13 @@ export class TaxInfoComponent implements OnInit {
       this.taxInfoFormValues.taxObj.addTax.map((item) => {
         this.addTaxForm(item);
       });
+    } else if (this.investmentAccountService.isSingaporeResident()) {
+      const data = {
+        taxCountry: this.investmentAccountService.getCountryFromCountryCode(INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_COUNTRY_CODE),
+        radioTin: true,
+        tinNumber: this.taxInfoFormValues.nricNumber
+      };
+      this.addTaxForm(data);
     } else {
       // New form
       this.addTaxForm(null);
