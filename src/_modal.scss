@@ -1143,3 +1143,13 @@ body.modal-open::-webkit-scrollbar {
     position: relative;
   }
 }
+
+.payment-modal {
+  background-color: $teal-color;
+  opacity: 0.98;
+
+  @include allmobiles {
+    height: 100%;
+    max-height: 100% !important;
+  }
+}

@@ -1,0 +1,65 @@
+<div class="container-fluid max-width--1024 content">
+  <div class="flex-div">
+    <div class="payment-summary-text">Payment Summary</div>
+    <div class="review-text">Please review and submit your purchase.</div>
+    <div class="first-box">
+      <img src="../../../assets/images/comprehensive/dashboard-comprehensive.svg" alt="" />
+      <div class="divider"></div>
+      <div>
+        <div class="comprehensive-text">Comprehensive Financial Planning</div>
+        <div class="amt">{{subTotal | currency : 'USD' : 'symbol-narrow' : '1.0-0'}}</div>
+      </div>
+    </div>
+    <div class="second-box">
+      <div class="rebate-title">
+        <img src="../../../assets/images/payment/mini-owl-head.svg" alt="" />
+        100% Fee Rebate
+      </div>
+      <div class="rebate-info">For a limited time only, we will be giving a 100% fee rebate after you go through the
+        full comprehensive
+        financial planning process. This includes meeting with your assigned client adviser. Your fee rebate will be
+        credited into your <span>MoneyOwl Investment Account.</span></div>
+      <div class="flex-mt20">
+        <div class="teal-txt">Sub Total</div>
+        <div class="grey-txt">{{subTotal | currency : 'USD' : 'symbol-narrow' : '1.0-0'}}</div>
+      </div>
+      <div class="flex-mt15">
+        <div class="teal-txt">GST ({{gst}}%) included</div>
+        <div class="grey-txt">({{subTotal * (gst/100) | currency : 'USD' : 'symbol-narrow' : '1.0-0'}})</div>
+      </div>
+      <div class="flex-mt15">
+        <div class="teal-txt">Promo Code</div>
+        <div class="grey-txt">{{promoCode}}</div>
+      </div>
+      <div class="horizontal-divider"></div>
+      <div class="flex-mt20">
+        <div class="teal-bold-txt">Total</div>
+        <div class="grey-bold-txt">{{subTotal | currency : 'USD' : 'symbol-narrow' : '1.0-0'}}</div>
+      </div>
+    </div>
+    <form id="checkoutForm" name="checkoutForm" [formGroup]="checkoutForm" method="POST" target="wirecardWindow"
+      enctype="application/json">
+      <input name="request_id" formControlName="request_id" hidden>
+      <input name="request_time_stamp" formControlName="request_time_stamp" hidden>
+      <input name="request_signature" formControlName="request_signature" hidden>
+      <input name="merchant_account_id" formControlName="merchant_account_id" hidden>
+      <input name="transaction_type" formControlName="transaction_type" hidden>
+      <input name="requested_amount" formControlName="requested_amount" hidden>
+      <input name="requested_amount_currency" formControlName="requested_amount_currency" hidden>
+      <input name="ip_address" formControlName="ip_address" hidden>
+      <input name="redirect_url" formControlName="redirect_url" hidden>
+
+      <div class="checkbox-button mt20">
+        <input id="termsOfConditions" name="termsOfConditions" formControlName="termsOfConditions" type="checkbox"
+          class="field checkbox" value="I agree to MoneyOwl's Terms of Use and Privacy Policy." required>
+        <label for="termsOfConditions">
+          <div class="checkbox-label">I agree to MoneyOwl's <span>Terms of Use</span>
+          </div>
+        </label>
+      </div>
+      <button [disabled]="!checkoutForm.valid" type="button" class="btn btn__footer--fixed btn-primary width100"
+        (click)="submitForm()">Proceed to Pay</button>
+    </form>
+
+  </div>
+</div>
