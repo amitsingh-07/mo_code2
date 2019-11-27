@@ -24,8 +24,9 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets", 
-              "src/myinfo"
+              "src/assets",
+              "src/myinfo",
+              "src/payment-redirect"
             ],
             "styles": [{
                 "input": "./node_modules/bootstrap/dist/css/bootstrap.css"
@@ -152,7 +153,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/myinfo"
+              "src/myinfo",
+              "src/payment-redirect"
             ]
           }
         },

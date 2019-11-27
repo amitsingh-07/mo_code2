@@ -1,0 +1,44 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+app-payment-modal {
+  .modal-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    img {
+      height: 180px;
+      width: 246.6px;
+
+      @include allmobiles {
+        height: 120px;
+        width: 156px;
+      }
+    }
+
+    .redirect-title {
+      font-family: $muli-bold;
+      font-size: 24px;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: -0.45px;
+      color: $white-color;
+      margin-top: 30px;
+    }
+
+    .redirect-desc {
+      font-family: $muli-regular;
+      font-size: 18px;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: -0.34px;
+      color: $white-color;
+      max-width: 312px;
+      margin-top: 8px;
+    }
+  }
+}
