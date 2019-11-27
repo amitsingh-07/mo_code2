@@ -83,9 +83,9 @@
 
       <div class="cfp">
         <div class="cfp__heading">{{'CMP.COMPREHENSIVE.CFP' | translate}}</div>
-        <!-- <div class="free-tag"><span class="strikethrough-new">{{'CMP.COMPREHENSIVE.ONE_TIME_FEE' | translate}}</span>
+        <div><span class="cfp__heading">{{'CMP.COMPREHENSIVE.ONE_TIME_FEE' | translate}}</span>
         </div>
-        <div class="cfp__desc">{{'CMP.COMPREHENSIVE.CFP_DESC' | translate}}</div> -->
+        <!-- <div class="cfp__desc">{{'CMP.COMPREHENSIVE.CFP_DESC' | translate}}</div> -->
       </div>
 
       <div class="text-center promo-code-box" [ngClass]="{'with-login': promoCodeValidated}">
@@ -109,8 +109,8 @@
       <div *ngIf="!promoCodeValidated" class="onetime-free-box">
         <div class="onetime-free-box__inner">
           <div>
-            <div class="free-tag">
-              <!-- <span class="strikethrough-new">{{'CMP.COMPREHENSIVE.ONE_TIME_FEE' | translate}}</span> -->
+            <div>
+              <span>{{'CMP.COMPREHENSIVE.ONE_TIME_FEE' | translate}}</span>
             </div>
             <div class="onetime-free-box__inner__limited">
               <!-- {{'CMP.COMPREHENSIVE.FREE_LIMITED' | translate}} -->
