@@ -1,4 +1,3 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
@@ -16,6 +15,7 @@ import {
   ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
+import { FormatCurrencyPipe } from '../../../shared/Pipes/format-currency.pipe';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
@@ -49,7 +49,6 @@ export class ConfirmPortfolioComponent implements OnInit {
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
-    private currencyPipe: CurrencyPipe,
     public headerService: HeaderService,
     private modal: NgbModal,
     public navbarService: NavbarService,
@@ -59,6 +58,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     public investmentAccountService: InvestmentAccountService,
     private investmentCommonService: InvestmentCommonService,
     private authService: AuthenticationService,
+    private formatCurrencyPipe: FormatCurrencyPipe
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -93,17 +93,11 @@ export class ConfirmPortfolioComponent implements OnInit {
           this.investmentCommonService.setInitialFundingMethod({ initialFundingMethodId: this.portfolio.fundingTypeId });
         }
         this.userInputSubtext = {
-          onetime: this.currencyPipe.transform(
-            this.portfolio.initialInvestment,
-            'USD',
-            'symbol-narrow',
-            '1.0-2'
+          onetime: this.formatCurrencyPipe.transform(
+            this.portfolio.initialInvestment
           ),
-          monthly: this.currencyPipe.transform(
-            this.portfolio.monthlyInvestment,
-            'USD',
-            'symbol-narrow',
-            '1.0-2'
+          monthly: this.formatCurrencyPipe.transform(
+            this.portfolio.monthlyInvestment
           ),
           period: this.portfolio.investmentPeriod
         };

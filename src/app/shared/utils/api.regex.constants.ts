@@ -1,5 +1,5 @@
 export const RegexConstants = {
-    PassportNumber: /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/,
+    PassportNumber: /^[a-zA-Z0-9]{3,}$/, // Min 3 alphanumeric
     OnlyAlpha: /^[a-zA-Z\s]{2,40}$/, // Only alpha values with space
     AlphaWithSymbol: /^[a-zA-Z!"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~\s]{2,40}$/,
     Alphanumeric: /^[a-zA-Z0-9]*$/,
