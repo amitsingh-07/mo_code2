@@ -88,10 +88,26 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       // If user closes pop up window, close the modal and show the page again
       if (this.windowRef.closed !== false) { // !== is required for compatibility with Opera
         window.clearInterval(pollTimer);
+        console.log('INSIDE CLOSING!!!!!!!!')
         this.closeModal();
       }
     }, 100);
 
+    window.success = (values) => {
+      console.log('INSIDE SUCCESS!!!!!!!!')
+      clearInterval(pollTimer);
+      window.success = () => null;
+      // Route to status page with success
+      this.windowRef.close();
+    };
+
+    window.failed = (values) => {
+      console.log('INSIDE FAILURE!!!!!!!!')
+      clearInterval(pollTimer);
+      window.failed = () => null;
+      // Route to status page with failed
+      this.windowRef.close();
+    };
   }
 
   openModal() {
