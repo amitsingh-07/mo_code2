@@ -10,28 +10,29 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import {
-    CurrencyInputPortfolioDirective
+  CurrencyInputPortfolioDirective
 } from '../../shared/directives/currency-input-p.directive';
+import { FormatCurrencyPipe } from '../../shared/Pipes/format-currency.pipe';
 import { SharedModule } from '../../shared/shared.module';
 import { SignUpService } from '../../sign-up/sign-up.service';
+import { FundingMethodComponent } from './funding-method/funding-method.component';
 import { GetStartedStep1Component } from './get-started-step1/get-started-step1.component';
 import { GetStartedStep2Component } from './get-started-step2/get-started-step2.component';
 import { IntroScreenComponent } from './intro-screen/intro-screen.component';
 import {
-    InvestmentEngagementJourneyRoutingModule
+  InvestmentEngagementJourneyRoutingModule
 } from './investment-engagement-journey-routing.module';
 import { InvestmentPeriodComponent } from './investment-period/investment-period.component';
 import { PortfolioDetailsComponent } from './portfolio-details/portfolio-details.component';
 import { PortfolioExistComponent } from './portfolio-exist/portfolio-exist.component';
 import { RecommendationComponent } from './recommendation/recommendation.component';
 import { RiskWillingnessComponent } from './risk-willingness/risk-willingness.component';
+import { SrsTooltipComponent } from './srs-tooltip/srs-tooltip.component';
 import { StartJourneyComponent } from './start-journey/start-journey.component';
 import { YourFinancialsComponent } from './your-financials/your-financials.component';
 import {
-    YourInvestmentAmountComponent
+  YourInvestmentAmountComponent
 } from './your-investment-amount/your-investment-amount.component';
-import { FundingMethodComponent } from './funding-method/funding-method.component';
-import { SrsTooltipComponent } from './srs-tooltip/srs-tooltip.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
@@ -74,8 +75,8 @@ export function createTranslateLoader(http: HttpClient) {
     FundingMethodComponent,
     SrsTooltipComponent
   ],
-  providers: [CurrencyPipe],
-  entryComponents:[SrsTooltipComponent]
+  providers: [CurrencyPipe, FormatCurrencyPipe],
+  entryComponents: [SrsTooltipComponent]
 })
 
 export class InvestmentEngagementJourneyModule {

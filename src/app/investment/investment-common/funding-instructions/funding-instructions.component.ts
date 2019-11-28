@@ -1,4 +1,3 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,6 +10,7 @@ import { HeaderService } from '../../../shared/header/header.service';
 import { BankDetailsComponent } from '../../../shared/modal/bank-details/bank-details.component';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
+import { FormatCurrencyPipe } from '../../../shared/Pipes/format-currency.pipe';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
@@ -60,7 +60,7 @@ export class FundingInstructionsComponent implements OnInit {
     public investmentAccountService: InvestmentAccountService,
     public investmentCommonService: InvestmentCommonService,
     private loaderService: LoaderService,
-    private currencyPipe: CurrencyPipe
+    private formatCurrencyPipe: FormatCurrencyPipe
   ) {
     this.translate.use('en');
     this.fundDetails = this.manageInvestmentsService.getFundingDetails();
@@ -325,11 +325,8 @@ export class FundingInstructionsComponent implements OnInit {
     let timelineMessage;
     if (fundDetails.monthlyInvestment && !fundDetails.oneTimeInvestment) {
       const monthlyAmount = {
-        month: this.currencyPipe.transform(
-          this.fundDetails.monthlyInvestment,
-          'USD',
-          'symbol-narrow',
-          '1.2-2'
+        month: this.formatCurrencyPipe.transform(
+          this.fundDetails.monthlyInvestment
         )
       };
       timelineMessage = this.translate.instant('FUNDING_INSTRUCTIONS.MONTHLY_TIME_INFO', monthlyAmount);

@@ -40,7 +40,7 @@
                 <div class="form-group-with-bg--header your_total_value">
                   <div id="myFinancialLbl">
                     <div class="total_values" id="investment_overview_totalportfolio_value">
-                      {{totalValue | currency:'USD':'symbol-narrow':'1.2-2'}}
+                      {{totalValue | formatCurrency}}
                     </div>
                     <div class="total_values_label" id="investment_overview_totalportfolio_value_lab">
                       {{'YOUR_INVESTMENT.TOTAL_PORTFOLIO_VALUE' | translate}}</div>
@@ -56,7 +56,7 @@
                     </div>
                     <div class="flex-col">
                       <div class="total_cash_value" id="investment_overview_total_returns_value">
-                        {{cashAccountBalance | currency:'USD':'symbol-narrow':'1.2-2'}}
+                        {{cashAccountBalance | formatCurrency}}
                       </div>
                     </div>
                   </div>
