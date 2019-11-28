@@ -59,7 +59,7 @@
                               [class.buy]="transaction.transactionType.name.toUpperCase() === 'BUY' || transaction.transactionType.name.toUpperCase() === 'FUNDING'"
                               class="transaction-panel__history--details--title--amount--sale"><span
                                 *ngIf="transaction.transactionType.name.toUpperCase() === 'SELL' || transaction.transactionType.name.toUpperCase() === 'CASH_WITHDRAW'">-</span>
-                              {{transaction.amount | currency}}</span>
+                              {{transaction.amount | formatCurrency}}</span>
                             <i *ngIf="transaction.fundInvestmentSplits && transaction.fundInvestmentSplits.length"
                               class='fa right mt5'
                               [class.fa-chevron-down]="activeTransactionIndex !== i.toString() + j.toString()"
@@ -72,7 +72,7 @@
                             <div class="flex-col-7">{{fund.fund.name}}</div>
                             <div class="flex-col-5 text-right">
                               <span *ngIf="transaction.transactionType.name.toUpperCase() !== 'BUY'">-</span>
-                              {{fund.splitAmount | currency }}
+                              {{fund.splitAmount | formatCurrency }}
                             </div>
                             <div class="flex-col-12 text-left unit-price">
                               <span>{{ 'TRANSACTIONS.UNIT_PRICE' | translate}} {{'$'+fund.unitPrice}} </span>

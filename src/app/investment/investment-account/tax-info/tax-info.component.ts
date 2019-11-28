@@ -77,6 +77,13 @@ export class TaxInfoComponent implements OnInit {
       this.taxInfoFormValues.taxObj.addTax.map((item) => {
         this.addTaxForm(item);
       });
+    } else if (this.investmentAccountService.isSingaporeResident()) {
+      const data = {
+        taxCountry: this.investmentAccountService.getCountryFromCountryCode(INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_COUNTRY_CODE),
+        radioTin: true,
+        tinNumber: this.taxInfoFormValues.nricNumber
+      };
+      this.addTaxForm(data);
     } else {
       // New form
       this.addTaxForm(null);
@@ -124,6 +131,9 @@ export class TaxInfoComponent implements OnInit {
 
   selectCountry(country, taxInfoItem) {
     taxInfoItem.controls.taxCountry.setValue(country);
+    taxInfoItem.removeControl('tinNumber');
+    taxInfoItem.removeControl('noTinReason');
+    taxInfoItem.controls.radioTin.setValue(null);
     this.setDefaultTinNoAndPlaceholder(taxInfoItem, null);
     this.showHint(country.countryCode, taxInfoItem);
   }
@@ -163,17 +173,19 @@ export class TaxInfoComponent implements OnInit {
     if (flag) {
       formgroup.addControl(
         'tinNumber',
-        new FormControl(data, [
+        new FormControl('', [
           Validators.required,
           this.validateTin.bind(this)
         ])
       );
+      formgroup.controls.tinNumber.setValue(data);
       formgroup.removeControl('noTinReason');
     } else {
       formgroup.addControl(
         'noTinReason',
-        new FormControl(data, Validators.required)
+        new FormControl('', Validators.required)
       );
+      formgroup.controls.noTinReason.setValue(data);
       formgroup.removeControl('tinNumber');
     }
   }
@@ -293,12 +305,12 @@ export class TaxInfoComponent implements OnInit {
       this.setControlEnableDisable(taxInfoItem, 'radioTin', true);
       this.setControlEnableDisable(taxInfoItem, 'tinNumber', true);
     }
-    taxInfoItem.controls.tinNumber.updateValueAndValidity();
   }
 
   setTinNoValue(taxInfoItem, value) {
     if (taxInfoItem.controls.tinNumber) {
       taxInfoItem.controls.tinNumber.setValue(value);
+      taxInfoItem.controls.tinNumber.updateValueAndValidity();
     }
   }
 
