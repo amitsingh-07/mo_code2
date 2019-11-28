@@ -13,7 +13,7 @@ export class FormatCurrencyPipe implements PipeTransform {
         if (value) {
             return this.currencyPipe.transform(value, 'USD', 'symbol-narrow', '1.2-2');
         } else if (value === 0) {
-            return 0;
+            return '$0';
         } else {
             return null;
         }
