@@ -85,20 +85,20 @@
                         <div name="totalLiabilities">
                           <input class="input-control" type="text" appCurrencyInput maxLength="6"
                             #oneTimeInvestmentAmount value="0" formControlName="oneTimeInvestmentAmount"
-                            (keyup)="validateAmonut(topForm.controls.oneTimeInvestmentAmount.value)"
+                            (keyup)="validateAmount(topForm.controls.oneTimeInvestmentAmount.value)"
                             id="onetime_investment">
                         </div>
                       </div>
                     </div>
                   </div>
                   <!-- Monthlyinvestment -->
-                  <div class="flex-row mt10" *ngIf="showmonthlyInvestmentAmount">
+                  <div class="flex-row mt10" *ngIf="showMonthlyInvestmentAmount">
                     <div class="flex-col-12">
                       <div class="form-control form-control-right">
                         <i id="topup_symb">$</i>
                         <input type="text" class="input-control" appCurrencyInput maxLength="6" #MonthlyInvestmentAmount
                           value="0" formControlName="MonthlyInvestmentAmount" id="Monthlyinvestment"
-                          (keyup)="validateAmonut(topForm.controls.MonthlyInvestmentAmount.value)">
+                          (keyup)="validateAmount(topForm.controls.MonthlyInvestmentAmount.value)">
                         <i class="right year">/ mth</i>
                       </div>
                     </div>

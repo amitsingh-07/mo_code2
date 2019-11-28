@@ -33,7 +33,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   topupAmount: any;
   investmentTypeList: any;
   showOnetimeInvestmentAmount = true;
-  showmonthlyInvestmentAmount = false;
+  showMonthlyInvestmentAmount = false;
   formValues;
   topForm: FormGroup;
   enteringAmount;
@@ -43,7 +43,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   currentOneTimeInvAmount; // current monthly rsp amount
   isRequestSubmitted = false;
   srsAccountDetails;
-  AwaitingAndPendingInfo;
+  awaitingOrPendingInfo;
   awaitingAndPendingAmount;
 
   constructor(
@@ -96,7 +96,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
       this.getMonthlyInvestmentInfo(this.formValues['selectedCustomerPortfolioId']);
       this.getOneTimeInvestmentInfo(this.formValues['selectedCustomerPortfolioId']);
       // tslint:disable-next-line:max-line-length
-      this.getAwaitingOrPendingInfo(this.formValues['customerPortfolioId'], this.decidingAwaitingOrPending(this.formValues.selectedCustomerPortfolio.fundingTypeValue));
+      this.getAwaitingOrPendingInfo(this.formValues['customerPortfolioId'], this.awaitingOrPendingReq(this.formValues.selectedCustomerPortfolio.fundingTypeValue));
     }
     this.buildFormInvestment();
     this.setSelectedPortfolio();
@@ -133,7 +133,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     this.getOneTimeInvestmentInfo(value['customerPortfolioId']);
     this.getMonthlyInvestmentInfo(value['customerPortfolioId']);
     // tslint:disable-next-line:max-line-length
-    this.getAwaitingOrPendingInfo(value['customerPortfolioId'], this.decidingAwaitingOrPending(value.fundingTypeValue));
+    this.getAwaitingOrPendingInfo(value['customerPortfolioId'], this.awaitingOrPendingReq(value.fundingTypeValue));
   }
 
   getTopupInvestmentList() {
@@ -146,7 +146,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
       });
   }
 
-  validateAmonut(amount) {
+  validateAmount(amount) {
     if (amount > this.cashBalance) {
       this.topupAmount = amount - this.cashBalance;
       this.isAmountExceedBalance = true;
@@ -155,8 +155,8 @@ export class TopUpComponent implements OnInit, OnDestroy {
     }
   }
 
-  selectedInvestment(investmenttype) {
-    this.investment = investmenttype;
+  selectedInvestment(investmentType) {
+    this.investment = investmentType;
     this.manageInvestmentsService.setInvestmentValue(this.investment.value);
     this.formValues.Investment = this.investment.name;
     this.isAmountExceedBalance = false;
@@ -172,7 +172,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
       );
       this.topForm.removeControl('oneTimeInvestmentAmount');
       this.showOnetimeInvestmentAmount = false;
-      this.showmonthlyInvestmentAmount = true;
+      this.showMonthlyInvestmentAmount = true;
       this.exceedAmountMonthly();
       if (this.currentMonthlyInvAmount) { // If monthly investment already exists, allow zero
         this.topForm.get('MonthlyInvestmentAmount').clearValidators();
@@ -185,7 +185,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
       );
       this.topForm.removeControl('MonthlyInvestmentAmount');
       this.showOnetimeInvestmentAmount = true;
-      this.showmonthlyInvestmentAmount = false;
+      this.showMonthlyInvestmentAmount = false;
       this.exceedAmountOneTime();
     }
   }
@@ -193,7 +193,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   exceedAmountOneTime() {
     if (this.topForm.get('oneTimeInvestmentAmount')) {
       this.topForm.get('oneTimeInvestmentAmount').valueChanges.subscribe((value) => {
-        this.validateAmonut(value);
+        this.validateAmount(value);
       });
       this.topForm
         .get('oneTimeInvestmentAmount')
@@ -204,7 +204,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   exceedAmountMonthly() {
     if (this.topForm.get('MonthlyInvestmentAmount')) {
       this.topForm.get('MonthlyInvestmentAmount').valueChanges.subscribe((value) => {
-        this.validateAmonut(value);
+        this.validateAmount(value);
       });
       this.topForm
         .get('MonthlyInvestmentAmount')
@@ -305,14 +305,14 @@ export class TopUpComponent implements OnInit, OnDestroy {
       });
   }
 
-  decidingAwaitingOrPending(FundingTypeValue) {
-    this.AwaitingAndPendingInfo = '';
+  awaitingOrPendingReq(FundingTypeValue) {
+    this.awaitingOrPendingInfo = '';
     if (FundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CASH) {
-      this.AwaitingAndPendingInfo = 'awaiting';
-      return this.AwaitingAndPendingInfo;
+      this.awaitingOrPendingInfo = 'awaiting';
+      return this.awaitingOrPendingInfo;
     }
-    this.AwaitingAndPendingInfo = 'pending';
-    return this.AwaitingAndPendingInfo;
+    this.awaitingOrPendingInfo = 'pending';
+    return this.awaitingOrPendingInfo;
   }
 
   getAwaitingOrPendingInfo(customerProfileId, AwaitingAndPendingParam) {
@@ -370,14 +370,14 @@ export class TopUpComponent implements OnInit, OnDestroy {
         this.showConfirmOverwriteModal(form, this.awaitingAndPendingAmount, 'oneTimeInvestmentAmount',
           'TOPUP.CONFIRM_OVERWRITE_MODAL.ONE_TIME_DESC');
       } else if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS) {
-        this.rejectMultipleSrsOneTimeReq(this.awaitingAndPendingAmount, 'TOPUP.CONFIRM_OVERWRITE_MODAL.SRS_ONE_TIME');
+        this.showMessage(this.awaitingAndPendingAmount, 'TOPUP.CONFIRM_OVERWRITE_MODAL.SRS_ONE_TIME');
       }
     } else {
       this.buyPortfolio();
     }
   }
 
-  rejectMultipleSrsOneTimeReq(amount, descText) {
+  showMessage(amount, descText) {
     const translateParams = {
       existingOrderAmount: this.currencyPipe.transform(amount, 'USD', 'symbol-narrow', '1.2-2'),
     };
@@ -459,7 +459,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
       } else {
         this.investmentAccountService.showGenericErrorModal();
       }
-    } else if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CASH) {
+    } else if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CASH)  {
       if (!this.fundDetails.isAmountExceedBalance) {
         this.router.navigate([
           MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP_STATUS + '/success'
@@ -470,7 +470,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
         ]);
       }
     } else {
-      this.router.navigate([     // # SRS Success screen
+      this.router.navigate([
         MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP_STATUS + '/success'
       ]);
     }

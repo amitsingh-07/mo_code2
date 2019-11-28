@@ -375,11 +375,9 @@ export class InvestmentApiService {
  
   // tslint:disable-next-line:no-identical-functions
   getAwaitingOrPendingInfo(customerPortfolioId, AwaitingAndPendingParam) {
-    // # tslint:disable-next-line:max-line-length
-    // # const url = investmentApiConstants.endpoint.portfolio.setAwaitingOrPendingInfo.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId).replace('$AWAITING_PENDING_PARAM$', AwaitingAndPendingParam);
-   // # console.log(url);
-    const url = '../../../assets/mock-data/financial.json';
-    return this.http.getMock(url)
+   // tslint:disable-next-line:max-line-length
+    const url = investmentApiConstants.endpoint.portfolio.setAwaitingOrPendingInfo.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId).replace('$AWAITING_PENDING_PARAM$', AwaitingAndPendingParam);
+    return this.http.get(url)
     .pipe(
       catchError((error: HttpErrorResponse) => this.handleError(error))
     );

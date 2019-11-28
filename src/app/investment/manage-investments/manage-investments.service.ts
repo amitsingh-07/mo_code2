@@ -1,3 +1,5 @@
+import { conformToMask } from 'text-mask-core';
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -8,17 +10,18 @@ import { ApiService } from '../../shared/http/api.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-  TransferInstructionsModalComponent
+    TransferInstructionsModalComponent
 } from '../../shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
 import { InvestmentApiService } from '../investment-api.service';
-import { InvestmentEngagementJourneyService } from '../investment-engagement-journey/investment-engagement-journey.service';
+import {
+    InvestmentEngagementJourneyService
+} from '../investment-engagement-journey/investment-engagement-journey.service';
 import { ManageInvestmentsFormData } from './manage-investments-form-data';
 import { ManageInvestmentsFormError } from './manage-investments-form-error';
-import {
-  MANAGE_INVESTMENTS_ROUTE_PATHS
-} from './manage-investments-routes.constants';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from './manage-investments.constants';
 import { TopUPFormError } from './top-up/top-up-form-error';
 
@@ -34,6 +37,7 @@ export class ManageInvestmentsService {
   transferInstructionModal;
   activeModal;
   userProfileInfo;
+  formatedAccountNumber;
 
   private manageInvestmentsFormData: ManageInvestmentsFormData = new ManageInvestmentsFormData();
   private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
@@ -544,11 +548,34 @@ export class ManageInvestmentsService {
     });
     this.commit();
   }
-  
-
   // SRS Onetime Request
   getAwaitingOrPendingInfo(customerProfileId , AwaitingAndPendingParam) {
     return this.investmentApiService.getAwaitingOrPendingInfo(customerProfileId , AwaitingAndPendingParam);
   }
+ // # SRS Formate Account number
+  srsAccountFormat(accountNumber, SrsOperator) {
+    this.formatedAccountNumber = '';
+    switch (SrsOperator.toUpperCase()) {
+      case MANAGE_INVESTMENTS_CONSTANTS.TOPUP.SRS_OPERATOR.DBS:
+        this.formatedAccountNumber = conformToMask(
+          accountNumber,
+          RegexConstants.operatorMask.DBS,
+          { guide: false });
+        break;
+      case MANAGE_INVESTMENTS_CONSTANTS.TOPUP.SRS_OPERATOR.OCBC:
+        this.formatedAccountNumber = conformToMask(
+          accountNumber,
+          RegexConstants.operatorMask.OCBC,
+          { guide: false });
+        break;
+      case MANAGE_INVESTMENTS_CONSTANTS.TOPUP.SRS_OPERATOR.UOB:
+        this.formatedAccountNumber = conformToMask(
+          accountNumber,
+          RegexConstants.operatorMask.UOB,
+          { guide: false });
+        break;
+    }
+    return this.formatedAccountNumber;
+   }
 
 }

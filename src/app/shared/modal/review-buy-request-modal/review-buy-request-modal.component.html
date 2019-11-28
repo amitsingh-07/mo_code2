@@ -55,7 +55,7 @@
         </div>
         <div class="flex-col mt10">
           <div class="srs-operator-lbl">{{'REVIEW_BUY_REQUEST.SRS_ACCOUNT_NUMBER' | translate}}</div>
-          <div class="srs-bank">{{formatedAccountNumber}}</div>
+          <div *ngIf="formatedAccountNumber" class="srs-bank">{{formatedAccountNumber.conformedValue}}</div>
         </div>
       </div>
     </ng-container>
