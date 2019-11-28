@@ -9,9 +9,9 @@
       <div class="transfer-text">{{ 'TOPUP_REQUEST.FUNDING_DESC' | translate }}</div>
       <div class="cash-account-summary">
         <div class="cash-account-content">
-          <div class="investment-value">{{fundDetails['exceededAmount'] | currency:'USD':'symbol-narrow':'1.2-2'}}</div>
+          <div class="investment-value">{{fundDetails['exceededAmount'] | formatCurrency}}</div>
           <div class="cash-account-balance">{{ 'TOPUP_REQUEST.CASH_ACCOUNT_BALANCE_LBL' | translate }}
-            {{cashBalance | currency:'USD':'symbol-narrow':'1.2-2'}}</div>
+            {{cashBalance | formatCurrency}}</div>
           <div class="ref-code">
             {{ 'TOPUP_REQUEST.REFERENCE_CODE_LBL' | translate }}
             {{ bankDetails ? bankDetails?.referenceNumber :paynowDetails?.referenceNumber }}

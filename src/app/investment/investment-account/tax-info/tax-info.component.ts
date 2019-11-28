@@ -131,6 +131,9 @@ export class TaxInfoComponent implements OnInit {
 
   selectCountry(country, taxInfoItem) {
     taxInfoItem.controls.taxCountry.setValue(country);
+    taxInfoItem.removeControl('tinNumber');
+    taxInfoItem.removeControl('noTinReason');
+    taxInfoItem.controls.radioTin.setValue(null);
     this.setDefaultTinNoAndPlaceholder(taxInfoItem, null);
     this.showHint(country.countryCode, taxInfoItem);
   }
