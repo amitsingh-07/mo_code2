@@ -1,6 +1,5 @@
 import 'rxjs/add/observable/timer';
 
-import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -8,10 +7,6 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { appConstants } from '../../../app.constants';
 import { AppService } from '../../../app.service';
-import {
-  INVESTMENT_ACCOUNT_ROUTE_PATHS
-} from '../../investment-account/investment-account-routes.constants';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
@@ -24,20 +19,29 @@ import {
   ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
+import { FormatCurrencyPipe } from '../../../shared/Pipes/format-currency.pipe';
 import { SignUpApiService } from '../../../sign-up/sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../../../sign-up/sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import {
+  INVESTMENT_ACCOUNT_ROUTE_PATHS
+} from '../../investment-account/investment-account-routes.constants';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import {
+  INVESTMENT_COMMON_ROUTE_PATHS
+} from '../../investment-common/investment-common-routes.constants';
+import { InvestmentCommonService } from '../../investment-common/investment-common.service';
+import {
   MANAGE_INVESTMENTS_ROUTE_PATHS
 } from '../../manage-investments/manage-investments-routes.constants';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
+import {
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+} from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { ProfileIcons } from '../recommendation/profileIcons';
 import { RiskProfile } from '../recommendation/riskprofile';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
-import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 
 @Component({
   selector: 'app-portfolio-details',
@@ -68,7 +72,7 @@ export class PortfolioDetailsComponent implements OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     private translate: TranslateService,
-    private currencyPipe: CurrencyPipe,
+    private formatCurrencyPipe: FormatCurrencyPipe,
     public authService: AuthenticationService,
     public modal: NgbModal,
     private signUpService: SignUpService,
@@ -165,17 +169,11 @@ export class PortfolioDetailsComponent implements OnInit {
     this.investmentEngagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
       this.portfolio = data.objectList;
       this.userInputSubtext = {
-        onetime: this.currencyPipe.transform(
-          this.portfolio.initialInvestment,
-          'USD',
-          'symbol-narrow',
-          '1.2-2'
+        onetime: this.formatCurrencyPipe.transform(
+          this.portfolio.initialInvestment
         ),
-        monthly: this.currencyPipe.transform(
-          this.portfolio.monthlyInvestment,
-          'USD',
-          'symbol-narrow',
-          '1.2-2'
+        monthly: this.formatCurrencyPipe.transform(
+          this.portfolio.monthlyInvestment
         ),
         period: this.portfolio.investmentPeriod
       };
