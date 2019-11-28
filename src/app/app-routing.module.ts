@@ -32,6 +32,7 @@ import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
+import { PaymentRedirectComponent } from './payment/payment-redirect/payment-redirect.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,7 @@ const routes: Routes = [
       { path: 'accounts', loadChildren: './sign-up/sign-up.module#SignUpModule' },
       { path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsModule' },
       { path: 'myinfo', component: CallBackComponent },
+      { path: 'payment-redirect', component: PaymentRedirectComponent },
       { path: 'faq', component: FAQComponent },
       {
         path: APP_ROUTES.COMPREHENSIVE, loadChildren: './comprehensive/comprehensive.module#ComprehensiveModule',

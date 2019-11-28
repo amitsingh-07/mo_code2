@@ -96,17 +96,17 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     window.success = (values) => {
       console.log('INSIDE SUCCESS!!!!!!!!')
       clearInterval(pollTimer);
-      window.success = () => null;
       // Route to status page with success
       this.windowRef.close();
+      window.success = () => null;
     };
 
     window.failed = (values) => {
       console.log('INSIDE FAILURE!!!!!!!!')
       clearInterval(pollTimer);
-      window.failed = () => null;
       // Route to status page with failed
       this.windowRef.close();
+      window.failed = () => null;
     };
   }
 
