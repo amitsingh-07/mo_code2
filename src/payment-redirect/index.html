@@ -9,6 +9,7 @@
       if (document.location.href.indexOf('?') >= 0) {
         query = document.location.href.split('?')[1];
       }
+      console.log('HERE query = ', query)
       if (query != null && window.opener && typeof window.opener.failed == 'function') {
         window.opener.success(query);
       } else {
