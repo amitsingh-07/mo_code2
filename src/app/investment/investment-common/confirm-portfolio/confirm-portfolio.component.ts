@@ -1,4 +1,3 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
@@ -50,7 +49,6 @@ export class ConfirmPortfolioComponent implements OnInit {
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
-    private currencyPipe: CurrencyPipe,
     public headerService: HeaderService,
     private modal: NgbModal,
     public navbarService: NavbarService,

@@ -118,7 +118,7 @@
                     {{ 'WITHDRAW.CASH_ACCOUNT_BALANCE' | translate}}:
                   </div>
                   <div class="col-5 text-right">
-                    {{cashBalance | formatCurrency'}}
+                    {{cashBalance | formatCurrency}}
                   </div>
                 </div>
                 <div class="row mb15" *ngIf="this.withdrawForm.controls.withdrawType.value && isFromPortfolio">
