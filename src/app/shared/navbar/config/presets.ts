@@ -143,4 +143,21 @@ export class NavbarConfig {
       primary: 'Comprehensive Planning'
     }
   };
+
+  // Retirement Planning (Robo1)
+  '8': object = {
+    showNavBackBtn: true,
+    showHeaderBackBtn: true,
+    showMenu: true,
+    showLogin: false,
+    showLogout: true,
+    showNavShadow: true,
+    showSearchBar: false,
+    showNotifications: false,
+    showHeaderNavbar: true,
+    showLabel: {
+      primary: 'Retirement Planning'
+    },
+    showExitCheck: true
+  };
 }

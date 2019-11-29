@@ -1,22 +1,30 @@
-import { CurrencyPipe } from '@angular/common';
+
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+
+import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
-import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
+import {
+  ModelWithButtonComponent
+} from '../../../shared/modal/model-with-button/model-with-button.component';
+import {
+  ReviewBuyRequestModalComponent
+} from '../../../shared/modal/review-buy-request-modal/review-buy-request-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
+import { FormatCurrencyPipe } from '../../../shared/Pipes/format-currency.pipe';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
+import {
+  INVESTMENT_COMMON_ROUTE_PATHS
+} from '../../investment-common/investment-common-routes.constants';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
-import { LoaderService } from './../../../shared/components/loader/loader.service';
-import { ReviewBuyRequestModalComponent } from './../../../shared/modal/review-buy-request-modal/review-buy-request-modal.component';
-import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './../manage-investments-routes.constants';
 
 @Component({
   selector: 'app-top-up',
@@ -57,7 +65,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     private modal: NgbModal,
     public manageInvestmentsService: ManageInvestmentsService,
     private investmentAccountService: InvestmentAccountService,
-    private currencyPipe: CurrencyPipe,
+    private formatCurrencyPipe: FormatCurrencyPipe,
     private loaderService: LoaderService
   ) {
     this.translate.use('en');
@@ -332,12 +340,9 @@ export class TopUpComponent implements OnInit, OnDestroy {
 
   showConfirmOverwriteModal(form, invAmount: number, formName: string, descText: string) {
     const translateParams = {
-      existingOrderAmount: this.currencyPipe.transform(invAmount, 'USD', 'symbol-narrow', '1.2-2'),
-      newOrderAmount: this.currencyPipe.transform(
-        this.topForm.get(formName).value ? this.topForm.get(formName).value : 0,
-        'USD',
-        'symbol-narrow',
-        '1.2-2'
+      existingOrderAmount: this.formatCurrencyPipe.transform(invAmount),
+      newOrderAmount: this.formatCurrencyPipe.transform(
+        this.topForm.get(formName).value ? this.topForm.get(formName).value : 0
       )
     };
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
@@ -381,7 +386,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
 
   showMessage(amount, descText) {
     const translateParams = {
-      existingOrderAmount: this.currencyPipe.transform(amount, 'USD', 'symbol-narrow', '1.2-2'),
+      existingOrderAmount: this.formatCurrencyPipe.transform(amount),
     };
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('TOPUP.CONFIRM_OVERWRITE_MODAL.TITLE');

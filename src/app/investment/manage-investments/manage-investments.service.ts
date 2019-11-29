@@ -498,25 +498,6 @@ export class ManageInvestmentsService {
     return this.investmentApiService.getOneTimeInvestmentInfo(customerProfileId);
   }
 
-  getEntitlementsFromPortfolio(portfolio) {
-    const userProfileInfo = this.signUpService.getUserProfileInfo();
-    const filteredPortfolio = userProfileInfo.investementDetails.portfolios.filter(
-      (portfolioItem) => (portfolio && portfolioItem.portfolioId === portfolio.productCode)
-    )[0];
-    if (filteredPortfolio && filteredPortfolio.entitlements) {
-      return filteredPortfolio.entitlements;
-    } else {
-      return {
-        showDelete: false,
-        showInvest: false,
-        showTopup: false,
-        showWithdrawPvToBa: false,
-        showWithdrawPvToCa: false,
-        showWithdrawCaToBa: true // always allowed irrespective of portfolio status
-      };
-    }
-  }
-
   setToastMessage(toastMessage) {
     this.manageInvestmentsFormData.toastMessage = toastMessage;
     this.commit();
