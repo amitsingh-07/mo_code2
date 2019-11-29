@@ -12,7 +12,7 @@
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
-                                    <span class="portfolio-fund-type" *ngIf="portfolio?.portfolioType == 'SRS'">
+                                    <span class="portfolio-fund-type" *ngIf="portfolio?.fundingTypeValue == 'SRS'">
                                   {{'YOUR_INVESTMENT.SRS' | translate}}
                                 </span>
                                 </div>
@@ -22,14 +22,14 @@
                                     <span *ngIf="portfolio?.portfolioValue">{{portfolio?.portfolioValue | formatCurrency}}</span>
                                     <span *ngIf="portfolio?.buyRequestCount" class="buy-request cursorPointer" (click)="gotoBuyRequest()">
                                      {{portfolio?.buyRequestCount}}
-                                     <span *ngIf="portfolio?.buyRequestCount == 1"> {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span>
+                                    <span *ngIf="portfolio?.buyRequestCount == 1"> {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span>
                                     <span *ngIf="portfolio?.buyRequestCount > 1"> {{'YOUR_INVESTMENT.BUY_REQUESTS' | translate}}</span>
                                     </span>
                                 </div>
                                 <div class="portfolio-btn">
                                     <span (click)="gotoTopUp(portfolio)" *ngIf="!portfolio?.buyRequestCount" class="top-up-btn cursorPointer">{{'YOUR_INVESTMENT.TOP_UP' | translate}}</span>
-                                    <span *ngIf="!portfolio?.cashAccountBalance  && portfolio?.portfolioType !== 'SRS'" class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} $0</span>
-                                    <span *ngIf="portfolio?.cashAccountBalance  && portfolio?.portfolioType !== 'SRS'" class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} {{portfolio?.cashAccountBalance | formatCurrency}}</span>
+                                    <span *ngIf="!portfolio?.cashAccountBalance  && portfolio?.fundingTypeValue !== 'SRS'" class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} $0</span>
+                                    <span *ngIf="portfolio?.cashAccountBalance  && portfolio?.fundingTypeValue !== 'SRS'" class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} {{portfolio?.cashAccountBalance | formatCurrency}}</span>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
-                                    <span *ngIf="portfolio?.portfolioType == 'SRS'" class="portfolio-fund-type">
+                                    <span *ngIf="portfolio?.fundingTypeValue == 'SRS'" class="portfolio-fund-type">
                                   {{'YOUR_INVESTMENT.SRS' | translate}}
                                 </span>
                                 </div>
@@ -56,15 +56,15 @@
                                     <span *ngIf="!portfolio?.portfolioValue">$0</span>
                                     <span *ngIf="portfolio?.portfolioValue">{{portfolio?.portfolioValue | formatCurrency}}</span>
                                     <span class="buy-request cursorPointer" *ngIf="portfolio?.buyRequestCount" (click)="gotoBuyRequest()">{{portfolio?.buyRequestCount}}
-                                  <span *ngIf="portfolio?.buyRequestCount == 1"> {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span>
+                                    <span *ngIf="portfolio?.buyRequestCount == 1"> {{'YOUR_INVESTMENT.BUY_REQUEST' | translate}}</span>
                                     <span *ngIf="portfolio?.buyRequestCount > 1"> {{'YOUR_INVESTMENT.BUY_REQUESTS' | translate}}</span>
                                     </span>
                                 </div>
                                 <div class="portfolio-btn">
                                     <span *ngIf="!portfolio?.totalReturns && showTotalReturn" class="total-returns">0%</span>
                                     <span *ngIf="portfolio?.totalReturns && showTotalReturn" [class.negativeValue]="portfolio?.totalReturns < 0" class="total-returns">{{formatReturns(portfolio?.totalReturns)}}{{portfolio?.totalReturns | number : '1.0-2'}}%</span>
-                                    <span *ngIf="!portfolio?.cashAccountBalance && portfolio?.portfolioType !== 'SRS'" class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} $0</span>
-                                    <span *ngIf="portfolio?.cashAccountBalance && portfolio?.portfolioType !== 'SRS'" class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} {{portfolio?.cashAccountBalance | formatCurrency}}</span>
+                                    <span *ngIf="!portfolio?.cashAccountBalance && portfolio?.fundingTypeValue !== 'SRS'" class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} $0</span>
+                                    <span *ngIf="portfolio?.cashAccountBalance && portfolio?.fundingTypeValue !== 'SRS'" class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} {{portfolio?.cashAccountBalance | formatCurrency}}</span>
                                 </div>
                                 <div *ngIf="portfolio?.portfolioStatus === 'REBALANCING'" (click)="showRebalanceMessage()" class="reblancing-lbl mt10 flex">
                                     <span class="rebalance-logo"><img src="assets/images/investment-account/rebalancing.svg" alt="" /></span>
