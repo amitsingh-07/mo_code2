@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { conformToMask } from 'text-mask-core';
 
 import { HttpClient } from '@angular/common/http';
@@ -15,11 +16,12 @@ import {
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
+import { InvestmentAccountService } from '../investment-account/investment-account-service';
 import { InvestmentApiService } from '../investment-api.service';
 import {
     InvestmentEngagementJourneyService
 } from '../investment-engagement-journey/investment-engagement-journey.service';
-import { ManageInvestmentsFormData } from './manage-investments-form-data';
+import { ISrsAccountDetails, ManageInvestmentsFormData } from './manage-investments-form-data';
 import { ManageInvestmentsFormError } from './manage-investments-form-error';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from './manage-investments.constants';
@@ -43,6 +45,7 @@ export class ManageInvestmentsService {
   private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
   private topUPFormError: any = new TopUPFormError();
   private managementFormError: any = new ManageInvestmentsFormError();
+ 
 
   constructor(
     public readonly translate: TranslateService,
@@ -51,16 +54,26 @@ export class ManageInvestmentsService {
     private investmentApiService: InvestmentApiService,
     public authService: AuthenticationService,
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
+    private investmentAccountService: InvestmentAccountService,
     private router: Router,
     private modal: NgbModal,
     private signUpService: SignUpService
   ) {
+    this.getManageInvestmentsFormData();
     this.getAllDropDownList();
     this.getTopUpFormData();
     this.getTopupInvestmentList();
     this.manageInvestmentsFormData.withdrawMode =
       MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.DEFAULT_WITHDRAW_MODE;
     this.activeModal = MANAGE_INVESTMENTS_CONSTANTS.TRANSFER_INSTRUCTION.MODE;
+  }
+  getManageInvestmentsFormData() {
+    if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
+      this.manageInvestmentsFormData = JSON.parse(
+        sessionStorage.getItem(SESSION_STORAGE_KEY)
+      );
+    }
+    return this.manageInvestmentsFormData;
   }
 
   commit() {
@@ -577,5 +590,35 @@ export class ManageInvestmentsService {
     }
     return this.formatedAccountNumber;
    }
+   
+   getSrsAccountDetailsAction(): Observable<ISrsAccountDetails> {
+      const srsAccountDetailsSession = this.getManageInvestmentsFormData().srsAccountDetails;
+      if (srsAccountDetailsSession) {
+        return Observable.of(srsAccountDetailsSession);
+      } else {
+        return this.getSrsAccountDetails().map((data: any) => {
+          if (data && data.objectList) {
+            const srsAccountDetails = {
+              srsAccountNumber: this.srsAccountFormat(data.objectList.accountNumber, data.objectList.srsBankOperator.name),
+              srsOperator: data.objectList.srsBankOperator.name
+            };
+            this.setSrsAccountDetails(srsAccountDetails);
+            return srsAccountDetails;
+          } else {
+            this.investmentAccountService.showGenericErrorModal();
+          }
+        },
+          (err) => {
+            this.investmentAccountService.showGenericErrorModal();
+          });
+      }
+    }
+    getSrsAccountDetails() {
+      return this.investmentApiService.getSrsAccountDetails();
+    }
+    setSrsAccountDetails(srsAccountDetails: ISrsAccountDetails) {
+      this.manageInvestmentsFormData.srsAccountDetails = srsAccountDetails;
+      this.commit();
+    }
 
-}
+   }

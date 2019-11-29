@@ -108,12 +108,12 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
   //  #get the SRS Details
   getSrsAccountDetails() {
-    this.investmentAccountService.getSrsAccountDetails().subscribe((data) => {
-      this.srsAccountDetails = data.objectList;
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+    this.manageInvestmentsService.getSrsAccountDetailsAction().subscribe((data) => {
+      if (data) {
+        this.srsAccountDetails = data;
+      }
+      console.log(data);
+    });
   }
 
   // set the selected portfolio if there when page loaded
@@ -316,6 +316,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
 
   getAwaitingOrPendingInfo(customerProfileId, AwaitingAndPendingParam) {
+    if (customerProfileId && AwaitingAndPendingParam ) {
     this.manageInvestmentsService.getAwaitingOrPendingInfo(customerProfileId, AwaitingAndPendingParam).subscribe((response) => {
       if (response.responseMessage.responseCode >= 6000) {
         this.awaitingAndPendingAmount = response.objectList[0] && response.objectList[0].amount ? response.objectList[0].amount : 0;
@@ -326,6 +327,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
+    }
   }
 
   showConfirmOverwriteModal(form, invAmount: number, formName: string, descText: string) {

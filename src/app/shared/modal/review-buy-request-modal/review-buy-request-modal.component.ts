@@ -68,8 +68,7 @@ export class ReviewBuyRequestModalComponent implements OnInit {
     } else {
       this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.ONETIME_SRS_NOTE');
       this.oneTimeMonthlyInfo = this.translate.instant('REVIEW_BUY_REQUEST.INFO_SRS_ONETIME');
-      this.srsAccountFormat(this.fundDetails.srsDetails.accountNumber, this.fundDetails.srsDetails.srsBankOperator.name);
-    }
+     }
   }
   monthlyBuyRequestInfo() {
     this.requestAmount = Number(this.fundDetails['monthlyInvestment']) || 0;
@@ -80,7 +79,6 @@ export class ReviewBuyRequestModalComponent implements OnInit {
     } else {
       this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.MONTHLY_SRS_NOTE');
       this.oneTimeMonthlyInfo = this.translate.instant('REVIEW_BUY_REQUEST.INFO_SRS_MONTHLY');
-      this.srsAccountFormat(this.fundDetails.srsDetails.accountNumber, this.fundDetails.srsDetails.srsBankOperator.name);
     }
   }
 
@@ -88,8 +86,4 @@ export class ReviewBuyRequestModalComponent implements OnInit {
     this.submitRequest.emit();
     this.activeModal.close();
   }
-
-  srsAccountFormat(accountNumber, SrsOperator) {
-    this.formatedAccountNumber = this.manageInvestmentsService.srsAccountFormat(accountNumber, SrsOperator);
-  }
- }
+}
