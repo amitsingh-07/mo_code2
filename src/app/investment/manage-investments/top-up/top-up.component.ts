@@ -53,7 +53,6 @@ export class TopUpComponent implements OnInit, OnDestroy {
   currentOneTimeInvAmount; // current monthly rsp amount
   isRequestSubmitted = false;
   srsAccountDetails;
-  awaitingOrPendingInfo;
   awaitingOrPendingAmount;
 
   constructor(
@@ -123,8 +122,9 @@ export class TopUpComponent implements OnInit, OnDestroy {
     this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
       if (data) {
         this.srsAccountDetails = data;
+      } else {
+        this.srsAccountDetails = null;
       }
-      console.log(data);
     });
   }
 
@@ -322,13 +322,10 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
 
   awaitingOrPendingReq(fundingType) {
-    this.awaitingOrPendingInfo = '';
     if (fundingType.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CASH) {
-      this.awaitingOrPendingInfo = 'awaiting';
-      return this.awaitingOrPendingInfo;
+      return 'awaiting';
     }
-    this.awaitingOrPendingInfo = 'pending';
-    return this.awaitingOrPendingInfo;
+    return 'pending';
   }
 
   getAwaitingOrPendingInfo(customerProfileId, awaitingOrPendingParam) {

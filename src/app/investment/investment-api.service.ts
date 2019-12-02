@@ -271,9 +271,9 @@ export class InvestmentApiService {
       );
   }
   getOneTimeInvestmentInfo(customerPortfolioId) {
-    // tslint:disable-next-line:max-line-length
-    const url = investmentApiConstants.endpoint.portfolio.setOneTimeInvestmentObjective.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
-    return this.http.get(url)
+   const url = investmentApiConstants.endpoint.portfolio.setOneTimeInvestmentObjective
+   .replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+   return this.http.get(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

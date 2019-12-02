@@ -30,8 +30,6 @@ export class ReviewBuyRequestModalComponent implements OnInit {
   noteArray;
   oneTimeMonthlyLbl: string;
   isAmtExceeded = false;
-  srsAccount;
-  formatedAccountNumber;
   oneTimeMonthlyInfo: string;
   @Output() submitRequest: EventEmitter<any> = new EventEmitter();
 

@@ -63,7 +63,6 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   transferInstructionModal;
   isToastMessageShown;
   toastMsg;
-  srsAccountDetails;
   private subscription: Subscription;
 
   constructor(

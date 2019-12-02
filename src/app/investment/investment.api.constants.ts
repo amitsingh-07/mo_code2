@@ -8,7 +8,6 @@ export let investmentApiConstants = {
         portfolio: {
             setInvestmentObjective: INVESTMENT_API_BASE_URL + '/CustomerInvestmentObjective',
             setOneTimeInvestmentObjective: INVESTMENT_API_BASE_URL + '/portfolios/$CUSTOMER_PORTFOLIO_ID$/awaitingTransactions',
-            // tslint:disable-next-line:max-line-length
             setAwaitingOrPendingInfo: INVESTMENT_API_BASE_URL + '/portfolios/$CUSTOMER_PORTFOLIO_ID$/transactions/$AWAITING_PENDING_PARAM$',
             getRiskAssessmentQuestions: INVESTMENT_API_BASE_URL + '/RiskAssessment',
             updateRiskAssessment: INVESTMENT_API_BASE_URL + '/RiskAssessment',
