@@ -90,7 +90,6 @@
   .instruction-div {
     background-color: $white-color;
     display: flex;
-    //align-items: center;
     flex-direction: column;
     padding: 20px 30px 20px;
     .top-up-amt-text {
@@ -149,7 +148,6 @@
     .top-up-srs-text-lbl{
       font-family: $muli-bold;
       font-size: 14px;
-      font-weight: bold;
       letter-spacing: -0.26px;
       color: #000000;
     }

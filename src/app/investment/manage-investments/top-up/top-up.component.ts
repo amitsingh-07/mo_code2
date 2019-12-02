@@ -1,4 +1,6 @@
 
+import { filter } from 'rxjs/operators';
+
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,16 +13,16 @@ import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import {
-  ModelWithButtonComponent
+    ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import {
-  ReviewBuyRequestModalComponent
+    ReviewBuyRequestModalComponent
 } from '../../../shared/modal/review-buy-request-modal/review-buy-request-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { FormatCurrencyPipe } from '../../../shared/Pipes/format-currency.pipe';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import {
-  INVESTMENT_COMMON_ROUTE_PATHS
+    INVESTMENT_COMMON_ROUTE_PATHS
 } from '../../investment-common/investment-common-routes.constants';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
@@ -52,7 +54,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   isRequestSubmitted = false;
   srsAccountDetails;
   awaitingOrPendingInfo;
-  awaitingAndPendingAmount;
+  awaitingOrPendingAmount;
 
   constructor(
     public readonly translate: TranslateService,
@@ -85,7 +87,6 @@ export class TopUpComponent implements OnInit, OnDestroy {
     this.footerService.setFooterVisibility(false);
     this.getPortfolioList();
     this.getTopupInvestmentList();
-    this.getSrsAccountDetails();
     this.cashBalance = this.manageInvestmentsService.getUserCashBalance();
     this.fundDetails = this.manageInvestmentsService.getFundingDetails();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
@@ -106,6 +107,9 @@ export class TopUpComponent implements OnInit, OnDestroy {
       // tslint:disable-next-line:max-line-length
       this.getAwaitingOrPendingInfo(this.formValues['customerPortfolioId'], this.awaitingOrPendingReq(this.formValues.selectedCustomerPortfolio.fundingTypeValue));
     }
+    if (this.formValues['selectedCustomerPortfolio']['fundingTypeValue'] === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS ) {
+      this.getSrsAccountDetails();
+    }
     this.buildFormInvestment();
     this.setSelectedPortfolio();
   }
@@ -116,7 +120,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
   //  #get the SRS Details
   getSrsAccountDetails() {
-    this.manageInvestmentsService.getSrsAccountDetailsAction().subscribe((data) => {
+    this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
       if (data) {
         this.srsAccountDetails = data;
       }
@@ -136,12 +140,16 @@ export class TopUpComponent implements OnInit, OnDestroy {
   getPortfolioList() {
     this.portfolioList = this.manageInvestmentsService.getUserPortfolioList();
   }
+
   setDropDownValue(key, value) {
     this.topForm.controls[key].setValue(value);
     this.getOneTimeInvestmentInfo(value['customerPortfolioId']);
     this.getMonthlyInvestmentInfo(value['customerPortfolioId']);
-    // tslint:disable-next-line:max-line-length
-    this.getAwaitingOrPendingInfo(value['customerPortfolioId'], this.awaitingOrPendingReq(value.fundingTypeValue));
+    this.getAwaitingOrPendingInfo(value['customerPortfolioId'],
+    this.awaitingOrPendingReq(value.fundingTypeValue));
+    if (value.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS ) {
+     this.getSrsAccountDetails();
+    }
   }
 
   getTopupInvestmentList() {
@@ -313,9 +321,9 @@ export class TopUpComponent implements OnInit, OnDestroy {
       });
   }
 
-  awaitingOrPendingReq(FundingTypeValue) {
+  awaitingOrPendingReq(fundingType) {
     this.awaitingOrPendingInfo = '';
-    if (FundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CASH) {
+    if (fundingType.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CASH) {
       this.awaitingOrPendingInfo = 'awaiting';
       return this.awaitingOrPendingInfo;
     }
@@ -323,11 +331,14 @@ export class TopUpComponent implements OnInit, OnDestroy {
     return this.awaitingOrPendingInfo;
   }
 
-  getAwaitingOrPendingInfo(customerProfileId, AwaitingAndPendingParam) {
-    if (customerProfileId && AwaitingAndPendingParam ) {
-    this.manageInvestmentsService.getAwaitingOrPendingInfo(customerProfileId, AwaitingAndPendingParam).subscribe((response) => {
+  getAwaitingOrPendingInfo(customerProfileId, awaitingOrPendingParam) {
+    if (customerProfileId && awaitingOrPendingParam ) {
+    this.manageInvestmentsService.getAwaitingOrPendingInfo(customerProfileId, awaitingOrPendingParam).subscribe((response) => {
       if (response.responseMessage.responseCode >= 6000) {
-        this.awaitingAndPendingAmount = response.objectList[0] && response.objectList[0].amount ? response.objectList[0].amount : 0;
+       const oneTimePendingInfo = response.objectList ?
+        response.objectList.filter((array) => array.transactionFrequency === 'ONE_TIME') : null;
+       this.awaitingOrPendingAmount = oneTimePendingInfo && oneTimePendingInfo[0] &&
+        oneTimePendingInfo[0].amount ? oneTimePendingInfo[0].amount : 0;
        } else {
         this.investmentAccountService.showGenericErrorModal();
       }
@@ -372,12 +383,12 @@ export class TopUpComponent implements OnInit, OnDestroy {
       this.showConfirmOverwriteModal(form, this.currentMonthlyInvAmount, 'MonthlyInvestmentAmount',
         'TOPUP.CONFIRM_OVERWRITE_MODAL.DESC');
     } else if ((this.formValues.Investment === 'One-time Investment' || !this.formValues.Investment)
-      && this.awaitingAndPendingAmount) {
+      && this.awaitingOrPendingAmount) {
       if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CASH) {
-        this.showConfirmOverwriteModal(form, this.awaitingAndPendingAmount, 'oneTimeInvestmentAmount',
+        this.showConfirmOverwriteModal(form, this.awaitingOrPendingAmount, 'oneTimeInvestmentAmount',
           'TOPUP.CONFIRM_OVERWRITE_MODAL.ONE_TIME_DESC');
       } else if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS) {
-        this.showMessage(this.awaitingAndPendingAmount, 'TOPUP.CONFIRM_OVERWRITE_MODAL.SRS_ONE_TIME');
+        this.showMessage(this.awaitingOrPendingAmount, 'TOPUP.CONFIRM_OVERWRITE_MODAL.SRS_ONE_TIME');
       }
     } else {
       this.buyPortfolio();

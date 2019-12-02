@@ -101,22 +101,11 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     this.getInvestmentOverview();
     this.headerSubscription();
     this.getMoreList();
-    this.getSrsAccountDetails();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.checkMpPopStatus();
     this.toastMsg = this.manageInvestmentsService.getToastMessage();
   }
-
-  getSrsAccountDetails() {
-    this.manageInvestmentsService.getSrsAccountDetailsAction().subscribe((data) => {
-      if (data) {
-        this.srsAccountDetails = data;
-      }
-      console.log(data);
-    });
-  }
-
-  ngOnDestroy() {
+ ngOnDestroy() {
     this.subscription.unsubscribe();
     this.navbarService.unsubscribeBackPress();
   }

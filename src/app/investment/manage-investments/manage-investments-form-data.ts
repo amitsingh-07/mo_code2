@@ -46,4 +46,3 @@ export interface ISrsAccountDetails {
   srsAccountNumber: string;
   srsOperator: any;
 }
-
