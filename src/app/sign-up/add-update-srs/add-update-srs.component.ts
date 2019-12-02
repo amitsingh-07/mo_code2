@@ -208,11 +208,11 @@ export class AddUpdateSrsComponent implements OnInit {
 
 
   // #ALLOWING 100 CHARACTERS ACCOUNT HOLDER NAME
-  setAccountHolderName(accountHolderName: any) {
-    if (accountHolderName !== undefined) {
-      accountHolderName = accountHolderName.replace(/\n/g, '');
-      this.addUpdateSrsFrom.controls.srsAccountHolderName.setValue(accountHolderName);
-      return accountHolderName;
+  setsrsAccountHolderName(srsAccountHolderName: any) {
+    if (srsAccountHolderName !== undefined) {
+      srsAccountHolderName = srsAccountHolderName.replace(/\n/g, '');
+      this.addUpdateSrsFrom.controls.srsAccountHolderName.setValue(srsAccountHolderName);
+      return srsAccountHolderName;
     }
   }
 
