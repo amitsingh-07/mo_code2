@@ -45,7 +45,6 @@ export class ManageInvestmentsService {
   private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
   private topUPFormError: any = new TopUPFormError();
   private managementFormError: any = new ManageInvestmentsFormError();
-  
 
   constructor(
     public readonly translate: TranslateService,
