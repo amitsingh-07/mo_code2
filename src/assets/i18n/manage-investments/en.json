@@ -151,10 +151,6 @@
         "TITLE": "Loading.",
         "MESSAGE": "Please wait."
       },
-      "SRS_MODAL": {
-        "TITLE": "Sorry, SRS account portfolio currently handled offline",
-        "Message": "<div class='srs-modal-offline'> <div class='mb30'>Viewing of your SRS investment portfolio, top-ups & withdrawals are currently handled offline.</div><div class='mb30'>Adding of SRS funding portfolio is still available. Go to <span class='txt-italic'>Your Investment > Add Portfolio.</span></div><div>For assistance, contact <a class='contact-details mail' target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> or call <a class='contact-details'target='_blank' href='tel:6329 9188'>6329 9188.</a></div></div>"
-      },
       "RBL_MODAL": {
         "TITLE": "Quarterly Rebalancing In-progress",
         "Message": "<div class='rebalancing-modal-msg'><div class='mb15'>Please note that your portfolio is being rebalanced. This process will be completed in 6 to 7 working days. <span class='txt-bold'>Requests for redemptions from portfolio(s) will only be submitted for processing after rebalancing is completed.</span></div><div><a class='contact-details mail' target='_blank' href='/faq#investment'>For more information, visit our FAQs.</a></div></div>"
@@ -179,6 +175,10 @@
     "OR_DO_YOU_WANT_TO": "Or do you want to",
     "TRY_ANOTHER_RECOMMENDATION": "Try Another Recommendation",
     "PENDING_REQUESTS_CASH_ACCOUNT": "Pending Requests / <span>Cash Account</span>",
+    "PENDING_REQUESTS_SRS_ACCOUNT": "Pending Requests / <span>SRS Account</span>",
+    "SRS_ACCOUNT": "SRS Account",
+    "BANK_OPERATOR": "Bank Operator",
+    "ACCOUNT_NUMBER": "Account Number",
     "WITHDRAWALS_IN_PROGRESS": "You have withdrawals in process.",
     "WITHDRAWALS_IN_QUEUE": "You have withdrawals in queue.",
     "ONE_TIME": "One-time",
@@ -195,6 +195,7 @@
     "VIEW_TRANSFER_INSTRUCTIONS": "View Transfer Instructions",
     "PORTFOLIO_TO_BANK_ACCOUNT": "Portfolio to Bank Account",
     "PORTFOLIO_TO_CASH_ACCOUNT": "Portfolio to Cash Account",
+    "PORTFOLIO_TO_SRS_ACCOUNT": "Portfolio to SRS Account",
     "CASH_ACCOUNT_TO_BANK_ACCOUNT": "Cash Account to Bank Account"
   },
   "WITHDRAW": {

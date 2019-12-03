@@ -86,11 +86,6 @@ export class ManageInvestmentsService {
   }
 
   getSrsFormData(): ISrsAccountDetails {
-    if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
-      this.manageInvestmentsFormData.srsAccountDetails = JSON.parse(
-        sessionStorage.getItem(SESSION_STORAGE_KEY)
-      );
-    }
     return this.manageInvestmentsFormData.srsAccountDetails;
   }
 
