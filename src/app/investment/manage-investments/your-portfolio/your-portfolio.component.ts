@@ -412,12 +412,9 @@ export class YourPortfolioComponent implements OnInit {
   }
   getSrsAccDetails() {
     if (this.portfolio.fundingTypeValue === 'SRS') {
-      this.investmentAccountService.getSrsAccountDetails().subscribe((data) => {
-        if (data.objectList && data.objectList.accountNumber) {
-          this.srsAccDetail = data.objectList;
-          const accNumber = this.srsAccDetail.accountNumber.toString();
-          this.srsAccDetail['accountNumber'] = accNumber.substring(0, 2) +
-           '-' + accNumber.substring(2, 7) + '-' + accNumber.substring(7, 9);
+      this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
+        if (data) {
+          this.srsAccDetail = data;
         }
       });
     }
