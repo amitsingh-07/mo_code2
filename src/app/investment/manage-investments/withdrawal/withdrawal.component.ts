@@ -79,9 +79,9 @@ export class WithdrawalComponent implements OnInit {
     };
     this.buildForm();
     this.setSelectedPortfolio();
-    this.investmentAccountService.getSrsAccountDetails().subscribe((data) => {
-      if (data.objectList) {
-        this.srsAccountInfo = data.objectList;
+    this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
+      if (data) {
+        this.srsAccountInfo = data;
       }
     });
   }
