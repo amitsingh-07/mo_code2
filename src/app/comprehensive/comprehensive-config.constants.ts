@@ -78,9 +78,9 @@ export const COMPREHENSIVE_CONST = {
                     'Medicine': {
                         'Singapore': 60000,
                         'Singapore PR': 60000,
-                        'USA': 96400,
-                        'United Kingdom': 92000,
-                        'Australia': 96400,
+                        'USA': 192800,
+                        'United Kingdom': 138000,
+                        'Australia': 175200,
                         'Others': 60000
                     },
                     'Non-Medicine': {
