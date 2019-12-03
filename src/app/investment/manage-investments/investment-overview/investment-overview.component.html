@@ -108,14 +108,6 @@
     </div>
   </div>
 </div>
-<div *ngIf="investmentoverviewlist" class="srs-block">
-  <div class="container-fluid max-width--1024">
-    <div class="srs-reminder">
-      <img class="mail-img" src="../../../assets/images/srs-joint-account/mail.svg" />
-      <div class="srs-txt" innerHTML="{{'YOUR_INVESTMENT.SRS_JOINT_ACCOUNT_REMINDER' | translate}}"></div>
-    </div>
-  </div>
-</div>
 <div class="text-center" *ngIf="investmentoverviewlist" [ngClass]="verticalScrollPresent() ? '' : 'hidden'">
   <button type="button" class="btn btn-primary scroll-btn"
     (click)="scrollTop()">{{'YOUR_INVESTMENT.SCROLL_TO_TOP' | translate}}</button>
