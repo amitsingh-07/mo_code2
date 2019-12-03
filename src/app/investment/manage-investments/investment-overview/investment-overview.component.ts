@@ -103,8 +103,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     this.checkMpPopStatus();
     this.toastMsg = this.manageInvestmentsService.getToastMessage();
   }
-
-  ngOnDestroy() {
+ ngOnDestroy() {
     this.subscription.unsubscribe();
     this.navbarService.unsubscribeBackPress();
   }

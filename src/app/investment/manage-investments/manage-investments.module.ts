@@ -1,3 +1,4 @@
+
 import { NouisliderModule } from 'ng2-nouislider';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
@@ -68,7 +69,6 @@ export function createTranslateLoader(http: HttpClient) {
     TopupStatusComponent,
     InvestmentOverviewComponent,
     YourPortfolioComponent,
-    TopupStatusComponent,
     ConfirmWithdrawalModalComponent,
     ForwardPricingModalComponent,
     AddBankModalComponent,

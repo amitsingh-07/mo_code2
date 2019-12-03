@@ -8,7 +8,16 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
     ONE_TIME_INVESTMENT_OPTION_ID: 1,
     MONTHLY_INVESTMENT_OPTION_ID: 2,
     MONTHLY_INVESTMENT: 'Monthly Investment',
-    ONETINE_INVESTMENT: 'One-time Investment'
+    ONETINE_INVESTMENT: 'One-time Investment',
+    SRS_OPERATOR: {
+      DBS: 'DBS',
+      OCBC: 'OCBC',
+      UOB: 'UOB'
+    },
+    FUNDING_METHODS: {
+      CASH: 'CASH',
+      SRS: 'SRS'
+    },
   },
   WITHDRAW: {
     WITHDRAWAL_TYPES: [
