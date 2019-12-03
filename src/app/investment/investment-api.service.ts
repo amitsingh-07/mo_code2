@@ -270,16 +270,7 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  getOneTimeInvestmentInfo(customerPortfolioId) {
-   const url = investmentApiConstants.endpoint.portfolio.setOneTimeInvestmentObjective
-   .replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
-   return this.http.get(url)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
- 
- // #GET FINANCIAL DETAILS
+  // #GET FINANCIAL DETAILS
   // tslint:disable-next-line:no-identical-functions
   getUserFinancialDetails() {
     return this.http.get(investmentApiConstants.endpoint.portfolio.getFinancialDetails)
