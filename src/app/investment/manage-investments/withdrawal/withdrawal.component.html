@@ -123,7 +123,7 @@
                     {{ 'WITHDRAW.CASH_ACCOUNT_BALANCE' | translate}}:
                   </div>
                   <div class="col-5 text-right">
-                    {{cashBalance | currency}}
+                    {{cashBalance | formatCurrency}}
                   </div>
                 </div>
                 <div class="row mb15" *ngIf="this.withdrawForm.controls.withdrawType.value && isFromPortfolio">
@@ -132,7 +132,7 @@
                   </div>
                   <div class="col-5 text-right">
                     <span
-                      *ngIf="withdrawForm.controls.withdrawPortfolio.value">{{(withdrawForm.controls.withdrawPortfolio.value.portfolioValue || 0) | currency }}</span>
+                      *ngIf="withdrawForm.controls.withdrawPortfolio.value">{{(withdrawForm.controls.withdrawPortfolio.value.portfolioValue || 0) | formatCurrency }}</span>
                   </div>
                 </div>
                 <div class="row" *ngIf="!isRedeemAll && isFromPortfolio && withdrawForm.valid">
@@ -140,7 +140,7 @@
                     {{ 'WITHDRAW.AFTER_WITHDRAWAL' | translate}}
                   </div>
                   <div class="col-5 text-right">
-                    {{(withdrawForm.controls.withdrawPortfolio.value.portfolioValue || 0) - withdrawForm.controls.withdrawAmount.value | currency}}
+                    {{(withdrawForm.controls.withdrawPortfolio.value.portfolioValue || 0) - withdrawForm.controls.withdrawAmount.value | formatCurrency}}
                   </div>
                 </div>
                 <div class="row" *ngIf="!isRedeemAll && !isFromPortfolio && withdrawForm.valid">
@@ -148,7 +148,7 @@
                     {{ 'WITHDRAW.AFTER_WITHDRAWAL' | translate}}
                   </div>
                   <div class="col-5 text-right">
-                    {{cashBalance - withdrawForm.controls.withdrawAmount.value | currency}}
+                    {{cashBalance - withdrawForm.controls.withdrawAmount.value | formatCurrency}}
                   </div>
                 </div>
               </div>

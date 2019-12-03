@@ -271,12 +271,14 @@ export class InvestmentApiService {
       );
   }
   getOneTimeInvestmentInfo(customerPortfolioId) {
-    const url = investmentApiConstants.endpoint.portfolio.setOneTimeInvestmentObjective.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
-    return this.http.get(url)
+   const url = investmentApiConstants.endpoint.portfolio.setOneTimeInvestmentObjective
+   .replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+   return this.http.get(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+ 
  // #GET FINANCIAL DETAILS
   // tslint:disable-next-line:no-identical-functions
   getUserFinancialDetails() {
@@ -364,6 +366,16 @@ export class InvestmentApiService {
   saveSrsAccountDetails(data, customerPortfolioId) {
     return this.http.post(
       investmentApiConstants.endpoint.investmentAccount.saveSrsAccountDetails.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId), data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  // SRS ONe time API Service
+  getAwaitingOrPendingInfo(customerPortfolioId, awaitingOrPendingParam) {
+    const url = investmentApiConstants.endpoint.portfolio.setAwaitingOrPendingInfo.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId)
+      .replace('$AWAITING_PENDING_PARAM$', awaitingOrPendingParam);
+    return this.http.get(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

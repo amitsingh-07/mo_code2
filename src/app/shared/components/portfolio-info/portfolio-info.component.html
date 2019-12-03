@@ -10,16 +10,16 @@
     <div class="portfolio-graph-block">
       <div class="portfolio-graph-container">
         <div class="flex-col-12">
-            <div class="graph">
-              <img class="small" src="../../../assets/images/investment-account/recommend_graph.svg" />
-              <img class="big" src="../../../assets/images/investment-account/recommend_graph_big.svg" />
-              <div class="flex-col graph_values">
-                <span>{{portfolio.projectedReturnsHighEnd | currency : 'USD' : 'symbol-narrow' : '1.2-2'}}</span>
-                <span>{{portfolio.projectedReturnsMedian | currency : 'USD' : 'symbol-narrow' : '1.2-2'}}</span>
-                <span>{{portfolio.projectedReturnsLowEnd | currency : 'USD' : 'symbol-narrow' : '1.2-2'}}</span>
-              </div>
-              <div class="flex-row time-lapse">
-                <span>{{ 'PORTFOLIO_RECOMMENDATION.NOW' | translate}}</span><span>{{portfolio.investmentPeriod}} {{
+          <div class="graph">
+            <img class="small" src="../../../assets/images/investment-account/recommend_graph.svg" />
+            <img class="big" src="../../../assets/images/investment-account/recommend_graph_big.svg" />
+            <div class="flex-col graph_values">
+              <span>{{portfolio.projectedReturnsHighEnd | formatCurrency}}</span>
+              <span>{{portfolio.projectedReturnsMedian | formatCurrency}}</span>
+              <span>{{portfolio.projectedReturnsLowEnd | formatCurrency}}</span>
+            </div>
+            <div class="flex-row time-lapse">
+              <span>{{ 'PORTFOLIO_RECOMMENDATION.NOW' | translate}}</span><span>{{portfolio.investmentPeriod}} {{
                   'PORTFOLIO_RECOMMENDATION.YEARS' | translate}}</span>
             </div>
           </div>
@@ -38,9 +38,9 @@
               translate}}</span></div>
           </div>
         </div>
-        <div class="desc" [innerHTML]="'PORTFOLIO_RECOMMENDATION.GRAPH_SUB_TEXT' | translate:portfolioProjectionSubText"></div>
+        <div class="desc"
+          [innerHTML]="'PORTFOLIO_RECOMMENDATION.GRAPH_SUB_TEXT' | translate:portfolioProjectionSubText"></div>
       </div>
     </div>
   </div>
 </div>
-
