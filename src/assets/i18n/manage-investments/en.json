@@ -68,7 +68,6 @@
     "START_PORTFOLIO": "Start a Portfolio",
     "INVEST_AGAIN": "Invest Again",
     "NO_PORTFOLIO": "You do not have any portfolios.",
-    "SRS_JOINT_ACCOUNT_REMINDER": "You can now open your SRS Investment Account online. Kick-start your retirement planning now! <br/><br/>Currently handled offline: (1) Joint Investment Accounts. (2) Viewing of portfolio, top-ups/withdrawals for SRS Investment Accounts.",
     "NO_PORTFOLIOS_YET": "You have no portfolios yet.",
     "ADD_PORTFOLIO_START_INVEST": "Add a portfolio to start investing!",
     "SCROLL_TO_TOP": "Scroll To Top",
@@ -215,6 +214,7 @@
         "DESC_PORTFOLIO_TO_CASH": "You are withdrawing the following amount from your portfolio to your cash account.  <br/><br/>Once the request is submitted, it cannot be cancelled.",
         "DESC_PORTFOLIO_TO_BANK": "You are withdrawing the following amount from your portfolio to your bank account. <br/><br/> Once the request is submitted, it cannot be cancelled.",
         "DESC_CASH_TO_BANK": "You are withdrawing the following amount from your cash account to your bank account. <br/><br/> Once the request is submitted, it cannot be cancelled.",
+        "DESC_PORTFOLIO_TO_SRS": "You are withdrawing the following amount from your portfolio to your SRS account.  <br/><br/>Once the request is submitted, it cannot be cancelled.",
         "PORTFOLIO": "portfolio",
         "GUIDELINE_HEADING": "Important note on balance amount:",
         "GUIDELINE_FOR_PORTFOLIO_MIN": "As a guideline, you should maintain a minimum portfolio value of $50. You accept, should your portfolio balance be below that, that we might not re-balance your portfolio to its strategic asset allocation upon re-balancing events.",
@@ -238,6 +238,8 @@
         "PORTFOLIO_REF_NO": "Portfolio Reference No. :",
         "CASH_ACC_REF_CODE": "Cash Account (Ref Code):",
         "TRANSFER_TO_BANK_AC_NO": "Transfer to Bank Account No. :",
+        "SRS_OPERATOR": "Srs Operator:",
+        "SRS_ACC_NUMBER": "Srs Account Number:",
         "RE_BALANCE": {
           "TITLE": "Quarterly Rebalancing In-progress",
           "DESC": "Please note that this portfolio is being rebalanced. This process will be completed in 6 to 7 working days.",
@@ -378,3 +380,4 @@
     "DELTE_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been Deleted."
   }
 }
+

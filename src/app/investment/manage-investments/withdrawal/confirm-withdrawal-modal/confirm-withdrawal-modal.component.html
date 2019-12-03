@@ -6,6 +6,8 @@
     </button>
     <div class="modal-body-message">
       <p></p>
+      <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID"
+        innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_PORTFOLIO_TO_SRS' | translate}}"></span>
       <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_CASH_TYPE_ID"
         innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_PORTFOLIO_TO_CASH' | translate}}"></span>
       <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID"
@@ -33,6 +35,22 @@
           </span>
           <span class="values capital-letter" *ngIf="portfolio">{{portfolio['portfolioName']}}</span>
           <span class="caption"
+            *ngIf="withdrawType.id !== WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID && withdrawType.id !== WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID && portfolio">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.CASH_ACC_REF_CODE' | translate}}
+          </span>
+          <span class="values"
+            *ngIf="withdrawType.id !== WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID && withdrawType.id !== WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID && portfolio">{{portfolio['refNo']}}</span>
+          <span class="caption"
+            *ngIf="bankAccountNo && withdrawType.id !== WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.TRANSFER_TO_BANK_AC_NO' | translate}}</span>
+          <span class="values" *ngIf="bankAccountNo">{{bankAccountNo}}</span>
+          <span class="caption"
+            *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID && srsAccountInfo && srsAccountInfo.srsBankOperator">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.SRS_OPERATOR' | translate}}</span>
+          <span class="values"
+            *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID && srsAccountInfo && srsAccountInfo.srsBankOperator">{{srsAccountInfo.srsBankOperator.name}}</span>
+          <span class="caption"
+            *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID && srsAccountInfo && srsAccountInfo.accountNumber">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.SRS_ACC_NUMBER' | translate}}</span>
+          <span class="values"
+            *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID && srsAccountInfo && srsAccountInfo.accountNumber">{{srsAccountInfo.accountNumber}}</span>
+          <span class="caption"
             *ngIf="withdrawType.id !== WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID && portfolio">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.CASH_ACC_REF_CODE' | translate}}
           </span>
           <span class="values"
@@ -59,7 +77,8 @@
       </div>
       <button type="button" (click)="confirmWithdrawal($event)" class="btn btn-primary-dark width100 mt5"
         id="incomeBtn">{{
-    'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.SUBMIT' | translate}}</button>
+      'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.SUBMIT' | translate}}</button>
     </div>
   </div>
 </div>
+
