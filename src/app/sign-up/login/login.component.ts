@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     if (/Android|Windows/.test(navigator.userAgent)) {
-      this.welcomeTitle.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      this.welcomeTitle.nativeElement.scrollIntoView({ behavior: 'smooth' });
     }
   }
 
