@@ -222,7 +222,7 @@ export class WithdrawalComponent implements OnInit {
 
   buildFormForPortfolioType() {
     const roundOffValue = this.withdrawForm.get('withdrawPortfolio').value.portfolioValue
-      ? parseFloat(this.decimalPipe.transform(this.withdrawForm.get('withdrawPortfolio').value.portfolioValue, '1.0-2').replace(/,/g, ''))
+      ? parseFloat(this.decimalPipe.transform(this.withdrawForm.get('withdrawPortfolio').value.portfolioValue, '1.2-2').replace(/,/g, ''))
       : 0;
     this.isRedeemAll = (roundOffValue <
       (MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT)
