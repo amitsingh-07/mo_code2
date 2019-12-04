@@ -243,7 +243,8 @@
                             </div>
                           </div>
                         </div>
-                        <div *ngIf="portfolio?.portfolioStatus === 'REBALANCING'" class="rebalancing-info">
+                        <div *ngIf="portfolio?.portfolioStatus === 'REBALANCING' && portfolioWithdrawRequests.length"
+                          class="rebalancing-info">
                           <div class="mr15 info-icon"><img src="assets/images/investment-account/rebalance-info.svg" />
                           </div>
                           <div>
