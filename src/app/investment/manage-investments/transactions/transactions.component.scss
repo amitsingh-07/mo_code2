@@ -1,5 +1,6 @@
 @import '../../../../_variables.scss';
 @import '../../../../_mixins.scss';
+
 //Transaction Module Styles
 app-transactions {
 
@@ -52,22 +53,27 @@ app-transactions {
   .cursor_pointer {
     cursor: pointer;
   }
-  .container-fluid{
+
+  .container-fluid {
     padding-top: 0px;
     padding-bottom: 0px;
-    @include allmobiles{
+
+    @include allmobiles {
       padding-top: 60px;
       padding-right: 0 !important;
       padding-left: 0 !important;
     }
+
     @include phablet {
       padding-top: 60px;
-     }
+    }
   }
+
   .transaction-panel {
     min-height: calc(100vh - 84px);
     background: $notification-title-bg;
-    .title{
+
+    .title {
       color: $teal-color;
       padding: 28px 0 18px;
       text-align: center;
@@ -78,11 +84,13 @@ app-transactions {
       letter-spacing: -0.25px;
       border-bottom: 1px solid #edeff1;
     }
+
     .nav-item {
       width: 50%;
       text-align: center;
       background: $white-color;
     }
+
     .nav-tabs .nav-link {
       border: none;
       color: $fund-account-tab-color;
@@ -93,21 +101,26 @@ app-transactions {
       display: flex;
       align-items: center;
       justify-content: center;
+
       &.active {
         color: $secondary-action-color;
         border-bottom: 6px solid $secondary-action-color;
       }
     }
-    .transction-screen{
+
+    .transction-screen {
       background: $white-color;
       min-height: calc(100vh - 222px);
-      @include allmobiles{
+
+      @include allmobiles {
         min-height: calc(100vh - 154px);
       }
     }
+
     .transaction-panel__history,
     .transaction-panel__statements {
       color: $app-backgrnd-color;
+
       &--date {
         font-size: 14px;
         letter-spacing: -0.1px;
@@ -117,6 +130,7 @@ app-transactions {
         color: $app-backgrnd-color;
       }
     }
+
     .transaction-panel__history--details {
       &--title {
         font-size: 18px;
@@ -125,19 +139,41 @@ app-transactions {
         border-bottom: 1px solid $bond-container-bg;
         line-height: 23px;
         letter-spacing: -0.34px;
+        align-items: center;
+        justify-content: space-between;
+
+        .flex-col-7{
+          @include allmobiles{
+            max-width: 226px;
+          }
+        }
+
         .history-type-transaction {
-          min-width: 235px;
           display: flex;
           align-items: baseline;
-          .portfolio-name{
+
+          .portfolio-name {
             word-break: break-word;
           }
         }
-        .fa-chevron-down,.fa-chevron-up{
-         font-size: 13px;
-          padding-left:17px;
+
+        .fa-chevron-down,
+        .fa-chevron-up {
+          font-size: 13px;
+          padding-left: 17px;
         }
       }
+
+      &--transaction-id {
+        font-size: 14px;
+        color: #777;
+        letter-spacing: -0.26px;
+        font-family: $muli;
+        @include allmobiles{
+          width: 300px;
+        }
+      }
+
       &--title--sale {
         font-size: 14px;
         color: $red-color;
@@ -145,28 +181,34 @@ app-transactions {
         margin-right: 10px;
         line-height: normal;
         letter-spacing: -0.26px;
+
         &.buy {
           color: $transaction-panel-buy-color;
         }
       }
+
       &--title--amount--sale {
         font-size: 16px;
         font-family: $muli-regular;
         color: $text-color-secondary;
+
         &.buy {
           color: $teal-color;
         }
       }
+
       &--desc {
         background-color: $transaction-desc-bg-color;
         padding: 20px;
         font-size: 16px;
         display: none;
+
         &.show {
           display: flex;
         }
       }
     }
+
     .transaction-panel__statements {
       &--details {
         padding: 20px;
@@ -175,6 +217,7 @@ app-transactions {
         border-bottom: 2px solid $bond-container-bg;
         background: $white-color;
       }
+
       a.download-link {
         color: $accordion-link-color;
         font-size: 16px;
@@ -183,29 +226,34 @@ app-transactions {
       }
     }
   }
+
   .no-transaction {
     color: $app-backgrnd-color;
     text-align: center;
     font-size: 18px;
+
     .no-content {
       background-color: $bond-container-bg;
       min-height: calc(100vh - 222px);
       padding-top: 10%;
       display: flex;
       flex-direction: column;
-      @include allmobiles{
+
+      @include allmobiles {
         min-height: calc(100vh - 154px);
         padding-top: 65px;
       }
     }
   }
+
   .unit-price {
     font-family: $muli-regular;
     font-size: 14px;
     letter-spacing: -0.26px;
     text-align: right;
     color: #777777 !important;
-    span{
+
+    span {
       padding-right: 10px;
     }
   }

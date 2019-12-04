@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
+import { FormatCurrencyPipe } from '../../shared/Pipes/format-currency.pipe';
 import { SharedModule } from '../../shared/shared.module';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import {
@@ -17,12 +18,16 @@ import {
 import { AssetAllocationComponent } from './asset-allocation/asset-allocation.component';
 import { HoldingsComponent } from './holdings/holdings.component';
 import { InvestmentOverviewComponent } from './investment-overview/investment-overview.component';
-import { SRSOfflineErrorModalComponent } from './investment-overview/srs-offline-error-modal/srs-offline-error-modal.component';
+import {
+  SRSOfflineErrorModalComponent
+} from './investment-overview/srs-offline-error-modal/srs-offline-error-modal.component';
 import { ManageInvestmentsRoutingModule } from './manage-investments-routing.module';
 import { TopUpComponent } from './top-up/top-up.component';
 import { TopupStatusComponent } from './topup-status/topup-status.component';
 import { TransactionsComponent } from './transactions/transactions.component';
-import { AddBankModalComponent } from './withdrawal-bank-account/add-bank-modal/add-bank-modal.component';
+import {
+  AddBankModalComponent
+} from './withdrawal-bank-account/add-bank-modal/add-bank-modal.component';
 import {
   WithdrawalBankAccountComponent
 } from './withdrawal-bank-account/withdrawal-bank-account.component';
@@ -81,7 +86,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   entryComponents: [ConfirmWithdrawalModalComponent, AddBankModalComponent, ForwardPricingModalComponent,
     RenameInvestmentModalComponent, SRSOfflineErrorModalComponent],
-  providers: [CurrencyPipe]
+  providers: [CurrencyPipe, FormatCurrencyPipe]
 })
 export class ManageInvestmentsModule {
 

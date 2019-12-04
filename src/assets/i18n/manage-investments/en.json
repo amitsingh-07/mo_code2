@@ -79,6 +79,7 @@
     "BUY_REQUEST": "buy request",
     "BUY_REQUESTS": "buy requests",
     "CA_LABEL": "Cash Account:",
+    "REBALANCE": "Rebalancing",
     "REF_LABEL": "Ref Code:",
     "INVESTED": "Invested",
     "LIST_ALL": "List All",
@@ -152,6 +153,16 @@
       "SRS_MODAL": {
         "TITLE": "Sorry, SRS account portfolio currently handled offline",
         "Message": "<div class='srs-modal-offline'> <div class='mb30'>Viewing of your SRS investment portfolio, top-ups & withdrawals are currently handled offline.</div><div class='mb30'>Adding of SRS funding portfolio is still available. Go to <span class='txt-italic'>Your Investment > Add Portfolio.</span></div><div>For assistance, contact <a class='contact-details mail' target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> or call <a class='contact-details'target='_blank' href='tel:6329 9188'>6329 9188.</a></div></div>"
+      },
+      "RBL_MODAL": {
+        "TITLE": "Quarterly Rebalancing In-progress",
+        "Message": "<div class='rebalancing-modal-msg'><div class='mb15'>Please note that your portfolio is being rebalanced. This process will be completed in 6 to 7 working days. <span class='txt-bold'>Requests for redemptions from portfolio(s) will only be submitted for processing after rebalancing is completed.</span></div><div><a class='contact-details mail' target='_blank' href='/faq#investment'>For more information, visit our FAQs.</a></div></div>"
+      },
+      "RE_BALANCE": {
+        "TITLE": "Quarterly Rebalancing In-progress",
+        "DESC": "Please note that this portfolio is being rebalanced. This process will be completed in 6 to 7 working days.",
+        "DESC_ONE": "Requests for redemptions will only be submitted for processing after rebalancing is completed. ",
+        "FAQ_LINK": "For more information, visit our FAQs."
       }
     },
     "PENDING_REQUEST_INFO": "You have {{count}} Buy Requests",
@@ -168,6 +179,7 @@
     "TRY_ANOTHER_RECOMMENDATION": "Try Another Recommendation",
     "PENDING_REQUESTS_CASH_ACCOUNT": "Pending Requests / <span>Cash Account</span>",
     "WITHDRAWALS_IN_PROGRESS": "You have withdrawals in process.",
+    "WITHDRAWALS_IN_QUEUE": "You have withdrawals in queue.",
     "ONE_TIME": "One-time",
     "FUND_BY": "Fund by",
     "FUND_RECIEVED_AND_PROCESSED": "Fund received & will process in 1-2 working days.",
@@ -223,7 +235,13 @@
         "PORTFOLIO_NAME": "Portfolio Name:",
         "PORTFOLIO_REF_NO": "Portfolio Reference No. :",
         "CASH_ACC_REF_CODE": "Cash Account (Ref Code):",
-        "TRANSFER_TO_BANK_AC_NO": "Transfer to Bank Account No. :"
+        "TRANSFER_TO_BANK_AC_NO": "Transfer to Bank Account No. :",
+        "RE_BALANCE": {
+          "TITLE": "Quarterly Rebalancing In-progress",
+          "DESC": "Please note that this portfolio is being rebalanced. This process will be completed in 6 to 7 working days.",
+          "DESC_ONE": "Requests for redemptions will only be submitted for processing after rebalancing is completed. ",
+          "FAQ_LINK": "For more information, visit our FAQs."
+        }
       }
     },
     "WITHDRAW_REQUEST_LOADER": {
@@ -275,6 +293,7 @@
     "CASH_WITHDRAWAL": "Cash Account Withdrawal",
     "UNIT_PRICE": "Unit Price:",
     "UNITS": "Units:",
+    "TRANSACTION_ID": "Transaction ID:",
     "MODAL": {
       "TRANSACTION_FETCH_LOADER": {
         "TITLE": "Loading transaction history",

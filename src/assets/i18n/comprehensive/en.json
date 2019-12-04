@@ -107,7 +107,7 @@
           "TITLE_DESC": "Completed",
           "CONTENT_TITLE": "Did you know?",
           "CONTENT_DESC": "This is how much university may cost you in future:",
-          "CONTENT_BODY_DESC": "This amount is calculated based on 6% p.a. inflation on tuition fees and 3% p.a. inflation on general living expenses.",
+          "CONTENT_BODY_DESC": "This amount is calculated based on 4% p.a. inflation on tuition fees and 3% p.a. inflation on general living expenses.",
           "CONTENT_NOTE": "It’s great that you are planning now!",
           "CONTENT_ABOUT_AGE_YEAR": "About AGE_VAL years later",
           "NEXT": "Next"
@@ -194,7 +194,7 @@
       "TITLE": "What's On Your Shoulders",
       "DEPENDANTS": "Do you have any dependants?",
       "DEPENDANTS_DESC": "A dependant is a child, spouse, parent, sibling and/or relative you need to provide for.",
-      "HOUSEHOLD_TITLE": "How many total number of people are there in your household?",
+      "HOUSEHOLD_TITLE": "What is the total number of people in your household?",
       "HOUSEHOLD_DESC": "Number of people includes your spouse, children, parents, grandparents, siblings and/or other relatives.",
       "HOUSEHOLD_HEADER": "Household Information",
       "HOUSEHOLD_LABEL_1": "No. of<br> Household Members",

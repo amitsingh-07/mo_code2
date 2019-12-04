@@ -1,3 +1,4 @@
+import { TextMaskModule } from 'angular2-text-mask';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { CommonModule, CurrencyPipe } from '@angular/common';
@@ -8,11 +9,10 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
+import { FormatCurrencyPipe } from '../../shared/Pipes/format-currency.pipe';
 import { SharedModule } from '../../shared/shared.module';
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
 import { AddPortfolioNameComponent } from './add-portfolio-name/add-portfolio-name.component';
-
-import { TextMaskModule } from 'angular2-text-mask';
 import {
   AccountCreationErrorModalComponent
 } from './confirm-portfolio/account-creation-error-modal/account-creation-error-modal.component';
@@ -60,7 +60,7 @@ export function createTranslateLoader(http: HttpClient) {
     FundingAccountDetailsComponent
   ],
   entryComponents: [AccountCreationErrorModalComponent],
-  providers: [CurrencyPipe]
+  providers: [CurrencyPipe, FormatCurrencyPipe]
 })
 export class InvestmentCommonModule {
 
