@@ -102,11 +102,11 @@ export class TopUpComponent implements OnInit, OnDestroy {
     });
     if (this.formValues['selectedCustomerPortfolio']) {
       this.getMonthlyInvestmentInfo(this.formValues['selectedCustomerPortfolioId']);
-      this.getOneTimeInvestmentInfo(this.formValues['selectedCustomerPortfolioId']);
-      // tslint:disable-next-line:max-line-length
-      this.getAwaitingOrPendingInfo(this.formValues['customerPortfolioId'], this.awaitingOrPendingReq(this.formValues.selectedCustomerPortfolio.fundingTypeValue));
+      this.getAwaitingOrPendingInfo(this.formValues['selectedCustomerPortfolioId'],
+      this.awaitingOrPendingReq(this.formValues.selectedCustomerPortfolio.fundingTypeValue));
     }
-    if (this.formValues['selectedCustomerPortfolio']['fundingTypeValue'] === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS ) {
+    if (this.formValues['selectedCustomerPortfolio'] &&
+    (this.formValues['selectedCustomerPortfolio'].fundingTypeValue === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS)){
       this.getSrsAccountDetails();
     }
     this.buildFormInvestment();
@@ -143,7 +143,6 @@ export class TopUpComponent implements OnInit, OnDestroy {
 
   setDropDownValue(key, value) {
     this.topForm.controls[key].setValue(value);
-    this.getOneTimeInvestmentInfo(value['customerPortfolioId']);
     this.getMonthlyInvestmentInfo(value['customerPortfolioId']);
     this.getAwaitingOrPendingInfo(value['customerPortfolioId'],
     this.awaitingOrPendingReq(value.fundingTypeValue));
@@ -300,18 +299,6 @@ export class TopUpComponent implements OnInit, OnDestroy {
           this.topForm.get('MonthlyInvestmentAmount').clearValidators();
           this.topForm.get('MonthlyInvestmentAmount').updateValueAndValidity();
         }
-      } else {
-        this.investmentAccountService.showGenericErrorModal();
-      }
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
-  }
-  getOneTimeInvestmentInfo(customerProfileId) {
-    this.manageInvestmentsService.getOneTimeInvestmentInfo(customerProfileId).subscribe((response) => {
-      if (response.responseMessage.responseCode >= 6000) {
-        this.currentOneTimeInvAmount = response.objectList && response.objectList.amount ? response.objectList.amount : 0;
       } else {
         this.investmentAccountService.showGenericErrorModal();
       }
