@@ -10,6 +10,7 @@ import { NgControl } from '@angular/forms';
 export class CurrencyInputPortfolioDirective implements AfterViewInit {
     @Input() maxLength;
     [x: string]: any;
+    @Input() allowDecimal;
 
     constructor(
         private el: ElementRef, private currencyPipe: CurrencyPipe,
