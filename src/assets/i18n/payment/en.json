@@ -1,0 +1,32 @@
+{
+  "CHECKOUT": {
+    "CHECKOUT_PAYMENT": "Checkout Payment",
+    "PAYMENT_SUMMARY": "Payment Summary",
+    "REVIEW_PURCHASE": "Please review and submit your purchase.",
+    "COMPREHENSIVE_FINANCIAL_PLANNING": "Comprehensive Financial Planning",
+    "FEE_REBATE": "100% Fee Rebate",
+    "FEE_REBATE_DESC": "For a limited time only, we will be giving a 100% fee rebate after you go through the full comprehensive financial planning process. This includes meeting with your assigned client adviser. Your fee rebate will be credited into your <span>MoneyOwl Investment Account.</span>",
+    "TOTAL_BEFORE_GST": "Total (before GST)",
+    "GST": "GST ({{gst}}%)",
+    "PROMO_CODE": "Promo Code",
+    "TOTAL_AMOUNT": "Total amount payable <br /><span>(including GST)</span>",
+    "AGREE_TNC": "I agree to MoneyOwl's ",
+    "TERMS_OF_USE": "Terms of Use.",
+    "PROCEED_PAY": "Proceed to Pay",
+    "TNC": "<div>Terms of Use</div><div>Terms & Conditions</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lobortis, neque ac placerat tristique, arcu augue rhoncus nibh, sed sodales turpis orci at orci. Praesent ligula tellus, sollicitudin vel mollis vitae, scelerisque ac turpis. Curabitur sit amet quam accumsan risus pharetra auctor eget sed enim.</p><div>Privacy Policy</div><p>Cras erat velit, pulvinar non quam nec, dictum consequat enim. Phasellus ultrices tincidunt arcu, vitae maximus tellus sodales non. Nulla a lorem varius nulla tincidunt volutpat. Praesent eget arcu condimentum, auctor purus sed, porta risus. Pellentesque lacinia auctor mauris. Curabitur maximus velit at leo eleifend, eget euismod sapien placerat. Pellentesque hendrerit, tortor eget pellentesque cursus, magna est aliquam nibh, vel faucibus urna mi vel turpis. Integer in pharetra eros. Maecenas iaculis viverra interdum. Quisque sit amet placerat odio.</p><div>Disclosure</div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lobortis, neque ac placerat tristique, arcu augue rhoncus nibh, sed sodales turpis orci at orci. Praesent ligula tellus, sollicitudin vel mollis vitae, scelerisque ac turpis. Curabitur sit amet quam accumsan risus pharetra auctor eget sed enim.</p>",
+    "CONTINUE": "Continue"
+  },
+  "PAYMENT_MODAL": {
+    "PLEASE_WAIT": "Please wait…",
+    "NAVIGATE_TO_PAYMENT": "We’re taking you to a secure payment page to complete your purchase"
+  },
+  "PAYMENT_STATUS": {
+    "SUCCESS_TITLE": "Yay! Payment Successful!",
+    "SUCCESS_TEXT": "Congratulations on taking a positive step towards your financial health. Your client adviser will be in touch with you soon.<br/><br/>You may view your payment status/receipt at <span>kelvin.goh@gmail.com</span>.",
+    "FAIL_TITLE": "Oh no, payment failed…",
+    "FAIL_TEXT": "Looks like your payment did not go through. You can try again or you can contact our customer support.",
+    "BACK_DASHBOARD": "Back to Dashboard",
+    "CONTINUE": "Continue",
+    "TRY_AGAIN": "Try Again"
+  }
+}

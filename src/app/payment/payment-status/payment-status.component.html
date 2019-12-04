@@ -10,6 +10,6 @@
     <div class="status-desc" [innerHTML]="statusText"></div>
     <button id="back_to_dash_board" type="button" (click)="onPressBtn()"
       class="btn btn__footer--fixed btn-primary width100">{{btnText}}</button>
-    <div class="home-btn" (click)="onPressNavigateText()">{{navigateText}}</div>
+    <div *ngIf='navigateText' class="home-btn" (click)="onPressNavigateText()">{{navigateText}}</div>
   </div>
 </div>

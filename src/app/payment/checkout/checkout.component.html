@@ -1,40 +1,37 @@
 <div class="container-fluid max-width--1024 content">
   <div class="flex-div">
-    <div class="payment-summary-text">Payment Summary</div>
-    <div class="review-text">Please review and submit your purchase.</div>
+    <div class="payment-summary-text">{{'CHECKOUT.PAYMENT_SUMMARY' | translate}}</div>
+    <div class="review-text">{{'CHECKOUT.REVIEW_PURCHASE' | translate}}</div>
     <div class="first-box">
       <img src="../../../assets/images/comprehensive/dashboard-comprehensive.svg" alt="" />
       <div class="divider"></div>
       <div>
-        <div class="comprehensive-text">Comprehensive Financial Planning</div>
+        <div class="comprehensive-text">{{'CHECKOUT.COMPREHENSIVE_FINANCIAL_PLANNING' | translate}}</div>
         <div class="amt">{{subTotal | currency : 'USD' : 'symbol-narrow' : '1.0-0'}}</div>
       </div>
     </div>
     <div class="second-box">
       <div class="rebate-title">
         <img src="../../../assets/images/payment/mini-owl-head.svg" alt="" />
-        100% Fee Rebate
+        {{'CHECKOUT.FEE_REBATE' | translate}}
       </div>
-      <div class="rebate-info">For a limited time only, we will be giving a 100% fee rebate after you go through the
-        full comprehensive
-        financial planning process. This includes meeting with your assigned client adviser. Your fee rebate will be
-        credited into your <span>MoneyOwl Investment Account.</span></div>
+      <div class="rebate-info" [innerHTML]="this.translate.instant('CHECKOUT.FEE_REBATE_DESC')"></div>
       <div class="flex-mt20">
-        <div class="teal-txt">Sub Total</div>
+        <div class="teal-txt">{{'CHECKOUT.TOTAL_BEFORE_GST' | translate}}</div>
         <div class="grey-txt">{{subTotal | currency : 'USD' : 'symbol-narrow' : '1.0-0'}}</div>
       </div>
       <div class="flex-mt15">
-        <div class="teal-txt">GST ({{gst}}%) included</div>
+        <div class="teal-txt">{{'CHECKOUT.GST' | translate:({'gst': gst})}}</div>
         <div class="grey-txt">({{subTotal * (gst/100) | currency : 'USD' : 'symbol-narrow' : '1.0-0'}})</div>
       </div>
       <div class="flex-mt15">
-        <div class="teal-txt">Promo Code</div>
+        <div class="teal-txt">{{'CHECKOUT.PROMO_CODE' | translate}}</div>
         <div class="grey-txt">{{promoCode}}</div>
       </div>
       <div class="horizontal-divider"></div>
       <div class="flex-mt20">
-        <div class="teal-bold-txt">Total</div>
-        <div class="grey-bold-txt">{{subTotal | currency : 'USD' : 'symbol-narrow' : '1.0-0'}}</div>
+        <div class="teal-bold-txt" [innerHTML]="this.translate.instant('CHECKOUT.TOTAL_AMOUNT')"></div>
+        <div class="grey-bold-txt">{{totalAmt | currency : 'USD' : 'symbol-narrow' : '1.0-0'}}</div>
       </div>
     </div>
     <form id="checkoutForm" name="checkoutForm" [formGroup]="checkoutForm" method="POST" target="wirecardWindow"
@@ -51,14 +48,14 @@
 
       <div class="checkbox-button mt20">
         <input id="termsOfConditions" name="termsOfConditions" formControlName="termsOfConditions" type="checkbox"
-          class="field checkbox" value="I agree to MoneyOwl's Terms of Use and Privacy Policy." required>
+          class="field checkbox" required>
         <label for="termsOfConditions">
-          <div class="checkbox-label">I agree to MoneyOwl's <span>Terms of Use</span>
-          </div>
+          <div class="checkbox-label">{{'CHECKOUT.AGREE_TNC' | translate}} <span
+              (click)="openTNC($event)">{{'CHECKOUT.TERMS_OF_USE' | translate}}</span></div>
         </label>
       </div>
       <button [disabled]="!checkoutForm.valid" type="button" class="btn btn__footer--fixed btn-primary width100"
-        (click)="submitForm()">Proceed to Pay</button>
+        (click)="submitForm()">{{'CHECKOUT.PROCEED_PAY' | translate}}</button>
     </form>
 
   </div>

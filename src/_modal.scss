@@ -1153,3 +1153,48 @@ body.modal-open::-webkit-scrollbar {
     max-height: 100% !important;
   }
 }
+
+.payment-tnc {
+
+  .modal-body {
+    padding: 28px 30px 40px 33px !important;
+
+    @include allmobiles {
+      padding: 25px 25px 40px 25px !important;
+    }
+  }
+
+  .modal-body-message div:first-of-type {
+    font-family: $muli-semi-bold;
+    font-size: 18px;
+    color: $teal-color;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.19px;
+    padding-bottom: 22px;
+  }
+
+  .modal-body-message div:not(:first-of-type) {
+    font-family: $muli-semi-bold;
+    font-size: 16px;
+    color: $teal-color;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.17px;
+    padding-bottom: 10px;
+  }
+
+  .modal-body-message p:not(:last-of-type) {
+    margin-bottom: 30px;
+  }
+
+  .row {
+    justify-content: center;
+
+    .col-12 {
+      max-width: 271px;
+    }
+  }
+}

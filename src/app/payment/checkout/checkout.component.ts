@@ -1,13 +1,14 @@
 import { DatePipe } from '@angular/common';
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { sha256 } from 'js-sha256';
+import { ModelWithButtonComponent } from './../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { PaymentModalComponent } from './../payment-modal/payment-modal.component';
 import { PaymentRequest } from './../payment-request';
+import { PAYMENT_CONST } from './../payment.constants';
 
 @Component({
   selector: 'app-checkout',
@@ -24,15 +25,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   termsOfConditions = false;
   modalRef: NgbModalRef;
 
-  subTotal = 500;
-  gst = 7;
-  promoCode = 'MOONLY';
+  subTotal = PAYMENT_CONST.SUBTOTAL;
+  gst = PAYMENT_CONST.GST;
+  totalAmt = this.subTotal + (this.subTotal * PAYMENT_CONST.GST / 100);
+  promoCode = PAYMENT_CONST.PROMO_CODE;
 
   constructor(
     private formBuilder: FormBuilder,
     public readonly translate: TranslateService,
     private modal: NgbModal,
-    public httpClient: HttpClient,
     public datePipe: DatePipe,
     public navbarService: NavbarService
   ) {
@@ -41,7 +42,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = 'Checkout';
+      this.pageTitle = this.translate.instant('CHECKOUT.CHECKOUT_PAYMENT');
       this.setPageTitle(this.pageTitle);
     });
     this.navbarService.setNavbarComprehensive(true);
@@ -52,7 +53,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   private buildForm() {
-    const timeStamp = this.datePipe.transform(new Date(), 'yyyyMMddHHmmss', 'UTC');
+    const timeStamp = this.datePipe.transform(new Date(), PaymentRequest.timestampFormat, PaymentRequest.timezone);
     const preShaStr = timeStamp + (PaymentRequest.requestId + timeStamp) + PaymentRequest.merchantAccId
       + PaymentRequest.transactionType + this.subTotal + PaymentRequest.currency + PaymentRequest.redirectURL
       + PaymentRequest.ipAddress + PaymentRequest.secretKey;
@@ -122,6 +123,16 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     if (this.modalRef) {
       this.modalRef.close();
     }
+  }
+
+  openTNC(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'payment-tnc' });
+    ref.componentInstance.imgType = undefined;
+    ref.componentInstance.errorMessageHTML = this.translate.instant('CHECKOUT.TNC');
+    ref.componentInstance.primaryActionLabel = this.translate.instant('CHECKOUT.CONTINUE');
+    ref.componentInstance.isInlineButton = false;
   }
 
 }

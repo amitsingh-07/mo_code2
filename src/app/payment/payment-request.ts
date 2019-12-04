@@ -1,6 +1,8 @@
 import { IPaymentRequest } from './payment-request.interface';
 
 export const PaymentRequest: IPaymentRequest = {
+    timestampFormat: 'yyyyMMddHHmmss',
+    timezone: 'UTC',
     requestId: 'order-',
     merchantAccId: '961c567b-d9da-41f6-9801-ba21cb228a00',
     transactionType: 'purchase',
