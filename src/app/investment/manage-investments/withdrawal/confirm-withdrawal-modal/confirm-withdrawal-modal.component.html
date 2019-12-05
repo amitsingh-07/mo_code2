@@ -60,7 +60,9 @@
           <span class="values" *ngIf="bankAccountNo">{{bankAccountNo}}</span>
 
           <!-- Re-Balancing -->
-          <div *ngIf="portfolio.portfolioStatus === 'REBALANCING'" class="rebalancing-info">
+          <div
+            *ngIf="portfolio.portfolioStatus === 'REBALANCING' && withdrawType.id !== WITHDRAW_CONSTANTS.CASH_TO_BANK_TYPE_ID"
+            class="rebalancing-info">
             <div class="mr15 info-icon"><img src="assets/images/investment-account/rebalance_info.svg" /></div>
             <div>
               <div>{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.RE_BALANCE.TITLE' | translate}}</div>
