@@ -101,11 +101,12 @@
               <div class="form-group-with-bg--content-label">
                 {{ 'CMP.FORM_LABEL.YOUR_SHARE' | translate}}</div>
             </div>
-            <div class="flex-col-6">
-              <input [ngClass]="{'view-mode': viewMode}" 
-              id="sharePercent-{{i}}" type="text" appComprehensiveViewMode="{{viewMode}}" mode=1
-                [readonly]="true" name="sharePercent" class="text-right form-control with-input-style"
-                [value]="sliderValue[i]+'%'" />
+            <div class="flex-col-6 ">
+              <input [ngClass]="{'view-mode': viewMode}" id="sharePercent-{{i}}" type="text"
+                appComprehensiveViewMode="{{viewMode}}" mode=1 [readonly]="false" (keyup)="changeSlide($event, i)"
+                class="input-control" appCurrencyInput maxLength="3" name="sharePercent"
+                class="text-right form-control with-input-style" [value]="sliderValue[i]" />
+              <i class="right percent-fix">%</i>
             </div>
           </div>
           <div class="width100">

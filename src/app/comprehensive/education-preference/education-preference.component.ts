@@ -200,4 +200,7 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy, AfterVie
     };
     this.comprehensiveService.openTooltipModal(toolTipParams);
   }
+  changeSlide($event, i) {
+    this.ciMultiplierSliders['_results'][i].writeValue($event.target.value);
+  }
 }
