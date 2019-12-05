@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { FormGroup, FormBuilder, ValidatorFn } from '@angular/forms';
+import { FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
-import { NavbarService } from 'src/app/shared/navbar/navbar.service';
-import { RetirementPlanningService } from '../retirement-planning.service';
 import { RETIREMENT_PLANNING_ROUTE_PATHS } from '../retirement-planning-routes.constants';
+import { RetirementPlanningService } from '../retirement-planning.service';
+import { NavbarService } from './../../shared/navbar/navbar.service';
 
 @Component({
   selector: 'app-personalize-your-retirement',
@@ -47,12 +47,12 @@ export class PersonalizeYourRetirementComponent implements OnInit {
     }, { validator: this.requireCheckboxesToBeCheckedValidator(2) });
   }
 
-  // checkbox Validator 
+  // checkbox Validator
   requireCheckboxesToBeCheckedValidator(minRequired): ValidatorFn {
     return function validate(formGroup: FormGroup) {
       let checked = 0;
 
-      Object.keys(formGroup.controls).forEach(key => {
+      Object.keys(formGroup.controls).forEach((key) => {
         const control = formGroup.controls[key];
         if (control.value === true) {
           checked++;
@@ -72,7 +72,7 @@ export class PersonalizeYourRetirementComponent implements OnInit {
   save() {
     this.submitted = true;
     if (this.personalizeYourRetireForm.valid) {
-      const scheme = Object.keys(this.personalizeYourRetireForm.value).filter(e => {
+      const scheme = Object.keys(this.personalizeYourRetireForm.value).filter((e) => {
         return this.personalizeYourRetireForm.value[e] === true;
       });
       this.retirementPlanningService.createRetirementPlan(scheme).subscribe((response) => {

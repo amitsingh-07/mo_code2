@@ -129,6 +129,6 @@ export class RetirementPlanningService {
     * @param dateObject - convert date to DD/MM/YYYY format.
     */
     private convertDate(dateObject) {
-        return dateObject.day + '-' + dateObject.month + '-' + dateObject.year;
+        return dateObject.year + '-' + dateObject.month + '-' + dateObject.day;
     }
 }

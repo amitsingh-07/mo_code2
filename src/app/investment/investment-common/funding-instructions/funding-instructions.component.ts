@@ -1,4 +1,3 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,15 +10,16 @@ import { HeaderService } from '../../../shared/header/header.service';
 import { BankDetailsComponent } from '../../../shared/modal/bank-details/bank-details.component';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
+import { FormatCurrencyPipe } from '../../../shared/Pipes/format-currency.pipe';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
 import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
 import {
-    MANAGE_INVESTMENTS_ROUTE_PATHS
+  MANAGE_INVESTMENTS_ROUTE_PATHS
 } from '../../manage-investments/manage-investments-routes.constants';
 import {
-    MANAGE_INVESTMENTS_CONSTANTS
+  MANAGE_INVESTMENTS_CONSTANTS
 } from '../../manage-investments/manage-investments.constants';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import { InvestmentCommonService } from '../investment-common.service';
@@ -47,7 +47,7 @@ export class FundingInstructionsComponent implements OnInit {
   timelineMessage;
   showBankTransferSteps = true;
   PortfolioName: any;
-  
+
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -60,7 +60,7 @@ export class FundingInstructionsComponent implements OnInit {
     public investmentAccountService: InvestmentAccountService,
     public investmentCommonService: InvestmentCommonService,
     private loaderService: LoaderService,
-    private currencyPipe: CurrencyPipe
+    private formatCurrencyPipe: FormatCurrencyPipe
   ) {
     this.translate.use('en');
     this.fundDetails = this.manageInvestmentsService.getFundingDetails();
@@ -98,9 +98,9 @@ export class FundingInstructionsComponent implements OnInit {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.bankDetailsList = data.objectList.bankList;
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   showBankTransctionDetails() {
@@ -153,9 +153,9 @@ export class FundingInstructionsComponent implements OnInit {
     this.manageInvestmentsService.getTransferDetails(customerPortfolioId).subscribe((data) => {
       this.setBankPayNowDetails(data.objectList);
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   selectFundingMethod(mode) {
@@ -171,7 +171,7 @@ export class FundingInstructionsComponent implements OnInit {
     );
   }
   showTipModal() {
-   this.showPopUp();
+    this.showPopUp();
   }
   setBankPayNowDetails(data) {
     this.bankDetails = data.filter(
@@ -187,7 +187,7 @@ export class FundingInstructionsComponent implements OnInit {
       (this.fundDetails.fundingType ===
         MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.ONETIME ||
         this.fundDetails.fundingType ===
-          MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.MONTHLY) &&
+        MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.MONTHLY) &&
       !this.fundDetails.isAmountExceedBalance
     );
   }
@@ -222,7 +222,7 @@ export class FundingInstructionsComponent implements OnInit {
   }
   // ONETIME INVESTMENT
   topUpOneTime() {
-    if(!this.isRequestSubmitted) {
+    if (!this.isRequestSubmitted) {
       this.isRequestSubmitted = true;
       this.loaderService.showLoader({
         title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
@@ -235,10 +235,10 @@ export class FundingInstructionsComponent implements OnInit {
           if (response.responseMessage.responseCode < 6000) {
             if (
               response.objectList &&
-                response.objectList.length &&
-                response.objectList[response.objectList.length - 1].serverStatus &&
-                response.objectList[response.objectList.length - 1].serverStatus.errors &&
-                response.objectList[response.objectList.length - 1].serverStatus.errors.length
+              response.objectList.length &&
+              response.objectList[response.objectList.length - 1].serverStatus &&
+              response.objectList[response.objectList.length - 1].serverStatus.errors &&
+              response.objectList[response.objectList.length - 1].serverStatus.errors.length
             ) {
               this.showCustomErrorModal(
                 'Error!',
@@ -272,7 +272,7 @@ export class FundingInstructionsComponent implements OnInit {
   }
   // MONTHLY INVESTMENT
   topUpMonthly() {
-    if(!this.isRequestSubmitted) {
+    if (!this.isRequestSubmitted) {
       this.isRequestSubmitted = true;
       this.loaderService.showLoader({
         title: this.translate.instant('TOPUP.TOPUP_REQUEST_LOADER.TITLE'),
@@ -325,11 +325,8 @@ export class FundingInstructionsComponent implements OnInit {
     let timelineMessage;
     if (fundDetails.monthlyInvestment && !fundDetails.oneTimeInvestment) {
       const monthlyAmount = {
-        month: this.currencyPipe.transform(
-          this.fundDetails.monthlyInvestment,
-          'USD',
-          'symbol-narrow',
-          '1.0-2'
+        month: this.formatCurrencyPipe.transform(
+          this.fundDetails.monthlyInvestment
         )
       };
       timelineMessage = this.translate.instant('FUNDING_INSTRUCTIONS.MONTHLY_TIME_INFO', monthlyAmount);
