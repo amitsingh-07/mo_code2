@@ -151,7 +151,7 @@ export class WithdrawalComponent implements OnInit {
     this.withdrawForm.get('withdrawType').valueChanges.subscribe((value) => {
       if (value) {
         const roundOffValue = value.currentValue
-          ? parseFloat(this.decimalPipe.transform(value.currentValue, '1.0-2').replace(/,/g, ''))
+          ? parseFloat(this.decimalPipe.transform(value.currentValue, '1.2-2').replace(/,/g, ''))
           : 0;
         this.isRedeemAll = (roundOffValue <
           (MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT)
@@ -187,7 +187,7 @@ export class WithdrawalComponent implements OnInit {
     this.withdrawForm.get('withdrawPortfolio').valueChanges.subscribe((value) => {
       if (value) {
         const roundOffValue = value.currentValue
-          ? parseFloat(this.decimalPipe.transform(value.currentValue, '1.0-2').replace(/,/g, ''))
+          ? parseFloat(this.decimalPipe.transform(value.currentValue, '1.2-2').replace(/,/g, ''))
           : 0;
         this.isRedeemAll = (roundOffValue <
           (MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT)
@@ -276,7 +276,7 @@ export class WithdrawalComponent implements OnInit {
       this.entitlements = value['entitlements'];
       this.entitlements.portfolioType = value.portfolioType;
       this.withdrawForm.controls.withdrawType.value = null;
-      this.cashBalance = parseFloat(this.decimalPipe.transform(value.cashAccountBalance || 0, '1.0-2').replace(/,/g, ''));
+      this.cashBalance = parseFloat(this.decimalPipe.transform(value.cashAccountBalance || 0, '1.2-2').replace(/,/g, ''));
       this.withdrawForm.removeControl('withdrawAmount');
       if (value.portfolioType === 'SRS') {
         this.withdrawForm.controls.withdrawType.value = MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.WITHDRAWAL_TYPES[3];
@@ -423,10 +423,10 @@ export class WithdrawalComponent implements OnInit {
   }
 
   withdrawAmountValidator(balance, source): ValidatorFn {
-    balance = balance ? parseFloat(this.decimalPipe.transform(balance, "1.0-2").replace(/,/g, "")) : 0;
+    balance = balance ? parseFloat(this.decimalPipe.transform(balance, "1.2-2").replace(/,/g, "")) : 0;
     return (control: AbstractControl) => {
       if (control) {
-        let userInput = control.value ? parseFloat(this.decimalPipe.transform(control.value.replace(/,/g, ""), "1.0-2").replace(/,/g, "")) : 0;
+        let userInput = control.value ? parseFloat(this.decimalPipe.transform(control.value.replace(/,/g, ""), "1.2-2").replace(/,/g, "")) : 0;
         if (userInput <= 0) { // Not less than 0
           return { MinValue: true };
         }
@@ -454,3 +454,4 @@ export class WithdrawalComponent implements OnInit {
   }
 
 }
+

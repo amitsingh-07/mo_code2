@@ -46,6 +46,7 @@ export class YourPortfolioComponent implements OnInit {
   showErrorMessage: boolean;
   toastMsg: any;
   activeTab: string;
+  srsAccDetail;
 
   constructor(
     public readonly translate: TranslateService,
@@ -113,6 +114,7 @@ export class YourPortfolioComponent implements OnInit {
           this.pendingMonthlyBuyRequests = this.groupBuyRequests(this.pendingBuyRequests, 'MONTHLY');
         }
       }
+      this.getSrsAccDetails();
       this.showOrHideWhatsNextSection();
     },
       (err) => {
@@ -167,6 +169,9 @@ export class YourPortfolioComponent implements OnInit {
         break;
       case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.CASH_TO_BANK_ACCOUNT:
         withdrawType = this.translate.instant('YOUR_PORTFOLIO.CASH_ACCOUNT_TO_BANK_ACCOUNT');
+        break;
+      case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.PORTFOLIO_TO_SRS_ACCOUNT:
+        withdrawType = this.translate.instant('YOUR_PORTFOLIO.PORTFOLIO_TO_SRS_ACCOUNT');
         break;
       default:
         withdrawType = '';
@@ -405,4 +410,13 @@ export class YourPortfolioComponent implements OnInit {
       this.activeTab = 'tab-1';
     }
   }
+  getSrsAccDetails() {
+    if (this.portfolio.fundingTypeValue === 'SRS') {
+      this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
+        if (data) {
+          this.srsAccDetail = data;
+        }
+      });
+    }
+   }
 }

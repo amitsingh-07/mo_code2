@@ -5,7 +5,6 @@
     "prefs"
   ],
   "files.autoSave": "off",
-  "workbench.colorTheme": "Visual Studio Light",
   "git.enableSmartCommit": true,
   "team.showWelcomeMessage": false,
   "files.exclude": {
