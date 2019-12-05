@@ -1,5 +1,7 @@
-import { CurrencyPipe } from '@angular/common';
+
 import { Component, Input, OnChanges, OnInit, ViewEncapsulation } from '@angular/core';
+
+import { FormatCurrencyPipe } from '../../Pipes/format-currency.pipe';
 
 @Component({
   selector: 'app-portfolio-info',
@@ -13,7 +15,7 @@ export class PortfolioInfoComponent implements OnInit, OnChanges {
 
   portfolioProjectionSubText;
 
-  constructor(private currencyPipe: CurrencyPipe) { }
+  constructor(private formatCurrencyPipe: FormatCurrencyPipe) { }
 
   ngOnInit() {
     this.updateProjectionSubText();
@@ -25,9 +27,9 @@ export class PortfolioInfoComponent implements OnInit, OnChanges {
 
   updateProjectionSubText() {
     this.portfolioProjectionSubText = {
-      best: this.currencyPipe.transform(this.portfolio.projectedReturnsHighEnd, 'USD', 'symbol-narrow', '1.2-2'),
-      median: this.currencyPipe.transform(this.portfolio.projectedReturnsMedian, 'USD', 'symbol-narrow', '1.2-2'),
-      worst: this.currencyPipe.transform(this.portfolio.projectedReturnsLowEnd, 'USD', 'symbol-narrow', '1.2-2'),
+      best: this.formatCurrencyPipe.transform(this.portfolio.projectedReturnsHighEnd),
+      median: this.formatCurrencyPipe.transform(this.portfolio.projectedReturnsMedian),
+      worst: this.formatCurrencyPipe.transform(this.portfolio.projectedReturnsLowEnd),
       investedPercentage: this.portfolio.reviewedProjectedReturnsMedian
     };
   }

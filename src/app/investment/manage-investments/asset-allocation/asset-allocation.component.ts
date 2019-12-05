@@ -1,4 +1,3 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -10,13 +9,13 @@ import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import {
-    INVESTMENT_ACCOUNT_ROUTE_PATHS
+  INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { RiskProfile } from '../../investment-engagement-journey/recommendation/riskprofile';
@@ -45,7 +44,6 @@ export class AssetAllocationComponent implements OnInit {
     public navbarService: NavbarService,
     private translate: TranslateService,
     public footerService: FooterService,
-    private currencyPipe: CurrencyPipe,
     public authService: AuthenticationService,
     public modal: NgbModal,
     public manageInvestmentsService: ManageInvestmentsService,
@@ -59,7 +57,7 @@ export class AssetAllocationComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       self.pageTitle = this.translate.instant('ASSET_ALLOCATION.TITLE');
       this.setPageTitle(this.pageTitle);
-      });
+    });
   }
 
   ngOnInit() {

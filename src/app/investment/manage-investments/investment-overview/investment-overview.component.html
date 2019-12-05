@@ -22,23 +22,25 @@
           <div class="flex-col user_content flex-col-12">
             <div class="container-fluid max-width--1024">
               <div *ngIf="showMpPopup" class="mp-walkthrough-container flex-col-12">
-                <div [ngClass]="showAnimation? 'mp-animation': ''" class="new-investment-div" (click)="openMPWalkthrough()">
+                <div [ngClass]="showAnimation? 'mp-animation': ''" class="new-investment-div"
+                  (click)="openMPWalkthrough()">
                   <img class="owl-stars-img" src="assets/images/mp-walkthrough/owl-stars.svg">
                   <div class="new-investment-txt">
                     <span>{{'YOUR_INVESTMENT.MP_WALKTHROUGH.NEW_INVESTMENT_UPDATE' | translate}}</span>
                     <br />{{'YOUR_INVESTMENT.MP_WALKTHROUGH.SHOW_ME_AROUND' | translate}}
                   </div>
-                  <img  (click)="closeMpPopup($event)" class="cross-img" src="assets/images/mp-walkthrough/cross-grey.svg">
+                  <img (click)="closeMpPopup($event)" class="cross-img"
+                    src="assets/images/mp-walkthrough/cross-grey.svg">
                 </div>
               </div>
               <div class="user_summary flex-col-12" id="investment_overview_profile_dec">
-                  {{'YOUR_INVESTMENT.PROFILE_DEC' | translate:welcomeInfo}}
-                </div>
+                {{'YOUR_INVESTMENT.PROFILE_DEC' | translate:welcomeInfo}}
+              </div>
               <div class="form-group-with-bg">
                 <div class="form-group-with-bg--header your_total_value">
                   <div id="myFinancialLbl">
                     <div class="total_values" id="investment_overview_totalportfolio_value">
-                      {{totalValue | currency:'USD':'symbol-narrow':'1.0-2'}}
+                      {{totalValue | formatCurrency}}
                     </div>
                     <div class="total_values_label" id="investment_overview_totalportfolio_value_lab">
                       {{'YOUR_INVESTMENT.TOTAL_PORTFOLIO_VALUE' | translate}}</div>
@@ -54,12 +56,13 @@
                     </div>
                     <div class="flex-col">
                       <div class="total_cash_value" id="investment_overview_total_returns_value">
-                        {{cashAccountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}
+                        {{cashAccountBalance | formatCurrency}}
                       </div>
                     </div>
                   </div>
                   <div class="flex-row">
-                    <button type="button" class="btn-with-icon top_up_btn" [ngClass]="{'disabled': !cashPortfolioPresent}" id="top-up_button" (click)="gotoTopUp()">
+                    <button type="button" class="btn-with-icon top_up_btn"
+                      [ngClass]="{'disabled': !cashPortfolioPresent}" id="top-up_button" (click)="gotoTopUp()">
                       <span class="topup-btn-img"><img id="top-up_img"
                           src="../../../assets/images/investment-account/money-white-topup.svg" alt="" /></span>
                       <span>{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</span>
@@ -76,8 +79,10 @@
                   id="investment_overview_your_portfolios">
                   {{'YOUR_INVESTMENT.MY_PORTFOLIOS' | translate}}
                 </div>
-                <div (click)="addPortfolio()" class="add_portfolio_label cursor_pointer" id="investment_overview_total_of"><img
-                    class="pr5" src="../../../assets/images/investment-account/plus-white.svg"><span>{{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}}</span> </div>
+                <div (click)="addPortfolio()" class="add_portfolio_label cursor_pointer"
+                  id="investment_overview_total_of"><img class="pr5"
+                    src="../../../assets/images/investment-account/plus-white.svg"><span>{{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -88,9 +93,8 @@
 </section>
 <app-portfolio-list *ngIf="investmentoverviewlist" [portfolioList]="portfolioList"
   [showTotalReturn]="investmentoverviewlist.showTotalReturn" (detailSelected)="yourPortfolio($event)"
-  (investAgainSelected)="investAgain($event)"
-  (transferInstSelected)="ViewTransferInst($event)" (topUpSelected)="gotoTopUp($event)"
-  [portfolioData]="investmentoverviewlist">
+  (investAgainSelected)="investAgain($event)" (transferInstSelected)="ViewTransferInst($event)"
+  (topUpSelected)="gotoTopUp($event)" [portfolioData]="investmentoverviewlist">
 </app-portfolio-list>
 <div class="container-fluid max-width--1024 no-portfolio-container"
   *ngIf="investmentoverviewlist && (!portfolioList || portfolioList.length == 0)">

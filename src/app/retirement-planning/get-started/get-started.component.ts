@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
-import { NavbarService } from 'src/app/shared/navbar/navbar.service';
-import { RetirementPlanningService } from '../retirement-planning.service';
-import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 import { RETIREMENT_PLANNING_ROUTE_PATHS } from '../retirement-planning-routes.constants';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
+import { NavbarService } from './../../shared/navbar/navbar.service';
+import { RegexConstants } from './../../shared/utils/api.regex.constants';
+import { RetirementPlanningService } from './../retirement-planning.service';
 
 @Component({
   selector: 'app-get-started',
@@ -22,7 +22,7 @@ export class GetStartedComponent implements OnInit {
   pageTitle: string;
   formValues: any;
 
-  submitted: boolean = false;
+  submitted = false;
   confirmEmailFocus = false;
 
   constructor(
@@ -81,7 +81,6 @@ export class GetStartedComponent implements OnInit {
       this.router.navigate([RETIREMENT_PLANNING_ROUTE_PATHS.RETIREMENT_NEEDS]);
     }
   }
-
 
   /**
    * validate confirm email.

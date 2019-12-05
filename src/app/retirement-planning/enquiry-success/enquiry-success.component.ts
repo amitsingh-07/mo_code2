@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
-import { NavbarService } from 'src/app/shared/navbar/navbar.service';
+import { NavbarService } from './../../shared/navbar/navbar.service';
 
 @Component({
   selector: 'app-enquiry-success',
