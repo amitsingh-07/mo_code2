@@ -390,7 +390,7 @@ export class WithdrawalComponent implements OnInit {
     } else {
       const amtControl = this.withdrawForm.get('withdrawAmount');
       if (amtControl) {
-        amtControl.setValue(amtControl.value.replace(/,/g, '').trim());
+        amtControl.setValue(amtControl.value.toString().replace(/,/g, '').trim());
       }
       this.manageInvestmentsService.setWithdrawalTypeFormData(form.getRawValue(), this.isRedeemAll);
       if (
