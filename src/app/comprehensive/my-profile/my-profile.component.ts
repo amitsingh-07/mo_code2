@@ -51,6 +51,8 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     disableDOB = false;
     public showToolTip = false;
     getComprehensiveEnquiry: any;
+    maxDate:any;
+    minDate:any;
 
     public onCloseClick(): void {
         this.comprehensiveService.setProgressToolTipShown(true);
@@ -74,11 +76,11 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         private aboutAge: AboutAge
     ) {
         const today: Date = new Date();
-        configDate.minDate = {
+        this.minDate = {
             year: today.getFullYear() - COMPREHENSIVE_CONST.YOUR_PROFILE.DATE_PICKER_MAX_YEAR,
             month: today.getMonth() + 1, day: today.getDate()
         };
-        configDate.maxDate = {
+        this.maxDate = {
             year: today.getFullYear() - COMPREHENSIVE_CONST.YOUR_PROFILE.DATE_PICKER_MIN_YEAR,
             month: today.getMonth() + 1, day: today.getDate()
         };
