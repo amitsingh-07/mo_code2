@@ -1,3 +1,6 @@
+import { Observable } from 'rxjs';
+import { conformToMask } from 'text-mask-core';
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -10,19 +13,22 @@ import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.
 import {
   TransferInstructionsModalComponent
 } from '../../shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
+import { InvestmentAccountService } from '../investment-account/investment-account-service';
 import { InvestmentApiService } from '../investment-api.service';
-import { InvestmentEngagementJourneyService } from '../investment-engagement-journey/investment-engagement-journey.service';
-import { ManageInvestmentsFormData } from './manage-investments-form-data';
-import { ManageInvestmentsFormError } from './manage-investments-form-error';
 import {
-  MANAGE_INVESTMENTS_ROUTE_PATHS
-} from './manage-investments-routes.constants';
+  InvestmentEngagementJourneyService
+} from '../investment-engagement-journey/investment-engagement-journey.service';
+import { ISrsAccountDetails, ManageInvestmentsFormData } from './manage-investments-form-data';
+import { ManageInvestmentsFormError } from './manage-investments-form-error';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from './manage-investments.constants';
 import { TopUPFormError } from './top-up/top-up-form-error';
 
 const SESSION_STORAGE_KEY = 'app_withdraw-session';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -34,7 +40,7 @@ export class ManageInvestmentsService {
   transferInstructionModal;
   activeModal;
   userProfileInfo;
-
+  formatedAccountNumber;
   private manageInvestmentsFormData: ManageInvestmentsFormData = new ManageInvestmentsFormData();
   private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
   private topUPFormError: any = new TopUPFormError();
@@ -47,6 +53,7 @@ export class ManageInvestmentsService {
     private investmentApiService: InvestmentApiService,
     public authService: AuthenticationService,
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
+    private investmentAccountService: InvestmentAccountService,
     private router: Router,
     private modal: NgbModal,
     private signUpService: SignUpService
@@ -77,6 +84,11 @@ export class ManageInvestmentsService {
     }
     return this.manageInvestmentsFormData;
   }
+
+  getSrsFormData(): ISrsAccountDetails {
+    return this.manageInvestmentsFormData.srsAccountDetails;
+  }
+
   getAllDropDownList() {
     return this.investmentApiService.getAllDropdownList();
   }
@@ -93,7 +105,6 @@ export class ManageInvestmentsService {
   getCustomerPortfolioDetailsById(portfolioId) {
     return this.investmentApiService.getCustomerPortfolioDetailsById(portfolioId);
   }
-
 
   doFinancialValidations(form, allowMonthlyZero) {
     const invalid = [];
@@ -117,16 +128,6 @@ export class ManageInvestmentsService {
       return false;
     }
   }
-
-  // removeCommas(str) {
-  // if(str.lenght>3)
-  // {
-  //   while (str.search(',') >= 0) {
-  //     str = (str + '').replace(',', '');
-  //   }
-  // }
-  //   return str;
-  // }
 
   getTopUp() {
     return {
@@ -191,10 +192,9 @@ export class ManageInvestmentsService {
     const sortedArray = this.manageInvestmentsFormData.userPortfolios.sort((a, b) => {
       return a.portfolioName.toLowerCase().localeCompare(b.portfolioName.toLowerCase());
     });
-    // Hide SRS portfolios
-    return sortedArray.filter((array) => array.portfolioType !== 'SRS');
-
+    return sortedArray;
   }
+
   setUserCashBalance(amount) {
     this.manageInvestmentsFormData.cashAccountBalance = amount;
     this.commit();
@@ -476,10 +476,6 @@ export class ManageInvestmentsService {
     return this.investmentApiService.getMonthlyInvestmentInfo(customerPortfolioId);
   }
 
-  getOneTimeInvestmentInfo(customerProfileId) {
-    return this.investmentApiService.getOneTimeInvestmentInfo(customerProfileId);
-  }
-
   setToastMessage(toastMessage) {
     this.manageInvestmentsFormData.toastMessage = toastMessage;
     this.commit();
@@ -522,6 +518,64 @@ export class ManageInvestmentsService {
         portfolio.portfolioName = newPortfolioName;
       }
     });
+    this.commit();
+  }
+  // SRS Onetime Request
+  getAwaitingOrPendingInfo(customerProfileId, awaitingOrPendingParam) {
+    return this.investmentApiService.getAwaitingOrPendingInfo(customerProfileId, awaitingOrPendingParam);
+  }
+  // # SRS Formate Account number
+  srsAccountFormat(accountNumber, srsOperator) {
+    this.formatedAccountNumber = '';
+    switch (srsOperator.toUpperCase()) {
+      case MANAGE_INVESTMENTS_CONSTANTS.TOPUP.SRS_OPERATOR.DBS:
+        this.formatedAccountNumber = conformToMask(
+          accountNumber,
+          RegexConstants.operatorMask.DBS,
+          { guide: false });
+        break;
+      case MANAGE_INVESTMENTS_CONSTANTS.TOPUP.SRS_OPERATOR.OCBC:
+        this.formatedAccountNumber = conformToMask(
+          accountNumber,
+          RegexConstants.operatorMask.OCBC,
+          { guide: false });
+        break;
+      case MANAGE_INVESTMENTS_CONSTANTS.TOPUP.SRS_OPERATOR.UOB:
+        this.formatedAccountNumber = conformToMask(
+          accountNumber,
+          RegexConstants.operatorMask.UOB,
+          { guide: false });
+        break;
+    }
+    return this.formatedAccountNumber;
+  }
+
+  getSrsAccountDetails(): Observable<ISrsAccountDetails> {
+    const srsAccountDetailsSession = this.getSrsFormData();
+    if (srsAccountDetailsSession) {
+      return Observable.of(srsAccountDetailsSession);
+    } else {
+      return this.investmentApiService.getSrsAccountDetails().map((data: any) => {
+        if (data && data.objectList && data.objectList.accountNumber &&
+          data.objectList.srsBankOperator && data.objectList.srsBankOperator.name) {
+          const srsAccountDetails = {
+            srsAccountNumber: this.srsAccountFormat(data.objectList.accountNumber, data.objectList.srsBankOperator.name),
+            srsOperator: data.objectList.srsBankOperator.name
+          };
+          this.setSrsAccountDetails(srsAccountDetails);
+          return srsAccountDetails;
+        } else {
+          return null;
+        }
+      },
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
+    }
+  }
+
+  setSrsAccountDetails(srsAccountDetails: ISrsAccountDetails) {
+    this.manageInvestmentsFormData.srsAccountDetails = srsAccountDetails;
     this.commit();
   }
 

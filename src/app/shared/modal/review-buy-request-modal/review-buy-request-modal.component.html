@@ -29,7 +29,8 @@
     </div>
   </div>
   <div class="instruction-div">
-    <ng-container *ngIf="fundDetails['isAmountExceedBalance']">
+    <ng-container
+      *ngIf="fundDetails['portfolio']['fundingTypeValue'] === 'Cash' && fundDetails['isAmountExceedBalance']">
       <div class="top-up-amt-text">{{'REVIEW_BUY_REQUEST.TOP_UP_AMOUNT' | translate}}</div>
       <div class="deduct-cash-box">
         <div class="deduct-amount">{{requestAmount - cashBalance | formatCurrency}}</div>
@@ -38,6 +39,28 @@
         </div>
       </div>
     </ng-container>
+
+    <ng-container *ngIf="fundDetails['portfolio']['fundingTypeValue'] === 'SRS'">
+      <div class="deduct-srs-box">
+        <div class="mr15"><img src="assets/images/investment-account/top-up-srs-info.svg" /></div>
+        <div>
+          <span>{{oneTimeMonthlyInfo}}</span>
+        </div>
+      </div>
+      <div class="srs-details">
+        <div class="top-up-srs-text-lbl pb20">{{'REVIEW_BUY_REQUEST.SRS_LBL' | translate}}</div>
+        <div class="flex-col">
+          <div class="srs-operator-lbl">{{'REVIEW_BUY_REQUEST.SRS_OPERATOR' | translate}}</div>
+          <div class="srs-bank">{{fundDetails.srsDetails.srsOperator}}</div>
+        </div>
+        <div class="flex-col mt10">
+          <div class="srs-operator-lbl">{{'REVIEW_BUY_REQUEST.SRS_ACCOUNT_NUMBER' | translate}}</div>
+          <div  class="srs-bank">{{fundDetails.srsDetails.srsAccountNumber.conformedValue}}</div>
+        </div>
+      </div>
+    </ng-container>
+
+
     <div [ngClass]="fundDetails['isAmountExceedBalance']? 'note-text': 'note-text2'">
       {{'REVIEW_BUY_REQUEST.NOTE' | translate}}</div>
     <div *ngFor="let note of noteArray, let i = index;" class="note-list">
