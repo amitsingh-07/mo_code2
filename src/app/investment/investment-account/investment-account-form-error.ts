@@ -235,7 +235,7 @@ export class InvestmentAccountFormError {
     radioTin: {
       required: {
         // tslint:disable-next-line:no-duplicate-string
-        errorTitle: 'Select a option',
+        errorTitle: 'Select an option',
         errorMessage: 'Select Yes / No option for Taxpayer Identification Number question.'
       }
     },
