@@ -87,6 +87,7 @@
     "SRS_MSG": "SRS account portfolio currently handled offline.",
     "SRS_HYPERLINK": "Click here",
     "SRS": "SRS",
+    "SRS_JOINT_ACCOUNT_REMINDER":"Please note that Joint Investment Accounts are currently handled offline.",
     "MP_WALKTHROUGH": {
       "NEW_INVESTMENT_UPDATE": "We’ve new investment updates.",
       "SHOW_ME_AROUND": "Show me around!",
