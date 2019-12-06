@@ -252,12 +252,11 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
   payOffYearValid(age: number): ValidatorFn {
     const currentDate = new Date();
     const min = currentDate.getFullYear();
-    const max = min + age;
     return (control: AbstractControl): { [key: string]: boolean } | null => {
       if (control.value === null || control.value === '') {
         return null;
       }
-      if (control.value !== undefined && (isNaN(control.value) || control.value < min || control.value >= max)) {
+      if (control.value !== undefined && (isNaN(control.value) || control.value < min)) {
         return { pattern: true };
       }
       return null;
