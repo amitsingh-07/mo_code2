@@ -20,9 +20,9 @@ export class ComprehensiveFormError {
                     errorMessage: 'Date of Birth'
                 },
                 ngbDate: {
-                           errorTitle: 'Invalid Date of Birth',
-                          errorMessage: 'Valid Date of Birth'
-                        },
+                    errorTitle: 'Invalid Date of Birth',
+                    errorMessage: 'Valid Date of Birth'
+                }
             },
             nationalityStatus: {
                 required: {
@@ -73,8 +73,8 @@ export class ComprehensiveFormError {
                 },
                 ngbDate: {
                     errorTitle: 'Invalid Date of Birth',
-                   errorMessage: 'Valid Date of Birth'
-                 },
+                    errorMessage: 'Valid Date of Birth'
+                }
             },
             nation: {
                 required: {
