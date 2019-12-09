@@ -146,7 +146,7 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy, AfterVie
       nation: [value.nation]
     });
   }
-  selectLocation(status, i) {
+  selectLocation(status, i) { 
     const relationship = status ? status : '';
     this.EducationPreferenceForm.controls['preference']['controls'][i].controls.location.setValue(relationship);
     this.EducationPreferenceForm.controls['preference']['controls'][i].markAsDirty();
@@ -201,6 +201,9 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy, AfterVie
     this.comprehensiveService.openTooltipModal(toolTipParams);
   }
   changeSlide($event, i) {
+    if ($event.target.value >= 100) {
+      $event.target.value = 100;
+    }
     this.ciMultiplierSliders['_results'][i].writeValue($event.target.value);
   }
 }
