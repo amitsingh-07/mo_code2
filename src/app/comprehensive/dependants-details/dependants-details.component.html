@@ -116,10 +116,9 @@
             <div class="datepicker-control datepicker-upside">
               <div class="input-group date-picker mb0"
                 [ngClass]="{'inline-error': !dependentMappingList.get('dateOfBirth').valid && submitted, 'view-mode': viewMode}">
-                <input readonly (click)="d.toggle()" class="form-control"
-                  placeholder="{{'COMMON.LBL_SELECT' | translate}}" formControlName="dateOfBirth" name="dp"
-                  ngbDatepicker #d="ngbDatepicker" required id="myDependantDOB" appComprehensiveViewMode="{{viewMode}}"
-                  mode=1>
+                <input [minDate]="minDate" [maxDate]="maxDate" placeholder="DD/MM/YYYY" class="form-control"
+                  maxLength="10" formControlName="dateOfBirth" name="dp" ngbDatepicker #d="ngbDatepicker" required
+                  id="myDependantDOB" appComprehensiveViewMode="{{viewMode}}" mode=1>
                 <div class="input-group-append">
                   <button (click)="d.toggle()" class="btn btn-primary" type="button" id="moDpdnt2CalndrDob"
                     appComprehensiveViewMode="{{viewMode}}" mode=1>

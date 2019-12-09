@@ -43,13 +43,13 @@
             *ngIf="bankAccountNo && withdrawType.id !== WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.TRANSFER_TO_BANK_AC_NO' | translate}}</span>
           <span class="values" *ngIf="bankAccountNo">{{bankAccountNo}}</span>
           <span class="caption"
-            *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID && srsAccountInfo && srsAccountInfo.srsBankOperator">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.SRS_OPERATOR' | translate}}</span>
+            *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID && srsAccountInfo && srsAccountInfo.srsOperator">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.SRS_OPERATOR' | translate}}</span>
           <span class="values"
-            *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID && srsAccountInfo && srsAccountInfo.srsBankOperator">{{srsAccountInfo.srsBankOperator.name}}</span>
+            *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID && srsAccountInfo && srsAccountInfo.srsOperator">{{srsAccountInfo.srsOperator}}</span>
           <span class="caption"
-            *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID && srsAccountInfo && srsAccountInfo.accountNumber">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.SRS_ACC_NUMBER' | translate}}</span>
+            *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID && srsAccountInfo && srsAccountInfo.srsAccountNumber">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.SRS_ACC_NUMBER' | translate}}</span>
           <span class="values"
-            *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID && srsAccountInfo && srsAccountInfo.accountNumber">{{srsAccountInfo.accountNumber}}</span>
+            *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID && srsAccountInfo && srsAccountInfo.srsAccountNumber">{{srsAccountInfo.srsAccountNumber.conformedValue}}</span>
           <span class="caption"
             *ngIf="withdrawType.id !== WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID && portfolio">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.CASH_ACC_REF_CODE' | translate}}
           </span>
@@ -60,7 +60,9 @@
           <span class="values" *ngIf="bankAccountNo">{{bankAccountNo}}</span>
 
           <!-- Re-Balancing -->
-          <div *ngIf="portfolio.portfolioStatus === 'REBALANCING'" class="rebalancing-info">
+          <div
+            *ngIf="portfolio.portfolioStatus === 'REBALANCING' && withdrawType.id !== WITHDRAW_CONSTANTS.CASH_TO_BANK_TYPE_ID"
+            class="rebalancing-info">
             <div class="mr15 info-icon"><img src="assets/images/investment-account/rebalance_info.svg" /></div>
             <div>
               <div>{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.RE_BALANCE.TITLE' | translate}}</div>

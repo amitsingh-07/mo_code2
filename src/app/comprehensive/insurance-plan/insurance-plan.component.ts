@@ -207,6 +207,9 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
             form.value.otherLongTermCareInsuranceAmount = 0;
           }
         }
+        if(!form.value.haveHospitalPlan){
+          form.value.haveHospitalPlanWithRider = 0;
+        }
 
         form.value.enquiryId = this.comprehensiveService.getEnquiryId();
 

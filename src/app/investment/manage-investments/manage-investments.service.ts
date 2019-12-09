@@ -476,10 +476,6 @@ export class ManageInvestmentsService {
     return this.investmentApiService.getMonthlyInvestmentInfo(customerPortfolioId);
   }
 
-  getOneTimeInvestmentInfo(customerProfileId) {
-    return this.investmentApiService.getOneTimeInvestmentInfo(customerProfileId);
-  }
-
   setToastMessage(toastMessage) {
     this.manageInvestmentsFormData.toastMessage = toastMessage;
     this.commit();

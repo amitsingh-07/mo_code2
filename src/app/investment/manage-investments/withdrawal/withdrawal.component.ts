@@ -79,9 +79,11 @@ export class WithdrawalComponent implements OnInit {
     };
     this.buildForm();
     this.setSelectedPortfolio();
-    this.investmentAccountService.getSrsAccountDetails().subscribe((data) => {
-      if (data.objectList) {
-        this.srsAccountInfo = data.objectList;
+    this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
+      if (data) {
+        this.srsAccountInfo = data;
+      } else {
+        this.srsAccountInfo = null;
       }
     });
   }
@@ -220,7 +222,7 @@ export class WithdrawalComponent implements OnInit {
 
   buildFormForPortfolioType() {
     const roundOffValue = this.withdrawForm.get('withdrawPortfolio').value.portfolioValue
-      ? parseFloat(this.decimalPipe.transform(this.withdrawForm.get('withdrawPortfolio').value.portfolioValue, '1.0-2').replace(/,/g, ''))
+      ? parseFloat(this.decimalPipe.transform(this.withdrawForm.get('withdrawPortfolio').value.portfolioValue, '1.2-2').replace(/,/g, ''))
       : 0;
     this.isRedeemAll = (roundOffValue <
       (MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT)
@@ -406,7 +408,7 @@ export class WithdrawalComponent implements OnInit {
     } else {
       const amtControl = this.withdrawForm.get('withdrawAmount');
       if (amtControl) {
-        amtControl.setValue(amtControl.value.replace(/,/g, '').trim());
+        amtControl.setValue(amtControl.value.toString().replace(/,/g, '').trim());
       }
       this.manageInvestmentsService.setWithdrawalTypeFormData(form.getRawValue(), this.isRedeemAll);
       if (
