@@ -1,3 +1,36 @@
-<p>
-  financial-literacy-team works!
-</p>
+<div class="financial-literacy__wrapper">
+  <div class="financial-literacy__header">
+    <div class="financial-literacy__header--bg">
+    </div>
+    <div class="financial-literacy__header--inner">
+      <div class="sub-navigation">
+        <div class="sub-navigation--inner">
+          <span routerLink="/">Home</span>
+          <i class="material-icons">keyboard_arrow_right</i>
+          <span routerLink="/works/financial-literacy">Financial Literacy Team</span>
+        </div>
+      </div>
+      <div class="header--title">
+        <h1>{{ 'FINANCIAL_LITERACY_TEAM.TITLE' | translate}}</h1>
+      </div>
+    </div>
+  </div>
+  <div class="financial-literacy__container">
+    <div class="financial-literacy__section secondary">
+      <div class="financial-literacy__section--inner">
+        <h2 class="section--title">{{ 'FINANCIAL_LITERACY_TEAM.PEOPLE.TITLE' | translate}}</h2>
+        <div class="financial-literacy__people" *ngFor="let individual of people">
+          <div class="financial-literacy__people--img">
+            <img src="/assets/images/corporate/financial-literacy-team/{{individual.DP}}" />
+          </div>
+          <div class="financial-literacy__people--desc">
+            <p class="name">{{individual.NAME}}</p>
+            <p class="job">{{individual.TITLE}}</p>
+            <div class="financial-literacy__people--cv" [innerHTML]="individual.CV">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

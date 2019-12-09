@@ -8,9 +8,9 @@ describe('FinancialLiteracyTeamComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FinancialLiteracyTeamComponent ]
+      declarations: [FinancialLiteracyTeamComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

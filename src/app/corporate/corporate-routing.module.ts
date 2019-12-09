@@ -5,8 +5,8 @@ import { FinancialLiteracyTeamComponent } from './financial-literacy-team/financ
 import { FinancialWellnessProgrammeComponent } from './financial-wellness-programme/financial-wellness-programme.component';
 
 const routes: Routes = [
-  { path: 'financial-wellness-programme', component: FinancialWellnessProgrammeComponent },
-  { path: 'financial-literacy-team', component: FinancialLiteracyTeamComponent },
+  { path: '', component: FinancialWellnessProgrammeComponent },
+  { path: 'financial-literacy', component: FinancialLiteracyTeamComponent },
   { path: '**', redirectTo: '/page-not-found' }
 ];
 
