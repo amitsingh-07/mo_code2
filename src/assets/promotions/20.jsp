@@ -20,12 +20,12 @@
             </tr>
             <tr>
                 <td class="text--center">$500</td>
-                <td class="text--center">$150</td>
+                <td class="text--center">$100</td>
                 <td class="text--center">$150</td>
             </tr>
             <tr>
                 <td class="text--center">$1,200</td>
-                <td class="text--center">$500</td>
+                <td class="text--center">$400</td>
                 <td class="text--center">$500</td>
             </tr>
             <tr>
