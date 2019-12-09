@@ -205,10 +205,12 @@ button:active:focus {
 
 .btn.btn-primary:hover {
   background-color: #0de0de !important;
-  @include allmobiles{
+
+  @include allmobiles {
     background-color: #00c5c4 !important;
   }
-  @include tablet{
+
+  @include tablet {
     background-color: #00c5c4 !important;
   }
 }
@@ -912,7 +914,9 @@ button:active:focus {
 
 // dropdown-item with 24px gap 
 .dropdown-control {
-  .dropdown {
+
+  .dropdown,
+  .dropup {
     .btn-dropdown {
       padding-right: 27px;
       max-height: 52px;
