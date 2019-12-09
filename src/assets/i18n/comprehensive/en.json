@@ -332,7 +332,7 @@
         "OTHER_LOAN_TITLE": "Other Loan Payments",
         "OTHER_LOAN_MESSAGE": "These are non-mortgage related loan repayments, such as renovation loans, car loans, credit lines, credit cards",
         "LIVING_EXPENSES_TITLE": "Living Expenses",
-        "LIVING_EXPENSES_MESSAGE": "These are monthly personal expenses plus your share of household expenses, excluding mortgage and loan repayments.",
+        "LIVING_EXPENSES_MESSAGE": "These include monthly personal expenses such as food, transport, mobile subscription plans, clothes, personal care, entertainment, insurance, and your share of household expenses such as utilities, groceries, childcare/school/tuition fees, and allowances.<br><br>It should exclude mortgage and loan repayments as well as insurance meant for savings.",
         "MORTAGE_PAYMENT_TITLE": "Mortgage Payment",
         "MORTAGE_PAYMENT_MESSAGE": "This is your share of the monthly mortgage payment for investment/ other properties.",
         "HOME_LOAN_TITLE": "Home Loan Payment",
@@ -406,7 +406,7 @@
       "MONTH": "mth",
       "TOOLTIP": {
         "RSP_TITLE": "Regular Saving Plan",
-        "RSP_MESSAGE": "This refers to any fixed amount that you have committed regularly into buying an investment such as shares, bonds, unit trusts, etc.",
+        "RSP_MESSAGE": "This refers to any fixed amount that you have committed to invest regularly in a fund/unit trust. Select the instrument that best fits the description of your fund/unit trust:-<br><br><span class='tooltip-semi-bold'>1. Equities -</span><span> Your Investments are mainly in shares or stocks of companies listed on stock exchanges</span><br><br><span class='tooltip-semi-bold'>2. Bonds - </span><span>Your Investments are mainly in government or corporate bonds</span><br><br><span class='tooltip-semi-bold'>3. Alternatives -</span><span> Your Investments are mainly in derivatives, commodities, real estate, private equity etc.</span><br><br><span class='tooltip-semi-bold'>4. Balanced -</span><span> Your Investments are in a combination of equities and bonds in an almost equivalent proportion</span><br><br><span class='tooltip-semi-bold'>5. Multi Assets -</span><span> Your Investments are in a combination of equities and bonds in an almost equivalent proportion with exposure to alternatives</span><br><br>For endowment plans, please input it on the last page as Retirement Income.",
         "OTHER_RSP_TITLE": "Other Regular Saving Plan",
         "OTHER_RSP_MESSAGE": "This refers to any fixed amount that you have committed regularly into buying an investment such as shares, bonds, unit trusts, etc."
       },
@@ -533,7 +533,7 @@
         "OTHER_ASSETS_TITLE": "Other Assets",
         "OTHER_ASSETS_MESSAGE": "Content Will be Updated",
         "INVESTMENT_TITLE": "Investments",
-        "INVESTMENT_MESSAGE": "Financial instruments you purchased with the expectation of obtaining an income or profit. Capital and returns are not guaranteed. Generally, the higher the expected return, the higher the level of risk."
+        "INVESTMENT_MESSAGE": "Select the instrument that best fits the description of your investment:-<br><br><span class='tooltip-semi-bold'>1. Equities-</span><span> Refers to shares or stocks of companies listed on stock exchanges.</span><br><br><span class='tooltip-semi-bold'>2. Bonds-</span> <span>Refers to government or corporate bonds</span><br><br><span class='tooltip-semi-bold'>3. Alternatives-</span><span> Refers to derivatives, commodities, real estate, private equity etc.</span><br><br><span class='tooltip-semi-bold'>4. Balanced-</span><span> Refers to a fund/unit trust that invests in a combination of equities and bonds in an almost equivalent proportion</span><br><br><span class='tooltip-semi-bold'>5. Multi Assets-</span> <span>Refers to a fund/unit trust that invests in a combination of equities and bonds in an almost equivalent proportion with exposure to alternatives</span>"
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
