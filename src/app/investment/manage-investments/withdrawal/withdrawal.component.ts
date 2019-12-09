@@ -38,6 +38,7 @@ export class WithdrawalComponent implements OnInit {
   isRequestSubmitted = false;
   entitlements: any;
   userProfileInfo;
+  srsAccountInfo: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -78,6 +79,13 @@ export class WithdrawalComponent implements OnInit {
     };
     this.buildForm();
     this.setSelectedPortfolio();
+    this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
+      if (data) {
+        this.srsAccountInfo = data;
+      } else {
+        this.srsAccountInfo = null;
+      }
+    });
   }
 
   // Set selected portfolio's entitlements, cash balance
@@ -90,7 +98,9 @@ export class WithdrawalComponent implements OnInit {
         return portfolio.customerPortfolioId === customerPortfolioId;
       });
       this.setDropDownValue('withdrawPortfolio', data);
-      this.setWithdrawTypeAndAmt();
+      if (data.portfolioType !== 'SRS') {
+        this.setWithdrawTypeAndAmt();
+      }
     }
   }
 
@@ -120,6 +130,7 @@ export class WithdrawalComponent implements OnInit {
           switch (value.id) {
             case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.PORTFOLIO_TO_CASH_TYPE_ID:
             case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.PORTFOLIO_TO_BANK_TYPE_ID:
+            case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.PORTFOLIO_TO_SRS_TYPE_ID:
               this.buildFormForPortfolioType();
               this.isFromPortfolio = true;
               break;
@@ -265,9 +276,15 @@ export class WithdrawalComponent implements OnInit {
     // Set the entitlements based on the selected portfolio
     if (key === 'withdrawPortfolio') {
       this.entitlements = value['entitlements'];
+      this.entitlements.portfolioType = value.portfolioType;
       this.withdrawForm.controls.withdrawType.value = null;
       this.cashBalance = parseFloat(this.decimalPipe.transform(value.cashAccountBalance || 0, '1.2-2').replace(/,/g, ''));
       this.withdrawForm.removeControl('withdrawAmount');
+      if (value.portfolioType === 'SRS') {
+        this.withdrawForm.controls.withdrawType.value = MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.WITHDRAWAL_TYPES[3];
+        this.buildFormForPortfolioType();
+        this.isFromPortfolio = true;
+      }
     }
   }
 
@@ -284,6 +301,7 @@ export class WithdrawalComponent implements OnInit {
     ref.componentInstance.portfolioValue = this.formValues.withdrawPortfolio.portfolioValue;
     ref.componentInstance.portfolio = this.formValues.withdrawPortfolio;
     ref.componentInstance.userInfo = this.signUpService.getUserProfileInfo();
+    ref.componentInstance.srsAccountInfo = this.srsAccountInfo;
     ref.componentInstance.confirmed.subscribe(() => {
       ref.close();
       this.manageInvestmentsService.setWithdrawalTypeFormData(form.getRawValue(), this.isRedeemAll);
@@ -390,7 +408,7 @@ export class WithdrawalComponent implements OnInit {
     } else {
       const amtControl = this.withdrawForm.get('withdrawAmount');
       if (amtControl) {
-        amtControl.setValue(amtControl.value.replace(/,/g, '').trim());
+        amtControl.setValue(amtControl.value.toString().replace(/,/g, '').trim());
       }
       this.manageInvestmentsService.setWithdrawalTypeFormData(form.getRawValue(), this.isRedeemAll);
       if (
@@ -438,3 +456,4 @@ export class WithdrawalComponent implements OnInit {
   }
 
 }
+

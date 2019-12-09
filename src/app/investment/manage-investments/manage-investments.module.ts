@@ -1,3 +1,4 @@
+
 import { NouisliderModule } from 'ng2-nouislider';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
@@ -18,9 +19,6 @@ import {
 import { AssetAllocationComponent } from './asset-allocation/asset-allocation.component';
 import { HoldingsComponent } from './holdings/holdings.component';
 import { InvestmentOverviewComponent } from './investment-overview/investment-overview.component';
-import {
-  SRSOfflineErrorModalComponent
-} from './investment-overview/srs-offline-error-modal/srs-offline-error-modal.component';
 import { ManageInvestmentsRoutingModule } from './manage-investments-routing.module';
 import { TopUpComponent } from './top-up/top-up.component';
 import { TopupStatusComponent } from './topup-status/topup-status.component';
@@ -71,7 +69,6 @@ export function createTranslateLoader(http: HttpClient) {
     TopupStatusComponent,
     InvestmentOverviewComponent,
     YourPortfolioComponent,
-    TopupStatusComponent,
     ConfirmWithdrawalModalComponent,
     ForwardPricingModalComponent,
     AddBankModalComponent,
@@ -81,11 +78,10 @@ export function createTranslateLoader(http: HttpClient) {
     TransactionsComponent,
     HoldingsComponent,
     AssetAllocationComponent,
-    RenameInvestmentModalComponent,
-    SRSOfflineErrorModalComponent
+    RenameInvestmentModalComponent
   ],
   entryComponents: [ConfirmWithdrawalModalComponent, AddBankModalComponent, ForwardPricingModalComponent,
-    RenameInvestmentModalComponent, SRSOfflineErrorModalComponent],
+    RenameInvestmentModalComponent],
   providers: [CurrencyPipe, FormatCurrencyPipe]
 })
 export class ManageInvestmentsModule {

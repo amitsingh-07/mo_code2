@@ -13,10 +13,6 @@
         </div>
       </div>
       <div class="col-lg-6 col-md-6 padding-none">
-        <div class="srs-div">
-          <img src="assets/images/alert-black.svg" />
-          <div class="srs-note" innerHTML="{{'TOPUP.SRS_NOTE' | translate}}"></div>
-        </div>
         <form id="myFinancialsForm" name="myFinancialsForm" [formGroup]="topForm">
           <div class="flex-row">
             <div class="col-lg-12 col-md-12 pl0 pr0">
@@ -89,20 +85,20 @@
                         <div name="totalLiabilities">
                           <input class="input-control" type="text" appCurrencyInput maxLength="6"
                             #oneTimeInvestmentAmount value="0" formControlName="oneTimeInvestmentAmount"
-                            (keyup)="validateAmonut(topForm.controls.oneTimeInvestmentAmount.value)"
+                            (keyup)="validateAmount(topForm.controls.oneTimeInvestmentAmount.value)"
                             id="onetime_investment">
                         </div>
                       </div>
                     </div>
                   </div>
                   <!-- Monthlyinvestment -->
-                  <div class="flex-row mt10" *ngIf="showmonthlyInvestmentAmount">
+                  <div class="flex-row mt10" *ngIf="showMonthlyInvestmentAmount">
                     <div class="flex-col-12">
                       <div class="form-control form-control-right">
                         <i id="topup_symb">$</i>
                         <input type="text" class="input-control" appCurrencyInput maxLength="6" #MonthlyInvestmentAmount
                           value="0" formControlName="MonthlyInvestmentAmount" id="Monthlyinvestment"
-                          (keyup)="validateAmonut(topForm.controls.MonthlyInvestmentAmount.value)">
+                          (keyup)="validateAmount(topForm.controls.MonthlyInvestmentAmount.value)">
                         <i class="right year">/ mth</i>
                       </div>
                     </div>
