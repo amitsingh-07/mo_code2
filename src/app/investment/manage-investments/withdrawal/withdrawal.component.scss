@@ -142,12 +142,12 @@ app-withdrawal {
         color: $crusta-orange-color;
       }
     }
+  }
 
-    .form-control {
-      .input-control {
-        #withdraw-type-srs {
-          text-align: left;
-        }
+  .form-control {
+    .input-control {
+      &#withdraw-type-srs {
+        text-align: left !important;
       }
     }
   }
