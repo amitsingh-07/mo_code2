@@ -32,10 +32,10 @@
         <span class="head">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.WITHDRAW_DETAILS' | translate}}</span>
         <div class="caption-values">
           <!-- PORTFOLIO NAME -->
-          <span *ngIf="portfolio">
+          <span>
             <span class="caption">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.PORTFOLIO_NAME' | translate}}
             </span>
-            <span class="values capital-letter" *ngIf="portfolio">{{portfolio['portfolioName']}}</span>
+            <span class="values capital-letter">{{portfolio['portfolioName']}}</span>
           </span>
           <!-- CASH ACCOUNT REF CODE -->
           <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID ||
@@ -54,12 +54,12 @@
           <!-- SRS OPERATOR -->
           <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID">
             <span class="caption">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.SRS_OPERATOR' | translate}}</span>
-            <span class="values">{{srsAccountInfo.srsOperator}}</span>
+            <span class="values">{{srsAccountInfo?.srsOperator}}</span>
           </span>
           <!-- SRS ACCOUNT NUMBER -->
           <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID">
             <span class="caption">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.SRS_ACC_NUMBER' | translate}}</span>
-            <span class="values">{{srsAccountInfo.srsAccountNumber.conformedValue}}</span>
+            <span class="values">{{srsAccountInfo?.srsAccountNumber?.conformedValue}}</span>
           </span>
 
 
