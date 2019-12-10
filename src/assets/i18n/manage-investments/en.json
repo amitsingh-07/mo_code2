@@ -239,8 +239,8 @@
         "PORTFOLIO_REF_NO": "Portfolio Reference No. :",
         "CASH_ACC_REF_CODE": "Cash Account (Ref Code):",
         "TRANSFER_TO_BANK_AC_NO": "Transfer to Bank Account No. :",
-        "SRS_OPERATOR": "Srs Operator:",
-        "SRS_ACC_NUMBER": "Srs Account Number:",
+        "SRS_OPERATOR": "SRS Operator:",
+        "SRS_ACC_NUMBER": "SRS Account Number:",
         "RE_BALANCE": {
           "TITLE": "Quarterly Rebalancing In-progress",
           "DESC": "Please note that this portfolio is being rebalanced. This process will be completed in 6 to 7 working days.",
