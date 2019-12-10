@@ -173,8 +173,7 @@
     "ROAD_MAP": {
       "TITLE": "Your Road Map"
     },
-    "NATIONALITY": [
-      {
+    "NATIONALITY": [{
         "text": "Singaporean",
         "value": "singaporean"
       },
@@ -280,8 +279,7 @@
       "ADD_DIVIDENDS_NOTE": "You have added all types of annual income",
       "BUCKET_NOTE": "Your annual income bucket",
       "BUCKET_NOTE_TAKEHOME": "(take-home)",
-      "EMPLOYMENT_TYPE_LIST": [
-        {
+      "EMPLOYMENT_TYPE_LIST": [{
           "text": "Employed",
           "value": "employed"
         },
@@ -332,7 +330,7 @@
         "OTHER_LOAN_TITLE": "Other Loan Payments",
         "OTHER_LOAN_MESSAGE": "These are non-mortgage related loan repayments, such as renovation loans, car loans, credit lines, credit cards",
         "LIVING_EXPENSES_TITLE": "Living Expenses",
-        "LIVING_EXPENSES_MESSAGE": "These include monthly personal expenses such as food, transport, mobile subscription plans, clothes, personal care, entertainment, insurance, and your share of household expenses such as utilities, groceries, childcare/school/tuition fees, and allowances.<br><br>It should exclude mortgage and loan repayments as well as insurance meant for savings.",
+        "LIVING_EXPENSES_MESSAGE": "These include monthly personal expenses (e.g. food, transport, mobile subscription plans, clothes, personal care, entertainment, insurance) and your share of household expenses (e.g. utilities, groceries, childcare/school/tuition fees, allowances).<br><br>It should exclude mortgage and loan repayments as well as insurance meant for savings.",
         "MORTAGE_PAYMENT_TITLE": "Mortgage Payment",
         "MORTAGE_PAYMENT_MESSAGE": "This is your share of the monthly mortgage payment for investment/ other properties.",
         "HOME_LOAN_TITLE": "Home Loan Payment",
@@ -358,7 +356,7 @@
       "AGE_NEXT_BIRTHDAY": "Age Next Birthday",
       "DATE_OF_BIRTH": "Date of Birth",
       "NATIONALITY": "Nationality",
-      "GROSS_MONTHLY_SALARY":"Gross Monthly Salary",
+      "GROSS_MONTHLY_SALARY": "Gross Monthly Salary",
       "EMPLOYMENT_TYPE": "Employment Type",
       "AMOUNT": "Amount",
       "YEARS_LATER": "Years later",
@@ -412,8 +410,7 @@
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
-    "INVESTMENT_TYPE_LIST": [
-      {
+    "INVESTMENT_TYPE_LIST": [{
         "text": "MoneyOwl - Equity",
         "value": "MoneyOwl - Equity"
       },
@@ -478,8 +475,7 @@
       "ADD_INVESTMENT": "Add Other Investment",
       "OTHER_ASSETS": "Other Assets",
       "OTHER_ASSETS_HINT": "e.g. Jewellery",
-      "INVESTMENT_TYPE_LIST": [
-        {
+      "INVESTMENT_TYPE_LIST": [{
           "text": "MoneyOwl - Equity",
           "value": "MoneyOwl - Equity"
         },
@@ -591,8 +587,7 @@
     },
     "ERROR_MODAL_TITLE": {
       "MY_PROFILE": "My Profile",
-      "DEPENDANT_DETAIL": [
-        {
+      "DEPENDANT_DETAIL": [{
           "name": "Dependant Details 1"
         },
         {
