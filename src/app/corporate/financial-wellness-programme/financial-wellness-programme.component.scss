@@ -1,0 +1,112 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.financial-wellness__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: $white-color;
+
+  @include minMobilemaxPhablet {
+    padding-bottom: 30px;
+  }
+
+  .financial-wellness__inner-content {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1024px;
+    margin-bottom: 30px;
+    justify-content: space-between;
+
+    @include minPhabletmaxTablet {
+      flex-direction: column;
+
+    }
+
+    @include minMobilemaxPhablet {
+      flex-direction: column;
+      margin-bottom: 0px;
+    }
+
+    @include min300max325 {
+      flex-direction: column;
+      margin-bottom: 0px;
+    }
+  }
+
+  .financial-wellness__form-container {
+    position: relative;
+    display: block;
+    flex-basis: calc(100% - 390px);
+
+    .dropdown-toggle {
+      color: $dark-grey-color;
+      padding-right: 30px;
+    }
+
+    textarea {
+      margin-top: 10px;
+      height: 200px;
+      resize: none;
+      color: $dark-grey-color;
+    }
+
+    p {
+      font-family: $muli-semi-bold;
+      color: $dark-grey-color;
+      font-style: italic;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      line-height: 1.2;
+      letter-spacing: -0.1px;
+    }
+
+    .error--msg {
+      color: $red-color;
+
+      &.success {
+        color: $green-color;
+      }
+    }
+
+    .dropdown-menu {
+      width: 100%;
+
+      .dropdown-item {
+        white-space: normal;
+
+        @include minMobilemaxPhablet {
+          padding: 0.75rem 1.5rem;
+        }
+      }
+    }
+  }
+
+  .light-border {
+    border-radius: 6px;
+    border: 1px solid #bcd1d2;
+    background-color: $white-color;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    color: #00a7a7;
+    font-family: $muli-regular;
+    font-size: 16px;
+  }
+
+  .dark-btn {
+    line-height: normal;
+    letter-spacing: -0.17px;
+    color: $white-color;
+    font-family: $muli-bold;
+    font-size: 22px;
+  }
+
+  .green-text {
+    color: $app-backgrnd-color;
+  }
+}

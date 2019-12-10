@@ -1,3 +1,73 @@
-<p>
-  financial-wellness-programme works!
-</p>
+<div class="financial-wellness__content">
+  <div class="financial-wellness__inner-content">
+    <div class="financial-wellness__form-container">
+      <form id="financialWellnessForm" name="financialWellnessForm" [formGroup]="financialWellnessForm">
+        <div class="row">
+          <div class="col-sm-6">
+            <input type="text" class="form-control light-border mb20 p-3" placeholder="First Name *"
+              formControlName="firstName" required>
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="form-control light-border mb20 p-3" placeholder="Last Name *"
+              formControlName="lastName" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <input type="text" class="form-control light-border mb20 p-3" placeholder="Job Function *"
+              formControlName="jobFunction" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <input type="text" class="form-control light-border mb20 p-3" placeholder="Company Name *"
+              formControlName="companyName" required>
+          </div>
+          <div class="col-sm-6">
+            <div class="dropdown-control light-border mb10">
+              <div ngbDropdown id="companySizeDropDown">
+                <button class="btn btn-dropdown form-control" id="dropdownSubject" ngbDropdownToggle>
+                  <span [ngClass]="{'green-text': companySize === companySizePreset}">{{companySize}}</span>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdowncompanySize">
+                  <button class="dropdown-item" *ngFor="let in_companySize of companySizeItems"
+                    (click)="selectSize(in_companySize)">
+                    <span>{{in_companySize.item}}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <input type="text" class="form-control light-border mb20 p-3" formControlName="email" placeholder="Email *"
+              required>
+            <div *ngIf="financialWellnessForm.controls.email.invalid && financialWellnessForm.controls.email.dirty">
+              <p class="error--msg" *ngIf="financialWellnessForm.controls.email.errors.email">
+                {{emailErrorMessage.email}}</p>
+              <p class="error--msg" *ngIf="financialWellnessForm.controls.email.errors.required">
+                {{emailErrorMessage.required}}</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <input type="number" class="form-control light-border mb20 p-3" formControlName="phoneNumber"
+              placeholder="Phone Number *" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <p class="error--msg"
+              *ngIf="(financialWellnessForm.controls.firstName.invalid && financialWellnessForm.controls.firstName.dirty)||(financialWellnessForm.controls.lastName.invalid && financialWellnessForm.controls.lastName.dirty)||(financialWellnessForm.controls.jobFunction.invalid && financialWellnessForm.controls.jobFunction.dirty)||(financialWellnessForm.controls.phoneNumber.invalid && financialWellnessForm.controls.phoneNumber.dirty)">
+              {{ErrorMessage}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <button class="form-control btn btn-primary dark-btn">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
