@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 
-import { IFinancialWellnessProgramme } from './financial-wellness-programme/financial-wellness-programme.interface';
+import { ApiService } from './../../app/shared/http/api.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CorporateService {
-    constructor() { }
-    getCorporate(): IFinancialWellnessProgramme {
-        const getCorporate = {} as IFinancialWellnessProgramme;
-        return getCorporate;
+    constructor(private apiService: ApiService) { }
+
+    saveEnquiryForm(data: any) {
+        return this.apiService.saveEnquiryForm(data);
     }
 }

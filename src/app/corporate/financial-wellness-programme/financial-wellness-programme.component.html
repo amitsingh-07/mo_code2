@@ -41,14 +41,8 @@
         </div>
         <div class="row">
           <div class="col-sm-6">
-            <input type="text" class="form-control light-border mb20 p-3" formControlName="email" placeholder="Email *"
-              required>
-            <div *ngIf="financialWellnessForm.controls.email.invalid && financialWellnessForm.controls.email.dirty">
-              <p class="error--msg" *ngIf="financialWellnessForm.controls.email.errors.email">
-                {{emailErrorMessage.email}}</p>
-              <p class="error--msg" *ngIf="financialWellnessForm.controls.email.errors.required">
-                {{emailErrorMessage.required}}</p>
-            </div>
+            <input type="text" class="form-control light-border mb20 p-3" formControlName="emailAddress"
+              placeholder="Email *" required>
           </div>
           <div class="col-sm-6">
             <input type="number" class="form-control light-border mb20 p-3" formControlName="phoneNumber"
@@ -57,14 +51,24 @@
         </div>
         <div class="row">
           <div class="col-sm-12">
+            <div
+              *ngIf="financialWellnessForm.controls.emailAddress.invalid && financialWellnessForm.controls.emailAddress.dirty">
+              <p class="error--msg" *ngIf="financialWellnessForm.controls.emailAddress.errors.email">
+                {{emailErrorMessage.email}}</p>
+              <p class="error--msg" *ngIf="financialWellnessForm.controls.emailAddress.errors.required">
+                {{emailErrorMessage.required}}</p>
+            </div>
             <p class="error--msg"
               *ngIf="(financialWellnessForm.controls.firstName.invalid && financialWellnessForm.controls.firstName.dirty)||(financialWellnessForm.controls.lastName.invalid && financialWellnessForm.controls.lastName.dirty)||(financialWellnessForm.controls.jobFunction.invalid && financialWellnessForm.controls.jobFunction.dirty)||(financialWellnessForm.controls.phoneNumber.invalid && financialWellnessForm.controls.phoneNumber.dirty)">
               {{ErrorMessage}}</p>
+            <p class="error--msg success" *ngIf="sendSuccess === true">
+              {{'Successfully Saved'}}</p>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-12">
-            <button class="form-control btn btn-primary dark-btn">Submit</button>
+            <button class="form-control btn btn-primary dark-btn" (click)="save(financialWellnessForm)"
+              [disabled]="financialWellnessForm.invalid || submitted === true || companySize === companySizePreset">Submit</button>
           </div>
         </div>
       </form>

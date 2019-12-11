@@ -597,4 +597,12 @@ export class ApiService {
       );
   }
 
+  // Financial Wellness Programme Connect Us
+  saveEnquiryForm(payload) {
+    return this.http.post(apiConstants.endpoint.financialWellness, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
 }
