@@ -6,6 +6,8 @@
     </button>
     <div class="modal-body-message">
       <p></p>
+      <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID"
+        innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_PORTFOLIO_TO_SRS' | translate}}"></span>
       <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_CASH_TYPE_ID"
         innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_PORTFOLIO_TO_CASH' | translate}}"></span>
       <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID"
@@ -29,20 +31,42 @@
       <div class="withdraw-details">
         <span class="head">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.WITHDRAW_DETAILS' | translate}}</span>
         <div class="caption-values">
-          <span class="caption" *ngIf="portfolio">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.PORTFOLIO_NAME' | translate}}
+          <!-- PORTFOLIO NAME -->
+          <span>
+            <span class="caption">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.PORTFOLIO_NAME' | translate}}
+            </span>
+            <span class="values capital-letter">{{portfolio['portfolioName']}}</span>
           </span>
-          <span class="values capital-letter" *ngIf="portfolio">{{portfolio['portfolioName']}}</span>
-          <span class="caption"
-            *ngIf="withdrawType.id !== WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID && portfolio">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.CASH_ACC_REF_CODE' | translate}}
+          <!-- CASH ACCOUNT REF CODE -->
+          <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID ||
+                       withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_CASH_TYPE_ID ||
+                       withdrawType.id === WITHDRAW_CONSTANTS.CASH_TO_BANK_TYPE_ID">
+            <span class="caption">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.CASH_ACC_REF_CODE' | translate}}
+            </span>
+            <span class="values">{{portfolio['refNo']}}</span>
           </span>
-          <span class="values"
-            *ngIf="withdrawType.id !== WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID && portfolio">{{portfolio['refNo']}}</span>
-          <span class="caption"
-            *ngIf="bankAccountNo">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.TRANSFER_TO_BANK_AC_NO' | translate}}</span>
-          <span class="values" *ngIf="bankAccountNo">{{bankAccountNo}}</span>
+          <!-- BANK ACCOUNT NO -->
+          <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID ||
+                       withdrawType.id === WITHDRAW_CONSTANTS.CASH_TO_BANK_TYPE_ID">
+            <span class="caption">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.TRANSFER_TO_BANK_AC_NO' | translate}}</span>
+            <span class="values" *ngIf="bankAccountNo">{{bankAccountNo}}</span>
+          </span>
+          <!-- SRS OPERATOR -->
+          <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID">
+            <span class="caption">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.SRS_OPERATOR' | translate}}</span>
+            <span class="values">{{srsAccountInfo?.srsOperator}}</span>
+          </span>
+          <!-- SRS ACCOUNT NUMBER -->
+          <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_SRS_TYPE_ID">
+            <span class="caption">{{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.SRS_ACC_NUMBER' | translate}}</span>
+            <span class="values">{{srsAccountInfo?.srsAccountNumber?.conformedValue}}</span>
+          </span>
+
 
           <!-- Re-Balancing -->
-          <div *ngIf="portfolio.portfolioStatus === 'REBALANCING'" class="rebalancing-info">
+          <div
+            *ngIf="portfolio.portfolioStatus === 'REBALANCING' && withdrawType.id !== WITHDRAW_CONSTANTS.CASH_TO_BANK_TYPE_ID"
+            class="rebalancing-info">
             <div class="mr15 info-icon"><img src="assets/images/investment-account/rebalance_info.svg" /></div>
             <div>
               <div>{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.RE_BALANCE.TITLE' | translate}}</div>
@@ -59,7 +83,7 @@
       </div>
       <button type="button" (click)="confirmWithdrawal($event)" class="btn btn-primary-dark width100 mt5"
         id="incomeBtn">{{
-    'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.SUBMIT' | translate}}</button>
+      'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.SUBMIT' | translate}}</button>
     </div>
   </div>
 </div>

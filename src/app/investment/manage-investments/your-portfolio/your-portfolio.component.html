@@ -28,8 +28,8 @@
                 <div class="user_portfolio flex-col">
                   <div class="user_portfolio_lbl">{{portfolio.portfolioName}}</div>
                   <div class="flex-row space-between">
-                    <div class="portfolio-type flex align-center"><span class="portfolio-fund-type mr10">SRS</span>
-                      {{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type} }}
+                    <div class="portfolio-type flex align-center"><span *ngIf="portfolio?.fundingTypeValue === 'SRS'"
+                        class="portfolio-fund-type mr10">{{'YOUR_INVESTMENT.SRS' | translate}}</span>{{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type} }}
                     </div>
                     <div class="more-menu">
                       <div class="dropdown-control">
@@ -39,7 +39,7 @@
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                             <button class="dropdown-item"
                               [class.hide]="(option.value === 'TOPUP' && !portfolio.entitlements.showTopup)
-                                  || (option.value === 'WITHDRAWAL' && (!portfolio.entitlements.showWithdrawPvToBa && !portfolio.entitlements.showWithdrawPvToCa && !portfolio.entitlements.showWithdrawCaToBa))"
+                                  || (option.value === 'WITHDRAWAL' && (!portfolio.entitlements.showWithdrawPvToBa && !portfolio.entitlements.showWithdrawPvToCa && !portfolio.entitlements.showWithdrawCaToBa && !portfolio.entitlements.showWithdrawPvToSRS))"
                               [class.disabled]="(option.value === 'DELETE_PORTFOLIO' && !portfolio.entitlements.showDelete)"
                               *ngFor="let option of moreList; let i = index;" (click)="selectMoreOption(option)"
                               id="additional_declaration_sourse-drpdown-option-{{i}}">
@@ -52,10 +52,7 @@
                   </div>
                 </div>
               </div>
-
-
             </div>
-
           </div>
         </div>
       </div>
@@ -200,9 +197,16 @@
       </ngb-tab>
       <ngb-tab id="tab-2">
         <ng-template ngbTabTitle>
-          <div class="pending-request">
+          <div *ngIf="portfolio?.fundingTypeValue !== 'SRS'" class="pending-request">
             <div class="your-portfolio-tab-title"
               innerHTML="{{'YOUR_PORTFOLIO.PENDING_REQUESTS_CASH_ACCOUNT' | translate}}"></div>
+            <div class="circle" *ngIf="pendingBuyRequests && pendingBuyRequests.value">
+              <span>{{pendingBuyRequests.value.length}}</span>
+            </div>
+          </div>
+          <div *ngIf="portfolio?.fundingTypeValue === 'SRS'" class="pending-request">
+            <div class="your-portfolio-tab-title"
+              innerHTML="{{'YOUR_PORTFOLIO.PENDING_REQUESTS_SRS_ACCOUNT' | translate}}"></div>
             <div class="circle" *ngIf="pendingBuyRequests && pendingBuyRequests.value">
               <span>{{pendingBuyRequests.value.length}}</span>
             </div>
@@ -235,15 +239,16 @@
                       <div class="form-group-with-bg--content">
                         <div class="widthdrawal-content">
                           <div class="flex-col" *ngFor="let sellRequest of pendingSellRequests.value; let i = index;">
-                            <div class="processing-time">{{sellRequest.createdDate | date : "dd MMM, hh:mma"}}</div>
+                            <div class="processing-time">{{sellRequest?.createdDate | date : "dd MMM, hh:mma"}}</div>
                             <div class="flex-col-12 flex-row">
-                              <div>{{ getWithdrawType(sellRequest.paymentMode) }}</div>
-                              <div class="withdraw-amt">{{sellRequest.amount | formatCurrency}}
+                              <div *ngIf="sellRequest.paymentMode">{{ getWithdrawType(sellRequest.paymentMode) }}</div>
+                              <div class="withdraw-amt">{{sellRequest?.amount | formatCurrency}}
                               </div>
                             </div>
                           </div>
                         </div>
-                        <div *ngIf="portfolio?.portfolioStatus === 'REBALANCING'" class="rebalancing-info">
+                        <div *ngIf="portfolio?.portfolioStatus === 'REBALANCING' && portfolioWithdrawRequests.length"
+                          class="rebalancing-info">
                           <div class="mr15 info-icon"><img src="assets/images/investment-account/rebalance-info.svg" />
                           </div>
                           <div>
@@ -425,7 +430,7 @@
               <!-- buy request -->
             </div>
             <!-- cash a/c -->
-            <div class="cash-account">
+            <div *ngIf="portfolio?.fundingTypeValue !== 'SRS'" class="cash-account">
               <div class="cash-account-lbl">{{'YOUR_PORTFOLIO.CASH_ACCOUNT' | translate}}</div>
               <div class="form-group-with-bg">
                 <div class="form-group-with-bg--header">
@@ -453,22 +458,22 @@
               </div>
             </div>
             <!-- srs a/c -->
-            <div class="srs-account">
-                <div class="srs-account-lbl">SRS Account</div>
-                <div class="form-group-with-bg">
-                  <!--Form Content-->
-                  <div class="form-group-with-bg--content">
-                    <div class="srs-account-content">
-                      <div class="srs-detail-lbl">Bank Operator
-                        <div>Oversea-Chinese Banking Corporation (OCBC)</div>
-                      </div>
-                      <div class="srs-detail-lbl mt15">Account Number
-                        <div>0001-23456-6789</div>
-                      </div>
+            <div *ngIf="portfolio?.fundingTypeValue === 'SRS'" class="srs-account">
+              <div class="srs-account-lbl">{{'YOUR_PORTFOLIO.SRS_ACCOUNT' | translate}}</div>
+              <div class="form-group-with-bg">
+                <!--Form Content-->
+                <div class="form-group-with-bg--content">
+                  <div class="srs-account-content">
+                    <div class="srs-detail-lbl">{{'YOUR_PORTFOLIO.BANK_OPERATOR' | translate}}
+                      <div>{{srsAccDetail?.srsOperator}}</div>
+                    </div>
+                    <div class="srs-detail-lbl mt15">{{'YOUR_PORTFOLIO.ACCOUNT_NUMBER' | translate}}
+                      <div>{{srsAccDetail?.srsAccountNumber?.conformedValue}}</div>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
           </div>
         </ng-template>
       </ngb-tab>

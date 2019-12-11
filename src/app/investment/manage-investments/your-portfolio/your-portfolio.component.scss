@@ -46,7 +46,7 @@ app-your-portfolio {
           @include allmobiles{
             font-size: 21px;
             line-height: 26px;
-            letter-spacing: -0.28px;            
+            letter-spacing: -0.28px;
             max-width: 250px;
             padding-right: 15px;
           }
@@ -55,7 +55,7 @@ app-your-portfolio {
           width: calc(100% - 67px);
           @include allmobiles{
             width: calc(100% - 61px);
-          }       
+          }
           .portfolio-type{
             font-family: $muli-regular;
             font-size: 18px;
@@ -70,6 +70,9 @@ app-your-portfolio {
             width: 70px;
             @include allmobiles {
               margin-right: 25px;
+            }
+            @include max360 {
+              margin-right: 15px;
             }
             .dropdown-control{
               .btn-dropdown{
@@ -587,7 +590,7 @@ app-your-portfolio {
                 height: auto;
               }
             }
-          }    
+          }
           .widthdrawal-header{
             display: flex;
             align-items: center;

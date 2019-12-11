@@ -14,11 +14,6 @@
           </div>
         </div>
         <div class="max-width col-lg-6 col-md-6">
-          <!-- SRS NOTE -->
-          <div class="srs-div">
-            <img src="assets/images/alert-black.svg" />
-            <div class="srs-note" innerHTML="{{'WITHDRAW.SRS_NOTE' | translate}}"></div>
-          </div>
           <form id="withdraw_form" name="withdrawForm" [formGroup]="withdrawForm">
             <!-- PORTFOLIO -->
             <div class="form-group" *ngIf="withdrawForm.get('withdrawPortfolio')">
@@ -58,7 +53,8 @@
                 </div>
                 <div class="flex-col-8">
                   <div class="dropdown-control"
-                    [ngClass]="{'inline-error':getInlineErrorStatus(withdrawForm.controls.withdrawType)}">
+                    [ngClass]="{'inline-error':getInlineErrorStatus(withdrawForm.controls.withdrawType)}"
+                    *ngIf="entitlements.portfolioType !== 'SRS'">
                     <div ngbDropdown>
                       <button class="btn btn-dropdown without-border" id="withdraw-type-drpdown" ngbDropdownToggle>
                         <span
@@ -71,13 +67,18 @@
                           <button class="dropdown-item"
                             [class.hide]="(type.value === 'PORTFOLIO_TO_BANK_ACCOUNT' && !entitlements.showWithdrawPvToBa) 
                                           || (type.value === 'PORTFOLIO_TO_CASH_ACCOUNT' && !entitlements.showWithdrawPvToCa) 
-                                          || (type.value === 'CASH_TO_BANK_ACCOUNT' && !entitlements.showWithdrawCaToBa)"
+                                          || (type.value === 'CASH_TO_BANK_ACCOUNT' && !entitlements.showWithdrawCaToBa)
+                                          || type.value === 'PORTFOLIO_TO_SRS_ACCOUNT' && !entitlements.showWithdrawPvToSRS"
                             (click)="setDropDownValue('withdrawType',type, i)" id="withdraw-type-option-{{i}}">
                             {{type.name}}
                           </button>
                         </ng-container>
                       </div>
                     </div>
+                  </div>
+                  <div class="form-control" *ngIf="entitlements.portfolioType === 'SRS'">
+                    <input class="input-control" type="text" id="withdraw-type-srs"
+                      value={{withdrawForm.controls.withdrawType.value.name}} disabled>
                   </div>
                 </div>
               </div>

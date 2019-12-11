@@ -18,7 +18,7 @@ import {
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
 import { IToastMessage } from '../manage-investments-form-data';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
-import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
+import { MANAGE_INVESTMENTS_CONSTANTS, PORTFOLIO_WITHDRAWAL_KEYS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
 import { SignUpService } from './../../../sign-up/sign-up.service';
 import { RenameInvestmentModalComponent } from './rename-investment-modal/rename-investment-modal.component';
@@ -46,6 +46,8 @@ export class YourPortfolioComponent implements OnInit {
   showErrorMessage: boolean;
   toastMsg: any;
   activeTab: string;
+  srsAccDetail;
+  portfolioWithdrawRequests = false;
 
   constructor(
     public readonly translate: TranslateService,
@@ -112,12 +114,22 @@ export class YourPortfolioComponent implements OnInit {
           this.pendingOnetimeBuyRequests = this.groupBuyRequests(this.pendingBuyRequests, 'ONE_TIME');
           this.pendingMonthlyBuyRequests = this.groupBuyRequests(this.pendingBuyRequests, 'MONTHLY');
         }
+        if (this.pendingSellRequests && this.pendingSellRequests.value) {
+          this.portfolioWithdrawRequests = this.getPortfolioWithdrawalRequests(this.pendingSellRequests.value);
+        }
       }
+      this.getSrsAccDetails();
       this.showOrHideWhatsNextSection();
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
+  }
+
+  getPortfolioWithdrawalRequests(sellRequests) {
+    return sellRequests.filter(
+      (req) => PORTFOLIO_WITHDRAWAL_KEYS.indexOf(req.paymentMode) >= 0
+    );
   }
 
   groupBuyRequests(buyRequests, transactionFrequency) {
@@ -168,6 +180,9 @@ export class YourPortfolioComponent implements OnInit {
       case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.CASH_TO_BANK_ACCOUNT:
         withdrawType = this.translate.instant('YOUR_PORTFOLIO.CASH_ACCOUNT_TO_BANK_ACCOUNT');
         break;
+      case MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW_PAYMENT_MODE_KEYS.PORTFOLIO_TO_SRS_ACCOUNT:
+        withdrawType = this.translate.instant('YOUR_PORTFOLIO.PORTFOLIO_TO_SRS_ACCOUNT');
+        break;
       default:
         withdrawType = '';
     }
@@ -194,7 +209,7 @@ export class YourPortfolioComponent implements OnInit {
   gotoTopUp(monthly?: boolean) {
     const data = this.manageInvestmentsService.getTopUp();
     data['Investment'] = monthly ?
-    MANAGE_INVESTMENTS_CONSTANTS.TOPUP.MONTHLY_INVESTMENT : MANAGE_INVESTMENTS_CONSTANTS.TOPUP.ONETINE_INVESTMENT;
+      MANAGE_INVESTMENTS_CONSTANTS.TOPUP.MONTHLY_INVESTMENT : MANAGE_INVESTMENTS_CONSTANTS.TOPUP.ONETINE_INVESTMENT;
     this.manageInvestmentsService.setTopUp(data);
     this.manageInvestmentsService.setSelectedCustomerPortfolioId(this.portfolio.customerPortfolioId);
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
@@ -309,7 +324,7 @@ export class YourPortfolioComponent implements OnInit {
       if (response.responseMessage.responseCode >= 6000) {
         this.showToastMessage(this.portfolio.portfolioName, portfolioName);
         this.getCustomerPortfolioDetailsById(this.portfolio.customerPortfolioId);
-        this.manageInvestmentsService.updateNewPortfolioName(this.portfolio.customerPortfolioId, portfolioName);
+        this.manageInvestmentsService.updateNewPortfolioName(this.portfolio.customerPortfolioId, portfolioName);
         this.showErrorMessage = false;
       } else if (response.responseMessage.responseCode === 5120) {
         this.showErrorMessage = true;
@@ -403,6 +418,15 @@ export class YourPortfolioComponent implements OnInit {
       this.activeTab = 'tab-2';
     } else {
       this.activeTab = 'tab-1';
+    }
+  }
+  getSrsAccDetails() {
+    if (this.portfolio.fundingTypeValue === 'SRS') {
+      this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
+        if (data) {
+          this.srsAccDetail = data;
+        }
+      });
     }
   }
 }
