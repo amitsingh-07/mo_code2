@@ -39,7 +39,7 @@
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                             <button class="dropdown-item"
                               [class.hide]="(option.value === 'TOPUP' && !portfolio.entitlements.showTopup)
-                                  || (option.value === 'WITHDRAWAL' && (!portfolio.entitlements.showWithdrawPvToBa && !portfolio.entitlements.showWithdrawPvToCa && !portfolio.entitlements.showWithdrawCaToBa))"
+                                  || (option.value === 'WITHDRAWAL' && (!portfolio.entitlements.showWithdrawPvToBa && !portfolio.entitlements.showWithdrawPvToCa && !portfolio.entitlements.showWithdrawCaToBa && !portfolio.entitlements.showWithdrawPvToSRS))"
                               [class.disabled]="(option.value === 'DELETE_PORTFOLIO' && !portfolio.entitlements.showDelete)"
                               *ngFor="let option of moreList; let i = index;" (click)="selectMoreOption(option)"
                               id="additional_declaration_sourse-drpdown-option-{{i}}">
