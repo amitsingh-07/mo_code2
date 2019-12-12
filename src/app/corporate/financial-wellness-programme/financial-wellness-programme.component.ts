@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfigService } from '../../config/config.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { CorporateService } from '../corporate.service';
+import { IFinancialWellnessProgramme } from './financial-wellness-programme.interface';
 
 @Component({
   selector: 'app-financial-wellness-programme',
@@ -66,11 +67,19 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
   }
 
   save(form: any) {
-    this.submitted = true;
-    form.value.enquiryType = 'Corporate Business';
-    form.value.companySize = this.companySize;
     if (form.valid) {
-      this.corporateService.saveEnquiryForm(form.value).subscribe((data: any) => {
+      this.submitted = true;
+      const payload: IFinancialWellnessProgramme = {
+        firstName: form.value.firstName,
+        lastName: form.value.lastName,
+        jobFunction: form.value.jobFunction,
+        companyName: form.value.companyName,
+        companySize: this.companySize,
+        emailAddress: form.value.emailAddress,
+        phoneNumber: form.value.phoneNumber,
+        enquiryType: 'Corporate Business'
+      };
+      this.corporateService.saveEnquiryForm(payload).subscribe((data: any) => {
         if (data.responseMessage.responseCode === 6000) {
           this.sendSuccess = true;
           this.submitted = false;

@@ -14,6 +14,7 @@ import { apiConstants } from './api.constants';
 import { AuthenticationService } from './auth/authentication.service';
 import { BaseService } from './base.service';
 import { IServerResponse } from './interfaces/server-response.interface';
+import { IFinancialWellnessProgramme } from '../../corporate/financial-wellness-programme/financial-wellness-programme.interface';
 import { investmentApiConstants } from '../../investment/investment.api.constants';
 
 @Injectable({
@@ -598,7 +599,7 @@ export class ApiService {
   }
 
   // Financial Wellness Programme Connect Us
-  saveEnquiryForm(payload) {
+  saveEnquiryForm(payload: IFinancialWellnessProgramme) {
     return this.http.post(apiConstants.endpoint.financialWellness, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))

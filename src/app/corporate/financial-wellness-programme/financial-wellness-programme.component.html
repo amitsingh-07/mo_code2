@@ -278,14 +278,12 @@
                 <div class="flex-row">
                   <div class="col-sm-12">
                     <div
-                      *ngIf="financialWellnessForm.controls.emailAddress.invalid && financialWellnessForm.controls.emailAddress.dirty">
+                      *ngIf="(financialWellnessForm.controls.emailAddress.invalid && financialWellnessForm.controls.emailAddress.dirty)">
                       <p class="error--msg" *ngIf="financialWellnessForm.controls.emailAddress.errors.email">
                         {{emailErrorMessage.email}}</p>
-                      <p class="error--msg" *ngIf="financialWellnessForm.controls.emailAddress.errors.required">
-                        {{emailErrorMessage.required}}</p>
                     </div>
                     <p class="error--msg"
-                      *ngIf="(financialWellnessForm.controls.firstName.invalid && financialWellnessForm.controls.firstName.dirty)||(financialWellnessForm.controls.lastName.invalid && financialWellnessForm.controls.lastName.dirty)||(financialWellnessForm.controls.jobFunction.invalid && financialWellnessForm.controls.jobFunction.dirty)||(financialWellnessForm.controls.phoneNumber.invalid && financialWellnessForm.controls.phoneNumber.dirty)">
+                      *ngIf="((financialWellnessForm.controls.emailAddress.invalid && financialWellnessForm.controls.emailAddress.touched)&&financialWellnessForm.controls.emailAddress.errors.required)||(financialWellnessForm.controls.firstName.invalid && financialWellnessForm.controls.firstName.touched)||(financialWellnessForm.controls.lastName.invalid && financialWellnessForm.controls.lastName.touched)||(financialWellnessForm.controls.jobFunction.invalid && financialWellnessForm.controls.jobFunction.touched)||(financialWellnessForm.controls.phoneNumber.invalid && financialWellnessForm.controls.phoneNumber.touched)">
                       {{ErrorMessage}}</p>
                     <p class="error--msg success" *ngIf="sendSuccess === true">
                       {{'Successfully Saved'}}</p>

@@ -8,7 +8,7 @@
       "EMAIL_PATTERN": "*Please enter a valid email address in the format yourname@example.com",
       "CONTACT_NUMBER_REQUIRED": "*Please enter your contact number",
       "CONTACT_NUMBER_PATTERN": "*Invalid Contact Number",
-      "ALL_FIELDS": "*Please Enter All Fields"
+      "ALL_FIELDS": "*Please enter all the fields"
     }
   }
 }
