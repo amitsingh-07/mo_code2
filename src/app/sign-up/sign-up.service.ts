@@ -611,27 +611,10 @@ export class SignUpService {
 
   //srs details
 
-  setEditProfileSrsDetails(fullName, accountNumber, srsBankOperator, isAddSrsBank) {
-    if (isAddSrsBank) {
-      this.signUpFormData.srsAccountHolderName = fullName;
-    } else {
-      if (fullName) {
-        this.signUpFormData.srsAccountHolderName = fullName;
-      }
-      if (accountNumber) {
-        this.signUpFormData.srsAccountNumber = accountNumber;
-      }
-      if (srsBankOperator) {
-        this.signUpFormData.srsOperatorBank = srsBankOperator;
-      }
-      this.commit();
-    }
-  }
-
-
-  setSrsDetails(data) {
-    this.signUpFormData.srsAccountNumber = data.accountNumber;
-    this.signUpFormData.srsOperatorBank = data.srsBankOperator;
+  setEditProfileSrsDetails(fullName, accountNumber, srsBankOperator) {
+    this.signUpFormData.srsAccountHolderName = fullName;
+    this.signUpFormData.srsAccountNumber = accountNumber;
+    this.signUpFormData.srsOperatorBank = srsBankOperator;
     this.commit();
   }
 

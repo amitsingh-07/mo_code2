@@ -95,7 +95,6 @@ export class AddUpdateSrsComponent implements OnInit {
       this.setPageTitle(this.pageTitle);
     });
     this.footerService.setFooterVisibility(false);
-    //this.formValues = this.signUpService.getSrsDetails();
     this.srsDetail = this.signUpService.getSrsDetails();
     this.getSrsBankOperator();
     this.buildForm();
@@ -109,12 +108,9 @@ export class AddUpdateSrsComponent implements OnInit {
     });
   }
 
-
-
   getSrsBankOperator() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.srsAgentBankList = data.objectList.srsAgentBank;
-      console.log(this.srsAgentBankList);
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();

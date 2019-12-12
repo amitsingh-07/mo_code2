@@ -537,7 +537,7 @@
                     <div id="srs-operator-lbl" class="bank-account">SRS Operator</div>
                   </div>
                   <div class="flex-col-8">
-                    <div id="srs-operator-value" class="bank-account-num">{{srsDetails.srsBankOperator.name}}</div>
+                    <div id="srs-operator-value" class="bank-account-num">{{srsDetails?.srsOperator}}</div>
                   </div>
                 </div>
                 <div class="flex-row">
@@ -545,10 +545,10 @@
                     <div id="srs-act-num-lbl" class="bank-account">SRS Account Number</div>
                   </div>
                   <div class="flex-col-8">
-                    <div id="srs-act-num-value" class="bank-account-num">{{formatedAccountNumber}}</div>
+                    <div id="srs-act-num-value" class="bank-account-num">{{srsDetails?.srsAccountNumber?.conformedValue}}</div>
                   </div>
                 </div>
-                <button type="button" class="edit-button" id="editEmployeButton" (click)="editSrsDetails()">
+                <button type="button" class="edit-button" id="editEmployeButton" (click)="updateSrsDetails(fullName, srsDetails?.srsAccountNumber?.conformedValue, {name: srsDetails?.srsOperator}, false)">
                   {{'EDIT_PROFILE.EDIT' | translate}}
                 </button>
               </div>
@@ -557,7 +557,7 @@
                   <div class="flex-col-12">
                     <div id="no-srs-txt" class="no-srs-account">No account added</div>
                   </div>
-                  <button type="button" class="edit-button" id="editEmployeButton" (click)="addSrsDetail()">Add Account</button>
+                  <button type="button" class="edit-button" id="editEmployeButton" (click)="updateSrsDetails(fullName, null, null, true)">Add Account</button>
                 </div>
               </div>
             </div>

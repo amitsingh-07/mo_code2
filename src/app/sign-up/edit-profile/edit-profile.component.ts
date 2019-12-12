@@ -8,6 +8,7 @@ import { InvestmentCommonService } from './../../investment/investment-common/in
 
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
+import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -69,6 +70,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     private router: Router,
     public authService: AuthenticationService,
     public investmentAccountService: InvestmentAccountService,
+    public manageInvestmentsService: ManageInvestmentsService,
     public readonly translate: TranslateService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
@@ -93,11 +95,13 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
+
   showAddBankDetails(investmentStatus) {
     if (SIGN_UP_CONFIG.SHOW_BANK_DETAILS.indexOf(investmentStatus) >= 0) {
       this.showAddbank = true;
     }
   }
+
   showHidePassword(el) {
     if (el.type === 'password') {
       el.type = 'text';
@@ -105,6 +109,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       el.type = 'password';
     }
   }
+
   showHide(el) {
     if (el.style.display === '' || el.style.display === 'block') {
       el.style.display = 'none';
@@ -112,6 +117,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       el.style.display = 'block';
     }
   }
+
   buildForgotPasswordForm() {
     this.formValues = this.signUpService.getForgotPasswordInfo();
     this.resetPasswordForm = this.formBuilder.group({
@@ -120,6 +126,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       confirmPassword: [this.formValues.oldPassword, [Validators.required, Validators.pattern(RegexConstants.Password.Full)]]
     });
   }
+
   // tslint:disable-next-line:cognitive-complexity
   getEditProfileData() {
     this.signUpService.getEditProfileInfo().subscribe((data) => {
@@ -174,6 +181,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       }
     });
   }
+
   createMaskString(val) {
     let i;
     let maskedStr = '';
@@ -188,31 +196,39 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     const second = LastName.charAt(0);
     this.compinedName = first.toUpperCase() + second.toUpperCase();
   }
+
   setNric(nric) {
     this.compinednricNum = 'NRIC Number: ' + nric;
   }
+
   setAddres(address1, address2) {
     this.compinedAddress = address1 + ' ' + address2;
   }
+
   setMailingAddres(address1, address2) {
     this.compinedMailingAddress = address1 + ' ' + address2;
   }
+
   setEmployerAddress(address1, address2) {
     this.compinedEmployerAddress = address1 + ' ' + address2;
   }
+
   editEmployeDetails() {
     // tslint:disable-next-line:max-line-length
     this.investmentAccountService.setEditProfileEmployeInfo(this.entireUserData, this.nationalityList, this.countryList, this.isSingaporeResident);
     // tslint:disable-next-line:max-line-length
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS], { queryParams: { enableEditProfile: true }, fragment: 'loading' });
   }
+
   editUserDetails() {
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_ID]);
   }
+
   editPassword() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PASSWORD]);
   }
+
   getNationalityCountryList() {
     this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
       this.nationalityList = data.objectList;
@@ -240,9 +256,11 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.investmentAccountService.setEditProfileContactInfo(this.entireUserData, this.nationalityList, this.countryList, this.isMailingAddressSame, this.isSingaporeResident, mailingUrl, ResUrl);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_RESIDENTIAL]);
   }
+
   isCountrySIngapore(nationalityCode) {
     return nationalityCode === 'SG';
   }
+
   editBankDetails() {
     let AccountHolderName;
     if (this.bankDetails && this.bankDetails.accountName) {
@@ -254,6 +272,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, this.bankDetails.bank, this.bankDetails.accountNumber, this.bankDetails.id, false);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: false }, fragment: 'bank' });
   }
+
   addBankDetails() {
     let AccountHolderName;
     if (this.bankDetails && this.bankDetails.accountName) {
@@ -272,25 +291,10 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       }
     });
   }
-  editSrsDetails() {
-    let srsAccountHolderName;
-    if (this.srsDetails && this.srsDetails.accountName) {
-      srsAccountHolderName = this.srsDetails.accountName;
-    } else {
-      srsAccountHolderName = this.fullName;
-    }
-    this.signUpService.setEditProfileSrsDetails(srsAccountHolderName, this.srsDetails.accountNumber, this.srsDetails.srsBankOperator, false);
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS], { queryParams: { srsBank: false }, fragment: 'bank' });
-  }
-  addSrsDetail() {
-    let srsAccountHolderName;
-    if (this.srsDetails && this.srsDetails.accountName) {
-      srsAccountHolderName = this.srsDetails.accountName;
-    } else {
-      srsAccountHolderName = this.fullName;
-    }
-    this.signUpService.setEditProfileSrsDetails(srsAccountHolderName, null, null, true);
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS], { queryParams: { srsBank: true }, fragment: 'bank' });
+
+  updateSrsDetails(srsAcctHolderName, srsAccountNumber, srsBankOperator, srsBankFlag) {
+    this.signUpService.setEditProfileSrsDetails(srsAcctHolderName, srsAccountNumber,  srsBankOperator);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS], { queryParams: { srsBank: srsBankFlag }, fragment: 'bank' });
   }
 
   ngOnDestroy() {
@@ -308,31 +312,13 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   getSrsDetails() {
-    this.investmentAccountService.getSrsAccountDetails().subscribe((data) => {
-      this.srsDetails = data.objectList;
-      this.signUpService.setSrsDetails(this.srsDetails);
-      this.srsAccountDetails(this.srsDetails.accountNumber);
-      console.log(this.srsDetails);
+    this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
+      if (data) {
+        this.srsDetails = data;
+      }
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
   }
-  
-  srsAccountDetails(accNub) {
-    this.formatedAccountNumber = '';
-    switch (this.srsDetails.srsBankOperator.name) {
-    case 'DBS':
-    this.formatedAccountNumber = [accNub.slice(0, 4), '-', accNub.slice(4, 8), '-', accNub.slice(8, 9), '-', accNub.slice(9)].join('');
-    break;
-    case 'OCBC':
-    this.formatedAccountNumber = [accNub.slice(0, 3), '-', accNub.slice(3, 8), '-', accNub.slice(8)].join('');
-    break;
-    case 'UOB':
-    this.formatedAccountNumber = [accNub.slice(0, 2), '-', accNub.slice(2, 7), '-', accNub.slice(7)].join('');
-    break;
-    }
-    return this.formatedAccountNumber;
-    }
-  
 }
