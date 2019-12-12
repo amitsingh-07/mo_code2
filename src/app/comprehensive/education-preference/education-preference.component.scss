@@ -1,5 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
+
 .comprehensive {
 
   .dependant-title {
@@ -58,8 +59,9 @@
     border-top: 1px solid rgba(134, 205, 206, 0.3);
     margin-top: 10px;
     padding-top: 15px;
-    .form-group-with-bg--content-label{
-      color: #5e5e5e!important;
+
+    .form-group-with-bg--content-label {
+      color: #5e5e5e !important;
     }
   }
 
@@ -70,12 +72,17 @@
     font-family: $muli-regular;
   }
 
+  .percent-fix {
+    color: #00a7a7 !important;
+  }
+
 }
 
 .title-with-tooltip {
   @extend .flex;
   @extend .space-btwn;
   margin-bottom: 20px;
+
   .tooltip-icon {
     background: url("/assets/images/comprehensive/tool-tip-white.svg");
     background-repeat: no-repeat;

@@ -104,7 +104,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
           this.insurancePlanFormValues.haveCPFDependentsProtectionScheme : '', disabled: this.viewMode
       }, [Validators.required]],
       lifeProtectionAmount: [{
-        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.lifeProtectionAmount : 46000, disabled: this.viewMode
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.lifeProtectionAmount : COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT, disabled: this.viewMode
       }, [Validators.required]],
       haveHDBHomeProtectionScheme: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHDBHomeProtectionScheme : '',
@@ -166,7 +166,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
 
 
   resetLifeProtectionAmount() {
-    this.insurancePlanForm.controls['lifeProtectionAmount'].setValue(46000);
+    this.insurancePlanForm.controls['lifeProtectionAmount'].setValue(COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT);
   }
   resetLongTermShieldAmount() {
     this.insurancePlanForm.controls['longTermElderShieldAmount'].setValue('');
@@ -219,7 +219,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
 
         this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
           if (form.value.haveCPFDependentsProtectionScheme !== 1) {
-            form.value.lifeProtectionAmount = 46000;
+            form.value.lifeProtectionAmount = COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT;
           }
           this.comprehensiveService.setInsurancePlanningList(form.value);
           this.showSummaryModal();

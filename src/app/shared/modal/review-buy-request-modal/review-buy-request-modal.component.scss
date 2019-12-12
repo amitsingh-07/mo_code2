@@ -6,9 +6,11 @@
   padding: 0;
   overflow: hidden;
   border-radius: 6px;
+
   @include allmobiles {
     padding: 0 !important;
   }
+
   background-color: $white-color;
 
   .title-container {
@@ -50,22 +52,27 @@
     background-color: $teal-color;
     padding: 20px;
     display: flex;
+
     .from-account {
       display: flex;
       flex-direction: column;
       flex: 4;
       align-items: center;
     }
+
     .margin-top2 {
       margin-top: 2px;
     }
+
     .right-arrow-div {
       margin-top: 31px;
+
       .right-arrow {
         width: 26.7px;
         height: 26.7px;
       }
     }
+
     .white-text {
       font-family: $muli-bold;
       font-size: 16px;
@@ -74,24 +81,29 @@
       text-align: center;
       color: $white-color;
     }
+
     .white-reg {
       font-family: $muli-regular;
     }
+
     .coin-icon {
       width: 78px;
       height: 55px;
       margin-bottom: 9px;
     }
+
     .portfolio-type {
       height: 55px;
       margin-bottom: 9px;
     }
   }
+
   .instruction-div {
     background-color: $white-color;
     display: flex;
     flex-direction: column;
     padding: 20px 30px 20px;
+
     .top-up-amt-text {
       text-align: center;
       font-family: $muli-bold;
@@ -100,6 +112,7 @@
       letter-spacing: -0.15px;
       color: $black-color;
     }
+
     .deduct-cash-box {
       width: 100%;
       height: 81px;
@@ -111,6 +124,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
       .deduct-amount {
         font-family: $muli-bold;
         font-size: 21px;
@@ -118,6 +132,7 @@
         letter-spacing: -0.39px;
         color: $crusta-orange-color;
       }
+
       .cash-account-balance {
         font-family: $muli-regular;
         font-size: 14px;
@@ -127,7 +142,8 @@
         margin-top: 5px;
       }
     }
-    .deduct-srs-box{
+
+    .deduct-srs-box {
       width: 100%;
       height: 72px;
       display: flex;
@@ -142,29 +158,33 @@
       color: #4a4a4a;
       padding: 20px;
     }
-    .srs-details{
+
+    .srs-details {
       padding: 20px 10px 10px 0px;
 
-    .top-up-srs-text-lbl{
-      font-family: $muli-bold;
-      font-size: 14px;
-      letter-spacing: -0.26px;
-      color: #000000;
+      .top-up-srs-text-lbl {
+        font-family: $muli-bold;
+        font-size: 14px;
+        letter-spacing: -0.26px;
+        color: #000000;
+      }
+
+      .srs-operator-lbl {
+        height: 18px;
+        font-family: $muli-light;
+        font-size: 14px;
+        letter-spacing: -0.26px;
+        color: #5e5e5e;
+      }
+
+      .srs-bank {
+        font-family: $muli-bold;
+        font-size: 18px;
+        letter-spacing: -0.19px;
+        color: #00a7a7;
+      }
     }
-    .srs-operator-lbl{
-      height: 18px;
-      font-family: $muli-light;
-      font-size: 14px;
-      letter-spacing: -0.26px;
-      color: #5e5e5e;
-    }
-    .srs-bank{
-      font-family: $muli-bold;
-      font-size: 18px;
-      letter-spacing: -0.19px;
-      color: #00a7a7;
-    }
-   }
+
     .note-text {
       font-family: $muli-bold;
       font-size: 16px;
@@ -175,6 +195,7 @@
       // margin-left: 6px;
       align-self: flex-start;
     }
+
     .note-text2 {
       font-family: $muli-bold;
       font-size: 16px;
@@ -184,10 +205,12 @@
       margin-left: 6px;
       align-self: flex-start;
     }
+
     .note-list {
       display: flex;
       margin-top: 20px;
       margin-left: 20px;
+
       .teal-oval {
         width: 8px;
         height: 8px;
@@ -196,15 +219,17 @@
         margin-top: 7px;
         margin-right: 12px;
       }
+
       .note-point-text {
         font-family: $muli-regular;
-        font-size: 16px;
+        font-size: 14px;
         line-height: 22px;
         letter-spacing: -0.16px;
         color: $grimmy-grey-color;
         flex: 1;
       }
     }
+
     .footer-btn {
       font-family: $muli-bold;
       background-color: $teal-color;
@@ -212,12 +237,14 @@
       margin-top: 30px;
     }
   }
+
   .multiline-ellipsis {
     max-width: 200px;
     letter-spacing: -0.16px;
     text-transform: capitalize;
     overflow: hidden;
     text-overflow: ellipsis;
+
     @include allmobiles {
       overflow: hidden;
       text-overflow: ellipsis;
