@@ -4,8 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ConfigService } from '../../config/config.service';
 import { FooterService } from '../../shared/footer/footer.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { CorporateService } from '../corporate.service';
-import { IFinancialWellnessProgramme } from './financial-wellness-programme.interface';
 
 @Component({
   selector: 'app-financial-wellness-programme',
@@ -15,11 +15,11 @@ import { IFinancialWellnessProgramme } from './financial-wellness-programme.inte
 })
 export class FinancialWellnessProgrammeComponent implements OnInit {
   financialWellnessForm: FormGroup;
-  submitted = false;
-  sendSuccess = false;
-  companySize: any;
-  companySizePreset = 'Size Of Company *';
-  emailErrorMessage = {};
+  submitted: boolean;
+  sendSuccess: boolean;
+  companySize: string;
+  companySizePreset: string;
+  emailErrorMessage: object = {};
   ErrorMessage: string;
   companySizeItems = [{ item: 'Below 300' }, { item: '300 – 1000' }, { item: 'Above 1000' }];
 
@@ -27,9 +27,17 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
     public footerService: FooterService,
     public corporateService: CorporateService,
     public translate: TranslateService,
+    public authService: AuthenticationService,
     private formBuilder: FormBuilder,
     private configService: ConfigService
   ) {
+    this.submitted = false;
+    this.sendSuccess = false;
+    this.companySizePreset = 'Size Of Company *';
+
+    this.authService.authenticate().subscribe((data) => {
+    });
+
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -69,17 +77,8 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
   save(form: any) {
     if (form.valid) {
       this.submitted = true;
-      const payload: IFinancialWellnessProgramme = {
-        firstName: form.value.firstName,
-        lastName: form.value.lastName,
-        jobFunction: form.value.jobFunction,
-        companyName: form.value.companyName,
-        companySize: this.companySize,
-        emailAddress: form.value.emailAddress,
-        phoneNumber: form.value.phoneNumber,
-        enquiryType: 'Corporate Business'
-      };
-      this.corporateService.saveEnquiryForm(payload).subscribe((data: any) => {
+      form.value.companySize = this.companySize;
+      this.corporateService.saveEnquiryForm(form.value).subscribe((data: any) => {
         if (data.responseMessage.responseCode === 6000) {
           this.sendSuccess = true;
           this.submitted = false;

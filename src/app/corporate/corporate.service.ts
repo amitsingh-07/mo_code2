@@ -9,6 +9,8 @@ export class CorporateService {
     constructor(private apiService: ApiService) { }
 
     saveEnquiryForm(data: any) {
+        const enquiryType = 'Corporate Business';
+        data.enquiryType = enquiryType;
         return this.apiService.saveEnquiryForm(data);
     }
 }

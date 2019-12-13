@@ -89,10 +89,12 @@ app-financial-wellness-programme {
           line-height: normal;
           font-size: 21px;
         }
+
         @include minPhabletmaxTablet {
           padding-right: 20px;
           padding-left: 20px;
         }
+
         @include iPadProPortrait {
           padding-right: 20px;
           padding-left: 20px;
@@ -158,10 +160,12 @@ app-financial-wellness-programme {
               padding: 30px;
               margin-bottom: 20px;
             }
+
             @include minPhabletmaxTablet {
               max-width: 360px;
               padding: 30px;
             }
+
             @include iPadProPortrait {
               max-width: 480px;
             }
@@ -212,10 +216,12 @@ app-financial-wellness-programme {
             @include allmobiles {
               padding: 30px;
             }
+
             @include minPhabletmaxTablet {
               max-width: 360px;
               padding: 30px;
             }
+
             @include iPadProPortrait {
               max-width: 480px;
             }
@@ -268,10 +274,12 @@ app-financial-wellness-programme {
         @include allmobiles {
           padding: 80px 30px;
         }
+
         @include minPhabletmaxTablet {
           padding-right: 20px;
           padding-left: 20px;
         }
+
         @include iPadProPortrait {
           padding-right: 20px;
           padding-left: 20px;
@@ -418,10 +426,12 @@ app-financial-wellness-programme {
         @include allmobiles {
           padding: 80px 30px;
         }
+
         @include minPhabletmaxTablet {
           padding-right: 20px;
           padding-left: 20px;
         }
+
         @include iPadProPortrait {
           padding-right: 20px;
           padding-left: 20px;
@@ -476,6 +486,7 @@ app-financial-wellness-programme {
                 @include allmobiles {
                   flex-direction: column;
                 }
+
                 @include minPhabletmaxTablet {
                   flex-direction: column;
                   align-items: center;
@@ -493,6 +504,7 @@ app-financial-wellness-programme {
                       margin-bottom: 0;
                     }
                   }
+
                   @include minPhabletmaxTablet {
                     margin-bottom: 30px;
 
@@ -595,10 +607,12 @@ app-financial-wellness-programme {
           max-width: calc(100% - 60px);
           padding: 50px 30px 40px;
         }
-        @include minPhabletmaxTablet{
+
+        @include minPhabletmaxTablet {
           max-width: calc(100% - 40px);
         }
-        @include iPadProPortrait{
+
+        @include iPadProPortrait {
           max-width: calc(100% - 40px);
         }
 
@@ -722,7 +736,8 @@ app-financial-wellness-programme {
               flex-wrap: wrap;
               padding: 0;
             }
-            @include minPhabletmaxTablet{
+
+            @include minPhabletmaxTablet {
               padding: 0 35px;
             }
 
@@ -735,7 +750,8 @@ app-financial-wellness-programme {
                 height: 125px;
                 margin-bottom: 86px;
               }
-              @include minPhabletmaxTablet{
+
+              @include minPhabletmaxTablet {
                 width: 140px;
                 height: 140px;
               }
@@ -792,11 +808,11 @@ app-financial-wellness-programme {
           line-height: normal;
           letter-spacing: normal;
           color: #5e5e5e;
-          padding-bottom: 50px;
+          padding: 0 30px 50px;
 
           @include allmobiles {
             font-size: 16px;
-            padding-bottom: 40px;
+            padding: 0 0 40px;
           }
         }
       }
@@ -847,7 +863,15 @@ app-financial-wellness-programme {
     .financial-wellness__form-container {
       position: relative;
       display: block;
-      //flex-basis: calc(100% - 390px);
+      width: 664px;
+
+      @include allmobiles {
+        width: 100%;
+      }
+
+      @include minPhabletmaxTablet {
+        width: 100%;
+      }
 
       .flex-row {
         .col-sm-6 {
