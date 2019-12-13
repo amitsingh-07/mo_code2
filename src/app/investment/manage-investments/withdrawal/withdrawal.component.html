@@ -64,10 +64,11 @@
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <ng-container *ngFor="let type of withdrawalTypes; let i = index">
-                          <button class="dropdown-item" [class.hide]="(type.value === 'PORTFOLIO_TO_BANK_ACCOUNT' && !entitlements.showWithdrawPvToBa) 
+                          <button class="dropdown-item"
+                            [class.hide]="(type.value === 'PORTFOLIO_TO_BANK_ACCOUNT' && !entitlements.showWithdrawPvToBa) 
                                           || (type.value === 'PORTFOLIO_TO_CASH_ACCOUNT' && !entitlements.showWithdrawPvToCa) 
                                           || (type.value === 'CASH_TO_BANK_ACCOUNT' && !entitlements.showWithdrawCaToBa)
-                                          || type.value === 'PORTFOLIO_TO_SRS_ACCOUNT'"
+                                          || type.value === 'PORTFOLIO_TO_SRS_ACCOUNT' && !entitlements.showWithdrawPvToSRS"
                             (click)="setDropDownValue('withdrawType',type, i)" id="withdraw-type-option-{{i}}">
                             {{type.name}}
                           </button>
@@ -76,7 +77,7 @@
                     </div>
                   </div>
                   <div class="form-control" *ngIf="entitlements.portfolioType === 'SRS'">
-                    <input class="input-control" type="text" id="withdrawType1"
+                    <input class="input-control" type="text" id="withdraw-type-srs"
                       value={{withdrawForm.controls.withdrawType.value.name}} disabled>
                   </div>
                 </div>

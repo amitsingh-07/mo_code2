@@ -408,7 +408,7 @@ export class WithdrawalComponent implements OnInit {
     } else {
       const amtControl = this.withdrawForm.get('withdrawAmount');
       if (amtControl) {
-        amtControl.setValue(amtControl.value.replace(/,/g, '').trim());
+        amtControl.setValue(amtControl.value.toString().replace(/,/g, '').trim());
       }
       this.manageInvestmentsService.setWithdrawalTypeFormData(form.getRawValue(), this.isRedeemAll);
       if (
@@ -427,7 +427,7 @@ export class WithdrawalComponent implements OnInit {
   withdrawAmountValidator(balance, source): ValidatorFn {
     balance = balance ? parseFloat(this.decimalPipe.transform(balance, "1.2-2").replace(/,/g, "")) : 0;
     return (control: AbstractControl) => {
-      if (control) {
+      if (control && !isNaN(control.value)) {
         let userInput = control.value ? parseFloat(this.decimalPipe.transform(control.value.replace(/,/g, ""), "1.2-2").replace(/,/g, "")) : 0;
         if (userInput <= 0) { // Not less than 0
           return { MinValue: true };

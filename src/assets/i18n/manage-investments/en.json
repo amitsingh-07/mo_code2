@@ -17,7 +17,7 @@
       "TITLE": "Buy Request Exist",
       "DESC": "You have an <strong>existing monthly buy request of {{existingOrderAmount}}</strong>. Click 'Yes' to overwrite this with your new monthly buy request of {{newOrderAmount}}.",
       "ONE_TIME_DESC": "Please note that you have an <strong>existing one-time order of {{existingOrderAmount}}</strong>. Click 'Yes' to overwrite this with your new one-time buy request of {{newOrderAmount}}.",
-      "SRS_ONE_TIME": "Please note that you have an  <strong>existing one-time order of {{existingOrderAmount}}</strong> in processing. ",
+      "SRS_ONE_TIME": "Please note that you have an <strong>existing one-time order of {{existingOrderAmount}}</strong> in processing status and can initiate new buy order only upon completion of this order.",
       "YES": "Yes",
       "NO": "No"
     }
@@ -87,7 +87,7 @@
     "SRS_MSG": "SRS account portfolio currently handled offline.",
     "SRS_HYPERLINK": "Click here",
     "SRS": "SRS",
-    "SRS_JOINT_ACCOUNT_REMINDER":"Please note that Joint Investment Accounts are currently handled offline.",
+    "SRS_JOINT_ACCOUNT_REMINDER": "Please note that Joint Investment Accounts are currently handled offline.",
     "MP_WALKTHROUGH": {
       "NEW_INVESTMENT_UPDATE": "We’ve new investment updates.",
       "SHOW_ME_AROUND": "Show me around!",
@@ -239,8 +239,8 @@
         "PORTFOLIO_REF_NO": "Portfolio Reference No. :",
         "CASH_ACC_REF_CODE": "Cash Account (Ref Code):",
         "TRANSFER_TO_BANK_AC_NO": "Transfer to Bank Account No. :",
-        "SRS_OPERATOR": "Srs Operator:",
-        "SRS_ACC_NUMBER": "Srs Account Number:",
+        "SRS_OPERATOR": "SRS Operator:",
+        "SRS_ACC_NUMBER": "SRS Account Number:",
         "RE_BALANCE": {
           "TITLE": "Quarterly Rebalancing In-progress",
           "DESC": "Please note that this portfolio is being rebalanced. This process will be completed in 6 to 7 working days.",
@@ -340,23 +340,23 @@
     "PORTFOLIO_TYPE": " - {{portfolioType}} Portfolio",
     "TOP_UP_AMOUNT": "Amount to top up to your cash account:",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance:",
-    "INFO_SRS_ONETIME":"Please ensure you have sufficient fund in your SRS account. Amount will be deducted immediately.",
-    "INFO_SRS_MONTHLY":"Please ensure you have sufficient fund by the 10th of every month in your SRS Account.",
+    "INFO_SRS_ONETIME": "Please ensure you have sufficient fund in your SRS account. Amount will be deducted immediately.",
+    "INFO_SRS_MONTHLY": "Please ensure you have sufficient fund by the 10th of every month in your SRS Account.",
     "NOTE": "Note:",
-    "SRS_LBL":"Transfer from SRS Account",
-    "SRS_OPERATOR":"SRS Operator:",
-    "SRS_ACCOUNT_NUMBER":"SRS Account Number:",
+    "SRS_LBL": "Transfer from SRS Account",
+    "SRS_OPERATOR": "SRS Operator:",
+    "SRS_ACCOUNT_NUMBER": "SRS Account Number:",
     "MONTHLY_SRS_NOTE": [
       "Please ensure sufficient funds in your SRS Account by the 10th of every month as monthly investments will be processed on the 15th or next working day if the 15th is a weekend or public holiday.",
       "If there are insufficient funds in your SRS account, this request will fail, and you may incur transactional costs.",
       "You may submit a new monthly investment amount before the 15th to overwrite your existing monthly investment amount."
-     ],
-     "ONETIME_SRS_NOTE": [
+    ],
+    "ONETIME_SRS_NOTE": [
       "This request will be processed immediately once request is submitted.",
       "If there are insufficient funds in your SRS account, this request will fail, and you may incur transactional costs.",
       "Once this request is being processed, it cannot be changed or deleted."
     ],
-   "MONTHLY_CASH_NOTE": [
+    "MONTHLY_CASH_NOTE": [
       "Please fund by the 10th of the month for the recurring buy request.",
       "This request will only be processed once your cash account has sufficient funds.",
       "If there are insufficient monies in your Investment Cash Account by the 10th of the month, the monthly investment request will be processed on the 15th of the following month.",
@@ -381,4 +381,3 @@
     "DELTE_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been Deleted."
   }
 }
-
