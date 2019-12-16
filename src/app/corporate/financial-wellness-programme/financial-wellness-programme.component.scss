@@ -343,9 +343,20 @@ app-financial-wellness-programme {
               padding: 30px 30px 40px;
             }
 
+            .ht1 {
+              height: 117px;
+            }
+
+            .ht2 {
+              height: 97.1px;
+            }
+
+            .ht3 {
+              height: 96.1px;
+            }
+
             .point-logo {
               width: 147px;
-              height: 117px;
               display: flex;
               margin-right: 50px;
 
@@ -673,6 +684,10 @@ app-financial-wellness-programme {
           .note {
             padding-top: 45px;
             color: #f1a14f;
+            font-family: $muli-bold;
+            font-size: 24px;
+            line-height: 21px;
+            cursor: pointer;
 
             @include allmobiles {
               padding-bottom: 0;
@@ -731,6 +746,7 @@ app-financial-wellness-programme {
             padding: 0 87px;
             display: flex;
             justify-content: space-between;
+            cursor: pointer;
 
             @include allmobiles {
               flex-wrap: wrap;

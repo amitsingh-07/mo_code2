@@ -80,7 +80,7 @@
         <div class="key-areas">
           <div class="key-areas__header">The programme comprises of 3 key areas: </div>
           <div class="key-areas__container mb20">
-            <div class="point-logo hidden-sm"><img src="/assets/images/financial-wellness/1.svg" /></div>
+            <div class="point-logo ht1 hidden-sm"><img src="/assets/images/financial-wellness/1.svg" /></div>
             <div class="point-txt">
               <div class="txt-bold title-orange">
                 <div class="point-logo hidden-md hidden-lg"><img src="/assets/images/financial-wellness/1.svg" /></div>
@@ -92,7 +92,7 @@
             </div>
           </div>
           <div class="key-areas__container mb20">
-            <div class="point-logo hidden-sm"><img src="/assets/images/financial-wellness/2.svg" /></div>
+            <div class="point-logo ht2 hidden-sm"><img src="/assets/images/financial-wellness/2.svg" /></div>
             <div class="point-txt">
               <div class="txt-bold title-teal">
                 <div class="point-logo hidden-md hidden-lg"><img src="/assets/images/financial-wellness/2.svg" /></div>
@@ -106,7 +106,7 @@
             </div>
           </div>
           <div class="key-areas__container">
-            <div class="point-logo hidden-sm"><img src="/assets/images/financial-wellness/3.svg" /></div>
+            <div class="point-logo ht3 hidden-sm"><img src="/assets/images/financial-wellness/3.svg" /></div>
             <div class="point-txt">
               <div class="txt-bold title-blue">
                 <div class="point-logo hidden-md hidden-lg"><img src="/assets/images/financial-wellness/3.svg" /></div>
@@ -159,7 +159,7 @@
     <div class="about-moneyowl">
       <div class="about-moneyowl-bg"></div>
       <div class="about-moneyowl-licensed-tab-section">
-        <div class="about-moneyowl-licensed-tab-section--title" [routerLink]="['/about-us']">About MoneyOwl</div>
+        <div class="about-moneyowl-licensed-tab-section--title">About MoneyOwl</div>
         <div class="about-moneyowl-licensed-tab-section--desc">MoneyOwl is a financial adviser and fund management
           company licensed by MAS. We are an NTUC Social Enterprise and our mission is to help ordinary Singaporean
           working families make wise financial planning decisions to improve their financial security, especially
@@ -183,8 +183,8 @@
             </div>
           </div>
           <div class="note">
-            <div class="pb20">Why MoneyOwl</div>
-            <div>Key People of MoneyOwl</div>
+            <div class="pb20" (click)="navigateTo('/about-us/why-moneyowl')">Why MoneyOwl</div>
+            <div (click)="navigateTo('/about-us')">Key People of MoneyOwl</div>
           </div>
         </div>
       </div>
@@ -197,7 +197,7 @@
           literacy trainers with deep industry experience to help your company execute a successful Corporate Financial
           Wellness Programme, to empower your employees to make sound financial decisions confidently.</div>
         <div class="literacy-trainers__container__trainers">
-          <div class="literacy-trainers__container__trainers__list">
+          <div class="literacy-trainers__container__trainers__list" (click)="navigateTo('/works/financial-literacy')">
             <div class="literacy-trainers__container__trainers__list--thumbnail">
               <img src="/assets/images/corporate/financial-literacy-team/chris.svg" />
               <p>Christopher</p>
@@ -282,8 +282,13 @@
                       <p class="error--msg" *ngIf="financialWellnessForm.controls.emailAddress.errors.email">
                         {{emailErrorMessage.email}}</p>
                     </div>
+                    <div
+                      *ngIf="(financialWellnessForm.controls.phoneNumber.invalid && financialWellnessForm.controls.phoneNumber.dirty)">
+                      <p class="error--msg" *ngIf="financialWellnessForm.controls.phoneNumber.errors.pattern">
+                        {{contactNumberErrorMessage.pattern}}</p>
+                    </div>
                     <p class="error--msg"
-                      *ngIf="((financialWellnessForm.controls.emailAddress.invalid && financialWellnessForm.controls.emailAddress.touched)&&financialWellnessForm.controls.emailAddress.errors.required)||(financialWellnessForm.controls.firstName.invalid && financialWellnessForm.controls.firstName.touched)||(financialWellnessForm.controls.lastName.invalid && financialWellnessForm.controls.lastName.touched)||(financialWellnessForm.controls.jobFunction.invalid && financialWellnessForm.controls.jobFunction.touched)||(financialWellnessForm.controls.phoneNumber.invalid && financialWellnessForm.controls.phoneNumber.touched)">
+                      *ngIf="((financialWellnessForm.controls.phoneNumber.invalid && financialWellnessForm.controls.phoneNumber.touched)&&financialWellnessForm.controls.phoneNumber.errors.required)||((financialWellnessForm.controls.emailAddress.invalid && financialWellnessForm.controls.emailAddress.touched)&&financialWellnessForm.controls.emailAddress.errors.required)||(financialWellnessForm.controls.firstName.invalid && financialWellnessForm.controls.firstName.touched)||(financialWellnessForm.controls.lastName.invalid && financialWellnessForm.controls.lastName.touched)||(financialWellnessForm.controls.jobFunction.invalid && financialWellnessForm.controls.jobFunction.touched)||(financialWellnessForm.controls.phoneNumber.invalid && financialWellnessForm.controls.phoneNumber.touched)">
                       {{ErrorMessage}}</p>
                     <p class="error--msg success" *ngIf="sendSuccess === true">
                       {{'Your Enquiry has been sent successfully'}}</p>
