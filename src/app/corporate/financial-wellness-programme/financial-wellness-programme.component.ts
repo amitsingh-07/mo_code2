@@ -80,6 +80,7 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
 
   selectSize(in_companySize) {
     this.companySize = in_companySize.item;
+    this.financialWellnessForm.controls['companySize'].setValue(this.companySize);
   }
 
   navigateTo(url: string) {
@@ -87,9 +88,8 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
   }
 
   save(form: any) {
+    this.submitted = true;
     if (form.valid) {
-      this.submitted = true;
-      form.value.companySize = this.companySize;
       this.corporateService.saveEnquiryForm(form.value).subscribe((data: any) => {
         if (data.responseMessage.responseCode === 6000) {
           this.sendSuccess = true;

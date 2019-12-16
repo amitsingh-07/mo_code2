@@ -264,6 +264,8 @@
                 </div>
                 <div class="flex-row">
                   <div class="col-sm-12">
+                    <p class="error--msg" *ngIf="submitted && financialWellnessForm.invalid">
+                      {{ErrorMessage}}</p>
                     <div
                       *ngIf="(financialWellnessForm.controls.emailAddress.invalid && financialWellnessForm.controls.emailAddress.dirty)">
                       <p class="error--msg" *ngIf="financialWellnessForm.controls.emailAddress.errors.email">
@@ -274,17 +276,14 @@
                       <p class="error--msg" *ngIf="financialWellnessForm.controls.phoneNumber.errors.pattern">
                         {{contactNumberErrorMessage.pattern}}</p>
                     </div>
-                    <p class="error--msg"
-                      *ngIf="((financialWellnessForm.controls.phoneNumber.invalid && financialWellnessForm.controls.phoneNumber.touched)&&financialWellnessForm.controls.phoneNumber.errors.required)||((financialWellnessForm.controls.emailAddress.invalid && financialWellnessForm.controls.emailAddress.touched)&&financialWellnessForm.controls.emailAddress.errors.required)||(financialWellnessForm.controls.firstName.invalid && financialWellnessForm.controls.firstName.touched)||(financialWellnessForm.controls.lastName.invalid && financialWellnessForm.controls.lastName.touched)||(financialWellnessForm.controls.jobFunction.invalid && financialWellnessForm.controls.jobFunction.touched)">
-                      {{ErrorMessage}}</p>
-                    <p class="error--msg success" *ngIf="sendSuccess === true">
-                      {{'Your Enquiry has been sent successfully'}}</p>
+                    <p class="error--msg success" *ngIf="!submitted && sendSuccess">
+                      {{'FINANCIAL_LITERACY_TEAM.SUCCESS_MSG' | translate}}</p>
                   </div>
                 </div>
                 <div class="flex-row">
                   <div class="col-sm-12">
-                    <button class="form-control btn btn-primary dark-btn" (click)="save(financialWellnessForm)"
-                      [disabled]="financialWellnessForm.invalid || submitted === true || companySize === companySizePreset">Submit</button>
+                    <button class="form-control btn btn-primary dark-btn"
+                      (click)="save(financialWellnessForm)">Submit</button>
                   </div>
                 </div>
               </form>
