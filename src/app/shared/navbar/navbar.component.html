@@ -118,6 +118,18 @@
             <div class="tip"></div>
           </div>
         </li>
+        <li *ngIf="showMenu" class="nav-item dropdown" ngbDropdown #id06="ngbDropdown" (mouseover)="openDropdown(id06);"
+          (mouseleave)="closeDropdown(id06);">
+          <a class="nav-link dropdown-toggle" id="id06" ngbDropdownToggle>Corporate</a>
+          <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id06">
+            <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/works')">
+              <div class="navbar--text">Financial Literacy Programme</div>
+            </button>
+            <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/works/financial-literacy')">
+              <div class="navbar--text">Financial Literacy Team</div>
+            </button>
+          </div>
+        </li>
         <li *ngIf="isPromotionEnabled && showMenu" class="nav-item"
           (click)="checkCurrentRouteAndNavigate('/promotions')">
           <a class="nav-link">Promotions</a>
@@ -138,9 +150,6 @@
               Articles</button>
           </div>
         </li>
-        <li *ngIf="showMenu" class="nav-item" (click)="checkCurrentRouteAndNavigate('/faq')">
-          <a class="nav-link">FAQs</a>
-        </li>
         <li *ngIf="showMenu" class="nav-item dropdown" ngbDropdown #id04="ngbDropdown" (mouseover)="openDropdown(id04);"
           (mouseleave)="closeDropdown(id04);">
           <a class="nav-link dropdown-toggle" id="id04" ngbDropdownToggle>About Us</a>
@@ -159,6 +168,9 @@
             </button>
             <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/about-us/contact-us')">
               <div class="navbar--text">Contact Us</div>
+            </button>
+            <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/faq')">
+              <div class="navbar--text">FAQs</div>
             </button>
           </div>
         </li>

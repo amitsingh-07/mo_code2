@@ -1,0 +1,119 @@
+{
+  "FINANCIAL_LITERACY_TEAM": {
+    "TITLE": "Financial Literacy Team",
+    "PEOPLE": {
+      "TITLE": "MoneyOwl Financial Literacy Team",
+      "MGT": [{
+          "NAME": "Christopher TAN, CFP®",
+          "DP": "chris.svg",
+          "TITLE": "Executive Director, Financial Literacy Advisory Committee & Trainer",
+          "CV": "<p>Christopher Tan has more than two decades of experience in the wealth management and financial planning industry. As Executive Director of MoneyOwl Pte Ltd, he provides expert consultancy across the areas of financial advisory, business development, financial literacy programmes, public education and adviser training. Christopher is also Chief Executive Officer and Founder of Providend Ltd., an associate of MoneyOwl Pte Ltd.</p><p>Christopher contributes regularly to and is often quoted in the local press as well as financial magazines for his expert opinion on financial matters. Since the beginning of his career, Christopher has spoken to hundreds of entities, educating them on personal financial planning issues. Christopher is also an internationally sought-after speaker and trainer in countries such as Indonesia, China, and Mauritius and has advised policy makers and lectured at established local and overseas universities and education institutions.</p><p>Christopher has been a member of the Central Provident Fund (CPF) Advisory Panel since 2014 and sat on the Management Committee of Securities Investors Association (Singapore) (SIAS) from 2009 to 2017.</p><p>In 2005, Asia Financial Planning Journal awarded Christopher the First Prize for the Financial Adviser Representative of the Year. In 2006, Christopher was a nominee for the Spirit of Enterprise Award by Action Community for Entrepreneurs (ACE). In 2009, Christopher received the prestigious Most Promising Entrepreneur Award by Asia Pacific Entrepreneurship Awards.</p><p>Christopher served nearly seven years with the Singapore Armed Forces (SAF) as an Army Officer in operations, instructional as well as staff functions. He continues to serve as an Operationally Ready National Serviceman with the rank of Lieutenant-Colonel (NS).</p><p>Christopher received his Bachelor of Financial Services Degree with honours from the National University of Ireland. He also holds a Master of Business Administration Degree from the University of Warwick. Professionally, Christopher is a Certified Financial Planner and a member of the Financial Planning Association of Singapore. He is also a Certified Emergenetics Associate and an Accredited Certified Coach with International Coach Federation as well as a Certified Action Learning Coach with World Institute of Action Learning.</p>"
+        },
+        {
+          "NAME": "Felicia YEO, CFP®",
+          "DP": "felicia.svg",
+          "TITLE": "Lead, Financial Literacy Trainer",
+          "CV": "<p>Felicia has more than 20 years of experience in the financial services industry. She was the Trainer and Content Development Manager at the Institute for Financial Literacy, where she created the financial literacy training curriculum and conducted a few hundreds of public education talks. Prior to that, Felicia was a Financial Service Consultant with AIA. Before joining the financial sector, Felicia was with the Ministry of Education as a Teacher and a Polytechnic Lecturer.</p><p>Felicia is very passionate about sports and education and serves in the National Sports Association. She holds a Bachelor of Business degree and qualified as a Certified Financial Planner certification in 2002. Felicia is also an Associate Estate Planning Practitioner.</p>"
+        },
+        {
+          "NAME": "Lena TENG",
+          "DP": "lena.svg",
+          "TITLE": "Lead, Solutions and Financial Literacy Trainer",
+          "CV": "<p>Lena has 15 years of working experience across multiple areas of community engagement, public education, sales and customer relations and operations management, among others. Through various responsibilities at the Central Providend Fund (CPF) Board from 2010 to 2018, Lena has developed in-depth knowledge of all aspects of Singapore’s national pension scheme. In her last role as Deputy Director, Communications, Lena led a team of 11 officers to develop and grow the public direct engagement capabilities of CPF Board, including conducting numerous public talks, roadshows and school and community programmes. Lena also oversaw the development of partnerships with corporate and educational institutions and helmed the market research portfolio for the communications group. Lena holds a Bachelor of Accounting from Nanyang Technological University.</p>"
+        },
+        {
+          "NAME": "Albert TAN ",
+          "DP": "albert.svg",
+          "TITLE": "Financial Literacy Trainer",
+          "CV": "<p>Albert has over 5 years of experience in the financial services industry. He was a Financial Adviser Representative at Promiseland Independent Pte Ltd, helping clients in comprehensive financial planning services with a focus on retirement planning. Prior to that, Albert was a Personal Financial Consultant in OCBC Bank, where he achieved the Pinnacle Award for top 15% performance in his rookie year. Before joining the financial sector, Albert was a Flight Steward with Singapore Airlines. Albert holds a Bachelor of Commerce degree from Murdoch University. </p>"
+        }
+      ]
+    }
+  },
+  "CUSTOMER_REVIEWS": {
+    "TITLE": "Customer Reviews",
+    "META": {
+      "META_DESCRIPTION": "Customer Reviews about our Financial Advisory Services ",
+      "META_KEYWORDS": "",
+      "META_AUTHOR": "Moneyowl Pte Ltd",
+      "META_COPYRIGHT": "Moneyowl Pte Ltd"
+    },
+    "GENERAL": {
+      "TITLE": "Customer Reviews",
+      "SUB_TITLE": "Hear what our clients say about us"
+    }
+  },
+  "WHY_MONEYOWL": {
+    "TITLE": "Why MoneyOwl",
+    "META": {
+      "META_DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
+      "META_KEYWORDS": "",
+      "META_AUTHOR": "Moneyowl Pte Ltd",
+      "META_COPYRIGHT": "Moneyowl Pte Ltd"
+    },
+    "GENERAL": {
+      "HEADER": {
+        "TITLE": "Why MoneyOwl",
+        "DESCRIPTION": "We provide financial advice that is comprehensive, competent and conflict-free, using solutions that are fit-for-purpose so that you can be empowered to live a fulfilling life."
+      },
+      "VALUE_PROP": [{
+          "IMAGE": "mas-licensed.svg",
+          "LABEL": "MAS-licensed",
+          "DESCRIPTION": "MoneyOwl is a financial adviser and fund management company licensed by the MAS. Inheriting our DNA to Do Good and Do Right from our two corporate parents, NTUC Enterprise and Providend, we hold ourselves to the highest of standards to put your interests first. The key leaders of MoneyOwl have a wealth of experience in comprehensive financial planning and fund management so you can be assured of receiving the most competent advice."
+        },
+        {
+          "IMAGE": "high-tech.svg",
+          "LABEL": "High-tech + Human wisdom",
+          "DESCRIPTION": "Statistical models are static. Human relationships are dynamic. So, while robots can do precise calculations, only humans can understand your emotions and aspirations which must be considered in making money decisions. Have the best of both worlds. Leverage MoneyOwl’s advanced technology and receive advice from our dedicated Client Advisers. This is what we mean by Bionic – integrating technology with human wisdom to help you achieve your goals."
+        },
+        {
+          "IMAGE": "salary-advice.svg",
+          "LABEL": "Non commissioned-based Advisers",
+          "DESCRIPTION": "We want to provide you with advice that is conflict-free. MoneyOwl’s advisers are salaried-based and are not remunerated by commissions. There is no incentive to hard-sell or to promote products that reward with higher commissions. Our focus is on helping you make wise money decisions in your best interests."
+        },
+        {
+          "IMAGE": "national.svg",
+          "LABEL": "Integration with National Schemes",
+          "DESCRIPTION": "National schemes like our CPF are often ignored when it comes to financial planning in Singapore. Despite CPF playing such a large role in retirement planning, there is insufficient understanding of the scheme and an absence of advice in this key area. Integrating our advice with national schemes, you can now consolidate all your financial information, craft a comprehensive financial plan and achieve a more secure retirement."
+        },
+        {
+          "IMAGE": "secure.svg",
+          "LABEL": "Secure Platform",
+          "DESCRIPTION": "Your privacy is our priority. We do not sell or refer your personal information to a third party. MoneyOwl’s platform is built by an experienced technology team led by our very own Chief Technology Officer, undergoes rigorous penetration testing and meets technology risk management guidelines by MAS to ensure highest security and data protection, so that you can have peace of mind."
+        }
+      ]
+    }
+  },
+  "CONTACT_US": {
+    "TITLE": "Contact Us",
+    "META": {
+      "META_DESCRIPTION": "Reach out to us if you have any enquiries",
+      "META_KEYWORDS": "",
+      "META_AUTHOR": "Moneyowl Pte Ltd",
+      "META_COPYRIGHT": "Moneyowl Pte Ltd"
+    },
+    "GENERAL": {
+      "TITLE": "Contact Us",
+      "SUB_TITLE": "We are here for you",
+      "DESCRIPTION": "Feel free to contact us if you have any comments or questions. We are happy to learn about your experience and offer our assistance. Your privacy is our priority and all information shared will be kept confidential.",
+      "FORM": {
+        "PLACEHOLDER": "Your Message Here",
+        "SUCCESS_MSG": "Your Enquiry has been sent successfully",
+        "SEND_MESSAGE": "Send Message"
+      },
+      "INFO": {
+        "GENERAL_LINE": "General line",
+        "GENERAL_NUMBER": "(65) 6329 9189",
+        "ADVISORY_LINE": "Advisory Line",
+        "ADVISORY_NUMBER": "(65) 6329 9188",
+        "OFFICE": "Office",
+        "ADDRESS": "23 Keong Saik Road<br/>Singapore 089130",
+        "EMAIL": "enquiries@moneyowl.com.sg",
+        "PARTNERSHIP": "For Corporate Financial Literacy Programmes and Financial  Wellness Partnerships",
+        "PARTNERSHIP_EMAIL": "partnership@moneyowl.com.sg",
+        "OPERATING_HOURS": "Operating Hours",
+        "OPERATING_HOURS_CONTENT": "9am - 6pm, Mon - Fri<br/>excluding Public Holidays<br/>"
+      }
+    }
+  }
+}
