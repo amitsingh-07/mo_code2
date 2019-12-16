@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ConfigService } from '../../config/config.service';
@@ -29,7 +30,8 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
     public translate: TranslateService,
     public authService: AuthenticationService,
     private formBuilder: FormBuilder,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private router: Router
   ) {
     this.submitted = false;
     this.sendSuccess = false;
@@ -72,6 +74,10 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
 
   selectSize(in_companySize) {
     this.companySize = in_companySize.item;
+  }
+
+  navigateTo(url: string) {
+    this.router.navigate([url]);
   }
 
   save(form: any) {

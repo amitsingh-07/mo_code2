@@ -159,7 +159,7 @@
     <div class="about-moneyowl">
       <div class="about-moneyowl-bg"></div>
       <div class="about-moneyowl-licensed-tab-section">
-        <div class="about-moneyowl-licensed-tab-section--title" [routerLink]="['/about-us']">About MoneyOwl</div>
+        <div class="about-moneyowl-licensed-tab-section--title">About MoneyOwl</div>
         <div class="about-moneyowl-licensed-tab-section--desc">MoneyOwl is a financial adviser and fund management
           company licensed by MAS. We are an NTUC Social Enterprise and our mission is to help ordinary Singaporean
           working families make wise financial planning decisions to improve their financial security, especially
@@ -183,8 +183,8 @@
             </div>
           </div>
           <div class="note">
-            <div class="pb20">Why MoneyOwl</div>
-            <div>Key People of MoneyOwl</div>
+            <div class="pb20" (click)="navigateTo('/about-us/why-moneyowl')">Why MoneyOwl</div>
+            <div (click)="navigateTo('/about-us')">Key People of MoneyOwl</div>
           </div>
         </div>
       </div>
@@ -197,7 +197,7 @@
           literacy trainers with deep industry experience to help your company execute a successful Corporate Financial
           Wellness Programme, to empower your employees to make sound financial decisions confidently.</div>
         <div class="literacy-trainers__container__trainers">
-          <div class="literacy-trainers__container__trainers__list">
+          <div class="literacy-trainers__container__trainers__list" (click)="navigateTo('/works/financial-literacy')">
             <div class="literacy-trainers__container__trainers__list--thumbnail">
               <img src="/assets/images/corporate/financial-literacy-team/chris.svg" />
               <p>Christopher</p>
