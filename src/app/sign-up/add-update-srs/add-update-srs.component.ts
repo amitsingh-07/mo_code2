@@ -239,13 +239,15 @@ export class AddUpdateSrsComponent implements OnInit {
         accountNumber: formValue.srsAccount ? formValue.srsAccount.replace(/[-]/g, '') : null,
         operatorId: opertorId ? opertorId : null
       };
-      this.investmentCommonService.saveSrsAccountDetails(reqParams, this.srsDetail.customerId).subscribe((data) => {
-        // this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
-        this.showSRSSuccessModel();
-      },
-        (err) => {
-          this.investmentAccountService.showGenericErrorModal();
-        });
+      this.manageInvestmentsService.setSrsAccountDetails(null);
+      this.showSRSSuccessModel();
+      // this.investmentCommonService.saveSrsAccountDetails(reqParams, this.srsDetail.customerId).subscribe((data) => {
+      //   this.manageInvestmentsService.setSrsAccountDetails(null);
+      //   this.showSRSSuccessModel();
+      // },
+      //   (err) => {
+      //     this.investmentAccountService.showGenericErrorModal();
+      //   });
     }
   }
 
@@ -253,6 +255,14 @@ export class AddUpdateSrsComponent implements OnInit {
     const ref = this.modal.open(SrsSuccessModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.TITLE');
     ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.Message');
+    ref.componentInstance.selected.subscribe(() => {
+      console.log('Nav Back');
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+    });
+    ref.componentInstance.topUp.subscribe(() => {
+      console.log('Top UP');
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.TOPUP]);
+    });
   }
 
   getOperatorIdByName(operatorName, OperatorOptions) {

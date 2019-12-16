@@ -1,6 +1,7 @@
 export const SIGN_UP_BASE_ROUTE = '../accounts/';
 export const DASHBOARD_PATH = '/accounts/dashboard';
 export const EDIT_PROFILE_PATH = '/accounts/edit-profile';
+export const INVESTMENT_MANAGEMENT_PATH = 'investment/manage/';
 
 export const SIGN_UP_ROUTES = {
   ROOT: '',
@@ -22,7 +23,8 @@ export const SIGN_UP_ROUTES = {
   UPDATE_USER_ID: 'update-user-id',
   VIEW_ALL_NOTIFICATIONS: 'view-notifications',
   UPDATE_BANK: 'update-bank',
-  UPDATE_SRS:'update-srs'
+  UPDATE_SRS: 'update-srs',
+  TOPUP: 'portfolio/top-up',
 };
 
 export const SIGN_UP_ROUTE_PATHS = {
@@ -45,5 +47,6 @@ export const SIGN_UP_ROUTE_PATHS = {
   UPDATE_USER_ID: SIGN_UP_BASE_ROUTE + SIGN_UP_ROUTES.UPDATE_USER_ID,
   VIEW_ALL_NOTIFICATIONS: SIGN_UP_BASE_ROUTE + SIGN_UP_ROUTES.VIEW_ALL_NOTIFICATIONS,
   UPDATE_BANK: SIGN_UP_BASE_ROUTE + SIGN_UP_ROUTES.UPDATE_BANK,
-  UPDATE_SRS: SIGN_UP_BASE_ROUTE + SIGN_UP_ROUTES.UPDATE_SRS
+  UPDATE_SRS: SIGN_UP_BASE_ROUTE + SIGN_UP_ROUTES.UPDATE_SRS,
+  TOPUP: INVESTMENT_MANAGEMENT_PATH + SIGN_UP_ROUTES.TOPUP
 };

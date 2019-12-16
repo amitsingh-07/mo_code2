@@ -17,7 +17,7 @@ export class SrsSuccessModalComponent implements OnInit {
   @Input() errorMessage;
   @Output() saved: EventEmitter<any> = new EventEmitter();
   @Output() selected: EventEmitter<any> = new EventEmitter();
-  @Output() retry: EventEmitter<any> = new EventEmitter();
+  @Output() topUp: EventEmitter<any> = new EventEmitter();
   @Output() resendEmail: EventEmitter<any> = new EventEmitter();
   constructor(private router: Router, public activeModal: NgbActiveModal) { }
 
@@ -35,20 +35,9 @@ export class SrsSuccessModalComponent implements OnInit {
     this.activeModal.close();
   }
 
-  tryAgain() {
-    this.retry.emit();
+  goToTopUp() {
+    this.topUp.emit();
     this.activeModal.close();
-  }
-
-  goToHome() {
-    this.activeModal.close();
-  }
-  gotoComprehensive() {
-    this.activeModal.close();
-  }
-
-  resendEmailVerification() {
-    this.resendEmail.emit();
   }
 
 }
