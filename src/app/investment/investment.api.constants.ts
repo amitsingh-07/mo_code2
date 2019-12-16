@@ -38,8 +38,9 @@ export let investmentApiConstants = {
             confirmPortfolio: INVESTMENT_API_BASE_URL + '/customer/portfolios/$customerPortfolioId$/accept?handleError=true',
             savePortfolioName: INVESTMENT_API_BASE_URL + '/customer/saveOrUpdatePortfolioName?handleError=true',
             getPortfolioDetailsWithAuth: INVESTMENT_API_BASE_URL + '/portfolios/recent',
-            gerSrsDetails : ACCOUNT_API_BASE_URL + '/customer/getSrsBankDetails',
-            saveSrsAccountDetails: ACCOUNT_API_BASE_URL + '/customer/$CUSTOMER_PORTFOLIO_ID$/srsbankDetails'
+            gerSrsDetails: ACCOUNT_API_BASE_URL + '/customer/getSrsBankDetails',
+            saveSrsAccountDetails: ACCOUNT_API_BASE_URL + '/customer/$CUSTOMER_PORTFOLIO_ID$/srsbankDetails',
+            getInvestmentNote: ACCOUNT_API_BASE_URL + '/customer/address',
         },
         investment: {
             getUserAddress: ACCOUNT_API_BASE_URL + '/customer/address',

@@ -579,4 +579,32 @@ export class ManageInvestmentsService {
     this.commit();
   }
 
+  getInvestmentNoteFromApi() {
+    return this.investmentApiService.getInvestmentNoteFromApi();
+  }
+
+  getInvestmentNote(): Observable<string> {
+    const invNoteFromSession = this.getTopUpFormData().investmentNote;
+    if (invNoteFromSession) {
+      return Observable.of(invNoteFromSession);
+    } else {
+      return this.getInvestmentNoteFromApi().map((data: any) => {
+        if (data && data.objectList) {
+          this.setInvestmentNoteToSession(data.objectList.homeAddress.addressLine1);
+          return data.objectList.homeAddress.addressLine1;
+        } else {
+          this.investmentAccountService.showGenericErrorModal();
+        }
+      },
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
+    }
+  }
+
+  setInvestmentNoteToSession(note: string) {
+    this.manageInvestmentsFormData.investmentNote = note;
+    this.commit();
+  }
+
 }

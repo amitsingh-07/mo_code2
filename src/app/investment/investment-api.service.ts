@@ -132,7 +132,7 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
- getInvestmentsSummary() {
+  getInvestmentsSummary() {
     return this.http.get(investmentApiConstants.endpoint.investmentAccount.investmentsSummary)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
@@ -319,24 +319,24 @@ export class InvestmentApiService {
       );
   }
   savePortfolioName(param) {
-  //  #const url = '../../../assets/mock-data/add-portfolio-name.json';
-  //  return this.http.getMock(url);
-  return this.http.post(investmentApiConstants.endpoint.investmentAccount.savePortfolioName, param)
-   .pipe(
-     catchError((error: HttpErrorResponse) => this.handleError(error))
-   );
+    //  #const url = '../../../assets/mock-data/add-portfolio-name.json';
+    //  return this.http.getMock(url);
+    return this.http.post(investmentApiConstants.endpoint.investmentAccount.savePortfolioName, param)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
-   // tslint:disable-next-line:no-identical-functions
-   confirmPortfolio(customerPortfolioId) {
+  // tslint:disable-next-line:no-identical-functions
+  confirmPortfolio(customerPortfolioId) {
     // #const url = '../../../assets/mock-data/confirm-portfolio.json';
     // return this.http.getMock(url);
-   // tslint:disable-next-line:max-line-length
+    // tslint:disable-next-line:max-line-length
     return this.http.get(investmentApiConstants.endpoint.investmentAccount.confirmPortfolio.replace('$customerPortfolioId$', customerPortfolioId))
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
-    }
+  }
 
   getFirstInvAccountCreationStatus(enquiryId?) {
     let url = investmentApiConstants.endpoint.investment.getFirstInvAccountCreationStatus;
@@ -367,6 +367,13 @@ export class InvestmentApiService {
     const url = investmentApiConstants.endpoint.portfolio.setAwaitingOrPendingInfo.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId)
       .replace('$AWAITING_PENDING_PARAM$', awaitingOrPendingParam);
     return this.http.get(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getInvestmentNoteFromApi() {
+    return this.http.get(investmentApiConstants.endpoint.investmentAccount.getInvestmentNote)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
