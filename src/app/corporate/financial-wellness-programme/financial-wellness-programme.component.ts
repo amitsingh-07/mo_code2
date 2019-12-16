@@ -23,7 +23,7 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
   emailErrorMessage: object = {};
   contactNumberErrorMessage: object = {};
   ErrorMessage: string;
-  companySizeItems = [{ item: 'Below 300' }, { item: '300 – 1000' }, { item: 'Above 1000' }];
+  companySizeItems = [{ item: 'Below 300' }, { item: '300 - 1000' }, { item: 'Above 1000' }];
 
   constructor(
     public footerService: FooterService,
