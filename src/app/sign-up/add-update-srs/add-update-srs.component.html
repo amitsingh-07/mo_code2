@@ -1,78 +1,68 @@
 <app-investment-title-bar></app-investment-title-bar>
 <div class="container-fluid max-width--1024 invest-web-pt-90">
-
-  <form id="addUpdateSrsFrom" name="addUpdateSrsFrom" [formGroup]="addUpdateSrsFrom">
-    <div class="content">
-      <!-- Account Holder Name -->
-      <div class="form-group">
-        <div class="flex-row">
-          <div class="flex-col-12">
-            <label id="act-holder-lbl" class="form-lbl">Account Holder's Name</label>
-          </div>
-          <div class="flex-col-12">
-            <div contenteditable="true" id="fullname" [textContent]="addUpdateSrsFrom.get('srsAccountHolderName').value"
-              (focusout)="setsrsAccountHolderName($event.target.textContent);" maxlength="100"
-              (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
-              placeholder="Enter Account Holder Name">
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- text description -->
-      <div class="flex-row">
-        <div class="flex-col-12">
-          <label id="srs-desc-txt" class="desc-lbl">Due to regulations, you can only use an account under your legal name.</label>
-        </div>
-      </div>
-      <!-- Bank name  -->
-      <div class="form-group">
-        <div class="flex-row">
-          <div class="flex-col-6">
-            <label id="srs-operator-lbl" class="form-lbl bank_text">SRS Operator</label>
-          </div>
-          <div class="flex-col-6">
-              <div class="dropdown-control">
-                <!--  -->
-                <div ngbDropdown>
-                    <button class="btn btn-dropdown without-border " id="residentialAddress-country-drpdown"
-                      ngbDropdownToggle>
-                      <span>{{addUpdateSrsFrom.controls.srsOperator.value ? 
-                          addUpdateSrsFrom.controls.srsOperator.value.name :
-                         'Select SRS Operator'}}</span>
-                    </button>
-                    <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                      <button class="dropdown-item" *ngFor="let operator of srsAgentBankList; let i = index;"
-                        (click)="selectSrsOperator('srsOperator',operator)"
-                        id="residentialAddress-country-option-{{i}}">{{operator.name}}</button>
+    <form id="addUpdateSrsFrom" name="addUpdateSrsFrom" [formGroup]="addUpdateSrsFrom">
+        <div class="content">
+            <!-- Account Holder Name -->
+            <div class="form-group">
+                <div class="flex-row">
+                    <div class="flex-col-12">
+                        <label id="act-holder-lbl" class="form-lbl">Account Holder's Name</label>
                     </div>
-                  </div>
-                <!--  -->
-              </div>
-          </div>
-        </div>
-      </div>
-     
-      <div class="form-group">
-        <div class="flex-row">
-          <div class="flex-col-6">
-            <label id="srs-act-num-lbl" class="form-lbl bank_text">SRS Account Number</label>
-          </div>
-          <div class="flex-col-6">
-            <div>
-              <input id="srs-act-num-value" type="text" [textMask]="maskConfig()" placeholder="Enter Account No." class="form-control"
-                formControlName="srsAccount">
+                    <div class="flex-col-12">
+                        <div contenteditable="true" id="fullname" [textContent]="addUpdateSrsFrom.get('srsAccountHolderName').value" (focusout)="setsrsAccountHolderName($event.target.textContent);" maxlength="100" (keypress)="onKeyPressEvent($event, $event.target.textContent)"
+                            class="content-editable" placeholder="Enter Account Holder Name">
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            <!-- text description -->
+            <div class="flex-row">
+                <div class="flex-col-12">
+                    <label id="srs-desc-txt" class="desc-lbl">Due to regulations, you can only use an account under your legal name.</label>
+                </div>
+            </div>
+            <!-- Bank name  -->
+            <div class="form-group">
+                <div class="flex-row">
+                    <div class="flex-col-6">
+                        <label id="srs-operator-lbl" class="form-lbl bank_text">SRS Operator</label>
+                    </div>
+                    <div class="flex-col-6">
+                        <div class="dropdown-control">
+                            <!--  -->
+                            <div ngbDropdown>
+                                <button class="btn btn-dropdown without-border " id="residentialAddress-country-drpdown" ngbDropdownToggle>
+                    <span>{{addUpdateSrsFrom.controls.srsOperator.value ?
+                        addUpdateSrsFrom.controls.srsOperator.value.name :
+                        'Select SRS Operator'}}</span>
+                  </button>
+                                <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                                    <button class="dropdown-item" *ngFor="let operator of srsAgentBankList; let i = index;" (click)="selectSrsOperator('srsOperator',operator)" id="residentialAddress-country-option-{{i}}">{{operator.name}}</button>
+                                </div>
+                            </div>
+                            <!--  -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="flex-row">
+                    <div class="flex-col-6">
+                        <label id="srs-act-num-lbl" class="form-lbl bank_text">SRS Account Number</label>
+                    </div>
+                    <div class="flex-col-6">
+                        <div>
+                            <input id="srs-act-num-value" type="text" [textMask]="maskConfig()" placeholder="Enter Account No." class="form-control" formControlName="srsAccount">
+                        </div>
+                    </div>
+                </div>
+                <div class="characters" id="srs-act-num-lmit" *ngIf="addUpdateSrsFrom.get('srsOperator').value">
+                    {{getAccNoLength() ? getAccNoLength() :0}} / {{getAccNoMaxLength(addUpdateSrsFrom.get('srsOperator').value)}}
+                </div>
+                <!-- <div id="srs-act-num-lmit" class="characters">0 / 14</div> -->
+            </div>
         </div>
-        <div class="characters" id="srs-act-num-lmit"
-          *ngIf="addUpdateSrsFrom.get('srsOperator').value">
-          {{getAccNoLength() ? getAccNoLength() :0}} /
-          {{getAccNoMaxLength(addUpdateSrsFrom.get('srsOperator').value)}}
-        </div>
-        <!-- <div id="srs-act-num-lmit" class="characters">0 / 14</div> -->
-      </div>
-    </div>
-    <button (click)="applyChanges(addUpdateSrsFrom)" type="button" class="btn btn__footer--fixed btn-primary width100"
-      id="forgotPasswordButton">{{buttonTitle}}</button>
-  </form>
+        <button (click)="updateSrsSaveCall(addUpdateSrsFrom)" type="button" class="btn btn__footer--fixed btn-primary width100" id="forgotPasswordButton">{{buttonTitle}}</button>
+    </form>
 </div>

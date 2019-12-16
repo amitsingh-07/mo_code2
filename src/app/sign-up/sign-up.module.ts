@@ -19,11 +19,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import {
-    EditResidentialAddressComponent
+  EditResidentialAddressComponent
 } from './edit-residential-address/edit-residential-address.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import {
-    ForgotPasswordResultComponent
+  ForgotPasswordResultComponent
 } from './forgot-password-result/forgot-password-result.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
@@ -33,16 +33,17 @@ import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SignUpRoutingModule } from './sign-up-routing.module';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import {
-    TopBarWithClearButtonComponent
+  TopBarWithClearButtonComponent
 } from './top-bar-with-clear-button/top-bar-with-clear-button.component';
 import { UpdateUserIdComponent } from './update-user-id/update-user-id.component';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
 import {
-    ViewAllNotificationsComponent
+  ViewAllNotificationsComponent
 } from './view-all-notifications/view-all-notifications.component';
 import { EditMobileNumberComponent } from '../shared/modal/edit-mobile-number/edit-mobile-number.component';
 import { AddUpdateSrsComponent } from './add-update-srs/add-update-srs.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { SrsSuccessModalComponent } from './add-update-srs/srs-success-modal/srs-success-modal.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -91,9 +92,10 @@ export function createTranslateLoader(http: HttpClient) {
     TopBarWithClearButtonComponent,
     AccountUpdatedComponent,
     AddUpdateBankComponent,
-    AddUpdateSrsComponent
+    AddUpdateSrsComponent,
+    SrsSuccessModalComponent
   ],
   providers: [SignUpAccessGuard, AuthGuardService],
-  entryComponents: [EditMobileNumberComponent]
+  entryComponents: [EditMobileNumberComponent, SrsSuccessModalComponent]
 })
 export class SignUpModule { }

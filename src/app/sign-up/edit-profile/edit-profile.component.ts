@@ -292,23 +292,23 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateSrsDetails(srsAcctHolderName, srsAccountNumber, srsBankOperator, srsBankFlag) {
-    this.signUpService.setEditProfileSrsDetails(srsAcctHolderName, srsAccountNumber,  srsBankOperator);
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS], { queryParams: { srsBank: srsBankFlag }, fragment: 'bank' });
-  }
-
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.navbarService.unsubscribeBackPress();
   }
   constructDate(dob) {
-    this.dobFormat =  dob;
+    this.dobFormat = dob;
     if (dob) {
       const dateArr = dob.split('/');
       if (dateArr.length === 3) {
         this.dobFormat = dateArr[1] + '/' + dateArr[0] + '/' + dateArr[2];
-     }
+      }
     }
+  }
+
+  updateSrsDetails(srsAcctHolderName, srsAccountNumber, srsBankOperator, srsBankFlag) {
+    this.signUpService.setEditProfileSrsDetails(srsAcctHolderName, srsAccountNumber, srsBankOperator, this.bankDetails.customerId);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS], { queryParams: { srsBank: srsBankFlag }, fragment: 'bank' });
   }
 
   getSrsDetails() {

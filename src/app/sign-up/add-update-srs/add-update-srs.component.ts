@@ -1,14 +1,16 @@
 
 
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
-import 'rxjs/add/observable/forkJoin';
-import { Observable } from 'rxjs/Observable';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import 'rxjs/add/observable/forkJoin';
+import { Observable } from 'rxjs/Observable';
 
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
+import { InvestmentEngagementJourneyService } from '../../investment/investment-engagement-journey/investment-engagement-journey.service';
+import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
@@ -18,18 +20,13 @@ import {
 } from '../../shared/modal/ifast-error-modal/ifast-error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
-import { InvestmentEngagementJourneyService } from '../../investment/investment-engagement-journey/investment-engagement-journey.service';
 
+import { InvestmentCommonService } from 'src/app/investment/investment-common/investment-common.service';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
-
-
-
-
-
+import { SrsSuccessModalComponent } from './srs-success-modal/srs-success-modal.component';
 
 @Component({
   selector: 'app-add-update-srs',
@@ -68,6 +65,7 @@ export class AddUpdateSrsComponent implements OnInit {
     public manageInvestmentsService: ManageInvestmentsService,
     public readonly translate: TranslateService,
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
+    private investmentCommonService: InvestmentCommonService,
     private loaderService: LoaderService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
@@ -103,7 +101,7 @@ export class AddUpdateSrsComponent implements OnInit {
   buildForm() {
     this.addUpdateSrsFrom = this.formBuilder.group({
       srsAccountHolderName: [this.srsDetail.srsAccountHolderName, [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
-      srsOperator: [ this.srsDetail && this.srsDetail.srsOperatorBank, [Validators.required]],
+      srsOperator: [this.srsDetail && this.srsDetail.srsOperatorBank, [Validators.required]],
       srsAccount: [this.srsDetail && this.srsDetail.srsAccountNumber, [Validators.required]]
     });
   }
@@ -230,30 +228,58 @@ export class AddUpdateSrsComponent implements OnInit {
     }
   }
 
-  applyChanges(form: any) {
+  updateSrsSaveCall(form: any) {
     if (!form.valid) {
-      Object.keys(form.controls).forEach((key) => {
-        form.get(key).markAsDirty();
-      });
-      const error = this.signUpService.getFormErrorList(form);
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.title;
-      ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
-      console.log(form.value);
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+      const formValue = form.getRawValue();
+      const reqParams = {};
+      const opertorId = this.getOperatorIdByName(formValue.srsOperator.name, this.srsAgentBankList);
+      reqParams['srsDetails'] = {
+        accountNumber: formValue.srsAccount ? formValue.srsAccount.replace(/[-]/g, '') : null,
+        operatorId: opertorId ? opertorId : null
+      };
+      this.investmentCommonService.saveSrsAccountDetails(reqParams, this.srsDetail.customerId).subscribe((data) => {
+        // this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+        this.showSRSSuccessModel();
+      },
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
     }
   }
-  getOperatorIdByName(operatorId, OperatorOptions) {
-    if (operatorId && OperatorOptions) {
+
+  showSRSSuccessModel() {
+    const ref = this.modal.open(SrsSuccessModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.Message');
+  }
+
+  getOperatorIdByName(operatorName, OperatorOptions) {
+    if (operatorName && OperatorOptions) {
       const OperatorBank = OperatorOptions.filter(
-        (prop) => prop.id === operatorId
+        (prop) => prop.name === operatorName
       );
-      return OperatorBank[0];
+      console.log(OperatorBank);
+      return OperatorBank[0].id;
     } else {
       return '';
     }
+  }
+
+  showCustomErrorModal(title, desc) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.errorMessage = desc;
+  }
+
+  showIfastErrorModal(errorList) {
+    const errorTitle = this.translate.instant(
+      'IFAST_ERROR_TITLE'
+    );
+    const ref = this.modal.open(IfastErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = errorTitle;
+    ref.componentInstance.errorList = errorList;
   }
 
 }

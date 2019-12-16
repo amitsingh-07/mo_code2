@@ -611,10 +611,11 @@ export class SignUpService {
 
   //srs details
 
-  setEditProfileSrsDetails(fullName, accountNumber, srsBankOperator) {
+  setEditProfileSrsDetails(fullName, accountNumber, srsBankOperator, customerId) {
     this.signUpFormData.srsAccountHolderName = fullName;
     this.signUpFormData.srsAccountNumber = accountNumber;
     this.signUpFormData.srsOperatorBank = srsBankOperator;
+    this.signUpFormData.customerId = customerId;
     this.commit();
   }
 
@@ -622,7 +623,8 @@ export class SignUpService {
     return {
       srsAccountHolderName: this.signUpFormData.srsAccountHolderName,
       srsAccountNumber: this.signUpFormData.srsAccountNumber,
-      srsOperatorBank: this.signUpFormData.srsOperatorBank
+      srsOperatorBank: this.signUpFormData.srsOperatorBank,
+      customerId: this.signUpFormData.customerId
     };
   }
 }
