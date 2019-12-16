@@ -1,6 +1,7 @@
 {
   "FINANCIAL_LITERACY_TEAM": {
     "TITLE": "Financial Literacy Team",
+    "SUCCESS_MSG": "Your Enquiry has been sent successfully",
     "PEOPLE": {
       "TITLE": "MoneyOwl Financial Literacy Team",
       "MGT": [{
@@ -30,89 +31,76 @@
       ]
     }
   },
-  "CUSTOMER_REVIEWS": {
-    "TITLE": "Customer Reviews",
-    "META": {
-      "META_DESCRIPTION": "Customer Reviews about our Financial Advisory Services ",
-      "META_KEYWORDS": "",
-      "META_AUTHOR": "Moneyowl Pte Ltd",
-      "META_COPYRIGHT": "Moneyowl Pte Ltd"
+  "FINANCIAL_WELLNESS_PROGRAMME": {
+    "HEADER": "MoneyOwl Works: A Corporate Financial Wellness Programme",
+    "DATA": "A turnkey solution that enables companies to help employees save and invest towards their retirement.",
+    "TEXT": {
+      "T1": "Our",
+      "T2": "MoneyOwl",
+      "T3": "Works",
+      "T4": "Programme can help you better engage your employees in the area of personal finance and foster better employer - employee relations.Companies can demonstrate their care and responsiveness as employers, and reaffirm their employees’ value as persons and professionals.Employees who have financial peace of mind will be focused and effective, thus helping their companies thrive.",
+      "T5": "People-centred employers attract and retain talent better. Those at the vanguard of revolutionising employee's long-term financial well-being will make a significant mark in their industry as a role model.",
+      "T6": "Benefits To Your",
+      "T7": "Employees",
+      "T8": "A secure financial future",
+      "T9": "Less stress on personal financial matters and improvement in overall physical health",
+      "T10": "Increased productivity at work as a result of a sound financial plan in place",
+      "T11": "Boost in morale as they are being well taken care of",
+      "T12": "Benefits To Your",
+      "T13": "Companies",
+      "T14": "Thriving business with a stronger workforce – increase in work productivity",
+      "T15": "Attract the right talent as more employees are looking at more holistic company’s benefits as part of total compensation",
+      "T16": "Increased employees’ engagement and retention"
     },
-    "GENERAL": {
-      "TITLE": "Customer Reviews",
-      "SUB_TITLE": "Hear what our clients say about us"
-    }
-  },
-  "WHY_MONEYOWL": {
-    "TITLE": "Why MoneyOwl",
-    "META": {
-      "META_DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
-      "META_KEYWORDS": "",
-      "META_AUTHOR": "Moneyowl Pte Ltd",
-      "META_COPYRIGHT": "Moneyowl Pte Ltd"
+    "INNER_CONTENT": {
+      "HEADER": "The programme comprises of 3 key areas:",
+      "TEXT": {
+        "T1": "Features of MoneyOwl Works",
+        "T2": "MoneyOwl ",
+        "T3": "Works",
+        "T4": "is a holistic, result-oriented Corporate Financial Wellness Programme and a turnkey solution that complements companies’ existing benefits. It empowers employees with the confidence to take financial planning actions through interactive learning, engagement, and application.",
+        "T5": "Financial Planning Workshops",
+        "T6": "Employees have to understand the need to plan for their retirement and how to go about doing so. We have customised workshops, platforms, and tools to improve your employees’ personal financial knowledge and proficiency, to help them make wise money decisions confidently.",
+        "T7": "Fit For Various Planning Purpose",
+        "T8": "Different employee profiles have various needs in their planning. Our ",
+        "T9": "MoneyOwl ",
+        "T10": "Works",
+        "T11": "programme has curated solutions, incorporating national schemes, catering to different employee profiles. Benefit from MoneyOwl’s conflict-free advice and select a suite of low cost financial solutions such as savings plan and low risk investment portfolio most suited for your employees.",
+        "T12": "Engagement, Communications and Motivations",
+        "T13": "A good programme needs to be communicated effectively to encourage participation. We plan and execute communications to employees via different channels to aid in the promotion of the benefits, and create the environment to motivate and incentivise employees to take action. These include customised communication materials, exclusive events and many more."
+      }
     },
-    "GENERAL": {
-      "HEADER": {
-        "TITLE": "Why MoneyOwl",
-        "DESCRIPTION": "We provide financial advice that is comprehensive, competent and conflict-free, using solutions that are fit-for-purpose so that you can be empowered to live a fulfilling life."
-      },
-      "VALUE_PROP": [{
-          "IMAGE": "mas-licensed.svg",
-          "LABEL": "MAS-licensed",
-          "DESCRIPTION": "MoneyOwl is a financial adviser and fund management company licensed by the MAS. Inheriting our DNA to Do Good and Do Right from our two corporate parents, NTUC Enterprise and Providend, we hold ourselves to the highest of standards to put your interests first. The key leaders of MoneyOwl have a wealth of experience in comprehensive financial planning and fund management so you can be assured of receiving the most competent advice."
-        },
-        {
-          "IMAGE": "high-tech.svg",
-          "LABEL": "High-tech + Human wisdom",
-          "DESCRIPTION": "Statistical models are static. Human relationships are dynamic. So, while robots can do precise calculations, only humans can understand your emotions and aspirations which must be considered in making money decisions. Have the best of both worlds. Leverage MoneyOwl’s advanced technology and receive advice from our dedicated Client Advisers. This is what we mean by Bionic – integrating technology with human wisdom to help you achieve your goals."
-        },
-        {
-          "IMAGE": "salary-advice.svg",
-          "LABEL": "Non commissioned-based Advisers",
-          "DESCRIPTION": "We want to provide you with advice that is conflict-free. MoneyOwl’s advisers are salaried-based and are not remunerated by commissions. There is no incentive to hard-sell or to promote products that reward with higher commissions. Our focus is on helping you make wise money decisions in your best interests."
-        },
-        {
-          "IMAGE": "national.svg",
-          "LABEL": "Integration with National Schemes",
-          "DESCRIPTION": "National schemes like our CPF are often ignored when it comes to financial planning in Singapore. Despite CPF playing such a large role in retirement planning, there is insufficient understanding of the scheme and an absence of advice in this key area. Integrating our advice with national schemes, you can now consolidate all your financial information, craft a comprehensive financial plan and achieve a more secure retirement."
-        },
-        {
-          "IMAGE": "secure.svg",
-          "LABEL": "Secure Platform",
-          "DESCRIPTION": "Your privacy is our priority. We do not sell or refer your personal information to a third party. MoneyOwl’s platform is built by an experienced technology team led by our very own Chief Technology Officer, undergoes rigorous penetration testing and meets technology risk management guidelines by MAS to ensure highest security and data protection, so that you can have peace of mind."
-        }
-      ]
-    }
-  },
-  "CONTACT_US": {
-    "TITLE": "Contact Us",
-    "META": {
-      "META_DESCRIPTION": "Reach out to us if you have any enquiries",
-      "META_KEYWORDS": "",
-      "META_AUTHOR": "Moneyowl Pte Ltd",
-      "META_COPYRIGHT": "Moneyowl Pte Ltd"
+    "EMPLOYEE": {
+      "TITLE": "Employees Need Help!",
+      "TEXT": {
+        "T1": "Employees need help in financial planning to achieve peace of mind about their financial security and retirement adequacy. Multiple studies show that the majority of people in Singapore are not financially prepared for retirement.",
+        "T2": "Among 2,000 working adults age 21 – 65 ",
+        "T3": "*based on latest research from OCBC Financial Wellness Index 2019",
+        "T4": "employees’ top cause of stress is resulted from financial or money matters which affected work productivity.*",
+        "T5": "*PWC 2019 employees’ survey "
+      }
     },
-    "GENERAL": {
-      "TITLE": "Contact Us",
-      "SUB_TITLE": "We are here for you",
-      "DESCRIPTION": "Feel free to contact us if you have any comments or questions. We are happy to learn about your experience and offer our assistance. Your privacy is our priority and all information shared will be kept confidential.",
-      "FORM": {
-        "PLACEHOLDER": "Your Message Here",
-        "SUCCESS_MSG": "Your Enquiry has been sent successfully",
-        "SEND_MESSAGE": "Send Message"
-      },
-      "INFO": {
-        "GENERAL_LINE": "General line",
-        "GENERAL_NUMBER": "(65) 6329 9189",
-        "ADVISORY_LINE": "Advisory Line",
-        "ADVISORY_NUMBER": "(65) 6329 9188",
-        "OFFICE": "Office",
-        "ADDRESS": "23 Keong Saik Road<br/>Singapore 089130",
-        "EMAIL": "enquiries@moneyowl.com.sg",
-        "PARTNERSHIP": "For Corporate Financial Literacy Programmes and Financial  Wellness Partnerships",
-        "PARTNERSHIP_EMAIL": "partnership@moneyowl.com.sg",
-        "OPERATING_HOURS": "Operating Hours",
-        "OPERATING_HOURS_CONTENT": "9am - 6pm, Mon - Fri<br/>excluding Public Holidays<br/>"
+    "ABOUT_US": {
+      "TITLE": "About MoneyOwl",
+      "TEXT": {
+        "T1": "MoneyOwl is a financial adviser and fund management company licensed by MAS. We are an NTUC Social Enterprise and our mission is to help ordinary Singaporean working families make wise financial planning decisions to improve their financial security, especially retirement adequacy.",
+        "T2": "Singapore’s 1st Bionic Financial Adviser",
+        "T3": "Conflict-Free",
+        "T4": "Secure Platform",
+        "T5": "Why MoneyOwl",
+        "T6": "Key People of MoneyOwl",
+        "T7": "Financial Literacy Trainers",
+        "T8": "We have a dedicated team of senior management and financial literacy trainers with deep industry experience to help your company execute a successful Corporate Financial Wellness Programme, to empower your employees to make sound financial decisions confidently.",
+        "T9": "Christopher",
+        "T10": "Felicia",
+        "T11": "Lena",
+        "T12": "Albert"
+      }
+    },
+    "CONNECT_US": {
+      "HEADER": "Connect with Us",
+      "TEXT": {
+        "T1": "We understand that every company has different goals and we can help. Leave your contact details below if you would like to get more details and have a further discussion (non-obligatory)."
       }
     }
   }
