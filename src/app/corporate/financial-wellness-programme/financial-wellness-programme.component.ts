@@ -20,6 +20,7 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
   companySize: string;
   companySizePreset: string;
   emailErrorMessage: object = {};
+  contactNumberErrorMessage: object = {};
   ErrorMessage: string;
   companySizeItems = [{ item: 'Below 300' }, { item: '300 – 1000' }, { item: 'Above 1000' }];
 
@@ -49,6 +50,10 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
         required: this.translate.instant('ERROR.CONTACT_US.EMAIL_REQUIRED'),
         email: this.translate.instant('ERROR.CONTACT_US.EMAIL_PATTERN')
       };
+      this.contactNumberErrorMessage = {
+        required: this.translate.instant('ERROR.CONTACT_US.CONTACT_NUMBER_REQUIRED'),
+        pattern: this.translate.instant('ERROR.CONTACT_US.CONTACT_NUMBER_PATTERN')
+      };
     });
   }
 
@@ -59,6 +64,7 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
   }
 
   buildFinancialWellnessForm() {
+    const SINGAPORE_MOBILE_REGEXP = /^(8|9)\d{7}$/;
     this.financialWellnessForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
@@ -66,7 +72,7 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
       companyName: ['', [Validators.required]],
       companySize: [''],
       emailAddress: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', [Validators.required]]
+      phoneNumber: ['', [Validators.required, Validators.pattern(SINGAPORE_MOBILE_REGEXP)]]
     });
   }
 
