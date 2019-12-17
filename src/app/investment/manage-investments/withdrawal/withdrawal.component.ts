@@ -15,8 +15,12 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
-import { ConfirmWithdrawalModalComponent } from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
-import { ForwardPricingModalComponent } from './forward-pricing-modal/forward-pricing-modal.component';
+import {
+  ConfirmWithdrawalModalComponent
+} from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
+import {
+  ForwardPricingModalComponent
+} from './forward-pricing-modal/forward-pricing-modal.component';
 
 @Component({
   selector: 'app-withdrawal',
@@ -85,7 +89,10 @@ export class WithdrawalComponent implements OnInit {
       } else {
         this.srsAccountInfo = null;
       }
-    });
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   // Set selected portfolio's entitlements, cash balance
