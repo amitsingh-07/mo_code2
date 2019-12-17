@@ -32,7 +32,7 @@ export class ManageInvestmentsFormData {
   selectedCustomerPortfolio: any;
   srsAccountDetails: ISrsAccountDetails;
 
-  investmentNote: string;
+  investmentNote: any;
 }
 
 export interface IToastMessage {

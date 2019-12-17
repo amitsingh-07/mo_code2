@@ -583,7 +583,7 @@ export class ManageInvestmentsService {
     return this.investmentApiService.getInvestmentNoteFromApi();
   }
 
-  getAllNotes(): Observable<string> {
+  getAllNotes(): Observable<any> {
     const invNoteFromSession = this.getTopUpFormData().investmentNote;
     if (invNoteFromSession) {
       return Observable.of(invNoteFromSession);
@@ -597,7 +597,7 @@ export class ManageInvestmentsService {
     }
   }
 
-  setInvestmentNoteToSession(note: string) {
+  setInvestmentNoteToSession(note: any) {
     this.manageInvestmentsFormData.investmentNote = note;
     this.commit();
   }
