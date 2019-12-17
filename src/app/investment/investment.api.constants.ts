@@ -40,7 +40,7 @@ export let investmentApiConstants = {
             getPortfolioDetailsWithAuth: INVESTMENT_API_BASE_URL + '/portfolios/recent',
             gerSrsDetails: ACCOUNT_API_BASE_URL + '/customer/getSrsBankDetails',
             saveSrsAccountDetails: ACCOUNT_API_BASE_URL + '/customer/$CUSTOMER_PORTFOLIO_ID$/srsbankDetails',
-            getInvestmentNote: ACCOUNT_API_BASE_URL + '/customer/address',
+            getInvestmentNote: INVESTMENT_API_BASE_URL + '/holiday/alert?handleError=true'
         },
         investment: {
             getUserAddress: ACCOUNT_API_BASE_URL + '/customer/address',

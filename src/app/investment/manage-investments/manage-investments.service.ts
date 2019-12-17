@@ -583,22 +583,17 @@ export class ManageInvestmentsService {
     return this.investmentApiService.getInvestmentNoteFromApi();
   }
 
-  getInvestmentNote(): Observable<string> {
+  getAllNotes(): Observable<string> {
     const invNoteFromSession = this.getTopUpFormData().investmentNote;
     if (invNoteFromSession) {
       return Observable.of(invNoteFromSession);
     } else {
       return this.getInvestmentNoteFromApi().map((data: any) => {
-        if (data && data.objectList) {
-          this.setInvestmentNoteToSession(data.objectList.homeAddress.addressLine1);
-          return data.objectList.homeAddress.addressLine1;
-        } else {
-          this.investmentAccountService.showGenericErrorModal();
+        if (data) {
+          this.setInvestmentNoteToSession(data.objectList);
+          return data.objectList;
         }
-      },
-        (err) => {
-          this.investmentAccountService.showGenericErrorModal();
-        });
+      });
     }
   }
 

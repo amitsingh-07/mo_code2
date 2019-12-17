@@ -1,7 +1,3 @@
-import 'rxjs/add/observable/forkJoin';
-
-import { Observable } from 'rxjs/Observable';
-
 import { DecimalPipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, ValidatorFn, Validators } from '@angular/forms';
@@ -47,7 +43,6 @@ export class WithdrawalComponent implements OnInit {
   entitlements: any;
   userProfileInfo;
   srsAccountInfo: any;
-  investmentNote: string;
 
   constructor(
     public readonly translate: TranslateService,
@@ -88,28 +83,16 @@ export class WithdrawalComponent implements OnInit {
     };
     this.buildForm();
     this.setSelectedPortfolio();
-    Observable.forkJoin(
-      this.manageInvestmentsService.getSrsAccountDetails(),
-      this.manageInvestmentsService.getInvestmentNote()
-    ).subscribe((response) => {
-      this.callbackForGetSrsAccountDetails(response[0]);
-      this.callbackForGetInvestmentNote(response[1]);
+    this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
+      if (data) {
+        this.srsAccountInfo = data;
+      } else {
+        this.srsAccountInfo = null;
+      }
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
-  }
-
-  callbackForGetSrsAccountDetails(response) {
-    if (response) {
-      this.srsAccountInfo = response;
-    } else {
-      this.srsAccountInfo = null;
-    }
-  }
-
-  callbackForGetInvestmentNote(response) {
-    this.investmentNote = response;
   }
 
   // Set selected portfolio's entitlements, cash balance

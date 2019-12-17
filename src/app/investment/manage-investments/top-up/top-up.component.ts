@@ -54,7 +54,6 @@ export class TopUpComponent implements OnInit, OnDestroy {
   isRequestSubmitted = false;
   srsAccountDetails;
   awaitingOrPendingAmount;
-  investmentNote: string;
 
   constructor(
     public readonly translate: TranslateService,
@@ -112,7 +111,6 @@ export class TopUpComponent implements OnInit, OnDestroy {
     }
     this.buildFormInvestment();
     this.setSelectedPortfolio();
-    this.getInvestmentNote();
   }
 
   ngOnDestroy() {
@@ -127,12 +125,6 @@ export class TopUpComponent implements OnInit, OnDestroy {
       } else {
         this.srsAccountDetails = null;
       }
-    });
-  }
-
-  getInvestmentNote() {
-    this.manageInvestmentsService.getInvestmentNote().subscribe((response) => {
-      this.investmentNote = response;
     });
   }
 
