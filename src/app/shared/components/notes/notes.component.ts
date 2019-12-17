@@ -20,10 +20,8 @@ export class NotesComponent implements OnInit {
   }
 
   ngOnInit() {
-    let notesList;
     this.manageInvestmentsService.getAllNotes().subscribe((data) => {
-      notesList = data;
-      this.note = this.getNoteByCategory(notesList);
+      this.note = this.getNoteByCategory(data);
     });
   }
 
@@ -31,7 +29,7 @@ export class NotesComponent implements OnInit {
     let selectedNoteItem = null;
     if (notesList) {
       selectedNoteItem = notesList.filter(
-        (note) => note.type.split('|').indexOf(this.category.toUpperCase()) >= 0
+        (note) => note.type.toUpperCase().split('|').indexOf(this.category.toUpperCase()) >= 0
       )[0];
     }
     return selectedNoteItem;
