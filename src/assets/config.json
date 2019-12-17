@@ -7,7 +7,7 @@
   "investmentEngagementEnabled": true,
   "investmentMyInfoEnabled": true,
   "comprehensiveEnabled": true,
-  "comprehensiveLiveEnabled": false,
+  "comprehensiveLiveEnabled": true,
   "srsEnabled": true,
   "promotionEnabled": true,
   "articleEnabled": true,
