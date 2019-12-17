@@ -579,4 +579,27 @@ export class ManageInvestmentsService {
     this.commit();
   }
 
+  getInvestmentNoteFromApi() {
+    return this.investmentApiService.getInvestmentNoteFromApi();
+  }
+
+  getAllNotes(): Observable<any> {
+    const invNoteFromSession = this.getTopUpFormData().investmentNote;
+    if (invNoteFromSession) {
+      return Observable.of(invNoteFromSession);
+    } else {
+      return this.getInvestmentNoteFromApi().map((data: any) => {
+        if (data) {
+          this.setInvestmentNoteToSession(data.objectList);
+          return data.objectList;
+        }
+      });
+    }
+  }
+
+  setInvestmentNoteToSession(note: any) {
+    this.manageInvestmentsFormData.investmentNote = note;
+    this.commit();
+  }
+
 }
