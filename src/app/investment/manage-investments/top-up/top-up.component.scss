@@ -22,19 +22,9 @@ app-top-up {
   .container-fluid {
     @include allmobiles {
       padding-bottom: 0 !important;
-      padding-right: 0 !important;
-      padding-left: 0 !important;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-    }
-
-    .content {
-      &:first-child {
-        @include allmobiles {
-          margin: 0 18px;
-        }
-      }
     }
 
     .col-lg-5 {
