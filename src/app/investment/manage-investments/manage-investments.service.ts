@@ -583,10 +583,9 @@ export class ManageInvestmentsService {
     return this.investmentApiService.getInvestmentNoteFromApi();
   }
 
-  getAllNotes(): Observable<any> {
-    const invNoteFromSession = this.getTopUpFormData().investmentNote;
-    if (invNoteFromSession) {
-      return Observable.of(invNoteFromSession);
+  getAllNotes(noteInSession): Observable<any> {
+    if (noteInSession) {
+      return Observable.of(noteInSession);
     } else {
       return this.getInvestmentNoteFromApi().map((data: any) => {
         if (data) {
