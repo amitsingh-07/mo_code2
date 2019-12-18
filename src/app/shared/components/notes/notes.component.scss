@@ -1,0 +1,62 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+app-notes {
+  .notes-wrapper {
+    background-color: $white-color;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    align-items: flex-start;
+    display: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    opacity: 0;
+
+    &.show {
+      display: flex;
+      animation: note-slide-down 500ms forwards 500ms;
+    }
+
+    @include allmobiles {
+      width: 100vw;
+      margin-left: -18px;
+      margin-top: -20px;
+      border-radius: 0px;
+    }
+
+    img {
+      width: 16px;
+      height: auto;
+      margin-right: 5px;
+    }
+
+    .note-content {
+      font-family: $muli-italic;
+      font-size: 13px;
+      line-height: normal;
+      letter-spacing: -0.14px;
+      color: $dark-grey-color;
+
+      a {
+        font-family: $muli-italic;
+        font-weight: bold;
+        color: $crusta-orange-color;
+      }
+    }
+  }
+
+
+  @keyframes note-slide-down {
+    0% {
+      opacity: 0;
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
+    100% {
+      opacity: 1;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 export const APP_ROUTES = {
     ROOT: '',
     HOME: 'home',
-    COMPREHENSIVE: '18112019robo3', //comprehensive
+    COMPREHENSIVE: 'comprehensive',
     GUIDE_ME: 'guideme'
 };
