@@ -520,7 +520,7 @@
           <div class="edit-profile-section-bg">
             <div class="flex-row cursor_pointer" (click)=showHide(showHideSrs)>
               <div class="flex-col-11">
-                <div id="srs-header-lbl" class="form-group-heading">Update SRS Account</div>
+                <div id="srs-header-lbl" class="form-group-heading">{{'UPDATE_SRS.TITLE' | translate}}</div>
               </div>
               <div class="flex-col-1">
                 <div class="dropdown-img">
@@ -534,7 +534,7 @@
               <div *ngIf="srsDetails">
                 <div class="flex-row">
                   <div class="flex-col-4">
-                    <div id="srs-operator-lbl" class="bank-account">SRS Operator</div>
+                    <div id="srs-operator-lbl" class="bank-account">{{'UPDATE_SRS.SRS_OPERATOR' | translate}}</div>
                   </div>
                   <div class="flex-col-8">
                     <div id="srs-operator-value" class="bank-account-num">{{srsDetails?.srsOperator}}</div>
@@ -542,7 +542,7 @@
                 </div>
                 <div class="flex-row">
                   <div class="flex-col-4">
-                    <div id="srs-act-num-lbl" class="bank-account">SRS Account Number</div>
+                    <div id="srs-act-num-lbl" class="bank-account">{{'UPDATE_SRS.SRS_ACCOUNT_NUMBER' | translate}}</div>
                   </div>
                   <div class="flex-col-8">
                     <div id="srs-act-num-value" class="bank-account-num">{{srsDetails?.srsAccountNumber?.conformedValue}}</div>
@@ -555,9 +555,9 @@
               <div class="no-details" *ngIf="!srsDetails">
                 <div class="flex-row">
                   <div class="flex-col-12">
-                    <div id="no-srs-txt" class="no-srs-account">No account added</div>
+                    <div id="no-srs-txt" class="no-srs-account">{{'UPDATE_SRS.NOTE' | translate}}</div>
                   </div>
-                  <button type="button" class="edit-button" id="editEmployeButton" (click)="updateSrsDetails(fullName, null, null, true)">Add Account</button>
+                  <button type="button" class="edit-button" id="editEmployeButton" (click)="updateSrsDetails(fullName, null, null, true)">{{'UPDATE_SRS.ADD_ACCOUNT' | translate}}</button>
                 </div>
               </div>
             </div>

@@ -6,7 +6,7 @@
             <div class="form-group">
                 <div class="flex-row">
                     <div class="flex-col-12">
-                        <label id="act-holder-lbl" class="form-lbl">Account Holder's Name</label>
+                        <label id="act-holder-lbl" class="form-lbl">{{ 'ADD_UPDATE_SRS.ACCOUNT_HOLDER_NAME' | translate}}</label>
                     </div>
                     <div class="flex-col-12">
                         <div contenteditable="true" id="fullname" [textContent]="addUpdateSrsFrom.get('srsAccountHolderName').value" (focusout)="setsrsAccountHolderName($event.target.textContent);" maxlength="100" (keypress)="onKeyPressEvent($event, $event.target.textContent)"
@@ -18,24 +18,23 @@
             <!-- text description -->
             <div class="flex-row">
                 <div class="flex-col-12">
-                    <label id="srs-desc-txt" class="desc-lbl">Due to regulations, you can only use an account under your legal name.</label>
+                    <label id="srs-desc-txt" class="desc-lbl">{{ 'ADD_UPDATE_SRS.LEGAL_NOTIFICATION' | translate}}</label>
                 </div>
             </div>
             <!-- Bank name  -->
             <div class="form-group">
                 <div class="flex-row">
                     <div class="flex-col-6">
-                        <label id="srs-operator-lbl" class="form-lbl bank_text">SRS Operator</label>
+                        <label id="srs-operator-lbl" class="form-lbl bank_text">{{ 'ADD_UPDATE_SRS.SRS_OPERATOR' | translate}}</label>
                     </div>
                     <div class="flex-col-6">
                         <div class="dropdown-control">
                             <!--  -->
                             <div ngbDropdown>
                                 <button class="btn btn-dropdown without-border " id="residentialAddress-country-drpdown" ngbDropdownToggle>
-                    <span>{{addUpdateSrsFrom.controls.srsOperator.value ?
-                        addUpdateSrsFrom.controls.srsOperator.value.name :
-                        'Select SRS Operator'}}</span>
-                  </button>
+                                <span>
+                                  {{addUpdateSrsFrom.controls.srsOperator.value ? addUpdateSrsFrom.controls.srsOperator.value.name : 'Select SRS Operator'}}</span>
+                              </button>
                                 <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                                     <button class="dropdown-item" *ngFor="let operator of srsAgentBankList; let i = index;" (click)="selectSrsOperator('srsOperator',operator)" id="residentialAddress-country-option-{{i}}">{{operator.name}}</button>
                                 </div>

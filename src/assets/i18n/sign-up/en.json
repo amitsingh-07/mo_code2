@@ -407,5 +407,17 @@
   "GENERAL_LOADER": {
     "TITLE": "Submitting",
     "DESC": "Please wait while we submit the request."
+  },
+  "ADD_UPDATE_SRS": {
+    "ACCOUNT_HOLDER_NAME": "Account Holder's Name",
+    "LEGAL_NOTIFICATION": "Due to regulations, you can only use an account under your legal name.",
+    "SRS_OPERATOR": "SRS Operator"
+  },
+  "UPDATE_SRS": {
+    "TITLE": "Update SRS Account",
+    "SRS_OPERATOR": "SRS Operator",
+    "SRS_ACCOUNT_NUMBER": "SRS Account Number",
+    "NOTE": "No account added",
+    "ADD_ACCOUNT": "Add Account"
   }
 }
