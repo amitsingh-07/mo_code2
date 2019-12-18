@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 import {
-    ManageInvestmentsService
+  ManageInvestmentsService
 } from '../../../investment/manage-investments/manage-investments.service';
 
 @Component({
@@ -14,13 +14,14 @@ export class NotesComponent implements OnInit {
 
   note: any;
   @Input('category') category;
+  @Input('noteInSession') noteInSession;
 
   constructor(
     private manageInvestmentsService: ManageInvestmentsService) {
   }
 
   ngOnInit() {
-    this.manageInvestmentsService.getAllNotes().subscribe((data) => {
+    this.manageInvestmentsService.getAllNotes(this.noteInSession).subscribe((data) => {
       this.note = this.getNoteByCategory(data);
     });
   }
