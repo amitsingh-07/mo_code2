@@ -623,6 +623,14 @@ input::placeholder {
       padding-right: 45px;
       text-align: right;
     }
+
+    &.with-percent {
+      input {
+        padding-left: 0;
+        padding-right: 15px;
+        text-align: right;
+      }
+    }
   }
 }
 

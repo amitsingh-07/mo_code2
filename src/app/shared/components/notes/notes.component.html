@@ -1,0 +1,4 @@
+<div class="notes-wrapper" [class.show]="note">
+  <img src="assets/images/alert-black.svg" />
+  <div class="note-content" *ngIf="note" [innerHTML]="note.message"></div>
+</div>
