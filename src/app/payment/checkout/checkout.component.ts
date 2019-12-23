@@ -43,19 +43,18 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('CHECKOUT.CHECKOUT_PAYMENT');
-      this.setPageTitle(this.pageTitle);
+      this.setNavbarServices(this.pageTitle);
     });
-    this.navbarService.setNavbarComprehensive(true);
     this.buildForm();
   }
 
   ngOnDestroy() {
   }
 
-  private buildForm() {
+  buildForm() {
     const timeStamp = this.datePipe.transform(new Date(), PaymentRequest.timestampFormat, PaymentRequest.timezone);
     const preShaStr = timeStamp + (PaymentRequest.requestId + timeStamp) + PaymentRequest.merchantAccId
-      + PaymentRequest.transactionType + this.subTotal + PaymentRequest.currency + PaymentRequest.redirectURL
+      + PaymentRequest.transactionType + this.totalAmt + PaymentRequest.currency + PaymentRequest.redirectURL
       + PaymentRequest.ipAddress + PaymentRequest.secretKey;
     const reqSignature = sha256(preShaStr);
     this.checkoutForm = this.formBuilder.group({
@@ -64,7 +63,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       request_signature: [reqSignature],
       merchant_account_id: [PaymentRequest.merchantAccId],
       transaction_type: [PaymentRequest.transactionType],
-      requested_amount: [this.subTotal],
+      requested_amount: [this.totalAmt],
       requested_amount_currency: [PaymentRequest.currency],
       ip_address: [PaymentRequest.ipAddress],
       redirect_url: [PaymentRequest.redirectURL],
@@ -72,14 +71,16 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     });
   }
 
-  setPageTitle(title: string) {
+  setNavbarServices(title: string) {
     this.navbarService.setPageTitle(title);
     this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarComprehensive(true);
   }
 
   submitForm() {
     this.buildForm();
     document.forms['checkoutForm'].action = PaymentRequest.requestURL;
+    console.log('FORM = ', document.forms['checkoutForm'])
     // INSERT SERVICE TO CALL BACKEND CODE BEFORE SUBMIT
     this.windowRef = window.open('', 'wirecardWindow');
     document.forms['checkoutForm'].submit();

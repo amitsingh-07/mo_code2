@@ -36,24 +36,28 @@ export class PaymentStatusComponent implements OnInit, OnDestroy {
     document.body.classList.add('bg-color');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.route.queryParams.subscribe((params) => {
-        if (params['state'] === PAYMENT_STATUS.SUCCESS) {
-          this.statusTitle = this.translate.instant('PAYMENT_STATUS.SUCCESS_TITLE');
-          this.statusText = this.translate.instant('PAYMENT_STATUS.SUCCESS_TEXT');
-          this.btnText = this.translate.instant('PAYMENT_STATUS.CONTINUE');
-          this.paymentStatus = PAYMENT_STATUS.SUCCESS;
-        } else {
-          this.statusTitle = this.translate.instant('PAYMENT_STATUS.FAIL_TITLE');
-          this.statusText = this.translate.instant('PAYMENT_STATUS.FAIL_TEXT');
-          this.btnText = this.translate.instant('PAYMENT_STATUS.TRY_AGAIN');
-          this.navigateText = this.translate.instant('PAYMENT_STATUS.BACK_DASHBOARD');
-          this.paymentStatus = PAYMENT_STATUS.FAILED;
-        }
+        this.setStatusText(params);
       });
     });
   }
 
   ngOnDestroy() {
     document.body.classList.remove('bg-color');
+  }
+
+  setStatusText(params) {
+    if (params['state'] === PAYMENT_STATUS.SUCCESS) {
+      this.statusTitle = this.translate.instant('PAYMENT_STATUS.SUCCESS_TITLE');
+      this.statusText = this.translate.instant('PAYMENT_STATUS.SUCCESS_TEXT');
+      this.btnText = this.translate.instant('PAYMENT_STATUS.CONTINUE');
+      this.paymentStatus = PAYMENT_STATUS.SUCCESS;
+    } else {
+      this.statusTitle = this.translate.instant('PAYMENT_STATUS.FAIL_TITLE');
+      this.statusText = this.translate.instant('PAYMENT_STATUS.FAIL_TEXT');
+      this.btnText = this.translate.instant('PAYMENT_STATUS.TRY_AGAIN');
+      this.navigateText = this.translate.instant('PAYMENT_STATUS.BACK_DASHBOARD');
+      this.paymentStatus = PAYMENT_STATUS.FAILED;
+    }
   }
 
   onPressBtn() {
