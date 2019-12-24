@@ -74,24 +74,37 @@ export class ComprehensiveService {
 
   commit() {
     if (window.sessionStorage) {
+
+      /* Robo3 FULL or LITE Config*/
+      sessionStorage.setItem(
+        appConstants.SESSION_KEY.COMPREHENSIVE_VERSION,
+        'LITE'
+      );
+      console.log(sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION));
+      // tslint:disable-next-line: max-line-length
+      const comprehensiveVersionType = (sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION) === 'LITE') ? appConstants.SESSION_KEY.COMPREHENSIVE_LITE : appConstants.SESSION_KEY.COMPREHENSIVE;
+
+      /* Robo3 FULL or LITE Config*/
       const cmpSessionData = this.getComprehensiveSessionData();
       cmpSessionData[
         ComprehensiveService.SESSION_KEY_FORM_DATA
       ] = this.comprehensiveFormData;
       sessionStorage.setItem(
-        appConstants.SESSION_KEY.COMPREHENSIVE,
+        comprehensiveVersionType,
         JSON.stringify(cmpSessionData)
       );
     }
   }
 
   getComprehensiveSessionData() {
+    // tslint:disable-next-line: max-line-length
+    const comprehensiveVersionType = (sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION)  === 'LITE') ? appConstants.SESSION_KEY.COMPREHENSIVE_LITE : appConstants.SESSION_KEY.COMPREHENSIVE;
     if (
       window.sessionStorage &&
-      sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE)
+      sessionStorage.getItem(comprehensiveVersionType)
     ) {
       return JSON.parse(
-        sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE)
+        sessionStorage.getItem(comprehensiveVersionType)
       );
     }
     return {};
@@ -107,6 +120,9 @@ export class ComprehensiveService {
   clearFormData() {
     this.comprehensiveFormData = {} as ComprehensiveFormData;
     this.commit();
+    sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION);
+    sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE);
+    sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE_LITE);
     this.getComprehensiveFormData();
   }
 
