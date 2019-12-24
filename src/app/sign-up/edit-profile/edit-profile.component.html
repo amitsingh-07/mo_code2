@@ -516,7 +516,7 @@
         </div>
       </div>
       <!-- Update srs details  -->
-      <div class="srs_details">
+      <div class="srs_details" *ngIf="srsDetails">
           <div class="edit-profile-section-bg">
             <div class="flex-row cursor_pointer" (click)=showHide(showHideSrs)>
               <div class="flex-col-11">
@@ -531,7 +531,7 @@
               </div>
             </div>
             <div class="dots" #showHideSrs>
-              <div *ngIf="srsDetails">
+              <div>
                 <div class="flex-row">
                   <div class="flex-col-4">
                     <div id="srs-operator-lbl" class="bank-account">{{'UPDATE_SRS.SRS_OPERATOR' | translate}}</div>
@@ -548,17 +548,9 @@
                     <div id="srs-act-num-value" class="bank-account-num">{{srsDetails?.srsAccountNumber?.conformedValue}}</div>
                   </div>
                 </div>
-                <button type="button" class="edit-button" id="editEmployeButton" (click)="updateSrsDetails(fullName, srsDetails?.srsAccountNumber?.conformedValue, {name: srsDetails?.srsOperator}, false)">
+                <button type="button" class="edit-button" id="editEmployeButton" (click)="updateSrsDetails(fullName, srsDetails?.srsAccountNumber?.conformedValue, {name: srsDetails?.srsOperator}, srsDetails?.customerId, false)">
                   {{'EDIT_PROFILE.EDIT' | translate}}
                 </button>
-              </div>
-              <div class="no-details" *ngIf="!srsDetails">
-                <div class="flex-row">
-                  <div class="flex-col-12">
-                    <div id="no-srs-txt" class="no-srs-account">{{'UPDATE_SRS.NOTE' | translate}}</div>
-                  </div>
-                  <button type="button" class="edit-button" id="editEmployeButton" (click)="updateSrsDetails(fullName, null, null, true)">{{'UPDATE_SRS.ADD_ACCOUNT' | translate}}</button>
-                </div>
               </div>
             </div>
           </div>

@@ -257,8 +257,11 @@ export class YourPortfolioComponent implements OnInit {
         break;
       }
       case 4: {
-        this.manageInvestmentsService.clearWithdrawalTypeFormData();
-        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL]);
+        if (this.portfolio.entitlements.showWithdrawPvToBa || this.portfolio.entitlements.showWithdrawPvToCa ||
+          this.portfolio.entitlements.showWithdrawCaToBa || this.portfolio.entitlements.showWithdrawPvToSRS) {
+          this.manageInvestmentsService.clearWithdrawalTypeFormData();
+          this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL]);
+        }
         break;
       }
       case 5: {

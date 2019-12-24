@@ -16,7 +16,9 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
+import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -71,7 +73,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     public authService: AuthenticationService,
     public investmentAccountService: InvestmentAccountService,
     public manageInvestmentsService: ManageInvestmentsService,
-    public readonly translate: TranslateService) {
+    public readonly translate: TranslateService,
+    private loaderService: LoaderService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
       this.pageTitle = this.translate.instant('EDIT_PROFILE.MY_PROFILE');
@@ -91,6 +94,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.investmentStatus = this.investmentCommonService.getInvestmentStatus();
     this.showAddBankDetails(this.investmentStatus);
     this.getSrsDetails();
+    this.getInvestmentOverview();
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
@@ -306,8 +310,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-  updateSrsDetails(srsAcctHolderName, srsAccountNumber, srsBankOperator, srsBankFlag) {
-    const customerId = (this.bankDetails && this.bankDetails.customerId) ? this.bankDetails.customerId : null;
+  updateSrsDetails(srsAcctHolderName, srsAccountNumber, srsBankOperator, customerId, srsBankFlag) {
     this.signUpService.setEditProfileSrsDetails(srsAcctHolderName, srsAccountNumber, srsBankOperator, customerId);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS], { queryParams: { srsBank: srsBankFlag }, fragment: 'bank' });
   }
@@ -321,5 +324,47 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
+  }
+
+  getInvestmentOverview() {
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.loaderService.showLoader({
+        title: this.translate.instant('COMMON.LOADING_TITLE'),
+        desc: this.translate.instant('COMMON.LOADING_DESC'),
+        autoHide: false
+      });
+    });
+    this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
+      this.loaderService.hideLoaderForced();
+      if (data.responseMessage.responseCode >= 6000 && data && data.objectList) {
+        this.manageInvestmentsService.setUserPortfolioList(data.objectList.portfolios);
+      } else if (
+        data.objectList &&
+        data.objectList['length'] &&
+        data.objectList[data.objectList['length'] - 1].serverStatus &&
+        data.objectList[data.objectList['length'] - 1].serverStatus.errors &&
+        data.objectList[data.objectList['length'] - 1].serverStatus.errors.length
+      ) {
+        this.showCustomErrorModal(
+          'Error!',
+          data.objectList[data.objectList['length'] - 1].serverStatus.errors[0].msg
+        );
+      } else if (data.responseMessage && data.responseMessage.responseDescription) {
+        const errorResponse = data.responseMessage.responseDescription;
+        this.showCustomErrorModal('Error!', errorResponse);
+      } else {
+        this.investmentAccountService.showGenericErrorModal();
+      }
+    },
+      (err) => {
+        this.loaderService.hideLoaderForced();
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  }
+
+  showCustomErrorModal(title, desc) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.errorMessage = desc;
   }
 }

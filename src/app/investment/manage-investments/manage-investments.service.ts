@@ -560,7 +560,8 @@ export class ManageInvestmentsService {
           data.objectList.srsBankOperator && data.objectList.srsBankOperator.name) {
           const srsAccountDetails = {
             srsAccountNumber: this.srsAccountFormat(data.objectList.accountNumber, data.objectList.srsBankOperator.name),
-            srsOperator: data.objectList.srsBankOperator.name
+            srsOperator: data.objectList.srsBankOperator.name,
+            customerId: data.objectList.customerId
           };
           this.setSrsAccountDetails(srsAccountDetails);
           return srsAccountDetails;

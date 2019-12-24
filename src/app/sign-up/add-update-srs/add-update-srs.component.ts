@@ -239,15 +239,13 @@ export class AddUpdateSrsComponent implements OnInit {
         accountNumber: formValue.srsAccount ? formValue.srsAccount.replace(/[-]/g, '') : null,
         operatorId: opertorId ? opertorId : null
       };
-      this.manageInvestmentsService.setSrsAccountDetails(null);
-      this.showSRSSuccessModel();
-      // this.investmentCommonService.saveSrsAccountDetails(reqParams, this.srsDetail.customerId).subscribe((data) => {
-      //   this.manageInvestmentsService.setSrsAccountDetails(null);
-      //   this.showSRSSuccessModel();
-      // },
-      //   (err) => {
-      //     this.investmentAccountService.showGenericErrorModal();
-      //   });
+      this.investmentCommonService.saveSrsAccountDetails(reqParams, this.srsDetail.customerId).subscribe((data) => {
+        this.manageInvestmentsService.setSrsAccountDetails(null);
+        this.showSRSSuccessModel();
+      },
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
     }
   }
 
@@ -260,45 +258,8 @@ export class AddUpdateSrsComponent implements OnInit {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
     });
     ref.componentInstance.topUp.subscribe(() => {
-      this.getInvestmentOverview();
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.TOPUP]);
     });
-  }
-
-  getInvestmentOverview() {
-    this.translate.get('COMMON').subscribe((result: string) => {
-      this.loaderService.showLoader({
-        title: this.translate.instant('YOUR_PORTFOLIO.MODAL.INVESTMENT_OVERVIEW.TITLE'),
-        desc: this.translate.instant('YOUR_PORTFOLIO.MODAL.INVESTMENT_OVERVIEW.MESSAGE'),
-        autoHide: false
-      });
-    });
-    this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
-      this.loaderService.hideLoaderForced();
-      if (data.responseMessage.responseCode >= 6000 && data && data.objectList) {
-        this.manageInvestmentsService.setUserPortfolioList(data.objectList.portfolios);
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.TOPUP]);
-      } else if (
-        data.objectList &&
-        data.objectList['length'] &&
-        data.objectList[data.objectList['length'] - 1].serverStatus &&
-        data.objectList[data.objectList['length'] - 1].serverStatus.errors &&
-        data.objectList[data.objectList['length'] - 1].serverStatus.errors.length
-      ) {
-        this.showCustomErrorModal(
-          'Error!',
-          data.objectList[data.objectList['length'] - 1].serverStatus.errors[0].msg
-        );
-      } else if (data.responseMessage && data.responseMessage.responseDescription) {
-        const errorResponse = data.responseMessage.responseDescription;
-        this.showCustomErrorModal('Error!', errorResponse);
-      } else {
-        this.investmentAccountService.showGenericErrorModal();
-      }
-    },
-      (err) => {
-        this.loaderService.hideLoaderForced();
-        this.investmentAccountService.showGenericErrorModal();
-      });
   }
 
   getOperatorIdByName(operatorName, OperatorOptions) {
