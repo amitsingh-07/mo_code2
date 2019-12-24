@@ -19,6 +19,7 @@ import { SignUpService } from '../sign-up.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
+import { SrsSuccessModalComponent } from '../add-update-srs/srs-success-modal/srs-success-modal.component';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -79,6 +80,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.translate.get('COMMON').subscribe(() => {
       this.pageTitle = this.translate.instant('EDIT_PROFILE.MY_PROFILE');
       this.setPageTitle(this.pageTitle);
+      this.showSRSSuccessModel();
     });
     this.getNationalityCountryList();
   }
@@ -366,5 +368,15 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessage = desc;
+  }
+
+  showSRSSuccessModel() {
+    if (this.manageInvestmentsService.getSrsSuccessFlag()) {
+      const ref = this.modal.open(SrsSuccessModalComponent, { centered: true });
+      ref.componentInstance.topUp.subscribe(() => {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.TOPUP]);
+      });
+      this.manageInvestmentsService.setSrsSuccessFlag(false)
+    }
   }
 }

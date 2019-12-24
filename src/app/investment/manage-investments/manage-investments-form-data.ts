@@ -31,6 +31,7 @@ export class ManageInvestmentsFormData {
   selectedCustomerPortfolioId: any;
   selectedCustomerPortfolio: any;
   srsAccountDetails: ISrsAccountDetails;
+  srsFlag: boolean;
 
 }
 

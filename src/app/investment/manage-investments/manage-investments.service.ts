@@ -580,4 +580,11 @@ export class ManageInvestmentsService {
     this.commit();
   }
 
+  setSrsSuccessFlag(srsFlag) {
+    this.manageInvestmentsFormData.srsFlag = srsFlag;
+    this.commit();
+  }
+  getSrsSuccessFlag() {
+    return this.manageInvestmentsFormData.srsFlag;
+  }
 }

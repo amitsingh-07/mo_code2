@@ -14,7 +14,7 @@
                             <div ngbDropdown>
                                 <button class="btn btn-dropdown without-border " id="residentialAddress-country-drpdown" ngbDropdownToggle>
                                 <span>
-                                  {{addUpdateSrsFrom.controls.srsOperator.value ? addUpdateSrsFrom.controls.srsOperator.value.name : 'Select SRS Operator'}}</span>
+                                  {{addUpdateSrsFrom.controls.srsOperator.value ? addUpdateSrsFrom.controls.srsOperator.value.name : translate.instant('ADD_UPDATE_SRS.SELECT_SRS_OPERATOR')}}</span>
                               </button>
                                 <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                                     <button class="dropdown-item" *ngFor="let operator of srsAgentBankList; let i = index;" (click)="selectSrsOperator('srsOperator',operator)" id="residentialAddress-country-option-{{i}}">{{operator.name}}</button>
@@ -29,7 +29,7 @@
             <div class="form-group">
                 <div class="flex-row">
                     <div class="flex-col-6">
-                        <label id="srs-act-num-lbl" class="form-lbl bank_text">SRS Account Number</label>
+                        <label id="srs-act-num-lbl" class="form-lbl bank_text">{{ 'UPDATE_SRS.SRS_ACCOUNT_NUMBER' | translate}}</label>
                     </div>
                     <div class="flex-col-6">
                         <div>
@@ -43,6 +43,6 @@
                 <!-- <div id="srs-act-num-lmit" class="characters">0 / 14</div> -->
             </div>
         </div>
-        <button (click)="updateSrsSaveCall(addUpdateSrsFrom)" type="button" class="btn btn__footer--fixed btn-primary width100" id="forgotPasswordButton">{{buttonTitle}}</button>
+        <button (click)="updateSrsSaveCall(addUpdateSrsFrom)" type="button" class="btn btn__footer--fixed btn-primary width100" id="forgotPasswordButton">{{ 'ADD_UPDATE_SRS.APPLY_CHANGES' | translate}}</button>
     </form>
 </div>

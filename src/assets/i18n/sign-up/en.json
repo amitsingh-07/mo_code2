@@ -170,7 +170,7 @@
     "FORGOT_PASSWORD": "Forgot your password?",
     "CLICK_HERE": "Click Here",
     "ERRORS": {
-      "TITLE":"Oops, verify your email to login!",
+      "TITLE": "Oops, verify your email to login!",
       "VERIFY_EMAIL_MESSAGE": "You are almost there! An email verification is sent. We need you to verify your email to complete your account creation!"
     }
   },
@@ -305,9 +305,9 @@
       "SET_UP_ACCOUNT": "Set-Up Account",
       "SUSPENDED_INVESTMENT_ACCOUNT": "Your account has been suspended. Email us at <a  class=\"hyperlink_color\" href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> or call us at (65) 6329 9188 for assistance.",
       "UNSUCCESSFUL_INVESTMENT_ACCOUNT": "Your investment account set up is unsuccessful. Email us at <a  class=\"hyperlink_color\" href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> or call us at (65) 6329 9188 for assistance.",
-      "PORTFOLIO_EXIST_TITLE":"Portfolio Already Exist",
-      "PORTFOLIO_EXIST_DESC":"You have already selected a portfolio. Please proceed to Top up, Fund or Delete the selected portfolio.",
-      "PORTFOLIO_EXIST_BTN_LABEL":"Proceed To Portfolio"
+      "PORTFOLIO_EXIST_TITLE": "Portfolio Already Exist",
+      "PORTFOLIO_EXIST_DESC": "You have already selected a portfolio. Please proceed to Top up, Fund or Delete the selected portfolio.",
+      "PORTFOLIO_EXIST_BTN_LABEL": "Proceed To Portfolio"
     },
     "WILL_WRITING": {
       "TITLE": "Will Writing",
@@ -321,7 +321,7 @@
       "CONTINUE_WRITING": "Continue Writing",
       "LAST_UPDATED": "Last Updated"
     },
-    "INSURANCE":{
+    "INSURANCE": {
       "TITLE": "Insurance",
       "NO_INSURANCE_DESC": "Assess your insurance coverage to find out what you really need.",
       "INSURANCE_DESC": "We received your quote request on ",
@@ -332,17 +332,30 @@
     },
     "SRS_JOINT_ACCOUNT": {
       "FIND_OUT_MORE": "Click here to find out more on our new SRS & Joint Account updates!",
-      "SRS_JOINT_ACCOUNT_SLIDES":  [
-        {"TITLE": "New Updates", "TITLE_IMG": "srs-joint-account/speaker.svg", "IMAGE": "srs-joint-account/srs.svg",
+      "SRS_JOINT_ACCOUNT_SLIDES": [{
+          "TITLE": "New Updates",
+          "TITLE_IMG": "srs-joint-account/speaker.svg",
+          "IMAGE": "srs-joint-account/srs.svg",
           "IMG_TITLE": "You can now open your SRS Investment Account online!",
           "TEXT": "Invest your Supplementary Retirement Scheme (SRS) savings to get potentially higher returns while enjoying tax savings."
-          },
-          {"TITLE": "New Updates",  "TITLE_IMG": "srs-joint-account/speaker.svg", "IMAGE": "srs-joint-account/joint-account.svg",
+        },
+        {
+          "TITLE": "New Updates",
+          "TITLE_IMG": "srs-joint-account/speaker.svg",
+          "IMAGE": "srs-joint-account/joint-account.svg",
           "IMG_TITLE": "Apply For A Joint Account!",
           "TEXT": "Apply for a Joint Investment Account with your loved ones today and enjoy all the good things that come in pairs.",
-          "URL": "/faq", "URL_FRAGMENT": "srs-joint-account", "URL_TEXT": "Learn More About Joint Account"},
-          {"TITLE": "Apply Now!", "TEXT": "Please note that Joint Investment Accounts are currently handled offline.",
-          "CONTACT": "Contact us to apply:", "TEL": "(65) 6329 9188", "EMAIL": "enquiries@moneyowl.com.sg"}
+          "URL": "/faq",
+          "URL_FRAGMENT": "srs-joint-account",
+          "URL_TEXT": "Learn More About Joint Account"
+        },
+        {
+          "TITLE": "Apply Now!",
+          "TEXT": "Please note that Joint Investment Accounts are currently handled offline.",
+          "CONTACT": "Contact us to apply:",
+          "TEL": "(65) 6329 9188",
+          "EMAIL": "enquiries@moneyowl.com.sg"
+        }
       ],
       "START_BTN": "Dismiss",
       "END_BTN": "Got it!"
@@ -404,16 +417,25 @@
   },
   "NOTIFICATIONS": {
     "EMPTY": "No New Notifications!",
-    "CLEAR_ALL":"Clear All"
+    "CLEAR_ALL": "Clear All"
   },
   "GENERAL_LOADER": {
     "TITLE": "Submitting",
     "DESC": "Please wait while we submit the request."
   },
   "ADD_UPDATE_SRS": {
+    "TITLE": "Update SRS Account",
+    "APPLY_CHANGES": "Apply Changes",
     "ACCOUNT_HOLDER_NAME": "Account Holder's Name",
     "LEGAL_NOTIFICATION": "Due to regulations, you can only use an account under your legal name.",
-    "SRS_OPERATOR": "SRS Operator"
+    "SRS_OPERATOR": "SRS Operator",
+    "SELECT_SRS_OPERATOR": "Select SRS Operator",
+    "MODAL": {
+      "TITLE": "SRS Details Updated",
+      "DESC": "We will use this SRS account for your subsequent buy request(s).",
+      "PRIMARY_LABEL": "Top Up",
+      "SEC_LABEL": "I will do it Later"
+    }
   },
   "UPDATE_SRS": {
     "TITLE": "Update SRS Account",

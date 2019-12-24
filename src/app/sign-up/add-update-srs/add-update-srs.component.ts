@@ -25,8 +25,6 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 
 import { InvestmentCommonService } from 'src/app/investment/investment-common/investment-common.service';
-import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
-import { SrsSuccessModalComponent } from './srs-success-modal/srs-success-modal.component';
 
 @Component({
   selector: 'app-add-update-srs',
@@ -49,7 +47,6 @@ export class AddUpdateSrsComponent implements OnInit {
   isSrsAccountAvailable = false;
   srsAccountDetails;
   queryParams;
-  buttonTitle;
   srsDetails;
   srsDetail;
 
@@ -83,13 +80,7 @@ export class AddUpdateSrsComponent implements OnInit {
     this.queryParams = this.route.snapshot.queryParams;
     this.srsBank = this.queryParams.srsBank;
     this.translate.get('COMMON').subscribe(() => {
-      if (this.srsBank === 'true') {
-        this.pageTitle = this.translate.instant('Add SRS Account');
-        this.buttonTitle = this.translate.instant('Add Now');
-      } else {
-        this.pageTitle = this.translate.instant('Update SRS Account');
-        this.buttonTitle = this.translate.instant('Apply Changes');
-      }
+      this.pageTitle = this.translate.instant('ADD_UPDATE_SRS.TITLE');
       this.setPageTitle(this.pageTitle);
     });
     this.footerService.setFooterVisibility(false);
@@ -127,13 +118,13 @@ export class AddUpdateSrsComponent implements OnInit {
       const operator = this.addUpdateSrsFrom.get('srsOperator').value.name;
       if (operator) {
         switch (operator.toUpperCase()) {
-          case 'DBS':
+          case SIGN_UP_CONFIG.BANK_KEYS.DBS:
             config.mask = RegexConstants.operatorMask.DBS;
             break;
-          case 'OCBC':
+          case SIGN_UP_CONFIG.BANK_KEYS.OCBC:
             config.mask = RegexConstants.operatorMask.OCBC;
             break;
-          case 'UOB':
+          case SIGN_UP_CONFIG.BANK_KEYS.UOB:
             config.mask = RegexConstants.operatorMask.UOB;
             break;
         }
@@ -156,13 +147,13 @@ export class AddUpdateSrsComponent implements OnInit {
   getAccNoMaxLength(value) {
     let accNoMaxLength;
     switch (this.addUpdateSrsFrom.get('srsOperator').value.name) {
-      case 'DBS':
+      case SIGN_UP_CONFIG.BANK_KEYS.DBS:
         accNoMaxLength = 14;
         break;
-      case 'OCBC':
+      case SIGN_UP_CONFIG.BANK_KEYS.OCBC:
         accNoMaxLength = 12;
         break;
-      case 'UOB':
+      case SIGN_UP_CONFIG.BANK_KEYS.UOB:
         accNoMaxLength = 9;
         break;
     }
@@ -179,15 +170,15 @@ export class AddUpdateSrsComponent implements OnInit {
       const selectedBank = this.addUpdateSrsFrom.get('srsOperator').value;
       if (selectedBank) {
         switch (selectedBank.name.toUpperCase()) {
-          case 'DBS':
+          case SIGN_UP_CONFIG.BANK_KEYS.DBS:
             accNoControl.setValidators(
               [Validators.required, Validators.pattern(RegexConstants.operatorMaskForValidation.DBS)]);
             break;
-          case 'OCBC':
+          case SIGN_UP_CONFIG.BANK_KEYS.OCBC:
             accNoControl.setValidators(
               [Validators.required, Validators.pattern(RegexConstants.operatorMaskForValidation.OCBC)]);
             break;
-          case 'UOB':
+          case SIGN_UP_CONFIG.BANK_KEYS.UOB:
             accNoControl.setValidators(
               [Validators.required, Validators.pattern(RegexConstants.operatorMaskForValidation.UOB)]);
             break;
@@ -198,8 +189,6 @@ export class AddUpdateSrsComponent implements OnInit {
       this.addUpdateSrsFrom.updateValueAndValidity();
     }
   }
-
-
 
   // #ALLOWING 100 CHARACTERS ACCOUNT HOLDER NAME
   setsrsAccountHolderName(srsAccountHolderName: any) {
@@ -219,11 +208,11 @@ export class AddUpdateSrsComponent implements OnInit {
     const id = event.target.id;
     if (id !== '') {
       const content = event.target.innerText;
-      if (content.length >= 100) {
-        const contentList = content.substring(0, 100);
+      if (content.length >= SIGN_UP_CONFIG.ACCOUNT_NUM_MAX_LIMIT) {
+        const contentList = content.substring(0, SIGN_UP_CONFIG.ACCOUNT_NUM_MAX_LIMIT);
         this.addUpdateSrsFrom.controls.srsAccountHolderName.setValue(contentList);
         const el = document.querySelector('#' + id);
-        this.investmentAccountService.setCaratTo(el, 100, contentList);
+        this.investmentAccountService.setCaratTo(el, SIGN_UP_CONFIG.ACCOUNT_NUM_MAX_LIMIT, contentList);
       }
     }
   }
@@ -241,7 +230,8 @@ export class AddUpdateSrsComponent implements OnInit {
       };
       this.investmentCommonService.saveSrsAccountDetails(reqParams, this.srsDetail.customerId).subscribe((data) => {
         this.manageInvestmentsService.setSrsAccountDetails(null);
-        this.showSRSSuccessModel();
+        this.manageInvestmentsService.setSrsSuccessFlag(true);
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       },
         (err) => {
           this.investmentAccountService.showGenericErrorModal();
@@ -249,26 +239,12 @@ export class AddUpdateSrsComponent implements OnInit {
     }
   }
 
-  showSRSSuccessModel() {
-    const ref = this.modal.open(SrsSuccessModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.TITLE');
-    ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.Message');
-    ref.componentInstance.selected.subscribe(() => {
-      console.log('Nav Back');
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
-    });
-    ref.componentInstance.topUp.subscribe(() => {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.TOPUP]);
-    });
-  }
-
   getOperatorIdByName(operatorName, OperatorOptions) {
     if (operatorName && OperatorOptions) {
-      const OperatorBank = OperatorOptions.filter(
+      const operatorBank = OperatorOptions.filter(
         (prop) => prop.name === operatorName
       );
-      console.log(OperatorBank);
-      return OperatorBank[0].id;
+      return operatorBank[0].id;
     } else {
       return '';
     }
