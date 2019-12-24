@@ -1,112 +1,46 @@
 @import '../../../variables';
 @import "../../../_mixins.scss";
-
 app-add-update-srs {
-  .bank_text {
-    margin-left: 10px;
-  }
-
-  .form-lbl {
-    font-family: $muli-semi-bold;
-    font-size: 18px;
-    font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: -0.34px;
-    color: $white-color;
-  }
-
-  .desc-lbl {
-    font-family: $muli-regular;
-    font-size: 14px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.29;
-    letter-spacing: -0.14px;
-    color: $white-color;
-    margin-bottom: 18px;
-  }
-
-  .dropdown-control {
-    .btn-dropdown {
-      color: $teal-color;
-    }
-
-    border-radius: 6px;
-    position: relative;
-    position: relative;
-    background: $white-color;
-    cursor: pointer;
-
-    .dropdown-toggle {
-      padding: 0.90rem;
-
-      &:disabled {
-        cursor: not-allowed;
-
-        &:hover {
-          background-color: transparent !important;
+    .content {
+        padding-top: 26px;
+        @include allmobiles {
+            padding-top: 10px;
         }
-      }
     }
-  }
-
-  label {
-    font-size: 18px;
-    font-family: $muli-semi-bold;
-    padding-right: 10px;
-  }
-
-  .form-control {
-    color: #00a7a7;
-    &:disabled,
-    &.disabled {
-      cursor: not-allowed;
-      color: $teal-color !important;
-      -webkit-text-fill-color: $teal-color !important;
-      opacity: 1 !important;
-      background-color: $edit-acnt-disable-bg !important;
-      border: 1px solid $edit-acnt-disable-brdr !important;
+    .bank_text {
+        margin-left: 10px;
     }
-  }
-
-  .dropdown-menu.show {
-    right: 0 !important;
-    overflow: auto;
-    height: auto;
-    max-height: 264px;
-  }
-
-  .dropdown-item {
-    white-space: normal;
-    word-break: break-word;
-  }
-
-  .dropdown-control .btn-dropdown {
-    padding-right: 27px;
-    max-height: 52px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  [placeholder]:empty::before {
-    content: attr(placeholder);
-
-    color: $text-color-secondary
-  }
-
-  [placeholder]:empty:focus::before {
-    content: "";
-  }
-
-  .characters{
-    text-align: right;
-    padding-right: 8px;
-    font-family: $muli-italic;
-    font-size: 15px;
-    color: #74c1c1;
-  }
+    .form-lbl {
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+        letter-spacing: -0.34px;
+        color: $white-color;
+    }
+    label {
+        font-size: 18px;
+        font-family: $muli-semi-bold;
+        padding-right: 10px;
+    }
+    .form-control {
+        color: #00a7a7;
+        &:disabled,
+        &.disabled {
+            cursor: not-allowed;
+            color: $teal-color !important;
+            -webkit-text-fill-color: $teal-color !important;
+            opacity: 1 !important;
+            background-color: $edit-acnt-disable-bg !important;
+            border: 1px solid $edit-acnt-disable-brdr !important;
+        }
+    }
+    .characters {
+        text-align: right;
+        padding-right: 8px;
+        font-family: $muli-italic;
+        font-size: 15px;
+        color: #74c1c1;
+    }
+    .btn__footer--fixed {
+        font-family: $muli-bold;
+    }
 }
