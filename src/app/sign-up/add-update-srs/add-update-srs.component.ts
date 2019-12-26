@@ -223,6 +223,7 @@ export class AddUpdateSrsComponent implements OnInit {
     } else {
       const formValue = form.getRawValue();
       const reqParams = {};
+      reqParams['fundTypeId'] = this.srsDetail['fundTypeId'];
       const opertorId = this.getOperatorIdByName(formValue.srsOperator.name, this.srsAgentBankList);
       reqParams['srsDetails'] = {
         accountNumber: formValue.srsAccount ? formValue.srsAccount.replace(/[-]/g, '') : null,

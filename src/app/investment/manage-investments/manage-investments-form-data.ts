@@ -33,6 +33,7 @@ export class ManageInvestmentsFormData {
   srsAccountDetails: ISrsAccountDetails;
   srsFlag: boolean;
 
+  investmentNote: any;
 }
 
 export interface IToastMessage {

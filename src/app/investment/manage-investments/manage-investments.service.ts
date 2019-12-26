@@ -580,6 +580,28 @@ export class ManageInvestmentsService {
     this.commit();
   }
 
+  getInvestmentNoteFromApi() {
+    return this.investmentApiService.getInvestmentNoteFromApi();
+  }
+
+  getAllNotes(noteInSession): Observable<any> {
+    if (noteInSession) {
+      return Observable.of(noteInSession);
+    } else {
+      return this.getInvestmentNoteFromApi().map((data: any) => {
+        if (data) {
+          this.setInvestmentNoteToSession(data.objectList);
+          return data.objectList;
+        }
+      });
+    }
+  }
+
+  setInvestmentNoteToSession(note: any) {
+    this.manageInvestmentsFormData.investmentNote = note;
+    this.commit();
+  }
+
   setSrsSuccessFlag(srsFlag) {
     this.manageInvestmentsFormData.srsFlag = srsFlag;
     this.commit();

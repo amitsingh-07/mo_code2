@@ -5,7 +5,7 @@
         <div class="sub-navigation--inner">
           <span routerLink="/">Home</span>
           <i class="material-icons">keyboard_arrow_right</i>
-          <span routerLink="/about-us">Financial Wellness Programme</span>
+          <span>Financial Wellness Programme</span>
         </div>
       </div>
       <div class="header--title">
@@ -19,7 +19,7 @@
       <div class="financial__container--inner">{{'FINANCIAL_WELLNESS_PROGRAMME.TEXT.T1'|translate}} <span
           class="txt-teal">{{'FINANCIAL_WELLNESS_PROGRAMME.TEXT.T2'|translate}} </span><span
           class="txt-orange">{{'FINANCIAL_WELLNESS_PROGRAMME.TEXT.T3'|translate}}</span>
-        {{'FINANCIAL_WELLNESS_PROGRAMME.TEXT.T4'|translate}}</div>
+      <span [innerHtml]="'FINANCIAL_WELLNESS_PROGRAMME.TEXT.T4'|translate"></span></div>
       <div class="financial-desc">
         <div class="financial-desc-logo"><img src="/assets/images/financial-wellness/financial-desc-logo.svg" /></div>
         <div>{{'FINANCIAL_WELLNESS_PROGRAMME.TEXT.T5'|translate}}
@@ -188,19 +188,19 @@
         <div class="literacy-trainers__container__trainers">
           <div class="literacy-trainers__container__trainers__list" (click)="navigateTo('/works/financial-literacy')">
             <div class="literacy-trainers__container__trainers__list--thumbnail">
-              <img src="/assets/images/corporate/financial-literacy-team/chris.svg" />
+              <img src="/assets/images/corporate/financial-literacy-team/chris.png" />
               <p>{{'FINANCIAL_WELLNESS_PROGRAMME.ABOUT_US.TEXT.T9'|translate}}</p>
             </div>
             <div class="literacy-trainers__container__trainers__list--thumbnail">
-              <img src="/assets/images/corporate/financial-literacy-team/felicia.svg" />
+              <img src="/assets/images/corporate/financial-literacy-team/felicia.png" />
               <p>{{'FINANCIAL_WELLNESS_PROGRAMME.ABOUT_US.TEXT.T10'|translate}}</p>
             </div>
             <div class="literacy-trainers__container__trainers__list--thumbnail">
-              <img src="/assets/images/corporate/financial-literacy-team/lena.svg" />
+              <img src="/assets/images/corporate/financial-literacy-team/lena.png" />
               <p>{{'FINANCIAL_WELLNESS_PROGRAMME.ABOUT_US.TEXT.T11'|translate}}</p>
             </div>
             <div class="literacy-trainers__container__trainers__list--thumbnail">
-              <img src="/assets/images/corporate/financial-literacy-team/albert.svg" />
+              <img src="/assets/images/corporate/financial-literacy-team/albert.png" />
               <p>{{'FINANCIAL_WELLNESS_PROGRAMME.ABOUT_US.TEXT.T12'|translate}}</p>
             </div>
           </div>
@@ -259,7 +259,7 @@
                   </div>
                   <div class="col-sm-6">
                     <input type="number" class="form-control light-border p-3" formControlName="phoneNumber"
-                      placeholder="Phone Number *" required>
+                      placeholder="Phone Number *" #phoneNumber (keyup)="onlyNumber(phoneNumber)" required>
                   </div>
                 </div>
                 <div class="flex-row">

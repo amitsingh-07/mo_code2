@@ -7,6 +7,7 @@ import { ConfigService } from '../../config/config.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { CorporateService } from '../corporate.service';
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
 
 @Component({
   selector: 'app-financial-wellness-programme',
@@ -36,7 +37,7 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
   ) {
     this.submitted = false;
     this.sendSuccess = false;
-    this.companySizePreset = 'Size Of Company *';
+    this.companySizePreset = 'Size of Company *';
 
     this.authService.authenticate().subscribe((data) => {
     });
@@ -72,10 +73,14 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
       lastName: ['', [Validators.required]],
       jobFunction: ['', [Validators.required]],
       companyName: ['', [Validators.required]],
-      companySize: [''],
+      companySize: ['', [Validators.required]],
       emailAddress: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', [Validators.required, Validators.pattern(SINGAPORE_MOBILE_REGEXP)]]
     });
+  }
+
+  onlyNumber(el) {
+    this.financialWellnessForm.controls['phoneNumber'].setValue(el.value.replace(RegexConstants.OnlyNumeric, ''));
   }
 
   selectSize(in_companySize) {

@@ -59,6 +59,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   srsDetails;
   formatedAccountNumber;
+  fundTypeId: number;
 
   constructor(
     // tslint:disable-next-line
@@ -313,7 +314,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   updateSrsDetails(srsAcctHolderName, srsAccountNumber, srsBankOperator, customerId, srsBankFlag) {
-    this.signUpService.setEditProfileSrsDetails(srsAcctHolderName, srsAccountNumber, srsBankOperator, customerId);
+    this.signUpService.setEditProfileSrsDetails(srsAcctHolderName, srsAccountNumber, srsBankOperator, customerId, this.fundTypeId);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS], { queryParams: { srsBank: srsBankFlag }, fragment: 'bank' });
   }
 
@@ -340,6 +341,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.loaderService.hideLoaderForced();
       if (data.responseMessage.responseCode >= 6000 && data && data.objectList) {
         this.manageInvestmentsService.setUserPortfolioList(data.objectList.portfolios);
+        this.fundTypeId = this.getFundTypeId(data.objectList.portfolios)
       } else if (
         data.objectList &&
         data.objectList['length'] &&
@@ -362,6 +364,14 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         this.loaderService.hideLoaderForced();
         this.investmentAccountService.showGenericErrorModal();
       });
+  }
+
+  getFundTypeId(protfolios) {
+    for (const obj of protfolios) {
+      if (obj['fundingTypeValue'] === 'SRS') {
+        return obj['fundingTypeId'];
+      }
+    }
   }
 
   showCustomErrorModal(title, desc) {

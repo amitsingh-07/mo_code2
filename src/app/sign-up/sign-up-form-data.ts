@@ -38,4 +38,5 @@ export class SignUpFormData {
   srsAccountNumber: number;
   srsOperatorBank: any;
   customerId: number;
+  fundTypeId: number;
 }
