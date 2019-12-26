@@ -1155,6 +1155,34 @@ body.modal-open::-webkit-scrollbar {
 }
 
 .payment-tnc {
+  .modal-dialog {
+    max-height: 800px;
+  }
+
+  .modal-body-message ol li:before {
+    content: counters(item, ".") " ";
+    counter-increment: item;
+  }
+
+  .modal-body-message ol {
+    counter-reset: item;
+    padding-left: 0px;
+  }
+
+  .modal-body-message ol li {
+    display: block;
+    padding-bottom: 10px;
+  }
+
+  .modal-body-message .default-ol ol {
+    counter-reset: list;
+    padding-left: 15px;
+  }
+
+  .modal-body-message .default-ol ol li:before {
+    content: " ("counter(list, lower-alpha) ") ";
+    counter-increment: list;
+  }
 
   .modal-body {
     padding: 28px 30px 40px 33px !important;
@@ -1164,7 +1192,7 @@ body.modal-open::-webkit-scrollbar {
     }
   }
 
-  .modal-body-message div:first-of-type {
+  .modal-body-message .tnc-header {
     font-family: $muli-semi-bold;
     font-size: 18px;
     color: $teal-color;
@@ -1175,7 +1203,7 @@ body.modal-open::-webkit-scrollbar {
     padding-bottom: 22px;
   }
 
-  .modal-body-message div:not(:first-of-type) {
+  .modal-body-message .tnc-title {
     font-family: $muli-semi-bold;
     font-size: 16px;
     color: $teal-color;
@@ -1184,10 +1212,11 @@ body.modal-open::-webkit-scrollbar {
     line-height: normal;
     letter-spacing: -0.17px;
     padding-bottom: 10px;
+    display: inline-block;
   }
 
-  .modal-body-message p:not(:last-of-type) {
-    margin-bottom: 30px;
+  .modal-body-message a {
+    color: $orange-color;
   }
 
   .row {
