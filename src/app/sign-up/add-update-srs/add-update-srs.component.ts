@@ -39,15 +39,6 @@ export class AddUpdateSrsComponent implements OnInit {
   investmentAccountFormValues;
   fundingMethods: any;
   srsAgentBankList;
-  characterLength;
-  srsBank;
-  showMaxLength;
-  fundingSubText;
-  selectedFundingMethod;
-  isSrsAccountAvailable = false;
-  srsAccountDetails;
-  queryParams;
-  srsDetails;
   srsDetail;
 
   constructor(private formBuilder: FormBuilder,
@@ -77,8 +68,6 @@ export class AddUpdateSrsComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.queryParams = this.route.snapshot.queryParams;
-    this.srsBank = this.queryParams.srsBank;
     this.translate.get('COMMON').subscribe(() => {
       this.pageTitle = this.translate.instant('ADD_UPDATE_SRS.TITLE');
       this.setPageTitle(this.pageTitle);
@@ -87,18 +76,18 @@ export class AddUpdateSrsComponent implements OnInit {
     this.srsDetail = this.signUpService.getSrsDetails();
     this.getSrsBankOperator();
     this.buildForm();
+    this.addorRemoveAccNoValidator();
   }
 
   buildForm() {
     this.addUpdateSrsFrom = this.formBuilder.group({
-      srsAccountHolderName: [this.srsDetail.srsAccountHolderName, [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
       srsOperator: [this.srsDetail && this.srsDetail.srsOperatorBank, [Validators.required]],
       srsAccount: [this.srsDetail && this.srsDetail.srsAccountNumber, [Validators.required]]
     });
   }
 
   getSrsBankOperator() {
-    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+    this.investmentAccountService.getSpecificDropList('srsAgentBank').subscribe((data) => {
       this.srsAgentBankList = data.objectList.srsAgentBank;
     },
       (err) => {
@@ -108,6 +97,8 @@ export class AddUpdateSrsComponent implements OnInit {
 
   selectSrsOperator(key, value) {
     this.addUpdateSrsFrom.controls[key].setValue(value);
+    this.addUpdateSrsFrom.controls['srsAccount'].setValue(null);
+    this.addorRemoveAccNoValidator();
   }
 
   maskConfig() {
@@ -165,37 +156,24 @@ export class AddUpdateSrsComponent implements OnInit {
   }
 
   addorRemoveAccNoValidator() {
-    if (this.addUpdateSrsFrom.get('srsFundingDetails')) {
-      const accNoControl = this.addUpdateSrsFrom.get('srsAccount');
-      const selectedBank = this.addUpdateSrsFrom.get('srsOperator').value;
-      if (selectedBank) {
-        switch (selectedBank.name.toUpperCase()) {
-          case SIGN_UP_CONFIG.BANK_KEYS.DBS:
-            accNoControl.setValidators(
-              [Validators.required, Validators.pattern(RegexConstants.operatorMaskForValidation.DBS)]);
-            break;
-          case SIGN_UP_CONFIG.BANK_KEYS.OCBC:
-            accNoControl.setValidators(
-              [Validators.required, Validators.pattern(RegexConstants.operatorMaskForValidation.OCBC)]);
-            break;
-          case SIGN_UP_CONFIG.BANK_KEYS.UOB:
-            accNoControl.setValidators(
-              [Validators.required, Validators.pattern(RegexConstants.operatorMaskForValidation.UOB)]);
-            break;
-        }
-      } else {
-        accNoControl.setValidators([Validators.required]);
+    const accNoControl = this.addUpdateSrsFrom.get('srsAccount');
+    const selectedBank = this.addUpdateSrsFrom.get('srsOperator').value;
+    if (selectedBank) {
+      switch (selectedBank.name.toUpperCase()) {
+        case SIGN_UP_CONFIG.BANK_KEYS.DBS:
+          accNoControl.setValidators(
+            [Validators.required, Validators.pattern(RegexConstants.operatorMaskForValidation.DBS)]);
+          break;
+        case SIGN_UP_CONFIG.BANK_KEYS.OCBC:
+          accNoControl.setValidators(
+            [Validators.required, Validators.pattern(RegexConstants.operatorMaskForValidation.OCBC)]);
+          break;
+        case SIGN_UP_CONFIG.BANK_KEYS.UOB:
+          accNoControl.setValidators(
+            [Validators.required, Validators.pattern(RegexConstants.operatorMaskForValidation.UOB)]);
+          break;
       }
-      this.addUpdateSrsFrom.updateValueAndValidity();
-    }
-  }
-
-  // #ALLOWING 100 CHARACTERS ACCOUNT HOLDER NAME
-  setsrsAccountHolderName(srsAccountHolderName: any) {
-    if (srsAccountHolderName !== undefined) {
-      srsAccountHolderName = srsAccountHolderName.replace(/\n/g, '');
-      this.addUpdateSrsFrom.controls.srsAccountHolderName.setValue(srsAccountHolderName);
-      return srsAccountHolderName;
+    this.addUpdateSrsFrom.updateValueAndValidity();
     }
   }
 
@@ -210,7 +188,6 @@ export class AddUpdateSrsComponent implements OnInit {
       const content = event.target.innerText;
       if (content.length >= SIGN_UP_CONFIG.ACCOUNT_NUM_MAX_LIMIT) {
         const contentList = content.substring(0, SIGN_UP_CONFIG.ACCOUNT_NUM_MAX_LIMIT);
-        this.addUpdateSrsFrom.controls.srsAccountHolderName.setValue(contentList);
         const el = document.querySelector('#' + id);
         this.investmentAccountService.setCaratTo(el, SIGN_UP_CONFIG.ACCOUNT_NUM_MAX_LIMIT, contentList);
       }
@@ -249,21 +226,6 @@ export class AddUpdateSrsComponent implements OnInit {
     } else {
       return '';
     }
-  }
-
-  showCustomErrorModal(title, desc) {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = title;
-    ref.componentInstance.errorMessage = desc;
-  }
-
-  showIfastErrorModal(errorList) {
-    const errorTitle = this.translate.instant(
-      'IFAST_ERROR_TITLE'
-    );
-    const ref = this.modal.open(IfastErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = errorTitle;
-    ref.componentInstance.errorList = errorList;
   }
 
 }

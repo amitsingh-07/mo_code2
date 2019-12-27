@@ -548,7 +548,7 @@
                     <div id="srs-act-num-value" class="bank-account-num">{{srsDetails?.srsAccountNumber?.conformedValue}}</div>
                   </div>
                 </div>
-                <button type="button" class="edit-button" id="editEmployeButton" (click)="updateSrsDetails(fullName, srsDetails?.srsAccountNumber?.conformedValue, {name: srsDetails?.srsOperator}, srsDetails?.customerId, false)">
+                <button type="button" class="edit-button" id="editEmployeButton" (click)="updateSrsDetails(srsDetails?.srsAccountNumber?.conformedValue, {name: srsDetails?.srsOperator}, srsDetails?.customerId, false)">
                   {{'EDIT_PROFILE.EDIT' | translate}}
                 </button>
               </div>

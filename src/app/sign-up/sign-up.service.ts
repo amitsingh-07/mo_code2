@@ -611,8 +611,7 @@ export class SignUpService {
 
   //srs details
 
-  setEditProfileSrsDetails(fullName, accountNumber, srsBankOperator, customerId, fundTypeId) {
-    this.signUpFormData.srsAccountHolderName = fullName;
+  setEditProfileSrsDetails(accountNumber, srsBankOperator, customerId, fundTypeId) {
     this.signUpFormData.srsAccountNumber = accountNumber;
     this.signUpFormData.srsOperatorBank = srsBankOperator;
     this.signUpFormData.customerId = customerId;
@@ -622,7 +621,6 @@ export class SignUpService {
 
   getSrsDetails() {
     return {
-      srsAccountHolderName: this.signUpFormData.srsAccountHolderName,
       srsAccountNumber: this.signUpFormData.srsAccountNumber,
       srsOperatorBank: this.signUpFormData.srsOperatorBank,
       customerId: this.signUpFormData.customerId,

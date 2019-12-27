@@ -75,7 +75,7 @@ export class FundingMethodComponent implements OnInit {
       title: this.loaderTitle,
       desc: this.loaderDesc
     });
-    this.investmentAccountService.getFundMethodList().subscribe((data) => {
+    this.investmentAccountService.getSpecificDropList('portfolioFundingMethod').subscribe((data) => {
       this.loaderService.hideLoader();
       this.fundingMethods = data.objectList.portfolioFundingMethod;
       this.investmentEngagementJourneyService.sortByProperty(this.fundingMethods, 'name', 'asc');

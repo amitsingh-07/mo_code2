@@ -313,8 +313,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-  updateSrsDetails(srsAcctHolderName, srsAccountNumber, srsBankOperator, customerId, srsBankFlag) {
-    this.signUpService.setEditProfileSrsDetails(srsAcctHolderName, srsAccountNumber, srsBankOperator, customerId, this.fundTypeId);
+  updateSrsDetails(srsAccountNumber, srsBankOperator, customerId, srsBankFlag) {
+    this.signUpService.setEditProfileSrsDetails(srsAccountNumber, srsBankOperator, customerId, this.fundTypeId);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS], { queryParams: { srsBank: srsBankFlag }, fragment: 'bank' });
   }
 

@@ -34,7 +34,6 @@ export class SignUpFormData {
   isUnsupportedNoteShown: boolean;
   buyRequestFlag: boolean;
   //srs detail
-  srsAccountHolderName: string;
   srsAccountNumber: number;
   srsOperatorBank: any;
   customerId: number;

@@ -602,11 +602,11 @@ export class ManageInvestmentsService {
     this.commit();
   }
 
-  setSrsSuccessFlag(srsFlag) {
-    this.manageInvestmentsFormData.srsFlag = srsFlag;
+  setSrsSuccessFlag(isSrsAccountUpdated) {
+    this.manageInvestmentsFormData.isSrsAccountUpdated = isSrsAccountUpdated;
     this.commit();
   }
   getSrsSuccessFlag() {
-    return this.manageInvestmentsFormData.srsFlag;
+    return this.manageInvestmentsFormData.isSrsAccountUpdated;
   }
 }
