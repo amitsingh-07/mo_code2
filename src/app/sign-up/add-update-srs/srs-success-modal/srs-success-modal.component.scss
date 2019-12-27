@@ -1,0 +1,23 @@
+@import '../../../../variables';
+
+app-srs-success-modal {
+  .modal-body {
+    padding: 20px;
+
+    .srs-success {
+      width: 111px;
+      height: 114px;
+      display: flex;
+      margin: 0 auto 20px;
+    }
+
+    .txt-orange {
+      font-family: $muli-semi-bold;
+      font-size: 18px;
+      line-height: normal;
+      letter-spacing: -0.14px;
+      text-align: center;
+      color: #ff872f;
+    }
+  }
+}
