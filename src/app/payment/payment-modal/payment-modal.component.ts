@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { filter } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-payment-modal',
@@ -13,18 +13,24 @@ export class PaymentModalComponent implements OnInit {
   @Input() popupTitle: any;
   @Input() popupMessage: any;
 
-  constructor(public activeModal: NgbActiveModal, private router: Router) { }
+  constructor(
+    public activeModal: NgbActiveModal,
+    private router: Router,
+    public readonly translate: TranslateService
+  ) {
+    this.translate.use('en');
+  }
 
   ngOnInit() {
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
-        // dismiss all bootstrap modal dialog
-        this.activeModal.dismiss();
-      });
+    // this.router.events
+    //   .pipe(filter((event) => event instanceof NavigationEnd))
+    //   .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
+    //     // dismiss all bootstrap modal dialog
+    //     this.activeModal.dismiss();
+    //   });
   }
-  closePopup() {
-    this.activeModal.dismiss();
-  }
+  // closePopup() {
+  //   this.activeModal.dismiss();
+  // }
 
 }

@@ -1,13 +1,15 @@
 import { DatePipe } from '@angular/common';
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { sha256 } from 'js-sha256';
+import { ErrorModalComponent } from 'src/app/shared/modal/error-modal/error-modal.component';
+import { ModelWithButtonComponent } from './../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { PaymentModalComponent } from './../payment-modal/payment-modal.component';
 import { PaymentRequest } from './../payment-request';
+import { PAYMENT_CONST } from './../payment.constants';
 
 @Component({
   selector: 'app-checkout',
@@ -24,15 +26,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   termsOfConditions = false;
   modalRef: NgbModalRef;
 
-  subTotal = 500;
-  gst = 7;
-  promoCode = 'MOONLY';
+  subTotal = PAYMENT_CONST.SUBTOTAL;
+  gst = PAYMENT_CONST.GST;
+  totalAmt = this.subTotal + (this.subTotal * PAYMENT_CONST.GST / 100);
+  promoCode = PAYMENT_CONST.PROMO_CODE;
 
   constructor(
     private formBuilder: FormBuilder,
     public readonly translate: TranslateService,
     private modal: NgbModal,
-    public httpClient: HttpClient,
     public datePipe: DatePipe,
     public navbarService: NavbarService
   ) {
@@ -41,20 +43,19 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = 'Checkout';
-      this.setPageTitle(this.pageTitle);
+      this.pageTitle = this.translate.instant('CHECKOUT.CHECKOUT_PAYMENT');
+      this.setNavbarServices(this.pageTitle);
     });
-    this.navbarService.setNavbarComprehensive(true);
     this.buildForm();
   }
 
   ngOnDestroy() {
   }
 
-  private buildForm() {
-    const timeStamp = this.datePipe.transform(new Date(), 'yyyyMMddHHmmss', 'UTC');
+  buildForm() {
+    const timeStamp = this.datePipe.transform(new Date(), PaymentRequest.timestampFormat, PaymentRequest.timezone);
     const preShaStr = timeStamp + (PaymentRequest.requestId + timeStamp) + PaymentRequest.merchantAccId
-      + PaymentRequest.transactionType + this.subTotal + PaymentRequest.currency + PaymentRequest.redirectURL
+      + PaymentRequest.transactionType + this.totalAmt + PaymentRequest.currency + PaymentRequest.redirectURL
       + PaymentRequest.ipAddress + PaymentRequest.secretKey;
     const reqSignature = sha256(preShaStr);
     this.checkoutForm = this.formBuilder.group({
@@ -63,7 +64,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       request_signature: [reqSignature],
       merchant_account_id: [PaymentRequest.merchantAccId],
       transaction_type: [PaymentRequest.transactionType],
-      requested_amount: [this.subTotal],
+      requested_amount: [this.totalAmt],
       requested_amount_currency: [PaymentRequest.currency],
       ip_address: [PaymentRequest.ipAddress],
       redirect_url: [PaymentRequest.redirectURL],
@@ -71,18 +72,23 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     });
   }
 
-  setPageTitle(title: string) {
+  setNavbarServices(title: string) {
     this.navbarService.setPageTitle(title);
     this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarComprehensive(true);
   }
 
   submitForm() {
+    this.openModal();
     this.buildForm();
     document.forms['checkoutForm'].action = PaymentRequest.requestURL;
     // INSERT SERVICE TO CALL BACKEND CODE BEFORE SUBMIT
-    this.windowRef = window.open('', 'wirecardWindow');
-    document.forms['checkoutForm'].submit();
-    // this.openModal();
+    // this.windowRef = window.open('', 'wirecardWindow');
+    document.forms['checkoutForm'].submit((e) => {
+      // cancel submission
+      e.preventDefault();
+      console.log('E= ', e)
+    });
 
     const pollTimer = window.setInterval(() => {
       // If user closes pop up window, close the modal and show the page again
@@ -122,6 +128,30 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     if (this.modalRef) {
       this.modalRef.close();
     }
+  }
+
+  openTNC(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    // Open TNC modal
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'payment-tnc' });
+    ref.componentInstance.imgType = undefined;
+    ref.componentInstance.errorMessageHTML = this.translate.instant('CHECKOUT.TNC');
+    ref.componentInstance.primaryActionLabel = this.translate.instant('CHECKOUT.CONTINUE');
+    ref.componentInstance.isInlineButton = false;
+  }
+
+  errorRedirecting() {
+    // Open Error Modal
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'hide-manual-btn' });
+    ref.componentInstance.errorTitle = this.translate.instant('CHECKOUT.REDIRECT_ERROR_TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('CHECKOUT.REDIRECT_ERROR_MSG');
+    ref.componentInstance.isError = true;
+    // On click Try Again, submit form again
+    ref.result.then(() => {
+      this.submitForm();
+    }).catch((e) => {
+    });
   }
 
 }

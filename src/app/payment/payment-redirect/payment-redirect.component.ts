@@ -17,7 +17,7 @@ export class PaymentRedirectComponent implements OnInit {
 
   ngOnInit() {
     console.log('INSIDE REDIRECT COMPONENT!')
-    window.opener.success('SUCCESS');
+    // window.opener.success('SUCCESS');
   }
 
 }

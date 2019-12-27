@@ -1,4 +1,6 @@
 export interface IPaymentRequest {
+    timestampFormat: string;
+    timezone: string;
     requestId: string;
     merchantAccId: string;
     transactionType: string;

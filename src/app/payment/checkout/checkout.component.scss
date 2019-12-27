@@ -185,13 +185,17 @@ app-checkout {
   }
 
   .teal-bold-txt {
-    font-family: $muli-semi-bold;
+    font-family: $muli-bold;
     font-size: 16px;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: -0.3px;
     color: $dark-teal-color;
+
+    span {
+      font-family: $muli-semi-bold;
+    }
   }
 
   .checkbox-button {
