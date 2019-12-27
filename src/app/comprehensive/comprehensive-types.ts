@@ -183,6 +183,7 @@ export interface IMyAssets {
     cpfOrdinaryAccount: number;
     cpfSpecialAccount: number;
     cpfMediSaveAccount: number;
+    cpfRetirementAccount: number;
     homeMarketValue: number;
     investmentPropertiesValue: number;
     assetsInvestmentSet: IOtherProperties[];
