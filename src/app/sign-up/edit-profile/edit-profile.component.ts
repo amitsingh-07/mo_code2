@@ -8,6 +8,7 @@ import { InvestmentCommonService } from './../../investment/investment-common/in
 
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
+import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -15,7 +16,10 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
+import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
+import { SrsSuccessModalComponent } from '../add-update-srs/srs-success-modal/srs-success-modal.component';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -53,6 +57,10 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   showAddbank = false;
   dobFormat: any;
   private subscription: Subscription;
+  srsDetails;
+  formatedAccountNumber;
+  fundTypeId: number;
+
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -66,11 +74,14 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     private router: Router,
     public authService: AuthenticationService,
     public investmentAccountService: InvestmentAccountService,
-    public readonly translate: TranslateService) {
+    public manageInvestmentsService: ManageInvestmentsService,
+    public readonly translate: TranslateService,
+    private loaderService: LoaderService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
       this.pageTitle = this.translate.instant('EDIT_PROFILE.MY_PROFILE');
       this.setPageTitle(this.pageTitle);
+      this.showSRSSuccessModel();
     });
     this.getNationalityCountryList();
   }
@@ -85,15 +96,19 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.isMailingAddressSame = true;
     this.investmentStatus = this.investmentCommonService.getInvestmentStatus();
     this.showAddBankDetails(this.investmentStatus);
+    this.getSrsDetails();
+    this.getInvestmentOverview();
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
+
   showAddBankDetails(investmentStatus) {
     if (SIGN_UP_CONFIG.SHOW_BANK_DETAILS.indexOf(investmentStatus) >= 0) {
       this.showAddbank = true;
     }
   }
+
   showHidePassword(el) {
     if (el.type === 'password') {
       el.type = 'text';
@@ -101,6 +116,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       el.type = 'password';
     }
   }
+
   showHide(el) {
     if (el.style.display === '' || el.style.display === 'block') {
       el.style.display = 'none';
@@ -108,6 +124,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       el.style.display = 'block';
     }
   }
+
   buildForgotPasswordForm() {
     this.formValues = this.signUpService.getForgotPasswordInfo();
     this.resetPasswordForm = this.formBuilder.group({
@@ -116,6 +133,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       confirmPassword: [this.formValues.oldPassword, [Validators.required, Validators.pattern(RegexConstants.Password.Full)]]
     });
   }
+
   // tslint:disable-next-line:cognitive-complexity
   getEditProfileData() {
     this.signUpService.getEditProfileInfo().subscribe((data) => {
@@ -170,6 +188,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       }
     });
   }
+
   createMaskString(val) {
     let i;
     let maskedStr = '';
@@ -184,31 +203,39 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     const second = LastName.charAt(0);
     this.compinedName = first.toUpperCase() + second.toUpperCase();
   }
+
   setNric(nric) {
     this.compinednricNum = 'NRIC Number: ' + nric;
   }
+
   setAddres(address1, address2) {
     this.compinedAddress = address1 + ' ' + address2;
   }
+
   setMailingAddres(address1, address2) {
     this.compinedMailingAddress = address1 + ' ' + address2;
   }
+
   setEmployerAddress(address1, address2) {
     this.compinedEmployerAddress = address1 + ' ' + address2;
   }
+
   editEmployeDetails() {
     // tslint:disable-next-line:max-line-length
     this.investmentAccountService.setEditProfileEmployeInfo(this.entireUserData, this.nationalityList, this.countryList, this.isSingaporeResident);
     // tslint:disable-next-line:max-line-length
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS], { queryParams: { enableEditProfile: true }, fragment: 'loading' });
   }
+
   editUserDetails() {
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_ID]);
   }
+
   editPassword() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PASSWORD]);
   }
+
   getNationalityCountryList() {
     this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
       this.nationalityList = data.objectList;
@@ -236,9 +263,11 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.investmentAccountService.setEditProfileContactInfo(this.entireUserData, this.nationalityList, this.countryList, this.isMailingAddressSame, this.isSingaporeResident, mailingUrl, ResUrl);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_RESIDENTIAL]);
   }
+
   isCountrySIngapore(nationalityCode) {
     return nationalityCode === 'SG';
   }
+
   editBankDetails() {
     let AccountHolderName;
     if (this.bankDetails && this.bankDetails.accountName) {
@@ -250,6 +279,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, this.bankDetails.bank, this.bankDetails.accountNumber, this.bankDetails.id, false);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: false }, fragment: 'bank' });
   }
+
   addBankDetails() {
     let AccountHolderName;
     if (this.bankDetails && this.bankDetails.accountName) {
@@ -274,12 +304,89 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.navbarService.unsubscribeBackPress();
   }
   constructDate(dob) {
-    this.dobFormat =  dob;
+    this.dobFormat = dob;
     if (dob) {
       const dateArr = dob.split('/');
       if (dateArr.length === 3) {
         this.dobFormat = dateArr[1] + '/' + dateArr[0] + '/' + dateArr[2];
-     }
+      }
+    }
+  }
+
+  updateSrsDetails(srsAccountNumber, srsBankOperator, customerId, srsBankFlag) {
+    this.signUpService.setEditProfileSrsDetails(srsAccountNumber, srsBankOperator, customerId, this.fundTypeId);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS], { queryParams: { srsBank: srsBankFlag }, fragment: 'bank' });
+  }
+
+  getSrsDetails() {
+    this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
+      if (data) {
+        this.srsDetails = data;
+      }
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  }
+
+  getInvestmentOverview() {
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.loaderService.showLoader({
+        title: this.translate.instant('COMMON.LOADING_TITLE'),
+        desc: this.translate.instant('COMMON.LOADING_DESC'),
+        autoHide: false
+      });
+    });
+    this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
+      this.loaderService.hideLoaderForced();
+      if (data.responseMessage.responseCode >= 6000 && data && data.objectList) {
+        this.manageInvestmentsService.setUserPortfolioList(data.objectList.portfolios);
+        this.fundTypeId = this.getFundTypeId(data.objectList.portfolios)
+      } else if (
+        data.objectList &&
+        data.objectList['length'] &&
+        data.objectList[data.objectList['length'] - 1].serverStatus &&
+        data.objectList[data.objectList['length'] - 1].serverStatus.errors &&
+        data.objectList[data.objectList['length'] - 1].serverStatus.errors.length
+      ) {
+        this.showCustomErrorModal(
+          'Error!',
+          data.objectList[data.objectList['length'] - 1].serverStatus.errors[0].msg
+        );
+      } else if (data.responseMessage && data.responseMessage.responseDescription) {
+        const errorResponse = data.responseMessage.responseDescription;
+        this.showCustomErrorModal('Error!', errorResponse);
+      } else {
+        this.investmentAccountService.showGenericErrorModal();
+      }
+    },
+      (err) => {
+        this.loaderService.hideLoaderForced();
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  }
+
+  getFundTypeId(protfolios) {
+    for (const obj of protfolios) {
+      if (obj['fundingTypeValue'] === 'SRS') {
+        return obj['fundingTypeId'];
+      }
+    }
+  }
+
+  showCustomErrorModal(title, desc) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.errorMessage = desc;
+  }
+
+  showSRSSuccessModel() {
+    if (this.manageInvestmentsService.getSrsSuccessFlag()) {
+      const ref = this.modal.open(SrsSuccessModalComponent, { centered: true });
+      ref.componentInstance.topUp.subscribe(() => {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.TOPUP]);
+      });
+      this.manageInvestmentsService.setSrsSuccessFlag(false)
     }
   }
 }
