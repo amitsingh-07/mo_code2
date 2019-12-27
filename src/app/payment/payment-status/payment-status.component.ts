@@ -46,7 +46,7 @@ export class PaymentStatusComponent implements OnInit, OnDestroy {
   }
 
   setStatusText(params) {
-    if (params['state'] === PAYMENT_STATUS.SUCCESS) {
+    if (params['transaction_state'] === PAYMENT_STATUS.SUCCESS) {
       this.statusTitle = this.translate.instant('PAYMENT_STATUS.SUCCESS_TITLE');
       this.statusText = this.translate.instant('PAYMENT_STATUS.SUCCESS_TEXT');
       this.btnText = this.translate.instant('PAYMENT_STATUS.CONTINUE');

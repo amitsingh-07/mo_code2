@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { sha256 } from 'js-sha256';
+import { ErrorModalComponent } from 'src/app/shared/modal/error-modal/error-modal.component';
 import { ModelWithButtonComponent } from './../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { PaymentModalComponent } from './../payment-modal/payment-modal.component';
@@ -78,13 +79,16 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   submitForm() {
+    this.openModal();
     this.buildForm();
     document.forms['checkoutForm'].action = PaymentRequest.requestURL;
-    console.log('FORM = ', document.forms['checkoutForm'])
     // INSERT SERVICE TO CALL BACKEND CODE BEFORE SUBMIT
-    this.windowRef = window.open('', 'wirecardWindow');
-    document.forms['checkoutForm'].submit();
-    // this.openModal();
+    // this.windowRef = window.open('', 'wirecardWindow');
+    document.forms['checkoutForm'].submit((e) => {
+      // cancel submission
+      e.preventDefault();
+      console.log('E= ', e)
+    });
 
     const pollTimer = window.setInterval(() => {
       // If user closes pop up window, close the modal and show the page again
@@ -129,11 +133,25 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   openTNC(e) {
     e.preventDefault();
     e.stopPropagation();
+    // Open TNC modal
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'payment-tnc' });
     ref.componentInstance.imgType = undefined;
     ref.componentInstance.errorMessageHTML = this.translate.instant('CHECKOUT.TNC');
     ref.componentInstance.primaryActionLabel = this.translate.instant('CHECKOUT.CONTINUE');
     ref.componentInstance.isInlineButton = false;
+  }
+
+  errorRedirecting() {
+    // Open Error Modal
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'hide-manual-btn' });
+    ref.componentInstance.errorTitle = this.translate.instant('CHECKOUT.REDIRECT_ERROR_TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('CHECKOUT.REDIRECT_ERROR_MSG');
+    ref.componentInstance.isError = true;
+    // On click Try Again, submit form again
+    ref.result.then(() => {
+      this.submitForm();
+    }).catch((e) => {
+    });
   }
 
 }

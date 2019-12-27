@@ -1155,10 +1155,6 @@ body.modal-open::-webkit-scrollbar {
 }
 
 .payment-tnc {
-  .modal-dialog {
-    max-height: 800px;
-  }
-
   .modal-body-message ol li:before {
     content: counters(item, ".") " ";
     counter-increment: item;
@@ -1225,5 +1221,11 @@ body.modal-open::-webkit-scrollbar {
     .col-12 {
       max-width: 271px;
     }
+  }
+}
+
+.hide-manual-btn {
+  #error_enter_manually {
+    display: none;
   }
 }
