@@ -8,7 +8,7 @@ export const PaymentRequest: IPaymentRequest = {
     transactionType: 'purchase',
     currency: 'SGD',
     ipAddress: '127.0.0.1',
-    redirectURL: 'https://bfa-dev.ntucbfa.cloud/api/redirectPaymentStatus',
+    redirectURL: 'https://bfa-dev.ntucbfa.cloud/payment/api/redirectPaymentStatus',
     secretKey: '03365d5f-1a12-4f16-9351-7ee59ddc9d3f',
     requestURL: 'https://test.wirecard.com.sg/engine/hpp/'
 };
