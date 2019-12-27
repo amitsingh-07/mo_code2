@@ -98,7 +98,7 @@ export class ComprehensiveService {
 
   getComprehensiveSessionData() {
     // tslint:disable-next-line: max-line-length
-    const comprehensiveVersionType = (sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION)  === 'LITE') ? appConstants.SESSION_KEY.COMPREHENSIVE_LITE : appConstants.SESSION_KEY.COMPREHENSIVE;
+    const comprehensiveVersionType = (sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION) === 'LITE') ? appConstants.SESSION_KEY.COMPREHENSIVE_LITE : appConstants.SESSION_KEY.COMPREHENSIVE;
     if (
       window.sessionStorage &&
       sessionStorage.getItem(comprehensiveVersionType)
