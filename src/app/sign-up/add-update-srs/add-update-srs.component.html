@@ -5,10 +5,10 @@
             <!-- Bank name  -->
             <div class="form-group">
                 <div class="flex-row">
-                    <div class="flex-col-6">
+                    <div class="flex-col-4">
                         <label id="srs-operator-lbl" class="form-lbl bank_text">{{ 'ADD_UPDATE_SRS.SRS_OPERATOR' | translate}}</label>
                     </div>
-                    <div class="flex-col-6">
+                    <div class="flex-col-8">
                         <div class="dropdown-control">
                             <div ngbDropdown>
                                 <button class="btn btn-dropdown without-border " id="residentialAddress-country-drpdown" ngbDropdownToggle>
@@ -26,10 +26,10 @@
 
             <div class="form-group">
                 <div class="flex-row">
-                    <div class="flex-col-6">
+                    <div class="flex-col-4">
                         <label id="srs-act-num-lbl" class="form-lbl bank_text">{{ 'UPDATE_SRS.SRS_ACCOUNT_NUMBER' | translate}}</label>
                     </div>
-                    <div class="flex-col-6">
+                    <div class="flex-col-8">
                         <div [ngClass]="{'inline-error':getInlineErrorStatus(addUpdateSrsFrom.controls.srsAccount)}">
                             <input id="srs-act-num-value" type="text" [textMask]="maskConfig()" placeholder="Enter Account No." class="form-control" formControlName="srsAccount">
                         </div>
@@ -40,6 +40,6 @@
                 </div>
             </div>
         </div>
-        <button [attr.disabled]="addUpdateSrsFrom.valid == true ? null : true" (click)="updateSrsSaveCall(addUpdateSrsFrom)" type="button" class="btn btn__footer--fixed btn-primary width100" id="forgotPasswordButton">{{ 'ADD_UPDATE_SRS.APPLY_CHANGES' | translate}}</button>
+        <button [attr.disabled]="(addUpdateSrsFrom.valid && addUpdateSrsFrom.dirty) == true ? null : true" (click)="updateSrsSaveCall(addUpdateSrsFrom)" type="button" class="btn btn__footer--fixed btn-primary width100" id="forgotPasswordButton">{{ 'ADD_UPDATE_SRS.APPLY_CHANGES' | translate}}</button>
     </form>
 </div>
