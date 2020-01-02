@@ -113,8 +113,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     });
     const today: Date = new Date();
     this.myAge= this.comprehensiveService.getMyProfile().dateOfBirth;
-    const inputDateFormat = this.parserFormatter.format(this.myAge);
-    const getAge = this.aboutAge.calculateAge(inputDateFormat, today);
+    const getAge = this.aboutAge.calculateAge( this.myAge, today);
     if(getAge > 55){
       this.showRetirementAccount = true;
     }
