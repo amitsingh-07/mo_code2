@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { ConfigService, IConfig } from 'src/app/config/config.service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
@@ -48,6 +49,7 @@ export class YourPortfolioComponent implements OnInit {
   activeTab: string;
   srsAccDetail;
   portfolioWithdrawRequests = false;
+  showAnnualizedReturns = false;
 
   constructor(
     public readonly translate: TranslateService,
@@ -61,12 +63,17 @@ export class YourPortfolioComponent implements OnInit {
     public footerService: FooterService,
     public manageInvestmentsService: ManageInvestmentsService,
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    private investmentAccountService: InvestmentAccountService
+    private investmentAccountService: InvestmentAccountService,
+    private configService: ConfigService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('YOUR_PORTFOLIO.TITLE');
       this.setPageTitle(this.pageTitle);
+    });
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.translate.use(config.language);
+      this.showAnnualizedReturns = config.showAnnualizedReturns;
     });
   }
 
