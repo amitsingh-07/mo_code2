@@ -1,5 +1,5 @@
 <div class="bundle-package">
-  <p class="tnc--title"><span class="plus-icon">+</span>Terms & Conditions:</p>
+  <p class="tnc--title">Terms & Conditions:</p>
   <ol class="tnc--ordered">
     <li>
       Please note that insurance policies T&Cs applies. Packages may not take into account your personal financial
