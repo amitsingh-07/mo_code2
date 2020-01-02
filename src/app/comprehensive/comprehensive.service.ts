@@ -119,9 +119,9 @@ export class ComprehensiveService {
   }
   getComprehensiveVersion() {
     // tslint:disable-next-line: prefer-immediate-return
-    const comprehensiveVersionType = (sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION) 
-    === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED) 
-    ? COMPREHENSIVE_CONST.VERSION_TYPE.LITE : COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
+    const comprehensiveVersionType = (sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION)
+    === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED)
+    ? false : true;
     return comprehensiveVersionType;
   }
   getComprehensiveSessionData() {
@@ -788,8 +788,7 @@ export class ComprehensiveService {
    * @memberof ComprehensiveService
    */
   getPreviousUrl(currentUrl: string): string {
-    const urlList = (this.getComprehensiveVersion() === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED) ?
-    this.getComprehensiveUrlList(COMPREHENSIVE_LITE_ROUTER_CONFIG) : this.getComprehensiveUrlList(COMPREHENSIVE_FULL_ROUTER_CONFIG);
+    const urlList = (!this.getComprehensiveVersion()) ? this.getComprehensiveUrlList(COMPREHENSIVE_LITE_ROUTER_CONFIG) : this.getComprehensiveUrlList(COMPREHENSIVE_FULL_ROUTER_CONFIG);
     const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, currentUrl));
     if (currentUrlIndex > 0) {
       const previousUrl = urlList[currentUrlIndex - 1];
@@ -814,7 +813,7 @@ export class ComprehensiveService {
    */
   // tslint:disable-next-line:cognitive-complexity
   getAccessibleUrl(url: string): string {
-    if (this.getComprehensiveVersion() === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED) {
+    if (!this.getComprehensiveVersion()) {
       const urlLists = this.getComprehensiveUrlList(COMPREHENSIVE_LITE_ROUTER_CONFIG);
       return this.getAccessibleLiteJourney(urlLists, url);
     } else {
@@ -1208,11 +1207,11 @@ export class ComprehensiveService {
   }
 
   generateProgressTrackerData(): IProgressTrackerData {
-    const ComprehensiveVersion = this.getComprehensiveVersion();
+    const comprehensiveVersion = this.getComprehensiveVersion();
     this.progressData = {} as IProgressTrackerData;
     this.progressData = {
       title: 'Your Progress Tracker',
-      subTitle: (ComprehensiveVersion === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED)
+      subTitle: (!comprehensiveVersion)
       ? 'Est. Time Required: 10 mins' : 'Est. Time Required: 20 mins',
       properties: {
         disabled: false
@@ -1223,7 +1222,7 @@ export class ComprehensiveService {
     this.progressData.items.push(this.getGetStartedProgressData());
     this.progressData.items.push(this.getDependantsProgressData());
     this.progressData.items.push(this.getFinancesProgressData());
-    if (ComprehensiveVersion !== COMPREHENSIVE_CONST.VERSION_TYPE.LITE) {
+    if (!comprehensiveVersion) {
       this.progressData.items.push(this.getFireproofingProgressData());
     }
     this.progressData.items.push(this.getRetirementProgressData());
