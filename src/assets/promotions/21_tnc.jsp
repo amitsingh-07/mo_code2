@@ -2,6 +2,12 @@
   <p class="tnc--title">Terms & Conditions:</p>
   <ol class="tnc--ordered">
     <li>
+      Please note that T&Cs for insurance policies applies and the illustrated bundle above does not take into account
+      your personal financial situation. Please speak to a MoneyOwl Client Adviser if you require customised financial
+      advice. All our advisers are fully salaried and conflict-free. They will be able to competently customise the
+      RetireWise Bundle to suit your needs.
+    </li>
+    <li>
       The projected Internal Rate of Return (IRR) for this example is 5.05% p.a. which comprises the returns from both
       insurance and investment as explained below. Payout amount may vary depending on investment performance. Past
       performance is not an indicator of future results.
@@ -26,12 +32,6 @@
       insurance of which premiums are fully payable from your MediSave, and $400/month payout for 20 years from the
       retirement income insurance policy. The payout benefit is based on one being unable to perform any 3 out of 6
       Activities of Daily Living.
-    </li>
-    <li>
-      Please note that T&Cs for insurance policies applies and the illustrated bundle above does not take into account
-      your personal financial situation. Please speak to a MoneyOwl Client Adviser if you require customised financial
-      advice. All our advisers are fully salaried and conflict-free. They will be able to competently customise the
-      RetireWise Bundle to suit your needs.
     </li>
     <li>
       This advertisement has not been reviewed by the Monetary Authority of Singapore.
