@@ -148,6 +148,12 @@ app-transactions {
           }
         }
 
+        .flex-col-5{
+          @include allmobiles{
+            margin-top: 13px;
+          }
+        }
+
         .history-type-transaction {
           display: flex;
           align-items: baseline;

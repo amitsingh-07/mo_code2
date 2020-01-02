@@ -244,7 +244,9 @@ export class YourPortfolioComponent implements OnInit {
   showMenu(option) {
     switch (option.id) {
       case 1: {
-        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
+        if (this.portfolio.entitlements.showTopup) {
+          this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
+        }
         break;
       }
       case 2: {
@@ -257,8 +259,11 @@ export class YourPortfolioComponent implements OnInit {
         break;
       }
       case 4: {
-        this.manageInvestmentsService.clearWithdrawalTypeFormData();
-        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL]);
+        if (this.portfolio.entitlements.showWithdrawPvToBa || this.portfolio.entitlements.showWithdrawPvToCa ||
+          this.portfolio.entitlements.showWithdrawCaToBa || this.portfolio.entitlements.showWithdrawPvToSRS) {
+          this.manageInvestmentsService.clearWithdrawalTypeFormData();
+          this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL]);
+        }
         break;
       }
       case 5: {

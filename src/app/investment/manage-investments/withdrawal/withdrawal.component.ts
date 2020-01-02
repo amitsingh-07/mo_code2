@@ -15,8 +15,12 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
-import { ConfirmWithdrawalModalComponent } from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
-import { ForwardPricingModalComponent } from './forward-pricing-modal/forward-pricing-modal.component';
+import {
+  ConfirmWithdrawalModalComponent
+} from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
+import {
+  ForwardPricingModalComponent
+} from './forward-pricing-modal/forward-pricing-modal.component';
 
 @Component({
   selector: 'app-withdrawal',
@@ -85,7 +89,10 @@ export class WithdrawalComponent implements OnInit {
       } else {
         this.srsAccountInfo = null;
       }
-    });
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   // Set selected portfolio's entitlements, cash balance
@@ -427,7 +434,7 @@ export class WithdrawalComponent implements OnInit {
   withdrawAmountValidator(balance, source): ValidatorFn {
     balance = balance ? parseFloat(this.decimalPipe.transform(balance, "1.2-2").replace(/,/g, "")) : 0;
     return (control: AbstractControl) => {
-      if (control) {
+      if (control && !isNaN(control.value)) {
         let userInput = control.value ? parseFloat(this.decimalPipe.transform(control.value.replace(/,/g, ""), "1.2-2").replace(/,/g, "")) : 0;
         if (userInput <= 0) { // Not less than 0
           return { MinValue: true };
