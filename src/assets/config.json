@@ -15,8 +15,8 @@
   "marqueeEnabled": false,
   "resetPasswordUrl": "/accounts/reset-password",
   "verifyEmailUrl": "/accounts/email-verification",
-  "hospitalPlanData": [
-    {
+  "showAnnualizedReturns": false,
+  "hospitalPlanData": [{
       "id": 0,
       "hospitalClass": "None",
       "hospitalClassDescription": ""
@@ -42,8 +42,7 @@
       "hospitalClassDescription": "Assigned doctor, Up to 9-bedded ward"
     }
   ],
-  "productCategory": [
-    {
+  "productCategory": [{
       "id": 1,
       "prodCatName": "Life Protection",
       "prodCatIcon": "LifeProtection-icon--teal.svg",
