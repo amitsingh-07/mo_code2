@@ -26,6 +26,8 @@ import { ComprehensiveFormData } from './comprehensive-form-data';
 import { ComprehensiveFormError } from './comprehensive-form-error';
 import {
   COMPREHENSIVE_BASE_ROUTE,
+  COMPREHENSIVE_FULL_ROUTER_CONFIG,
+  COMPREHENSIVE_LITE_ROUTER_CONFIG,
   COMPREHENSIVE_ROUTE_PATHS
 } from './comprehensive-routes.constants';
 import {
@@ -71,7 +73,20 @@ export class ComprehensiveService {
   ) {
     this.getComprehensiveFormData();
   }
-
+  setComprehensiveVersion(versionType: string) {
+    /* Robo3 FULL or LITE Config*/
+    if (COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED && versionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE) {
+      sessionStorage.setItem(
+        appConstants.SESSION_KEY.COMPREHENSIVE_VERSION,
+        COMPREHENSIVE_CONST.VERSION_TYPE.LITE
+      );
+    } else {
+      sessionStorage.setItem(
+        appConstants.SESSION_KEY.COMPREHENSIVE_VERSION,
+        COMPREHENSIVE_CONST.VERSION_TYPE.FULL
+      );
+    }
+  }
   commit() {
     if (window.sessionStorage) {
 
@@ -82,7 +97,7 @@ export class ComprehensiveService {
       );
       console.log(sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION));
       // tslint:disable-next-line: max-line-length
-      const comprehensiveVersionType = (sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION) === 'LITE') ? appConstants.SESSION_KEY.COMPREHENSIVE_LITE : appConstants.SESSION_KEY.COMPREHENSIVE;
+      const comprehensiveVersionType = this.getComprehensiveSessionVersion();
 
       /* Robo3 FULL or LITE Config*/
       const cmpSessionData = this.getComprehensiveSessionData();
@@ -95,10 +110,23 @@ export class ComprehensiveService {
       );
     }
   }
-
+  getComprehensiveSessionVersion() {
+    // tslint:disable-next-line: prefer-immediate-return
+    const comprehensiveVersionType = (sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION)
+    === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED)
+    ? appConstants.SESSION_KEY.COMPREHENSIVE_LITE : appConstants.SESSION_KEY.COMPREHENSIVE;
+    return comprehensiveVersionType;
+  }
+  getComprehensiveVersion() {
+    // tslint:disable-next-line: prefer-immediate-return
+    const comprehensiveVersionType = (sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION) 
+    === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED) 
+    ? COMPREHENSIVE_CONST.VERSION_TYPE.LITE : COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
+    return comprehensiveVersionType;
+  }
   getComprehensiveSessionData() {
     // tslint:disable-next-line: max-line-length
-    const comprehensiveVersionType = (sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION) === 'LITE') ? appConstants.SESSION_KEY.COMPREHENSIVE_LITE : appConstants.SESSION_KEY.COMPREHENSIVE;
+    const comprehensiveVersionType = this.getComprehensiveSessionVersion();
     if (
       window.sessionStorage &&
       sessionStorage.getItem(comprehensiveVersionType)
@@ -126,48 +154,13 @@ export class ComprehensiveService {
     this.getComprehensiveFormData();
   }
 
-  getComprehensiveUrlList() {
-    const urlList = {
-      0: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED,
-      1: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1',
-      2: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
-      3: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION_SUMMARY + '/summary',
-      4: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
-      5: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS_SUMMARY + '/summary',
-      6: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION,
-      7:
-        COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION_SUMMARY +
-        '/summary',
-      8: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE,
-      9: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST,
-      10:
-        COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST_SUMMARY + '/summary',
-      11: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/2',
-      12: COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS,
-      13: COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS,
-      14: COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN,
-      15: COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND,
-      16: COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS,
-      17: COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES,
-      18: COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES_SUMMARY + '/summary',
-      19: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/3',
-      20: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
-      21: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN_SUMMARY + '/summary',
-      22: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/4',
-      23: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
-      24: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN_SUMMARY + '/summary',
-      25: COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT,
-      26: COMPREHENSIVE_ROUTE_PATHS.REVIEW,
-      27: COMPREHENSIVE_ROUTE_PATHS.RESULT
-    };
-
+  getComprehensiveUrlList(urlList: any) {
     Object.keys(urlList).forEach(key => {
       urlList[key] = ProgressTrackerUtil.trimPath(urlList[key]);
     });
 
     return urlList;
   }
-
   // Return the entire Comprehensive Form Data
   getComprehensiveFormData(): ComprehensiveFormData {
     if (window.sessionStorage) {
@@ -795,7 +788,8 @@ export class ComprehensiveService {
    * @memberof ComprehensiveService
    */
   getPreviousUrl(currentUrl: string): string {
-    const urlList = this.getComprehensiveUrlList();
+    const urlList = (this.getComprehensiveVersion() === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED) ?
+    this.getComprehensiveUrlList(COMPREHENSIVE_LITE_ROUTER_CONFIG) : this.getComprehensiveUrlList(COMPREHENSIVE_FULL_ROUTER_CONFIG);
     const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, currentUrl));
     if (currentUrlIndex > 0) {
       const previousUrl = urlList[currentUrlIndex - 1];
@@ -820,7 +814,16 @@ export class ComprehensiveService {
    */
   // tslint:disable-next-line:cognitive-complexity
   getAccessibleUrl(url: string): string {
-    const urlList = this.getComprehensiveUrlList();
+    if (this.getComprehensiveVersion() === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED) {
+      const urlLists = this.getComprehensiveUrlList(COMPREHENSIVE_LITE_ROUTER_CONFIG);
+      return this.getAccessibleLiteJourney(urlLists, url);
+    } else {
+      const urlLists = this.getComprehensiveUrlList(COMPREHENSIVE_FULL_ROUTER_CONFIG);
+      return this.getAccessibleFullJourney(urlLists, url);
+    }
+  }
+  // Return Access Url for Full Journey
+  getAccessibleFullJourney (urlList: any, url: any) {
     this.generateProgressTrackerData();
 
     const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, url));
@@ -1048,12 +1051,169 @@ export class ComprehensiveService {
     }
     return accessibleUrl;
   }
+   // Return Access Url for Lite Journey
+   getAccessibleLiteJourney (urlList: any, url: any) {
+    this.generateProgressTrackerData();
+
+    const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, url));
+    let accessibleUrl = '';
+
+    const profileData = this.getMyProfile();
+    const cmpSummary = this.getComprehensiveSummary();
+
+    const enquiry = this.getComprehensiveSummary().comprehensiveEnquiry;
+    const childEndowmentData: IChildEndowment[] = this.getChildEndowment();
+
+    const dependantProgressData = this.getDependantsProgressData();
+    const financeProgressData = this.getFinancesProgressData();
+    const fireProofingProgressData = this.getFireproofingProgressData();
+    const retirementProgressData = this.getRetirementProgressData();
+    const reportStatusData = this.getReportStatus();
+    const stepCompleted = this.getMySteps();
+
+    const userAge = this.aboutAge.calculateAge(
+      cmpSummary.baseProfile.dateOfBirth,
+      new Date()
+    );
+
+    let accessPage = true;
+    if (userAge < COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MIN_AGE
+      || userAge > COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MAX_AGE) {
+      accessPage = false;
+    }
+
+    for (let index = currentUrlIndex; index >= 0; index--) {
+      if (accessibleUrl !== '') {
+        break;
+      } else {
+        let canAccess = true;
+        dependantProgressData.subItems.forEach(subItem => {
+          if (!subItem.completed && subItem.hidden !== true) {
+            canAccess = false;
+          }
+        });
+        if (!(accessPage && enquiry.hasDependents === false &&
+              dependantProgressData.subItems[2].value === '0')) {
+                canAccess = false;
+          }
+        switch (index) {
+          // 'getting-started'
+          case 0:
+            // TODO : change the condition to check `cmpSummary.enquiry.promoCodeValidated`
+            if (
+              !cmpSummary.comprehensiveEnquiry.enquiryId
+            ) {
+              accessibleUrl = COMPREHENSIVE_BASE_ROUTE;
+            }
+            break;
+
+          // 'steps/1',
+          case 1:
+          // 'dependant-selection'
+          case 2:
+            if (accessPage && profileData.nationalityStatus) {
+              accessibleUrl = urlList[index];
+            }
+            break;
+
+          // 'steps/2'
+          case 3:
+            if (accessPage && canAccess) {
+              accessibleUrl = urlList[index];
+            }
+            break;
+          // 'my-earnings'
+          case 4:
+            if (accessPage && canAccess && stepCompleted > 0) {
+              accessibleUrl = urlList[index];
+            }
+            break;
+          // 'my-spendings'
+          case 5:
+            if (accessPage && canAccess && financeProgressData.subItems[0].completed && stepCompleted > 0) {
+              accessibleUrl = urlList[index];
+            }
+            break;
+          // 'regular-saving-plan'
+          case 6:
+            if (accessPage && canAccess && financeProgressData.subItems[1].completed && stepCompleted > 0) {
+              accessibleUrl = urlList[index];
+            }
+            break;
+          // 'bad-mood-fund'
+          case 7:
+            if (accessPage && canAccess && financeProgressData.subItems[2].completed && stepCompleted > 0) {
+              accessibleUrl = urlList[index];
+            }
+            break;
+          // 'my-assets'
+          case 8:
+            if (accessPage && canAccess && financeProgressData.subItems[4].completed && stepCompleted > 0) {
+              accessibleUrl = urlList[index];
+            }
+            break;
+          // 'my-liabilities'
+          case 9:
+            if (accessPage && canAccess && financeProgressData.subItems[5].completed && stepCompleted > 0) {
+              accessibleUrl = urlList[index];
+            }
+            break;
+          // 'steps/3'
+          case 10:
+            if (accessPage && canAccess && financeProgressData.subItems[6].completed && stepCompleted > 0) {
+              accessibleUrl = urlList[index];
+            }
+            break;
+          // 'insurance-plan'
+          case 11:
+            if (accessPage && canAccess && financeProgressData.subItems[6].completed && stepCompleted > 1) {
+              accessibleUrl = urlList[index];
+            }
+            break;
+          // 'steps/4'
+          case 12:
+            if (accessPage && canAccess && fireProofingProgressData.subItems[0].completed && stepCompleted > 1) {
+              accessibleUrl = urlList[index];
+            }
+            break;
+          // 'retirement-plan'
+          case 13:
+            if (accessPage && canAccess && fireProofingProgressData.subItems[0].completed && stepCompleted > 2) {
+              accessibleUrl = urlList[index];
+            }
+            break;
+          // 'result'
+          case 14:
+          case 15:
+            if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted >= 3) {
+              accessibleUrl = urlList[index];
+            }
+            break;
+          case 16:
+            if (
+              accessPage && canAccess &&
+              retirementProgressData.subItems[0].completed &&
+              reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED
+            ) {
+              accessibleUrl = urlList[index];
+            }
+            break;
+        }
+      }
+    }
+    if (accessibleUrl === '') {
+      accessibleUrl = urlList[0];
+    }
+    return accessibleUrl;
+  }
 
   generateProgressTrackerData(): IProgressTrackerData {
+    const ComprehensiveVersion = this.getComprehensiveVersion();
     this.progressData = {} as IProgressTrackerData;
     this.progressData = {
       title: 'Your Progress Tracker',
-      subTitle: 'Est. Time Required: 20 mins',
+      subTitle: (ComprehensiveVersion === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED)
+      ? 'Est. Time Required: 10 mins' : 'Est. Time Required: 20 mins',
       properties: {
         disabled: false
       },
@@ -1063,7 +1223,9 @@ export class ComprehensiveService {
     this.progressData.items.push(this.getGetStartedProgressData());
     this.progressData.items.push(this.getDependantsProgressData());
     this.progressData.items.push(this.getFinancesProgressData());
-    this.progressData.items.push(this.getFireproofingProgressData());
+    if (ComprehensiveVersion !== COMPREHENSIVE_CONST.VERSION_TYPE.LITE) {
+      this.progressData.items.push(this.getFireproofingProgressData());
+    }
     this.progressData.items.push(this.getRetirementProgressData());
 
     return this.progressData;

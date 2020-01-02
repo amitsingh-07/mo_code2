@@ -151,5 +151,10 @@ export const COMPREHENSIVE_CONST = {
         MIN_AGE: 45,
         MAX_AGE: 70,
         STEP: 1
+    },
+    COMPREHENSIVE_LITE_ENABLED: true,
+    VERSION_TYPE: {
+        LITE: 'LITE',
+        FULL: 'FULL'
     }
 };
