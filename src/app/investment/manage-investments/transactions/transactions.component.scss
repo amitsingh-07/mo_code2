@@ -139,9 +139,22 @@ app-transactions {
         border-bottom: 1px solid $bond-container-bg;
         line-height: 23px;
         letter-spacing: -0.34px;
+        align-items: center;
+        justify-content: space-between;
+
+        .flex-col-7{
+          @include allmobiles{
+            max-width: 226px;
+          }
+        }
+
+        .flex-col-5{
+          @include allmobiles{
+            margin-top: 13px;
+          }
+        }
 
         .history-type-transaction {
-          min-width: 235px;
           display: flex;
           align-items: baseline;
 
@@ -162,6 +175,9 @@ app-transactions {
         color: #777;
         letter-spacing: -0.26px;
         font-family: $muli;
+        @include allmobiles{
+          width: 300px;
+        }
       }
 
       &--title--sale {

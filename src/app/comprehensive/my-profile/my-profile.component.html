@@ -110,9 +110,9 @@
             <div class="datepicker-control datepicker-upside">
               <div class="input-group date-picker mb0"
                 [ngClass]="{'inline-error': !moGetStrdForm.get('ngbDob').valid && submitted || DOBAlert, 'view-mode': viewMode || disableDOB}">
-                <input appComprehensiveViewMode="{{viewMode || disableDOB}}" mode=1 readonly (click)="d.toggle();"
-                  class="form-control" placeholder="{{'COMMON.LBL_SELECT' | translate}}" formControlName="ngbDob"
-                  name="dp" ngbDatepicker #d="ngbDatepicker" required id="myProfileDOB"
+                <input appComprehensiveViewMode="{{viewMode || disableDOB}}" mode=1 [minDate]="minDate"
+                  [maxDate]="maxDate" placeholder="DD/MM/YYYY" class="form-control" maxLength="10"
+                  formControlName="ngbDob" name="dp" ngbDatepicker #d="ngbDatepicker" required id="myProfileDOB"
                   (ngModelChange)="validateDOB( d._model)">
                 <div class="input-group-append">
                   <button (click)="d.toggle()" class="btn btn-primary" type="button" id="myProfileDatePicker"

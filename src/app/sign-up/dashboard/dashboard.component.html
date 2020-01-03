@@ -40,7 +40,7 @@
                         <div class="portfolio_value">
                           <div>{{'DASHBOARD.INVESTMENT.TOTAL_PORTFOLIO' | translate}}</div>
                           <div *ngIf="investmentsSummary?.portfolioSummary?.totalPortfolioValue" class="value">
-                            {{investmentsSummary?.portfolioSummary?.totalPortfolioValue | currency:'USD':'symbol-narrow':'1.2-2'}}
+                            {{investmentsSummary?.portfolioSummary?.totalPortfolioValue | formatCurrency}}
                           </div>
                           <div *ngIf="!investmentsSummary?.portfolioSummary?.totalPortfolioValue" class="value">$0</div>
                         </div>
@@ -50,7 +50,7 @@
                             <div>{{'DASHBOARD.INVESTMENT.TOTAL_CASH_BALANCE' | translate}}</div>
                             <div *ngIf="investmentsSummary?.portfolioSummary?.totalCashAccountBalance"
                               class="portfolio_footer_value">
-                              {{investmentsSummary?.portfolioSummary?.totalCashAccountBalance | currency:'USD':'symbol-narrow':'1.2-2'}}
+                              {{investmentsSummary?.portfolioSummary?.totalCashAccountBalance | formatCurrency}}
                             </div>
                             <div *ngIf="!investmentsSummary?.portfolioSummary?.totalCashAccountBalance"
                               class="portfolio_footer_value">

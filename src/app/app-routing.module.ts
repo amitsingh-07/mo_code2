@@ -105,6 +105,7 @@ const routes: Routes = [
         canActivate: [],
         canActivateChild: []
       },
+      { path: 'works', loadChildren: './corporate/corporate.module#CorporateModule' },
       {
         path: 'payment',
         loadChildren: './payment/payment.module#PaymentModule'

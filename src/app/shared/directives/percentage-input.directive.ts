@@ -9,6 +9,7 @@ import { NgControl } from '@angular/forms';
 export class PercentageInputDirective implements AfterViewInit {
     @Input() maxLength;
     [x: string]: any;
+    @Input() allowDecimal;
 
     constructor(
         private el: ElementRef, private currencyPipe: CurrencyPipe,
@@ -23,7 +24,9 @@ export class PercentageInputDirective implements AfterViewInit {
     @HostListener('keyup', ['$event'])
     onKeyUp(event: KeyboardEvent) {
         if (event.keyCode !== 37 && event.keyCode !== 39 && event.keyCode !== 8) {
-            this.el.nativeElement.value = this.el.nativeElement.value.replace(/[^0-9]/g, '');
+            const regPattern = this.allowDecimal ? /[^0-9.]/g : /[^0-9]/g;
+            this.el.nativeElement.value = this.el.nativeElement.value.replace(regPattern, '');
+            this.el.nativeElement.dispatchEvent(new Event('input'));
             if (this.el.nativeElement.value > 100) {
                 this.el.nativeElement.value = 0;
                 this.control.control.setValue(0);

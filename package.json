@@ -49,6 +49,7 @@
     "nouislider": "^11.1.0",
     "rxjs": "^6.2.1",
     "rxjs-compat": "^6.2.1",
+    "text-mask-core": "^5.1.2",
     "tslint-sonarts": "^1.7.0",
     "zone.js": "^0.8.26"
   },

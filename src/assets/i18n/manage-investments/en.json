@@ -17,6 +17,7 @@
       "TITLE": "Buy Request Exist",
       "DESC": "You have an <strong>existing monthly buy request of {{existingOrderAmount}}</strong>. Click 'Yes' to overwrite this with your new monthly buy request of {{newOrderAmount}}.",
       "ONE_TIME_DESC": "Please note that you have an <strong>existing one-time order of {{existingOrderAmount}}</strong>. Click 'Yes' to overwrite this with your new one-time buy request of {{newOrderAmount}}.",
+      "SRS_ONE_TIME": "Please note that you have an <strong>existing one-time order of {{existingOrderAmount}}</strong> in processing status and can initiate new buy order only upon completion of this order.",
       "YES": "Yes",
       "NO": "No"
     }
@@ -25,8 +26,8 @@
     "TOPUP_REQUEST_RECEIVED": "Top Up Request Received!",
     "REQUEST_PROCESSED": "Request will be processed once fund transfer is complete",
     "BUY_REQUEST_SUBMITTED": "Your buy request has been submitted",
-    "ONE_TIME_MSG": "Your request will be processed within 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
-    "MONTHLY_MSG": "Your request will be processed on the 15th, it will take 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
+    "ONE_TIME_MSG": "We will notify you once your portfolio top up has been successful.",
+    "MONTHLY_MSG": "Your request will be processed on the 15th. We will notify you once your portfolio top up has been successful.",
     "OK_GOT_IT": "Okay, Got It!",
     "FUNDING_DESC": "Please transfer the following amount using Bank Transfer or PayNow.",
     "CASH_ACCOUNT_BALANCE_LBL": "Cash Account Balance:",
@@ -67,7 +68,6 @@
     "START_PORTFOLIO": "Start a Portfolio",
     "INVEST_AGAIN": "Invest Again",
     "NO_PORTFOLIO": "You do not have any portfolios.",
-    "SRS_JOINT_ACCOUNT_REMINDER": "You can now open your SRS Investment Account online. Kick-start your retirement planning now! <br/><br/>Currently handled offline: (1) Joint Investment Accounts. (2) Viewing of portfolio, top-ups/withdrawals for SRS Investment Accounts.",
     "NO_PORTFOLIOS_YET": "You have no portfolios yet.",
     "ADD_PORTFOLIO_START_INVEST": "Add a portfolio to start investing!",
     "SCROLL_TO_TOP": "Scroll To Top",
@@ -87,11 +87,11 @@
     "SRS_MSG": "SRS account portfolio currently handled offline.",
     "SRS_HYPERLINK": "Click here",
     "SRS": "SRS",
+    "SRS_JOINT_ACCOUNT_REMINDER": "Please note that Joint Investment Accounts are currently handled offline.",
     "MP_WALKTHROUGH": {
       "NEW_INVESTMENT_UPDATE": "We’ve new investment updates.",
       "SHOW_ME_AROUND": "Show me around!",
-      "MP_WALKTHROUGH_SLIDES": [
-        {
+      "MP_WALKTHROUGH_SLIDES": [{
           "IMAGE": "mp-walkthrough/portfolio-view.svg",
           "IMG_TITLE": "Improved Portfolio View",
           "TEXT": "See your portfolio value and returns, buy requests and cash balance at a glance."
@@ -151,13 +151,9 @@
         "TITLE": "Loading.",
         "MESSAGE": "Please wait."
       },
-      "SRS_MODAL": {
-        "TITLE": "Sorry, SRS account portfolio currently handled offline",
-        "Message": "<div class='srs-modal-offline'> <div class='mb30'>Viewing of your SRS investment portfolio, top-ups & withdrawals are currently handled offline.</div><div class='mb30'>Adding of SRS funding portfolio is still available. Go to <span class='txt-italic'>Your Investment > Add Portfolio.</span></div><div>For assistance, contact <a class='contact-details mail' target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> or call <a class='contact-details'target='_blank' href='tel:6329 9188'>6329 9188.</a></div></div>"
-      },
       "RBL_MODAL": {
         "TITLE": "Quarterly Rebalancing In-progress",
-        "Message": "<div class='rebalancing-modal-msg'><div class='mb15'>Please note that your portfolio is being rebalanced. This Process will be completed in 6 to 7 working days. <span class='txt-bold'>Requests for redemptions from portfolio(s) will only be submitted for processing after rebalancing is completed.</span></div><div><a class='contact-details mail' target='_blank' href='/faq'>For more information, visit our FAQs.</a></div></div>"
+        "Message": "<div class='rebalancing-modal-msg'><div class='mb15'>Please note that your portfolio is being rebalanced. This process will be completed in 6 to 7 working days. <span class='txt-bold'>Requests for redemptions from portfolio(s) will only be submitted for processing after rebalancing is completed.</span></div><div><a class='contact-details mail' target='_blank' href='/faq#investment'>For more information, visit our FAQs.</a></div></div>"
       },
       "RE_BALANCE": {
         "TITLE": "Quarterly Rebalancing In-progress",
@@ -179,6 +175,10 @@
     "OR_DO_YOU_WANT_TO": "Or do you want to",
     "TRY_ANOTHER_RECOMMENDATION": "Try Another Recommendation",
     "PENDING_REQUESTS_CASH_ACCOUNT": "Pending Requests / <span>Cash Account</span>",
+    "PENDING_REQUESTS_SRS_ACCOUNT": "Pending Requests / <span>SRS Account</span>",
+    "SRS_ACCOUNT": "SRS Account",
+    "BANK_OPERATOR": "Bank Operator",
+    "ACCOUNT_NUMBER": "Account Number",
     "WITHDRAWALS_IN_PROGRESS": "You have withdrawals in process.",
     "WITHDRAWALS_IN_QUEUE": "You have withdrawals in queue.",
     "ONE_TIME": "One-time",
@@ -195,6 +195,7 @@
     "VIEW_TRANSFER_INSTRUCTIONS": "View Transfer Instructions",
     "PORTFOLIO_TO_BANK_ACCOUNT": "Portfolio to Bank Account",
     "PORTFOLIO_TO_CASH_ACCOUNT": "Portfolio to Cash Account",
+    "PORTFOLIO_TO_SRS_ACCOUNT": "Portfolio to SRS Account",
     "CASH_ACCOUNT_TO_BANK_ACCOUNT": "Cash Account to Bank Account"
   },
   "WITHDRAW": {
@@ -214,6 +215,7 @@
         "DESC_PORTFOLIO_TO_CASH": "You are withdrawing the following amount from your portfolio to your cash account.  <br/><br/>Once the request is submitted, it cannot be cancelled.",
         "DESC_PORTFOLIO_TO_BANK": "You are withdrawing the following amount from your portfolio to your bank account. <br/><br/> Once the request is submitted, it cannot be cancelled.",
         "DESC_CASH_TO_BANK": "You are withdrawing the following amount from your cash account to your bank account. <br/><br/> Once the request is submitted, it cannot be cancelled.",
+        "DESC_PORTFOLIO_TO_SRS": "You are withdrawing the following amount from your portfolio to your SRS account.  <br/><br/>Once the request is submitted, it cannot be cancelled.",
         "PORTFOLIO": "portfolio",
         "GUIDELINE_HEADING": "Important note on balance amount:",
         "GUIDELINE_FOR_PORTFOLIO_MIN": "As a guideline, you should maintain a minimum portfolio value of $50. You accept, should your portfolio balance be below that, that we might not re-balance your portfolio to its strategic asset allocation upon re-balancing events.",
@@ -237,6 +239,8 @@
         "PORTFOLIO_REF_NO": "Portfolio Reference No. :",
         "CASH_ACC_REF_CODE": "Cash Account (Ref Code):",
         "TRANSFER_TO_BANK_AC_NO": "Transfer to Bank Account No. :",
+        "SRS_OPERATOR": "SRS Operator:",
+        "SRS_ACC_NUMBER": "SRS Account Number:",
         "RE_BALANCE": {
           "TITLE": "Quarterly Rebalancing In-progress",
           "DESC": "Please note that this portfolio is being rebalanced. This process will be completed in 6 to 7 working days.",
@@ -336,24 +340,40 @@
     "PORTFOLIO_TYPE": " - {{portfolioType}} Portfolio",
     "TOP_UP_AMOUNT": "Amount to top up to your cash account:",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance:",
+    "INFO_SRS_ONETIME": "Please ensure you have sufficient fund in your SRS account. Amount will be deducted immediately.",
+    "INFO_SRS_MONTHLY": "Please ensure you have sufficient fund by the 10th of every month in your SRS Account.",
     "NOTE": "Note:",
-    "MONTHLY_NOTE": [
+    "SRS_LBL": "Transfer from SRS Account",
+    "SRS_OPERATOR": "SRS Operator:",
+    "SRS_ACCOUNT_NUMBER": "SRS Account Number:",
+    "MONTHLY_SRS_NOTE": [
+      "Please ensure sufficient funds in your SRS Account by the 10th of every month as monthly investments will be processed on the 15th or next working day if the 15th is a weekend or public holiday.",
+      "If there are insufficient funds in your SRS account, this request will fail, and you may incur transactional costs.",
+      "You may submit a new monthly investment amount before the 15th to overwrite your existing monthly investment amount."
+    ],
+    "ONETIME_SRS_NOTE": [
+      "This request will be processed immediately once request is submitted.",
+      "If there are insufficient funds in your SRS account, this request will fail, and you may incur transactional costs.",
+      "Once this request is being processed, it cannot be changed or deleted."
+    ],
+    "MONTHLY_CASH_NOTE": [
       "Please fund by the 10th of the month for the recurring buy request.",
       "This request will only be processed once your cash account has sufficient funds.",
       "If there are insufficient monies in your Investment Cash Account by the 10th of the month, the monthly investment request will be processed on the 15th of the following month.",
       "You may submit a new monthly investment amount before the 15th to overwrite this request.",
       "Once this request is being processed, it cannot be changed or deleted."
     ],
-    "SUFFICIENT_ONETIME_NOTE": [
+    "SUFFICIENT_ONETIME_CASH_NOTE": [
       "This request will only be processed once your cash account has sufficient funds.",
       "Once this request is being processed, it cannot be changed or deleted."
     ],
-    "INSUFFICIENT_ONETIME_NOTE": [
+    "INSUFFICIENT_ONETIME_CASH_NOTE": [
       "This request will only be processed once your cash account has sufficient funds.",
       "This request will expire if you do not fund within 7 working days.",
       "You may submit a new one-time investment amount to overwrite this request.",
       "Once this request is being processed, it cannot be changed or deleted."
     ],
+
     "SUBMIT_REQUEST": "Submit Request"
   },
   "TOAST_MESSAGES": {

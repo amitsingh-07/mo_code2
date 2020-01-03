@@ -55,7 +55,6 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   selected;
   showMpPopup = false;
   showAnimation = false;
-  cashPortfolioPresent: boolean;
 
   // transfer instructions
   bankDetails;
@@ -104,8 +103,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     this.checkMpPopStatus();
     this.toastMsg = this.manageInvestmentsService.getToastMessage();
   }
-
-  ngOnDestroy() {
+ ngOnDestroy() {
     this.subscription.unsubscribe();
     this.navbarService.unsubscribeBackPress();
   }
@@ -188,7 +186,6 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
       total: this.totalPortfolio
     };
     this.manageInvestmentsService.setUserPortfolioList(this.portfolioList);
-    this.cashPortfolioPresent = this.checkForCashAccount(this.portfolioList);
     if (this.investmentoverviewlist.cashAccountDetails) {
       this.manageInvestmentsService.setUserCashBalance(
         this.investmentoverviewlist.cashAccountDetails.availableBalance
@@ -288,18 +285,16 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   }
 
   gotoTopUp(portfolio?) {
-    if (this.cashPortfolioPresent) {
-      // Added check if got portfolio, set it as selected one else set null for the main top up button
-      if (portfolio) {
-        this.manageInvestmentsService.setSelectedCustomerPortfolioId(portfolio['customerPortfolioId']);
-        this.manageInvestmentsService.setSelectedCustomerPortfolio(portfolio);
-      } else {
-        this.manageInvestmentsService.setSelectedCustomerPortfolioId(null);
-        this.manageInvestmentsService.setSelectedCustomerPortfolio(null);
-      }
-      // GO TO TOP-UP
-      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
+    // Added check if got portfolio, set it as selected one else set null for the main top up button
+    if (portfolio) {
+      this.manageInvestmentsService.setSelectedCustomerPortfolioId(portfolio['customerPortfolioId']);
+      this.manageInvestmentsService.setSelectedCustomerPortfolio(portfolio);
+    } else {
+      this.manageInvestmentsService.setSelectedCustomerPortfolioId(null);
+      this.manageInvestmentsService.setSelectedCustomerPortfolio(null);
     }
+    // GO TO TOP-UP
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
   }
 
   getUserProfileInfo() {
@@ -325,18 +320,11 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
         }
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
-        /* First portfolio's entitlement is considered for now as global entitlement,
-            need to change when multiple portfolio logic is implemented */
-        // this.entitlements = this.manageInvestmentsService.getEntitlementsFromPortfolio(this.portfolioList[0]);
       }
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
-  }
-
-  getEntitlementsFromPortfolio(portfolio) {
-    return this.manageInvestmentsService.getEntitlementsFromPortfolio(portfolio);
   }
 
   scrollTop() {
@@ -407,15 +395,4 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     }
   }
 
-  checkForCashAccount(portfolios) {
-    if (portfolios && portfolios.length) {
-      for (const portfolio of portfolios) {
-        if (portfolio.portfolioType !== 'SRS') {
-          return true;
-        }
-      }
-      return false;
-    }
-    return true;
-  }
 }

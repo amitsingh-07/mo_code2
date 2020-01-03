@@ -40,7 +40,7 @@
                 <div class="form-group-with-bg--header your_total_value">
                   <div id="myFinancialLbl">
                     <div class="total_values" id="investment_overview_totalportfolio_value">
-                      {{totalValue | currency:'USD':'symbol-narrow':'1.2-2'}}
+                      {{totalValue | formatCurrency}}
                     </div>
                     <div class="total_values_label" id="investment_overview_totalportfolio_value_lab">
                       {{'YOUR_INVESTMENT.TOTAL_PORTFOLIO_VALUE' | translate}}</div>
@@ -56,13 +56,12 @@
                     </div>
                     <div class="flex-col">
                       <div class="total_cash_value" id="investment_overview_total_returns_value">
-                        {{cashAccountBalance | currency:'USD':'symbol-narrow':'1.2-2'}}
+                        {{cashAccountBalance | formatCurrency}}
                       </div>
                     </div>
                   </div>
                   <div class="flex-row">
-                    <button type="button" class="btn-with-icon top_up_btn"
-                      [ngClass]="{'disabled': !cashPortfolioPresent}" id="top-up_button" (click)="gotoTopUp()">
+                    <button type="button" class="btn-with-icon top_up_btn" id="top-up_button" (click)="gotoTopUp()">
                       <span class="topup-btn-img"><img id="top-up_img"
                           src="../../../assets/images/investment-account/money-white-topup.svg" alt="" /></span>
                       <span>{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</span>
