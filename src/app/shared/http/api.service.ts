@@ -597,4 +597,12 @@ export class ApiService {
       );
   }
 
+  // Payment
+  getRequestSignature(payload) {
+    return this.http.post(apiConstants.endpoint.payment.getRequestSignature, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
 }

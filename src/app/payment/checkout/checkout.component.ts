@@ -1,15 +1,13 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { sha256 } from 'js-sha256';
 import { ErrorModalComponent } from 'src/app/shared/modal/error-modal/error-modal.component';
 import { ModelWithButtonComponent } from './../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { PaymentModalComponent } from './../payment-modal/payment-modal.component';
-import { PaymentRequest } from './../payment-request';
 import { PAYMENT_CONST } from './../payment.constants';
+import { PaymentService } from './../payment.service';
 
 @Component({
   selector: 'app-checkout',
@@ -28,15 +26,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   subTotal = PAYMENT_CONST.SUBTOTAL;
   gst = PAYMENT_CONST.GST;
-  totalAmt = this.subTotal + (this.subTotal * PAYMENT_CONST.GST / 100);
+  totalAmt = (this.subTotal + (this.subTotal * PAYMENT_CONST.GST / 100)).toString();
   promoCode = PAYMENT_CONST.PROMO_CODE;
 
   constructor(
     private formBuilder: FormBuilder,
     public readonly translate: TranslateService,
     private modal: NgbModal,
-    public datePipe: DatePipe,
-    public navbarService: NavbarService
+    public navbarService: NavbarService,
+    public paymentService: PaymentService
   ) {
     this.translate.use('en');
   }
@@ -53,21 +51,16 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   buildForm() {
-    const timeStamp = this.datePipe.transform(new Date(), PaymentRequest.timestampFormat, PaymentRequest.timezone);
-    const preShaStr = timeStamp + (PaymentRequest.requestId + timeStamp) + PaymentRequest.merchantAccId
-      + PaymentRequest.transactionType + this.totalAmt + PaymentRequest.currency + PaymentRequest.redirectURL
-      + PaymentRequest.ipAddress + PaymentRequest.secretKey;
-    const reqSignature = sha256(preShaStr);
     this.checkoutForm = this.formBuilder.group({
-      request_id: [PaymentRequest.requestId + timeStamp],
-      request_time_stamp: [timeStamp],
-      request_signature: [reqSignature],
-      merchant_account_id: [PaymentRequest.merchantAccId],
-      transaction_type: [PaymentRequest.transactionType],
+      request_id: [''],
+      request_time_stamp: [''],
+      request_signature: [''],
+      merchant_account_id: [''],
+      transaction_type: [''],
       requested_amount: [this.totalAmt],
-      requested_amount_currency: [PaymentRequest.currency],
-      ip_address: [PaymentRequest.ipAddress],
-      redirect_url: [PaymentRequest.redirectURL],
+      requested_amount_currency: [''],
+      ip_address: [''],
+      redirect_url: [''],
       termsOfConditions: [this.termsOfConditions, Validators.required]
     });
   }
@@ -80,40 +73,23 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   submitForm() {
     this.openModal();
-    this.buildForm();
-    document.forms['checkoutForm'].action = PaymentRequest.requestURL;
-    // INSERT SERVICE TO CALL BACKEND CODE BEFORE SUBMIT
-    // this.windowRef = window.open('', 'wirecardWindow');
-    document.forms['checkoutForm'].submit((e) => {
-      // cancel submission
-      e.preventDefault();
-      console.log('E= ', e)
+    document.forms['checkoutForm'].action = 'https://test.wirecard.com.sg/engine/hpp/';
+    // Update this to add customer id
+    this.paymentService.getRequestSignature(this.totalAmt).subscribe((res) => {
+      this.updateFormValues(res);
     });
+  }
 
-    const pollTimer = window.setInterval(() => {
-      // If user closes pop up window, close the modal and show the page again
-      if (this.windowRef.closed !== false) { // !== is required for compatibility with Opera
-        window.clearInterval(pollTimer);
-        console.log('INSIDE CLOSING!!!!!!!!')
-        this.closeModal();
-      }
-    }, 100);
-
-    window.success = (values) => {
-      console.log('INSIDE SUCCESS!!!!!!!!')
-      clearInterval(pollTimer);
-      // Route to status page with success
-      this.windowRef.close();
-      window.success = () => null;
-    };
-
-    window.failed = (values) => {
-      console.log('INSIDE FAILURE!!!!!!!!')
-      clearInterval(pollTimer);
-      // Route to status page with failed
-      this.windowRef.close();
-      window.failed = () => null;
-    };
+  updateFormValues(res) {
+    this.checkoutForm.get('request_id').setValue(res['requestId']);
+    this.checkoutForm.get('request_time_stamp').setValue('' + res['requestTimestamp']);
+    this.checkoutForm.get('request_signature').setValue(res['requestSignature']);
+    this.checkoutForm.get('merchant_account_id').setValue('961c567b-d9da-41f6-9801-ba21cb228a00');
+    this.checkoutForm.get('transaction_type').setValue('purchase');
+    this.checkoutForm.get('requested_amount_currency').setValue('SGD');
+    this.checkoutForm.get('ip_address').setValue('127.0.0.1');
+    this.checkoutForm.get('redirect_url').setValue('https://bfa-dev.ntucbfa.cloud/payment/api/redirectPaymentStatus');
+    document.forms['checkoutForm'].submit();
   }
 
   openModal() {
