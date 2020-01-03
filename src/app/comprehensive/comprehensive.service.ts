@@ -89,14 +89,6 @@ export class ComprehensiveService {
   }
   commit() {
     if (window.sessionStorage) {
-
-      /* Robo3 FULL or LITE Config*/
-      sessionStorage.setItem(
-        appConstants.SESSION_KEY.COMPREHENSIVE_VERSION,
-        'LITE'
-      );
-      console.log(sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION));
-      // tslint:disable-next-line: max-line-length
       const comprehensiveVersionType = this.getComprehensiveSessionVersion();
 
       /* Robo3 FULL or LITE Config*/
@@ -113,15 +105,15 @@ export class ComprehensiveService {
   getComprehensiveSessionVersion() {
     // tslint:disable-next-line: prefer-immediate-return
     const comprehensiveVersionType = (sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION)
-    === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED)
-    ? appConstants.SESSION_KEY.COMPREHENSIVE_LITE : appConstants.SESSION_KEY.COMPREHENSIVE;
+      === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED)
+      ? appConstants.SESSION_KEY.COMPREHENSIVE_LITE : appConstants.SESSION_KEY.COMPREHENSIVE;
     return comprehensiveVersionType;
   }
   getComprehensiveVersion() {
     // tslint:disable-next-line: prefer-immediate-return
     const comprehensiveVersionType = (sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION)
-    === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED)
-    ? false : true;
+      === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED)
+      ? false : true;
     return comprehensiveVersionType;
   }
   getComprehensiveSessionData() {
@@ -822,7 +814,7 @@ export class ComprehensiveService {
     }
   }
   // Return Access Url for Full Journey
-  getAccessibleFullJourney (urlList: any, url: any) {
+  getAccessibleFullJourney(urlList: any, url: any) {
     this.generateProgressTrackerData();
 
     const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, url));
@@ -1050,8 +1042,8 @@ export class ComprehensiveService {
     }
     return accessibleUrl;
   }
-   // Return Access Url for Lite Journey
-   getAccessibleLiteJourney (urlList: any, url: any) {
+  // Return Access Url for Lite Journey
+  getAccessibleLiteJourney(urlList: any, url: any) {
     this.generateProgressTrackerData();
 
     const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, url));
@@ -1086,15 +1078,16 @@ export class ComprehensiveService {
         break;
       } else {
         let canAccess = true;
+        /*console.log(dependantProgressData);
         dependantProgressData.subItems.forEach(subItem => {
           if (!subItem.completed && subItem.hidden !== true) {
             canAccess = false;
           }
         });
         if (!(accessPage && enquiry.hasDependents === false &&
-              dependantProgressData.subItems[2].value === '0')) {
-                canAccess = false;
-          }
+          dependantProgressData.subItems[2].value === '0')) {
+          canAccess = false;
+        }*/
         switch (index) {
           // 'getting-started'
           case 0:
@@ -1212,7 +1205,7 @@ export class ComprehensiveService {
     this.progressData = {
       title: 'Your Progress Tracker',
       subTitle: (!comprehensiveVersion)
-      ? 'Est. Time Required: 10 mins' : 'Est. Time Required: 20 mins',
+        ? 'Est. Time Required: 10 mins' : 'Est. Time Required: 20 mins',
       properties: {
         disabled: false
       },
@@ -1222,7 +1215,7 @@ export class ComprehensiveService {
     this.progressData.items.push(this.getGetStartedProgressData());
     this.progressData.items.push(this.getDependantsProgressData());
     this.progressData.items.push(this.getFinancesProgressData());
-    if (!comprehensiveVersion) {
+    if (comprehensiveVersion) {
       this.progressData.items.push(this.getFireproofingProgressData());
     }
     this.progressData.items.push(this.getRetirementProgressData());
@@ -1260,6 +1253,7 @@ export class ComprehensiveService {
     const childEndowmentData: IChildEndowment[] = this.getChildEndowment();
     const dependantData: IDependantDetail[] = this.getMyDependant();
     const dependentHouseHoldData: IdependentsSummaryList = this.gethouseHoldDetails();
+    const comprehensiveVersion = this.getComprehensiveVersion();
 
     if (enquiry && enquiry.hasDependents !== null && dependantData && dependantData.length > 0) {
       hasDependants = true;
@@ -1276,7 +1270,7 @@ export class ComprehensiveService {
     }
 
     let noOfDependants = '';
-    if (dependantData) {
+    if (dependantData && comprehensiveVersion) {
       noOfDependants = dependantData.length + '';
     }
     subItemsArray.push({
@@ -1293,17 +1287,20 @@ export class ComprehensiveService {
       value: dependentHouseHoldData.houseHoldIncome ? dependentHouseHoldData.houseHoldIncome + '' : '',
       completed: enquiry.hasDependents !== null
     });
-    subItemsArray.push({
-      id: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
-      path:
-        enquiry.hasDependents !== null && enquiry.hasDependents !== false
-          ? COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS
-          : COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
-      title: 'Number of Dependant(s)',
-      value: noOfDependants,
-      completed: enquiry.hasDependents !== null
-    });
-    if (enquiry.hasDependents === null || dependantData && dependantData.length > 0) {
+
+    if (comprehensiveVersion) {
+      subItemsArray.push({
+        id: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
+        path:
+          enquiry.hasDependents !== null && enquiry.hasDependents !== false
+            ? COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS
+            : COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
+        title: 'Number of Dependant(s)',
+        value: noOfDependants,
+        completed: enquiry.hasDependents !== null
+      });
+    }
+    if (comprehensiveVersion && (enquiry.hasDependents === null || dependantData && dependantData.length > 0)) {
       const eduPrefs: IChildEndowment[] = this.getChildEndowment();
       const eduPlan: string = this.hasEndowment();
 
