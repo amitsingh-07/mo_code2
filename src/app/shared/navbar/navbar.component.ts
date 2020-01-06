@@ -345,6 +345,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   toggleMenu() {
+    if (this.isNavbarCollapsed) {
+      this.renderer.addClass(document.body, 'modal-open');
+    } else {
+      this.renderer.removeClass(document.body, 'modal-open');
+    }
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
     if (!this.isNotificationHidden && innerWidth < this.mobileThreshold) {
       this.isNotificationHidden = true;
