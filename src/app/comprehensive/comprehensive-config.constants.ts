@@ -146,5 +146,15 @@ export const COMPREHENSIVE_CONST = {
         SUBMITTED: 'submitted',
         READY: 'ready'
     },
-    REPORT_PDF_NAME: 'MoneyOwl-Comprehensive.pdf'
+    REPORT_PDF_NAME: 'MoneyOwl-Comprehensive.pdf',
+    RETIREMENT_PLAN: {
+        MIN_AGE: 45,
+        MAX_AGE: 70,
+        STEP: 1
+    },
+    COMPREHENSIVE_LITE_ENABLED: true,
+    VERSION_TYPE: {
+        LITE: 'LITE',
+        FULL: 'FULL'
+    }
 };
