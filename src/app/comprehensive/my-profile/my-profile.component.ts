@@ -51,6 +51,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     getComprehensiveEnquiry: any;
     maxDate: any;
     minDate: any;
+    getComprehensiveData:any;
 
     public onCloseClick(): void {
         this.comprehensiveService.setProgressToolTipShown(true);
@@ -106,6 +107,14 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
             this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
             this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
+            this.getComprehensiveData = this.comprehensiveService.getComprehensiveEnquiry().type;
+            let comprehensiveJourneyType = false;
+            if(this.getComprehensiveData === 'Comprehensive'){
+                comprehensiveJourneyType = false;
+ 
+            }
+            console.log(comprehensiveJourneyType);
+            this.comprehensiveService.setComprehensiveJourneyMode(comprehensiveJourneyType);
             if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus
             === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
             }

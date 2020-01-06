@@ -329,7 +329,13 @@ export class ComprehensiveService {
 
     return hasChildDependant;
   }
-
+  setComprehensiveJourneyMode(comprehensiveType:boolean){
+  this.comprehensiveFormData.comprehensiveDetails.comprehensiveJourneyMode = comprehensiveType;
+  this.commit();
+  }
+  getComprehensiveVersion(){
+  return this.comprehensiveFormData.comprehensiveDetails.comprehensiveJourneyMode;
+  }
   setMyProfile(profile: IMyProfile) {
     this.comprehensiveFormData.comprehensiveDetails.baseProfile = profile;
     this.commit();

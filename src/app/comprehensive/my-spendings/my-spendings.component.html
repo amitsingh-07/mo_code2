@@ -143,7 +143,7 @@
             </div>
           </div>
         </div>
-        <div class="flex-row">
+        <div *ngIf="comprehensiveJourneyMode" class="flex-row">
           <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.HOME_TYPE' | translate}}<div
                 class="form-group-with-bg--content-sub-label"></div>
@@ -193,10 +193,12 @@
             </div>
           </div>
         </div> -->
-        <div class="flex space-btwn pos-relative" [hidden]="!otherMortage" *ngIf="!viewMode">
+        <div *ngIf="comprehensiveJourneyMode">
+        <div  class="flex space-btwn pos-relative" [hidden]="!otherMortage" *ngIf="!viewMode">
           <div class="with-help-icon" for="name"><u (click)="addOtherMortage()">{{
                     'CMP.MY_SPENDINGS.ADD_OTHER_MORTAGE' | translate}}</u></div>
           <div class="help-icon" (click)="showToolTipModal('MORTAGE_PAYMENT_TITLE','MORTAGE_PAYMENT_MESSAGE')"></div>
+        </div>
         </div>
         <div [hidden]="otherMortage" class="mortgage-block">
           <div class="flex space-btwn mt30 mb30" [ngClass]="{'both-icon': !viewMode}">
@@ -283,7 +285,7 @@
         </div>
       </div>
     </div>
-    <div class="form-group-with-bg">
+    <div  *ngIf="comprehensiveJourneyMode" class="form-group-with-bg">
       <!--Form Header-->
       <div class="form-group-with-bg--header">
         <div class="flex-row">
@@ -374,7 +376,7 @@
             </div>
           </div>
         </div>
-        <div class="flex-row">
+        <div  *ngIf="comprehensiveJourneyMode" class="flex-row">
           <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_SPENDINGS.TO_PAY_OFF' | translate}}<div
                 class="form-group-with-bg--content-sub-label"></div>

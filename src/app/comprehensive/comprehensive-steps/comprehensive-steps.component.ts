@@ -24,6 +24,8 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   viewMode: boolean;
   reportStatus: string;
+  comprehensiveJourneyMode: boolean;
+  stepLite: number;
   constructor(
     private route: ActivatedRoute, private router: Router, private navbarService: NavbarService,
     private translate: TranslateService, private configService: ConfigService,
@@ -58,6 +60,8 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit() {
+    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
+    this.stepLite = this.comprehensiveJourneyMode ? 4 : 3;
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
@@ -98,10 +102,10 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
         this.url = COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS;
         break;
       case 3:
-        this.url = COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN;
+        this.url = this.comprehensiveJourneyMode ?  COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN  : COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN ;
         break;
       case 4:
-        this.url = COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN;
+        this.url = this.comprehensiveJourneyMode ? COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN   : COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE ;
         break;
     }
     this.router.navigate([this.url]);

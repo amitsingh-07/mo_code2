@@ -76,6 +76,12 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         this.validationFlag = this.translate.instant('CMP.MY_ASSETS.OPTIONAL_VALIDATION_FLAG');
       });
     });
+    const today: Date = new Date();
+    this.myAge = this.comprehensiveService.getMyProfile().dateOfBirth;
+    const getAge = this.aboutAge.calculateAge(this.myAge, today);
+    if(getAge > 55){
+      this.showRetirementAccount = true;
+    }
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '') {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled
@@ -90,7 +96,8 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
               oaFormControl.setValue(cpfValues.oa);
               saFormControl.setValue(cpfValues.sa);
               maFormControl.setValue(cpfValues.ma);
-              raFormControl.setValue(cpfValues.ra);
+              const retirementAccount = this.showRetirementAccount  ? cpfValues.ra : null;
+              raFormControl.setValue(retirementAccount);
               oaFormControl.markAsDirty();
               saFormControl.markAsDirty();
               maFormControl.markAsDirty();
@@ -111,13 +118,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         }
       }
     });
-    const today: Date = new Date();
-    this.myAge= this.comprehensiveService.getMyProfile().dateOfBirth;
-    const inputDateFormat = this.parserFormatter.format(this.myAge);
-    const getAge = this.aboutAge.calculateAge(inputDateFormat, today);
-    if(getAge > 55){
-      this.showRetirementAccount = true;
-    }
+   
     this.assetDetails = this.comprehensiveService.getMyAssets();
     if (this.assetDetails && this.assetDetails.source === 'MyInfo') {
       this.cpfFromMyInfo = true;
