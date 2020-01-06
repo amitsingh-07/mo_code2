@@ -342,6 +342,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   hideMenu() {
     this.isNavbarCollapsed = true;
+    this.renderer.removeClass(document.body, 'modal-open');
   }
 
   toggleMenu() {
