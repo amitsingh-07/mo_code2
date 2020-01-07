@@ -1,9 +1,14 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { ComprehensiveApiService } from 'src/app/comprehensive/comprehensive-api.service';
+import { COMPREHENSIVE_CONST } from 'src/app/comprehensive/comprehensive-config.constants';
+import { COMPREHENSIVE_ROUTE_PATHS } from 'src/app/comprehensive/comprehensive-routes.constants';
+import { ComprehensiveService } from 'src/app/comprehensive/comprehensive.service';
 import { SignUpService } from 'src/app/sign-up/sign-up.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
+import { PAYMENT_ROUTE_PATHS } from './../payment-routes.constants';
 import { PAYMENT_STATUS } from './../payment.constants';
 
 @Component({
@@ -27,7 +32,9 @@ export class PaymentStatusComponent implements OnInit, OnDestroy {
     private router: Router,
     public navbarService: NavbarService,
     private route: ActivatedRoute,
-    public signUpService: SignUpService
+    public signUpService: SignUpService,
+    private comprehensiveService: ComprehensiveService,
+    private comprehensiveApiService: ComprehensiveApiService
   ) {
     this.translate.use('en');
   }
@@ -55,6 +62,7 @@ export class PaymentStatusComponent implements OnInit, OnDestroy {
       this.statusText = this.translate.instant('PAYMENT_STATUS.SUCCESS_TEXT') + '<span>' + this.userEmail + '</span>';
       this.btnText = this.translate.instant('PAYMENT_STATUS.CONTINUE');
       this.paymentStatus = PAYMENT_STATUS.SUCCESS;
+      this.initiateReport();
     } else {
       this.statusTitle = this.translate.instant('PAYMENT_STATUS.FAIL_TITLE');
       this.statusText = this.translate.instant('PAYMENT_STATUS.FAIL_TEXT');
@@ -67,9 +75,9 @@ export class PaymentStatusComponent implements OnInit, OnDestroy {
   // On press of CTA btn go to dashboard if success else back to checkout page if failed
   onPressBtn() {
     if (this.paymentStatus === PAYMENT_STATUS.SUCCESS) {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
     } else {
-      this.router.navigate(['/payment/checkout']);
+      this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);
     }
   }
 
@@ -84,5 +92,19 @@ export class PaymentStatusComponent implements OnInit, OnDestroy {
     if (userProfile) {
       this.userEmail = this.signUpService.getUserProfileInfo()['emailAddress'];
     }
+  }
+
+  // Initiate report generation when payment success
+  initiateReport() {
+    const reportData = { enquiryId: this.comprehensiveService.getEnquiryId() };
+    this.comprehensiveApiService.generateComprehensiveReport(reportData).subscribe((data) => {
+      this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED);
+      this.comprehensiveService.setLocked(true);
+      this.comprehensiveService.setViewableMode(true);
+      const payload = { enquiryId: this.comprehensiveService.getEnquiryId() };
+      this.comprehensiveApiService.createReportRequest(payload).subscribe((reportDataStatus: any) => {
+        this.comprehensiveService.setReportId(reportDataStatus.reportId);
+      });
+    });
   }
 }
