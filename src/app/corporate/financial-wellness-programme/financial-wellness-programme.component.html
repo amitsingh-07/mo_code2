@@ -259,7 +259,7 @@
                   </div>
                   <div class="col-sm-6">
                     <input type="number" class="form-control light-border p-3" formControlName="phoneNumber"
-                      placeholder="Phone Number *" required>
+                      placeholder="Phone Number *" #phoneNumber (keyup)="onlyNumber(phoneNumber)" required>
                   </div>
                 </div>
                 <div class="flex-row">
