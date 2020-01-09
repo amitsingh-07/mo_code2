@@ -119,7 +119,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
 
   goToNext(dependantSelectionForm) {
     if (this.viewMode) {
-      if (dependantSelectionForm.value.dependantSelection) {
+      if (dependantSelectionForm.value.dependantSelection &&  this.comprehensiveJourneyMode) {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
       } else {
         this. routerPath();
@@ -128,7 +128,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
       this.cmpService.setDependantSelection(dependantSelectionForm.value.dependantSelection);
       dependantSelectionForm.value.dependentsList = this.householdDetails.dependentsList;
       this.cmpService.sethouseHoldDetails(dependantSelectionForm.value);
-      if (dependantSelectionForm.value.dependantSelection) {
+      if (dependantSelectionForm.value.dependantSelection &&  this.comprehensiveJourneyMode ) {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
       } else {
         const payload = {

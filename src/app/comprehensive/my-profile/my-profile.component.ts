@@ -108,13 +108,6 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
             this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
             this.getComprehensiveData = this.comprehensiveService.getComprehensiveEnquiry().type;
-            let comprehensiveJourneyType = false;
-            if(this.getComprehensiveData === 'Comprehensive'){
-                comprehensiveJourneyType = false;
- 
-            }
-            console.log(comprehensiveJourneyType);
-            this.comprehensiveService.setComprehensiveJourneyMode(comprehensiveJourneyType);
             if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus
             === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
             }
