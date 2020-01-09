@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { ConfigService, IConfig } from 'src/app/config/config.service';
+import { ConfigService, IConfig } from '../../../config/config.service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';

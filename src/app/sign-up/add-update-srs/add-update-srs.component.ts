@@ -24,7 +24,7 @@ import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 
-import { InvestmentCommonService } from 'src/app/investment/investment-common/investment-common.service';
+import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
 
 @Component({
   selector: 'app-add-update-srs',
@@ -173,7 +173,7 @@ export class AddUpdateSrsComponent implements OnInit {
             [Validators.required, Validators.pattern(RegexConstants.operatorMaskForValidation.UOB)]);
           break;
       }
-    this.addUpdateSrsFrom.updateValueAndValidity();
+      this.addUpdateSrsFrom.updateValueAndValidity();
     }
   }
 
