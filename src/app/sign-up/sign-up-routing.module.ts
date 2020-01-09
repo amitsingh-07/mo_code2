@@ -30,6 +30,8 @@ import {
     ViewAllNotificationsComponent
 } from './view-all-notifications/view-all-notifications.component';
 
+import { AddUpdateSrsComponent } from './add-update-srs/add-update-srs.component';
+
 const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.ROOT,
@@ -108,6 +110,12 @@ const routes: Routes = [
     component: AddUpdateBankComponent,
     canActivate: [AuthGuard]
   },
+  { path: SIGN_UP_ROUTES.UPDATE_SRS,
+    component: AddUpdateSrsComponent,
+    canActivate: [AuthGuard]
+  },
+  
+
   { path: '**', redirectTo: '/page-not-found' }
 ];
 

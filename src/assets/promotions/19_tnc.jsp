@@ -1,5 +1,6 @@
 <div class="medical-block">
-  <div class="flex mb20"><span class="text-bold">*</span><span>This is the list of 11 child-related medical conditions covered:</span>
+  <div class="flex mb20"><span class="text-bold">*</span><span>This is the list of 11 child-related medical conditions
+      covered:</span>
   </div>
   <div class="conditions-block">
     <ul class="conditions-list">
@@ -75,22 +76,14 @@
   </div>
 </div>
 <div class="bundle-package">
-  <p class="tnc--title"><span class="plus-icon">+</span>Terms & Conditions:</p>
+  <p class="tnc--title">Terms & Conditions:</p>
   <ol class="tnc--ordered">
     <li>
-      Each client is entitled to receive a MoneyOwl towel for every successful application on this bundle.
+      Please note that insurance policies T&Cs applies. Packages may not take into account your personal financial
+      situation and particular needs. Speak to MoneyOwl's client advisers if you require specific financial advice.
     </li>
     <li>
-      Receive a $50 NTUC FairPrice Voucher and a MoneyOwl towel if you successfully signed up for both Child Protection & Child Education Bundle.
-    </li>
-    <li>
-      Monthly Premium for the protection must be at least $100.
-    </li>
-    <li>
-      Each client is entitled to redeem 1 voucher per package.
-    </li>
-    <li>
-      Please note that insurance policies T&Cs applies. Packages may not take into account your personal financial situation and particular needs. Speak to MoneyOwl's client advisers if you require specific financial advice. 
+      This advertisement has not been reviewed by the Monetary Authority of Singapore.
     </li>
   </ol>
 </div>

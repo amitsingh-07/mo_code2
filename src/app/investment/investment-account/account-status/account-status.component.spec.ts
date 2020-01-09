@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdditionalDeclarationSubmitComponent } from './additional-declaration-submit.component';
+import { AccountStatusComponent } from './account-status.component';
 
-describe('AdditionalDeclarationSubmitComponent', () => {
-  let component: AdditionalDeclarationSubmitComponent;
-  let fixture: ComponentFixture<AdditionalDeclarationSubmitComponent>;
+describe('AccountStatusComponent', () => {
+  let component: AccountStatusComponent;
+  let fixture: ComponentFixture<AccountStatusComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdditionalDeclarationSubmitComponent ]
+      declarations: [AccountStatusComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdditionalDeclarationSubmitComponent);
+    fixture = TestBed.createComponent(AccountStatusComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
