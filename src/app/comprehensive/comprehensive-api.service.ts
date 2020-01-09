@@ -6,7 +6,7 @@ import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { BaseService } from '../shared/http/base.service';
 import { HelperService } from '../shared/http/helper.service';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
@@ -19,6 +19,25 @@ export class ComprehensiveApiService {
         private httpClient: HttpClient,
         private helperService: HelperService,
     ) { }
+
+    private handleError(error: HttpErrorResponse) {
+        if (error) {
+            if (error.error instanceof ErrorEvent) {
+                // A client-side or network error occurred. Handle it accordingly.
+                console.error('An error occurred:', error.error.message);
+            } else {
+                // The backend returned an unsuccessful response code.
+                // The response body may contain clues as to what went wrong,
+                console.error(
+                    `Backend returned code ${error.status}, ` +
+                    `body was: ${JSON.stringify(error.error)}`);
+                return throwError('API returned error response');
+            }
+        }
+        // return an observable with a user-facing error message
+        return throwError(
+            'Something bad happened; please try again later.');
+    }
 
     getComprehensiveSummary() {
         const sessionId = { sessionId: this.authService.getSessionId() };
@@ -97,6 +116,13 @@ export class ComprehensiveApiService {
         return this.http
             .post(apiConstants.endpoint.comprehensive.validatePromoCode, payload)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
+
+    getQuestionsList() {
+        return this.http.get(apiConstants.endpoint.getRiskAssessmentQuestions)
+            .pipe(
+                catchError((error: HttpErrorResponse) => this.handleError(error))
+            );
     }
 
     /**
