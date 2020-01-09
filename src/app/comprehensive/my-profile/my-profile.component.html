@@ -131,7 +131,7 @@
         <!--Flex row 4 /-->
         <div [hidden]="!DOBAlert" class="flex-row info-msg mt20 dob-valid-error">
           <span class='dob-alert-icon'></span><span class='dob-alert-text'>
-            {{ 'CMP.MY_PROFILE.DOB_ALERT' | translate}}</span></div>
+            {{ (comprehensiveJourneyMode) ? ('CMP.MY_PROFILE.DOB_ALERT' |translate) : ('CMP.MY_PROFILE.DOB_ALERT_LITE' | translate)}}</span></div>
       </div>
       <!--Form Content-->
     </div>

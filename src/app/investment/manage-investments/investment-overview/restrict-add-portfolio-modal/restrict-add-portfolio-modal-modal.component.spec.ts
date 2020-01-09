@@ -1,16 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RestrictAddPortfolioModalComponent } from './restirct-add-portfolio-modal.component';
+import { RestrictAddPortfolioModalComponent } from './restrict-add-portfolio-modal.component';
 
 describe('RestrictAddPortfolioModalComponent', () => {
-  let component: EditInvestmentModalComponent;
-  let fixture: ComponentFixture<EditInvestmentModalComponent>;
+  let component: RestrictAddPortfolioModalComponent;
+  let fixture: ComponentFixture<RestrictAddPortfolioModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RestrictAddPortfolioModalComponent ]
+      declarations: [RestrictAddPortfolioModalComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

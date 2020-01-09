@@ -14,6 +14,8 @@
           </div>
         </div>
         <div class="max-width col-lg-6 col-md-6">
+          <!-- HOLIDAY AND OTHER IMPORTANT NOTE -->
+          <app-notes category="withdraw" [noteInSession]="formValues?.investmentNote"></app-notes>
           <form id="withdraw_form" name="withdrawForm" [formGroup]="withdrawForm">
             <!-- PORTFOLIO -->
             <div class="form-group" *ngIf="withdrawForm.get('withdrawPortfolio')">
