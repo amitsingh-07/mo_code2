@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { PAYMENT_ROUTE_PATHS } from './../../payment/payment-routes.constants';
 
 import { ConfigService } from '../../config/config.service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
@@ -22,6 +23,9 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   pageTitle: string;
   menuClickSubscription: Subscription;
   subscription: Subscription;
+  paymentEnabled: boolean = false;
+  hasPaid: boolean = false;
+
   constructor(
     private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
     private translate: TranslateService,
@@ -32,6 +36,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     private loaderService: LoaderService) {
     this.pageId = this.activatedRoute.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
+      this.paymentEnabled = config['paymentEnabled'];
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
@@ -83,8 +88,13 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     } else if (this.comprehensiveService.checkResultData()) {
       const currentStep = this.comprehensiveService.getMySteps();
       if (currentStep === 4) {
-        this.loaderService.showLoader({ title: 'Loading', autoHide: false });
-        this.initiateReport();
+        // If payment is enabled and user has not paid, go payment else initiate report gen
+        if (this.paymentEnabled && !this.hasPaid) {
+          this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);
+        } else {
+          this.loaderService.showLoader({ title: 'Loading', autoHide: false });
+          this.initiateReport();
+        }
       } else {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + currentStep]);
       }

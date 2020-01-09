@@ -16,6 +16,7 @@
   "resetPasswordUrl": "/accounts/reset-password",
   "verifyEmailUrl": "/accounts/email-verification",
   "showAnnualizedReturns": false,
+  "paymentEnabled": true,
   "hospitalPlanData": [{
       "id": 0,
       "hospitalClass": "None",
