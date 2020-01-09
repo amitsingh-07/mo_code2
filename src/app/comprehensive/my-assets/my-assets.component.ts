@@ -79,6 +79,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     const today: Date = new Date();
     this.myAge = this.comprehensiveService.getMyProfile().dateOfBirth;
     const getAge = this.aboutAge.calculateAge(this.myAge, today);
+   
     if(getAge > 55){
       this.showRetirementAccount = true;
     }
@@ -98,7 +99,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
               maFormControl.setValue(cpfValues.ma);
               const retirementAccount = this.showRetirementAccount  ? cpfValues.ra : null;
               raFormControl.setValue(retirementAccount);
-              oaFormControl.markAsDirty();
               saFormControl.markAsDirty();
               maFormControl.markAsDirty();
               raFormControl.markAsDirty();
