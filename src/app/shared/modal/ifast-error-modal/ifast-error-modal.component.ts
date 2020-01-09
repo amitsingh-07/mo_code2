@@ -20,8 +20,8 @@ export class IfastErrorModalComponent implements OnInit {
     public readonly translate: TranslateService
   ) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {});
+    this.translate.get('COMMON').subscribe((result: string) => { });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }

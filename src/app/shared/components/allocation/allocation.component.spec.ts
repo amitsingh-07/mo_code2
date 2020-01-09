@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ErrorModalComponent } from './error-modal.component';
+import { AllocationComponent } from './allocation.component';
 
-describe('ErrorModalComponent', () => {
-  let component: ErrorModalComponent;
-  let fixture: ComponentFixture<ErrorModalComponent>;
+describe('AllocationComponent', () => {
+  let component: AllocationComponent;
+  let fixture: ComponentFixture<AllocationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ErrorModalComponent ]
+      declarations: [AllocationComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ErrorModalComponent);
+    fixture = TestBed.createComponent(AllocationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

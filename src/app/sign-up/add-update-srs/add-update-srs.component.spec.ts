@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AssetAllocationComponent } from './asset-allocation.component';
+import { AddUpdateSrsComponent } from './add-update-srs.component';
 
-describe('AssetAllocationComponent', () => {
-  let component: AssetAllocationComponent;
-  let fixture: ComponentFixture<AssetAllocationComponent>;
+describe('AddUpdateSrsComponent', () => {
+  let component: AddUpdateSrsComponent;
+  let fixture: ComponentFixture<AddUpdateSrsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AssetAllocationComponent ]
+      declarations: [ AddUpdateSrsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AssetAllocationComponent);
+    fixture = TestBed.createComponent(AddUpdateSrsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

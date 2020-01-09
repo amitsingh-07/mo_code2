@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModelWithButtonComponent } from './model-with-button.component';
+import { ModelWithButtonComponent } from './../model-with-button/model-with-button.component';
 
 describe('ModelWithButtonComponent', () => {
   let component: ModelWithButtonComponent;
@@ -8,9 +8,9 @@ describe('ModelWithButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModelWithButtonComponent ]
+      declarations: [ModelWithButtonComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

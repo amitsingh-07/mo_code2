@@ -126,6 +126,15 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  getSpecificDropList(groupName) {
+    const url = investmentApiConstants.endpoint.investmentAccount.getSpecificDropList.replace('$GROUP_NAME$', groupName)
+    return this.http.get(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   getFundMethodList() {
     return this.http.get(investmentApiConstants.endpoint.investmentAccount.fundingMethodList)
       .pipe(

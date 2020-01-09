@@ -26,6 +26,7 @@ export interface IConfig {
   productCategory: IProductCategory[];
   distribution: any;
   comprehensiveLiveEnabled: boolean;
+  showAnnualizedReturns: boolean;
 }
 
 const CACHE_SIZE = 1;

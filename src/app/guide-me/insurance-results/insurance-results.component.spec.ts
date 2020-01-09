@@ -10,9 +10,9 @@ describe('InsuranceResultsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InsuranceResultsComponent ]
+      declarations: [InsuranceResultsComponent]
     })
-    .compileComponents();
+      .compileComponents();
     guideMeService = TestBed.get(GuideMeService);
   }));
 
