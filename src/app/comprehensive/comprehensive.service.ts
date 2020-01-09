@@ -111,9 +111,8 @@ export class ComprehensiveService {
   }
   getComprehensiveVersion() {
     // tslint:disable-next-line: prefer-immediate-return
-    const comprehensiveVersionType = (sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION)
-      === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED)
-      ? false : true;
+    const comprehensiveVersionType = !(sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION)
+      === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED);
     return comprehensiveVersionType;
   }
   getComprehensiveSessionData() {
