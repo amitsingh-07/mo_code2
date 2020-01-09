@@ -560,7 +560,8 @@ export class ManageInvestmentsService {
           data.objectList.srsBankOperator && data.objectList.srsBankOperator.name) {
           const srsAccountDetails = {
             srsAccountNumber: this.srsAccountFormat(data.objectList.accountNumber, data.objectList.srsBankOperator.name),
-            srsOperator: data.objectList.srsBankOperator.name
+            srsOperator: data.objectList.srsBankOperator.name,
+            customerId: data.objectList.customerId
           };
           this.setSrsAccountDetails(srsAccountDetails);
           return srsAccountDetails;
@@ -579,4 +580,33 @@ export class ManageInvestmentsService {
     this.commit();
   }
 
+  getInvestmentNoteFromApi() {
+    return this.investmentApiService.getInvestmentNoteFromApi();
+  }
+
+  getAllNotes(noteInSession): Observable<any> {
+    if (noteInSession) {
+      return Observable.of(noteInSession);
+    } else {
+      return this.getInvestmentNoteFromApi().map((data: any) => {
+        if (data) {
+          this.setInvestmentNoteToSession(data.objectList);
+          return data.objectList;
+        }
+      });
+    }
+  }
+
+  setInvestmentNoteToSession(note: any) {
+    this.manageInvestmentsFormData.investmentNote = note;
+    this.commit();
+  }
+
+  setSrsSuccessFlag(isSrsAccountUpdated) {
+    this.manageInvestmentsFormData.isSrsAccountUpdated = isSrsAccountUpdated;
+    this.commit();
+  }
+  getSrsSuccessFlag() {
+    return this.manageInvestmentsFormData.isSrsAccountUpdated;
+  }
 }

@@ -1,0 +1,239 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+app-checkout {
+  .content {
+    display: flex;
+    justify-content: center;
+  }
+
+  .flex-div {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+
+    @include allmobiles {
+      width: 100%;
+    }
+  }
+
+  .payment-summary-text {
+    font-family: $muli-semi-bold;
+    font-size: 18px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.34px;
+    color: $white-color;
+  }
+
+  .review-text {
+    font-family: $muli-regular;
+    font-size: 16px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    color: $white-color;
+    margin-top: 10px;
+  }
+
+  .first-box {
+    display: flex;
+    background-color: $white-color;
+    border-radius: 6px;
+    padding: 19px 15px 11px 20px;
+    margin-top: 30px;
+
+    img {
+      height: 89px;
+      width: 74px;
+    }
+
+    .divider {
+      width: 1px;
+      height: 90px;
+      border: solid 1px rgba(151, 218, 218, 0.31);
+      margin: 0 20px;
+    }
+
+    .comprehensive-text {
+      font-family: $muli-semi-bold;
+      font-size: 18px;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: -0.34px;
+      color: $dark-teal-color;
+    }
+
+    .amt {
+      font-family: $muli-semi-bold;
+      font-size: 18px;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: -0.34px;
+      color: $silver-grey-color;
+      margin-top: 10px;
+    }
+  }
+
+  .second-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $white-color;
+    border-radius: 6px;
+    padding: 5px 20px 20px;
+    margin-top: 16px;
+
+    .rebate-title {
+      display: flex;
+      top: 15px;
+      position: relative;
+      font-family: $muli-bold;
+      font-size: 16px;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: -0.16px;
+      color: $teal-color;
+      padding: 0 37px;
+      background-color: $white-color;
+
+      img {
+        height: 27px;
+        width: auto;
+        margin-right: 10px;
+      }
+    }
+
+    .rebate-info {
+      font-family: $muli-regular;
+      font-size: 13px;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: -0.13px;
+      color: $grimmy-grey-color;
+      padding: 28px 26px 25px;
+      border-radius: 6px;
+      border: 1px solid #3ec5c5;
+      text-align: center;
+      margin: 0 8px;
+
+      @include allmobiles {
+        margin: 0px;
+      }
+
+      span {
+        font-family: $muli-semi-bold;
+      }
+    }
+
+    .flex-mt20 {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .flex-mt15 {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .horizontal-divider {
+      width: 100%;
+      height: 1px;
+      border: solid 1px rgba(134, 205, 206, 0.3);
+      margin-top: 19px;
+    }
+  }
+
+  .grey-txt {
+    font-family: $muli-semi-bold;
+    font-size: 16px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    color: $silver-grey-color;
+  }
+
+  .teal-txt {
+    font-family: $muli-semi-bold;
+    font-size: 16px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    color: $dark-teal-color;
+  }
+
+  .grey-bold-txt {
+    font-family: $muli-semi-bold;
+    font-size: 16px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    color: $silver-grey-color;
+  }
+
+  .teal-bold-txt {
+    font-family: $muli-bold;
+    font-size: 16px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    color: $dark-teal-color;
+
+    span {
+      font-family: $muli-semi-bold;
+    }
+  }
+
+  .checkbox-button {
+    text-align: center;
+    margin-bottom: 26px;
+  }
+
+  input[type='checkbox']+label {
+    background-position: left top;
+  }
+
+  .checkbox-label {
+    font-family: $muli-regular;
+    font-size: 16px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.31;
+    letter-spacing: -0.15px;
+    color: $white-color;
+    height: 24px;
+
+    span {
+      font-family: $muli-bold;
+      text-decoration: underline;
+    }
+  }
+
+  .btn-primary {
+    width: 340px;
+    font-family: $muli-bold;
+
+    @include allmobiles {
+      width: 100%;
+    }
+  }
+
+  .form-div {
+    display: flex;
+    flex-direction: column;
+  }
+}

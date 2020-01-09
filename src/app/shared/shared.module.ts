@@ -80,6 +80,7 @@ import {
 } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
+import { NotesComponent } from './components/notes/notes.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -130,7 +131,7 @@ export function createTranslateLoader(http: HttpClient) {
     DropdownWithSearchComponent,
     StartsWithPipe,
     RoadmapComponent,
-    SecurePipe, PortfolioListComponent, InstructionStepsComponent, FormatCurrencyPipe],
+    SecurePipe, PortfolioListComponent, InstructionStepsComponent, FormatCurrencyPipe, NotesComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -169,7 +170,8 @@ export function createTranslateLoader(http: HttpClient) {
     PortfolioListComponent,
     CarouselModalComponent,
     ReviewBuyRequestModalComponent,
-    FormatCurrencyPipe
+    FormatCurrencyPipe,
+    NotesComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,

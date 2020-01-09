@@ -612,7 +612,6 @@ body.modal-open::-webkit-scrollbar {
 
 .settings-modal-dialog {
   max-height: 100% !important;
-  z-index: 1040 !important;
 }
 
 .settings-tooltip-dialog {
@@ -1141,5 +1140,106 @@ body.modal-open::-webkit-scrollbar {
     bottom: initial;
     margin-top: 14px;
     position: relative;
+  }
+}
+
+.payment-modal {
+  background-color: $teal-color;
+  opacity: 0.98;
+
+  @include allmobiles {
+    height: 100%;
+    max-height: 100% !important;
+  }
+}
+
+.payment-tnc {
+  div.modal-body.white-bg {
+    height: 805px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    /* Firefox 64 */
+    -ms-overflow-style: none;
+
+    /* Internet Explorer 11 */
+    &::-webkit-scrollbar {
+      /** WebKit */
+      display: none;
+    }
+  }
+
+  .modal-body-message ol li:before {
+    content: counters(item, ".") " ";
+    counter-increment: item;
+  }
+
+  .modal-body-message ol {
+    counter-reset: item;
+    padding-left: 0px;
+  }
+
+  .modal-body-message ol li {
+    display: block;
+    padding-bottom: 5px;
+    padding-top: 5px;
+  }
+
+  .modal-body-message .default-ol ol {
+    counter-reset: list;
+    padding-left: 15px;
+  }
+
+  .modal-body-message .default-ol ol li:before {
+    content: " ("counter(list, lower-alpha) ") ";
+    counter-increment: list;
+  }
+
+  .modal-body {
+    padding: 28px 30px 40px 33px !important;
+
+    @include allmobiles {
+      padding: 25px 25px 40px 25px !important;
+    }
+  }
+
+  .modal-body-message .tnc-header {
+    font-family: $muli-semi-bold;
+    font-size: 18px;
+    color: $teal-color;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.19px;
+    padding-bottom: 22px;
+  }
+
+  .modal-body-message .tnc-title {
+    font-family: $muli-semi-bold;
+    font-size: 16px;
+    color: $teal-color;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.17px;
+    padding-bottom: 10px;
+    display: inline-block;
+  }
+
+  .modal-body-message a {
+    color: $orange-color;
+  }
+
+  .row {
+    justify-content: center;
+
+    .col-12 {
+      max-width: 271px;
+    }
+  }
+}
+
+.hide-manual-btn {
+  #error_enter_manually {
+    display: none;
   }
 }

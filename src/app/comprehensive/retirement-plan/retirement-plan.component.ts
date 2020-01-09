@@ -86,6 +86,7 @@ export class RetirementPlanComponent
     }*/
   };
   userAge: number;
+  comprehensiveJourneyMode:boolean;
   constructor(
     private navbarService: NavbarService,
     private progressService: ProgressTrackerService,
@@ -142,6 +143,7 @@ export class RetirementPlanComponent
 
   ngOnInit() {
     this.navbarService.setNavbarComprehensive(true);
+    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe(
       pageId => {
         if (this.pageId === pageId) {
@@ -361,7 +363,7 @@ export class RetirementPlanComponent
           .saveRetirementPlanning(retirementData)
           .subscribe((data: any) => {
             this.comprehensiveService.setRetirementPlan(retirementData);
-            this.showSummaryModal();
+            this.routerPath();
           });
       }
     }
@@ -485,6 +487,13 @@ export class RetirementPlanComponent
       && $event.target.value <= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE && $event.target.value >= this.userAge) {
       this.ciMultiplierSlider.writeValue($event.target.value);
       this.sliderValue = $event.target.value;
+    }
+  }
+  routerPath(){
+    if(this.comprehensiveJourneyMode){
+      this.showSummaryModal();
+    } else{
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/4', ]);
     }
   }
 }

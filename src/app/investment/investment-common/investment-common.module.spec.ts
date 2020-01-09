@@ -1,13 +1,13 @@
-import { InvestmentCommonodule } from './investment-common.module';
+import { InvestmentCommonModule } from './investment-common.module';
 
 describe('GuideMeModule', () => {
-  let investmentCommonodule: InvestmentCommonodule;
+  let investmentCommonModule: InvestmentCommonModule;
 
   beforeEach(() => {
-    investmentCommonodule = new InvestmentCommonodule();
+    investmentCommonModule = new InvestmentCommonModule();
   });
 
   it('should create an instance', () => {
-    expect(investmentCommonodule).toBeTruthy();
+    expect(investmentCommonModule).toBeTruthy();
   });
 });

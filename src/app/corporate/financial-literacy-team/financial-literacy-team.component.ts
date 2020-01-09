@@ -1,11 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ConfigService } from './../../config/config.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
-import { SeoServiceService } from './../../shared/Services/seo-service.service';
 
 @Component({
   selector: 'app-financial-literacy-team',
@@ -18,8 +16,10 @@ export class FinancialLiteracyTeamComponent implements OnInit {
   public pageTitle: string;
   public people: any;
 
-  constructor(private navbarService: NavbarService, private footerService: FooterService, private seoService: SeoServiceService,
-    public translate: TranslateService, private title: Title, private meta: Meta, private configService: ConfigService) {
+  constructor(private navbarService: NavbarService, 
+    private footerService: FooterService,
+    public translate: TranslateService,
+    private configService: ConfigService) {
 
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
@@ -27,18 +27,8 @@ export class FinancialLiteracyTeamComponent implements OnInit {
     });
 
     this.translate.get('COMMON').subscribe((result: string) => {
-      // tslint:disable-next-line:no-duplicate-string
       this.pageTitle = this.translate.instant('FINANCIAL_LITERACY_TEAM.TITLE');
       this.people = this.translate.instant('FINANCIAL_LITERACY_TEAM.PEOPLE.MGT');
-
-      // meta tag and title
-      this.seoService.setTitle(this.translate.instant('FINANCIAL_LITERACY_TEAM.TITLE'));
-      this.seoService.setBaseSocialMetaTags(this.translate.instant('FINANCIAL_LITERACY_TEAM.TITLE'),
-        this.translate.instant('FINANCIAL_LITERACY_TEAM.META.META_DESCRIPTION'),
-        this.translate.instant('FINANCIAL_LITERACY_TEAM.META.META_KEYWORDS')
-      );
-      this.meta.addTag({ name: 'author', content: this.translate.instant('FINANCIAL_LITERACY_TEAM.META.META_AUTHOR') });
-      this.meta.addTag({ name: 'copyright', content: this.translate.instant('FINANCIAL_LITERACY_TEAM.META.META_COPYRIGHT') });
     });
   }
 

@@ -47,6 +47,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
   };
   validationFlag: boolean;
   viewMode: boolean;
+  comprehensiveJourneyMode: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -71,6 +72,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
       this.employmentType = 'Employed';
     }
     this.viewMode = this.comprehensiveService.getViewableMode();
+    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
   }
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());

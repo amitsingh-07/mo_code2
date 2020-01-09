@@ -86,7 +86,5 @@ export function createTranslateLoader(http: HttpClient) {
 })
 export class ManageInvestmentsModule {
 
-  constructor() {
-    console.log('Manage Investments module loaded');
-  }
+  constructor() { }
 }

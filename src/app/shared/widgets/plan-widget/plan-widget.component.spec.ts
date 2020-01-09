@@ -9,9 +9,9 @@ describe('PlanWidgetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlanWidgetComponent ]
+      declarations: [PlanWidgetComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -34,11 +34,11 @@ describe('PlanWidgetComponent', () => {
   });
 
   it('click on compare ', () => {
-    spyOn(component, 'compareplan');
+    spyOn(component, 'comparePlan');
     const compareplanButton = fixture.debugElement.query(By.css('button'))[1];
     compareplanButton.triggerEventHandler('click', null);
     fixture.whenStable().then(() => {
-      expect(component.compareplan).toHaveBeenCalled();
+      expect(component.comparePlan).toHaveBeenCalled();
     });
   });
 
