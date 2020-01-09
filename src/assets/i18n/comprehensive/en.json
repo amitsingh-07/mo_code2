@@ -123,7 +123,7 @@
       "DESC1": "As Singapore’s first Bionic Financial Adviser, MoneyOwl will journey with you using both technology and personalised advice.",
       "DESC2": "In comprehensive planning, we will focus on your financial health, achieving your core financial goals of retirement and children’s education, and risk-proofing your plan.",
       "DESC3": "We integrate national schemes like CPF with commercial solutions in our advice. Beyond traditional methods of pointing out gaps, we will tell you what you can already achieve with what you have.",
-      "DESC4": "This tool is currently available only for those aged 18 to 54 years old.",
+      "DESC4": "This tool is currently available only for those aged 18 to 70 years old.",
       "DESC_TITLE": "How It Works",
       "DESC_SUB_TITLE_1": "Information Gathering",
       "DESC_SUB_TITLE_2": "Get your Comprehensive Financial Plan Report",
@@ -147,7 +147,7 @@
       "GET_NEW": " Get one now!",
       "ONE_TIME_FEE": "$500 (one-time fee)",
       "GET_PROMO": "Get Promo Code",
-      "VIDEO_LINK": "https://www.youtube.com/embed/EjeYBT1I8jw",
+      "VIDEO_LINK": "https://www.youtube.com/embed/c-c8YYTF16U",
       "CFP": "Comprehensive Financial Planning",
       "CFP_DESC": "For a limited time only, 100% fee rebate when you go through the full comprehensive financial planning process."
     },
@@ -162,13 +162,15 @@
       "STEP_4_TITLE_NAV": "Retirement Planning",
       "STEP_4_TITLE": "Financial Independence, Retire Early",
       "STEP_4_DESC": "Tell us when you wish to retire!",
+      "STEP_4_TITLE_LITE": "Your Risk Profile",
+      "STEP_4_DESC_LITE": "Let us know your willingness to stay invested for retirement.",
       "STEP_5_TITLE": "Congratulations!",
       "STEP_5_DESC2": "Your data is submitted.",
       "STEP_5_TITLE_NAV": "Result"
     },
     "MY_PROFILE": {
       "NATIONALITY_ALERT": "Seems like you have changed your input for “Nationality”. Changes will be applied to all platforms upon saving.",
-      "DOB_ALERT": "Sorry, this tool is currently only available to those aged 18 to 54 years old. For other enquiries, you may wish to contact us at enquiries@moneyowl.com.sg."
+      "DOB_ALERT": "Sorry, this tool is currently only available to those aged 18 to 70 years old. For other enquiries, you may wish to contact us at enquiries@moneyowl.com.sg."
     },
     "ROAD_MAP": {
       "TITLE": "Your Road Map"
@@ -464,6 +466,7 @@
       "CPF_OA": "CPF Ordinary Account (OA)",
       "CPF_SA": "CPF Special Account (SA)",
       "CPF_MA": "CPF Medisave Account (MA)",
+      "CPF_RA" :" CPF Retirement Account (RA)",
       "YOUR_HOME": "Your Home",
       "MARKET_VALUE": "At market value",
       "ADD_INVESTMENT_PROPERTIES": "Add Investment Properties",
@@ -611,7 +614,7 @@
     },
     "RETIREMENT_PLAN": {
       "SUB_TITLE": "We're almost done! Tell us when you would like to retire.",
-      "ABOUT": "I want to retire by age ",
+      "ABOUT": "I want to retire by ",
       "FORM_HEADER": "Will you have any other sources of retirement income?",
       "ADD_RETIREMENT": "Add Retirement Income",
       "ADD_LUMP_SUM": "Add Lump Sum Amount",
@@ -636,7 +639,9 @@
         "LUMP_SUMP_TITLE": "Lump Sum Amount",
         "LUMP_SUMP_MESSAGE": "A lump sum amount that you expect to receive to fund your retirement from any endowment policy, pension scheme, bank deposits, investments etc."
       },
-      "CONFIRM_DELETE": "Your changes will not be saved. Do you wish to proceed?"
+      "CONFIRM_DELETE": "Your changes will not be saved. Do you wish to proceed?",
+      "RETIREMENT_USER_AGE_VALIDATION": "Your desired retirement age must be older than your current age.",
+      "RETIREMENT_MIN_AGE_VALIDATION": "Your desired retirement age must be older than 45."
     },
     "INSURANCE_PLAN": {
       "SUB_TITLE": "Your plans can be destroyed if your buckets of resources are depleted by large medical bills or if you lose your income. Here we ask you about your current risk-proofing.",

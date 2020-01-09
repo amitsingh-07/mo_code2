@@ -42,7 +42,7 @@ import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 })
 export class RetirementPlanComponent
   implements OnInit, AfterViewInit, OnDestroy {
-  sliderValue = 45;
+  sliderValue = COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE;
   pageTitle: any;
   pageId: string;
   menuClickSubscription: Subscription;
@@ -60,6 +60,7 @@ export class RetirementPlanComponent
   showLumpSumBenefit = false;
   submitted = false;
   confirmRetirementData: string;
+  sliderValid = { minAge: true, userAge: true };
   @ViewChild('ciMultiplierSlider') ciMultiplierSlider: NouisliderComponent;
   ciSliderConfig: any = {
     behaviour: 'snap',
@@ -73,13 +74,19 @@ export class RetirementPlanComponent
         return Math.round(value);
       }
     },
-    pips: {
+    range: {
+      min: COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE,
+      max: COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE
+    },
+    step: COMPREHENSIVE_CONST.RETIREMENT_PLAN.STEP
+    /*,pips: {
       mode: 'values',
-      values: [45, 50, 55, 60, 65],
+      values: [45, 50, 55, 60, 65, 70],
       density: 4
-    }
+    }*/
   };
   userAge: number;
+  comprehensiveJourneyMode:boolean;
   constructor(
     private navbarService: NavbarService,
     private progressService: ProgressTrackerService,
@@ -103,6 +110,7 @@ export class RetirementPlanComponent
       this.comprehensiveService.getMyProfile().dateOfBirth,
       new Date()
     );
+    this.userAge = 60;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -135,6 +143,7 @@ export class RetirementPlanComponent
 
   ngOnInit() {
     this.navbarService.setNavbarComprehensive(true);
+    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe(
       pageId => {
         if (this.pageId === pageId) {
@@ -160,21 +169,23 @@ export class RetirementPlanComponent
 
     this.sliderValue = this.comprehensiveService.getRetirementPlan()
       ? parseInt(this.comprehensiveService.getRetirementPlan().retirementAge)
-      : 45;
-    if (this.sliderValue >= 45 && this.sliderValue < this.userAge) {
-      this.sliderValue = Math.ceil(this.userAge / 5) * 5;
+      : COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE;
+    if (this.sliderValue >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE && this.sliderValue < this.userAge) {
+      //this.sliderValue = Math.ceil(this.userAge / 5) * 5;
+      this.sliderValue = this.userAge;
     }
     this.retirementDetails = this.comprehensiveService.getRetirementPlan();
     this.buildRetirementPlanForm();
   }
   ngAfterViewInit() {
-    const containerRef = this.eleRef.nativeElement.querySelector(
+    /*const containerRef = this.eleRef.nativeElement.querySelector(
       '.noUi-value:last-child'
     );
     this.renderer.setProperty(containerRef, 'innerHTML', '62 or later');
-    this.renderer.addClass(containerRef, 'lastSliderPips');
-    if (this.sliderValue >= 45 && this.sliderValue < this.userAge) {
-      this.sliderValue = Math.ceil(this.userAge / 5) * 5;
+    this.renderer.addClass(containerRef, 'lastSliderPips');*/
+    if (this.sliderValue >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE && this.sliderValue < this.userAge) {
+      //this.sliderValue = Math.ceil(this.userAge / 5) * 5;
+      this.sliderValue = this.userAge;
       this.ciMultiplierSlider.writeValue(this.sliderValue);
     } else {
       this.ciMultiplierSlider.writeValue(this.sliderValue);
@@ -297,10 +308,12 @@ export class RetirementPlanComponent
     }
   }
   onSliderChange(value): void {
+    this.sliderValid = { minAge: true, userAge: true };
     this.sliderValue = value;
     this.retirementValueChanges = true;
-    if (this.sliderValue >= 45 && this.sliderValue < this.userAge) {
-      this.sliderValue = Math.ceil(this.userAge / 5) * 5;
+    if (this.sliderValue >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE && this.sliderValue < this.userAge) {
+      //this.sliderValue = Math.ceil(this.userAge / 5) * 5;
+      this.sliderValue = this.userAge;
       this.ciMultiplierSlider.writeValue(this.sliderValue);
     }
   }
@@ -336,7 +349,7 @@ export class RetirementPlanComponent
         otherPropertyControl.setValidators(ageValidator);
         otherPropertyControl.updateValueAndValidity();
       });
-      if (this.validateRetirement(form)) {
+      if (this.validateRetirement(form) && (this.sliderValid.minAge && this.sliderValid.userAge)) {
         const retirementData = form.value;
         (retirementData.enquiryId = this.comprehensiveService.getEnquiryId()),
           (retirementData.retirementAge = this.sliderValue.toString());
@@ -350,7 +363,7 @@ export class RetirementPlanComponent
           .saveRetirementPlanning(retirementData)
           .subscribe((data: any) => {
             this.comprehensiveService.setRetirementPlan(retirementData);
-            this.showSummaryModal();
+            this.routerPath();
           });
       }
     }
@@ -460,5 +473,27 @@ export class RetirementPlanComponent
       return null;
     }
     return { pattern: true };
+  }
+  changeSlide($event) {
+    this.sliderValid = { minAge: true, userAge: true };
+    if ($event.target.value >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE) {
+      $event.target.value = COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE;
+    } else if ($event.target.value === '' || $event.target.value < COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE) {
+      this.sliderValid.minAge = false;
+    }
+    if ($event.target.value >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE && $event.target.value < this.userAge) {
+      this.sliderValid.userAge = false;
+    } else if ($event.target.value >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE
+      && $event.target.value <= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE && $event.target.value >= this.userAge) {
+      this.ciMultiplierSlider.writeValue($event.target.value);
+      this.sliderValue = $event.target.value;
+    }
+  }
+  routerPath(){
+    if(this.comprehensiveJourneyMode){
+      this.showSummaryModal();
+    } else{
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/4', ]);
+    }
   }
 }

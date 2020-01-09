@@ -106,6 +106,10 @@ const routes: Routes = [
         canActivateChild: []
       },
       { path: 'works', loadChildren: './corporate/corporate.module#CorporateModule' },
+      {
+        path: 'payment',
+        loadChildren: './payment/payment.module#PaymentModule'
+      },
       // Legacy Routes
       { path: 'terms-of-use', component: TermsOfUseComponent },
       { path: 'privacy-policy', component: PrivacyPolicyComponent },

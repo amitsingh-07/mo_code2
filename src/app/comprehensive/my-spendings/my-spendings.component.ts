@@ -44,6 +44,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   homeTypeList: any[];
   mortgageTypeOfHome = '';
   HLTypeOfHome = '';
+  comprehensiveJourneyMode:boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -67,6 +68,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     this.mortgageTypeOfHome = this.spendingDetails.mortgageTypeOfHome ? this.spendingDetails.mortgageTypeOfHome : '';
     this.HLTypeOfHome = this.spendingDetails.HLtypeOfHome ? this.spendingDetails.HLtypeOfHome : '';
     this.viewMode = this.comprehensiveService.getViewableMode();
+    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
   }
   // tslint:disable-next-line:cognitive-complexity
   ngOnInit() {

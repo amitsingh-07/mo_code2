@@ -103,7 +103,8 @@ export class ComprehensiveComponent implements OnInit {
     this.appService.clearPromoCode();
     const redirectUrl = this.signUpService.getRedirectUrl();
     const cmpData = this.cmpService.getComprehensiveSummary();
-    if (cmpData.comprehensiveEnquiry.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED && cmpData.comprehensiveEnquiry.isValidatedPromoCode) {
+    if (cmpData.comprehensiveEnquiry.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED && 
+      cmpData.comprehensiveEnquiry.isValidatedPromoCode) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
     } else if (redirectUrl && cmpData.comprehensiveEnquiry.isValidatedPromoCode) {
       this.router.navigate([redirectUrl]);
@@ -128,7 +129,8 @@ export class ComprehensiveComponent implements OnInit {
     }
 
     if (this.authService.isSignedUser()) {
-      const promoCode = { comprehensivePromoCodeToken: this.appService.getPromoCode(), enquiryId: this.cmpService.getEnquiryId(), promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE };
+      const promoCode = { comprehensivePromoCodeToken: this.appService.getPromoCode(),
+         enquiryId: this.cmpService.getEnquiryId(), promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE };
       if (this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.isValidatedPromoCode) {
         this.redirect();
       } else {
