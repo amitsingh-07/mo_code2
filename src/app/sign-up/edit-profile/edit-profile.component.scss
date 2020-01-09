@@ -210,13 +210,6 @@ app-edit-profile{
     color:$teal-color;
     margin-bottom: 21px;
   }
-  .bank-details-heading{
-    font-family: $muli-semi-bold;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: -0.3px;
-    color: $form-block-title-color;
-  }
   .bank-account{
     font-family: $muli-light;
     font-size: 16px;
@@ -232,10 +225,15 @@ app-edit-profile{
     text-align: right;
     color: $teal-color;
   }
-  .bank_details{
+  .bank_details, .srs_details{
     .dots{
       .flex-row{
         padding: 16px 10px 0;
+      }
+      .no-details{
+        .flex-row{
+          padding: 0;
+        }
       }
     }
   }
@@ -290,7 +288,7 @@ app-edit-profile{
   transform: rotate(135deg);
   margin-top:10px;
 }
-.no-bank-account{
+.no-bank-account, .no-srs-account{
   font-family: $muli-italic;
   font-size: 16px;
   font-style: italic;
