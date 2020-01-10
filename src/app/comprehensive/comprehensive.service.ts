@@ -1687,29 +1687,29 @@ export class ComprehensiveService {
       customStyle: 'risk-profile',
       subItems: [
         {
-          id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
-          path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '1',
+          path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
           title: 'Temporary Losses',
           value: '',
           completed: isCompleted
         },
         {
-          id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '1',
-          path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '2',
+          path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/2',
           title: 'Unrealised/Paper Loss',
           value: '',
           completed: isCompleted
         },
         {
-          id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '2',
-          path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '3',
+          path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/3',
           title: 'Stress Level',
           value: '',
           completed: isCompleted
         },
         {
-          id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '3',
-          path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
+          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '4',
+          path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/4',
           title: 'Portfolio Type',
           value: '',
           completed: isCompleted
