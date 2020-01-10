@@ -157,8 +157,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     }
     this.modalRef = this.modal.open(ToolTipModalComponent, { centered: true });
     this.modalRef.componentInstance.tooltipTitle = this.translate.instant('CRITICAL_ILLNESS.POPUP.TITLE');
-    this.modalRef.componentInstance.tooltipMessage = this.translate.instant('CRITICAL_ILLNESS.POPUP.MESSAGE');
-    this.directService.showToolTipModal('', '');
+    this.modalRef.componentInstance.tooltipMessage = this.translate.instant('CRITICAL_ILLNESS.POPUP.MESSAGE');   
     form.value.earlyCI = (form.value.earlyCI === 'yes' ||  form.value.earlyCI === true) ? true : false;
     form.value.coverageAmt = this.coverage_amt;
     form.value.duration = this.duration;
