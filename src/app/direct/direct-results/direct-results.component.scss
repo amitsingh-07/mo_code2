@@ -189,6 +189,9 @@ app-direct-results {
   background-color:$teal-color;
   padding-top:30px !important;
   z-index:1029;
+  @include allmobiles{
+    padding-top: 70px !important;
+  }
 }
 
 @include allmobiles {
