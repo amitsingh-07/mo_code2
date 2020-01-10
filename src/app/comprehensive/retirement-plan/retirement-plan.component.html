@@ -43,8 +43,8 @@
         </div>
       </div>
     </div>
-    <div class="title">{{'CMP.RETIREMENT_PLAN.FORM_HEADER'|translate}}</div>
-    <div class="form-group-single-column  flex-col mt10">
+    <div *ngIf="comprehensiveJourneyMode" class="title">{{'CMP.RETIREMENT_PLAN.FORM_HEADER'|translate}}</div>
+    <div *ngIf="comprehensiveJourneyMode" class="form-group-single-column  flex-col mt10">
       <!--Form label-->
       <div class="checkbox-button one-label">
         <input id="haveRetirementIncomeYes" name="haveOtherSourceRetirementIncome"

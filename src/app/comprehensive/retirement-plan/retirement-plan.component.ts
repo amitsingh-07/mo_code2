@@ -233,9 +233,9 @@ export class RetirementPlanComponent
     this.retirementPlanForm = this.formBuilder.group({
       retirementAge: [this.sliderValue],
       haveOtherSourceRetirementIncome: [
-        this.retirementDetails
+        this.comprehensiveJourneyMode ? ( this.retirementDetails
           ? this.retirementDetails.haveOtherSourceRetirementIncome
-          : ''
+          : '') : ''
       ],
       retirementIncomeSet: this.formBuilder.array(retirementIncomeSet),
       lumpSumBenefitSet: this.formBuilder.array(lumpSumBenefitSet)
@@ -353,10 +353,10 @@ export class RetirementPlanComponent
         const retirementData = form.value;
         (retirementData.enquiryId = this.comprehensiveService.getEnquiryId()),
           (retirementData.retirementAge = this.sliderValue.toString());
-        if (!this.showLumpSumBenefit) {
+        if (!this.comprehensiveJourneyMode || !this.showLumpSumBenefit) {
           retirementData.lumpSumBenefitSet = [];
         }
-        if (!this.showRetirementIncome) {
+        if (!this.comprehensiveJourneyMode ||  !this.showRetirementIncome) {
           retirementData.retirementIncomeSet = [];
         }
         this.comprehensiveApiService
