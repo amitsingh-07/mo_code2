@@ -1696,7 +1696,7 @@ export class ComprehensiveService {
       value: retirementAgeValue,
       completed: isCompleted
     })
-    if (cmpSummary.comprehensiveRetirementPlanning) {
+    if (this.getComprehensiveVersion() && cmpSummary.comprehensiveRetirementPlanning) {
       cmpSummary.comprehensiveRetirementPlanning.retirementIncomeSet.forEach((item, index) => {
         subItemsArray.push({
           id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN + '1',
