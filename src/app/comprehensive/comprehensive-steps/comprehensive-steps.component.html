@@ -25,19 +25,22 @@
         {{'CMP.COMPREHENSIVE_STEPS.STEP_3_TITLE' | translate}}</div>
       <div *ngIf="step===3" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_3_DESC' | translate}}</div>
     </li>
-    <li  [ngClass]="{'active': step=== comprehensiveJourneyMode ?  4: 3, 'success': (step===comprehensiveJourneyMode ?  5: 4)}">
-      <span (click)="(step=== 5) ? goToNext(4) : ''"></span>
-      <div class="road-map__step-number" (click)="(step===comprehensiveJourneyMode ?  5: 4) ? goToNext(4) : ''">
+    <li
+      [ngClass]="{'active': ((comprehensiveJourneyMode && step=== 4) || (!comprehensiveJourneyMode && (step=== 3 || step=== 4))), 'success': ((comprehensiveJourneyMode && step=== 5) || (!comprehensiveJourneyMode && step=== 4))}">
+      <span
+        (click)="((comprehensiveJourneyMode && step=== 5) || (!comprehensiveJourneyMode && step=== 4)) ? goToNext( comprehensiveJourneyMode ?  5: 3 ) : ''"></span>
+      <div class="road-map__step-number" (click)="((comprehensiveJourneyMode && step=== 5) || (!comprehensiveJourneyMode && step=== 4)) ? goToNext( comprehensiveJourneyMode ?  5: 3 ) : ''">
         {{'CMP.COMPREHENSIVE_STEPS.STEP' | translate}} {{stepLite}}</div>
-      <div class="road-map__step-title" (click)="(step===comprehensiveJourneyMode ?  5: 4) ? goToNext(4) : ''">
+      <div class="road-map__step-title" (click)="((comprehensiveJourneyMode && step=== 5) || (!comprehensiveJourneyMode && step=== 4)) ? goToNext( comprehensiveJourneyMode ?  5: 3 ) : ''">
         {{'CMP.COMPREHENSIVE_STEPS.STEP_4_TITLE' | translate}}</div>
-      <div *ngIf="(step===comprehensiveJourneyMode ?  3: 4)" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_4_DESC' | translate}}</div>
+      <div *ngIf="(step===comprehensiveJourneyMode ?  3: 4)" class="road-map__step-desc">
+        {{'CMP.COMPREHENSIVE_STEPS.STEP_4_DESC' | translate}}</div>
     </li>
-    <li *ngIf="!comprehensiveJourneyMode" [ngClass]="{'active': step=== 4, 'success': step=== 4}">
+    <li *ngIf="!comprehensiveJourneyMode" [ngClass]="{'active': step=== 4, 'success': step=== 5}">
       <span (click)="(step=== 5) ? goToNext(4) : ''"></span>
-      <div class="road-map__step-number" (click)="(step=== 4) ? goToNext(4) : ''">
+      <div class="road-map__step-number" (click)="(step=== 5) ? goToNext(4) : ''">
         {{'CMP.COMPREHENSIVE_STEPS.STEP' | translate}} {{4}}</div>
-      <div class="road-map__step-title" (click)="(step=== 4) ? goToNext(4) : ''">
+      <div class="road-map__step-title" (click)="(step=== 5) ? goToNext(4) : ''">
         {{'CMP.COMPREHENSIVE_STEPS.STEP_4_TITLE_LITE' | translate}}</div>
       <div *ngIf="step===4" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_4_DESC_LITE' | translate}}</div>
     </li>
