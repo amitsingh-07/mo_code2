@@ -102,10 +102,10 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
         this.url = COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS;
         break;
       case 3:
-        this.url = this.comprehensiveJourneyMode ?  COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN  : COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN ;
+        this.url = this.comprehensiveJourneyMode ? COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN : COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN;
         break;
       case 4:
-        this.url = this.comprehensiveJourneyMode ? COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN   : COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE ;
+        this.url = this.comprehensiveJourneyMode ? COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN : COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1';
         break;
     }
     this.router.navigate([this.url]);
