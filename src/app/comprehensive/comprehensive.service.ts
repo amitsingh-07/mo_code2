@@ -1154,7 +1154,7 @@ export class ComprehensiveService {
               accessibleUrl = urlList[index];
             }
             break;
-          // 'insurance-plan'
+          // 'retirement-plan'
           case 11:
             if (accessPage && canAccess && financeProgressData.subItems[6].completed && stepCompleted > 1) {
               accessibleUrl = urlList[index];
@@ -1162,24 +1162,27 @@ export class ComprehensiveService {
             break;
           // 'steps/4'
           case 12:
-            if (accessPage && canAccess && fireProofingProgressData.subItems[0].completed && stepCompleted > 1) {
+            if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted > 1) {
               accessibleUrl = urlList[index];
             }
             break;
-          // 'retirement-plan'
+          // 'Risk Profile'
           case 13:
-            if (accessPage && canAccess && fireProofingProgressData.subItems[0].completed && stepCompleted > 2) {
+          case 14:
+          case 15:
+          case 16:
+            if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted > 2) {
               accessibleUrl = urlList[index];
             }
             break;
           // 'result'
-          case 14:
-          case 15:
+          case 17:
+          case 18:
             if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted >= 3) {
               accessibleUrl = urlList[index];
             }
             break;
-          case 16:
+          case 19:
             if (
               accessPage && canAccess &&
               retirementProgressData.subItems[0].completed &&
