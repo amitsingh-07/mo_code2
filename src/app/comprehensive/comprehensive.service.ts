@@ -1,3 +1,4 @@
+import { ApiService } from './../shared/http/api.service';
 import { CurrencyPipe, Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -69,7 +70,8 @@ export class ComprehensiveService {
     private router: Router,
     private navbarService: NavbarService,
     private ageUtil: AboutAge,
-    private comprehensiveApiService: ComprehensiveApiService
+    private comprehensiveApiService: ComprehensiveApiService,
+    private apiService:ApiService
   ) {
     this.getComprehensiveFormData();
   }
@@ -596,6 +598,42 @@ export class ComprehensiveService {
   setRetirementPlan(comprehensiveRetirementPlanning: IRetirementPlan) {
     this.comprehensiveFormData.comprehensiveDetails.comprehensiveRetirementPlanning = comprehensiveRetirementPlanning;
     this.commit();
+  }
+  getQuestionsList() {
+    return this.comprehensiveApiService.getQuestionsList();
+  }
+  getSelectedOptionByIndex(index) {
+    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveRiskProfile['riskAssessQuest' + index];
+  }
+  setRiskAssessment(data, questionIndex) {
+    console.log(data,questionIndex)
+    this.comprehensiveFormData.comprehensiveDetails.comprehensiveRiskProfile['riskAssessQuest' + questionIndex] = data;
+    this.commit();
+  }
+  saveRiskAssessment() {
+    const data = this.constructRiskAssessmentSaveRequest();
+    return this.comprehensiveApiService.saveRiskAssessment(data);
+  }
+  constructRiskAssessmentSaveRequest() {
+    const formData =  this.comprehensiveFormData.comprehensiveDetails.comprehensiveRiskProfile;
+    const selAnswers = [
+      {
+        questionOptionId: formData.riskAssessQuest1
+      },
+      {
+        questionOptionId: formData.riskAssessQuest2
+      },
+      {
+        questionOptionId: formData.riskAssessQuest3
+      },
+      {
+        questionOptionId: formData.riskAssessQuest4
+      }
+    ];
+    return {
+      enquiryId: this.getEnquiryId(),
+      answers: selAnswers
+    };
   }
   getFormError(form, formName) {
     const controls = form.controls;

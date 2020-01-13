@@ -156,5 +156,11 @@ export class ComprehensiveApiService {
             .get(apiConstants.endpoint.comprehensive.getReport)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
+    saveRiskAssessment(data) {
+        return this.http.post(apiConstants.endpoint.getRiskAssessmentQuestions, data)
+          .pipe(
+            catchError((error: HttpErrorResponse) => this.handleError(error))
+          );
+      }
 
 }

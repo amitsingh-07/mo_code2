@@ -1,3 +1,4 @@
+import { InvestmentEngagementJourneyService } from './../../investment/investment-engagement-journey/investment-engagement-journey.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,7 +11,6 @@ import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment/investment-engagement-journey/investment-engagement-journey.constants';
-import { InvestmentEngagementJourneyService } from '../../investment/investment-engagement-journey/investment-engagement-journey.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -36,13 +36,13 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
 
   constructor(
     public navbarService: NavbarService,
-    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     public readonly translate: TranslateService,
     private comprehensiveApiService: ComprehensiveApiService,
     private comprehensiveService:ComprehensiveService,
     private progressService: ProgressTrackerService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private investmentEngagementJourneyService:InvestmentEngagementJourneyService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('Your Risk Profile');
@@ -101,7 +101,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
     });
   }
   getQuestions() {
-    this.investmentEngagementJourneyService.getQuestionsList().subscribe((data) => {
+    this.comprehensiveService.getQuestionsList().subscribe((data) => {
       this.questionsList = data.objectList;
       this.setCurrentQuestion();
     });
@@ -146,8 +146,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
         // RISK PROFILE
         // CALL API
         this.investmentEngagementJourneyService.saveRiskAssessment().subscribe((data) => {
-          //this.investmentEngagementJourneyService.setRiskProfile(data.objectList);
-          //this.investmentEngagementJourneyService.setPortfolioSplashModalCounter(0);
+          console.log(data);
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE]);
         });
       }
