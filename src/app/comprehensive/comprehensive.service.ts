@@ -2246,10 +2246,16 @@ export class ComprehensiveService {
    */
   checkStepValidation(currentStep: number) {
     const progressData = [];
+    const comprehensiveVersion = this.getComprehensiveVersion();
     progressData.push(this.getDependantsProgressData());
     progressData.push(this.getFinancesProgressData());
-    progressData.push(this.getFireproofingProgressData());
+    if (comprehensiveVersion) {
+      progressData.push(this.getFireproofingProgressData());
+    }
     progressData.push(this.getRetirementProgressData());
+    if (!comprehensiveVersion) {
+      progressData.push(this.getRiskProfileProgressData());
+    }
     let goToStep = 0;
     let stepStatus = true;
     const stepIndicator = this.getMySteps();
