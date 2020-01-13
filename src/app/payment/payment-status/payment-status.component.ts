@@ -25,7 +25,7 @@ export class PaymentStatusComponent implements OnInit, OnDestroy {
   public navigateText: string;
 
   public paymentStatus: string;
-  private userEmail: any;
+  public userEmail: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -61,6 +61,7 @@ export class PaymentStatusComponent implements OnInit, OnDestroy {
       this.statusTitle = this.translate.instant('PAYMENT_STATUS.SUCCESS_TITLE');
       this.statusText = this.translate.instant('PAYMENT_STATUS.SUCCESS_TEXT') + '<span>' + this.userEmail + '</span>';
       this.btnText = this.translate.instant('PAYMENT_STATUS.CONTINUE');
+      this.navigateText = undefined;
       this.paymentStatus = PAYMENT_STATUS.SUCCESS;
       this.initiateReport();
     } else {
@@ -88,8 +89,7 @@ export class PaymentStatusComponent implements OnInit, OnDestroy {
 
   // Get user email for success transaction text display
   getUserEmail() {
-    const userProfile = this.signUpService.getUserProfileInfo();
-    if (userProfile) {
+    if (this.signUpService.getUserProfileInfo()) {
       this.userEmail = this.signUpService.getUserProfileInfo()['emailAddress'];
     }
   }
