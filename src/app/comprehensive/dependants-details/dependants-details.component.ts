@@ -47,6 +47,8 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   routerEnabled = false;
   viewMode: boolean;
   houseHold: IdependentsSummaryList;
+  minDate:any;
+  maxDate:any;
 
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -55,8 +57,8 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
     private parserFormatter: NgbDateCustomParserFormatter, private configDate: NgbDatepickerConfig, private aboutAge: AboutAge) {
     const today: Date = new Date();
-    configDate.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
-    configDate.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    this.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
+    this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     configDate.outsideDays = 'collapsed';
     this.pageId = this.route.routeConfig.component.name;
     this.viewMode = this.comprehensiveService.getViewableMode();

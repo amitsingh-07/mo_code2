@@ -14,11 +14,8 @@
           </div>
         </div>
         <div class="max-width col-lg-6 col-md-6">
-          <!-- SRS NOTE -->
-          <div class="srs-div">
-            <img src="assets/images/alert-black.svg" />
-            <div class="srs-note" innerHTML="{{'WITHDRAW.SRS_NOTE' | translate}}"></div>
-          </div>
+          <!-- HOLIDAY AND OTHER IMPORTANT NOTE -->
+          <app-notes category="withdraw" [noteInSession]="formValues?.investmentNote"></app-notes>
           <form id="withdraw_form" name="withdrawForm" [formGroup]="withdrawForm">
             <!-- PORTFOLIO -->
             <div class="form-group" *ngIf="withdrawForm.get('withdrawPortfolio')">
@@ -33,13 +30,14 @@
                     [ngClass]="{'inline-error':getInlineErrorStatus(withdrawForm.controls.withdrawPortfolio)}">
                     <div ngbDropdown>
                       <button class="btn btn-dropdown without-border" id="withdraw-portfolio-drpdown" ngbDropdownToggle>
-                          <span *ngIf="!withdrawForm.controls.withdrawPortfolio.value">{{ 'WITHDRAW.SELECT_PORTFOLIO' |
+                        <span *ngIf="!withdrawForm.controls.withdrawPortfolio.value">{{ 'WITHDRAW.SELECT_PORTFOLIO' |
                               translate}}</span>
                         <span class="capital-letter"
                           *ngIf="withdrawForm.controls.withdrawPortfolio.value">{{withdrawForm.controls.withdrawPortfolio.value.portfolioName + ' - ' + withdrawForm.controls.withdrawPortfolio.value.refNo}}</span>
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
-                        <button class="dropdown-item capital-letter" *ngFor="let portfolio of portfolioList; let i = index;"
+                        <button class="dropdown-item capital-letter"
+                          *ngFor="let portfolio of portfolioList; let i = index;"
                           (click)="setDropDownValue('withdrawPortfolio',portfolio)"
                           id="withdraw-portfolio-option-{{i}}">{{portfolio.portfolioName + ' - ' + portfolio.refNo}}</button>
                       </div>
@@ -57,7 +55,8 @@
                 </div>
                 <div class="flex-col-8">
                   <div class="dropdown-control"
-                    [ngClass]="{'inline-error':getInlineErrorStatus(withdrawForm.controls.withdrawType)}">
+                    [ngClass]="{'inline-error':getInlineErrorStatus(withdrawForm.controls.withdrawType)}"
+                    *ngIf="entitlements.portfolioType !== 'SRS'">
                     <div ngbDropdown>
                       <button class="btn btn-dropdown without-border" id="withdraw-type-drpdown" ngbDropdownToggle>
                         <span
@@ -70,7 +69,8 @@
                           <button class="dropdown-item"
                             [class.hide]="(type.value === 'PORTFOLIO_TO_BANK_ACCOUNT' && !entitlements.showWithdrawPvToBa) 
                                           || (type.value === 'PORTFOLIO_TO_CASH_ACCOUNT' && !entitlements.showWithdrawPvToCa) 
-                                          || (type.value === 'CASH_TO_BANK_ACCOUNT' && !entitlements.showWithdrawCaToBa)"
+                                          || (type.value === 'CASH_TO_BANK_ACCOUNT' && !entitlements.showWithdrawCaToBa)
+                                          || type.value === 'PORTFOLIO_TO_SRS_ACCOUNT' && !entitlements.showWithdrawPvToSRS"
                             (click)="setDropDownValue('withdrawType',type, i)" id="withdraw-type-option-{{i}}">
                             {{type.name}}
                           </button>
@@ -78,11 +78,16 @@
                       </div>
                     </div>
                   </div>
+                  <div class="form-control" *ngIf="entitlements.portfolioType === 'SRS'">
+                    <input class="input-control" type="text" id="withdraw-type-srs"
+                      value={{withdrawForm.controls.withdrawType.value.name}} disabled>
+                  </div>
                 </div>
               </div>
             </div>
             <!-- AMOUNT -->
-            <div class="form-group" *ngIf="withdrawForm.controls.withdrawType.value && withdrawForm.get('withdrawAmount')">
+            <div class="form-group"
+              *ngIf="withdrawForm.controls.withdrawType.value && withdrawForm.get('withdrawAmount')">
               <div class="flex-row">
                 <div class="flex-col-4">
                   <label class="withdrawal-amount-lbl" for="withdraw-type-drpdown" id="withdraw-type-lbl">{{
@@ -116,7 +121,7 @@
                     {{ 'WITHDRAW.CASH_ACCOUNT_BALANCE' | translate}}:
                   </div>
                   <div class="col-5 text-right">
-                    {{cashBalance | currency}}
+                    {{cashBalance | formatCurrency}}
                   </div>
                 </div>
                 <div class="row mb15" *ngIf="this.withdrawForm.controls.withdrawType.value && isFromPortfolio">
@@ -125,7 +130,7 @@
                   </div>
                   <div class="col-5 text-right">
                     <span
-                      *ngIf="withdrawForm.controls.withdrawPortfolio.value">{{(withdrawForm.controls.withdrawPortfolio.value.portfolioValue || 0) | currency }}</span>
+                      *ngIf="withdrawForm.controls.withdrawPortfolio.value">{{(withdrawForm.controls.withdrawPortfolio.value.portfolioValue || 0) | formatCurrency }}</span>
                   </div>
                 </div>
                 <div class="row" *ngIf="!isRedeemAll && isFromPortfolio && withdrawForm.valid">
@@ -133,7 +138,7 @@
                     {{ 'WITHDRAW.AFTER_WITHDRAWAL' | translate}}
                   </div>
                   <div class="col-5 text-right">
-                    {{(withdrawForm.controls.withdrawPortfolio.value.portfolioValue || 0) - withdrawForm.controls.withdrawAmount.value | currency}}
+                    {{(withdrawForm.controls.withdrawPortfolio.value.portfolioValue || 0) - withdrawForm.controls.withdrawAmount.value | formatCurrency}}
                   </div>
                 </div>
                 <div class="row" *ngIf="!isRedeemAll && !isFromPortfolio && withdrawForm.valid">
@@ -141,7 +146,7 @@
                     {{ 'WITHDRAW.AFTER_WITHDRAWAL' | translate}}
                   </div>
                   <div class="col-5 text-right">
-                    {{cashBalance - withdrawForm.controls.withdrawAmount.value | currency}}
+                    {{cashBalance - withdrawForm.controls.withdrawAmount.value | formatCurrency}}
                   </div>
                 </div>
               </div>

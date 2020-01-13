@@ -7,7 +7,7 @@ export let investmentApiConstants = {
     endpoint: {
         portfolio: {
             setInvestmentObjective: INVESTMENT_API_BASE_URL + '/CustomerInvestmentObjective',
-            setOneTimeInvestmentObjective: INVESTMENT_API_BASE_URL + '/portfolios/$CUSTOMER_PORTFOLIO_ID$/awaitingTransactions',
+            setAwaitingOrPendingInfo: INVESTMENT_API_BASE_URL + '/portfolios/$CUSTOMER_PORTFOLIO_ID$/transactions/$AWAITING_PENDING_PARAM$',
             getRiskAssessmentQuestions: INVESTMENT_API_BASE_URL + '/RiskAssessment',
             updateRiskAssessment: INVESTMENT_API_BASE_URL + '/RiskAssessment',
             getFinancialDetails: INVESTMENT_API_BASE_URL + '/customer/getFinancialDetailsForInvestment',
@@ -20,6 +20,7 @@ export let investmentApiConstants = {
             occupationlist: INVESTMENT_API_BASE_URL + '/occupationlist',
             allDropdownlist: INVESTMENT_API_BASE_URL + '/optionListCollection',
             fundingMethodList: INVESTMENT_API_BASE_URL + '/optionListCollection?groupName=portfolioFundingMethod',
+            getSpecificDropList: INVESTMENT_API_BASE_URL + '/optionListCollection?groupName=$GROUP_NAME$',
             investmentsSummary: INVESTMENT_API_BASE_URL + '/customers/investment-profile/summary',
             updateInvestment: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/UpdateCustomerInvestmentObjective',
             createInvestmentAccount: INVESTMENT_API_BASE_URL + '/customers/investment-accounts?handleError=true',
@@ -38,8 +39,9 @@ export let investmentApiConstants = {
             confirmPortfolio: INVESTMENT_API_BASE_URL + '/customer/portfolios/$customerPortfolioId$/accept?handleError=true',
             savePortfolioName: INVESTMENT_API_BASE_URL + '/customer/saveOrUpdatePortfolioName?handleError=true',
             getPortfolioDetailsWithAuth: INVESTMENT_API_BASE_URL + '/portfolios/recent',
-            gerSrsDetails : ACCOUNT_API_BASE_URL + '/customer/getSrsBankDetails',
-            saveSrsAccountDetails: ACCOUNT_API_BASE_URL + '/customer/$CUSTOMER_PORTFOLIO_ID$/srsbankDetails'
+            gerSrsDetails: ACCOUNT_API_BASE_URL + '/customer/getSrsBankDetails',
+            saveSrsAccountDetails: ACCOUNT_API_BASE_URL + '/customer/$CUSTOMER_PORTFOLIO_ID$/srsbankDetails',
+            getInvestmentNote: INVESTMENT_API_BASE_URL + '/holiday/alert?handleError=true'
         },
         investment: {
             getUserAddress: ACCOUNT_API_BASE_URL + '/customer/address',

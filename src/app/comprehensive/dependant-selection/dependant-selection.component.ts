@@ -35,11 +35,13 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   viewMode: boolean;
   submitted: any;
   householdDetails: IdependentsSummaryList;
+  comprehensiveJourneyMode: boolean;
   constructor(
     private cmpService: ComprehensiveService, private progressService: ProgressTrackerService,
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private configService: ConfigService,
-    private cmpApiService: ComprehensiveApiService, private loaderService: LoaderService) {
+    private cmpApiService: ComprehensiveApiService, private loaderService: LoaderService,
+    private comprehensiveService: ComprehensiveService) {
     this.pageId = this.route.routeConfig.component.name;
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP1;
     this.configService.getConfig().subscribe((config: any) => {
@@ -59,6 +61,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
       });
     });
     this.viewMode = this.cmpService.getViewableMode();
+    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
   }
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.cmpService.generateProgressTrackerData());
@@ -116,16 +119,16 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
 
   goToNext(dependantSelectionForm) {
     if (this.viewMode) {
-      if (dependantSelectionForm.value.dependantSelection) {
+      if (dependantSelectionForm.value.dependantSelection &&  this.comprehensiveJourneyMode) {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
       } else {
-        this.showSummaryModal();
+        this. routerPath();
       }
     } else {
       this.cmpService.setDependantSelection(dependantSelectionForm.value.dependantSelection);
       dependantSelectionForm.value.dependentsList = this.householdDetails.dependentsList;
       this.cmpService.sethouseHoldDetails(dependantSelectionForm.value);
-      if (dependantSelectionForm.value.dependantSelection) {
+      if (dependantSelectionForm.value.dependantSelection &&  this.comprehensiveJourneyMode ) {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
       } else {
         const payload = {
@@ -143,15 +146,21 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
             nation: ''
           }]
         };
-
         this.cmpApiService.addDependents(payload).subscribe((data: any) => {
           this.loaderService.hideLoader();
           this.cmpService.setHasDependant(false);
           this.cmpService.setMyDependant([]);
           this.cmpService.clearEndowmentPlan();
-          this.showSummaryModal();
+          this. routerPath();
         });
       }
+    }
+  }
+  routerPath(){
+    if(this.comprehensiveJourneyMode){
+      this.showSummaryModal();
+    }else{
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/2']);
     }
   }
   showSummaryModal() {

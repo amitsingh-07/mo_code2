@@ -5,9 +5,7 @@ import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bo
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-
 import { LoaderService } from '../../shared/components/loader/loader.service';
-import { ApiService } from '../../shared/http/api.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { SignUpService } from '../../sign-up/sign-up.service';
@@ -51,12 +49,16 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     disableDOB = false;
     public showToolTip = false;
     getComprehensiveEnquiry: any;
+    maxDate: any;
+    minDate: any;
+    getComprehensiveData:any;
 
     public onCloseClick(): void {
         this.comprehensiveService.setProgressToolTipShown(true);
         this.showToolTip = false;
     }
 
+    // tslint:disable-next-line: parameters-max-number
     constructor(
         private loaderService: LoaderService,
         private signUpService: SignUpService,
@@ -74,11 +76,11 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         private aboutAge: AboutAge
     ) {
         const today: Date = new Date();
-        configDate.minDate = {
+        this.minDate = {
             year: today.getFullYear() - COMPREHENSIVE_CONST.YOUR_PROFILE.DATE_PICKER_MAX_YEAR,
             month: today.getMonth() + 1, day: today.getDate()
         };
-        configDate.maxDate = {
+        this.maxDate = {
             year: today.getFullYear() - COMPREHENSIVE_CONST.YOUR_PROFILE.DATE_PICKER_MIN_YEAR,
             month: today.getMonth() + 1, day: today.getDate()
         };
@@ -105,8 +107,9 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
             this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
             this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
-            if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
-
+            this.getComprehensiveData = this.comprehensiveService.getComprehensiveEnquiry().type;
+            if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus
+            === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
             }
             this.loaderService.hideLoader();
             this.checkRedirect();

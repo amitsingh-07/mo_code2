@@ -18,8 +18,8 @@
         </label>
         <section *ngIf="RSPForm.get('hasRegularSavings').value" class="rspSelectionList">
           <div formArrayName="comprehensiveRegularSavingsList" class="regularSavings" class="form-group-with-bg"
-            *ngFor="let comprehensiveRegularSavingsList of RSPForm['controls'].comprehensiveRegularSavingsList['controls']; let i = index;">
-            <div class="form-group-with-bg">
+            *ngFor="let comprehensiveRegularSavingsList of RSPForm['controls'].comprehensiveRegularSavingsList['controls'] ; let i = index;">
+            <div class="form-group-with-bg" >
               <!--Form Header-->
               <div class="form-group-with-bg--header rsp-border-top pr0">
                 <div class="flex space-btwn">

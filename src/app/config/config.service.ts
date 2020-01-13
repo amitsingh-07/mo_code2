@@ -18,6 +18,7 @@ export interface IConfig {
   investmentEngagementEnabled: boolean;
   investmentMyInfoEnabled: boolean;
   comprehensiveEnabled: boolean;
+  retirementPlanningEnabled: boolean;
   srsEnabled: boolean;
   resetPasswordUrl: string;
   verifyEmailUrl: string;
@@ -25,6 +26,7 @@ export interface IConfig {
   productCategory: IProductCategory[];
   distribution: any;
   comprehensiveLiveEnabled: boolean;
+  showAnnualizedReturns: boolean;
 }
 
 const CACHE_SIZE = 1;

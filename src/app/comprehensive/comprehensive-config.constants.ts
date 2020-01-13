@@ -6,7 +6,7 @@ export const COMPREHENSIVE_CONST = {
     },
     YOUR_PROFILE: {
         APP_MIN_AGE: 18,
-        APP_MAX_AGE: 54,
+        APP_MAX_AGE: 70,
         DATE_PICKER_MIN_YEAR: 0,
         DATE_PICKER_MAX_YEAR: 100
     },
@@ -50,7 +50,8 @@ export const COMPREHENSIVE_CONST = {
         },
     },
     INSURANCE_PLAN: {
-        LONG_TERM_INSURANCE_AGE: 40
+        LONG_TERM_INSURANCE_AGE: 40,
+        LIFE_PROTECTION_AMOUNT: 46000
     },
     SUMMARY_CALC_CONST: {
         EDUCATION_ENDOWMENT: {
@@ -72,15 +73,15 @@ export const COMPREHENSIVE_CONST = {
                         'Australia': 163600,
                         'Others': 96000
                     },
-                    'PERCENT': 6
+                    'PERCENT': 4
                 },
                 LIVING_EXPENSES: {
                     'Medicine': {
                         'Singapore': 60000,
                         'Singapore PR': 60000,
-                        'USA': 96400,
-                        'United Kingdom': 92000,
-                        'Australia': 96400,
+                        'USA': 192800,
+                        'United Kingdom': 138000,
+                        'Australia': 175200,
                         'Others': 60000
                     },
                     'Non-Medicine': {
@@ -145,5 +146,15 @@ export const COMPREHENSIVE_CONST = {
         SUBMITTED: 'submitted',
         READY: 'ready'
     },
-    REPORT_PDF_NAME: 'MoneyOwl-Comprehensive.pdf'
+    REPORT_PDF_NAME: 'MoneyOwl-Comprehensive.pdf',
+    RETIREMENT_PLAN: {
+        MIN_AGE: 45,
+        MAX_AGE: 70,
+        STEP: 1
+    },
+    COMPREHENSIVE_LITE_ENABLED: true,
+    VERSION_TYPE: {
+        LITE: 'LITE',
+        FULL: 'FULL'
+    }
 };

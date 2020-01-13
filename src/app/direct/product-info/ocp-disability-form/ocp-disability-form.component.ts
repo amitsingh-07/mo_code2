@@ -16,6 +16,7 @@ import { NouisliderComponent } from 'ng2-nouislider';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from '../../direct.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ocp-disability-form',
@@ -38,6 +39,10 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
   coveragePercent = 75;
   doberror = false;
 
+  minDate;
+  maxDate;
+  private userInfoSubscription: Subscription;
+
   ciSliderConfig: any = {
     behaviour: 'snap',
     start: 0,
@@ -56,6 +61,10 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
     private parserFormatter: NgbDateParserFormatter,
     private translate: TranslateService,
     private formBuilder: FormBuilder, private config: NgbDatepickerConfig) {
+    const today: Date = new Date();
+    this.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
+    this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    config.outsideDays = 'collapsed';
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.employmentTypeList = this.translate.instant('OCCUPATIONAL_DISABILITY.EMPLOYMENT_TYPE_LIST');
@@ -89,17 +98,26 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
         }
       }
     });
-    this.directService.userInfoSet.subscribe((data) => {
+    this.userInfoSubscription = this.directService.userInfoSet.subscribe((data) => {
       this.ocpDisabilityForm.controls.gender.setValue(data['gender']);
-      this.ocpDisabilityForm.controls.dob.setValue(data['dob']);
+      if (data['dob']) {
+        this.ocpDisabilityForm.controls.dob.setValue(data['dob']);
+      }
     });
   }
 
-  onGenderDobChange() {
+  onGenderChange() {
     const userInfo = this.directService.getUserInfo();
-    userInfo.dob = this.ocpDisabilityForm.controls.dob.value;
     userInfo.gender = this.ocpDisabilityForm.controls.gender.value;
     this.directService.updateUserInfo(userInfo);
+  }
+
+  onDobChange() {
+    if (this.ocpDisabilityForm.controls.dob.valid) {
+      const userInfo = this.directService.getUserInfo();
+      userInfo.dob = this.ocpDisabilityForm.controls.dob.value;
+      this.directService.updateUserInfo(userInfo);
+    }
   }
 
   ngAfterViewInit() {
@@ -115,6 +133,7 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
 
   ngOnDestroy(): void {
     this.categorySub.unsubscribe();
+    this.userInfoSubscription.unsubscribe();
   }
 
   selectDuration(selectedDuration) {

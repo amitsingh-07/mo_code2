@@ -299,7 +299,9 @@ h6 {
       flex-basis: auto;
 
       &.show {
-        height: auto;
+        height:100vh;
+        overflow-y: scroll;
+        padding-bottom: 45px;
       }
     }
 
@@ -315,6 +317,7 @@ h6 {
           flex-basis: unset;
           order: 2;
           margin-right: 0px;
+          background-color: $white-color; /* Prod issue MO2-2316 */
         }
 
         &.hide {
@@ -2363,4 +2366,8 @@ select:-webkit-autofill:focus {
       }
     }
   }
+}
+.tooltip-semi-bold{
+  font-family: $muli-semi-bold;
+  color:$silver-grey-color;
 }

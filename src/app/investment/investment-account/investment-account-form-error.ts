@@ -235,8 +235,8 @@ export class InvestmentAccountFormError {
     radioTin: {
       required: {
         // tslint:disable-next-line:no-duplicate-string
-        errorTitle: 'Invalid Answer',
-        errorMessage: 'Select answer'
+        errorTitle: 'Select an option',
+        errorMessage: 'Select Yes / No option for Taxpayer Identification Number question.'
       }
     },
     noTinReason: {
@@ -285,6 +285,10 @@ export class InvestmentAccountFormError {
         errorTitle: 'Invalid Passport Expiry',
         errorMessage: 'Enter Passport Expiry'
       },
+      ngbDate: {
+        errorTitle: 'Invalid Passport Expiry',
+        errorMessage: 'Enter valid Passport Expiry date.'
+      },
       isMinExpiry: {
         errorTitle: 'Invalid Passport Expiry',
         errorMessage: 'Your passport must have at least 6 months validity to proceed.'
@@ -295,6 +299,10 @@ export class InvestmentAccountFormError {
         // tslint:disable-next-line:no-duplicate-string
         errorTitle: 'Invalid Date of Birth',
         errorMessage: 'Select Date of Birth'
+      },
+      ngbDate: {
+        errorTitle: 'Invalid Date of Birth',
+        errorMessage: 'Enter valid Date of Birth'
       },
       isMinAge: {
         errorTitle: 'Invalid Date of Birth',

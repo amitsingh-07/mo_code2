@@ -1,4 +1,3 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
@@ -8,19 +7,21 @@ import { TranslateService } from '@ngx-translate/core';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
+import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import {
-    EditInvestmentModalComponent
+  EditInvestmentModalComponent
 } from '../../../shared/modal/edit-investment-modal/edit-investment-modal.component';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
+import { FormatCurrencyPipe } from '../../../shared/Pipes/format-currency.pipe';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
 import {
-    InvestmentEngagementJourneyService
+  InvestmentEngagementJourneyService
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
@@ -48,7 +49,6 @@ export class ConfirmPortfolioComponent implements OnInit {
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
-    private currencyPipe: CurrencyPipe,
     public headerService: HeaderService,
     private modal: NgbModal,
     public navbarService: NavbarService,
@@ -56,7 +56,9 @@ export class ConfirmPortfolioComponent implements OnInit {
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     public manageInvestmentsService: ManageInvestmentsService,
     public investmentAccountService: InvestmentAccountService,
-    private investmentCommonService: InvestmentCommonService
+    private investmentCommonService: InvestmentCommonService,
+    private authService: AuthenticationService,
+    private formatCurrencyPipe: FormatCurrencyPipe
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -80,25 +82,22 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.investmentAccountService
       .getPortfolioAllocationDetailsWithAuth()
       .subscribe((data) => {
+        if (data.objectList && data.objectList.enquiryId) { /* Overwriting enquiry id */
+          this.authService.saveEnquiryId(data.objectList.enquiryId);
+        }
         this.portfolio = data.objectList;
         this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
         const fundingParams = this.constructFundingParams(data.objectList);
         this.manageInvestmentsService.setFundingDetails(fundingParams);
         if (this.portfolio.fundingTypeId) {
-          this.investmentCommonService.setInitialFundingMethod({initialFundingMethodId: this.portfolio.fundingTypeId});
+          this.investmentCommonService.setInitialFundingMethod({ initialFundingMethodId: this.portfolio.fundingTypeId });
         }
         this.userInputSubtext = {
-          onetime: this.currencyPipe.transform(
-            this.portfolio.initialInvestment,
-            'USD',
-            'symbol-narrow',
-            '1.0-2'
+          onetime: this.formatCurrencyPipe.transform(
+            this.portfolio.initialInvestment
           ),
-          monthly: this.currencyPipe.transform(
-            this.portfolio.monthlyInvestment,
-            'USD',
-            'symbol-narrow',
-            '1.0-2'
+          monthly: this.formatCurrencyPipe.transform(
+            this.portfolio.monthlyInvestment
           ),
           period: this.portfolio.investmentPeriod
         };

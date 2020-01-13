@@ -130,8 +130,13 @@
           background: url('../../../../assets/images/comprehensive/progress-tracker/retirement-icon.svg');
           background-position: 10px 3px;
           background-repeat: no-repeat;
+        }        
+        
+        &.risk-profile {
+          background: url('../../../../assets/images/comprehensive/progress-tracker/risk-assessment.svg');
+          background-position: 10px 3px;
+          background-repeat: no-repeat;
         }
-
         &__arrow {
           height: 10px;
           width: 16px;

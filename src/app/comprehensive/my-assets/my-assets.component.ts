@@ -1,17 +1,21 @@
+import { AboutAge } from './../../shared/utils/about-age.util';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-import { APP_ROUTES } from 'src/app/app-routes.constants';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { MyInfoService } from '../../shared/Services/my-info.service';
+import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
+import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { COMPREHENSIVE_ROUTE_PATHS, COMPREHENSIVE_ROUTES } from '../comprehensive-routes.constants';
 import { IMyAssets } from '../comprehensive-types';
+import { APP_ROUTES } from './../../app-routes.constants';
 import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
@@ -24,6 +28,8 @@ import { ComprehensiveService } from './../comprehensive.service';
   selector: 'app-my-assets',
   templateUrl: './my-assets.component.html',
   styleUrls: ['./my-assets.component.scss']
+  styleUrls: ['./my-assets.component.scss'],
+  providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
 })
 export class MyAssetsComponent implements OnInit, OnDestroy {
   RSPForm: any;
@@ -48,7 +54,10 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   showConfirmation: boolean;
   cpfFromMyInfo = false;
   viewMode: boolean;
+
   myinfoChangeListener: Subscription;
+  showRetirementAccount: boolean= false;
+  myAge: any;
 
   // tslint:disable-next-line:cognitive-complexity
   constructor(
@@ -57,6 +66,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
     private progressService: ProgressTrackerService, private loaderService: LoaderService, private myInfoService: MyInfoService,
     private modal: NgbModal) {
+    private modal: NgbModal, private parserFormatter: NgbDateParserFormatter, private aboutAge: AboutAge) {
     this.pageId = this.route.routeConfig.component.name;
     this.viewMode = this.comprehensiveService.getViewableMode();
     this.configService.getConfig().subscribe((config: any) => {
@@ -71,8 +81,17 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         this.validationFlag = this.translate.instant('CMP.MY_ASSETS.OPTIONAL_VALIDATION_FLAG');
       });
     });
+    this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
+    const today: Date = new Date();
+    this.myAge = this.comprehensiveService.getMyProfile().dateOfBirth;
+    const getAge = this.aboutAge.calculateAge(this.myAge, today);
+   
+    if(getAge > 55){
+      this.showRetirementAccount = true;
+    }
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '') {
+        if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled
           && this.checkMyInfoSourcePage()) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
@@ -81,13 +100,17 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
               const oaFormControl = this.myAssetsForm.controls['cpfOrdinaryAccount'];
               const saFormControl = this.myAssetsForm.controls['cpfSpecialAccount'];
               const maFormControl = this.myAssetsForm.controls['cpfMediSaveAccount'];
+              const raFormControl = this.myAssetsForm.controls['cpfRetirementAccount'];
               oaFormControl.setValue(cpfValues.oa);
               saFormControl.setValue(cpfValues.sa);
               maFormControl.setValue(cpfValues.ma);
               oaFormControl.markAsDirty();
+              const retirementAccount = this.showRetirementAccount  ? cpfValues.ra : null;
+              raFormControl.setValue(retirementAccount);
               saFormControl.markAsDirty();
               maFormControl.markAsDirty();
 
+              raFormControl.markAsDirty();
               this.onTotalAssetsBucket();
               this.cpfFromMyInfo = true;
               this.myInfoService.isMyInfoEnabled = false;
@@ -104,6 +127,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         }
       }
     });
+   
     this.assetDetails = this.comprehensiveService.getMyAssets();
     if (this.assetDetails && this.assetDetails.source === 'MyInfo') {
       this.cpfFromMyInfo = true;
@@ -208,6 +232,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       cpfOrdinaryAccount: [{ value: this.assetDetails ? this.assetDetails.cpfOrdinaryAccount : '', disabled: this.viewMode }, []],
       cpfSpecialAccount: [{ value: this.assetDetails ? this.assetDetails.cpfSpecialAccount : '', disabled: this.viewMode }, []],
       cpfMediSaveAccount: [{ value: this.assetDetails ? this.assetDetails.cpfMediSaveAccount : '', disabled: this.viewMode }, []],
+      cpfRetirementAccount:[{ value: this.assetDetails ? this.assetDetails.cpfRetirementAccount : '', disabled: this.viewMode }, []],
       homeMarketValue: [{ value: this.assetDetails ? this.assetDetails.homeMarketValue : '', disabled: this.viewMode }, []],
       investmentPropertiesValue: [{
         value: this.assetDetails ? this.assetDetails.investmentPropertiesValue : '',

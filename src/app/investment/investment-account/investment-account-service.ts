@@ -297,6 +297,9 @@ export class InvestmentAccountService {
   getAllDropDownList() {
     return this.investmentApiService.getAllDropdownList();
   }
+  getSpecificDropList(groupName) {
+    return this.investmentApiService.getSpecificDropList(groupName);
+  }
   getFundMethodList() {
     return this.investmentApiService.getFundMethodList();
   }
@@ -383,6 +386,12 @@ export class InvestmentAccountService {
   setNationalitiesCountries(nationalityList: any, countryList: any) {
     this.investmentAccountFormData.nationalityList = nationalityList;
     this.investmentAccountFormData.countryList = countryList;
+    this.commit();
+  }
+
+  clearNationalityQuestionsSelection() {
+    this.investmentAccountFormData.unitedStatesResident = null;
+    this.investmentAccountFormData.singaporeanResident = null;
     this.commit();
   }
 
@@ -598,7 +607,7 @@ export class InvestmentAccountService {
   uploadDocument(formData) {
     return this.investmentApiService.uploadDocument(formData);
   }
- 
+
   saveAdditionalDeclarations() {
     const payload = this.additionalDeclarationsRequest();
     return this.investmentApiService.saveInvestmentAccount(payload);
@@ -1885,7 +1894,7 @@ export class InvestmentAccountService {
   }
 
   getInitialMessageToShowDashboard() {
-    if(this.investmentAccountFormData.dashboardInitMessageTitle) {
+    if (this.investmentAccountFormData.dashboardInitMessageTitle) {
       return {
         dashboardInitMessageShow: this.investmentAccountFormData.dashboardInitMessageShow,
         dashboardInitMessageTitle: this.investmentAccountFormData.dashboardInitMessageTitle,

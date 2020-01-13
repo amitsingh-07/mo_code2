@@ -85,6 +85,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   isInvestmentEnabled = false;
   isNotificationEnabled = false;
   isComprehensiveEnabled = false;
+  isRetirementPlanningEnabled = false;
   isComprehensiveLiveEnabled = false;
 
   showComprehensiveTitle = false;
@@ -127,6 +128,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.isWillWritingEnabled = moduleConfig.willWritingEnabled;
       this.isInvestmentEnabled = moduleConfig.investmentEnabled;
       this.isComprehensiveEnabled = moduleConfig.comprehensiveEnabled;
+      this.isRetirementPlanningEnabled = moduleConfig.retirementPlanningEnabled;
       this.isComprehensiveLiveEnabled = moduleConfig.comprehensiveLiveEnabled;
     });
 
@@ -340,9 +342,15 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   hideMenu() {
     this.isNavbarCollapsed = true;
+    this.renderer.removeClass(document.body, 'modal-open');
   }
 
   toggleMenu() {
+    if (this.isNavbarCollapsed) {
+      this.renderer.addClass(document.body, 'modal-open');
+    } else {
+      this.renderer.removeClass(document.body, 'modal-open');
+    }
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
     if (!this.isNotificationHidden && innerWidth < this.mobileThreshold) {
       this.isNotificationHidden = true;
