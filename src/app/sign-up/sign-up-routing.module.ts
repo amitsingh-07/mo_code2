@@ -113,8 +113,11 @@ const routes: Routes = [
   { path: SIGN_UP_ROUTES.UPDATE_SRS,
     component: AddUpdateSrsComponent,
     canActivate: [AuthGuard]
+  },  
+  { path: SIGN_UP_ROUTES.FINLIT_LOGIN,
+    component: LoginComponent,
+    canActivate: [LoggedUserGuard]
   },
-  
 
   { path: '**', redirectTo: '/page-not-found' }
 ];
