@@ -1,13 +1,13 @@
 {
-    "promoId": 2,
-    "type": 1,
-    "owner": "Aviva",
-    "title": "Save $100 on Aviva MyCare & MyCare Plus",
-    "thumbnail": "/assets/promotions/images/2/thumbnail.jpg",
-    "banner": "/assets/promotions/images/2/banner.jpg",
-    "desc":  "Get S$100 off your first year's premium with long-term care coverage!",
-    "date_created": "1547481600000",
-    "date_expiry": "1577807999000",
-    "tag" : ["Insurance", "Protection"],
-    "external": false
+  "promoId": 2,
+  "type": 1,
+  "owner": "Aviva",
+  "title": "Save $100 on Aviva MyCare & MyCare Plus",
+  "thumbnail": "/assets/promotions/images/2/thumbnail.jpg",
+  "banner": "/assets/promotions/images/2/banner.jpg",
+  "desc": "Get S$100 off your first year's premium with long-term care coverage!",
+  "date_created": "1547481600000",
+  "date_expiry": "1585670399000",
+  "tag": ["Insurance", "Protection"],
+  "external": false
 }

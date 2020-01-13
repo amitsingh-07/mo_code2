@@ -54,7 +54,7 @@
               (click)="openTNC($event)">{{'CHECKOUT.TERMS_OF_USE' | translate}}</span></div>
         </label>
       </div>
-      <button [disabled]="!checkoutForm.valid" type="button" class="btn btn__footer--fixed btn-primary width100"
+      <button [disabled]="!checkoutForm.valid" type="submit" class="btn btn__footer--fixed btn-primary width100"
         (click)="submitForm()">{{'CHECKOUT.PROCEED_PAY' | translate}}</button>
     </form>
   </div>

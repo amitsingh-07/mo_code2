@@ -40,7 +40,7 @@
                 </div>
                 <div class="flex-col-7">
                   <div class="value" for="total value" id="investment_overview_total_returns_value">{{holding.currentValue
-                  | currency:'USD':'symbol-narrow':'1.2-2'}}
+                  | formatCurrency}}
                   </div>
                 </div>
               </div>
@@ -67,7 +67,7 @@
                 <div class="flex-col-7">
                   <div *ngIf="holding.indicativePrice" class="value" for="name"
                     id="investment_overview_total_invested__value">{{holding.indicativePrice
-                  | currency:'USD':'symbol-narrow':'1.0-7'}}
+                  | formatCurrency}}
                   </div>
                   <div *ngIf="!holding.indicativePrice" class="value" for="name"
                     id="investment_overview_total_invested__value">$0</div>

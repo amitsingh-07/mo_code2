@@ -121,6 +121,21 @@
             </div>
           </div>
         </div>
+        <div class="flex-row" *ngIf="showRetirementAccount">
+          <div class="flex-col-5">
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_ASSETS.CPF_RA' | translate}}<div
+                class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-7">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode, 'readonly-disabled': cpfFromMyInfo}">
+              <i>$</i>
+              <input type="text" class="input-control" [readonly]="cpfFromMyInfo"
+                [ngClass]="{'readonly-disabled': cpfFromMyInfo}" appCurrencyInput maxLength="7" #cpfRetirementAccount
+                formControlName="cpfRetirementAccount" value="0">
+            </div>
+          </div>
+        </div>
         <div *ngIf="!viewMode" (click)="openModal()" class="auto-fill-cpf" appComprehensiveViewMode="{{viewMode}}"
           mode=1>
           {{'CMP.MY_ASSETS.AUTO_FILL'| translate}}

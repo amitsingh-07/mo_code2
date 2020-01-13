@@ -1,6 +1,5 @@
-import { IPaymentRequest } from './payment-request.interface';
 
-export const PaymentRequest: IPaymentRequest = {
+export const PaymentRequest = {
     timestampFormat: 'yyyyMMddHHmmss',
     timezone: 'UTC',
     requestId: 'order-',

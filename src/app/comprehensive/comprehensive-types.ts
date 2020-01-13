@@ -15,6 +15,7 @@ export interface IComprehensiveDetails {
     comprehensiveInsurancePlanning: IInsurancePlan;
     comprehensiveRetirementPlanning: IRetirementPlan;
     comprehensiveViewMode?: boolean;
+    comprehensiveJourneyMode: boolean;
 }
 export interface IComprehensiveEnquiry {
     customerId: number;
@@ -183,6 +184,7 @@ export interface IMyAssets {
     cpfOrdinaryAccount: number;
     cpfSpecialAccount: number;
     cpfMediSaveAccount: number;
+    cpfRetirementAccount: number;
     homeMarketValue: number;
     investmentPropertiesValue: number;
     assetsInvestmentSet: IOtherProperties[];

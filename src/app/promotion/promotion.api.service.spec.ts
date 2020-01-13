@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { Promotion.ApiService } from './promotion.api.service';
+import { PromotionApiService } from './promotion.api.service';
 
 describe('Promotion.ApiService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [Promotion.ApiService]
+      providers: [PromotionApiService]
     });
   });
 
-  it('should be created', inject([Promotion.ApiService], (service: Promotion.ApiService) => {
+  it('should be created', inject([PromotionApiService], (service: PromotionApiService) => {
     expect(service).toBeTruthy();
   }));
 });

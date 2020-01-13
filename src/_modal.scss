@@ -612,7 +612,6 @@ body.modal-open::-webkit-scrollbar {
 
 .settings-modal-dialog {
   max-height: 100% !important;
-  z-index: 1040 !important;
 }
 
 .settings-tooltip-dialog {
@@ -1155,6 +1154,20 @@ body.modal-open::-webkit-scrollbar {
 }
 
 .payment-tnc {
+  div.modal-body.white-bg {
+    height: 805px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    /* Firefox 64 */
+    -ms-overflow-style: none;
+
+    /* Internet Explorer 11 */
+    &::-webkit-scrollbar {
+      /** WebKit */
+      display: none;
+    }
+  }
+
   .modal-body-message ol li:before {
     content: counters(item, ".") " ";
     counter-increment: item;
@@ -1167,7 +1180,8 @@ body.modal-open::-webkit-scrollbar {
 
   .modal-body-message ol li {
     display: block;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
   }
 
   .modal-body-message .default-ol ol {

@@ -1,15 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbDateCustomParserFormatter } from 'src/app/shared/utils/ngb-date-custom-parser-formatter';
-
-import { NavbarService } from 'src/app/shared/navbar/navbar.service';
-import { RetirementPlanningService } from '../retirement-planning.service';
-import { RegexConstants } from './../../shared/utils/api.regex.constants';
+import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 import { RETIREMENT_PLANNING_ROUTE_PATHS } from '../retirement-planning-routes.constants';
+import { RetirementPlanningService } from '../retirement-planning.service';
+import { NavbarService } from './../../shared/navbar/navbar.service';
+import { RegexConstants } from './../../shared/utils/api.regex.constants';
+import { NgbDateCustomParserFormatter } from './../../shared/utils/ngb-date-custom-parser-formatter';
 
 @Component({
   selector: 'app-retirement-needs',
@@ -23,7 +22,7 @@ import { RETIREMENT_PLANNING_ROUTE_PATHS } from '../retirement-planning-routes.c
 export class RetirementNeedsComponent implements OnInit {
   pageTitle: string;
   retirementAgeFlag: boolean;
-  submitted: boolean = false;
+  submitted = false;
 
   retirementNeedsForm: FormGroup;
   formValues: any;
@@ -60,13 +59,13 @@ export class RetirementNeedsComponent implements OnInit {
     this.formValues = this.retirementPlanningService.getRetirementNeeds();
     this.retirementNeedsForm = this.formBuilder.group({
       retirementAge: [this.formValues.retirementNeeds && this.formValues.retirementNeeds.retirementAge, [Validators.required]],
-      monthlyRetirementIncome: [this.formValues.retirementNeeds && this.formValues.retirementNeeds.monthlyRetirementIncome, [Validators.required]],
+      monthlyRetirementIncome: [this.formValues.retirementNeeds &&
+        this.formValues.retirementNeeds.monthlyRetirementIncome, [Validators.required]],
       dateOfBirth: [this.formValues.retirementNeeds && this.formValues.retirementNeeds.dateOfBirth, [Validators.required]],
       lumpSumAmount: [this.formValues.retirementAmountAvailable && this.formValues.retirementAmountAvailable.lumpSumAmount],
       monthlyAmount: [this.formValues.retirementAmountAvailable && this.formValues.retirementAmountAvailable.monthlyAmount]
     }, { validator: this.checkAge() });
   }
-
 
   checkAge() {
     return (group: FormGroup) => {

@@ -134,12 +134,30 @@
                 (click)="goToEditComprehensivePlan(false)">
                 <div class="ft-18" for="name">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_MAKE_CHANGES' | translate}}
                   <div class="ft-13 submittedDate " for="name">
-                    {{ ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_LAST_SUBMITTED_DATE' | translate).replace('LAST_SUBMITTED_DATE', submittedDate)}}
+                    {{ ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_LAST_SUBMITTED_DATE' | translate).replace('LAST_SUBMITTED_DATE', submittedDate | date: 'dd MMM` yy')}}
                   </div>
                 </div>
               </button>
             </div>
           </div>
+
+          <!-- LITE/Full-->
+          <div class="flex-row align-start">
+            <div class="flex-col-5">
+              <button type="button" class="btn btn-primary width100" id="prfBtn1"
+                (click)="  setComprehensivePlan(false)">
+                <div class="ft-18" for="name">LITE
+                </div>
+              </button>
+            </div>
+            <div class="flex-col-5 ml-5">
+              <button type="button" class="btn btn-primary width100" id="prfBtn1" (click)="setComprehensivePlan(true)">
+                <div class="ft-18" for="name">Full
+                </div>
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
       <div [ngClass]="{'hidden': isLoadComplete}" class="ajax-loader-card-inline">

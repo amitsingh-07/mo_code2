@@ -77,12 +77,9 @@ export class ComprehensiveDashboardComponent implements OnInit {
           this.comprehensivePlanning = 3;
         } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED && !this.islocked) {
           this.comprehensivePlanning = 5;
-          let lastSubmittedDate = new Date();
           if (this.getComprehensiveSummary.comprehensiveEnquiry && this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp) {
-            lastSubmittedDate = new Date(this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp);
+            this.submittedDate = this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp;
           }
-          const submittedDateAPI = lastSubmittedDate;
-          this.submittedDate = this.datePipe.transform(submittedDateAPI, 'dd MMM` yy');
         } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
           this.comprehensivePlanning = 0;
         }
@@ -179,5 +176,29 @@ export class ComprehensiveDashboardComponent implements OnInit {
         }
       }
     }
+  }
+  setComprehensivePlan(versionType: boolean) {
+    if (!versionType) {
+      this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
+      this.setComprehensiveSummary();
+    } else {
+      this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
+      this.setComprehensiveSummary();
+    }
+  }
+  setComprehensiveSummary() {
+    this.comprehensiveApiService.getComprehensiveSummary().subscribe((summaryData: any) => {
+      if (summaryData.objectList[0]) {
+        this.reportStatus = (summaryData.objectList[0].comprehensiveEnquiry.reportStatus);
+        this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
+        if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED
+          || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+          this.comprehensiveService.setViewableMode(true);
+        } else {
+          this.comprehensiveService.setViewableMode(false);
+        }
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+      }
+    });
   }
 }

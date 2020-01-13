@@ -55,6 +55,24 @@ app-tax-info {
       &.active {
         color: $white-color !important;
         background: $teal-color !important;
+
+        &.disabled {
+          cursor: not-allowed;
+
+          &:hover {
+            color: $white-color !important;
+            background: $teal-color !important;
+          }
+        }
+      }
+
+      &.disabled {
+        cursor: not-allowed;
+
+        &:hover {
+          background: $white-color !important;
+          color: $teal-color !important;
+        }
       }
     }
 
@@ -167,7 +185,8 @@ app-tax-info {
         padding: 25px 30px;
         display: flex;
         justify-content: space-between;
-        .delete-icon{
+
+        .delete-icon {
           cursor: pointer;
         }
       }
