@@ -2,7 +2,6 @@ import { AboutAge } from './../../shared/utils/about-age.util';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -12,7 +11,6 @@ import { MyInfoService } from '../../shared/Services/my-info.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
-import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { COMPREHENSIVE_ROUTE_PATHS, COMPREHENSIVE_ROUTES } from '../comprehensive-routes.constants';
 import { IMyAssets } from '../comprehensive-types';
 import { APP_ROUTES } from './../../app-routes.constants';
@@ -27,7 +25,6 @@ import { ComprehensiveService } from './../comprehensive.service';
 @Component({
   selector: 'app-my-assets',
   templateUrl: './my-assets.component.html',
-  styleUrls: ['./my-assets.component.scss']
   styleUrls: ['./my-assets.component.scss'],
   providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
 })
@@ -54,7 +51,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   showConfirmation: boolean;
   cpfFromMyInfo = false;
   viewMode: boolean;
-
   myinfoChangeListener: Subscription;
   showRetirementAccount: boolean= false;
   myAge: any;
@@ -65,7 +61,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
     private progressService: ProgressTrackerService, private loaderService: LoaderService, private myInfoService: MyInfoService,
-    private modal: NgbModal) {
     private modal: NgbModal, private parserFormatter: NgbDateParserFormatter, private aboutAge: AboutAge) {
     this.pageId = this.route.routeConfig.component.name;
     this.viewMode = this.comprehensiveService.getViewableMode();
@@ -81,7 +76,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         this.validationFlag = this.translate.instant('CMP.MY_ASSETS.OPTIONAL_VALIDATION_FLAG');
       });
     });
-    this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
     const today: Date = new Date();
     this.myAge = this.comprehensiveService.getMyProfile().dateOfBirth;
     const getAge = this.aboutAge.calculateAge(this.myAge, today);
@@ -91,7 +85,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     }
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '') {
-        if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled
           && this.checkMyInfoSourcePage()) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
@@ -104,12 +97,10 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
               oaFormControl.setValue(cpfValues.oa);
               saFormControl.setValue(cpfValues.sa);
               maFormControl.setValue(cpfValues.ma);
-              oaFormControl.markAsDirty();
               const retirementAccount = this.showRetirementAccount  ? cpfValues.ra : null;
               raFormControl.setValue(retirementAccount);
               saFormControl.markAsDirty();
               maFormControl.markAsDirty();
-
               raFormControl.markAsDirty();
               this.onTotalAssetsBucket();
               this.cpfFromMyInfo = true;
