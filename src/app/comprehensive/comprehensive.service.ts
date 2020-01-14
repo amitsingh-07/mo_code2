@@ -1258,7 +1258,9 @@ export class ComprehensiveService {
       this.progressData.items.push(this.getFireproofingProgressData());
     }
     this.progressData.items.push(this.getRetirementProgressData());
-
+    if (!comprehensiveVersion) {
+      this.progressData.items.push(this.getRiskProfileProgressData());
+    }
     return this.progressData;
   }
 
@@ -1706,6 +1708,56 @@ export class ComprehensiveService {
   }
 
   /**
+   * Get progress tracker data for  the 'Your Risk Profile' section.
+   *
+   * @returns {IProgressTrackerItem}
+   * @memberof ComprehensiveService
+   */
+  // tslint:disable-next-line:cognitive-complexity
+  getRiskProfileProgressData(): IProgressTrackerItem {
+    const cmpSummary = this.getComprehensiveSummary();
+    const isCompleted = false; //cmpSummary.comprehensiveInsurancePlanning !== null;
+    
+    return {
+      title: 'Your Risk Profile',
+      expanded: true,
+      completed: false,
+      customStyle: 'risk-profile',
+      subItems: [
+        {
+          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '1',
+          path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
+          title: 'Temporary Losses',
+          value: '',
+          completed: isCompleted
+        },
+        {
+          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '2',
+          path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/2',
+          title: 'Unrealised/Paper Loss',
+          value: '',
+          completed: isCompleted
+        },
+        {
+          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '3',
+          path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/3',
+          title: 'Stress Level',
+          value: '',
+          completed: isCompleted
+        },
+        {
+          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '4',
+          path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/4',
+          title: 'Portfolio Type',
+          value: '',
+          completed: isCompleted
+        }
+      ]
+    };
+  }
+
+
+  /**
    * Get progress tracker data for the 'Financial Independence' section.
    *
    * @returns {IProgressTrackerItem}
@@ -1723,8 +1775,7 @@ export class ComprehensiveService {
       const retireAgeVal = parseInt(
         cmpSummary.comprehensiveRetirementPlanning.retirementAge
       );
-      retirementAgeValue =
-        retireAgeVal > 60 ? '62 or later' : retireAgeVal + ' yrs old';
+      retirementAgeValue = retireAgeVal + ' yrs old';
     }
     let subItemsArray = [];
     subItemsArray.push({
@@ -2233,10 +2284,16 @@ export class ComprehensiveService {
    */
   checkStepValidation(currentStep: number) {
     const progressData = [];
+    const comprehensiveVersion = this.getComprehensiveVersion();
     progressData.push(this.getDependantsProgressData());
     progressData.push(this.getFinancesProgressData());
-    progressData.push(this.getFireproofingProgressData());
+    if (comprehensiveVersion) {
+      progressData.push(this.getFireproofingProgressData());
+    }
     progressData.push(this.getRetirementProgressData());
+    if (!comprehensiveVersion) {
+      progressData.push(this.getRiskProfileProgressData());
+    }
     let goToStep = 0;
     let stepStatus = true;
     const stepIndicator = this.getMySteps();
