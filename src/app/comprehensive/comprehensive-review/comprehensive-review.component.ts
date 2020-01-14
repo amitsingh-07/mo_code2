@@ -23,8 +23,6 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   pageTitle: string;
   menuClickSubscription: Subscription;
   subscription: Subscription;
-  paymentEnabled: boolean = false;
-  hasPaid: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
@@ -36,7 +34,6 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     private loaderService: LoaderService) {
     this.pageId = this.activatedRoute.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
-      this.paymentEnabled = config['paymentEnabled'];
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
@@ -89,12 +86,12 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       const currentStep = this.comprehensiveService.getMySteps();
       if (currentStep === 4) {
         // If payment is enabled and user has not paid, go payment else initiate report gen
-        if (this.paymentEnabled && !this.hasPaid) {
-          this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);
-        } else {
-          this.loaderService.showLoader({ title: 'Loading', autoHide: false });
-          this.initiateReport();
-        }
+       this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]).then((result) => {
+          if (result === false) {
+            this.loaderService.showLoader({ title: 'Loading', autoHide: false });
+            this.initiateReport();
+          }
+        });
       } else {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + currentStep]);
       }
