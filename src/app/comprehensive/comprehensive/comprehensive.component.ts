@@ -84,16 +84,18 @@ export class ComprehensiveComponent implements OnInit {
             getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
         }
         this.comprehensiveApiService.getComprehensiveSummary(getCurrentVersionType).subscribe((data: any) => {
-          const cmpData = data.objectList[0];
-          this.cmpService.setComprehensiveSummary(cmpData);
-          const action = this.appService.getAction();
-          if (action === COMPREHENSIVE_CONST.PROMO_CODE.GET) {
-            this.getPromoCode();
-          } else if (action === COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE) {
-            this.getStarted();
-          } else {
-            this.redirect();
-          }
+          if (data && data.objectList[0]) {
+            const cmpData = data.objectList[0];
+            this.cmpService.setComprehensiveSummary(cmpData);
+            const action = this.appService.getAction();
+            if (action === COMPREHENSIVE_CONST.PROMO_CODE.GET) {
+              this.getPromoCode();
+            } else if (action === COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE) {
+              this.getStarted();
+            } else {
+              this.redirect();
+            }
+         }
         });
       }
       this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.isValidatedPromoCode ? this.promoCodeValidated = true :

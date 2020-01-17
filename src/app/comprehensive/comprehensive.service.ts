@@ -269,11 +269,16 @@ export class ComprehensiveService {
    * @memberof ComprehensiveService
    */
   setComprehensiveSummary(comprehensiveDetails: IComprehensiveDetails) {
-    this.comprehensiveFormData.comprehensiveDetails = comprehensiveDetails;
-    this.reloadDependantDetails();
-    this.setBucketAmountByCal();
-    this.setViewableMode(false);
-    this.commit();
+    if (comprehensiveDetails === null ) {
+      this.comprehensiveFormData = {} as ComprehensiveFormData;      
+      this.commit();
+    } else {
+      this.comprehensiveFormData.comprehensiveDetails = comprehensiveDetails;
+      this.reloadDependantDetails();
+      this.setBucketAmountByCal();
+      this.setViewableMode(false);
+      this.commit();
+    }
   }
 
   /**
