@@ -170,11 +170,13 @@ export class ComprehensiveDashboardComponent implements OnInit {
       this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
       this.versionTypeEnabled = true;
       this.setComprehensiveSummary(false);
+      //console.log(this.getCurrentVersionType);
     } else {
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
       this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
       this.versionTypeEnabled = false;
       this.setComprehensiveSummary(false);
+      //console.log(this.getCurrentVersionType);
     }
   }
   setComprehensiveSummary(routerEnabled: boolean) {
