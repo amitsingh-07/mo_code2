@@ -114,14 +114,16 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
         }
         this.comprehensiveApiService.getComprehensiveSummary(getCurrentVersionType).subscribe((data: any) => {
-            this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
-            this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
-            this.getComprehensiveData = this.comprehensiveService.getComprehensiveEnquiry().type;
-            if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus
-            === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+            if (data && data.objectList[0]) {
+                this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
+                this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
+                this.getComprehensiveData = this.comprehensiveService.getComprehensiveEnquiry().type;
+                if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus
+                === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+                }
+                this.loaderService.hideLoader();
+                this.checkRedirect();
             }
-            this.loaderService.hideLoader();
-            this.checkRedirect();
         });
 
         this.navbarService.setNavbarComprehensive(true);
