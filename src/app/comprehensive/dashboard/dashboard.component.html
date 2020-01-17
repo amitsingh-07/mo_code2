@@ -1,5 +1,5 @@
 <div class="container-fluid max-width--1024 comprehensive"
-  *ngIf="((getComprehensiveSummary && getComprehensiveSummary.comprehensiveEnquiry.isValidatedPromoCode) || isComprehensiveLiveEnabled) && isComprehensiveEnabled">
+  *ngIf="((getComprehensiveSummary && getComprehensiveSummary.comprehensiveEnquiry !== null && getComprehensiveSummary.comprehensiveEnquiry.isValidatedPromoCode) || isComprehensiveLiveEnabled) && isComprehensiveEnabled">
   <div class="comprehensive dashboard-lite">
     <div class="flex-row align-start ml15 mr15">
         <div class="flex-col-6">
