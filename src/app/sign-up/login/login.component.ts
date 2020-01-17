@@ -107,7 +107,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if (route.snapshot.data[0]) {
       this.finlitEnabled = route.snapshot.data[0]['finlitEnabled'];
     }
-    console.log(this.finlitEnabled);
   }
 
   /**
