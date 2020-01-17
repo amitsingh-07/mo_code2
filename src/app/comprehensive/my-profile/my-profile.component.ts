@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -73,7 +74,8 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         private parserFormatter: NgbDateParserFormatter,
         private comprehensiveApiService: ComprehensiveApiService,
         private progressService: ProgressTrackerService,
-        private aboutAge: AboutAge
+        private aboutAge: AboutAge,
+        private authService: AuthenticationService
     ) {
         const today: Date = new Date();
         this.minDate = {
@@ -104,7 +106,14 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     ngOnInit() {
         this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
         this.loaderService.showLoader({ title: 'Fetching Data' });
-        this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
+        const comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
+        let getCurrentVersionType =  this.comprehensiveService.getComprehensiveCurrentVersion();
+        if ((getCurrentVersionType === '' || getCurrentVersionType === null || getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE ) && comprehensiveLiteEnabled) {
+            getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
+        } else {
+            getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
+        }
+        this.comprehensiveApiService.getComprehensiveSummary(getCurrentVersionType).subscribe((data: any) => {
             this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
             this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
             this.getComprehensiveData = this.comprehensiveService.getComprehensiveEnquiry().type;
@@ -164,8 +173,9 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     getUserProfileData() {
         this.userDetails = this.comprehensiveService.getMyProfile();
-        this.userDetails.gender = (this.userDetails.gender.toLowerCase() === 'male' ||
-            this.userDetails.gender.toLowerCase() === 'female') ? this.userDetails.gender : '';
+        console.log(this.userDetails);
+        this.userDetails.gender = (this.userDetails.gender && (this.userDetails.gender.toLowerCase() === 'male' ||
+            this.userDetails.gender.toLowerCase() === 'female')) ? this.userDetails.gender : '';
         this.disableDOB = this.getComprehensiveEnquiry.isDobUpdated;
         this.setUserProfileData();
         this.buildProfileForm();

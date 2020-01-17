@@ -154,7 +154,11 @@ export const COMPREHENSIVE_CONST = {
     },
     COMPREHENSIVE_LITE_ENABLED: true,
     VERSION_TYPE: {
-        LITE: 'LITE',
-        FULL: 'FULL'
+        LITE: 'Comprehensive-Lite',
+        FULL: 'Comprehensive'
+    },
+    ROLES: {
+        ROLE_COMPRE_LITE: 'ROLE_COMPRE_LITE',
+        ROLE_DISCOUNT_PROMOTION: 'ROLE_DISCOUNT_PROMOTION'
     }
 };

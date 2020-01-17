@@ -1,3 +1,4 @@
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -34,6 +35,9 @@ export class ComprehensiveDashboardComponent implements OnInit {
   islocked: boolean;
   isComprehensiveEnabled = false;
   isComprehensiveLiveEnabled = false;
+  getComprehensiveDashboard: any;
+  getCurrentVersionType = '';
+  comprehensiveLiteEnabled: boolean;
   // tslint:disable-next-line:cognitive-complexity
   constructor(
     private router: Router,
@@ -43,7 +47,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
     private comprehensiveApiService: ComprehensiveApiService,
     private datePipe: DatePipe,
     private navbarService: NavbarService,
-    private downloadfile: FileUtil) {
+    private downloadfile: FileUtil,
+    private authService: AuthenticationService) {
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -60,12 +65,23 @@ export class ComprehensiveDashboardComponent implements OnInit {
      * 3 - Not Completed
      */
     this.comprehensivePlanning = 4;
-    this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
-      if (data) {
+    this.comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
+    this.getCurrentVersionType =  this.comprehensiveService.getComprehensiveCurrentVersion();
+    if ((this.getCurrentVersionType === '' || this.getCurrentVersionType === null || this.getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE ) && this.comprehensiveLiteEnabled) {
+      this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
+    } else {
+      this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
+    }
+    this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe( (data: any) => {
+      
+
+    });
+    this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((data: any) => {
+      if (data && data.objectList[0] && data.objectList[0].comprehensiveEnquiry) {
         this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
         this.userDetails = this.comprehensiveService.getMyProfile();
         this.getComprehensiveSummary = this.comprehensiveService.getComprehensiveSummary();
-        this.islocked = this.getComprehensiveSummary.comprehensiveEnquiry.isLocked
+        this.islocked = this.getComprehensiveSummary.comprehensiveEnquiry !== null && this.getComprehensiveSummary.comprehensiveEnquiry.isLocked
         this.userName = this.userDetails.firstName;
         this.advisorStatus = false;
         //const reportDateAPI = new Date();
@@ -92,6 +108,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
           ? this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted : 0;
 
         this.isLoadComplete = true;
+      } else {
+        this.isLoadComplete = true;
       }
     });
   }
@@ -115,7 +133,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
 
   }
   goToEditProfile() {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+    this.setComprehensiveSummary();
   }
 
   goToCurrentStep() {
@@ -156,7 +174,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
   getComprehensiveCall() {
     this.comprehensiveApiService.savePersonalDetails(this.userDetails).subscribe((data: any) => {
       if (data) {
-        this.comprehensiveApiService.getComprehensiveSummary().subscribe((summaryData: any) => {
+        this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
           if (summaryData) {
             this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
             this.comprehensiveService.setViewableMode(true);
@@ -179,15 +197,17 @@ export class ComprehensiveDashboardComponent implements OnInit {
   }
   setComprehensivePlan(versionType: boolean) {
     if (!versionType) {
+      this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
       this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
       this.setComprehensiveSummary();
     } else {
+      this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
       this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
       this.setComprehensiveSummary();
     }
   }
   setComprehensiveSummary() {
-    this.comprehensiveApiService.getComprehensiveSummary().subscribe((summaryData: any) => {
+    this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
       if (summaryData.objectList[0]) {
         this.reportStatus = (summaryData.objectList[0].comprehensiveEnquiry.reportStatus);
         this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
@@ -197,6 +217,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
         } else {
           this.comprehensiveService.setViewableMode(false);
         }
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+      } else {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
       }
     });

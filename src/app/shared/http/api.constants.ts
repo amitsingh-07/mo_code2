@@ -14,6 +14,7 @@ const PAYMENT_API_BASE_URL = 'payment/api/';
 export let apiConstants = {
     endpoint: {
         authenticate: 'account/account-microservice/authenticate',
+        authenticateWorkshop: 'account/account-microservice/authenticateWorkshop',
         login: 'login',
         logout: ACCOUNT_API_BASE_URL + '/logout',
         getProfileList: ACCOUNT_API_BASE_URL + '/getProfileTypeList',
@@ -96,6 +97,7 @@ export let apiConstants = {
             generateComprehensiveReport: COMPREHENSIVE_API_BASE_URL + 'generateComprehensiveReport',
             createReportRequest: COMPREHENSIVE_REPORT_API_BASE_URL + 'createReportRequest',
             getReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'getReport',
+            getComprehensiveSummaryDashboard: COMPREHENSIVE_API_BASE_URL + 'fetchComprehensiveStatus',
         },
         payment: {
             getRequestSignature: PAYMENT_API_BASE_URL + 'getRequestSignature',
