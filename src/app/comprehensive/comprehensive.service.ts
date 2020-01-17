@@ -1,4 +1,4 @@
-
+import { ApiService } from './../shared/http/api.service';
 import { CurrencyPipe, Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -73,7 +73,8 @@ export class ComprehensiveService {
     private navbarService: NavbarService,
     private ageUtil: AboutAge,
     private comprehensiveApiService: ComprehensiveApiService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private apiService:ApiService
   ) {
     this.getComprehensiveFormData();
     this.comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
@@ -606,6 +607,42 @@ export class ComprehensiveService {
   setRetirementPlan(comprehensiveRetirementPlanning: IRetirementPlan) {
     this.comprehensiveFormData.comprehensiveDetails.comprehensiveRetirementPlanning = comprehensiveRetirementPlanning;
     this.commit();
+  }
+  getQuestionsList() {
+    return this.comprehensiveApiService.getQuestionsList();
+  }
+  getSelectedOptionByIndex(index) {
+    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveRiskProfile['riskAssessQuest' + index];
+  }
+  setRiskAssessment(data, questionIndex) {
+    console.log(data,questionIndex)
+    this.comprehensiveFormData.comprehensiveDetails.comprehensiveRiskProfile['riskAssessQuest' + questionIndex] = data;
+    this.commit();
+  }
+  saveRiskAssessment() {
+    const data = this.constructRiskAssessmentSaveRequest();
+    return this.comprehensiveApiService.saveRiskAssessment(data);
+  }
+  constructRiskAssessmentSaveRequest() {
+    const formData =  this.comprehensiveFormData.comprehensiveDetails.comprehensiveRiskProfile;
+    const selAnswers = [
+      {
+        questionOptionId: formData.riskAssessQuest1
+      },
+      {
+        questionOptionId: formData.riskAssessQuest2
+      },
+      {
+        questionOptionId: formData.riskAssessQuest3
+      },
+      {
+        questionOptionId: formData.riskAssessQuest4
+      }
+    ];
+    return {
+      enquiryId: this.getEnquiryId(),
+      answers: selAnswers
+    };
   }
   getFormError(form, formName) {
     const controls = form.controls;
@@ -2476,3 +2513,4 @@ export class ComprehensiveService {
     return Math.floor(takeHomeCal);
   }
 }
+

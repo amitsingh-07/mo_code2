@@ -10,6 +10,7 @@ const COMPREHENSIVE_API_BASE_URL = 'recommend/recomm-microservice/api/customer/c
 const FINANCE_API_BASE_URL = 'finance/finhealth/api/customer/comprehensive/';
 const COMPREHENSIVE_REPORT_API_BASE_URL = 'comp/comprehensive-microservice/api/';
 const PAYMENT_API_BASE_URL = 'payment/api/';
+const INVEST_API_BASE_URL = 'invest/investment-microservice/api/';
 
 export let apiConstants = {
     endpoint: {
@@ -21,7 +22,7 @@ export let apiConstants = {
         getProtectionTypesList: INSURANCE_API_BASE_URL + '/getProtectionTypesList',
         getLongTermCareList: INSURANCE_API_BASE_URL + '/getCareGiverList',
         getHospitalPlanList: INSURANCE_API_BASE_URL + '/getHospitalClassList',
-        getRiskAssessmentQuestions: 'investment-microservice/RiskAssessment',
+        getRiskAssessmentQuestions: INVEST_API_BASE_URL + 'RiskAssessment',
         getRecommendations: INSURANCE_RECOMMEND_API_BASE_URL + '/getRecommendations',
         updateProductEnquiry: ACCOUNT_API_BASE_URL + '/updateCustomerEnquiry',
         getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfoV3',

@@ -36,6 +36,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   submitted: any;
   householdDetails: IdependentsSummaryList;
   comprehensiveJourneyMode: boolean;
+  stepIndicatorCount:number;
   constructor(
     private cmpService: ComprehensiveService, private progressService: ProgressTrackerService,
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -62,6 +63,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
     });
     this.viewMode = this.cmpService.getViewableMode();
     this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
+    this.stepIndicatorCount =  this.comprehensiveJourneyMode ? 5:1 ;
   }
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.cmpService.generateProgressTrackerData());
