@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 
+import { AuthenticationService } from './../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
@@ -60,6 +61,7 @@ export class ComprehensiveService {
   private progressData: IProgressTrackerData;
   private progressWrapper: IProgressTrackerWrapper;
   private getStartedStyle = 'get-started';
+  private comprehensiveLiteEnabled = false;
   constructor(
     private http: HttpClient,
     private modal: NgbModal,
@@ -71,22 +73,29 @@ export class ComprehensiveService {
     private navbarService: NavbarService,
     private ageUtil: AboutAge,
     private comprehensiveApiService: ComprehensiveApiService,
+    private authService: AuthenticationService,
     private apiService:ApiService
   ) {
     this.getComprehensiveFormData();
+    this.comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
   }
   setComprehensiveVersion(versionType: string) {
+    //console.log(versionType);
+    //console.log(this.comprehensiveLiteEnabled);
+    //console.log(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
     /* Robo3 FULL or LITE Config*/
     if (COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED && versionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE) {
       sessionStorage.setItem(
         appConstants.SESSION_KEY.COMPREHENSIVE_VERSION,
         COMPREHENSIVE_CONST.VERSION_TYPE.LITE
       );
+      //console.log('lite');
     } else {
       sessionStorage.setItem(
         appConstants.SESSION_KEY.COMPREHENSIVE_VERSION,
         COMPREHENSIVE_CONST.VERSION_TYPE.FULL
       );
+      //console.log('full');
     }
   }
   commit() {
@@ -109,6 +118,11 @@ export class ComprehensiveService {
     const comprehensiveVersionType = (sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION)
       === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED)
       ? appConstants.SESSION_KEY.COMPREHENSIVE_LITE : appConstants.SESSION_KEY.COMPREHENSIVE;
+    return comprehensiveVersionType;
+  }
+  getComprehensiveCurrentVersion() {
+    // tslint:disable-next-line: prefer-immediate-return
+    const comprehensiveVersionType = sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION);
     return comprehensiveVersionType;
   }
   getComprehensiveVersion() {
@@ -137,7 +151,13 @@ export class ComprehensiveService {
     }
     return this.comprehensiveFormData.hospitalPlanList;
   }
-
+  clearComprehensiveFormData() {
+    this.comprehensiveFormData = {} as ComprehensiveFormData;
+    this.commit();
+    sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE);
+    sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE_LITE);
+    this.getComprehensiveFormData();
+  }
   clearFormData() {
     this.comprehensiveFormData = {} as ComprehensiveFormData;
     this.commit();
@@ -254,11 +274,16 @@ export class ComprehensiveService {
    * @memberof ComprehensiveService
    */
   setComprehensiveSummary(comprehensiveDetails: IComprehensiveDetails) {
-    this.comprehensiveFormData.comprehensiveDetails = comprehensiveDetails;
-    this.reloadDependantDetails();
-    this.setBucketAmountByCal();
-    this.setViewableMode(false);
-    this.commit();
+    if (comprehensiveDetails === null ) {
+      this.comprehensiveFormData = {} as ComprehensiveFormData;      
+      this.commit();
+    } else {
+      this.comprehensiveFormData.comprehensiveDetails = comprehensiveDetails;
+      this.reloadDependantDetails();
+      this.setBucketAmountByCal();
+      this.setViewableMode(false);
+      this.commit();
+    }
   }
 
   /**
@@ -868,11 +893,13 @@ export class ComprehensiveService {
     const retirementProgressData = this.getRetirementProgressData();
     const reportStatusData = this.getReportStatus();
     const stepCompleted = this.getMySteps();
-
-    const userAge = this.aboutAge.calculateAge(
-      cmpSummary.baseProfile.dateOfBirth,
-      new Date()
-    );
+    let userAge = 0;
+    if (cmpSummary && (cmpSummary.baseProfile.dateOfBirth !== null || cmpSummary.baseProfile.dateOfBirth !== '')) {      
+      userAge = this.aboutAge.calculateAge(
+        cmpSummary.baseProfile.dateOfBirth,
+        new Date()
+      );
+    } 
 
     let accessPage = true;
     if (userAge < COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MIN_AGE
@@ -1098,10 +1125,13 @@ export class ComprehensiveService {
     const reportStatusData = this.getReportStatus();
     const stepCompleted = this.getMySteps();
 
-    const userAge = this.aboutAge.calculateAge(
-      cmpSummary.baseProfile.dateOfBirth,
-      new Date()
-    );
+    let userAge = 0;
+    if (cmpSummary && (cmpSummary.baseProfile.dateOfBirth !== null || cmpSummary.baseProfile.dateOfBirth !== '')) {      
+      userAge = this.aboutAge.calculateAge(
+        cmpSummary.baseProfile.dateOfBirth,
+        new Date()
+      );
+    } 
 
     let accessPage = true;
     if (userAge < COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MIN_AGE
@@ -2232,7 +2262,8 @@ export class ComprehensiveService {
     return false;
   }
   setViewableMode(commitFlag: boolean) {
-    if (
+    if (this.comprehensiveFormData.comprehensiveDetails && 
+      this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry !== null &&
       (this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
         .reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
           .reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) && this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
@@ -2498,3 +2529,4 @@ export class ComprehensiveService {
     return Math.floor(takeHomeCal);
   }
 }
+

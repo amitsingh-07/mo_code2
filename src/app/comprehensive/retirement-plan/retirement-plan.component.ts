@@ -110,7 +110,6 @@ export class RetirementPlanComponent
       this.comprehensiveService.getMyProfile().dateOfBirth,
       new Date()
     );
-    this.userAge = 60;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);

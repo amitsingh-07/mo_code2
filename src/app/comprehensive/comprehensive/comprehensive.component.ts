@@ -76,17 +76,26 @@ export class ComprehensiveComponent implements OnInit {
       this.userDetails = this.cmpService.getMyProfile();
       if (!this.userDetails || !this.userDetails.firstName) {
         this.loaderService.showLoader({ title: 'Fetching Data', autoHide: false });
-        this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
-          const cmpData = data.objectList[0];
-          this.cmpService.setComprehensiveSummary(cmpData);
-          const action = this.appService.getAction();
-          if (action === COMPREHENSIVE_CONST.PROMO_CODE.GET) {
-            this.getPromoCode();
-          } else if (action === COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE) {
-            this.getStarted();
-          } else {
-            this.redirect();
-          }
+        const comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
+        let getCurrentVersionType =  this.cmpService.getComprehensiveCurrentVersion();
+        if ((getCurrentVersionType === '' || getCurrentVersionType === null  || getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE) && comprehensiveLiteEnabled) {
+            getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
+        } else {
+            getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
+        }
+        this.comprehensiveApiService.getComprehensiveSummary(getCurrentVersionType).subscribe((data: any) => {
+          if (data && data.objectList[0]) {
+            const cmpData = data.objectList[0];
+            this.cmpService.setComprehensiveSummary(cmpData);
+            const action = this.appService.getAction();
+            if (action === COMPREHENSIVE_CONST.PROMO_CODE.GET) {
+              this.getPromoCode();
+            } else if (action === COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE) {
+              this.getStarted();
+            } else {
+              this.redirect();
+            }
+         }
         });
       }
       this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.isValidatedPromoCode ? this.promoCodeValidated = true :

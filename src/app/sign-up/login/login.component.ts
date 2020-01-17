@@ -3,7 +3,7 @@ import {
   AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit,
   ViewChild, ViewEncapsulation
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   duplicateError: any;
   progressModal = false;
   investmentEnquiryId;
+  finlitEnabled = false;
 
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
 
@@ -103,6 +104,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.distribution = config.distribution;
     });
+    if (route.snapshot.data[0]) {
+      this.finlitEnabled = route.snapshot.data[0]['finlitEnabled'];
+    }
   }
 
   /**
@@ -183,9 +187,13 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     this.loginForm = this.formBuilder.group({
       loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile)]],
-      loginPassword: [this.formValues.loginPassword, [Validators.required]],
+      loginPassword: [this.formValues.loginPassword, [Validators.required]],      
       captchaValue: ['']
     });
+    if (this.finlitEnabled) {
+      this.loginForm.addControl('accessCode', new FormControl(this.formValues.accessCode, [Validators.required]));
+
+    }
     return true;
   }
 
@@ -207,6 +215,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.authService.authenticate().subscribe((token) => {
       });
     }
+    const accessCode = (this.finlitEnabled) ? this.loginForm.value.accessCode : '';
     if (!form.valid || ValidatePassword(form.controls['loginPassword'])) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       let error;
@@ -229,7 +238,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     } else if (this.authService.isAuthenticated()) {
       this.progressModal = true;
       this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
-        this.loginForm.value.captchaValue).subscribe((data) => {
+        this.loginForm.value.captchaValue, this.finlitEnabled, accessCode).subscribe((data) => {
           if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
             this.investmentCommonService.clearAccountCreationActions();
             try {
@@ -266,6 +275,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           } else {
             this.loginForm.controls['captchaValue'].reset();
             this.loginForm.controls['loginPassword'].reset();
+            if (this.finlitEnabled) {
+             this.loginForm.controls['accessCode'].reset();
+            }
             this.openErrorModal(data.responseMessage.responseDescription);
             this.signUpService.setCaptchaCount();
             if (data.objectList[0] && data.objectList[0].sessionId) {
