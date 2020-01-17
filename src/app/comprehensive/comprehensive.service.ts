@@ -146,7 +146,13 @@ export class ComprehensiveService {
     }
     return this.comprehensiveFormData.hospitalPlanList;
   }
-
+  clearComprehensiveFormData() {
+    this.comprehensiveFormData = {} as ComprehensiveFormData;
+    this.commit();
+    sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE);
+    sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE_LITE);
+    this.getComprehensiveFormData();
+  }
   clearFormData() {
     this.comprehensiveFormData = {} as ComprehensiveFormData;
     this.commit();

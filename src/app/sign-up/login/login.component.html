@@ -52,7 +52,7 @@
           <div class="flex-row mb20" *ngIf = 'finlitEnabled'>
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label" [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.accessCode)}">
-                <input type="text" appInputFocus id="login_access_code_txt" class="form-control" #accessCode formControlName="accessCode" required>
+                <input type="text" appInputFocus id="login_access_code_txt" class="form-control" #accessCode formControlName="accessCode" required maxLength="10">
                 <label class="form-control-placeholder" for="login_access_code_txt" id="login_access_code_lbl">{{ 'LOGIN.FORM.ACCESS_CODE' | translate}}</label>
               </div>
             </div>
