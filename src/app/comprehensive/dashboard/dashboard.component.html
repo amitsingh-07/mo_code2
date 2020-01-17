@@ -1,16 +1,35 @@
 <div class="container-fluid max-width--1024 comprehensive"
   *ngIf="((getComprehensiveSummary && getComprehensiveSummary.comprehensiveEnquiry.isValidatedPromoCode) || isComprehensiveLiveEnabled) && isComprehensiveEnabled">
+  <div class="comprehensive dashboard-lite">
+    <div class="flex-row align-start ml15 mr15">
+        <div class="flex-col-6">
+          <button  [ngClass]="{'active': true}" type="button" class="btn btn-primary btn-lite width100 active" id="prfBtn1"
+            (click)="setComprehensivePlan(false)">
+            <div class="ft-18" for="name">Lite <span><img src="../../../assets/images/comprehensive/dashboard-comprehensive-lite-corporate-small.svg"></span>
+            </div>
+          </button>
+        </div>
+        <div class="flex-col-6 pl10">
+          <button [ngClass]="{'active': false}" type="button" class="btn btn-primary btn-lite width100" id="prfBtn1" (click)="setComprehensivePlan(true)">
+            <div class="ft-18"  for="name">Full
+            </div>
+          </button>
+        </div>
+    </div>
+    <!--/Tab-->
   <div class="widget">
     <div class="form-group-with-bg overlay-bg">
       <div [ngClass]="{'hidden': !isLoadComplete}">
         <!--Form Header-->
         <div class="form-group-with-bg--header">
+          <div><img src="../../../assets/images/comprehensive/dashboard-comprehensive-lite-corporate-big.svg"></div>
           <div class="flex space-btwn align-items-start">
             <div>
               <div class="form-group-with-bg--header-label pr10">{{
                 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_TITLE' | translate}}
               </div>
             </div>
+            
             <div>
               <div class="form-group-with-bg--header-label plan-view-icon text-right comprehensive-plan-view"
                 [hidden]="comprehensivePlanning !== 0" (click)="goToEditComprehensivePlan(true)">
@@ -140,30 +159,12 @@
               </button>
             </div>
           </div>
-
-          <!-- LITE/Full-->
-          <div class="flex-row align-start">
-            <div class="flex-col-5">
-              <button type="button" class="btn btn-primary width100" id="prfBtn1"
-                (click)="  setComprehensivePlan(false)">
-                <div class="ft-18" for="name">LITE
-                </div>
-              </button>
-            </div>
-            <div class="flex-col-5 ml-5">
-              <button type="button" class="btn btn-primary width100" id="prfBtn1" (click)="setComprehensivePlan(true)">
-                <div class="ft-18" for="name">Full
-                </div>
-              </button>
-            </div>
-          </div>
-
         </div>
       </div>
       <div [ngClass]="{'hidden': isLoadComplete}" class="ajax-loader-card-inline">
         <img alt="loader" src="assets/styles/ajax-loader.gif" />
       </div>
     </div>
-
+  </div>
   </div>
 </div>
