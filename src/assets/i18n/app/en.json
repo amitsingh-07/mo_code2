@@ -396,7 +396,8 @@
       "WILL_WRITING_ESTIMATED": "Estimated 10 mins",
       "DEFAULT_CONTENT": "Get a holistic financial assessment and trusted financial advice today!",
       "DEFAULT_START": "Start Planning",
-      "DEFAULT_ESTIMATED": "Estimated 20 mins",
+      "DEFAULT_ESTIMATED": "Estimated 20 mins",      
+      "DEFAULT_ESTIMATED_LITE": "Estimated 10 mins",
       "COMPREHENSIVE_PLANNING_LAST_SUBMITTED_DATE": "Last Submitted LAST_SUBMITTED_DATE",
       "WARNING_POPUP": "Note that your DOB/Gender is different from Investment journey. Reach adviser on how to proceed",
       "COMPREHENSIVE_PLANNING_SUBMITTED": "Once your report is ready, our advisers will be in touch with you."

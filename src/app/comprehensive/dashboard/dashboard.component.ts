@@ -71,7 +71,6 @@ export class ComprehensiveDashboardComponent implements OnInit {
     if ((this.getCurrentVersionType === '' || this.getCurrentVersionType === null || this.getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE ) && this.comprehensiveLiteEnabled) {
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
       this.setComprehensivePlan(false);
-      console.log('ss');
     } else {
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
       this.setComprehensivePlan(true);
@@ -165,15 +164,14 @@ export class ComprehensiveDashboardComponent implements OnInit {
     }
   }
   setComprehensivePlan(versionType: boolean) {
+    this.comprehensiveService.clearFormData();
     if (!versionType) {
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
-      this.comprehensiveService.clearComprehensiveFormData();
       this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
       this.versionTypeEnabled = true;
       this.setComprehensiveSummary(false);
     } else {
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
-      this.comprehensiveService.clearComprehensiveFormData();
       this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
       this.versionTypeEnabled = false;
       this.setComprehensiveSummary(false);
