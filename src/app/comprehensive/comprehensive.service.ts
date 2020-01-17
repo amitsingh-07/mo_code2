@@ -80,17 +80,22 @@ export class ComprehensiveService {
     this.comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
   }
   setComprehensiveVersion(versionType: string) {
+    //console.log(versionType);
+    //console.log(this.comprehensiveLiteEnabled);
+    //console.log(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
     /* Robo3 FULL or LITE Config*/
-    if (this.comprehensiveLiteEnabled && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED && versionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE) {
+    if (COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED && versionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE) {
       sessionStorage.setItem(
         appConstants.SESSION_KEY.COMPREHENSIVE_VERSION,
         COMPREHENSIVE_CONST.VERSION_TYPE.LITE
       );
+      //console.log('lite');
     } else {
       sessionStorage.setItem(
         appConstants.SESSION_KEY.COMPREHENSIVE_VERSION,
         COMPREHENSIVE_CONST.VERSION_TYPE.FULL
       );
+      //console.log('full');
     }
   }
   commit() {
