@@ -170,29 +170,31 @@ export class ComprehensiveDashboardComponent implements OnInit {
       this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
       this.versionTypeEnabled = true;
       this.setComprehensiveSummary(false);
-      //console.log(this.getCurrentVersionType);
+
     } else {
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
       this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
       this.versionTypeEnabled = false;
       this.setComprehensiveSummary(false);
-      //console.log(this.getCurrentVersionType);
+
     }
   }
   setComprehensiveSummary(routerEnabled: boolean) {
     this.isLoadComplete = false;
     this.comprehensivePlanning = 4;
     this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
+     
       if (summaryData && summaryData.objectList[0]) {
         //this.reportStatus = (summaryData.objectList[0].comprehensiveEnquiry.reportStatus);
         this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
-        this.userDetails = this.comprehensiveService.getMyProfile();
+       this.userDetails = this.comprehensiveService.getMyProfile();
         this.getComprehensiveSummary = this.comprehensiveService.getComprehensiveSummary();
-        this.islocked = this.getComprehensiveSummary.comprehensiveEnquiry !== null && this.getComprehensiveSummary.comprehensiveEnquiry.isLocked
-        this.userName = this.userDetails.firstName;
+        this.islocked = this.getComprehensiveSummary.comprehensiveEnquiry !== null &&
+         this.getComprehensiveSummary.comprehensiveEnquiry.isLocked;
+       this.userName = this.userDetails.firstName;
         this.advisorStatus = false;
         //const reportDateAPI = new Date();
-        //this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
+        // this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
         this.reportStatus = (this.getComprehensiveSummary && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus
           && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus !== null && this.userDetails.nationalityStatus)
           ? this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus : null;
@@ -200,10 +202,12 @@ export class ComprehensiveDashboardComponent implements OnInit {
           this.comprehensivePlanning = 3;
         } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED && !this.islocked) {
           this.comprehensivePlanning = 5;
-          if (this.getComprehensiveSummary.comprehensiveEnquiry && this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp) {
+          if (this.getComprehensiveSummary.comprehensiveEnquiry &&
+            this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp) {
             this.submittedDate = this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp;
           }
-        } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+        } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED ||
+          this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
           this.comprehensivePlanning = 0;
         }
         //  else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
@@ -225,9 +229,13 @@ export class ComprehensiveDashboardComponent implements OnInit {
         }
       } else {
         this.isLoadComplete = true;
-        if (routerEnabled) {
+        if (routerEnabled ){
+        if(summaryData.objectList[0] && summaryData.objectList[0].comprehensiveEnquiry.isValidatedPromoCode) {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+        } else {
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
         }
+      }
       }
     });
   }

@@ -877,7 +877,7 @@ export class ComprehensiveService {
   // Return Access Url for Full Journey
   getAccessibleFullJourney(urlList: any, url: any) {
   
-    this.generateProgressTrackerData();
+    //this.generateProgressTrackerData();
 
     const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, url));
     let accessibleUrl = '';

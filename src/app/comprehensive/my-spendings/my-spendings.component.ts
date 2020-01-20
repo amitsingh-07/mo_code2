@@ -44,7 +44,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   homeTypeList: any[];
   mortgageTypeOfHome = '';
   HLTypeOfHome = '';
-  comprehensiveJourneyMode:boolean;
+  comprehensiveJourneyMode: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
