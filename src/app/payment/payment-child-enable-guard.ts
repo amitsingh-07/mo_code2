@@ -9,7 +9,7 @@ import { SIGN_UP_ROUTE_PATHS } from './../sign-up/sign-up.routes.constants';
 @Injectable()
 export class PaymentChildEnableGuard implements CanActivateChild {
   isPaymentEnabled = false;
-  hasPaid = true;
+  hasPaid = false;
 
   constructor(
     private configService: ConfigService, private router: Router,
