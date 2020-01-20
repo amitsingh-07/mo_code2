@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { ComprehensiveService } from 'src/app/comprehensive/comprehensive.service';
 import { ErrorModalComponent } from 'src/app/shared/modal/error-modal/error-modal.component';
 import { ModelWithButtonComponent } from './../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from './../../shared/navbar/navbar.service';
@@ -34,7 +35,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     public readonly translate: TranslateService,
     private modal: NgbModal,
     public navbarService: NavbarService,
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private comprehensiveService: ComprehensiveService
   ) {
     this.translate.use('en');
   }
@@ -76,7 +78,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   submitForm() {
     this.openModal();
     // Update this to add customer id
-    this.paymentService.getRequestSignature(this.totalAmt).subscribe((res) => {
+    const enqId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
+    this.paymentService.getRequestSignature(enqId, this.totalAmt).subscribe((res) => {
       this.updateFormValues(res);
     }, (error) => {
       this.errorRedirecting();
