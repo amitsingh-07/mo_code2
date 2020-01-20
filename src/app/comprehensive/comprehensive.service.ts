@@ -1224,13 +1224,13 @@ export class ComprehensiveService {
             break;
           // 'retirement-plan'
           case 11:
-            if (accessPage && canAccess && financeProgressData.subItems[6].completed && stepCompleted > 1) {
+            if (accessPage && canAccess && financeProgressData.subItems[6].completed && stepCompleted > 0) {
               accessibleUrl = urlList[index];
             }
             break;
           // 'steps/4'
           case 12:
-            if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted > 1) {
+            if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted > 0) {
               accessibleUrl = urlList[index];
             }
             break;
