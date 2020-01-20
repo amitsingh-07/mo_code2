@@ -2,11 +2,10 @@ import { CurrencyPipe } from '@angular/common';
 import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from './../../../shared/modal/error-modal/error-modal.component';
-import { ToolTipModalComponent } from './../../../shared/modal/tooltip-modal/tooltip-modal.component';
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from './../../direct.service';
 import { Subscription } from 'rxjs';
@@ -20,8 +19,7 @@ import { Subscription } from 'rxjs';
 })
 
 export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
-  categorySub: any;
-  modalRef: NgbModalRef;
+  categorySub: any; 
   criticalIllnessForm: FormGroup;
   formValues: any;
   coverage_amt = '';
@@ -155,9 +153,6 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];
       return false;
     }
-    this.modalRef = this.modal.open(ToolTipModalComponent, { centered: true });
-    this.modalRef.componentInstance.tooltipTitle = this.translate.instant('CRITICAL_ILLNESS.POPUP.TITLE');
-    this.modalRef.componentInstance.tooltipMessage = this.translate.instant('CRITICAL_ILLNESS.POPUP.MESSAGE');   
     form.value.earlyCI = (form.value.earlyCI === 'yes' ||  form.value.earlyCI === true) ? true : false;
     form.value.coverageAmt = this.coverage_amt;
     form.value.duration = this.duration;
