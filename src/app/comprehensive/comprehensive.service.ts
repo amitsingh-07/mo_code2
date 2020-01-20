@@ -1134,10 +1134,10 @@ export class ComprehensiveService {
     } 
 
     let accessPage = true;
-    /*if (userAge < COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MIN_AGE
+    if (userAge < COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MIN_AGE
       || userAge > COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MAX_AGE) {
       accessPage = false;
-    }*/
+    }
 
     for (let index = currentUrlIndex; index >= 0; index--) {
       if (accessibleUrl !== '') {
