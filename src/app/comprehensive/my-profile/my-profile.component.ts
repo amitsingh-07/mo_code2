@@ -223,6 +223,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             if (this.validateMoGetStrdForm(form) && !this.validateDOB(form.value.ngbDob)) {
                 this.userDetails = form.getRawValue();
                 this.userDetails.dateOfBirth = this.parserFormatter.format(form.getRawValue().ngbDob);
+                this.userDetails.enquiryId = this.comprehensiveService.getEnquiryId();
                 if (!form.pristine) {
                     this.comprehensiveApiService.savePersonalDetails(this.userDetails).subscribe((data) => {
                         this.comprehensiveService.setMyProfile(this.userDetails);

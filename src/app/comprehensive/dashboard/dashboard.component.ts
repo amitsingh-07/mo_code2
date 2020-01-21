@@ -68,7 +68,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
     this.comprehensivePlanning = 4;
     this.comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
     this.getCurrentVersionType =  this.comprehensiveService.getComprehensiveCurrentVersion();
-    if ((this.getCurrentVersionType === '' || this.getCurrentVersionType === null || this.getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE ) && this.comprehensiveLiteEnabled) {
+    if ((this.getCurrentVersionType === '' || this.getCurrentVersionType === null ||
+    this.getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE ) && this.comprehensiveLiteEnabled) {
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
       this.setComprehensivePlan(false);
     } else {
@@ -76,10 +77,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
       this.setComprehensivePlan(true);
     }
     this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe( (data: any) => {
-      
-
     });
-    
   }
 
   ngOnInit() {
@@ -229,12 +227,12 @@ export class ComprehensiveDashboardComponent implements OnInit {
         }
       } else {
         this.isLoadComplete = true;
-        if (routerEnabled ){
-        if(summaryData.objectList[0] && summaryData.objectList[0].comprehensiveEnquiry.isValidatedPromoCode) {
+        if (routerEnabled) {
+          if(!this.versionTypeEnabled) {
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
+          } else {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
-        } else {
-          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
-        }
+          }
       }
       }
     });
