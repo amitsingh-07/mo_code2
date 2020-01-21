@@ -62,7 +62,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       transaction_type: [''],
       requested_amount: [this.totalAmt],
       requested_amount_currency: [''],
-      ip_address: [''],
       redirect_url: [''],
       termsOfConditions: [this.termsOfConditions, Validators.required]
     });
@@ -94,7 +93,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.checkoutForm.get('merchant_account_id').setValue(PAYMENT_REQUEST.merchantAccId);
     this.checkoutForm.get('transaction_type').setValue(PAYMENT_REQUEST.transactionType);
     this.checkoutForm.get('requested_amount_currency').setValue(PAYMENT_REQUEST.currency);
-    this.checkoutForm.get('ip_address').setValue(PAYMENT_REQUEST.ipAddress);
     this.checkoutForm.get('redirect_url').setValue(PAYMENT_REQUEST.redirectURL);
     document.forms['checkoutForm'].action = PAYMENT_REQUEST.requestURL;
     document.forms['checkoutForm'].submit();
