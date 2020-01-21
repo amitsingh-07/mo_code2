@@ -205,7 +205,7 @@ export class ComprehensiveService {
   }
 
   getMyProfile() {
-    if (!this.comprehensiveFormData.comprehensiveDetails.baseProfile) {
+    if ( !this.comprehensiveFormData.comprehensiveDetails.baseProfile) {
       this.comprehensiveFormData.comprehensiveDetails.baseProfile = {} as IMyProfile;
     }
     return this.comprehensiveFormData.comprehensiveDetails.baseProfile;
@@ -876,6 +876,7 @@ export class ComprehensiveService {
   }
   // Return Access Url for Full Journey
   getAccessibleFullJourney(urlList: any, url: any) {
+  
     this.generateProgressTrackerData();
 
     const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, url));

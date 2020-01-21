@@ -44,7 +44,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   homeTypeList: any[];
   mortgageTypeOfHome = '';
   HLTypeOfHome = '';
-  comprehensiveJourneyMode:boolean;
+  comprehensiveJourneyMode: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -164,13 +164,13 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
       adHocExpenses: [this.spendingDetails ? this.spendingDetails.adHocExpenses : '', []],
       HLMortgagePaymentUsingCPF: [this.spendingDetails ? this.spendingDetails.HLMortgagePaymentUsingCPF : '', []],
       HLMortgagePaymentUsingCash: [this.spendingDetails ? this.spendingDetails.HLMortgagePaymentUsingCash : '', []],
-      HLtypeOfHome: [this.spendingDetails ? this.spendingDetails.HLtypeOfHome : '', []],
+      HLtypeOfHome: [ this.comprehensiveJourneyMode ? (this.spendingDetails ? this.spendingDetails.HLtypeOfHome : '') :'', []],
       homeLoanPayOffUntil: [this.spendingDetails ? this.spendingDetails.homeLoanPayOffUntil : '',
       [this.payOffYearValid]],
-      mortgagePaymentUsingCPF: [this.spendingDetails ? this.spendingDetails.mortgagePaymentUsingCPF : ''],
-      mortgagePaymentUsingCash: [this.spendingDetails ? this.spendingDetails.mortgagePaymentUsingCash : ''],
-      mortgageTypeOfHome: [this.spendingDetails ? this.spendingDetails.mortgageTypeOfHome : ''],
-      mortgagePayOffUntil: [this.spendingDetails ? this.spendingDetails.mortgagePayOffUntil : '', [this.payOffYearValid]],
+      mortgagePaymentUsingCPF: [  this.comprehensiveJourneyMode ? (this.spendingDetails ? this.spendingDetails.mortgagePaymentUsingCPF : ''):''],
+      mortgagePaymentUsingCash: [ this.comprehensiveJourneyMode ? (this.spendingDetails ? this.spendingDetails.mortgagePaymentUsingCash : ''):''],
+      mortgageTypeOfHome: [  this.comprehensiveJourneyMode ? (this.spendingDetails ? this.spendingDetails.mortgageTypeOfHome : '') : ''],
+      mortgagePayOffUntil: [  this.comprehensiveJourneyMode ? (this.spendingDetails ? this.spendingDetails.mortgagePayOffUntil : ''):'', [this.payOffYearValid]],
       carLoanPayment: [this.spendingDetails ? this.spendingDetails.carLoanPayment : '', []],
       carLoanPayoffUntil: [this.spendingDetails ? this.spendingDetails.carLoanPayoffUntil : '', [this.payOffYearValid]],
       otherLoanPayment: [this.spendingDetails ? this.spendingDetails.otherLoanPayment : '', []],
