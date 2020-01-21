@@ -33,6 +33,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   hasRegularSavings: boolean;
   enquiryId: number;
   viewMode: boolean;
+  comprehensiveJourneyMode: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder,
@@ -50,6 +51,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
         this.validationFlag = this.translate.instant('CMP.RSP.OPTIONAL_VALIDATION_FLAG');
       });
     });
+    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
     this.enquiryId = this.comprehensiveService.getEnquiryId();
     this.viewMode = this.comprehensiveService.getViewableMode();
 
@@ -119,7 +121,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     return this.formBuilder.group({
       regularUnitTrust: [value.regularUnitTrust],
       regularPaidByCash: [value.regularPaidByCash],
-      regularPaidByCPF: [value.regularPaidByCPF],
+      regularPaidByCPF: [this.comprehensiveJourneyMode ? value.regularPaidByCPF : ''],
       enquiryId: this.enquiryId
 
     });
