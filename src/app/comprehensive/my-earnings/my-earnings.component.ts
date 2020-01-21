@@ -137,10 +137,13 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
       monthlySalary: [{ value: this.earningDetails ? this.earningDetails.monthlySalary : '', disabled: this.viewMode }, []],
       monthlyRentalIncome: [{ value: this.earningDetails ? this.earningDetails.monthlyRentalIncome : '', disabled: this.viewMode }],
       otherMonthlyWorkIncome: [{ value: this.earningDetails ? this.earningDetails.otherMonthlyWorkIncome : '', disabled: this.viewMode }],
-      otherMonthlyIncome: [{ value: this.earningDetails ? this.earningDetails.otherMonthlyIncome : '', disabled: this.viewMode }],
+      otherMonthlyIncome: [{ value: ( this.comprehensiveJourneyMode ? ( this.earningDetails ?
+        this.earningDetails.otherMonthlyIncome : '') : 0), disabled: this.viewMode }],
       annualBonus: [{ value: this.earningDetails ? this.earningDetails.annualBonus : '', disabled: this.viewMode }, []],
-      annualDividends: [{ value: this.earningDetails ? this.earningDetails.annualDividends : '', disabled: this.viewMode }],
-      otherAnnualIncome: [{ value: this.earningDetails ? this.earningDetails.otherAnnualIncome : '', disabled: this.viewMode }]
+      annualDividends: [{ value: ( this.comprehensiveJourneyMode ? ( this.earningDetails ?
+         this.earningDetails.annualDividends : '') : 0), disabled: this.viewMode }],
+      otherAnnualIncome: [{ value:( this.comprehensiveJourneyMode ? ( this.earningDetails ?
+        this.earningDetails.otherAnnualIncome : '') : 0) , disabled: this.viewMode }]
     });
   }
   selectEmploymentType(employmentType) {

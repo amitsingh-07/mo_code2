@@ -25,11 +25,10 @@
           <div *ngIf='versionTypeEnabled'><img src="../../../assets/images/comprehensive/dashboard-comprehensive-lite-corporate-big.svg"></div>
           <div class="flex space-btwn align-items-start">
             <div>
-              <div class="form-group-with-bg--header-label pr10">{{
-                'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_TITLE' | translate}}
+              <div class="form-group-with-bg--header-label pr10">
+                {{!versionTypeEnabled ? ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_TITLE' | translate) : ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_LITE_TITLE' | translate)}}
               </div>
             </div>
-            
             <div>
               <div class="form-group-with-bg--header-label plan-view-icon text-right comprehensive-plan-view"
                 [hidden]="comprehensivePlanning !== 0" (click)="goToEditComprehensivePlan(true)">
@@ -131,8 +130,7 @@
             <div class="flex-col-12">
               <button type="button" class="btn btn-primary width100" id="prfBtn1" (click)="goToEditProfile()">
                 <div class="ft-18" for="name">{{ 'COMPREHENSIVE.DASHBOARD.DEFAULT_START' | translate}}
-                  <div class="ft-13" for="name" *ngIf= "!versionTypeEnabled">{{ 'COMPREHENSIVE.DASHBOARD.DEFAULT_ESTIMATED' | translate}}</div>
-                    <div class="ft-13" for="name"  *ngIf= "versionTypeEnabled">{{ 'COMPREHENSIVE.DASHBOARD.DEFAULT_ESTIMATED_LITE' | translate}}
+                  <div class="ft-13" for="name">{{!versionTypeEnabled ? ('COMPREHENSIVE.DASHBOARD.DEFAULT_ESTIMATED' | translate) : ('COMPREHENSIVE.DASHBOARD.DEFAULT_ESTIMATED_LITE' | translate)}}
                   </div>
                 </div>
               </button>
