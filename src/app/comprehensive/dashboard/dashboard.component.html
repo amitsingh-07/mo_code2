@@ -5,7 +5,8 @@
         <div class="flex-col-6">
           <button  [ngClass]="{'active': versionTypeEnabled}" type="button" class="btn btn-primary btn-lite width100" id="prfBtn1"
             (click)="setComprehensivePlan(false)">
-            <div class="ft-18" for="name">Lite <span><img src="../../../assets/images/comprehensive/dashboard-comprehensive-lite-corporate-small.svg"></span>
+            <div class="ft-18" for="name">Lite <span *ngIf='versionTypeEnabled'><img src="../../../assets/images/comprehensive/dashboard-comprehensive-lite-corporate-small.svg"></span>
+              <span *ngIf='!versionTypeEnabled'><img src="../../../assets/images/comprehensive/dashboard-comprehensive-lite-corporate-small-disabled.svg"></span>
             </div>
           </button>
         </div>
