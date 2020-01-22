@@ -54,13 +54,15 @@
         <div class="col-lg-6 stretch">
           <div class="form-group-floating-label date-picker-above">
             <div class="datepicker-control">
-              <div class="input-group date-picker mb0 ">
-                <input readonly class="form-control" [placeholder]="dobPlaceholder" formControlName="dateOfBirth"
-                  ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+              <div class="input-group date-picker mb0 "  [ngClass]="{'inline-error': !bundleEnquiryForm.get('dateOfBirth').valid  && !bundleEnquiryForm.get('dateOfBirth').pristine}">
+                <input  class="form-control" [placeholder]="dobPlaceholder" formControlName="dateOfBirth"
+                  ngbDatepicker #d="ngbDatepicker" autocomplete="off" [minDate]="minDate" [maxDate]="maxDate">
                 <div class="input-group-append">
                   <button (click)="d.toggle()" class="btn btn-primary" type="button">
-                    <img class="date-picker-image--valid" id="getStrdImg1"
-                      src="./assets/images/calendar-normal.svg" />
+                    <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="bundleEnquiryForm.get('dateOfBirth').valid || bundleEnquiryForm.get('dateOfBirth').pristine" src="./assets/images/calendar-normal.svg"
+                    />
+                    <img class="date-picker-image--invalid" id="getStrdImg1" *ngIf="!bundleEnquiryForm.get('dateOfBirth').valid && !bundleEnquiryForm.get('dateOfBirth').pristine" src="./assets/images/calendar-error.svg"
+                    />
                   </button>
                 </div>
               </div>
