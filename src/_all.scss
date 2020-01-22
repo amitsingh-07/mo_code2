@@ -302,6 +302,10 @@ h6 {
         height:100vh;
         overflow-y: scroll;
         padding-bottom: 45px;
+        @supports (-webkit-overflow-scrolling: touch) {
+          /* CSS specific to iOS devices */
+          padding-bottom: 115px;
+        }
       }
     }
 
