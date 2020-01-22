@@ -11,9 +11,10 @@ export class PaymentService {
     private apiService: ApiService
   ) { }
 
-  getRequestSignature(enquiryId: number, amt: string) {
+  getRequestSignature(enquiryId: number, amt: string, source: string) {
     const payload = {
       enquiryId,
+      source,
       transactionAmount: amt,
       transactionType: PAYMENT_REQUEST.transactionType
     };
