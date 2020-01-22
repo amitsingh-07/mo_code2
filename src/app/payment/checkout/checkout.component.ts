@@ -78,7 +78,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.openModal();
     // Update this to add customer id
     const enqId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
-    this.paymentService.getRequestSignature(enqId, this.totalAmt).subscribe((res) => {
+    this.paymentService.getRequestSignature(enqId, this.totalAmt, PAYMENT_CONST.SOURCE).subscribe((res) => {
       this.updateFormValues(res);
     }, (error) => {
       this.errorRedirecting();
