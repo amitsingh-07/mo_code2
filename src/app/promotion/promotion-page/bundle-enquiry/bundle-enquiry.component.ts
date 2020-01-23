@@ -1,8 +1,9 @@
 import { GoogleAnalyticsService } from './../../../shared/analytics/google-analytics.service';
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 
+import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { PromotionApiService } from '../../promotion.api.service';
@@ -11,6 +12,7 @@ import { PromotionApiService } from '../../promotion.api.service';
   selector: 'app-bundle-enquiry',
   templateUrl: './bundle-enquiry.component.html',
   styleUrls: ['./bundle-enquiry.component.scss'],
+  providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
   encapsulation: ViewEncapsulation.None,
 })
 export class BundleEnquiryComponent implements OnInit {
@@ -25,17 +27,20 @@ export class BundleEnquiryComponent implements OnInit {
   dobPlaceholder: string;
   invalidEmail = false;
   subTitle: string;
+  minDate;
+  maxDate;
 
   constructor(
     public authService: AuthenticationService,
     private promotionApiService: PromotionApiService,
     private formBuilder: FormBuilder,
+    private parserFormatter: NgbDateParserFormatter,
     private config: NgbDatepickerConfig,
     private googleAnalyticsService: GoogleAnalyticsService
   ) {
     const today: Date = new Date();
-    config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
-    config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    this.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
+    this.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
     this.authService.authenticate().subscribe(() => { });
   }
