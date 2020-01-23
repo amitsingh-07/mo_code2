@@ -170,7 +170,7 @@ export class ComprehensiveApiService {
     }
     getProductAmount() {
         return this.http
-            .get(apiConstants.endpoint.comprehensive.getComprehensiveSummaryDashboard)
+            .get(apiConstants.endpoint.comprehensive.getProductAmount)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
 }

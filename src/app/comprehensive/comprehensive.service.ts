@@ -49,7 +49,7 @@ import {
   IPromoCode,
   IRegularSavings,
   IRetirementPlan,
-  IdependentsSummaryList
+  IdependentsSummaryList,
 } from './comprehensive-types';
 @Injectable({
   providedIn: 'root'
@@ -240,7 +240,6 @@ export class ComprehensiveService {
   setPromoCodeValidation(promoCodeValidated: boolean) {
     this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.isValidatedPromoCode = promoCodeValidated;
   }
-
   /**
    * Get the comprehensive summary object.
    *

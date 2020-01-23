@@ -66,9 +66,6 @@ export class ComprehensiveComponent implements OnInit {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
     const isUnsupportedNoteShown = this.signUpService.getUnsupportedNoteShownFlag();
     this.buildPromoCodeForm();
-    this.comprehensiveApiService.getProductAmount().subscribe((data: any) => {
-
-    });
     this.signUpService.mobileOptimizedObservable$.subscribe((mobileOptimizedView) => {
       if (!this.signUpService.isMobileDevice() && !mobileOptimizedView && !isUnsupportedNoteShown) {
         this.signUpService.showUnsupportedDeviceModal();
@@ -82,8 +79,7 @@ export class ComprehensiveComponent implements OnInit {
         this.loaderService.showLoader({ title: 'Fetching Data', autoHide: false });
         const comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
         let getCurrentVersionType =  this.cmpService.getComprehensiveCurrentVersion();
-        if ((getCurrentVersionType === '' || getCurrentVersionType === null 
-        || getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE) && comprehensiveLiteEnabled) {
+        if ((getCurrentVersionType === '' || getCurrentVersionType === null  || getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE) && comprehensiveLiteEnabled) {
             getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
         } else {
             getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
@@ -93,21 +89,22 @@ export class ComprehensiveComponent implements OnInit {
             const cmpData = data.objectList[0];
             this.cmpService.setComprehensiveSummary(cmpData);
           }
-          const action = this.appService.getAction();
-          if (action === COMPREHENSIVE_CONST.PROMO_CODE.GET) {
+        const action = this.appService.getAction();
+            if (action === COMPREHENSIVE_CONST.PROMO_CODE.GET) {
               this.getPromoCode();
             } else if (action === COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE) {
               this.getStarted();
             } else {
               this.redirect();
             }
-     });
+        
+        });
       }
       this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.isValidatedPromoCode ? this.promoCodeValidated = true :
         this.promoCodeValidated = false;
     }
 
-
+    
   }
 
   /**
