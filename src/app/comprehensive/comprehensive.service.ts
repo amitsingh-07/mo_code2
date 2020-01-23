@@ -1136,10 +1136,10 @@ export class ComprehensiveService {
     } 
 
     let accessPage = true;
-    /*if (userAge < COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MIN_AGE
+    if (userAge < COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MIN_AGE
       || userAge > COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MAX_AGE) {
       accessPage = false;
-    }*/
+    }
 
     for (let index = currentUrlIndex; index >= 0; index--) {
       if (accessibleUrl !== '') {
@@ -1226,13 +1226,13 @@ export class ComprehensiveService {
             break;
           // 'retirement-plan'
           case 11:
-            if (accessPage && canAccess && financeProgressData.subItems[6].completed && stepCompleted > 1) {
+            if (accessPage && canAccess && financeProgressData.subItems[6].completed && stepCompleted > 0) {
               accessibleUrl = urlList[index];
             }
             break;
           // 'steps/4'
           case 12:
-            if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted > 1) {
+            if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted > 0) {
               accessibleUrl = urlList[index];
             }
             break;
