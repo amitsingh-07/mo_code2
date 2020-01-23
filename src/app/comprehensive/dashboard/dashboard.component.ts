@@ -121,7 +121,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
       || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
       //this.comprehensiveService.setViewableMode(true);
       if (!this.islocked) {
-        this.setComprehensiveSummary(false, '');
+        //this.setComprehensiveSummary(false, '');
         this.getComprehensiveCall();
       }
       if (this.getComprehensiveSummaryDashboard.dobPopUpEnable) {
@@ -144,14 +144,22 @@ export class ComprehensiveDashboardComponent implements OnInit {
   }
   getComprehensiveCall() {
     this.loaderService.showLoader({ title: 'Fetching Data' });
-    this.comprehensiveApiService.savePersonalDetails(this.userDetails).subscribe((data: any) => {
-      if (data) {
-        this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
-          if (summaryData) {
-            this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
-            this.comprehensiveService.setViewableMode(true);
+    this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((userData: any) => {
+     if (userData && userData.objectList[0]) {
+        this.comprehensiveService.setComprehensiveSummary(userData.objectList[0]);
+        this.userDetails = this.comprehensiveService.getMyProfile();
+        this.comprehensiveApiService.savePersonalDetails(this.userDetails).subscribe((data: any) => {
+          if (data) {
+            this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
+              if (summaryData) {
+                this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
+                this.comprehensiveService.setViewableMode(true);
+                this.loaderService.hideLoader();
+                this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+              }
+            });
+          } else {
             this.loaderService.hideLoader();
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
           }
         });
       } else {

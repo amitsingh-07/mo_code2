@@ -9,7 +9,7 @@ const NOTIFICATION_API_BASE_URL = 'notification/notify-microservice/api/notifica
 const COMPREHENSIVE_API_BASE_URL = 'recommend/recomm-microservice/api/customer/comprehensive/';
 const FINANCE_API_BASE_URL = 'finance/finhealth/api/customer/comprehensive/';
 const COMPREHENSIVE_REPORT_API_BASE_URL = 'comp/comprehensive-microservice/api/';
-const PAYMENT_API_BASE_URL = 'payment/api/';
+const PAYMENT_API_BASE_URL = 'payment-microservice/api/';
 const INVEST_API_BASE_URL = 'invest/investment-microservice/api/';
 
 export let apiConstants = {
@@ -99,9 +99,11 @@ export let apiConstants = {
             createReportRequest: COMPREHENSIVE_REPORT_API_BASE_URL + 'createReportRequest',
             getReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'getReport',
             getComprehensiveSummaryDashboard: COMPREHENSIVE_API_BASE_URL + 'fetchComprehensiveStatus',
+            getProductAmount: ACCOUNT_API_BASE_URL + '/productPricing'
         },
         payment: {
             getRequestSignature: PAYMENT_API_BASE_URL + 'getRequestSignature',
         }
     }
 };
+

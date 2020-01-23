@@ -38,7 +38,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   routerEnabled = false;
   bucketImage: string;
   viewMode: boolean;
-  comprehensiveJourneyMode:boolean;
+  comprehensiveJourneyMode: boolean;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -50,7 +50,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       this.translate.use(config.language);
     });
     this.viewMode = this.comprehensiveService.getViewableMode();
-      this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
+    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP2;
     this.translate.get('COMMON').subscribe((result: string) => {
       // meta tag and title
@@ -64,6 +64,10 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       }
     });
     this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
+    if (!this.comprehensiveJourneyMode && this.liabilitiesDetails ){
+      this.liabilitiesDetails.otherPropertyLoanOutstandingAmount = 0;
+      this.liabilitiesDetails.carLoansAmount = 0;
+    }
   }
 
   ngOnInit() {
@@ -223,10 +227,10 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
     }
   }
-  routerPath(){
-    if(this.comprehensiveJourneyMode){
+  routerPath() {
+    if (this.comprehensiveJourneyMode) {
       this.showSummaryModal();
-    }else{
+    } else {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/3']);
     }
   }
