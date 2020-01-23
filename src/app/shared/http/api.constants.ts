@@ -9,7 +9,7 @@ const NOTIFICATION_API_BASE_URL = 'notification/notify-microservice/api/notifica
 const COMPREHENSIVE_API_BASE_URL = 'recommend/recomm-microservice/api/customer/comprehensive/';
 const FINANCE_API_BASE_URL = 'finance/finhealth/api/customer/comprehensive/';
 const COMPREHENSIVE_REPORT_API_BASE_URL = 'comp/comprehensive-microservice/api/';
-const PAYMENT_API_BASE_URL = 'payment-microservice/api/';
+const PAYMENT_API_BASE_URL = 'payment/api/';
 
 export let apiConstants = {
     endpoint: {
