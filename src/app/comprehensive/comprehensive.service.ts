@@ -2530,5 +2530,14 @@ export class ComprehensiveService {
     takeHomeCal = homePayTotal + annualBonus + annualDividend;
     return Math.floor(takeHomeCal);
   }
+  /* Filter object from array of objects*/
+  filterDataByInput(inputObject: any, keyMapped: any, data: any) {
+    const filteredData = inputObject.filter(summaryData => summaryData[keyMapped] === data);    
+    if (filteredData && filteredData[0]) {
+      return filteredData[0];
+    } else {
+      return '';
+    }    
+  }
 }
 
