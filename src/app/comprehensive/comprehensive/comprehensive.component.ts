@@ -40,6 +40,7 @@ export class ComprehensiveComponent implements OnInit {
   promoCodeSuccess: string;
   promoCodeValidated: boolean;
   promoValidated: string;
+  productAmount=500;
 
   constructor(
     private appService: AppService, private cmpService: ComprehensiveService,
