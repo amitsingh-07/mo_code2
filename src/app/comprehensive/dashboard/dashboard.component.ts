@@ -12,6 +12,7 @@ import { ConfigService } from './../../config/config.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 import { FileUtil } from '../../shared/utils/file.util';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-comprehensive-dashboard',
@@ -39,6 +40,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
   getCurrentVersionType = '';
   comprehensiveLiteEnabled: boolean;
   versionTypeEnabled: boolean;
+  getComprehensiveSummaryDashboard: any;
   // tslint:disable-next-line:cognitive-complexity
   constructor(
     private router: Router,
@@ -49,7 +51,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
     private datePipe: DatePipe,
     private navbarService: NavbarService,
     private downloadfile: FileUtil,
-    private authService: AuthenticationService) {
+    private authService: AuthenticationService,
+    private loaderService: LoaderService) {
     this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -76,8 +79,6 @@ export class ComprehensiveDashboardComponent implements OnInit {
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
       this.setComprehensivePlan(true);
     }
-    this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe( (data: any) => {
-    });
   }
 
   ngOnInit() {
@@ -99,27 +100,31 @@ export class ComprehensiveDashboardComponent implements OnInit {
 
   }
   goToEditProfile() {
-    this.setComprehensiveSummary(true);
+    this.setComprehensiveSummary(true, COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED);
   }
 
   goToCurrentStep() {
     if (this.currentStep === 0 && this.getComprehensiveSummary.comprehensiveEnquiry.isDobUpdated) {
       this.goToEditProfile();
     } else if (this.currentStep >= 0 && this.currentStep < 4) {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep + 1)]);
+      //this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep + 1)]);
+      const routerURL = COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep + 1);
+      this.setComprehensiveSummary(true, routerURL);
     } else if (this.currentStep === 4) {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep)]);
+      //this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep)]);
+      const routerURL = COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep);
+      this.setComprehensiveSummary(true, routerURL);
     }
   }
   goToEditComprehensivePlan(viewMode: boolean) {
     if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED
       || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
-      this.comprehensiveService.setViewableMode(true);
+      //this.comprehensiveService.setViewableMode(true);
       if (!this.islocked) {
+        this.setComprehensiveSummary(false, '');
         this.getComprehensiveCall();
-
       }
-      if (this.getComprehensiveSummary.comprehensiveEnquiry.dobPopUpEnable) {
+      if (this.getComprehensiveSummaryDashboard.dobPopUpEnable) {
         const toolTipParams = {
           TITLE: '',
           DESCRIPTION: this.translate.instant('COMPREHENSIVE.DASHBOARD.WARNING_POPUP'),
@@ -138,15 +143,19 @@ export class ComprehensiveDashboardComponent implements OnInit {
     }
   }
   getComprehensiveCall() {
+    this.loaderService.showLoader({ title: 'Fetching Data' });
     this.comprehensiveApiService.savePersonalDetails(this.userDetails).subscribe((data: any) => {
       if (data) {
         this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
           if (summaryData) {
             this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
             this.comprehensiveService.setViewableMode(true);
+            this.loaderService.hideLoader();
             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
           }
         });
+      } else {
+        this.loaderService.hideLoader();
       }
     });
   }
@@ -167,18 +176,22 @@ export class ComprehensiveDashboardComponent implements OnInit {
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
       this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
       this.versionTypeEnabled = true;
-      this.setComprehensiveSummary(false);
+      this.setComprehensiveDashboard();
 
     } else {
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
       this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
       this.versionTypeEnabled = false;
-      this.setComprehensiveSummary(false);
+      this.setComprehensiveDashboard();
 
     }
   }
-  setComprehensiveSummary(routerEnabled: boolean) {
-    this.isLoadComplete = false;
+  setComprehensiveSummary(routerEnabled: boolean, routerUrlPath: any) {
+    if (routerEnabled) {
+      this.loaderService.showLoader({ title: 'Fetching Data' });
+    } else {
+      this.isLoadComplete = false;
+    }
     this.comprehensivePlanning = 4;
     this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
      
@@ -221,20 +234,71 @@ export class ComprehensiveDashboardComponent implements OnInit {
         } else {
           this.comprehensiveService.setViewableMode(false);
         } 
-        this.isLoadComplete = true;
         if (routerEnabled) {
-          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+          this.loaderService.hideLoader();
+          this.router.navigate([routerUrlPath]);
+        } else {
+          this.isLoadComplete = true;
         }
       } else {
-        this.isLoadComplete = true;
         if (routerEnabled) {
-          if(!this.versionTypeEnabled) {
+          this.loaderService.hideLoader();
+          if (!this.versionTypeEnabled) {
             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
           } else {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
           }
+        } else {
+          this.isLoadComplete = true;
+        }
       }
+    });
+  }
+  /*
+  *Fetch Dashboard API 
+  */
+  setComprehensiveDashboard() {
+    this.isLoadComplete = false;
+    this.comprehensivePlanning = 4;
+    this.islocked = null;
+    this.reportStatus = null;
+    this.advisorStatus = false;
+    this.getComprehensiveSummaryDashboard = '';
+    this.currentStep = -1;
+    this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe( (dashboardData: any) => {
+      if (dashboardData && dashboardData.objectList[0]) {
+        // tslint:disable-next-line: max-line-length
+        this.getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', this.getCurrentVersionType);
+        if (this.getComprehensiveSummaryDashboard !== '') {
+          this.islocked = this.getComprehensiveSummaryDashboard.isLocked;
+          //const reportDateAPI = new Date();
+          // this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
+
+          this.reportStatus = this.getComprehensiveSummaryDashboard.reportStatus;
+          if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && (this.islocked === null || !this.islocked)) {
+          this.comprehensivePlanning = 3;
+          } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED && !this.islocked) {
+          this.comprehensivePlanning = 5;
+          if (this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp) {
+          this.submittedDate = this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp;
+          }
+          } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED ||
+          this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+          this.comprehensivePlanning = 0;
+          }
+          //  else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+          //   this.comprehensivePlanning = (this.advisorStatus) ? 2 : 1;
+          //   this.generateReport();
+          // }
+          this.currentStep = (this.getComprehensiveSummaryDashboard.stepCompleted !== null)
+          ? this.getComprehensiveSummaryDashboard.stepCompleted : 0;
+
+        }
+        this.isLoadComplete = true;
+      } else {
+        this.isLoadComplete = true;
       }
+
     });
   }
 }
