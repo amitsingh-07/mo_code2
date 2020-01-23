@@ -54,7 +54,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   myinfoChangeListener: Subscription;
   showRetirementAccount: boolean= false;
   myAge: any;
-
+  comprehensiveJourneyMode;
   // tslint:disable-next-line:cognitive-complexity
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -120,6 +120,12 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     });
    
     this.assetDetails = this.comprehensiveService.getMyAssets();
+    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
+    if (!this.comprehensiveJourneyMode && this.assetDetails  ) {
+      this.assetDetails.homeMarketValue = 0;
+      this.assetDetails.otherAssetsValue = 0;
+      this.assetDetails.investmentPropertiesValue = 0;
+    }
     if (this.assetDetails && this.assetDetails.source === 'MyInfo') {
       this.cpfFromMyInfo = true;
     }

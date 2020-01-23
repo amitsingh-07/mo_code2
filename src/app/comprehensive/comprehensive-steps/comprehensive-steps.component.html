@@ -7,7 +7,9 @@
         {{'CMP.COMPREHENSIVE_STEPS.STEP' | translate}} 1</div>
       <div class="road-map__step-title" (click)="(step === 2 || step === 3 || step=== 4) ? goToNext(1) : ''">
         {{'CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE' | translate}} </div>
-      <div *ngIf="step===1" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_1_DESC' | translate}}</div>
+      <div *ngIf="step===1" class="road-map__step-desc">
+        {{comprehensiveJourneyMode ? ('CMP.COMPREHENSIVE_STEPS.STEP_1_DESC' | translate) : ('CMP.COMPREHENSIVE_STEPS.STEP_1_DESC_LITE' | translate)}}
+      </div>
     </li>
     <li [ngClass]="{'active': (step===2 || step === 3 || step=== 4), 'success': (step === 3 || step=== 4)}">
       <span (click)="(step === 3 || step=== 4) ? goToNext(2) : ''"></span>

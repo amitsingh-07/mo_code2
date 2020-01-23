@@ -168,5 +168,9 @@ export class ComprehensiveApiService {
             .get(apiConstants.endpoint.comprehensive.getComprehensiveSummaryDashboard)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
-
+    getProductAmount() {
+        return this.http
+            .get(apiConstants.endpoint.comprehensive.getComprehensiveSummaryDashboard)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
 }

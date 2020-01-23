@@ -628,11 +628,12 @@ export class ComprehensiveService {
     return this.comprehensiveApiService.getQuestionsList();
   }
   getSelectedOptionByIndex(index) {
-    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveRiskProfile['riskAssessQuest' + index];
+    if(this.comprehensiveFormData.comprehensiveDetails.comprehensiveRiskProfile){
+      return this.comprehensiveFormData.comprehensiveDetails.comprehensiveRiskProfile['riskAssessQuest' + index];
+    }
   }
-  setRiskAssessment(data, questionIndex) {
-    console.log(data,questionIndex)
-    this.comprehensiveFormData.comprehensiveDetails.comprehensiveRiskProfile['riskAssessQuest' + questionIndex] = data;
+  setRiskAssessment(data) {
+    this.comprehensiveFormData.comprehensiveDetails.comprehensiveRiskProfile = data;
     this.commit();
   }
   saveRiskAssessment() {
@@ -2263,7 +2264,7 @@ export class ComprehensiveService {
     return false;
   }
   setViewableMode(commitFlag: boolean) {
-    if (this.comprehensiveFormData.comprehensiveDetails && 
+    if (this.comprehensiveFormData.comprehensiveDetails &&
       this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry !== null &&
       (this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
         .reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
