@@ -4,10 +4,19 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
+import { Observable, of } from 'rxjs';
 import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from 'src/app/shared/navbar/navbar.service';
+import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
 import { PaymentModalComponent } from './../payment-modal/payment-modal.component';
+import { PaymentService } from './../payment.service';
 import { CheckoutComponent } from './checkout.component';
+
+class MockPaymentService {
+  getRequestSignature(reqData): Observable<any> {
+    return of({});
+  }
+}
 
 describe('CheckoutComponent', () => {
   let component: CheckoutComponent;
@@ -15,10 +24,12 @@ describe('CheckoutComponent', () => {
   let router: Router;
   let navbarService: NavbarService;
   let modalService: NgbModal;
+  let mockPaymentService: MockPaymentService;
 
   let modalOpenSpy: jasmine.Spy;
   const modalRefSpyObj = jasmine.createSpyObj({ close: null });
   modalRefSpyObj.componentInstance = { imgType: '' };
+  modalRefSpyObj.result = Promise.resolve('');
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -28,6 +39,9 @@ describe('CheckoutComponent', () => {
         ReactiveFormsModule,
         NgbModule.forRoot(),
         RouterTestingModule.withRoutes([])
+      ],
+      providers: [
+        { provide: PaymentService, useValue: mockPaymentService }
       ]
     })
       .compileComponents();
@@ -41,6 +55,7 @@ describe('CheckoutComponent', () => {
     navbarService = TestBed.get(NavbarService);
     modalService = TestBed.get(NgbModal);
     modalOpenSpy = spyOn(TestBed.get(NgbModal), 'open').and.returnValue(modalRefSpyObj);
+    mockPaymentService = new MockPaymentService();
   });
 
   it('should create CheckoutComponent', () => {
@@ -63,21 +78,6 @@ describe('CheckoutComponent', () => {
     expect(navbarPageTitleSpy).toHaveBeenCalledWith('CHECKOUT.CHECKOUT_PAYMENT');
     expect(navbarMobileVisibilitySpy).toHaveBeenCalledWith(true);
     expect(navbarComprehensiveSpy).toHaveBeenCalledWith(true);
-  });
-
-  it('should submitForm', () => {
-    jasmine.clock().install();
-    const buildFormSpy = spyOn(component, 'buildForm');
-    const closeModalSpy = spyOn(component, 'closeModal');
-    const windowOpenSpy = spyOn(window, 'open').and.returnValue({ closed: true });
-    const windowClearIntervalSpy = spyOn(window, 'clearInterval');
-    component.submitForm();
-    jasmine.clock().tick(100);
-    expect(buildFormSpy).toHaveBeenCalled();
-    expect(windowOpenSpy).toHaveBeenCalled();
-    expect(closeModalSpy).toHaveBeenCalled();
-    expect(windowClearIntervalSpy).toHaveBeenCalled();
-    jasmine.clock().uninstall();
   });
 
   it('should open modal', () => {
@@ -113,4 +113,22 @@ describe('CheckoutComponent', () => {
     expect(modalRefSpyObj.componentInstance.primaryActionLabel).toEqual('CHECKOUT.CONTINUE');
     expect(modalRefSpyObj.componentInstance.isInlineButton).toBeFalsy();
   });
+
+  it('should show error modal', () => {
+    const closeModalSpy = spyOn(component, 'closeModal');
+    const submitFormSpy = spyOn(component, 'submitForm');
+    component.errorRedirecting();
+    expect(closeModalSpy).toHaveBeenCalled();
+    expect(modalOpenSpy).toHaveBeenCalledWith(ErrorModalComponent, {
+      centered: true,
+      windowClass: 'hide-manual-btn'
+    });
+    expect(modalRefSpyObj.componentInstance.errorTitle).toEqual('CHECKOUT.REDIRECT_ERROR_TITLE');
+    expect(modalRefSpyObj.componentInstance.errorMessage).toEqual('CHECKOUT.REDIRECT_ERROR_MSG');
+    expect(modalRefSpyObj.componentInstance.isError).toBeTruthy();
+    modalRefSpyObj.result.then(() => {
+      expect(submitFormSpy).toHaveBeenCalled();
+    });
+  });
+
 });

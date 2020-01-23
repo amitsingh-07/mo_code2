@@ -78,6 +78,10 @@
       },
     "EARLY_CI": {
       "TITLE": "Early CI"
+      },
+      "POPUP": {
+        "TITLE": "Coverage Details",
+        "MESSAGE": "Do note that for the Critical Illness category, plans recommended that contains CI riders actually covers both death and critical illness for the selected amount."
       }
     },
   "LONG_TERM_CARE": {

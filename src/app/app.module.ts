@@ -122,6 +122,9 @@ import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
 
+import { PaymentChildEnableGuard } from './payment/payment-child-enable-guard';
+import { PaymentEnableGuard } from './payment/payment-enable-guard';
+
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -225,7 +228,9 @@ export function tokenGetterFn() {
     SignUpService,
     ComprehensiveEnableGuard,
     ComprehensiveChildEnableGuard,
-    AboutAge
+    AboutAge,
+    PaymentEnableGuard,
+    PaymentChildEnableGuard
   ],
   bootstrap: [AppComponent],
   entryComponents: [
