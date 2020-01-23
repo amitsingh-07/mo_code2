@@ -33,6 +33,9 @@ import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
 
+import { PaymentChildEnableGuard } from './payment/payment-child-enable-guard';
+import { PaymentEnableGuard } from './payment/payment-enable-guard';
+
 const routes: Routes = [
   {
     path: '', canDeactivate: [PendingChangesGuard],
@@ -108,7 +111,9 @@ const routes: Routes = [
       { path: 'works', loadChildren: './corporate/corporate.module#CorporateModule' },
       {
         path: 'payment',
-        loadChildren: './payment/payment.module#PaymentModule'
+        loadChildren: './payment/payment.module#PaymentModule',
+        canActivate: [PaymentEnableGuard],
+        canActivateChild: [PaymentChildEnableGuard]
       },
       // Legacy Routes
       { path: 'terms-of-use', component: TermsOfUseComponent },

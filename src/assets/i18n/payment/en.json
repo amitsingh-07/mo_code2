@@ -24,7 +24,7 @@
   },
   "PAYMENT_STATUS": {
     "SUCCESS_TITLE": "Yay! Payment Successful!",
-    "SUCCESS_TEXT": "Congratulations on taking a positive step towards your financial health. Your client adviser will be in touch with you soon.<br/><br/>You may view your payment status/receipt at <span>kelvin.goh@gmail.com</span>.",
+    "SUCCESS_TEXT": "Congratulations on taking a positive step towards your financial health. Your client adviser will be in touch with you soon.<br/><br/>You may view your payment status/receipt at ",
     "FAIL_TITLE": "Oh no, payment failed…",
     "FAIL_TEXT": "Looks like your payment did not go through. You can try again or you can contact our customer support.",
     "BACK_DASHBOARD": "Back to Dashboard",
