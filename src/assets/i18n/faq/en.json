@@ -495,6 +495,10 @@
                     {
                         "QUESTION": " Can I get a full refund if I am dissatisfied with the service or do not agree with the recommendations?",
                         "ANSWER": "<p>No, as work has been carried out to provide the service. Nonetheless, your feedback is important to us. If you are dissatisfied with our service, we will certainly appreciate your time to let us know how we can improve our service.</br></br>In addition, for a limited time only, the full planning fee you paid will be rebated into your own investment account to encourage you to begin your investment journey with MoneyOwl.</p>"
+                    },
+                    {
+                        "QUESTION": "What are the accepted modes of payment?",
+                        "ANSWER": "We accept Credit Cards - Mastercard, Visa or American Express."
                     }
                 ],
                 "Privacy & Security": [
