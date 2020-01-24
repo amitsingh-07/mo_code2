@@ -138,7 +138,11 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             if (event && event !== '') {
                 const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
                 if (previousUrl !== null) {
-                    this.router.navigate([previousUrl]);
+                    if ( getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.FULL) { 
+                        this.router.navigate([previousUrl]);
+                    } else {
+                        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
+                    }
                 } else {
                     this.navbarService.goBack();
                 }
