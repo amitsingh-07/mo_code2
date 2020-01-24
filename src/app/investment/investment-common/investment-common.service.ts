@@ -1,17 +1,26 @@
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/catch';
 
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { LoaderService } from '../../shared/components/loader/loader.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import {
   INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account/investment-account-service';
 import { InvestmentApiService } from '../investment-api.service';
-import { InvestmentEngagementJourneyService } from '../investment-engagement-journey/investment-engagement-journey.service';
-import { IAccountCreationActions, InvestmentCommonFormData } from './investment-common-form-data';
+import {
+  INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
+} from '../investment-engagement-journey/investment-engagement-journey.constants';
+import {
+  InvestmentEngagementJourneyService
+} from '../investment-engagement-journey/investment-engagement-journey.service';
+import {
+  IAccountCreationActions, IInvestmentCriterias, InvestmentCommonFormData
+} from './investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from './investment-common-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from './investment-common.constants';
 
@@ -27,7 +36,8 @@ export class InvestmentCommonService {
     private investmentAccountService: InvestmentAccountService,
     private translate: TranslateService,
     private router: Router,
-    private investmentEngagementJourneyService: InvestmentEngagementJourneyService
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
+    private loaderService: LoaderService
   ) {
     this.getInvestmentCommonFormData();
   }
@@ -205,7 +215,7 @@ export class InvestmentCommonService {
   }
   getInitialFundingMethod() {
     return {
-    initialFundingMethodId: this.investmentCommonFormData.initialFundingMethodId
+      initialFundingMethodId: this.investmentCommonFormData.initialFundingMethodId
     };
   }
   setInitialFundingMethod(data) {
@@ -240,6 +250,54 @@ export class InvestmentCommonService {
   }
   saveSrsAccountDetails(params, customerPortfolioId) {
     return this.investmentApiService.saveSrsAccountDetails(params, customerPortfolioId);
+  }
+
+  getInvestmentCriteriasForUserFromApi() {
+    const params = this.constructParamsForInvestmentCriterias();
+    return this.investmentApiService.getInvestmentCriteriasForUser(params);
+  }
+
+  constructParamsForInvestmentCriterias() {
+    return {
+      features: [
+        'ONE_TIME_INVESTMENT_MINIMUM',
+        'MONTHLY_INVESTMENT_MINIMUM'
+      ]
+    };
+  }
+
+  getDefaultInvestmentCriterias() {
+    return {
+      ONE_TIME_INVESTMENT_MINIMUM: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_initial_amount,
+      MONTHLY_INVESTMENT_MINIMUM: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_monthly_amount
+    };
+  }
+
+  getInvestmentCriteriasForUser(): Observable<IInvestmentCriterias> {
+    this.loaderService.showLoader({
+      title: this.translate.instant('COMMON_LOADER.TITLE'),
+      desc: this.translate.instant('COMMON_LOADER.DESC')
+    });
+    return this.getInvestmentCriteriasForUserFromApi().map((response: any) => {
+      this.loaderService.hideLoader();
+      const defaultCriterias = this.getDefaultInvestmentCriterias();
+      return defaultCriterias;
+    }).catch(
+      (error) => {
+        this.loaderService.hideLoader();
+        const data = {
+          objectList: [{
+            ONE_TIME_INVESTMENT_MINIMUM: 10,
+            MONTHLY_INVESTMENT_MINIMUM: 5
+          }],
+          responseMessage: {
+            responseCode: 6000,
+            responseDescription: 'Successful response'
+          }
+        };
+        return Observable.of(data.objectList[0]);
+      }
+    );
   }
 
 }

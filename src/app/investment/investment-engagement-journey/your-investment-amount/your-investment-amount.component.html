@@ -30,13 +30,15 @@
                         name="firstChkBox" (change)="firstChkBoxChange()">
                       <label for="1" id="c1">
                         <div class="input-label-black"> {{ 'INVESTMENT_AMOUNT.INITIAL_DEPOSIT_LBL' | translate}}</div>
-                        <div class="input-label-normal"> {{ 'INVESTMENT_AMOUNT.MIN_100' | translate}}</div>
+                        <div class="input-label-normal">
+                          ${{ investmentCriterias.ONE_TIME_INVESTMENT_MINIMUM}}
+                        </div>
                       </label>
                     </div>
                     <div class="flex-col-6">
                       <div class="form-control">
                         <i id="myFinancialDollerSymbFour">$</i>
-                        <div name="initialInvestment" >
+                        <div name="initialInvestment">
                           <input class="input-control" id="myFinancialInitialDepositInput" type="text"
                             appCurrencyInputPortfolio maxLength="7" #initialInvestment
                             formControlName="initialInvestment" value="0">
@@ -50,7 +52,8 @@
                         name="secondChkBox" (change)="secondChkBoxChange()">
                       <label for="2" id="c2">
                         <div class="input-label-black"> {{ 'INVESTMENT_AMOUNT.MONTHLY_DEPOSIT_LBL' | translate}}</div>
-                        <div class="input-label-normal">{{ 'INVESTMENT_AMOUNT.MIN_50' | translate}}</div>
+                        <div class="input-label-normal">
+                          ${{ investmentCriterias.MONTHLY_INVESTMENT_MINIMUM}}</div>
                       </label>
                     </div>
                     <div class="flex-col-6">

@@ -15,7 +15,7 @@
       <div class="flex-row">
         <div class="flex-col-6">
           <label id="editInvestment-oneTimeInv-lbl" for="editInvestment-oneTimeInv-txt">{{ 'PORTFOLIO_RECOMMENDATION.EDIT_INVESTMENT.ONE_TIME_INVESTMENT' | translate}}</label>
-          <div class="input-label-normal">Min. $100</div>
+          <div class="input-label-normal">Min. ${{investmentCriterias.ONE_TIME_INVESTMENT_MINIMUM}}</div>
         </div>
         <div class="flex-col-6">
           <div class="form-control">
@@ -34,7 +34,7 @@
       <div class="flex-row">
         <div class="flex-col-6">
           <label id="editInvestment-monthlyTimeInv-lbl" for="editInvestment-monthlyTimeInv-txt">{{ 'PORTFOLIO_RECOMMENDATION.EDIT_INVESTMENT.MONTHLY_INVESTMENT' | translate}}</label>
-          <div class="input-label-normal">Min. $50</div>
+          <div class="input-label-normal">Min. ${{investmentCriterias.MONTHLY_INVESTMENT_MINIMUM}}</div>
         </div>
         <div class="flex-col-6">
           <div class="form-control">

@@ -21,3 +21,9 @@ export interface IAccountCreationActions {
     showInvestmentAccountCreationForm: boolean;
     enquiryMappedToCustomer?: boolean;
 }
+
+
+export interface IInvestmentCriterias {
+    ONE_TIME_INVESTMENT_MINIMUM: number;
+    MONTHLY_INVESTMENT_MINIMUM: number;
+}

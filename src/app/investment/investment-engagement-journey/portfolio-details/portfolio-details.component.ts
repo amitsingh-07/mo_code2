@@ -12,11 +12,11 @@ import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import {
-  EditInvestmentModalComponent
+    EditInvestmentModalComponent
 } from '../../../shared/modal/edit-investment-modal/edit-investment-modal.component';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import {
-  ModelWithButtonComponent
+    ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { FormatCurrencyPipe } from '../../../shared/Pipes/format-currency.pipe';
@@ -25,19 +25,20 @@ import { SIGN_UP_CONFIG } from '../../../sign-up/sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import {
-  INVESTMENT_ACCOUNT_ROUTE_PATHS
+    INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { IInvestmentCriterias } from '../../investment-common/investment-common-form-data';
 import {
-  INVESTMENT_COMMON_ROUTE_PATHS
+    INVESTMENT_COMMON_ROUTE_PATHS
 } from '../../investment-common/investment-common-routes.constants';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import {
-  MANAGE_INVESTMENTS_ROUTE_PATHS
+    MANAGE_INVESTMENTS_ROUTE_PATHS
 } from '../../manage-investments/manage-investments-routes.constants';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import {
-  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { ProfileIcons } from '../recommendation/profileIcons';
@@ -63,6 +64,7 @@ export class PortfolioDetailsComponent implements OnInit {
   event2 = true;
   iconImage;
   userInputSubtext;
+  investmentCriterias: IInvestmentCriterias;
 
   constructor(
     private signUpApiService: SignUpApiService,
@@ -100,6 +102,7 @@ export class PortfolioDetailsComponent implements OnInit {
     this.getPortfolioAllocationDetails();
     this.selectedRiskProfile = this.investmentEngagementJourneyService.getSelectedRiskProfileId();
     this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
+    this.getInvestmentCriteriasForUser();
   }
 
   setPageTitle(title: string) {
@@ -121,6 +124,7 @@ export class PortfolioDetailsComponent implements OnInit {
       oneTimeInvestment: this.portfolio.initialInvestment,
       monthlyInvestment: this.portfolio.monthlyInvestment
     };
+    ref.componentInstance.investmentCriterias = this.investmentCriterias;
     ref.componentInstance.modifiedInvestmentData.subscribe((emittedValue) => {
       // update form data
       ref.close();
@@ -309,5 +313,12 @@ export class PortfolioDetailsComponent implements OnInit {
 
   investmentFAQ() {
     this.router.navigate(['/faq'], { fragment: 'investment' });
+  }
+
+  getInvestmentCriteriasForUser() {
+    this.investmentCriterias = this.investmentCommonService.getDefaultInvestmentCriterias(); /* Fallback for API failure */
+    this.investmentCommonService.getInvestmentCriteriasForUser().subscribe((data) => {
+      this.investmentCriterias = data;
+    });
   }
 }
