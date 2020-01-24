@@ -263,7 +263,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
     });
   }
   /*
-  *Fetch Dashboard API 
+  *Fetch Dashboard API
   */
   setComprehensiveDashboard() {
     this.isLoadComplete = false;
