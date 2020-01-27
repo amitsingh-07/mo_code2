@@ -268,8 +268,8 @@ export class InvestmentCommonService {
 
   getDefaultInvestmentCriterias() {
     return {
-      ONE_TIME_INVESTMENT_MINIMUM: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_initial_amount,
-      MONTHLY_INVESTMENT_MINIMUM: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_monthly_amount
+      oneTimeInvestmentMinimum: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_initial_amount,
+      monthlyInvestmentMinimum: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_monthly_amount
     };
   }
 
@@ -278,24 +278,14 @@ export class InvestmentCommonService {
       title: this.translate.instant('COMMON_LOADER.TITLE'),
       desc: this.translate.instant('COMMON_LOADER.DESC')
     });
-    return this.getInvestmentCriteriasForUserFromApi().map((response: any) => {
+    return this.getInvestmentCriteriasForUserFromApi().map((data: any) => {
       this.loaderService.hideLoader();
-      const defaultCriterias = this.getDefaultInvestmentCriterias();
-      return defaultCriterias;
+      return data.objectList;
     }).catch(
       (error) => {
         this.loaderService.hideLoader();
-        const data = {
-          objectList: [{
-            ONE_TIME_INVESTMENT_MINIMUM: 10,
-            MONTHLY_INVESTMENT_MINIMUM: 5
-          }],
-          responseMessage: {
-            responseCode: 6000,
-            responseDescription: 'Successful response'
-          }
-        };
-        return Observable.of(data.objectList[0]);
+        const defaultCriterias = this.getDefaultInvestmentCriterias();
+        return Observable.of(defaultCriterias);
       }
     );
   }

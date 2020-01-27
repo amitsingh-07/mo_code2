@@ -56,7 +56,7 @@ export class EditInvestmentModalComponent implements OnInit {
   validateInitialAmount(control: AbstractControl) {
     const value = parseInt(control.value, 10);
     if (value !== undefined && value !== null) {
-      if (value > 0 && value < this.investmentCriterias.ONE_TIME_INVESTMENT_MINIMUM) {
+      if (value > 0 && value < this.investmentCriterias.oneTimeInvestmentMinimum) {
         return { minInitialAmount: true };
       }
     }
@@ -66,7 +66,7 @@ export class EditInvestmentModalComponent implements OnInit {
   validateMonthlyAmount(control: AbstractControl) {
     const value = parseInt(control.value, 10);
     if (value !== undefined && value !== null) {
-      if (value > 0 && value < this.investmentCriterias.MONTHLY_INVESTMENT_MINIMUM) {
+      if (value > 0 && value < this.investmentCriterias.monthlyInvestmentMinimum) {
         return { minMonthlyAmount: true };
       }
     }

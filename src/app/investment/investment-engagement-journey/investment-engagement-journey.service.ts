@@ -102,33 +102,33 @@ export class InvestmentEngagementJourneyService {
       // tslint:disable-next-line:max-line-length
       if (
         Number(this.removeCommas(form.value.initialInvestment)) <
-        investmentCriterias.ONE_TIME_INVESTMENT_MINIMUM &&
+        investmentCriterias.oneTimeInvestmentMinimum &&
         Number(this.removeCommas(form.value.monthlyInvestment)) <
-        investmentCriterias.MONTHLY_INVESTMENT_MINIMUM
+        investmentCriterias.monthlyInvestmentMinimum
       ) {
         return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['one'];
       } else if (
         Number(this.removeCommas(form.value.monthlyInvestment)) <
-        investmentCriterias.MONTHLY_INVESTMENT_MINIMUM
+        investmentCriterias.monthlyInvestmentMinimum
       ) {
         return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['two'];
       } else if (
         Number(this.removeCommas(form.value.initialInvestment)) <
-        investmentCriterias.ONE_TIME_INVESTMENT_MINIMUM
+        investmentCriterias.oneTimeInvestmentMinimum
       ) {
         return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['three'];
       }
     } else if (form.value.firstChkBox) {
       if (
         Number(this.removeCommas(form.value.initialInvestment)) <
-        investmentCriterias.ONE_TIME_INVESTMENT_MINIMUM
+        investmentCriterias.oneTimeInvestmentMinimum
       ) {
         return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['three'];
       }
     } else if (form.value.secondChkBox) {
       if (
         Number(this.removeCommas(form.value.monthlyInvestment)) <
-        investmentCriterias.MONTHLY_INVESTMENT_MINIMUM
+        investmentCriterias.monthlyInvestmentMinimum
       ) {
         return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['two'];
       }
@@ -143,8 +143,8 @@ export class InvestmentEngagementJourneyService {
       return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['zero'];
       // tslint:disable-next-line:max-line-length
     } else if (
-      Number(this.removeCommas(form.value.initialInvestment)) < investmentCriterias.ONE_TIME_INVESTMENT_MINIMUM &&
-      Number(this.removeCommas(form.value.monthlyInvestment)) < investmentCriterias.MONTHLY_INVESTMENT_MINIMUM
+      Number(this.removeCommas(form.value.initialInvestment)) < investmentCriterias.oneTimeInvestmentMinimum &&
+      Number(this.removeCommas(form.value.monthlyInvestment)) < investmentCriterias.monthlyInvestmentMinimum
     ) {
       return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['more'];
       // tslint:disable-next-line:max-line-length

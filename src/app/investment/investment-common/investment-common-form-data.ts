@@ -24,6 +24,6 @@ export interface IAccountCreationActions {
 
 
 export interface IInvestmentCriterias {
-    ONE_TIME_INVESTMENT_MINIMUM: number;
-    MONTHLY_INVESTMENT_MINIMUM: number;
+    oneTimeInvestmentMinimum: number;
+    monthlyInvestmentMinimum: number;
 }

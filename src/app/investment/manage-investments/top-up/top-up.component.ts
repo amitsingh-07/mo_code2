@@ -229,9 +229,9 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
   setOnetimeMinAmount(data) {
     if (this.formValues.Investment === 'Monthly Investment') {
-      this.manageInvestmentsService.setInvestmentValue(data.MONTHLY_INVESTMENT_MINIMUM);
+      this.manageInvestmentsService.setInvestmentValue(data.monthlyInvestmentMinimum);
     } else {
-      this.manageInvestmentsService.setInvestmentValue(data.ONE_TIME_INVESTMENT_MINIMUM);
+      this.manageInvestmentsService.setInvestmentValue(data.oneTimeInvestmentMinimum);
     }
   }
 
@@ -253,8 +253,8 @@ export class TopUpComponent implements OnInit, OnDestroy {
         const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
         ref.componentInstance.errorTitle = error.errorTitle;
         ref.componentInstance.errorMessage = error.errorMessage
-        .replace('$ONE_TIME_INVESTMENT$', this.investmentCriterias.ONE_TIME_INVESTMENT_MINIMUM)
-        .replace('$MONTHLY_INVESTMENT$', this.investmentCriterias.MONTHLY_INVESTMENT_MINIMUM);
+        .replace('$ONE_TIME_INVESTMENT$', this.investmentCriterias.oneTimeInvestmentMinimum)
+        .replace('$MONTHLY_INVESTMENT$', this.investmentCriterias.monthlyInvestmentMinimum);
         // tslint:disable-next-line:triple-equals
       } else {
         this.saveAndProceed(form);
