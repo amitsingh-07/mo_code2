@@ -710,7 +710,8 @@
       "TITLE": "Review",
       "ABOUT": "Please review your details carefully before clicking confirm. Do note that after you have confirmed, you will not be able to modify any of your inputs until your report is ready.",
       "REVIEW_INPUT": "Review Inputs",
-      "CONFIRM": "Confirm"
+      "CONFIRM": "Confirm",
+	  "CONFIRM_WITH_PAY": "Confirm & Pay"
     }
   }
 }
