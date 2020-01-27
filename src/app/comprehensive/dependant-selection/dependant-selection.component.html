@@ -1,10 +1,17 @@
+<div class="comprehensive hidden-sm-md">
+    <!--Step indicator-->
+    <div class="step-indicator-container">
+      <app-step-indicator [count]="stepIndicatorCount" [activeStepIndex]="0"></app-step-indicator>
+    </div>
+    <!--Step indicator /-->
+</div>
 <!--Container fluid-->
 <div class="container-fluid max-width--1024 comprehensive">
   <!--Step indicator-->
-  <div class="step-indicator-container">
-    <app-step-indicator [count]="stepIndicatorCount" [activeStepIndex]="0"></app-step-indicator>
-  </div>
-  <!--Step indicator /-->
+  <div class="step-indicator-container hidden-lg">
+      <app-step-indicator [count]="stepIndicatorCount" [activeStepIndex]="0"></app-step-indicator>
+    </div>
+    <!--Step indicator /-->
   <!--Page sub-heading-->
   <div *ngIf="comprehensiveJourneyMode" class="comprehensive__page-sub-heading mt30">{{'CMP.DEPENDANT_SELECTION.DEPENDANTS'|translate}}</div>
   <!--Page sub-heading /-->
