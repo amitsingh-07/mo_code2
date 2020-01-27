@@ -1,7 +1,12 @@
-<div class="container-fluid max-width--1024 comprehensive">
+<div class="comprehensive hidden-sm-md">
   <div class="step-indicator-container">
     <app-step-indicator [count]="4" [activeStepIndex]="questionIndex-1" [mode]="1"></app-step-indicator>
   </div>
+</div>
+<div class="container-fluid max-width--1024 comprehensive">
+    <div class="step-indicator-container hidden-lg">
+        <app-step-indicator [count]="4" [activeStepIndex]="questionIndex-1" [mode]="1"></app-step-indicator>
+      </div>
   <div *ngIf="questionIndex === 1">
     <div class="comprehensive__page-sub-heading mt30">Grow your retirement savings! Tell us your risk willingness.</div>
     <div class="comprehensive__page-content">Investments can help to grow your savings beyond bank deposit rates. But
