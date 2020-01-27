@@ -202,7 +202,6 @@ export class ComprehensiveDashboardComponent implements OnInit {
     }
     this.comprehensivePlanning = 4;
     this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
-     
       if (summaryData && summaryData.objectList[0]) {
         //this.reportStatus = (summaryData.objectList[0].comprehensiveEnquiry.reportStatus);
         this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
