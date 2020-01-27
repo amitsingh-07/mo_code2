@@ -105,6 +105,10 @@ export class ComprehensiveComponent implements OnInit {
             }
             this.getComprehensiveSummaryDashboard.isValidatedPromoCode ? this.promoCodeValidated = true :
               this.promoCodeValidated = false;
+          } else {
+            setTimeout(() => {
+              this.loaderService.hideLoaderForced();
+            }, 500);
           }
         } else {
           if (action === COMPREHENSIVE_CONST.PROMO_CODE.GET) {
