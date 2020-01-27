@@ -104,7 +104,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
   }
 
   goToCurrentStep() {
-    if (this.currentStep === 0 && this.getComprehensiveSummary.comprehensiveEnquiry.isDobUpdated) {
+    if (this.currentStep === 0 && this.getComprehensiveSummaryDashboard.isDobUpdated) {
       this.goToEditProfile();
     } else if (this.currentStep >= 0 && this.currentStep < 4) {
       //this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep + 1)]);
