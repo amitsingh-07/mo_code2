@@ -143,7 +143,7 @@
         </div>
       </div>
     </div>
-    <div class="form-group-with-bg">
+    <div class="form-group-with-bg" *ngIf="comprehensiveJourneyMode">
       <!--Form Header-->
       <div class="form-group-with-bg--header">
         <div class="flex-row ">
@@ -157,7 +157,7 @@
         </div>
       </div>
       <!--Form Content-->
-      <div class="form-group-with-bg--content" *ngIf="comprehensiveJourneyMode">
+      <div class="form-group-with-bg--content" >
         <div class="flex-row">
           <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{'CMP.FORM_LABEL.AMOUNT'|translate}}<div
