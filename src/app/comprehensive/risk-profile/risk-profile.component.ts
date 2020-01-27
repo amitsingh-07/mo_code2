@@ -136,9 +136,15 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       );
       if (this.questionIndex < this.questionsList.length) {
         // NEXT QUESTION
-        this.router.navigate([
-          COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
-        ]);
+        const payload = this.investmentEngagementJourneyService.getPortfolioFormData();
+
+        this.comprehensiveService.setRiskAssessment(payload);
+        this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
+
+          this.router.navigate([
+            COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
+          ]);
+        });
       } else {
         // RISK PROFILE
         // CALL API
@@ -147,7 +153,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
         this.comprehensiveService.setRiskAssessment(payload);
         this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
 
-          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE]);
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REVIEW]);
         });
       }
     }
