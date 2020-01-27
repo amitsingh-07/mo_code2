@@ -143,6 +143,7 @@ export const COMPREHENSIVE_CONST = {
     },
     REPORT_STATUS: {
         NEW: 'new',
+        EDIT: 'edit',
         SUBMITTED: 'submitted',
         READY: 'ready'
     },

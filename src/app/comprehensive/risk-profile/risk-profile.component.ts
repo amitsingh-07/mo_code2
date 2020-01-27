@@ -52,6 +52,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
   }
 
   ngOnInit() {
+    this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     //this.navbarService.setNavbarDirectGuided(true);
@@ -62,13 +63,9 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
         }
       }
     );
-    this.subscription = this.navbarService
-    .subscribeBackPress()
-    .subscribe(event => {
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
       if (event && event !== '') {
-        const previousUrl = this.comprehensiveService.getPreviousUrl(
-          this.router.url
-        );
+        const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
         if (previousUrl !== null) {
           this.router.navigate([previousUrl]);
         } else {
@@ -116,7 +113,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
     // this.isChartAvailable = (this.currentQuestion.questionType === 'RISK_ASSESSMENT') ? true : false;
     this.isSpecialCase = this.currentQuestion.listOrder === 
     INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.risk_assessment.special_question_order ? true : false;
-    const selectedOption = this.investmentEngagementJourneyService.getSelectedOptionByIndex(
+    const selectedOption = this.comprehensiveService.getSelectedOptionByIndex(
       this.questionIndex
     );
     if (selectedOption) {
@@ -139,15 +136,24 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       );
       if (this.questionIndex < this.questionsList.length) {
         // NEXT QUESTION
-        this.router.navigate([
-          COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
-        ]);
+        const payload = this.investmentEngagementJourneyService.getPortfolioFormData();
+
+        this.comprehensiveService.setRiskAssessment(payload);
+        this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
+
+          this.router.navigate([
+            COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
+          ]);
+        });
       } else {
         // RISK PROFILE
         // CALL API
-        this.investmentEngagementJourneyService.saveRiskAssessment().subscribe((data) => {
-          console.log(data);
-          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE]);
+        const payload = this.investmentEngagementJourneyService.getPortfolioFormData();
+
+        this.comprehensiveService.setRiskAssessment(payload);
+        this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
+
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REVIEW]);
         });
       }
     }
