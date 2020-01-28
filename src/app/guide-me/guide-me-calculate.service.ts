@@ -7,6 +7,9 @@ import { GuideMeService } from './guide-me.service';
 import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
 import { ILifeProtectionNeedsData } from './life-protection/life-protection';
 
+const UNIVERSITY_FEES_PERCENTAGE = 4;
+const LIVING_EXPENSES_PERCENTAGE = 3;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -86,6 +89,18 @@ export class GuideMeCalculateService {
     return protectionSupportSum;
   }
 
+  getDependantExpense(amount: number, percent: any, aboutAge: number) {
+    let percentCal: any;
+    let computedVal: any;
+    let finalResult = 0;
+    if (!isNaN(amount) && !isNaN(percent) && !isNaN(aboutAge)) {
+      percentCal = percent / 100;
+      computedVal = Math.pow(1 + percentCal, aboutAge);
+      finalResult = Math.round(computedVal * amount);
+    }
+    return finalResult;
+  }
+
   // Education Support
   getEducationSupportSum(): number {
     let educationSupportSum = 0;
@@ -96,7 +111,7 @@ export class GuideMeCalculateService {
         const course = dependent.eduSupportCourse;
         const nationality = dependent.eduSupportNationality;
         const eduAmt = this.getEducationSupportAmt(country, course, nationality);
-        educationSupportSum += (eduAmt[0] + eduAmt[1]);
+        educationSupportSum += (this.getDependantExpense(eduAmt[0], UNIVERSITY_FEES_PERCENTAGE, dependent.age) + this.getDependantExpense(eduAmt[1], LIVING_EXPENSES_PERCENTAGE, dependent.age));
       }
     });
     return educationSupportSum;
