@@ -387,4 +387,12 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  getInvestmentCriteria(data) {
+    return this.http.post(
+      investmentApiConstants.endpoint.investment.featurePromotions, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

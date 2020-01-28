@@ -25,6 +25,7 @@ import {
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
+import { IInvestmentCriteria } from '../investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
 
@@ -45,6 +46,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   breakdownSelectionindex: number = null;
   isAllocationOpen = false;
   confirmPortfolioValue;
+  investmentCriteria: IInvestmentCriteria;
 
   constructor(
     public readonly translate: TranslateService,
@@ -76,6 +78,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.getPortfolioDetails();
+    this.getInvestmentCriteria();
   }
 
   getPortfolioDetails() {
@@ -179,6 +182,7 @@ export class ConfirmPortfolioComponent implements OnInit {
       oneTimeInvestment: this.portfolio.initialInvestment,
       monthlyInvestment: this.portfolio.monthlyInvestment
     };
+    ref.componentInstance.investmentCriteria = this.investmentCriteria;
     ref.componentInstance.modifiedInvestmentData.subscribe((emittedValue) => {
       // update form data
       ref.close();
@@ -235,5 +239,11 @@ export class ConfirmPortfolioComponent implements OnInit {
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
+  }
+
+  getInvestmentCriteria() {
+    this.investmentCommonService.getInvestmentCriteria().subscribe((data) => {
+      this.investmentCriteria = data;
+    });
   }
 }
