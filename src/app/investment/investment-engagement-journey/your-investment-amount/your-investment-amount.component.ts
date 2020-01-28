@@ -14,6 +14,8 @@ import {
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { IInvestmentCriteria } from '../../investment-common/investment-common-form-data';
+import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../investment-engagement-journey-routes.constants';
@@ -38,19 +40,19 @@ export class YourInvestmentAmountComponent implements OnInit {
   translator: any;
   oneTimeInvestmentChkBoxVal: boolean;
   monthlyInvestmentChkBoxVal: boolean;
+  investmentCriteria: IInvestmentCriteria;
 
   constructor(
     private router: Router,
     private modal: NgbModal,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    private formBuilder: FormBuilder,
     public navbarService: NavbarService,
     public footerService: FooterService,
     public authService: AuthenticationService,
     public readonly translate: TranslateService,
     private investmentAccountService: InvestmentAccountService,
     private cd: ChangeDetectorRef,
-    private signUpService: SignUpService,
+    private investmentCommonService: InvestmentCommonService
   ) {
     this.translate.use('en');
     const self = this;
@@ -90,7 +92,14 @@ export class YourInvestmentAmountComponent implements OnInit {
     if (typeof this.monthlyInvestmentChkBoxVal === 'undefined') {
       this.monthlyInvestmentChkBoxVal = true;
     }
+    this.getInvestmentCriteria();
     this.buildInvestAmountForm();
+  }
+
+  getInvestmentCriteria() {
+    this.investmentCommonService.getInvestmentCriteria().subscribe((data) => {
+      this.investmentCriteria = data;
+    });
   }
 
   buildInvestAmountForm() {
@@ -143,12 +152,14 @@ export class YourInvestmentAmountComponent implements OnInit {
         form.get(key).markAsDirty();
       });
     }
-    const error = this.investmentEngagementJourneyService.investmentAmountValidation(form);
+    const error = this.investmentEngagementJourneyService.investmentAmountValidation(form, this.investmentCriteria);
     if (error) {
       // tslint:disable-next-line:no-commented-code
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
       ref.componentInstance.errorTitle = error.errorTitle;
-      ref.componentInstance.errorMessageHTML = error.errorMessage;
+      ref.componentInstance.errorMessageHTML = error.errorMessage
+        .replace('$ONE_TIME_INVESTMENT$', this.investmentCriteria.oneTimeInvestmentMinimum)
+        .replace('$MONTHLY_INVESTMENT$', this.investmentCriteria.monthlyInvestmentMinimum);
       // tslint:disable-next-line:triple-equals
     } else {
       this.investmentEngagementJourneyService.setYourInvestmentAmount(form.value);

@@ -8,7 +8,7 @@ export class InvestmentEngagementJourneyFormErrors {
       more: {
         errorTitle: 'Invalid Amount',
         errorMessage:
-          'Either One-Time Investment has to be more than $100 or Monthly Investment has to be more than $50'
+          'Either One-Time Investment has to be more than $$ONE_TIME_INVESTMENT$ or Monthly Investment has to be more than $$MONTHLY_INVESTMENT$'
       },
       moreasset: {
         errorTitle: 'Oops! Is this correct?',
@@ -32,17 +32,17 @@ export class InvestmentEngagementJourneyFormErrors {
       one: {
         errorTitle: 'Oops! Review Investment<br>Amount',
         errorMessage:
-          'We require a one-time investment of at least $100 or a monthly investment of at least $50.'
+          'We require a one-time investment of at least $$ONE_TIME_INVESTMENT$ or a monthly investment of at least $$MONTHLY_INVESTMENT$.'
       },
       two: {
         errorTitle: 'Oops! Review Investment<br>Amount',
         errorMessage:
-          'We require a monthly investment of at least $50.'
+          'We require a monthly investment of at least $$MONTHLY_INVESTMENT$.'
       },
       three: {
         errorTitle: 'Oops! Review Investment<br>Amount',
         errorMessage:
-          'We require a one-time investment of at least $100.'
+          'We require a one-time investment of at least $$ONE_TIME_INVESTMENT$.'
       },
       four: {
         errorTitle: 'Invalid Amount',
