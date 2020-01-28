@@ -16,7 +16,7 @@ export interface IComprehensiveDetails {
     comprehensiveRetirementPlanning: IRetirementPlan;
     comprehensiveViewMode?: boolean;
     comprehensiveJourneyMode: boolean;
-    comprehensiveRiskProfile?: IRiskProfile;
+    riskAssessmentAnswer?: IRiskProfile;
 }
 export interface IComprehensiveEnquiry {
     customerId: number;

@@ -73,15 +73,11 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
         }
       }
     });
-    this.riskFormValues = this.investmentEngagementJourneyService.getPortfolioFormData();
     const self = this;
     this.route.params.subscribe((params) => {
       self.questionIndex = +params['id'];
       this.riskAssessmentForm = new FormGroup({
-        questSelOption: new FormControl(
-          this.riskFormValues.questSelectedOption,
-          Validators.required
-        )
+        questSelOption: new FormControl('',  Validators.required)
       });
       if (!self.questionsList.length) {
         self.getQuestions();
