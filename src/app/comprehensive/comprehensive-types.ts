@@ -16,7 +16,7 @@ export interface IComprehensiveDetails {
     comprehensiveRetirementPlanning: IRetirementPlan;
     comprehensiveViewMode?: boolean;
     comprehensiveJourneyMode: boolean;
-    riskAssessmentAnswer?: IRiskProfile;
+    riskAssessmentAnswer?: IRiskAssesmentAnswers;
 }
 export interface IComprehensiveEnquiry {
     customerId: number;
@@ -237,7 +237,11 @@ export interface ILumpSumBenefitSet {
     maturityAmount: number;
     maturityYear: number;
 }
+export interface IRiskAssesmentAnswers{
+ enquiryId:number;
+ answers: IRiskProfile;
 
+}
 export interface IRiskProfile {
 riskAssessQuest1: number;
 riskAssessQuest2: number;

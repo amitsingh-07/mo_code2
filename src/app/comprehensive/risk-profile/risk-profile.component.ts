@@ -38,11 +38,11 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
     public navbarService: NavbarService,
     public readonly translate: TranslateService,
     private comprehensiveApiService: ComprehensiveApiService,
-    private comprehensiveService:ComprehensiveService,
+    private comprehensiveService: ComprehensiveService,
     private progressService: ProgressTrackerService,
     private route: ActivatedRoute,
     private router: Router,
-    private investmentEngagementJourneyService:InvestmentEngagementJourneyService) {
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('Your Risk Profile');
@@ -132,7 +132,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       );
       if (this.questionIndex < this.questionsList.length) {
         // NEXT QUESTION
-        const payload = this.investmentEngagementJourneyService.getPortfolioFormData();
+        const payload = this.comprehensiveService.getComprehensiveSummary().riskAssessmentAnswer.answers;
 
         this.comprehensiveService.setRiskAssessment(payload);
         this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
@@ -144,7 +144,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       } else {
         // RISK PROFILE
         // CALL API
-        const payload = this.investmentEngagementJourneyService.getPortfolioFormData();
+        const payload = this.comprehensiveService.getComprehensiveSummary().riskAssessmentAnswer.answers;
 
         this.comprehensiveService.setRiskAssessment(payload);
         this.comprehensiveService.saveRiskAssessment().subscribe((data) => {

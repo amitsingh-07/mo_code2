@@ -628,11 +628,11 @@ export class ComprehensiveService {
   }
   getSelectedOptionByIndex(index) {
     if(this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer) {
-      return this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer['riskAssessQuest' + index];
+      return this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers['riskAssessQuest' + index];
     }
   }
   setRiskAssessment(data) {
-    this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer = data;
+    this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers = data;
     this.commit();
   }
   saveRiskAssessment() {
@@ -640,7 +640,7 @@ export class ComprehensiveService {
     return this.comprehensiveApiService.saveRiskAssessment(data);
   }
   constructRiskAssessmentSaveRequest() {
-    const formData =  this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer;
+    const formData =  this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers;
     const selAnswers = [
       {
         questionOptionId: formData.riskAssessQuest1
