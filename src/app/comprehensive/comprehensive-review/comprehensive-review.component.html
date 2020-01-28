@@ -4,7 +4,7 @@
 
   </div>
   <div class="text-center about mb30">
-    {{'CMP.REVIEW.ABOUT' | translate }}
+    {{ isPaymentEnabled ? ('CMP.REVIEW.ABOUT_WITH_PAY' | translate) : ('CMP.REVIEW.ABOUT' | translate) }}
   </div>
   <div class="footer-cta">
 
