@@ -299,9 +299,10 @@ h6 {
       flex-basis: auto;
 
       &.show {
-        height:100vh;
+        height: 100%;
         overflow-y: scroll;
         padding-bottom: 45px;
+        -webkit-overflow-scrolling: touch;
       }
     }
 
