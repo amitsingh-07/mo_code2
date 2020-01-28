@@ -1,17 +1,17 @@
-import { InvestmentEngagementJourneyService } from './../../investment/investment-engagement-journey/investment-engagement-journey.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { InvestmentEngagementJourneyService } from './../../investment/investment-engagement-journey/investment-engagement-journey.service';
 
-import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { NavbarService } from '../../shared/navbar/navbar.service';
-import { ComprehensiveService } from './../comprehensive.service';
-import { ComprehensiveApiService } from './../comprehensive-api.service';
-import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
-import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment/investment-engagement-journey/investment-engagement-journey.constants';
 import { Subscription } from 'rxjs';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment/investment-engagement-journey/investment-engagement-journey.constants';
+import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { ComprehensiveApiService } from './../comprehensive-api.service';
+import { ComprehensiveService } from './../comprehensive.service';
 
 @Component({
   selector: 'app-risk-profile',
@@ -57,7 +57,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
     this.navbarService.setNavbarMode(6);
     //this.navbarService.setNavbarDirectGuided(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe(
-      pageId => {
+      (pageId) => {
         if (this.pageId === pageId) {
           this.progressService.show();
         }
@@ -73,6 +73,22 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
         }
       }
     });
+    const riskProfileAnswers =  this.comprehensiveService.getComprehensiveSummary().riskAssessmentAnswer.answers;
+    const selAnswers = [
+      {
+        riskAssessQuest1: riskProfileAnswers[0]
+      },
+      {
+        riskAssessQuest2:  riskProfileAnswers[1]
+      },
+      {
+        riskAssessQuest3:  riskProfileAnswers[2]
+      },
+      {
+        riskAssessQuest4:  riskProfileAnswers[3]
+      }
+    ];
+   this.comprehensiveService.setRiskAssessment(selAnswers);
     const self = this;
     this.route.params.subscribe((params) => {
       self.questionIndex = +params['id'];
@@ -107,7 +123,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
 
     // tslint:disable-next-line
     // this.isChartAvailable = (this.currentQuestion.questionType === 'RISK_ASSESSMENT') ? true : false;
-    this.isSpecialCase = this.currentQuestion.listOrder === 
+    this.isSpecialCase = this.currentQuestion.listOrder ===
     INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.risk_assessment.special_question_order ? true : false;
     const selectedOption = this.comprehensiveService.getSelectedOptionByIndex(
       this.questionIndex
@@ -132,7 +148,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       );
       if (this.questionIndex < this.questionsList.length) {
         // NEXT QUESTION
-        const payload = this.comprehensiveService.getComprehensiveSummary().riskAssessmentAnswer.answers;
+        const payload = this.investmentEngagementJourneyService.getPortfolioFormData();
 
         this.comprehensiveService.setRiskAssessment(payload);
         this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
@@ -144,7 +160,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       } else {
         // RISK PROFILE
         // CALL API
-        const payload = this.comprehensiveService.getComprehensiveSummary().riskAssessmentAnswer.answers;
+        const payload = this.investmentEngagementJourneyService.getPortfolioFormData();
 
         this.comprehensiveService.setRiskAssessment(payload);
         this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
