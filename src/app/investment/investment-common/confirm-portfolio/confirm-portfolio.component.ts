@@ -9,23 +9,23 @@ import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import {
-    EditInvestmentModalComponent
+  EditInvestmentModalComponent
 } from '../../../shared/modal/edit-investment-modal/edit-investment-modal.component';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { FormatCurrencyPipe } from '../../../shared/Pipes/format-currency.pipe';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
 import {
-    InvestmentEngagementJourneyService
+  InvestmentEngagementJourneyService
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
-import { IInvestmentCriterias } from '../investment-common-form-data';
+import { IInvestmentCriteria } from '../investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
 
@@ -46,7 +46,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   breakdownSelectionindex: number = null;
   isAllocationOpen = false;
   confirmPortfolioValue;
-  investmentCriterias: IInvestmentCriterias;
+  investmentCriteria: IInvestmentCriteria;
 
   constructor(
     public readonly translate: TranslateService,
@@ -78,7 +78,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.getPortfolioDetails();
-    this.getInvestmentCriteriasForUser();
+    this.getInvestmentCriteria();
   }
 
   getPortfolioDetails() {
@@ -182,7 +182,7 @@ export class ConfirmPortfolioComponent implements OnInit {
       oneTimeInvestment: this.portfolio.initialInvestment,
       monthlyInvestment: this.portfolio.monthlyInvestment
     };
-    ref.componentInstance.investmentCriterias = this.investmentCriterias;
+    ref.componentInstance.investmentCriteria = this.investmentCriteria;
     ref.componentInstance.modifiedInvestmentData.subscribe((emittedValue) => {
       // update form data
       ref.close();
@@ -241,10 +241,9 @@ export class ConfirmPortfolioComponent implements OnInit {
       });
   }
 
-  getInvestmentCriteriasForUser() {
-    this.investmentCriterias = this.investmentCommonService.getDefaultInvestmentCriterias(); /* Fallback for API failure */
-    this.investmentCommonService.getInvestmentCriteriasForUser().subscribe((data) => {
-      this.investmentCriterias = data;
+  getInvestmentCriteria() {
+    this.investmentCommonService.getInvestmentCriteria().subscribe((data) => {
+      this.investmentCriteria = data;
     });
   }
 }

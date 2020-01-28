@@ -97,38 +97,38 @@ export class InvestmentEngagementJourneyService {
   }
 
   // tslint:disable-next-line:cognitive-complexity
-  investmentAmountValidation(form, investmentCriterias) {
+  investmentAmountValidation(form, investmentCriteria) {
     if (form.value.firstChkBox && form.value.secondChkBox) {
       // tslint:disable-next-line:max-line-length
       if (
         Number(this.removeCommas(form.value.initialInvestment)) <
-        investmentCriterias.oneTimeInvestmentMinimum &&
+        investmentCriteria.oneTimeInvestmentMinimum &&
         Number(this.removeCommas(form.value.monthlyInvestment)) <
-        investmentCriterias.monthlyInvestmentMinimum
+        investmentCriteria.monthlyInvestmentMinimum
       ) {
         return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['one'];
       } else if (
         Number(this.removeCommas(form.value.monthlyInvestment)) <
-        investmentCriterias.monthlyInvestmentMinimum
+        investmentCriteria.monthlyInvestmentMinimum
       ) {
         return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['two'];
       } else if (
         Number(this.removeCommas(form.value.initialInvestment)) <
-        investmentCriterias.oneTimeInvestmentMinimum
+        investmentCriteria.oneTimeInvestmentMinimum
       ) {
         return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['three'];
       }
     } else if (form.value.firstChkBox) {
       if (
         Number(this.removeCommas(form.value.initialInvestment)) <
-        investmentCriterias.oneTimeInvestmentMinimum
+        investmentCriteria.oneTimeInvestmentMinimum
       ) {
         return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['three'];
       }
     } else if (form.value.secondChkBox) {
       if (
         Number(this.removeCommas(form.value.monthlyInvestment)) <
-        investmentCriterias.monthlyInvestmentMinimum
+        investmentCriteria.monthlyInvestmentMinimum
       ) {
         return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['two'];
       }
@@ -143,8 +143,8 @@ export class InvestmentEngagementJourneyService {
       return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['zero'];
       // tslint:disable-next-line:max-line-length
     } else if (
-      Number(this.removeCommas(form.value.initialInvestment)) < investmentCriterias.oneTimeInvestmentMinimum &&
-      Number(this.removeCommas(form.value.monthlyInvestment)) < investmentCriterias.monthlyInvestmentMinimum
+      Number(this.removeCommas(form.value.initialInvestment)) < investmentCriteria.oneTimeInvestmentMinimum &&
+      Number(this.removeCommas(form.value.monthlyInvestment)) < investmentCriteria.monthlyInvestmentMinimum
     ) {
       return this.investmentEngagementJourneyFormErrors.formFieldErrors['financialValidations']['more'];
       // tslint:disable-next-line:max-line-length

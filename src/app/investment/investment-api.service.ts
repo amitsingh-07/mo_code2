@@ -388,7 +388,7 @@ export class InvestmentApiService {
       );
   }
 
-  getInvestmentCriteriasForUser(data) {
+  getInvestmentCriteria(data) {
     return this.http.post(
       investmentApiConstants.endpoint.investment.featurePromotions, data)
       .pipe(

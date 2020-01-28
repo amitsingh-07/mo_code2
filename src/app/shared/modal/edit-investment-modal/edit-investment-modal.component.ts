@@ -1,18 +1,18 @@
 import {
-    Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation
+  Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation
 } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ConfigService } from '../../../config/config.service';
 import {
-    IInvestmentCriterias
+  IInvestmentCriteria
 } from '../../../investment/investment-common/investment-common-form-data';
 import {
-    InvestmentCommonService
+  InvestmentCommonService
 } from '../../../investment/investment-common/investment-common.service';
 import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
+  INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
 } from '../../../investment/investment-engagement-journey/investment-engagement-journey.constants';
 import { Formatter } from '../../../shared/utils/formatter.util';
 
@@ -25,7 +25,7 @@ import { Formatter } from '../../../shared/utils/formatter.util';
 export class EditInvestmentModalComponent implements OnInit {
 
   @Input() investmentData: any;
-  @Input() investmentCriterias: IInvestmentCriterias;
+  @Input() investmentCriteria: IInvestmentCriteria;
   @Output() modifiedInvestmentData: EventEmitter<any> = new EventEmitter();
   editInvestmentForm: FormGroup;
 
@@ -56,7 +56,7 @@ export class EditInvestmentModalComponent implements OnInit {
   validateInitialAmount(control: AbstractControl) {
     const value = parseInt(control.value, 10);
     if (value !== undefined && value !== null) {
-      if (value > 0 && value < this.investmentCriterias.oneTimeInvestmentMinimum) {
+      if (value > 0 && value < this.investmentCriteria.oneTimeInvestmentMinimum) {
         return { minInitialAmount: true };
       }
     }
@@ -66,7 +66,7 @@ export class EditInvestmentModalComponent implements OnInit {
   validateMonthlyAmount(control: AbstractControl) {
     const value = parseInt(control.value, 10);
     if (value !== undefined && value !== null) {
-      if (value > 0 && value < this.investmentCriterias.monthlyInvestmentMinimum) {
+      if (value > 0 && value < this.investmentCriteria.monthlyInvestmentMinimum) {
         return { minMonthlyAmount: true };
       }
     }
@@ -76,9 +76,9 @@ export class EditInvestmentModalComponent implements OnInit {
   validateAtleastOne(control: AbstractControl) {
     if (control.value.oneTimeInvestment > 0 ||
       control.value.monthlyInvestment > 0) {
-        return null;
+      return null;
     } else {
-        return { atleastOne: true };
+      return { atleastOne: true };
     }
   }
 

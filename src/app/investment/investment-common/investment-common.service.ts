@@ -19,7 +19,7 @@ import {
   InvestmentEngagementJourneyService
 } from '../investment-engagement-journey/investment-engagement-journey.service';
 import {
-  IAccountCreationActions, IInvestmentCriterias, InvestmentCommonFormData
+  IAccountCreationActions, IInvestmentCriteria, InvestmentCommonFormData
 } from './investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from './investment-common-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from './investment-common.constants';
@@ -252,12 +252,12 @@ export class InvestmentCommonService {
     return this.investmentApiService.saveSrsAccountDetails(params, customerPortfolioId);
   }
 
-  getInvestmentCriteriasForUserFromApi() {
-    const params = this.constructParamsForInvestmentCriterias();
-    return this.investmentApiService.getInvestmentCriteriasForUser(params);
+  getInvestmentCriteriaFromApi() {
+    const params = this.constructParamsForInvestmentCriteria();
+    return this.investmentApiService.getInvestmentCriteria(params);
   }
 
-  constructParamsForInvestmentCriterias() {
+  constructParamsForInvestmentCriteria() {
     return {
       features: [
         'ONE_TIME_INVESTMENT_MINIMUM',
@@ -266,26 +266,19 @@ export class InvestmentCommonService {
     };
   }
 
-  getDefaultInvestmentCriterias() {
-    return {
-      oneTimeInvestmentMinimum: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_initial_amount,
-      monthlyInvestmentMinimum: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.min_monthly_amount
-    };
-  }
-
-  getInvestmentCriteriasForUser(): Observable<IInvestmentCriterias> {
+  getInvestmentCriteria(): Observable<IInvestmentCriteria> {
     this.loaderService.showLoader({
       title: this.translate.instant('COMMON_LOADER.TITLE'),
       desc: this.translate.instant('COMMON_LOADER.DESC')
     });
-    return this.getInvestmentCriteriasForUserFromApi().map((data: any) => {
+    return this.getInvestmentCriteriaFromApi().map((data: any) => {
       this.loaderService.hideLoader();
       return data.objectList;
     }).catch(
       (error) => {
         this.loaderService.hideLoader();
-        const defaultCriterias = this.getDefaultInvestmentCriterias();
-        return Observable.of(defaultCriterias);
+        // getDefault placeholder
+        return Observable.of(null);
       }
     );
   }

@@ -23,7 +23,7 @@ export interface IAccountCreationActions {
 }
 
 
-export interface IInvestmentCriterias {
+export interface IInvestmentCriteria {
     oneTimeInvestmentMinimum: number;
     monthlyInvestmentMinimum: number;
 }

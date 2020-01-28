@@ -9,18 +9,18 @@ import { AuthenticationService } from '../../../shared/http/auth/authentication.
 import { IPageComponent } from '../../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { IInvestmentCriterias } from '../../investment-common/investment-common-form-data';
+import { IInvestmentCriteria } from '../../investment-common/investment-common-form-data';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../investment-engagement-journey-routes.constants';
 import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
+  INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
 } from '../investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 
@@ -40,7 +40,7 @@ export class YourInvestmentAmountComponent implements OnInit {
   translator: any;
   oneTimeInvestmentChkBoxVal: boolean;
   monthlyInvestmentChkBoxVal: boolean;
-  investmentCriterias: IInvestmentCriterias;
+  investmentCriteria: IInvestmentCriteria;
 
   constructor(
     private router: Router,
@@ -92,15 +92,13 @@ export class YourInvestmentAmountComponent implements OnInit {
     if (typeof this.monthlyInvestmentChkBoxVal === 'undefined') {
       this.monthlyInvestmentChkBoxVal = true;
     }
-    this.getInvestmentCriteriasForUser();
+    this.getInvestmentCriteria();
     this.buildInvestAmountForm();
   }
 
-  getInvestmentCriteriasForUser() {
-    /* Fallback for API failure */
-    this.investmentCriterias = this.investmentCommonService.getDefaultInvestmentCriterias();
-    this.investmentCommonService.getInvestmentCriteriasForUser().subscribe((data) => {
-      this.investmentCriterias = data;
+  getInvestmentCriteria() {
+    this.investmentCommonService.getInvestmentCriteria().subscribe((data) => {
+      this.investmentCriteria = data;
     });
   }
 
@@ -154,14 +152,14 @@ export class YourInvestmentAmountComponent implements OnInit {
         form.get(key).markAsDirty();
       });
     }
-    const error = this.investmentEngagementJourneyService.investmentAmountValidation(form, this.investmentCriterias);
+    const error = this.investmentEngagementJourneyService.investmentAmountValidation(form, this.investmentCriteria);
     if (error) {
       // tslint:disable-next-line:no-commented-code
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
       ref.componentInstance.errorTitle = error.errorTitle;
       ref.componentInstance.errorMessageHTML = error.errorMessage
-        .replace('$ONE_TIME_INVESTMENT$', this.investmentCriterias.oneTimeInvestmentMinimum)
-        .replace('$MONTHLY_INVESTMENT$', this.investmentCriterias.monthlyInvestmentMinimum);
+        .replace('$ONE_TIME_INVESTMENT$', this.investmentCriteria.oneTimeInvestmentMinimum)
+        .replace('$MONTHLY_INVESTMENT$', this.investmentCriteria.monthlyInvestmentMinimum);
       // tslint:disable-next-line:triple-equals
     } else {
       this.investmentEngagementJourneyService.setYourInvestmentAmount(form.value);
