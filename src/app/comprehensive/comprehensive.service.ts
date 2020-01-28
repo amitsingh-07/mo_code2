@@ -84,7 +84,7 @@ export class ComprehensiveService {
     //console.log(this.comprehensiveLiteEnabled);
     //console.log(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
     /* Robo3 FULL or LITE Config*/
-    if (COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED && versionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE) {
+    if (this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE) && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED && versionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE) {
       sessionStorage.setItem(
         appConstants.SESSION_KEY.COMPREHENSIVE_VERSION,
         COMPREHENSIVE_CONST.VERSION_TYPE.LITE
@@ -127,7 +127,7 @@ export class ComprehensiveService {
   }
   getComprehensiveVersion() {
     // tslint:disable-next-line: prefer-immediate-return
-    const comprehensiveVersionType = !(sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION)
+    const comprehensiveVersionType = !(this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE) && sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION)
       === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED);
     return comprehensiveVersionType;
   }
@@ -865,7 +865,7 @@ export class ComprehensiveService {
    * @memberof ComprehensiveService
    */
   // tslint:disable-next-line:cognitive-complexity
-  getAccessibleUrl(url: string): string {
+  getAccessibleUrl(url: string): string { 
     if (!this.getComprehensiveVersion()) {
       const urlLists = this.getComprehensiveUrlList(COMPREHENSIVE_LITE_ROUTER_CONFIG);
       return this.getAccessibleLiteJourney(urlLists, url);
@@ -876,7 +876,7 @@ export class ComprehensiveService {
   }
   // Return Access Url for Full Journey
   getAccessibleFullJourney(urlList: any, url: any) {
-  
+    
     this.generateProgressTrackerData();
 
     const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, url));
