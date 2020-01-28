@@ -73,7 +73,9 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
         }
       }
     });
+    
     const riskProfileAnswers =  this.comprehensiveService.getComprehensiveSummary().riskAssessmentAnswer.answers;
+  if(this.comprehensiveService.getComprehensiveSummary().riskAssessmentAnswer && riskProfileAnswers){
     const selAnswers = [
       {
         riskAssessQuest1: riskProfileAnswers[0]
@@ -88,7 +90,9 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
         riskAssessQuest4:  riskProfileAnswers[3]
       }
     ];
-   this.comprehensiveService.setRiskAssessment(selAnswers);
+    this.comprehensiveService.setRiskAssessment(selAnswers);
+  }
+   
     const self = this;
     this.route.params.subscribe((params) => {
       self.questionIndex = +params['id'];
