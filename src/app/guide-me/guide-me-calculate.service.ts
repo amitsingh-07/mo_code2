@@ -34,41 +34,41 @@ export class GuideMeCalculateService {
 
     if (country && course && nationality) {
       if (country === singapore && course === nonmedicine && nationality === singaporean) {
-        educationSum[0] = 49600;
+        educationSum[0] = 44000;
         educationSum[1] = 48000;
       } else if (country === singapore && course === nonmedicine && nationality === singaporePR) {
-        educationSum[0] = 69400;
+        educationSum[0] = 64000;
         educationSum[1] = 48000;
       } else if (country === singapore && course === nonmedicine && nationality === foreigner) {
-        educationSum[0] = 106200;
+        educationSum[0] = 96000;
         educationSum[1] = 48000;
       } else if (country === australia && course === nonmedicine) {
-        educationSum[0] = 168000;
-        educationSum[1] = 120900;
+        educationSum[0] = 163600;
+        educationSum[1] = 116800;
       } else if (country === uk && course === nonmedicine) {
-        educationSum[0] = 201600;
-        educationSum[1] = 81200;
+        educationSum[0] = 210800;
+        educationSum[1] = 92000;
       } else if (country === usa && course === nonmedicine) {
-        educationSum[0] = 283000;
-        educationSum[1] = 131600;
+        educationSum[0] = 252800;
+        educationSum[1] = 96400;
       } else if (country === singapore && course === medicine && nationality === singaporean) {
-        educationSum[0] = 157500;
+        educationSum[0] = 160000;
         educationSum[1] = 60000;
       } else if (country === singapore && course === medicine && nationality === singaporePR) {
-        educationSum[0] = 220600;
+        educationSum[0] = 220000;
         educationSum[1] = 60000;
       } else if (country === singapore && course === medicine && nationality === foreigner) {
-        educationSum[0] = 277100;
+        educationSum[0] = 335000;
         educationSum[1] = 60000;
       } else if (country === australia && course === medicine) {
-        educationSum[0] = 490600;
-        educationSum[1] = 241700;
+        educationSum[0] = 489600;
+        educationSum[1] = 175200;
       } else if (country === uk && course === medicine) {
-        educationSum[0] = 469000;
-        educationSum[1] = 132100;
+        educationSum[0] = 482400;
+        educationSum[1] = 138000;
       } else if (country === usa && course === medicine) {
-        educationSum[0] = 614600;
-        educationSum[1] = 263100;
+        educationSum[0] = 676800;
+        educationSum[1] = 192800;
       }
     }
     return educationSum;
