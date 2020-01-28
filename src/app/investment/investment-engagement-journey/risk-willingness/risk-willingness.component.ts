@@ -58,13 +58,12 @@ export class RiskWillingnessComponent implements IPageComponent, OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.riskFormValues = this.investmentEngagementJourneyService.getPortfolioFormData();
     const self = this;
     this.route.params.subscribe((params) => {
       self.questionIndex = +params['id'];
       this.riskAssessmentForm = new FormGroup({
         questSelOption: new FormControl(
-          this.riskFormValues.questSelectedOption,
+          '',
           Validators.required
         )
       });

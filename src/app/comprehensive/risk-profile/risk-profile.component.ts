@@ -1,17 +1,17 @@
-import { InvestmentEngagementJourneyService } from './../../investment/investment-engagement-journey/investment-engagement-journey.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { InvestmentEngagementJourneyService } from './../../investment/investment-engagement-journey/investment-engagement-journey.service';
 
-import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { NavbarService } from '../../shared/navbar/navbar.service';
-import { ComprehensiveService } from './../comprehensive.service';
-import { ComprehensiveApiService } from './../comprehensive-api.service';
-import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
-import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment/investment-engagement-journey/investment-engagement-journey.constants';
 import { Subscription } from 'rxjs';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment/investment-engagement-journey/investment-engagement-journey.constants';
+import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { ComprehensiveApiService } from './../comprehensive-api.service';
+import { ComprehensiveService } from './../comprehensive.service';
 
 @Component({
   selector: 'app-risk-profile',
@@ -38,11 +38,11 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
     public navbarService: NavbarService,
     public readonly translate: TranslateService,
     private comprehensiveApiService: ComprehensiveApiService,
-    private comprehensiveService:ComprehensiveService,
+    private comprehensiveService: ComprehensiveService,
     private progressService: ProgressTrackerService,
     private route: ActivatedRoute,
     private router: Router,
-    private investmentEngagementJourneyService:InvestmentEngagementJourneyService) {
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('Your Risk Profile');
@@ -57,7 +57,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
     this.navbarService.setNavbarMode(6);
     //this.navbarService.setNavbarDirectGuided(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe(
-      pageId => {
+      (pageId) => {
         if (this.pageId === pageId) {
           this.progressService.show();
         }
@@ -73,15 +73,31 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
         }
       }
     });
-    this.riskFormValues = this.investmentEngagementJourneyService.getPortfolioFormData();
+    
+    const riskProfileAnswers =  this.comprehensiveService.getComprehensiveSummary().riskAssessmentAnswer.answers;
+  if(this.comprehensiveService.getComprehensiveSummary().riskAssessmentAnswer && riskProfileAnswers){
+    const selAnswers = [
+      {
+        riskAssessQuest1: riskProfileAnswers[0]
+      },
+      {
+        riskAssessQuest2:  riskProfileAnswers[1]
+      },
+      {
+        riskAssessQuest3:  riskProfileAnswers[2]
+      },
+      {
+        riskAssessQuest4:  riskProfileAnswers[3]
+      }
+    ];
+    this.comprehensiveService.setRiskAssessment(selAnswers);
+  }
+   
     const self = this;
     this.route.params.subscribe((params) => {
       self.questionIndex = +params['id'];
       this.riskAssessmentForm = new FormGroup({
-        questSelOption: new FormControl(
-          this.riskFormValues.questSelectedOption,
-          Validators.required
-        )
+        questSelOption: new FormControl('',  Validators.required)
       });
       if (!self.questionsList.length) {
         self.getQuestions();
@@ -111,7 +127,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
 
     // tslint:disable-next-line
     // this.isChartAvailable = (this.currentQuestion.questionType === 'RISK_ASSESSMENT') ? true : false;
-    this.isSpecialCase = this.currentQuestion.listOrder === 
+    this.isSpecialCase = this.currentQuestion.listOrder ===
     INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.risk_assessment.special_question_order ? true : false;
     const selectedOption = this.comprehensiveService.getSelectedOptionByIndex(
       this.questionIndex

@@ -15,7 +15,7 @@
       <div class="col-lg-6 col-md-6 padding-none">
         <!-- HOLIDAY AND OTHER IMPORTANT NOTE -->
         <app-notes category="topup" [noteInSession]="formValues?.investmentNote"></app-notes>
-        <form id="myFinancialsForm" name="myFinancialsForm" [formGroup]="topForm">
+        <form id="myFinancialsForm" name="myFinancialsForm" [formGroup]="topForm" *ngIf="investmentCriteria">
           <div class="flex-row">
             <div class="col-lg-12 col-md-12 pl0 pr0">
               <div class="form-group-with-bg">
@@ -68,14 +68,29 @@
                 </div>
                 <div class="form-group-with-bg--content">
                   <!-- radio button -->
-                  <div class="topup-radio-button hidden mb10"
-                    *ngFor="let investmenttype of investmentTypeList; let i = index">
-                    <input id="tupup_radio_button_{{i+1}}" (change)="selectedInvestment(investmenttype)"
-                      value="{{investmenttype.name}}" formControlName="Investment" name="Investment" type="radio"
-                      class="field radio" tabindex="{{i+1}}" />
-                    <label for="tupup_radio_button_{{i+1}}">
-                      <div id="topup_investmenttype_name" class="input-label-white mb10">{{investmenttype.name}}</div>
-                      <div id="topup_investmenttype_value" class="input-label-normal">Min. ${{investmenttype.value}}
+                  <div class="topup-radio-button hidden mb10">
+                    <input id="tupup_radio_button_1"
+                      (change)="selectedInvestment(topupTypes.ONE_TIME.NAME, investmentCriteria.oneTimeInvestmentMinimum)"
+                      value="{{topupTypes.ONE_TIME.NAME}}" formControlName="Investment" name="Investment" type="radio"
+                      class="field radio" tabindex="1" />
+                    <label for="tupup_radio_button_1">
+                      <div id="topup_investmenttype_name" class="input-label-white mb10">{{topupTypes.ONE_TIME.NAME}}
+                      </div>
+                      <div id="topup_investmenttype_value" class="input-label-normal">Min.
+                        ${{investmentCriteria.oneTimeInvestmentMinimum}}
+                      </div>
+                    </label>
+                  </div>
+                  <div class="topup-radio-button hidden mb10">
+                    <input id="tupup_radio_button_2"
+                      (change)="selectedInvestment(topupTypes.MONTHLY.NAME, investmentCriteria.monthlyInvestmentMinimum)"
+                      value="{{topupTypes.MONTHLY.NAME}}" formControlName="Investment" name="Investment" type="radio"
+                      class="field radio" tabindex="2" />
+                    <label for="tupup_radio_button_2">
+                      <div id="topup_investmenttype_name" class="input-label-white mb10">{{topupTypes.MONTHLY.NAME}}
+                      </div>
+                      <div id="topup_investmenttype_value" class="input-label-normal">Min.
+                        ${{investmentCriteria.monthlyInvestmentMinimum}}
                       </div>
                     </label>
                   </div>

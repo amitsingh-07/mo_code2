@@ -78,6 +78,11 @@ export class ComprehensiveComponent implements OnInit {
     if (this.authService.isSignedUser()) {
       const action = this.appService.getAction();
       this.loaderService.showLoader({ title: 'Fetching Data', autoHide: false });
+      this.comprehensiveApiService.getProductAmount().subscribe((data: any) => {
+       if (data && data.objectList[0]) {
+        this.productAmount = data.objectList[0].price;
+       }
+      });
       const comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
       let getCurrentVersionType = this.cmpService.getComprehensiveCurrentVersion();
       if ((getCurrentVersionType === '' || getCurrentVersionType === null ||
@@ -105,6 +110,10 @@ export class ComprehensiveComponent implements OnInit {
             }
             this.getComprehensiveSummaryDashboard.isValidatedPromoCode ? this.promoCodeValidated = true :
               this.promoCodeValidated = false;
+          } else {
+            setTimeout(() => {
+              this.loaderService.hideLoaderForced();
+            }, 500);
           }
         } else {
           if (action === COMPREHENSIVE_CONST.PROMO_CODE.GET) {
@@ -114,7 +123,6 @@ export class ComprehensiveComponent implements OnInit {
           }
         }
       });
-
 
     }
   }
