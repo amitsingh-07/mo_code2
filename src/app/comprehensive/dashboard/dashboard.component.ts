@@ -1,18 +1,18 @@
-import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { FileUtil } from '../../shared/utils/file.util';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyProfile } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
-import { FileUtil } from '../../shared/utils/file.util';
-import { LoaderService } from './../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-comprehensive-dashboard',
@@ -97,7 +97,6 @@ export class ComprehensiveDashboardComponent implements OnInit {
       this.downloadfile.saveAs(data.body, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
     });
 
-
   }
   goToEditProfile() {
     this.setComprehensiveSummary(true, COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED);
@@ -134,11 +133,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
       } else {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
       }
-    }
-    //  else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
-    //   this.getComprehensiveCall();
-    // }
-    else {
+    } else {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
     }
   }
@@ -205,11 +200,12 @@ export class ComprehensiveDashboardComponent implements OnInit {
       if (summaryData && summaryData.objectList[0]) {
         //this.reportStatus = (summaryData.objectList[0].comprehensiveEnquiry.reportStatus);
         this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
-       this.userDetails = this.comprehensiveService.getMyProfile();
+        this.userDetails = this.comprehensiveService.getMyProfile();
+        this.comprehensiveService.setRiskAssessmentAnswers();
         this.getComprehensiveSummary = this.comprehensiveService.getComprehensiveSummary();
         this.islocked = this.getComprehensiveSummary.comprehensiveEnquiry !== null &&
          this.getComprehensiveSummary.comprehensiveEnquiry.isLocked;
-       this.userName = this.userDetails.firstName;
+        this.userName = this.userDetails.firstName;
         this.advisorStatus = false;
         //const reportDateAPI = new Date();
         // this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
@@ -240,7 +236,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
           this.comprehensiveService.setViewableMode(true);
         } else {
           this.comprehensiveService.setViewableMode(false);
-        } 
+        }
         if (routerEnabled) {
           this.loaderService.hideLoader();
           this.router.navigate([routerUrlPath]);

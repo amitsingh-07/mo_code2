@@ -33,6 +33,8 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
   question1 = true;
   menuClickSubscription: Subscription;
   subscription: Subscription;
+  isRiskProfileAnswer: boolean;
+  riskProfileAnswers: any;
 
   constructor(
     public navbarService: NavbarService,
@@ -49,6 +51,21 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       this.setPageTitle(this.pageTitle);
     });
     this.pageId = this.route.routeConfig.component.name;
+     this.riskProfileAnswers = this.comprehensiveService.getComprehensiveSummary().riskAssessmentAnswer.answers;
+    this.isRiskProfileAnswer = this.comprehensiveService.getComprehensiveSummary().riskAssessmentAnswer && this.riskProfileAnswers && !this.riskProfileAnswers.riskAssessQuest1
+    
+    const self = this;
+    this.route.params.subscribe((params) => {
+      self.questionIndex = +params['id'];
+      this.riskAssessmentForm = new FormGroup({
+        questSelOption: new FormControl('',  Validators.required)
+      });
+      if (!self.questionsList.length) {
+        self.getQuestions();
+      } else {
+        self.setCurrentQuestion();
+      }
+    });
   }
 
   ngOnInit() {
@@ -74,38 +91,6 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       }
     });
 
-    const riskProfileAnswers =  this.comprehensiveService.getComprehensiveSummary().riskAssessmentAnswer.answers;
-
-    if (this.comprehensiveService.getComprehensiveSummary().riskAssessmentAnswer && riskProfileAnswers && !riskProfileAnswers.riskAssessQuest1) {
-    const selAnswers = [
-      {
-        riskAssessQuest1: riskProfileAnswers[0].questionOptionId
-      },
-      {
-        riskAssessQuest2:  riskProfileAnswers[1].questionOptionId
-      },
-      {
-        riskAssessQuest3:  riskProfileAnswers[2].questionOptionId
-      },
-      {
-        riskAssessQuest4:  riskProfileAnswers[3].questionOptionId
-      }
-    ];
-    this.comprehensiveService.setRiskAssessment(selAnswers);
-  }
-
-    const self = this;
-    this.route.params.subscribe((params) => {
-      self.questionIndex = +params['id'];
-      this.riskAssessmentForm = new FormGroup({
-        questSelOption: new FormControl('',  Validators.required)
-      });
-      if (!self.questionsList.length) {
-        self.getQuestions();
-      } else {
-        self.setCurrentQuestion();
-      }
-    });
   }
 
   setPageTitle(title: string) {
@@ -134,8 +119,12 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       this.questionIndex
     );
     if (selectedOption) {
-      this.riskAssessmentForm.controls.questSelOption.setValue(selectedOption);
-    }
+        this.riskAssessmentForm.controls.questSelOption.setValue(selectedOption);
+      } else if (this.questionIndex === 1) {
+       const selectedOptionValue = this.riskProfileAnswers.length>1 ? this.riskProfileAnswers[0].riskAssessQuest1 : '';
+        this.riskAssessmentForm.controls.questSelOption.setValue( selectedOptionValue);
+      }
+
   }
   save(form): boolean {
     if (!form.valid) {

@@ -74,7 +74,7 @@ export class ComprehensiveService {
     private ageUtil: AboutAge,
     private comprehensiveApiService: ComprehensiveApiService,
     private authService: AuthenticationService,
-    private apiService:ApiService
+    private apiService: ApiService
   ) {
     this.getComprehensiveFormData();
     this.comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
@@ -205,7 +205,7 @@ export class ComprehensiveService {
   }
 
   getMyProfile() {
-    if ( !this.comprehensiveFormData.comprehensiveDetails.baseProfile) {
+    if (!this.comprehensiveFormData.comprehensiveDetails.baseProfile) {
       this.comprehensiveFormData.comprehensiveDetails.baseProfile = {} as IMyProfile;
     }
     return this.comprehensiveFormData.comprehensiveDetails.baseProfile;
@@ -273,8 +273,8 @@ export class ComprehensiveService {
    * @memberof ComprehensiveService
    */
   setComprehensiveSummary(comprehensiveDetails: IComprehensiveDetails) {
-    if (comprehensiveDetails === null ) {
-      this.comprehensiveFormData = {} as ComprehensiveFormData;      
+    if (comprehensiveDetails === null) {
+      this.comprehensiveFormData = {} as ComprehensiveFormData;
       this.commit();
     } else {
       this.comprehensiveFormData.comprehensiveDetails = comprehensiveDetails;
@@ -627,20 +627,41 @@ export class ComprehensiveService {
     return this.comprehensiveApiService.getQuestionsList();
   }
   getSelectedOptionByIndex(index) {
-    if(this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers) {
+      if( this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers){
       return this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers['riskAssessQuest' + index];
-    }
+                }
   }
   setRiskAssessment(data) {
     this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers = data;
     this.commit();
+  }
+  setRiskAssessmentAnswers() {
+    const riskProfileAnswers = this.getComprehensiveSummary().riskAssessmentAnswer.answers;
+    let isRiskProfileAnswer = this.getComprehensiveSummary().riskAssessmentAnswer && riskProfileAnswers && ! riskProfileAnswers.riskAssessQuest1
+    if (isRiskProfileAnswer) {
+      const selAnswers = [
+        {
+          riskAssessQuest1: riskProfileAnswers[0].questionOptionId
+        },
+        {
+          riskAssessQuest2: riskProfileAnswers[1].questionOptionId
+        },
+        {
+          riskAssessQuest3: riskProfileAnswers[2].questionOptionId
+        },
+        {
+          riskAssessQuest4: riskProfileAnswers[3].questionOptionId
+        }
+      ];
+      this.setRiskAssessment(selAnswers);
+    }
   }
   saveRiskAssessment() {
     const data = this.constructRiskAssessmentSaveRequest();
     return this.comprehensiveApiService.saveRiskAssessment(data);
   }
   constructRiskAssessmentSaveRequest() {
-    const formData =  this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers;
+    const formData = this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers;
     const selAnswers = [
       {
         questionOptionId: formData.riskAssessQuest1
@@ -876,7 +897,7 @@ export class ComprehensiveService {
   }
   // Return Access Url for Full Journey
   getAccessibleFullJourney(urlList: any, url: any) {
-  
+
     this.generateProgressTrackerData();
 
     const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, url));
@@ -895,12 +916,12 @@ export class ComprehensiveService {
     const reportStatusData = this.getReportStatus();
     const stepCompleted = this.getMySteps();
     let userAge = 0;
-    if (cmpSummary && (cmpSummary.baseProfile.dateOfBirth !== null || cmpSummary.baseProfile.dateOfBirth !== '')) {      
+    if (cmpSummary && (cmpSummary.baseProfile.dateOfBirth !== null || cmpSummary.baseProfile.dateOfBirth !== '')) {
       userAge = this.aboutAge.calculateAge(
         cmpSummary.baseProfile.dateOfBirth,
         new Date()
       );
-    } 
+    }
 
     let accessPage = true;
     if (userAge < COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MIN_AGE
@@ -1127,12 +1148,12 @@ export class ComprehensiveService {
     const stepCompleted = this.getMySteps();
 
     let userAge = 0;
-    if (cmpSummary && (cmpSummary.baseProfile.dateOfBirth !== null || cmpSummary.baseProfile.dateOfBirth !== '')) {      
+    if (cmpSummary && (cmpSummary.baseProfile.dateOfBirth !== null || cmpSummary.baseProfile.dateOfBirth !== '')) {
       userAge = this.aboutAge.calculateAge(
         cmpSummary.baseProfile.dateOfBirth,
         new Date()
       );
-    } 
+    }
 
     let accessPage = true;
     if (userAge < COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MIN_AGE
@@ -1748,7 +1769,7 @@ export class ComprehensiveService {
   getRiskProfileProgressData(): IProgressTrackerItem {
     const cmpSummary = this.getComprehensiveSummary();
     const isCompleted = false; //cmpSummary.comprehensiveInsurancePlanning !== null;
-    
+
     return {
       title: 'Your Risk Profile',
       expanded: true,
@@ -2531,12 +2552,12 @@ export class ComprehensiveService {
   }
   /* Filter object from array of objects*/
   filterDataByInput(inputObject: any, keyMapped: any, data: any) {
-    const filteredData = inputObject.filter(summaryData => summaryData[keyMapped] === data);    
+    const filteredData = inputObject.filter(summaryData => summaryData[keyMapped] === data);
     if (filteredData && filteredData[0]) {
       return filteredData[0];
     } else {
       return '';
-    }    
+    }
   }
 }
 
