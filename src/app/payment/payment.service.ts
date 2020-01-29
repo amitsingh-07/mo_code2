@@ -7,9 +7,19 @@ import { PAYMENT_REQUEST } from './payment.constants';
 })
 export class PaymentService {
 
+  private requestId: string;
+
   constructor(
     private apiService: ApiService
   ) { }
+
+  setRequestId(reqId: string) {
+    this.requestId = reqId;
+  }
+
+  getRequestId() {
+    return this.requestId;
+  }
 
   getRequestSignature(enquiryId: number, amt: string, source: string) {
     const payload = {
@@ -19,5 +29,12 @@ export class PaymentService {
       transactionType: PAYMENT_REQUEST.transactionType
     };
     return this.apiService.getRequestSignature(payload);
+  }
+
+  cancelPayment(requestId: string) {
+    const payload = {
+      requestId
+    };
+    return this.apiService.cancelPayment(payload);
   }
 }

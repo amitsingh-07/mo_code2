@@ -6,6 +6,7 @@ import { COMPREHENSIVE_CONST } from 'src/app/comprehensive/comprehensive-config.
 import { COMPREHENSIVE_ROUTE_PATHS } from 'src/app/comprehensive/comprehensive-routes.constants';
 import { ComprehensiveService } from 'src/app/comprehensive/comprehensive.service';
 import { SignUpService } from 'src/app/sign-up/sign-up.service';
+import { PaymentService } from '../payment.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
 import { PAYMENT_ROUTE_PATHS } from './../payment-routes.constants';
@@ -34,7 +35,8 @@ export class PaymentStatusComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     public signUpService: SignUpService,
     private comprehensiveService: ComprehensiveService,
-    private comprehensiveApiService: ComprehensiveApiService
+    private comprehensiveApiService: ComprehensiveApiService,
+    private paymentService: PaymentService
   ) {
     this.translate.use('en');
   }
@@ -70,6 +72,11 @@ export class PaymentStatusComponent implements OnInit, OnDestroy {
       this.btnText = this.translate.instant('PAYMENT_STATUS.TRY_AGAIN');
       this.navigateText = this.translate.instant('PAYMENT_STATUS.BACK_DASHBOARD');
       this.paymentStatus = PAYMENT_STATUS.FAILED;
+      if (params['transaction_state'] === PAYMENT_STATUS.CANCEL) {
+        // Call cancel payment
+        const reqId = this.paymentService.getRequestId();
+        this.paymentService.cancelPayment(reqId);
+      }
     }
   }
 
