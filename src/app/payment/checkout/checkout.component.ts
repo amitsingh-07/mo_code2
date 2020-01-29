@@ -4,7 +4,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ComprehensiveService } from 'src/app/comprehensive/comprehensive.service';
 import { ErrorModalComponent } from 'src/app/shared/modal/error-modal/error-modal.component';
-import { environment } from './../../../environments/environment.uat';
+import { environment } from './../../../environments/environment';
 import { ModelWithButtonComponent } from './../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { PaymentModalComponent } from './../payment-modal/payment-modal.component';
