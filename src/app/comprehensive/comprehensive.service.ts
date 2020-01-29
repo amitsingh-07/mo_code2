@@ -627,7 +627,7 @@ export class ComprehensiveService {
     return this.comprehensiveApiService.getQuestionsList();
   }
   getSelectedOptionByIndex(index) {
-      if( this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers){
+      if( this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers && this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers){
       return this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers['riskAssessQuest' + index];
                 }
   }
@@ -636,7 +636,7 @@ export class ComprehensiveService {
     this.commit();
   }
   setRiskAssessmentAnswers() {
-    const riskProfileAnswers = this.getComprehensiveSummary().riskAssessmentAnswer.answers;
+    const riskProfileAnswers =  this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers ? this.getComprehensiveSummary().riskAssessmentAnswer.answers:'';
     let isRiskProfileAnswer = this.getComprehensiveSummary().riskAssessmentAnswer && riskProfileAnswers && ! riskProfileAnswers.riskAssessQuest1
     if (isRiskProfileAnswer) {
       const selAnswers = [
