@@ -627,7 +627,7 @@ export class ComprehensiveService {
     return this.comprehensiveApiService.getQuestionsList();
   }
   getSelectedOptionByIndex(index) {
-    if(this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer) {
+    if(this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers) {
       return this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers['riskAssessQuest' + index];
     }
   }

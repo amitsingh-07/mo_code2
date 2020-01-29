@@ -73,26 +73,27 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
         }
       }
     });
-    
+
     const riskProfileAnswers =  this.comprehensiveService.getComprehensiveSummary().riskAssessmentAnswer.answers;
-  if(this.comprehensiveService.getComprehensiveSummary().riskAssessmentAnswer && riskProfileAnswers){
+
+    if (this.comprehensiveService.getComprehensiveSummary().riskAssessmentAnswer && riskProfileAnswers && !riskProfileAnswers.riskAssessQuest1) {
     const selAnswers = [
       {
-        riskAssessQuest1: riskProfileAnswers[0]
+        riskAssessQuest1: riskProfileAnswers[0].questionOptionId
       },
       {
-        riskAssessQuest2:  riskProfileAnswers[1]
+        riskAssessQuest2:  riskProfileAnswers[1].questionOptionId
       },
       {
-        riskAssessQuest3:  riskProfileAnswers[2]
+        riskAssessQuest3:  riskProfileAnswers[2].questionOptionId
       },
       {
-        riskAssessQuest4:  riskProfileAnswers[3]
+        riskAssessQuest4:  riskProfileAnswers[3].questionOptionId
       }
     ];
     this.comprehensiveService.setRiskAssessment(selAnswers);
   }
-   
+
     const self = this;
     this.route.params.subscribe((params) => {
       self.questionIndex = +params['id'];
