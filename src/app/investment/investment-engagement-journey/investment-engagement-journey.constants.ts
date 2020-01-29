@@ -4,9 +4,7 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
     min_investment_period: 3 // years
   },
   my_financials: {
-    sufficient_emergency_fund: 'yes',
-    min_monthly_amount: 50,
-    min_initial_amount: 100
+    sufficient_emergency_fund: 'yes'
   },
   risk_profile: {
     should_not_invest_id: 6
