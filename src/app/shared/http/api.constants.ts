@@ -99,6 +99,7 @@ export let apiConstants = {
         },
         payment: {
             getRequestSignature: PAYMENT_API_BASE_URL + 'getRequestSignature',
+            cancelPayment: PAYMENT_API_BASE_URL + 'cancelPayment',
         }
     }
 };

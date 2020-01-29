@@ -4,6 +4,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ComprehensiveService } from 'src/app/comprehensive/comprehensive.service';
 import { ErrorModalComponent } from 'src/app/shared/modal/error-modal/error-modal.component';
+import { environment } from './../../../environments/environment.uat';
 import { ModelWithButtonComponent } from './../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { PaymentModalComponent } from './../payment-modal/payment-modal.component';
@@ -63,6 +64,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       requested_amount: [this.totalAmt],
       requested_amount_currency: [''],
       redirect_url: [''],
+      cancel_redirect_url: [''],
       termsOfConditions: [this.termsOfConditions, Validators.required]
     });
   }
@@ -80,6 +82,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     const enqId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
     this.paymentService.getRequestSignature(enqId, this.totalAmt, PAYMENT_CONST.SOURCE).subscribe((res) => {
       this.updateFormValues(res);
+      this.paymentService.setRequestId(res['requestId']);
     }, (error) => {
       this.errorRedirecting();
     });
@@ -93,7 +96,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.checkoutForm.get('merchant_account_id').setValue(PAYMENT_REQUEST.merchantAccId);
     this.checkoutForm.get('transaction_type').setValue(PAYMENT_REQUEST.transactionType);
     this.checkoutForm.get('requested_amount_currency').setValue(PAYMENT_REQUEST.currency);
-    this.checkoutForm.get('redirect_url').setValue(PAYMENT_REQUEST.redirectURL);
+    this.checkoutForm.get('redirect_url').setValue(environment.apiBaseUrl + PAYMENT_REQUEST.redirectURL);
+    this.checkoutForm.get('cancel_redirect_url').setValue(environment.apiBaseUrl + PAYMENT_REQUEST.redirectCancelURL);
     document.forms['checkoutForm'].action = PAYMENT_REQUEST.requestURL;
     document.forms['checkoutForm'].submit();
   }
