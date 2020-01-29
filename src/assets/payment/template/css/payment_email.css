@@ -1,0 +1,12 @@
+/* Page Styles Start */
+page {
+  position: relative;
+  display: block;
+  width: 580px;
+  height: 100%;
+  background-color: white;
+}
+
+.content-div {
+  margin: 45px 48px;
+}
