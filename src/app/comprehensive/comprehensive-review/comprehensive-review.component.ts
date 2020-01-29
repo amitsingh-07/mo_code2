@@ -24,7 +24,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   menuClickSubscription: Subscription;
   subscription: Subscription;
   isPaymentEnabled = false;
-
+  comprehensiveJourneyMode:boolean;
   constructor(
     private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
     private translate: TranslateService,
@@ -52,6 +52,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
     this.loaderService.hideLoaderForced();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.progressService.setReadOnly(false);

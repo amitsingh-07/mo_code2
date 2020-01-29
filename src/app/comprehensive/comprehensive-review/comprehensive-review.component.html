@@ -5,6 +5,8 @@
   </div>
   <div class="text-center about mb30">
     {{ isPaymentEnabled ? ('CMP.REVIEW.ABOUT_WITH_PAY' | translate) : ('CMP.REVIEW.ABOUT' | translate) }}
+    <span *ngIf="comprehensiveJourneyMode">{{'CMP.REVIEW.ABOUT' | translate }}</span>
+    <span *ngIf="!comprehensiveJourneyMode">{{'CMP.REVIEW.ABOUT_LITE' | translate }}</span>
   </div>
   <div class="footer-cta">
 
