@@ -78,7 +78,8 @@ export class ComprehensiveComponent implements OnInit {
     if (this.authService.isSignedUser()) {
       const action = this.appService.getAction();
       this.loaderService.showLoader({ title: 'Fetching Data', autoHide: false });
-      this.comprehensiveApiService.getProductAmount().subscribe((data: any) => {
+      const payload={productType:'Comprehensive'}
+      this.comprehensiveApiService.getProductAmount(payload).subscribe((data: any) => {
        if (data && data.objectList[0]) {
         this.productAmount = data.objectList[0].price;
        }
