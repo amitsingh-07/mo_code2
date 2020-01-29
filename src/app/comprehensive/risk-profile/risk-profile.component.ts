@@ -121,7 +121,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
     if (selectedOption) {
         this.riskAssessmentForm.controls.questSelOption.setValue(selectedOption);
       } else if (this.questionIndex === 1) {
-       const selectedOptionValue = this.riskProfileAnswers.length>1 ? this.riskProfileAnswers[0].riskAssessQuest1 : '';
+       const selectedOptionValue = this.riskProfileAnswers && this.riskProfileAnswers.length > 0 ? this.riskProfileAnswers[0].riskAssessQuest1 : '';
         this.riskAssessmentForm.controls.questSelOption.setValue( selectedOptionValue);
       }
 
