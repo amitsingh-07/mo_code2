@@ -50,10 +50,8 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       this.pageTitle = this.translate.instant('Your Risk Profile');
       this.setPageTitle(this.pageTitle);
     });
+    this.comprehensiveService.setRiskAssessmentAnswers();
     this.pageId = this.route.routeConfig.component.name;
-     this.riskProfileAnswers = this.comprehensiveService.getComprehensiveSummary().riskAssessmentAnswer.answers;
-    this.isRiskProfileAnswer = this.comprehensiveService.getComprehensiveSummary().riskAssessmentAnswer && this.riskProfileAnswers && !this.riskProfileAnswers.riskAssessQuest1
-    
     const self = this;
     this.route.params.subscribe((params) => {
       self.questionIndex = +params['id'];
@@ -91,6 +89,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       }
     });
 
+  
   }
 
   setPageTitle(title: string) {
@@ -119,12 +118,9 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       this.questionIndex
     );
     if (selectedOption) {
-        this.riskAssessmentForm.controls.questSelOption.setValue(selectedOption);
-      } else if (this.questionIndex === 1) {
-       const selectedOptionValue = this.riskProfileAnswers && this.riskProfileAnswers.length > 0 ? this.riskProfileAnswers[0].riskAssessQuest1 : '';
-        this.riskAssessmentForm.controls.questSelOption.setValue( selectedOptionValue);
-      }
-
+      this.riskAssessmentForm.controls.questSelOption.setValue( selectedOption);
+    }
+     
   }
   save(form): boolean {
     if (!form.valid) {
@@ -136,15 +132,15 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
 
   goToNext(form) {
     if (this.save(form)) {
-      this.investmentEngagementJourneyService.setRiskAssessment(
+      this.comprehensiveService.setRiskAssessment(
         form.controls.questSelOption.value,
         this.questionIndex
       );
       if (this.questionIndex < this.questionsList.length) {
         // NEXT QUESTION
-        const payload = this.investmentEngagementJourneyService.getPortfolioFormData();
+        // const payload = this.investmentEngagementJourneyService.getPortfolioFormData();
 
-        this.comprehensiveService.setRiskAssessment(payload);
+        // this.comprehensiveService.setRiskAssessment(payload);
         this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
 
           this.router.navigate([
@@ -154,9 +150,9 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       } else {
         // RISK PROFILE
         // CALL API
-        const payload = this.investmentEngagementJourneyService.getPortfolioFormData();
+        // const payload = this.investmentEngagementJourneyService.getPortfolioFormData();
 
-        this.comprehensiveService.setRiskAssessment(payload);
+        // this.comprehensiveService.setRiskAssessment(payload);
         this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
 
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REVIEW]);

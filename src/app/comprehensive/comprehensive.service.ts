@@ -1,12 +1,11 @@
-import { ApiService } from './../shared/http/api.service';
 import { CurrencyPipe, Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { ApiService } from './../shared/http/api.service';
 
-import { AuthenticationService } from './../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
@@ -14,6 +13,7 @@ import { NavbarService } from '../shared/navbar/navbar.service';
 import { AboutAge } from '../shared/utils/about-age.util';
 import { Util } from '../shared/utils/util';
 import { appConstants } from './../app.constants';
+import { AuthenticationService } from './../shared/http/auth/authentication.service';
 import { ProgressTrackerUtil } from './../shared/modal/progress-tracker/progress-tracker-util';
 import {
   IProgressTrackerData,
@@ -38,6 +38,7 @@ import {
   IComprehensiveDetails,
   IComprehensiveEnquiry,
   IDependantDetail,
+  IdependentsSummaryList,
   IHospitalPlanList,
   IInsurancePlan,
   IMyAssets,
@@ -49,7 +50,6 @@ import {
   IPromoCode,
   IRegularSavings,
   IRetirementPlan,
-  IdependentsSummaryList,
 } from './comprehensive-types';
 @Injectable({
   providedIn: 'root'
@@ -168,7 +168,7 @@ export class ComprehensiveService {
   }
 
   getComprehensiveUrlList(urlList: any) {
-    Object.keys(urlList).forEach(key => {
+    Object.keys(urlList).forEach((key) => {
       urlList[key] = ProgressTrackerUtil.trimPath(urlList[key]);
     });
 
@@ -254,7 +254,7 @@ export class ComprehensiveService {
     return this.comprehensiveFormData.comprehensiveDetails;
   }
   /**
-   * 
+   *
    * @return
    * ComprehensiveEnquiry
    */
@@ -317,7 +317,7 @@ export class ComprehensiveService {
       ) {
         comprehensiveDetails.dependentEducationPreferencesList.forEach(
           (eduPref, index) => {
-            comprehensiveDetails.dependentsSummaryList.dependentsList.forEach(dependant => {
+            comprehensiveDetails.dependentsSummaryList.dependentsList.forEach((dependant) => {
               if (dependant.id === eduPref.dependentId) {
                 comprehensiveDetails.dependentEducationPreferencesList[
                   index
@@ -439,7 +439,7 @@ export class ComprehensiveService {
     if (!this.comprehensiveFormData.comprehensiveDetails.comprehensiveLiabilities) {
       this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.homeLoanUpdatedByLiabilities = {} as boolean;
     }
-    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.homeLoanUpdatedByLiabilities
+    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.homeLoanUpdatedByLiabilities;
   }
 
   setHomeLoanChanges(homeLoanUpdatedByLiabilities: boolean) {
@@ -536,7 +536,7 @@ export class ComprehensiveService {
     this.clearBadMoodFund();
     this.comprehensiveApiService
       .saveDownOnLuck(this.getDownOnLuck())
-      .subscribe(data => { });
+      .subscribe((data) => { });
   }
   hasBadMoodFund() {
     const maxBadMoodFund = Math.floor(
@@ -627,41 +627,36 @@ export class ComprehensiveService {
     return this.comprehensiveApiService.getQuestionsList();
   }
   getSelectedOptionByIndex(index) {
-      if( this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers && this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers){
-      return this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers['riskAssessQuest' + index];
-                }
+    if (this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers) {
+      return this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers['riskAssessQuest' + index];
+    }
   }
-  setRiskAssessment(data) {
-    this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers = data;
+  setRiskAssessment(data, questionIndex) {
+    this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers['riskAssessQuest' + questionIndex] = data;
     this.commit();
+
   }
   setRiskAssessmentAnswers() {
-    const riskProfileAnswers =  this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers ? this.getComprehensiveSummary().riskAssessmentAnswer.answers:'';
-    let isRiskProfileAnswer = this.getComprehensiveSummary().riskAssessmentAnswer && riskProfileAnswers && ! riskProfileAnswers.riskAssessQuest1
-    if (isRiskProfileAnswer) {
-      const selAnswers = [
-        {
-          riskAssessQuest1: riskProfileAnswers[0].questionOptionId
-        },
-        {
-          riskAssessQuest2: riskProfileAnswers[1].questionOptionId
-        },
-        {
-          riskAssessQuest3: riskProfileAnswers[2].questionOptionId
-        },
-        {
-          riskAssessQuest4: riskProfileAnswers[3].questionOptionId
-        }
-      ];
-      this.setRiskAssessment(selAnswers);
-    }
+    const riskProfileAnswersData = this.getComprehensiveSummary().riskAssessmentAnswer;
+    let isRiskProfileAnswer = riskProfileAnswersData && riskProfileAnswersData.answers;
+
+    let selAnswers = {
+      riskAssessQuest1: riskProfileAnswersData && riskProfileAnswersData.answers && riskProfileAnswersData.answers.length > 0 ? riskProfileAnswersData.answers[0].questionOptionId : null,
+      riskAssessQuest2: riskProfileAnswersData && riskProfileAnswersData.answers && riskProfileAnswersData.answers.length > 1 ? riskProfileAnswersData.answers[1].questionOptionId : null,
+      riskAssessQuest3: riskProfileAnswersData && riskProfileAnswersData.answers && riskProfileAnswersData.answers.length > 2 ? riskProfileAnswersData.answers[2].questionOptionId : null,
+      riskAssessQuest4: riskProfileAnswersData&& riskProfileAnswersData.answers && riskProfileAnswersData.answers.length > 3 ? riskProfileAnswersData.answers[3].questionOptionId : null
+    };
+
+    this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers = selAnswers;
+    this.commit();
+
   }
   saveRiskAssessment() {
     const data = this.constructRiskAssessmentSaveRequest();
     return this.comprehensiveApiService.saveRiskAssessment(data);
   }
   constructRiskAssessmentSaveRequest() {
-    const formData = this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.answers;
+    const formData = this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers;
     const selAnswers = [
       {
         questionOptionId: formData.riskAssessQuest1
@@ -800,8 +795,8 @@ export class ComprehensiveService {
     ref.componentInstance.tooltipTitle = toolTipParam.TITLE;
     ref.componentInstance.tooltipMessage = toolTipParam.DESCRIPTION;
     ref.result.then(
-      result => { },
-      reason => {
+      (result) => { },
+      (reason) => {
         if (reason === 'Cross click' && toolTipParam.URL) {
           this.router.navigate([toolTipParam.URL]);
         }
@@ -818,8 +813,8 @@ export class ComprehensiveService {
     });
     ref.componentInstance.summaryModalDetails = summaryModalDetails;
     ref.result.then(
-      result => { },
-      reason => {
+      (result) => { },
+      (reason) => {
         if (reason === 'dismiss' && summaryModalDetails.routerEnabled) {
           const previousUrl = this.getPreviousUrl(this.router.url);
           if (previousUrl !== null) {
@@ -934,7 +929,7 @@ export class ComprehensiveService {
         break;
       } else {
         let canAccess = true;
-        dependantProgressData.subItems.forEach(subItem => {
+        dependantProgressData.subItems.forEach((subItem) => {
           if (!subItem.completed && subItem.hidden !== true) {
             canAccess = false;
           }
@@ -1165,7 +1160,7 @@ export class ComprehensiveService {
       if (accessibleUrl !== '') {
         break;
       } else {
-        let canAccess = true;
+        const canAccess = true;
         /*console.log(dependantProgressData);
         dependantProgressData.subItems.forEach(subItem => {
           if (!subItem.completed && subItem.hidden !== true) {
@@ -1407,7 +1402,7 @@ export class ComprehensiveService {
         enquiry.hasDependents !== null &&
         enquiry.hasEndowments === '1'
       ) {
-        eduPrefs.forEach(item => {
+        eduPrefs.forEach((item) => {
           if (!Util.isEmptyOrNull(item.location)) {
             tempPrefsList.push(item);
           }
@@ -1484,7 +1479,7 @@ export class ComprehensiveService {
       }
     }
     return {
-      title: "What's On Your Shoulders",
+      title: 'What\'s On Your Shoulders',
       expanded: true,
       completed: hasDependants,
       customStyle: 'dependant',
@@ -1611,7 +1606,7 @@ export class ComprehensiveService {
     let ocpDisabilityValue = '$0 /mth';
     let longTermCareValue = '$0 /mth';
     let otherLongTermCareValue = '$0 /mth';
-    let longTermCareList = [];
+    const longTermCareList = [];
 
     if (isCompleted) {
       const haveHospitalPlan =
@@ -1668,7 +1663,7 @@ export class ComprehensiveService {
         ocpDisabilityValue = this.transformAsCurrency(
           cmpSummary.comprehensiveInsurancePlanning
             .disabilityIncomeCoverageAmount
-        ) + " /mth";
+        ) + ' /mth';
       }
 
       if (
@@ -1682,15 +1677,14 @@ export class ComprehensiveService {
         ) {
           longTermCareValue = this.transformAsCurrency(
             cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount
-          ) + " /mth";
+          ) + ' /mth';
           otherLongTermCareValue = this.transformAsCurrency(
             cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount
-          ) + " /mth";
+          ) + ' /mth';
           longTermCareList.push({
             title: 'Other coverage amount',
             value: otherLongTermCareValue,
-          })
-
+          });
 
         } else if (
           cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield ===
@@ -1705,7 +1699,6 @@ export class ComprehensiveService {
         }
       }
     }
-
 
     return {
       title: 'Risk-Proof Your Journey',
@@ -1808,7 +1801,6 @@ export class ComprehensiveService {
     };
   }
 
-
   /**
    * Get progress tracker data for the 'Financial Independence' section.
    *
@@ -1829,14 +1821,14 @@ export class ComprehensiveService {
       );
       retirementAgeValue = retireAgeVal + ' yrs old';
     }
-    let subItemsArray = [];
+    const subItemsArray = [];
     subItemsArray.push({
       id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
       path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
       title: 'Retirement Age',
       value: retirementAgeValue,
       completed: isCompleted
-    })
+    });
     if (this.getComprehensiveVersion() && cmpSummary.comprehensiveRetirementPlanning) {
       cmpSummary.comprehensiveRetirementPlanning.retirementIncomeSet.forEach((item, index) => {
         subItemsArray.push({
@@ -1857,9 +1849,8 @@ export class ComprehensiveService {
             title: 'Payout Duration',
             value: item.payoutDuration
           }]
-        })
+        });
       });
-
 
       cmpSummary.comprehensiveRetirementPlanning.lumpSumBenefitSet.forEach((item, index) => {
         subItemsArray.push({
@@ -1876,7 +1867,7 @@ export class ComprehensiveService {
             title: 'Maturity Year',
             value: item.maturityYear
           }]
-        })
+        });
       });
     }
 
@@ -1917,7 +1908,7 @@ export class ComprehensiveService {
    * Set Total Bucket Income For Earnings
    */
   setBucketAmountByCal() {
-    Object.keys(COMPREHENSIVE_CONST.YOUR_FINANCES).forEach(financeInput => {
+    Object.keys(COMPREHENSIVE_CONST.YOUR_FINANCES).forEach((financeInput) => {
       const financeData = COMPREHENSIVE_CONST.YOUR_FINANCES[financeInput];
       const inputBucket = Object.assign(
         {},
@@ -1950,10 +1941,10 @@ export class ComprehensiveService {
    */
   // tslint:disable-next-line: cognitive-complexity
   unSetObjectByKey(inputObject: any, removeKey: any) {
-    Object.keys(inputObject).forEach(key => {
+    Object.keys(inputObject).forEach((key) => {
       if (Array.isArray(inputObject[key])) {
         inputObject[key].forEach((objDetails: any, index) => {
-          Object.keys(objDetails).forEach(innerKey => {
+          Object.keys(objDetails).forEach((innerKey) => {
             if (
               innerKey !== 'enquiryId' &&
               innerKey !== 'customerId' &&
@@ -1975,7 +1966,7 @@ export class ComprehensiveService {
       }
     });
     if (removeKey) {
-      Object.keys(removeKey).forEach(key => {
+      Object.keys(removeKey).forEach((key) => {
         if (key !== '') {
           delete inputObject[removeKey[key]];
         }
@@ -2005,7 +1996,7 @@ export class ComprehensiveService {
     let totalExpense: any = 0;
     const summaryConst =
       COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.DEPENDANT;
-    Object.keys(summaryConst).forEach(expenseInput => {
+    Object.keys(summaryConst).forEach((expenseInput) => {
       let locationChange = location;
       if (
         location === 'Singapore' &&
@@ -2260,7 +2251,7 @@ export class ComprehensiveService {
       age: userAge
     };
     if (enquiry.hasDependents) {
-      getComprehensiveDetails.dependentsSummaryList.dependentsList.forEach(dependant => {
+      getComprehensiveDetails.dependentsSummaryList.dependentsList.forEach((dependant) => {
         fireProofingDetails.dependant = true;
       });
     }
@@ -2317,10 +2308,10 @@ export class ComprehensiveService {
     }
     const getResultConfig = COMPREHENSIVE_CONST.YOUR_RESULTS;
     let totalAmount = 0;
-    Object.keys(getResultConfig).forEach(financeInput => {
+    Object.keys(getResultConfig).forEach((financeInput) => {
       const apiInput = getResultConfig[financeInput].API_KEY;
       const validationDataSet = getResultConfig[financeInput].VALIDATION_INPUT;
-      validationDataSet.forEach(dataSet => {
+      validationDataSet.forEach((dataSet) => {
         if (getCompData[apiInput][dataSet]) {
           const getAmount = this.getValidAmount(getCompData[apiInput][dataSet]);
           totalAmount += getAmount;
@@ -2371,7 +2362,7 @@ export class ComprehensiveService {
     /*if (!progressData.completed) {
             completedStatus = false;
         }*/
-    Object.keys(progressData.subItems).forEach(completedData => {
+    Object.keys(progressData.subItems).forEach((completedData) => {
       if (
         !progressData.subItems[completedData].completed &&
         !progressData.subItems[completedData].hidden
@@ -2524,7 +2515,7 @@ export class ComprehensiveService {
   }
   /**
    * Annual Income Updated Formula
-   * 
+   *
    */
   getTotalAnnualIncomeByEarnings(earningDetails: any) {
     const summaryConfig = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.YOUR_FINANCES;
@@ -2552,7 +2543,7 @@ export class ComprehensiveService {
   }
   /* Filter object from array of objects*/
   filterDataByInput(inputObject: any, keyMapped: any, data: any) {
-    const filteredData = inputObject.filter(summaryData => summaryData[keyMapped] === data);
+    const filteredData = inputObject.filter((summaryData) => summaryData[keyMapped] === data);
     if (filteredData && filteredData[0]) {
       return filteredData[0];
     } else {
