@@ -21,7 +21,8 @@ export const COMPREHENSIVE_CONST = {
             MONTHLY_INPUT_CALC: ['monthlySalary', 'monthlyRentalIncome', 'otherMonthlyWorkIncome', 'otherMonthlyIncome'],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualIncomeBucket', 'customerId', 'id'],
             BUCKET_INPUT_CALC: ['monthlySalary', 'annualBonus', 'monthlyRentalIncome', 'otherMonthlyWorkIncome',
-                'otherMonthlyIncome', 'annualDividends', 'otherAnnualIncome']
+                'otherMonthlyIncome', 'annualDividends', 'otherAnnualIncome'],
+            BUCKET_INPUT_CALC_LITE: ['monthlySalary', 'annualBonus']
         },
         YOUR_SPENDING: {
             API_KEY: 'comprehensiveSpending',
@@ -36,9 +37,9 @@ export const COMPREHENSIVE_CONST = {
             API_KEY: 'comprehensiveAssets',
             API_TOTAL_BUCKET_KEY: 'totalAnnualAssets',
             MONTHLY_INPUT_CALC: [],
-            POP_FORM_INPUT: ['enquiryId', 'totalAnnualAssets', 'customerId', 'id'],
+            POP_FORM_INPUT: ['enquiryId', 'totalAnnualAssets', 'customerId', 'id', 'assetId'],
             BUCKET_INPUT_CALC: ['cashInBank', 'savingsBonds', 'cpfOrdinaryAccount', 'cpfSpecialAccount', 'cpfMediSaveAccount',
-                'homeMarketValue', 'investmentAmount_0', 'otherAssetsValue', 'investmentPropertiesValue']
+                'homeMarketValue', 'investmentAmount_0', 'otherAssetsValue', 'investmentPropertiesValue', 'cpfRetirementAccount']
         },
         YOUR_LIABILITIES: {
             API_KEY: 'comprehensiveLiabilities',

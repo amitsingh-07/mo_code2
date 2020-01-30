@@ -682,7 +682,9 @@
     },
     "RESULT": {
       "READY": "Congratulations! Your Comprehensive Financial Plan will be ready soon!",
+      "READY_LITE": "Congratulations! Your report is ready!",
       "ABOUT": "Once it is ready, we will notify you via email at ",
+      "ABOUT_LITE": "You can view your personalised report via your dashboard.",
       "STEP_TITLE": "What’s Next?",
       "STEP_DESC": "Our adviser will analyse your needs using our proprietary models. He or she may contact you for clarifications on your inputs.",
       "STEP_1": "Keep a lookout for our notification mail!",
@@ -709,7 +711,8 @@
     "REVIEW": {
       "TITLE": "Review",
       "ABOUT": "Please review your details carefully before clicking confirm. Do note that after you have confirmed, you will not be able to modify any of your inputs until your report is ready.",
-	  "ABOUT_WITH_PAY": "Please review your details carefully before clicking \"Confirm & Pay\". Do note that after you have clicked \"Confirm & Pay\", you will not be able to modify any of your inputs until your report is ready.",
+	    "ABOUT_WITH_PAY": "Please review your details carefully before clicking \"Confirm & Pay\". Do note that after you have clicked \"Confirm & Pay\", you will not be able to modify any of your inputs until your report is ready.",
+      "ABOUT_LITE": "Please make sure to review your inputs. If everything looks good, click “Confirm” to receive your personalised report.",
       "REVIEW_INPUT": "Review Inputs",
       "CONFIRM": "Confirm",
 	  "CONFIRM_WITH_PAY": "Confirm & Pay"

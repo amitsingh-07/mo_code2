@@ -170,15 +170,17 @@ export class ComprehensiveComponent implements OnInit {
       if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isValidatedPromoCode) {
         this.redirect();
       } else {
-        this.loaderService.showLoader({ title: 'Fetching Data', autoHide: false });
+        this.loaderService.showLoader({ title: 'Loading', autoHide: false });
         this.comprehensiveApiService.ValidatePromoCode(promoCode).subscribe((data: any) => {
          if( data && data.objectList[0].validatePromoCode ) {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
          }
-        }, (err) => {});
-        setTimeout(() => {
-          this.loaderService.hideLoaderForced();
-        }, 500);
+        }, (err) => {
+          setTimeout(() => {
+            this.loaderService.hideLoaderForced();
+          }, 500);
+        });
+       
       }
     } else {
       this.showLoginOrSignUpModal();
