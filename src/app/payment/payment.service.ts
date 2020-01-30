@@ -34,12 +34,14 @@ export class PaymentService {
     return reqId;
   }
 
-  getRequestSignature(enquiryId: number, amt: string, source: string) {
+  getRequestSignature(enquiryId: number, amt: string, source: string, baseProfile) {
     const payload = {
       enquiryId,
       source,
       transactionAmount: amt,
-      transactionType: PAYMENT_REQUEST.transactionType
+      transactionType: PAYMENT_REQUEST.transactionType,
+      name: baseProfile['firstName'],
+      email: baseProfile['email']
     };
     return this.apiService.getRequestSignature(payload);
   }
