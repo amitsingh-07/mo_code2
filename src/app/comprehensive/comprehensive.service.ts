@@ -281,6 +281,9 @@ export class ComprehensiveService {
       this.reloadDependantDetails();
       this.setBucketAmountByCal();
       this.setViewableMode(false);
+      if (!this.getComprehensiveVersion()) {
+        this.setRiskAssessmentAnswers();
+      }
       this.commit();
     }
   }
@@ -637,19 +640,26 @@ export class ComprehensiveService {
 
   }
   setRiskAssessmentAnswers() {
-    const riskProfileAnswersData = this.getComprehensiveSummary().riskAssessmentAnswer;
-    let isRiskProfileAnswer = riskProfileAnswersData && riskProfileAnswersData.answers;
-
-    let selAnswers = {
-      riskAssessQuest1: riskProfileAnswersData && riskProfileAnswersData.answers && riskProfileAnswersData.answers.length > 0 ? riskProfileAnswersData.answers[0].questionOptionId : null,
-      riskAssessQuest2: riskProfileAnswersData && riskProfileAnswersData.answers && riskProfileAnswersData.answers.length > 1 ? riskProfileAnswersData.answers[1].questionOptionId : null,
-      riskAssessQuest3: riskProfileAnswersData && riskProfileAnswersData.answers && riskProfileAnswersData.answers.length > 2 ? riskProfileAnswersData.answers[2].questionOptionId : null,
-      riskAssessQuest4: riskProfileAnswersData&& riskProfileAnswersData.answers && riskProfileAnswersData.answers.length > 3 ? riskProfileAnswersData.answers[3].questionOptionId : null
+    const riskProfileAnswersData = this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer;
+    let  selAnswers = {
+      riskAssessQuest1: null,
+      riskAssessQuest2: null,
+      riskAssessQuest3: null,
+      riskAssessQuest4: null
     };
+    if (riskProfileAnswersData !== null && riskProfileAnswersData.answers !== null) {
+      let isRiskProfileAnswer = riskProfileAnswersData && riskProfileAnswersData.answers;
 
-    this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers = selAnswers;
-    this.commit();
-
+      selAnswers = {
+        riskAssessQuest1: riskProfileAnswersData && riskProfileAnswersData.answers && riskProfileAnswersData.answers.length > 0 ? riskProfileAnswersData.answers[0].questionOptionId : null,
+        riskAssessQuest2: riskProfileAnswersData && riskProfileAnswersData.answers && riskProfileAnswersData.answers.length > 1 ? riskProfileAnswersData.answers[1].questionOptionId : null,
+        riskAssessQuest3: riskProfileAnswersData && riskProfileAnswersData.answers && riskProfileAnswersData.answers.length > 2 ? riskProfileAnswersData.answers[2].questionOptionId : null,
+        riskAssessQuest4: riskProfileAnswersData&& riskProfileAnswersData.answers && riskProfileAnswersData.answers.length > 3 ? riskProfileAnswersData.answers[3].questionOptionId : null
+      };
+      this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers = selAnswers;
+    } else {
+      this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer = {enquiryId: riskProfileAnswersData.enquiryId, answers: [], riskProfileAnswers: selAnswers};
+    }
   }
   saveRiskAssessment() {
     const data = this.constructRiskAssessmentSaveRequest();
