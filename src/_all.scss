@@ -299,9 +299,10 @@ h6 {
       flex-basis: auto;
 
       &.show {
-        height:100vh;
+        height: 100%;
         overflow-y: scroll;
         padding-bottom: 45px;
+        -webkit-overflow-scrolling: touch;
       }
     }
 
@@ -317,7 +318,10 @@ h6 {
           flex-basis: unset;
           order: 2;
           margin-right: 0px;
-          background-color: $white-color; /* Prod issue MO2-2316 */
+          background-color: $white-color;
+          /* Prod issue MO2-2316 */
+          overflow-y: scroll;
+          -webkit-overflow-scrolling: touch;
         }
 
         &.hide {
@@ -497,6 +501,7 @@ h6 {
           height: 50px;
           align-items: center;
           padding-left: 20px;
+          min-height: 50px;
         }
       }
 
