@@ -201,11 +201,6 @@ export class ComprehensiveDashboardComponent implements OnInit {
         //this.reportStatus = (summaryData.objectList[0].comprehensiveEnquiry.reportStatus);
         this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
         this.userDetails = this.comprehensiveService.getMyProfile();
-        if (this.versionTypeEnabled) {
-          this.comprehensiveService.setRiskAssessmentAnswers();
-
-          console.log(this.comprehensiveService.getComprehensiveSummary().riskAssessmentAnswer.answers)
-        }
         this.getComprehensiveSummary = this.comprehensiveService.getComprehensiveSummary();
         this.islocked = this.getComprehensiveSummary.comprehensiveEnquiry !== null &&
          this.getComprehensiveSummary.comprehensiveEnquiry.isLocked;

@@ -50,7 +50,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       this.pageTitle = this.translate.instant('Your Risk Profile');
       this.setPageTitle(this.pageTitle);
     });
-    this.comprehensiveService.setRiskAssessmentAnswers();
+    //this.comprehensiveService.setRiskAssessmentAnswers();
     this.pageId = this.route.routeConfig.component.name;
     const self = this;
     this.route.params.subscribe((params) => {
