@@ -91,16 +91,35 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   // Update form values
   private updateFormValues(res) {
-    this.checkoutForm.get('request_id').setValue(res['requestId']);
-    this.checkoutForm.get('request_time_stamp').setValue('' + res['requestTimestamp']);
-    this.checkoutForm.get('request_signature').setValue(res['requestSignature']);
-    this.checkoutForm.get('merchant_account_id').setValue(PAYMENT_REQUEST.merchantAccId);
-    this.checkoutForm.get('transaction_type').setValue(PAYMENT_REQUEST.transactionType);
-    this.checkoutForm.get('requested_amount_currency').setValue(PAYMENT_REQUEST.currency);
-    this.checkoutForm.get('redirect_url').setValue(environment.apiBaseUrl + PAYMENT_REQUEST.redirectURL);
-    this.checkoutForm.get('cancel_redirect_url').setValue(environment.apiBaseUrl + PAYMENT_REQUEST.redirectCancelURL);
-    document.forms['checkoutForm'].action = PAYMENT_REQUEST.requestURL;
-    document.forms['checkoutForm'].submit();
+    const body = new URLSearchParams();
+    body.set('request_id', res['requestId']);
+    body.set('request_time_stamp', '' + res['requestTimestamp']);
+    body.set('request_signature', res['requestSignature']);
+    body.set('merchant_account_id', PAYMENT_REQUEST.merchantAccId);
+    body.set('transaction_type', PAYMENT_REQUEST.transactionType);
+    body.set('requested_amount', this.totalAmt);
+    body.set('requested_amount_currency', PAYMENT_REQUEST.currency);
+    body.set('redirect_url', environment.apiBaseUrl + PAYMENT_REQUEST.redirectURL);
+    body.set('cancel_redirect_url', environment.apiBaseUrl + PAYMENT_REQUEST.redirectCancelURL);
+    this.makeHttpRequest(body);
+  }
+
+  makeHttpRequest(body) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', PAYMENT_REQUEST.requestURL);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = () => {
+    // Call a function when the state changes.
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          window.open(xhr.responseURL, '_self', '', false);
+        } else {
+          // Handle Error
+          this.errorRedirecting();
+        }
+      }
+    };
+    xhr.send(body);
   }
 
   // Open payment modal
