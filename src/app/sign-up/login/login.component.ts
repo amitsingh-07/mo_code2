@@ -265,7 +265,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
               this.signUpService.setUserMobileNo(data.objectList[0].mobileNumber);
               this.signUpService.setFromLoginPage();
             }
-            this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+            if (data.objectList[0]) {
+              this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+            }
             const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
             if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
               this.updateInsuranceEnquiry(insuranceEnquiry, data, true);

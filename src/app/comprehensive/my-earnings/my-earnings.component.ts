@@ -73,10 +73,12 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
     }
     this.viewMode = this.comprehensiveService.getViewableMode();
     this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
-    if (this.comprehensiveJourneyMode &&  this.earningDetails ) {
+    if (!this.comprehensiveJourneyMode &&  this.earningDetails ) {
       this.earningDetails.otherMonthlyIncome = 0;
       this.earningDetails.otherAnnualIncome = 0;
-      this.earningDetails. annualDividends = 0;
+      this.earningDetails.annualDividends = 0;
+      this.earningDetails.monthlyRentalIncome = 0;
+      this.earningDetails.otherMonthlyWorkIncome = 0;
     }
   }
   ngOnInit() {
@@ -218,7 +220,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
     //const inputParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.MONTHLY_INPUT_CALC;
     //this.totalAnnualIncomeBucket = this.comprehensiveService.additionOfCurrency(this.myEarningsForm.value, inputParams);
     this.totalAnnualIncomeBucket = this.comprehensiveService.getTotalAnnualIncomeByEarnings(this.myEarningsForm.value);
-    const bucketParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.BUCKET_INPUT_CALC;
+    const bucketParams = (!this.comprehensiveJourneyMode) ? COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.BUCKET_INPUT_CALC_LITE : COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.BUCKET_INPUT_CALC;
     const earningInput = this.myEarningsForm.value;
     this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, earningInput, this.totalAnnualIncomeBucket);
   }
