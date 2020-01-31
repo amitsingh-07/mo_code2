@@ -108,11 +108,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', PAYMENT_REQUEST.requestURL);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader( 'Access-Control-Allow-Origin', '*');
     xhr.onreadystatechange = () => {
     // Call a function when the state changes.
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          window.open(xhr.responseURL, '_self', '', false);
+          window.open(xhr.responseURL, '_self');
         } else {
           // Handle Error
           this.errorRedirecting();
