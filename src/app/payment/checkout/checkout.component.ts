@@ -10,6 +10,7 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 import { PaymentModalComponent } from './../payment-modal/payment-modal.component';
 import { PAYMENT_CONST, PAYMENT_REQUEST } from './../payment.constants';
 import { PaymentService } from './../payment.service';
+import { SignUpService } from 'src/app/sign-up/sign-up.service';
 
 @Component({
   selector: 'app-checkout',
@@ -37,7 +38,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     private modal: NgbModal,
     public navbarService: NavbarService,
     private paymentService: PaymentService,
-    private comprehensiveService: ComprehensiveService
+    private comprehensiveService: ComprehensiveService,
+    private signUpService: SignUpService
   ) {
     this.translate.use('en');
   }
@@ -80,8 +82,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.openModal();
     // Update this to add customer id
     const enqId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
-    const baseProfile = this.comprehensiveService.getComprehensiveSummary().baseProfile;
-    this.paymentService.getRequestSignature(enqId, this.totalAmt, PAYMENT_CONST.SOURCE, baseProfile).subscribe((res) => {
+    const baseProfile = this.signUpService.getAccountInfo();
+    this.paymentService.getRequestSignature(enqId, this.totalAmt, PAYMENT_CONST.SOURCE, baseProfile.userProfileInfo).subscribe((res) => {
       this.updateFormValues(res);
       this.paymentService.setRequestId(res['requestId']);
     }, (error) => {
