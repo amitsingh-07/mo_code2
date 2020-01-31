@@ -314,4 +314,12 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
     this.temp.compareSelected = this.isComparePlanSelected;
     this.compare.emit({ plan: this.temp, selected: this.isComparePlanSelected });
   }
+
+  redirectToPromoPage(productID: string) {
+    const promo = this.planService.checkProductID(productID);
+    if (promo && promo.promoId) {
+        window.open(`${window.location.host}/promotions/${promo.promoId}`, '_blank');
+    }
+    return;
+  }
 }
