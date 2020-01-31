@@ -1,0 +1,183 @@
+/* Font Styles Start */
+@font-face {
+  font-family: 'Muli-Regular';
+  src: url('../fonts/muli-regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Muli-Semi-Bold';
+  src: url('../fonts/muli-semi-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Muli-Extra-Bold';
+  src: url('../fonts/muli-extrabold.ttf') format('truetype');
+}
+
+/* Page Styles Start */
+page {
+  position: relative;
+  display: block;
+  width: 21cm;
+  height: 29.7cm;
+  background-color: white;
+  padding: 40px 39px;
+}
+
+/* Images Styles Start */
+.header-logo {
+  height: 54px;
+  width: 159px;
+  display: inline-block;
+}
+
+.divider-img {
+  display: block;
+  width: 100%;
+  margin-top: 35px;
+}
+
+/* Font Styles Start */
+.muli-semi-bold {
+  font-family: Muli-Semi-Bold !important;
+}
+
+.mo-info {
+  font-family: Muli-Regular;
+  color: #3e3e3e;
+  font-size: 10px;
+  float: right;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.1px;
+}
+
+.receipt-title {
+  font-family: Muli-Extra-Bold;
+  color: #00a7a7;
+  font-size: 21px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.22px;
+  margin-top: 30px;
+}
+
+.reg-txt {
+  font-family: Muli-Regular;
+  color: #3e3e3e;
+  font-size: 12px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.13px;
+}
+
+.semi-bold-txt {
+  font-family: Muli-Semi-Bold;
+  color: #3e3e3e;
+  font-size: 12px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.13px;
+}
+
+.thank-you-txt {
+  font-family: Muli-Extra-Bold;
+  color: #00a7a7;
+  font-size: 12px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.13px;
+  margin-top: 40px;
+}
+
+.bottom-txt {
+  font-family: Muli-Regular;
+  color: #5e5e5e;
+  font-size: 10px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.1px;
+  position: absolute;
+  bottom: 40px;
+  width: 340px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.pad-btm {
+  padding-bottom: 7px;
+}
+
+/* */
+.left-txt {
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.right-txt {
+  display: inline-block;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.clear-both {
+  clear: both;
+}
+
+/* Table Styles */
+.table-container {
+  margin: 30px 40px 0 20px;
+}
+
+.table-style {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.left-col {
+  text-align: left;
+  padding: 20px 0 0 20px;
+}
+
+.right-col {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.border-btm {
+  border-bottom: 1px solid #ECF1F1;
+}
+
+.padding-btm {
+  padding-bottom: 20px;
+}
+
+.all-round-padding {
+  padding: 13px 20px 12px;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.bg-color {
+  background-color: #ECF1F1;
+}

@@ -1,13 +1,13 @@
-import { GuideMeModule } from './guide-me.module';
+import { InvestmentEngagementJourneyModule } from './investment-engagement-journey.module';
 
-describe('GuideMeModule', () => {
-  let guideMeModule: GuideMeModule;
+describe('InvestmentEngagementJourneyModule', () => {
+  let investmentEngagementJourneyModule: InvestmentEngagementJourneyModule;
 
   beforeEach(() => {
-    guideMeModule = new GuideMeModule();
+    investmentEngagementJourneyModule = new InvestmentEngagementJourneyModule();
   });
 
   it('should create an instance', () => {
-    expect(guideMeModule).toBeTruthy();
+    expect(investmentEngagementJourneyModule).toBeTruthy();
   });
 });
