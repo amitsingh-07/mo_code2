@@ -1,8 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="55" height="20" viewBox="0 0 55 20">
-    <g fill="none" fill-rule="evenodd">
-        <path fill="#FF872F" d="M0 6v8a6 6 0 0 0 6 6h43a6 6 0 0 0 6-6V6a6 6 0 0 0-6-6H6a6 6 0 0 0-6 6z"/>
-        <text fill="#FFF" font-family="Muli-Bold, Muli" font-size="8" font-weight="bold" letter-spacing=".053">
-            <tspan x="8" y="13">Corporate</tspan>
-        </text>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="78px" height="30px" viewBox="0 0 78 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 62 (91390) - https://sketch.com -->
+    <title>Group 23</title>
+    <desc>Created with Sketch.</desc>
+    <g id="5.0-Result+Dashboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="5.3-Dashboard--(Dropoff_Not-completed)" transform="translate(-34.000000, -362.000000)">
+            <g id="Group-25-Copy" transform="translate(16.000000, 289.000000)">
+                <g id="will_card-copy-7" transform="translate(0.000000, 45.000000)">
+                    <g id="Group-23" transform="translate(18.000000, 28.000000)">
+                        <path d="M0,6 L0,24 C4.05812251e-16,27.3137085 2.6862915,30 6,30 L72,30 C75.3137085,30 78,27.3137085 78,24 L78,6 C78,2.6862915 75.3137085,-6.08718376e-16 72,0 L6,0 C2.6862915,6.08718376e-16 -4.05812251e-16,2.6862915 0,6 Z" id="Fill-1" fill="#FF9300"></path>
+                        <text id="Corporate" font-family="Muli-Bold, Muli" font-size="12" font-weight="bold" letter-spacing="0.24" fill="#FFFFFF">
+                            <tspan x="9.126" y="19">Corporate</tspan>
+                        </text>
+                    </g>
+                </g>
+            </g>
+        </g>
     </g>
 </svg>
