@@ -621,4 +621,11 @@ export class ApiService {
     );
   }
 
+  getLastSuccessfulSubmittedTs() {
+    return this.http.get(apiConstants.endpoint.payment.getLastSuccessfulSubmittedTs)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
+
 }
