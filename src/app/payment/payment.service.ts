@@ -52,4 +52,8 @@ export class PaymentService {
     };
     return this.apiService.cancelPayment(payload);
   }
+
+  getLastSuccessfulSubmittedTs() {
+    return this.apiService.getLastSuccessfulSubmittedTs();
+  }
 }
