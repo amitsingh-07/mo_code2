@@ -2,7 +2,7 @@ import { GuideMeService } from './../../guide-me/guide-me.service';
 import { Location } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, SubscriptionLike } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
@@ -46,6 +46,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   locationSubscription: SubscriptionLike;
   state: DirectResultsState = new DirectResultsState();
   componentName: string;
+  modalRef: NgbModalRef;
 
   filteredCountSubject = new Subject<any>();
   subscription: Subscription;
@@ -179,7 +180,9 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       this.state.resultsEmptyMessage = data.responseMessage.responseDescription;
       return;
     }
-
+    if(this.state.selectedCategory.id === PRODUCT_CATEGORY_INDEX.CRITICAL_ILLNESS){
+      this.ciCoverDetailsPopup();
+    }
     this.state.resultsEmptyMessage = '';
     this.state.enquiryId = data.objectList[0].enquiryId;
     this.state.searchResult = data.objectList[0].productProtectionTypeList;
@@ -347,6 +350,12 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
         break;
     }
     this.state.filters = this.state.filters.filter(() => true);
+  }
+
+  ciCoverDetailsPopup() {
+    this.modalRef = this.modal.open(ToolTipModalComponent, { centered: true });
+    this.modalRef.componentInstance.tooltipTitle = this.translate.instant('CRITICAL_ILLNESS.POPUP.TITLE');
+    this.modalRef.componentInstance.tooltipMessage = this.translate.instant('CRITICAL_ILLNESS.POPUP.MESSAGE'); 
   }
 
   setPageTitle(title: string) {

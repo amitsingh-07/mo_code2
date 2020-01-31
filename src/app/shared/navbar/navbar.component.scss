@@ -196,9 +196,9 @@
 
   .mobile-menu {
     @include allmobiles {
-      position: absolute;
+      position: fixed;
       top: 45px;
-      background-color: #fff;
+      // background-color: #fff; /* Prod issue MO2-2316 */
       z-index: 3;
     }
   }
