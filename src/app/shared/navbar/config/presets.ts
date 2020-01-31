@@ -88,10 +88,6 @@ export class NavbarConfig {
     showNavShadow: true,
     showSearchBar: false,
     showNotifications: false,
-    showLabel: {
-      primary: 'Insurance Adviser',
-      secondary: 'powered by DIYInsurance'
-    },
     showExitCheck: true
   };
 

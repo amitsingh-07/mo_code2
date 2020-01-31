@@ -12,6 +12,7 @@ import { FooterService } from './footer.service';
 export class FooterComponent implements OnInit, AfterViewInit {
   showFooter = false;
   isMaintenanceEnabled = false;
+  copyrightYear: string;
   constructor(
     private footerService: FooterService, private cdr: ChangeDetectorRef,
     public readonly translate: TranslateService, private configService: ConfigService) {
@@ -22,6 +23,8 @@ export class FooterComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    const currentDate = new Date();
+    this.copyrightYear = `© ${currentDate.getFullYear() - 1}-${currentDate.getFullYear()}`;
   }
 
   ngAfterViewInit() {

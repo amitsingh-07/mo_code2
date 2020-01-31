@@ -4,11 +4,13 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ComprehensiveService } from 'src/app/comprehensive/comprehensive.service';
 import { ErrorModalComponent } from 'src/app/shared/modal/error-modal/error-modal.component';
+import { environment } from './../../../environments/environment';
 import { ModelWithButtonComponent } from './../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { PaymentModalComponent } from './../payment-modal/payment-modal.component';
 import { PAYMENT_CONST, PAYMENT_REQUEST } from './../payment.constants';
 import { PaymentService } from './../payment.service';
+import { SignUpService } from 'src/app/sign-up/sign-up.service';
 
 @Component({
   selector: 'app-checkout',
@@ -36,7 +38,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     private modal: NgbModal,
     public navbarService: NavbarService,
     private paymentService: PaymentService,
-    private comprehensiveService: ComprehensiveService
+    private comprehensiveService: ComprehensiveService,
+    private signUpService: SignUpService
   ) {
     this.translate.use('en');
   }
@@ -63,6 +66,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       requested_amount: [this.totalAmt],
       requested_amount_currency: [''],
       redirect_url: [''],
+      cancel_redirect_url: [''],
       termsOfConditions: [this.termsOfConditions, Validators.required]
     });
   }
@@ -78,8 +82,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.openModal();
     // Update this to add customer id
     const enqId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
-    this.paymentService.getRequestSignature(enqId, this.totalAmt, PAYMENT_CONST.SOURCE).subscribe((res) => {
+    const baseProfile = this.signUpService.getAccountInfo();
+    this.paymentService.getRequestSignature(enqId, this.totalAmt, PAYMENT_CONST.SOURCE, baseProfile.userProfileInfo).subscribe((res) => {
       this.updateFormValues(res);
+      this.paymentService.setRequestId(res['requestId']);
     }, (error) => {
       this.errorRedirecting();
     });
@@ -93,9 +99,40 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.checkoutForm.get('merchant_account_id').setValue(PAYMENT_REQUEST.merchantAccId);
     this.checkoutForm.get('transaction_type').setValue(PAYMENT_REQUEST.transactionType);
     this.checkoutForm.get('requested_amount_currency').setValue(PAYMENT_REQUEST.currency);
-    this.checkoutForm.get('redirect_url').setValue(PAYMENT_REQUEST.redirectURL);
+    this.checkoutForm.get('redirect_url').setValue(environment.apiBaseUrl + PAYMENT_REQUEST.redirectURL);
+    this.checkoutForm.get('cancel_redirect_url').setValue(environment.apiBaseUrl + PAYMENT_REQUEST.redirectCancelURL);
     document.forms['checkoutForm'].action = PAYMENT_REQUEST.requestURL;
     document.forms['checkoutForm'].submit();
+    // const body = new URLSearchParams();
+    // body.set('request_id', res['requestId']);
+    // body.set('request_time_stamp', '' + res['requestTimestamp']);
+    // body.set('request_signature', res['requestSignature']);
+    // body.set('merchant_account_id', PAYMENT_REQUEST.merchantAccId);
+    // body.set('transaction_type', PAYMENT_REQUEST.transactionType);
+    // body.set('requested_amount', this.totalAmt);
+    // body.set('requested_amount_currency', PAYMENT_REQUEST.currency);
+    // body.set('redirect_url', environment.apiBaseUrl + PAYMENT_REQUEST.redirectURL);
+    // body.set('cancel_redirect_url', environment.apiBaseUrl + PAYMENT_REQUEST.redirectCancelURL);
+    // this.makeHttpRequest(body);
+  }
+
+  makeHttpRequest(body) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', PAYMENT_REQUEST.requestURL);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader( 'Access-Control-Allow-Origin', '*');
+    xhr.onreadystatechange = () => {
+    // Call a function when the state changes.
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          window.open(xhr.responseURL, '_self');
+        } else {
+          // Handle Error
+          this.errorRedirecting();
+        }
+      }
+    };
+    xhr.send(body);
   }
 
   // Open payment modal
