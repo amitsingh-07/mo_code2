@@ -58,7 +58,7 @@ export class PaymentStatusComponent implements OnInit, OnDestroy {
 
   // Set the various text for btn, status title and tex based on success or failed transaction
   setStatusText(params) {
-    if (params['transaction_state'] === PAYMENT_STATUS.SUCCESS) {
+    if (params['transaction_state'].toLowerCase() === PAYMENT_STATUS.SUCCESS) {
       this.getUserEmail();
       this.statusTitle = this.translate.instant('PAYMENT_STATUS.SUCCESS_TITLE');
       this.statusText = this.translate.instant('PAYMENT_STATUS.SUCCESS_TEXT') + '<span>' + this.userEmail + '</span>';
@@ -72,7 +72,7 @@ export class PaymentStatusComponent implements OnInit, OnDestroy {
       this.btnText = this.translate.instant('PAYMENT_STATUS.TRY_AGAIN');
       this.navigateText = this.translate.instant('PAYMENT_STATUS.BACK_DASHBOARD');
       this.paymentStatus = PAYMENT_STATUS.FAILED;
-      if (params['transaction_state'] === PAYMENT_STATUS.CANCEL) {
+      if (params['transaction_state'].toLowerCase() === PAYMENT_STATUS.CANCEL) {
         // Call cancel payment
         const reqId = this.paymentService.getRequestId();
         this.paymentService.cancelPayment(reqId).subscribe((res) => {});
