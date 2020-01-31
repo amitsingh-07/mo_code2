@@ -55,7 +55,7 @@
           <div class="table-row" *ngFor="let option of currentQuestion.options; let i = index">
             <div class="table-cell">
               <input id="risk-assessment_option{{i+1}}_radio" name="questSelOption" formControlName="questSelOption"
-                type="radio" class="field radio" value="{{option.questionOptionId}}" tabindex="{{i+1}}">
+                type="radio" class="field radio" [value]="option.questionOptionId"  tabindex="{{i+1}}">
               <label for="risk-assessment_option{{i+1}}_radio" id="riskAssessLbl_{{i}}">
                 <div><span id="risk-assessment_option-text{{i+1}}_lbl" class="input-label-grey">{{option.text}}</span>
                 </div>

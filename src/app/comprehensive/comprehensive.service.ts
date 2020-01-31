@@ -658,7 +658,8 @@ export class ComprehensiveService {
       };
       this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers = selAnswers;
     } else {
-      this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer = {enquiryId: riskProfileAnswersData.enquiryId, answers: [], riskProfileAnswers: selAnswers};
+      const enquiryId= riskProfileAnswersData && riskProfileAnswersData.enquiryId ? riskProfileAnswersData.enquiryId:null;
+      this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer = {enquiryId: enquiryId, answers: [], riskProfileAnswers: selAnswers};
     }
   }
   saveRiskAssessment() {
