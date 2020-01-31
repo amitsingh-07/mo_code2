@@ -147,7 +147,7 @@
       "GET_NEW": " Get one now!",
       "ONE_TIME_FEE": "$500 (one-time fee)",
       "GET_PROMO": "Get Promo Code",
-      "VIDEO_LINK": "https://www.youtube.com/embed/EjeYBT1I8jw",
+      "VIDEO_LINK": "https://www.youtube-nocookie.com/embed/c-c8YYTF16U?rel=0",
       "CFP": "Comprehensive Financial Planning",
       "CFP_DESC": "For a limited time only, 100% fee rebate when you go through the full comprehensive financial planning process."
     },
@@ -703,8 +703,10 @@
     "REVIEW": {
       "TITLE": "Review",
       "ABOUT": "Please review your details carefully before clicking confirm. Do note that after you have confirmed, you will not be able to modify any of your inputs until your report is ready.",
+	  "ABOUT_WITH_PAY": "Please review your details carefully before clicking \"Confirm & Pay\". Do note that after you have clicked \"Confirm & Pay\", you will not be able to modify any of your inputs until your report is ready.",
       "REVIEW_INPUT": "Review Inputs",
-      "CONFIRM": "Confirm"
+      "CONFIRM": "Confirm",
+	  "CONFIRM_WITH_PAY": "Confirm & Pay"
     }
   }
 }
