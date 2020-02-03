@@ -22,11 +22,7 @@
       </div>
       <div class="flex-mt15">
         <div class="teal-txt">{{'CHECKOUT.GST' | translate:({'gst': gst})}}</div>
-        <div class="grey-txt">({{subTotal * (gst/100) | currency : 'USD' : 'symbol-narrow' : '1.0-0'}})</div>
-      </div>
-      <div class="flex-mt15">
-        <div class="teal-txt">{{'CHECKOUT.PROMO_CODE' | translate}}</div>
-        <div class="grey-txt">{{promoCode}}</div>
+        <div class="grey-txt">{{subTotal * (gst/100) | currency : 'USD' : 'symbol-narrow' : '1.0-0'}}</div>
       </div>
       <div class="horizontal-divider"></div>
       <div class="flex-mt20">
