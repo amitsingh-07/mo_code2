@@ -16,20 +16,18 @@ export class PaymentChildEnableGuard implements CanActivateChild {
     private authService: AuthenticationService,
     private signUpService: SignUpService,
     private paymentService: PaymentService) {
-      this.configService.getConfig().subscribe((config: IConfig) => {
-        this.isPaymentEnabled = config.paymentEnabled;
-      });
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.isPaymentEnabled = config.paymentEnabled;
+    });
   }
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (this.authService.isSignedUser()) {
       // Navigate only if payment enabled and user has not paid
-      return this.paymentService.getLastSuccessfulSubmittedTs().map((res) => {
-        if (this.isPaymentEnabled && res['last_submit_ts'].length === 0) {
-          return true;
-        } else {
-          return false;
-        }
-      });
+      if (this.isPaymentEnabled) {
+        return true;
+      } else {
+        return false;
+      }
     } else {
       // User is not logged in, redirect to login page
       this.signUpService.setRedirectUrl(state.url);
