@@ -318,7 +318,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   redirectToPromoPage(productID: string) {
     const promo = this.planService.checkProductID(productID);
     if (promo && promo.promoId) {
-        window.open(`${window.location.host}/promotions/${promo.promoId}`, '_blank');
+        window.open(`${window.location.protocol}//${window.location.host}/promotions/${promo.promoId}`, '_blank');
     }
     return;
   }
