@@ -5,6 +5,7 @@ import { ConfigService, IConfig } from '../config/config.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SignUpService } from '../sign-up/sign-up.service';
 import { SIGN_UP_ROUTE_PATHS } from './../sign-up/sign-up.routes.constants';
+import { PAYMENT_ROUTES } from './payment-routes.constants';
 import { PaymentService } from './payment.service';
 
 @Injectable()
@@ -23,10 +24,17 @@ export class PaymentChildEnableGuard implements CanActivateChild {
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (this.authService.isSignedUser()) {
       // Navigate only if payment enabled and user has not paid
-      if (this.isPaymentEnabled) {
+      // Skip for payment-status page
+      if (state.url.includes(PAYMENT_ROUTES.PAYMENT_STATUS)) {
         return true;
       } else {
-        return false;
+        return this.paymentService.getLastSuccessfulSubmittedTs().map((res) => {
+          if (this.isPaymentEnabled && res['last_submit_ts'].length === 0) {
+            return true;
+          } else {
+            return false;
+          }
+        });
       }
     } else {
       // User is not logged in, redirect to login page
