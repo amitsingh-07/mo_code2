@@ -149,7 +149,8 @@
       "GET_PROMO": "Get Promo Code",
       "VIDEO_LINK": "https://www.youtube-nocookie.com/embed/c-c8YYTF16U?rel=0",
       "CFP": "Comprehensive Financial Planning",
-      "CFP_DESC": "For a limited time only, 100% fee rebate when you go through the full comprehensive financial planning process."
+      "CFP_DESC": "100% fee rebate when you go through the full comprehensive financial planning process.",
+      "CFP_OTF_GST": "$535 (incl. GST)"
     },
     "COMPREHENSIVE_STEPS": {
       "STEP": "Step",
