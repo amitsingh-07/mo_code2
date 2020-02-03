@@ -4,13 +4,13 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ComprehensiveService } from 'src/app/comprehensive/comprehensive.service';
 import { ErrorModalComponent } from 'src/app/shared/modal/error-modal/error-modal.component';
+import { SignUpService } from 'src/app/sign-up/sign-up.service';
 import { environment } from './../../../environments/environment';
 import { ModelWithButtonComponent } from './../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { PaymentModalComponent } from './../payment-modal/payment-modal.component';
 import { PAYMENT_CONST, PAYMENT_REQUEST } from './../payment.constants';
 import { PaymentService } from './../payment.service';
-import { SignUpService } from 'src/app/sign-up/sign-up.service';
 
 @Component({
   selector: 'app-checkout',
@@ -26,6 +26,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   checkoutForm: FormGroup;
   termsOfConditions = false;
   modalRef: NgbModalRef;
+  nonProdEnv = false;
 
   subTotal = PAYMENT_CONST.SUBTOTAL;
   gst = PAYMENT_CONST.GST;
@@ -50,6 +51,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       this.setNavbarServices(this.pageTitle);
     });
     this.buildForm();
+    // Setting boolean to turn testing amt input
+    this.nonProdEnv = environment.isDebugMode;
   }
 
   ngOnDestroy() {
@@ -99,6 +102,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.checkoutForm.get('merchant_account_id').setValue(PAYMENT_REQUEST.merchantAccId);
     this.checkoutForm.get('transaction_type').setValue(PAYMENT_REQUEST.transactionType);
     this.checkoutForm.get('requested_amount_currency').setValue(PAYMENT_REQUEST.currency);
+    this.checkoutForm.get('requested_amount').setValue(this.totalAmt);
     this.checkoutForm.get('redirect_url').setValue(environment.apiBaseUrl + PAYMENT_REQUEST.redirectURL);
     this.checkoutForm.get('cancel_redirect_url').setValue(environment.apiBaseUrl + PAYMENT_REQUEST.redirectCancelURL);
     document.forms['checkoutForm'].action = PAYMENT_REQUEST.requestURL;
@@ -173,6 +177,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       this.submitForm();
     }).catch((e) => {
     });
+  }
+
+  // For testing failed transaction scenario
+  testingAmt(amt) {
+    this.totalAmt = amt;
   }
 
 }

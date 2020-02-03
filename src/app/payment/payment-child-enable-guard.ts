@@ -21,20 +21,20 @@ export class PaymentChildEnableGuard implements CanActivateChild {
       });
   }
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return this.paymentService.getLastSuccessfulSubmittedTs().map((res) => {
-      if (this.authService.isSignedUser()) {
+    if (this.authService.isSignedUser()) {
       // Navigate only if payment enabled and user has not paid
+      return this.paymentService.getLastSuccessfulSubmittedTs().map((res) => {
         if (this.isPaymentEnabled && res['last_submit_ts'].length === 0) {
           return true;
         } else {
           return false;
         }
-      } else {
-        // User is not logged in, redirect to login page
-        this.signUpService.setRedirectUrl(state.url);
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
-        return false;
-      }
-    });
+      });
+    } else {
+      // User is not logged in, redirect to login page
+      this.signUpService.setRedirectUrl(state.url);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+      return false;
+    }
   }
 }
