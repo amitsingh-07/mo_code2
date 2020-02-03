@@ -12,7 +12,7 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-    IfastErrorModalComponent
+  IfastErrorModalComponent
 } from '../../shared/modal/ifast-error-modal/ifast-error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
@@ -80,7 +80,7 @@ export class AddUpdateBankComponent implements OnInit {
 
     this.bankForm.get('accountNo').valueChanges.pipe(distinctUntilChanged()).subscribe((value) => {
       this.bankForm.get('accountNo').setValidators([Validators.required,
-        this.signUpService.validateBankAccNo]);
+      this.signUpService.validateBankAccNo]);
       this.bankForm.get('accountNo').updateValueAndValidity();
     });
   }
@@ -128,12 +128,11 @@ export class AddUpdateBankComponent implements OnInit {
           if (response.responseMessage.responseCode < 6000) {
             if (
               response.objectList &&
-              response.objectList.length &&
-              response.objectList[response.objectList.length - 1].serverStatus &&
-              response.objectList[response.objectList.length - 1].serverStatus.errors &&
-              response.objectList[response.objectList.length - 1].serverStatus.errors.length
+              response.objectList.serverStatus &&
+              response.objectList.serverStatus.errors &&
+              response.objectList.serverStatus.errors.length
             ) {
-              const errorResponse = response.objectList[response.objectList.length - 1];
+              const errorResponse = response.objectList;
               const errorList = errorResponse.serverStatus.errors;
               this.showIfastErrorModal(errorList);
             } else if (response.responseMessage && response.responseMessage.responseDescription) {
@@ -146,10 +145,10 @@ export class AddUpdateBankComponent implements OnInit {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
           }
         },
-        (err) => {
-          this.loaderService.hideLoader();
-          this.investmentAccountService.showGenericErrorModal();
-        });
+          (err) => {
+            this.loaderService.hideLoader();
+            this.investmentAccountService.showGenericErrorModal();
+          });
       } else {
         // tslint:disable-next-line:max-line-length
         const accountNum = form.value.accountNo;
@@ -159,33 +158,32 @@ export class AddUpdateBankComponent implements OnInit {
         });
         this.signUpService.updateBankInfo(form.value.bank,
           form.value.accountHolderName, accountNum, this.updateId).subscribe((data) => {
-          this.loaderService.hideLoader();
-          // tslint:disable-next-line:triple-equals
-          if (data.responseMessage.responseCode < 6000) {
-            if (
-              data.objectList &&
-              data.objectList.length &&
-              data.objectList[data.objectList.length - 1].serverStatus &&
-              data.objectList[data.objectList.length - 1].serverStatus.errors &&
-              data.objectList[data.objectList.length - 1].serverStatus.errors.length
-            ) {
-            const errorResponse = data.objectList[data.objectList.length - 1];
-            const errorList = errorResponse.serverStatus.errors;
-            this.showIfastErrorModal(errorList);
-            } else if (data.responseMessage && data.responseMessage.responseDescription) {
-              const errorResponse = data.responseMessage.responseDescription;
-              this.showCustomErrorModal('Error!', errorResponse);
+            this.loaderService.hideLoader();
+            // tslint:disable-next-line:triple-equals
+            if (data.responseMessage.responseCode < 6000) {
+              if (
+                data.objectList &&
+                data.objectList.serverStatus &&
+                data.objectList.serverStatus.errors &&
+                data.objectList.serverStatus.errors.length
+              ) {
+                const errorResponse = data.objectList;
+                const errorList = errorResponse.serverStatus.errors;
+                this.showIfastErrorModal(errorList);
+              } else if (data.responseMessage && data.responseMessage.responseDescription) {
+                const errorResponse = data.responseMessage.responseDescription;
+                this.showCustomErrorModal('Error!', errorResponse);
+              } else {
+                this.investmentAccountService.showGenericErrorModal();
+              }
             } else {
-              this.investmentAccountService.showGenericErrorModal();
+              this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
             }
-          } else {
-            this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
-          }
-        },
-        (err) => {
-          this.loaderService.hideLoader();
-          this.investmentAccountService.showGenericErrorModal();
-        });
+          },
+            (err) => {
+              this.loaderService.hideLoader();
+              this.investmentAccountService.showGenericErrorModal();
+            });
         // Edit Bank APi here
       }
     }
@@ -210,8 +208,8 @@ export class AddUpdateBankComponent implements OnInit {
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessage = desc;
   }
-// #ALLOWING 100 CHARACTERS ACCOUNT HOLDER NAME
- setAccountHolderName(accountHolderName: any) {
+  // #ALLOWING 100 CHARACTERS ACCOUNT HOLDER NAME
+  setAccountHolderName(accountHolderName: any) {
     if (accountHolderName !== undefined) {
       accountHolderName = accountHolderName.replace(/\n/g, '');
       this.bankForm.controls.accountHolderName.setValue(accountHolderName);
@@ -227,8 +225,8 @@ export class AddUpdateBankComponent implements OnInit {
   onChange(event) {
     const id = event.target.id;
     if (id !== '') {
-     const content = event.target.innerText;
-     if (content.length >= 100) {
+      const content = event.target.innerText;
+      if (content.length >= 100) {
         const contentList = content.substring(0, 100);
         this.bankForm.controls.accountHolderName.setValue(contentList);
         const el = document.querySelector('#' + id);
