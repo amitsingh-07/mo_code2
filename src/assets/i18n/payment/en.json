@@ -24,9 +24,9 @@
   },
   "PAYMENT_STATUS": {
     "SUCCESS_TITLE": "Yay! Payment Successful!",
-    "SUCCESS_TEXT": "Congratulations on taking a positive step towards your financial health. Your client adviser will be in touch with you soon.<br/><br/>You may view your payment status/receipt at ",
+    "SUCCESS_TEXT": "Congratulations on taking a positive step towards your financial health. Your client adviser will be in touch with you soon.<br/><br/>We have sent your receipt to your email address at ",
     "FAIL_TITLE": "Oh no, payment failed…",
-    "FAIL_TEXT": "Looks like your payment did not go through. You can try again or you can contact our customer support.",
+    "FAIL_TEXT": "Looks like your payment did not go through. You can try again.",
     "BACK_DASHBOARD": "Back to Dashboard",
     "CONTINUE": "Continue",
     "TRY_AGAIN": "Try Again"
