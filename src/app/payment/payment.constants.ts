@@ -18,5 +18,6 @@ export const PAYMENT_REQUEST = {
     currency: 'SGD',
     redirectURL: '/pymtgw/redirectPaymentStatus',
     redirectCancelURL: '/pymtgw/redirectCancelPayment',
-    requestURL: 'https://test.wirecard.com.sg/engine/hpp/'
+    requestURL: 'https://test.wirecard.com.sg/engine/hpp/',
+    attempt3D: 'false'
 };

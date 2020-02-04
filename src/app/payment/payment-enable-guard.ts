@@ -11,16 +11,15 @@ import { PaymentService } from './payment.service';
 @Injectable()
 export class PaymentEnableGuard implements CanActivate {
   isPaymentEnabled = false;
-  hasPaid = false;
 
   constructor(
     private configService: ConfigService, private router: Router,
     private authService: AuthenticationService,
     private signUpService: SignUpService,
     private paymentService: PaymentService) {
-    this.configService.getConfig().subscribe((config: IConfig) => {
-      this.isPaymentEnabled = config.paymentEnabled;
-    });
+      this.configService.getConfig().subscribe((config: IConfig) => {
+        this.isPaymentEnabled = config.paymentEnabled;
+      });
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (this.authService.isSignedUser()) {

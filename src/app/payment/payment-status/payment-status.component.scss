@@ -94,7 +94,7 @@ app-payment-status {
   .btn-primary {
     width: 340px;
     margin-top: 41px !important;
-    font-family: $muli-bold;
+    font-family: $muli-bold !important;
   }
 
   @include allmobiles {
