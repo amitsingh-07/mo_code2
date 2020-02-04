@@ -10,7 +10,7 @@ export class AboutAge {
 	}
 
 	calculateAge(date, dateToCalculate): number {
-		if(date === null || date === '') {
+		if(date === null || date === '' || date === 'undefined' || date === undefined) {
 			return -1;
 		} else {
 			const dateParts = date.split('/');
