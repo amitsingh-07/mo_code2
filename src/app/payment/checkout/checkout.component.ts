@@ -70,6 +70,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       requested_amount_currency: [''],
       redirect_url: [''],
       cancel_redirect_url: [''],
+      attempt_three_d: [''],
       termsOfConditions: [this.termsOfConditions, Validators.required]
     });
   }
@@ -105,6 +106,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.checkoutForm.get('requested_amount').setValue(this.totalAmt);
     this.checkoutForm.get('redirect_url').setValue(environment.apiBaseUrl + PAYMENT_REQUEST.redirectURL);
     this.checkoutForm.get('cancel_redirect_url').setValue(environment.apiBaseUrl + PAYMENT_REQUEST.redirectCancelURL);
+    this.checkoutForm.get('attempt_three_d').setValue(PAYMENT_REQUEST.attempt3D);
     document.forms['checkoutForm'].action = PAYMENT_REQUEST.requestURL;
     document.forms['checkoutForm'].submit();
     // const body = new URLSearchParams();
