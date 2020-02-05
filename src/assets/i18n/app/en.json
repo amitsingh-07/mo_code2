@@ -262,8 +262,8 @@
         },
         "MAIN_GENERAL": {
           "LABEL": "General Line",
-          "LINK_LABEL": "(65) 6329 9189",
-          "LINK": "6329 9189"
+          "LINK_LABEL": "(65) 6329 9188",
+          "LINK": "6329 9188"
         },
         "EMAIL": {
           "LABEL": "Email",
@@ -309,7 +309,7 @@
           "LABEL": "Security Policy"
         }
       },
-      "ALL_RIGHTS_RESERVED": "© 2018-2019 MoneyOwl Pte Ltd. All Rights Reserved."
+      "ALL_RIGHTS_RESERVED": "MoneyOwl Pte Ltd. All Rights Reserved."
     }
   },
   "COMMON_ERRORS": {
