@@ -11,7 +11,6 @@ import { PaymentService } from './payment.service';
 @Injectable()
 export class PaymentEnableGuard implements CanActivate {
   isPaymentEnabled = false;
-  hasPaid = false;
 
   constructor(
     private configService: ConfigService, private router: Router,

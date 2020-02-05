@@ -318,7 +318,8 @@ h6 {
           flex-basis: unset;
           order: 2;
           margin-right: 0px;
-          background-color: $white-color; /* Prod issue MO2-2316 */
+          background-color: $white-color;
+          /* Prod issue MO2-2316 */
           overflow-y: scroll;
           -webkit-overflow-scrolling: touch;
         }
