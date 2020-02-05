@@ -4,7 +4,7 @@
 
   </div>
   <div class="text-center about mb30">
-    {{ isPaymentEnabled ? ('CMP.REVIEW.ABOUT_WITH_PAY' | translate) : ('CMP.REVIEW.ABOUT' | translate) }}
+    {{ requireToPay ? ('CMP.REVIEW.ABOUT_WITH_PAY' | translate) : ('CMP.REVIEW.ABOUT' | translate) }}
   </div>
   <div class="footer-cta">
 
@@ -14,7 +14,7 @@
     </button>
 
     <button type="button" (click)="goToNext()" class="btn btn-primary confirmBtn width100" id="moDpdnt2BtnFooter">
-	{{isPaymentEnabled ? ('CMP.REVIEW.CONFIRM_WITH_PAY' | translate) : ('CMP.REVIEW.CONFIRM' | translate)}}
+	{{requireToPay ? ('CMP.REVIEW.CONFIRM_WITH_PAY' | translate) : ('CMP.REVIEW.CONFIRM' | translate)}}
     </button>
   </div>
 </div>

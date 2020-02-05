@@ -703,11 +703,11 @@
     },
     "REVIEW": {
       "TITLE": "Review",
-      "ABOUT": "Please review your details carefully before clicking confirm. Do note that after you have confirmed, you will not be able to modify any of your inputs until your report is ready.",
-	  "ABOUT_WITH_PAY": "Please review your details carefully before clicking \"Confirm & Pay\". Do note that after you have completed payment, you will not be able to modify any of your inputs until your report is ready.",
+      "ABOUT": "Please review your details carefully before clicking \"Confirm\". Do note that after you have clicked \"Confirm\", you will not be able to modify any of your inputs until your report is ready.",
+	    "ABOUT_WITH_PAY": "Please review your details carefully before clicking \"Confirm & Pay\". Do note that after you have completed payment, you will not be able to modify any of your inputs until your report is ready.",
       "REVIEW_INPUT": "Review Inputs",
       "CONFIRM": "Confirm",
-	  "CONFIRM_WITH_PAY": "Confirm & Pay"
+	    "CONFIRM_WITH_PAY": "Confirm & Pay"
     }
   }
 }
