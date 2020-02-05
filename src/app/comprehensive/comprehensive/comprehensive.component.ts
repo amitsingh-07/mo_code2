@@ -189,6 +189,6 @@ export class ComprehensiveComponent implements OnInit {
 
   isCurrentDateInRange(START_TIME, END_TIME) {
     return (new Date() >= new Date(START_TIME)
-      && new Date() <= new Date(END_TIME));
+          && new Date() < new Date(END_TIME));
   }
 }
