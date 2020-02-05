@@ -176,6 +176,9 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   get addLiabilitiesValid() { return this.myLiabilitiesForm.controls; }
   validateLiabilities(form: FormGroup) {
     this.submitted = true;
+    if (this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+      this.myLiabilitiesForm.markAsDirty();
+    }
     if (this.validationFlag === true && !form.valid) {
       Object.keys(form.controls).forEach((key) => {
 

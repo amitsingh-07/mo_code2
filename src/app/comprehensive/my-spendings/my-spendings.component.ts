@@ -215,6 +215,9 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   }
   validateSpendings(form: FormGroup) {
     this.submitted = true;
+    if (this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+      this.mySpendingsForm.markAsDirty();
+    }
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
 

@@ -312,6 +312,9 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   get addAssetsValid() { return this.myAssetsForm.controls; }
   validateAssets(form: FormGroup) {
     this.submitted = true;
+    if (this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+      this.myAssetsForm.markAsDirty();
+    }
     if (this.validationFlag === true && !form.valid) {
       Object.keys(form.controls).forEach((key) => {
 
