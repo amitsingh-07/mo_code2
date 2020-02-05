@@ -36,6 +36,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
   subscription: Subscription;
   isRiskProfileAnswer: boolean;
   riskProfileAnswers: any;
+  viewMode: boolean;
 
   constructor(
     public navbarService: NavbarService,
@@ -57,6 +58,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       });
   });
     this.pageId = this.route.routeConfig.component.name;
+    this.viewMode = this.comprehensiveService.getViewableMode();
     const self = this;
     this.route.params.subscribe((params) => {
       self.questionIndex = +params['id'];
@@ -73,15 +75,12 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
 
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-    this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(6);
-    this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe(
-      (pageId) => {
-        if (this.pageId === pageId) {
-          this.progressService.show();
-        }
+    this.navbarService.setNavbarComprehensive(true);
+    this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
+      if (this.pageId === pageId) {
+        this.progressService.show();
       }
-    );
+    });
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
       if (event && event !== '') {
         const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
@@ -137,7 +136,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       if (this.questionIndex < this.questionsList.length) {
         // NEXT QUESTION
         this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
-
+          this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
           this.router.navigate([
             COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
           ]);
@@ -145,8 +144,9 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       } else {
 
         this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
-
-          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REVIEW]);
+          const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
+          : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
+          this.router.navigate([routerURL]);
         });
       }
     }

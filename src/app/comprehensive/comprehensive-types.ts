@@ -17,6 +17,7 @@ export interface IComprehensiveDetails {
     comprehensiveViewMode?: boolean;
     comprehensiveJourneyMode: boolean;
     riskAssessmentAnswer?: IRiskAssesmentAnswers;
+    riskQuestionList?: any;
 }
 export interface IComprehensiveEnquiry {
     customerId: number;
