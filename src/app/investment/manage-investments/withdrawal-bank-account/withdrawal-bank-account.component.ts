@@ -16,7 +16,7 @@ import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.con
 import { ManageInvestmentsService } from '../manage-investments.service';
 import { ConfirmWithdrawalModalComponent } from '../withdrawal/confirm-withdrawal-modal/confirm-withdrawal-modal.component';
 import {
-    ForwardPricingModalComponent
+  ForwardPricingModalComponent
 } from '../withdrawal/forward-pricing-modal/forward-pricing-modal.component';
 import { AddBankModalComponent } from './add-bank-modal/add-bank-modal.component';
 
@@ -162,8 +162,8 @@ export class WithdrawalBankAccountComponent implements OnInit {
   showLearnMoreModal() {
     const learnMoreRef = this.modal.open(ForwardPricingModalComponent, {
       centered: true,
-      backdrop : 'static',
-      keyboard : false
+      backdrop: 'static',
+      keyboard: false
     });
     learnMoreRef.result.then((data) => {
     }, (reason) => {
@@ -178,7 +178,7 @@ export class WithdrawalBankAccountComponent implements OnInit {
       const portfolioValue = this.formValues.withdrawPortfolio.currentValue;
       return portfolioValue;
     }
-   }
+  }
 
   showNewBankFormModal() {
     const ref = this.modal.open(AddBankModalComponent, {
@@ -193,15 +193,14 @@ export class WithdrawalBankAccountComponent implements OnInit {
           this.getUserBankList(); // refresh updated bank list
         } else if (
           response.objectList &&
-          response.objectList.length &&
-          response.objectList[response.objectList.length - 1].serverStatus &&
-          response.objectList[response.objectList.length - 1].serverStatus.errors &&
-          response.objectList[response.objectList.length - 1].serverStatus.errors.length
+          response.objectList.serverStatus &&
+          response.objectList.serverStatus.errors &&
+          response.objectList.serverStatus.errors.length
         ) {
           this.showCustomErrorModal(
             'Error!',
-            response.objectList[response.objectList.length - 1].serverStatus.errors[0].msg + '('
-            + response.objectList[response.objectList.length - 1].serverStatus.errors[0].code + ')'
+            response.objectList.serverStatus.errors[0].msg + '('
+            + response.objectList.serverStatus.errors[0].code + ')'
           );
         } else if (response.responseMessage && response.responseMessage.responseDescription) {
           const errorResponse = response.responseMessage.responseDescription;
@@ -226,36 +225,35 @@ export class WithdrawalBankAccountComponent implements OnInit {
     ref.componentInstance.saved.subscribe((data) => {
       ref.close();
       this.manageInvestmentsService.updateBankInfo(data.bank, data.accountHolderName,
-         data.accountNo,  this.userBankList[index].id).subscribe((response) => {
-        if (response.responseMessage.responseCode >= 6000) {
-          this.getUserBankList(); // refresh updated bank list
-        } else if (
-          response.objectList &&
-          response.objectList.length &&
-          response.objectList[response.objectList.length - 1].serverStatus &&
-          response.objectList[response.objectList.length - 1].serverStatus.errors &&
-          response.objectList[response.objectList.length - 1].serverStatus.errors.length
-        ) {
-          this.showCustomErrorModal(
-            'Error!',
-            response.objectList[response.objectList.length - 1].serverStatus.errors[0].msg + '('
-            + response.objectList[response.objectList.length - 1].serverStatus.errors[0].code + ')'
-          );
-        } else if (response.responseMessage && response.responseMessage.responseDescription) {
-          const errorResponse = response.responseMessage.responseDescription;
-          this.showCustomErrorModal('Error!', errorResponse);
-        } else {
-          this.investmentAccountService.showGenericErrorModal();
-        }
-      },
-        (err) => {
-          this.investmentAccountService.showGenericErrorModal();
-        });
+        data.accountNo, this.userBankList[index].id).subscribe((response) => {
+          if (response.responseMessage.responseCode >= 6000) {
+            this.getUserBankList(); // refresh updated bank list
+          } else if (
+            response.objectList &&
+            response.objectList.serverStatus &&
+            response.objectList.serverStatus.errors &&
+            response.objectList.serverStatus.errors.length
+          ) {
+            this.showCustomErrorModal(
+              'Error!',
+              response.objectList.serverStatus.errors[0].msg + '('
+              + response.objectList.serverStatus.errors[0].code + ')'
+            );
+          } else if (response.responseMessage && response.responseMessage.responseDescription) {
+            const errorResponse = response.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
+          } else {
+            this.investmentAccountService.showGenericErrorModal();
+          }
+        },
+          (err) => {
+            this.investmentAccountService.showGenericErrorModal();
+          });
     });
     this.dismissPopup(ref);
-   }
+  }
   saveWithdrawal() {
-    if(!this.isRequestSubmitted) {
+    if (!this.isRequestSubmitted) {
       this.isRequestSubmitted = true;
       this.loaderService.showLoader({
         title: this.translate.instant('WITHDRAW.WITHDRAW_REQUEST_LOADER.TITLE'),

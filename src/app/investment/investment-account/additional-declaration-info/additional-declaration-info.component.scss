@@ -4,11 +4,15 @@
 app-additional-declaration-info {
   .container-fluid {
     padding-top: 30px !important;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc( 100vh - 84px );
     @include allmobiles {
       padding-left: 0 !important;
       padding-right: 0 !important;
       padding-top: 10px !important;
+      min-height: calc( 100vh - 46px );
     }
   }
 
@@ -33,7 +37,7 @@ app-additional-declaration-info {
         }
       }
 
-      .intro-block__content__desc {
+      .intro-block__content__des {
         color: $intro-block-content-desc-color;
 
         @include allmobiles {

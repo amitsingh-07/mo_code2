@@ -265,7 +265,7 @@ app-comprehensive {
       font-family: $muli-bold;
 
       &__limited {
-        color: $limited;
+        color: $black-color;
         font-size: 11px;
         font-family: $muli-semi-bold;
       }
@@ -312,8 +312,15 @@ app-comprehensive {
       font-family: $muli-bold;
     }
 
+    &__otf-with-gst {
+      font-family: $muli-bold;
+      color: $app-backgrnd-color;
+      font-size: 16px;
+      margin: 8px 0;
+    }
+
     &__desc {
-      color: $limited-text;
+      color: $black-color;
       font-size: 14px;
       font-family: $muli-regular;
 
@@ -329,6 +336,13 @@ app-comprehensive {
         padding-right: 6%;
       }
     }
+  }
+
+  .otf-with-gst {
+    font-family: $muli-bold;
+    color: $app-backgrnd-color;
+    font-size: 16px;
+    margin-bottom: 2px;
   }
 
   .promo-code-heading {

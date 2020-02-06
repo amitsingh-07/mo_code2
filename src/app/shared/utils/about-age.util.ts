@@ -10,26 +10,29 @@ export class AboutAge {
 	}
 
 	calculateAge(date, dateToCalculate): number {
+		if(date === null || date === '' || date === 'undefined' || date === undefined) {
+			return -1;
+		} else {
+			const dateParts = date.split('/');
+			const dateOfBirth = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
 
-		const dateParts = date.split('/');
-		const dateOfBirth = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
+			const calculateYear = dateToCalculate.getFullYear();
+			const calculateMonth = dateToCalculate.getMonth();
+			const calculateDay = dateToCalculate.getDate();
 
-		const calculateYear = dateToCalculate.getFullYear();
-		const calculateMonth = dateToCalculate.getMonth();
-		const calculateDay = dateToCalculate.getDate();
+			const birthYear = dateOfBirth.getFullYear();
+			const birthMonth = dateOfBirth.getMonth();
+			const birthDay = dateOfBirth.getDate();
 
-		const birthYear = dateOfBirth.getFullYear();
-		const birthMonth = dateOfBirth.getMonth();
-		const birthDay = dateOfBirth.getDate();
+			let age = calculateYear - birthYear;
+			const ageMonth = calculateMonth - birthMonth;
+			const ageDay = calculateDay - birthDay;
 
-		let age = calculateYear - birthYear;
-		const ageMonth = calculateMonth - birthMonth;
-		const ageDay = calculateDay - birthDay;
-
-		if (ageMonth < 0 || (ageMonth === 0 && ageDay < 0)) {
-			age = toInteger(age) - 1;
+			if (ageMonth < 0 || (ageMonth === 0 && ageDay < 0)) {
+				age = toInteger(age) - 1;
+			}
+			return age;
 		}
-		return age;
 	}
 	calculateAgeByYear(date, dateToCalculate): number {
 		const dateParts = date.split('/');
