@@ -1,17 +1,14 @@
-
 <div class="marquee-wrapper" *ngIf="isBannerNoteVisible">
   <div class="marquee">
     <div class="noti-icon"></div>
     <div class="marquee-inner">
-       <div class="marquee-slide">
-          <span [innerHTML]="this.translate.instant('CMP.COMPREHENSIVE.PROMO_TEXT')"></span>
-          <span [innerHTML]="this.translate.instant('CMP.COMPREHENSIVE.PROMO_TEXT')"></span>
-        </div>
+      <div class="marquee-slide">
+        <span [innerHTML]="this.translate.instant('CMP.COMPREHENSIVE.PROMO_TEXT')"></span>
+      </div>
     </div>
     <div class="close-btn" (click)="isBannerNoteVisible = false;"></div>
-    </div>
-    
   </div>
+</div>
 
 <div class="container-fluid comprehensive white-bg">
   <div class="comprehensive-section">

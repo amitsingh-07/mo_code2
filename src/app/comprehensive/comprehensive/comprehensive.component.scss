@@ -443,7 +443,7 @@ app-comprehensive {
           font-size: 14px;
 
           @include minMobilemaxPhablet {
-            width: 2842.7px;
+            width: 2521.16px;
             white-space: nowrap;
             animation: marquee 30s linear infinite;
           }
@@ -499,7 +499,7 @@ app-comprehensive {
     }
 
     100% {
-      transform: translate(-2842.7px, 0)
+      transform: translate(-2521.16px, 0)
     }
   }
 }
