@@ -42,7 +42,7 @@ export class ComprehensiveComponent implements OnInit {
   promoValidated: string;
   productAmount = 500;
   getComprehensiveSummaryDashboard: any;
-
+  includingGst: false;
   constructor(
     private appService: AppService, private cmpService: ComprehensiveService,
     private route: ActivatedRoute, private router: Router, public translate: TranslateService,
@@ -81,7 +81,8 @@ export class ComprehensiveComponent implements OnInit {
       const payload={productType:'Comprehensive'}
       this.comprehensiveApiService.getProductAmount(payload).subscribe((data: any) => {
        if (data && data.objectList[0]) {
-        this.productAmount = data.objectList[0].price;
+        this.productAmount = data.objectList[0].price + data.objectList[0].gstPrice;
+        this.includingGst = data.objectList[0].includingGst
        }
       });
       const comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);

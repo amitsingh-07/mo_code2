@@ -84,10 +84,21 @@
           {{ 'CMP.COMPREHENSIVE.FREE_LIMITED' | translate}} </div>
       </div> -->
 
-      <div class="cfp">
+      <!-- <div class="cfp">
         <div class="cfp__heading">{{'CMP.COMPREHENSIVE.CFP' | translate}}</div>
         <div class="free-tag">
           <span class="strikethrough-new">$ {{productAmount}} {{'CMP.COMPREHENSIVE.ONE_TIME_FEE' | translate}}</span>
+        </div>
+        <div class="cfp__desc">{{'CMP.COMPREHENSIVE.CFP_DESC' | translate}}</div>
+      </div> -->
+      <div class="cfp">
+        <div class="cfp__heading">{{'CMP.COMPREHENSIVE.CFP' | translate}}</div>
+       
+        <div class="cfp__otf-with-gst">
+          $ {{productAmount}}  <span *ngIf="includingGst"> {{'CMP.COMPREHENSIVE.CFP_OTF_GST' | translate}}</span>
+        </div>
+        <div class="limited-offer">
+          <img src="../../../assets/images/comprehensive/limited-offer.svg">
         </div>
         <div class="cfp__desc">{{'CMP.COMPREHENSIVE.CFP_DESC' | translate}}</div>
       </div>
@@ -113,8 +124,8 @@
       <div *ngIf="!promoCodeValidated" class="onetime-free-box">
         <div class="onetime-free-box__inner">
           <div>
-            <div class="free-tag">
-              <span class="strikethrough-new">${{productAmount}} {{'CMP.COMPREHENSIVE.ONE_TIME_FEE' | translate}}</span>
+            <div class="cfp__otf-with-gst">
+              $ {{productAmount}} <span *ngIf="includingGst">{{'CMP.COMPREHENSIVE.CFP_OTF_GST' | translate}}</span>
             </div>
             <div class="onetime-free-box__inner__limited">
               {{'CMP.COMPREHENSIVE.FREE_LIMITED' | translate}}
