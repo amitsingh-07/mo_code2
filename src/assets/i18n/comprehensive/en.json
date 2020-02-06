@@ -149,7 +149,8 @@
       "GET_PROMO": "Get Promo Code",
       "VIDEO_LINK": "https://www.youtube.com/embed/EjeYBT1I8jw",
       "CFP": "Comprehensive Financial Planning",
-      "CFP_DESC": "For a limited time only, 100% fee rebate when you go through the full comprehensive financial planning process."
+      "CFP_DESC": "For a limited time only, 100% fee rebate when you go through the full comprehensive financial planning process.",
+      "PROMO_TEXT": "Comprehensive Financial Planning promo is ending. Complete your online journey by <strong>11 Feb 2020</strong> to enjoy the promotion. Thereafter, you will be required to pay the Comprehensive Financial Planning fee of $535 (incl 7% GST). This fee will be fully rebated to your MoneyOwl investment account upon completion of the planning process."
     },
     "COMPREHENSIVE_STEPS": {
       "STEP": "Step",
