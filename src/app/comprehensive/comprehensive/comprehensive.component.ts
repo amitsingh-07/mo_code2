@@ -42,7 +42,7 @@ export class ComprehensiveComponent implements OnInit {
   promoValidated: string;
   productAmount = 500;
   getComprehensiveSummaryDashboard: any;
-
+  includingGst: false;
   constructor(
     private appService: AppService, private cmpService: ComprehensiveService,
     private route: ActivatedRoute, private router: Router, public translate: TranslateService,
@@ -74,16 +74,17 @@ export class ComprehensiveComponent implements OnInit {
         this.signUpService.setUnsupportedNoteShownFlag();
       }
     });
-
+   
     if (this.authService.isSignedUser()) {
       const action = this.appService.getAction();
-      this.loaderService.showLoader({ title: 'Fetching Data', autoHide: false });
+      this.loaderService.showLoader({ title: 'Fetching Data', autoHide: false })
       const payload={productType:'Comprehensive'}
       this.comprehensiveApiService.getProductAmount(payload).subscribe((data: any) => {
-       if (data && data.objectList[0]) {
-        this.productAmount = data.objectList[0].price;
-       }
-      });
+        if (data && data.objectList[0]) {
+         this.productAmount = data.objectList[0].price + data.objectList[0].gstPrice;
+         this.includingGst = data.objectList[0].includingGst
+        }
+       });
       const comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
       let getCurrentVersionType = this.cmpService.getComprehensiveCurrentVersion();
       if ((getCurrentVersionType === '' || getCurrentVersionType === null ||

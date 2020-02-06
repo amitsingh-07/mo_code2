@@ -1,15 +1,14 @@
-import { ConfigService } from './../../config/config.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
+import { ConfigService } from './../../config/config.service';
 
 import { Subscription } from 'rxjs';
-import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
@@ -91,7 +90,6 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
         }
       }
     });
-
 
   }
 

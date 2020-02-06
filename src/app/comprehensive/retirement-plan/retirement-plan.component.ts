@@ -324,7 +324,7 @@ export class RetirementPlanComponent
   }
   goToNext(form: FormGroup) {
     if (this.viewMode) {
-      this.showSummaryModal();
+      this.routerPath();
     } else {
       form.value.lumpSumBenefitSet.forEach((lumpSumBenefit: any, index) => {
         const otherPropertyControl =
@@ -489,9 +489,9 @@ export class RetirementPlanComponent
     }
   }
   routerPath(){
-    if(this.comprehensiveJourneyMode){
+    if(this.comprehensiveJourneyMode) {
       this.showSummaryModal();
-    } else{
+    } else {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/4', ]);
     }
   }

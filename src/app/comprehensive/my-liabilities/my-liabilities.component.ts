@@ -60,7 +60,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       this.financeModal = this.translate.instant('CMP.MODAL.FINANCES_MODAL');
       if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
         this.routerEnabled = !this.summaryRouterFlag;
-        this.showSummaryModal();
+        this.routerPath();
       }
     });
     this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
