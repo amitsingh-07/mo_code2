@@ -47,6 +47,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
     private router: Router,
     private configService: ConfigService
   ) {
+    this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -56,7 +57,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
           this.setPageTitle(this.pageTitle);
       });
   });
-    this.pageId = this.route.routeConfig.component.name;
+   
     this.viewMode = this.comprehensiveService.getViewableMode();
     const self = this;
     this.route.params.subscribe((params) => {
