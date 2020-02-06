@@ -74,17 +74,16 @@ export class ComprehensiveComponent implements OnInit {
         this.signUpService.setUnsupportedNoteShownFlag();
       }
     });
-
+    const payload={productType:'Comprehensive'}
+    this.comprehensiveApiService.getProductAmount(payload).subscribe((data: any) => {
+      if (data && data.objectList[0]) {
+       this.productAmount = data.objectList[0].price + data.objectList[0].gstPrice;
+       this.includingGst = data.objectList[0].includingGst
+      }
+     });
     if (this.authService.isSignedUser()) {
       const action = this.appService.getAction();
-      this.loaderService.showLoader({ title: 'Fetching Data', autoHide: false });
-      const payload={productType:'Comprehensive'}
-      this.comprehensiveApiService.getProductAmount(payload).subscribe((data: any) => {
-       if (data && data.objectList[0]) {
-        this.productAmount = data.objectList[0].price + data.objectList[0].gstPrice;
-        this.includingGst = data.objectList[0].includingGst
-       }
-      });
+      this.loaderService.showLoader({ title: 'Fetching Data', autoHide: false })
       const comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
       let getCurrentVersionType = this.cmpService.getComprehensiveCurrentVersion();
       if ((getCurrentVersionType === '' || getCurrentVersionType === null ||

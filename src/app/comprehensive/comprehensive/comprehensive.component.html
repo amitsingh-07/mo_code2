@@ -95,7 +95,7 @@
         <div class="cfp__heading">{{'CMP.COMPREHENSIVE.CFP' | translate}}</div>
        
         <div class="cfp__otf-with-gst">
-          $ {{productAmount}}  <span *ngIf="includingGst"> {{'CMP.COMPREHENSIVE.CFP_OTF_GST' | translate}}</span>
+          $ {{productAmount}}  <span *ngIf="!includingGst"> {{'CMP.COMPREHENSIVE.CFP_OTF_GST' | translate}}</span>
         </div>
         <div class="limited-offer">
           <img src="../../../assets/images/comprehensive/limited-offer.svg">
@@ -125,7 +125,7 @@
         <div class="onetime-free-box__inner">
           <div>
             <div class="cfp__otf-with-gst">
-              $ {{productAmount}} <span *ngIf="includingGst">{{'CMP.COMPREHENSIVE.CFP_OTF_GST' | translate}}</span>
+              $ {{productAmount}} <span *ngIf="!includingGst">{{'CMP.COMPREHENSIVE.CFP_OTF_GST' | translate}}</span>
             </div>
             <div class="onetime-free-box__inner__limited">
               {{'CMP.COMPREHENSIVE.FREE_LIMITED' | translate}}
