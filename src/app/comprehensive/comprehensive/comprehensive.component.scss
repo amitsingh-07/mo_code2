@@ -463,9 +463,6 @@ app-comprehensive {
           }
 
           span {
-            &:last-child {
-              display: none;
-            }
 
             @include minMobilemaxPhablet {
               br {
