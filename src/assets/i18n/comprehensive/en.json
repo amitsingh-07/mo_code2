@@ -711,7 +711,7 @@
     "REVIEW": {
       "TITLE": "Review",
       "ABOUT": "Please review your details carefully before clicking confirm. Do note that after you have confirmed, you will not be able to modify any of your inputs until your report is ready.",
-	    "ABOUT_WITH_PAY": "Please review your details carefully before clicking \"Confirm & Pay\". Do note that after you have clicked \"Confirm & Pay\", you will not be able to modify any of your inputs until your report is ready.",
+	    "ABOUT_WITH_PAY": "Please review your details carefully before clicking \"Confirm & Pay\". Do note that after you have completed payment, you will not be able to modify any of your inputs until your report is ready.",
       "ABOUT_LITE": "Please make sure to review your inputs. If everything looks good, click “Confirm” to receive your personalised report.",
       "REVIEW_INPUT": "Review Inputs",
       "CONFIRM": "Confirm",
