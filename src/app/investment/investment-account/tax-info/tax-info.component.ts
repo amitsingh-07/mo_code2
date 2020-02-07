@@ -171,22 +171,26 @@ export class TaxInfoComponent implements OnInit {
 
   isTinNumberAvailChanged(flag, formgroup, data) {
     if (flag) {
-      formgroup.addControl(
-        'tinNumber',
-        new FormControl('', [
-          Validators.required,
-          this.validateTin.bind(this)
-        ])
-      );
-      formgroup.controls.tinNumber.setValue(data);
-      formgroup.removeControl('noTinReason');
+      setTimeout(() => { /* Removing and adding control instantly, causes view to not refresh, hence settimeout */
+        formgroup.addControl(
+          'tinNumber',
+          new FormControl('', [
+            Validators.required,
+            this.validateTin.bind(this)
+          ])
+        );
+        formgroup.controls.tinNumber.setValue(data);
+        formgroup.removeControl('noTinReason');
+      });
     } else {
-      formgroup.addControl(
-        'noTinReason',
-        new FormControl('', Validators.required)
-      );
-      formgroup.controls.noTinReason.setValue(data);
-      formgroup.removeControl('tinNumber');
+      setTimeout(() => {
+        formgroup.addControl(
+          'noTinReason',
+          new FormControl('', Validators.required)
+        );
+        formgroup.controls.noTinReason.setValue(data);
+        formgroup.removeControl('tinNumber');
+      });
     }
   }
   setDropDownValue(key, value) {
