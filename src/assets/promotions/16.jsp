@@ -87,6 +87,6 @@
     </td>
   </div>
   <div class="disclaimer">
-    <span>#</span> The monthly premium does not include the amount that can be funded by CPF for the Hospitalisation benefit.
+    <span>#</span> Monthly premium is based on a 25-year-old person and it does not include the amount that can be funded by CPF for the Hospitalization benefit.
   </div>
 </div>
