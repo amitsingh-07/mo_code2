@@ -133,9 +133,11 @@ export class TaxInfoComponent implements OnInit {
     taxInfoItem.controls.taxCountry.setValue(country);
     taxInfoItem.removeControl('tinNumber');
     taxInfoItem.removeControl('noTinReason');
-    taxInfoItem.controls.radioTin.setValue(null);
-    this.setDefaultTinNoAndPlaceholder(taxInfoItem, null);
-    this.showHint(country.countryCode, taxInfoItem);
+    setTimeout(() => { /* Removing and adding control instantly, causes view to not refresh, hence settimeout */
+      taxInfoItem.controls.radioTin.setValue(null);
+      this.setDefaultTinNoAndPlaceholder(taxInfoItem, null);
+      this.showHint(country.countryCode, taxInfoItem);
+    });
   }
 
   /*
@@ -171,7 +173,6 @@ export class TaxInfoComponent implements OnInit {
 
   isTinNumberAvailChanged(flag, formgroup, data) {
     if (flag) {
-      setTimeout(() => { /* Removing and adding control instantly, causes view to not refresh, hence settimeout */
         formgroup.addControl(
           'tinNumber',
           new FormControl('', [
@@ -181,16 +182,13 @@ export class TaxInfoComponent implements OnInit {
         );
         formgroup.controls.tinNumber.setValue(data);
         formgroup.removeControl('noTinReason');
-      });
     } else {
-      setTimeout(() => {
         formgroup.addControl(
           'noTinReason',
           new FormControl('', Validators.required)
         );
         formgroup.controls.noTinReason.setValue(data);
         formgroup.removeControl('tinNumber');
-      });
     }
   }
   setDropDownValue(key, value) {
