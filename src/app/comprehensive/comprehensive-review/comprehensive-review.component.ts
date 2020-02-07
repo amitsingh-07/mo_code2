@@ -44,15 +44,21 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
       });
     });
+    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
       if (event && event !== '') {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN_SUMMARY + '/summary']);
+        if(this.comprehensiveJourneyMode){
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN_SUMMARY + '/summary']);
+        }else{
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/4']);
+        }
+       
       }
     });
   }
 
   ngOnInit() {
-    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
+  
     this.loaderService.hideLoaderForced();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.progressService.setReadOnly(false);
