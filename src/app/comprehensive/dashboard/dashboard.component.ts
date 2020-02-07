@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 
+import { AppService } from '../../app.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { FileUtil } from '../../shared/utils/file.util';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
@@ -13,7 +14,6 @@ import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
-
 @Component({
   selector: 'app-comprehensive-dashboard',
   templateUrl: './dashboard.component.html',
@@ -52,26 +52,27 @@ export class ComprehensiveDashboardComponent implements OnInit {
     private navbarService: NavbarService,
     private downloadfile: FileUtil,
     private authService: AuthenticationService,
-    private loaderService: LoaderService) {
-    this.configService.getConfig().subscribe((config) => {
+    private loaderService: LoaderService, private appService: AppService) {
+      this.appService.clearPromoCode();
+      this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
       this.isComprehensiveEnabled = config.comprehensiveEnabled;
       this.isComprehensiveLiveEnabled = config.comprehensiveLiveEnabled;
     });
-    this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(100);
-    this.navbarService.setNavbarMobileVisibility(false);
+      this.navbarService.setNavbarVisibility(true);
+      this.navbarService.setNavbarMode(100);
+      this.navbarService.setNavbarMobileVisibility(false);
     /**
      * 0 - Waiting for report
      * 1 - Completed & View Report
      * 2 - Completed & View Report with advisor
      * 3 - Not Completed
      */
-    this.comprehensivePlanning = 4;
-    this.comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
-    this.getCurrentVersionType =  this.comprehensiveService.getComprehensiveCurrentVersion();
-    if ((this.getCurrentVersionType === '' || this.getCurrentVersionType === null ||
+      this.comprehensivePlanning = 4;
+      this.comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
+      this.getCurrentVersionType =  this.comprehensiveService.getComprehensiveCurrentVersion();
+      if ((this.getCurrentVersionType === '' || this.getCurrentVersionType === null ||
     this.getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE ) && this.comprehensiveLiteEnabled) {
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
       this.setComprehensivePlan(false);
