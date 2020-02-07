@@ -23,7 +23,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   pageTitle: string;
   menuClickSubscription: Subscription;
   subscription: Subscription;
-  isPaymentEnabled = false;
+  requireToPay = false;
 
   constructor(
     private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
@@ -35,7 +35,10 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     private loaderService: LoaderService) {
     this.pageId = this.activatedRoute.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
-	  this.isPaymentEnabled = config.paymentEnabled;
+      // Payment enabled and user has not made any successful payment yet
+      if (config.paymentEnabled && !this.activatedRoute.snapshot.data.lastPaidTs) {
+        this.requireToPay = true;
+      }
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {

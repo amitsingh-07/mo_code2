@@ -100,7 +100,7 @@
     "CONNECT_US": {
       "HEADER": "Connect with Us",
       "TEXT": {
-        "T1": "We understand that every company has different goals and we can help. Leave your contact details below if you would like to get more details and have a further discussion (non-obligatory)."
+        "T1": "We understand that every company has different goals and we can help. Leave your contact details below if you would like to <span>get a brochure for more information</span> and have a further discussion (non-obligatory)."
       }
     }
   }

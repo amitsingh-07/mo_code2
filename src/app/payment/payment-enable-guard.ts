@@ -17,9 +17,9 @@ export class PaymentEnableGuard implements CanActivate {
     private authService: AuthenticationService,
     private signUpService: SignUpService,
     private paymentService: PaymentService) {
-      this.configService.getConfig().subscribe((config: IConfig) => {
-        this.isPaymentEnabled = config.paymentEnabled;
-      });
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.isPaymentEnabled = config.paymentEnabled;
+    });
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (this.authService.isSignedUser()) {

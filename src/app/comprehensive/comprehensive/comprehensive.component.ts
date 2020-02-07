@@ -94,7 +94,7 @@ export class ComprehensiveComponent implements OnInit {
         this.promoCodeValidated = false;
     }
     this.isBannerNoteVisible = this.isCurrentDateInRange(COMPREHENSIVE_CONST.BANNER_NOTE_START_TIME,
-                                                          COMPREHENSIVE_CONST.BANNER_NOTE_END_TIME);
+      COMPREHENSIVE_CONST.BANNER_NOTE_END_TIME);
     this.buildPromoCodeForm();
   }
 
@@ -189,6 +189,6 @@ export class ComprehensiveComponent implements OnInit {
 
   isCurrentDateInRange(START_TIME, END_TIME) {
     return (new Date() >= new Date(START_TIME)
-          && new Date() < new Date(END_TIME));
+      && new Date() <= new Date(END_TIME));
   }
 }

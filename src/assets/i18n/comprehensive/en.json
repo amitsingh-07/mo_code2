@@ -131,7 +131,7 @@
       "DESC_SUB_TITLE_4": "Prompt: Review",
       "DESC_SUB_ABOUT_1": "To get the most out of your comprehensive financial planning journey and receive a suitable action plan, please fill in as many of the applicable fields as possible to the best of your ability. Every piece of information matters as the quality of the evaluation is very much dependent on the information you provide us.",
       "DESC_SUB_ABOUT_1_POINT_2": "You will need to provide information about your dependants, income, living expenses, property, existing investments and insurance, and outstanding loans. Don’t worry if you need time to find this information. You can always save at any point of your journey and continue later.",
-      "DESC_SUB_ABOUT_2": "Your Comprehensive Financial Plan report will be mailed to your registered email address within 1-2 working days. The report will comprise:",
+      "DESC_SUB_ABOUT_2": "Your Comprehensive Financial Plan report will be mailed to your registered email address within 3 working days. The report will comprise:",
       "DESC_SUB_ABOUT_2_SUB_POINT_1": "Your Financial Health Check",
       "DESC_SUB_ABOUT_2_SUB_POINT_2": "Your Protection Needs Analysis",
       "DESC_SUB_ABOUT_2_SUB_POINT_3": "Your Retirement and Children’s Education Plan",
@@ -704,11 +704,11 @@
     },
     "REVIEW": {
       "TITLE": "Review",
-      "ABOUT": "Please review your details carefully before clicking confirm. Do note that after you have confirmed, you will not be able to modify any of your inputs until your report is ready.",
-	  "ABOUT_WITH_PAY": "Please review your details carefully before clicking \"Confirm & Pay\". Do note that after you have completed payment, you will not be able to modify any of your inputs until your report is ready.",
+      "ABOUT": "Please review your details carefully before clicking \"Confirm\". Do note that after you have clicked \"Confirm\", you will not be able to modify any of your inputs until your report is ready.",
+      "ABOUT_WITH_PAY": "Please review your details carefully before clicking \"Confirm & Pay\". Do note that after you have completed payment, you will not be able to modify any of your inputs until your report is ready.",
       "REVIEW_INPUT": "Review Inputs",
       "CONFIRM": "Confirm",
-	  "CONFIRM_WITH_PAY": "Confirm & Pay"
+      "CONFIRM_WITH_PAY": "Confirm & Pay"
     }
   }
 }
