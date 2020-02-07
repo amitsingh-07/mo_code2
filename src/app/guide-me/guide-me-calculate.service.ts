@@ -9,6 +9,8 @@ import { ILifeProtectionNeedsData } from './life-protection/life-protection';
 
 const UNIVERSITY_FEES_PERCENTAGE = 4;
 const LIVING_EXPENSES_PERCENTAGE = 3;
+const MALE_AGE_LIMIT = 21;
+const FEMALE_AGE_LIMIT = 19;
 
 @Injectable({
   providedIn: 'root'
@@ -89,10 +91,17 @@ export class GuideMeCalculateService {
     return protectionSupportSum;
   }
 
-  getDependantExpense(amount: number, percent: any, aboutAge: number) {
+  getDependantExpense(amount: number, percent: any, dependent: any) {
     let percentCal: any;
     let computedVal: any;
     let finalResult = 0;
+    let aboutAge;
+    if ((dependent.gender === 'Male' && dependent.age >= 21) || (dependent.gender === 'Female' && dependent.age >= 19)) {
+      aboutAge = 0;
+    } else {
+      aboutAge = dependent.gender === 'Male' ? MALE_AGE_LIMIT : FEMALE_AGE_LIMIT;
+      aboutAge = aboutAge - dependent.age;
+    }
     if (!isNaN(amount) && !isNaN(percent) && !isNaN(aboutAge)) {
       percentCal = percent / 100;
       computedVal = Math.pow(1 + percentCal, aboutAge);
@@ -111,7 +120,7 @@ export class GuideMeCalculateService {
         const course = dependent.eduSupportCourse;
         const nationality = dependent.eduSupportNationality;
         const eduAmt = this.getEducationSupportAmt(country, course, nationality);
-        educationSupportSum += (this.getDependantExpense(eduAmt[0], UNIVERSITY_FEES_PERCENTAGE, dependent.age) + this.getDependantExpense(eduAmt[1], LIVING_EXPENSES_PERCENTAGE, dependent.age));
+        educationSupportSum += (this.getDependantExpense(eduAmt[0], UNIVERSITY_FEES_PERCENTAGE, dependent) + this.getDependantExpense(eduAmt[1], LIVING_EXPENSES_PERCENTAGE, dependent));
       }
     });
     return educationSupportSum;
