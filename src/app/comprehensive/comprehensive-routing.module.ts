@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PaymentResolver } from './../payment/payment.resolver';
 import { ProgressTrackerComponent } from './../shared/modal/progress-tracker/progress-tracker.component';
 
 import { BadMoodFundComponent } from './bad-mood-fund/bad-mood-fund.component';
@@ -59,13 +60,16 @@ const routes: Routes = [
             { path: COMPREHENSIVE_ROUTES.RESULT, component: ResultComponent },
             { path: COMPREHENSIVE_ROUTES.ENQUIRY, component: EnquiryComponent },
             { path: COMPREHENSIVE_ROUTES.VALIDATE_RESULT, component: ValidateResultComponent },
-            { path: COMPREHENSIVE_ROUTES.REVIEW, component: ComprehensiveReviewComponent }
+            { path: COMPREHENSIVE_ROUTES.REVIEW, component: ComprehensiveReviewComponent, resolve: { lastPaidTs: PaymentResolver }}
         ]
     }
 ];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [
+        PaymentResolver
+      ]
 })
 export class ComprehensiveRoutingModule { }

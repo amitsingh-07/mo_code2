@@ -40,6 +40,7 @@ export class ComprehensiveComponent implements OnInit {
   promoCodeSuccess: string;
   promoCodeValidated: boolean;
   promoValidated: string;
+  isBannerNoteVisible: boolean;
 
   constructor(
     private appService: AppService, private cmpService: ComprehensiveService,
@@ -92,7 +93,8 @@ export class ComprehensiveComponent implements OnInit {
       this.cmpService.getComprehensiveSummary().comprehensiveEnquiry.isValidatedPromoCode ? this.promoCodeValidated = true :
         this.promoCodeValidated = false;
     }
-
+    this.isBannerNoteVisible = this.isCurrentDateInRange(COMPREHENSIVE_CONST.BANNER_NOTE_START_TIME,
+      COMPREHENSIVE_CONST.BANNER_NOTE_END_TIME);
     this.buildPromoCodeForm();
   }
 
@@ -183,5 +185,10 @@ export class ComprehensiveComponent implements OnInit {
     });
     // #this.modalRef.componentInstance.data = { redirectUrl: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED };
     this.modalRef.componentInstance.title = this.loginModalTitle;
+  }
+
+  isCurrentDateInRange(START_TIME, END_TIME) {
+    return (new Date() >= new Date(START_TIME)
+      && new Date() <= new Date(END_TIME));
   }
 }
