@@ -1808,7 +1808,7 @@ export class ComprehensiveService {
       customStyle: 'risk-profile',
       subItems: [
         {
-          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '1',
+          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
           path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
           title: 'Temporary Losses',
           value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1
@@ -1818,7 +1818,7 @@ export class ComprehensiveService {
             && cmpSummary.riskQuestionList)
         },
         {
-          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '2',
+          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/2',
           path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/2',
           title: 'Unrealised/Paper Loss',
           value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2
@@ -1828,7 +1828,7 @@ export class ComprehensiveService {
             && cmpSummary.riskQuestionList)
         },
         {
-          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '3',
+          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/3',
           path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/3',
           title: 'Stress Level',
           value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3
@@ -1838,7 +1838,7 @@ export class ComprehensiveService {
             && cmpSummary.riskQuestionList)
         },
         {
-          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '4',
+          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/4',
           path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/4',
           title: 'Portfolio Type',
           value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4
