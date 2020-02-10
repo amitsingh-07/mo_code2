@@ -140,11 +140,9 @@ export class ComprehensiveDashboardComponent implements OnInit {
   }
   getComprehensiveCall() {
     this.loaderService.showLoader({ title: 'Fetching Data' });
-    this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((userData: any) => {
-     if (userData && userData.objectList[0]) {
-        this.comprehensiveService.setComprehensiveSummary(userData.objectList[0]);
-        this.userDetails = this.comprehensiveService.getMyProfile();
-        this.comprehensiveApiService.savePersonalDetails(this.userDetails).subscribe((data: any) => {
+
+    const payload = {enquiryId: this.comprehensiveService.getEnquiryId()};
+    this.comprehensiveApiService.updateComprehensiveReportStatus(payload).subscribe((data: any) => {
           if (data) {
             this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
               if (summaryData) {
@@ -158,10 +156,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
             this.loaderService.hideLoader();
           }
         });
-      } else {
-        this.loaderService.hideLoader();
-      }
-    });
+
   }
   getCurrentComprehensiveStep() {
     if (this.getComprehensiveSummaryEnquiry) {

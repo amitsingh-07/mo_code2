@@ -24,7 +24,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   menuClickSubscription: Subscription;
   subscription: Subscription;
   isPaymentEnabled = false;
-  comprehensiveJourneyMode:boolean;
+  comprehensiveJourneyMode: boolean;
   constructor(
     private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
     private translate: TranslateService,
@@ -35,7 +35,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     private loaderService: LoaderService) {
     this.pageId = this.activatedRoute.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
-	  this.isPaymentEnabled = config.paymentEnabled;
+      this.isPaymentEnabled = config.paymentEnabled;
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
@@ -47,18 +47,18 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
       if (event && event !== '') {
-        if(this.comprehensiveJourneyMode){
+        if (this.comprehensiveJourneyMode) {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN_SUMMARY + '/summary']);
-        }else{
+        } else {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/4']);
         }
-       
+
       }
     });
   }
 
   ngOnInit() {
-  
+
     this.loaderService.hideLoaderForced();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.progressService.setReadOnly(false);
@@ -95,7 +95,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       const currentStep = this.comprehensiveService.getMySteps();
       if (currentStep === 4) {
         // If payment is enabled and user has not paid, go payment else initiate report gen
-       this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]).then((result) => {
+        this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]).then((result) => {
           if (result === false) {
             this.loaderService.showLoader({ title: 'Loading', autoHide: false });
             this.initiateReport();
@@ -109,16 +109,22 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     }
   }
   initiateReport() {
-    const reportData = { enquiryId: this.comprehensiveService.getEnquiryId() };
-    this.comprehensiveApiService.generateComprehensiveReport(reportData).subscribe((data) => {
-      this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED);
+    const enquiryId = { enquiryId: this.comprehensiveService.getEnquiryId() };
+    this.comprehensiveApiService.generateComprehensiveReport(enquiryId).subscribe((data) => {
+      let reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.READY;
+      if (this.comprehensiveJourneyMode) {
+        reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED
+      }
+      this.comprehensiveService.setReportStatus(reportStatus);
       this.comprehensiveService.setLocked(true);
       this.comprehensiveService.setViewableMode(true);
-      const payload = { enquiryId: this.comprehensiveService.getEnquiryId() }
-      this.comprehensiveApiService.createReportRequest(payload).subscribe((reportDataStatus: any) => {
-        this.comprehensiveService.setReportId(reportDataStatus.reportId);
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
-      });
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
+
+      // const payload = { enquiryId: this.comprehensiveService.getEnquiryId() }
+      // this.comprehensiveApiService.createReportRequest(payload).subscribe((reportDataStatus: any) => {
+      //   this.comprehensiveService.setReportId(reportDataStatus.reportId);
+      //   this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
+      // });
 
     });
   }
