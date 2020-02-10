@@ -36,7 +36,7 @@ export const COMPREHENSIVE_CONST = {
             API_KEY: 'comprehensiveAssets',
             API_TOTAL_BUCKET_KEY: 'totalAnnualAssets',
             MONTHLY_INPUT_CALC: [],
-            POP_FORM_INPUT: ['enquiryId', 'totalAnnualAssets', 'customerId', 'id'],
+            POP_FORM_INPUT: ['enquiryId', 'totalAnnualAssets', 'customerId', 'id', 'assetId'],
             BUCKET_INPUT_CALC: ['cashInBank', 'savingsBonds', 'cpfOrdinaryAccount', 'cpfSpecialAccount', 'cpfMediSaveAccount',
                 'homeMarketValue', 'investmentAmount_0', 'otherAssetsValue', 'investmentPropertiesValue']
         },
@@ -146,5 +146,7 @@ export const COMPREHENSIVE_CONST = {
         SUBMITTED: 'submitted',
         READY: 'ready'
     },
-    REPORT_PDF_NAME: 'MoneyOwl-Comprehensive.pdf'
+    REPORT_PDF_NAME: 'MoneyOwl-Comprehensive.pdf',
+    BANNER_NOTE_START_TIME: 1580918400000,
+    BANNER_NOTE_END_TIME: 1581436799000
 };

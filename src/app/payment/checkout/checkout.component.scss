@@ -175,7 +175,7 @@ app-checkout {
   }
 
   .grey-bold-txt {
-    font-family: $muli-semi-bold;
+    font-family: $muli-bold;
     font-size: 16px;
     font-stretch: normal;
     font-style: normal;
@@ -225,7 +225,7 @@ app-checkout {
 
   .btn-primary {
     width: 340px;
-    font-family: $muli-bold;
+    font-family: $muli-bold !important;
 
     @include allmobiles {
       width: 100%;

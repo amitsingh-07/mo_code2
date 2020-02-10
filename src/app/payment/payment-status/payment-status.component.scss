@@ -24,10 +24,11 @@ app-payment-status {
     flex-direction: column;
     align-items: center;
     width: 340px;
-    margin-bottom: 84px;
+    padding-top: 84px;
 
     @include allmobiles {
       width: 300px;
+      padding-top: 0px;
     }
   }
 
@@ -94,7 +95,7 @@ app-payment-status {
   .btn-primary {
     width: 340px;
     margin-top: 41px !important;
-    font-family: $muli-bold;
+    font-family: $muli-bold !important;
   }
 
   @include allmobiles {

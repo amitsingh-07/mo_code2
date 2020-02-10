@@ -1186,7 +1186,6 @@ body.modal-open::-webkit-scrollbar {
 
   .modal-body-message .default-ol ol {
     counter-reset: list;
-    padding-left: 15px;
   }
 
   .modal-body-message .default-ol ol li:before {
@@ -1222,7 +1221,7 @@ body.modal-open::-webkit-scrollbar {
     line-height: normal;
     letter-spacing: -0.17px;
     padding-bottom: 10px;
-    display: inline-block;
+    display: inline;
   }
 
   .modal-body-message a {
