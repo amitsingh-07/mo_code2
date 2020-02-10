@@ -79,8 +79,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     const today: Date = new Date();
     this.myAge = this.comprehensiveService.getMyProfile().dateOfBirth;
     const getAge = this.aboutAge.calculateAge(this.myAge, today);
-   
-    if(getAge > 55){
+    if ( getAge > COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.RETIREMENT_AGE ) {
       this.showRetirementAccount = true;
     }
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
@@ -118,7 +117,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         }
       }
     });
-   
+    
     this.assetDetails = this.comprehensiveService.getMyAssets();
     this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
     if (!this.comprehensiveJourneyMode && this.assetDetails  ) {
