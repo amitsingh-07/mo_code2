@@ -88,11 +88,10 @@ app-add-portfolio-name {
 
     .desc {
       font-family: $muli-regular;
-      font-size: 21px;
+      font-size: 18px;
       letter-spacing: -0.39px;
       text-align: center;
       @include allmobiles{
-        font-size: 18px;
         letter-spacing: -0.34px;
       }
     }
