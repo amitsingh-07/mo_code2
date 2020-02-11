@@ -60,7 +60,7 @@ const routes: Routes = [
             { path: COMPREHENSIVE_ROUTES.RESULT, component: ResultComponent },
             { path: COMPREHENSIVE_ROUTES.ENQUIRY, component: EnquiryComponent },
             { path: COMPREHENSIVE_ROUTES.VALIDATE_RESULT, component: ValidateResultComponent },
-            { path: COMPREHENSIVE_ROUTES.REVIEW, component: ComprehensiveReviewComponent, resolve: { paymentBypass: PaymentResolver }}
+            { path: COMPREHENSIVE_ROUTES.REVIEW, component: ComprehensiveReviewComponent}
         ]
     }
 ];
