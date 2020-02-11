@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { PAYMENT_ROUTE_PATHS } from './../../payment/payment-routes.constants';
+import { PaymentService } from './../../payment/payment.service';
 
 import { ConfigService } from '../../config/config.service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
@@ -32,12 +33,19 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     private progressService: ProgressTrackerService,
     private comprehensiveService: ComprehensiveService,
     private comprehensiveApiService: ComprehensiveApiService,
+    private paymentService: PaymentService,
     private loaderService: LoaderService) {
     this.pageId = this.activatedRoute.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       // Payment enabled and user has not made any successful payment yet
-      if (config.paymentEnabled && !this.activatedRoute.snapshot.data.lastPaidTs) {
-        this.requireToPay = true;
+      if (config.paymentEnabled && this.activatedRoute.snapshot.data['paymentBypass'] === 'false') {
+        this.paymentService.getLastSuccessfulSubmittedTs().subscribe((res) => {
+          if (res['last_submit_ts'].length === 0) {
+            this.requireToPay = true;
+          }
+        }, (error) => {
+          this.requireToPay = false;
+        });
       }
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
