@@ -100,7 +100,8 @@ export let apiConstants = {
         payment: {
             getRequestSignature: PAYMENT_API_BASE_URL + 'getRequestSignature',
             cancelPayment: PAYMENT_API_BASE_URL + 'cancelPayment',
-            getLastSuccessfulSubmittedTs: PAYMENT_API_BASE_URL + 'getLastSuccessfulSubmittedTs'
+            getLastSuccessfulSubmittedTs: PAYMENT_API_BASE_URL + 'getLastSuccessfulSubmittedTs',
+            getCustPromoCodeByCategory: ACCOUNT_API_BASE_URL + '/promocode/getCustPromoCodeByCategory'
         }
     }
 };
