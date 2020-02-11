@@ -264,12 +264,14 @@ app-comprehensive {
       color: $black-color;
       font-family: $muli-bold;
 
-      &__limited {
-        color: $black-color;
+      &__limited, &__limited--payment {
+        color: $limited;
         font-size: 11px;
         font-family: $muli-semi-bold;
       }
-
+      &__limited--payment {
+        color: $black-color !important;
+      }
       .btn {
         font-size: 14px;
       }
@@ -319,8 +321,8 @@ app-comprehensive {
       margin: 8px 0;
     }
 
-    &__desc {
-      color: $black-color;
+    &__desc, &__desc--payment {
+      color: $limited-text;
       font-size: 14px;
       font-family: $muli-regular;
 
@@ -335,6 +337,9 @@ app-comprehensive {
       @include iphone6 {
         padding-right: 6%;
       }
+    }
+    &__desc--payment {
+      color: $black-color !important;
     }
   }
 

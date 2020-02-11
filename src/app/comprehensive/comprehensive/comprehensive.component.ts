@@ -41,6 +41,7 @@ export class ComprehensiveComponent implements OnInit {
   promoCodeValidated: boolean;
   promoValidated: string;
   isBannerNoteVisible: boolean;
+  paymentEnabled = false;
 
   constructor(
     private appService: AppService, private cmpService: ComprehensiveService,
@@ -50,6 +51,7 @@ export class ComprehensiveComponent implements OnInit {
     private loaderService: LoaderService, private signUpService: SignUpService,
     public footerService: FooterService, private sanitizer: DomSanitizer, private comprehensiveApiService: ComprehensiveApiService) {
     this.configService.getConfig().subscribe((config: any) => {
+      this.paymentEnabled = config.paymentEnabled;
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
