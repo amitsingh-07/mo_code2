@@ -100,7 +100,11 @@ export class ComprehensiveDashboardComponent implements OnInit {
 
   }
   goToEditProfile() {
-    this.setComprehensiveSummary(true, COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED);
+    if (this.comprehensivePlanning === 4 && !this.versionTypeEnabled) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
+    } else {
+      this.setComprehensiveSummary(true, COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED);
+    }
   }
 
   goToCurrentStep() {
