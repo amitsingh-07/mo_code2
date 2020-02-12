@@ -287,7 +287,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
           this.promoCodeValidated = this.getComprehensiveSummaryDashboard.isValidatedPromoCode;
           this.reportStatus = this.getComprehensiveSummaryDashboard.reportStatus;
           this.enquiryId= this.getComprehensiveSummaryDashboard.enquiryId;
-          if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && (this.islocked === null || !this.islocked)) {
+          if ((this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || this.reportStatus=== COMPREHENSIVE_CONST.REPORT_STATUS.EDIT) && (this.islocked === null || !this.islocked)) {
           this.comprehensivePlanning = 3;
           } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED && !this.islocked) {
           this.comprehensivePlanning = 5;
