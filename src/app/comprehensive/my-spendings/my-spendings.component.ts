@@ -200,12 +200,19 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
           this.spendingDetails.enquiryId = this.comprehensiveService.getEnquiryId();
           this.loaderService.showLoader({ title: 'Saving' });
           this.comprehensiveApiService.saveExpenses(this.spendingDetails).subscribe((data) => {
-            this.loaderService.hideLoader();
             this.comprehensiveService.setMySpendings(this.spendingDetails);
             if (this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
               this.comprehensiveService.saveBadMoodFund();
             }
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN]);
+            if (this.comprehensiveService.getMySteps() === 1) {
+              this.comprehensiveService.setStepCompletion(1, 2).subscribe((data1: any) => {
+                this.loaderService.hideLoader();
+                this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN]);
+              });
+            } else {
+              this.loaderService.hideLoader();
+              this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN]);
+            }
           });
         } else {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN]);

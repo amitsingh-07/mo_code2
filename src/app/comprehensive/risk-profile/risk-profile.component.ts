@@ -135,10 +135,19 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       if (this.questionIndex < this.questionsList.length) {
         // NEXT QUESTION
         this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
-          this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-          this.router.navigate([
-            COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
-          ]);
+          if (this.comprehensiveService.getMySteps() === 3) {
+            this.comprehensiveService.setStepCompletion(3, this.questionIndex).subscribe((data1: any) => {
+              this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+              this.router.navigate([
+                COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
+              ]);
+            });
+          } else {
+            this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+            this.router.navigate([
+              COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
+            ]);
+          }
         });
       } else {
 

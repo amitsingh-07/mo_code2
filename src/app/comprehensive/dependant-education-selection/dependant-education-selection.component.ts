@@ -272,8 +272,15 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
             });
             this.comprehensiveService.setMyDependant(this.dependantDetailsArray);
             this.comprehensiveService.setChildEndowment(selectedChildArray);
-            this.loaderService.hideLoader();
-            this.gotoNextPage(form);
+            if (this.comprehensiveService.getMySteps() === 0) {
+              this.comprehensiveService.setStepCompletion(0, 3).subscribe((data1: any) => {
+                this.loaderService.hideLoader();
+                this.gotoNextPage(form);
+              });
+            } else {
+              this.loaderService.hideLoader();
+              this.gotoNextPage(form);
+            }
           });
         } else {
           this.gotoNextPage(form);

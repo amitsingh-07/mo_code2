@@ -212,7 +212,13 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
             hasEndowments: this.comprehensiveService.hasEndowment(), endowmentDetailsList:
               educationPreferenceList
           }).subscribe((data: any) => {
-            this.showDependantSummary(dependantArray);
+            if (this.comprehensiveService.getMySteps() === 0) {
+            this.comprehensiveService.setStepCompletion(0, 5).subscribe((data1: any) => {
+              this.showDependantSummary(dependantArray);
+            });
+            } else {
+              this.showDependantSummary(dependantArray);
+            }
           });
         }
       }

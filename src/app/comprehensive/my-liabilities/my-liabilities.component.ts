@@ -163,8 +163,15 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
           this.loaderService.showLoader({ title: 'Saving' });
           this.comprehensiveApiService.saveLiabilities(this.liabilitiesDetails).subscribe((data) => {
             this.comprehensiveService.setMyLiabilities(this.liabilitiesDetails);
-            this.loaderService.hideLoader();
-            this.routerPath();
+            if (this.comprehensiveService.getMySteps() === 1) {
+              this.comprehensiveService.setStepCompletion(1, 6).subscribe((data1: any) => {
+                this.loaderService.hideLoader();
+                this.routerPath();
+              });
+            } else {
+              this.loaderService.hideLoader();
+              this.routerPath();
+            }
           });
         } else {
           this.routerPath();

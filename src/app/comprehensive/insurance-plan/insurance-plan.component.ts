@@ -193,7 +193,8 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
       this.showSummaryModal();
     } else {
       const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
-      if (!form.pristine || cmpSummary.comprehensiveInsurancePlanning === null) {
+      if (!form.pristine || cmpSummary.comprehensiveInsurancePlanning === null ||
+        this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
         if (!form.controls.homeProtectionCoverageAmount.pristine) {
           this.comprehensiveService.setHomeLoanChanges(false);
         }
@@ -222,7 +223,13 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
             form.value.lifeProtectionAmount = COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT;
           }
           this.comprehensiveService.setInsurancePlanningList(form.value);
-          this.showSummaryModal();
+          if (this.comprehensiveService.getMySteps() === 2) {
+            this.comprehensiveService.setStepCompletion(2, 1).subscribe((data1: any) => {
+              this.showSummaryModal();
+            });
+          } else {
+            this.showSummaryModal();
+          }
         });
       } else {
         this.showSummaryModal();

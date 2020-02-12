@@ -228,13 +228,15 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                 this.userDetails = form.getRawValue();
                 this.userDetails.dateOfBirth = this.parserFormatter.format(form.getRawValue().ngbDob);
                 this.userDetails.enquiryId = this.comprehensiveService.getEnquiryId();
-                if (!form.pristine) {
+                if (!form.pristine) {                    
+                    this.loaderService.showLoader({ title: 'Saving' });
                     this.comprehensiveApiService.savePersonalDetails(this.userDetails).subscribe((data) => {
                         this.comprehensiveService.setMyProfile(this.userDetails);
                         const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
                         cmpSummary.baseProfile = this.comprehensiveService.getMyProfile();
                         this.comprehensiveService.setComprehensiveSummary(cmpSummary);
                         this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.NEW);
+                        this.loaderService.hideLoader();
                         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
                     });
                 } else {
@@ -264,6 +266,10 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     validateMoGetStrdForm(form: FormGroup) {
         this.submitted = true;
+        //COMPREHENSIVE_CONST.REPORT_STATUS.NEW
+        if (this.comprehensiveService.getReportStatus() === null) {
+            this.moGetStrdForm.markAsDirty();
+          }
         if (!form.valid) {
             Object.keys(form.controls).forEach((key) => {
                 form.get(key).markAsDirty();
