@@ -94,13 +94,18 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     } else if (this.comprehensiveService.checkResultData()) {
       const currentStep = this.comprehensiveService.getMySteps();
       if (currentStep === 4) {
-        // If payment is enabled and user has not paid, go payment else initiate report gen
-        this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]).then((result) => {
-          if (result === false) {
-            this.loaderService.showLoader({ title: 'Loading', autoHide: false });
-            this.initiateReport();
-          }
-        });
+        if (this.isPaymentEnabled && this.comprehensiveJourneyMode) {
+          // If payment is enabled and user has not paid, go payment else initiate report gen
+            this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]).then((result) => {
+              if (result === false) {
+                this.loaderService.showLoader({ title: 'Loading', autoHide: false });
+                this.initiateReport();
+              }
+            });
+        } else {
+          this.loaderService.showLoader({ title: 'Loading', autoHide: false });
+          this.initiateReport();
+        }
       } else {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + currentStep]);
       }
@@ -113,19 +118,19 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     this.comprehensiveApiService.generateComprehensiveReport(enquiryId).subscribe((data) => {
       let reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.READY;
       if (this.comprehensiveJourneyMode) {
-        reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED
+        reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED;
       }
       this.comprehensiveService.setReportStatus(reportStatus);
       this.comprehensiveService.setLocked(true);
       this.comprehensiveService.setViewableMode(true);
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
+      this.loaderService.hideLoaderForced();
+    //   // const payload = { enquiryId: this.comprehensiveService.getEnquiryId() }
+    //   // this.comprehensiveApiService.createReportRequest(payload).subscribe((reportDataStatus: any) => {
+    //   //   this.comprehensiveService.setReportId(reportDataStatus.reportId);
+    //   //   this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
+    //   // });
 
-      // const payload = { enquiryId: this.comprehensiveService.getEnquiryId() }
-      // this.comprehensiveApiService.createReportRequest(payload).subscribe((reportDataStatus: any) => {
-      //   this.comprehensiveService.setReportId(reportDataStatus.reportId);
-      //   this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
-      // });
-
-    });
+   });
   }
 }
