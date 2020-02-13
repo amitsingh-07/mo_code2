@@ -151,27 +151,27 @@ export class ApiService {
 
   // ---------------------------- PROMOTIONS MODULE --------------------------
   getPromoList() {
-    const url = '../../../assets/mock-data/promoList.json';
+    const url = 'assets/mock-data/promoList.json';
     return this.http.getMock(url);
   }
 
   getPromoCategory() {
-    const url = '/assets/promotions/promoType.json';
+    const url = 'assets/promotions/promoType.json';
     return this.http.getMock(url);
   }
 
   getPromoDetail(id: number) {
-    const url = '/assets/promotions/' + id + '_details.json';
+    const url = 'assets/promotions/' + id + '_details.json';
     return this.http.getMock(url);
   }
 
   getPromoContent(id: number) {
-    const url = '/assets/promotions/' + id + '.jsp';
+    const url = 'assets/promotions/' + id + '.jsp';
     return this.http.getArticle(url);
   }
 
   getPromoTnc(id: number) {
-    const url = '/assets/promotions/' + id + '_tnc.jsp';
+    const url = 'assets/promotions/' + id + '_tnc.jsp';
     return this.http.getArticle(url);
   }
 
