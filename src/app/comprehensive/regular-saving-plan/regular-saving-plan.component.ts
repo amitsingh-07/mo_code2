@@ -162,7 +162,8 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
             if (this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
               this.comprehensiveService.saveBadMoodFund();
             }
-            if (this.comprehensiveService.getMySteps() === 1) {
+            if (this.comprehensiveService.getMySteps() === 1
+            && this.comprehensiveService.getMySubSteps() < 3) {
               this.comprehensiveService.setStepCompletion(1, 3).subscribe((data1: any) => {
                 this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
               });

@@ -217,7 +217,8 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
             this.comprehensiveService.setMyDependant(data.objectList[0].dependentsList);
             this.comprehensiveService.clearEndowmentPlan();
             this.comprehensiveService.setEndowment(null);
-            if (this.comprehensiveService.getMySteps() === 0) {
+            if (this.comprehensiveService.getMySteps() === 0
+            && this.comprehensiveService.getMySubSteps() < 2) {
             this.comprehensiveService.setStepCompletion(0, 2).subscribe((data1: any) => {
               this.loaderService.hideLoader();
               this.goToNextPage();

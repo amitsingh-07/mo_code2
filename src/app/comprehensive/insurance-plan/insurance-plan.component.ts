@@ -223,7 +223,8 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
             form.value.lifeProtectionAmount = COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT;
           }
           this.comprehensiveService.setInsurancePlanningList(form.value);
-          if (this.comprehensiveService.getMySteps() === 2) {
+          if (this.comprehensiveService.getMySteps() === 2
+          && this.comprehensiveService.getMySubSteps() < 1) {
             this.comprehensiveService.setStepCompletion(2, 1).subscribe((data1: any) => {
               this.showSummaryModal();
             });

@@ -347,7 +347,8 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
           this.loaderService.showLoader({ title: 'Saving' });
           this.comprehensiveApiService.saveAssets(this.assetDetails).subscribe((data) => {
             this.comprehensiveService.setMyAssets(this.assetDetails);
-            if (this.comprehensiveService.getMySteps() === 1) {
+            if (this.comprehensiveService.getMySteps() === 1
+            && this.comprehensiveService.getMySubSteps() < 5) {
               this.comprehensiveService.setStepCompletion(1, 5).subscribe((data1: any) => {
                 this.loaderService.hideLoader();
                 this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);

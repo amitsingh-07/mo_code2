@@ -362,11 +362,13 @@ export class RetirementPlanComponent
           .saveRetirementPlanning(retirementData)
           .subscribe((data: any) => {
             this.comprehensiveService.setRetirementPlan(retirementData);
-            if (this.comprehensiveService.getMySteps() === 3 && this.comprehensiveJourneyMode) {
+            if (this.comprehensiveService.getMySteps() === 3 && this.comprehensiveJourneyMode
+            && this.comprehensiveService.getMySubSteps() < 1) {
               this.comprehensiveService.setStepCompletion(3, 1).subscribe((data1: any) => {
                 this.routerPath();
               });
-            } else if (this.comprehensiveService.getMySteps() === 2 && !this.comprehensiveJourneyMode) {
+            } else if (this.comprehensiveService.getMySteps() === 2 && !this.comprehensiveJourneyMode
+            && this.comprehensiveService.getMySubSteps() < 1) {
               this.comprehensiveService.setStepCompletion(2, 1).subscribe((data1: any) => {
                 this.routerPath();
               });

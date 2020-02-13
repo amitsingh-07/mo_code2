@@ -177,7 +177,8 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
             if (this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
               this.comprehensiveService.saveBadMoodFund();
             }
-            if (this.comprehensiveService.getMySteps() === 1) {
+            if (this.comprehensiveService.getMySteps() === 1
+            && this.comprehensiveService.getMySubSteps() < 1) {
               this.comprehensiveService.setStepCompletion(1, 1).subscribe((data1: any) => {
                 this.loaderService.hideLoader();
                 this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS]);
