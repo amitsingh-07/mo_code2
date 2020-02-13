@@ -69,7 +69,7 @@ export class SelectedPlansService {
     const productList = [
       { promoId: 1, productIds: ['P045'] },
       { promoId: 2, productIds: ['P166', 'P167', 'P168', 'P169'] },
-      { promoId: 3, productIds: ['P104', 'P126', 'P140', 'P154', 'P155'] },
+      { promoId: 3, productIds: ['P184', 'P185', 'P186'] },
       { promoId: 24, productIds: ['P049', 'P069', 'P139', 'P145', 'P146', 'P152'] }
     ];
     return productList.find(({productIds}) => productIds.indexOf(productId) > -1);

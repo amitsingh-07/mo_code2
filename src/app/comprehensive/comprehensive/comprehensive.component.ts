@@ -43,6 +43,7 @@ export class ComprehensiveComponent implements OnInit {
   productAmount = 500;
   getComprehensiveSummaryDashboard: any;
   isBannerNoteVisible: boolean;
+  paymentEnabled = false;
 
   includingGst: false;
   constructor(
@@ -53,6 +54,7 @@ export class ComprehensiveComponent implements OnInit {
     private loaderService: LoaderService, private signUpService: SignUpService,
     public footerService: FooterService, private sanitizer: DomSanitizer, private comprehensiveApiService: ComprehensiveApiService) {
     this.configService.getConfig().subscribe((config: any) => {
+      this.paymentEnabled = config.paymentEnabled;
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
@@ -237,7 +239,7 @@ export class ComprehensiveComponent implements OnInit {
 
   isCurrentDateInRange(START_TIME, END_TIME) {
     return (new Date() >= new Date(START_TIME)
-          && new Date() < new Date(END_TIME));
+      && new Date() <= new Date(END_TIME));
   }
   getProductAmount() {
     const payload = { productType: 'Comprehensive' }

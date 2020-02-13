@@ -39,13 +39,13 @@ app-confirm-withdrawal-modal {
           }
 
           span.head {
-            font-weight: bold;
+            font-family: $muli-bold;
             display: block;
             margin-bottom: 2px;
           }
 
           span.link {
-            font-weight: bold;
+            font-family: $muli-bold;
             white-space: nowrap;
             cursor: pointer;
           }
@@ -58,7 +58,7 @@ app-confirm-withdrawal-modal {
 
         span.head {
           font-size: 14px;
-          font-weight: bold;
+          font-family: $muli-bold;
           color: #000;
           margin-bottom: 15px;
           display: block;
@@ -69,14 +69,15 @@ app-confirm-withdrawal-modal {
             display: block;
             font-size: 14px;
             color: #5e5e5e;
+            font-family: $muli-light;
           }
 
           .values {
             display: block;
             color: #00a7a7;
-            font-weight: bold;
             font-size: 18px;
             margin-bottom: 10px;
+            font-family: $muli-bold;
           }
 
           .rebalancing-info {

@@ -2,7 +2,7 @@
     <p>To qualify for the premium discount, you have to sign up for the product during the promotion period and issued by the deadline.</p>
     <div class="promo__summary">
         <div class="promo__inner-table">
-            <div class="promo-info__element">
+            <div class="promo-info__element without--min-width">
                 <div class="info--title">
                     Qualifying Product
                     </div>
@@ -10,7 +10,7 @@
                     ManuProtect Term
                     </div>
                 </div>
-            <div class="promo-info__element">
+            <div class="promo-info__element without--min-width">
                 <div class="info--title">
                     Sum Insured
                     </div>
@@ -18,7 +18,7 @@
                     $250,000
                     </div>
                 </div>
-            <div class="promo-info__element">
+            <div class="promo-info__element without--min-width">
                 <div class="info--title">
                     Premium Discount %
                     </div>

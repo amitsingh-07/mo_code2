@@ -85,8 +85,7 @@
     <div class="disclaimer"><span>*</span> <span>In the event of any of the 11 listed child related illnesses, there will be a payout of 20% of the rider
       sum assured, up to 5 claims.</span>
     </div>
-    <div class="disclaimer"><span>^</span> <span>The monthly premium does not include the amount that can be funded by CPF for the Hospitalisation
-      benefit.</span></div>
+    <div class="disclaimer"><span>^</span> <span>Monthly premium is based on a new-born child and it does not include the amount that can be funded by CPF for the Hospitalisation benefit.</span></div>
   </div>
 </div>
 </div>

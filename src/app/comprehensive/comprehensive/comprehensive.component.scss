@@ -264,12 +264,14 @@ app-comprehensive {
       color: $black-color;
       font-family: $muli-bold;
 
-      &__limited {
-        color: $black-color;
+      &__limited, &__limited--payment {
+        color: $limited;
         font-size: 11px;
         font-family: $muli-semi-bold;
       }
-
+      &__limited--payment {
+        color: $black-color !important;
+      }
       .btn {
         font-size: 14px;
       }
@@ -311,14 +313,16 @@ app-comprehensive {
     &__heading {
       font-family: $muli-bold;
     }
+
     &__otf-with-gst {
       font-family: $muli-bold;
       color: $app-backgrnd-color;
       font-size: 16px;
       margin: 8px 0;
     }
-    &__desc {
-      color: $black-color;
+
+    &__desc, &__desc--payment {
+      color: $limited-text;
       font-size: 14px;
       font-family: $muli-regular;
 
@@ -334,13 +338,18 @@ app-comprehensive {
         padding-right: 6%;
       }
     }
+    &__desc--payment {
+      color: $black-color !important;
+    }
   }
+
   .otf-with-gst {
     font-family: $muli-bold;
     color: $app-backgrnd-color;
     font-size: 16px;
     margin-bottom: 2px;
   }
+
   .promo-code-heading {
     font-family: $muli-bold;
     color: $app-backgrnd-color;
@@ -384,6 +393,7 @@ app-comprehensive {
     font-family: $muli-semi-bold;
     background-position: 0 2px;
   }
+
   .limited-offer {
     margin-bottom: 8px;
   }
@@ -452,15 +462,12 @@ app-comprehensive {
           font-size: 14px;
 
           @include minMobilemaxPhablet {
-            width: 2842.7px;
+            width: 2521.16px;
             white-space: nowrap;
             animation: marquee 30s linear infinite;
           }
 
           span {
-            &:last-child {
-              display: none;
-            }
 
             @include minMobilemaxPhablet {
               br {
@@ -508,7 +515,7 @@ app-comprehensive {
     }
 
     100% {
-      transform: translate(-2842.7px, 0)
+      transform: translate(-2521.16px, 0)
     }
   }
 }
