@@ -124,9 +124,11 @@ export class ComprehensiveDashboardComponent implements OnInit {
     }
   }
   goToEditComprehensivePlan(viewMode: boolean) {
-    if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED|| this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+    if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED 
+      || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
       //this.comprehensiveService.setViewableMode(true);
-      if (!this.islocked || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+      if (!this.islocked || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY 
+        || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR) {
         //this.setComprehensiveSummary(false, '');
         this.getComprehensiveCall();
       }
@@ -297,7 +299,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
           } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
           this.comprehensivePlanning = 0;
           }
-           else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+           else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY || 
+            this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR) {
             this.comprehensivePlanning = 1;
             if (this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp) {
               this.submittedDate = this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp;
