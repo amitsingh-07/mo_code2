@@ -27,6 +27,7 @@ export interface IConfig {
   distribution: any;
   comprehensiveLiveEnabled: boolean;
   showAnnualizedReturns: boolean;
+  paymentEnabled: boolean;
 }
 
 const CACHE_SIZE = 1;

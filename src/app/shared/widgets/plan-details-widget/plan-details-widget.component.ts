@@ -16,6 +16,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '../../../../../node_modules/@ngx-translate/core';
 import { RecommendationsModalComponent } from './../../modal/recommendations-modal/recommendations-modal.component';
 import { RoundPipe } from './../../Pipes/round.pipe';
+import { SelectedPlansService } from '../../Services/selected-plans.service';
 
 @Component({
   selector: 'app-plan-details-widget',
@@ -55,7 +56,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
 
   constructor(
     private currency: CurrencyPipe, private translate: TranslateService, public modal: NgbModal,
-    private elRef: ElementRef, private renderer: Renderer2, private titleCasePipe: TitleCasePipe, private round: RoundPipe) {
+    private elRef: ElementRef, private renderer: Renderer2, private titleCasePipe: TitleCasePipe, private round: RoundPipe, private planService: SelectedPlansService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((data) => {
       this.perMonth = this.translate.instant('SUFFIX.PER_MONTH');
@@ -241,5 +242,13 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
     const ref = this.modal.open(RecommendationsModalComponent, { centered: true });
     ref.componentInstance.title = this.translate.instant('PROD_INFO_TOOLTIP.RATING.TITLE');
     ref.componentInstance.message = this.translate.instant('PROD_INFO_TOOLTIP.RATING.MESSAGE');
+  }
+
+  redirectToPromoPage(productID: string) {
+    const promo = this.planService.checkProductID(productID);
+    if (promo && promo.promoId) {
+      window.open(`${window.location.protocol}//${window.location.host}/promotions/${promo.promoId}`, '_blank');
+    }
+    return;
   }
 }

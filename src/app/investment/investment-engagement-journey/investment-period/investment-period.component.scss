@@ -130,21 +130,22 @@ app-investment-period {
     color: $slider-selection-color;
     text-decoration: underline;
   }
-}
 
-.btn {
-  &:disabled {
-    background-color: $btn-disabled-light-bg;
-    color: $btn-disabled-teal-color;
-    cursor: pointer;
-
-    &:hover {
-      background-color: $btn-disabled-light-bg !important;
+  .btn {
+    &:disabled {
+      background-color: $btn-disabled-light-bg;
       color: $btn-disabled-teal-color;
+      cursor: pointer;
 
+      &:hover {
+        background-color: $btn-disabled-light-bg !important;
+        color: $btn-disabled-teal-color;
+
+      }
     }
   }
 }
+
 
 .investmentSlider {
   .noUi-target {

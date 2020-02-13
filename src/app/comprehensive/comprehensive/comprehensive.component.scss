@@ -264,12 +264,14 @@ app-comprehensive {
       color: $black-color;
       font-family: $muli-bold;
 
-      &__limited {
+      &__limited, &__limited--payment {
         color: $limited;
         font-size: 11px;
         font-family: $muli-semi-bold;
       }
-
+      &__limited--payment {
+        color: $black-color !important;
+      }
       .btn {
         font-size: 14px;
       }
@@ -312,7 +314,14 @@ app-comprehensive {
       font-family: $muli-bold;
     }
 
-    &__desc {
+    &__otf-with-gst {
+      font-family: $muli-bold;
+      color: $app-backgrnd-color;
+      font-size: 16px;
+      margin: 8px 0;
+    }
+
+    &__desc, &__desc--payment {
       color: $limited-text;
       font-size: 14px;
       font-family: $muli-regular;
@@ -329,6 +338,16 @@ app-comprehensive {
         padding-right: 6%;
       }
     }
+    &__desc--payment {
+      color: $black-color !important;
+    }
+  }
+
+  .otf-with-gst {
+    font-family: $muli-bold;
+    color: $app-backgrnd-color;
+    font-size: 16px;
+    margin-bottom: 2px;
   }
 
   .promo-code-heading {
