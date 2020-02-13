@@ -185,7 +185,7 @@ export class ApiService {
       );
   }
   getSubjectList() {
-    const url = '../../../assets/about-us/subjectList.json';
+    const url = 'assets/about-us/subjectList.json';
     return this.http.getMock(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
