@@ -89,27 +89,27 @@
           <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Services</a>
           <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id01">
             <button class="dropdown-item" (click)="goToHome('insurance')" fragment="insurance">
-              <img src="/assets/images/nav/nav-insure-icon.svg" />
+              <img src="assets/images/nav/nav-insure-icon.svg" />
               <div class="navbar--text">
                 <span>Insure</span>
               </div>
             </button>
             <button class="dropdown-item" (click)="goToHome('will')" fragment="will">
-              <img src="/assets/images/nav/nav-will-icon.svg" />
+              <img src="assets/images/nav/nav-will-icon.svg" />
               <div class="navbar--text">
                 <span>Wills</span>
                 <span *ngIf="!isWillWritingEnabled" class="sub">(Coming Soon)</span>
               </div>
             </button>
             <button class="dropdown-item" (click)="goToHome('invest')" fragment="invest">
-              <img src="/assets/images/nav/nav-invest-icon.svg" />
+              <img src="assets/images/nav/nav-invest-icon.svg" />
               <div class="navbar--text">
                 <span>Invest</span>
                 <span *ngIf="!isInvestmentEnabled" class="sub">(Coming Soon)</span>
               </div>
             </button>
             <button class="dropdown-item" (click)="goToHome('comprehensive')" fragment="comprehensive">
-              <img src="/assets/images/nav/nav-compre-icon.svg" />
+              <img src="assets/images/nav/nav-compre-icon.svg" />
               <div class="navbar--text">
                 <span>Comprehensive (integrating national schemes)</span>
                 <span *ngIf="!isComprehensiveEnabled || !isComprehensiveLiveEnabled" class="sub">(Coming Soon)</span>
@@ -212,7 +212,7 @@
         </li>
         <li *ngIf="!isLoggedIn && showLogin" class="nav-item link-login">
           <a class="nav-link" (click)="checkCurrentRouteAndNavigate('/accounts/login')"><img
-              src="/assets/images/nav/login-icon.svg" />Login</a>
+              src="assets/images/nav/login-icon.svg" />Login</a>
         </li>
         <li *ngIf="isLoggedIn && (showLogin || showLogout)" class="nav-item dropdown profile hidden-sm-md" ngbDropdown
           #id05="ngbDropdown" (mouseover)="openDropdown(id05);" (mouseleave)="closeDropdown(id05);">
