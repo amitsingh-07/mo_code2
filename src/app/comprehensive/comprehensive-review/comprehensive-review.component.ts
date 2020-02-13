@@ -50,15 +50,21 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
       });
     });
+    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
       if (event && event !== '') {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN_SUMMARY + '/summary']);
+        if (this.comprehensiveJourneyMode) {
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN_SUMMARY + '/summary']);
+        } else {
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/4']);
+        }
+
       }
     });
   }
 
   ngOnInit() {
-    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
+
     this.loaderService.hideLoaderForced();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.progressService.setReadOnly(false);
@@ -94,13 +100,19 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     } else if (this.comprehensiveService.checkResultData()) {
       const currentStep = this.comprehensiveService.getMySteps();
       if (currentStep === 4) {
-        // If payment is enabled and user has not paid, go payment else initiate report gen
-       this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]).then((result) => {
-          if (result === false) {
-            this.loaderService.showLoader({ title: 'Loading', autoHide: false });
-            this.initiateReport();
-          }
-        });
+        if (this.isPaymentEnabled && this.comprehensiveJourneyMode) {
+          // If payment is enabled and user has not paid, go payment else initiate report gen
+            this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]).then((result) => {
+              if (result === false) {
+                this.loaderService.showLoader({ title: 'Loading', autoHide: false });
+                this.initiateReport();
+              }
+            });
+        } else {
+          this.loaderService.showLoader({ title: 'Loading', autoHide: false });
+          this.initiateReport();
+          this.loaderService.hideLoaderForced();
+        }
       } else {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + currentStep]);
       }
@@ -109,17 +121,26 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     }
   }
   initiateReport() {
-    const reportData = { enquiryId: this.comprehensiveService.getEnquiryId() };
-    this.comprehensiveApiService.generateComprehensiveReport(reportData).subscribe((data) => {
-      this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED);
-      this.comprehensiveService.setLocked(true);
-      this.comprehensiveService.setViewableMode(true);
-      const payload = { enquiryId: this.comprehensiveService.getEnquiryId() }
-      this.comprehensiveApiService.createReportRequest(payload).subscribe((reportDataStatus: any) => {
-        this.comprehensiveService.setReportId(reportDataStatus.reportId);
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
-      });
+    const enquiryId = { enquiryId: this.comprehensiveService.getEnquiryId() };
+    this.comprehensiveApiService.generateComprehensiveReport(enquiryId).subscribe((data) => {
+      let reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.READY;
+      let viewMode = false;
+      if (this.comprehensiveJourneyMode) {
+        reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED;
+        viewMode = true;
 
-    });
+      }
+      this.comprehensiveService.setReportStatus(reportStatus);
+      this.comprehensiveService.setLocked(true);
+      this.comprehensiveService.setViewableMode(viewMode);
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
+      this.loaderService.hideLoaderForced();
+    //   // const payload = { enquiryId: this.comprehensiveService.getEnquiryId() }
+    //   // this.comprehensiveApiService.createReportRequest(payload).subscribe((reportDataStatus: any) => {
+    //   //   this.comprehensiveService.setReportId(reportDataStatus.reportId);
+    //   //   this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
+    //   // });
+
+   });
   }
 }

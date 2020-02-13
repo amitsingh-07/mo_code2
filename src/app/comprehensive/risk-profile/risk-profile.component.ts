@@ -1,15 +1,14 @@
-import { ConfigService } from './../../config/config.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
+import { ConfigService } from './../../config/config.service';
 
 import { Subscription } from 'rxjs';
-import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
@@ -48,6 +47,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
     private router: Router,
     private configService: ConfigService
   ) {
+    this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -57,7 +57,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
           this.setPageTitle(this.pageTitle);
       });
   });
-    this.pageId = this.route.routeConfig.component.name;
+   
     this.viewMode = this.comprehensiveService.getViewableMode();
     const self = this;
     this.route.params.subscribe((params) => {
@@ -91,7 +91,6 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
         }
       }
     });
-
 
   }
 
@@ -136,17 +135,38 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       if (this.questionIndex < this.questionsList.length) {
         // NEXT QUESTION
         this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
-          this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-          this.router.navigate([
-            COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
-          ]);
+          if (this.comprehensiveService.getMySteps() === 3
+          && this.comprehensiveService.getMySubSteps() < (this.questionIndex + 1)) {
+            this.comprehensiveService.setStepCompletion(3, this.questionIndex).subscribe((data1: any) => {
+              this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+              this.router.navigate([
+                COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
+              ]);
+            });
+          } else {
+            this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+            this.router.navigate([
+              COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
+            ]);
+          }
         });
       } else {
-
         this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
-          const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
-          : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
-          this.router.navigate([routerURL]);
+          if (this.comprehensiveService.getMySteps() === 3
+          && this.comprehensiveService.getMySubSteps() < 4) {
+            this.comprehensiveService.setStepCompletion(3, 4).subscribe((data1: any) => {
+              this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+              const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
+            : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
+              this.router.navigate([routerURL]);
+            });
+          } else {
+            this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+            const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
+            : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
+            this.router.navigate([routerURL]);
+          }
+
         });
       }
     }

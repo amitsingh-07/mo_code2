@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 
+import { AppService } from '../../app.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { FileUtil } from '../../shared/utils/file.util';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
@@ -13,7 +14,6 @@ import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
-
 @Component({
   selector: 'app-comprehensive-dashboard',
   templateUrl: './dashboard.component.html',
@@ -41,6 +41,9 @@ export class ComprehensiveDashboardComponent implements OnInit {
   comprehensiveLiteEnabled: boolean;
   versionTypeEnabled: boolean;
   getComprehensiveSummaryDashboard: any;
+  promoCodeValidated = false;
+  enquiryId: any;
+  isReportGenerated=false;
   // tslint:disable-next-line:cognitive-complexity
   constructor(
     private router: Router,
@@ -52,26 +55,27 @@ export class ComprehensiveDashboardComponent implements OnInit {
     private navbarService: NavbarService,
     private downloadfile: FileUtil,
     private authService: AuthenticationService,
-    private loaderService: LoaderService) {
-    this.configService.getConfig().subscribe((config) => {
+    private loaderService: LoaderService, private appService: AppService) {
+      this.appService.clearPromoCode();
+      this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
       this.isComprehensiveEnabled = config.comprehensiveEnabled;
       this.isComprehensiveLiveEnabled = config.comprehensiveLiveEnabled;
     });
-    this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(100);
-    this.navbarService.setNavbarMobileVisibility(false);
+      this.navbarService.setNavbarVisibility(true);
+      this.navbarService.setNavbarMode(100);
+      this.navbarService.setNavbarMobileVisibility(false);
     /**
      * 0 - Waiting for report
      * 1 - Completed & View Report
      * 2 - Completed & View Report with advisor
      * 3 - Not Completed
      */
-    this.comprehensivePlanning = 4;
-    this.comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
-    this.getCurrentVersionType =  this.comprehensiveService.getComprehensiveCurrentVersion();
-    if ((this.getCurrentVersionType === '' || this.getCurrentVersionType === null ||
+      this.comprehensivePlanning = 4;
+      this.comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
+      this.getCurrentVersionType =  this.comprehensiveService.getComprehensiveCurrentVersion();
+      if ((this.getCurrentVersionType === '' || this.getCurrentVersionType === null ||
     this.getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE ) && this.comprehensiveLiteEnabled) {
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
       this.setComprehensivePlan(false);
@@ -86,20 +90,24 @@ export class ComprehensiveDashboardComponent implements OnInit {
   generateReport() {
     this.comprehensiveApiService.getReport().subscribe((data: any) => {
       this.comprehensiveService.setReportId(data.objectList[0].id);
-      const reportDateAPI = new Date(data.objectList[0].createdTs);
+      const reportDateAPI = new Date(data.objectList[0].lastUpdatedTs);
       this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
 
     });
   }
   downloadComprehensiveReport() {
-    const payload = { reportId: this.comprehensiveService.getReportId() };
+    const payload = { reportId: this.getComprehensiveSummaryDashboard.reportId , enquiryId:this.enquiryId};
     this.comprehensiveApiService.downloadComprehensiveReport(payload).subscribe((data: any) => {
       this.downloadfile.saveAs(data.body, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
     });
 
   }
   goToEditProfile() {
-    this.setComprehensiveSummary(true, COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED);
+    if (this.comprehensivePlanning === 4 && !this.versionTypeEnabled && !this.promoCodeValidated) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
+    } else {
+      this.setComprehensiveSummary(true, COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED);
+    }
   }
 
   goToCurrentStep() {
@@ -116,10 +124,11 @@ export class ComprehensiveDashboardComponent implements OnInit {
     }
   }
   goToEditComprehensivePlan(viewMode: boolean) {
-    if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED
-      || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+    if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED 
+      || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
       //this.comprehensiveService.setViewableMode(true);
-      if (!this.islocked) {
+      if (!this.islocked || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY 
+        || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR) {
         //this.setComprehensiveSummary(false, '');
         this.getComprehensiveCall();
       }
@@ -139,15 +148,17 @@ export class ComprehensiveDashboardComponent implements OnInit {
   }
   getComprehensiveCall() {
     this.loaderService.showLoader({ title: 'Fetching Data' });
-    this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((userData: any) => {
-     if (userData && userData.objectList[0]) {
-        this.comprehensiveService.setComprehensiveSummary(userData.objectList[0]);
-        this.userDetails = this.comprehensiveService.getMyProfile();
-        this.comprehensiveApiService.savePersonalDetails(this.userDetails).subscribe((data: any) => {
+    let reportStatusValue =  COMPREHENSIVE_CONST.REPORT_STATUS.NEW;
+    if ( ( !this.versionTypeEnabled && this.comprehensivePlanning === 0 ) ||  this.comprehensivePlanning === 1) {
+      reportStatusValue = COMPREHENSIVE_CONST.REPORT_STATUS.EDIT;
+    }
+    const payload = {enquiryId: this.enquiryId, reportStatus : reportStatusValue};
+    this.comprehensiveApiService.updateComprehensiveReportStatus(payload).subscribe((data: any) => {
           if (data) {
             this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
               if (summaryData) {
                 this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
+                this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.EDIT);
                 this.comprehensiveService.setViewableMode(true);
                 this.loaderService.hideLoader();
                 this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
@@ -157,10 +168,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
             this.loaderService.hideLoader();
           }
         });
-      } else {
-        this.loaderService.hideLoader();
-      }
-    });
+
   }
   getCurrentComprehensiveStep() {
     if (this.getComprehensiveSummaryEnquiry) {
@@ -219,14 +227,17 @@ export class ComprehensiveDashboardComponent implements OnInit {
             this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp) {
             this.submittedDate = this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp;
           }
-        } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED ||
-          this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+        } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED ) {
           this.comprehensivePlanning = 0;
         }
-        //  else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
-        //   this.comprehensivePlanning = (this.advisorStatus) ? 2 : 1;
-        //   this.generateReport();
-        // }
+         else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+          this.comprehensivePlanning =  1;
+          if (this.getComprehensiveSummary.comprehensiveEnquiry &&
+            this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp) {
+            this.submittedDate = this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp;
+            this.isReportGenerated = this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus;
+          }
+        }
         this.currentStep = (this.getComprehensiveSummary && this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted
           && this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted !== null)
           ? this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted : 0;
@@ -275,23 +286,29 @@ export class ComprehensiveDashboardComponent implements OnInit {
           this.islocked = this.getComprehensiveSummaryDashboard.isLocked;
           //const reportDateAPI = new Date();
           // this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
-
+          this.promoCodeValidated = this.getComprehensiveSummaryDashboard.isValidatedPromoCode;
           this.reportStatus = this.getComprehensiveSummaryDashboard.reportStatus;
-          if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && (this.islocked === null || !this.islocked)) {
+          this.enquiryId= this.getComprehensiveSummaryDashboard.enquiryId;
+          if ((this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || this.reportStatus=== COMPREHENSIVE_CONST.REPORT_STATUS.EDIT) && (this.islocked === null || !this.islocked)) {
           this.comprehensivePlanning = 3;
           } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED && !this.islocked) {
           this.comprehensivePlanning = 5;
           if (this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp) {
           this.submittedDate = this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp;
           }
-          } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED ||
-          this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+          } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
           this.comprehensivePlanning = 0;
           }
-          //  else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
-          //   this.comprehensivePlanning = (this.advisorStatus) ? 2 : 1;
-          //   this.generateReport();
-          // }
+           else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY || 
+            this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR) {
+            this.comprehensivePlanning = 1;
+            if (this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp) {
+              this.submittedDate = this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp;
+              this.isReportGenerated = this.getComprehensiveSummaryDashboard.reportStatus === 
+              COMPREHENSIVE_CONST.REPORT_STATUS.READY ? true:false ;
+              }
+           // this.generateReport();
+          }
           this.currentStep = (this.getComprehensiveSummaryDashboard.stepCompleted !== null)
           ? this.getComprehensiveSummaryDashboard.stepCompleted : 0;
 

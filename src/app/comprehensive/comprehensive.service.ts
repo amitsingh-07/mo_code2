@@ -51,6 +51,7 @@ import {
   IRegularSavings,
   IRetirementPlan,
 } from './comprehensive-types';
+import { Observable } from 'rxjs/Observable';
 @Injectable({
   providedIn: 'root'
 })
@@ -1078,7 +1079,7 @@ export class ComprehensiveService {
             }
             break;
           // 'bad-mood-fund'
-          case 15:
+          case 15: 
             if (accessPage && canAccess && financeProgressData.subItems[2].completed && stepCompleted > 0) {
               accessibleUrl = urlList[index];
             }
@@ -1310,7 +1311,7 @@ export class ComprehensiveService {
             if (
               accessPage && canAccess &&
               riskProfileProgressData.subItems[3].completed &&
-              reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED
+              reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.READY
             ) {
               accessibleUrl = urlList[index];
             }
@@ -1405,14 +1406,14 @@ export class ComprehensiveService {
       path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
       title: 'No. of Household Members',
       value: dependentHouseHoldData.noOfHouseholdMembers == 0 || dependentHouseHoldData.noOfHouseholdMembers ? dependentHouseHoldData.noOfHouseholdMembers + '' : '',
-      completed: enquiry.hasDependents !== null
+      completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
     });
     subItemsArray.push({
       id: '',
       path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
       title: 'Household Income',
       value: dependentHouseHoldData.houseHoldIncome ? dependentHouseHoldData.houseHoldIncome + '' : '',
-      completed: enquiry.hasDependents !== null
+      completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
     });
 
     if (comprehensiveVersion) {
@@ -1424,7 +1425,7 @@ export class ComprehensiveService {
             : COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
         title: 'Number of Dependant(s)',
         value: noOfDependants,
-        completed: enquiry.hasDependents !== null
+        completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
       });
     }
     if (comprehensiveVersion && (enquiry.hasDependents === null || dependantData && dependantData.length > 0)) {
@@ -1550,7 +1551,7 @@ export class ComprehensiveService {
         earningsData && earningsData.totalAnnualIncomeBucket >= 0
           ? this.transformAsCurrency(earningsData.totalAnnualIncomeBucket) + ''
           : '',
-      completed: !Util.isEmptyOrNull(earningsData)
+      completed: (!Util.isEmptyOrNull(earningsData) && (this.validateSteps(1, 1)))
     });
     subItemsArray.push({
       id: COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS,
@@ -1560,7 +1561,7 @@ export class ComprehensiveService {
         spendingsData && spendingsData.totalAnnualExpenses >= 0
           ? this.transformAsCurrency(spendingsData.totalAnnualExpenses) + ''
           : '',
-      completed: !Util.isEmptyOrNull(spendingsData)
+      completed: (!Util.isEmptyOrNull(spendingsData) && (this.validateSteps(1, 2)))
     });
 
     subItemsArray.push({
@@ -1569,8 +1570,9 @@ export class ComprehensiveService {
       title: 'Regular Savings Plan',
       value: '',
       completed:
-        this.hasRegularSavings() !== null ||
-        !Util.isEmptyOrNull(this.getRegularSavingsList()),
+        ((this.hasRegularSavings() !== null ||
+        !Util.isEmptyOrNull(this.getRegularSavingsList())) 
+        && (this.validateSteps(1, 3))),
       hidden: true
     });
 
@@ -1584,7 +1586,8 @@ export class ComprehensiveService {
         : typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
           ? this.transformAsCurrency(0)
           : '',
-      completed: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined',
+      completed: ((typeof this.getDownOnLuck().hospitalPlanId !== 'undefined')
+       && (this.validateSteps(1, 4))),
       hidden: !this.hasBadMoodFund() && !Util.isEmptyOrNull(earningsData)
     });
 
@@ -1596,7 +1599,7 @@ export class ComprehensiveService {
         typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
           ? this.getDownOnLuck().hospitalPlanName
           : '',
-      completed: typeof this.getDownOnLuck().hospitalPlanId !== 'undefined'
+      completed: ((typeof this.getDownOnLuck().hospitalPlanId !== 'undefined') && (this.validateSteps(1, 4)))
     });
 
     subItemsArray.push({
@@ -1607,7 +1610,7 @@ export class ComprehensiveService {
         assetsData && assetsData.totalAnnualAssets >= 0
           ? this.transformAsCurrency(assetsData.totalAnnualAssets) + ''
           : '',
-      completed: !Util.isEmptyOrNull(assetsData)
+      completed: (!Util.isEmptyOrNull(assetsData) && (this.validateSteps(1, 5)))
     });
     subItemsArray.push({
       id: COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES,
@@ -1618,7 +1621,7 @@ export class ComprehensiveService {
           ? this.transformAsCurrency(liabilitiesData.totalAnnualLiabilities) +
           ''
           : '',
-      completed: !Util.isEmptyOrNull(liabilitiesData)
+      completed: (!Util.isEmptyOrNull(liabilitiesData) && (this.validateSteps(1, 6)))
     });
     return {
       title: 'Your Finances',
@@ -1750,35 +1753,35 @@ export class ComprehensiveService {
           path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
           title: 'Do you have a hospital plan',
           value: hospitalPlanValue,
-          completed: isCompleted
+          completed: (isCompleted && (this.validateSteps(2, 1)))
         },
         {
           id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '1',
           path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
           title: 'Life Protection',
           value: cpfDependantProtectionSchemeValue,
-          completed: isCompleted
+          completed: (isCompleted && (this.validateSteps(2, 1)))
         },
         {
           id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '2',
           path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
           title: 'Critical Illness',
           value: criticalIllnessValue,
-          completed: isCompleted
+          completed: (isCompleted && (this.validateSteps(2, 1)))
         },
         {
           id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '3',
           path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
           title: 'Occupational Disability',
           value: ocpDisabilityValue,
-          completed: isCompleted
+          completed: (isCompleted && (this.validateSteps(2, 1)))
         },
         {
           id: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '4',
           path: COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN,
           title: 'Long-Term Care',
           value: longTermCareValue,
-          completed: isCompleted,
+          completed: (isCompleted && (this.validateSteps(2, 1))),
           hidden: this.getMyProfile().dateOfBirth
             ? this.ageUtil.calculateAge(
               this.getMyProfile().dateOfBirth,
@@ -1808,44 +1811,44 @@ export class ComprehensiveService {
       customStyle: 'risk-profile',
       subItems: [
         {
-          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '1',
+          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
           path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
           title: 'Temporary Losses',
           value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1
             && cmpSummary.riskQuestionList) ?
             cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1] : '',
           completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1
-            && cmpSummary.riskQuestionList)
+            && cmpSummary.riskQuestionList && (this.validateSteps(3, 1)))
         },
         {
-          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '2',
+          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/2',
           path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/2',
           title: 'Unrealised/Paper Loss',
           value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2
             && cmpSummary.riskQuestionList) ?
             cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2] : '',
           completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2
-            && cmpSummary.riskQuestionList)
+            && cmpSummary.riskQuestionList && (this.validateSteps(3, 2)))
         },
         {
-          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '3',
+          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/3',
           path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/3',
           title: 'Stress Level',
           value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3
             && cmpSummary.riskQuestionList) ?
             cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3] : '',
           completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3
-            && cmpSummary.riskQuestionList)
+            && cmpSummary.riskQuestionList && (this.validateSteps(3, 3)))
         },
         {
-          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '4',
+          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/4',
           path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/4',
           title: 'Portfolio Type',
           value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4
             && cmpSummary.riskQuestionList) ?
             cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4] : '',
           completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4
-            && cmpSummary.riskQuestionList)
+            && cmpSummary.riskQuestionList && (this.validateSteps(3, 4)))
         }
       ]
     };
@@ -1861,6 +1864,7 @@ export class ComprehensiveService {
     let retirementAgeValue = '';
     const cmpSummary = this.getComprehensiveSummary();
     const isCompleted = cmpSummary.comprehensiveRetirementPlanning !== null;
+    const isStepCompleted =  (!this.getComprehensiveVersion()) ? 2 : 3;
     if (
       isCompleted &&
       cmpSummary.comprehensiveRetirementPlanning.retirementAge
@@ -1877,7 +1881,7 @@ export class ComprehensiveService {
       path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
       title: 'Retirement Age',
       value: retirementAgeValue,
-      completed: isCompleted
+      completed: (isCompleted && (this.validateSteps(isStepCompleted, 1)))
     });
     if (this.getComprehensiveVersion() && cmpSummary.comprehensiveRetirementPlanning) {
       cmpSummary.comprehensiveRetirementPlanning.retirementIncomeSet.forEach((item, index) => {
@@ -1886,7 +1890,7 @@ export class ComprehensiveService {
           path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
           title: 'Retirement Income ' + (index + 1),
           value: '',
-          completed: isCompleted,
+          completed: (isCompleted && (this.validateSteps(isStepCompleted, 1))),
           list: [{
             title: 'Monthly Payout',
             value: this.transformAsCurrency(item.monthlyPayout)
@@ -2351,8 +2355,9 @@ export class ComprehensiveService {
       !getCompData.comprehensiveEnquiry.reportStatus ||
       getCompData.comprehensiveEnquiry.reportStatus === null ||
       getCompData.comprehensiveEnquiry.reportStatus === '' ||
-      getCompData.comprehensiveEnquiry.reportStatus !==
-      COMPREHENSIVE_CONST.REPORT_STATUS.NEW
+      (getCompData.comprehensiveEnquiry.reportStatus !==
+      COMPREHENSIVE_CONST.REPORT_STATUS.NEW && getCompData.comprehensiveEnquiry.reportStatus !==
+      COMPREHENSIVE_CONST.REPORT_STATUS.EDIT)
     ) {
       validateFlag = false;
     }
@@ -2422,8 +2427,9 @@ export class ComprehensiveService {
     });
     return completedStatus;
   }
-  setMySteps(currentStep: number) {
+  setMySteps(currentStep: number, subStep: number) {
     this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.stepCompleted = currentStep;
+    this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.subStepCompleted = subStep;
     this.commit();
   }
   getMySteps() {
@@ -2433,6 +2439,17 @@ export class ComprehensiveService {
     ) {
       return this.comprehensiveFormData.comprehensiveDetails
         .comprehensiveEnquiry.stepCompleted;
+    } else {
+      return 0;
+    }
+  }
+  getMySubSteps() {
+    if (
+      this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
+        .subStepCompleted
+    ) {
+      return this.comprehensiveFormData.comprehensiveDetails
+        .comprehensiveEnquiry.subStepCompleted;
     } else {
       return 0;
     }
@@ -2599,6 +2616,36 @@ export class ComprehensiveService {
     } else {
       return '';
     }
+  }
+  /**
+   * Comprehensive steps and sub step save api call
+   * parameter 1 - stepCompleted 2 - sunStepCompleted
+   */
+  setStepCompletion(stepCompletedParam: number, subStepCompletedParam: number) {
+    /*return new Promise((resolve, reject) => {
+      const stepIndicatorData = { enquiryId: this.getEnquiryId(), stepCompleted: stepCompletedParam,
+      subStepCompleted: subStepCompletedParam };
+      this.comprehensiveApiService.saveStepIndicator(stepIndicatorData).subscribe((data) => {
+        this.setMySteps(stepCompletedParam, subStepCompletedParam);
+        resolve();
+      });
+    });*/
+    return new Observable((obs) => {
+      const stepIndicatorData = { enquiryId: this.getEnquiryId(), stepCompleted: stepCompletedParam,
+        subStepCompleted: subStepCompletedParam };
+      this.comprehensiveApiService.saveStepIndicator(stepIndicatorData).subscribe((data) => {
+          this.setMySteps(stepCompletedParam, subStepCompletedParam);
+          obs.next(data);
+        });
+    });
+  }
+  /**
+   * Validate Steps with Sub Steps
+   */
+  validateSteps(stepCompletedParam, subCompletedParam) {
+    const stepComplete = this.getMySteps();
+    const subStepComplete = this.getMySubSteps();
+    return (stepComplete > stepCompletedParam || (stepCompletedParam === stepComplete && subStepComplete >=  subCompletedParam) );
   }
 }
 

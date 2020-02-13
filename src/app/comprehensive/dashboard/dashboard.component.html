@@ -43,7 +43,7 @@
         </div>
         <!--Form Content-->
         <div class="form-group-with-bg--content">
-          <div class="flex-row align-start"
+          <div class="flex-row align-start" *ngIf="!versionTypeEnabled"
             [hidden]="comprehensivePlanning === 5 || comprehensivePlanning === 3 || comprehensivePlanning === 4 || comprehensivePlanning === 0">
             <div class="flex-col-8">
               <div class="form-group-with-bg--content-label" for="name">
@@ -84,7 +84,29 @@
               </div>
             </div>
           </div>
-
+          <div class="flex-row align-start" *ngIf="comprehensivePlanning === 5 || (versionTypeEnabled && comprehensivePlanning === 1)" >
+            <div class="flex-col-8">
+              <div class="form-group-with-bg--content-label" for="name">
+                {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_MAKE_CHANGES_CONTENT' | translate}}
+              </div>
+            </div>
+            <div class="flex-col-4 text-right">
+              <img src='assets/images/comprehensive/dashboard-comprehensive.svg'>
+            </div>
+          </div>
+         
+          <div class="flex-row align-start" *ngIf="comprehensivePlanning === 5 || (versionTypeEnabled && comprehensivePlanning === 1)" >
+            <div class="flex-col-12">
+              <button type="button" class="btn btn-primary width100" id="prfBtn1"
+                (click)="goToEditComprehensivePlan(false)">
+                <div class="ft-18" for="name">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_MAKE_CHANGES' | translate}}
+                  <div class="ft-13 submittedDate " for="name">
+                    {{ ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_LAST_SUBMITTED_DATE' | translate).replace('LAST_SUBMITTED_DATE', submittedDate | date: 'dd MMM` yy')}}
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
           <div class="flex-row align-start" [hidden]="comprehensivePlanning !== 2">
             <div class="flex-col-12">
               <button type="button" class="btn btn-primary width100" id="prfBtn1">
@@ -95,14 +117,16 @@
           </div>
           <div class="flex-row align-start" [hidden]="!(comprehensivePlanning === 1 || comprehensivePlanning === 2)">
             <div class="flex-col-12">
-              <button (click)="downloadComprehensiveReport()" type="button" class="btn btn-view width100" id="prfBtn1">
+        
+              <button *ngIf="isReportGenerated" (click)="downloadComprehensiveReport()" type="button" class="btn btn-view width100" id="prfBtn1">
                 <div class="ft-18" for="name">
                   {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_VIEW_REPORT' | translate}}
                   <div class="label-grey ft-13" for="name">
-                    {{ ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_LAST_UPDATED' | translate).replace('LAST_UPDATED_DATE', reportDate)}}
+                    {{ ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_LAST_UPDATED' | translate).replace('LAST_UPDATED_DATE', submittedDate | date: 'dd MMM` yy')}}
                   </div>
                 </div>
               </button>
+              <span class="report-error-msg" *ngIf="!isReportGenerated" >{{'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_REPORT_ERROR_MSG'| translate}} </span>
             </div>
           </div>
           <div class="flex-row align-start" [hidden]="comprehensivePlanning !== 3">
@@ -132,28 +156,6 @@
               <button type="button" class="btn btn-primary width100" id="prfBtn1" (click)="goToEditProfile()">
                 <div class="ft-18" for="name">{{ 'COMPREHENSIVE.DASHBOARD.DEFAULT_START' | translate}}
                   <div class="ft-13" for="name">{{!versionTypeEnabled ? ('COMPREHENSIVE.DASHBOARD.DEFAULT_ESTIMATED' | translate) : ('COMPREHENSIVE.DASHBOARD.DEFAULT_ESTIMATED_LITE' | translate)}}
-                  </div>
-                </div>
-              </button>
-            </div>
-          </div>
-          <div class="flex-row align-start" [hidden]="comprehensivePlanning !== 5">
-            <div class="flex-col-8">
-              <div class="form-group-with-bg--content-label" for="name">
-                {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_MAKE_CHANGES_CONTENT' | translate}}
-              </div>
-            </div>
-            <div class="flex-col-4 text-right">
-              <img src='assets/images/comprehensive/dashboard-comprehensive.svg'>
-            </div>
-          </div>
-          <div class="flex-row align-start" [hidden]="comprehensivePlanning !== 5">
-            <div class="flex-col-12">
-              <button type="button" class="btn btn-primary width100" id="prfBtn1"
-                (click)="goToEditComprehensivePlan(false)">
-                <div class="ft-18" for="name">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_MAKE_CHANGES' | translate}}
-                  <div class="ft-13 submittedDate " for="name">
-                    {{ ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_LAST_SUBMITTED_DATE' | translate).replace('LAST_SUBMITTED_DATE', submittedDate | date: 'dd MMM yyyy')}}
                   </div>
                 </div>
               </button>

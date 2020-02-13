@@ -51,6 +51,10 @@ export class ComprehensiveApiService {
         return this.http.post(apiConstants.endpoint.comprehensive.addPersonalDetails, payload)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
+    updateComprehensiveReportStatus(payload){
+        return this.http.post(apiConstants.endpoint.comprehensive.updateComprehensiveStatus , payload)
+        .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
     addDependents(payload) {
         return this.http.post(apiConstants.endpoint.comprehensive.addDependents, payload)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));

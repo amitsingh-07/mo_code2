@@ -39,7 +39,8 @@ export const COMPREHENSIVE_CONST = {
             MONTHLY_INPUT_CALC: [],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualAssets', 'customerId', 'id', 'assetId'],
             BUCKET_INPUT_CALC: ['cashInBank', 'savingsBonds', 'cpfOrdinaryAccount', 'cpfSpecialAccount', 'cpfMediSaveAccount',
-                'homeMarketValue', 'investmentAmount_0', 'otherAssetsValue', 'investmentPropertiesValue', 'cpfRetirementAccount']
+                'homeMarketValue', 'investmentAmount_0', 'otherAssetsValue', 'investmentPropertiesValue', 'cpfRetirementAccount'],
+            RETIREMENT_AGE: 54
         },
         YOUR_LIABILITIES: {
             API_KEY: 'comprehensiveLiabilities',
@@ -146,7 +147,8 @@ export const COMPREHENSIVE_CONST = {
         NEW: 'new',
         EDIT: 'edit',
         SUBMITTED: 'submitted',
-        READY: 'ready'
+        READY: 'ready',
+        ERROR: 'error'
     },
     REPORT_PDF_NAME: 'MoneyOwl-Comprehensive.pdf',
     RETIREMENT_PLAN: {
