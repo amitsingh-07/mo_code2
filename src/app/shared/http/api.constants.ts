@@ -93,13 +93,14 @@ export let apiConstants = {
             saveLiabilities: FINANCE_API_BASE_URL + 'saveComprehensiveLiabilities',
             getPromoCode: ACCOUNT_API_BASE_URL + '/customer/comprehensive/requestComprehensivePromoCode?category=COMPRE',
             validatePromoCode: ACCOUNT_API_BASE_URL + '/customer/comprehensive/validateComprehensivePromoCode',
-            downloadComprehensiveReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'downloadReportPdf',
+            downloadComprehensiveReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'downloadLiteReportPdf',
             saveStepIndicator: COMPREHENSIVE_API_BASE_URL + 'saveComprehensiveStepCompletion',
             generateComprehensiveReport: COMPREHENSIVE_API_BASE_URL + 'generateComprehensiveReport',
             createReportRequest: COMPREHENSIVE_REPORT_API_BASE_URL + 'createReportRequest',
             getReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'getReport',
             getComprehensiveSummaryDashboard: COMPREHENSIVE_API_BASE_URL + 'fetchComprehensiveStatus',
-            getProductAmount: ACCOUNT_API_BASE_URL + '/productPricing'
+            getProductAmount: ACCOUNT_API_BASE_URL + '/productPricing',
+            updateComprehensiveStatus: COMPREHENSIVE_API_BASE_URL +'updateComprehensiveReportStatus',
         },
         payment: {
             getRequestSignature: PAYMENT_API_BASE_URL + 'getRequestSignature',

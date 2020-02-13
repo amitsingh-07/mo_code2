@@ -147,7 +147,8 @@ export const COMPREHENSIVE_CONST = {
         NEW: 'new',
         EDIT: 'edit',
         SUBMITTED: 'submitted',
-        READY: 'ready'
+        READY: 'ready',
+        ERROR: 'error'
     },
     REPORT_PDF_NAME: 'MoneyOwl-Comprehensive.pdf',
     RETIREMENT_PLAN: {
