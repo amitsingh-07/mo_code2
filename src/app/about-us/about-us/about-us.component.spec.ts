@@ -8,9 +8,9 @@ describe('AboutUsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AboutUsComponent ]
+      declarations: [AboutUsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +19,11 @@ describe('AboutUsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the about us component', () => {
+    const fixture = TestBed.createComponent(AboutUsComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('About MoneyOwl');
     expect(component).toBeTruthy();
   });
 });

@@ -1,12 +1,20 @@
 import { CurrencyPipe } from '@angular/common';
-import { TranslateService } from '@ngx-translate/core';
-import { ManageInvestmentsService } from '../../../investment/manage-investments/manage-investments.service';
-
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { InvestmentAccountService } from '../../../investment/investment-account/investment-account-service';
-import { ProfileIcons } from '../../../investment/investment-engagement-journey/recommendation/profileIcons';
+import { TranslateService } from '@ngx-translate/core';
+
+import {
+    InvestmentAccountService
+} from '../../../investment/investment-account/investment-account-service';
+import {
+    InvestmentEngagementJourneyService
+} from '../../../investment/investment-engagement-journey/investment-engagement-journey.service';
+import {
+    ProfileIcons
+} from '../../../investment/investment-engagement-journey/recommendation/profileIcons';
+import {
+    ManageInvestmentsService
+} from '../../../investment/manage-investments/manage-investments.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { ErrorModalComponent } from '../../modal/error-modal/error-modal.component';
 
@@ -39,7 +47,8 @@ export class PortfolioListComponent implements OnInit {
               private manageInvestmentsService: ManageInvestmentsService,
               public signUpService: SignUpService,
               private currencyPipe: CurrencyPipe,
-              private investmentAccountService: InvestmentAccountService) {
+              private investmentAccountService: InvestmentAccountService,
+              private investmentEngagementService: InvestmentEngagementJourneyService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => { });
   }
@@ -64,14 +73,9 @@ export class PortfolioListComponent implements OnInit {
           this.notInvestedList.push(portfolio);
         }
       }
-      this.investedList = this.sortByDate(this.investedList);
-      this.notInvestedList = this.sortByDate(this.notInvestedList);
+      this.investmentEngagementService.sortByProperty(this.investedList, 'createdDate', 'desc');
+      this.investmentEngagementService.sortByProperty(this.notInvestedList, 'createdDate', 'desc');
     }
-  }
-  sortByDate(myArray) {
-    return myArray.sort(
-      (d1, d2) => new Date(d2.createdDate).getTime() - new Date(d1.createdDate).getTime()
-    );
   }
 
   formatReturns(value) {

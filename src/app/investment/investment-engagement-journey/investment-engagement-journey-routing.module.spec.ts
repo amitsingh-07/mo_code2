@@ -1,13 +1,13 @@
-import { GuideMeRoutingModule } from './guide-me-routing.module';
+import { InvestmentEngagementJourneyRoutingModule } from './investment-engagement-journey-routing.module';
 
-describe('GuideMeRoutingModule', () => {
-  let guideMeRoutingModule: GuideMeRoutingModule;
+describe('InvestmentEngagementJourneyRoutingModule', () => {
+  let investmentEngagementJourneyRoutingModule: InvestmentEngagementJourneyRoutingModule;
 
   beforeEach(() => {
-    guideMeRoutingModule = new GuideMeRoutingModule();
+    investmentEngagementJourneyRoutingModule = new InvestmentEngagementJourneyRoutingModule();
   });
 
   it('should create an instance', () => {
-    expect(guideMeRoutingModule).toBeTruthy();
+    expect(investmentEngagementJourneyRoutingModule).toBeTruthy();
   });
 });

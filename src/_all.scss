@@ -270,7 +270,7 @@ h6 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    max-width: 525px;
+    max-width: 500px;
 
     @include minPhabletmaxTablet {
       max-width: 465px;
@@ -299,9 +299,10 @@ h6 {
       flex-basis: auto;
 
       &.show {
-        height:100vh;
+        height: 100%;
         overflow-y: scroll;
         padding-bottom: 45px;
+        -webkit-overflow-scrolling: touch;
       }
     }
 
@@ -317,7 +318,10 @@ h6 {
           flex-basis: unset;
           order: 2;
           margin-right: 0px;
-          background-color: $white-color; /* Prod issue MO2-2316 */
+          background-color: $white-color;
+          /* Prod issue MO2-2316 */
+          overflow-y: scroll;
+          -webkit-overflow-scrolling: touch;
         }
 
         &.hide {
@@ -497,6 +501,7 @@ h6 {
           height: 50px;
           align-items: center;
           padding-left: 20px;
+          min-height: 50px;
         }
       }
 
@@ -1041,8 +1046,9 @@ h6 {
 
 .navbar__logo--primary {
   background-image: url("/assets/images/logo--primary.svg");
-  width: 147px;
-  height: 35px;
+  width: 180px;
+  height: 45px;
+  background-repeat: no-repeat;
 }
 
 .navbar__logo--secondary {
@@ -1172,6 +1178,10 @@ h6 {
   background-repeat: no-repeat;
   width: 30px;
   height: 25px;
+  @include desktop {
+    height: 35px;
+    background-position: 0 10px;
+  }
 }
 
 .navbar-notification-clear {
