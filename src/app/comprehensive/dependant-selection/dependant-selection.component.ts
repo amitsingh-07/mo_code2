@@ -149,11 +149,18 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
           }]
         };
         this.cmpApiService.addDependents(payload).subscribe((data: any) => {
-          this.loaderService.hideLoader();
           this.cmpService.setHasDependant(false);
           this.cmpService.setMyDependant([]);
           this.cmpService.clearEndowmentPlan();
-          this. routerPath();
+          if (this.comprehensiveService.getMySteps() === 0) {
+            this.comprehensiveService.setStepCompletion(0, 1).subscribe((data1: any) => {
+              this.loaderService.hideLoader();
+              this. routerPath();
+            });
+          } else {
+            this.loaderService.hideLoader();
+            this. routerPath();
+          }
         });
       }
     }

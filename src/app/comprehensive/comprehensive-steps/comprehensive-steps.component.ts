@@ -50,9 +50,10 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
     if (stepCalculated >= 1 && stepCalculated < 4 && (stepCalculated > currentStep)) {
       const stepCheck = this.comprehensiveService.checkStepValidation(stepCalculated);
       if (stepCheck.status) {
-        const stepIndicatorData = { enquiryId: this.comprehensiveService.getEnquiryId(), stepCompleted: stepCalculated };
+        const stepIndicatorData = { enquiryId: this.comprehensiveService.getEnquiryId(), stepCompleted: stepCalculated,
+           subStepCompleted: 0 };
         this.comprehensiveApiService.saveStepIndicator(stepIndicatorData).subscribe((data) => {
-          this.comprehensiveService.setMySteps(stepCalculated);
+          this.comprehensiveService.setMySteps(stepCalculated, 0);
         });
       } else {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + stepCheck.stepIndicate]);

@@ -229,13 +229,29 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                 this.userDetails.dateOfBirth = this.parserFormatter.format(form.getRawValue().ngbDob);
                 this.userDetails.enquiryId = this.comprehensiveService.getEnquiryId();
                 if (!form.pristine) {
+                    this.loaderService.showLoader({ title: 'Saving' });
                     this.comprehensiveApiService.savePersonalDetails(this.userDetails).subscribe((data) => {
                         this.comprehensiveService.setMyProfile(this.userDetails);
-                        const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
-                        cmpSummary.baseProfile = this.comprehensiveService.getMyProfile();
-                        this.comprehensiveService.setComprehensiveSummary(cmpSummary);
-                        this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.NEW);
-                        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+                        if (this.comprehensiveService.getReportStatus === null) {
+                            const payload = {enquiryId: this.userDetails.enquiryId, reportStatus : COMPREHENSIVE_CONST.REPORT_STATUS.NEW};
+                            this.comprehensiveApiService.updateComprehensiveReportStatus(payload).subscribe((reportRes: any) => {
+                                if (reportRes) {
+                                    const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
+                                    cmpSummary.baseProfile = this.comprehensiveService.getMyProfile();
+                                    cmpSummary.comprehensiveEnquiry.reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.NEW;
+                                    this.comprehensiveService.setComprehensiveSummary(cmpSummary);
+                                    this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.NEW);
+                                    this.loaderService.hideLoader();
+                                    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+                                }
+                                });
+                        } else {
+                            const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
+                            cmpSummary.baseProfile = this.comprehensiveService.getMyProfile();
+                            this.comprehensiveService.setComprehensiveSummary(cmpSummary);
+                            this.loaderService.hideLoader();
+                            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+                        }
                     });
                 } else {
                     this.comprehensiveService.setProgressToolTipShown(true);
@@ -264,6 +280,10 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     validateMoGetStrdForm(form: FormGroup) {
         this.submitted = true;
+        //COMPREHENSIVE_CONST.REPORT_STATUS.NEW
+        if (this.comprehensiveService.getReportStatus() === null) {
+            this.moGetStrdForm.markAsDirty();
+          }
         if (!form.valid) {
             Object.keys(form.controls).forEach((key) => {
                 form.get(key).markAsDirty();

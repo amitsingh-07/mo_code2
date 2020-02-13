@@ -345,9 +345,17 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
           });
           this.loaderService.showLoader({ title: 'Saving' });
           this.comprehensiveApiService.saveAssets(this.assetDetails).subscribe((data) => {
-            this.loaderService.hideLoader();
             this.comprehensiveService.setMyAssets(this.assetDetails);
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+            if (this.comprehensiveService.getMySteps() === 1
+            && this.comprehensiveService.getMySubSteps() < 5) {
+              this.comprehensiveService.setStepCompletion(1, 5).subscribe((data1: any) => {
+                this.loaderService.hideLoader();
+                this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+              });
+            } else {
+              this.loaderService.hideLoader();
+              this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+            }
           });
         } else {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);

@@ -12,6 +12,7 @@ import { ComprehensiveService } from '../comprehensive.service';
 import { ConfigService } from './../../config/config.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
+import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 
 @Component({
   selector: 'app-regular-saving-plan',
@@ -153,7 +154,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     if (this.viewMode) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
     } else {
-      if (!form.pristine) {
+      if (!form.pristine || this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
         if (this.validateRegularSavings(form)) {
           this.comprehensiveApiService.saveRegularSavings(form.value).subscribe((data: any) => {
             this.comprehensiveService.setRegularSavings(form.value.hasRegularSavings);
@@ -161,7 +162,14 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
             if (this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
               this.comprehensiveService.saveBadMoodFund();
             }
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
+            if (this.comprehensiveService.getMySteps() === 1
+            && this.comprehensiveService.getMySubSteps() < 3) {
+              this.comprehensiveService.setStepCompletion(1, 3).subscribe((data1: any) => {
+                this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
+              });
+            } else {
+              this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
+            }
           });
         }
       } else {
@@ -173,6 +181,9 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   validateRegularSavings(form: FormGroup) {
 
     this.submitted = true;
+    if (this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+      this.RSPForm.markAsDirty();
+    }
     if (this.validationFlag && form.value.hasRegularSavings) {
       if (!form.valid) {
         const error = this.comprehensiveService.getMultipleFormError('', COMPREHENSIVE_FORM_CONSTANTS.REGULAR_SAVINGS,
