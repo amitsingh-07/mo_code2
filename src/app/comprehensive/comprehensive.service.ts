@@ -1311,7 +1311,7 @@ export class ComprehensiveService {
             if (
               accessPage && canAccess &&
               riskProfileProgressData.subItems[3].completed &&
-              reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED
+              reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.READY
             ) {
               accessibleUrl = urlList[index];
             }

@@ -144,9 +144,8 @@ export class ComprehensiveComponent implements OnInit {
   redirect() {
     this.appService.clearPromoCode();
     const redirectUrl = this.signUpService.getRedirectUrl();
-    const cmpData = this.cmpService.getComprehensiveSummary();
-    if (cmpData.comprehensiveEnquiry.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED &&
-      (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isValidatedPromoCode)) {
+    if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED &&
+      ( this.getComprehensiveSummaryDashboard.isValidatedPromoCode)) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
     } else if (redirectUrl && (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isValidatedPromoCode)) {
       this.router.navigate([redirectUrl]);
