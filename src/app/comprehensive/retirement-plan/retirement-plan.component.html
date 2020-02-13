@@ -37,6 +37,12 @@
     <div class="slider-dark mt20">
       <nouislider [disabled]="viewMode" id="retirementSlider" #ciMultiplierSlider (slide)="onSliderChange($event)"
         [config]="ciSliderConfig"></nouislider>
+        <div class="min-max-val">
+                <div class="min-val">45 yrs old<span class="min-text">Min.</span></div>
+                <div class="max-val">70 yrs old<span class="max-text">Max.</span>
+               </div>
+               </div>
+          
     </div>
     <div class="flex-row retirementAgeValid" *ngIf="!(sliderValid.minAge && sliderValid.userAge)">
       <div class="flex-col-12">
