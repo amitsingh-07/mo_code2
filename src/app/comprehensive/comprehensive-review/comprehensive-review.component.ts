@@ -117,12 +117,15 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     const enquiryId = { enquiryId: this.comprehensiveService.getEnquiryId() };
     this.comprehensiveApiService.generateComprehensiveReport(enquiryId).subscribe((data) => {
       let reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.READY;
+      let viewMode = false;
       if (this.comprehensiveJourneyMode) {
         reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED;
+        viewMode = true;
+
       }
       this.comprehensiveService.setReportStatus(reportStatus);
       this.comprehensiveService.setLocked(true);
-      this.comprehensiveService.setViewableMode(true);
+      this.comprehensiveService.setViewableMode(viewMode);
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
       this.loaderService.hideLoaderForced();
     //   // const payload = { enquiryId: this.comprehensiveService.getEnquiryId() }

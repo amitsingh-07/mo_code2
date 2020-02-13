@@ -124,10 +124,9 @@ export class ComprehensiveDashboardComponent implements OnInit {
     }
   }
   goToEditComprehensivePlan(viewMode: boolean) {
-    if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED
-      || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+    if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED|| this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
       //this.comprehensiveService.setViewableMode(true);
-      if (!this.islocked) {
+      if (!this.islocked || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
         //this.setComprehensiveSummary(false, '');
         this.getComprehensiveCall();
       }
@@ -149,7 +148,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
     this.loaderService.showLoader({ title: 'Fetching Data' });
     let reportStatusValue =  COMPREHENSIVE_CONST.REPORT_STATUS.NEW;
     if ( ( !this.versionTypeEnabled && this.comprehensivePlanning === 0 ) ||  this.comprehensivePlanning === 1) {
-      reportStatusValue = COMPREHENSIVE_CONST.REPORT_STATUS.READY;
+      reportStatusValue = COMPREHENSIVE_CONST.REPORT_STATUS.EDIT;
     }
     const payload = {enquiryId: this.enquiryId, reportStatus : reportStatusValue};
     this.comprehensiveApiService.updateComprehensiveReportStatus(payload).subscribe((data: any) => {
@@ -157,6 +156,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
             this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
               if (summaryData) {
                 this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
+                this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.EDIT);
                 this.comprehensiveService.setViewableMode(true);
                 this.loaderService.hideLoader();
                 this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
