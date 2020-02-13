@@ -30,6 +30,7 @@ export interface IComprehensiveEnquiry {
     promoCodeValidated?: boolean;
     reportStatus: string;
     stepCompleted: number;
+    subStepCompleted: number;
     reportId: number;
     homeLoanUpdatedByLiabilities?: boolean;
     isLocked: boolean;

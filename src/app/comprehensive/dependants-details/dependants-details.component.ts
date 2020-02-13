@@ -213,12 +213,20 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
             form.value.houseHoldIncome = this.houseHold.houseHoldIncome,
             this.loaderService.showLoader({ title: 'Saving Details' });
           this.comprehensiveApiService.addDependents(form.value).subscribe(((data: any) => {
-            this.loaderService.hideLoader();
             this.comprehensiveService.setHasDependant(true);
             this.comprehensiveService.setMyDependant(data.objectList[0].dependentsList);
             this.comprehensiveService.clearEndowmentPlan();
             this.comprehensiveService.setEndowment(null);
-            this.goToNextPage();
+            if (this.comprehensiveService.getMySteps() === 0
+            && this.comprehensiveService.getMySubSteps() < 2) {
+            this.comprehensiveService.setStepCompletion(0, 2).subscribe((data1: any) => {
+              this.loaderService.hideLoader();
+              this.goToNextPage();
+            });
+            } else {
+              this.loaderService.hideLoader();
+              this.goToNextPage();
+            }
           }));
         } else {
           this.goToNextPage();

@@ -70,9 +70,10 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
             this.initiateReport();
           } else {
             this.loaderService.showLoader({ title: 'Loading', autoHide: false });
-            const stepIndicatorData = { enquiryId: this.comprehensiveService.getEnquiryId(), stepCompleted: stepCalculated };
+            const stepIndicatorData = { enquiryId: this.comprehensiveService.getEnquiryId(), stepCompleted: stepCalculated,
+               subStepCompleted: 0 };
             this.comprehensiveApiService.saveStepIndicator(stepIndicatorData).subscribe((data) => {
-              this.comprehensiveService.setMySteps(stepCalculated);
+              this.comprehensiveService.setMySteps(stepCalculated, 0);
               this.initiateReport();
             });
           }
