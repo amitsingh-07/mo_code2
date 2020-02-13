@@ -136,7 +136,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
         // NEXT QUESTION
         this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
           if (this.comprehensiveService.getMySteps() === 3
-          && this.comprehensiveService.getMySubSteps() < 1) {
+          && this.comprehensiveService.getMySubSteps() < (this.questionIndex + 1)) {
             this.comprehensiveService.setStepCompletion(3, this.questionIndex).subscribe((data1: any) => {
               this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
               this.router.navigate([
@@ -151,11 +151,22 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
           }
         });
       } else {
-
         this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
-          const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
-          : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
-          this.router.navigate([routerURL]);
+          if (this.comprehensiveService.getMySteps() === 3
+          && this.comprehensiveService.getMySubSteps() < 4) {
+            this.comprehensiveService.setStepCompletion(3, 4).subscribe((data1: any) => {
+              this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+              const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
+            : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
+              this.router.navigate([routerURL]);
+            });
+          } else {
+            this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+            const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
+            : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
+            this.router.navigate([routerURL]);
+          }
+
         });
       }
     }

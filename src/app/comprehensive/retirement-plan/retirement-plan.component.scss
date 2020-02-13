@@ -139,4 +139,23 @@
     line-height: 1.13;
     letter-spacing: -0.3px;
   }
+  .min-max-val {
+     display: flex;
+      justify-content: space-between;
+     }
+     .min-val, .max-val {
+     color: $white-color;
+       font-family: $muli-regular;
+        font-size: 14px;
+       .max-val {
+        text-align: right;
+      }
+      .min-text, .max-text {
+        color: $white-color;
+        font-family: $muli-light;
+        font-size: 12px;
+        display: block;
+      }
+    }
+    
 }
