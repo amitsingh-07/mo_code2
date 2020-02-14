@@ -2364,7 +2364,8 @@ export class ComprehensiveService {
       getCompData.comprehensiveEnquiry.reportStatus === '' ||
       (getCompData.comprehensiveEnquiry.reportStatus !==
       COMPREHENSIVE_CONST.REPORT_STATUS.NEW && getCompData.comprehensiveEnquiry.reportStatus !==
-      COMPREHENSIVE_CONST.REPORT_STATUS.EDIT)
+      COMPREHENSIVE_CONST.REPORT_STATUS.EDIT && getCompData.comprehensiveEnquiry.reportStatus !==
+      COMPREHENSIVE_CONST.REPORT_STATUS.ERROR)
     ) {
       validateFlag = false;
     }
