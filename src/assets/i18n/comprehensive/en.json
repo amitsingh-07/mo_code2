@@ -273,6 +273,7 @@
       "MONTHLY_SALARY": "Monthly Salary",
       "ANNUAL_BONUS": "Annual Bonus",
       "ANNUAL_BONUS_DESC": "Bonuses, dividends and other income you earn each year also fill up your bucket!",
+      "ANNUAL_BONUS_DESC_LITE":"Bonuses you earn each year also fill up your bucket!",
       "RENTAL_INCOME": "Monthly Rental Income",
       "OTHER_WORK_INCOME": "Other Monthly Work Income",
       "OTHER_WORK_INCOME_DESC": "(that attracts CPF)",
