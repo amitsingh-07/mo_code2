@@ -91,6 +91,10 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
 
     this.regularSavingsArray = this.comprehensiveService.getRegularSavingsList();
     this.hasRegularSavings = this.comprehensiveService.hasRegularSavings();
+    if (this.regularSavingsArray.length > 0 && this.hasRegularSavings === null 
+      && this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+      this.hasRegularSavings = true;
+    }
     this.buildRSPForm();
   }
 
@@ -114,7 +118,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
       regularSavings.push(this.buildEmptyRSPForm());
     }
     this.RSPForm = this.formBuilder.group({
-      hasRegularSavings: [this.comprehensiveService.hasRegularSavings(), Validators.required],
+      hasRegularSavings: [this.hasRegularSavings, Validators.required],
       comprehensiveRegularSavingsList: this.formBuilder.array(regularSavings),
     });
   }
