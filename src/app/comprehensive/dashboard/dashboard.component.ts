@@ -127,8 +127,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
     if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
       if (!this.islocked) {
         this.getComprehensiveCall();
-      }
-      if (this.getComprehensiveSummaryDashboard.dobPopUpEnable) {
+      } else if (this.getComprehensiveSummaryDashboard.dobPopUpEnable) {
             const toolTipParams = {
               TITLE: '',
               DESCRIPTION: this.translate.instant('COMPREHENSIVE.DASHBOARD.WARNING_POPUP'),
@@ -188,7 +187,9 @@ export class ComprehensiveDashboardComponent implements OnInit {
                 this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.EDIT);
                 this.comprehensiveService.setViewableMode(true);
                 this.loaderService.hideLoader();
-                this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+                this.comprehensiveService.setRiskQuestions().subscribe((riskQues) => {
+                  this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+                });
               }
             });
           } else {
@@ -276,7 +277,9 @@ export class ComprehensiveDashboardComponent implements OnInit {
         }
         if (routerEnabled) {
           this.loaderService.hideLoader();
-          this.router.navigate([routerUrlPath]);
+          this.comprehensiveService.setRiskQuestions().subscribe((riskQues) => {
+            this.router.navigate([routerUrlPath]);
+          });
         } else {
           this.isLoadComplete = true;
         }

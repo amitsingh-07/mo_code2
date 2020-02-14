@@ -279,7 +279,9 @@ export class ComprehensiveService {
         this.setRiskAssessmentAnswers();
       }
       this.commit();
-      this.setRiskQuestions();
+      this.setRiskQuestions().subscribe((data) => {
+        return true;
+      });
     }
   }
 
@@ -684,24 +686,29 @@ export class ComprehensiveService {
   }
   // Set Risk Assessment Questions - Answer Minimal Info
   setRiskQuestions() {
-    if (!this.getComprehensiveVersion() && Util.isEmptyOrNull(this.comprehensiveFormData.comprehensiveDetails.riskQuestionList)) {
-      this.getQuestionsList().subscribe((qData) => {
-        let riskQues = {};
-        if (qData.objectList) {
-          qData.objectList.forEach(
-            (qDetails) => {
-                          qDetails['options'].forEach(
-                              (quesOptions) => {
-                                if (quesOptions['additionalInfo']['displayInfo']) {
-                                  riskQues[quesOptions['id']] = quesOptions['additionalInfo']['displayInfo'];
-                                }
-                            });
-            });
-          }
-        this.comprehensiveFormData.comprehensiveDetails.riskQuestionList = riskQues;
-        this.commit();
-      });
-    }
+    return new Observable((obs) => {
+      if (!this.getComprehensiveVersion() && Util.isEmptyOrNull(this.comprehensiveFormData.comprehensiveDetails.riskQuestionList)) {
+        this.getQuestionsList().subscribe((qData) => {
+          let riskQues = {};
+          if (qData.objectList) {
+            qData.objectList.forEach(
+              (qDetails) => {
+                            qDetails['options'].forEach(
+                                (quesOptions) => {
+                                  if (quesOptions['additionalInfo']['displayInfo']) {
+                                    riskQues[quesOptions['id']] = quesOptions['additionalInfo']['displayInfo'];
+                                  }
+                              });
+              });
+            }
+          this.comprehensiveFormData.comprehensiveDetails.riskQuestionList = riskQues;
+          this.commit();
+          obs.next(true);
+        });
+      } else {
+        obs.next(true);
+      }
+    });
   }
 
   getFormError(form, formName) {
@@ -1805,7 +1812,7 @@ export class ComprehensiveService {
     const cmpSummary = this.getComprehensiveSummary();
     const isCompleted = false; //cmpSummary.comprehensiveInsurancePlanning !== null;
     return {
-      title: 'Your Risk Profile',
+      title: 'Your Risk Profile', 
       expanded: true,
       completed: false,
       customStyle: 'risk-profile',
