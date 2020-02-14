@@ -61,13 +61,9 @@ const routes: Routes = [
             { path: COMPREHENSIVE_ROUTES.RESULT, component: ResultComponent },
             { path: COMPREHENSIVE_ROUTES.ENQUIRY, component: EnquiryComponent },
             { path: COMPREHENSIVE_ROUTES.VALIDATE_RESULT, component: ValidateResultComponent },
-<<<<<<< HEAD
             { path: COMPREHENSIVE_ROUTES.RISK_PROFILE, redirectTo: COMPREHENSIVE_ROUTES.RISK_PROFILE + '/1' },
             { path: COMPREHENSIVE_ROUTES.RISK_PROFILE + '/:id', component: RiskProfileComponent },
-            { path: COMPREHENSIVE_ROUTES.REVIEW, component: ComprehensiveReviewComponent, resolve: { lastPaidTs: PaymentResolver }}
-=======
             { path: COMPREHENSIVE_ROUTES.REVIEW, component: ComprehensiveReviewComponent}
->>>>>>> ce274ad3d9a4b2df5017d502b601ff55a2dba723
         ]
     }
 ];
