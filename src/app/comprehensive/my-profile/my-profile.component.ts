@@ -232,7 +232,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                     this.loaderService.showLoader({ title: 'Saving' });
                     this.comprehensiveApiService.savePersonalDetails(this.userDetails).subscribe((data) => {
                         this.comprehensiveService.setMyProfile(this.userDetails);
-                        if (this.comprehensiveService.getReportStatus === null) {
+                        if (this.comprehensiveService.getReportStatus() === null) {
                             const payload = {enquiryId: this.userDetails.enquiryId, reportStatus : COMPREHENSIVE_CONST.REPORT_STATUS.NEW};
                             this.comprehensiveApiService.updateComprehensiveReportStatus(payload).subscribe((reportRes: any) => {
                                 if (reportRes) {
