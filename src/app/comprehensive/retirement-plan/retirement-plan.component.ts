@@ -372,6 +372,8 @@ export class RetirementPlanComponent
               this.comprehensiveService.setStepCompletion(2, 1).subscribe((data1: any) => {
                 this.routerPath();
               });
+            } else {
+              this.routerPath();
             }
           });
       }

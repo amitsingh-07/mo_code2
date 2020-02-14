@@ -614,4 +614,25 @@ export class ApiService {
       );
   }
 
+  cancelPayment(payload) {
+    return this.http.post(apiConstants.endpoint.payment.cancelPayment, payload)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
+
+  getLastSuccessfulSubmittedTs() {
+    return this.http.get(apiConstants.endpoint.payment.getLastSuccessfulSubmittedTs)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
+
+  getCustPromoCodeByCategory(payload) {
+    return this.http.post(apiConstants.endpoint.payment.getCustPromoCodeByCategory, payload)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
+
 }

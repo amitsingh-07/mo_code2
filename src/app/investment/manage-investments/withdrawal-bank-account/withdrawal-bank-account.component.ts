@@ -193,15 +193,14 @@ export class WithdrawalBankAccountComponent implements OnInit {
           this.getUserBankList(); // refresh updated bank list
         } else if (
           response.objectList &&
-          response.objectList.length &&
-          response.objectList[response.objectList.length - 1].serverStatus &&
-          response.objectList[response.objectList.length - 1].serverStatus.errors &&
-          response.objectList[response.objectList.length - 1].serverStatus.errors.length
+          response.objectList.serverStatus &&
+          response.objectList.serverStatus.errors &&
+          response.objectList.serverStatus.errors.length
         ) {
           this.showCustomErrorModal(
             'Error!',
-            response.objectList[response.objectList.length - 1].serverStatus.errors[0].msg + '('
-            + response.objectList[response.objectList.length - 1].serverStatus.errors[0].code + ')'
+            response.objectList.serverStatus.errors[0].msg + '('
+            + response.objectList.serverStatus.errors[0].code + ')'
           );
         } else if (response.responseMessage && response.responseMessage.responseDescription) {
           const errorResponse = response.responseMessage.responseDescription;
@@ -231,15 +230,14 @@ export class WithdrawalBankAccountComponent implements OnInit {
             this.getUserBankList(); // refresh updated bank list
           } else if (
             response.objectList &&
-            response.objectList.length &&
-            response.objectList[response.objectList.length - 1].serverStatus &&
-            response.objectList[response.objectList.length - 1].serverStatus.errors &&
-            response.objectList[response.objectList.length - 1].serverStatus.errors.length
+            response.objectList.serverStatus &&
+            response.objectList.serverStatus.errors &&
+            response.objectList.serverStatus.errors.length
           ) {
             this.showCustomErrorModal(
               'Error!',
-              response.objectList[response.objectList.length - 1].serverStatus.errors[0].msg + '('
-              + response.objectList[response.objectList.length - 1].serverStatus.errors[0].code + ')'
+              response.objectList.serverStatus.errors[0].msg + '('
+              + response.objectList.serverStatus.errors[0].code + ')'
             );
           } else if (response.responseMessage && response.responseMessage.responseDescription) {
             const errorResponse = response.responseMessage.responseDescription;

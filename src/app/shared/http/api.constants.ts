@@ -9,7 +9,7 @@ const NOTIFICATION_API_BASE_URL = 'notification/notify-microservice/api/notifica
 const COMPREHENSIVE_API_BASE_URL = 'recommend/recomm-microservice/api/customer/comprehensive/';
 const FINANCE_API_BASE_URL = 'finance/finhealth/api/customer/comprehensive/';
 const COMPREHENSIVE_REPORT_API_BASE_URL = 'comp/comprehensive-microservice/api/';
-const PAYMENT_API_BASE_URL = 'payment/api/';
+const PAYMENT_API_BASE_URL = 'pymtgw/';
 const INVEST_API_BASE_URL = 'invest/investment-microservice/api/';
 
 export let apiConstants = {
@@ -104,6 +104,9 @@ export let apiConstants = {
         },
         payment: {
             getRequestSignature: PAYMENT_API_BASE_URL + 'getRequestSignature',
+            cancelPayment: PAYMENT_API_BASE_URL + 'cancelPayment',
+            getLastSuccessfulSubmittedTs: PAYMENT_API_BASE_URL + 'getLastSuccessfulSubmittedTs',
+            getCustPromoCodeByCategory: ACCOUNT_API_BASE_URL + '/promocode/getCustPromoCodeByCategory'
         }
     }
 };

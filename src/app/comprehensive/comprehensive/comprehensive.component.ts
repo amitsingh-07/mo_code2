@@ -42,6 +42,9 @@ export class ComprehensiveComponent implements OnInit {
   promoValidated: string;
   productAmount = 500;
   getComprehensiveSummaryDashboard: any;
+  isBannerNoteVisible: boolean;
+  paymentEnabled = false;
+
   includingGst: false;
   constructor(
     private appService: AppService, private cmpService: ComprehensiveService,
@@ -51,6 +54,7 @@ export class ComprehensiveComponent implements OnInit {
     private loaderService: LoaderService, private signUpService: SignUpService,
     public footerService: FooterService, private sanitizer: DomSanitizer, private comprehensiveApiService: ComprehensiveApiService) {
     this.configService.getConfig().subscribe((config: any) => {
+      this.paymentEnabled = config.paymentEnabled;
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
@@ -131,11 +135,8 @@ export class ComprehensiveComponent implements OnInit {
       });
 
     }
-    else {
-      this.authService.authenticate().subscribe((data) => {
-        this.getProductAmount();
-      });
-    }
+    this.isBannerNoteVisible = this.isCurrentDateInRange(COMPREHENSIVE_CONST.BANNER_NOTE_START_TIME,
+      COMPREHENSIVE_CONST.BANNER_NOTE_END_TIME);
   }
 
   /**
@@ -234,6 +235,11 @@ export class ComprehensiveComponent implements OnInit {
     });
     // #this.modalRef.componentInstance.data = { redirectUrl: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED };
     this.modalRef.componentInstance.title = this.loginModalTitle;
+  }
+
+  isCurrentDateInRange(START_TIME, END_TIME) {
+    return (new Date() >= new Date(START_TIME)
+      && new Date() <= new Date(END_TIME));
   }
   getProductAmount() {
     const payload = { productType: 'Comprehensive' }
