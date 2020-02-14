@@ -124,26 +124,26 @@ export class ComprehensiveDashboardComponent implements OnInit {
     }
   }
   goToEditComprehensivePlan(viewMode: boolean) {
-    if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED 
-      || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
-      //this.comprehensiveService.setViewableMode(true);
-      if (!this.islocked || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY 
-        || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR) {
-        //this.setComprehensiveSummary(false, '');
+    if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+      if (!this.islocked) {
         this.getComprehensiveCall();
       } else if (this.getComprehensiveSummaryDashboard.dobPopUpEnable) {
-        const toolTipParams = {
-          TITLE: '',
-          DESCRIPTION: this.translate.instant('COMPREHENSIVE.DASHBOARD.WARNING_POPUP'),
-          URL: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED
-        };
-        this.comprehensiveService.openTooltipModalWithDismiss(toolTipParams);
-      } else {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
-      }
-    } else {
+            const toolTipParams = {
+              TITLE: '',
+              DESCRIPTION: this.translate.instant('COMPREHENSIVE.DASHBOARD.WARNING_POPUP'),
+              URL: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED
+            };
+            this.comprehensiveService.openTooltipModalWithDismiss(toolTipParams);
+          } else {
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+          }
+    } else if ( this.versionTypeEnabled &&
+      (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) || (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR)){
+        this.getComprehensiveCall();
+    } else{
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
     }
+    
   }
   getComprehensiveCall() {
     this.loaderService.showLoader({ title: 'Fetching Data' });
@@ -156,6 +156,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
           if (data) {
             this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
               if (summaryData) {
+                summaryData.objectList[0].comprehensiveEnquiry.reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.EDIT;
                 this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
                 this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.EDIT);
                 this.comprehensiveService.setViewableMode(true);
@@ -231,7 +232,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
         } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED ) {
           this.comprehensivePlanning = 0;
         }
-         else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+         else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR) {
           this.comprehensivePlanning =  1;
           if (this.getComprehensiveSummary.comprehensiveEnquiry &&
             this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp) {
@@ -300,11 +301,10 @@ export class ComprehensiveDashboardComponent implements OnInit {
           this.submittedDate = this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp;
           }
           } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
-          this.comprehensivePlanning = 0;
+            this.comprehensivePlanning = 0;
           }
-           else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY || 
-            this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR) {
-            this.comprehensivePlanning = 1;
+           else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR) {
+            this.comprehensivePlanning =  1;
             if (this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp) {
               this.submittedDate = this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp;
               this.isReportGenerated = this.getComprehensiveSummaryDashboard.reportStatus === 
