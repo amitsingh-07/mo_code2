@@ -143,32 +143,6 @@ export class ComprehensiveDashboardComponent implements OnInit {
     } else{
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
     }
-
-    // if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
-    //   //this.comprehensiveService.setViewableMode(true);
-
-    //   if (!this.islocked || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY ||
-    //     this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR) {
-    //     //this.setComprehensiveSummary(false, '');
-    //     this.getComprehensiveCall();
-    //   } else if (this.getComprehensiveSummaryDashboard.dobPopUpEnable) {
-    //     const toolTipParams = {
-    //       TITLE: '',
-    //       DESCRIPTION: this.translate.instant('COMPREHENSIVE.DASHBOARD.WARNING_POPUP'),
-    //       URL: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED
-    //     };
-    //     this.comprehensiveService.openTooltipModalWithDismiss(toolTipParams);
-    //   } else {
-    //     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
-    //   }
-    // } else if( this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY
-    //   ||this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR) {
-
-    //   }else{
-    //     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
-    //   }
-
-      
     
   }
   getComprehensiveCall() {
@@ -326,7 +300,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
           if (this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp) {
           this.submittedDate = this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp;
           }
-          } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR) {
+          } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
             this.comprehensivePlanning = 0;
           }
            else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR) {
