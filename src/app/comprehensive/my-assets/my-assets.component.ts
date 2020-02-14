@@ -74,7 +74,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '') {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled
-          && this.checkMyInfoSourcePage()) {
+          && this.myInfoService.checkMyInfoSourcePage()) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
             if (data && data['objectList']) {
               const cpfValues = data.objectList[0].cpfbalances;
@@ -356,15 +356,5 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     });
     this.totalAssets = this.comprehensiveService.additionOfCurrency(assetFormObject);
     this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, assetFormObject, this.totalAssets);
-  }
-
-  checkMyInfoSourcePage() {
-    const currentPath = APP_ROUTES.COMPREHENSIVE + '/' + COMPREHENSIVE_ROUTES.MY_ASSETS;
-    if (this.myInfoService.getMyInfoAttributes() === 'cpfbalances'
-      && window.sessionStorage.getItem('currentUrl') === currentPath) {
-      return true;
-    } else {
-      return false;
-    }
   }
 }
