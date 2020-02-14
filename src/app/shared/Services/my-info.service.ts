@@ -208,7 +208,6 @@ export class MyInfoService {
   checkMyInfoSourcePage() {
     const currentUrl = window.location.toString();
     const currentPath = currentUrl.split(currentUrl.split('/')[2])[currentUrl.split(currentUrl.split('/')[2]).length - 1].substr(1);
-    console.log('currentPath = ', currentPath)
     if (this.getMyInfoAttributes() === 'cpfbalances'
       && window.sessionStorage.getItem('currentUrl') === currentPath) {
       return true;
