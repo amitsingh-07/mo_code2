@@ -81,8 +81,10 @@ export class ComprehensiveComponent implements OnInit {
 
     if (this.authService.isSignedUser()) {
       const action = this.appService.getAction();
-      this.loaderService.showLoader({ title: 'Fetching Data', autoHide: false })
+      this.loaderService.showLoader({ title: 'Fetching Data', autoHide: false });
+      if(this.paymentEnabled){
       this.getProductAmount();
+      }
       const comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
       let getCurrentVersionType = this.cmpService.getComprehensiveCurrentVersion();
       if ((getCurrentVersionType === '' || getCurrentVersionType === null ||
@@ -134,6 +136,16 @@ export class ComprehensiveComponent implements OnInit {
         }
       });
 
+    } else {
+      if(this.paymentEnabled){
+        this.authService.authenticate().subscribe((data:any) =>{
+      
+          this.getProductAmount();
+          this.authService.clearAuthDetails();
+        })
+      }
+     
+     
     }
     this.isBannerNoteVisible = this.isCurrentDateInRange(COMPREHENSIVE_CONST.BANNER_NOTE_START_TIME,
       COMPREHENSIVE_CONST.BANNER_NOTE_END_TIME);
