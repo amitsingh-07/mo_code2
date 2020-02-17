@@ -40,7 +40,7 @@ export class ComprehensiveComponent implements OnInit {
   promoCodeSuccess: string;
   promoCodeValidated: boolean;
   promoValidated: string;
-  productAmount = 500;
+  productAmount = COMPREHENSIVE_CONST.PROMOTION.AMOUNT;
   getComprehensiveSummaryDashboard: any;
   isBannerNoteVisible: boolean;
   paymentEnabled = false;
