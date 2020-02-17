@@ -205,7 +205,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
           form.value.dependentMappingList[index].enquiryId = this.comprehensiveService.getEnquiryId();
         });
         if (!form.pristine) {
-          this.hasDependant = form.value.dependentMappingList.length > 0; // #this.comprehensiveService.hasDependant();
+          this.hasDependant = form.value.dependentMappingList.length > 0; 
           this.houseHold = this.comprehensiveService.gethouseHoldDetails();
 
           form.value.hasDependents = this.hasDependant;
@@ -280,11 +280,10 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     }
   }
   onKeyPressEvent(event: any, dependentName: any) {
-    //return (event.which !== 13 && dependentName.length < 100);
     const selection = window.getSelection();
     if (dependentName.length >= 100 && selection.type !== 'Range') {
       const id = event.target.id;
-      const el = document.querySelector("#" + id);//document.getElementById(id);
+      const el = document.querySelector("#" + id);
       this.setCaratTo(el, 100, dependentName);
       event.preventDefault();
     }
@@ -298,15 +297,12 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       const dependentName = event.target.innerText;
       if (dependentName.length >= 100) {
         const dependentNameList = dependentName.substring(0, 100);
-        //event.target.innerText = dependentNameList;
+        
         this.myDependantForm.controls['dependentMappingList']['controls'][arr[1]].controls.name.setValue(dependentNameList);
         this.myDependantForm.controls['dependentMappingList']['controls'][arr[1]].markAsDirty();
-        const el = document.querySelector("#" + id);//document.getElementById(id);
+        const el = document.querySelector("#" + id);
         this.setCaratTo(el, 100, dependentNameList);
-      }/* else if (dependentName.length > 0) {
-        const el = document.querySelector("#" + id);//document.getElementById(id);
-        this.setCaratTo(el, dependentName.length, dependentName);
-      }*/
+      }
     }
   }
   setCaratTo(contentEditableElement, position, dependentName) {

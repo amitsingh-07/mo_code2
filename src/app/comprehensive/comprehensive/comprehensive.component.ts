@@ -245,7 +245,6 @@ export class ComprehensiveComponent implements OnInit {
       windowClass: 'position-bottom',
       centered: true
     });
-    // #this.modalRef.componentInstance.data = { redirectUrl: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED };
     this.modalRef.componentInstance.title = this.loginModalTitle;
   }
 

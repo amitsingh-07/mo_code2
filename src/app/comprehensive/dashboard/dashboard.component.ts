@@ -43,9 +43,9 @@ export class ComprehensiveDashboardComponent implements OnInit {
   getComprehensiveSummaryDashboard: any;
   promoCodeValidated = false;
   enquiryId: any;
-  isReportGenerated=false;
-  // tslint:disable-next-line:cognitive-complexity
-  constructor(
+  isReportGenerated = false;
+
+constructor(
     private router: Router,
     private translate: TranslateService,
     private configService: ConfigService,
@@ -114,11 +114,9 @@ export class ComprehensiveDashboardComponent implements OnInit {
     if (this.currentStep === 0 && this.getComprehensiveSummaryDashboard.isDobUpdated) {
       this.goToEditProfile();
     } else if (this.currentStep >= 0 && this.currentStep < 4) {
-      //this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep + 1)]);
       const routerURL = COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep + 1);
       this.setComprehensiveSummary(true, routerURL);
     } else if (this.currentStep === 4) {
-      //this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep)]);
       const routerURL = COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep);
       this.setComprehensiveSummary(true, routerURL);
     }
@@ -208,7 +206,6 @@ export class ComprehensiveDashboardComponent implements OnInit {
     this.comprehensivePlanning = 4;
     this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
       if (summaryData && summaryData.objectList[0]) {
-        //this.reportStatus = (summaryData.objectList[0].comprehensiveEnquiry.reportStatus);
         this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
         this.userDetails = this.comprehensiveService.getMyProfile();
         this.getComprehensiveSummary = this.comprehensiveService.getComprehensiveSummary();
@@ -216,8 +213,6 @@ export class ComprehensiveDashboardComponent implements OnInit {
          this.getComprehensiveSummary.comprehensiveEnquiry.isLocked;
         this.userName = this.userDetails.firstName;
         this.advisorStatus = false;
-        //const reportDateAPI = new Date();
-        // this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
         this.reportStatus = (this.getComprehensiveSummary && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus
           && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus !== null && this.userDetails.nationalityStatus)
           ? this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus : null;
@@ -284,12 +279,10 @@ export class ComprehensiveDashboardComponent implements OnInit {
     this.currentStep = -1;
     this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe( (dashboardData: any) => {
       if (dashboardData && dashboardData.objectList[0]) {
-        // tslint:disable-next-line: max-line-length
         this.getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', this.getCurrentVersionType);
         if (this.getComprehensiveSummaryDashboard !== '') {
           this.islocked = this.getComprehensiveSummaryDashboard.isLocked;
-          //const reportDateAPI = new Date();
-          // this.reportDate = this.datePipe.transform(reportDateAPI, 'dd MMM` yyyy');
+         
           this.promoCodeValidated = this.getComprehensiveSummaryDashboard.isValidatedPromoCode;
           this.reportStatus = this.getComprehensiveSummaryDashboard.reportStatus;
           this.enquiryId= this.getComprehensiveSummaryDashboard.enquiryId;
@@ -310,7 +303,6 @@ export class ComprehensiveDashboardComponent implements OnInit {
               this.isReportGenerated = this.getComprehensiveSummaryDashboard.reportStatus === 
               COMPREHENSIVE_CONST.REPORT_STATUS.READY ? true:false ;
               }
-           // this.generateReport();
           }
           this.currentStep = (this.getComprehensiveSummaryDashboard.stepCompleted !== null)
           ? this.getComprehensiveSummaryDashboard.stepCompleted : 0;

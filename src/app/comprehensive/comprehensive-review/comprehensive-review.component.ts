@@ -143,11 +143,6 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       this.comprehensiveService.setViewableMode(viewMode);
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
       this.loaderService.hideLoaderForced();
-    //   // const payload = { enquiryId: this.comprehensiveService.getEnquiryId() }
-    //   // this.comprehensiveApiService.createReportRequest(payload).subscribe((reportDataStatus: any) => {
-    //   //   this.comprehensiveService.setReportId(reportDataStatus.reportId);
-    //   //   this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
-    //   // });
 
    }, (err) => {
     this.loaderService.hideLoaderForced();

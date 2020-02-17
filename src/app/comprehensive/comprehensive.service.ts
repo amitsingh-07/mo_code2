@@ -4,8 +4,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
-import { ApiService } from './../shared/http/api.service';
 
+
+import { Observable } from 'rxjs/Observable';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
@@ -13,6 +14,7 @@ import { NavbarService } from '../shared/navbar/navbar.service';
 import { AboutAge } from '../shared/utils/about-age.util';
 import { Util } from '../shared/utils/util';
 import { appConstants } from './../app.constants';
+import { ApiService } from './../shared/http/api.service';
 import { AuthenticationService } from './../shared/http/auth/authentication.service';
 import { ProgressTrackerUtil } from './../shared/modal/progress-tracker/progress-tracker-util';
 import {
@@ -51,7 +53,6 @@ import {
   IRegularSavings,
   IRetirementPlan,
 } from './comprehensive-types';
-import { Observable } from 'rxjs/Observable';
 @Injectable({
   providedIn: 'root'
 })
@@ -341,7 +342,6 @@ export class ComprehensiveService {
   hasChildDependant(): boolean {
     let hasChildDependant = false;
     this.getMyDependant().forEach((dependant: any) => {
-      // console.log(dependant)
       const getAge = this.aboutAge.calculateAgeByYear(
         dependant.dateOfBirth,
         new Date()
@@ -546,7 +546,7 @@ export class ComprehensiveService {
     );*/
     const badMoodFund = this.getDownOnLuck().badMoodMonthlyAmount;
     const computeBadMoodFund = this.computeBadMoodFund();
-    return (!Util.isEmptyOrNull(badMoodFund) && computeBadMoodFund >= badMoodFund && computeBadMoodFund > 0 ) 
+    return (!Util.isEmptyOrNull(badMoodFund) && computeBadMoodFund >= badMoodFund && computeBadMoodFund > 0)
   }
 
   setDependantSelection(selection: boolean) {
@@ -640,7 +640,7 @@ export class ComprehensiveService {
   }
   setRiskAssessmentAnswers() {
     const riskProfileAnswersData = this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer;
-    let  selAnswers = {
+    let selAnswers = {
       riskAssessQuest1: null,
       riskAssessQuest2: null,
       riskAssessQuest3: null,
@@ -653,12 +653,12 @@ export class ComprehensiveService {
         riskAssessQuest1: riskProfileAnswersData && riskProfileAnswersData.answers && riskProfileAnswersData.answers.length > 0 ? riskProfileAnswersData.answers[0].questionOptionId : null,
         riskAssessQuest2: riskProfileAnswersData && riskProfileAnswersData.answers && riskProfileAnswersData.answers.length > 1 ? riskProfileAnswersData.answers[1].questionOptionId : null,
         riskAssessQuest3: riskProfileAnswersData && riskProfileAnswersData.answers && riskProfileAnswersData.answers.length > 2 ? riskProfileAnswersData.answers[2].questionOptionId : null,
-        riskAssessQuest4: riskProfileAnswersData&& riskProfileAnswersData.answers && riskProfileAnswersData.answers.length > 3 ? riskProfileAnswersData.answers[3].questionOptionId : null
+        riskAssessQuest4: riskProfileAnswersData && riskProfileAnswersData.answers && riskProfileAnswersData.answers.length > 3 ? riskProfileAnswersData.answers[3].questionOptionId : null
       };
       this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers = selAnswers;
     } else {
-      const enquiryId= riskProfileAnswersData && riskProfileAnswersData.enquiryId ? riskProfileAnswersData.enquiryId:null;
-      this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer = {enquiryId: enquiryId, answers: [], riskProfileAnswers: selAnswers};
+      const enquiryId = riskProfileAnswersData && riskProfileAnswersData.enquiryId ? riskProfileAnswersData.enquiryId : null;
+      this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer = { enquiryId: enquiryId, answers: [], riskProfileAnswers: selAnswers };
     }
   }
   saveRiskAssessment() {
@@ -695,14 +695,14 @@ export class ComprehensiveService {
           if (qData.objectList) {
             qData.objectList.forEach(
               (qDetails) => {
-                            qDetails['options'].forEach(
-                                (quesOptions) => {
-                                  if (quesOptions['additionalInfo']['displayInfo']) {
-                                    riskQues[quesOptions['id']] = quesOptions['additionalInfo']['displayInfo'];
-                                  }
-                              });
+                qDetails['options'].forEach(
+                  (quesOptions) => {
+                    if (quesOptions['additionalInfo']['displayInfo']) {
+                      riskQues[quesOptions['id']] = quesOptions['additionalInfo']['displayInfo'];
+                    }
+                  });
               });
-            }
+          }
           this.comprehensiveFormData.comprehensiveDetails.riskQuestionList = riskQues;
           this.commit();
           obs.next(true);
@@ -918,7 +918,7 @@ export class ComprehensiveService {
    * @memberof ComprehensiveService
    */
   // tslint:disable-next-line:cognitive-complexity
-  getAccessibleUrl(url: string): string { 
+  getAccessibleUrl(url: string): string {
     if (!this.getComprehensiveVersion()) {
       const urlLists = this.getComprehensiveUrlList(COMPREHENSIVE_LITE_ROUTER_CONFIG);
       return this.getAccessibleLiteJourney(urlLists, url);
@@ -929,7 +929,7 @@ export class ComprehensiveService {
   }
   // Return Access Url for Full Journey
   getAccessibleFullJourney(urlList: any, url: any) {
-    
+
     this.generateProgressTrackerData();
 
     const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, url));
@@ -974,7 +974,6 @@ export class ComprehensiveService {
         switch (index) {
           // 'getting-started'
           case 0:
-            // TODO : change the condition to check `cmpSummary.enquiry.promoCodeValidated`
             if (
               !cmpSummary.comprehensiveEnquiry.enquiryId ||
               !cmpSummary.comprehensiveEnquiry.isValidatedPromoCode
@@ -1088,7 +1087,7 @@ export class ComprehensiveService {
             }
             break;
           // 'bad-mood-fund'
-          case 15: 
+          case 15:
             if (accessPage && canAccess && financeProgressData.subItems[2].completed && stepCompleted > 0) {
               accessibleUrl = urlList[index];
             }
@@ -1169,10 +1168,7 @@ export class ComprehensiveService {
     const profileData = this.getMyProfile();
     const cmpSummary = this.getComprehensiveSummary();
 
-    const enquiry = this.getComprehensiveSummary().comprehensiveEnquiry;
-    const childEndowmentData: IChildEndowment[] = this.getChildEndowment();
-
-    const dependantProgressData = this.getDependantsProgressData();
+  
     const financeProgressData = this.getFinancesProgressData();
     const riskProfileProgressData = this.getRiskProfileProgressData();
     const retirementProgressData = this.getRetirementProgressData();
@@ -1198,20 +1194,9 @@ export class ComprehensiveService {
         break;
       } else {
         const canAccess = true;
-        /*console.log(dependantProgressData);
-        dependantProgressData.subItems.forEach(subItem => {
-          if (!subItem.completed && subItem.hidden !== true) {
-            canAccess = false;
-          }
-        });
-        if (!(accessPage && enquiry.hasDependents === false &&
-          dependantProgressData.subItems[2].value === '0')) {
-          canAccess = false;
-        }*/
         switch (index) {
           // 'getting-started'
           case 0:
-            // TODO : change the condition to check `cmpSummary.enquiry.promoCodeValidated`
             if (
               !cmpSummary.comprehensiveEnquiry.enquiryId
             ) {
@@ -1294,7 +1279,7 @@ export class ComprehensiveService {
               accessibleUrl = urlList[index];
             }
             break;
-          case 14: 
+          case 14:
             if (accessPage && canAccess && riskProfileProgressData.subItems[0].completed && stepCompleted > 2) {
               accessibleUrl = urlList[index];
             }
@@ -1580,8 +1565,8 @@ export class ComprehensiveService {
       value: '',
       completed:
         ((this.hasRegularSavings() !== null ||
-        !Util.isEmptyOrNull(this.getRegularSavingsList())) 
-        && (this.validateSteps(1, 3))),
+          !Util.isEmptyOrNull(this.getRegularSavingsList()))
+          && (this.validateSteps(1, 3))),
       hidden: true
     });
 
@@ -1596,7 +1581,7 @@ export class ComprehensiveService {
           ? this.transformAsCurrency(0)
           : '',
       completed: ((typeof this.getDownOnLuck().hospitalPlanId !== 'undefined')
-       && (this.validateSteps(1, 4))),
+        && (this.validateSteps(1, 4))),
       hidden: !this.hasBadMoodFund() && !Util.isEmptyOrNull(earningsData)
     });
 
@@ -1814,7 +1799,7 @@ export class ComprehensiveService {
     const cmpSummary = this.getComprehensiveSummary();
     const isCompleted = false; //cmpSummary.comprehensiveInsurancePlanning !== null;
     return {
-      title: 'Your Risk Profile', 
+      title: 'Your Risk Profile',
       expanded: true,
       completed: false,
       customStyle: 'risk-profile',
@@ -1873,7 +1858,7 @@ export class ComprehensiveService {
     let retirementAgeValue = '';
     const cmpSummary = this.getComprehensiveSummary();
     const isCompleted = cmpSummary.comprehensiveRetirementPlanning !== null;
-    const isStepCompleted =  (!this.getComprehensiveVersion()) ? 2 : 3;
+    const isStepCompleted = (!this.getComprehensiveVersion()) ? 2 : 3;
     if (
       isCompleted &&
       cmpSummary.comprehensiveRetirementPlanning.retirementAge
@@ -2365,9 +2350,9 @@ export class ComprehensiveService {
       getCompData.comprehensiveEnquiry.reportStatus === null ||
       getCompData.comprehensiveEnquiry.reportStatus === '' ||
       (getCompData.comprehensiveEnquiry.reportStatus !==
-      COMPREHENSIVE_CONST.REPORT_STATUS.NEW && getCompData.comprehensiveEnquiry.reportStatus !==
-      COMPREHENSIVE_CONST.REPORT_STATUS.EDIT && getCompData.comprehensiveEnquiry.reportStatus !==
-      COMPREHENSIVE_CONST.REPORT_STATUS.ERROR)
+        COMPREHENSIVE_CONST.REPORT_STATUS.NEW && getCompData.comprehensiveEnquiry.reportStatus !==
+        COMPREHENSIVE_CONST.REPORT_STATUS.EDIT && getCompData.comprehensiveEnquiry.reportStatus !==
+        COMPREHENSIVE_CONST.REPORT_STATUS.ERROR)
     ) {
       validateFlag = false;
     }
@@ -2423,10 +2408,6 @@ export class ComprehensiveService {
   }
   getSubItemStatus(progressData: any) {
     let completedStatus = true;
-    // tslint:disable-next-line:no-commented-code
-    /*if (!progressData.completed) {
-            completedStatus = false;
-        }*/
     Object.keys(progressData.subItems).forEach((completedData) => {
       if (
         !progressData.subItems[completedData].completed &&
@@ -2570,9 +2551,7 @@ export class ComprehensiveService {
         } else {
           homeSalary += homeCpfSalary;
         }
-        //console.log("A" + homeSalary);
         const cutOffSalary = cpfDetails.amountLimitCpf - homeSalary * 12;
-        //console.log("B" + cutOffSalary); console.log("AB" + annualBonus);
         let eligibleAnnualBonus = 0;
         let notEligibleAnnualBonus = 0;
         if (cutOffSalary > annualBonus) {
@@ -2582,7 +2561,6 @@ export class ComprehensiveService {
           eligibleAnnualBonus = cutOffSalary;
           notEligibleAnnualBonus = annualBonus - eligibleAnnualBonus;
         }
-        //console.log("C" + eligibleAnnualBonus); console.log("D" + notEligibleAnnualBonus);
         annualSalary =
           eligibleAnnualBonus * cpfDetails.cpfPercent + notEligibleAnnualBonus;
       }
@@ -2641,12 +2619,14 @@ export class ComprehensiveService {
       });
     });*/
     return new Observable((obs) => {
-      const stepIndicatorData = { enquiryId: this.getEnquiryId(), stepCompleted: stepCompletedParam,
-        subStepCompleted: subStepCompletedParam };
+      const stepIndicatorData = {
+        enquiryId: this.getEnquiryId(), stepCompleted: stepCompletedParam,
+        subStepCompleted: subStepCompletedParam
+      };
       this.comprehensiveApiService.saveStepIndicator(stepIndicatorData).subscribe((data) => {
-          this.setMySteps(stepCompletedParam, subStepCompletedParam);
-          obs.next(data);
-        });
+        this.setMySteps(stepCompletedParam, subStepCompletedParam);
+        obs.next(data);
+      });
     });
   }
   /**
@@ -2655,7 +2635,6 @@ export class ComprehensiveService {
   validateSteps(stepCompletedParam, subCompletedParam) {
     const stepComplete = this.getMySteps();
     const subStepComplete = this.getMySubSteps();
-    return (stepComplete > stepCompletedParam || (stepCompletedParam === stepComplete && subStepComplete >=  subCompletedParam) );
+    return (stepComplete > stepCompletedParam || (stepCompletedParam === stepComplete && subStepComplete >= subCompletedParam));
   }
 }
-
