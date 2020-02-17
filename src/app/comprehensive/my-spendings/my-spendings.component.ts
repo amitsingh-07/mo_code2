@@ -45,6 +45,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   mortgageTypeOfHome = '';
   HLTypeOfHome = '';
   comprehensiveJourneyMode: boolean;
+  saveData: string;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -62,6 +63,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
         this.homeTypeList = this.translate.instant('CMP.HOME_TYPE_LIST');
         this.setPageTitle(this.pageTitle);
         this.validationFlag = this.translate.instant('CMP.MY_SPENDINGS.OPTIONAL_VALIDATION_FLAG');
+        this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
       });
     });
     this.spendingDetails = this.comprehensiveService.getMySpendings();
@@ -198,7 +200,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
           this.spendingDetails = form.value;
           this.spendingDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_SPENDING.API_TOTAL_BUCKET_KEY] = this.totalSpending;
           this.spendingDetails.enquiryId = this.comprehensiveService.getEnquiryId();
-          this.loaderService.showLoader({ title: 'Saving' });
+          this.loaderService.showLoader({ title: this.saveData });
           this.comprehensiveApiService.saveExpenses(this.spendingDetails).subscribe((data) => {
             this.comprehensiveService.setMySpendings(this.spendingDetails);
             if (!this.comprehensiveService.hasBadMoodFund() && this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
@@ -249,9 +251,6 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     if (payOffYearVal.value === null || payOffYearVal.value === '') {
       validCheck = true;
     } else {
-      // tslint:disable-next-line:no-commented-code
-      // validCheck = (payOffYearVal.value >= currentYear && payOffYearVal.value <=
-      // (COMPREHENSIVE_CONST.PAY_OFF_YEAR+currentYear)) ? true : false;
       validCheck = (payOffYearVal.value >= currentYear) ? true : false;
     }
     if (validCheck) {
@@ -281,9 +280,6 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
         spendingValues.mortgagePaymentUsingCash, carLoanPayment: spendingValues.carLoanPayment,
       otherLoanPayment: spendingValues.otherLoanPayment
     };
-    // tslint:disable-next-line: no-commented-code
-    // mortgagePaymentUsingCPF: spendingValues.mortgagePaymentUsingCPF
-    // HLMortgagePaymentUsingCPF: spendingValues.HLMortgagePaymentUsingCPF
     this.totalSpending = this.comprehensiveService.additionOfCurrency(spendingFormObject, inputParams);
     this.calculatedSpending = this.totalBucket - this.totalSpending;
     if (this.totalSpending <= 0 && this.totalBucket > 0) {

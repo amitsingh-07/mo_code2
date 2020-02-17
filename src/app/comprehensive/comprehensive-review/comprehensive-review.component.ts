@@ -25,8 +25,9 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   menuClickSubscription: Subscription;
   subscription: Subscription;
   isPaymentEnabled = false;
-  comprehensiveJourneyMode:boolean;
+  comprehensiveJourneyMode: boolean;
   requireToPay = false;
+  loading: string;
 
   constructor(
     private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
@@ -56,6 +57,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
         this.pageTitle = this.translate.instant('CMP.REVIEW.TITLE');
+        this.loading = this.translate.instant('COMMON_LOADER.TITLE');
         this.setPageTitle(this.pageTitle);
       });
     });
@@ -113,12 +115,12 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
           // If payment is enabled and user has not paid, go payment else initiate report gen
             this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]).then((result) => {
               if (result === false) {
-                this.loaderService.showLoader({ title: 'Loading', autoHide: false });
+                this.loaderService.showLoader({ title:  this.loading, autoHide: false });
                 this.initiateReport();
               }
             });
         } else {
-          this.loaderService.showLoader({ title: 'Loading', autoHide: false });
+          this.loaderService.showLoader({ title:  this.loading, autoHide: false });
           this.initiateReport();
         }
       } else {
@@ -143,11 +145,6 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       this.comprehensiveService.setViewableMode(viewMode);
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
       this.loaderService.hideLoaderForced();
-    //   // const payload = { enquiryId: this.comprehensiveService.getEnquiryId() }
-    //   // this.comprehensiveApiService.createReportRequest(payload).subscribe((reportDataStatus: any) => {
-    //   //   this.comprehensiveService.setReportId(reportDataStatus.reportId);
-    //   //   this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
-    //   // });
 
    }, (err) => {
     this.loaderService.hideLoaderForced();

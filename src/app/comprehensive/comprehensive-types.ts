@@ -239,19 +239,19 @@ export interface ILumpSumBenefitSet {
     maturityAmount: number;
     maturityYear: number;
 }
-export interface IRiskAssesmentAnswers{
- enquiryId: number;
- answers: IRiskAnswers[];
- riskProfileAnswers: IRiskProfile;
+export interface IRiskAssesmentAnswers {
+    enquiryId: number;
+    answers: IRiskAnswers[];
+    riskProfileAnswers: IRiskProfile;
 
 }
 export interface IRiskProfile {
-riskAssessQuest1: any;
-riskAssessQuest2: any;
-riskAssessQuest3: any;
-riskAssessQuest4: any;
+    riskAssessQuest1: any;
+    riskAssessQuest2: any;
+    riskAssessQuest3: any;
+    riskAssessQuest4: any;
 }
 
-export interface IRiskAnswers{
-questionOptionId: number;
+export interface IRiskAnswers {
+    questionOptionId: number;
 }
