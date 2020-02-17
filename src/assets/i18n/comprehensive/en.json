@@ -172,6 +172,16 @@
       "STEP_5_DESC2": "Your data is submitted.",
       "STEP_5_TITLE_NAV": "Result"
     },
+    "RISK_PROFILE": {
+      "PAGE_HEADING": "Grow your retirement savings! Tell us your risk willingness.",
+      "PAGE_SUB_HEADING": "Investments can help to grow your savings beyond bank deposit rates. But how much are you able to ride out the ups and downs and stay invested to reach your retirement earlier?",
+      "QUESTION_4_COL_1": "Portfolio",
+      "QUESTION_4_COL_2": "Optimistic",
+      "QUESTION_4_COL_2_SUB": "Return Projection (per annum)",
+      "QUESTION_4_COL_3": "Pessimistic",
+      "QUESTION_4_COL_3_SUB": "Return Projection (per annum)",
+      "FOOTER_BTN": "Save and continue"
+    },
     "MY_PROFILE": {
       "NATIONALITY_ALERT": "Seems like you have changed your input for “Nationality”. Changes will be applied to all platforms upon saving.",
       "DOB_ALERT": "Sorry, this tool is currently only available to those aged 18 to 70 years old. For other enquiries, you may wish to contact us at enquiries@moneyowl.com.sg."
@@ -273,7 +283,6 @@
       "MONTHLY_SALARY": "Monthly Salary",
       "ANNUAL_BONUS": "Annual Bonus",
       "ANNUAL_BONUS_DESC": "Bonuses, dividends and other income you earn each year also fill up your bucket!",
-      "ANNUAL_BONUS_DESC_LITE":"Bonuses you earn each year also fill up your bucket!",
       "RENTAL_INCOME": "Monthly Rental Income",
       "OTHER_WORK_INCOME": "Other Monthly Work Income",
       "OTHER_WORK_INCOME_DESC": "(that attracts CPF)",
