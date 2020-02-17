@@ -55,6 +55,8 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   showRetirementAccount: boolean= false;
   myAge: any;
   comprehensiveJourneyMode;
+  saveData: string;
+
   // tslint:disable-next-line:cognitive-complexity
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -74,6 +76,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         this.investmentTypeList = this.translate.instant('CMP.MY_ASSETS.INVESTMENT_TYPE_LIST');
         this.setPageTitle(this.pageTitle);
         this.validationFlag = this.translate.instant('CMP.MY_ASSETS.OPTIONAL_VALIDATION_FLAG');
+        this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
       });
     });
     const today: Date = new Date();
@@ -341,7 +344,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
             this.assetDetails.assetsInvestmentSet[index].enquiryId = this.assetDetails.enquiryId;
             delete this.assetDetails['investmentAmount_' + index];
           });
-          this.loaderService.showLoader({ title: 'Saving' });
+          this.loaderService.showLoader({ title: this.saveData });
           this.comprehensiveApiService.saveAssets(this.assetDetails).subscribe((data) => {
             this.comprehensiveService.setMyAssets(this.assetDetails);
             if (this.comprehensiveService.getMySteps() === 1

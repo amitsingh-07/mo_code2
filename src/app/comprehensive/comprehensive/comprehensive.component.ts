@@ -44,8 +44,9 @@ export class ComprehensiveComponent implements OnInit {
   getComprehensiveSummaryDashboard: any;
   isBannerNoteVisible: boolean;
   paymentEnabled = false;
-
-  includingGst: false;
+  includingGst = false;
+  fetchData: string;
+  loading: string;
   constructor(
     private appService: AppService, private cmpService: ComprehensiveService,
     private route: ActivatedRoute, private router: Router, public translate: TranslateService,
@@ -61,6 +62,8 @@ export class ComprehensiveComponent implements OnInit {
         this.loginModalTitle = this.translate.instant('CMP.MODAL.LOGIN_SIGNUP_TITLE');
         this.promoCodeSuccess = this.translate.instant('CMP.MODAL.PROMO_CODE_SUCCESS');
         this.promoValidated = this.translate.instant('CMP.MODAL.PROMO_CODE_VALIDATED');
+        this.fetchData = this.translate.instant('MYINFO.FETCH_MODAL_DATA.TITLE');
+        this.loading = this.translate.instant('COMMON_LOADER.TITLE');
         this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.translate.instant('CMP.COMPREHENSIVE.VIDEO_LINK'));
       });
     });
@@ -81,9 +84,9 @@ export class ComprehensiveComponent implements OnInit {
 
     if (this.authService.isSignedUser()) {
       const action = this.appService.getAction();
-      this.loaderService.showLoader({ title: 'Fetching Data', autoHide: false });
-      if(this.paymentEnabled){
-      this.getProductAmount();
+      this.loaderService.showLoader({ title: this.fetchData, autoHide: false });
+      if (this.paymentEnabled) {
+        this.getProductAmount();
       }
       const comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
       let getCurrentVersionType = this.cmpService.getComprehensiveCurrentVersion();
@@ -137,15 +140,12 @@ export class ComprehensiveComponent implements OnInit {
       });
 
     } else {
-      if(this.paymentEnabled){
-        this.authService.authenticate().subscribe((data:any) =>{
-      
+      if (this.paymentEnabled) {
+        this.authService.authenticate().subscribe((data: any) => {
           this.getProductAmount();
           this.authService.clearAuthDetails();
-        })
+        });
       }
-     
-     
     }
     this.isBannerNoteVisible = this.isCurrentDateInRange(COMPREHENSIVE_CONST.BANNER_NOTE_START_TIME,
       COMPREHENSIVE_CONST.BANNER_NOTE_END_TIME);
@@ -157,8 +157,9 @@ export class ComprehensiveComponent implements OnInit {
   redirect() {
     this.appService.clearPromoCode();
     const redirectUrl = this.signUpService.getRedirectUrl();
-    if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED &&
-      ( this.getComprehensiveSummaryDashboard.isValidatedPromoCode)) {
+    if (this.getComprehensiveSummaryDashboard &&
+      this.getComprehensiveSummaryDashboard.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED &&
+      (this.getComprehensiveSummaryDashboard.isValidatedPromoCode)) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
     } else if (redirectUrl && (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isValidatedPromoCode)) {
       this.router.navigate([redirectUrl]);
@@ -192,7 +193,7 @@ export class ComprehensiveComponent implements OnInit {
       if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isValidatedPromoCode) {
         this.redirect();
       } else {
-        this.loaderService.showLoader({ title: 'Loading', autoHide: false });
+        this.loaderService.showLoader({ title: this.loading, autoHide: false });
         this.comprehensiveApiService.ValidatePromoCode(promoCode).subscribe((data: any) => {
           if (data && data.objectList[0].validatePromoCode) {
             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
@@ -253,11 +254,11 @@ export class ComprehensiveComponent implements OnInit {
       && new Date() <= new Date(END_TIME));
   }
   getProductAmount() {
-    const payload = { productType: 'Comprehensive' }
+    const payload = { productType: COMPREHENSIVE_CONST.VERSION_TYPE.FULL };
     this.comprehensiveApiService.getProductAmount(payload).subscribe((data: any) => {
       if (data && data.objectList[0]) {
         this.includingGst = data.objectList[0].includingGst;
-        this.productAmount = !this.includingGst ? data.objectList[0].totalAmount : data.objectList[0].price
+        this.productAmount = !this.includingGst ? data.objectList[0].totalAmount : data.objectList[0].price;
       }
     });
   }

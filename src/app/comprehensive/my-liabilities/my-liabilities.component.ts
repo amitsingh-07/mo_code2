@@ -39,6 +39,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   bucketImage: string;
   viewMode: boolean;
   comprehensiveJourneyMode: boolean;
+  saveData: string;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -48,6 +49,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
+      this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
     });
     this.viewMode = this.comprehensiveService.getViewableMode();
     this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
@@ -64,7 +66,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       }
     });
     this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
-    if (!this.comprehensiveJourneyMode && this.liabilitiesDetails ){
+    if (!this.comprehensiveJourneyMode && this.liabilitiesDetails) {
       this.liabilitiesDetails.otherPropertyLoanOutstandingAmount = 0;
       this.liabilitiesDetails.carLoansAmount = 0;
     }
@@ -160,11 +162,11 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
           this.liabilitiesDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_LIABILITIES.API_TOTAL_BUCKET_KEY] = this.totalOutstanding;
           this.liabilitiesDetails.enquiryId = this.comprehensiveService.getEnquiryId();
 
-          this.loaderService.showLoader({ title: 'Saving' });
+          this.loaderService.showLoader({ title: this.saveData });
           this.comprehensiveApiService.saveLiabilities(this.liabilitiesDetails).subscribe((data) => {
             this.comprehensiveService.setMyLiabilities(this.liabilitiesDetails);
             if (this.comprehensiveService.getMySteps() === 1
-            && this.comprehensiveService.getMySubSteps() < 6) {
+              && this.comprehensiveService.getMySubSteps() < 6) {
               this.comprehensiveService.setStepCompletion(1, 6).subscribe((data1: any) => {
                 this.loaderService.hideLoader();
                 this.routerPath();

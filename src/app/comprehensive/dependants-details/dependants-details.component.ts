@@ -47,8 +47,9 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   routerEnabled = false;
   viewMode: boolean;
   houseHold: IdependentsSummaryList;
-  minDate:any;
-  maxDate:any;
+  minDate: any;
+  maxDate: any;
+  saveData: string;
 
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -74,6 +75,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         this.genderList = this.translate.instant('CMP.GENDER');
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
         this.setPageTitle(this.pageTitle);
+        this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
         this.childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
         if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
           this.routerEnabled = !this.summaryRouterFlag;
@@ -211,7 +213,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
           form.value.hasDependents = this.hasDependant;
           form.value.noOfHouseholdMembers = this.houseHold.noOfHouseholdMembers,
             form.value.houseHoldIncome = this.houseHold.houseHoldIncome,
-            this.loaderService.showLoader({ title: 'Saving Details' });
+            this.loaderService.showLoader({ title: this.saveData });
           this.comprehensiveApiService.addDependents(form.value).subscribe(((data: any) => {
             this.comprehensiveService.setHasDependant(true);
             this.comprehensiveService.setMyDependant(data.objectList[0].dependentsList);

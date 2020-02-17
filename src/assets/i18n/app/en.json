@@ -345,6 +345,7 @@
   },
   "COMMON_LOADER": {
     "TITLE": "Loading",
+    "SAVE_DATA":"Saving Details...",
     "DESC": "Please wait while we load the data"
   },
   "MYINFO": {

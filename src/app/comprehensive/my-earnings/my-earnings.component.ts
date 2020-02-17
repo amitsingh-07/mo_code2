@@ -48,6 +48,8 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
   validationFlag: boolean;
   viewMode: boolean;
   comprehensiveJourneyMode: boolean;
+  saveData:string;
+
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -63,6 +65,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
         this.employmentTypeList = this.translate.instant('CMP.MY_EARNINGS.EMPLOYMENT_TYPE_LIST');
         this.setPageTitle(this.pageTitle);
         this.validationFlag = this.translate.instant('CMP.MY_EARNINGS.OPTIONAL_VALIDATION_FLAG');
+        this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
       });
     });
     this.earningDetails = this.comprehensiveService.getMyEarnings();
@@ -171,7 +174,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
           this.earningDetails = form.value;
           this.earningDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.API_TOTAL_BUCKET_KEY] = this.totalAnnualIncomeBucket;
           this.earningDetails.enquiryId = this.comprehensiveService.getEnquiryId();
-          this.loaderService.showLoader({ title: 'Saving' });
+          this.loaderService.showLoader({ title: this.saveData });
           this.comprehensiveApiService.saveEarnings(this.earningDetails).subscribe((data) => {
             this.comprehensiveService.setMyEarnings(this.earningDetails);
             if (!this.comprehensiveService.hasBadMoodFund() && this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {

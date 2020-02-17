@@ -44,6 +44,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
   promoCodeValidated = false;
   enquiryId: any;
   isReportGenerated = false;
+  fetchData : string;
 
 constructor(
     private router: Router,
@@ -62,6 +63,7 @@ constructor(
       this.translate.use(config.language);
       this.isComprehensiveEnabled = config.comprehensiveEnabled;
       this.isComprehensiveLiveEnabled = config.comprehensiveLiveEnabled;
+      this.fetchData = this.translate.instant('MYINFO.FETCH_MODAL_DATA.TITLE');
     });
       this.navbarService.setNavbarVisibility(true);
       this.navbarService.setNavbarMode(100);
@@ -144,7 +146,7 @@ constructor(
     
   }
   getComprehensiveCall() {
-    this.loaderService.showLoader({ title: 'Fetching Data' });
+    this.loaderService.showLoader({ title:  this.fetchData});
     let reportStatusValue =  COMPREHENSIVE_CONST.REPORT_STATUS.NEW;
     if ( ( !this.versionTypeEnabled && this.comprehensivePlanning === 0 ) ||  this.comprehensivePlanning === 1) {
       reportStatusValue = COMPREHENSIVE_CONST.REPORT_STATUS.EDIT;
@@ -199,7 +201,7 @@ constructor(
   }
   setComprehensiveSummary(routerEnabled: boolean, routerUrlPath: any) {
     if (routerEnabled) {
-      this.loaderService.showLoader({ title: 'Fetching Data' });
+      this.loaderService.showLoader({ title:  this.fetchData });
     } else {
       this.isLoadComplete = false;
     }
@@ -227,7 +229,8 @@ constructor(
         } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED ) {
           this.comprehensivePlanning = 0;
         }
-         else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR) {
+         else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY ||
+           this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR) {
           this.comprehensivePlanning =  1;
           if (this.getComprehensiveSummary.comprehensiveEnquiry &&
             this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp) {
