@@ -163,7 +163,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
           this.comprehensiveApiService.saveRegularSavings(form.value).subscribe((data: any) => {
             this.comprehensiveService.setRegularSavings(form.value.hasRegularSavings);
             this.comprehensiveService.setRegularSavingsList(form.value.comprehensiveRegularSavingsList);
-            if (this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
+            if (!this.comprehensiveService.hasBadMoodFund() && this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
               this.comprehensiveService.saveBadMoodFund();
             }
             if (this.comprehensiveService.getMySteps() === 1

@@ -539,12 +539,14 @@ export class ComprehensiveService {
       .subscribe((data) => { });
   }
   hasBadMoodFund() {
-    const maxBadMoodFund = Math.floor(
+    /*const maxBadMoodFund = Math.floor(
       (this.getMyEarnings().totalAnnualIncomeBucket -
         this.getMySpendings().totalAnnualExpenses) /
       12
-    );
-    return maxBadMoodFund >= 0;
+    );*/
+    const badMoodFund = this.getDownOnLuck().badMoodMonthlyAmount;
+    const computeBadMoodFund = this.computeBadMoodFund();
+    return (!Util.isEmptyOrNull(badMoodFund) && computeBadMoodFund >= badMoodFund && computeBadMoodFund > 0 ) 
   }
 
   setDependantSelection(selection: boolean) {

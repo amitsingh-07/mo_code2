@@ -120,7 +120,6 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
         } else {
           this.loaderService.showLoader({ title: 'Loading', autoHide: false });
           this.initiateReport();
-          this.loaderService.hideLoaderForced();
         }
       } else {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + currentStep]);
@@ -150,6 +149,8 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     //   //   this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
     //   // });
 
+   }, (err) => {
+    this.loaderService.hideLoaderForced();
    });
   }
 }

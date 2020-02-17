@@ -174,7 +174,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
           this.loaderService.showLoader({ title: 'Saving' });
           this.comprehensiveApiService.saveEarnings(this.earningDetails).subscribe((data) => {
             this.comprehensiveService.setMyEarnings(this.earningDetails);
-            if (this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
+            if (!this.comprehensiveService.hasBadMoodFund() && this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
               this.comprehensiveService.saveBadMoodFund();
             }
             if (this.comprehensiveService.getMySteps() === 1
