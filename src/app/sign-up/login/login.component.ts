@@ -29,6 +29,7 @@ import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes
 import { WillWritingService } from '../../will-writing/will-writing.service';
 import { ValidatePassword } from '../create-account/password.validator';
 import { SignUpApiService } from '../sign-up.api.service';
+import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
@@ -104,9 +105,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.distribution = config.distribution;
     });
-    if (route.snapshot.data[0]) {
-      this.finlitEnabled = route.snapshot.data[0]['finlitEnabled'];
-    }
+    this.finlitEnabled = SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN;
   }
 
   /**

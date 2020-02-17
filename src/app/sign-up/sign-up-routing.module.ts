@@ -5,6 +5,7 @@ import { AccountCreatedComponent } from './account-created/account-created.compo
 import { AccountUpdatedComponent } from './account-updated/account-updated.component';
 import { AddUpdateBankComponent } from './add-update-bank/add-update-bank.component';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
+import { FinlitLoggedUserService as FinlitLoggedUserGuard } from './auth-guard.service';
 import { LoggedUserService as LoggedUserGuard } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -23,6 +24,7 @@ import { PreLoginComponent } from './pre-login/pre-login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SIGN_UP_ROUTES } from './sign-up.routes.constants';
+import { SIGN_UP_CONFIG } from './sign-up.constant';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { UpdateUserIdComponent } from './update-user-id/update-user-id.component';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
@@ -116,8 +118,7 @@ const routes: Routes = [
   },
   { path: SIGN_UP_ROUTES.FINLIT_LOGIN,
     component: LoginComponent,
-    canActivate: [LoggedUserGuard],
-    data: [{finlitEnabled: true}]
+    canActivate: [FinlitLoggedUserGuard]
   },
 
   { path: '**', redirectTo: '/page-not-found' }
