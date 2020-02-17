@@ -52,7 +52,8 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     getComprehensiveEnquiry: any;
     maxDate: any;
     minDate: any;
-    getComprehensiveData:any;
+    getComprehensiveData: any;
+    saveData: string;
 
     public onCloseClick(): void {
         this.comprehensiveService.setProgressToolTipShown(true);
@@ -95,6 +96,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                 // meta tag and title
                 this.pageTitle = this.translate.instant('CMP.GETTING_STARTED.TITLE');
                 this.nationalityList = this.translate.instant('CMP.NATIONALITY');
+                this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
                 this.setPageTitle(this.pageTitle);
             });
         });
@@ -190,13 +192,6 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         if (this.getComprehensiveEnquiry.isDobUpdated) {
             this.validateDOB(this.userDetails.ngbDob);
         }
-        /*if (this.getComprehensiveEnquiry.dobPopUpEnable) {
-            const toolTipParams = {
-                TITLE: '',
-                DESCRIPTION: this.translate.instant('COMPREHENSIVE.DASHBOARD.WARNING_POPUP')
-            };
-            this.comprehensiveService.openTooltipModal(toolTipParams);
-        }*/
     }
 
     setUserProfileData() {
@@ -229,7 +224,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                 this.userDetails.dateOfBirth = this.parserFormatter.format(form.getRawValue().ngbDob);
                 this.userDetails.enquiryId = this.comprehensiveService.getEnquiryId();
                 if (!form.pristine) {
-                    this.loaderService.showLoader({ title: 'Saving' });
+                    this.loaderService.showLoader({ title: this.saveData });
                     this.comprehensiveApiService.savePersonalDetails(this.userDetails).subscribe((data) => {
                         this.comprehensiveService.setMyProfile(this.userDetails);
                         if (this.comprehensiveService.getReportStatus() === null) {

@@ -9,30 +9,30 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
   FormControl,
   FormGroup,
-  FormBuilder,
-  FormArray,
   ValidatorFn,
-  AbstractControl,
   Validators
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
 import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
 import { Subscription } from 'rxjs';
 import { ConfigService } from '../../config/config.service';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
+import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMySummaryModal, IRetirementPlan } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 
 @Component({
   selector: 'app-retirement-plan',
@@ -67,10 +67,10 @@ export class RetirementPlanComponent
     start: 0,
     connect: [true, false],
     format: {
-      to: value => {
+      to: (value) => {
         return Math.round(value);
       },
-      from: value => {
+      from: (value) => {
         return Math.round(value);
       }
     },
@@ -86,7 +86,7 @@ export class RetirementPlanComponent
     }*/
   };
   userAge: number;
-  comprehensiveJourneyMode:boolean;
+  comprehensiveJourneyMode: boolean;
   constructor(
     private navbarService: NavbarService,
     private progressService: ProgressTrackerService,
@@ -144,7 +144,7 @@ export class RetirementPlanComponent
     this.navbarService.setNavbarComprehensive(true);
     this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe(
-      pageId => {
+      (pageId) => {
         if (this.pageId === pageId) {
           this.progressService.show();
         }
@@ -153,7 +153,7 @@ export class RetirementPlanComponent
 
     this.subscription = this.navbarService
       .subscribeBackPress()
-      .subscribe(event => {
+      .subscribe((event) => {
         if (event && event !== '') {
           const previousUrl = this.comprehensiveService.getPreviousUrl(
             this.router.url
@@ -241,7 +241,7 @@ export class RetirementPlanComponent
     });
   }
   buildEmptyRetirementorm() {
-    let ageValidator = !this.showRetirementIncome ? [] : [this.ageValidation];
+    const ageValidator = !this.showRetirementIncome ? [] : [this.ageValidation];
     return this.formBuilder.group({
       monthlyPayout: [''],
       payoutStartAge: ['', ageValidator],
@@ -249,7 +249,7 @@ export class RetirementPlanComponent
     });
   }
   buildEmptyLumpBenefitSetForm() {
-    let yearValidator = !this.showLumpSumBenefit ? [] : [this.payOffYearValid];
+    const yearValidator = !this.showLumpSumBenefit ? [] : [this.payOffYearValid];
     return this.formBuilder.group({
       maturityAmount: [''],
       maturityYear: ['', yearValidator]
@@ -331,7 +331,7 @@ export class RetirementPlanComponent
           form.controls.lumpSumBenefitSet['controls'][index]['controls'][
           'maturityYear'
           ];
-        let yearValidator = !this.showLumpSumBenefit
+        const yearValidator = !this.showLumpSumBenefit
           ? []
           : [this.payOffYearValid];
         otherPropertyControl.setValidators(yearValidator);
@@ -342,7 +342,7 @@ export class RetirementPlanComponent
           form.controls.retirementIncomeSet['controls'][index]['controls'][
           'payoutStartAge'
           ];
-        let ageValidator = !this.showRetirementIncome
+        const ageValidator = !this.showRetirementIncome
           ? []
           : [this.ageValidation];
         otherPropertyControl.setValidators(ageValidator);
@@ -429,7 +429,7 @@ export class RetirementPlanComponent
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.unSaved = true;
       ref.componentInstance.hasImpact = this.confirmRetirementData;
-      ref.result.then(data => {
+      ref.result.then((data) => {
         if (data === 'yes') {
           const retirementIncomeDetails = this.retirementPlanForm.get('retirementIncomeSet') as FormArray;
 
@@ -500,8 +500,8 @@ export class RetirementPlanComponent
       this.sliderValue = $event.target.value;
     }
   }
-  routerPath(){
-    if(this.comprehensiveJourneyMode) {
+  routerPath() {
+    if (this.comprehensiveJourneyMode) {
       this.showSummaryModal();
     } else {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/4', ]);
