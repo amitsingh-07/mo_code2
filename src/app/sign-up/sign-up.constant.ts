@@ -44,5 +44,8 @@ export let SIGN_UP_CONFIG = {
         CIMB: 'CIMB',
         HSBC: 'HSBC',
         POSB: 'POSB'
+    },
+    LOGIN: {
+        FINLIT_LOGIN: true
     }
 };
