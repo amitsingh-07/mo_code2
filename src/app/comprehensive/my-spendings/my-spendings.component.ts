@@ -201,7 +201,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
           this.loaderService.showLoader({ title: 'Saving' });
           this.comprehensiveApiService.saveExpenses(this.spendingDetails).subscribe((data) => {
             this.comprehensiveService.setMySpendings(this.spendingDetails);
-            if (this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
+            if (!this.comprehensiveService.hasBadMoodFund() && this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
               this.comprehensiveService.saveBadMoodFund();
             }
             if (this.comprehensiveService.getMySteps() === 1
