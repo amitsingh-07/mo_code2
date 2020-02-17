@@ -118,10 +118,10 @@
                   <button (click)="d.toggle()" class="btn btn-primary" type="button" id="myProfileDatePicker"
                     appComprehensiveViewMode="{{viewMode || disableDOB}}" mode=1>
                     <img class="date-picker-image--valid" id="moGetStrdFormImg1" *ngIf="(moGetStrdForm.get('ngbDob').valid  || !submitted ) 
-                      && !DOBAlert" src="./assets/images/calendar-normal.svg" />
+                      && !DOBAlert" src="assets/images/calendar-normal.svg" />
                     <img class="date-picker-image--invalid" id="moGetStrdFormImg1"
                       *ngIf="!moGetStrdForm.get('ngbDob').valid && submitted || DOBAlert"
-                      src="./assets/images/calendar-error.svg" />
+                      src="assets/images/calendar-error.svg" />
                   </button>
                 </div>
               </div>

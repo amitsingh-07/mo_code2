@@ -23,7 +23,7 @@ export class CarouselModalComponent implements OnInit {
   @Output() closeAction = new EventEmitter<any>();
 
   @ViewChild('carousel') carousel: SlickComponent;
-  public imgUrl = '../assets/images/';
+  public imgUrl = 'assets/images/';
 
   public currentSlide = 0;
   // Set config for ng slick

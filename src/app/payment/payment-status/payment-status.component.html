@@ -1,10 +1,10 @@
 <div class="page">
   <div class="success-text-content">
     <ng-container *ngIf="paymentStatus === 'success'; else fail">
-      <img class="success-img" src="../../../assets/images/payment/pay-success-owl.svg" alt="" />
+      <img class="success-img" src="assets/images/payment/pay-success-owl.svg" alt="" />
     </ng-container>
     <ng-template #fail>
-      <img class="fail-img" src="../../../assets/images/payment/pay-failure.svg" alt="" />
+      <img class="fail-img" src="assets/images/payment/pay-failure.svg" alt="" />
     </ng-template>
     <div [ngClass]="{'fail-color': paymentStatus !== 'success'}" class="status-title">{{statusTitle}}</div>
     <div class="status-desc" [innerHTML]="statusText"></div>

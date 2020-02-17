@@ -16,18 +16,18 @@
         <div class="col-lg-6 col-md-6">
           <div class="withdraw_to_acc">{{ 'WITHDRAW_PAYMENT_METHOD.WITHDRAW_TO_ACCOUNT' | translate}}</div>
           <div class="flex-col add_account mb20" (click)="showNewBankFormModal()" *ngIf="hideAddBankAccount">
-            <div class="bank-icon"><img src="../../../assets/images/bank_icon.svg" /></div>
+            <div class="bank-icon"><img src="assets/images/bank_icon.svg" /></div>
             <div class="flex-row"><img
-                src="../../../assets/images/plus-white.svg" /><span>{{ 'WITHDRAW_PAYMENT_METHOD.ADD_BANK_ACCOUNT' | translate}}</span>
+                src="assets/images/plus-white.svg" /><span>{{ 'WITHDRAW_PAYMENT_METHOD.ADD_BANK_ACCOUNT' | translate}}</span>
             </div>
           </div>
           <div class="bank_transfer flex-col">
             <div class="flex-col available_accounts" *ngFor="let userBank of userBankList; let i = index;">
-              <div class="selected_logo"><img src="../../../assets/images/topupwithdraw/check_orange.svg" /></div>
+              <div class="selected_logo"><img src="assets/images/topupwithdraw/check_orange.svg" /></div>
               <div class="bank-icon">
-                <img class="bank_img" src="../../../assets/images/bank_icon.svg" />
+                <img class="bank_img" src="assets/images/bank_icon.svg" />
                 <div class="edit-bank" (click)="showEditBankFormModal(i)"><img
-                    src="../../../assets/images/investment-account/edit-dark.svg" /></div>
+                    src="assets/images/investment-account/edit-dark.svg" /></div>
               </div>
               <div class="user_bank">{{ userBank.bank && userBank.bank.name}}</div>
               <div class="user_account">{{userBank.accountNumber}}</div>
