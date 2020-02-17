@@ -30,7 +30,7 @@ export let apiConstants = {
         resendOTP: ACCOUNT_API_BASE_URL + '/resendOTP',
         verifyEmail: ACCOUNT_API_BASE_URL + '/verifyEmail',
         resetPassword: ACCOUNT_API_BASE_URL + '/resetPassword',
-        forgotPassword: ACCOUNT_API_BASE_URL + '/forgotPassword',
+        forgotPassword: ACCOUNT_API_BASE_URL + '/forgotPassword?handleError=true',
         userProfileInfo: ACCOUNT_API_BASE_URL + '/getCustomerProfileDetails?handleError=true',
         editContactDeatails: ACCOUNT_API_BASE_URL + '/updateAddress',
         editPassword: ACCOUNT_API_BASE_URL + '/editPassword',
