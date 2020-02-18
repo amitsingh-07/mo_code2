@@ -21,9 +21,11 @@ import {
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { FormatCurrencyPipe } from '../../../shared/Pipes/format-currency.pipe';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { IInvestmentCriteria } from '../../investment-common/investment-common-form-data';
 import {
   INVESTMENT_COMMON_ROUTE_PATHS
 } from '../../investment-common/investment-common-routes.constants';
+import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
@@ -37,11 +39,9 @@ import { ManageInvestmentsService } from '../manage-investments.service';
 export class TopUpComponent implements OnInit, OnDestroy {
   pageTitle: string;
   portfolio;
-  investment;
   portfolioList;
   isAmountExceedBalance = false;
   topupAmount: any;
-  investmentTypeList: any;
   showOnetimeInvestmentAmount = true;
   showMonthlyInvestmentAmount = false;
   formValues;
@@ -54,6 +54,8 @@ export class TopUpComponent implements OnInit, OnDestroy {
   isRequestSubmitted = false;
   srsAccountDetails;
   awaitingOrPendingAmount;
+  topupTypes = MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES;
+  investmentCriteria: IInvestmentCriteria;
 
   constructor(
     public readonly translate: TranslateService,
@@ -67,7 +69,8 @@ export class TopUpComponent implements OnInit, OnDestroy {
     public manageInvestmentsService: ManageInvestmentsService,
     private investmentAccountService: InvestmentAccountService,
     private formatCurrencyPipe: FormatCurrencyPipe,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private investmentCommonService: InvestmentCommonService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -85,10 +88,10 @@ export class TopUpComponent implements OnInit, OnDestroy {
     this.navbarService.setNavbarMode(103);
     this.footerService.setFooterVisibility(false);
     this.getPortfolioList();
-    this.getTopupInvestmentList();
     this.cashBalance = this.manageInvestmentsService.getUserCashBalance();
     this.fundDetails = this.manageInvestmentsService.getFundingDetails();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
+    this.getInvestmentCriteria();
     this.topForm = this.formBuilder.group({
       portfolio: [this.formValues.selectedCustomerPortfolio, Validators.required],
       Investment: [
@@ -151,14 +154,11 @@ export class TopUpComponent implements OnInit, OnDestroy {
     }
   }
 
-  getTopupInvestmentList() {
-    this.manageInvestmentsService.getTopupInvestmentList().subscribe((data) => {
-      this.investmentTypeList = data.objectList.topupInvestment;    // Getting the information from the API
-      this.setOnetimeMinAmount(this.investmentTypeList);
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+  getInvestmentCriteria() {
+    this.investmentCommonService.getInvestmentCriteria().subscribe((data) => {
+      this.investmentCriteria = data;
+      this.setOnetimeMinAmount(data);
+    });
   }
 
   validateAmount(amount) {
@@ -170,10 +170,9 @@ export class TopUpComponent implements OnInit, OnDestroy {
     }
   }
 
-  selectedInvestment(investmentType) {
-    this.investment = investmentType;
-    this.manageInvestmentsService.setInvestmentValue(this.investment.value);
-    this.formValues.Investment = this.investment.name;
+  selectedInvestment(investmentType, minAmount) {
+    this.manageInvestmentsService.setInvestmentValue(minAmount);
+    this.formValues.Investment = investmentType;
     this.isAmountExceedBalance = false;
     this.topupAmount = 0;
     this.buildFormInvestment();
@@ -228,9 +227,9 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
   setOnetimeMinAmount(data) {
     if (this.formValues.Investment === 'Monthly Investment') {
-      this.manageInvestmentsService.setInvestmentValue(data[1].value);
+      this.manageInvestmentsService.setInvestmentValue(data.monthlyInvestmentMinimum);
     } else {
-      this.manageInvestmentsService.setInvestmentValue(data[0].value);
+      this.manageInvestmentsService.setInvestmentValue(data.oneTimeInvestmentMinimum);
     }
   }
 
@@ -251,7 +250,9 @@ export class TopUpComponent implements OnInit, OnDestroy {
         // tslint:disable-next-line:no-commented-code
         const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
         ref.componentInstance.errorTitle = error.errorTitle;
-        ref.componentInstance.errorMessage = error.errorMessage;
+        ref.componentInstance.errorMessage = error.errorMessage
+          .replace('$ONE_TIME_INVESTMENT$', this.investmentCriteria.oneTimeInvestmentMinimum)
+          .replace('$MONTHLY_INVESTMENT$', this.investmentCriteria.monthlyInvestmentMinimum);
         // tslint:disable-next-line:triple-equals
       } else {
         this.saveAndProceed(form);

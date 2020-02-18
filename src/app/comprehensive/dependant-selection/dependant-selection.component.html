@@ -1,22 +1,31 @@
+<div class="comprehensive hidden-sm-md">
+    <!--Step indicator-->
+    <div class="step-indicator-wrapper">
+      <div class="step-indicator-container">
+        <app-step-indicator [count]="stepIndicatorCount" [activeStepIndex]="0"></app-step-indicator>
+      </div>
+    </div>
+    <!--Step indicator /-->
+</div>
 <!--Container fluid-->
 <div class="container-fluid max-width--1024 comprehensive">
   <!--Step indicator-->
-  <div class="step-indicator-container">
-    <app-step-indicator [count]="5" [activeStepIndex]="0"></app-step-indicator>
-  </div>
-  <!--Step indicator /-->
+  <div class="step-indicator-container hidden-lg">
+      <app-step-indicator [count]="stepIndicatorCount" [activeStepIndex]="0"></app-step-indicator>
+    </div>
+    <!--Step indicator /-->
   <!--Page sub-heading-->
-  <div class="comprehensive__page-sub-heading mt30">{{'CMP.DEPENDANT_SELECTION.DEPENDANTS'|translate}}</div>
+  <div *ngIf="comprehensiveJourneyMode" class="comprehensive__page-sub-heading mt30">{{'CMP.DEPENDANT_SELECTION.DEPENDANTS'|translate}}</div>
   <!--Page sub-heading /-->
   <!--Page desc-->
-  <div class="comprehensive__page-content">{{'CMP.DEPENDANT_SELECTION.DEPENDANTS_DESC'|translate}}</div>
+  <div *ngIf="comprehensiveJourneyMode" class="comprehensive__page-content">{{'CMP.DEPENDANT_SELECTION.DEPENDANTS_DESC'|translate}}</div>
   <!--Page desc-->
   <!--Page form-->
   <form name="dependantSelectionForm" [formGroup]="dependantSelectionForm">
     <!--Formgroup single col-->
     <div class="form-group-single-column  flex-col">
       <!--Form label-->
-      <div class="checkbox-button one-label">
+      <div *ngIf="comprehensiveJourneyMode"  class="checkbox-button one-label">
         <input id="dependantYesInput" name="dependantSelection" formControlName="dependantSelection" type="radio"
           [value]=true class="field radio" appComprehensiveViewMode="{{viewMode}}" mode=1>
         <label id="dependantYesLabel" for="dependantYesInput">
@@ -25,7 +34,7 @@
       </div>
       <!--Form label /-->
       <!--Form label-->
-      <div class="checkbox-button one-label">
+      <div *ngIf="comprehensiveJourneyMode" class="checkbox-button one-label">
         <input id="dependantNoInput" name="dependantSelection" formControlName="dependantSelection" type="radio"
           [value]=false class="field radio" appComprehensiveViewMode="{{viewMode}}" mode=1>
         <label id="dependantNoLabel" for="dependantNoInput">
@@ -33,7 +42,7 @@
         </label>
       </div>
       <!--Form label /-->
-      <div class="comprehensive__page-sub-heading f18">{{'CMP.DEPENDANT_SELECTION.HOUSEHOLD_TITLE'|translate}}</div>
+      <div [ngClass]="{'mt20':!comprehensiveJourneyMode}" class="comprehensive__page-sub-heading f18">{{'CMP.DEPENDANT_SELECTION.HOUSEHOLD_TITLE'|translate}}</div>
       <div class="mt10">{{'CMP.DEPENDANT_SELECTION.HOUSEHOLD_DESC'|translate}}</div>
       <div class="mt10 form-group-with-bg">
         <div class="form-group-with-bg--header">

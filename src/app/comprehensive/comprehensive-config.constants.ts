@@ -1,4 +1,7 @@
 export const COMPREHENSIVE_CONST = {
+    PROMOTION: {
+        AMOUNT: 500
+    },
     PROMO_CODE: {
         GET: 'GET_PROMO_CODE',
         VALIDATE: 'VALIDATE_PROMO_CODE',
@@ -6,7 +9,7 @@ export const COMPREHENSIVE_CONST = {
     },
     YOUR_PROFILE: {
         APP_MIN_AGE: 18,
-        APP_MAX_AGE: 54,
+        APP_MAX_AGE: 70,
         DATE_PICKER_MIN_YEAR: 0,
         DATE_PICKER_MAX_YEAR: 100
     },
@@ -21,7 +24,8 @@ export const COMPREHENSIVE_CONST = {
             MONTHLY_INPUT_CALC: ['monthlySalary', 'monthlyRentalIncome', 'otherMonthlyWorkIncome', 'otherMonthlyIncome'],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualIncomeBucket', 'customerId', 'id'],
             BUCKET_INPUT_CALC: ['monthlySalary', 'annualBonus', 'monthlyRentalIncome', 'otherMonthlyWorkIncome',
-                'otherMonthlyIncome', 'annualDividends', 'otherAnnualIncome']
+                'otherMonthlyIncome', 'annualDividends', 'otherAnnualIncome'],
+            BUCKET_INPUT_CALC_LITE: ['monthlySalary', 'annualBonus']
         },
         YOUR_SPENDING: {
             API_KEY: 'comprehensiveSpending',
@@ -38,7 +42,8 @@ export const COMPREHENSIVE_CONST = {
             MONTHLY_INPUT_CALC: [],
             POP_FORM_INPUT: ['enquiryId', 'totalAnnualAssets', 'customerId', 'id', 'assetId'],
             BUCKET_INPUT_CALC: ['cashInBank', 'savingsBonds', 'cpfOrdinaryAccount', 'cpfSpecialAccount', 'cpfMediSaveAccount',
-                'homeMarketValue', 'investmentAmount_0', 'otherAssetsValue', 'investmentPropertiesValue']
+                'homeMarketValue', 'investmentAmount_0', 'otherAssetsValue', 'investmentPropertiesValue', 'cpfRetirementAccount'],
+            RETIREMENT_AGE: 54
         },
         YOUR_LIABILITIES: {
             API_KEY: 'comprehensiveLiabilities',
@@ -143,10 +148,29 @@ export const COMPREHENSIVE_CONST = {
     },
     REPORT_STATUS: {
         NEW: 'new',
+        EDIT: 'edit',
         SUBMITTED: 'submitted',
-        READY: 'ready'
+        READY: 'ready',
+        ERROR: 'error'
     },
     REPORT_PDF_NAME: 'MoneyOwl-Comprehensive.pdf',
+    RETIREMENT_PLAN: {
+        MIN_AGE: 45,
+        MAX_AGE: 70,
+        STEP: 1
+    },
+    COMPREHENSIVE_LITE_ENABLED: true,
+    VERSION_TYPE: {
+        LITE: 'Comprehensive-Lite',
+        FULL: 'Comprehensive'
+    },
+    ROLES: {
+        ROLE_COMPRE_LITE: 'ROLE_COMPRE_LITE',
+        ROLE_DISCOUNT_PROMOTION: 'ROLE_DISCOUNT_PROMOTION'
+    },
+    RISK_ASSESSMENT: {
+        SPECIAL_QUESTION_ORDER: 4
+    },
     BANNER_NOTE_START_TIME: 1580918400000,
     BANNER_NOTE_END_TIME: 1581436799000
 };

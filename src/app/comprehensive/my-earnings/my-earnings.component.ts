@@ -47,6 +47,9 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
   };
   validationFlag: boolean;
   viewMode: boolean;
+  comprehensiveJourneyMode: boolean;
+  saveData:string;
+
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -62,6 +65,7 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
         this.employmentTypeList = this.translate.instant('CMP.MY_EARNINGS.EMPLOYMENT_TYPE_LIST');
         this.setPageTitle(this.pageTitle);
         this.validationFlag = this.translate.instant('CMP.MY_EARNINGS.OPTIONAL_VALIDATION_FLAG');
+        this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
       });
     });
     this.earningDetails = this.comprehensiveService.getMyEarnings();
@@ -71,6 +75,14 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
       this.employmentType = 'Employed';
     }
     this.viewMode = this.comprehensiveService.getViewableMode();
+    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
+    if (!this.comprehensiveJourneyMode &&  this.earningDetails ) {
+      this.earningDetails.otherMonthlyIncome = 0;
+      this.earningDetails.otherAnnualIncome = 0;
+      this.earningDetails.annualDividends = 0;
+      this.earningDetails.monthlyRentalIncome = 0;
+      this.earningDetails.otherMonthlyWorkIncome = 0;
+    }
   }
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
@@ -135,10 +147,12 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
       monthlySalary: [{ value: this.earningDetails ? this.earningDetails.monthlySalary : '', disabled: this.viewMode }, []],
       monthlyRentalIncome: [{ value: this.earningDetails ? this.earningDetails.monthlyRentalIncome : '', disabled: this.viewMode }],
       otherMonthlyWorkIncome: [{ value: this.earningDetails ? this.earningDetails.otherMonthlyWorkIncome : '', disabled: this.viewMode }],
-      otherMonthlyIncome: [{ value: this.earningDetails ? this.earningDetails.otherMonthlyIncome : '', disabled: this.viewMode }],
+      otherMonthlyIncome: [{ value: ( this.earningDetails ? this.earningDetails.otherMonthlyIncome : ''), disabled: this.viewMode }],
       annualBonus: [{ value: this.earningDetails ? this.earningDetails.annualBonus : '', disabled: this.viewMode }, []],
-      annualDividends: [{ value: this.earningDetails ? this.earningDetails.annualDividends : '', disabled: this.viewMode }],
-      otherAnnualIncome: [{ value: this.earningDetails ? this.earningDetails.otherAnnualIncome : '', disabled: this.viewMode }]
+      annualDividends: [{ value:( this.earningDetails ?
+         this.earningDetails.annualDividends : '') , disabled: this.viewMode }],
+      otherAnnualIncome: [{ value: ( this.earningDetails ?
+        this.earningDetails.otherAnnualIncome : '') , disabled: this.viewMode }]
     });
   }
   selectEmploymentType(employmentType) {
@@ -160,14 +174,22 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
           this.earningDetails = form.value;
           this.earningDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.API_TOTAL_BUCKET_KEY] = this.totalAnnualIncomeBucket;
           this.earningDetails.enquiryId = this.comprehensiveService.getEnquiryId();
-          this.loaderService.showLoader({ title: 'Saving' });
+          this.loaderService.showLoader({ title: this.saveData });
           this.comprehensiveApiService.saveEarnings(this.earningDetails).subscribe((data) => {
             this.comprehensiveService.setMyEarnings(this.earningDetails);
-            this.loaderService.hideLoader();
-            if (this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
+            if (!this.comprehensiveService.hasBadMoodFund() && this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
               this.comprehensiveService.saveBadMoodFund();
             }
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS]);
+            if (this.comprehensiveService.getMySteps() === 1
+            && this.comprehensiveService.getMySubSteps() < 1) {
+              this.comprehensiveService.setStepCompletion(1, 1).subscribe((data1: any) => {
+                this.loaderService.hideLoader();
+                this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS]);
+              });
+            } else {
+              this.loaderService.hideLoader();
+              this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS]);
+            }
           });
         } else {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_SPENDINGS]);
@@ -177,6 +199,9 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
   }
   validateEarnings(form: FormGroup) {
     this.submitted = true;
+    if (this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+      this.myEarningsForm.markAsDirty();
+    }
     if (this.validationFlag === true && !form.valid) {
       Object.keys(form.controls).forEach((key) => {
 
@@ -206,10 +231,8 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
   }
 
   onTotalAnnualIncomeBucket() {
-    //const inputParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.MONTHLY_INPUT_CALC;
-    //this.totalAnnualIncomeBucket = this.comprehensiveService.additionOfCurrency(this.myEarningsForm.value, inputParams);
     this.totalAnnualIncomeBucket = this.comprehensiveService.getTotalAnnualIncomeByEarnings(this.myEarningsForm.value);
-    const bucketParams = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.BUCKET_INPUT_CALC;
+    const bucketParams = (!this.comprehensiveJourneyMode) ? COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.BUCKET_INPUT_CALC_LITE : COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.BUCKET_INPUT_CALC;
     const earningInput = this.myEarningsForm.value;
     this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, earningInput, this.totalAnnualIncomeBucket);
   }

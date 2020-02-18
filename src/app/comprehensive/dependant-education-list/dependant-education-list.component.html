@@ -1,10 +1,19 @@
+<div class="comprehensive hidden-sm-md">
+    <!--Step indicator-->
+    <div class="step-indicator-wrapper">
+      <div class="step-indicator-container" id="moDpdnt2StepIndctr">
+        <app-step-indicator [count]="5" [activeStepIndex]="4" [mode]="1"></app-step-indicator>
+      </div>
+    </div>
+    <!--Step indicator-->
+</div>
 <!--Container fluid-->
 <div class="container-fluid max-width--1024 comprehensive">
   <!--Step indicator-->
-  <div class="step-indicator-container" id="moDpdnt2StepIndctr">
-    <app-step-indicator [count]="5" [activeStepIndex]="4" [mode]="1"></app-step-indicator>
-  </div>
-  <!--Step indicator-->
+  <div class="step-indicator-container hidden-lg" id="moDpdnt2StepIndctr">
+      <app-step-indicator [count]="5" [activeStepIndex]="4" [mode]="1"></app-step-indicator>
+    </div>
+    <!--Step indicator-->
   <div class="flex space-btwn align-items-start mt30 ">
     <div class="comprehensive__page-sub-heading pb0 pr10" for="name">{{
         'CMP.ENDOWMENT_PLAN.DESCRIPTION' | translate}}

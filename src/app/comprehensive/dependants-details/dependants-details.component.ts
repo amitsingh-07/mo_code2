@@ -47,8 +47,9 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   routerEnabled = false;
   viewMode: boolean;
   houseHold: IdependentsSummaryList;
-  minDate:any;
-  maxDate:any;
+  minDate: any;
+  maxDate: any;
+  saveData: string;
 
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -74,6 +75,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         this.genderList = this.translate.instant('CMP.GENDER');
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
         this.setPageTitle(this.pageTitle);
+        this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
         this.childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
         if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
           this.routerEnabled = !this.summaryRouterFlag;
@@ -205,20 +207,28 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
           form.value.dependentMappingList[index].enquiryId = this.comprehensiveService.getEnquiryId();
         });
         if (!form.pristine) {
-          this.hasDependant = form.value.dependentMappingList.length > 0; // #this.comprehensiveService.hasDependant();
+          this.hasDependant = form.value.dependentMappingList.length > 0; 
           this.houseHold = this.comprehensiveService.gethouseHoldDetails();
 
           form.value.hasDependents = this.hasDependant;
           form.value.noOfHouseholdMembers = this.houseHold.noOfHouseholdMembers,
             form.value.houseHoldIncome = this.houseHold.houseHoldIncome,
-            this.loaderService.showLoader({ title: 'Saving Details' });
+            this.loaderService.showLoader({ title: this.saveData });
           this.comprehensiveApiService.addDependents(form.value).subscribe(((data: any) => {
-            this.loaderService.hideLoader();
             this.comprehensiveService.setHasDependant(true);
             this.comprehensiveService.setMyDependant(data.objectList[0].dependentsList);
             this.comprehensiveService.clearEndowmentPlan();
             this.comprehensiveService.setEndowment(null);
-            this.goToNextPage();
+            if (this.comprehensiveService.getMySteps() === 0
+            && this.comprehensiveService.getMySubSteps() < 2) {
+            this.comprehensiveService.setStepCompletion(0, 2).subscribe((data1: any) => {
+              this.loaderService.hideLoader();
+              this.goToNextPage();
+            });
+            } else {
+              this.loaderService.hideLoader();
+              this.goToNextPage();
+            }
           }));
         } else {
           this.goToNextPage();
@@ -272,11 +282,10 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     }
   }
   onKeyPressEvent(event: any, dependentName: any) {
-    //return (event.which !== 13 && dependentName.length < 100);
     const selection = window.getSelection();
     if (dependentName.length >= 100 && selection.type !== 'Range') {
       const id = event.target.id;
-      const el = document.querySelector("#" + id);//document.getElementById(id);
+      const el = document.querySelector("#" + id);
       this.setCaratTo(el, 100, dependentName);
       event.preventDefault();
     }
@@ -290,15 +299,12 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       const dependentName = event.target.innerText;
       if (dependentName.length >= 100) {
         const dependentNameList = dependentName.substring(0, 100);
-        //event.target.innerText = dependentNameList;
+        
         this.myDependantForm.controls['dependentMappingList']['controls'][arr[1]].controls.name.setValue(dependentNameList);
         this.myDependantForm.controls['dependentMappingList']['controls'][arr[1]].markAsDirty();
-        const el = document.querySelector("#" + id);//document.getElementById(id);
+        const el = document.querySelector("#" + id);
         this.setCaratTo(el, 100, dependentNameList);
-      }/* else if (dependentName.length > 0) {
-        const el = document.querySelector("#" + id);//document.getElementById(id);
-        this.setCaratTo(el, dependentName.length, dependentName);
-      }*/
+      }
     }
   }
   setCaratTo(contentEditableElement, position, dependentName) {

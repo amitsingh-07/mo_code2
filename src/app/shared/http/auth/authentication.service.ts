@@ -30,7 +30,8 @@ export class AuthenticationService {
     return 'kH5l7sn1UbauaC46hT8tsSsztsDS5b/575zHBrNgQAA=';
   }
 
-  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string, enqId?: number, journeyType?: string) {
+  // tslint:disable-next-line: max-line-length
+  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string, enqId?: number, journeyType?: string , finlitEnabled?: boolean, accessCode?: string) {
     const authenticateBody = {
       email: (userEmail && this.isUserNameEmail(userEmail)) ? userEmail : '',
       mobile: (userEmail && !this.isUserNameEmail(userEmail)) ? userEmail : '',
@@ -39,10 +40,11 @@ export class AuthenticationService {
     };
     if (sessionId) { authenticateBody['sessionId'] = sessionId; }
     if (captchaValue) { authenticateBody['captchaValue'] = captchaValue; }
-    if (enqId) { authenticateBody['enquiryId'] = enqId; }
-    if (journeyType) { authenticateBody['journeyType'] = journeyType; }
+    if (enqId && !finlitEnabled) { authenticateBody['enquiryId'] = enqId; }
+    if (journeyType && !finlitEnabled) { authenticateBody['journeyType'] = journeyType; }
+    if (finlitEnabled) { authenticateBody['accessCode'] = accessCode; }
     const handleError = '?handleError=true';
-    return this.doAuthenticate(authenticateBody, handleError);
+    return this.doAuthenticate(authenticateBody, handleError, finlitEnabled);
   }
 
   authenticate() {
@@ -60,11 +62,11 @@ export class AuthenticationService {
     return this.doAuthenticate(authenticateBody);
   }
 
-  private doAuthenticate(authenticateBody: any, handleError?: string) {
+  private doAuthenticate(authenticateBody: any, handleError?: string, finlitEnabled?: boolean) {
     if (!handleError) {
       handleError = '';
     }
-    const authenticateUrl = apiConstants.endpoint.authenticate;
+    const authenticateUrl = (finlitEnabled) ? apiConstants.endpoint.authenticateWorkshop : apiConstants.endpoint.authenticate;
     return this.httpClient.post<IServerResponse>(`${this.apiBaseUrl}/${authenticateUrl}${handleError}`, authenticateBody)
       .pipe(map((response) => {
         // login successful if there's a jwt token in the response
@@ -170,5 +172,17 @@ export class AuthenticationService {
           return throwError('Something bad happened; please try again later.');
         })
       );
+  }
+  public isSignedUserWithRole(role: string) {
+    // get the token
+    const token = this.getToken();
+    if (!token) {
+      return false;
+    }
+
+    const decodedInfo = this.jwtHelper.decodeToken(token);
+    const isLoggedInToken = decodedInfo.roles.split(',').indexOf(role) >= 0;
+    const isTokenExpired = this.jwtHelper.isTokenExpired(token);
+    return !isTokenExpired && isLoggedInToken;
   }
 }

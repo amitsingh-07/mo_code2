@@ -1,0 +1,72 @@
+<div class="comprehensive hidden-sm-md">
+  <div class="step-indicator-wrapper">
+    <div class="step-indicator-container">
+      <app-step-indicator [count]="4" [activeStepIndex]="questionIndex-1" [mode]="1"></app-step-indicator>
+    </div>
+  </div>
+</div>
+<div class="container-fluid max-width--1024 comprehensive">
+    <div class="step-indicator-container hidden-lg">
+        <app-step-indicator [count]="4" [activeStepIndex]="questionIndex-1" [mode]="1"></app-step-indicator>
+      </div>
+  <div *ngIf="questionIndex === 1">
+    <div class="comprehensive__page-sub-heading mt30"> {{ 'CMP.RISK_PROFILE.PAGE_HEADING' | translate}}</div>
+    <div class="comprehensive__page-content">{{ 'CMP.RISK_PROFILE.PAGE_SUB_HEADING' | translate}}</div>
+    <div class="banner-image text-center">
+      <img src="assets/images/investment-account/qn-1.svg" width="244" height="239">
+    </div>
+  </div>
+  <div *ngIf="currentQuestion">
+    <form name="riskAssessmentForm" [formGroup]="riskAssessmentForm" id="riskAssessmentForm">
+      <div class="form-group-single-column flex-col">
+        <div class="question-title mb20 mt30" id="risk-assessment_question_lbl">
+          {{currentQuestion.description}}
+        </div>
+        <!-- NORMAL CASE -->
+        <div class="row" *ngIf="!isSpecialCase">
+          <div class="col-12" *ngFor="let option of currentQuestion.options; let i = index">
+            <div class="checkbox-button one-label">
+              <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="risk-assessment_option{{i+1}}_radio" name="questSelOption" formControlName="questSelOption"
+                type="radio" class="field radio" [value]="option.questionOptionId" tabindex="{{i+1}}">
+              <label for="risk-assessment_option{{i+1}}_radio" id="riskAssessLbl_{{i}}">
+                <div><span id="risk-assessment_option-text{{i+1}}_lbl" class="input-label-grey">{{option.text}}</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+        <!-- SPECIAL CASE -->
+        <div class="table-view" *ngIf="isSpecialCase">
+          <div class="table-row table-head">
+            <div class="table-cell">
+              <div class="col-head">{{ 'CMP.RISK_PROFILE.QUESTION_4_COL_1' | translate}}</div>
+            </div>
+            <div class="table-cell">
+              <div class="col-head">{{ 'CMP.RISK_PROFILE.QUESTION_4_COL_2' | translate}}</div>
+              <div> {{ 'CMP.RISK_PROFILE.QUESTION_4_COL_2_SUB' | translate}}</div>
+            </div>
+            <div class="table-cell">
+              <div class="col-head">{{ 'CMP.RISK_PROFILE.QUESTION_4_COL_3' | translate}}</div>
+              <div>{{ 'CMP.RISK_PROFILE.QUESTION_4_COL_3_SUB' | translate}}</div>
+            </div>
+          </div>
+          <div class="table-row" *ngFor="let option of currentQuestion.options; let i = index">
+            <div class="table-cell">
+              <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="risk-assessment_option{{i+1}}_radio" name="questSelOption" formControlName="questSelOption"
+                type="radio" class="field radio" [value]="option.questionOptionId"  tabindex="{{i+1}}">
+              <label for="risk-assessment_option{{i+1}}_radio" id="riskAssessLbl_{{i}}">
+                <div><span id="risk-assessment_option-text{{i+1}}_lbl" class="input-label-grey">{{option.text}}</span>
+                </div>
+              </label>
+            </div>
+            <div class="table-cell">{{option.additionalInfo.optimisticProjection}}</div>
+            <div class="table-cell">{{option.additionalInfo.pessimisticProjection}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-cta"> <button type="button" [disabled]="!riskAssessmentForm.valid"
+          (click)="goToNext(riskAssessmentForm)" class="btn btn-primary width100" id="prfBtn1">Save
+          and continue</button></div>
+    </form>
+  </div>
+</div>
