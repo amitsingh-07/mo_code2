@@ -29,10 +29,6 @@ class MockComprehensiveApiService {
   generateComprehensiveReport(reportData): Observable<any> {
     return of({});
   }
-
-  createReportRequest(payload): Observable<any> {
-    return of({reportId: 123});
-  }
 }
 
 class MockComprehensiveService {
@@ -164,12 +160,6 @@ describe('PaymentStatusComponent', () => {
       expect(setReportStatusSpy).toHaveBeenCalledWith('submitted');
       expect(setLockedSpy).toHaveBeenCalledWith(true);
       expect(setViewableModeSpy).toHaveBeenCalledWith(true);
-
-      spyOn(comprehensiveApiService, 'createReportRequest').and.returnValue({ subscribe: () => { } });
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(setReportIdSpy).toHaveBeenCalledWith(123);
-      });
     });
   });
 });
