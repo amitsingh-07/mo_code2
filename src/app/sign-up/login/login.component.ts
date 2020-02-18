@@ -104,9 +104,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.distribution = config.distribution;
-    });    
+    });
     if (route.snapshot.data[0]) {
       this.finlitEnabled = route.snapshot.data[0]['finlitEnabled'];
+      this.appService.clearJourneys();
+      this.appService.clearPromoCode();
     }
   }
 
