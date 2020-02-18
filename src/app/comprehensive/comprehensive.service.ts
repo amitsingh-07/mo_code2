@@ -1445,7 +1445,7 @@ export class ComprehensiveService {
             value:
               (item.location === null ? '' : item.location) +
               (item.educationCourse === null ? '' : ', ' + item.educationCourse) +
-              (item.educationSpendingShare === null ? '' : ', ' + item.educationSpendingShare) + '% Share'
+              (item.educationSpendingShare === null ? '' : ', ' + item.educationSpendingShare  + '% Share')
           });
         });
       }
