@@ -118,7 +118,8 @@ const routes: Routes = [
   },
   { path: SIGN_UP_ROUTES.FINLIT_LOGIN,
     component: LoginComponent,
-    canActivate: [FinlitLoggedUserGuard]
+    canActivate: [FinlitLoggedUserGuard],
+    data: [{finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN}]
   },
 
   { path: '**', redirectTo: '/page-not-found' }
