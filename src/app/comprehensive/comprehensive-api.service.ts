@@ -150,11 +150,6 @@ export class ComprehensiveApiService {
             .post(apiConstants.endpoint.comprehensive.generateComprehensiveReport, payload)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
-    createReportRequest(payload) {
-        return this.http
-            .post(apiConstants.endpoint.comprehensive.createReportRequest, payload)
-            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
-    }
     getReport() {
         return this.http
             .get(apiConstants.endpoint.comprehensive.getReport)

@@ -96,7 +96,6 @@ export let apiConstants = {
             downloadComprehensiveReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'downloadLiteReportPdf',
             saveStepIndicator: COMPREHENSIVE_API_BASE_URL + 'saveComprehensiveStepCompletion',
             generateComprehensiveReport: COMPREHENSIVE_API_BASE_URL + 'generateComprehensiveReport',
-            createReportRequest: COMPREHENSIVE_REPORT_API_BASE_URL + 'createReportRequest',
             getReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'getReport',
             getComprehensiveSummaryDashboard: COMPREHENSIVE_API_BASE_URL + 'fetchComprehensiveStatus',
             getProductAmount: ACCOUNT_API_BASE_URL + '/productPricing',
