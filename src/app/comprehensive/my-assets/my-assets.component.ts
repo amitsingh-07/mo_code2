@@ -1,12 +1,14 @@
+import { AboutAge } from './../../shared/utils/about-age.util';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { MyInfoService } from '../../shared/Services/my-info.service';
+import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS, COMPREHENSIVE_ROUTES } from '../comprehensive-routes.constants';
@@ -23,7 +25,8 @@ import { ComprehensiveService } from './../comprehensive.service';
 @Component({
   selector: 'app-my-assets',
   templateUrl: './my-assets.component.html',
-  styleUrls: ['./my-assets.component.scss']
+  styleUrls: ['./my-assets.component.scss'],
+  providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
 })
 export class MyAssetsComponent implements OnInit, OnDestroy {
   RSPForm: any;
@@ -49,6 +52,10 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   cpfFromMyInfo = false;
   viewMode: boolean;
   myinfoChangeListener: Subscription;
+  showRetirementAccount: boolean= false;
+  myAge: any;
+  comprehensiveJourneyMode;
+  saveData: string;
 
   // tslint:disable-next-line:cognitive-complexity
   constructor(
@@ -56,7 +63,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
     private progressService: ProgressTrackerService, private loaderService: LoaderService, private myInfoService: MyInfoService,
-    private modal: NgbModal) {
+    private modal: NgbModal, private parserFormatter: NgbDateParserFormatter, private aboutAge: AboutAge) {
     this.pageId = this.route.routeConfig.component.name;
     this.viewMode = this.comprehensiveService.getViewableMode();
     this.configService.getConfig().subscribe((config: any) => {
@@ -69,8 +76,15 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         this.investmentTypeList = this.translate.instant('CMP.MY_ASSETS.INVESTMENT_TYPE_LIST');
         this.setPageTitle(this.pageTitle);
         this.validationFlag = this.translate.instant('CMP.MY_ASSETS.OPTIONAL_VALIDATION_FLAG');
+        this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
       });
     });
+    const today: Date = new Date();
+    this.myAge = this.comprehensiveService.getMyProfile().dateOfBirth;
+    const getAge = this.aboutAge.calculateAge(this.myAge, today);
+    if ( getAge > COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.RETIREMENT_AGE ) {
+      this.showRetirementAccount = true;
+    }
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '') {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled
@@ -81,13 +95,15 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
               const oaFormControl = this.myAssetsForm.controls['cpfOrdinaryAccount'];
               const saFormControl = this.myAssetsForm.controls['cpfSpecialAccount'];
               const maFormControl = this.myAssetsForm.controls['cpfMediSaveAccount'];
+              const raFormControl = this.myAssetsForm.controls['cpfRetirementAccount'];
               oaFormControl.setValue(cpfValues.oa);
               saFormControl.setValue(cpfValues.sa);
               maFormControl.setValue(cpfValues.ma);
-              oaFormControl.markAsDirty();
+              const retirementAccount = this.showRetirementAccount  ? cpfValues.ra : null;
+              raFormControl.setValue(retirementAccount);
               saFormControl.markAsDirty();
               maFormControl.markAsDirty();
-
+              raFormControl.markAsDirty();
               this.onTotalAssetsBucket();
               this.cpfFromMyInfo = true;
               this.myInfoService.isMyInfoEnabled = false;
@@ -104,7 +120,14 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         }
       }
     });
+    
     this.assetDetails = this.comprehensiveService.getMyAssets();
+    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
+    if (!this.comprehensiveJourneyMode && this.assetDetails  ) {
+      this.assetDetails.homeMarketValue = 0;
+      this.assetDetails.otherAssetsValue = 0;
+      this.assetDetails.investmentPropertiesValue = 0;
+    }
     if (this.assetDetails && this.assetDetails.source === 'MyInfo') {
       this.cpfFromMyInfo = true;
     }
@@ -192,11 +215,9 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     let inc = 0;
     if (this.assetDetails.assetsInvestmentSet && this.assetDetails.assetsInvestmentSet.length > 0) {
       this.assetDetails.assetsInvestmentSet.forEach((otherInvest, i) => {
-        //if (otherInvest.typeOfInvestment !== '' || otherInvest.investmentAmount > 0) {
         otherInvestFormArray.push(this.buildInvestmentForm(otherInvest, i));
         this.investType[inc] = otherInvest.typeOfInvestment;
         inc++;
-        //}
       });
     } else {
       otherInvestFormArray.push(this.buildInvestmentForm('', 0));
@@ -208,6 +229,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       cpfOrdinaryAccount: [{ value: this.assetDetails ? this.assetDetails.cpfOrdinaryAccount : '', disabled: this.viewMode }, []],
       cpfSpecialAccount: [{ value: this.assetDetails ? this.assetDetails.cpfSpecialAccount : '', disabled: this.viewMode }, []],
       cpfMediSaveAccount: [{ value: this.assetDetails ? this.assetDetails.cpfMediSaveAccount : '', disabled: this.viewMode }, []],
+      cpfRetirementAccount:[{ value: this.assetDetails ? this.assetDetails.cpfRetirementAccount : '', disabled: this.viewMode }, []],
       homeMarketValue: [{ value: this.assetDetails ? this.assetDetails.homeMarketValue : '', disabled: this.viewMode }, []],
       investmentPropertiesValue: [{
         value: this.assetDetails ? this.assetDetails.investmentPropertiesValue : '',
@@ -290,6 +312,9 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   get addAssetsValid() { return this.myAssetsForm.controls; }
   validateAssets(form: FormGroup) {
     this.submitted = true;
+    if (this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+      this.myAssetsForm.markAsDirty();
+    }
     if (this.validationFlag === true && !form.valid) {
       Object.keys(form.controls).forEach((key) => {
 
@@ -319,11 +344,19 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
             this.assetDetails.assetsInvestmentSet[index].enquiryId = this.assetDetails.enquiryId;
             delete this.assetDetails['investmentAmount_' + index];
           });
-          this.loaderService.showLoader({ title: 'Saving' });
+          this.loaderService.showLoader({ title: this.saveData });
           this.comprehensiveApiService.saveAssets(this.assetDetails).subscribe((data) => {
-            this.loaderService.hideLoader();
             this.comprehensiveService.setMyAssets(this.assetDetails);
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+            if (this.comprehensiveService.getMySteps() === 1
+            && this.comprehensiveService.getMySubSteps() < 5) {
+              this.comprehensiveService.setStepCompletion(1, 5).subscribe((data1: any) => {
+                this.loaderService.hideLoader();
+                this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+              });
+            } else {
+              this.loaderService.hideLoader();
+              this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
+            }
           });
         } else {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
