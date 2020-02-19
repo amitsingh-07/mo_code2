@@ -21,7 +21,7 @@
               <a class="art-tag__element" *ngFor="let tag of article.art_tags" routerLink="/articles/category/{{this.articleService.getTagNameToLink(tag)}}">{{tag}}</a>
               </div>
             <div class="article-card--img">
-              <img src="/assets/articles/images/{{article.id}}/thumbnail.jpg"/>
+              <img src="assets/articles/images/{{article.id}}/thumbnail.jpg"/>
               </div>
             <div class="article-card--desc">
               <a class="art-title" routerLink="/articles/entry/{{article.id}}">{{article.art_title}}</a>
