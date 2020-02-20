@@ -38,11 +38,10 @@
       <nouislider [disabled]="viewMode" id="retirementSlider" #ciMultiplierSlider (slide)="onSliderChange($event)"
         [config]="ciSliderConfig"></nouislider>
         <div class="min-max-val">
-                <div class="min-val">45 yrs old<span class="min-text">Min.</span></div>
-                <div class="max-val">70 yrs old<span class="max-text">Max.</span>
-               </div>
-               </div>
-          
+          <div class="min-val">45 yrs old<span class="min-text">Min.</span></div>
+          <div class="max-val">70 yrs old<span class="max-text">Max.</span>
+          </div>
+        </div>
     </div>
     <div class="flex-row retirementAgeValid" *ngIf="!(sliderValid.minAge && sliderValid.userAge)">
       <div class="flex-col-12">
@@ -56,7 +55,7 @@
         </div>
       </div>
     </div>
-    <div *ngIf="comprehensiveJourneyMode" class="title mt10">{{'CMP.RETIREMENT_PLAN.FORM_HEADER'|translate}}</div>
+    <div *ngIf="comprehensiveJourneyMode" class="title mt30">{{'CMP.RETIREMENT_PLAN.FORM_HEADER'|translate}}</div>
     <div *ngIf="comprehensiveJourneyMode" class="form-group-single-column  flex-col mt10">
       <!--Form label-->
       <div class="checkbox-button one-label">
