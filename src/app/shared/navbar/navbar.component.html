@@ -80,35 +80,35 @@
           (click)="checkCurrentRouteAndNavigate('/accounts/edit-profile')">
           <a class="navbar--text" href="javascript: void(0);">Profile</a>
         </li>
-        <li *ngIf="showMenu" class="nav-item home-btn" (click)="checkCurrentRouteAndNavigate('/home')">
+        <li *ngIf="showMenu && showHome" class="nav-item home-btn" (click)="checkCurrentRouteAndNavigate('/home')">
           <a class="nav-link">Home</a>
         </li>
-        <li *ngIf="showMenu" class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="openDropdown(id01);"
+        <li *ngIf="showMenu && (showWills || showInvest || showInvest || showComprehensive)" class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="openDropdown(id01);"
           (mouseleave)="closeDropdown(id01);">
           <!--  (mouseleave)="closeDropdown(id01);"-->
           <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Services</a>
           <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id01">
-            <button class="dropdown-item" (click)="goToHome('insurance')" fragment="insurance">
+            <button *ngIf="showInsure" class="dropdown-item" (click)="goToHome('insurance')" fragment="insurance">
               <img src="assets/images/nav/nav-insure-icon.svg" />
               <div class="navbar--text">
                 <span>Insure</span>
               </div>
             </button>
-            <button class="dropdown-item" (click)="goToHome('will')" fragment="will">
+            <button *ngIf="showWills" class="dropdown-item" (click)="goToHome('will')" fragment="will">
               <img src="assets/images/nav/nav-will-icon.svg" />
               <div class="navbar--text">
                 <span>Wills</span>
                 <span *ngIf="!isWillWritingEnabled" class="sub">(Coming Soon)</span>
               </div>
             </button>
-            <button class="dropdown-item" (click)="goToHome('invest')" fragment="invest">
+            <button *ngIf="showInvest" class="dropdown-item" (click)="goToHome('invest')" fragment="invest">
               <img src="assets/images/nav/nav-invest-icon.svg" />
               <div class="navbar--text">
                 <span>Invest</span>
                 <span *ngIf="!isInvestmentEnabled" class="sub">(Coming Soon)</span>
               </div>
             </button>
-            <button class="dropdown-item" (click)="goToHome('comprehensive')" fragment="comprehensive">
+            <button *ngIf="showComprehensive" class="dropdown-item" (click)="goToHome('comprehensive')" fragment="comprehensive">
               <img src="assets/images/nav/nav-compre-icon.svg" />
               <div class="navbar--text">
                 <span>Comprehensive (integrating national schemes)</span>
@@ -118,14 +118,14 @@
             <div class="tip"></div>
           </div>
         </li>
-        <li *ngIf="showMenu" class="nav-item dropdown" ngbDropdown #id06="ngbDropdown" (mouseover)="openDropdown(id06);"
+        <li *ngIf="showMenu && (showFWP || showFLT)" class="nav-item dropdown" ngbDropdown #id06="ngbDropdown" (mouseover)="openDropdown(id06);"
           (mouseleave)="closeDropdown(id06);">
           <a class="nav-link dropdown-toggle" id="id06" ngbDropdownToggle>Corporate</a>
           <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id06">
-            <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/works')">
+            <button *ngIf="showFWP" class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/works')">
               <div class="navbar--text">Financial Wellness Programme</div>
             </button>
-            <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/works/financial-literacy')">
+            <button *ngIf="showFLT" class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/works/financial-literacy')">
               <div class="navbar--text">Financial Literacy Team</div>
             </button>
           </div>
@@ -134,7 +134,7 @@
           (click)="checkCurrentRouteAndNavigate('/promotions')">
           <a class="nav-link">Promotions</a>
         </li>
-        <li *ngIf="isArticleEnabled && showMenu" class="nav-item dropdown" ngbDropdown #id02="ngbDropdown"
+        <li *ngIf="isArticleEnabled && showMenu && showLearn" class="nav-item dropdown" ngbDropdown #id02="ngbDropdown"
           (mouseover)="openDropdown(id02);" (mouseleave)="closeDropdown(id02);">
           <a class="nav-link dropdown-toggle" id="id02" ngbDropdownToggle>Learn</a>
           <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id02">
@@ -154,22 +154,22 @@
           (mouseleave)="closeDropdown(id04);">
           <a class="nav-link dropdown-toggle" id="id04" ngbDropdownToggle>About Us</a>
           <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id04">
-            <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/about-us')">
+            <button *ngIf="showAbtUs" class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/about-us')">
               <div class="navbar--text">About Us</div>
             </button>
-            <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/about-us/customer-reviews')">
+            <button *ngIf="showCustomerReviews" class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/about-us/customer-reviews')">
               <div class="navbar--text">Customer Reviews</div>
             </button>
-            <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/about-us/why-moneyowl')">
+            <button *ngIf="showWhyMO" class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/about-us/why-moneyowl')">
               <div class="navbar--text">Why MoneyOwl</div>
             </button>
-            <button class="dropdown-item" (click)="goToExternal('https://moneyowl.recruiterpal.com/career/jobs')">
+            <button *ngIf="showCareers" class="dropdown-item" (click)="goToExternal('https://moneyowl.recruiterpal.com/career/jobs')">
               <div class="navbar--text">Careers</div>
             </button>
-            <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/about-us/contact-us')">
+            <button *ngIf="showContactUs" class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/about-us/contact-us')">
               <div class="navbar--text">Contact Us</div>
             </button>
-            <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/faq')">
+            <button *ngIf="showFAQs" class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/faq')">
               <div class="navbar--text">FAQs</div>
             </button>
           </div>
