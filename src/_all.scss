@@ -438,7 +438,7 @@ h6 {
       display: inline-block;
       width: auto;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 14px;
       letter-spacing: -0.2px;
 
       &.show {
@@ -619,7 +619,7 @@ h6 {
 
       &.notification {
         width: auto;
-        margin: 0px 25px 0px 10px;
+        margin: 0px 15px 0px 5px;
         padding: 15px 0px;
 
         .dropdown-toggle {
@@ -1886,7 +1886,7 @@ a.link-white {
 }
 
 .navbar .navbar-collapse .nav-item {
-  margin-right: 15px;
+  margin-right: 10px;
 }
 
 .dropdown-toggle.last::after {
