@@ -119,7 +119,7 @@
             <div class="flex-col-12">
         
               <button *ngIf="isReportGenerated" (click)="downloadComprehensiveReport()" type="button" class="btn btn-view width100" id="prfBtn1">
-                <div class="ft-18" for="name">
+                <div class="ft-18 download-report"  for="name">
                   {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_VIEW_REPORT' | translate}}
                   <div class="label-grey ft-13" for="name">
                     {{ ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_LAST_UPDATED' | translate).replace('LAST_UPDATED_DATE', submittedDate | date: 'dd MMM yyyy')}}
