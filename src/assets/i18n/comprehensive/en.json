@@ -180,7 +180,7 @@
       "QUESTION_4_COL_2_SUB": "Return Projection (per annum)",
       "QUESTION_4_COL_3": "Pessimistic",
       "QUESTION_4_COL_3_SUB": "Return Projection (per annum)",
-      "FOOTER_BTN": "Save and continue"
+      "FOOTER_BTN_TEXT": "Save and Continue"
     },
     "MY_PROFILE": {
       "NATIONALITY_ALERT": "Seems like you have changed your input for “Nationality”. Changes will be applied to all platforms upon saving.",

@@ -65,8 +65,7 @@
         </div>
       </div>
       <div class="footer-cta"> <button type="button" [disabled]="!riskAssessmentForm.valid"
-          (click)="goToNext(riskAssessmentForm)" class="btn btn-primary width100" id="prfBtn1">Save
-          and continue</button></div>
+          (click)="goToNext(riskAssessmentForm)" class="btn btn-primary width100" id="prfBtn1">{{ 'CMP.RISK_PROFILE.FOOTER_BTN_TEXT' | translate}}</button></div>
     </form>
   </div>
 </div>

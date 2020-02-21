@@ -1094,6 +1094,14 @@ button:active:focus {
         background: $btn-comprehensive-disabled-bg;
         color: $white-color;
       }
+      &:active, &:focus, &:visited, .acive:hover {
+        background: $btn-comprehensive !important;
+      }
+      &:hover {
+        @include desktop {
+          background: $bright-turquiose-color !important;
+        }
+      }
     }
   }
 
