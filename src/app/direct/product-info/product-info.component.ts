@@ -224,6 +224,9 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
       catId = catId - 1;
     }
     this.openProductCategory(catId);
+    if (this.innerWidth < this.mobileThreshold) {
+      this.directService.updateUserInfo();
+    }
   }
 
   formSubmitted(data) {
@@ -322,9 +325,6 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     this.selectedCategory = data;
     this.selectedCategoryId = data.id;
     this.setActiveProductCategory(index);
-    if (this.innerWidth < this.mobileThreshold) {
-      this.directService.updateUserInfo();
-    }
   }
 
   setActiveProductCategory(index) {
