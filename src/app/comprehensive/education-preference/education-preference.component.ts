@@ -173,8 +173,16 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy, AfterVie
             hasEndowments: this.comprehensiveService.hasEndowment(),
             endowmentDetailsList: this.endowmentDetail
           }).subscribe((data) => {
-            this.comprehensiveService.setChildEndowment(this.endowmentDetail);
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
+            if (this.comprehensiveService.getMySteps() === 0
+            && this.comprehensiveService.getMySubSteps() < 4) {
+              this.comprehensiveService.setStepCompletion(0, 4).subscribe((data1: any) => {
+                this.comprehensiveService.setChildEndowment(this.endowmentDetail);
+                this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
+              });
+            } else {
+              this.comprehensiveService.setChildEndowment(this.endowmentDetail);
+              this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
+            }
           });
         } else {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);

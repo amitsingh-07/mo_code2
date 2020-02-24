@@ -15,6 +15,9 @@ export interface IComprehensiveDetails {
     comprehensiveInsurancePlanning: IInsurancePlan;
     comprehensiveRetirementPlanning: IRetirementPlan;
     comprehensiveViewMode?: boolean;
+    comprehensiveJourneyMode: boolean;
+    riskAssessmentAnswer?: IRiskAssesmentAnswers;
+    riskQuestionList?: any;
 }
 export interface IComprehensiveEnquiry {
     customerId: number;
@@ -27,6 +30,7 @@ export interface IComprehensiveEnquiry {
     promoCodeValidated?: boolean;
     reportStatus: string;
     stepCompleted: number;
+    subStepCompleted: number;
     reportId: number;
     homeLoanUpdatedByLiabilities?: boolean;
     isLocked: boolean;
@@ -46,6 +50,7 @@ export interface IMyProfile {
     gender: string;
     ngbDob: any;
     dobUpdateable: boolean;
+    enquiryId: number;
 }
 
 export interface IDependantDetail {
@@ -183,6 +188,7 @@ export interface IMyAssets {
     cpfOrdinaryAccount: number;
     cpfSpecialAccount: number;
     cpfMediSaveAccount: number;
+    cpfRetirementAccount: number;
     homeMarketValue: number;
     investmentPropertiesValue: number;
     assetsInvestmentSet: IOtherProperties[];
@@ -232,4 +238,20 @@ export interface IRetirementIncome {
 export interface ILumpSumBenefitSet {
     maturityAmount: number;
     maturityYear: number;
+}
+export interface IRiskAssesmentAnswers {
+    enquiryId: number;
+    answers: IRiskAnswers[];
+    riskProfileAnswers: IRiskProfile;
+
+}
+export interface IRiskProfile {
+    riskAssessQuest1: any;
+    riskAssessQuest2: any;
+    riskAssessQuest3: any;
+    riskAssessQuest4: any;
+}
+
+export interface IRiskAnswers {
+    questionOptionId: number;
 }

@@ -25,6 +25,7 @@ import { RegularSavingPlanComponent } from './regular-saving-plan/regular-saving
 import { ResultComponent } from './result/result.component';
 import { RetirementPlanComponent } from './retirement-plan/retirement-plan.component';
 import { ValidateResultComponent } from './validate-result/validate-result.component';
+import { RiskProfileComponent } from './risk-profile/risk-profile.component';
 
 const routes: Routes = [
     {
@@ -60,7 +61,9 @@ const routes: Routes = [
             { path: COMPREHENSIVE_ROUTES.RESULT, component: ResultComponent },
             { path: COMPREHENSIVE_ROUTES.ENQUIRY, component: EnquiryComponent },
             { path: COMPREHENSIVE_ROUTES.VALIDATE_RESULT, component: ValidateResultComponent },
-            { path: COMPREHENSIVE_ROUTES.REVIEW, component: ComprehensiveReviewComponent, resolve: { paymentBypass: PaymentResolver }}
+            { path: COMPREHENSIVE_ROUTES.RISK_PROFILE, redirectTo: COMPREHENSIVE_ROUTES.RISK_PROFILE + '/1' },
+            { path: COMPREHENSIVE_ROUTES.RISK_PROFILE + '/:id', component: RiskProfileComponent },
+            { path: COMPREHENSIVE_ROUTES.REVIEW, component: ComprehensiveReviewComponent}
         ]
     }
 ];

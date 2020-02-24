@@ -145,18 +145,20 @@
       "ENTER_PROMO_HEADER": "Enter Promo Code",
       "NO_PROMO": "No promo code?",
       "GET_NEW": " Get one now!",
-      "ONE_TIME_FEE": "$500 (one-time fee)",
+      "ONE_TIME_FEE": "(one-time fee)",
       "GET_PROMO": "Get Promo Code",
       "VIDEO_LINK": "https://www.youtube-nocookie.com/embed/c-c8YYTF16U?rel=0",
       "CFP": "Comprehensive Financial Planning",
-      "CFP_DESC": "100% fee rebate when you go through the full comprehensive financial planning process.",
-      "CFP_OTF_GST": "$535 (incl. GST)",
+      "CFP_DESC_PAYMENT": "100% fee rebate when you go through the full comprehensive financial planning process.",
+      "CFP_OTF_GST": "(incl. GST)",
+      "CFP_DESC": "For a limited time only, 100% fee rebate when you go through the full comprehensive financial planning process.",
       "PROMO_TEXT": "Comprehensive Financial Planning promo is ending. Complete your online journey by <strong>11 Feb 2020</strong> to enjoy the promotion. Thereafter, you will be required to pay the Comprehensive Financial Planning fee of $535 (incl 7% GST). This fee will be fully rebated to your MoneyOwl investment account upon completion of the planning process."
     },
     "COMPREHENSIVE_STEPS": {
       "STEP": "Step",
       "STEP_1_TITLE": "What's On Your Shoulders",
       "STEP_1_DESC": "Your family commitments will impact your financial planning. Let's list it down now.",
+      "STEP_1_DESC_LITE": "Your family commitments will impact your financial planning.",
       "STEP_2_TITLE": "Your Finances",
       "STEP_2_DESC": "This information helps us to estimate your financial health, your protection needs, and what you can save and invest.",
       "STEP_3_TITLE": "Risk-Proof Your Journey",
@@ -164,13 +166,25 @@
       "STEP_4_TITLE_NAV": "Retirement Planning",
       "STEP_4_TITLE": "Financial Independence, Retire Early",
       "STEP_4_DESC": "Tell us when you wish to retire!",
+      "STEP_4_TITLE_LITE": "Your Risk Profile",
+      "STEP_4_DESC_LITE": "Let us know your willingness to stay invested for retirement.",
       "STEP_5_TITLE": "Congratulations!",
       "STEP_5_DESC2": "Your data is submitted.",
       "STEP_5_TITLE_NAV": "Result"
     },
+    "RISK_PROFILE": {
+      "PAGE_HEADING": "Grow your retirement savings! Tell us your risk willingness.",
+      "PAGE_SUB_HEADING": "Investments can help to grow your savings beyond bank deposit rates. But how much are you able to ride out the ups and downs and stay invested to reach your retirement earlier?",
+      "QUESTION_4_COL_1": "Portfolio",
+      "QUESTION_4_COL_2": "Optimistic",
+      "QUESTION_4_COL_2_SUB": "Return Projection (per annum)",
+      "QUESTION_4_COL_3": "Pessimistic",
+      "QUESTION_4_COL_3_SUB": "Return Projection (per annum)",
+      "FOOTER_BTN_TEXT": "Save and Continue"
+    },
     "MY_PROFILE": {
       "NATIONALITY_ALERT": "Seems like you have changed your input for “Nationality”. Changes will be applied to all platforms upon saving.",
-      "DOB_ALERT": "Sorry, this tool is currently only available to those aged 18 to 54 years old. For other enquiries, you may wish to contact us at enquiries@moneyowl.com.sg."
+      "DOB_ALERT": "Sorry, this tool is currently only available to those aged 18 to 70 years old. For other enquiries, you may wish to contact us at enquiries@moneyowl.com.sg."
     },
     "ROAD_MAP": {
       "TITLE": "Your Road Map"
@@ -269,6 +283,7 @@
       "MONTHLY_SALARY": "Monthly Salary",
       "ANNUAL_BONUS": "Annual Bonus",
       "ANNUAL_BONUS_DESC": "Bonuses, dividends and other income you earn each year also fill up your bucket!",
+      "ANNUAL_BONUS_DESC_LITE":"Bonuses you earn each year also fill up your bucket!",
       "RENTAL_INCOME": "Monthly Rental Income",
       "OTHER_WORK_INCOME": "Other Monthly Work Income",
       "OTHER_WORK_INCOME_DESC": "(that attracts CPF)",
@@ -466,6 +481,7 @@
       "CPF_OA": "CPF Ordinary Account (OA)",
       "CPF_SA": "CPF Special Account (SA)",
       "CPF_MA": "CPF Medisave Account (MA)",
+      "CPF_RA" :" CPF Retirement Account (RA)",
       "YOUR_HOME": "Your Home",
       "MARKET_VALUE": "At market value",
       "ADD_INVESTMENT_PROPERTIES": "Add Investment Properties",
@@ -613,7 +629,7 @@
     },
     "RETIREMENT_PLAN": {
       "SUB_TITLE": "We're almost done! Tell us when you would like to retire.",
-      "ABOUT": "I want to retire by age ",
+      "ABOUT": "I want to retire by ",
       "FORM_HEADER": "Will you have any other sources of retirement income?",
       "ADD_RETIREMENT": "Add Retirement Income",
       "ADD_LUMP_SUM": "Add Lump Sum Amount",
@@ -638,7 +654,9 @@
         "LUMP_SUMP_TITLE": "Lump Sum Amount",
         "LUMP_SUMP_MESSAGE": "A lump sum amount that you expect to receive to fund your retirement from any endowment policy, pension scheme, bank deposits, investments etc."
       },
-      "CONFIRM_DELETE": "Your changes will not be saved. Do you wish to proceed?"
+      "CONFIRM_DELETE": "Your changes will not be saved. Do you wish to proceed?",
+      "RETIREMENT_USER_AGE_VALIDATION": "Your desired retirement age must be older than your current age.",
+      "RETIREMENT_MIN_AGE_VALIDATION": "Your desired retirement age must be older than 45."
     },
     "INSURANCE_PLAN": {
       "SUB_TITLE": "Your plans can be destroyed if your buckets of resources are depleted by large medical bills or if you lose your income. Here we ask you about your current risk-proofing.",
@@ -678,7 +696,9 @@
     },
     "RESULT": {
       "READY": "Congratulations! Your Comprehensive Financial Plan will be ready soon!",
+      "READY_LITE": "Congratulations! Your report is ready!",
       "ABOUT": "Once it is ready, we will notify you via email at ",
+      "ABOUT_LITE": "You can view your personalised report via your dashboard.",
       "STEP_TITLE": "What’s Next?",
       "STEP_DESC": "Our adviser will analyse your needs using our proprietary models. He or she may contact you for clarifications on your inputs.",
       "STEP_1": "Keep a lookout for our notification mail!",
@@ -706,6 +726,7 @@
       "TITLE": "Review",
       "ABOUT": "Please review your details carefully before clicking \"Confirm\". Do note that after you have clicked \"Confirm\", you will not be able to modify any of your inputs until your report is ready.",
       "ABOUT_WITH_PAY": "Please review your details carefully before clicking \"Confirm & Pay\". Do note that after you have completed payment, you will not be able to modify any of your inputs until your report is ready.",
+      "ABOUT_LITE": "Please make sure to review your inputs. If everything looks good, click “Confirm” to receive your personalised report.",
       "REVIEW_INPUT": "Review Inputs",
       "CONFIRM": "Confirm",
       "CONFIRM_WITH_PAY": "Confirm & Pay"

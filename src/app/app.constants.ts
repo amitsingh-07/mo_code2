@@ -19,6 +19,8 @@ export let appConstants = {
     HOME_ROUTE: '/home#',
     JOURNEY_TYPE_COMPREHENSIVE: 'COMPREHENSIVE',
     SESSION_KEY: {
-        COMPREHENSIVE: 'app-comprehensive-session'
+        COMPREHENSIVE: 'app-comprehensive-session',
+        COMPREHENSIVE_LITE: 'app-comprehensive-lite-session',
+        COMPREHENSIVE_VERSION: 'app-comprehensive-version'
     }
 };

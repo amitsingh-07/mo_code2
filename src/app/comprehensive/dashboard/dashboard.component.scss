@@ -143,4 +143,35 @@
     .btn.btn-primary:hover {
         background-color: #00c5c4 !important;
     }
+
+    //Dashboard Lite UI Styles
+    .comprehensive {
+        &.dashboard-lite {
+            .btn-lite.active {
+                background-color: $white-color !important;
+                color: $watercourse-color;
+            }
+            .btn-lite {
+                background-color: $lite-tab-button-inactive-color !important;
+                color: $lite-tab-button-textcolor;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+            .widget, .form-group-with-bg, .form-group-with-bg--header {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+        }
+    }
+    .report-error-msg{
+        color:#ff872f!important;
+        font-size: 16px!important;
+        font-family: $muli-italic;
+    }
+    .download-report{
+        font-family: $muli-bold!important;
+    }
+    .last-update{
+        font-family:$muli-regular!important;
+    }
 }

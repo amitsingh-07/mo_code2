@@ -1,10 +1,17 @@
-<!--Container fluid-->
-<div class="container-fluid max-width--1024 comprehensive">
   <!--Step indicator-->
-  <div class="step-indicator-container" id="moDpdnt2StepIndctr">
-    <app-step-indicator [count]="6" [activeStepIndex]="0" [mode]="1"></app-step-indicator>
+  <div class="comprehensive hidden-sm-md">
+    <div class="step-indicator-wrapper">
+      <div class="step-indicator-container" id="moDpdnt2StepIndctr">
+        <app-step-indicator [count]="6" [activeStepIndex]="0" [mode]="1"></app-step-indicator>
+      </div>
+    </div>
   </div>
   <!--Step indicator /-->
+<!--Container fluid-->
+<div class="container-fluid max-width--1024 comprehensive">
+    <div class="step-indicator-container hidden-lg" id="moDpdnt2StepIndctr">
+        <app-step-indicator [count]="6" [activeStepIndex]="0" [mode]="1"></app-step-indicator>
+      </div>
   <!--Page sub-heading-->
   <div class="comprehensive__page-sub-heading mt30">{{'CMP.MY_EARNINGS.HEADER'|translate}}</div>
   <!--Page sub-heading /-->
@@ -47,11 +54,11 @@
               <div ngbDropdown id="employmentTypeDropDown">
                 <button type="button" class="btn btn-dropdown" id="dropdownEmploymentType" ngbDropdownToggle
                   appComprehensiveViewMode="{{viewMode}}" mode=1>
-                  <!-- <span *ngIf="employmentType === ''">{{'COMMON.LBL_SELECT' | translate}}</span>-->
+                 
                   <span *ngIf="employmentType !== ''">{{employmentType}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownEmploymentType">
-                  <!--<button class="dropdown-item" (click)="selectEmploymentType('')">Select</button>-->
+              
                   <button type="button" class="dropdown-item earnings-dropdown" appComprehensiveViewMode="{{viewMode}}"
                     mode=1 *ngFor="let employmentType of employmentTypeList; let i=index"
                     (click)="selectEmploymentType(employmentType)">
@@ -185,7 +192,7 @@
     </div>
     <!--Form group-4 /-->
     <!--Monthly income Dropdown-->
-    <div class="flex-row" [hidden]="(otherMonthlyIncomeType && otherMonthlyWorkIncomeType && monthlyRentIncome)">
+    <div class="flex-row" *ngIf="comprehensiveJourneyMode" [hidden]="(otherMonthlyIncomeType && otherMonthlyWorkIncomeType && monthlyRentIncome)">
       <div class="earn-dollar-help">
         <span class="earn-dollar-icon earn-monthly-income-dollar"></span>
       </div>
@@ -232,7 +239,7 @@
     </div>
     <div class="flex-row pt-2 mb-3">
       <div class="flex-col-12">
-        {{  'CMP.MY_EARNINGS.ANNUAL_BONUS_DESC' | translate }}
+      {{(comprehensiveJourneyMode) ? ('CMP.MY_EARNINGS.ANNUAL_BONUS_DESC'|translate) : ('CMP.MY_EARNINGS.ANNUAL_BONUS_DESC_LITE'|translate)}}
       </div>
     </div>
     <div class="form-group-with-bg">
@@ -330,7 +337,7 @@
           </div>
         </div>
       </div>
-      <div class="flex-row" [hidden]="(otherAnnualIncomeType && annualDividendsType)">
+      <div class="flex-row" *ngIf="comprehensiveJourneyMode" [hidden]="(otherAnnualIncomeType && annualDividendsType)">
         <div class="flex-col-1 earn-dollar-help">
           <span class="earn-dollar-icon earn-monthly-income-dollar"></span>
         </div>

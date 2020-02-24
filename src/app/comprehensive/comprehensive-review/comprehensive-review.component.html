@@ -4,7 +4,8 @@
 
   </div>
   <div class="text-center about mb30">
-    {{ requireToPay ? ('CMP.REVIEW.ABOUT_WITH_PAY' | translate) : ('CMP.REVIEW.ABOUT' | translate) }}
+   <span  *ngIf="comprehensiveJourneyMode">{{ requireToPay ? ('CMP.REVIEW.ABOUT_WITH_PAY' | translate) :  ('CMP.REVIEW.ABOUT' | translate)  }}</span> 
+    <span *ngIf="!comprehensiveJourneyMode">{{'CMP.REVIEW.ABOUT_LITE' | translate }}</span>
   </div>
   <div class="footer-cta">
 
@@ -14,7 +15,7 @@
     </button>
 
     <button type="button" (click)="goToNext()" class="btn btn-primary confirmBtn width100" id="moDpdnt2BtnFooter">
-	{{requireToPay ? ('CMP.REVIEW.CONFIRM_WITH_PAY' | translate) : ('CMP.REVIEW.CONFIRM' | translate)}}
+	{{requireToPay && comprehensiveJourneyMode ? ('CMP.REVIEW.CONFIRM_WITH_PAY' | translate) : ('CMP.REVIEW.CONFIRM' | translate)}}
     </button>
   </div>
 </div>

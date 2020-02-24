@@ -23,7 +23,7 @@
     <div class="intro-box">
       <div class="intro-box__heading">
         <div class="intro-box__heading-blue">{{ 'CMP.COMPREHENSIVE.HEADER' | translate}}</div>
-        <ul>
+        <ul class="mb0 pb0">
           <li class="report"> {{ 'CMP.COMPREHENSIVE.SUB_HEADER_1' | translate}}</li>
           <li class="meeting">{{ 'CMP.COMPREHENSIVE.SUB_HEADER_2' | translate}} </li>
           <li class="national-scheme">{{ 'CMP.COMPREHENSIVE.SUB_HEADER_3' | translate}}</li>
@@ -97,16 +97,17 @@
 
       <div class="cfp">
         <div class="cfp__heading">{{'CMP.COMPREHENSIVE.CFP' | translate}}</div>
-        <!-- <div class="free-tag">
-          <span class="strikethrough-new">{{'CMP.COMPREHENSIVE.ONE_TIME_FEE' | translate}}</span>
-        </div> -->
-        <div class="cfp__otf-with-gst">
-          {{'CMP.COMPREHENSIVE.CFP_OTF_GST' | translate}}
+        <div class="free-tag" *ngIf="!paymentEnabled">
+          <span class="strikethrough-new"> ${{productAmount}} {{'CMP.COMPREHENSIVE.ONE_TIME_FEE' | translate}}</span>
         </div>
-        <div class="limited-offer">
+        <div class="cfp__otf-with-gst" *ngIf="paymentEnabled">
+          ${{productAmount}} {{'CMP.COMPREHENSIVE.CFP_OTF_GST' | translate}}
+        </div>
+        <div class="limited-offer" *ngIf="paymentEnabled">
           <img src="assets/images/comprehensive/limited-offer.svg">
         </div>
-        <div class="cfp__desc">{{'CMP.COMPREHENSIVE.CFP_DESC' | translate}}</div>
+        <div class="cfp__desc" *ngIf="!paymentEnabled">{{'CMP.COMPREHENSIVE.CFP_DESC' | translate}}</div>
+        <div class="cfp__desc--payment" *ngIf="paymentEnabled">{{'CMP.COMPREHENSIVE.CFP_DESC_PAYMENT' | translate}}</div>
       </div>
 
       <div class="text-center promo-code-box" [ngClass]="{'with-login': promoCodeValidated}">
@@ -130,13 +131,16 @@
       <div *ngIf="!promoCodeValidated" class="onetime-free-box">
         <div class="onetime-free-box__inner">
           <div>
-            <!-- <div class="free-tag">
-              <span class="strikethrough-new">{{'CMP.COMPREHENSIVE.ONE_TIME_FEE' | translate}}</span>
-            </div> -->
-            <div class="otf-with-gst">
-              {{'CMP.COMPREHENSIVE.CFP_OTF_GST' | translate}}
+            <div class="free-tag" *ngIf="!paymentEnabled">
+              <span class="strikethrough-new"> ${{productAmount}} {{'CMP.COMPREHENSIVE.ONE_TIME_FEE' | translate}}</span>
             </div>
-            <div class="onetime-free-box__inner__limited">
+            <div class="otf-with-gst" *ngIf="paymentEnabled">
+              ${{productAmount}} {{'CMP.COMPREHENSIVE.CFP_OTF_GST' | translate}}
+            </div>
+            <div class="onetime-free-box__inner__limited" *ngIf="!paymentEnabled">
+              {{'CMP.COMPREHENSIVE.FREE_LIMITED' | translate}}
+            </div>
+            <div class="onetime-free-box__inner__limited--payment" *ngIf="paymentEnabled">
               {{'CMP.COMPREHENSIVE.FREE_LIMITED' | translate}}
             </div>
           </div>

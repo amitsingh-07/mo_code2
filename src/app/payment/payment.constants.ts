@@ -15,11 +15,11 @@ export const PAYMENT_STATUS = {
 export const PROMO_CODE_PAYMENT_BYPASS = [
     {
         CODE: 'MOCFP1',
-        PAYMENT_BYPASS: 'false'
+        PAYMENT_BYPASS: false
     },
     {
         CODE: 'MOCFP',
-        PAYMENT_BYPASS: 'false'
+        PAYMENT_BYPASS: false
     }
 ];
 

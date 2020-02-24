@@ -50,7 +50,7 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();
     if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
       this.endowmentDetail.forEach((dependant: any) => {
-        //if (dependant.endowmentMaturityAmount > 0) {
+      
         this.summaryFlag = false;
         this.dependantSummaryCons.push({
           userName: dependant.name,
@@ -58,7 +58,7 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
           // tslint:disable-next-line: max-line-length
           userEstimatedCost: this.comprehensiveService.setDependantExpense(dependant.location, dependant.educationCourse, dependant.age, dependant.nation)
         });
-        //}
+       
       });
     }
     this.configService.getConfig().subscribe((config: any) => {
@@ -212,7 +212,14 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
             hasEndowments: this.comprehensiveService.hasEndowment(), endowmentDetailsList:
               educationPreferenceList
           }).subscribe((data: any) => {
-            this.showDependantSummary(dependantArray);
+            if (this.comprehensiveService.getMySteps() === 0
+            && this.comprehensiveService.getMySubSteps() < 5) {
+            this.comprehensiveService.setStepCompletion(0, 5).subscribe((data1: any) => {
+              this.showDependantSummary(dependantArray);
+            });
+            } else {
+              this.showDependantSummary(dependantArray);
+            }
           });
         }
       }
