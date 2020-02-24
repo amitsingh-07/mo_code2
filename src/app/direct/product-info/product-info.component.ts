@@ -322,6 +322,7 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     this.selectedCategory = data;
     this.selectedCategoryId = data.id;
     this.setActiveProductCategory(index);
+    this.directService.updateUserInfo();
   }
 
   setActiveProductCategory(index) {
