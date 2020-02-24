@@ -14,8 +14,8 @@ const INVEST_API_BASE_URL = 'svc/invest/investment-microservice/api/';
 
 export let apiConstants = {
     endpoint: {
-        authenticate: 'account/account-microservice/authenticate',
-        authenticateWorkshop: 'account/account-microservice/authenticateWorkshop',
+        authenticate: 'svc/account/account-microservice/authenticate',
+        authenticateWorkshop: 'svc/account/account-microservice/authenticateWorkshop',
         login: 'login',
         logout: ACCOUNT_API_BASE_URL + '/logout',
         getProfileList: ACCOUNT_API_BASE_URL + '/getProfileTypeList',
