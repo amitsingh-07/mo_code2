@@ -36,13 +36,19 @@ import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard
 import { PaymentChildEnableGuard } from './payment/payment-child-enable-guard';
 import { PaymentEnableGuard } from './payment/payment-enable-guard';
 
+import { HomeGuard } from './home/home.guard';
+
 const routes: Routes = [
   {
     path: '', canDeactivate: [PendingChangesGuard],
     children: [
       { component: UrlRedirectComponent, matcher: validateUrl },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent },
+      {
+        path: 'home',
+        component: HomeComponent,
+        canActivate: [HomeGuard]
+      },
       { path: '9462test-myinfo', component: TestMyInfoComponent },
       { path: 'direct', loadChildren: './direct/direct.module#DirectModule' },
       { path: 'guideme', loadChildren: './guide-me/guide-me.module#GuideMeModule' },
@@ -130,7 +136,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { enableTracing: false })],
-  declarations: []
+  declarations: [],
+  providers: [HomeGuard]
 })
 export class AppRoutingModule { }
 
