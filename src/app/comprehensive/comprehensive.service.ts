@@ -957,7 +957,10 @@ export class ComprehensiveService {
       || userAge > COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MAX_AGE) {
       accessPage = false;
     }
-    const accessRetirementAge = (parseInt(this.getRetirementPlan().retirementAge) >=  userAge);
+    let  accessRetirementAge = false;
+    if (this.getRetirementPlan() && this.getRetirementPlan().retirementAge) {
+       accessRetirementAge = (parseInt(this.getRetirementPlan().retirementAge) >=  userAge);
+    }
     for (let index = currentUrlIndex; index >= 0; index--) {
       if (accessibleUrl !== '') {
         break;
@@ -1179,7 +1182,10 @@ export class ComprehensiveService {
         new Date()
       );
     }
-    const accessRetirementAge = (parseInt(this.getRetirementPlan().retirementAge) >=  userAge);
+    let  accessRetirementAge = false;
+    if(this.getRetirementPlan() &&  this.getRetirementPlan().retirementAge){
+       accessRetirementAge = (parseInt(this.getRetirementPlan().retirementAge) >=  userAge);
+    }
     let accessPage = true;
     if (userAge < COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MIN_AGE
       || userAge > COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MAX_AGE) {
