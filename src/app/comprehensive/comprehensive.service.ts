@@ -957,7 +957,7 @@ export class ComprehensiveService {
       || userAge > COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MAX_AGE) {
       accessPage = false;
     }
-
+    const accessRetirementAge = (parseInt(this.getRetirementPlan().retirementAge) >=  userAge);
     for (let index = currentUrlIndex; index >= 0; index--) {
       if (accessibleUrl !== '') {
         break;
@@ -1134,7 +1134,7 @@ export class ComprehensiveService {
           // 'result'
           case 25:
           case 26:
-            if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted >= 3) {
+            if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted >= 3 && accessRetirementAge ) {
               accessibleUrl = urlList[index];
             }
             break;
@@ -1179,7 +1179,7 @@ export class ComprehensiveService {
         new Date()
       );
     }
-
+    const accessRetirementAge = (parseInt(this.getRetirementPlan().retirementAge) >=  userAge);
     let accessPage = true;
     if (userAge < COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MIN_AGE
       || userAge > COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MAX_AGE) {
@@ -1266,35 +1266,36 @@ export class ComprehensiveService {
             break;
           // 'steps/4'
           case 12:
-            if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted > 1) {
+            if (accessPage && canAccess &&  retirementProgressData.subItems[0].completed &&  stepCompleted > 1 &&
+              accessRetirementAge) {
               accessibleUrl = urlList[index];
             }
             break;
           // 'Risk Profile'
           case 13:
-            if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted > 2) {
+            if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted > 2 && accessRetirementAge) {
               accessibleUrl = urlList[index];
             }
             break;
           case 14:
-            if (accessPage && canAccess && riskProfileProgressData.subItems[0].completed && stepCompleted > 2) {
+            if (accessPage && canAccess && riskProfileProgressData.subItems[0].completed && stepCompleted > 2 && accessRetirementAge) {
               accessibleUrl = urlList[index];
             }
             break;
           case 15:
-            if (accessPage && canAccess && riskProfileProgressData.subItems[1].completed && stepCompleted > 2) {
+            if (accessPage && canAccess && riskProfileProgressData.subItems[1].completed && stepCompleted > 2 && accessRetirementAge) {
               accessibleUrl = urlList[index];
             }
             break;
           case 16:
-            if (accessPage && canAccess && riskProfileProgressData.subItems[2].completed && stepCompleted > 2) {
+            if (accessPage && canAccess && riskProfileProgressData.subItems[2].completed && stepCompleted > 2 && accessRetirementAge) {
               accessibleUrl = urlList[index];
             }
             break;
           // 'result'
           case 17:
           case 18:
-            if (accessPage && canAccess && riskProfileProgressData.subItems[3].completed && stepCompleted >= 3) {
+            if (accessPage && canAccess && riskProfileProgressData.subItems[3].completed && stepCompleted >= 3 && accessRetirementAge) {
               accessibleUrl = urlList[index];
             }
             break;
