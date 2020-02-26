@@ -283,7 +283,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       if (!data && redirect) {
         this.router.navigate([redirect]);
       }
-    });
+    }).catch((e) => {});
     if (title) {
       ref.componentInstance.errorTitle = title;
       ref.componentInstance.buttonLabel = buttonLabel;
