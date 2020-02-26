@@ -455,7 +455,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.appService.clearData();
     this.appService.startAppSession();
     this.selectedPlansService.clearData();
-    this.router.navigate([appConstants.homePageUrl]);
+    if (this.showHome) {
+      this.router.navigate([appConstants.homePageUrl]);
+    } else {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    }
   }
 
   // Route to Dashboard
