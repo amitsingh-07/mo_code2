@@ -76,7 +76,7 @@
             <i class="fa fa-sign-out"></i>
           </a>
         </li>
-        <li *ngIf="showMenu" class="nav-item home-btn" >
+        <li *ngIf="isLoggedIn && showMenu" class="nav-item home-btn" >
           <a *ngIf="showHome; else showDashboard" class="nav-link" (click)="checkCurrentRouteAndNavigate('/home')">Home</a>
           <ng-template #showDashboard>
             <a class="nav-link" (click)="goToDashboard()">Dashboard</a>
