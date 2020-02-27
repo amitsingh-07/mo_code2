@@ -113,6 +113,18 @@
         "META_TITLE": "Online Will Writing | MoneyOwl",
         "META_DESCRIPTION": "Protect and provide for your loved ones even after you pass on. Write a legally binding, simple will in just 10 minutes!",
         "META_KEYWORDS": ""
+      },
+      "NEWSLETTER": {
+        "TITLE": "Join our Mailing List and get wiser!",
+        "WILL_TITLE": "Join our Mailing List &",
+        "PROMO_TITLE": "Get Promo Code for FREE Will Writing!",
+        "PLACEHOLDER": {
+            "EMAIL": "Email",
+            "FIRST_NAME": "First Name",
+            "LAST_NAME": "Last Name"
+            },
+        "SUBSCRIBE": "Subscribe",
+        "SUBTEXT": "Get exclusive access to promotions, personal finance tips and updates on the latest news. Don’t miss out!"
       }
     },
     "TELL_US_YOURSELF": {

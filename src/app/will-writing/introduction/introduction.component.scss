@@ -262,3 +262,44 @@
         flex-direction: column-reverse;
     }
 }
+
+.subscribe__section{
+    position: relative; 
+    display:flex;
+    width:100%;
+    height:auto; //For Subscribe to be active height:253px
+    margin-top:80px;
+    justify-content:center;
+    align-items:flex-start;
+    z-index:1;
+    @include minMobilemaxPhablet{
+        background-color:#f2f6f7;
+    }
+    .subscribe__section--bg{
+        position: absolute;
+        background-repeat: repeat-x;
+        width:100%;
+        height:507px;
+        bottom:0px;
+        left:0px;
+        @include minMobilemaxPhablet{
+            height:760px;
+        }
+    }
+    .subscribe__section--footer{
+        position: absolute;
+        display:block;
+        width:100%;
+        height:10px;
+        bottom:0px;
+        left:0px;
+        background-color:$dark-teal-color;
+        .orange{
+            position: absolute;
+            display:block;
+            background-color:$orange-color;
+            width:34%;
+            height:100%;
+        }
+    }
+} 
