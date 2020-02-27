@@ -5,8 +5,10 @@
     <div class="financial-literacy__header--inner">
       <div class="sub-navigation">
         <div class="sub-navigation--inner">
-          <span routerLink="/">Home</span>
-          <i class="material-icons">keyboard_arrow_right</i>
+          <ng-container *ngIf="isLoggedIn">
+            <span routerLink="/accounts/dashboard">Dashboard</span>
+            <i class="material-icons">keyboard_arrow_right</i>
+          </ng-container>
           <span routerLink="/works/financial-literacy">Financial Literacy Team</span>
         </div>
       </div>

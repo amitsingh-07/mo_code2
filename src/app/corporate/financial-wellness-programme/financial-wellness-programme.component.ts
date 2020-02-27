@@ -25,6 +25,7 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
   contactNumberErrorMessage: object = {};
   ErrorMessage: string;
   companySizeItems = [{ item: 'Below 300' }, { item: '300 - 1000' }, { item: 'Above 1000' }];
+  public isLoggedIn = false;
 
   constructor(
     public footerService: FooterService,
@@ -58,6 +59,9 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
         pattern: this.translate.instant('ERROR.CONTACT_US.CONTACT_NUMBER_PATTERN')
       };
     });
+    if (this.authService.isSignedUser()) {
+      this.isLoggedIn = true;
+    }
   }
 
   ngOnInit() {

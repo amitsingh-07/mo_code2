@@ -1,6 +1,7 @@
 {
     "PROMO_BREADCRUMBS": {
         "HOME": "Home",
+        "DASHBOARD": "Dashboard",
         "PROMOTIONS": "Promotions",
         "INDIVIDUAL": "Insurance Promotions",
         "BUNDLE_PACKAGES": "Bundle Packages"
