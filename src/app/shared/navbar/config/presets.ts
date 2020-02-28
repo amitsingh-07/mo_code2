@@ -18,7 +18,7 @@ export class NavbarConfig {
   '100': object = {
     showNavBackBtn: false,
     showHeaderBackBtn: false,
-    showMenu: false,
+    showMenu: true,
     showLogin: true,
     showNavShadow: true,
     showSearchBar: false,
