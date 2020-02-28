@@ -117,7 +117,7 @@
             <div class="tip"></div>
           </div>
         </li>
-        <li *ngIf="isPromotionEnabled && showMenu" class="nav-item"
+        <li *ngIf="isPromotionEnabled && showMenu && showPromotions" class="nav-item"
           (click)="checkCurrentRouteAndNavigate('/promotions')">
           <a class="nav-link">Promotions</a>
         </li>

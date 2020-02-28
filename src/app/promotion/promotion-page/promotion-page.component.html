@@ -4,10 +4,13 @@
         </div>
         <div class="sub-navigation">
             <div class="sub-navigation--inner">
-                <ng-container *ngIf="isLoggedIn">
-                    <span routerLink="/">{{'PROMO_BREADCRUMBS.DASHBOARD' | translate}}</span>
-                    <i class="material-icons">keyboard_arrow_right</i>
+                <ng-container *ngIf="isLoggedIn; else notLoggedIn">
+                    <span routerLink="/accounts/dashboard">{{'PROMO_BREADCRUMBS.DASHBOARD' | translate}}</span>
                 </ng-container>
+                <ng-template #notLoggedIn>
+                    <span routerLink="/accounts/login">{{'PROMO_BREADCRUMBS.DASHBOARD' | translate}}</span>
+                </ng-template>
+                    <i class="material-icons">keyboard_arrow_right</i>
                 <span routerLink="/promotions">{{'PROMO_BREADCRUMBS.PROMOTIONS' | translate}}</span>
                 <i class="material-icons">keyboard_arrow_right</i>
                 <span *ngIf="promoDetails.type != 4">{{'PROMO_BREADCRUMBS.INDIVIDUAL' | translate}}</span>

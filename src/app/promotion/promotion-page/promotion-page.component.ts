@@ -35,7 +35,7 @@ export class PromotionPageComponent implements OnInit {
     public footerService: FooterService, private renderer: Renderer2,
     private translate: TranslateService, private configService: ConfigService,
     private promotionService: PromotionService, private promotionApiService: PromotionApiService,
-    private el: ElementRef,, public authService: AuthenticationService,
+    private el: ElementRef, public authService: AuthenticationService,
     private cdRef: ChangeDetectorRef) {
       if (this.authService.isSignedUser()) {
         this.isLoggedIn = true;

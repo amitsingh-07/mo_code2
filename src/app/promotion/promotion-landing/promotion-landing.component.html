@@ -1,10 +1,13 @@
 <div class="promotion__wrapper">
   <div class="sub-navigation">
     <div class="sub-navigation--inner pdlr">
-      <ng-container *ngIf="isLoggedIn">
+      <ng-container *ngIf="isLoggedIn; else notLoggedIn">
         <span routerLink="/accounts/dashboard">{{'PROMO_BREADCRUMBS.DASHBOARD' | translate}}</span>
-        <i class="material-icons">keyboard_arrow_right</i>
       </ng-container>
+      <ng-template #notLoggedIn>
+        <span routerLink="/accounts/login">{{'PROMO_BREADCRUMBS.DASHBOARD' | translate}}</span>
+      </ng-template>
+        <i class="material-icons">keyboard_arrow_right</i>
       <span>{{'PROMO_BREADCRUMBS.PROMOTIONS' | translate}}</span>
       </div>
     </div>
