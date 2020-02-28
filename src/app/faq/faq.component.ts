@@ -8,13 +8,12 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { ConfigService, IConfig } from './../config/config.service';
-import { SeoServiceService } from './../shared/Services/seo-service.service';
 
 import { FooterService } from '../shared/footer/footer.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { NavbarService } from '../shared/navbar/navbar.service';
-
+import { ConfigService, IConfig } from './../config/config.service';
+import { SeoServiceService } from './../shared/Services/seo-service.service';
 import { IFAQSection } from './faq.interface';
 
 @Component({

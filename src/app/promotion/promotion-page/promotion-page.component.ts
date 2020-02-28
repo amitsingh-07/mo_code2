@@ -105,11 +105,11 @@ getPromoDetails() {
     this.router.navigate(['../promotions/16']);
   }
 
-  addRedirectEvent() {    
-    this.cdRef.detectChanges();    
+  addRedirectEvent() {
+    this.cdRef.detectChanges();
     var el = this.el.nativeElement.querySelector('.text-underline');
-    if(el) {
+    if (el) {
       el.addEventListener('click', this.redirect.bind(this));
-    }    
+    }
   }
 }

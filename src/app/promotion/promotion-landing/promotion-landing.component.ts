@@ -1,15 +1,14 @@
-import { ConfigService } from './../../config/config.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { PromotionService } from '../promotion.service';
+import { ConfigService } from './../../config/config.service';
 import { FooterService } from './../../shared/footer/footer.service';
-import { NavbarService } from './../../shared/navbar/navbar.service';
-import { PromotionApiService } from './../promotion.api.service';
-
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
+import { NavbarService } from './../../shared/navbar/navbar.service';
 import { SeoServiceService } from './../../shared/Services/seo-service.service';
+import { PromotionApiService } from './../promotion.api.service';
 import { IPromoCategory } from './promo-category.interface';
 
 @Component({
