@@ -14,6 +14,7 @@ const INVEST_API_BASE_URL = 'svc/invest/investment-microservice/api/';
 
 export let apiConstants = {
     endpoint: {
+        getCaptcha: 'svc/account/account-microservice/getCaptcha',
         authenticate: 'svc/account/account-microservice/authenticate',
         authenticateWorkshop: 'svc/account/account-microservice/authenticateWorkshop',
         login: 'login',
