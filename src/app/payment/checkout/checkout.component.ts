@@ -2,10 +2,13 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+
+import { ComprehensiveApiService } from 'src/app/comprehensive/comprehensive-api.service';
 import { ComprehensiveService } from 'src/app/comprehensive/comprehensive.service';
 import { ErrorModalComponent } from 'src/app/shared/modal/error-modal/error-modal.component';
 import { SignUpService } from 'src/app/sign-up/sign-up.service';
 import { environment } from './../../../environments/environment';
+import { COMPREHENSIVE_CONST } from './../../comprehensive/comprehensive-config.constants';
 import { ModelWithButtonComponent } from './../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { PaymentModalComponent } from './../payment-modal/payment-modal.component';
@@ -28,10 +31,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   modalRef: NgbModalRef;
   nonProdEnv = false;
 
-  subTotal = PAYMENT_CONST.SUBTOTAL;
-  gst = PAYMENT_CONST.GST;
-  totalAmt = (this.subTotal + (this.subTotal * PAYMENT_CONST.GST / 100)).toString();
+  subTotal = PAYMENT_CONST.SUBTOTAL.toString();
+  gst = PAYMENT_CONST.GST.toString();
+  totalAmt = (PAYMENT_CONST.SUBTOTAL * PAYMENT_CONST.GST).toString();
   promoCode = PAYMENT_CONST.PROMO_CODE;
+  includingGst = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,9 +44,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     public navbarService: NavbarService,
     private paymentService: PaymentService,
     private comprehensiveService: ComprehensiveService,
-    private signUpService: SignUpService
+    private signUpService: SignUpService,
+    private comprehensiveApiService: ComprehensiveApiService
   ) {
     this.translate.use('en');
+    this.getProductAmount();
   }
 
   ngOnInit() {
@@ -184,6 +190,18 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   // For testing failed transaction scenario
   testingAmt(amt) {
     this.totalAmt = amt;
+  }
+
+  getProductAmount() {
+    const payload = { productType: COMPREHENSIVE_CONST.VERSION_TYPE.FULL };
+    this.comprehensiveApiService.getProductAmount(payload).subscribe((data: any) => {
+      if (data && data.objectList[0]) {
+        this.includingGst = data.objectList[0]['includingGst'];
+        this.subTotal = this.includingGst ? data.objectList[0]['totalAmount'] : data.objectList[0]['price'];
+        this.gst = data.objectList[0]['gstPercentage'];
+        this.totalAmt = data.objectList[0]['totalAmount'];
+      }
+    });
   }
 
 }
