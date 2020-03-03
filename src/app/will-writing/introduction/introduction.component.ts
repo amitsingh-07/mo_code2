@@ -14,7 +14,7 @@ import { WillWritingApiService } from '../will-writing.api.service';
 import { WillWritingService } from '../will-writing.service';
 import { SeoServiceService } from './../../shared/Services/seo-service.service';
 import { MailchimpApiService } from 'src/app/shared/Services/mailchimp.api.service';
-import { FormError } from 'src/app/guide-me/get-started/get-started-form/form-error';
+import { FormError } from 'src/app/shared/Services/mailChimpError';
 import { SubscribeMember } from './../../shared/Services/subscribeMember';
 
 @Component({
@@ -41,6 +41,7 @@ export class IntroductionComponent implements OnInit {
   formValues: SubscribeMember;
   public emailPattern = '^[a-zA-Z0-9.!#$%&’*+=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$';
   private formError: any = new FormError();
+  @ViewChild('subscribeSection') SubscribeSection: ElementRef;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -157,8 +158,8 @@ export class IntroductionComponent implements OnInit {
     });
   }
 
-  getOneNow() {
-    this.router.navigate( ['/home'], {fragment: 'subscribe'});
+  goToSubcribeForm() {
+      this.SubscribeSection.nativeElement.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
   }
 
   subscribeMember() {
