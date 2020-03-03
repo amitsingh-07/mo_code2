@@ -31,8 +31,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   modalRef: NgbModalRef;
   nonProdEnv = false;
 
-  subTotal = PAYMENT_CONST.SUBTOTAL.toString();
-  gst = PAYMENT_CONST.GST.toString();
+  subTotal = PAYMENT_CONST.SUBTOTAL;
+  gst = PAYMENT_CONST.GST;
   totalAmt = (PAYMENT_CONST.SUBTOTAL * PAYMENT_CONST.GST).toString();
   promoCode = PAYMENT_CONST.PROMO_CODE;
   includingGst = false;
@@ -199,7 +199,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.includingGst = data.objectList[0]['includingGst'];
         this.subTotal = this.includingGst ? data.objectList[0]['totalAmount'] : data.objectList[0]['price'];
         this.gst = data.objectList[0]['gstPercentage'];
-        this.totalAmt = data.objectList[0]['totalAmount'];
+        this.totalAmt = data.objectList[0]['totalAmount'].toString();
       }
     });
   }
