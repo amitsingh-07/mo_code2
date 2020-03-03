@@ -33,7 +33,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   subTotal = PAYMENT_CONST.SUBTOTAL;
   gst = PAYMENT_CONST.GST;
-  totalAmt = (PAYMENT_CONST.SUBTOTAL * PAYMENT_CONST.GST).toString();
+  totalAmt = (PAYMENT_CONST.TOTAL_AMT).toString();
   promoCode = PAYMENT_CONST.PROMO_CODE;
   includingGst = false;
 
