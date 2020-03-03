@@ -3,14 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { ComprehensiveApiService } from 'src/app/comprehensive/comprehensive-api.service';
-import { ComprehensiveService } from 'src/app/comprehensive/comprehensive.service';
-import { ErrorModalComponent } from 'src/app/shared/modal/error-modal/error-modal.component';
-import { SignUpService } from 'src/app/sign-up/sign-up.service';
 import { environment } from './../../../environments/environment';
+import { ComprehensiveApiService } from './../../comprehensive/comprehensive-api.service';
 import { COMPREHENSIVE_CONST } from './../../comprehensive/comprehensive-config.constants';
+import { ComprehensiveService } from './../../comprehensive/comprehensive.service';
+import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
 import { ModelWithButtonComponent } from './../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from './../../shared/navbar/navbar.service';
+import { SignUpService } from './../../sign-up/sign-up.service';
 import { PaymentModalComponent } from './../payment-modal/payment-modal.component';
 import { PAYMENT_CONST, PAYMENT_REQUEST } from './../payment.constants';
 import { PaymentService } from './../payment.service';
