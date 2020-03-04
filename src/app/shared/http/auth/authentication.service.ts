@@ -149,8 +149,7 @@ export class AuthenticationService {
   public getCaptchaUrl(): string {
     const time = new Date().getMilliseconds();
     const apiBaseUrl = Util.getApiBaseUrl();
-    return `${apiBaseUrl}/account/account-microservice/getCaptcha?code=`
-      + this.getSessionId() + '&time=' + time;
+    return apiBaseUrl + '/' + apiConstants.endpoint.getCaptcha + '?code=' + this.getSessionId() + '&time=' + time;
   }
 
   public logout() {

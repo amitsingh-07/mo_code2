@@ -3,9 +3,12 @@
     <div class="about-us__header--inner">
       <div class="sub-navigation">
         <div class="sub-navigation--inner">
-          <span routerLink="/">Home</span>
-          <i class="material-icons">keyboard_arrow_right</i>
-          <span routerLink="/about-us">About Us</span>
+          <ng-container *ngIf="isLoggedIn; else notLoggedIn">
+            <span routerLink="/accounts/dashboard">Dashboard</span>
+          </ng-container>
+          <ng-template #notLoggedIn>
+            <span routerLink="/accounts/login">Dashboard</span>
+          </ng-template>
           <i class="material-icons">keyboard_arrow_right</i>
           <span routerLink="/about-us">FAQs</span>
         </div>

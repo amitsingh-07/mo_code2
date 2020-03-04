@@ -32,6 +32,8 @@ export class ContactUsComponent implements OnInit {
   public subjectItems: any;
   public sendSuccess = false;
 
+  public isLoggedIn = false;
+
   constructor(
     public navbarService: NavbarService,
     public footerService: FooterService,
@@ -77,6 +79,10 @@ export class ContactUsComponent implements OnInit {
           [Validators.required, Validators.pattern(SINGAPORE_MOBILE_REGEXP)]),
         message: new FormControl(this.contactUsFormValues.message, [Validators.required])
       });
+
+      if (this.authService.isSignedUser()) {
+        this.isLoggedIn = true;
+      }
     }
 
   ngOnInit() {

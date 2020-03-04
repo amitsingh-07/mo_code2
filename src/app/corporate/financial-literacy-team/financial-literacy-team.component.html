@@ -5,7 +5,12 @@
     <div class="financial-literacy__header--inner">
       <div class="sub-navigation">
         <div class="sub-navigation--inner">
-          <span routerLink="/">Home</span>
+          <ng-container *ngIf="isLoggedIn; else notLoggedIn">
+            <span routerLink="/accounts/dashboard">Dashboard</span>
+          </ng-container>
+          <ng-template #notLoggedIn>
+            <span routerLink="/accounts/login">Dashboard</span>
+          </ng-template>
           <i class="material-icons">keyboard_arrow_right</i>
           <span routerLink="/works/financial-literacy">Financial Literacy Team</span>
         </div>
