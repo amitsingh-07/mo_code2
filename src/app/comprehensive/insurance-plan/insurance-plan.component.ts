@@ -62,13 +62,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
           this.showSummaryModal();
         }
       });
-      const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
-      if (cmpSummary.comprehensiveSpending && cmpSummary.comprehensiveSpending.HLtypeOfHome) {
-        if (cmpSummary.comprehensiveSpending.HLtypeOfHome.toLocaleLowerCase() !== 'private'
-          || cmpSummary.comprehensiveSpending.mortgageTypeOfHome.toLocaleLowerCase() !== 'private') {
-          this.haveHDB = true;
-        }
-      }
+    
 
     });
     if (this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) <
@@ -79,6 +73,15 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
     this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
     this.buildInsuranceForm();
+    const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
+    if (cmpSummary.comprehensiveSpending && cmpSummary.comprehensiveSpending.HLtypeOfHome) {
+      if (cmpSummary.comprehensiveSpending.HLtypeOfHome.toLocaleLowerCase() !== 'private'
+        || (cmpSummary.comprehensiveSpending.mortgageTypeOfHome && cmpSummary.comprehensiveSpending.mortgageTypeOfHome.toLocaleLowerCase() !== 'private')) {
+        this.haveHDB = true;
+      } else {
+        this.resetHDBScheme();
+      }
+    }
     if (this.insurancePlanFormValues && this.insurancePlanFormValues.haveCPFDependentsProtectionScheme !== 1) {
       this.resetLifeProtectionAmount();
     }
@@ -167,6 +170,10 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
 
   resetLifeProtectionAmount() {
     this.insurancePlanForm.controls['lifeProtectionAmount'].setValue(COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT);
+  }
+  resetHDBScheme() {
+    this.insurancePlanForm.controls['haveHDBHomeProtectionScheme'].setValue('');
+    this.insurancePlanForm.controls['homeProtectionCoverageAmount'].setValue(0);
   }
   resetLongTermShieldAmount() {
     this.insurancePlanForm.controls['longTermElderShieldAmount'].setValue('');
