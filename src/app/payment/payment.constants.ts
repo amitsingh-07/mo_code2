@@ -1,6 +1,7 @@
 export const PAYMENT_CONST = {
     SUBTOTAL: 500,
     GST: 7,
+    TOTAL_AMT: 535,
     PROMO_CODE: 'MOONLY',
     SOURCE: 'MO'
 };

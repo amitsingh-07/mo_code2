@@ -60,8 +60,8 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
    
     this.viewMode = this.comprehensiveService.getViewableMode();
     const self = this;
-    this.route.params.subscribe((params) => {
-      self.questionIndex = +params['id'];
+    if (route.snapshot.data[0]) {
+      self.questionIndex = +route.snapshot.data[0]['param'];
       this.riskAssessmentForm = new FormGroup({
         questSelOption: new FormControl('', Validators.required)
       });
@@ -70,7 +70,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       } else {
         self.setCurrentQuestion();
       }
-    });
+    }
   }
 
   ngOnInit() {
