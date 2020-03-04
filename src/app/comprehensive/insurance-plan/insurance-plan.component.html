@@ -201,7 +201,7 @@
               </div>
             </div>
           </div>
-        </div>
+        
         <div *ngIf="insurancePlanForm.get('haveHDBHomeProtectionScheme').value === 1" class="flex-row">
           <div class="flex-col-5 pr5">
             <label for="name" id="myDependantFormLb1">
@@ -214,7 +214,7 @@
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput maxLength="8"
                 formControlName="homeProtectionCoverageAmount" value="0">
-
+              </div>
             </div>
           </div>
         </div>
