@@ -36,19 +36,13 @@ import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard
 import { PaymentChildEnableGuard } from './payment/payment-child-enable-guard';
 import { PaymentEnableGuard } from './payment/payment-enable-guard';
 
-import { HomeGuard } from './home/home.guard';
-
 const routes: Routes = [
   {
     path: '', canDeactivate: [PendingChangesGuard],
     children: [
       { component: UrlRedirectComponent, matcher: validateUrl },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      {
-        path: 'home',
-        component: HomeComponent,
-        canActivate: [HomeGuard]
-      },
+      { path: 'home', component: HomeComponent },
       { path: '9462test-myinfo', component: TestMyInfoComponent },
       { path: 'direct', loadChildren: './direct/direct.module#DirectModule' },
       { path: 'guideme', loadChildren: './guide-me/guide-me.module#GuideMeModule' },
@@ -60,18 +54,6 @@ const routes: Routes = [
         path: APP_ROUTES.COMPREHENSIVE, loadChildren: './comprehensive/comprehensive.module#ComprehensiveModule',
         canActivate: [ComprehensiveEnableGuard],
         canActivateChild: [ComprehensiveChildEnableGuard]
-      },
-      {
-        path: 'articles',
-        loadChildren: './article/article.module#ArticleModule',
-        canActivate: [ArticleEnableGuard],
-        canActivateChild: [ArticleChildEnableGuard]
-      },
-      {
-        path: 'learn',
-        loadChildren: './article/article.module#ArticleModule',
-        canActivate: [ArticleEnableGuard],
-        canActivateChild: [ArticleEnableGuard]
       },
       {
         path: 'investment/engagement',
@@ -136,8 +118,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { enableTracing: false })],
-  declarations: [],
-  providers: [HomeGuard]
+  declarations: []
 })
 export class AppRoutingModule { }
 

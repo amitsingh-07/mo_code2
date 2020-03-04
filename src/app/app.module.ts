@@ -9,7 +9,7 @@ import {
 import {
   HTTP_INTERCEPTORS, HttpClient, HttpClientJsonpModule, HttpClientModule
 } from '@angular/common/http';
-import { Injector, NgModule } from '@angular/core';
+import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
@@ -88,6 +88,7 @@ import {
   RecommendationsModalComponent
 } from './shared/modal/recommendations-modal/recommendations-modal.component';
 
+import { onAppInit } from './app.initializer';
 import { ComprehensiveChildEnableGuard } from './comprehensive/comprehensive-child-enable-guard';
 import { ComprehensiveEnableGuard } from './comprehensive/comprehensive-enable-guard';
 import { EmailEnquirySuccessComponent } from './email-enquiry-success/email-enquiry-success.component';
@@ -200,6 +201,12 @@ export function tokenGetterFn() {
     })
   ],
   providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: onAppInit,
+      multi: true,
+      deps: [Injector]
+    },
     NgbActiveModal,
     AuthenticationService, CustomErrorHandlerService, RequestCache,
     AppService, TitleCasePipe, PendingChangesGuard, DefaultErrors,
@@ -253,5 +260,3 @@ export class AppModule {
     routingService.loadRouting();
   }
 }
-
-
