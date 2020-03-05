@@ -119,6 +119,23 @@
               "vendorChunk": false,
               "buildOptimizer": true
             },
+            "newmo": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.newmo.ts"
+                }
+              ],
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            },
             "common": {
               "fileReplacements": [
                 {
@@ -147,6 +164,7 @@
             "prod": { "browserTarget": "bfa-frontend:build:prod" },
             "uat": { "browserTarget": "bfa-frontend:build:uat" },
             "uat3": { "browserTarget": "bfa-frontend:build:uat3" },
+            "newmo": { "browserTarget": "bfa-frontend:build:newmo"},
             "common": { "browserTarget": "bfa-frontend:build:common" }
           }
         },
