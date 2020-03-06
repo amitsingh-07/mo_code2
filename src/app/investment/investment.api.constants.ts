@@ -1,5 +1,5 @@
-const INVESTMENT_API_BASE_URL = 'svc/invest/investment-microservice/api';
-const ACCOUNT_API_BASE_URL = 'svc/account/account-microservice/api';
+const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/api';
+const ACCOUNT_API_BASE_URL = 'account/account-microservice/api';
 
 
 
