@@ -100,6 +100,7 @@ export let apiConstants = {
             getComprehensiveSummaryDashboard: COMPREHENSIVE_API_BASE_URL + 'fetchComprehensiveStatus',
             getProductAmount: ACCOUNT_API_BASE_URL + '/productPricing',
             updateComprehensiveStatus: COMPREHENSIVE_API_BASE_URL +'updateComprehensiveReportStatus',
+            insuranceData: 'assets/comprehensive/insurancePlan.json'
         },
         payment: {
             getRequestSignature: PAYMENT_API_BASE_URL + 'getRequestSignature',
