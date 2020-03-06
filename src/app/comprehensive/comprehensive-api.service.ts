@@ -108,7 +108,7 @@ export class ComprehensiveApiService {
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
     getInsurancePlanning() {
-        return this.httpClient.get('../../assets/comprehensive/insurancePlan.json')
+        return this.httpClient.get(apiConstants.endpoint.comprehensive.insuranceData)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
     getPromoCode() {
