@@ -50,16 +50,16 @@ export class NationalityComponent implements OnInit {
       this.editModalData = this.translate.instant('SELECT_NATIONALITY.editModalData');
       this.blockedNationalityModal = this.translate.instant('SELECT_NATIONALITY.blockedNationality');
     });
-    this.selectNationalityFormValues = this.investmentAccountService.getInvestmentAccountFormData();
-    this.selectNationalityForm = new FormGroup({
-      nationality: new FormControl(this.selectNationalityFormValues.nationality, Validators.required)
-    });
   }
 
   ngOnInit() {
     this.navbarService.setNavbarMode(6);
     this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
+    this.selectNationalityFormValues = this.investmentAccountService.getInvestmentAccountFormData();
+    this.selectNationalityForm = new FormGroup({
+      nationality: new FormControl(this.selectNationalityFormValues.nationality, Validators.required)
+    });
     this.getNationalityCountryList();
   }
 
