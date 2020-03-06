@@ -130,13 +130,12 @@ export class SingPassComponent implements OnInit, OnDestroy {
         this.myInfoService.closeMyInfoPopup(false);
         const currentUrl = window.location.toString();
         const rootPoint = currentUrl.split(currentUrl.split('/')[4])[0].substr(0, currentUrl.split(currentUrl.split('/')[4])[0].length - 1);
-        // const redirectObjective = rootPoint + MY_INFO_START_PATH;
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
-        // if (window.location.href === redirectObjective) {
-        //   this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
-        // } else {
-        //   this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
-        // }
+        const redirectObjective = rootPoint + MY_INFO_START_PATH;
+        if (window.location.href === redirectObjective) {
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
+        } else {
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
+        }
       } else {
         this.myInfoService.closeMyInfoPopup(true);
       }
