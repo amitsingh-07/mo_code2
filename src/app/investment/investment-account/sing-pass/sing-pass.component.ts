@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, NgZone, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -42,7 +42,8 @@ export class SingPassComponent implements OnInit, OnDestroy {
     private router: Router,
     private myInfoService: MyInfoService,
     public readonly translate: TranslateService,
-    private investmentAccountService: InvestmentAccountService
+    private investmentAccountService: InvestmentAccountService,
+    private ngZone: NgZone
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -134,7 +135,9 @@ export class SingPassComponent implements OnInit, OnDestroy {
         if (window.location.href === redirectObjective) {
           this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
         } else {
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
+          this.ngZone.run(() => {
+            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
+          });
         }
       } else {
         this.myInfoService.closeMyInfoPopup(true);
