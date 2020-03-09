@@ -6,8 +6,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfigService } from '../../config/config.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-import { CorporateService } from '../corporate.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { CorporateService } from '../corporate.service';
+import { NavbarService } from './../../shared/navbar/navbar.service';
 
 @Component({
   selector: 'app-financial-wellness-programme',
@@ -28,6 +29,7 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
   public isLoggedIn = false;
 
   constructor(
+    private navbarService: NavbarService,
     public footerService: FooterService,
     public corporateService: CorporateService,
     public translate: TranslateService,
@@ -65,6 +67,8 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarVisibility(true);
     this.footerService.setFooterVisibility(true);
     this.companySize = this.companySizePreset;
     this.buildFinancialWellnessForm();
