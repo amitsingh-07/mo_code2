@@ -86,6 +86,8 @@ export class ContactUsComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarVisibility(true);
     this.footerService.setFooterVisibility(true);
     this.aboutUsApiService.getSubjectList().subscribe((data) => {
       this.subjectItems = this.aboutUsService.getSubject(data);
