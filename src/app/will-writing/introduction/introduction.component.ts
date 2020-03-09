@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -47,6 +47,7 @@ export class IntroductionComponent implements OnInit {
     private formBuilder: FormBuilder,
     private modal: NgbModal,
     private router: Router,
+    private route: ActivatedRoute,
     private translate: TranslateService,
     public navbarService: NavbarService,
     public footerService: FooterService,
@@ -78,6 +79,12 @@ export class IntroductionComponent implements OnInit {
           this.subscribeMessage = data;
           this.subscribeSuccess = false;
         }
+      }
+    });
+
+    this.route.fragment.subscribe((fragment) => {
+      if (fragment) {
+        this.goToSubcribeForm();
       }
     });
   }
