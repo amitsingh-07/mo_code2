@@ -37,7 +37,28 @@ export class FooterComponent implements OnInit, AfterViewInit {
     this.footerService.currentFooterVisibility.subscribe((showFooter) => {
       this.showFooter = showFooter;
       this.cdr.detectChanges();
+      // Load live chat for pages with footer only
+      if (this.showFooter) {
+        if (window['HubSpotConversations']) {
+          this.onConversationsAPIReadyLoad();
+        } else {
+          window['hsConversationsOnReady'] = [this.onConversationsAPIReadyLoad];
+        }
+      } else {
+        if (window['HubSpotConversations']) {
+          this.onConversationAPIReadyRemove();
+        } else {
+          window['hsConversationsOnReady'] = [this.onConversationAPIReadyRemove];
+        }
+      }
     });
   }
 
+  onConversationsAPIReadyLoad() {
+    window['HubSpotConversations'].widget.load();
+  }
+
+  onConversationAPIReadyRemove() {
+    window['HubSpotConversations'].widget.remove();
+  }
 }
