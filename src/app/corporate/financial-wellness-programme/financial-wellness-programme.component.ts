@@ -9,6 +9,7 @@ import { AuthenticationService } from '../../shared/http/auth/authentication.ser
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { CorporateService } from '../corporate.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-financial-wellness-programme',
@@ -67,7 +68,11 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMode(1);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(9);
+    } else {
+      this.navbarService.setNavbarMode(1);
+    }
     this.navbarService.setNavbarVisibility(true);
     this.footerService.setFooterVisibility(true);
     this.companySize = this.companySizePreset;

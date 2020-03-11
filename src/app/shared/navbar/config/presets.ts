@@ -69,8 +69,8 @@ export class NavbarConfig {
   '1': object = {
     showNavBackBtn: false,
     showHeaderBackBtn: false,
-    showMenu: false,
-    showLogin: false,
+    showMenu: true,
+    showLogin: true,
     showNavShadow: true,
     showSearchBar: false,
     showNotifications: true,
@@ -155,5 +155,18 @@ export class NavbarConfig {
       primary: 'Retirement Planning'
     },
     showExitCheck: true
+  };
+
+  // Setting when Homepage hidden
+  '9': object = {
+    showNavBackBtn: false,
+    showHeaderBackBtn: false,
+    showMenu: false,
+    showLogin: false,
+    showNavShadow: true,
+    showSearchBar: false,
+    showNotifications: true,
+    showHeaderNavbar: false,
+    showExitCheck: false
   };
 }

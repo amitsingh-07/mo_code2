@@ -10,6 +10,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PromotionApiService } from '../promotion.api.service';
 import { IPromotion } from '../promotion.interface';
 import { PromotionService } from '../promotion.service';
+import { environment } from './../../../environments/environment';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
 @Component({
@@ -49,7 +50,11 @@ export class PromotionPageComponent implements OnInit {
     });
     this.navbarService.setNavbarMobileVisibility(false);
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(9);
+    } else {
+      this.navbarService.setNavbarMode(1);
+    }
     this.footerService.setFooterVisibility(true);
 
     this.route.params.subscribe((params) => {

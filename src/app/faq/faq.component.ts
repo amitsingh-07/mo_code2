@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from '../shared/footer/footer.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { NavbarService } from '../shared/navbar/navbar.service';
+import { environment } from './../../environments/environment';
 import { ConfigService, IConfig } from './../config/config.service';
 import { SeoServiceService } from './../shared/Services/seo-service.service';
 import { IFAQSection } from './faq.interface';
@@ -69,7 +70,11 @@ export class FAQComponent implements OnInit, AfterViewChecked {
         this.translate.instant('FAQ_GENERAL.DESCRIPTION'),
         this.translate.instant('FAQ_GENERAL.KEYWORDS'));
     });
-    this.navbarService.setNavbarMode(1);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(9);
+    } else {
+      this.navbarService.setNavbarMode(1);
+    }
     this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(true);
   }

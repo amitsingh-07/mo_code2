@@ -9,6 +9,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SeoServiceService } from '../../shared/Services/seo-service.service';
 import { AboutUsApiService } from '../about-us.api.service';
 import { AboutUsService } from '../about-us.service';
+import { environment } from './../../../environments/environment';
 import { IContactUs } from './contact-us.interface';
 
 @Component({
@@ -86,7 +87,11 @@ export class ContactUsComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.navbarService.setNavbarMode(1);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(9);
+    } else {
+      this.navbarService.setNavbarMode(1);
+    }
     this.navbarService.setNavbarVisibility(true);
     this.footerService.setFooterVisibility(true);
     this.aboutUsApiService.getSubjectList().subscribe((data) => {
