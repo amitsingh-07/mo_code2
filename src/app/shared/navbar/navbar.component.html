@@ -77,14 +77,10 @@
           </a>
         </li>
         <li *ngIf="isLoggedIn && showMenu" class="nav-item home-btn" >
-          <a *ngIf="showHome; else showDashboard" class="nav-link" (click)="checkCurrentRouteAndNavigate('/home')">Home</a>
-          <ng-template #showDashboard>
-            <a class="nav-link" (click)="goToDashboard()">Dashboard</a>
-          </ng-template>
+          <a class="nav-link" (click)="goToDashboard()">Dashboard</a>
         </li>
         <li *ngIf="showMenu && (showWills || showInvest || showInvest || showComprehensive)" class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="openDropdown(id01);"
           (mouseleave)="closeDropdown(id01);">
-          <!--  (mouseleave)="closeDropdown(id01);"-->
           <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Services</a>
           <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id01">
             <button *ngIf="showInsure" class="dropdown-item" (click)="goToHome('insurance')" fragment="insurance">

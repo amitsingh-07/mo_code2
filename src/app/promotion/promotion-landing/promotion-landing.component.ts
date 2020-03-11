@@ -3,6 +3,7 @@ import { NavigationExtras, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { PromotionService } from '../promotion.service';
+import { environment } from './../../../environments/environment';
 import { ConfigService } from './../../config/config.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
@@ -59,13 +60,16 @@ export class PromotionLandingComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(false);
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(9);
+    } else {
+      this.navbarService.setNavbarMode(1);
+    }
     this.footerService.setFooterVisibility(true);
 
     this.promotionApiService.getPromoList().subscribe((promotions) => {
       this.promotionApiService.getPromoCategory().subscribe((categories) => {
           this.promoList = this.promotionService.processPromoList(promotions, categories);
-          // console.log(this.promoList);
           this.genCategoryList();
         });
     });

@@ -105,14 +105,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   // Menu show/hide configure
   showHome = true;
-  showInsure = false;
-  showWills = false;
-  showInvest = false;
-  showComprehensive = false;
-  showFWP = false;
-  showFLT = false;
+  showInsure = true;
+  showWills = true;
+  showInvest = true;
+  showComprehensive = true;
+  showFWP = true;
+  showFLT = true;
   showPromotions = true;
-  showLearn = true;
+  showLearn = false;
   showAbtUs = true;
   showCustomerReviews = true;
   showWhyMO = true;
