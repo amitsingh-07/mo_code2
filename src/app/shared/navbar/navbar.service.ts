@@ -223,4 +223,8 @@ export class NavbarService {
   logoutUser() {
     this.logoutSubject.next('LOGGED_OUT');
   }
+
+  clearSessionData() {
+    this.logoutSubject.next('CLEAR_SESSION_DATA');
+  }
 }

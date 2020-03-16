@@ -179,6 +179,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.logoutObservable$.subscribe((data) => {
       if (data === 'LOGGED_OUT') {
         this.clearLoginDetails();
+      } else if (data === 'CLEAR_SESSION_DATA') {
+        this.clearLoginDetails(false);
       }
     });
     this.hideHomepage = environment.hideHomepage;
@@ -447,7 +449,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }
   }
 
-  clearLoginDetails() {
+  clearLoginDetails(isRedirect: boolean = true) {
     this.signUpService.setUserProfileInfo(null);
     this.isLoggedIn = false;
     this.authService.clearAuthDetails();
@@ -455,10 +457,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.appService.clearData();
     this.appService.startAppSession();
     this.selectedPlansService.clearData();
-    if (this.showHome) {
-      this.router.navigate([appConstants.homePageUrl]);
-    } else {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    if (isRedirect) {
+      if (this.showHome) {
+        this.router.navigate([appConstants.homePageUrl]);
+      } else {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+      }
     }
   }
 
