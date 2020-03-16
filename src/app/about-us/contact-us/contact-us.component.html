@@ -1,15 +1,12 @@
 <div class="contact-us__wrapper">
-  <div class="sub-navigation">
+  <div *ngIf="showBreadCrumbs" class="sub-navigation">
     <div class="sub-navigation--inner">
-      <ng-container *ngIf="isLoggedIn; else notLoggedIn">
-        <span routerLink="/accounts/dashboard">Dashboard</span>
-      </ng-container>
-      <ng-template #notLoggedIn>
-        <span routerLink="/accounts/login">Dashboard</span>
-      </ng-template>
+      <span routerLink="/">Home</span>
+      <i class="material-icons">keyboard_arrow_right</i>
+      <span routerLink="/about-us">About Us</span>
       <i class="material-icons">keyboard_arrow_right</i>
       <span>Contact Us</span>
-      </div>
+    </div>
   </div>
   <div class="banner" #banner>
     <div class="banner-container">
