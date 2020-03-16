@@ -68,13 +68,17 @@
       <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar, 'noMenu': !showMenu}">
         <li *ngIf="isLoggedIn && (showLogin || showLogout)"
           class="nav-item flex space-between link-mob-profile hidden-lg" style="flex-direction: row">
-          <div class="dashboard-btn" (click)="checkCurrentRouteAndNavigate('/accounts/edit-profile')">
-            <div class="name">{{userInfo.firstName}}</div>
-            <div class="sub-text">Profile</div>
+          <div class="dashboard-btn" (click)="goToDashboard()">
+            <div class="name">{{userInfo.firstName | titlecase}}</div>
+            <div class="sub-text">My Dashboard</div>
           </div>
           <a class="nav-link logout-btn" (click)="logout()" href="javascript: void(0);">Logout
             <i class="fa fa-sign-out"></i>
           </a>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item hidden-lg profile-btn"
+          (click)="checkCurrentRouteAndNavigate('/accounts/edit-profile')">
+          <a class="navbar--text" href="javascript: void(0);">Profile</a>
         </li>
         <li *ngIf="isLoggedIn && showMenu" class="nav-item home-btn" >
           <a class="nav-link" (click)="goToDashboard()">Dashboard</a>
@@ -221,9 +225,12 @@
           #id05="ngbDropdown" (mouseover)="openDropdown(id05);" (mouseleave)="closeDropdown(id05);">
           <a class="nav-link dropdown-toggle last" Style="padding-right: 0" id="id05" ngbDropdownToggle></a>
           <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id05">
-            <button class="dropdown-item profile-btn" (click)="checkCurrentRouteAndNavigate('/accounts/edit-profile')">
+            <button class="dropdown-item profile-btn" (click)="goToDashboard()">
               <div class="name">{{userInfo.firstName | titlecase}}</div>
-              <div class="sub-text">Profile</div>
+              <div class="sub-text">My Dashboard</div>
+            </button>
+            <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/accounts/edit-profile')">
+              <a class="navbar--text" href="javascript: void(0);">Profile</a>
             </button>
             <button class="dropdown-item" (click)="logout()">
               <a class="navbar--text" href="javascript: void(0);">Logout</a>
