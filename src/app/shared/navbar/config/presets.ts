@@ -88,6 +88,9 @@ export class NavbarConfig {
     showNavShadow: true,
     showSearchBar: false,
     showNotifications: false,
+    showLabel: {
+      primary: 'Insurance'
+    },
     showExitCheck: true
   };
 

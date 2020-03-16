@@ -71,11 +71,7 @@ export class ComprehensiveComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (environment.hideHomepage) {
-      this.navbarService.setNavbarMode(9);
-    } else {
-      this.navbarService.setNavbarMode(1);
-    }
+    this.navbarService.setNavbarComprehensive(true);
     this.footerService.setFooterVisibility(false);
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
     const isUnsupportedNoteShown = this.signUpService.getUnsupportedNoteShownFlag();
