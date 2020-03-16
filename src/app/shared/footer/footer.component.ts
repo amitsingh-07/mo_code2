@@ -15,6 +15,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
   isMaintenanceEnabled = false;
   copyrightYear: string;
   showFooterItems = true;
+  hubspotLiveChat = true;
 
   constructor(
     private footerService: FooterService, private cdr: ChangeDetectorRef,
@@ -38,7 +39,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
       this.showFooter = showFooter;
       this.cdr.detectChanges();
       // Load live chat for pages with footer only
-      if (this.showFooter) {
+      if (this.showFooter && this.hubspotLiveChat) {
         if (window['HubSpotConversations']) {
           this.onConversationsAPIReadyLoad();
         } else {

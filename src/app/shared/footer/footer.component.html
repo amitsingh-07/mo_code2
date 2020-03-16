@@ -5,8 +5,16 @@
         <span class="icon contact-icon"></span>
         <span>{{'FOOTER.TOP_SECTION.ABOUT_US.TITLE' | translate }}</span>
       </div>
-      <div class="footer-link__btn">
+      <ng-container *ngIf="hubspotLiveChat; else zendeskLiveChat">
+        <div class="footer-link__btn">
         </div>
+      </ng-container>
+      <ng-template #zendeskLiveChat>
+        <div class="footer-link__btn" onclick="javascript:void($zopim.livechat.window.openPopout())">
+          <span class="icon chat-icon"></span>
+          <span>{{'FOOTER.TOP_SECTION.LIVE_CHAT.TITLE' | translate}}</span>
+        </div>
+      </ng-template>
       </div>
     </div> 
   <div class="footer__group tertiary">
