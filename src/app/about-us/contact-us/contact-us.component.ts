@@ -34,6 +34,7 @@ export class ContactUsComponent implements OnInit {
   public sendSuccess = false;
 
   public isLoggedIn = false;
+  public showBreadCrumbs = true;
 
   constructor(
     public navbarService: NavbarService,
@@ -89,6 +90,7 @@ export class ContactUsComponent implements OnInit {
   ngOnInit() {
     if (environment.hideHomepage) {
       this.navbarService.setNavbarMode(9);
+      this.showBreadCrumbs = false;
     } else {
       this.navbarService.setNavbarMode(1);
     }

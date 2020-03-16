@@ -18,6 +18,7 @@ export class FinancialLiteracyTeamComponent implements OnInit {
   public pageTitle: string;
   public people: any;
   isLoggedIn = false;
+  public showBreadCrumbs = true;
 
   constructor(private navbarService: NavbarService,
               private footerService: FooterService,
@@ -43,6 +44,7 @@ export class FinancialLiteracyTeamComponent implements OnInit {
   ngOnInit() {
     if (environment.hideHomepage) {
       this.navbarService.setNavbarMode(9);
+      this.showBreadCrumbs = false;
     } else {
       this.navbarService.setNavbarMode(1);
     }

@@ -28,6 +28,7 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
   ErrorMessage: string;
   companySizeItems = [{ item: 'Below 300' }, { item: '300 - 1000' }, { item: 'Above 1000' }];
   public isLoggedIn = false;
+  public showBreadCrumbs = true;
 
   constructor(
     private navbarService: NavbarService,
@@ -70,6 +71,7 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
   ngOnInit() {
     if (environment.hideHomepage) {
       this.navbarService.setNavbarMode(9);
+      this.showBreadCrumbs = false;
     } else {
       this.navbarService.setNavbarMode(1);
     }

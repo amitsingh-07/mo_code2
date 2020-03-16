@@ -30,6 +30,7 @@ export class PromotionPageComponent implements OnInit {
   public promoContent = '';
   public promoTnc = '';
   public isLoggedIn = false;
+  public showBreadCrumbs = true;
 
   constructor(
     public navbarService: NavbarService, private router: Router, private route: ActivatedRoute,
@@ -52,6 +53,7 @@ export class PromotionPageComponent implements OnInit {
     this.navbarService.setNavbarVisibility(true);
     if (environment.hideHomepage) {
       this.navbarService.setNavbarMode(9);
+      this.showBreadCrumbs = false;
     } else {
       this.navbarService.setNavbarMode(1);
     }

@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { PromotionService } from '../promotion.service';
@@ -24,6 +24,7 @@ export class PromotionLandingComponent implements OnInit {
   private categorySelect: number;
   public categorySelectTxt: string;
   public isLoggedIn = false;
+  public showBreadCrumbs = true;
 
   constructor(
     public navbarService: NavbarService, private router: Router,
@@ -62,6 +63,7 @@ export class PromotionLandingComponent implements OnInit {
     this.navbarService.setNavbarVisibility(true);
     if (environment.hideHomepage) {
       this.navbarService.setNavbarMode(9);
+      // this.showBreadCrumbs = false;
     } else {
       this.navbarService.setNavbarMode(1);
     }

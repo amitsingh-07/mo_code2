@@ -36,6 +36,7 @@ export class FAQComponent implements OnInit, AfterViewChecked {
   isComprehensiveEnabled = true;
   viewChecked = false;
   isLoggedIn = false;
+  public showBreadCrumbs = true;
 
   @ViewChild('faqContainer') FaqElement: ElementRef;
 
@@ -72,6 +73,7 @@ export class FAQComponent implements OnInit, AfterViewChecked {
     });
     if (environment.hideHomepage) {
       this.navbarService.setNavbarMode(9);
+      this.showBreadCrumbs = false;
     } else {
       this.navbarService.setNavbarMode(1);
     }
