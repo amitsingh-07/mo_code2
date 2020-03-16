@@ -63,7 +63,7 @@ export class PromotionLandingComponent implements OnInit {
     this.navbarService.setNavbarVisibility(true);
     if (environment.hideHomepage) {
       this.navbarService.setNavbarMode(9);
-      // this.showBreadCrumbs = false;
+      this.showBreadCrumbs = false;
     } else {
       this.navbarService.setNavbarMode(1);
     }
