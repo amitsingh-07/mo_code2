@@ -217,6 +217,7 @@
         #intro-no-promocode {
             padding-top: 22px;
             line-height: normal;
+            padding-bottom: 10px;
         }
         div{
             &:last-child{
@@ -224,6 +225,7 @@
                 font-family: $muli-regular;
                 color: #2d8289;
                 font-size: 16px;
+                line-height: normal;
                 span{
                     font-family: $muli-bold;
                     cursor: pointer;
