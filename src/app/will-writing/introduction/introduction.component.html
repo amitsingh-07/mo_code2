@@ -119,7 +119,10 @@
                     id="intro-promo-text-field" />
                 </div>
                 <div id="intro-no-promocode">{{ 'WILL_WRITING.INTRODUCTION.NO_PROMOCODE' | translate}}</div>
-                <div>{{ 'WILL_WRITING.INTRODUCTION.SUBSCRIBE' | translate}}<span id="intro-get-now"
+                <div>
+                  <div>{{ 'WILL_WRITING.INTRODUCTION.SUBSCRIBE' | translate}}</div>
+                  {{ 'WILL_WRITING.INTRODUCTION.ABOVE_AND' | translate}}
+                  <span id="intro-get-now"
                     (click)="goToSubcribeForm()" class='getOneNow'>{{ 'WILL_WRITING.INTRODUCTION.GET_NOW' | translate}}</span>
                 </div>
               </div>
