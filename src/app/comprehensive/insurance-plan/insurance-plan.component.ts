@@ -62,14 +62,6 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
           this.showSummaryModal();
         }
       });
-      const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
-      if (cmpSummary.comprehensiveSpending && cmpSummary.comprehensiveSpending.HLtypeOfHome) {
-        if (cmpSummary.comprehensiveSpending.HLtypeOfHome.toLocaleLowerCase() !== 'private'
-          || cmpSummary.comprehensiveSpending.mortgageTypeOfHome.toLocaleLowerCase() !== 'private') {
-          this.haveHDB = true;
-        }
-      }
-
     });
     if (this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) <
       COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE) {
@@ -79,6 +71,16 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
     this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
     this.buildInsuranceForm();
+    const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
+    if (cmpSummary.comprehensiveSpending && cmpSummary.comprehensiveSpending.HLtypeOfHome) {
+      if (cmpSummary.comprehensiveSpending.HLtypeOfHome.toLocaleLowerCase() !== 'private'
+        || (cmpSummary.comprehensiveSpending.mortgageTypeOfHome && 
+          cmpSummary.comprehensiveSpending.mortgageTypeOfHome.toLocaleLowerCase() !== 'private')) {
+        this.haveHDB = true;
+      } else {
+        this.resetHDBScheme();
+      }
+    }
     if (this.insurancePlanFormValues && this.insurancePlanFormValues.haveCPFDependentsProtectionScheme !== 1) {
       this.resetLifeProtectionAmount();
     }
@@ -88,7 +90,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   buildInsuranceForm() {
     let homeLoanOutstandingAmount = this.insurancePlanFormValues ? this.insurancePlanFormValues.homeProtectionCoverageAmount : 0;
     if (this.comprehensiveService.getHomeLoanChanges()) {
-      homeLoanOutstandingAmount = this.liabilitiesDetails.homeLoanOutstandingAmount
+      homeLoanOutstandingAmount = this.liabilitiesDetails.homeLoanOutstandingAmount;
     }
     this.insurancePlanForm = this.formBuilder.group({
       haveHospitalPlan: [{
@@ -104,7 +106,9 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
           this.insurancePlanFormValues.haveCPFDependentsProtectionScheme : '', disabled: this.viewMode
       }, [Validators.required]],
       lifeProtectionAmount: [{
-        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.lifeProtectionAmount : COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT, disabled: this.viewMode
+        value: this.insurancePlanFormValues ? this.insurancePlanFormValues.lifeProtectionAmount :
+         COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT,
+        disabled: this.viewMode
       }, [Validators.required]],
       haveHDBHomeProtectionScheme: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.haveHDBHomeProtectionScheme : '',
@@ -148,8 +152,6 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
       if (this.pageId === pageId) {
         this.progressService.show();
       }
-
-
     });
 
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
@@ -164,9 +166,12 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     });
   }
 
-
   resetLifeProtectionAmount() {
     this.insurancePlanForm.controls['lifeProtectionAmount'].setValue(COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT);
+  }
+  resetHDBScheme() {
+    this.insurancePlanForm.controls['haveHDBHomeProtectionScheme'].setValue('');
+    this.insurancePlanForm.controls['homeProtectionCoverageAmount'].setValue(0);
   }
   resetLongTermShieldAmount() {
     this.insurancePlanForm.controls['longTermElderShieldAmount'].setValue('');
@@ -193,7 +198,8 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
       this.showSummaryModal();
     } else {
       const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
-      if (!form.pristine || cmpSummary.comprehensiveInsurancePlanning === null) {
+      if (!form.pristine || cmpSummary.comprehensiveInsurancePlanning === null ||
+        this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
         if (!form.controls.homeProtectionCoverageAmount.pristine) {
           this.comprehensiveService.setHomeLoanChanges(false);
         }
@@ -222,7 +228,14 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
             form.value.lifeProtectionAmount = COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT;
           }
           this.comprehensiveService.setInsurancePlanningList(form.value);
-          this.showSummaryModal();
+          if (this.comprehensiveService.getMySteps() === 2
+          && this.comprehensiveService.getMySubSteps() < 1) {
+            this.comprehensiveService.setStepCompletion(2, 1).subscribe((data1: any) => {
+              this.showSummaryModal();
+            });
+          } else {
+            this.showSummaryModal();
+          }
         });
       } else {
         this.showSummaryModal();

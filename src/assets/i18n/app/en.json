@@ -345,6 +345,7 @@
   },
   "COMMON_LOADER": {
     "TITLE": "Loading",
+    "SAVE_DATA":"Saving Details...",
     "DESC": "Please wait while we load the data"
   },
   "MYINFO": {
@@ -366,12 +367,13 @@
       "WELCOME_TITLE": "Welcome back,",
       "EDIT_PROFILE": "Edit Profile",
       "COMPREHENSIVE_PLANNING_TITLE": "Comprehensive Planning",
+      "COMPREHENSIVE_PLANNING_LITE_TITLE":"Comprehensive Financial Planning",
       "COMPREHENSIVE_PLANNING_VIEW": "View",
       "COMPREHENSIVE_PLANNING_EDIT": "Edit",
       "COMPREHENSIVE_PLANNING_COMPLETED_DESC": "Your comprehensive planning is completed!",
       "COMPREHENSIVE_PLANNING_CALCULATE_REPORT": "We are preparing your report!",
       "COMPREHENSIVE_PLANNING_ESTIMATE": "Estimated time: 1-2 working day(s)",
-      "COMPREHENSIVE_PLANNING_VIEW_REPORT": "View Report",
+      "COMPREHENSIVE_PLANNING_VIEW_REPORT": "Download Report",
       "COMPREHENSIVE_PLANNING_LAST_UPDATED": "Last Updated LAST_UPDATED_DATE",
       "COMPREHENSIVE_PLANNING_NEXT_STEP": "Next step:",
       "COMPREHENSIVE_PLANNING_NEXT_STEP_DESC": "You can set up a face-to-face consultation with our client advisers to go through your report as well as implement a customised plan to achieve your financial goals.",
@@ -396,10 +398,12 @@
       "WILL_WRITING_ESTIMATED": "Estimated 10 mins",
       "DEFAULT_CONTENT": "Get a holistic financial assessment and trusted financial advice today!",
       "DEFAULT_START": "Start Planning",
-      "DEFAULT_ESTIMATED": "Estimated 20 mins",
+      "DEFAULT_ESTIMATED": "Estimated 20 mins",      
+      "DEFAULT_ESTIMATED_LITE": "Estimated 10 mins",
       "COMPREHENSIVE_PLANNING_LAST_SUBMITTED_DATE": "Last Submitted LAST_SUBMITTED_DATE",
       "WARNING_POPUP": "Note that your DOB/Gender is different from Investment journey. Reach adviser on how to proceed",
-      "COMPREHENSIVE_PLANNING_SUBMITTED": "Once your report is ready, our advisers will be in touch with you."
+      "COMPREHENSIVE_PLANNING_SUBMITTED": "Once your report is ready, our advisers will be in touch with you.",
+      "COMPREHENSIVE_REPORT_ERROR_MSG":"We faced an error when generating your report. Please click on “Make Changes” to generate a new report."
     }
   },
   "TRANSFER_INSTRUCTION": {

@@ -38,6 +38,8 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   routerEnabled = false;
   bucketImage: string;
   viewMode: boolean;
+  comprehensiveJourneyMode: boolean;
+  saveData: string;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
@@ -47,8 +49,10 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
+      this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
     });
     this.viewMode = this.comprehensiveService.getViewableMode();
+    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP2;
     this.translate.get('COMMON').subscribe((result: string) => {
       // meta tag and title
@@ -58,10 +62,14 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       this.financeModal = this.translate.instant('CMP.MODAL.FINANCES_MODAL');
       if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
         this.routerEnabled = !this.summaryRouterFlag;
-        this.showSummaryModal();
+        this.routerPath();
       }
     });
     this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
+    if (!this.comprehensiveJourneyMode && this.liabilitiesDetails) {
+      this.liabilitiesDetails.otherPropertyLoanOutstandingAmount = 0;
+      this.liabilitiesDetails.carLoansAmount = 0;
+    }
   }
 
   ngOnInit() {
@@ -140,7 +148,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   }
   goToNext(form: FormGroup) {
     if (this.viewMode) {
-      this.showSummaryModal();
+      this.routerPath();
     } else {
       if (this.validateLiabilities(form)) {
 
@@ -154,15 +162,22 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
           this.liabilitiesDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_LIABILITIES.API_TOTAL_BUCKET_KEY] = this.totalOutstanding;
           this.liabilitiesDetails.enquiryId = this.comprehensiveService.getEnquiryId();
 
-          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES + '/summary']);
-          this.loaderService.showLoader({ title: 'Saving' });
+          this.loaderService.showLoader({ title: this.saveData });
           this.comprehensiveApiService.saveLiabilities(this.liabilitiesDetails).subscribe((data) => {
             this.comprehensiveService.setMyLiabilities(this.liabilitiesDetails);
-            this.loaderService.hideLoader();
-            this.showSummaryModal();
+            if (this.comprehensiveService.getMySteps() === 1
+              && this.comprehensiveService.getMySubSteps() < 6) {
+              this.comprehensiveService.setStepCompletion(1, 6).subscribe((data1: any) => {
+                this.loaderService.hideLoader();
+                this.routerPath();
+              });
+            } else {
+              this.loaderService.hideLoader();
+              this.routerPath();
+            }
           });
         } else {
-          this.showSummaryModal();
+          this.routerPath();
         }
       }
     }
@@ -170,6 +185,9 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   get addLiabilitiesValid() { return this.myLiabilitiesForm.controls; }
   validateLiabilities(form: FormGroup) {
     this.submitted = true;
+    if (this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+      this.myLiabilitiesForm.markAsDirty();
+    }
     if (this.validationFlag === true && !form.valid) {
       Object.keys(form.controls).forEach((key) => {
 
@@ -219,6 +237,13 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
         routerEnabled: this.summaryRouterFlag
       };
       this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
+    }
+  }
+  routerPath() {
+    if (this.comprehensiveJourneyMode) {
+      this.showSummaryModal();
+    } else {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/3']);
     }
   }
 }

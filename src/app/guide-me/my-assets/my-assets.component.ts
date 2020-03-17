@@ -64,7 +64,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
       otherAssets: new FormControl(this.assetsFormValues.otherAssets)
     });
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
-      if (myinfoObj && myinfoObj !== '' && this.checkMyInfoSourcePage()) {
+      if (myinfoObj && myinfoObj !== '' && this.myInfoService.checkMyInfoSourcePage()) {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
             if (data && data['objectList']) {
@@ -152,16 +152,6 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
   goToNext(form) {
     if (this.save(form)) {
       this.router.navigate([GUIDE_ME_ROUTE_PATHS.LIABILITIES]);
-    }
-  }
-
-  checkMyInfoSourcePage() {
-    const currentPath = APP_ROUTES.GUIDE_ME + '/' + GUIDE_ME_ROUTES.ASSETS;
-    if (this.myInfoService.getMyInfoAttributes() === 'cpfbalances'
-      && window.sessionStorage.getItem('currentUrl') === currentPath) {
-      return true;
-    } else {
-      return false;
     }
   }
 }

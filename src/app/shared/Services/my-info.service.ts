@@ -116,7 +116,7 @@ export class MyInfoService {
 
     // Robo2 - MyInfo changes
     // tslint:disable-next-line:only-arrow-functions
-    window.addEventListener('message', function(event) {
+    window.addEventListener('message', function (event) {
       console.log('received: ' + event.data);
       clearInterval(timer);
       window.success = () => null;
@@ -131,7 +131,7 @@ export class MyInfoService {
       if (!this.windowRef.closed) {
         this.windowRef.close();
       }
-      this.router.navigate(['myinfo'], { queryParams: { code: myInfoAuthCode}});
+      this.router.navigate(['myinfo'], { queryParams: { code: myInfoAuthCode } });
     } else {
       this.status = 'FAILED';
       this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
@@ -202,5 +202,17 @@ export class MyInfoService {
       personAttributes: this.getMyInfoAttributes()
     };
     return this.apiService.getMyInfoData(code);
+  }
+
+  // Check if the source page matches with the session stored one
+  checkMyInfoSourcePage() {
+    const currentUrl = window.location.toString();
+    const currentPath = currentUrl.split(currentUrl.split('/')[2])[currentUrl.split(currentUrl.split('/')[2]).length - 1].substr(1);
+    if (this.getMyInfoAttributes() === 'cpfbalances'
+      && window.sessionStorage.getItem('currentUrl') === currentPath) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

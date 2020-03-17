@@ -1,0 +1,62 @@
+@import '../../../variables';
+@import '../../../mixins';
+.table-view {
+    display: table;
+    position: relative;
+
+    .table-row {
+      display: table-row;
+
+      .table-cell {
+        display: table-cell;
+        border-right: 1px solid $risk-table-cell-brdr-color;
+        border-bottom: 1px solid $risk-table-cell-brdr-color;
+        background-color: $risk-table-cell-bg-color;
+        color: $risk-table-cell-color;
+        padding: 12px 10px;
+        vertical-align: middle;
+        text-align: center;
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+
+        .col-head {
+          font-family: $muli-bold;
+          line-height: 23px;
+        }
+
+        label {
+          color: $risk-table-lbl-color;
+          font-size: 18px;
+        }
+      }
+
+      &.table-head {
+        .table-cell {
+          background-color: $white-color;
+          font-size: 14px;
+          color: $risk-table-head-color;
+          font-family: $muli-regular;
+          line-height: 15px;
+        }
+
+        .table-cell:first-child {
+          border-radius: 6px 0px 0px 0px;
+          font-size: 16px;
+        }
+
+        .table-cell:last-child {
+          border-radius: 0px 6px 0px 0px;
+        }
+      }
+    }
+
+    .table-row:last-child {
+      .table-cell:first-child {
+        border-radius: 0px 0px 0px 6px;
+      }
+
+      .table-cell:last-child {
+        border-radius: 0px 0px 6px 0px;
+      }
+    }
+  }

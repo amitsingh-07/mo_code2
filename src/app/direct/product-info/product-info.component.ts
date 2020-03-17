@@ -224,6 +224,9 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
       catId = catId - 1;
     }
     this.openProductCategory(catId);
+    if (this.innerWidth < this.mobileThreshold) {
+      this.directService.updateUserInfo();
+    }
   }
 
   formSubmitted(data) {

@@ -18,6 +18,14 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
       CASH: 'CASH',
       SRS: 'SRS'
     },
+    TOPUP_TYPES: {
+      ONE_TIME: {
+        NAME: 'One-time Investment'
+      },
+      MONTHLY: {
+        NAME: 'Monthly Investment'
+      }
+    }
   },
   WITHDRAW: {
     WITHDRAWAL_TYPES: [
