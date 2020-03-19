@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -5,9 +6,7 @@ import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bo
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-
 import { LoaderService } from '../../shared/components/loader/loader.service';
-import { ApiService } from '../../shared/http/api.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { SignUpService } from '../../sign-up/sign-up.service';
@@ -51,14 +50,17 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     disableDOB = false;
     public showToolTip = false;
     getComprehensiveEnquiry: any;
-    maxDate:any;
-    minDate:any;
+    maxDate: any;
+    minDate: any;
+    getComprehensiveData: any;
+    saveData: string;
 
     public onCloseClick(): void {
         this.comprehensiveService.setProgressToolTipShown(true);
         this.showToolTip = false;
     }
 
+    // tslint:disable-next-line: parameters-max-number
     constructor(
         private loaderService: LoaderService,
         private signUpService: SignUpService,
@@ -73,7 +75,8 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         private parserFormatter: NgbDateParserFormatter,
         private comprehensiveApiService: ComprehensiveApiService,
         private progressService: ProgressTrackerService,
-        private aboutAge: AboutAge
+        private aboutAge: AboutAge,
+        private authService: AuthenticationService
     ) {
         const today: Date = new Date();
         this.minDate = {
@@ -93,6 +96,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                 // meta tag and title
                 this.pageTitle = this.translate.instant('CMP.GETTING_STARTED.TITLE');
                 this.nationalityList = this.translate.instant('CMP.NATIONALITY');
+                this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
                 this.setPageTitle(this.pageTitle);
             });
         });
@@ -104,14 +108,24 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     ngOnInit() {
         this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
         this.loaderService.showLoader({ title: 'Fetching Data' });
-        this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
-            this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
-            this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
-            if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
-
+        const comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
+        let getCurrentVersionType =  this.comprehensiveService.getComprehensiveCurrentVersion();
+        if ((getCurrentVersionType === '' || getCurrentVersionType === null || getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE ) && comprehensiveLiteEnabled) {
+            getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
+        } else {
+            getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
+        }
+        this.comprehensiveApiService.getComprehensiveSummary(getCurrentVersionType).subscribe((data: any) => {
+            if (data && data.objectList[0]) {
+                this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
+                this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
+                this.getComprehensiveData = this.comprehensiveService.getComprehensiveEnquiry().type;
+                if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus
+                === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+                }
+                this.loaderService.hideLoader();
+                this.checkRedirect();
             }
-            this.loaderService.hideLoader();
-            this.checkRedirect();
         });
 
         this.navbarService.setNavbarComprehensive(true);
@@ -126,7 +140,11 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             if (event && event !== '') {
                 const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
                 if (previousUrl !== null) {
-                    this.router.navigate([previousUrl]);
+                    if ( getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.FULL) { 
+                        this.router.navigate([previousUrl]);
+                    } else {
+                        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
+                    }
                 } else {
                     this.navbarService.goBack();
                 }
@@ -163,24 +181,17 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     getUserProfileData() {
         this.userDetails = this.comprehensiveService.getMyProfile();
-        this.userDetails.gender = (this.userDetails.gender.toLowerCase() === 'male' ||
-            this.userDetails.gender.toLowerCase() === 'female') ? this.userDetails.gender : '';
+        this.userDetails.gender = (this.userDetails.gender && (this.userDetails.gender.toLowerCase() === 'male' ||
+            this.userDetails.gender.toLowerCase() === 'female')) ? this.userDetails.gender : '';
         this.disableDOB = this.getComprehensiveEnquiry.isDobUpdated;
         this.setUserProfileData();
         this.buildProfileForm();
         this.myProfileShow = true;
-        this.progressService.updateValue(this.router.url, this.userDetails.firstName);
-        this.progressService.refresh();
+       this.progressService.updateValue(this.router.url, this.userDetails.firstName);
+       this.progressService.refresh();
         if (this.getComprehensiveEnquiry.isDobUpdated) {
             this.validateDOB(this.userDetails.ngbDob);
         }
-        /*if (this.getComprehensiveEnquiry.dobPopUpEnable) {
-            const toolTipParams = {
-                TITLE: '',
-                DESCRIPTION: this.translate.instant('COMPREHENSIVE.DASHBOARD.WARNING_POPUP')
-            };
-            this.comprehensiveService.openTooltipModal(toolTipParams);
-        }*/
     }
 
     setUserProfileData() {
@@ -211,14 +222,31 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             if (this.validateMoGetStrdForm(form) && !this.validateDOB(form.value.ngbDob)) {
                 this.userDetails = form.getRawValue();
                 this.userDetails.dateOfBirth = this.parserFormatter.format(form.getRawValue().ngbDob);
+                this.userDetails.enquiryId = this.comprehensiveService.getEnquiryId();
                 if (!form.pristine) {
+                    this.loaderService.showLoader({ title: this.saveData });
                     this.comprehensiveApiService.savePersonalDetails(this.userDetails).subscribe((data) => {
                         this.comprehensiveService.setMyProfile(this.userDetails);
-                        const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
-                        cmpSummary.baseProfile = this.comprehensiveService.getMyProfile();
-                        this.comprehensiveService.setComprehensiveSummary(cmpSummary);
-                        this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.NEW);
-                        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+                        if (this.comprehensiveService.getReportStatus() === null) {
+                            const payload = {enquiryId: this.userDetails.enquiryId, reportStatus : COMPREHENSIVE_CONST.REPORT_STATUS.NEW};
+                            this.comprehensiveApiService.updateComprehensiveReportStatus(payload).subscribe((reportRes: any) => {
+                                if (reportRes) {
+                                    const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
+                                    cmpSummary.baseProfile = this.comprehensiveService.getMyProfile();
+                                    cmpSummary.comprehensiveEnquiry.reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.NEW;
+                                    this.comprehensiveService.setComprehensiveSummary(cmpSummary);
+                                    this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.NEW);
+                                    this.loaderService.hideLoader();
+                                    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+                                }
+                                });
+                        } else {
+                            const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
+                            cmpSummary.baseProfile = this.comprehensiveService.getMyProfile();
+                            this.comprehensiveService.setComprehensiveSummary(cmpSummary);
+                            this.loaderService.hideLoader();
+                            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+                        }
                     });
                 } else {
                     this.comprehensiveService.setProgressToolTipShown(true);
@@ -247,6 +275,10 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     validateMoGetStrdForm(form: FormGroup) {
         this.submitted = true;
+        //COMPREHENSIVE_CONST.REPORT_STATUS.NEW
+        if (this.comprehensiveService.getReportStatus() === null) {
+            this.moGetStrdForm.markAsDirty();
+          }
         if (!form.valid) {
             Object.keys(form.controls).forEach((key) => {
                 form.get(key).markAsDirty();

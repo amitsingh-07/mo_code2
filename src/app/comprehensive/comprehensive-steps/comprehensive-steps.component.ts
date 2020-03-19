@@ -24,6 +24,8 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   viewMode: boolean;
   reportStatus: string;
+  comprehensiveJourneyMode: boolean;
+  stepLite: number;
   constructor(
     private route: ActivatedRoute, private router: Router, private navbarService: NavbarService,
     private translate: TranslateService, private configService: ConfigService,
@@ -48,9 +50,10 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
     if (stepCalculated >= 1 && stepCalculated < 4 && (stepCalculated > currentStep)) {
       const stepCheck = this.comprehensiveService.checkStepValidation(stepCalculated);
       if (stepCheck.status) {
-        const stepIndicatorData = { enquiryId: this.comprehensiveService.getEnquiryId(), stepCompleted: stepCalculated };
+        const stepIndicatorData = { enquiryId: this.comprehensiveService.getEnquiryId(), stepCompleted: stepCalculated,
+           subStepCompleted: 0 };
         this.comprehensiveApiService.saveStepIndicator(stepIndicatorData).subscribe((data) => {
-          this.comprehensiveService.setMySteps(stepCalculated);
+          this.comprehensiveService.setMySteps(stepCalculated, 0);
         });
       } else {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + stepCheck.stepIndicate]);
@@ -58,6 +61,8 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit() {
+    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
+    this.stepLite = this.comprehensiveJourneyMode ? 4 : 3;
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
@@ -98,10 +103,10 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
         this.url = COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS;
         break;
       case 3:
-        this.url = COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN;
+        this.url = this.comprehensiveJourneyMode ? COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN : COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN;
         break;
       case 4:
-        this.url = COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN;
+        this.url = this.comprehensiveJourneyMode ? COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN : COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1';
         break;
     }
     this.router.navigate([this.url]);

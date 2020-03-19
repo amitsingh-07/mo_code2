@@ -1,8 +1,15 @@
 @import '../../../variables';
 @import '../../../mixins';
 .comprehensive {
-  background: #fff;
-  height: 100% !important;
+  &.full-responsive-height {
+    background: $white-color;
+    min-height: calc(100vh - 45px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  background: $white-color;
+  //height: 100% !important;
   @include desktop {
     &.container-fluid {
       padding: 90px 20px 20px 20px;

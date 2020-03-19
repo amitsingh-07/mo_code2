@@ -450,7 +450,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   // If its current route, close the menu else navigate as usual
   checkCurrentRouteAndNavigate(route) {
     if (this.router.url === route) {
-      this.toggleMenu();
+      this.hideMenu();
     } else {
       this.router.navigate([route]);
     }

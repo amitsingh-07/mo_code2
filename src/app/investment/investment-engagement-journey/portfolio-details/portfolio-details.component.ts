@@ -28,6 +28,7 @@ import {
   INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { IInvestmentCriteria } from '../../investment-common/investment-common-form-data';
 import {
   INVESTMENT_COMMON_ROUTE_PATHS
 } from '../../investment-common/investment-common-routes.constants';
@@ -63,6 +64,7 @@ export class PortfolioDetailsComponent implements OnInit {
   event2 = true;
   iconImage;
   userInputSubtext;
+  investmentCriteria: IInvestmentCriteria;
 
   constructor(
     private signUpApiService: SignUpApiService,
@@ -100,6 +102,7 @@ export class PortfolioDetailsComponent implements OnInit {
     this.getPortfolioAllocationDetails();
     this.selectedRiskProfile = this.investmentEngagementJourneyService.getSelectedRiskProfileId();
     this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
+    this.getInvestmentCriteria();
   }
 
   setPageTitle(title: string) {
@@ -121,6 +124,7 @@ export class PortfolioDetailsComponent implements OnInit {
       oneTimeInvestment: this.portfolio.initialInvestment,
       monthlyInvestment: this.portfolio.monthlyInvestment
     };
+    ref.componentInstance.investmentCriteria = this.investmentCriteria;
     ref.componentInstance.modifiedInvestmentData.subscribe((emittedValue) => {
       // update form data
       ref.close();
@@ -309,5 +313,11 @@ export class PortfolioDetailsComponent implements OnInit {
 
   investmentFAQ() {
     this.router.navigate(['/faq'], { fragment: 'investment' });
+  }
+
+  getInvestmentCriteria() {
+    this.investmentCommonService.getInvestmentCriteria().subscribe((data) => {
+      this.investmentCriteria = data;
+    });
   }
 }
