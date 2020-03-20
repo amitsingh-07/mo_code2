@@ -110,6 +110,7 @@ export class RetirementPlanComponent
       this.comprehensiveService.getMyProfile().dateOfBirth,
       new Date()
     );
+    this.userAge = ++ this.userAge;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -184,7 +185,7 @@ export class RetirementPlanComponent
     this.renderer.addClass(containerRef, 'lastSliderPips');*/
     if (this.sliderValue >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE && this.sliderValue < this.userAge) {
       //this.sliderValue = Math.ceil(this.userAge / 5) * 5;
-      this.sliderValue = this.userAge;
+      this.sliderValue =  this.userAge;
       this.ciMultiplierSlider.writeValue(this.sliderValue);
     } else {
       this.ciMultiplierSlider.writeValue(this.sliderValue);
