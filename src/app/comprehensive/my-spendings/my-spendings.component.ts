@@ -40,6 +40,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   bucketImage: string;
   validationFlag: boolean;
   mortageFieldSet = ['mortgagePaymentUsingCPF', 'mortgagePaymentUsingCash', 'mortgageTypeOfHome', 'mortgagePayOffUntil'];
+  payOffFieldSet = ['HLMortgagePaymentUsingCPF', 'mortgagePaymentUsingCPF', 'carLoanPayment', 'otherLoanPayment']
   viewMode: boolean;
   homeTypeList: any[];
   mortgageTypeOfHome = '';
@@ -71,7 +72,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     this.HLTypeOfHome = this.spendingDetails.HLtypeOfHome ? this.spendingDetails.HLtypeOfHome : '';
     this.viewMode = this.comprehensiveService.getViewableMode();
     this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
-    if (!this.comprehensiveJourneyMode && this.spendingDetails  ) {
+    if (!this.comprehensiveJourneyMode && this.spendingDetails) {
       this.spendingDetails.HLtypeOfHome = '';
       this.spendingDetails.mortgagePaymentUsingCPF = 0;
       this.spendingDetails.mortgagePaymentUsingCash = 0;
@@ -116,6 +117,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
         this.addOtherMortage();
       }
     }
+    this.validatePayoff();
     this.earningDetails = this.comprehensiveService.getMyEarnings();
     if (this.earningDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.API_TOTAL_BUCKET_KEY]) {
       this.totalBucket = this.earningDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.API_TOTAL_BUCKET_KEY];
@@ -170,19 +172,79 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     }
     this.otherMortage = !this.otherMortage;
   }
+  validatePayoff() {
+    for (const value of this.payOffFieldSet) {
+      switch (value) {
+        case 'HLMortgagePaymentUsingCPF':
+          const HLMortgagePaymentUsingCPF = parseInt(this.mySpendingsForm.controls['HLMortgagePaymentUsingCPF'].value !=null ?  this.mySpendingsForm.controls['HLMortgagePaymentUsingCPF'].value:0);
+          const HLMortgagePaymentUsingCash = parseInt(this.mySpendingsForm.controls['HLMortgagePaymentUsingCash'].value !=null ?  this.mySpendingsForm.controls['HLMortgagePaymentUsingCash'].value:0);
+          const HLMortgagePayoffUntil =  this.mySpendingsForm.controls['homeLoanPayOffUntil'];
+          if ((HLMortgagePaymentUsingCPF + HLMortgagePaymentUsingCash) > 0) {
+            HLMortgagePayoffUntil.setValidators([Validators.required, this.payOffYearValid]);
+            HLMortgagePayoffUntil.updateValueAndValidity();
+          } else {
+            HLMortgagePayoffUntil.clearValidators();
+            HLMortgagePayoffUntil.setValidators([this.payOffYearValid]);
+            HLMortgagePayoffUntil.updateValueAndValidity();
+          }
+        break;
+        case 'mortgagePaymentUsingCPF':
+          const mortgagePaymentUsingCPF = parseInt(this.mySpendingsForm.controls['mortgagePaymentUsingCPF'].value);
+          const mortgagePaymentUsingCash = parseInt(this.mySpendingsForm.controls['mortgagePaymentUsingCash'].value);
+          const mortgagePayOffUntil =  this.mySpendingsForm.controls['mortgagePayOffUntil'];
+          console.log(mortgagePaymentUsingCPF, this.mySpendingsForm.controls['mortgagePaymentUsingCash'].value);
+          if ((mortgagePaymentUsingCPF + mortgagePaymentUsingCash)> 0) {
+            mortgagePayOffUntil.setValidators([Validators.required, this.payOffYearValid]);
+            mortgagePayOffUntil.updateValueAndValidity();
+          } else {
+            mortgagePayOffUntil.clearValidators();
+            mortgagePayOffUntil.setValidators([this.payOffYearValid]);
+            mortgagePayOffUntil.updateValueAndValidity();
+          }
+        break;
+        case 'carLoanPayment':
+          const carLoanPayment = parseInt(this.mySpendingsForm.controls['carLoanPayment'].value);
+          const carLoanPayoffUntil =  this.mySpendingsForm.controls['carLoanPayoffUntil'];
+          if (carLoanPayment > 0) {
+            carLoanPayoffUntil.setValidators([Validators.required, this.payOffYearValid]);
+            carLoanPayoffUntil.updateValueAndValidity();
+          } else {
+            carLoanPayoffUntil.clearValidators();
+            carLoanPayoffUntil.setValidators([this.payOffYearValid]);
+            carLoanPayoffUntil.updateValueAndValidity();
+          }
+          break;
+        case 'otherLoanPayment':
+          const otherLoanPayment = parseInt(this.mySpendingsForm.controls['otherLoanPayment'].value);
+          const otherLoanPayoffUntil =  this.mySpendingsForm.controls['otherLoanPayoffUntil'];
+          if (otherLoanPayment > 0) {
+            otherLoanPayoffUntil.setValidators([Validators.required, this.payOffYearValid]);
+            otherLoanPayoffUntil.updateValueAndValidity();
+          } else {
+            otherLoanPayoffUntil.clearValidators();
+            otherLoanPayoffUntil.setValidators([this.payOffYearValid]);
+            otherLoanPayoffUntil.updateValueAndValidity();
+          }
+          break;
+
+      }
+
+    }
+
+  }
   buildMySpendingForm() {
     this.mySpendingsForm = this.formBuilder.group({
       monthlyLivingExpenses: [this.spendingDetails ? this.spendingDetails.monthlyLivingExpenses : '', []],
       adHocExpenses: [this.spendingDetails ? this.spendingDetails.adHocExpenses : '', []],
       HLMortgagePaymentUsingCPF: [this.spendingDetails ? this.spendingDetails.HLMortgagePaymentUsingCPF : '', []],
       HLMortgagePaymentUsingCash: [this.spendingDetails ? this.spendingDetails.HLMortgagePaymentUsingCash : '', []],
-      HLtypeOfHome: [ this.spendingDetails ? this.spendingDetails.HLtypeOfHome : '', []],
+      HLtypeOfHome: [this.spendingDetails ? this.spendingDetails.HLtypeOfHome : '', []],
       homeLoanPayOffUntil: [this.spendingDetails ? this.spendingDetails.homeLoanPayOffUntil : '',
       [this.payOffYearValid]],
-      mortgagePaymentUsingCPF: [ this.spendingDetails ? this.spendingDetails.mortgagePaymentUsingCPF : ''],
+      mortgagePaymentUsingCPF: [this.spendingDetails ? this.spendingDetails.mortgagePaymentUsingCPF : ''],
       mortgagePaymentUsingCash: [this.spendingDetails ? this.spendingDetails.mortgagePaymentUsingCash : ''],
-      mortgageTypeOfHome: [  this.spendingDetails ? this.spendingDetails.mortgageTypeOfHome : ''],
-      mortgagePayOffUntil: [ this.spendingDetails ? this.spendingDetails.mortgagePayOffUntil : '', [this.payOffYearValid]],
+      mortgageTypeOfHome: [this.spendingDetails ? this.spendingDetails.mortgageTypeOfHome : ''],
+      mortgagePayOffUntil: [this.spendingDetails ? this.spendingDetails.mortgagePayOffUntil : '', [this.payOffYearValid]],
       carLoanPayment: [this.spendingDetails ? this.spendingDetails.carLoanPayment : '', []],
       carLoanPayoffUntil: [this.spendingDetails ? this.spendingDetails.carLoanPayoffUntil : '', [this.payOffYearValid]],
       otherLoanPayment: [this.spendingDetails ? this.spendingDetails.otherLoanPayment : '', []],
@@ -207,7 +269,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
               this.comprehensiveService.saveBadMoodFund();
             }
             if (this.comprehensiveService.getMySteps() === 1
-            && this.comprehensiveService.getMySubSteps() < 2) {
+              && this.comprehensiveService.getMySubSteps() < 2) {
               this.comprehensiveService.setStepCompletion(1, 2).subscribe((data1: any) => {
                 this.loaderService.hideLoader();
                 this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REGULAR_SAVING_PLAN]);
@@ -268,6 +330,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   @HostListener('input', ['$event'])
   onChange() {
     this.onTotalAnnualSpendings();
+    this.validatePayoff();
   }
 
   onTotalAnnualSpendings() {
