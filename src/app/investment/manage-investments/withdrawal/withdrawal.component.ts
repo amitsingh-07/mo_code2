@@ -473,27 +473,20 @@ export class WithdrawalComponent implements OnInit {
     if (this.withdrawForm.controls.withdrawRedeem.value && this.withdrawForm.controls.withdrawPortfolio.value) {
       const cashBalance = (this.isFromPortfolio) ? this.withdrawForm.controls.withdrawPortfolio.value.portfolioValue.toString() :
         this.cashBalance.toString();
-      this.withdrawForm.controls.withdrawAmount.clearValidators();
-      this.withdrawForm.controls.withdrawAmount.setErrors(null);
-      this.withdrawForm.controls.withdrawAmount.setValidators(null);
       this.withdrawForm.controls.withdrawAmount.setValue(cashBalance);
       this.withdrawForm.get('withdrawAmount').disable();
       this.isRedeemAllChecked = true;
-      // this.withdrawForm.controls.withdrawAmount.setErrors(null);
     } else {
       this.withdrawForm.controls.withdrawAmount.setValue("0");
       this.withdrawForm.get('withdrawAmount').enable();
       this.isRedeemAllChecked = false;
-      // this.withdrawForm.controls.withdrawAmount.setErrors(null);
     }
-    console.log('pristine', this.withdrawForm.controls.withdrawAmount.pristine);
-    console.log('valid', this.withdrawForm.controls.withdrawAmount.valid);
   }
   checkRedeemAll() {
     if (this.withdrawForm.controls.withdrawPortfolio.value) {
       const cashBalance = (this.isFromPortfolio) ? this.withdrawForm.controls.withdrawPortfolio.value.portfolioValue.toString() :
           this.cashBalance.toString();
-      if(cashBalance <= 480) {
+      if(cashBalance <= 50) {
         this.withdrawForm.controls.withdrawRedeem.setValue(true);
         this.withdrawForm.controls.withdrawAmount.setValue(cashBalance);
         this.withdrawForm.get('withdrawAmount').disable();

@@ -97,7 +97,7 @@
                 </div>
                 <div class="flex-col-8">
                   <div class="form-control"
-                    [ngClass]="[getInlineErrorStatus(withdrawForm.controls.withdrawAmount && !isRedeemAllChecked) ? 'inline-error' : '',  isRedeemAllChecked ? 'disabled' : '']">
+                    [ngClass]="[(getInlineErrorStatus(withdrawForm.controls.withdrawAmount)  && !isRedeemAllChecked)? 'inline-error' : '',  isRedeemAllChecked ? 'disabled' : '']">
                     <i id="myFinancialDollarSybmOne">$</i>
                     <div>
                       <input class="input-control" type="text" id="withdrawal-type" appCurrencyInput [allowDecimal]=true
