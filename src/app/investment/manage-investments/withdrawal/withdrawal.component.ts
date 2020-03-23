@@ -38,6 +38,7 @@ export class WithdrawalComponent implements OnInit {
   portfolioList;
   cashBalance;
   isRedeemAll;
+  isRedeemAllChecked;
   translateParams;
   isRequestSubmitted = false;
   entitlements: any;
@@ -125,7 +126,8 @@ export class WithdrawalComponent implements OnInit {
     this.withdrawForm = this.formBuilder.group({
       withdrawType: [this.formValues.withdrawType, Validators.required],
       withdrawPortfolio: [this.formValues.withdrawPortfolio ? this.formValues.withdrawPortfolio : this.formValues.selectedCustomerPortfolio, new FormControl('', Validators.required)],
-      withdrawAmount: [this.formValues.withdrawAmount, Validators.required]
+      withdrawAmount: [this.formValues.withdrawAmount, Validators.required],
+      withdrawRedeem: []
     });
 
     // Withdraw Type Changed Event
@@ -292,6 +294,11 @@ export class WithdrawalComponent implements OnInit {
         this.buildFormForPortfolioType();
         this.isFromPortfolio = true;
       }
+    }
+    if (key === 'withdrawType') {
+      setTimeout(() => {
+        this.checkRedeemAll();
+      }, 100);
     }
   }
 
@@ -462,5 +469,40 @@ export class WithdrawalComponent implements OnInit {
     };
   }
 
+  redeemAllChecked() {
+    if (this.withdrawForm.controls.withdrawRedeem.value && this.withdrawForm.controls.withdrawPortfolio.value) {
+      const cashBalance = (this.isFromPortfolio) ? this.withdrawForm.controls.withdrawPortfolio.value.portfolioValue.toString() :
+        this.cashBalance.toString();
+      this.withdrawForm.controls.withdrawAmount.clearValidators();
+      this.withdrawForm.controls.withdrawAmount.setErrors(null);
+      this.withdrawForm.controls.withdrawAmount.setValidators(null);
+      this.withdrawForm.controls.withdrawAmount.setValue(cashBalance);
+      this.withdrawForm.get('withdrawAmount').disable();
+      this.isRedeemAllChecked = true;
+      // this.withdrawForm.controls.withdrawAmount.setErrors(null);
+    } else {
+      this.withdrawForm.controls.withdrawAmount.setValue("0");
+      this.withdrawForm.get('withdrawAmount').enable();
+      this.isRedeemAllChecked = false;
+      // this.withdrawForm.controls.withdrawAmount.setErrors(null);
+    }
+    console.log('pristine', this.withdrawForm.controls.withdrawAmount.pristine);
+    console.log('valid', this.withdrawForm.controls.withdrawAmount.valid);
+  }
+  checkRedeemAll() {
+    if (this.withdrawForm.controls.withdrawPortfolio.value) {
+      const cashBalance = (this.isFromPortfolio) ? this.withdrawForm.controls.withdrawPortfolio.value.portfolioValue.toString() :
+          this.cashBalance.toString();
+      if(cashBalance <= 480) {
+        this.withdrawForm.controls.withdrawRedeem.setValue(true);
+        this.withdrawForm.controls.withdrawAmount.setValue(cashBalance);
+        this.withdrawForm.get('withdrawAmount').disable();
+        this.isRedeemAllChecked = true;
+      } else {
+        this.withdrawForm.controls.withdrawRedeem.setValue(false);
+        this.isRedeemAllChecked = false;
+      }
+    }
+  }
 }
 
