@@ -154,10 +154,22 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     }
   }
 
-  @HostListener('window:beforeunload', ['$event'])
-  unloadNotification($event: any) {
-    if (!this.canDeactivate()) {
-      $event.returnValue = 'Changes you made will not be saved. Do you want to continue?';
-    }
+  doBeforeUnload() {
+    // Alert the user window is closing
+    // Custom alert text will not be shown only default browser text
+    return false;
   }
+
+  doUnload() {
+    // Logged user out of the app
+    this.navbarService.logoutUser();
+  }
+
+  // @HostListener('window:beforeunload', ['$event'])
+  // unloadNotification($event: any) {
+  //   if (!this.canDeactivate()) {
+  //     $event.preventDefault();
+  //     $event.returnValue = 'Changes you made will not be saved. Do you want to continue?';
+  //   }
+  // }
 }
