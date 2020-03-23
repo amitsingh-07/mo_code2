@@ -11,6 +11,7 @@ import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { environment } from './../../../environments/environment';
 import { FooterService } from './../../shared/footer/footer.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
@@ -72,7 +73,11 @@ export class UpdateUserIdComponent implements OnInit {
    * Initialize tasks.
    */
   ngOnInit() {
-    this.navbarService.setNavbarMode(102);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(104);
+    } else {
+      this.navbarService.setNavbarMode(102);
+    }
     this.buildUpdateAccountForm();
     this.getCountryCode();
     this.footerService.setFooterVisibility(false);
