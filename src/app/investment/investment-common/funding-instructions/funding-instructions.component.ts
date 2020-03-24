@@ -14,7 +14,6 @@ import { FormatCurrencyPipe } from '../../../shared/Pipes/format-currency.pipe';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
-import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
 import {
   MANAGE_INVESTMENTS_ROUTE_PATHS
 } from '../../manage-investments/manage-investments-routes.constants';
@@ -23,6 +22,7 @@ import {
 } from '../../manage-investments/manage-investments.constants';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import { InvestmentCommonService } from '../investment-common.service';
+import { environment } from './../../../../environments/environment';
 
 @Component({
   selector: 'app-funding-instructions',
@@ -79,7 +79,11 @@ export class FundingInstructionsComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(103);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(105);
+    } else {
+      this.navbarService.setNavbarMode(103);
+    }
     this.footerService.setFooterVisibility(false);
     this.getBankDetailsList();
     this.getTransferDetails();

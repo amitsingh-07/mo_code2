@@ -9,6 +9,7 @@ import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { ManageInvestmentsService } from '../manage-investments.service';
+import { environment } from './../../../../environments/environment';
 
 @Component({
   selector: 'app-holdings',
@@ -44,7 +45,11 @@ export class HoldingsComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(103);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(105);
+    } else {
+      this.navbarService.setNavbarMode(103);
+    }
     this.footerService.setFooterVisibility(false);
   }
 
