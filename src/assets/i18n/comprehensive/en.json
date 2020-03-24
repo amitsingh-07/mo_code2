@@ -241,7 +241,11 @@
         "$16,501 to $20,000",
         "$20,001 to $40,000",
         "> $40,000"
-      ]
+      ],
+      "NO_OF_YRS_HEADER":"How long do you need to provide for till your family members are no longer financially dependent on you?",
+      "NO_OF_YRS_TITLE":"No. of Years to Provide For",
+      "NO_OF_YRS_LABEL":"No. of Years",
+      "YRS_LABEL":"yrs"
     },
     "DEPENDANT_DETAILS": {
       "ABOUT": "About your dependants",
@@ -319,7 +323,7 @@
         "ADD_DIVIDENDS_MESSAGE": "This is the total dividends or interest you expect to receive on a regular basis from your investments."
       },
       "SELECTED": "(Selected)",
-      "OPTIONAL_VALIDATION_FLAG": false
+      "OPTIONAL_VALIDATION_FLAG": true
     },
     "MY_SPENDINGS": {
       "HEADER": "What You Spend",
@@ -649,6 +653,11 @@
       ],
       "RETIREMENT_INCOME": "Retirement Income",
       "LUMP_SUM_BENEFIT": "Lump Sum Amount",
+      "YEARS_OLD":"yrs old",
+      "MIN_AGE":"45 yrs old",
+      "MAX_AGE":"71 yrs old",
+      "MIN_LABEL":"Min.",
+      "MAX_LABEL":"Max.",
       "TOOLTIP": {
         "RENTAL_INCOME_TITLE": "Retirement Income",
         "RENTAL_INCOME_MESSAGE": "Any monthly payout you expect to receive during your retirement from an annuity, pension scheme, investment scheme or retirement income insurance product. Please exclude income from CPF LIFE as well as rental, dividends and interest income you have entered under Your Finances.",

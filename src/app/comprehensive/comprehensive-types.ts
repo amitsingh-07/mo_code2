@@ -67,6 +67,7 @@ export interface IdependentsSummaryList {
     dependentsList: IDependantDetail[];
     houseHoldIncome: string;
     noOfHouseholdMembers: number;
+    noOfYrs: number;
 }
 export interface IChildEndowment {
     id: number;
