@@ -199,5 +199,9 @@
       "TITLE": "Reassess Risk Profile?",
       "DESC": "You have just changed how you want to fund this {{userGivenPortfolioName}} to using {{userFundingMethod}}. Do you want to reassess your risk profile?"
     }
+  },
+  "COMMON_LOADER": {
+    "TITLE": "Loading",
+    "DESC": "Please wait while we load the data"
   }
 }

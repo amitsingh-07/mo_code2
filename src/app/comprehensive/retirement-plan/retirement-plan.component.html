@@ -1,26 +1,62 @@
-<div class="container-fluid max-width--1024 comprehensive retirement-plan-container">
-  <div class="step-indicator-container" id="moDpdnt2StepIndctr">
-    <app-step-indicator [count]="1" [activeStepIndex]="0" [mode]="1"></app-step-indicator>
+<div class="comprehensive hidden-sm-md">
+  <div class="step-indicator-wrapper">
+    <div class="step-indicator-container" id="moDpdnt2StepIndctr">
+      <app-step-indicator [count]="1" [activeStepIndex]="0" [mode]="1"></app-step-indicator>
+    </div>
   </div>
+</div>
+<div class="container-fluid max-width--1024 comprehensive retirement-plan-container">
+    <div class="step-indicator-container hidden-lg" id="moDpdnt2StepIndctr">
+        <app-step-indicator [count]="1" [activeStepIndex]="0" [mode]="1"></app-step-indicator>
+      </div>
   <div class="comprehensive__page-sub-heading mt30">{{'CMP.COMPREHENSIVE_STEPS.STEP_4_TITLE'|translate}}</div>
   <div class="comprehensive__page-content">{{'CMP.RETIREMENT_PLAN.SUB_TITLE'|translate}} </div>
   <div class="income-bucket-panel">
     <div class="income-bucket-panel__img retirementImg"></div>
-    <div class="income-bucket-panel__desc mb30">{{'CMP.RETIREMENT_PLAN.ABOUT'|translate}} <span
-        class='income-bucket-panel__value'>{{(sliderValue>60)?'62 or later':sliderValue}}</span></div>
+    <!--<div class="income-bucket-panel__desc mb30">{{'CMP.RETIREMENT_PLAN.ABOUT'|translate}} <span
+        class='income-bucket-panel__value'>{{sliderValue}}</span></div>-->
   </div>
-  <div class="flex-row" [hidden]=true>
-    <span class="custom-slider-left text-left">45</span> <span class="custom-slider-middle text-right">50</span> <span
-      class="custom-slider-middle text-right">55</span> <span class="custom-slider-middle text-right">60</span>
-    <span class="custom-slider-right text-right">62 or later </span>
+  <div class="flex-row">
+    <div class="flex-col-6 align-center">
+      <div class="form-group-with-bg--content-label">
+        {{ 'CMP.RETIREMENT_PLAN.ABOUT' | translate}}</div>
+    </div>
+    <div class="flex-col-6 ">
+      <div class="form-control form-control-right retireTxt"
+        [ngClass]="{'view-mode': viewMode, 'inline-error': !(sliderValid.minAge && sliderValid.userAge)}">
+        <input [ngClass]="{'view-mode': viewMode}" id="retireUserAge" type="text"
+          appComprehensiveViewMode="{{viewMode}}" mode=1 [readonly]="false" (keyup)="changeSlide($event)"
+          (change)="changeSlide($event)" class="input-control" appCurrencyInput maxLength="2" name="retireUserAge"
+          [value]="sliderValue" />
+        <i class="right percent-fix">yrs old</i>
+      </div>
+    </div>
   </div>
+
   <form [formGroup]="retirementPlanForm" name="retirementPlanForm">
     <div class="slider-dark mt20">
       <nouislider [disabled]="viewMode" id="retirementSlider" #ciMultiplierSlider (slide)="onSliderChange($event)"
-        [config]="ciSliderConfig" [min]="45" [max]="65" [step]="5"></nouislider>
+        [config]="ciSliderConfig"></nouislider>
+        <div class="min-max-val">
+          <div class="min-val">45 yrs old<span class="min-text">Min.</span></div>
+          <div class="max-val">70 yrs old<span class="max-text">Max.</span>
+          </div>
+        </div>
     </div>
-    <div class="title">{{'CMP.RETIREMENT_PLAN.FORM_HEADER'|translate}}</div>
-    <div class="form-group-single-column  flex-col mt10">
+    <div class="flex-row retirementAgeValid" *ngIf="!(sliderValid.minAge && sliderValid.userAge)">
+      <div class="flex-col-12">
+        <div class="form-group-with-bg--content-label" *ngIf="!sliderValid.userAge">
+          <img src="assets/images/comprehensive/age-warn.svg" />
+          {{ 'CMP.RETIREMENT_PLAN.RETIREMENT_USER_AGE_VALIDATION' | translate}}
+        </div>
+        <div class="form-group-with-bg--content-label mb20" *ngIf="!sliderValid.minAge">
+          <img src="assets/images/comprehensive/age-warn.svg" />
+          {{ 'CMP.RETIREMENT_PLAN.RETIREMENT_MIN_AGE_VALIDATION' | translate}}
+        </div>
+      </div>
+    </div>
+    <div *ngIf="comprehensiveJourneyMode" class="title mt30">{{'CMP.RETIREMENT_PLAN.FORM_HEADER'|translate}}</div>
+    <div *ngIf="comprehensiveJourneyMode" class="form-group-single-column  flex-col mt10">
       <!--Form label-->
       <div class="checkbox-button one-label">
         <input id="haveRetirementIncomeYes" name="haveOtherSourceRetirementIncome"

@@ -10,17 +10,19 @@ const COMPREHENSIVE_API_BASE_URL = 'recommend/recomm-microservice/api/customer/c
 const FINANCE_API_BASE_URL = 'finance/finhealth/api/customer/comprehensive/';
 const COMPREHENSIVE_REPORT_API_BASE_URL = 'comp/comprehensive-microservice/api/';
 const PAYMENT_API_BASE_URL = 'pymtgw/';
+const INVEST_API_BASE_URL = 'invest/investment-microservice/api/';
 
 export let apiConstants = {
     endpoint: {
         authenticate: 'account/account-microservice/authenticate',
+        authenticateWorkshop: 'account/account-microservice/authenticateWorkshop',
         login: 'login',
         logout: ACCOUNT_API_BASE_URL + '/logout',
         getProfileList: ACCOUNT_API_BASE_URL + '/getProfileTypeList',
         getProtectionTypesList: INSURANCE_API_BASE_URL + '/getProtectionTypesList',
         getLongTermCareList: INSURANCE_API_BASE_URL + '/getCareGiverList',
         getHospitalPlanList: INSURANCE_API_BASE_URL + '/getHospitalClassList',
-        getRiskAssessmentQuestions: 'investment-microservice/RiskAssessment',
+        getRiskAssessmentQuestions: INVEST_API_BASE_URL + 'RiskAssessment',
         getRecommendations: INSURANCE_RECOMMEND_API_BASE_URL + '/getRecommendations',
         updateProductEnquiry: ACCOUNT_API_BASE_URL + '/updateCustomerEnquiry',
         getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfoV3',
@@ -30,7 +32,7 @@ export let apiConstants = {
         resendOTP: ACCOUNT_API_BASE_URL + '/resendOTP',
         verifyEmail: ACCOUNT_API_BASE_URL + '/verifyEmail',
         resetPassword: ACCOUNT_API_BASE_URL + '/resetPassword',
-        forgotPassword: ACCOUNT_API_BASE_URL + '/forgotPassword',
+        forgotPassword: ACCOUNT_API_BASE_URL + '/forgotPassword?handleError=true',
         userProfileInfo: ACCOUNT_API_BASE_URL + '/getCustomerProfileDetails?handleError=true',
         editContactDeatails: ACCOUNT_API_BASE_URL + '/updateAddress',
         editPassword: ACCOUNT_API_BASE_URL + '/editPassword',
@@ -91,16 +93,21 @@ export let apiConstants = {
             saveLiabilities: FINANCE_API_BASE_URL + 'saveComprehensiveLiabilities',
             getPromoCode: ACCOUNT_API_BASE_URL + '/customer/comprehensive/requestComprehensivePromoCode?category=COMPRE',
             validatePromoCode: ACCOUNT_API_BASE_URL + '/customer/comprehensive/validateComprehensivePromoCode',
-            downloadComprehensiveReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'downloadReportPdf',
+            downloadComprehensiveReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'downloadLiteReportPdf',
             saveStepIndicator: COMPREHENSIVE_API_BASE_URL + 'saveComprehensiveStepCompletion',
             generateComprehensiveReport: COMPREHENSIVE_API_BASE_URL + 'generateComprehensiveReport',
-            createReportRequest: COMPREHENSIVE_REPORT_API_BASE_URL + 'createReportRequest',
             getReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'getReport',
+            getComprehensiveSummaryDashboard: COMPREHENSIVE_API_BASE_URL + 'fetchComprehensiveStatus',
+            getProductAmount: ACCOUNT_API_BASE_URL + '/productPricing',
+            updateComprehensiveStatus: COMPREHENSIVE_API_BASE_URL +'updateComprehensiveReportStatus',
+            insuranceData: 'assets/comprehensive/insurancePlan.json'
         },
         payment: {
             getRequestSignature: PAYMENT_API_BASE_URL + 'getRequestSignature',
             cancelPayment: PAYMENT_API_BASE_URL + 'cancelPayment',
-            getLastSuccessfulSubmittedTs: PAYMENT_API_BASE_URL + 'getLastSuccessfulSubmittedTs'
+            getLastSuccessfulSubmittedTs: PAYMENT_API_BASE_URL + 'getLastSuccessfulSubmittedTs',
+            getCustPromoCodeByCategory: ACCOUNT_API_BASE_URL + '/promocode/getCustPromoCodeByCategory'
         }
     }
 };
+

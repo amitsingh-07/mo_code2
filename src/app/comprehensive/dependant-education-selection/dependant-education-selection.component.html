@@ -1,10 +1,19 @@
+<div class="comprehensive hidden-sm-md">
+    <!--Step indicator-->
+    <div class="step-indicator-wrapper">
+      <div class="step-indicator-container">
+        <app-step-indicator [count]="5" [activeStepIndex]="2" [mode]="1"></app-step-indicator>
+      </div>
+    </div>
+    <!--Step indicator /-->
+</div>
 <!--Container fluid-->
 <div class="container-fluid max-width--1024 comprehensive ">
   <!--Step indicator-->
-  <div class="step-indicator-container">
-    <app-step-indicator [count]="5" [activeStepIndex]="2" [mode]="1"></app-step-indicator>
-  </div>
-  <!--Step indicator /-->
+  <div class="step-indicator-container hidden-lg">
+      <app-step-indicator [count]="5" [activeStepIndex]="2" [mode]="1"></app-step-indicator>
+    </div>
+    <!--Step indicator /-->
   <!--Page sub-heading-->
   <div class="comprehensive__page-sub-heading mt30 pb0">{{'CMP.DEPENDANT_EDUCATION_SELECTION.TITLE'|translate}}</div>
   <!--Page sub-heading /-->

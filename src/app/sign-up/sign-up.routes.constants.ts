@@ -25,6 +25,7 @@ export const SIGN_UP_ROUTES = {
   UPDATE_BANK: 'update-bank',
   UPDATE_SRS: 'update-srs',
   TOPUP: 'portfolio/top-up',
+  FINLIT_LOGIN: 'finlit/login'
 };
 
 export const SIGN_UP_ROUTE_PATHS = {

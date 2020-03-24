@@ -85,6 +85,9 @@
             vertical-align: top;
             line-height:1.1;
         }
+        &.without--min-width {
+            min-width:110px;
+        }
     }
 }
 

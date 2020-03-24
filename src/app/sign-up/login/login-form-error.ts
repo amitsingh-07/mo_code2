@@ -19,6 +19,14 @@ export class LoginFormError {
                         errorMessage: 'Please enter your Password'
                 }
         },
+        accessCode: {
+                required: {
+                        // tslint:disable-next-line:no-duplicate-string
+                        errorTitle: 'Access Code required',
+                        // tslint:disable-next-line:no-duplicate-string
+                        errorMessage: 'Please enter your Access Code'
+                }
+        },
         captchaValue: {
                 required : {
                         errorTitle: 'Invalid captcha',

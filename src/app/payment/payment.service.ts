@@ -56,4 +56,11 @@ export class PaymentService {
   getLastSuccessfulSubmittedTs() {
     return this.apiService.getLastSuccessfulSubmittedTs();
   }
+
+  getCustPromoCodeByCategory(productType) {
+    const payload = {
+      promoCodeCat: productType
+    };
+    return this.apiService.getCustPromoCodeByCategory(payload);
+  }
 }

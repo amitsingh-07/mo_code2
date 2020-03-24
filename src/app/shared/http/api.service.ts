@@ -628,4 +628,11 @@ export class ApiService {
     );
   }
 
+  getCustPromoCodeByCategory(payload) {
+    return this.http.post(apiConstants.endpoint.payment.getCustPromoCodeByCategory, payload)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
+
 }

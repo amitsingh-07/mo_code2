@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+
 import { ComprehensiveApiService } from 'src/app/comprehensive/comprehensive-api.service';
 import { COMPREHENSIVE_CONST } from 'src/app/comprehensive/comprehensive-config.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from 'src/app/comprehensive/comprehensive-routes.constants';
 import { ComprehensiveService } from 'src/app/comprehensive/comprehensive.service';
+import { LoaderService } from 'src/app/shared/components/loader/loader.service';
 import { SignUpService } from 'src/app/sign-up/sign-up.service';
 import { PaymentService } from '../payment.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
@@ -36,7 +38,8 @@ export class PaymentStatusComponent implements OnInit, OnDestroy {
     public signUpService: SignUpService,
     private comprehensiveService: ComprehensiveService,
     private comprehensiveApiService: ComprehensiveApiService,
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
   }
@@ -65,6 +68,7 @@ export class PaymentStatusComponent implements OnInit, OnDestroy {
       this.btnText = this.translate.instant('PAYMENT_STATUS.CONTINUE');
       this.navigateText = undefined;
       this.paymentStatus = PAYMENT_STATUS.SUCCESS;
+      this.loaderService.showLoader({ title: this.translate.instant('COMMON_LOADER.TITLE'), autoHide: false });
       this.initiateReport();
     } else {
       this.statusTitle = this.translate.instant('PAYMENT_STATUS.FAIL_TITLE');
@@ -103,15 +107,14 @@ export class PaymentStatusComponent implements OnInit, OnDestroy {
 
   // Initiate report generation when payment success
   initiateReport() {
-    const reportData = { enquiryId: this.comprehensiveService.getEnquiryId() };
-    this.comprehensiveApiService.generateComprehensiveReport(reportData).subscribe((data) => {
+    const enquiryId = { enquiryId: this.comprehensiveService.getEnquiryId() };
+    this.comprehensiveApiService.generateComprehensiveReport(enquiryId).subscribe((data) => {
       this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED);
       this.comprehensiveService.setLocked(true);
       this.comprehensiveService.setViewableMode(true);
-      const payload = { enquiryId: this.comprehensiveService.getEnquiryId() };
-      this.comprehensiveApiService.createReportRequest(payload).subscribe((reportDataStatus: any) => {
-        this.comprehensiveService.setReportId(reportDataStatus.reportId);
-      });
+      this.loaderService.hideLoaderForced();
+    }, (err) => {
+      this.loaderService.hideLoaderForced();
     });
   }
 }

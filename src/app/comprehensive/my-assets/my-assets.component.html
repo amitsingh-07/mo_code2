@@ -1,10 +1,19 @@
+<div class="comprehensive hidden-sm-md">
+    <!--Step indicator-->
+    <div class="step-indicator-wrapper">
+      <div class="step-indicator-container" id="moDpdnt2StepIndctr">
+        <app-step-indicator [count]="6" [activeStepIndex]="4" [mode]="1"></app-step-indicator>
+      </div>
+    </div>
+    <!--Step indicator /-->
+</div>
 <!--Container fluid-->
 <div class="container-fluid max-width--1024 comprehensive">
   <!--Step indicator-->
-  <div class="step-indicator-container" id="moDpdnt2StepIndctr">
-    <app-step-indicator [count]="6" [activeStepIndex]="4" [mode]="1"></app-step-indicator>
-  </div>
-  <!--Step indicator /-->
+  <div class="step-indicator-container hidden-lg" id="moDpdnt2StepIndctr">
+      <app-step-indicator [count]="6" [activeStepIndex]="4" [mode]="1"></app-step-indicator>
+    </div>
+    <!--Step indicator /-->
   <div class="comprehensive__page-sub-heading mt30">{{'CMP.MY_ASSETS.TITLE'|translate}}</div>
   <div class="comprehensive__page-content">{{'CMP.MY_ASSETS.HEADER'|translate}}</div>
   <!--Income bucket-->
@@ -121,6 +130,21 @@
             </div>
           </div>
         </div>
+        <div class="flex-row" *ngIf="showRetirementAccount">
+          <div class="flex-col-5">
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_ASSETS.CPF_RA' | translate}}<div
+                class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-7">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode, 'readonly-disabled': cpfFromMyInfo}">
+              <i>$</i>
+              <input type="text" class="input-control" [readonly]="cpfFromMyInfo"
+                [ngClass]="{'readonly-disabled': cpfFromMyInfo}" appCurrencyInput maxLength="7" #cpfRetirementAccount
+                formControlName="cpfRetirementAccount" value="0">
+            </div>
+          </div>
+        </div>
         <div *ngIf="!viewMode" (click)="openModal()" class="auto-fill-cpf" appComprehensiveViewMode="{{viewMode}}"
           mode=1>
           {{'CMP.MY_ASSETS.AUTO_FILL'| translate}}
@@ -128,7 +152,7 @@
         </div>
       </div>
     </div>
-    <div class="form-group-with-bg">
+    <div class="form-group-with-bg" *ngIf="comprehensiveJourneyMode">
       <!--Form Header-->
       <div class="form-group-with-bg--header">
         <div class="flex-row ">
@@ -142,7 +166,7 @@
         </div>
       </div>
       <!--Form Content-->
-      <div class="form-group-with-bg--content">
+      <div class="form-group-with-bg--content" >
         <div class="flex-row">
           <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{'CMP.FORM_LABEL.AMOUNT'|translate}}<div
@@ -283,7 +307,7 @@
         </div>
       </div>
     </div>
-    <div class="form-group-with-bg">
+    <div *ngIf="comprehensiveJourneyMode" class="form-group-with-bg">
       <!--Form Header-->
       <div class="form-group-with-bg--header">
         <div class="flex-row ">

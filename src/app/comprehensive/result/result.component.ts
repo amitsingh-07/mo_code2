@@ -23,6 +23,7 @@ export class ResultComponent implements OnInit, OnDestroy {
   emailID: string;
   alertTitle: string;
   alertMessage: string;
+  comprehensiveJourneyMode: boolean;
   @Output() backPressed: EventEmitter<any> = new EventEmitter();
   constructor(private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
     private translate: TranslateService,
@@ -51,6 +52,7 @@ export class ResultComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
     this.loaderService.hideLoaderForced();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.progressService.setReadOnly(true);

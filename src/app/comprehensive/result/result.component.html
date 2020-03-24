@@ -1,14 +1,16 @@
-<div class="container-fluid max-width--1024 comprehensive ">
+<div class="container-fluid max-width--1024 comprehensive full-responsive-height">
   <header class="text-center header">
-    <div>{{'CMP.RESULT.READY' | translate }}</div>
+    <div *ngIf="comprehensiveJourneyMode">{{'CMP.RESULT.READY' | translate }}</div>
+    <div *ngIf="!comprehensiveJourneyMode">{{'CMP.RESULT.READY_LITE' | translate }}</div>
   </header>
   <div class="result-panel mt30 text-center">
     <div class="result-panel__img resultImg"></div>
   </div>
   <div class="text-center about mb30">
-    {{'CMP.RESULT.ABOUT' | translate }}<span class="email"> {{emailID}}</span>
+    <div *ngIf="comprehensiveJourneyMode">{{'CMP.RESULT.ABOUT' | translate }}<span class="email"> {{emailID}}</span></div>
+    <div *ngIf="!comprehensiveJourneyMode">{{'CMP.RESULT.ABOUT_LITE' | translate }}</div>
   </div>
-  <div class="what-next">
+  <div class="what-next" *ngIf="comprehensiveJourneyMode">
     <div class="what-next--title">{{'CMP.RESULT.STEP_TITLE' | translate }}</div>
     <ul class="pl0">
       <div class="what-next--desc">

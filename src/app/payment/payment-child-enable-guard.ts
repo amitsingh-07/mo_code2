@@ -28,13 +28,17 @@ export class PaymentChildEnableGuard implements CanActivateChild {
       if (state.url.includes(PAYMENT_ROUTES.PAYMENT_STATUS)) {
         return true;
       } else {
-        return this.paymentService.getLastSuccessfulSubmittedTs().map((res) => {
-          if (this.isPaymentEnabled && res['last_submit_ts'].length === 0) {
-            return true;
-          } else {
-            return false;
-          }
-        });
+        if (this.isPaymentEnabled) {
+          return this.paymentService.getLastSuccessfulSubmittedTs().map((res) => {
+            if (res['last_submit_ts'].length === 0) {
+              return true;
+            } else {
+              return false;
+            }
+          });
+        } else {
+          return false;
+        }
       }
     } else {
       // User is not logged in, redirect to login page
