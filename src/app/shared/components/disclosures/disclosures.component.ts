@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { environment } from './../../../../environments/environment';
 import { FooterService } from './../../footer/footer.service';
 import { NavbarService } from './../../navbar/navbar.service';
 
@@ -18,7 +19,11 @@ export class DisclosuresComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMode(1);
     this.navbarService.setNavbarVisibility(true);
-    this.footerService.setFooterVisibility(true);
+    if (environment.hideHomepage) {
+      this.footerService.setFooterVisibility(false);
+    } else {
+      this.footerService.setFooterVisibility(true);
+    }
   }
 
 }
