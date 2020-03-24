@@ -76,6 +76,20 @@ export class NavbarConfig {
     showExitCheck: true,
   };
 
+  // Portfolio/Fundings/Topup/Withdraw (Homepage Hidden)
+  '105': object = {
+    showNavBackBtn: true,
+    showHeaderBackBtn: true,
+    showMenu: false,
+    showLogin: true,
+    showLogout: true,
+    showNavShadow: true,
+    showSearchBar: false,
+    showNotifications: true,
+    showHeaderNavbar: true,
+    showExitCheck: true,
+  };
+
   // ------ Features -----
   // Home;
   '1': object = {
@@ -172,8 +186,7 @@ export class NavbarConfig {
     showExitCheck: true
   };
 
-  // Setting when Homepage hidden
-  // Dashboard/Contact Us/FinancialLiteracy/FinancialWellness/FAQ/Promotions
+  // Dashboard/Contact Us/FinancialLiteracy/FinancialWellness/FAQ/Promotions (Homepage Hidden)
   '9': object = {
     showNavBackBtn: false,
     showHeaderBackBtn: false,
