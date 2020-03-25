@@ -66,11 +66,11 @@ export class FundDetailsComponent implements OnInit {
     if (fund.factSheetLink) {
       highlightSheetFileName = fund.factSheetLink.split('|')[1];
     }
-    return window.location.origin + '/assets/docs/portfolio/fund/' + highlightSheetFileName;
+    return window.location.origin + '/app/assets/docs/portfolio/fund/' + highlightSheetFileName;
   }
   getProspectusLink(fund) {
     //let prospectusFileName = fund.prospectusLink; // TODO: getting null from backend
     let prospectusFileName = 'prospectus.pdf';
-    return window.location.origin + '/assets/docs/portfolio/fund/' + prospectusFileName;
+    return window.location.origin + '/app/assets/docs/portfolio/fund/' + prospectusFileName;
   }
 }
