@@ -135,6 +135,23 @@
               "vendorChunk": false,
               "buildOptimizer": false
             },
+            "newmodev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.newmodev.ts"
+                }
+              ],
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            },
             "common": {
               "fileReplacements": [{
                 "replace": "src/environments/environment.ts",
