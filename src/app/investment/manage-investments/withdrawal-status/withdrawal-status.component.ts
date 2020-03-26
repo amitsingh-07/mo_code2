@@ -44,6 +44,7 @@ export class WithdrawalStatusComponent implements OnInit, OnDestroy {
   ngOnInit() {
     document.body.classList.add('bg-color');
     this.navbarService.setNavbarVisibility(false);
+    this.navbarService.setNavbarMode(10);
     this.navbarService.setNavbarMobileVisibility(false);
     this.refreshUserProfileInfo();
     // Fix for sticky hover on iOS
