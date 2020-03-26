@@ -198,4 +198,21 @@ export class NavbarConfig {
     showHeaderNavbar: false,
     showExitCheck: false
   };
+
+   // Investment (Robo2) (With Notification)
+   '10': object = {
+    showNavBackBtn: true,
+    showHeaderBackBtn: true,
+    showMenu: false,
+    showLogin: false,
+    showLogout: true,
+    showNavShadow: true,
+    showSearchBar: false,
+    showNotifications: true,
+    showHeaderNavbar: true,
+    showLabel: {
+      primary: 'Investment'
+    },
+    showExitCheck: true
+  };
 }
