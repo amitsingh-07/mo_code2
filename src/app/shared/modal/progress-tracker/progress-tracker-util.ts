@@ -10,7 +10,7 @@ export class ProgressTrackerUtil {
      * @memberof ProgressTrackerUtil
      */
     static trimPath(path): string {
-        return path.replace(this.pathPattern, '').replace(/\/$/, '');
+        return path.replace(this.pathPattern, '').replace(/\/$/, '').replace(/\?.*/, '');
     }
 
     static compare(path1: string, path2: string): any {
