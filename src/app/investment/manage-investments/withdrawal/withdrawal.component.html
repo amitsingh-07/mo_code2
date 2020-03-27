@@ -67,8 +67,8 @@
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <ng-container *ngFor="let type of withdrawalTypes; let i = index">
                           <button class="dropdown-item"
-                            [class.hide]="(type.value === 'PORTFOLIO_TO_BANK_ACCOUNT' && !entitlements.showWithdrawPvToBa) 
-                                          || (type.value === 'PORTFOLIO_TO_CASH_ACCOUNT' && !entitlements.showWithdrawPvToCa) 
+                            [class.hide]="(type.value === 'PORTFOLIO_TO_BANK_ACCOUNT' && !entitlements.showWithdrawPvToBa)
+                                          || (type.value === 'PORTFOLIO_TO_CASH_ACCOUNT' && !entitlements.showWithdrawPvToCa)
                                           || (type.value === 'CASH_TO_BANK_ACCOUNT' && !entitlements.showWithdrawCaToBa)
                                           || type.value === 'PORTFOLIO_TO_SRS_ACCOUNT' && !entitlements.showWithdrawPvToSRS"
                             (click)="setDropDownValue('withdrawType',type, i)" id="withdraw-type-option-{{i}}">
@@ -97,12 +97,24 @@
                 </div>
                 <div class="flex-col-8">
                   <div class="form-control"
-                    [ngClass]="{'inline-error':getInlineErrorStatus(withdrawForm.controls.withdrawAmount)}">
+                    [ngClass]="[(getInlineErrorStatus(withdrawForm.controls.withdrawAmount)  && !isRedeemAllChecked)? 'inline-error' : '',  isRedeemAllChecked ? 'disabled' : '']">
                     <i id="myFinancialDollarSybmOne">$</i>
                     <div>
                       <input class="input-control" type="text" id="withdrawal-type" appCurrencyInput [allowDecimal]=true
                         decimalFormat="1.2-2" maxLength="9" #withdrawAmount formControlName="withdrawAmount" value="0">
                     </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-4"></div>
+                <div class="flex-col-8">
+                  <div class="checkbox-button one-label">
+                    <input id="withdrawRedeem" name="dependantSelection" formControlName="withdrawRedeem" type="checkbox"
+                      [value]=false class="field radio" mode=1 (change)="redeemAllChecked()">
+                    <label id="dependantNoLabel" for="withdrawRedeem">
+                      <span class="input-label-grey">{{'WITHDRAW.REDEEM_ALL' | translate}}</span>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -153,7 +165,7 @@
               <div class="flex-row">
                 <div class="flex-col-12">
                   <div class="withdraw-error"
-                    *ngIf="isFromPortfolio && (isRedeemAll || withdrawForm.controls.withdrawAmount.errors && withdrawForm.controls.withdrawAmount.errors.MinBalance)">
+                    *ngIf="isFromPortfolio && ((isRedeemAll && !isRedeemAllChecked) || withdrawForm.controls.withdrawAmount.errors && withdrawForm.controls.withdrawAmount.errors.MinBalance)">
                     <img src="../../../assets/images/info-orange.svg" alt="" />
                     <span [innerHTML]="'WITHDRAW.REDEEM_ALL_INFO' | translate:translateParams"> </span>
                   </div>
