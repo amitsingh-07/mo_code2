@@ -181,6 +181,7 @@
             "uat": { "browserTarget": "bfa-frontend:build:uat" },
             "uat3": { "browserTarget": "bfa-frontend:build:uat3" },
             "newmo": { "browserTarget": "bfa-frontend:build:newmo"},
+            "newmodev": { "browserTarget": "bfa-frontend:build:newmodev"},
             "common": { "browserTarget": "bfa-frontend:build:common" }
           }
         },
