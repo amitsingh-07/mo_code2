@@ -12,7 +12,7 @@
   "promotionEnabled": true,
   "articleEnabled": true,
   "maintenanceEnabled": false,
-  "marqueeEnabled": true,
+  "marqueeEnabled": false,
   "resetPasswordUrl": "/app/accounts/reset-password",
   "verifyEmailUrl": "/app/accounts/email-verification",
   "showAnnualizedReturns": false,
