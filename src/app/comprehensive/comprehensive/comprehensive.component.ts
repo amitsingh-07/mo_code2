@@ -66,6 +66,7 @@ export class ComprehensiveComponent implements OnInit {
         this.fetchData = this.translate.instant('MYINFO.FETCH_MODAL_DATA.TITLE');
         this.loading = this.translate.instant('COMMON_LOADER.TITLE');
         this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.translate.instant('CMP.COMPREHENSIVE.VIDEO_LINK'));
+        this.navbarService.setPageTitle(this.translate.instant('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_TITLE'), '', false);
       });
     });
   }
