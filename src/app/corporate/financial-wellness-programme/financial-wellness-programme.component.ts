@@ -107,6 +107,10 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
     this.router.navigate([url]);
   }
 
+  goToExternal(url) {
+    window.open(url, '_self');
+  }
+
   save(form: any) {
     this.submitted = true;
     if (form.valid) {
