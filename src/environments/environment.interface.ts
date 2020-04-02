@@ -12,4 +12,5 @@ export interface IEnvironment {
     adRollPropertyId?: string; // AdRoll Property Id
     adRollAdvId?: string; // AdRoll Advert Id
     brand ?: string; // Project G
+    hideHomepage?: boolean; // Toggle MO homepage on/off
 }

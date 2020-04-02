@@ -22,7 +22,7 @@
     <div class="from-account">
       <img *ngIf="riskProfileImg; else defaultImg" class="portfolio-type" alt="" src="{{riskProfileImg}}">
       <ng-template #defaultImg>
-        <img class="portfolio-type" src="../../../assets/images/investment-account/growth_icon.svg" alt="" />
+        <img class="portfolio-type" src="assets/images/investment-account/growth_icon.svg" alt="" />
       </ng-template>
       <div class="white-text multiline-ellipsis">{{fundDetails['portfolio']['portfolioName']}} -
         {{fundDetails['portfolio']['refNo']}}</div>

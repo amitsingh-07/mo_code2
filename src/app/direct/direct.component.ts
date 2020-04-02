@@ -61,7 +61,9 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
       if (event instanceof NavigationStart && event.url !== '/direct') {
         this.stateStoreService.saveState(this.componentName, this.state);
       } else if (event instanceof NavigationEnd) {
-
+        const url = this.router.parseUrl(event.url);
+        const fragmentIndex = this.directService.resolveProductCategoryIndex(url.fragment);
+        this.directService.setProdCategoryIndex(fragmentIndex);
       }
     });
     if (this.stateStoreService.has(this.componentName)) {

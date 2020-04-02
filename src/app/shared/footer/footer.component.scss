@@ -1,0 +1,10 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.italic-font {
+    font-family: $muli-italic !important;
+}
+
+.reg-font {
+    font-family: $muli-regular !important;
+}

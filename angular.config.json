@@ -17,6 +17,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "baseHref": "/app/",
+            "deployUrl": "/app/", 
             "outputPath": "dist/NTUCDev",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -96,6 +98,40 @@
               "vendorChunk": false,
               "buildOptimizer": true
             },
+            "newmo": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.newmo.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
+            "newmodev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.newmodev.ts"
+                }
+              ],
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            },
             "common": {
               "optimization": true,
               "outputHashing": "all",
@@ -115,21 +151,14 @@
             "browserTarget": "bfa-frontend:build"
           },
           "configurations": {
-            "dev": {
-              "browserTarget": "bfa-frontend:build"
-            },
-            "production": {
-              "browserTarget": "bfa-frontend:build:production"
-            },
-            "prod": {
-              "browserTarget": "bfa-frontend:build:prod"
-            },
-            "uat": {
-              "browserTarget": "bfa-frontend:build:uat"
-            },
-            "common": {
-              "browserTarget": "bfa-frontend:build:common"
-            }
+            "dev": { "browserTarget": "bfa-frontend:build" },
+            "production": { "browserTarget": "bfa-frontend:build:production" },
+            "prod": { "browserTarget": "bfa-frontend:build:prod" },
+            "uat": { "browserTarget": "bfa-frontend:build:uat" },
+            "uat3": { "browserTarget": "bfa-frontend:build:uat3" },
+            "newmo": { "browserTarget": "bfa-frontend:build:newmo"},
+            "newmodev": { "browserTarget": "bfa-frontend:build:newmodev"},
+            "common": { "browserTarget": "bfa-frontend:build:common" }
           }
         },
         "extract-i18n": {

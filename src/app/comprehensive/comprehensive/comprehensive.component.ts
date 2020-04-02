@@ -16,6 +16,7 @@ import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyProfile } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
+import { environment } from './../../../environments/environment';
 import { ConfigService } from './../../config/config.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
@@ -65,12 +66,13 @@ export class ComprehensiveComponent implements OnInit {
         this.fetchData = this.translate.instant('MYINFO.FETCH_MODAL_DATA.TITLE');
         this.loading = this.translate.instant('COMMON_LOADER.TITLE');
         this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.translate.instant('CMP.COMPREHENSIVE.VIDEO_LINK'));
+        this.navbarService.setPageTitle(this.translate.instant('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_TITLE'), '', false);
       });
     });
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarComprehensive(true);
     this.footerService.setFooterVisibility(false);
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
     const isUnsupportedNoteShown = this.signUpService.getUnsupportedNoteShownFlag();

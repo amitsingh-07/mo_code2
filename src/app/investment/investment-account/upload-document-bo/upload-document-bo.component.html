@@ -43,10 +43,10 @@
                         <div class="thumb-close-icon"
                           (click)="clearFileSelection(uploadForm.controls.passportImage, 'PASSPORT_BO', $event, passportThumb, passport)"
                           *ngIf="uploadForm.controls.passportImage.value">
-                          <img src="../../../assets/images/close-button.svg" alt="x" />
+                          <img src="assets/images/close-button.svg" alt="x" />
                         </div>
                         <img #passportThumb class="thumbnail image-fluid"
-                          src="../../../assets/images/{{defaultThumb}}" />
+                          src="assets/images/{{defaultThumb}}" />
                       </div>
                       <div class="upload-content">
                         <div class="title">{{ 'UPLOAD_DOCUMENTS.PASSPORT_BO' | translate}}</div>

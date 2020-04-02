@@ -9,6 +9,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SeoServiceService } from '../../shared/Services/seo-service.service';
 import { AboutUsApiService } from '../about-us.api.service';
 import { AboutUsService } from '../about-us.service';
+import { environment } from './../../../environments/environment';
 import { IContactUs } from './contact-us.interface';
 
 @Component({
@@ -31,6 +32,9 @@ export class ContactUsComponent implements OnInit {
 
   public subjectItems: any;
   public sendSuccess = false;
+
+  public isLoggedIn = false;
+  public showBreadCrumbs = true;
 
   constructor(
     public navbarService: NavbarService,
@@ -77,9 +81,20 @@ export class ContactUsComponent implements OnInit {
           [Validators.required, Validators.pattern(SINGAPORE_MOBILE_REGEXP)]),
         message: new FormControl(this.contactUsFormValues.message, [Validators.required])
       });
+
+      if (this.authService.isSignedUser()) {
+        this.isLoggedIn = true;
+      }
     }
 
   ngOnInit() {
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(9);
+      this.showBreadCrumbs = false;
+    } else {
+      this.navbarService.setNavbarMode(1);
+    }
+    this.navbarService.setNavbarVisibility(true);
     this.footerService.setFooterVisibility(true);
     this.aboutUsApiService.getSubjectList().subscribe((data) => {
       this.subjectItems = this.aboutUsService.getSubject(data);

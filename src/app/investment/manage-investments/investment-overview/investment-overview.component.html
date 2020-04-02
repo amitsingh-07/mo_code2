@@ -1,7 +1,7 @@
 <div class="toast-msg-block" *ngIf="isToastMessageShown">
   <div class="toast-msg-container">
     <div class="flex-col-1">
-      <img src="../../../assets/images/topupwithdraw/check_orange.svg" alt="" />
+      <img src="assets/images/topupwithdraw/check_orange.svg" alt="" />
     </div>
     <div class="flex-col-8">
       <div class="toast-msg">{{toastMsg?.desc}}</div>
@@ -51,7 +51,7 @@
                     <div class="flex-col">
                       <div class="total_cash_label" id="investment_overview_total_returns_labl">
                         {{'YOUR_INVESTMENT.TOTAL_CASH_BALANCE' | translate}}
-                        <img (click)="showCashAccountPopUp()" src="../../../assets/images/tooltip-icon.svg" alt="" />
+                        <img (click)="showCashAccountPopUp()" src="assets/images/tooltip-icon.svg" alt="" />
                       </div>
                     </div>
                     <div class="flex-col">
@@ -63,7 +63,7 @@
                   <div class="flex-row">
                     <button type="button" class="btn-with-icon top_up_btn" id="top-up_button" (click)="gotoTopUp()">
                       <span class="topup-btn-img"><img id="top-up_img"
-                          src="../../../assets/images/investment-account/money-white-topup.svg" alt="" /></span>
+                          src="assets/images/investment-account/money-white-topup.svg" alt="" /></span>
                       <span>{{'YOUR_PORTFOLIO.TOP_UP' | translate}}</span>
                     </button>
                   </div>
@@ -80,7 +80,7 @@
                 </div>
                 <div (click)="addPortfolio()" class="add_portfolio_label cursor_pointer"
                   id="investment_overview_total_of"><img class="pr5"
-                    src="../../../assets/images/investment-account/plus-white.svg"><span>{{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}}</span>
+                    src="assets/images/investment-account/plus-white.svg"><span>{{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}}</span>
                 </div>
               </div>
             </div>
@@ -101,7 +101,7 @@
     <div class="flex-col align-center">
       <div class="msg"> {{'YOUR_INVESTMENT.NO_PORTFOLIOS_YET' | translate}} <br>
         {{'YOUR_INVESTMENT.ADD_PORTFOLIO_START_INVEST' | translate}} </div>
-      <div class="add-portfolio-icon"><img src="../../../assets/images/add-portfolio-icon.svg" alt="" /></div>
+      <div class="add-portfolio-icon"><img src="assets/images/add-portfolio-icon.svg" alt="" /></div>
       <button type="button" class="btn btn-primary" id="add_portfolio" (click)="addPortfolio()">
         {{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}} </button>
     </div>
@@ -110,7 +110,7 @@
 <div *ngIf="investmentoverviewlist" class="srs-block">
   <div class="container-fluid max-width--1024">
     <div class="srs-reminder">
-      <img class="mail-img" src="../../../assets/images/srs-joint-account/mail.svg" />
+      <img class="mail-img" src="assets/images/srs-joint-account/mail.svg" />
       <div class="srs-txt" innerHTML="{{'YOUR_INVESTMENT.SRS_JOINT_ACCOUNT_REMINDER' | translate}}"></div>
     </div>
   </div>

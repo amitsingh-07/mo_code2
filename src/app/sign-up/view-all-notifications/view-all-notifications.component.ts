@@ -4,13 +4,14 @@ import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentEngagementJourneyService } from '../../investment/investment-engagement-journey/investment-engagement-journey.service';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
+import { InvestmentEngagementJourneyService } from '../../investment/investment-engagement-journey/investment-engagement-journey.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GroupByPipe } from '../../shared/Pipes/group-by.pipe';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SignUpService } from '../sign-up.service';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-view-all-notifications',
@@ -43,8 +44,12 @@ export class ViewAllNotificationsComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getAllNotifications();
-    this.navbarService.setNavbarMode(102);
-   }
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(104);
+    } else {
+      this.navbarService.setNavbarMode(102);
+    }
+  }
 
   ngAfterViewInit() {
     this.navbarService.currentClearNotificationEvent.subscribe((clearAll) => {

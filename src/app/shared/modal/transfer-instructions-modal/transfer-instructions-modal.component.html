@@ -1,6 +1,6 @@
 <div class="modal-header hidden-sm">
   <div class="modal-title popup-header-icon">
-    <img src="./assets/images/owl.svg" />
+    <img src="assets/images/owl.svg" />
   </div>
 </div>
 <div class="modal-body">
@@ -15,7 +15,7 @@
     <div class="flex-row" *ngIf="!numberOfPendingReq">
       <div class="transfer-instruction-lbl width100 mb20">{{ 'TRANSFER_INSTRUCTION.TOP_UP_REQUEST_LBL' | translate }}</div>
       <button type="button" class="btn-with-icon" id="topup_button" (click)="goToTopUp()">
-        <span class="topup-btn-img"><img id="topup_img" src="../../../assets/images/investment-account/money-topup.svg"
+        <span class="topup-btn-img"><img id="topup_img" src="assets/images/investment-account/money-topup.svg"
             alt="" /></span> <span>{{ 'TRANSFER_INSTRUCTION.TOP_UP' | translate }}</span>
       </button>
     </div>
@@ -28,7 +28,7 @@
           <div class="ref-code">{{ 'TRANSFER_INSTRUCTION.REFERENCE_CODE_LBL' | translate }}
             {{bankDetails.referenceNumber}}</div>
           <div class="flex align-flex-start">
-            <div class="note-icon"><img src="../../../assets/images/investment-account/note-icon.svg" /></div>
+            <div class="note-icon"><img src="assets/images/investment-account/note-icon.svg" /></div>
             <div class="note" innerHTML="{{'TRANSFER_INSTRUCTION.NOTE' | translate}}"></div>
           </div>
         </div>
@@ -45,7 +45,7 @@
       </div>
       <div class="tab-links">
         <div class="tab-link-item" [class.active]="activeMode == 'PAYNOW'" (click)="selectFundingMethod('PAYNOW')">
-          <div class="pay-tab"><img src="../../../../assets/images/topupwithdraw/paynow.png"></div>
+          <div class="pay-tab"><img src="assets/images/topupwithdraw/paynow.png"></div>
         </div>
       </div>
     </div>

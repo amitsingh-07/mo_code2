@@ -47,6 +47,7 @@ import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -127,9 +128,13 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(100);
     this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(9);
+    } else {
+      this.navbarService.setNavbarMode(100);
+    }
     this.loadOptionListCollection();
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
       if (userInfo.responseMessage.responseCode < 6000) {

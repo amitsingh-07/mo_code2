@@ -184,9 +184,9 @@
             font-family: $muli-bold;
             line-height: 45px;
             position: relative;
-            top: 26px;
+            top: 20px;
             width: 30%;
-            padding: 5px 10px;
+            padding: 0px 10px;
             background: #fff;
             margin: 0 auto;
             @include allmobiles{
@@ -217,6 +217,7 @@
         #intro-no-promocode {
             padding-top: 22px;
             line-height: normal;
+            padding-bottom: 10px;
         }
         div{
             &:last-child{
@@ -224,6 +225,7 @@
                 font-family: $muli-regular;
                 color: #2d8289;
                 font-size: 16px;
+                line-height: normal;
                 span{
                     font-family: $muli-bold;
                     cursor: pointer;
@@ -262,3 +264,50 @@
         flex-direction: column-reverse;
     }
 }
+
+.subscribe__section{
+    position: relative; 
+    display:flex;
+    width:100%;
+    height:auto; //For Subscribe to be active height:253px
+    margin-top:30px;
+    justify-content:center;
+    align-items:flex-start;
+    z-index:1;
+    @include minMobilemaxPhablet{
+        margin-top: 30px;
+    }
+    .subscribe__form--plugin{
+        margin-bottom: 24px;
+        .subscribe-title--container{
+            .subscribe--will-title{
+                @include allmobiles{
+                    font-size: 26px;
+                }
+            }
+        }
+    }
+    .subscribe__section--bg{
+        position: absolute;
+        background-repeat: repeat-x;
+        width:100%;
+        bottom:0px;
+        left:0px;
+    }
+    .subscribe__section--footer{
+        position: absolute;
+        display:block;
+        width:100%;
+        height:10px;
+        bottom:0px;
+        left:0px;
+        background-color:$dark-teal-color;
+        .orange{
+            position: absolute;
+            display:block;
+            background-color:$orange-color;
+            width:34%;
+            height:100%;
+        }
+    }
+} 

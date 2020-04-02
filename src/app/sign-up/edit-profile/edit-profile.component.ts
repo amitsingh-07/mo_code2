@@ -13,13 +13,15 @@ import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { SrsSuccessModalComponent } from '../add-update-srs/srs-success-modal/srs-success-modal.component';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { environment } from './../../../environments/environment';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
-import { SrsSuccessModalComponent } from '../add-update-srs/srs-success-modal/srs-success-modal.component';
+
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -87,7 +89,11 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMode(102);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(104);
+    } else {
+      this.navbarService.setNavbarMode(102);
+    }
     this.setPageTitle(this.pageTitle);
     this.footerService.setFooterVisibility(false);
     this.headerSubscription();

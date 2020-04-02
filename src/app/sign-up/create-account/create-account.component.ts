@@ -45,7 +45,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   private description: string;
 
   createAccountForm: FormGroup;
-  formValues: any;
   defaultCountryCode;
   countryCodeOptions;
   captchaSrc: any = '';
@@ -125,47 +124,39 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
    * build account form.
    */
   buildAccountInfoForm() {
-    this.formValues = this.signUpService.getAccountInfo();
-    this.formValues.countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.defaultCountryCode;
-    this.formValues.termsOfConditions = this.formValues.termsOfConditions ? this.formValues.termsOfConditions : true;
-    this.formValues.marketingAcceptance = this.formValues.marketingAcceptance ? this.formValues.marketingAcceptance : false;
     if (this.distribution) {
-      let email_in: string;
-      if (this.formValues.email) {
-        email_in = this.formValues.email;
-      }
       if (this.distribution.login) {
         this.createAccountForm = this.formBuilder.group({
-          countryCode: [this.formValues.countryCode, [Validators.required]],
-          mobileNumber: [this.formValues.mobileNumber, [Validators.required]],
-          firstName: [this.formValues.firstName, [Validators.required, Validators.minLength(2),
+          countryCode: ['', [Validators.required]],
+          mobileNumber: ['', [Validators.required]],
+          firstName: ['', [Validators.required, Validators.minLength(2),
           Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]],
-          lastName: [this.formValues.lastName, [Validators.required, Validators.minLength(2),
+          lastName: ['', [Validators.required, Validators.minLength(2),
           Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]],
-          email: [email_in, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
-          confirmEmail: [this.formValues.email],
+          email: ['', [Validators.required, Validators.pattern(this.distribution.login.regex)]],
+          confirmEmail: [''],
           password: ['', [Validators.required, ValidatePassword]],
           confirmPassword: [''],
-          termsOfConditions: [this.formValues.termsOfConditions],
-          marketingAcceptance: [this.formValues.marketingAcceptance],
+          termsOfConditions: [true],
+          marketingAcceptance: [false],
           captcha: ['', [Validators.required]]
         }, { validator: this.validateMatchPasswordEmail() });
         return false;
       }
     }
     this.createAccountForm = this.formBuilder.group({
-      countryCode: [this.formValues.countryCode, [Validators.required]],
-      mobileNumber: [this.formValues.mobileNumber, [Validators.required]],
-      firstName: [this.formValues.firstName, [Validators.required, Validators.minLength(2),
+      countryCode: ['', [Validators.required]],
+      mobileNumber: ['', [Validators.required]],
+      firstName: ['', [Validators.required, Validators.minLength(2),
       Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]],
-      lastName: [this.formValues.lastName, [Validators.required, Validators.minLength(2),
+      lastName: ['', [Validators.required, Validators.minLength(2),
       Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]],
-      email: [this.formValues.email, [Validators.required, Validators.email]],
-      confirmEmail: [this.formValues.email],
+      email: ['', [Validators.required, Validators.email]],
+      confirmEmail: [''],
       password: ['', [Validators.required, ValidatePassword]],
       confirmPassword: [''],
-      termsOfConditions: [this.formValues.termsOfConditions],
-      marketingAcceptance: [this.formValues.marketingAcceptance],
+      termsOfConditions: [true],
+      marketingAcceptance: [false],
       captcha: ['', [Validators.required]]
     }, { validator: this.validateMatchPasswordEmail() });
     return true;
@@ -205,7 +196,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   getCountryCode() {
     this.signUpApiService.getCountryCodeList().subscribe((data) => {
       this.countryCodeOptions = [data[0]];
-      const countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.countryCodeOptions[0].code;
+      const countryCode = this.countryCodeOptions[0].code;
       this.setCountryCode(countryCode);
     });
   }

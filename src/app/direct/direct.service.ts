@@ -131,6 +131,16 @@ export class DirectService {
     this.commit();
   }
 
+  resolveProductCategoryIndex(fragment: string) {
+    const prodList = this.getProductCategoryList();
+    for(var i = 0; i < prodList.length; i++) {
+      if(prodList[i].prodLink === fragment) {
+        return i;
+      }
+    }
+    return 0;
+  }
+
   /* Get Product Category List */
   getProductCategory() {
     if (!this.directFormData.prodCategory) {
