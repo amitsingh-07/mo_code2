@@ -13,6 +13,10 @@
             "Insurance": {
                 "General": [
                     {
+                        "QUESTION": "Why am I not receiving email from MoneyOwl?",
+                        "ANSWER": "Do you have a Hotmail, Live Mail, MSN or Outlook email account? Please add us to your safe senders list to make sure you receive our messages! You might want to check your “Other” or “Junk” mailboxes if you still can’t see our messages in your inbox!<br/><br/>To add MoneyOwl as a safe sender, please follow the steps below:<br/><br/><ol><li>Sign into your email account at https://outlook.live.com/</li><li>Go to “Settings” > “View all Outlook Settings” <br/><img src=\"assets/images/faq/settings.png\"/></li><li> Select “Email” > “ Junk email” and add moneyowl.com.sg to Safe senders and domains list<br/><img src=\"assets/images/faq/email.png\"/></li></ol>"
+                    },
+                    {
                         "QUESTION": "How should I get started? What insurance products should I buy?",
                         "ANSWER": "We recommend you to begin with our step-by-step guided journey online to assess your needs and find out the gaps in your insurance coverage. Get suitable recommendations based on your needs and select the plan(s) that you are interested in. Once you have requested a quote, our dedicated team of Client Advisers will get in touch via mobile and email and when you are ready, meet you to complete your application.<br/><br/>We also encourage you to read our articles where we have easy-to-read content for you to learn more about insurance."
                     },
@@ -413,6 +417,10 @@
                 ],
                 "General Questions": [
                     {
+                        "QUESTION": "Why am I not receiving email from MoneyOwl?",
+                        "ANSWER": "Do you have a Hotmail, Live Mail, MSN or Outlook email account? Please add us to your safe senders list to make sure you receive our messages! You might want to check your “Other” or “Junk” mailboxes if you still can’t see our messages in your inbox!<br/><br/>To add MoneyOwl as a safe sender, please follow the steps below:<br/><br/><ol><li>Sign into your email account at https://outlook.live.com/</li><li>Go to “Settings” > “View all Outlook Settings” <br/><img src=\"assets/images/faq/settings.png\"/></li><li> Select “Email” > “ Junk email” and add moneyowl.com.sg to Safe senders and domains list<br/><img src=\"assets/images/faq/email.png\"/></li></ol>"
+                    },
+                    {
                         "QUESTION": "Who is iFAST Financial Pte Ltd?",
                         "ANSWER": "iFAST Financial Pte Ltd provides custodial and transfer agent services to MoneyOwl. <br/> Please refer to <a target='_blank' href=\"https://eservices.mas.gov.sg/fid\">https://eservices.mas.gov.sg/fid</a> for full details of their licence."
                     },
@@ -444,6 +452,10 @@
             },
             "Comprehensive": {
                 "General": [
+                    {
+                        "QUESTION": "Why am I not receiving email from MoneyOwl?",
+                        "ANSWER": "Do you have a Hotmail, Live Mail, MSN or Outlook email account? Please add us to your safe senders list to make sure you receive our messages! You might want to check your “Other” or “Junk” mailboxes if you still can’t see our messages in your inbox!<br/><br/>To add MoneyOwl as a safe sender, please follow the steps below:<br/><br/><ol><li>Sign into your email account at https://outlook.live.com/</li><li>Go to “Settings” > “View all Outlook Settings” <br/><img src=\"assets/images/faq/settings.png\"/></li><li> Select “Email” > “ Junk email” and add moneyowl.com.sg to Safe senders and domains list<br/><img src=\"assets/images/faq/email.png\"/></li></ol>"
+                    },
                     {
                         "QUESTION": "What is Comprehensive Financial Planning?",
                         "ANSWER": "<p>Comprehensive financial planning is a process of reviewing your current financial situation, analysing your financial goals and developing a plan to achieve them. It involves improving your cash flow, protecting your assets, growing your wealth for retirement and children’s education funding, and eventual passing of assets efficiently to your heirs.</p>"
