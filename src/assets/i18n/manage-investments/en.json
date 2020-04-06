@@ -153,7 +153,7 @@
       },
       "RBL_MODAL": {
         "TITLE": "Quarterly Rebalancing In-progress",
-        "Message": "<div class='rebalancing-modal-msg'><div class='mb15'>Please note that your portfolio is being rebalanced. This process will be completed in 6 to 7 working days. <span class='txt-bold'>Requests for redemptions from portfolio(s) will only be submitted for processing after rebalancing is completed.</span></div><div><a class='contact-details mail' target='_blank' href='/faq#investment'>For more information, visit our FAQs.</a></div></div>"
+        "Message": "<div class='rebalancing-modal-msg'><div class='mb15'>Please note that your portfolio is being rebalanced. This process will be completed in 6 to 7 working days. <span class='txt-bold'>Requests for redemptions from portfolio(s) will only be submitted for processing after rebalancing is completed.</span></div><div><a class='contact-details mail' target='_blank' href='/app/faq#investment'>For more information, visit our FAQs.</a></div></div>"
       },
       "RE_BALANCE": {
         "TITLE": "Quarterly Rebalancing In-progress",
