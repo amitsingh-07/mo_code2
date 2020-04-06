@@ -69,6 +69,18 @@ app-plan-details-widget {
       }
     }
 
+    .see-more-details {
+      margin-top: 15px;
+      text-align: center;
+      a {
+        cursor: pointer;
+        text-decoration: underline;
+        font-family: $muli-regular;
+        font-size: 18px;
+        color: #ff872f;
+      }
+    }
+
     .info-icon {
       position: absolute;
       right: 5px;
