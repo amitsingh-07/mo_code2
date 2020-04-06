@@ -2650,4 +2650,33 @@ export class ComprehensiveService {
     const subStepComplete = this.getMySubSteps();
     return (stepComplete > stepCompletedParam || (stepCompletedParam === stepComplete && subStepComplete >= subCompletedParam));
   }
+  /**
+   * Date Check Between two dates
+   */
+  dateFoundInBetween(dateOfBirth, minDate, maxDate) {
+    const minDateCal = new Date(minDate);
+    const maxDateCal = new Date(maxDate);
+    return (dateOfBirth >= minDateCal &&  dateOfBirth <= maxDateCal);
+  }
+  /**
+   * Retirement sum find BRS/FRS based on birth date
+   */
+  retirementSumFindByBirthDate(birthDate: any) {
+    const subItemsArray = [];
+    const dateParts = birthDate.split('/');
+    const dateOfBirth = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
+
+    const birthYear = dateOfBirth.getFullYear();
+    const retireSumConfig1 = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.RETIREMENT_SUM_BIRTH_DATE[birthYear-1];
+    const retireSumConfig2 = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.RETIREMENT_SUM_BIRTH_DATE[birthYear];
+    if (!Util.isEmptyOrNull(retireSumConfig1) && 
+    this.dateFoundInBetween(dateOfBirth, retireSumConfig1.BORN_DATE, retireSumConfig1.TILL_DATE)) {
+      return retireSumConfig1;
+    } else if (!Util.isEmptyOrNull(retireSumConfig2) && 
+    this.dateFoundInBetween(dateOfBirth, retireSumConfig2.BORN_DATE, retireSumConfig2.TILL_DATE)) {
+      return retireSumConfig2;
+    } else {
+      return '';
+    }
+  }
 }

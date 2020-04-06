@@ -192,7 +192,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
           const mortgagePaymentUsingCPF = parseInt(this.mySpendingsForm.controls['mortgagePaymentUsingCPF'].value);
           const mortgagePaymentUsingCash = parseInt(this.mySpendingsForm.controls['mortgagePaymentUsingCash'].value);
           const mortgagePayOffUntil =  this.mySpendingsForm.controls['mortgagePayOffUntil'];
-          console.log(mortgagePaymentUsingCPF, this.mySpendingsForm.controls['mortgagePaymentUsingCash'].value);
+          
           if ((mortgagePaymentUsingCPF + mortgagePaymentUsingCash)> 0) {
             mortgagePayOffUntil.setValidators([Validators.required, this.payOffYearValid]);
             mortgagePayOffUntil.updateValueAndValidity();
