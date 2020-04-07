@@ -14,6 +14,7 @@ export class AuthGuardService implements CanActivate {
   ) {
   }
   canActivate(): boolean {
+    console.log('Is Signed User: ' + this.authService.isSignedUser());
     if (!this.authService.isSignedUser()) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       return false;

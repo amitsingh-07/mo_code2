@@ -31,6 +31,7 @@ import { AppService } from './../../../app/app.service';
   styleUrls: ['./verify-mobile.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
+
 export class VerifyMobileComponent implements OnInit {
   private errorModal = {};
   private loading = {};
@@ -70,6 +71,7 @@ export class VerifyMobileComponent implements OnInit {
       this.loading['verifying'] = result.LOADING.VERIFYING;
       this.loading['verified'] = result.LOADING.VERIFIED;
       this.loading['sending'] = result.LOADING.SENDING;
+      this.loading['verified2fa'] = result.LOADING.VERIFIED2FA;
     });
   }
 
@@ -88,6 +90,7 @@ export class VerifyMobileComponent implements OnInit {
         number: this.signUpService.getUserMobileNo()
       };
     } else {
+      console.log('Get Mobile Number');
       this.mobileNumber = this.signUpService.getMobileNumber();
     }
   }
@@ -116,7 +119,13 @@ export class VerifyMobileComponent implements OnInit {
         otpArr.push(form.value[value]);
         if (value === 'otp6') {
           const otp = otpArr.join('');
-          this.verifyOTP(otp);
+          if (this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
+            console.log('Calling Verity 2FA');
+            this.verify2FA(otp);
+          } else {
+            console.log('Calling Verity OTP');
+            this.verifyOTP(otp);
+          }
         }
       }
     }
@@ -133,6 +142,32 @@ export class VerifyMobileComponent implements OnInit {
       if (data.responseMessage.responseCode === 6003) {
         this.mobileNumberVerified = true;
         this.mobileNumberVerifiedMessage = this.loading['verified'];
+      } else if (data.responseMessage.responseCode === 5007 || data.responseMessage.responseCode === 5009) {
+        const title = data.responseMessage.responseCode === 5007 ? this.errorModal['title'] : this.errorModal['expiredTitle'];
+        const message = data.responseMessage.responseCode === 5007 ? this.errorModal['message'] : this.errorModal['expiredMessage'];
+        const showErrorButton = data.responseMessage.responseCode === 5007 ? true : false;
+        this.openErrorModal(title, message, showErrorButton);
+      } else {
+        this.progressModal = false;
+        this.errorHandler.handleCustomError(data, true);
+      }
+    });
+  }
+
+  /**
+   * verify 2fa mobile number
+   * @param code - 2fa otp.
+   */
+  verify2FA(otp) {
+    this.progressModal = true;
+    this.mobileNumberVerifiedMessage = this.loading['verifying'];
+    this.signUpApiService.verifyOTP(otp, this.editProfile).subscribe((data: any) => {
+      console.log('Data sent back: ' + data.responseMessage.responseCode);
+      data.responseMessage.responseCode = 6003;
+      if (data.responseMessage.responseCode === 6003) {
+        this.mobileNumberVerified = true;
+        sessionStorage.setItem(appConstants.APP_2FA_KEY, data.responseMessage.responseCode);
+        this.mobileNumberVerifiedMessage = this.loading['verified2fa'];
       } else if (data.responseMessage.responseCode === 5007 || data.responseMessage.responseCode === 5009) {
         const title = data.responseMessage.responseCode === 5007 ? this.errorModal['title'] : this.errorModal['expiredTitle'];
         const message = data.responseMessage.responseCode === 5007 ? this.errorModal['message'] : this.errorModal['expiredMessage'];
@@ -164,9 +199,13 @@ export class VerifyMobileComponent implements OnInit {
   redirectToPasswordPage() {
     const redirect_url = this.signUpService.getRedirectUrl();
     const journeyType = this.appService.getJourneyType();
+    console.log('Redirect Url:' + redirect_url);
     if (redirect_url && redirect_url === SIGN_UP_ROUTE_PATHS.EDIT_PROFILE) {
       this.signUpService.clearRedirectUrl();
       this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED]);
+    } else if (redirect_url) {
+      this.signUpService.clearRedirectUrl();
+      this.router.navigate([redirect_url]);
     } else {
       if (journeyType === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
         this.sendWelcomeEmail();

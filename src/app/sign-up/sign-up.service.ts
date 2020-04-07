@@ -18,6 +18,7 @@ import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
+import { IVerifyRequestOTP } from './signup-types';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -156,6 +157,15 @@ export class SignUpService {
     };
   }
 
+  new2FARequest(otpNo: number) {
+    let payload: IVerifyRequestOTP;
+    payload = {
+      customerRef: "Testing",
+      otp: otpNo,
+    };
+    return this.apiService.requestNewOTP(payload);
+  }
+
   /**
    * get form errors.
    * @param form - form details.
@@ -271,6 +281,7 @@ export class SignUpService {
 
   setRedirectUrl(url) {
     if (window.sessionStorage) {
+      console.log('Setting redirect url:' + url);
       sessionStorage.setItem(REDIRECT_URL_KEY, url);
     }
   }

@@ -15,6 +15,7 @@ import { RequestCache } from './../http-cache.service';
 export const APP_JWT_TOKEN_KEY = 'app-jwt-token';
 const APP_SESSION_ID_KEY = 'app-session-id';
 const APP_ENQUIRY_ID = 'app-enquiry-id';
+const FROM_JOURNEY_HM = 'from_journey';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -136,6 +137,17 @@ export class AuthenticationService {
     return !isTokenExpired && isLoggedInToken;
   }
 
+  // public send2FARequest() {
+  //   const payload = {
+  //     customerRef: "",
+  //     otp: "",
+  //     editProfile: false
+  //   }: IVerifyRequestOTP;
+
+  //   return this.apiService.requestNewOTP(payload);
+  // }
+
+
   saveEnquiryId(id) {
     if (sessionStorage) {
       sessionStorage.setItem(appConstants.APP_ENQUIRY_ID, id);
@@ -184,4 +196,39 @@ export class AuthenticationService {
     const isTokenExpired = this.jwtHelper.isTokenExpired(token);
     return !isTokenExpired && isLoggedInToken;
   }
+
+  //2FA Implementation
+  public get2FAToken(): string {
+    return sessionStorage.getItem(appConstants.APP_2FA_KEY);
+  }
+  public set2FATimeout() {}
+
+  public clear2FAToken() {
+    sessionStorage.removeItem(appConstants.APP_2FA_KEY);
+  }
+  
+  public is2FAVerified() {
+    const token = this.get2FAToken();
+    if(!token) {
+      return false;
+    } 
+    return true;
+  }
+
+  public getFromJourney(key: string) {
+    if(sessionStorage) {
+      const fromJourneyHm = new Map(JSON.parse(window.sessionStorage.getItem(FROM_JOURNEY_HM)));
+      return fromJourneyHm.get(key);
+    }
+    return null;
+  }
+
+  public setFromJourney(key: string, data: any) {
+    if(sessionStorage) {
+      const oldFromJourneyHm = new Map(JSON.parse(window.sessionStorage.getItem(FROM_JOURNEY_HM)));
+      oldFromJourneyHm.set(key, data);
+      sessionStorage.setItem(FROM_JOURNEY_HM, JSON.stringify(Array.from(oldFromJourneyHm)));
+    }
+  }
+
 }

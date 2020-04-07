@@ -118,6 +118,7 @@
     "LOADING": {
       "VERIFYING": "Verifying...",
       "VERIFIED": "Mobile Verified!",
+      " VERIFIED2FA": "2FA Verified",
       "SENDING": "Sending New OTP"
     }
   },
