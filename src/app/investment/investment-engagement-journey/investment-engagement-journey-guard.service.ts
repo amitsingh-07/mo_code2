@@ -12,6 +12,7 @@ import { InvestmentCommonService } from '../investment-common/investment-common.
 })
 export class InvestmentEngagementJourneyGuardService implements CanActivate {
   constructor(
+    private appService: AppService,
     private investmentAccountService: InvestmentAccountService,
     private authService: AuthenticationService,
     private router: Router,
@@ -42,7 +43,14 @@ export class InvestmentEngagementJourneyGuardService implements CanActivate {
         }
       });
     } else {
-      return true;
+      if (this.authService.getToken() === null && this.authService.getSessionId() === null) {
+        this.authService.authenticate().subscribe((token) => {
+          this.router.navigate(['/investment/engagement/start-journey']);
+        });
+        return false;
+      } else {
+        return true;
+      }
     }
   }
 }
