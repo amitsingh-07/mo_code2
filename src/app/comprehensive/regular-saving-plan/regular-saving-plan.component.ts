@@ -158,9 +158,17 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     if (this.viewMode) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
     } else {
-      if (!form.pristine || this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
         if (this.validateRegularSavings(form)) {
-          this.comprehensiveApiService.saveRegularSavings(form.value).subscribe((data: any) => {
+          if (!form.pristine || this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+            if(!form.value.hasRegularSavings) {
+              form.value.comprehensiveRegularSavingsList = [{
+                regularUnitTrust: '',
+                regularPaidByCash: '',
+                regularPaidByCPF: '',
+                enquiryId: this.enquiryId          
+              }];
+            }
+            this.comprehensiveApiService.saveRegularSavings(form.value).subscribe((data: any) => {
             this.comprehensiveService.setRegularSavings(form.value.hasRegularSavings);
             this.comprehensiveService.setRegularSavingsList(form.value.comprehensiveRegularSavingsList);
             if (!this.comprehensiveService.hasBadMoodFund() && this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
@@ -175,9 +183,9 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
               this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
             }
           });
+        } else {
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
         }
-      } else {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
       }
     }
   }
@@ -188,18 +196,24 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     if (this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
       this.RSPForm.markAsDirty();
     }
-    if (this.validationFlag && form.value.hasRegularSavings) {
+    this.investTypeValidation();
+    if (form.value.hasRegularSavings) {
       if (!form.valid) {
-        const error = this.comprehensiveService.getMultipleFormError('', COMPREHENSIVE_FORM_CONSTANTS.REGULAR_SAVINGS,
-          this.translate.instant('CMP.ERROR_MODAL_TITLE.DEPENDANT_DETAIL'));
-        this.comprehensiveService.openErrorModal(error.title, error.errorMessages, true,
-        );
+        Object.keys(form.controls).forEach((key) => {
+  
+          form.get(key).markAsDirty();
+        });
+        const error = this.comprehensiveService.getFormError(form, COMPREHENSIVE_FORM_CONSTANTS.REGULAR_SAVINGS);
+      this.comprehensiveService.openErrorModal(error.title, error.errorMessages, false,
+        this.translate.instant('CMP.ERROR_MODAL_TITLE.REGULAR_SAVINGS'));
         return false;
+      } else {
+        this.submitted = false;
+        return true;
       }
     } else {
       this.submitted = false;
     }
-
     return true;
   }
   showToolTipModal(toolTipTitle, toolTipMessage) {
@@ -208,6 +222,21 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
       DESCRIPTION: this.translate.instant('CMP.RSP.TOOLTIP.' + toolTipMessage)
     };
     this.comprehensiveService.openTooltipModal(toolTipParams);
+  }
+  investTypeValidation() {
+    if (this.RSPForm.controls['comprehensiveRegularSavingsList']['controls'].length > 0) {
+      this.RSPForm.controls['comprehensiveRegularSavingsList']['controls'].forEach((otherInvest, i) => {
+        const otherInvestmentControl = this.RSPForm.controls['comprehensiveRegularSavingsList']['controls'][i].controls;
+        if (otherInvestmentControl['regularPaidByCash'].value > 0 || otherInvestmentControl['regularPaidByCPF'].value > 0) {
+          otherInvestmentControl['regularUnitTrust'].setValidators([Validators.required]);
+          otherInvestmentControl['regularUnitTrust'].updateValueAndValidity();
+        } else {
+          otherInvestmentControl['regularUnitTrust'].setValidators([]);
+          otherInvestmentControl['regularUnitTrust'].updateValueAndValidity();
+        }
+      });
+      this.RSPForm.markAsDirty();
+    }
   }
 
 }
