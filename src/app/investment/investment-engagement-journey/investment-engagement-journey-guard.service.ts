@@ -12,7 +12,6 @@ import { InvestmentCommonService } from '../investment-common/investment-common.
 })
 export class InvestmentEngagementJourneyGuardService implements CanActivate {
   constructor(
-    private appService: AppService,
     private investmentAccountService: InvestmentAccountService,
     private authService: AuthenticationService,
     private router: Router,
