@@ -834,13 +834,21 @@ export class InvestmentAccountService {
     };
   }
 
-  dateFormatFromApi(date: string) {
-    const dateArr: any = date ? date.split(' ')[0].split('/') : [];
-    return {
-      year: Number(dateArr[2]),
-      month: Number(dateArr[0]),
-      day: Number(dateArr[1])
-    };
+  dateFormatFromApi(date: string, separator: string) {
+    const dateArr: any = date ? date.split(' ')[0].split(separator) : [];
+    if (separator === '-') {
+      return {
+        year: Number(dateArr[0]),
+        month: Number(dateArr[1]),
+        day: Number(dateArr[2])
+      };
+    } else {
+      return {
+        year: Number(dateArr[2]),
+        month: Number(dateArr[0]),
+        day: Number(dateArr[1])
+      };
+    }
   }
 
   isDisabled(fieldName): boolean {
@@ -1594,7 +1602,7 @@ export class InvestmentAccountService {
     this.investmentAccountFormData.fullName = identityDetails.customer.nricName;
     this.investmentAccountFormData.nricNumber = identityDetails.nricNumber ? identityDetails.nricNumber.toUpperCase() : '';
     this.investmentAccountFormData.dob = this.dateFormatFromApi(
-      identityDetails.customer.dateOfBirth
+      identityDetails.customer.dateOfBirth, '-'
     );
     this.investmentAccountFormData.gender = identityDetails.customer.gender;
     this.investmentAccountFormData.birthCountry = this.getCountryFromCountryCode(
@@ -1609,7 +1617,7 @@ export class InvestmentAccountService {
     );
     this.investmentAccountFormData.passportNumber = identityDetails.passportNumber ? identityDetails.passportNumber.toUpperCase() : '';
     this.investmentAccountFormData.passportExpiry = this.dateFormatFromApi(
-      identityDetails.passportExpiryDate
+      identityDetails.passportExpiryDate, '/'
     );
     this.commit();
   }
