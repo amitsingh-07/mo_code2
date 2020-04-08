@@ -124,7 +124,7 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
     }
   }
   goToHomepage() {
-    this.router.navigate(['home']);
+    window.open('/', '_self')
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
