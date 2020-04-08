@@ -487,6 +487,19 @@
       "CPF_SA": "CPF Special Account (SA)",
       "CPF_MA": "CPF Medisave Account (MA)",
       "CPF_RA" :" CPF Retirement Account (RA)",
+      "SCHEME" : "Scheme",
+      "SCHEME_TYPE_LIST": [{
+        "text": "Retirement Sum",
+        "value": "Retirement Sum"
+      },
+      {
+        "text": "CPF LIFE",
+        "value": "CPF LIFE"
+      }
+      ],
+      "ESTIMATED_PAYOUT": "Estimated Payout",
+      "MONTH": "mth",
+      "SET_RETIREMENT_SUM": "Retirement Sum Set Aside @ 55",
       "YOUR_HOME": "Your Home",
       "MARKET_VALUE": "At market value",
       "ADD_INVESTMENT_PROPERTIES": "Add Investment Properties",
@@ -552,7 +565,9 @@
         "OTHER_ASSETS_TITLE": "Other Assets",
         "OTHER_ASSETS_MESSAGE": "Content Will be Updated",
         "INVESTMENT_TITLE": "Investments",
-        "INVESTMENT_MESSAGE": "Select the instrument that best fits the description of your investment:-<br><br><span class='tooltip-semi-bold'>1. Equities-</span><span> Refers to shares or stocks of companies listed on stock exchanges</span><br><br><span class='tooltip-semi-bold'>2. Bonds-</span> <span>Refers to government or corporate bonds</span><br><br><span class='tooltip-semi-bold'>3. Alternatives-</span><span> Refers to derivatives, commodities, real estate, private equity etc.</span><br><br><span class='tooltip-semi-bold'>4. Balanced-</span><span> Refers to a fund/unit trust that invests in a combination of equities and bonds in an almost equivalent proportion</span><br><br><span class='tooltip-semi-bold'>5. Multi Assets-</span> <span>Refers to a fund/unit trust that invests in a combination of equities and bonds in an almost equivalent proportion with exposure to alternatives</span>"
+        "INVESTMENT_MESSAGE": "Select the instrument that best fits the description of your investment:-<br><br><span class='tooltip-semi-bold'>1. Equities-</span><span> Refers to shares or stocks of companies listed on stock exchanges</span><br><br><span class='tooltip-semi-bold'>2. Bonds-</span> <span>Refers to government or corporate bonds</span><br><br><span class='tooltip-semi-bold'>3. Alternatives-</span><span> Refers to derivatives, commodities, real estate, private equity etc.</span><br><br><span class='tooltip-semi-bold'>4. Balanced-</span><span> Refers to a fund/unit trust that invests in a combination of equities and bonds in an almost equivalent proportion</span><br><br><span class='tooltip-semi-bold'>5. Multi Assets-</span> <span>Refers to a fund/unit trust that invests in a combination of equities and bonds in an almost equivalent proportion with exposure to alternatives</span>",
+        "SET_RETIREMENT_SUM_TITLE": "Retirement Sum",
+        "SET_RETIREMENT_SUM_MESSAGE": "This is the amount of retirement savings which you have chosen to set aside in your Retirement Account to receive monthly payouts from your payout eligibility age, which is currently at age 65.<br/><br/>Your retirement sum can be used to join CPF LIFE which provides you with life-long monthly payout or the Retirement Sum Scheme which provides you with a monthly payout until your Retirement Account balance is depleted.<br/><br/>Based on your Date of Birth, these are the default amounts that you would have set aside based on whether you have pledged a property or not:<br/><br/>BRS (with property) – $BRS_VAL <br><br/>FRS (without property) - $FRS_VAL"
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },

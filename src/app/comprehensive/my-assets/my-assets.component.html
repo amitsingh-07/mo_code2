@@ -150,6 +150,69 @@
           {{'CMP.MY_ASSETS.AUTO_FILL'| translate}}
           <img class="auto-fill-logo" src="/assets/images/comprehensive/myinfo-logo.svg">
         </div>
+        
+        <!--
+        <div class="flex-row  mt-3" *ngIf="showRetirementAccount">
+          <div class="flex-col-5">
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_ASSETS.SCHEME' | translate}}<div
+                class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-7">            
+            <div class="dropdown-control">
+              <div ngbDropdown id="schemeTypeDropDown">
+                <button type="button" class="btn btn-dropdown" id="schemeTypeDropDown" ngbDropdownToggle
+                  appComprehensiveViewMode="{{viewMode}}" mode=1>
+                  <span *ngIf="!schemeType || schemeType === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                  <span *ngIf="schemeType !== ''">{{schemeType}}</span>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownSchemeType">
+              
+                  <button type="button" class="dropdown-item earnings-dropdown" appComprehensiveViewMode="{{viewMode}}"
+                    mode=1 *ngFor="let schemeType of schemeTypeList; let i=index"
+                    (click)="selectSchemeType(schemeType)">
+                    {{schemeType.text}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="flex-row" *ngIf="showRetirementAccount">
+          <div class="flex-col-5">
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_ASSETS.ESTIMATED_PAYOUT' | translate}}<div
+                class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-7">
+            <div class="form-control form-control-right" [ngClass]="{'view-mode': viewMode}">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput #estimatedPayout maxLength="4"
+                formControlName="estimatedPayout">
+                <i class="right">/ {{'CMP.MY_ASSETS.MONTH'|translate}}</i>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="flex-row" *ngIf="showRetirementAccount">
+          <div class="flex-col-5">
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_ASSETS.SET_RETIREMENT_SUM' | translate}}
+              <span class="help-icon" (click)="showToolTipModal('SET_RETIREMENT_SUM_TITLE','SET_RETIREMENT_SUM_MESSAGE')"></span>
+              <div class="form-group-with-bg--content-sub-label"></div>
+            </div>
+          </div>
+          <div class="flex-col-7">
+            <div class="form-control" [ngClass]="{'view-mode': viewMode}">
+              <i>$</i>
+              <input type="text" class="input-control" appCurrencyInput #retirementSum maxLength="7"
+                formControlName="retirementSum">
+            </div>
+          </div>
+        </div>
+      -->
       </div>
     </div>
     <div class="form-group-with-bg" *ngIf="comprehensiveJourneyMode">

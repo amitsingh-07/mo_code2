@@ -196,6 +196,9 @@ export interface IMyAssets {
     otherAssetsValue: number;
     totalAnnualAssets: number;
     source: string;
+    schemeType: string;
+    estimatedPayout: number;
+    retirementSum: number;
 }
 export interface IOtherProperties {
     enquiryId: number;
