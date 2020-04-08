@@ -4,15 +4,17 @@
       <div class="flex-row">
         <div class="flex-col-12" *ngIf="userProfileInfo">
           <div class="widget-block">
-            <div class="user-profile-bg col-12">
+            <div class="user-profile-bg col-6">
               <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
               <div class="user_name">{{userProfileInfo.firstName | titlecase}}</div>
-              <span (click)="goToEditProfile()">
+              <span (click)="goToEditProfile()" class="hidden-sm">
                 <span class="user-edit-img">
                   <img id="edit_profile_edit_img" src="assets/images/investment-account/edit-white.svg" />
                 </span>
-                <span class="txt-lyt">{{'DASHBOARD.PROFILE.EDIT_PROFILE' | translate}}</span>
               </span>
+              <div class="col-6" class="hidden-lg" (click)="goToEditProfile()">
+                <img src="/app/assets/images/profile-icon.svg" />
+              </div>
             </div>
             <div class="announcement-div" (click)="openSRSJointAccPopup()">
               <img class="announcement-img" src="assets/images/srs-joint-account/speaker.svg">
