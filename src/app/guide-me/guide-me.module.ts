@@ -1,6 +1,6 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { NgModule, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -11,15 +11,14 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { ProductDetailComponent } from '../shared/components/product-detail/product-detail.component';
 import { CustomCurrencyPipe } from '../shared/Pipes/custom-currency.pipe';
 import { SharedModule } from '../shared/shared.module';
-import { PlanWidgetComponent } from '../shared/widgets/plan-widget/plan-widget.component';
 import { LoggedUserService } from '../sign-up/auth-guard.service';
 import { NavbarService } from './../shared/navbar/navbar.service';
-import { PlanDetailsWidgetComponent } from './../shared/widgets/plan-details-widget/plan-details-widget.component';
 import { CiAssessmentComponent } from './ci-assessment/ci-assessment.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { FinAssessmentComponent } from './fin-assessment/fin-assessment.component';
 import { GetStartedFormComponent } from './get-started/get-started-form/get-started-form.component';
 import { GetStartedComponent } from './get-started/get-started.component';
+import { GuideMeAccessGuard } from './guide-me-access-guard';
 import { GuideMeRoutingModule } from './guide-me-routing.module';
 import { HospitalPlanComponent } from './hospital-plan/hospital-plan.component';
 import { IncomeComponent } from './income/income.component';
@@ -82,7 +81,7 @@ export function createTranslateLoader(http: HttpClient) {
     RecommendationsComponent,
     CustomCurrencyPipe
   ],
-  providers: [CurrencyPipe, CustomCurrencyPipe, LoggedUserService],
+  providers: [CurrencyPipe, CustomCurrencyPipe, LoggedUserService, GuideMeAccessGuard],
   entryComponents: [ProductDetailComponent]
 })
 export class GuideMeModule {
