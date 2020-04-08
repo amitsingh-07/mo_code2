@@ -109,7 +109,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     ref.componentInstance.errorMessage = this.modalData.modalMessage;
     ref.componentInstance.primaryActionLabel = this.translator.RETURN_HOME;
     ref.componentInstance.primaryAction.subscribe((emittedValue) => {
-      this.router.navigate(['home']);
+      window.open('/', '_self');
     });
   }
 

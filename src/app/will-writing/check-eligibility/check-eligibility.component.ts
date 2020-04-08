@@ -147,7 +147,7 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorMessage = this.errorModal.MESSAGE;
       ref.componentInstance.navToHome = true;
       ref.result.then(() => {
-        this.router.navigate(['home']);
+        window.open('/', '_self')
       }).catch((e) => {
       });
   }
