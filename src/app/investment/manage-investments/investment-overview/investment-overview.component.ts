@@ -285,6 +285,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
 
   addPortfolio() {
     this.authService.saveEnquiryId(null);
+    this.investmentCommonService.clearFundingDetails();  // #MO2-2446
     this.investmentCommonService.clearJourneyData();
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
   }
