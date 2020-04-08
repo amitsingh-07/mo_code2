@@ -176,8 +176,8 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     for (const value of this.payOffFieldSet) {
       switch (value) {
         case 'HLMortgagePaymentUsingCPF':
-          const HLMortgagePaymentUsingCPF = parseInt(this.mySpendingsForm.controls['HLMortgagePaymentUsingCPF'].value !=null ?  this.mySpendingsForm.controls['HLMortgagePaymentUsingCPF'].value:0);
-          const HLMortgagePaymentUsingCash = parseInt(this.mySpendingsForm.controls['HLMortgagePaymentUsingCash'].value !=null ?  this.mySpendingsForm.controls['HLMortgagePaymentUsingCash'].value:0);
+          const HLMortgagePaymentUsingCPF = parseInt(this.mySpendingsForm.controls['HLMortgagePaymentUsingCPF'].value !=null || this.mySpendingsForm.controls['HLMortgagePaymentUsingCPF'].value !='' ?  this.mySpendingsForm.controls['HLMortgagePaymentUsingCPF'].value:0);
+          const HLMortgagePaymentUsingCash = parseInt(this.mySpendingsForm.controls['HLMortgagePaymentUsingCash'].value !=null || this.mySpendingsForm.controls['HLMortgagePaymentUsingCash'].value !='' ?  this.mySpendingsForm.controls['HLMortgagePaymentUsingCash'].value:0);
           const HLMortgagePayoffUntil =  this.mySpendingsForm.controls['homeLoanPayOffUntil'];
           if ((HLMortgagePaymentUsingCPF + HLMortgagePaymentUsingCash) > 0) {
             HLMortgagePayoffUntil.setValidators([Validators.required, this.payOffYearValid]);
@@ -189,10 +189,9 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
           }
         break;
         case 'mortgagePaymentUsingCPF':
-          const mortgagePaymentUsingCPF = parseInt(this.mySpendingsForm.controls['mortgagePaymentUsingCPF'].value);
-          const mortgagePaymentUsingCash = parseInt(this.mySpendingsForm.controls['mortgagePaymentUsingCash'].value);
+          const mortgagePaymentUsingCPF = parseInt(this.mySpendingsForm.controls['mortgagePaymentUsingCPF'].value !=null || this.mySpendingsForm.controls['mortgagePaymentUsingCPF'].value !=''?  this.mySpendingsForm.controls['mortgagePaymentUsingCPF'].value:0);
+          const mortgagePaymentUsingCash = parseInt(this.mySpendingsForm.controls['mortgagePaymentUsingCash'].value !=null || this.mySpendingsForm.controls['mortgagePaymentUsingCash'].value !=''?  this.mySpendingsForm.controls['mortgagePaymentUsingCash'].value:0);
           const mortgagePayOffUntil =  this.mySpendingsForm.controls['mortgagePayOffUntil'];
-          
           if ((mortgagePaymentUsingCPF + mortgagePaymentUsingCash)> 0) {
             mortgagePayOffUntil.setValidators([Validators.required, this.payOffYearValid]);
             mortgagePayOffUntil.updateValueAndValidity();
