@@ -110,8 +110,8 @@
                 <div class="flex-col-4"></div>
                 <div class="flex-col-8">
                   <div class="checkbox-button one-label">
-                    <input id="withdrawRedeem" name="dependantSelection" formControlName="withdrawRedeem" type="checkbox"
-                      [value]=false class="field radio" mode=1 (change)="redeemAllChecked()">
+                    <input id="withdrawRedeem" name="dependantSelection" formControlName="withdrawRedeem"
+                      type="checkbox" [value]=false class="field radio" mode=1 (change)="redeemAllChecked()">
                     <label id="dependantNoLabel" for="withdrawRedeem">
                       <span class="input-label-grey">{{'WITHDRAW.REDEEM_ALL' | translate}}</span>
                     </label>
@@ -122,7 +122,7 @@
                 <div class="flex-col-12">
                   <div class="withdraw-error"
                     *ngIf="withdrawForm.controls.withdrawAmount.errors && withdrawForm.controls.withdrawAmount.errors.MinWithdrawal">
-                    <img src="../../../assets/images/info-orange.svg" alt="" />
+                    <img src="assets/images/info-orange.svg" alt="" />
                     <span [innerHTML]="'WITHDRAW.MIN_WITHDRAWAL_INFO' | translate:translateParams"> </span>
                   </div>
                 </div>
@@ -166,7 +166,7 @@
                 <div class="flex-col-12">
                   <div class="withdraw-error"
                     *ngIf="isFromPortfolio && ((isRedeemAll && !isRedeemAllChecked) || withdrawForm.controls.withdrawAmount.errors && withdrawForm.controls.withdrawAmount.errors.MinBalance)">
-                    <img src="../../../assets/images/info-orange.svg" alt="" />
+                    <img src="assets/images/info-orange.svg" alt="" />
                     <span [innerHTML]="'WITHDRAW.REDEEM_ALL_INFO' | translate:translateParams"> </span>
                   </div>
                 </div>

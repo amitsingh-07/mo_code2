@@ -1,12 +1,12 @@
 <div class="contact-us__wrapper">
-  <div class="sub-navigation">
+  <div *ngIf="showBreadCrumbs" class="sub-navigation">
     <div class="sub-navigation--inner">
       <span routerLink="/">Home</span>
       <i class="material-icons">keyboard_arrow_right</i>
       <span routerLink="/about-us">About Us</span>
       <i class="material-icons">keyboard_arrow_right</i>
       <span>Contact Us</span>
-      </div>
+    </div>
   </div>
   <div class="banner" #banner>
     <div class="banner-container">
@@ -14,7 +14,7 @@
         <h1 class="banner--title">{{'CONTACT_US.GENERAL.TITLE' | translate}}</h1>
         <h3 class="banner--subtitle">{{'CONTACT_US.GENERAL.SUB_TITLE' | translate}}</h3>
         <div class="banner__img-container hidden-lg">
-          <img src="/assets/images/about-us/contact-us-header.svg"/>
+          <img src="assets/images/about-us/contact-us-header.svg"/>
           </div>
         <p class="banner--description">
           {{'CONTACT_US.GENERAL.DESCRIPTION' | translate}}
@@ -24,7 +24,7 @@
         
         </div>
       <div class="banner__img-container hidden-sm-md">
-        <img src="/assets/images/about-us/contact-us-header.svg"/>
+        <img src="assets/images/about-us/contact-us-header.svg"/>
         </div> 
     </div> 
     </div>

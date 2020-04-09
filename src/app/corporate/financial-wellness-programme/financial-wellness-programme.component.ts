@@ -6,8 +6,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfigService } from '../../config/config.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-import { CorporateService } from '../corporate.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { CorporateService } from '../corporate.service';
+import { NavbarService } from './../../shared/navbar/navbar.service';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-financial-wellness-programme',
@@ -25,8 +27,11 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
   contactNumberErrorMessage: object = {};
   ErrorMessage: string;
   companySizeItems = [{ item: 'Below 300' }, { item: '300 - 1000' }, { item: 'Above 1000' }];
+  public isLoggedIn = false;
+  public showBreadCrumbs = true;
 
   constructor(
+    private navbarService: NavbarService,
     public footerService: FooterService,
     public corporateService: CorporateService,
     public translate: TranslateService,
@@ -58,9 +63,19 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
         pattern: this.translate.instant('ERROR.CONTACT_US.CONTACT_NUMBER_PATTERN')
       };
     });
+    if (this.authService.isSignedUser()) {
+      this.isLoggedIn = true;
+    }
   }
 
   ngOnInit() {
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(9);
+      this.showBreadCrumbs = false;
+    } else {
+      this.navbarService.setNavbarMode(1);
+    }
+    this.navbarService.setNavbarVisibility(true);
     this.footerService.setFooterVisibility(true);
     this.companySize = this.companySizePreset;
     this.buildFinancialWellnessForm();
@@ -90,6 +105,10 @@ export class FinancialWellnessProgrammeComponent implements OnInit {
 
   navigateTo(url: string) {
     this.router.navigate([url]);
+  }
+
+  goToExternal(url) {
+    window.open(url, '_self');
   }
 
   save(form: any) {

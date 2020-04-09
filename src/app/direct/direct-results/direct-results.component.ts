@@ -180,8 +180,11 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       this.state.resultsEmptyMessage = data.responseMessage.responseDescription;
       return;
     }
-    if(this.state.selectedCategory.id === PRODUCT_CATEGORY_INDEX.CRITICAL_ILLNESS){
-      this.ciCoverDetailsPopup();
+    if (this.state.selectedCategory.id === PRODUCT_CATEGORY_INDEX.CRITICAL_ILLNESS) {
+      const { earlyCI } = this.directService.getCriticalIllnessForm();
+      if (!earlyCI) {
+        this.ciCoverDetailsPopup();
+      }
     }
     this.state.resultsEmptyMessage = '';
     this.state.enquiryId = data.objectList[0].enquiryId;

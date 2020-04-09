@@ -56,18 +56,6 @@ const routes: Routes = [
         canActivateChild: [ComprehensiveChildEnableGuard]
       },
       {
-        path: 'articles',
-        loadChildren: './article/article.module#ArticleModule',
-        canActivate: [ArticleEnableGuard],
-        canActivateChild: [ArticleChildEnableGuard]
-      },
-      {
-        path: 'learn',
-        loadChildren: './article/article.module#ArticleModule',
-        canActivate: [ArticleEnableGuard],
-        canActivateChild: [ArticleEnableGuard]
-      },
-      {
         path: 'investment/engagement',
         loadChildren: './investment/investment-engagement-journey/investment-engagement-journey.module#InvestmentEngagementJourneyModule',
         canActivate: [InvestmentEnableGuard],

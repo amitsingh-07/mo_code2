@@ -21,6 +21,7 @@ import { IToastMessage } from '../manage-investments-form-data';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS, PORTFOLIO_WITHDRAWAL_KEYS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
+import { environment } from './../../../../environments/environment';
 import { SignUpService } from './../../../sign-up/sign-up.service';
 import { RenameInvestmentModalComponent } from './rename-investment-modal/rename-investment-modal.component';
 
@@ -83,7 +84,11 @@ export class YourPortfolioComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(103);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(105);
+    } else {
+      this.navbarService.setNavbarMode(103);
+    }
     this.footerService.setFooterVisibility(false);
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.moreList = MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.MORE_LIST;

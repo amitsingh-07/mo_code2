@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
+import { AboutUsEnableGuard } from './about-us-enable-guard';
 import { AboutUsRoutingModule } from './about-us-routing.module';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
@@ -36,6 +37,7 @@ export function createTranslateLoader(http: HttpClient) {
       }
     })
   ],
+  providers: [AboutUsEnableGuard],
   declarations: [CustomerReviewsComponent, SubscribeComponent, ContactUsComponent, AboutUsComponent, WhyMoneyOwlComponent]
 })
 export class AboutUsModule { }

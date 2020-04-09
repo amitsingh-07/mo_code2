@@ -20,6 +20,7 @@ import {
 import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { RiskProfile } from '../../investment-engagement-journey/recommendation/riskprofile';
 import { ManageInvestmentsService } from '../manage-investments.service';
+import { environment } from './../../../../environments/environment';
 
 @Component({
   selector: 'app-asset-allocation',
@@ -62,7 +63,11 @@ export class AssetAllocationComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(103);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(105);
+    } else {
+      this.navbarService.setNavbarMode(103);
+    }
     this.footerService.setFooterVisibility(false);
   }
 

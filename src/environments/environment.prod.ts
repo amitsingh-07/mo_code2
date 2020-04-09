@@ -12,5 +12,6 @@ export const environment: IEnvironment = {
   gaPropertyId: 'UA-125256446-3',
   fbPropertyId: '1436376216665984',
   adRollPropertyId: 'IJWYLBK7MZGF7JMIJ2CP3K',
-  adRollAdvId: 'J4Q6YE7JGFEZRKPTQGHN6D'
+  adRollAdvId: 'J4Q6YE7JGFEZRKPTQGHN6D',
+  hideHomepage: true
 };

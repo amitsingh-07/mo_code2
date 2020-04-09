@@ -11,6 +11,7 @@ import { IComponentCanDeactivate } from './changes.guard';
 import { ConfigService, IConfig } from './config/config.service';
 import { FBPixelService } from './shared/analytics/fb-pixel.service';
 import { GoogleAnalyticsService } from './shared/analytics/google-analytics.service';
+import { AuthenticationService } from './shared/http/auth/authentication.service';
 import { LoggerService } from './shared/logger/logger.service';
 import { DiyModalComponent } from './shared/modal/diy-modal/diy-modal.component';
 import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.component';
@@ -38,7 +39,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     private signUpService: SignUpService, private navbarService: NavbarService, private _location: Location,
     private facebookPixelService: FBPixelService, private googleAnalyticsService: GoogleAnalyticsService,
     private modal: NgbModal, public route: Router, public routingService: RoutingService, private location: Location,
-    private configService: ConfigService) {
+    private configService: ConfigService, private authService: AuthenticationService) {
     this.translate.setDefaultLang('en');
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.translate.setDefaultLang(config.language);
@@ -154,10 +155,24 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     }
   }
 
-  @HostListener('window:beforeunload', ['$event'])
-  unloadNotification($event: any) {
-    if (!this.canDeactivate()) {
-      $event.returnValue = 'Changes you made will not be saved. Do you want to continue?';
+  doBeforeUnload() {
+    // Alert the user window is closing
+    // Custom alert text will not be shown only default browser text
+    return false;
+  }
+
+  doUnload() {
+    // Logged user out of the app
+    if (this.authService.isSignedUser()) {
+      this.navbarService.logoutUser();
     }
   }
+
+  // @HostListener('window:beforeunload', ['$event'])
+  // unloadNotification($event: any) {
+  //   if (!this.canDeactivate()) {
+  //     $event.preventDefault();
+  //     $event.returnValue = 'Changes you made will not be saved. Do you want to continue?';
+  //   }
+  // }
 }

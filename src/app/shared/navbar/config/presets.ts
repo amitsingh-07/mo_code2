@@ -64,6 +64,32 @@ export class NavbarConfig {
     showExitCheck: true,
   };
 
+  // Edit Profile/View Notifications (Homepage Hidden)
+  '104': object = {
+    showNavBackBtn: true,
+    showHeaderBackBtn: true,
+    showMenu: false,
+    showLogin: true,
+    showSearchBar: false,
+    showNotifications: true,
+    showHeaderNavbar: true,
+    showExitCheck: true,
+  };
+
+  // Portfolio/Fundings/Topup/Withdraw (Homepage Hidden)
+  '105': object = {
+    showNavBackBtn: true,
+    showHeaderBackBtn: true,
+    showMenu: false,
+    showLogin: true,
+    showLogout: true,
+    showNavShadow: true,
+    showSearchBar: false,
+    showNotifications: true,
+    showHeaderNavbar: true,
+    showExitCheck: true,
+  };
+
   // ------ Features -----
   // Home;
   '1': object = {
@@ -84,10 +110,13 @@ export class NavbarConfig {
     showHeaderBackBtn: true,
     showMenu: false,
     showLogin: false,
-    showLogout: false,
+    showLogout: true,
     showNavShadow: true,
     showSearchBar: false,
     showNotifications: false,
+    showLabel: {
+      primary: 'Insurance'
+    },
     showExitCheck: true
   };
 
@@ -153,6 +182,36 @@ export class NavbarConfig {
     showHeaderNavbar: true,
     showLabel: {
       primary: 'Retirement Planning'
+    },
+    showExitCheck: true
+  };
+
+  // Dashboard/Contact Us/FinancialLiteracy/FinancialWellness/FAQ/Promotions (Homepage Hidden)
+  '9': object = {
+    showNavBackBtn: false,
+    showHeaderBackBtn: false,
+    showMenu: false,
+    showLogin: true,
+    showNavShadow: true,
+    showSearchBar: false,
+    showNotifications: true,
+    showHeaderNavbar: false,
+    showExitCheck: false
+  };
+
+   // Investment (Robo2) (With Notification)
+   '10': object = {
+    showNavBackBtn: true,
+    showHeaderBackBtn: true,
+    showMenu: false,
+    showLogin: false,
+    showLogout: true,
+    showNavShadow: true,
+    showSearchBar: false,
+    showNotifications: true,
+    showHeaderNavbar: true,
+    showLabel: {
+      primary: 'Investment'
     },
     showExitCheck: true
   };

@@ -110,10 +110,10 @@ export class PromotionService {
     if (owner) {
       let partner_name = owner.toLowerCase();
       partner_name = partner_name.replace(/ /g, '');
-      const logo = '/assets/images/partners/logo-' + partner_name + '.png';
+      const logo = 'assets/images/partners/logo-' + partner_name + '.png';
       return logo;
     } else {
-      return '/assets/images/partners/logo-placeholder.png';
+      return 'assets/images/partners/logo-placeholder.png';
     }
   }
 }

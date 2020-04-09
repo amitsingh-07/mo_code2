@@ -3,15 +3,15 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { GroupByPipe } from '../../../shared/Pipes/group-by.pipe';
 import { SignUpService } from '../../../sign-up/sign-up.service';
-import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { ManageInvestmentsService } from '../manage-investments.service';
+import { environment } from './../../../../environments/environment';
 
 @Component({
   selector: 'app-transactions',
@@ -47,7 +47,11 @@ export class TransactionsComponent implements OnInit {
   }
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(103);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(105);
+    } else {
+      this.navbarService.setNavbarMode(103);
+    }
     this.footerService.setFooterVisibility(false);
     this.getTransactionHistory();
     this.createTransactionStatement();

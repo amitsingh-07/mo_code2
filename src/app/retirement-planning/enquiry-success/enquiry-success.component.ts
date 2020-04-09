@@ -30,7 +30,7 @@ export class EnquirySuccessComponent implements OnInit {
   }
 
   redirectTo() {
-    this.router.navigate(['/home']);
+    window.open('/', '_self');
   }
 
 }

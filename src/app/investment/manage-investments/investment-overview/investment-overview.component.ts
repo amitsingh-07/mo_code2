@@ -28,6 +28,7 @@ import {
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
+import { environment } from './../../../../environments/environment';
 
 @Component({
   selector: 'app-investment-overview',
@@ -94,7 +95,11 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(103);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(105);
+    } else {
+      this.navbarService.setNavbarMode(103);
+    }
     this.footerService.setFooterVisibility(false);
     this.getInvestmentOverview();
     this.headerSubscription();
@@ -280,6 +285,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
 
   addPortfolio() {
     this.authService.saveEnquiryId(null);
+    this.investmentCommonService.clearFundingDetails();  // #MO2-2446
     this.investmentCommonService.clearJourneyData();
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
   }

@@ -32,9 +32,9 @@
               name="dp" ngbDatepicker #d="ngbDatepicker" autocomplete="off" [minDate]="minDate" [maxDate]="maxDate" (blur)="onDobChange()" (dateSelect)="onDobChange()"> 
               <div class="input-group-append">
                 <button (click)="d.toggle()" class="btn btn-primary" type="button">
-                    <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="lifeProtectionForm.get('dob').valid || lifeProtectionForm.get('dob').pristine || !doberror" src="./assets/images/calendar-normal.svg"
+                    <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="lifeProtectionForm.get('dob').valid || lifeProtectionForm.get('dob').pristine || !doberror" src="assets/images/calendar-normal.svg"
                     />
-                    <img class="date-picker-image--invalid" id="getStrdImg1" *ngIf="doberror && !lifeProtectionForm.get('dob').valid && !lifeProtectionForm.get('dob').pristine" src="./assets/images/calendar-error.svg"
+                    <img class="date-picker-image--invalid" id="getStrdImg1" *ngIf="doberror && !lifeProtectionForm.get('dob').valid && !lifeProtectionForm.get('dob').pristine" src="assets/images/calendar-error.svg"
                     />
                 </button>
                 </div>

@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
+import { environment } from './../../../environments/environment';
 import { ConfigService, IConfig } from './../../config/config.service';
 import { FooterService } from './footer.service';
 
@@ -13,6 +14,9 @@ export class FooterComponent implements OnInit, AfterViewInit {
   showFooter = false;
   isMaintenanceEnabled = false;
   copyrightYear: string;
+  showFooterItems = true;
+  hubspotLiveChat = true;
+
   constructor(
     private footerService: FooterService, private cdr: ChangeDetectorRef,
     public readonly translate: TranslateService, private configService: ConfigService) {
@@ -20,6 +24,9 @@ export class FooterComponent implements OnInit, AfterViewInit {
       this.translate.use(config.language);
       this.isMaintenanceEnabled = config.maintenanceEnabled;
     });
+    if (environment.hideHomepage) {
+      this.showFooterItems = false;
+    }
   }
 
   ngOnInit() {
@@ -31,7 +38,28 @@ export class FooterComponent implements OnInit, AfterViewInit {
     this.footerService.currentFooterVisibility.subscribe((showFooter) => {
       this.showFooter = showFooter;
       this.cdr.detectChanges();
+      // Load live chat for pages with footer only
+      if (this.showFooter && this.hubspotLiveChat) {
+        if (window['HubSpotConversations']) {
+          this.onConversationsAPIReadyLoad();
+        } else {
+          window['hsConversationsOnReady'] = [this.onConversationsAPIReadyLoad];
+        }
+      } else {
+        if (window['HubSpotConversations']) {
+          this.onConversationAPIReadyRemove();
+        } else {
+          window['hsConversationsOnReady'] = [this.onConversationAPIReadyRemove];
+        }
+      }
     });
   }
 
+  onConversationsAPIReadyLoad() {
+    window['HubSpotConversations'].widget.load();
+  }
+
+  onConversationAPIReadyRemove() {
+    window['HubSpotConversations'].widget.remove();
+  }
 }
