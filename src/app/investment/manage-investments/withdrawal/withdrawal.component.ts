@@ -485,11 +485,12 @@ export class WithdrawalComponent implements OnInit {
   checkRedeemAll() {
     if (this.withdrawForm.controls.withdrawPortfolio.value) {
       const cashBalance = (this.isFromPortfolio) ? this.withdrawForm.controls.withdrawPortfolio.value.portfolioValue.toString() :
-          this.cashBalance.toString();
-      if(cashBalance <= 50) {
+        this.cashBalance.toString();
+      if (cashBalance <= 50) {
         this.withdrawForm.controls.withdrawRedeem.setValue(true);
         this.withdrawForm.controls.withdrawAmount.setValue(cashBalance);
         this.withdrawForm.get('withdrawAmount').disable();
+        this.withdrawForm.get('withdrawRedeem').disable();
         this.isRedeemAllChecked = true;
       } else {
         this.withdrawForm.controls.withdrawRedeem.setValue(false);
