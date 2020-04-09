@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { APP_ROUTES } from './../app-routes.constants';
+import { appConstants } from '../app.constants';
 import { AuthenticationService } from './../shared/http/auth/authentication.service';
 import { SIGN_UP_ROUTE_PATHS } from './../sign-up/sign-up.routes.constants';
 
@@ -19,7 +19,7 @@ export class EmailEnquirySuccessComponent implements OnInit {
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
-    this.router.navigate(['/home']);
+    this.router.navigate([appConstants.homePageUrl]);
   }
 
   constructor(
@@ -37,7 +37,7 @@ export class EmailEnquirySuccessComponent implements OnInit {
 
   redirectTo() {
     if (!this.isSignedUser) {
-      this.router.navigate([APP_ROUTES.HOME]);
+      this.router.navigate([appConstants.homePageUrl]);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     }
