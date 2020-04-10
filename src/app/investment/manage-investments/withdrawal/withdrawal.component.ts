@@ -491,7 +491,8 @@ export class WithdrawalComponent implements OnInit {
     if (this.withdrawForm.controls.withdrawPortfolio.value) {
       const cashBalance = (this.isFromPortfolio) ? this.withdrawForm.controls.withdrawPortfolio.value.portfolioValue.toString() :
         this.cashBalance.toString();
-      if (cashBalance <= 50) {
+      // Minimum cash balance amount 50
+      if (cashBalance <= MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT) {
         this.withdrawForm.controls.withdrawRedeem.setValue(true);
         this.withdrawForm.controls.withdrawAmount.setValue(cashBalance);
         this.withdrawForm.get('withdrawAmount').disable();
