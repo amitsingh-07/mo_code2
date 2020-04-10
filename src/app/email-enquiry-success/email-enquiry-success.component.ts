@@ -1,7 +1,6 @@
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { APP_ROUTES } from './../app-routes.constants';
-import { appConstants } from '../app.constants';
 import { AuthenticationService } from './../shared/http/auth/authentication.service';
 import { SIGN_UP_ROUTE_PATHS } from './../sign-up/sign-up.routes.constants';
 
@@ -18,11 +17,10 @@ import { environment } from './../../environments/environment';
 export class EmailEnquirySuccessComponent implements OnInit {
 
   isSignedUser: boolean;
-  routeName: string;
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
-    this.router.navigate([this.routeName]);
+    this.checkHideHomePageFlag();
   }
 
   constructor(
@@ -31,11 +29,6 @@ export class EmailEnquirySuccessComponent implements OnInit {
     public authService: AuthenticationService,
     private router: Router) {
     this.isSignedUser = this.authService.isSignedUser();
-    if (environment.hideHomepage) {
-      this.routeName = appConstants.homePageUrl;
-    } else {
-      this.routeName = APP_ROUTES.HOME;
-    }
   }
 
   ngOnInit() {
@@ -43,9 +36,17 @@ export class EmailEnquirySuccessComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
   }
 
+  checkHideHomePageFlag() {
+    if (environment.hideHomepage) {
+      window.open('/', '_self')
+    } else {
+      this.router.navigate([APP_ROUTES.HOME]);
+    }
+  }
+
   redirectTo() {
     if (!this.isSignedUser) {
-      this.router.navigate([this.routeName]);
+      this.checkHideHomePageFlag();
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     }
