@@ -1,0 +1,13 @@
+{
+  "promoId": 25,
+  "type": 1,
+  "owner": "SingLife",
+  "title": "Save 20% on base plan + 30% on riders for Singlife Term Life Series Two",
+  "thumbnail": "assets/promotions/images/25/thumbnail.jpg",
+  "banner": "assets/promotions/images/25/banner.png",
+  "desc": "Enjoy perpetual premium discount throughout your policy term!",
+  "date_created": "1583683200000",
+  "date_expiry": "1590940799000",
+  "tag": ["Insurance", "Protection"],
+  "external": false
+}
