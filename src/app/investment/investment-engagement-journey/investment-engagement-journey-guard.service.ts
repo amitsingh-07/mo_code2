@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-
 import { TranslateService } from '@ngx-translate/core';
+
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { InvestmentAccountService } from '../investment-account/investment-account-service';
 import { InvestmentCommonService } from '../investment-common/investment-common.service';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from './investment-engagement-journey-routes.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +43,14 @@ export class InvestmentEngagementJourneyGuardService implements CanActivate {
         }
       });
     } else {
-      return true;
+      if (this.authService.getToken() === null && this.authService.getSessionId() === null) {
+        this.authService.authenticate().subscribe((token) => {
+          this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.START]);
+        });
+        return false;
+      } else {
+        return true;
+      }
     }
   }
 }

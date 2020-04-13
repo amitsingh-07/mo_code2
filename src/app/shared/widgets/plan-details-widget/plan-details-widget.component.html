@@ -114,6 +114,7 @@
         <span *ngIf="!isSelected">{{ 'BUTTON.SELECT_PLAN' | translate }}</span>
         <span *ngIf="isSelected">{{ 'BUTTON.UN_SELECT' | translate }}</span>
       </button>
+      <p class="see-more-details" *ngIf="this.data.brochureLink !== 'NA'"><a target="_blank" [href]="this.data.brochureLink">{{ 'PRODUCT_DETAILS.SEE_MORE_DETAILS' | translate}}</a></p>
     </div>
   </div>
   <div class="row mt20" *ngIf="isDirect" [hidden]="isViewMode">

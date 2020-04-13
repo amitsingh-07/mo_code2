@@ -363,6 +363,12 @@ export class ComprehensiveFormError {
                     errorMessage: 'Regular Paid By CPF'
                 }
             },
+            comprehensiveRegularSavingsList: {
+                required: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Select type of unit trust'
+                },
+            }
         }
     };
     myAssetsForm: object = {
@@ -397,7 +403,7 @@ export class ComprehensiveFormError {
             assetsInvestmentSet: {
                 required: {
                     errorTitle: this.invalidName,
-                    errorMessage: 'Other Investment'
+                    errorMessage: 'Select type of investment'
                 },
             }
         }

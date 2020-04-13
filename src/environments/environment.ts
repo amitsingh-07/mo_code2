@@ -13,7 +13,7 @@ export const environment: IEnvironment = {
   myInfoAuthorizeUrl: 'https://test.api.myinfo.gov.sg/com/v3/authorise',
   gAdPropertyId: 'AW-782920447',
   gaPropertyId: 'UA-125256446-1',
-  hideHomepage: true
+  hideHomepage: false
 };
 
 /*
