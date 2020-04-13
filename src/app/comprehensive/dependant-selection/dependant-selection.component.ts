@@ -63,7 +63,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
     });
     this.viewMode = this.cmpService.getViewableMode();
     this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
-    this.stepIndicatorCount =  this.comprehensiveJourneyMode ? 5:1 ;
+    this.stepIndicatorCount =  this.comprehensiveJourneyMode ? 5 : 1 ;
   }
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.cmpService.generateProgressTrackerData());
@@ -106,6 +106,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
       dependantSelection: new FormControl(this.hasDependant, Validators.required),
       noOfHouseholdMembers: new FormControl(this.householdDetails ? this.householdDetails.noOfHouseholdMembers : '', Validators.required),
       houseHoldIncome: new FormControl(this.householdDetails ? this.householdDetails.houseHoldIncome : '', Validators.required),
+      noOfYrs: new FormControl(this.householdDetails ? this.householdDetails.noOfYrs : ''),
     });
 
   }
@@ -137,6 +138,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
           hasDependents: false,
           noOfHouseholdMembers: dependantSelectionForm.value.noOfHouseholdMembers,
           houseHoldIncome: dependantSelectionForm.value.houseHoldIncome,
+          noOfYrs: dependantSelectionForm.value.noOfYrs,
           dependentMappingList: [{
             id: 0,
             customerId: 0,
@@ -165,10 +167,10 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
       }
     }
   }
-  routerPath(){
-    if(this.comprehensiveJourneyMode){
+  routerPath() {
+    if (this.comprehensiveJourneyMode) {
       this.showSummaryModal();
-    }else{
+    } else {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/2']);
     }
   }

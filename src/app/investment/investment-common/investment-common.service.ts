@@ -80,6 +80,7 @@ export class InvestmentCommonService {
     this.investmentCommonFormData.fundingType = null;
     this.investmentCommonFormData.srsOperatorBank = null;
     this.investmentCommonFormData.srsAccountNumber = null;
+    this.commit();
   }
 
   clearInvestmentCommonFormData() {
