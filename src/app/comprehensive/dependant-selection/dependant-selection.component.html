@@ -124,7 +124,7 @@
                 [ngClass]="{'view-mode': viewMode}">
                 <input [ngClass]="{'view-mode': viewMode}" id="noOfYrs" type="text"
                   appComprehensiveViewMode="{{viewMode}}" mode=1  
-                  class="input-control" appCurrencyInput maxLength="2" name="noOfYrs" />
+                  class="input-control" appCurrencyInput maxLength="2" formControlName="noOfYrs" name="noOfYrs" />
                 <i class="right ">{{'CMP.DEPENDANT_SELECTION.YRS_LABEL'|translate}}</i>
               </div>
             </div>
