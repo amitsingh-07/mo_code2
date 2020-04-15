@@ -35,7 +35,7 @@
             <img class="promo-card--bg" src="{{promoCard.thumbnail}}"/>
           </div>
           <div class="promo-card__body">
-            <div *ngIf="!promoCard.external && promoCategory.id != 4" class="promo-card--insurer">
+            <div *ngIf="!promoCard.external && promoCategory.id != 4 && promoCategory.id != 5" class="promo-card--insurer">
               <img src="{{promoCard.logo}}">
               </div>
             <p class="promo-card--title">{{promoCard.title}}</p>

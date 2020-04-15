@@ -90,7 +90,18 @@
         }
     }
 }
-
+.promo__list--type-disc{
+    list-style: disc;
+    li{
+        list-style-type: disc;
+    }
+}
+.promo__list--type-dash{
+    list-style: georgian;
+    li{
+        list-style-type: disc;
+    }
+}
 .promo__table{
     position: relative;
     width:100%;

@@ -71,7 +71,7 @@ export class BaseService {
     return this.httpClient
       .get(url, { responseType: 'text' })
       .pipe(
-        catchError(this.errorHandler.handleError)
+        // catchError(this.errorHandler.handleError)
       );
   }
 
