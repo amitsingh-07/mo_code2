@@ -66,6 +66,48 @@
     "tracking_id": "ITmJCNHA9aUBEP_VqfUC"
   },
   {
+    "promoId": 27,
+    "type": 5,
+    "owner": "MoneyOwl",
+    "title": "MoneyOwl's Promotion Rates for NTUC members for May Day",
+    "thumbnail": "assets/promotions/images/27/thumbnail.png",
+    "banner": "assets/promotions/images/27/banner.png",
+    "desc": "From 1st May 20 to 30th Jul 20",
+    "date_created": "1560902400000",
+    "date_expiry": "1596124799000",
+    "tag": [],
+    "external": false,
+    "tnc": false
+  },
+  {
+    "promoId": 28,
+    "type": 5,
+    "owner": "MoneyOwl",
+    "title": "MoneyOwl’s Promotion Rates for NTUC members for Year-long Promotion",
+    "thumbnail": "assets/promotions/images/28/thumbnail.jpg",
+    "banner": "assets/promotions/images/28/banner.jpg",
+    "desc": "From 1st Jul 20 to 30th Jun 21",
+    "date_created": "1560902400000",
+    "date_expiry": "1596124799000",
+    "tag": [],
+    "external": false,
+    "tnc": false
+  },
+  {
+    "promoId": 29,
+    "type": 5,
+    "owner": "MoneyOwl",
+    "title": "MoneyOwl’s Promotion Rates for NTUC members for NTUC Family Membership.",
+    "thumbnail": "assets/promotions/images/29/thumbnail.jpg",
+    "banner": "assets/promotions/images/29/banner.jpg",
+    "desc": "From 1st Oct 20",
+    "date_created": "1560902400000",
+    "date_expiry": "2556028799000",
+    "tag": [],
+    "external": false,
+    "tnc": false
+  },
+  {
     "promoId": 12,
     "type": 3,
     "owner": "MoneyOwl",
@@ -337,6 +379,45 @@
     "date_created": "1583683200000",
     "date_expiry": "1590940799000",
   "tag": ["Insurance", "Protection"],
+    "external": false
+  },
+  {
+    "promoId": 30,
+    "type": 1,
+    "owner": "Aviva",
+    "title": "Receive Cashback for selected Aviva's Savings Plans",
+    "thumbnail": "assets/promotions/images/30/thumbnail.jpg",
+    "banner": "assets/promotions/images/30/banner.jpg",
+    "desc": "Save for a brighter future you've always wanted with a structured plan in place.",
+    "date_created": "1585670400000",
+    "date_expiry": "1589558399000",
+    "tag": ["Insurance", "Protection"],
+    "external": false
+  },
+  {
+    "promoId": 31,
+    "type": 1,
+    "owner": "Manulife",
+    "title": "Enjoy Premium Discount for selected Manulife's Products",
+    "thumbnail": "assets/promotions/images/31/thumbnail.jpg",
+    "banner": "assets/promotions/images/31/banner.jpg",
+    "desc": "Protect your loved ones for the future.",
+    "date_created": "1582473600000",
+    "date_expiry": "1590163199000",
+    "tag": ["Insurance", "Protection"],
+    "external": false
+  },
+  {
+    "promoId": 32,
+    "type": 1,
+    "owner": "Tokio Marine",
+    "title": "Enjoy 24 Months Additional Coverage for Free",
+    "thumbnail": "assets/promotions/images/32/thumbnail.jpg",
+    "banner": "assets/promotions/images/32/banner.jpg",
+    "desc": "Enjoy additional coverage by paying the same premiums!",
+    "date_created": "1585670400000",
+    "date_expiry": "1593532799000",
+    "tag": ["Insurance", "Protection"],
     "external": false
   }
 ]

@@ -94,9 +94,11 @@ getPromoDetails() {
             this.addRedirectEvent();
           });
           // Getting promo tnc
-          this.promotionApiService.getPromoTnc(this.promoId).subscribe((tnc) => {
-            this.promoTnc = tnc;
-          });
+          if(this.promoDetails.tnc !== false) {
+            this.promotionApiService.getPromoTnc(this.promoId).subscribe((tnc) => {
+              this.promoTnc = tnc;
+            });
+          }
         });
       } else {
         this.router.navigate(['../promotions/']);
