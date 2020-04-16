@@ -1,7 +1,7 @@
 <p class="tnc--title">Terms and Conditions</p>
 <ol class="tnc--ordered">
-  <li>The Promotion is valid until <strong>31 March 2020</strong> (date inclusive). Applications must be signed by 31
-    March 2020 (date inclusive) and received by Aviva by 15 April 2020 (date inclusive)</li>
+  <li>The Promotion is valid until <strong>30 June 2020</strong> (date inclusive). Applications must be signed by 30
+    June 2020 (date inclusive) and received by Aviva by 15 July 2020 (date inclusive)</li>
   <li>A minimum premium of S$500 per annum is required for the policy to be eligible for the use of the discount
     voucher.</li>
   <li>The S$100 premium discount voucher is for the purchase of Aviva's MyCare or MyCare Plus Policy only.</li>

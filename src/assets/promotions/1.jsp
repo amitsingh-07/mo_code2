@@ -7,7 +7,7 @@
                     Eligible Plan
                     </div>
                 <div class="info--details">
-                    Aviva IdealIncome
+                    IdealIncome
                     </div>
                 </div>
             <div class="promo-info__element">
