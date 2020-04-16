@@ -35,5 +35,9 @@
                 <td>3%</td>
             </tr>
             </table>
+        <small>
+            *Cashback value to be rounded up to S$10M<br/>
+            ^Maximum Cashback value for MyLifeIncome is capped at S$15,000.
+        </small>
             </div>
 </div>
