@@ -51,6 +51,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   filteredCountSubject = new Subject<any>();
   subscription: Subscription;
   filterCountSubscription: Subscription;
+  backPressSubscription: Subscription;
 
   filteredResult = [];
 
@@ -116,6 +117,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     this.filterCountSubscription = this.filteredCountSubject.subscribe((planList) => {
       this.filteredResult = planList;
     });
+    this.backPressSubscription = this.navbarService.subscribeBackPress().subscribe((event) => {});
   }
 
   initRecommendationsCall() {
@@ -143,6 +145,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   ngOnDestroy() {
+    this.backPressSubscription.unsubscribe();
     this.subscription.unsubscribe();
     this.filterCountSubscription.unsubscribe();
     if (this.routeSubscription instanceof Subscription) {
