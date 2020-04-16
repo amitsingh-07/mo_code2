@@ -1,7 +1,6 @@
 <p class="tnc--title">Terms and Conditions</p>
 <ol class="tnc--ordered">
-  <li>The Promotion period is from <strong>1 April 2020 to 15 May 2020</strong> he really is not a
-    by 15 July 2020 (date inclusive).</li>
+  <li>The Promotion period is from <strong>1 April 2020 to 15 May 2020</strong> (both dates inclusive) (the “Promotion Period”). Applications must be signed between the promotion period. The policy must be issued by Aviva by 15 August 2020 (date inclusive).</li>
   <li>Cashback will be given via one of the following modes (listed in order of preference):
     <ol type="a">
       <li>

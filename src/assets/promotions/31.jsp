@@ -27,12 +27,12 @@
                 <td>Annual, Semi-Annual, Quarterly and Monthly</td>
                 <td>15% perpetual premium discount</td>
             </tr>
-            <tr>
+            <tr class="text--center">
                 <td>ManuProtect Decreasing (Sum Insured of S$250,000 and above)</td>
                 <td>Annual, Semi-Annual, Quarterly and Monthly</td>
                 <td>35% perpetual premium discount</td>
             </tr>
-            <tr>
+            <tr class="text--center">
                 <td>Critical SelectCare</td>
                 <td>Annual, Semi-Annual, Quarterly and Monthly</td>
                 <td>10% perpetual premium discount</td>

@@ -3,11 +3,13 @@
     <li><strong>Insurance</strong></li>
     <div>
       <ul class="promo__list--type-disc">
-        <li>NTUC Members to get 60% agent's commission rebates (public rate at 50% commission) Ongoing promotion from 1st Oct 20</li>
+        <li>NTUC Members to get 60% agent's commission rebates (public rate at 50% commission)</li>
+        <li>Ongoing promotion from 1st Oct 20</li>
       </ul>
-      <br/>
+      <br />
       <p>
-        All policies, including those with ongoing promotions bought through MoneyOwl, may be eligible for commission rebates, except the following:
+        All policies, including those with ongoing promotions bought through MoneyOwl, may be eligible for commission
+        rebates, except the following:
         <ul class="promo__list--type-disc">
           <li>Private Integrated Shield plans</li>
           <li>Local Hospitalization plans</li>
@@ -15,19 +17,25 @@
           <li>Plans using CPF monies</li>
         </ul>
       </p>
-      <p>Please note that insurance policy T&C applies. (Info: https://www.moneyowl.com.sg/privacy-policy) This advertisement has not been reviewed by the Monetary Authority of Singapore.</p>
+      <p>Please note that insurance policy T&C applies. (Info: https://www.moneyowl.com.sg/privacy-policy) This
+        advertisement has not been reviewed by the Monetary Authority of Singapore.</p>
     </div>
     <li><strong>Investment</strong></li>
     <p>
       <ul class="promo__list--type-disc">
-        <li>NTUC Members to pay only 0.50% advisory fee per annum (public rate at 0.65% per annum). This is the fee charged to a client for investment advisory. As it stands, MoneyOwl’s public rates are already amongst the lowest offered in the financial advisory industry</li>
+        <li>NTUC Members to pay only 0.50% advisory fee per annum (public rate at 0.65% per annum). This is the fee
+          charged to a client for investment advisory. As it stands, MoneyOwl’s public rates are already amongst the
+          lowest offered in the financial advisory industry</li>
       </ul>
     </p>
     <li><strong>Comprehensive</strong></li>
     <div>
       <ul class="promo__list--type-disc">
-        <li>NTUC members who complete and execute their comprehensive financial plan pay 0.3% p.a. advisory fees instead of 0.65% p.a. public rate for the first year. (Note: current planning fee of $500 is waived or fully rebated)</li>
+        <li>NTUC members who complete and execute their comprehensive financial plan pay 0.3% p.a. advisory fees instead
+          of 0.65% p.a. public rate for the first year. (Note: current planning fee of $500 is waived or fully rebated)
+        </li>
       </ul>
+      <br />
       <p>
         Conditions for 0.3% promo rate:
         <ul class="promo__list--type-disc">
@@ -38,5 +46,5 @@
         </ul>
       </p>
     </div>
-  </ol> 
+  </ol>
 </div>
