@@ -1,6 +1,6 @@
 <p class="tnc--title">Terms and Conditions</p>
 <ol class="tnc--ordered">
-  <li>The Promotion period is from <strong>24 February 2020 to 17 April 2020</strong> (both dates inclusive) (the
+  <li>The Promotion period is from <strong>24 February 2020 to 22 May 2020</strong> (both dates inclusive) (the
     "<strong>Promotion Period</strong>"). Applications must be signed, submitted and received by Manulife between the promotion period.</li>
   <li>This Promotion applies to any appropriate modes and means of payment of premiums.</li>
   <li>Premium discount is applicable to all riders (where applicable) attached to the qualifying product.</li>
