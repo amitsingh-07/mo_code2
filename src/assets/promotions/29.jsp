@@ -47,4 +47,8 @@
       </p>
     </div>
   </ol>
+  <p>
+    To qualify for the above promotional rates, please provide your contact information and show proof of NTUC
+    membership via Facebook messenger <a target="_blank" href="https://m.me/moneyowlsg">https://m.me/moneyowlsg</a>.
+  </p>
 </div>
