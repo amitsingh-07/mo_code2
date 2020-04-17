@@ -90,10 +90,9 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     this.getAge = this.aboutAge.calculateAge(this.myAge, today);
     if ( this.getAge > COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.RETIREMENT_AGE ) {
       this.showRetirementAccount = true;
-      /*const retirementSumConfigValue = this.comprehensiveService.retirementSumFindByBirthDate(this.myAge);
+      const retirementSumConfigValue = this.comprehensiveService.retirementSumFindByBirthDate(this.myAge);
       this.brsConfig = (retirementSumConfigValue && retirementSumConfigValue['BRS']) ? retirementSumConfigValue['BRS'] : '';
       this.frsConfig = (retirementSumConfigValue && retirementSumConfigValue['FRS']) ? retirementSumConfigValue['FRS']: '';
-      */
     }
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '') {
@@ -141,11 +140,11 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     if (this.assetDetails && this.assetDetails.source === 'MyInfo') {
       this.cpfFromMyInfo = true;
     }
-    /*if (this.assetDetails && this.assetDetails.schemeType) {
+    if (this.assetDetails && this.assetDetails.schemeType) {
       this.schemeType = this.assetDetails.schemeType;
     } else {
       this.schemeType = '';
-    }*/
+    }
   }
   cancelMyInfo() {
     this.myInfoService.isMyInfoEnabled = false;
@@ -245,12 +244,12 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       cpfSpecialAccount: [{ value: this.assetDetails ? this.assetDetails.cpfSpecialAccount : '', disabled: this.viewMode }, []],
       cpfMediSaveAccount: [{ value: this.assetDetails ? this.assetDetails.cpfMediSaveAccount : '', disabled: this.viewMode }, []],
       cpfRetirementAccount:[{ value: this.assetDetails ? this.assetDetails.cpfRetirementAccount : '', disabled: this.viewMode }, []],
-      /*schemeType:[{ value: (this.assetDetails && this.showRetirementAccount) ? this.assetDetails.schemeType : '', 
+      schemeType:[{ value: (this.assetDetails && this.showRetirementAccount) ? this.assetDetails.schemeType : '', 
       disabled: this.viewMode }, []],
       estimatedPayout:[{ value: (this.assetDetails && this.showRetirementAccount) ? this.assetDetails.estimatedPayout : '', 
       disabled: this.viewMode }, []],
       retirementSum:[{ value: (this.assetDetails && this.showRetirementAccount) ? this.assetDetails.retirementSum : '',
-      disabled: this.viewMode }, []],*/
+      disabled: this.viewMode }, []],
       homeMarketValue: [{ value: this.assetDetails ? this.assetDetails.homeMarketValue : '', disabled: this.viewMode }, []],
       investmentPropertiesValue: [{
         value: this.assetDetails ? this.assetDetails.investmentPropertiesValue : '',
