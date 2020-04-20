@@ -16,7 +16,7 @@
             <li>Step-up Critical Illness Plan</li>
           </ul>
         </td>
-        <td>25%</td>
+        <td class="text--center">25%</td>
       </tr>
       <tr>
         <td>
@@ -26,7 +26,7 @@
             <li>Critical Illness Advance Rider Series Two</li>
           </ul>
         </td>
-        <td>25%</td>
+        <td class="text--center">25%</td>
       </tr>
       <tr>
         <td>
@@ -37,7 +37,7 @@
             <li>Special Benefit Rider</li>
           </ul>
         </td>
-        <td>15%</td>
+        <td class="text--center">15%</td>
       </tr>
     </table>
   </div>

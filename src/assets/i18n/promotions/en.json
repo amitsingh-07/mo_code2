@@ -5,7 +5,7 @@
         "PROMOTIONS": "Promotions",
         "INDIVIDUAL": "Insurance Promotions",
         "BUNDLE_PACKAGES": "Bundle Packages",
-        "NTUC_MEMBERS": "NTUC Members Promotions"
+        "NTUC_MEMBERS": "NTUC Member Promotions"
     },
     "PROMO_LANDING": {
         "TITLE": "Enjoy Greater Cost Savings",
@@ -20,7 +20,7 @@
     "PROMO_PAGE": {
         "INSURANCE_TAG": "Insurance Promotions",
         "BUNDLE_PACKAGES_TAG": "Bundle Packages",
-        "NTUC_MEMBERS_TAG": "NTUC Members Promotions"
+        "NTUC_MEMBERS_TAG": "NTUC Member Promotions"
     },
     "INSURE_LINK": {
         "TITLE": "Get Insurance you really need",
