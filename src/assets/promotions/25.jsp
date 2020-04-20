@@ -12,7 +12,7 @@
           <u>Base plan</u><br />
           Term Life Series Two
         </td>
-        <td>20%</td>
+        <td class="text--center">20%</td>
       </tr>
       <tr>
         <td>
@@ -22,7 +22,7 @@
             <li>Critical Illness Advance Rider Series Two</li>
           </ul>
         </td>
-        <td>30%</td>
+        <td class="text--center">30%</td>
       </tr>
     </table>
   </div>
