@@ -17,7 +17,6 @@ import { ComprehensiveService } from './comprehensive.service';
 
 @Injectable()
 export class ComprehensiveChildEnableGuard implements CanActivateChild {
-  isComprehensiveEnabled = false;
   constructor(
     private configService: ConfigService, private router: Router,
     private authService: AuthenticationService, private appService: AppService,

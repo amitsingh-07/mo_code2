@@ -14,7 +14,6 @@ import { COMPREHENSIVE_BASE_ROUTE } from './comprehensive-routes.constants';
 
 @Injectable()
 export class ComprehensiveEnableGuard implements CanActivate {
-  isComprehensiveEnabled = false;
   constructor(
     private configService: ConfigService, private router: Router,
     private authService: AuthenticationService, private appService: AppService,

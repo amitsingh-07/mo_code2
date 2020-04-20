@@ -8,7 +8,6 @@ import { ConfigService, IConfig } from './../config/config.service';
 
 @Injectable()
 export class WillWritingEnableGuard implements CanActivate {
-  isWillWritingEnabled = false;
   constructor(private configService: ConfigService, private router: Router) { }
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
