@@ -106,7 +106,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
       dependantSelection: new FormControl(this.hasDependant, Validators.required),
       noOfHouseholdMembers: new FormControl(this.householdDetails ? this.householdDetails.noOfHouseholdMembers : '', Validators.required),
       houseHoldIncome: new FormControl(this.householdDetails ? this.householdDetails.houseHoldIncome : '', Validators.required),
-      noOfYrs: new FormControl(this.householdDetails ? this.householdDetails.noOfYrs : ''),
+      noOfYears: new FormControl(this.householdDetails ? this.householdDetails.noOfYears : ''),
     });
 
   }
@@ -138,7 +138,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
           hasDependents: false,
           noOfHouseholdMembers: dependantSelectionForm.value.noOfHouseholdMembers,
           houseHoldIncome: dependantSelectionForm.value.houseHoldIncome,
-          noOfYrs: dependantSelectionForm.value.noOfYrs,
+          noOfYears: dependantSelectionForm.value.noOfYears,
           dependentMappingList: [{
             id: 0,
             customerId: 0,
