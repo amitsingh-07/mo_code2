@@ -1,11 +1,11 @@
 <div class="promo-content__container">
-    <p>To qualify for the premium discount, you have to sign up for the product during the promotion period and issued by the deadline.</p>
+    <p>To qualify for the promotion, you have to sign up for the product during the promotion period and issued by the deadline.</p>
     <div class="promo__table">
         <table class="promo__inner-table">
             <tr>
-                <td class="cell--header text--center">Qualifying plan</td>
+                <td class="cell--header text--center">Qualifying Plans</td>
                 <td class="cell--header text--center">Minimum Premiums Criteria (Based on annualised premiums)</td>
-                <td class="cell--header text--center">Premium Cashback (Based on % of annualised premium)</td>
+                <td class="cell--header text--center">Premium Cashback (Based on % of annualised premiums)</td>
                 </tr>
             <tr class="text--center">   
                 <td rowspan="2">
@@ -36,7 +36,7 @@
             </tr>
             </table>
         <small>
-            *Cashback value to be rounded up to S$10<br/>
+            *Cashback value to be rounded up to S$10.<br/>
             ^Maximum Cashback value for MyLifeIncome is capped at S$15,000.
         </small>
             </div>
