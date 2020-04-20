@@ -67,6 +67,14 @@ export class ComprehensiveComponent implements OnInit {
         this.loading = this.translate.instant('COMMON_LOADER.TITLE');
         this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.translate.instant('CMP.COMPREHENSIVE.VIDEO_LINK'));
         this.navbarService.setPageTitle(this.translate.instant('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_TITLE'), '', false);
+
+        const isUnsupportedNoteShown = this.signUpService.getUnsupportedNoteShownFlag();
+        this.signUpService.mobileOptimizedObservable$.subscribe((mobileOptimizedView) => {
+          if (!this.signUpService.isMobileDevice() && !mobileOptimizedView && !isUnsupportedNoteShown) {
+            this.signUpService.showUnsupportedDeviceModal();
+            this.signUpService.setUnsupportedNoteShownFlag();
+          }
+        });
       });
     });
   }
@@ -75,14 +83,7 @@ export class ComprehensiveComponent implements OnInit {
     this.navbarService.setNavbarComprehensive(true);
     this.footerService.setFooterVisibility(false);
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
-    const isUnsupportedNoteShown = this.signUpService.getUnsupportedNoteShownFlag();
     this.buildPromoCodeForm();
-    this.signUpService.mobileOptimizedObservable$.subscribe((mobileOptimizedView) => {
-      if (!this.signUpService.isMobileDevice() && !mobileOptimizedView && !isUnsupportedNoteShown) {
-        this.signUpService.showUnsupportedDeviceModal();
-        this.signUpService.setUnsupportedNoteShownFlag();
-      }
-    });
 
     if (this.authService.isSignedUser()) {
       const action = this.appService.getAction();

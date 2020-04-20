@@ -64,14 +64,4 @@ export class SelectedPlansService {
       sessionStorage.setItem(SESSION_INSURANCE_NEW_USER, 'true');
     }
   }
-
-  checkProductID(productId: string) {
-    const productList = [
-      { promoId: 1, productIds: ['P045'] },
-      { promoId: 2, productIds: ['P166', 'P167', 'P168', 'P169'] },
-      { promoId: 3, productIds: ['P184', 'P185', 'P186'] },
-      { promoId: 24, productIds: ['P049', 'P069', 'P139', 'P145', 'P146', 'P152'] }
-    ];
-    return productList.find(({productIds}) => productIds.indexOf(productId) > -1);
-  }
 }

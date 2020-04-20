@@ -82,7 +82,7 @@ export class ComprehensiveService {
     this.comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
   }
   setComprehensiveVersion(versionType: string) {
-   
+
     /* Robo3 FULL or LITE Config*/
     if (this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE) && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED && versionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE) {
       sessionStorage.setItem(
@@ -94,7 +94,7 @@ export class ComprehensiveService {
         appConstants.SESSION_KEY.COMPREHENSIVE_VERSION,
         COMPREHENSIVE_CONST.VERSION_TYPE.FULL
       );
-     
+
     }
   }
   commit() {
@@ -957,9 +957,9 @@ export class ComprehensiveService {
       || userAge > COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MAX_AGE) {
       accessPage = false;
     }
-    let  accessRetirementAge = false;
+    let accessRetirementAge = false;
     if (this.getRetirementPlan() && this.getRetirementPlan().retirementAge) {
-       accessRetirementAge = (parseInt(this.getRetirementPlan().retirementAge) >=  userAge);
+      accessRetirementAge = (parseInt(this.getRetirementPlan().retirementAge) >= userAge);
     }
     for (let index = currentUrlIndex; index >= 0; index--) {
       if (accessibleUrl !== '') {
@@ -1137,7 +1137,7 @@ export class ComprehensiveService {
           // 'result'
           case 25:
           case 26:
-            if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted >= 3 && accessRetirementAge ) {
+            if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted >= 3 && accessRetirementAge) {
               accessibleUrl = urlList[index];
             }
             break;
@@ -1168,7 +1168,7 @@ export class ComprehensiveService {
     const profileData = this.getMyProfile();
     const cmpSummary = this.getComprehensiveSummary();
 
-  
+
     const financeProgressData = this.getFinancesProgressData();
     const riskProfileProgressData = this.getRiskProfileProgressData();
     const retirementProgressData = this.getRetirementProgressData();
@@ -1182,9 +1182,9 @@ export class ComprehensiveService {
         new Date()
       );
     }
-    let  accessRetirementAge = false;
-    if(this.getRetirementPlan() &&  this.getRetirementPlan().retirementAge){
-       accessRetirementAge = (parseInt(this.getRetirementPlan().retirementAge) >=  userAge);
+    let accessRetirementAge = false;
+    if (this.getRetirementPlan() && this.getRetirementPlan().retirementAge) {
+      accessRetirementAge = (parseInt(this.getRetirementPlan().retirementAge) >= userAge);
     }
     let accessPage = true;
     if (userAge < COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MIN_AGE
@@ -1272,7 +1272,7 @@ export class ComprehensiveService {
             break;
           // 'steps/4'
           case 12:
-            if (accessPage && canAccess &&  retirementProgressData.subItems[0].completed &&  stepCompleted > 1 &&
+            if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted > 1 &&
               accessRetirementAge) {
               accessibleUrl = urlList[index];
             }
@@ -1413,6 +1413,15 @@ export class ComprehensiveService {
       value: dependentHouseHoldData.houseHoldIncome ? dependentHouseHoldData.houseHoldIncome + '' : '',
       completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
     });
+    if (!comprehensiveVersion){
+      subItemsArray.push({
+        id: '',
+        path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
+        title: 'No. of years to provide for',
+        value: dependentHouseHoldData.noOfYears ? dependentHouseHoldData.noOfYears + '' : '',
+        completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
+      });
+    }
 
     if (comprehensiveVersion) {
       subItemsArray.push({
@@ -1452,7 +1461,7 @@ export class ComprehensiveService {
             value:
               (item.location === null ? '' : item.location) +
               (item.educationCourse === null ? '' : ', ' + item.educationCourse) +
-              (item.educationSpendingShare === null ? '' : ', ' + item.educationSpendingShare  + '% Share')
+              (item.educationSpendingShare === null ? '' : ', ' + item.educationSpendingShare + '% Share')
           });
         });
       }
@@ -2569,7 +2578,7 @@ export class ComprehensiveService {
           eligibleAnnualBonus * cpfDetails.cpfPercent + notEligibleAnnualBonus;
       }
     }
-    
+
     return Math.floor(annualSalary);
   }
   /**
@@ -2640,5 +2649,34 @@ export class ComprehensiveService {
     const stepComplete = this.getMySteps();
     const subStepComplete = this.getMySubSteps();
     return (stepComplete > stepCompletedParam || (stepCompletedParam === stepComplete && subStepComplete >= subCompletedParam));
+  }
+  /**
+   * Date Check Between two dates
+   */
+  dateFoundInBetween(dateOfBirth, minDate, maxDate) {
+    const minDateCal = new Date(minDate);
+    const maxDateCal = new Date(maxDate);
+    return (dateOfBirth >= minDateCal &&  dateOfBirth <= maxDateCal);
+  }
+  /**
+   * Retirement sum find BRS/FRS based on birth date
+   */
+  retirementSumFindByBirthDate(birthDate: any) {
+    const subItemsArray = [];
+    const dateParts = birthDate.split('/');
+    const dateOfBirth = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
+
+    const birthYear = dateOfBirth.getFullYear();
+    const retireSumConfig1 = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.RETIREMENT_SUM_BIRTH_DATE[birthYear-1];
+    const retireSumConfig2 = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.RETIREMENT_SUM_BIRTH_DATE[birthYear];
+    if (!Util.isEmptyOrNull(retireSumConfig1) && 
+    this.dateFoundInBetween(dateOfBirth, retireSumConfig1.BORN_DATE, retireSumConfig1.TILL_DATE)) {
+      return retireSumConfig1;
+    } else if (!Util.isEmptyOrNull(retireSumConfig2) && 
+    this.dateFoundInBetween(dateOfBirth, retireSumConfig2.BORN_DATE, retireSumConfig2.TILL_DATE)) {
+      return retireSumConfig2;
+    } else {
+      return '';
+    }
   }
 }

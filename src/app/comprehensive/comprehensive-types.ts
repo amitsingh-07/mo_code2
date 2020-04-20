@@ -67,6 +67,7 @@ export interface IdependentsSummaryList {
     dependentsList: IDependantDetail[];
     houseHoldIncome: string;
     noOfHouseholdMembers: number;
+    noOfYears: number;
 }
 export interface IChildEndowment {
     id: number;
@@ -195,6 +196,9 @@ export interface IMyAssets {
     otherAssetsValue: number;
     totalAnnualAssets: number;
     source: string;
+    schemeType?: string;
+    estimatedPayout?: number;
+    retirementSum?: number;
 }
 export interface IOtherProperties {
     enquiryId: number;
