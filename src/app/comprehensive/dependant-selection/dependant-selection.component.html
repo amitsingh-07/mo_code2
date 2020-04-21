@@ -122,9 +122,9 @@
             <div class="flex-col-7">
               <div class="form-control form-control-year"
                 [ngClass]="{'view-mode': viewMode}">
-                <input [ngClass]="{'view-mode': viewMode}" id="noOfYrs" type="text"
+                <input [ngClass]="{'view-mode': viewMode}" id="noOfYears" type="text"
                   appComprehensiveViewMode="{{viewMode}}" mode=1  
-                  class="input-control" appCurrencyInput maxLength="2" name="noOfYrs" />
+                  class="input-control" appCurrencyInput maxLength="2" formControlName="noOfYears" name="noOfYears" />
                 <i class="right ">{{'CMP.DEPENDANT_SELECTION.YRS_LABEL'|translate}}</i>
               </div>
             </div>

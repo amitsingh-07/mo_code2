@@ -82,7 +82,7 @@
         </h2>
       </div>
     </div>
-    <div *ngIf="promoDiscount" (click)="redirectToPromoPage(data.id)" class="insurance-plan-widget__container__discount__block hidden-sm-md">{{promoDiscount}}</div>
+    <div *ngIf="promoDiscount && !isPromoDiscountHidden" (click)="redirectToPromoPage(data.promotion)" class="insurance-plan-widget__container__discount__block hidden-sm-md">{{promoDiscount}}</div>
     <div style="margin-bottom: 15px;" class="hidden-sm-md">
       <div class="insurance-plan-widget__container__rank__wrapper">
         <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowRanking">

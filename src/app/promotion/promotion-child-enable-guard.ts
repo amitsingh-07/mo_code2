@@ -1,24 +1,23 @@
 import { Injectable } from '@angular/core';
 import { CanActivateChild, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
 
 import { appConstants } from '../app.constants';
 import { ConfigService, IConfig } from '../config/config.service';
 
 @Injectable()
 export class PromotionChildEnableGuard implements CanActivateChild {
-  isPromotionEnabled = false;
-  constructor(private configService: ConfigService, private router: Router) {
-    this.configService.getConfig().subscribe((config: IConfig) => {
-      this.isPromotionEnabled = config.promotionEnabled;
-    });
-  }
+  constructor(private configService: ConfigService, private router: Router) { }
+
   canActivateChild(): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.isPromotionEnabled) {
-      return true;
-    } else {
-      this.router.navigate([appConstants.homePageUrl]);
-      return false;
-    }
+    return this.configService.getConfig().pipe(map((config: IConfig) => {
+      if (config && config.promotionEnabled) {
+        return true;
+      } else {
+        this.router.navigate([appConstants.homePageUrl]);
+        return false;
+      }
+    }));
   }
 }
