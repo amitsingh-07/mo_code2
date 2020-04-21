@@ -1,5 +1,5 @@
 <div class="promo-content__container">
-  <p>To qualify for the premium discount, you have to sign up for the product during the promotion period and issued by
+  <p>To qualify for the promotion, you have to sign up for the product during the promotion period and issued by
     the deadline.</p>
   <div class="promo__table">
     <table class="promo__inner-table">
