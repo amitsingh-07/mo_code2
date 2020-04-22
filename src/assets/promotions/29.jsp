@@ -17,7 +17,7 @@
           <li>Plans using CPF monies</li>
         </ul>
       </p>
-      <p>Please note that insurance policy T&C applies. (Info: <a target="_blank" href="https://www.moneyowl.com.sg/terms-and-conditions-privacy-policy/">https://www.moneyowl.com.sg/terms-and-conditions-privacy-policy/</a>) This
+      <p>Please note that insurance policies T&C applies. (Info: <a target="_blank" href="https://www.moneyowl.com.sg/terms-and-conditions-privacy-policy/">https://www.moneyowl.com.sg/terms-and-conditions-privacy-policy/</a>) This
         advertisement has not been reviewed by the Monetary Authority of Singapore.</p>
     </div>
     <li><strong>Investment</strong></li>
@@ -28,7 +28,7 @@
           lowest offered in the financial advisory industry</li>
       </ul>
     </p>
-    <li><strong>Comprehensive</strong></li>
+    <li><strong>Comprehensive Financial Planning</strong></li>
     <div>
       <ul class="promo__list--type-disc">
         <li>NTUC members who complete and execute their comprehensive financial plan pay 0.3% p.a. advisory fees instead
