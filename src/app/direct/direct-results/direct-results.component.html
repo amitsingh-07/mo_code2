@@ -44,7 +44,7 @@
         <span [hidden]="filteredResult.length <= 1">{{ 'DIRECT_RESULTS.PLANS_FOUND' | translate}}</span>
       </div>
     <div class="results-mobile__compare-plan--btn"><button ngbButtonLabel class="direct-form-btn--radio btn btn-small"
-        (click)="toggleComparePlans()" style="float:left;" [ngClass]="{'compare' : state.isComparePlanEnabled, 'disabled' : filteredResult.length < 2}"
+        (click)="toggleComparePlans()" style="float:left;" [ngClass]="{'compare' : state.isComparePlanEnabled}"
         [disabled]="filteredResult.length < 2">{{
         'DIRECT_RESULTS.COMPARE_PLANS' | translate}}</button></div>
   </div>
