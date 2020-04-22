@@ -9,7 +9,7 @@
                 </tr>
             <tr>   
                 <td>
-                    <b>My Protector - Term Plan II</b><br/>
+                    <b>MyProtector - Term Plan II</b><br/>
                     (with all riders except for MultiPay CI III rider)
                     </td>
                 <td>$1,000,000</td>
@@ -17,7 +17,7 @@
                 </tr> 
             <tr>
                 <td>
-                    <b>My Protector - Term Plan II</b><br/>
+                    <b>MyProtector - Term Plan II</b><br/>
                     (with all riders including MultiPay CI III rider)
                     </td>
                 <td>$1,000,000</td>

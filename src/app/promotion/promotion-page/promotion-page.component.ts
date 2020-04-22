@@ -77,13 +77,22 @@ getPromoDetails() {
           this.promoDetails = this.promotionService.createPromotion(details);
           // Setting Banner background-image
           const banner = this.BannerElement.nativeElement.childNodes[0];
+          const bannerMobile = this.BannerElement.nativeElement.childNodes[1];
           if (this.promoDetails.banner) {
             this.renderer.setStyle(banner,
                                 'background-image',
                                 'url(' + this.promoDetails.banner + ')'
                                 );
+            this.renderer.setStyle(bannerMobile,
+                                'background-image',
+                                'url(' + this.promoDetails.thumbnail + ')'
+                                );
           } else {
             this.renderer.setStyle(banner,
+                                'background-image',
+                                'url(' + this.promoDetails.thumbnail + ')'
+                                );
+            this.renderer.setStyle(bannerMobile,
                                 'background-image',
                                 'url(' + this.promoDetails.thumbnail + ')'
                                 );
