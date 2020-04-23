@@ -33,6 +33,7 @@ export class ComparePlansComponent implements OnInit {
       this.cashValueTooltipData = this.translate.instant('COMPARE_PLANS.CASH_VALUE_TOOLTIP');
       this.underwritingTooltipData = this.translate.instant('COMPARE_PLANS.NEED_UNDERWRITING_TOOLTIP');
       this.setPageTitle(this.pageTitle);
+      this.navbarService.setPageTitle(this.translate.instant('COMPARE_PLANS.TITLE'), '', false);
     });
     this.frequencyFilter = this.directService.getPremiumFrequencyFilter();
     this.protectionType = this.directService.getProtectionType();
@@ -40,6 +41,7 @@ export class ComparePlansComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMobileVisibility(true);
     this.plansData = this.directService.getSelectedPlans();
   }
 
