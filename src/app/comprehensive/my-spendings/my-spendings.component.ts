@@ -200,7 +200,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
         case 'carLoanPayment':
           const carLoanPayment = parseInt(this.mySpendingsForm.controls['carLoanPayment'].value);
           const carLoanPayoffUntil =  this.mySpendingsForm.controls['carLoanPayoffUntil'];
-          if (carLoanPayment > 0) {
+          if (this.comprehensiveJourneyMode &&carLoanPayment > 0) {
             carLoanPayoffUntil.setValidators([Validators.required, this.payOffYearValid]);
             carLoanPayoffUntil.updateValueAndValidity();
           } else {
@@ -212,7 +212,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
         case 'otherLoanPayment':
           const otherLoanPayment = parseInt(this.mySpendingsForm.controls['otherLoanPayment'].value);
           const otherLoanPayoffUntil =  this.mySpendingsForm.controls['otherLoanPayoffUntil'];
-          if (otherLoanPayment > 0) {
+          if (this.comprehensiveJourneyMode && otherLoanPayment > 0) {
             otherLoanPayoffUntil.setValidators([Validators.required, this.payOffYearValid]);
             otherLoanPayoffUntil.updateValueAndValidity();
           } else {
