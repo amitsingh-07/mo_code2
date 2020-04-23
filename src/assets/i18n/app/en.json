@@ -89,7 +89,8 @@
     "LBL_RANKING": "Ranking By Price",
     "LBL_RANKING_BY_VALUE": "Ranking By Value",
     "LBL_RATING": "Insurer's Rating",
-    "LBL_COMMISSION": "Commission Rebate"
+    "LBL_COMMISSION": "Commission Rebate",
+    "SEE_MORE_DETAILS": "See more details"
   },
   "SETTINGS": {
     "TITLE": "Settings",
@@ -278,8 +279,11 @@
       },
       "OPERATING_HOURS": {
         "LABEL": "Operating Hours",
-        "CONTENT": "9am - 6pm, Mon - Fri",
-        "EXCEPTION": "excluding Public Holidays"
+        "CONTENT_WEEKDAY": "Monday to Friday: 9am - 6pm",
+        "CONTENT_WEEKDAY_SUBTEXT": "(6pm - 8pm by appointments only)",
+        "CONTENT_WEEKEND": "Saturday: 9am - 1pm",
+        "CONTENT_WEEKEND_SUBTEXT": "(by appointments only)",
+        "EXCEPTION": "All appointments are currently conducted via video conferencing except in special circumstances."
       },
       "SOCIAL": {
         "FACEBOOK": "Facebook",

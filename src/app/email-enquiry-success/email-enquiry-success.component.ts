@@ -6,6 +6,7 @@ import { SIGN_UP_ROUTE_PATHS } from './../sign-up/sign-up.routes.constants';
 
 import { FooterService } from '../shared/footer/footer.service';
 import { NavbarService } from '../shared/navbar/navbar.service';
+import { environment } from './../../environments/environment';
 
 @Component({
   selector: 'app-email-enquiry-success',
@@ -19,7 +20,7 @@ export class EmailEnquirySuccessComponent implements OnInit {
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
-    this.router.navigate(['/home']);
+    this.checkHideHomePageFlag();
   }
 
   constructor(
@@ -35,9 +36,17 @@ export class EmailEnquirySuccessComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
   }
 
+  checkHideHomePageFlag() {
+    if (environment.hideHomepage) {
+      window.open('/', '_self')
+    } else {
+      this.router.navigate([APP_ROUTES.HOME]);
+    }
+  }
+
   redirectTo() {
     if (!this.isSignedUser) {
-      this.router.navigate([APP_ROUTES.HOME]);
+      this.checkHideHomePageFlag();
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     }

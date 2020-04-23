@@ -5,18 +5,23 @@
         "desc": "We understand that sometimes, it is difficult to decide what product we need to meet our financial goals. So be it insurance, investments or both, at MoneyOwl, we have researched, compared, analysed and put together these packages with the best combination for your needs."
     },
     {
+        "id": 5,
+        "type": "NTUC Member Promotions",
+        "desc": "Enjoy these promotions if you are an NTUC member!"
+    },
+    {
         "id": 3,
-        "type": "Investment",
+        "type": "Investment Promotions",
         "desc": "Enjoy great savings when you invest with us now"
     },
     {
         "id" : 1,
-        "type": "Insurance",
+        "type": "Insurance Promotions",
         "desc": "More discounts and goodies in addition to receiving 50% rebate in agent’s commissions"        
     },
     {
         "id": 2,
-        "type": "Will",
+        "type": "Will Promotions",
         "desc": "Enjoy these special savings when managing your estate"
     }    
 ]

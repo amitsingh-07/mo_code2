@@ -3,6 +3,7 @@
     "TITLE": "Buy Request",
     "DESC": "Submit a buy request and transfer money into your cash account.",
     "SRS_NOTE": "Please note that top-up for SRS portfolio is currently handled offline, please email <a target='_blank' href='mailto:clientsupport@moneyowl.com.sg'>clientsupport@moneyowl.com.sg</a> for further assistance.",
+    "MONTHLY_NOTE": " Please note that for monthly investment, your previous request will be overwritten. To delete an existing monthly investment, select monthly investment and key in '0'.",
     "SELECT_PORTFOLIO": "1. Select Portfolio ",
     "ENTER_INVESTMENT_AMOUNT": "2. Enter Investment Amount ",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance: ",
@@ -153,7 +154,7 @@
       },
       "RBL_MODAL": {
         "TITLE": "Quarterly Rebalancing In-progress",
-        "Message": "<div class='rebalancing-modal-msg'><div class='mb15'>Please note that your portfolio is being rebalanced. This process will be completed in 6 to 7 working days. <span class='txt-bold'>Requests for redemptions from portfolio(s) will only be submitted for processing after rebalancing is completed.</span></div><div><a class='contact-details mail' target='_blank' href='/faq#investment'>For more information, visit our FAQs.</a></div></div>"
+        "Message": "<div class='rebalancing-modal-msg'><div class='mb15'>Please note that your portfolio is being rebalanced. This process will be completed in 6 to 7 working days. <span class='txt-bold'>Requests for redemptions from portfolio(s) will only be submitted for processing after rebalancing is completed.</span></div><div><a class='contact-details mail' target='_blank' href='/app/faq#investment'>For more information, visit our FAQs.</a></div></div>"
       },
       "RE_BALANCE": {
         "TITLE": "Quarterly Rebalancing In-progress",
@@ -203,6 +204,7 @@
     "SRS_NOTE": "Please note that withdrawal for SRS portfolio is currently handled offline, please email <a target='_blank' href='mailto:clientsupport@moneyowl.com.sg'>clientsupport@moneyowl.com.sg</a> for further assistance.",
     "WITHDRAW_TYPE": "Withdraw Type",
     "WITHDRAWAL_AMOUNT": "Withdrawal Amount",
+    "REDEEM_ALL": "Redeem all",
     "WITHDRAW_TYPE_DESC": "You may withdraw money from your cash account after transferring funds from your portfolio.",
     "PORTFOLIO": "Portfolio",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance",
