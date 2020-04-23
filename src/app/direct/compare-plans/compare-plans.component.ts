@@ -33,7 +33,6 @@ export class ComparePlansComponent implements OnInit {
       this.cashValueTooltipData = this.translate.instant('COMPARE_PLANS.CASH_VALUE_TOOLTIP');
       this.underwritingTooltipData = this.translate.instant('COMPARE_PLANS.NEED_UNDERWRITING_TOOLTIP');
       this.setPageTitle(this.pageTitle);
-      this.navbarService.setPageTitle(this.translate.instant('COMPARE_PLANS.TITLE'), '', false);
     });
     this.frequencyFilter = this.directService.getPremiumFrequencyFilter();
     this.protectionType = this.directService.getProtectionType();
@@ -47,6 +46,7 @@ export class ComparePlansComponent implements OnInit {
 
   setPageTitle(title: string) {
     this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title, '', false);
   }
 
   showCashValueTooltip() {
