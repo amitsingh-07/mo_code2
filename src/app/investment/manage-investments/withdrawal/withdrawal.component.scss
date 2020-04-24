@@ -113,7 +113,7 @@ app-withdrawal {
     input[type='checkbox'] {
 
       &:disabled,
-      +label {
+      &:disabled+label {
         cursor: not-allowed;
       }
     }
