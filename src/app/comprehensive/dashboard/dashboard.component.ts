@@ -141,7 +141,7 @@ constructor(
             };
             this.comprehensiveService.openTooltipModalWithDismiss(toolTipParams);
           } else {
-            this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((data: any) => {
+            this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((data: any) => {
               if (data && data.objectList[0]) {
                   this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
                   this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
@@ -151,7 +151,7 @@ constructor(
       (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) || (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR)){
         this.getComprehensiveCall();
     } else{
-      this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((data: any) => {
+      this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((data: any) => {
         if (data && data.objectList[0]) {
             this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
