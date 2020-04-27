@@ -25,4 +25,7 @@ export class InstructionStepsComponent implements OnInit {
   showToolTipModal() {
     this.showToolTip.emit();
   }
+  getQrCodeImg(){
+    return window.location.origin + '/app/assets/images/group-15.png';
+    }
 }
