@@ -167,7 +167,13 @@ export class ComprehensiveComponent implements OnInit {
     } else if (redirectUrl && (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isValidatedPromoCode)) {
       this.router.navigate([redirectUrl]);
     } else if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isValidatedPromoCode) {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+     
+      this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((data: any) => {
+        if (data && data.objectList[0]) {
+            this.cmpService.setComprehensiveSummary(data.objectList[0]);
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+        }});
+     
     }
 
     setTimeout(() => {
