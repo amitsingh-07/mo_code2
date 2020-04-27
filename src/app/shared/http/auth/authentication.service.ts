@@ -1,10 +1,12 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { EMPTY, throwError } from 'rxjs';
+import { EMPTY, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
+import { ErrorModalComponent } from '../../modal/error-modal/error-modal.component';
 import { Util } from '../../utils/util';
 import { apiConstants } from '../api.constants';
 import { IServerResponse } from '../interfaces/server-response.interface';
@@ -20,9 +22,14 @@ const FROM_JOURNEY_HM = 'from_journey';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   apiBaseUrl = '';
+  private get2faAuth = new BehaviorSubject('');
+  get2faAuthEvent = this.get2faAuth.asObservable();
+
   constructor(
     private httpClient: HttpClient, public jwtHelper: JwtHelperService,
-    private cache: RequestCache, private http: BaseService) {
+    private cache: RequestCache, private http: BaseService,
+    private modal: NgbModal
+    ) {
 
     this.apiBaseUrl = Util.getApiBaseUrl();
   }
@@ -198,20 +205,32 @@ export class AuthenticationService {
   }
 
   //2FA Implementation
-  public get2FAToken(): string {
-    return sessionStorage.getItem(appConstants.APP_2FA_KEY);
+  public get2FAToken() {
+    console.log('get2FAToken triggered');
+    this.get2faAuth.next(sessionStorage.getItem(appConstants.APP_2FA_KEY));
   }
-  public set2FATimeout() {}
+
+  public set2FAToken(token: any) {
+    sessionStorage.setItem(appConstants.APP_2FA_KEY, token);
+    this.get2FAToken();
+    const timeout = window.setTimeout(() => {
+      console.log('running timeout');
+      this.clear2FAToken();
+    }, (1000*10));
+  }
 
   public clear2FAToken() {
+    console.log('session clearing');
     sessionStorage.removeItem(appConstants.APP_2FA_KEY);
+    this.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
+    this.get2faAuth.next(sessionStorage.getItem(appConstants.APP_2FA_KEY));
   }
-  
+
   public is2FAVerified() {
-    const token = this.get2FAToken();
+    const token = sessionStorage.getItem(appConstants.APP_2FA_KEY);
     if(!token) {
       return false;
-    } 
+    }
     return true;
   }
 
@@ -229,6 +248,24 @@ export class AuthenticationService {
       oldFromJourneyHm.set(key, data);
       sessionStorage.setItem(FROM_JOURNEY_HM, JSON.stringify(Array.from(oldFromJourneyHm)));
     }
+  }
+
+  /**
+   * open invalid otp error modal.
+   * @param title - title for error modal.
+   * @param message - error description for error modal time password.
+   * @param showErrorButton - show try again button or not.
+   */
+  openErrorModal(title, message, buttonLabel) {
+    const error = {
+      errorTitle: title,
+      errorMessage: message,
+      errorButtonLabel: buttonLabel
+    };
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'otp-error-modal' });
+    ref.componentInstance.errorTitle = error.errorTitle;
+    ref.componentInstance.errorMessage = error.errorMessage;
+    ref.componentInstance.buttonLabel = error.errorButtonLabel;
   }
 
 }

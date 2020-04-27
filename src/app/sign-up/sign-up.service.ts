@@ -281,7 +281,6 @@ export class SignUpService {
 
   setRedirectUrl(url) {
     if (window.sessionStorage) {
-      console.log('Setting redirect url:' + url);
       sessionStorage.setItem(REDIRECT_URL_KEY, url);
     }
   }

@@ -27,10 +27,10 @@ export class TwoFactorAuthGuardService implements CanActivate {
         this.signUpService.setRedirectUrl(e.url);
       }
     });
-    console.log('Redirect Url: ' + redirectUrl);
+    // console.log('Redirect Url: ' + redirectUrl);
     this.signUpService.setRedirectUrl(redirectUrl);
-    console.log('2FA Verified: ' + this.authService.is2FAVerified());
-    console.log('SignedInUser: ' + this.authService.isSignedUser());
+    // console.log('2FA Verified: ' + this.authService.is2FAVerified());
+    // console.log('SignedInUser: ' + this.authService.isSignedUser());
     // Is Signed Users and is 2FA verified
     if (this.authService.isSignedUser() && this.authService.is2FAVerified()) {
         this.authService.setFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE, false);

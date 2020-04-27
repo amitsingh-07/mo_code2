@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -20,7 +20,6 @@ import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
-import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
 
 @Component({
   selector: 'app-edit-profile',
@@ -28,7 +27,7 @@ import { ErrorModalComponent } from './../../shared/modal/error-modal/error-moda
   styleUrls: ['./edit-profile.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class EditProfileComponent implements OnInit, OnDestroy {
+export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
   resetPasswordForm: FormGroup;
   formValues: any;
   personalData: any;
@@ -62,6 +61,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   srsDetails;
   formatedAccountNumber;
   fundTypeId: number;
+  is2faAuthorized: boolean;
 
   constructor(
     // tslint:disable-next-line
@@ -103,6 +103,19 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.investmentStatus = this.investmentCommonService.getInvestmentStatus();
     this.showAddBankDetails(this.investmentStatus);
     this.getSrsDetails();
+
+    this.authService.get2faAuthEvent.subscribe((token) => {
+      console.log('2fa event triggered:', token);
+      if (token) {
+        this.is2faAuthorized = true;
+      } else {
+        this.is2faAuthorized = false;
+      }
+      console.log('is2faAuthorized', this.is2faAuthorized);
+    });
+  }
+
+  ngAfterViewInit() {
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
@@ -373,4 +386,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.manageInvestmentsService.setSrsSuccessFlag(false)
     }
   }
+
+   
 }

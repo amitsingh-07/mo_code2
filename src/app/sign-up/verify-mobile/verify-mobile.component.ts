@@ -163,10 +163,10 @@ export class VerifyMobileComponent implements OnInit {
     this.mobileNumberVerifiedMessage = this.loading['verifying'];
     this.signUpApiService.verifyOTP(otp, this.editProfile).subscribe((data: any) => {
       console.log('Data sent back: ' + data.responseMessage.responseCode);
-      data.responseMessage.responseCode = 6003;
+      data.responseMessage.responseCode = 6003; // To be removed
       if (data.responseMessage.responseCode === 6003) {
         this.mobileNumberVerified = true;
-        sessionStorage.setItem(appConstants.APP_2FA_KEY, data.responseMessage.responseCode);
+        this.authService.set2FAToken(data.responseMessage.responseCode);
         this.mobileNumberVerifiedMessage = this.loading['verified2fa'];
       } else if (data.responseMessage.responseCode === 5007 || data.responseMessage.responseCode === 5009) {
         const title = data.responseMessage.responseCode === 5007 ? this.errorModal['title'] : this.errorModal['expiredTitle'];
@@ -199,7 +199,6 @@ export class VerifyMobileComponent implements OnInit {
   redirectToPasswordPage() {
     const redirect_url = this.signUpService.getRedirectUrl();
     const journeyType = this.appService.getJourneyType();
-    console.log('Redirect Url:' + redirect_url);
     if (redirect_url && redirect_url === SIGN_UP_ROUTE_PATHS.EDIT_PROFILE) {
       this.signUpService.clearRedirectUrl();
       this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED]);
