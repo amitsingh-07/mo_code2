@@ -267,7 +267,7 @@ export class ComprehensiveFormError {
                 },
                 pattern: {
                     errorTitle: this.InvalidPayOff,
-                    errorMessage: 'Mortgage Payment - Invalid To Pay Off'
+                    errorMessage: 'Mortgage Payment - To Pay Off'
                 }
             },
             mortgagePaymentUsingCPF: {
@@ -299,11 +299,11 @@ export class ComprehensiveFormError {
             mortgagePayOffUntil: {
                 required: {
                     errorTitle: this.InvalidPayOff,
-                    errorMessage: 'Other Mortgage Payment - Invalid To Pay Off'
+                    errorMessage: 'Other Mortgage Payment - To Pay Off'
                 },
                 pattern: {
                     errorTitle: this.InvalidPayOff,
-                    errorMessage: 'Other Mortgage Payment - Invalid To Pay Off'
+                    errorMessage: 'Other Mortgage Payment - To Pay Off'
                 }
             },
             carLoanPayment: {
@@ -315,11 +315,11 @@ export class ComprehensiveFormError {
             carLoanPayoffUntil: {
                 required: {
                     errorTitle: this.InvalidPayOff,
-                    errorMessage: 'Monthly Car Loan Payment - Invalid To Pay Off'
+                    errorMessage: 'Monthly Car Loan Payment - To Pay Off'
                 },
                 pattern: {
                     errorTitle: this.InvalidPayOff,
-                    errorMessage: 'Monthly Car Loan Payment - Invalid To Pay Off'
+                    errorMessage: 'Monthly Car Loan Payment - To Pay Off'
                 }
             },
             otherLoanPayment: {
@@ -331,11 +331,11 @@ export class ComprehensiveFormError {
             otherLoanPayoffUntil: {
                 required: {
                     errorTitle: this.InvalidPayOff,
-                    errorMessage: 'Monthly Other Loan Payment - Invalid To Pay Off'
+                    errorMessage: 'Monthly Other Loan Payment - To Pay Off'
                 },
                 pattern: {
                     errorTitle: this.InvalidPayOff,
-                    errorMessage: 'Monthly Other Loan Payment - Invalid To Pay Off'
+                    errorMessage: 'Monthly Other Loan Payment - To Pay Off'
                 }
             }
 
