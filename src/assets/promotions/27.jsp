@@ -4,7 +4,7 @@
     <div>
       <ul class="promo__list--type-disc">
         <li>NTUC Members to get 60% agent's commission rebates (public rate at 50% commission)</li>
-        <li>Promotion runs from 7th May 20 to 30th Jul 20</li>
+        <li>Promotion runs from 7th May 20 to 6th May 21</li>
       </ul>
       <br />
       <p>
