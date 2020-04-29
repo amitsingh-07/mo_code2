@@ -106,7 +106,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
       dependantSelection: new FormControl(this.hasDependant, Validators.required),
       noOfHouseholdMembers: new FormControl(this.householdDetails ? this.householdDetails.noOfHouseholdMembers : '', Validators.required),
       houseHoldIncome: new FormControl(this.householdDetails ? this.householdDetails.houseHoldIncome : '', Validators.required),
-      noOfYears: new FormControl(this.householdDetails ? this.householdDetails.noOfYears : ''),
+      noOfYears: new FormControl(this.householdDetails ? this.householdDetails.noOfYears : 0),
     });
 
   }
@@ -121,6 +121,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   }
 
   goToNext(dependantSelectionForm) {
+    console.log(dependantSelectionForm)
     if (this.viewMode) {
       if (dependantSelectionForm.value.dependantSelection &&  this.comprehensiveJourneyMode) {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
