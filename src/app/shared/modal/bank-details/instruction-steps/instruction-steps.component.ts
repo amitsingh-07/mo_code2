@@ -26,6 +26,6 @@ export class InstructionStepsComponent implements OnInit {
     this.showToolTip.emit();
   }
   getQrCodeImg(){
-    return window.location.origin + '/app/assets/images/group-15.png';
+    return window.location.origin + '/app/assets/images/paynow-qrcode.png';
     }
 }
