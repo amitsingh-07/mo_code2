@@ -121,7 +121,6 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   }
 
   goToNext(dependantSelectionForm) {
-    console.log(dependantSelectionForm)
     if (this.viewMode) {
       if (dependantSelectionForm.value.dependantSelection &&  this.comprehensiveJourneyMode) {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
