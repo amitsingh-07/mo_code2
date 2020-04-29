@@ -3,7 +3,7 @@
         <div class="qrcode__title">{{ 'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.QRCODE.TITLE' | translate }}</div>
         <div class="qrcode__desc">{{ 'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.QRCODE.DESC' | translate }} </div>
         <div class="qrcode__imgcontainer">
-            <img src="assets/images/group-15.png" alt="" />
+            <img src="assets/images/paynow-qrcode.png" alt="" />
         </div>
         <div class="qrcode__refcode">{{ 'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.QRCODE.REFCODE' | translate }}</div>
         <div class="qrcode__refcode-box">
@@ -15,9 +15,7 @@
         <div class="qrcode__refcode-info">
             <div class="qrcode__refcode-info--text" innerHTML="{{ 'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.ADD_REFERENCE_CODE_INFO' | translate }}"></div>
         </div>
-
-        <!-- <button class="save_qr_button">Save QR Image</button> -->
-        <a class="qrcode__save-btn" download target="_blank" [href]="getQrCodeImg()" id="fund_details_download_prospectus">{{ 'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.QRCODE.SAVEBTN' | translate }} </a>
+        <a class="qrcode__save-btn" download target="_blank" [href]="getQrCodeImg()">{{ 'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.QRCODE.SAVEBTN' | translate }} </a>
     </div>
 
     <div class="steps-title" *ngIf="showBankTransferIns">{{ 'TRANSFER_INSTRUCTION.STEPS_TITLE_BANK' | translate }}</div>
