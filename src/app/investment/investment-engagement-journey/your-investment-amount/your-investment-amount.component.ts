@@ -163,9 +163,12 @@ export class YourInvestmentAmountComponent implements OnInit {
       // tslint:disable-next-line:triple-equals
     } else {
       this.investmentEngagementJourneyService.setYourInvestmentAmount(form.value);
-      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.MY_FINANCIAL]);
+      if (null) {
+        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP2]);
+      } 
+        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.MY_FINANCIAL]);
+      
     }
-
   }
 
 }

@@ -84,12 +84,12 @@
     "STEP_2_LABEL": "Step 2"
   },
   "INVESTMENT_AMOUNT": {
-    "TITLE": "Your Investment Amount",
+    "TITLE": "Your Funding Amount",
     "INVESTMENT_AMOUNT_LBL": "How much do you want to invest?",
-    "INITIAL_DEPOSIT_LBL": "One-Time Investment",
-    "MONTHLY_DEPOSIT_LBL": "Monthly Investment",
+    "INITIAL_DEPOSIT_LBL": "One-time Amount",
+    "MONTHLY_DEPOSIT_LBL": "Monthly Amount",
     "AT_LEAST_ONE": "Select at least one of the following.",
-    "INVESTMENT_LBL": "I want to invest",
+    "INVESTMENT_LBL": "I want to fund",
     "MIN_100": "Min. $100",
     "MIN_50": "Min. $50"
   },
@@ -149,8 +149,8 @@
     "PROCEED": "Proceed",
     "EDIT_INVESTMENT": {
       "TITLE": "Review My Inputs",
-      "ONE_TIME_INVESTMENT": "One-time Investment",
-      "MONTHLY_INVESTMENT": "Monthly Investment"
+      "ONE_TIME_INVESTMENT": "One-time Amount",
+      "MONTHLY_INVESTMENT": "Monthly Amount"
     },
     "MODAL_TITLE": "Portfolio Recommendations",
     "MODAL_DESC": "In the next step, we will be showing you the recommended portfolio that is most suited to your profile.",
@@ -171,7 +171,7 @@
     "ERRORS": {
       "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
       "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
-      "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time investment or Monthly Investment."
+      "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time amount or Monthly amount."
     }
   },
   "WHATS_THE_RISK": {

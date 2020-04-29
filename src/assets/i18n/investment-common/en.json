@@ -27,8 +27,8 @@
     "CONTINUE": "Continue",
     "EDIT_INVESTMENT": {
       "TITLE": "Review My Inputs",
-      "ONE_TIME_INVESTMENT": "One-time Investment",
-      "MONTHLY_INVESTMENT": "Monthly Investment"
+      "ONE_TIME_INVESTMENT": "One-time amount",
+      "MONTHLY_INVESTMENT": "Monthly amount"
     },
     "MODAL": {
       "PROJECTED_RETURNS": {
@@ -58,7 +58,7 @@
     "ERRORS": {
       "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
       "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
-      "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time investment or Monthly Investment."
+      "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time amount or Monthly amount."
     },
     "ADD_PORTFOLIO_NAME": {
       "TITLE": "Name Your Portfolio",

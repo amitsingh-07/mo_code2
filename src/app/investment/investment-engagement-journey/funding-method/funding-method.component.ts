@@ -110,6 +110,10 @@ export class FundingMethodComponent implements OnInit {
   }
   goToNext(form) {
     this.investmentCommonService.setInitialFundingMethod(form.value);
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+    if (null) {
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
+    } 
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+    
   }
 }
