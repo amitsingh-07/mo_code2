@@ -262,6 +262,14 @@ app-dashboard{
                         color: $teal-color;
                     }
                 }
+                .alert-img-container {
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: -9px;
+                    img {
+                        margin: 0 56px 6px 0;
+                    }
+                }
             }
             .loader-div {
               min-height: 200px;

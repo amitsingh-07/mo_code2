@@ -1,0 +1,26 @@
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+
+import { NavbarService } from './../shared/navbar/navbar.service';
+
+@Component({
+  selector: 'app-investment-maintenance',
+  templateUrl: './investment-maintenance.component.html',
+  styleUrls: ['./investment-maintenance.component.scss'],
+  encapsulation: ViewEncapsulation.None
+})
+
+export class InvestmentMaintenanceComponent implements OnInit {
+
+  copyrightYear: string;
+
+  constructor(public navbarService: NavbarService) { }
+
+  ngOnInit() {
+    this.navbarService.setNavbarVisibility(false);
+    this.navbarService.setNavbarMode(10);
+    this.navbarService.setNavbarMobileVisibility(false);
+
+    const currentDate = new Date();
+    this.copyrightYear = `© ${currentDate.getFullYear() - 1}-${currentDate.getFullYear()}`;
+  }
+}

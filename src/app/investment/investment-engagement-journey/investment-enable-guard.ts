@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
+import { APP_ROUTES } from 'src/app/app-routes.constants';
 import { appConstants } from '../../app.constants';
 import { ConfigService, IConfig } from '../../config/config.service';
 
@@ -12,12 +13,22 @@ export class InvestmentEnableGuard implements CanActivate {
   }
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
     return this.configService.getConfig().map((config: IConfig) => {
-      this.isInvestmentEngagementEnabled = config.investmentEngagementEnabled;
-      if (this.isInvestmentEngagementEnabled) {
-        return true;
+      // Check if iFast is in maintenance
+      if (config.iFastMaintenance) {
+        if (this.configService.checkIFastStatus(config.maintenanceStartTime, config.maintenanceEndTime)) {
+          this.router.navigate([APP_ROUTES.INVEST_MAINTENANCE]);
+          return false;
+        } else {
+          return true;
+        }
       } else {
-        this.router.navigate([appConstants.homePageUrl]);
-        return false;
+        this.isInvestmentEngagementEnabled = config.investmentEngagementEnabled;
+        if (this.isInvestmentEngagementEnabled) {
+          return true;
+        } else {
+          this.router.navigate([appConstants.homePageUrl]);
+          return false;
+        }
       }
     });
   }
