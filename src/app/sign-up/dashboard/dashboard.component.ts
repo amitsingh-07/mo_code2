@@ -91,7 +91,7 @@ export class DashboardComponent implements OnInit {
   isComprehensiveEnabled = false;
 
   // iFast Maintenance
-  iFastMaintenance = true;
+  iFastMaintenance = false;
 
   constructor(
     private router: Router,
