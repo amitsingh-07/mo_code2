@@ -80,7 +80,7 @@ export class ConfigService {
     const startDateTime = new Date(startTime);
     const endDateTime = new Date(endTime);
 
-    if (Date.now() > startDateTime.valueOf() && Date.now() < endDateTime.valueOf()) {
+    if (Date.now() >= startDateTime.valueOf() && Date.now() <= endDateTime.valueOf()) {
       return true;
     } else {
       return false;
