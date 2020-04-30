@@ -109,8 +109,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.getSrsDetails();
     // Check if iFast is in maintenance
     this.configService.getConfig().subscribe((config) => {
-      if (config.iFastMaintenance) {
-        this.disableBankSrsEdit = this.configService.checkIFastStatus(config.maintenanceStartTime, config.maintenanceEndTime);
+      if (config.iFastMaintenance && this.configService.checkIFastStatus(config.maintenanceStartTime, config.maintenanceEndTime)) {
+        this.disableBankSrsEdit = true;
       }
     });
   }
