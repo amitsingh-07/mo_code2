@@ -475,7 +475,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="edit-button" id="editEmployeButton" (click)="editBankDetails()">
+                            <button type="button" class="edit-button" id="editEmployeButton" (click)="editBankDetails()" [disabled]="disableBankSrsEdit">
                 {{'EDIT_PROFILE.EDIT' | translate}}
               </button>
                         </div>
@@ -486,7 +486,7 @@
                                         {{'EDIT_PROFILE.NO_BANK' | translate}}
                                     </div>
                                 </div>
-                                <button type="button" class="edit-button" id="editEmployeButton" (click)="addBankDetails()">
+                                <button type="button" class="edit-button" id="editEmployeButton" (click)="addBankDetails()" [disabled]="disableBankSrsEdit">
                   {{'EDIT_PROFILE.ADD_BANK' | translate}}
                 </button>
                             </div>
@@ -526,7 +526,7 @@
                                     <div id="srs-act-num-value" class="bank-account-num">{{srsDetails?.srsAccountNumber?.conformedValue}}</div>
                                 </div>
                             </div>
-                            <button type="button" class="edit-button" id="editEmployeButton" (click)="updateSrsDetails(srsDetails?.srsAccountNumber?.conformedValue, {name: srsDetails?.srsOperator}, srsDetails?.customerId, false)">
+                            <button type="button" class="edit-button" id="editEmployeButton" (click)="updateSrsDetails(srsDetails?.srsAccountNumber?.conformedValue, {name: srsDetails?.srsOperator}, srsDetails?.customerId, false)" [disabled]="disableBankSrsEdit">
                   {{'EDIT_PROFILE.EDIT' | translate}}
                 </button>
                         </div>
