@@ -75,7 +75,7 @@
           </h2>
         </div>
     </div>
-    <div *ngIf="promoDiscount" (click)="redirectToPromoPage(data.id)" class="insurance-plan-widget__container__discount__block">{{promoDiscount}}</div>
+    <div *ngIf="promoDiscount && !isPromoDiscountHidden" (click)="redirectToPromoPage(data.promotion)" class="insurance-plan-widget__container__discount__block">{{promoDiscount}}</div>
     <div style="margin-bottom: 15px;">
       <div class="insurance-plan-widget__container__rank__wrapper flex-row" style="display: flex; flex: 1">
         <div class="insurance-plan-widget__container__rank-box flex-col-4" *ngIf="canShowRanking">

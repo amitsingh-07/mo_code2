@@ -40,6 +40,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
   premiumFrequency = '';
   productName;
   promoDiscount;
+  isPromoDiscountHidden;
   highlights = [];
   temp;
   canShowRanking = true;
@@ -75,6 +76,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       this.premiumAmount = this.data.premium.premiumAmount;
       if (this.data.promotion && this.data.promotion.promoDiscount) {
         this.promoDiscount = this.data.promotion.promoDiscount;
+        this.isPromoDiscountHidden = this.data.promotion.expired === 'FALSE' ? false : true;
       }
       this.productName = this.data.productName;
       this.coverageDuration = this.data.premium.durationName;
@@ -244,10 +246,9 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
     ref.componentInstance.message = this.translate.instant('PROD_INFO_TOOLTIP.RATING.MESSAGE');
   }
 
-  redirectToPromoPage(productID: string) {
-    const promo = this.planService.checkProductID(productID);
-    if (promo && promo.promoId) {
-      window.open(`${window.location.protocol}//${window.location.host}/promotions/${promo.promoId}`, '_blank');
+  redirectToPromoPage(promo: any) {
+    if (promo && promo.id) {
+      window.open(`${window.location.protocol}//${window.location.host}/app/promotions/${promo.id}`, '_blank');
     }
     return;
   }
