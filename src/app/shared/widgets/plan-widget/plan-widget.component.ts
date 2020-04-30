@@ -44,6 +44,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   premiumFrequency = '';
   productName;
   promoDiscount;
+  isPromoDiscountHidden;
   highlights = [];
   temp;
   isSelected = false;
@@ -94,6 +95,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
 
       if (this.data.promotion && this.data.promotion.promoDiscount) {
         this.promoDiscount = this.data.promotion.promoDiscount;
+        this.isPromoDiscountHidden = this.data.promotion.expired === 'FALSE' ? false : true;
       }
       this.productName = this.data.productName;
       this.coverageDuration = this.data.premium.durationName;
@@ -315,10 +317,10 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
     this.compare.emit({ plan: this.temp, selected: this.isComparePlanSelected });
   }
 
-  redirectToPromoPage(productID: string) {
-    const promo = this.planService.checkProductID(productID);
-    if (promo && promo.promoId) {
-        window.open(`${window.location.protocol}//${window.location.host}/promotions/${promo.promoId}`, '_blank');
+  redirectToPromoPage(promo: any) {
+    // const promo = this.planService.checkProductID(productID);
+    if (promo && promo.id) {
+        window.open(`${window.location.protocol}//${window.location.host}/app/promotions/${promo.id}`, '_blank');
     }
     return;
   }

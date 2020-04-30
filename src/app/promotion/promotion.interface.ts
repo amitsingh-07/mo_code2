@@ -19,6 +19,7 @@ export interface IPromotion {
     bundle_enquiry_form_subtitle ?: string;
     bundle_enquiry_child_enabled ?: boolean;
     tracking_id ?: string;
+    tnc ?: boolean;
 }
 
 export interface IBundleEnquiry {

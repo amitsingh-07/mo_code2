@@ -1,0 +1,13 @@
+{
+  "promoId": 30,
+  "type": 1,
+  "owner": "Aviva",
+  "title": "Receive Cashback for selected Aviva's Savings Plans",
+  "thumbnail": "assets/promotions/images/30/thumbnail.jpg",
+  "banner": "assets/promotions/images/30/banner.jpg",
+  "desc": "Save for a brighter future you've always wanted with a structured plan in place.",
+  "date_created": "1585670400000",
+  "date_expiry": "1589558399000",
+  "tag": ["Insurance", "Protection"],
+  "external": false
+}

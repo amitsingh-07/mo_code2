@@ -1,0 +1,13 @@
+{
+  "promoId": 31,
+  "type": 1,
+  "owner": "Manulife",
+  "title": "Enjoy Premium Discount for selected Manulife's Products",
+  "thumbnail": "assets/promotions/images/31/thumbnail.jpg",
+  "banner": "assets/promotions/images/31/banner.jpg",
+  "desc": "Protect your loved ones for the future.",
+  "date_created": "1582473600000",
+  "date_expiry": "1590163199000",
+  "tag": ["Insurance", "Protection"],
+  "external": false
+}
