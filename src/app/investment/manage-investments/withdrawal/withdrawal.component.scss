@@ -109,7 +109,33 @@ app-withdrawal {
     }
   }
 
+  .checkbox-button {
+    input[type='checkbox'] {
+
+      &:disabled,
+      &:disabled+label {
+        cursor: not-allowed;
+      }
+    }
+  }
+
   .form-control {
+    &.disabled {
+      background: $form-control-disabled-bg-color2;
+      color: $form-control-disabled-txt-color;
+      border: 1px solid $form-control-disabled-border-color;
+
+      i {
+        color: $form-control-disabled-txt-color !important;
+      }
+
+      .input-control {
+        background: $form-control-disabled-bg-color2 !important;
+        color: $form-control-disabled-txt-color !important;
+        cursor: not-allowed;
+      }
+    }
+
     .input-control {
       &#withdraw-type-srs {
         text-align: left !important;

@@ -67,6 +67,14 @@ export class ComprehensiveComponent implements OnInit {
         this.loading = this.translate.instant('COMMON_LOADER.TITLE');
         this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.translate.instant('CMP.COMPREHENSIVE.VIDEO_LINK'));
         this.navbarService.setPageTitle(this.translate.instant('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_TITLE'), '', false);
+
+        const isUnsupportedNoteShown = this.signUpService.getUnsupportedNoteShownFlag();
+        this.signUpService.mobileOptimizedObservable$.subscribe((mobileOptimizedView) => {
+          if (!this.signUpService.isMobileDevice() && !mobileOptimizedView && !isUnsupportedNoteShown) {
+            this.signUpService.showUnsupportedDeviceModal();
+            this.signUpService.setUnsupportedNoteShownFlag();
+          }
+        });
       });
     });
   }
@@ -75,14 +83,7 @@ export class ComprehensiveComponent implements OnInit {
     this.navbarService.setNavbarComprehensive(true);
     this.footerService.setFooterVisibility(false);
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
-    const isUnsupportedNoteShown = this.signUpService.getUnsupportedNoteShownFlag();
     this.buildPromoCodeForm();
-    this.signUpService.mobileOptimizedObservable$.subscribe((mobileOptimizedView) => {
-      if (!this.signUpService.isMobileDevice() && !mobileOptimizedView && !isUnsupportedNoteShown) {
-        this.signUpService.showUnsupportedDeviceModal();
-        this.signUpService.setUnsupportedNoteShownFlag();
-      }
-    });
 
     if (this.authService.isSignedUser()) {
       const action = this.appService.getAction();
@@ -166,7 +167,13 @@ export class ComprehensiveComponent implements OnInit {
     } else if (redirectUrl && (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isValidatedPromoCode)) {
       this.router.navigate([redirectUrl]);
     } else if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isValidatedPromoCode) {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+     
+      this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((data: any) => {
+        if (data && data.objectList[0]) {
+            this.cmpService.setComprehensiveSummary(data.objectList[0]);
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+        }});
+     
     }
 
     setTimeout(() => {
@@ -198,7 +205,11 @@ export class ComprehensiveComponent implements OnInit {
         this.loaderService.showLoader({ title: this.loading, autoHide: false });
         this.comprehensiveApiService.ValidatePromoCode(promoCode).subscribe((data: any) => {
           if (data && data.objectList[0].validatePromoCode) {
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+            this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((data: any) => {
+              if (data && data.objectList[0]) {
+                  this.cmpService.setComprehensiveSummary(data.objectList[0]);
+                  this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+              }});      
           }
         }, (err) => {
           setTimeout(() => {

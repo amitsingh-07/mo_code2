@@ -19,7 +19,7 @@
   "paymentEnabled": false,
   "iFastMaintenance": true,
   "maintenanceStartTime": "2020-04-28T18:31:00.000+08:00",
-  "maintenanceEndTime": "2020-04-30T18:40:00.000+08:00",
+  "maintenanceEndTime": "2020-04-30T16:30:00.000+08:00",
   "hospitalPlanData": [{
       "id": 0,
       "hospitalClass": "None",

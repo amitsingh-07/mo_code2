@@ -51,6 +51,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   filteredCountSubject = new Subject<any>();
   subscription: Subscription;
   filterCountSubscription: Subscription;
+  backPressSubscription: Subscription;
 
   filteredResult = [];
 
@@ -116,6 +117,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     this.filterCountSubscription = this.filteredCountSubject.subscribe((planList) => {
       this.filteredResult = planList;
     });
+    this.backPressSubscription = this.navbarService.subscribeBackPress().subscribe((event) => {});
   }
 
   initRecommendationsCall() {
@@ -143,6 +145,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   ngOnDestroy() {
+    this.backPressSubscription.unsubscribe();
     this.subscription.unsubscribe();
     this.filterCountSubscription.unsubscribe();
     if (this.routeSubscription instanceof Subscription) {
@@ -180,8 +183,11 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       this.state.resultsEmptyMessage = data.responseMessage.responseDescription;
       return;
     }
-    if(this.state.selectedCategory.id === PRODUCT_CATEGORY_INDEX.CRITICAL_ILLNESS){
-      this.ciCoverDetailsPopup();
+    if (this.state.selectedCategory.id === PRODUCT_CATEGORY_INDEX.CRITICAL_ILLNESS) {
+      const { earlyCI } = this.directService.getCriticalIllnessForm();
+      if (!earlyCI) {
+        this.ciCoverDetailsPopup();
+      }
     }
     this.state.resultsEmptyMessage = '';
     this.state.enquiryId = data.objectList[0].enquiryId;

@@ -28,7 +28,7 @@
           appComprehensiveViewMode="{{viewMode}}" mode=1 [readonly]="false" (keyup)="changeSlide($event)"
           (change)="changeSlide($event)" class="input-control" appCurrencyInput maxLength="2" name="retireUserAge"
           [value]="sliderValue" />
-        <i class="right percent-fix">yrs old</i>
+        <i class="right percent-fix">{{'CMP.RETIREMENT_PLAN.YEARS_OLD'|translate}}</i>
       </div>
     </div>
   </div>
@@ -38,8 +38,8 @@
       <nouislider [disabled]="viewMode" id="retirementSlider" #ciMultiplierSlider (slide)="onSliderChange($event)"
         [config]="ciSliderConfig"></nouislider>
         <div class="min-max-val">
-          <div class="min-val">45 yrs old<span class="min-text">Min.</span></div>
-          <div class="max-val">70 yrs old<span class="max-text">Max.</span>
+          <div class="min-val">{{'CMP.RETIREMENT_PLAN.MIN_AGE'|translate}}<span class="min-text">{{'CMP.RETIREMENT_PLAN.MIN_LABEL'|translate}}</span></div>
+          <div class="max-val">{{'CMP.RETIREMENT_PLAN.MAX_AGE'|translate}}<span class="max-text">{{'CMP.RETIREMENT_PLAN.MAX_LABEL'|translate}}</span>
           </div>
         </div>
     </div>
@@ -226,8 +226,8 @@
       </div>
       <!--Form label /-->
       <!--Form label-->
-      <div (click)="openConfirmationModal()" class="checkbox-button one-label">
-        <input id="haveRetirementIncomeNo" name="haveOtherSourceRetirementIncome"
+      <div (click)="!viewMode && openConfirmationModal()" class="checkbox-button one-label">
+        <input   id="haveRetirementIncomeNo" name="haveOtherSourceRetirementIncome"
           formControlName="haveOtherSourceRetirementIncome" type="radio" [value]=false class="field radio"
           appComprehensiveViewMode="{{viewMode}}" mode=1>
         <label id="HaveRetirementIncomeLabel" for="haveRetirementIncomeNo">

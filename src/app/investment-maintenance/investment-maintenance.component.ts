@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
+import { FooterService } from '../shared/footer/footer.service';
 import { NavbarService } from './../shared/navbar/navbar.service';
 
 @Component({
@@ -13,12 +14,13 @@ export class InvestmentMaintenanceComponent implements OnInit {
 
   copyrightYear: string;
 
-  constructor(public navbarService: NavbarService) { }
+  constructor(public navbarService: NavbarService, private footerService: FooterService) { }
 
   ngOnInit() {
     this.navbarService.setNavbarVisibility(false);
     this.navbarService.setNavbarMode(10);
     this.navbarService.setNavbarMobileVisibility(false);
+    this.footerService.setFooterVisibility(false);
 
     const currentDate = new Date();
     this.copyrightYear = `© ${currentDate.getFullYear() - 1}-${currentDate.getFullYear()}`;
