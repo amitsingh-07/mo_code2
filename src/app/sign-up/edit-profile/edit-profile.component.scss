@@ -209,6 +209,11 @@ app-edit-profile{
     text-align: center;
     color:$teal-color;
     margin-bottom: 21px;
+    &[disabled] {
+      color: #c1eaea;
+      border: solid 1px #bfe9e9;
+      cursor: not-allowed;
+    }
   }
   .bank-account{
     font-family: $muli-light;

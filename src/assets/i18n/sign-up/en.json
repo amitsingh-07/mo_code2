@@ -309,7 +309,8 @@
       "UNSUCCESSFUL_INVESTMENT_ACCOUNT": "Your investment account set up is unsuccessful. Email us at <a  class=\"hyperlink_color\" href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> or call us at (65) 6329 9188 for assistance.",
       "PORTFOLIO_EXIST_TITLE": "Portfolio Already Exist",
       "PORTFOLIO_EXIST_DESC": "You have already selected a portfolio. Please proceed to Top up, Fund or Delete the selected portfolio.",
-      "PORTFOLIO_EXIST_BTN_LABEL": "Proceed To Portfolio"
+      "PORTFOLIO_EXIST_BTN_LABEL": "Proceed To Portfolio",
+      "SERVICE_UNAVAILABLE": "Sorry, this service is temporarily unavailable. Please try again later."
     },
     "WILL_WRITING": {
       "TITLE": "Will Writing",

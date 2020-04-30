@@ -269,6 +269,14 @@ app-dashboard {
                     align-items: center;
                     justify-content: center;
                 }
+                .alert-img-container {
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: -9px;
+                    img {
+                        margin: 0 56px 6px 0;
+                    }
+                }
             }
             .investment-widget {
                 margin: 20px 15px 20px!important;
