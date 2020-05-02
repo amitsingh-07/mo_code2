@@ -132,6 +132,21 @@
               "vendorChunk": false,
               "buildOptimizer": false
             },
+            "newmouat3": {
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.newmouat3.ts"
+              }],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
             "common": {
               "optimization": true,
               "outputHashing": "all",
@@ -158,6 +173,7 @@
             "uat3": { "browserTarget": "bfa-frontend:build:uat3" },
             "newmo": { "browserTarget": "bfa-frontend:build:newmo"},
             "newmodev": { "browserTarget": "bfa-frontend:build:newmodev"},
+            "newmouat3": { "browserTarget": "bfa-frontend:build:newmouat3"},
             "common": { "browserTarget": "bfa-frontend:build:common" }
           }
         },
