@@ -208,7 +208,7 @@ export class WithdrawalComponent implements OnInit {
         this.isRedeemAll = (roundOffValue <
           (MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT)
           && roundOffValue > 0);
-        this.withdrawForm.addControl(
+           this.withdrawForm.addControl(
           'withdrawAmount',
           new FormControl({
             value: this.isRedeemAll ? roundOffValue : '',
@@ -492,7 +492,7 @@ export class WithdrawalComponent implements OnInit {
       const cashBalance = (this.isFromPortfolio) ? this.withdrawForm.controls.withdrawPortfolio.value.portfolioValue.toString() :
         this.cashBalance.toString();
       // Minimum cash balance amount 50
-      if (cashBalance <= MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT) {
+      if (cashBalance <= MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT && cashBalance > 0) {
         this.withdrawForm.controls.withdrawRedeem.setValue(true);
         this.withdrawForm.controls.withdrawAmount.setValue(cashBalance);
         this.withdrawForm.get('withdrawAmount').disable();
@@ -500,6 +500,13 @@ export class WithdrawalComponent implements OnInit {
         this.isRedeemAllChecked = true;
       } else {
         this.withdrawForm.controls.withdrawRedeem.setValue(false);
+        this.withdrawForm.controls.withdrawAmount.setValue("0");
+        this.withdrawForm.get('withdrawAmount').enable();
+        if(cashBalance > 0){
+          this.withdrawForm.get('withdrawRedeem').enable();
+        } else {
+          this.withdrawForm.get('withdrawRedeem').disable();
+        }
         this.isRedeemAllChecked = false;
       }
     }
