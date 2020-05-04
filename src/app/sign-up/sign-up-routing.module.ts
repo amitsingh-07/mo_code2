@@ -119,7 +119,7 @@ const routes: Routes = [
   },
   { path: SIGN_UP_ROUTES.UPDATE_SRS,
     component: AddUpdateSrsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, TwoFactorAuthGuardService]
   },
   { path: SIGN_UP_ROUTES.FINLIT_LOGIN,
     component: LoginComponent,

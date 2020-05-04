@@ -16,6 +16,7 @@ import { FooterService } from './../../shared/footer/footer.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 import { ValidateRange } from './range.validator';
+import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-update-user-id',
@@ -45,6 +46,7 @@ export class UpdateUserIdComponent implements OnInit {
     public footerService: FooterService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
+    private authService: AuthenticationService,
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService,
@@ -81,6 +83,13 @@ export class UpdateUserIdComponent implements OnInit {
     this.buildUpdateAccountForm();
     this.getCountryCode();
     this.footerService.setFooterVisibility(false);
+
+    this.authService.get2faAuthEvent.subscribe((token) => {
+      if (token) {
+      } else {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+      }
+    });
   }
 
   /**

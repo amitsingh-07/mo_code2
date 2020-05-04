@@ -13,6 +13,7 @@ import { IServerResponse } from '../interfaces/server-response.interface';
 import { appConstants } from './../../../app.constants';
 import { BaseService } from './../base.service';
 import { RequestCache } from './../http-cache.service';
+import { environment } from './../../../../environments/environment';
 
 export const APP_JWT_TOKEN_KEY = 'app-jwt-token';
 const APP_SESSION_ID_KEY = 'app-session-id';
@@ -29,7 +30,7 @@ export class AuthenticationService {
     private httpClient: HttpClient, public jwtHelper: JwtHelperService,
     private cache: RequestCache, private http: BaseService,
     private modal: NgbModal
-    ) {
+  ) {
 
     this.apiBaseUrl = Util.getApiBaseUrl();
   }
@@ -39,7 +40,7 @@ export class AuthenticationService {
   }
 
   // tslint:disable-next-line: max-line-length
-  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string, enqId?: number, journeyType?: string , finlitEnabled?: boolean, accessCode?: string) {
+  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string, enqId?: number, journeyType?: string, finlitEnabled?: boolean, accessCode?: string) {
     const authenticateBody = {
       email: (userEmail && this.isUserNameEmail(userEmail)) ? userEmail : '',
       mobile: (userEmail && !this.isUserNameEmail(userEmail)) ? userEmail : '',
@@ -205,18 +206,49 @@ export class AuthenticationService {
   }
 
   //2FA Implementation
+  private send2faRequest(handleError?: any) {
+    if (!handleError) {
+      handleError = '';
+    }
+    console.log('Sent 2fa Authentication Request');
+    const send2faOtpUrl = apiConstants.endpoint.send2faOTP;
+    return this.httpClient.get<IServerResponse>(`${this.apiBaseUrl}/${send2faOtpUrl}${handleError}`)
+      .pipe(map((response) => {
+        // login successful if there's a jwt token in the response
+        if (response && response.objectList[0] && response.objectList[0].securityToken) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          this.saveAuthDetails(response.objectList[0]);
+        }
+        return response;
+      }));
+  }
+
+  public send2faAuthenticate() {
+    console.log('send2faAuthenticate Running');
+    const customerRef: any = JSON.parse(sessionStorage.getItem(appConstants.APP_CUSTOMER_ID));
+    if (customerRef.id != null) {
+      console.log('CustomerRef', customerRef.id);
+      return this.send2faRequest();
+    }
+    return EMPTY;
+  }
+
   public get2FAToken() {
     console.log('get2FAToken triggered');
     this.get2faAuth.next(sessionStorage.getItem(appConstants.APP_2FA_KEY));
   }
 
   public set2FAToken(token: any) {
+    let expiryTime = 15;
+    if (environment.expire2faTime) {
+      expiryTime = environment.expire2faTime;
+    }
     sessionStorage.setItem(appConstants.APP_2FA_KEY, token);
     this.get2FAToken();
     const timeout = window.setTimeout(() => {
       console.log('running timeout');
       this.clear2FAToken();
-    }, (1000*10));
+    }, (1000 * expiryTime));
   }
 
   public clear2FAToken() {
@@ -228,14 +260,14 @@ export class AuthenticationService {
 
   public is2FAVerified() {
     const token = sessionStorage.getItem(appConstants.APP_2FA_KEY);
-    if(!token) {
+    if (!token) {
       return false;
     }
     return true;
   }
 
   public getFromJourney(key: string) {
-    if(sessionStorage) {
+    if (sessionStorage) {
       const fromJourneyHm = new Map(JSON.parse(window.sessionStorage.getItem(FROM_JOURNEY_HM)));
       return fromJourneyHm.get(key);
     }
@@ -243,7 +275,7 @@ export class AuthenticationService {
   }
 
   public setFromJourney(key: string, data: any) {
-    if(sessionStorage) {
+    if (sessionStorage) {
       const oldFromJourneyHm = new Map(JSON.parse(window.sessionStorage.getItem(FROM_JOURNEY_HM)));
       oldFromJourneyHm.set(key, data);
       sessionStorage.setItem(FROM_JOURNEY_HM, JSON.stringify(Array.from(oldFromJourneyHm)));

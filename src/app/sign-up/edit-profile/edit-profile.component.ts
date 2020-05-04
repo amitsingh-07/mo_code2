@@ -105,13 +105,13 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
     this.getSrsDetails();
 
     this.authService.get2faAuthEvent.subscribe((token) => {
-      console.log('2fa event triggered:', token);
+      // console.log('2fa event triggered:', token);
       if (token) {
         this.is2faAuthorized = true;
       } else {
         this.is2faAuthorized = false;
       }
-      console.log('is2faAuthorized', this.is2faAuthorized);
+      // console.log('is2faAuthorized', this.is2faAuthorized);
     });
   }
 
@@ -157,6 +157,7 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
     this.signUpService.getEditProfileInfo().subscribe((data) => {
       this.entireUserData = data.objectList;
       if (data.objectList) {
+        console.log(data.objectList);
         if (data.objectList.personalInformation) {
           this.personalData = data.objectList.personalInformation;
         }
@@ -293,6 +294,7 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
     } else {
       AccountHolderName = this.fullName;
     }
+    this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     // tslint:disable-next-line:max-line-length accountName
     this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, this.bankDetails.bank, this.bankDetails.accountNumber, this.bankDetails.id, false);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: false }, fragment: 'bank' });
@@ -332,6 +334,7 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   updateSrsDetails(srsAccountNumber, srsBankOperator, customerId, srsBankFlag) {
+    this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     this.signUpService.setEditProfileSrsDetails(srsAccountNumber, srsBankOperator, customerId, this.fundTypeId);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS], { queryParams: { srsBank: srsBankFlag }, fragment: 'bank' });
   }

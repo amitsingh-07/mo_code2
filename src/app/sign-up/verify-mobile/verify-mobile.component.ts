@@ -24,6 +24,7 @@ import { DirectService } from './../../direct/direct.service';
 import { GuideMeService } from './../../guide-me/guide-me.service';
 import { appConstants } from './../../../app/app.constants';
 import { AppService } from './../../../app/app.service';
+import { Util } from 'src/app/shared/utils/util';
 
 @Component({
   selector: 'app-verify-mobile',
@@ -92,6 +93,12 @@ export class VerifyMobileComponent implements OnInit {
     } else {
       console.log('Get Mobile Number');
       this.mobileNumber = this.signUpService.getMobileNumber();
+      console.log('Mobile Number: ', this.mobileNumber);
+    }
+
+
+    if(this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
+      this.editProfile = true;
     }
   }
 
@@ -122,6 +129,7 @@ export class VerifyMobileComponent implements OnInit {
           if (this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
             console.log('Calling Verity 2FA');
             this.verify2FA(otp);
+            this.authService.setFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE, false);
           } else {
             console.log('Calling Verity OTP');
             this.verifyOTP(otp);
@@ -204,7 +212,15 @@ export class VerifyMobileComponent implements OnInit {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED]);
     } else if (redirect_url) {
       this.signUpService.clearRedirectUrl();
-      this.router.navigate([redirect_url]);
+      console.log('Redirect Url: ' + redirect_url);
+      const brokenRoute = Util.breakdownRoute(redirect_url);
+      this.router.navigate([brokenRoute.base], {
+            fragment: brokenRoute.fragments != null ? brokenRoute.fragments : null,
+            preserveFragment: true,
+            queryParams: brokenRoute.params != null ? brokenRoute.params : null,
+            queryParamsHandling: 'merge',
+           }
+          );
     } else {
       if (journeyType === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
         this.sendWelcomeEmail();

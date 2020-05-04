@@ -5,6 +5,7 @@ export let appConstants = {
     APP_SESSION_ID_KEY: 'app-session-id',
     APP_2FA_KEY: 'app-2fa',
     APP_ENQUIRY_ID: 'app-enquiry-id',
+    APP_CUSTOMER_ID: 'app_customer_id',
     accessTokenLocalStorage: '',
     defaultContentTypeHeader: '',
     userLocalStorage: '',
