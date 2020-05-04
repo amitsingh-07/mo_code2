@@ -452,104 +452,137 @@
                 {{'EDIT_PROFILE.UPDATE_BANK' | translate}}
               </div>
             </div>
-            <div class="flex-col-1">
-              <div class="dropdown-img">
-                <span id="showHideBank" class="arrow"
-                  [class.active]="showHideBank.style.display === 'block' || showHideBank.style.display === ''"></span>
-                <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" /> -->
-              </div>
-            </div>
-          </div>
-          <div class="dots" #showHideBank>
-            <div *ngIf="bankDetails">
-              <div class="flex-row">
-                <div class="flex-col-4">
-                  <div class="bank-account">
-                    {{'EDIT_PROFILE.BANK' | translate}}
+            <!-- Update bank details  -->
+            <div class="bank_details" *ngIf=showAddbank>
+              <div class="edit-profile-section-bg">
+                <div class="flex-row cursor_pointer" (click)=showHide(showHideBank)>
+                  <div class="flex-col-11">
+                    <div class="form-group-heading">
+                      {{'EDIT_PROFILE.UPDATE_BANK' | translate}}
+                    </div>
+                  </div>
+                  <div class="flex-col-1">
+                    <div class="dropdown-img">
+                      <span id="showHideBank" class="arrow"
+                        [class.active]="showHideBank.style.display === 'block' || showHideBank.style.display === ''"></span>
+                      <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" /> -->
+                    </div>
                   </div>
                 </div>
-                <div class="flex-col-8">
-                  <div class="bank-account-num">
-                    {{ bankDetails.bank && bankDetails.bank.name}}
+                <div class="dots" #showHideBank>
+                  <div *ngIf="bankDetails">
+                    <div class="flex-row">
+                      <div class="flex-col-4">
+                        <div class="bank-account">
+                          {{'EDIT_PROFILE.BANK' | translate}}
+                        </div>
+                      </div>
+                      <div class="flex-col-8">
+                        <div class="bank-account-num">
+                          {{ bankDetails.bank && bankDetails.bank.name}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex-row">
+                      <div class="flex-col-4">
+                        <div class="bank-account">
+                          {{'EDIT_PROFILE.BANK_ACC' | translate}}
+                        </div>
+                      </div>
+                      <div class="flex-col-8">
+                        <div class="bank-account-num">
+                          {{bankDetails.accountNumber}}
+                        </div>
+                      </div>
+                    </div>
+                    <button type="button" class="edit-button" id="editEmployeButton" (click)="editBankDetails()"
+                      [disabled]="disableBankSrsEdit">
+                      {{'EDIT_PROFILE.EDIT' | translate}}
+                      <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock.svg" />
+                    </button>
                   </div>
-                </div>
-              </div>
-              <div class="flex-row">
-                <div class="flex-col-4">
-                  <div class="bank-account">
-                    {{'EDIT_PROFILE.BANK_ACC' | translate}}
+                  <div class="no-details" *ngIf="!bankDetails">
+                    <div class="flex-row">
+                      <div class="flex-col-12">
+                        <div class="no-bank-account">
+                          {{'EDIT_PROFILE.NO_BANK' | translate}}
+                        </div>
+                      </div>
+                      <button type="button" class="edit-button" id="editEmployeButton" (click)="addBankDetails()"
+                        [disabled]="disableBankSrsEdit">
+                        {{'EDIT_PROFILE.ADD_BANK' | translate}}
+                        <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock.svg" />
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div class="flex-col-8">
-                  <div class="bank-account-num">
-                    {{bankDetails.accountNumber}}
+                  <!-- Update srs details  -->
+                  <div class="srs_details" *ngIf="srsDetails">
+                    <div class="edit-profile-section-bg">
+                      <div class="flex-row cursor_pointer" (click)=showHide(showHideSrs)>
+                        <div class="flex-col-11">
+                          <div id="srs-header-lbl" class="form-group-heading">{{'UPDATE_SRS.TITLE' | translate}}</div>
+                        </div>
+                        <div class="flex-col-1">
+                          <div class="dropdown-img">
+                            <span id="showHideSrs" class="arrow"
+                              [class.active]="showHideSrs.style.display === 'block' || showHideSrs.style.display === ''"></span>
+                            <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" /> -->
+                          </div>
+                        </div>
+                      </div>
+                      <div class="dots" #showHideSrs>
+                        <div>
+                          <div class="flex-row">
+                            <div class="flex-col-4">
+                              <div id="srs-operator-lbl" class="bank-account">{{'UPDATE_SRS.SRS_OPERATOR' | translate}}
+                              </div>
+                            </div>
+                            <div class="flex-col-8">
+                              <div id="srs-operator-value" class="bank-account-num">{{srsDetails?.srsOperator}}</div>
+                            </div>
+                          </div>
+                          <div class="flex-row">
+                            <div class="flex-col-4">
+                              <div id="srs-act-num-lbl" class="bank-account">
+                                {{'UPDATE_SRS.SRS_ACCOUNT_NUMBER' | translate}}</div>
+                            </div>
+                            <div class="flex-col-8">
+                              <div id="srs-act-num-value" class="bank-account-num">
+                                {{srsDetails?.srsAccountNumber?.conformedValue}}</div>
+                            </div>
+                          </div>
+                          <button type="button" class="edit-button" id="editEmployeButton"
+                            (click)="updateSrsDetails(srsDetails?.srsAccountNumber?.conformedValue, {name: srsDetails?.srsOperator}, srsDetails?.customerId, false)"
+                            [disabled]="disableBankSrsEdit">
+                            {{'EDIT_PROFILE.EDIT' | translate}}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex-col-8">
+                      <div id="srs-operator-value" class="bank-account-num">{{srsDetails?.srsOperator}}</div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <button type="button" class="edit-button" id="editEmployeButton" (click)="editBankDetails()">
-                {{'EDIT_PROFILE.EDIT' | translate}}
-                <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock.svg" />
-              </button>
-            </div>
-            <div class="no-details" *ngIf="!bankDetails">
-              <div class="flex-row">
-                <div class="flex-col-12">
-                  <div class="no-bank-account">
-                    {{'EDIT_PROFILE.NO_BANK' | translate}}
+                  <div class="flex-row">
+                    <div class="flex-col-4">
+                      <div id="srs-act-num-lbl" class="bank-account">{{'UPDATE_SRS.SRS_ACCOUNT_NUMBER' | translate}}
+                      </div>
+                    </div>
+                    <div class="flex-col-8">
+                      <div id="srs-act-num-value" class="bank-account-num">
+                        {{srsDetails?.srsAccountNumber?.conformedValue}}
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <button type="button" class="edit-button" id="editEmployeButton" (click)="addBankDetails()">
-                  {{'EDIT_PROFILE.ADD_BANK' | translate}}
-                  <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock.svg" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Update srs details  -->
-      <div class="srs_details" *ngIf="srsDetails">
-        <div class="edit-profile-section-bg">
-          <div class="flex-row cursor_pointer" (click)=showHide(showHideSrs)>
-            <div class="flex-col-11">
-              <div id="srs-header-lbl" class="form-group-heading">{{'UPDATE_SRS.TITLE' | translate}}</div>
-            </div>
-            <div class="flex-col-1">
-              <div class="dropdown-img">
-                <span id="showHideSrs" class="arrow"
-                  [class.active]="showHideSrs.style.display === 'block' || showHideSrs.style.display === ''"></span>
-                <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" /> -->
-              </div>
-            </div>
-          </div>
-          <div class="dots" #showHideSrs>
-            <div>
-              <div class="flex-row">
-                <div class="flex-col-4">
-                  <div id="srs-operator-lbl" class="bank-account">{{'UPDATE_SRS.SRS_OPERATOR' | translate}}</div>
-                </div>
-                <div class="flex-col-8">
-                  <div id="srs-operator-value" class="bank-account-num">{{srsDetails?.srsOperator}}</div>
+                  <button type="button" class="edit-button" id="editEmployeButton"
+                    (click)="updateSrsDetails(srsDetails?.srsAccountNumber?.conformedValue, {name: srsDetails?.srsOperator}, srsDetails?.customerId, false)">
+                    {{'EDIT_PROFILE.EDIT' | translate}}
+                    <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock.svg" />
+                  </button>
                 </div>
               </div>
-              <div class="flex-row">
-                <div class="flex-col-4">
-                  <div id="srs-act-num-lbl" class="bank-account">{{'UPDATE_SRS.SRS_ACCOUNT_NUMBER' | translate}}</div>
-                </div>
-                <div class="flex-col-8">
-                  <div id="srs-act-num-value" class="bank-account-num">{{srsDetails?.srsAccountNumber?.conformedValue}}
-                  </div>
-                </div>
-              </div>
-              <button type="button" class="edit-button" id="editEmployeButton"
-                (click)="updateSrsDetails(srsDetails?.srsAccountNumber?.conformedValue, {name: srsDetails?.srsOperator}, srsDetails?.customerId, false)">
-                {{'EDIT_PROFILE.EDIT' | translate}}
-                <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock.svg" />
-              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>

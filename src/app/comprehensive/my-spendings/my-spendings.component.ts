@@ -176,8 +176,8 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     for (const value of this.payOffFieldSet) {
       switch (value) {
         case 'HLMortgagePaymentUsingCPF':
-          const HLMortgagePayoffUntil =  this.mySpendingsForm.controls['homeLoanPayOffUntil'];
-          if (this.mySpendingsForm.controls['HLMortgagePaymentUsingCPF'].value > 0 || this.mySpendingsForm.controls['HLMortgagePaymentUsingCash'].value>0 ) {
+          const HLMortgagePayoffUntil = this.mySpendingsForm.controls['homeLoanPayOffUntil'];
+          if (this.mySpendingsForm.controls['HLMortgagePaymentUsingCPF'].value > 0 || this.mySpendingsForm.controls['HLMortgagePaymentUsingCash'].value > 0) {
             HLMortgagePayoffUntil.setValidators([Validators.required, this.payOffYearValid]);
             HLMortgagePayoffUntil.updateValueAndValidity();
           } else {
@@ -185,10 +185,10 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
             HLMortgagePayoffUntil.setValidators([this.payOffYearValid]);
             HLMortgagePayoffUntil.updateValueAndValidity();
           }
-        break;
+          break;
         case 'mortgagePaymentUsingCPF':
-          const mortgagePayOffUntil =  this.mySpendingsForm.controls['mortgagePayOffUntil'];
-          if (this.mySpendingsForm.controls['mortgagePaymentUsingCPF'].value > 0 || this.mySpendingsForm.controls['mortgagePaymentUsingCash'].value>0 ) {
+          const mortgagePayOffUntil = this.mySpendingsForm.controls['mortgagePayOffUntil'];
+          if (this.mySpendingsForm.controls['mortgagePaymentUsingCPF'].value > 0 || this.mySpendingsForm.controls['mortgagePaymentUsingCash'].value > 0) {
             mortgagePayOffUntil.setValidators([Validators.required, this.payOffYearValid]);
             mortgagePayOffUntil.updateValueAndValidity();
           } else {
@@ -196,11 +196,11 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
             mortgagePayOffUntil.setValidators([this.payOffYearValid]);
             mortgagePayOffUntil.updateValueAndValidity();
           }
-        break;
+          break;
         case 'carLoanPayment':
           const carLoanPayment = parseInt(this.mySpendingsForm.controls['carLoanPayment'].value);
-          const carLoanPayoffUntil =  this.mySpendingsForm.controls['carLoanPayoffUntil'];
-          if (carLoanPayment > 0) {
+          const carLoanPayoffUntil = this.mySpendingsForm.controls['carLoanPayoffUntil'];
+          if (this.comprehensiveJourneyMode && carLoanPayment > 0) {
             carLoanPayoffUntil.setValidators([Validators.required, this.payOffYearValid]);
             carLoanPayoffUntil.updateValueAndValidity();
           } else {
@@ -211,8 +211,8 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
           break;
         case 'otherLoanPayment':
           const otherLoanPayment = parseInt(this.mySpendingsForm.controls['otherLoanPayment'].value);
-          const otherLoanPayoffUntil =  this.mySpendingsForm.controls['otherLoanPayoffUntil'];
-          if (otherLoanPayment > 0) {
+          const otherLoanPayoffUntil = this.mySpendingsForm.controls['otherLoanPayoffUntil'];
+          if (this.comprehensiveJourneyMode && otherLoanPayment > 0) {
             otherLoanPayoffUntil.setValidators([Validators.required, this.payOffYearValid]);
             otherLoanPayoffUntil.updateValueAndValidity();
           } else {
