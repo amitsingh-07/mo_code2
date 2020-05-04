@@ -3,5 +3,6 @@ export const APP_ROUTES = {
     HOME: 'home',
     COMPREHENSIVE: 'comprehensive',
     GUIDE_ME: 'guideme',
-    PAYMENT: 'payment'
+    PAYMENT: 'payment',
+    INVEST_MAINTENANCE: 'investment-maintenance'
 };

@@ -17,6 +17,9 @@
   "verifyEmailUrl": "/app/accounts/email-verification",
   "showAnnualizedReturns": false,
   "paymentEnabled": false,
+  "iFastMaintenance": true,
+  "maintenanceStartTime": "2020-05-05T10:00:00.000+08:00",
+  "maintenanceEndTime": "2020-05-05T12:00:00.000+08:00",
   "hospitalPlanData": [{
       "id": 0,
       "hospitalClass": "None",

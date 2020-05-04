@@ -17,6 +17,7 @@ import { InvestmentChildEnableGuard } from './investment/investment-engagement-j
 import { InvestmentEnableGuard } from './investment/investment-engagement-journey/investment-enable-guard';
 import { NotFoundComponent } from './not-found/not-found.component';
 
+import { InvestmentMaintenanceComponent } from './investment-maintenance/investment-maintenance.component';
 import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
 import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { DisclosuresComponent } from './shared/components/disclosures/disclosures.component';
@@ -50,6 +51,7 @@ const routes: Routes = [
       { path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsModule' },
       { path: 'myinfo', component: CallBackComponent },
       { path: 'faq', component: FAQComponent },
+      { path: 'investment-maintenance', component: InvestmentMaintenanceComponent },
       {
         path: APP_ROUTES.COMPREHENSIVE, loadChildren: './comprehensive/comprehensive.module#ComprehensiveModule',
         canActivate: [ComprehensiveEnableGuard],
