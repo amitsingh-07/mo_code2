@@ -18,6 +18,7 @@ import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
+import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
@@ -63,6 +64,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   formatedAccountNumber;
   fundTypeId: number;
 
+  disableBankSrsEdit = false;
+
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -78,7 +81,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     public investmentAccountService: InvestmentAccountService,
     public manageInvestmentsService: ManageInvestmentsService,
     public readonly translate: TranslateService,
-    private loaderService: LoaderService) {
+    private loaderService: LoaderService,
+    private configService: ConfigService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
       this.pageTitle = this.translate.instant('EDIT_PROFILE.MY_PROFILE');
@@ -103,6 +107,12 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.investmentStatus = this.investmentCommonService.getInvestmentStatus();
     this.showAddBankDetails(this.investmentStatus);
     this.getSrsDetails();
+    // Check if iFast is in maintenance
+    this.configService.getConfig().subscribe((config) => {
+      if (config.iFastMaintenance && this.configService.checkIFastStatus(config.maintenanceStartTime, config.maintenanceEndTime)) {
+        this.disableBankSrsEdit = true;
+      }
+    });
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
