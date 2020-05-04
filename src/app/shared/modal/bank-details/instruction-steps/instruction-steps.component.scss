@@ -6,7 +6,7 @@ app-instruction-steps {
         line-height: 22px;
         letter-spacing: -0.16px;
         .qrcode {
-            padding: 20px;
+            padding: 20px 20px 0 20px;
             text-align: center;
             &__title {
                 font-size: 21px;
@@ -75,6 +75,15 @@ app-instruction-steps {
                 display: block;
                 border-radius: 6px;
                 text-decoration: none;
+                font-size: 14px;
+                font-family: $muli-semi-bold;
+            }
+            &__alt-steps {
+                font-size: 16px;
+                font-family: $muli-regular;
+                text-align: left;
+                margin-top: 30px;
+                padding-left: 10px;
             }
         }
         .steps-title {
