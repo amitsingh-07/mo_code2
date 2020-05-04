@@ -1,6 +1,6 @@
-<div class="container-fluid max-width--1024 invest-web-width full-height white-bg">
-  <div class="back-btn hidden-lg" (click)="goBack()"></div>
-  <form id="promoCodeForm" name="promoCodeForm" [formGroup]="promoCodeForm" id="promoCodeFrm">
+<div class="container-fluid max-width--1024 invest-web-width full-height">
+    <div class="back-btn hidden-lg" (click)="goBack()"></div>
+    <!-- <form id="promoCodeForm" name="promoCodeForm" [formGroup]="promoCodeForm" id="promoCodeFrm">
     <div class="content">
       <div class="row">
         <div class="col-12">
@@ -27,5 +27,75 @@
         </div>
       </div>
     </div>
-  </form>
+  </form> -->
+    <div class="portfolio-page-title hidden-sm">Select Portfolio</div>
+    <!-- Investment Portfolio -->
+    <div class="investment-portfolio">
+        <div class="portfolio-cards" (click)="clickEvent($event)" [ngClass]="{'active': toggle}">
+            <div class="portfolio-cards__img"><img src="assets/images/wisesaver/investment-portfolio-icon.JPG"><img src="assets/images/wisesaver/investment-portfolio-icon-select.JPG"></div>
+            <div class="portfolio-cards__details">
+                <div class="portfolio-cards__details__title">Investment Portfolio</div>
+                <div class="portfolio-cards__details__desc">Better returns with a longer time horizon</div>
+                <div class="portfolio-cards__details__more" (click)="moreInfo.show = !moreInfo.show">More Info<i class="material-icons" *ngIf="!moreInfo.show">keyboard_arrow_down</i><i class="material-icons" *ngIf="moreInfo.show">keyboard_arrow_up</i></div>
+            </div>
+        </div>
+        <div class="portfolio-info" *ngIf="moreInfo.show">
+            <div *ngIf="slides[currentSlide]['TITLE']" class="title-div">
+                <img *ngIf="slides[currentSlide]['TITLE_IMG']" src="{{imgUrl}}{{slides[currentSlide]['TITLE_IMG']}}" class="title-img" />
+                <div class="title-txt">{{slides[currentSlide]['TITLE']}}</div>
+            </div>
+            <ngx-slick class="carousel" #carousel [config]="slideConfig" (beforeChange)="beforeSlideChange($event)">
+                <div ngxSlickItem *ngFor="let slide of slides, let i = index;">
+                    <div class="slide-item">
+                        <div *ngIf="slide.IMAGE" [ngClass]="imgClass">
+                            <img src="{{imgUrl}}{{slide.IMAGE}}" alt="">
+                        </div>
+                        <div *ngIf="slide.IMG_TITLE" [ngClass]="imgTitleClass">{{slide.IMG_TITLE}}</div>
+                        <div *ngIf="slide.TEXT" [ngStyle]="textStyle" [ngClass]="{'extra-margin-top-18': slide.CONTACT}" class="slide-txt">{{slide.TEXT}}</div>
+                        <a *ngIf="slide.URL" class="url-txt" href="" target="_blank" [routerLink]="[slide.URL]" fragment="{{slide.URL_FRAGMENT}}">{{slide.URL_TEXT}}</a>
+                        <div *ngIf="slide.CONTACT" class="contact-div">
+                            <div class="contact-txt">{{slide.CONTACT}}</div>
+                            <div class="contact-tel-div">
+                                <img class="margin-right" src="{{imgUrl}}srs-joint-account/phone.svg">
+                                <a href="tel:{{slide.TEL}}" onclick="return false;" class="contact-tel">{{slide.TEL}}</a>
+                            </div>
+                            <div class="contact-email-div">
+                                <img class="margin-right" src="{{imgUrl}}srs-joint-account/email.svg">
+                                <a href="mailto:{{slide.EMAIL}}" target="_top" class="contact-email">{{slide.EMAIL}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ngx-slick>
+            <div [ngStyle]="btnDivStyle" class="btn-div">
+                <div class="btn-inner-div">
+                    <ng-container *ngIf="currentSlide === 0">
+                        <div class="dismiss-txt" (click)="closePopup()">{{startBtnTxt}}</div>
+                        <input type="image" src="{{imgUrl}}srs-joint-account/forward.svg" (click)="nextSlide()" />
+                    </ng-container>
+                    <ng-container *ngIf="(currentSlide > 0) && (currentSlide < slides.length - 1)">
+                        <input type="image" src="{{imgUrl}}srs-joint-account/backward.svg" (click)="prevSlide()" />
+                        <input type="image" src="{{imgUrl}}srs-joint-account/forward.svg" (click)="nextSlide()" />
+                    </ng-container>
+                    <ng-container *ngIf="currentSlide === slides.length - 1">
+                        <input type="image" src="{{imgUrl}}srs-joint-account/backward.svg" (click)="prevSlide()" />
+                        <div class="got-it-txt" (click)="closePopup(true)">{{endBtnTxt}}</div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- WiseSaver Portfolio -->
+    <div class="wisesaver-portfolio">
+        <div class="portfolio-cards" (click)="clickEvent($event)" [ngClass]="{'active': toggle}">
+            <div class="portfolio-cards__img"><img src="assets/images/wisesaver/investment-portfolio-icon.JPG"><img src="assets/images/wisesaver/investment-portfolio-icon-select.JPG"></div>
+            <div class="portfolio-cards__details">
+                <div class="portfolio-cards__details__title">WiseSaver Portfolio</div>
+                <div class="portfolio-cards__details__desc">Great for shorter savings period</div>
+                <div class="portfolio-cards__details__more">More Info<i class="material-icons">keyboard_arrow_down</i></div>
+            </div>
+        </div>
+    </div>
+    <!--Footer button-->
+    <button type="button" class="btn btn__footer--fixed btn-primary width100" (click)="goNext()">{{'START.PAGE_TITLE' | translate}}</button>
 </div>

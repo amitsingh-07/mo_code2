@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import {
-    Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation
+    Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation, Input
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -19,6 +19,7 @@ import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { SeoServiceService } from './../../../shared/Services/seo-service.service';
+import { SlickComponent } from 'ngx-slick';
 
 @Component({
   selector: 'app-start-journey',
@@ -32,7 +33,35 @@ export class StartJourneyComponent implements OnInit {
   promoCode;
   errorMsg: string;
   promoCodeForm: FormGroup;
+  toggle : boolean = false;
+  show : boolean =  false;
   @ViewChild('promoCode') promoCodeRef: ElementRef;
+  @ViewChild('carousel') carousel: SlickComponent;
+
+
+  @Input() slides: [JSON];
+  @Input() startBtnTxt: string;
+  @Input() endBtnTxt: string;
+
+  // Set Input Styling for different elements, if not set will default to below styling
+  @Input() imgClass = 'srs-img';
+  @Input() imgTitleClass = 'srs-img-title';
+  @Input() textStyle = {};
+  @Input() btnDivStyle = {};
+
+  public imgUrl = 'assets/images/';
+
+  public currentSlide = 0;
+  // Set config for ng slick
+  slideConfig = {
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: '',
+    prevArrow: '',
+    dots: true,
+    infinite: false,
+  };
+
 
   constructor(
     public readonly translate: TranslateService,
@@ -60,6 +89,9 @@ export class StartJourneyComponent implements OnInit {
         this.translate.instant('START.META.META_DESCRIPTION'),
         this.translate.instant('START.META.META_KEYWORDS'));
     });
+    this.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES');
+    this.startBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.START_BTN');
+    this.endBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.END_BTN');   
   }
 
   ngOnInit() {
@@ -136,4 +168,24 @@ export class StartJourneyComponent implements OnInit {
     ref.componentInstance.errorDescription = this.errorMsg;
     return false;
   }
+
+  clickEvent(event){
+    this.toggle = !this.toggle;       
+  }
+  moreInfo(event){
+    this.show = !this.show;   
+  }
+  // Go to next slide
+  nextSlide() {
+    this.carousel.slickNext();
+  }
+  // Go back previous slide
+  prevSlide() {
+    this.carousel.slickPrev();
+  }
+  // Go to specific slide
+  goToSlide(slide) {
+    this.carousel.slickGoTo(slide);
+  }
+
 }
