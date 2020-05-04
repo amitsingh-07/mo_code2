@@ -215,4 +215,21 @@ export class NavbarConfig {
     },
     showExitCheck: true
   };
+
+  // Investment Maintenance
+  '11': object = {
+    showNavBackBtn: false,
+    showHeaderBackBtn: false,
+    showMenu: false,
+    showLogin: false,
+    showLogout: true,
+    showNavShadow: true,
+    showSearchBar: false,
+    showNotifications: true,
+    showHeaderNavbar: true,
+    showLabel: {
+      primary: 'Investment'
+    },
+    showExitCheck: true
+  };
 }
