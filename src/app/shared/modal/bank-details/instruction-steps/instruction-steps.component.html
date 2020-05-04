@@ -16,7 +16,7 @@
             <div class="qrcode__refcode-info--text" innerHTML="{{ 'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.ADD_REFERENCE_CODE_INFO' | translate }}"></div>
         </div>
         <a class="qrcode__save-btn hidden-lg" download target="_blank" [href]="getQrCodeImg()">{{ 'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.QRCODE.SAVEBTN' | translate }} </a>
-        <div class="qrcode__alt-steps">Alternatively, follow these steps to top up by entering UEN number.</div>
+        <div class="qrcode__alt-steps">{{ 'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.QRCODE.ALT_STEPS' | translate }}</div>
     </div>
 
     <div class="steps-title" *ngIf="showBankTransferIns">{{ 'TRANSFER_INSTRUCTION.STEPS_TITLE_BANK' | translate }}</div>
