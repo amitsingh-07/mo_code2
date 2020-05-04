@@ -17,9 +17,7 @@ export class InvestmentMaintenanceComponent implements OnInit {
   constructor(public navbarService: NavbarService, private footerService: FooterService) { }
 
   ngOnInit() {
-    this.navbarService.setNavbarVisibility(false);
-    this.navbarService.setNavbarMode(10);
-    this.navbarService.setNavbarMobileVisibility(false);
+    this.navbarService.setNavbarMode(11);
     this.footerService.setFooterVisibility(false);
 
     const currentDate = new Date();
