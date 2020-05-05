@@ -33,24 +33,14 @@ export class StartJourneyComponent implements OnInit {
   promoCode;
   errorMsg: string;
   promoCodeForm: FormGroup;
-  toggle : boolean = false;
-  show : boolean =  false;
+  investmentEnabled : boolean = false;
+  wiseSaverEnabled : boolean = false;
+  investmentMoreInfoShow : boolean =  false;
+  wiseSaverMoreInfoShow : boolean =  false;
   @ViewChild('promoCode') promoCodeRef: ElementRef;
   @ViewChild('carousel') carousel: SlickComponent;
 
-
-  @Input() slides: [JSON];
-  @Input() startBtnTxt: string;
-  @Input() endBtnTxt: string;
-
-  // Set Input Styling for different elements, if not set will default to below styling
-  @Input() imgClass = 'srs-img';
-  @Input() imgTitleClass = 'srs-img-title';
-  @Input() textStyle = {};
-  @Input() btnDivStyle = {};
-
   public imgUrl = 'assets/images/';
-
   public currentSlide = 0;
   // Set config for ng slick
   slideConfig = {
@@ -61,8 +51,6 @@ export class StartJourneyComponent implements OnInit {
     dots: true,
     infinite: false,
   };
-
-
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -89,9 +77,6 @@ export class StartJourneyComponent implements OnInit {
         this.translate.instant('START.META.META_DESCRIPTION'),
         this.translate.instant('START.META.META_KEYWORDS'));
     });
-    this.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES');
-    this.startBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.START_BTN');
-    this.endBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.END_BTN');   
   }
 
   ngOnInit() {
@@ -169,11 +154,21 @@ export class StartJourneyComponent implements OnInit {
     return false;
   }
 
-  clickEvent(event){
-    this.toggle = !this.toggle;       
+  investPortfolio(event){
+    this.investmentEnabled = !this.investmentEnabled; 
+    this.wiseSaverEnabled = false;      
   }
-  moreInfo(event){
-    this.show = !this.show;   
+  wiseSaverPortfolio(event){
+    this.wiseSaverEnabled = !this.wiseSaverEnabled;
+    this.investmentEnabled = false;       
+  }
+  investmentMoreInfo(event){
+    this.investmentMoreInfoShow = !this.investmentMoreInfoShow;
+    event.stopPropagation();
+  }
+  wiseSaverMoreInfo(event){
+    this.wiseSaverMoreInfoShow = !this.wiseSaverMoreInfoShow;
+    event.stopPropagation();    
   }
   // Go to next slide
   nextSlide() {
@@ -187,5 +182,8 @@ export class StartJourneyComponent implements OnInit {
   goToSlide(slide) {
     this.carousel.slickGoTo(slide);
   }
-
+  // Setting the next slide index on beforeChange event fire
+  beforeSlideChange(e) {
+    this.currentSlide = e.nextSlide;
+  }
 }
