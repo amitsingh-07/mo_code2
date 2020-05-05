@@ -173,11 +173,34 @@ app-start-journey {
         font-size: 16px;
         border-radius: 6px;
         top: -20px;
-    }
-    .showInfo+.portfolio-info {
-        display: block;
+        &__slide-item {
+            font-size: 16px;
+            font-family: $muli-regular;
+            color: $silver-grey-color;
+            ul {
+                padding-left: 0;
+            }
+            li {
+                margin-bottom: 15px;
+                background: url(../../../../assets/images/wisesaver/tick-mark.JPG) no-repeat 0 3px;
+                padding-left: 30px;
+            }
+        }
+        &__heading {
+            font-size: 16px;
+            font-family: $muli-bold;
+            margin-bottom: 15px;
+        }
     }
     .btn:disabled {
-        color: #00afaf;
+        color: $btn-disabled-teal-color;
+    }
+    .slick-dots li button:before {
+        font-size: 10px;
+        color: $slick-dot-inactive-color;
+    }
+    .slick-dots li.slick-active button:before {
+        font-size: 10px;
+        color: $robins-egg-blue-color;
     }
 }

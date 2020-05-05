@@ -19,11 +19,46 @@
             "META_KEYWORDS": ""
         }
     },
+    "PORTFOLIO": {
+        "TITLE": "Select Portfolio",
+        "INVESTMENT": {
+            "TITLE": "Investment Portfolio",
+            "DESC": "Better returns with a longer time horizon",
+            "MORE_INFO": "More Info",
+            "FOOTER_BTN_TXT": "Choose Investment Portfolio",
+            "SLIDES": {
+                "P1": "Our Investment Portfolios give you the best probability of a successful investment experience by helping you to achieve your financial goals.",
+                "P2": "Let us choose the right asset allocation for you so that you can stay invested for the long haul with as little guesswork and as little stress as possible.",
+                "HEADING": "What's great?",
+                "LIST_ITEM_1": "Suitable for longer-term investing",
+                "LIST_ITEM_2": "Globally diversified",
+                "LIST_ITEM_3": "No stock picking",
+                "LIST_ITEM_4": "Low costs",
+                "LIST_ITEM_5": "Invest from as low as $50/month"
+            }
+        },
+        "WISESAVER": {
+            "TITLE": "WiseSaver Portfolio",
+            "DESC": "Great for shorter savings period",
+            "MORE_INFO": "More Info",
+            "FOOTER_BTN_TXT": "Choose WiseSaver Portfolio",
+            "SLIDES": {
+                "P1": "This is a cash management portfolio that gives you safe and stable returns that are comparable to SGD fixed deposits regardless of how much or how long you are saving.",
+                "P2": "You can park your emergency funds or spare cash here with the confidence that you can easily access them whenever you need them.",
+                "HEADING": "What's great?",
+                "LIST_ITEM_1": "Suitable for short-term investing",
+                "LIST_ITEM_2": "Low to no risk",
+                "LIST_ITEM_3": "No lock-in period",
+                "LIST_ITEM_4": "No Advisory or Platform Fee",
+                "LIST_ITEM_5": "Save from as low as $50/month"
+            }
+        }
+    },
     "FUNDING_METHOD": {
         "TITLE": "Select Funding Method",
         "DESC": "I want to fund this portfolio using",
         "HOW_TO_FUND_PORTFOLIO": "How do you want to fund this portfolio?",
-        "SRS_DESC": "Please have your SRS account number ready before you continue from here. You <u>MUST</u> also ensure sufficient fund in your SRS Account. Amount will be deducted immediately to process the buy request.",
+        "SRS_DESC": "Please have your SRS account number ready before you continue from here. You <u>MUST</ul> also ensure sufficient fund in your SRS Account. Amount will be deducted immediately to process the buy request.",
         "CASH_DESC": "You can fund using any bank account (registered under your name).",
         "LOADER_TITLE": "Loading...",
         "LOADER_DESC": "Please wait while we load the data.",
