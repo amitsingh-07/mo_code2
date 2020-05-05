@@ -3,7 +3,6 @@ import { CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { ConfigService, IConfig } from '../config/config.service';
-import { appConstants } from './../app.constants';
 
 @Injectable()
 export class InvestmentMaintenanceGuard implements CanActivate {
