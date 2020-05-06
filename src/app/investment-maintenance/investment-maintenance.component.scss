@@ -10,11 +10,12 @@ app-investment-maintenance {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin-top: 50px;
 
         @include allmobiles {
             height: 100vh;
             padding: 0 24px;
-            margin-top: -45px;
+            margin-top: 0px;
         }
     }
 
@@ -64,11 +65,7 @@ app-investment-maintenance {
     }
 
     .footer {
-        margin-top: 115px;
-
-        @include allmobiles {
-            margin-top: 40px;
-        }
+        margin-top: 40px;
 
         .mo-logo {
             @include allmobiles {
