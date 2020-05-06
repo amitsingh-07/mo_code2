@@ -96,7 +96,8 @@
         "TITLE": "Settings",
         "SORT_BY": "Sort by",
         "APPLY_FILTERS": "Apply Filters",
-        "SORT": [{
+        "SORT": [
+            {
                 "displayText": "Highest Ranking",
                 "value": "premium.ranking"
             },
@@ -405,7 +406,7 @@
             "DEFAULT_ESTIMATED_LITE": "Estimated 10 mins",
             "COMPREHENSIVE_PLANNING_LAST_SUBMITTED_DATE": "Last Submitted LAST_SUBMITTED_DATE",
             "WARNING_POPUP": "Note that your DOB/Gender is different from Investment journey. Reach adviser on how to proceed",
-            "COMPREHENSIVE_PLANNING_SUBMITTED": "Once your report is ready, you will be contacted via email to set up an appointment with the adviser.",
+            "COMPREHENSIVE_PLANNING_SUBMITTED": "Once your report is ready, our advisers will be in touch with you.",
             "COMPREHENSIVE_REPORT_ERROR_MSG": "We faced an error when generating your report. Please click on “Make Changes” to generate a new report."
         }
     },
@@ -475,5 +476,11 @@
         "ACCOUNT_CREATION_PENDING_TITLE": "Sorry, Investment Account Setup in-progress",
         "ACCOUNT_CREATION_PENDING_ERROR": "Please wait for account to be ready to add or view portfolio.",
         "NOT_ALLOW_USER_ERROR": "Your investment account set up is unsuccessful and portfolio creation is not allowed."
+    },
+    "INVEST_MAINTENANCE": {
+        "TITLE": "Maintenance In Progress",
+        "CONTENT": "We’ll be back again shortly. Please check our homepage for the schedule of maintenance.",
+        "CONTACT_US": "Contact Us",
+        "ABT_MO": "MoneyOwl Pte Ltd is a financial adviser and fund management company licensed by MAS. We are a joint venture between NTUC Enterprise Co-operative Ltd and Providend Holding Pte Ltd. Capital Markets Services Licence No: CMS100758. {{copyrightYear}} MoneyOwl Pte Ltd. All Rights Reserved."
     }
 }
