@@ -52,7 +52,7 @@
                 <p>He optimises his CPF using the proprietary MoneyOwl CPF Analyser.</p>
               </div>
               <div class="pop-label">
-                He gets $1,000<sup>3</sup> in commission rebates over 3 years.
+                He gets $750<sup>3</sup> in commission rebates over 3 years.
               </div>
             </div>
             <div class="content55to60">
@@ -75,7 +75,7 @@
                   <span class="right-curve"></span>
                 </div>  
                 <div class="icon cheque"></div>
-                <div class="desc">At age 60, he receives a retirement angpow of <strong>$8,000</strong> + $500 p.m.<sup>4</sup> till age 65.</div>
+                <div class="desc">At age 60, he receives a retirement angpow of <strong>$9,500</strong> + $500 p.m.<sup>4</sup> till age 65.</div>
               </div>
               <div class="modal__card"> 
                 <div class="arrow">
@@ -106,13 +106,13 @@
     <div class="retire-bundle-eqn__container">
       <div class="retire-bundle-eqn__card">
         <p class="heading">Total Guaranteed Monthly Income Received<sup>4</sup>:</p>
-        <p class="value">$96,000</p>
+        <p class="value">$94,000</p>
         </div>
       <div class="retire-bundle-eqn__operator plus"></div>
       <div class="retire-bundle-eqn__card">
           <p class="heading">Total Additional 
               Monthly Income and Cash Bonus Received<sup>4</sup>:</p>
-          <p class="value">$32,000</p>
+          <p class="value">$36,000</p>
           </div>
         <div class="retire-bundle-eqn__operator plus"></div>
         <div class="retire-bundle-eqn__card">
@@ -122,7 +122,7 @@
         <div class="retire-bundle-eqn__operator equals"></div>
         <div class="retire-bundle-eqn__card">
           <p class="heading">Total Potential Retirement Income Benefits:</p>
-          <p class="value">$214,000</p>
+          <p class="value">$216,000</p>
           </div>
     </div>
   </div>
@@ -142,7 +142,7 @@
       If Mr Tan suffers severe disability, he will receive $1,600 p.m.<sup>6</sup> for life. This includes the payouts that he will receive under CareShield Life (from 2020).
       <br/>
       <br/>
-      Mr Tan also receives $1,000 commission rebates<sup>3</sup> over 3 years. This lowers the cost for Mr Tan!
+      Mr Tan also receives $750 commission rebates<sup>3</sup> over 3 years. This lowers the cost for Mr Tan!
     </p>
     <p class="heading">What this means for Mr Tan</p>
     <div class="retire-bundle-more__card-container">
