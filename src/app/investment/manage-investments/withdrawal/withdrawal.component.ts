@@ -300,7 +300,7 @@ export class WithdrawalComponent implements OnInit {
         this.isFromPortfolio = true;
       }
     }
-    if (key === 'withdrawType') {
+    if (key === 'withdrawType' || value.portfolioType === 'SRS') {
       setTimeout(() => {
         this.checkRedeemAll();
       }, 100);
@@ -492,7 +492,7 @@ export class WithdrawalComponent implements OnInit {
       const cashBalance = (this.isFromPortfolio) ? this.withdrawForm.controls.withdrawPortfolio.value.portfolioValue.toString() :
         this.cashBalance.toString();
       // Minimum cash balance amount 50
-      if (cashBalance <= MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT && cashBalance > 0) {
+      if (cashBalance <= (MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT + MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT) && cashBalance > 0) {
         this.withdrawForm.controls.withdrawRedeem.setValue(true);
         this.withdrawForm.controls.withdrawAmount.setValue(cashBalance);
         this.withdrawForm.get('withdrawAmount').disable();
