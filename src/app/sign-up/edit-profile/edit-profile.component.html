@@ -50,7 +50,8 @@
                     </div>
                     <div class="flex-col-1">
                         <div class="dropdown-img">
-                            <span id="showHideUser" class="arrow" [class.active]="showHideUser.style.display === 'block' || showHideUser.style.display === ''"></span>
+                            <span id="showHideUser" class="arrow"
+                                [class.active]="showHideUser.style.display === 'block' || showHideUser.style.display === ''"></span>
                             <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideUser) /> -->
                         </div>
                     </div>
@@ -73,8 +74,8 @@
                         </div>
                     </div>
                     <button type="button" class="edit-button" id="editEmployeButton" (click)="editUserDetails()">
-            {{'EDIT_PROFILE.EDIT' | translate}}
-          </button>
+                        {{'EDIT_PROFILE.EDIT' | translate}}
+                    </button>
                 </div>
             </div>
             <!-- Change Password Section  -->
@@ -87,7 +88,8 @@
                     </div>
                     <div class="flex-col-1">
                         <div class="dropdown-img">
-                            <span id="showHidePassword" class="arrow" [class.active]="showHidePassword.style.display === 'block' || showHidePassword.style.display === ''"></span>
+                            <span id="showHidePassword" class="arrow"
+                                [class.active]="showHidePassword.style.display === 'block' || showHidePassword.style.display === ''"></span>
                             <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHidePassword) /> -->
                         </div>
                     </div>
@@ -102,8 +104,8 @@
                         </div>
                     </div>
                     <button type="button" class="edit-button" id="editEmployeButton" (click)="editPassword()">
-            {{'EDIT_PROFILE.EDIT' | translate}}
-          </button>
+                        {{'EDIT_PROFILE.EDIT' | translate}}
+                    </button>
                 </div>
             </div>
         </div>
@@ -119,7 +121,8 @@
                     </div>
                     <div class="flex-col-1">
                         <div class="dropdown-img">
-                            <span id="showHideContact" class="arrow" [class.active]="showHideContact.style.display === 'block' || showHideContact.style.display === ''"></span>
+                            <span id="showHideContact" class="arrow"
+                                [class.active]="showHideContact.style.display === 'block' || showHideContact.style.display === ''"></span>
                             <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideContact) /> -->
                         </div>
                     </div>
@@ -283,8 +286,8 @@
                         </div>
                     </div>
                     <button type="button" class="edit-button" id="confirmButton" (click)="editContactDetails()">
-            {{'EDIT_PROFILE.EDIT' | translate}}
-          </button>
+                        {{'EDIT_PROFILE.EDIT' | translate}}
+                    </button>
                 </div>
             </div>
             <!-- Update Employee Details  -->
@@ -298,7 +301,8 @@
                         </div>
                         <div class="flex-col-1">
                             <div class="dropdown-img">
-                                <span id="showHideEmp" class="arrow" [class.active]="showHideEmp.style.display === 'block' || showHideEmp.style.display === ''"></span>
+                                <span id="showHideEmp" class="arrow"
+                                    [class.active]="showHideEmp.style.display === 'block' || showHideEmp.style.display === ''"></span>
                                 <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideEmp) /> -->
                             </div>
                         </div>
@@ -317,7 +321,8 @@
                                 <div class="update-contact-title">
                                     {{'EDIT_PROFILE.EMP_NAME' | translate}}
                                 </div>
-                                <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails">
+                                <div class="update-contact-value"
+                                    *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails">
                                     {{empolymentDetails.employerDetails && empolymentDetails.employerDetails.detailedEmployerDetails && empolymentDetails.employerDetails.detailedEmployerDetails.employerName }}
                                 </div>
                             </div>
@@ -325,10 +330,12 @@
                                 <div class="update-contact-title">
                                     {{'EDIT_PROFILE.INDUSTRY' | translate}}
                                 </div>
-                                <div class="update-contact-value" *ngIf="!empolymentDetails.employerDetails.detailedEmployerDetails.otherIndustry">
+                                <div class="update-contact-value"
+                                    *ngIf="!empolymentDetails.employerDetails.detailedEmployerDetails.otherIndustry">
                                     {{empolymentDetails.employerDetails && empolymentDetails.employerDetails.detailedEmployerDetails && empolymentDetails.employerDetails.detailedEmployerDetails.industry && empolymentDetails.employerDetails.detailedEmployerDetails.industry.industry }}
                                 </div>
-                                <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails.otherIndustry">
+                                <div class="update-contact-value"
+                                    *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails.otherIndustry">
                                     {{empolymentDetails.employerDetails && empolymentDetails.employerDetails.detailedEmployerDetails && empolymentDetails.employerDetails.detailedEmployerDetails.industry && empolymentDetails.employerDetails.detailedEmployerDetails.otherIndustry }}
                                 </div>
                             </div>
@@ -336,7 +343,8 @@
                                 <div class="update-contact-title">
                                     {{'EDIT_PROFILE.EMP_CONTRACT' | translate}}
                                 </div>
-                                <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails">
+                                <div class="update-contact-value"
+                                    *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails">
                                     {{empolymentDetails.employerDetails && empolymentDetails.employerDetails.employerContact }}
                                 </div>
                             </div>
@@ -356,7 +364,8 @@
                                     <div class="update-contact-title">
                                         {{'EDIT_PROFILE.COUNTRY' | translate}}
                                     </div>
-                                    <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                                    <div class="update-contact-value"
+                                        *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
                                         {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.name}}
                                     </div>
                                 </div>
@@ -364,7 +373,8 @@
                                     <div class="update-contact-title">
                                         {{'EDIT_PROFILE.POSTAL' | translate}}
                                     </div>
-                                    <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                                    <div class="update-contact-value"
+                                        *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
                                         {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode}}
                                     </div>
                                 </div>
@@ -372,7 +382,8 @@
                                     <div class="update-contact-title">
                                         {{'EDIT_PROFILE.ADDRESS_1' | translate}}
                                     </div>
-                                    <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                                    <div class="update-contact-value"
+                                        *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
                                         {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine1}}
                                     </div>
                                 </div>
@@ -380,7 +391,8 @@
                                     <div class="update-contact-title">
                                         {{'EDIT_PROFILE.ADDRESS_2' | translate}}
                                     </div>
-                                    <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                                    <div class="update-contact-value"
+                                        *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
                                         {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine2}}
                                     </div>
                                 </div>
@@ -389,7 +401,8 @@
                                     <div class="update-contact-title">
                                         {{'EDIT_PROFILE.FLOOR' | translate}}
                                     </div>
-                                    <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                                    <div class="update-contact-value"
+                                        *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
                                         {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.floor}}
                                     </div>
                                 </div>
@@ -397,7 +410,8 @@
                                     <div class="update-contact-title">
                                         {{'EDIT_PROFILE.UNIT' | translate}}
                                     </div>
-                                    <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                                    <div class="update-contact-value"
+                                        *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
                                         {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.unitNumber}}
                                     </div>
                                 </div>
@@ -405,7 +419,8 @@
                                     <div class="update-contact-title">
                                         {{'EDIT_PROFILE.CITY' | translate}}
                                     </div>
-                                    <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                                    <div class="update-contact-value"
+                                        *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
                                         {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.city}}
                                     </div>
                                 </div>
@@ -413,7 +428,8 @@
                                     <div class="update-contact-title">
                                         {{'EDIT_PROFILE.STATE' | translate}}
                                     </div>
-                                    <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                                    <div class="update-contact-value"
+                                        *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
                                         {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.state}}
                                     </div>
                                 </div>
@@ -421,15 +437,16 @@
                                     <div class="update-contact-title">
                                         {{'EDIT_PROFILE.ZIP' | translate}}
                                     </div>
-                                    <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                                    <div class="update-contact-value"
+                                        *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
                                         {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode}}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <button type="button" class="edit-button" (click)="editEmployeDetails()" id="editEmployeButton">
-              {{'EDIT_PROFILE.EDIT' | translate}}
-            </button>
+                            {{'EDIT_PROFILE.EDIT' | translate}}
+                        </button>
                     </div>
                 </div>
             </div>
@@ -444,7 +461,8 @@
                         </div>
                         <div class="flex-col-1">
                             <div class="dropdown-img">
-                                <span id="showHideBank" class="arrow" [class.active]="showHideBank.style.display === 'block' || showHideBank.style.display === ''"></span>
+                                <span id="showHideBank" class="arrow"
+                                    [class.active]="showHideBank.style.display === 'block' || showHideBank.style.display === ''"></span>
                                 <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" /> -->
                             </div>
                         </div>
@@ -475,9 +493,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="edit-button" id="editEmployeButton" (click)="editBankDetails()" [disabled]="disableBankSrsEdit">
-                {{'EDIT_PROFILE.EDIT' | translate}}
-              </button>
+                            <button type="button" class="edit-button" id="editEmployeButton" (click)="editBankDetails()"
+                                [disabled]="disableBankSrsEdit">
+                                {{'EDIT_PROFILE.EDIT' | translate}}
+                            </button>
                         </div>
                         <div class="no-details" *ngIf="!bankDetails">
                             <div class="flex-row">
@@ -486,9 +505,10 @@
                                         {{'EDIT_PROFILE.NO_BANK' | translate}}
                                     </div>
                                 </div>
-                                <button type="button" class="edit-button" id="editEmployeButton" (click)="addBankDetails()" [disabled]="disableBankSrsEdit">
-                  {{'EDIT_PROFILE.ADD_BANK' | translate}}
-                </button>
+                                <button type="button" class="edit-button" id="editEmployeButton"
+                                    (click)="addBankDetails()" [disabled]="disableBankSrsEdit">
+                                    {{'EDIT_PROFILE.ADD_BANK' | translate}}
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -503,7 +523,8 @@
                         </div>
                         <div class="flex-col-1">
                             <div class="dropdown-img">
-                                <span id="showHideSrs" class="arrow" [class.active]="showHideSrs.style.display === 'block' || showHideSrs.style.display === ''"></span>
+                                <span id="showHideSrs" class="arrow"
+                                    [class.active]="showHideSrs.style.display === 'block' || showHideSrs.style.display === ''"></span>
                                 <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" /> -->
                             </div>
                         </div>
@@ -512,23 +533,29 @@
                         <div>
                             <div class="flex-row">
                                 <div class="flex-col-4">
-                                    <div id="srs-operator-lbl" class="bank-account">{{'UPDATE_SRS.SRS_OPERATOR' | translate}}</div>
+                                    <div id="srs-operator-lbl" class="bank-account">
+                                        {{'UPDATE_SRS.SRS_OPERATOR' | translate}}</div>
                                 </div>
                                 <div class="flex-col-8">
-                                    <div id="srs-operator-value" class="bank-account-num">{{srsDetails?.srsOperator}}</div>
+                                    <div id="srs-operator-value" class="bank-account-num">{{srsDetails?.srsOperator}}
+                                    </div>
                                 </div>
                             </div>
                             <div class="flex-row">
                                 <div class="flex-col-4">
-                                    <div id="srs-act-num-lbl" class="bank-account">{{'UPDATE_SRS.SRS_ACCOUNT_NUMBER' | translate}}</div>
+                                    <div id="srs-act-num-lbl" class="bank-account">
+                                        {{'UPDATE_SRS.SRS_ACCOUNT_NUMBER' | translate}}</div>
                                 </div>
                                 <div class="flex-col-8">
-                                    <div id="srs-act-num-value" class="bank-account-num">{{srsDetails?.srsAccountNumber?.conformedValue}}</div>
+                                    <div id="srs-act-num-value" class="bank-account-num">
+                                        {{srsDetails?.srsAccountNumber?.conformedValue}}</div>
                                 </div>
                             </div>
-                            <button type="button" class="edit-button" id="editEmployeButton" (click)="updateSrsDetails(srsDetails?.srsAccountNumber?.conformedValue, {name: srsDetails?.srsOperator}, srsDetails?.customerId, false)" [disabled]="disableBankSrsEdit">
-                  {{'EDIT_PROFILE.EDIT' | translate}}
-                </button>
+                            <button type="button" class="edit-button" id="editEmployeButton"
+                                (click)="updateSrsDetails(srsDetails?.srsAccountNumber?.conformedValue, {name: srsDetails?.srsOperator}, srsDetails?.customerId, false)"
+                                [disabled]="disableBankSrsEdit">
+                                {{'EDIT_PROFILE.EDIT' | translate}}
+                            </button>
                         </div>
                     </div>
                 </div>

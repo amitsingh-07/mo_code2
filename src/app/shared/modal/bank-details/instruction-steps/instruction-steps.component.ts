@@ -25,7 +25,8 @@ export class InstructionStepsComponent implements OnInit {
   showToolTipModal() {
     this.showToolTip.emit();
   }
-  getQrCodeImg(){
-    return window.location.origin + '/app/assets/images/paynow-qrcode.png';
-    }
+
+  getQrCodeImg() {
+    return document.getElementsByTagName('base')[0].href + 'assets/images/paynow-qrcode.png';
+  }
 }
