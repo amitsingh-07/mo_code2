@@ -31,7 +31,7 @@
     <div class="portfolio-page-title hidden-sm">{{'PORTFOLIO.TITLE' | translate}}</div>
     <!-- Investment Portfolio -->
     <div class="investment-portfolio">
-        <div class="portfolio-cards" (click)="investPortfolio($event)" [ngClass]="{'active': investmentEnabled}">
+        <div class="portfolio-cards" (click)="investPortfolio($event)" [ngClass]="{'active': investmentEnabled, 'more-info-shadow': investmentMoreInfoShow}">
             <div class="portfolio-cards__select" *ngIf="investmentEnabled"><img src="{{imgUrl}}/wisesaver/circle-tick.svg"></div>
             <div class="portfolio-cards__img"><img src="{{imgUrl}}/wisesaver/investment-guy.svg"></div>
             <div class="portfolio-cards__details">
@@ -66,7 +66,7 @@
     </div>
     <!-- WiseSaver Portfolio -->
     <div class="wisesaver-portfolio">
-        <div class="portfolio-cards" (click)="wiseSaverPortfolio($event)" [ngClass]="{'active': wiseSaverEnabled}">
+        <div class="portfolio-cards" (click)="wiseSaverPortfolio($event)" [ngClass]="{'active': wiseSaverEnabled,'more-info-shadow': wiseSaverMoreInfoShow }">
             <div class="portfolio-cards__select" *ngIf="wiseSaverEnabled"><img src="{{imgUrl}}/wisesaver/circle-tick.svg"></div>
             <div class="portfolio-cards__img"><img src="{{imgUrl}}/wisesaver/wisesaver-family.svg"></div>
             <div class="portfolio-cards__details">

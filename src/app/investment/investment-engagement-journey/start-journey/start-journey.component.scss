@@ -131,6 +131,7 @@ app-start-journey {
         &.active {
             background-color: $portfolio-card-text-color;
             color: $white-color;
+            box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.5);
         }
         &__select {
             position: absolute;
@@ -182,7 +183,7 @@ app-start-journey {
             }
             li {
                 margin-bottom: 15px;
-                background: url(../../../../assets/images/wisesaver/tick-mark.JPG) no-repeat 0 3px;
+                background: url(../../../../assets/images/wisesaver/icon-tick.svg) no-repeat 0 0;
                 padding-left: 30px;
             }
         }
@@ -202,5 +203,9 @@ app-start-journey {
     .slick-dots li.slick-active button:before {
         font-size: 10px;
         color: $robins-egg-blue-color;
+    }
+    .more-info-shadow {
+        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.5);
+        ;
     }
 }

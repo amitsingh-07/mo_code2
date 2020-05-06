@@ -28,7 +28,6 @@ import { SlickComponent } from 'ngx-slick';
   encapsulation: ViewEncapsulation.None
 })
 export class StartJourneyComponent implements OnInit {
-  @Input() slides: [JSON];
   pageTitle: string;
   isDisabled: boolean;
   promoCode;
