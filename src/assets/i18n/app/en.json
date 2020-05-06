@@ -458,7 +458,7 @@
                 "QRCODE": {
                     "TITLE": "Scan & Transfer by QR Code",
                     "DESC": "Top up by scanning or saving this QR Code to your bank’s PayNow option.",
-                    "REFCODE": "Enter reference code",
+                    "REFCODE": "Enter Reference Code",
                     "SAVEBTN": "Save QR Image",
                     "ALT_STEPS": "Alternatively, follow these steps to top up by entering UEN number."
                 }
