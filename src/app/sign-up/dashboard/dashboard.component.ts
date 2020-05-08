@@ -438,4 +438,25 @@ export class DashboardComponent implements OnInit {
       }, (error) => console.log('ERROR: ', error));
     }
   }
+  gotoTopUp() {
+    this.manageInvestmentsService.setSelectedCustomerPortfolioId(null);
+    this.manageInvestmentsService.setSelectedCustomerPortfolio(null);
+    this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
+      if (data.responseMessage.responseCode >= 6000) {
+        const investmentoverviewlist = (data.objectList) ? data.objectList : {};
+        const portfolioList = (investmentoverviewlist.portfolios) ? investmentoverviewlist.portfolios : [];
+        this.manageInvestmentsService.setUserPortfolioList(portfolioList);
+        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
+      }
+    });
+  }
+  showCashAccountPopUp() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'DASHBOARD.INVESTMENT.CASH_ACCOUNT_BALANCE_TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'DASHBOARD.INVESTMENT.CASH_ACCOUNT_BALANCE_MESSAGE'
+    );
+  }
 }
