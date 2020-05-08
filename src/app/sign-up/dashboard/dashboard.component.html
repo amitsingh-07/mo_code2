@@ -197,9 +197,35 @@
                 </div>
               </ng-container>
               <ng-template #loader>
-                <div class="loader-div">
-                  <img src="assets/styles/ajax-loader.gif" />
-                </div>
+                <ng-container *ngIf="iFastMaintenance; else notUnderMaintenance">
+                  <!-- iFast Maintenance -->
+                  <div class="widget-title">
+                    <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
+                    </span>
+                  </div>
+                  <div class="widget-body">
+                    <div class="scenarios flex-col-12">
+                      <div class="warning col-12">
+                        <div class="alert-img-container">
+                          <img src="assets/images/alert-red.svg" />
+                        </div>
+                        <div class="warning-txt">
+                          <div class="flex-col-8">{{'DASHBOARD.INVESTMENT.SERVICE_UNAVAILABLE' | translate}}</div>
+                          <div class="flex-col-4">
+                            <div class="investment_icon">
+                              <img src="assets/images/investment-account/investment-icon.svg" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+                <ng-template #notUnderMaintenance>
+                  <div class="loader-div">
+                    <img src="assets/styles/ajax-loader.gif" />
+                  </div>
+                </ng-template>
               </ng-template>
             </div>
             <!-- End of Investment widget -->

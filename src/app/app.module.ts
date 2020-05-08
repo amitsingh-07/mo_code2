@@ -125,6 +125,8 @@ import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard
 
 import { PaymentChildEnableGuard } from './payment/payment-child-enable-guard';
 import { PaymentEnableGuard } from './payment/payment-enable-guard';
+import { InvestmentMaintenanceComponent } from './investment-maintenance/investment-maintenance.component';
+import { InvestmentMaintenanceGuard } from './investment-maintenance/investment-maintenance-guard';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -174,7 +176,8 @@ export function tokenGetterFn() {
     DiyModalComponent,
     NotFoundComponent,
     EmailEnquirySuccessComponent,
-    RestrictAddPortfolioModalComponent
+    RestrictAddPortfolioModalComponent,
+    InvestmentMaintenanceComponent
   ],
   imports: [
     BrowserModule,
@@ -237,7 +240,8 @@ export function tokenGetterFn() {
     ComprehensiveChildEnableGuard,
     AboutAge,
     PaymentEnableGuard,
-    PaymentChildEnableGuard
+    PaymentChildEnableGuard,
+    InvestmentMaintenanceGuard
   ],
   bootstrap: [AppComponent],
   entryComponents: [
