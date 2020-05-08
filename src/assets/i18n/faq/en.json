@@ -385,11 +385,11 @@
                 ],
                 "Fees": [{
                         "QUESTION": "What are the total fees that I have to pay?",
-                        "ANSWER": "The total annual fees you have to pay are as follows:<table class=\"table--bordered\"><tr><td class=\"cell--teal\">MoneyOwl Advisory Fees<br/><small><i>(*Or your special promo rate)</i></small></td><td>0.65% p.a.*</td></tr><tr><td class=\"cell--teal\"><span>Platform Fees</span><br/><small><i>(Paid to iFast)</i></small></td><td>0.18% p.a.</td></tr><tr><td class=\"cell--teal\"><span>Fund Expense Ratio <i>(Estimated)</i></span><br/><small><i>(Payable to Dimensional Fund Advisors)</i></small></td><td>0.3% to 0.4% p.a.</td></tr></table>"
+                        "ANSWER": "The total annual fees you have to pay are as follows:<table class=\"table--bordered\"><tr><td class=\"cell--teal\">MoneyOwl Advisory Fees<br/><small><i>(*Or your special promo rate)</i></small></td><td>0.65% p.a.*</td></tr><tr><td class=\"cell--teal\"><span>Platform Fees</span><br/><small><i>(Paid to iFast)</i></small></td><td>0.18% p.a.</td></tr></table>Excludes fund-level fees of 0.28% to 0.32% p.a. which are already incorporated into the Net Asset Value (NAV) or price of the fund."
                     },
                     {
                         "QUESTION": "How are fees deducted?",
-                        "ANSWER": "The fees are deducted from the units in your portfolio on a quarterly basis. For MoneyOwl, projected returns are net of Total Fees."
+                        "ANSWER": "The MoneyOwl Advisory and Platform fees are deducted from the units in your portfolio on a quarterly basis. For MoneyOwl, projected returns are net of Total Fees."
                     },
                     {
                         "QUESTION": "Are there any fees if I close my MoneyOwl Investment Account?",
