@@ -55,6 +55,12 @@
     "VIEW_FUND_DETAILS": "View Fund Details",
     "TITLE": "Confirm Portfolio",
     "PORTFOLIO": "Portfolio",
+    "WISE_SAVER_PORTOFOLIO":{
+      "WS_TITLE_DESC":"The underlying cash fund holds assets primarily in <strong>Singapore Dollar</strong> deposits.",
+      "WS_RATE_DESC":"This rate will be updated periodically as market and economic conditions change.",
+      "WS_RATE_TITLE":"Estimated Return",
+      "PORTFOLIO_DESC":"This is based on the weighted average gross yield of the underlying deposits placed with the counterparty financial institution which has a minimum short- term rating of F2 by Fitch, P-2 by Moody’s, or A-2 by S&P."
+    },
     "ERRORS": {
       "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
       "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
