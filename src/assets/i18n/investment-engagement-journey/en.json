@@ -19,6 +19,41 @@
       "META_KEYWORDS": ""
     }
   },
+  "PORTFOLIO": {
+    "TITLE": "Select Portfolio",
+    "INVESTMENT": {
+      "TITLE": "Investment Portfolio",
+      "DESC": "Better returns with a longer time horizon",
+      "MORE_INFO": "More Info",
+      "FOOTER_BTN_TXT": "Choose Investment Portfolio",
+      "SLIDES": {
+        "P1": "Our Investment Portfolios give you the best probability of a successful investment experience by helping you to achieve your financial goals.",
+        "P2": "Let us choose the right asset allocation for you so that you can stay invested for the long haul with as little guesswork and as little stress as possible.",
+        "HEADING": "What's great?",
+        "LIST_ITEM_1": "Suitable for longer-term investing",
+        "LIST_ITEM_2": "Globally diversified",
+        "LIST_ITEM_3": "No stock picking",
+        "LIST_ITEM_4": "Low costs",
+        "LIST_ITEM_5": "Invest from as low as $50/month"
+      }
+    },
+    "WISESAVER": {
+      "TITLE": "WiseSaver Portfolio",
+      "DESC": "Great for shorter savings period",
+      "MORE_INFO": "More Info",
+      "FOOTER_BTN_TXT": "Choose WiseSaver Portfolio",
+      "SLIDES": {
+        "P1": "This is a cash management portfolio that gives you safe and stable returns that are comparable to SGD fixed deposits regardless of how much or how long you are saving.",
+        "P2": "You can park your emergency funds or spare cash here with the confidence that you can easily access them whenever you need them.",
+        "HEADING": "What's great?",
+        "LIST_ITEM_1": "Suitable for short-term investing",
+        "LIST_ITEM_2": "Low to no risk",
+        "LIST_ITEM_3": "No lock-in period",
+        "LIST_ITEM_4": "No Advisory or Platform Fee",
+        "LIST_ITEM_5": "Save from as low as $50/month"
+      }
+    }
+  },
   "FUNDING_METHOD": {
     "TITLE": "Select Funding Method",
     "DESC": "I want to fund this portfolio using",
@@ -64,7 +99,7 @@
     "LIST_LBL_4": "Up to 11",
     "LIST_LBL_5": "Up to 14",
     "LIST_LBL_6": "15 or more",
-    "LIST_LBL_DESC_1": "Not suitable to invest.", 
+    "LIST_LBL_DESC_1": "Not suitable to invest.",
     "LIST_LBL_DESC_2": "Up to 20% Equities (80% Bonds)",
     "LIST_LBL_DESC_3": "Up to 40% Equities (60% Bonds)",
     "LIST_LBL_DESC_4": "Up to 60% Equities (40% Bonds)",
@@ -74,9 +109,9 @@
     "MODAL": {
       "TITLE": "Less than 4 years of investment period",
       "MESSAGE": "It is not recommended to invest with only {{period}} years of investment time horizon.You may want to consider our WiseSaver Portfolio instead.",
-      "BTN_LBL1":"Review Investment Period",
-      "BTN_LBL2":"Go to WiseSaver Portfolio"
-     }
+      "BTN_LBL1": "Review Investment Period",
+      "BTN_LBL2": "Go to WiseSaver Portfolio"
+    }
   },
   "GETSTARTED_STEP2": {
     "TITLE": "Step 2",

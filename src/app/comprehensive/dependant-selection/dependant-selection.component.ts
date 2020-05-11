@@ -106,7 +106,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
       dependantSelection: new FormControl(this.hasDependant, Validators.required),
       noOfHouseholdMembers: new FormControl(this.householdDetails ? this.householdDetails.noOfHouseholdMembers : '', Validators.required),
       houseHoldIncome: new FormControl(this.householdDetails ? this.householdDetails.houseHoldIncome : '', Validators.required),
-      noOfYears: new FormControl(this.householdDetails ? this.householdDetails.noOfYears : ''),
+      noOfYears: new FormControl(this.householdDetails ? this.householdDetails.noOfYears : 0),
     });
 
   }
