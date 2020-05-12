@@ -30,9 +30,7 @@ export class AllocationComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.assets.forEach((allocation) => {
-      const groupedAllocation = this.groupByProperty(allocation.groupedAllocationDetails);
-      this.investmentEngagementJourneyService.sortByProperty(groupedAllocation, 'name', 'asc');
-      allocation.groupedAllocationDetails = groupedAllocation;
+      allocation.groupedAllocationDetails = this.groupByProperty(allocation.groupedAllocationDetails);
     });
   }
 
