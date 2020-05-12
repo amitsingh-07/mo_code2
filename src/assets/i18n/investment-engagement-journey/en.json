@@ -99,7 +99,7 @@
     "LIST_LBL_4": "Up to 11",
     "LIST_LBL_5": "Up to 14",
     "LIST_LBL_6": "15 or more",
-    "LIST_LBL_DESC_1": "Not suitable to invest.",
+    "LIST_LBL_DESC_1": "Not suitable to invest.<br>Consider WiseSaver instead.",
     "LIST_LBL_DESC_2": "Up to 20% Equities (80% Bonds)",
     "LIST_LBL_DESC_3": "Up to 40% Equities (60% Bonds)",
     "LIST_LBL_DESC_4": "Up to 60% Equities (40% Bonds)",
@@ -212,7 +212,7 @@
     "ERRORS": {
       "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
       "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
-      "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time amount or Monthly amount."
+      "ATLEAST_ONE_SHOULD_INVEST": "Either you have to fund One-time amount or Monthly amount."
     }
   },
   "WHATS_THE_RISK": {

@@ -58,7 +58,7 @@
     "ERRORS": {
       "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
       "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
-      "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time amount or Monthly amount."
+      "ATLEAST_ONE_SHOULD_INVEST": "Either you have to fund One-time amount or Monthly amount."
     },
     "ADD_PORTFOLIO_NAME": {
       "TITLE": "Name Your Portfolio",
