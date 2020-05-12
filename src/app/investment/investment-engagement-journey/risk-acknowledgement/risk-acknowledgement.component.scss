@@ -5,3 +5,13 @@
     font-family: $muli-bold;    
     font-size: 21px;
 }
+.back-btn {
+    background-image: url('/assets/images/back-web.svg');
+    width: 43px;
+    height: 43px;
+    cursor: pointer;
+    position: absolute;
+    top: 90px;
+    left: 20px;
+    background-repeat: no-repeat;
+  }

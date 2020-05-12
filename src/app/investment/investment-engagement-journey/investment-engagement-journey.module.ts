@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { SlickModule } from 'ngx-slick';
 
 import {
   CurrencyInputPortfolioDirective
@@ -58,7 +59,8 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     SharedModule,
-    RouterModule
+    RouterModule,
+    SlickModule
   ],
   declarations: [
     GetStartedStep1Component,
