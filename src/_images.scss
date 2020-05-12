@@ -16,4 +16,9 @@
     max-height: 100%;
     width: auto;
     height: auto;
+    &.with-brdr {
+        border: 1px solid $border-grey-color;
+        padding: 2px;
+        margin: 15px 0;
+    }
 }
