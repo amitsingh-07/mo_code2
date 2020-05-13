@@ -35,6 +35,7 @@ import {
   YourInvestmentAmountComponent
 } from './your-investment-amount/your-investment-amount.component';
 import { SelectPortfolioComponent } from './select-portfolio/select-portfolio.component';
+import { RiskAcknowledgementComponent } from './risk-acknowledgement/risk-acknowledgement.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
@@ -77,7 +78,8 @@ export function createTranslateLoader(http: HttpClient) {
     YourInvestmentAmountComponent,
     FundingMethodComponent,
     SrsTooltipComponent,
-    SelectPortfolioComponent
+    SelectPortfolioComponent,
+    RiskAcknowledgementComponent
   ],
   providers: [CurrencyPipe, FormatCurrencyPipe],
   entryComponents: [SrsTooltipComponent]

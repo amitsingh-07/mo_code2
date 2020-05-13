@@ -33,6 +33,39 @@
   .portfolio-type-details-desc {
     color: $review-text-color;
   }
+  .wise-portfolio-type-details-desc{
+    color: $jungle-mist-blue-color;
+    font-family: $muli-regular;
+  }
+  .wise-saver-desc{
+    margin: 20px 0;
+    padding: 20px 0;
+    background-color: #f4fafb;
+    color: $black-color;    ;
+    border-radius: 6px;
+  }
+  .wise-saver-value{
+    background: #b1dfe1;
+    padding: 5px 20px 5px 20px;
+    border-radius: 6px;
+    font-family: $muli-bold;
+  }
+  .wise-saver-value-container{
+    margin:15px;
+  }
+  .wise-saver-rate-title{
+    font-family: $muli-regular;
+    font-size: 14px;
+  }
+  .wise-saver-rate-desc{
+    font-family: $muli-italic;
+    font-size: 13px;
+    color:$dark-grey-color;
+  }
+  .wise-saver-portfolio-desc{
+    color: $jungle-mist-blue-color;
+    font-family: $muli-regular;
+  }
 }
 
 .portfolio-graph-block {

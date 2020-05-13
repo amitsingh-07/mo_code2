@@ -309,7 +309,15 @@
       "UNSUCCESSFUL_INVESTMENT_ACCOUNT": "Your investment account set up is unsuccessful. Email us at <a  class=\"hyperlink_color\" href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> or call us at (65) 6329 9188 for assistance.",
       "PORTFOLIO_EXIST_TITLE": "Portfolio Already Exist",
       "PORTFOLIO_EXIST_DESC": "You have already selected a portfolio. Please proceed to Top up, Fund or Delete the selected portfolio.",
-      "PORTFOLIO_EXIST_BTN_LABEL": "Proceed To Portfolio"
+      "PORTFOLIO_EXIST_BTN_LABEL": "Proceed To Portfolio",
+      "TOP_UP": "Top Up",
+      "TOTAL_PORTFOLIO_VALUE": "Total Portfolio Value",
+      "TOTAL_CASH_BALANCE_VALUE": "Total Cash Balance ",
+      "INVESTMENT_PORTFOLIOS": "Investment Portfolios",
+      "WISE_SAVER_PORTFOLIOS": "WiseSaver Portfolios",
+      "CASH_BALANCE": "Cash Balance",
+      "CASH_ACCOUNT_BALANCE_TITLE": "Cash Account",
+      "CASH_ACCOUNT_BALANCE_MESSAGE": "The cash account is where all your investment funds are held before it is transferred to a portfolio or your bank account."
     },
     "WILL_WRITING": {
       "TITLE": "Will Writing",
