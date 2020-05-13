@@ -11,7 +11,10 @@
         "PAGE_TITLE": "Frequently Asked Questions",
         "CONTENT": {
             "Insurance": {
-                "General": [
+                "General": [{
+                        "QUESTION": "Why am I not receiving email from MoneyOwl?",
+                        "ANSWER": "Do you have a Hotmail, Live Mail, MSN or Outlook email account? Please add us to your safe senders list to make sure you receive our messages! You might want to check your “Other” or “Junk” mailboxes if you still can’t see our messages in your inbox!<br/><br/>To add MoneyOwl as a safe sender, please follow the steps below:<br/><br/><ol class=\"email-account\"><li>Sign into your email account at <a target=\"_blank\" href=\"https://outlook.live.com/\">https://outlook.live.com/</a></li><li>Go to “Settings” > “View all Outlook Settings” <br/><img src=\"assets/images/faq/settings.png\" class=\"img-responsive with-brdr \" /></li><li> Select “Email” > “ Junk email” and add moneyowl.com.sg to Safe senders and domains list<br/><img src=\"assets/images/faq/email.png\" class=\"img-responsive with-brdr\" /></li></ol>"
+                    },
                     {
                         "QUESTION": "How should I get started? What insurance products should I buy?",
                         "ANSWER": "We recommend you to begin with our step-by-step guided journey online to assess your needs and find out the gaps in your insurance coverage. Get suitable recommendations based on your needs and select the plan(s) that you are interested in. Once you have requested a quote, our dedicated team of Client Advisers will get in touch via mobile and email and when you are ready, meet you to complete your application.<br/><br/>We also encourage you to read our articles where we have easy-to-read content for you to learn more about insurance."
@@ -25,8 +28,7 @@
                         "ANSWER": "We currently distribute products from the following insurance companies:<br/><ul><li>Aviva Ltd</li><li>Manulife (Singapore) Pte Ltd</li><li>NTUC Income Insurance Cooperative Ltd</li><li>Raffles Health Insurance Pte Ltd</li><li>Singapore Life Pte Ltd</li><li>Tokio Marine Life Insurance Singapore Ltd</li></ul>"
                     }
                 ],
-                "Commission Rebate": [
-                    {
+                "Commission Rebate": [{
                         "QUESTION": "Am I eligible for commission rebates?",
                         "ANSWER": "All policies, including those with ongoing promotions bought through us, may be eligible for commission rebates, except the following:<br/><br/><ul><li>Private Integrated Shield plans</li><li>Local Hospitalization plans</li><li>ElderShield Supplements</li><li>Plans using CPF monies</li></ul><br/>However, do note that all commission rebates are subject to the relevant insurer's terms and conditions. In addition, in the unlikely event that you terminate your policy prematurely, up to the full amount of the commission may be clawed back from you to return to the insurer."
                     },
@@ -43,8 +45,7 @@
                         "ANSWER": "We will credit the commission rebate directly back to your bank account."
                     }
                 ],
-                "Buying Process and Comparison": [
-                    {
+                "Buying Process and Comparison": [{
                         "QUESTION": "What is the buying process like?",
                         "ANSWER": "Buying through MoneyOwl is a fast and easy process! Our platform allows you to assess your needs and compare between plans online in your own time. Once you have requested a quote through our website, our friendly Client Advisers will get in touch via mobile and email and when you are ready, meet you to complete your application."
                     },
@@ -85,8 +86,7 @@
                         "ANSWER": "If you are looking for or have an enquiry on a product that is not featured in our website, do contact us via email at <a href=\"mailto:enquiries@moneyowl.com.sg\">enquiries@moneyowl.com.sg</a> or give us a call at 6329 9188 (Advisory enquiries) between Mondays-Fridays, 9am-6pm (excluding public holidays). Our friendly team of Client Advisers will assist you."
                     }
                 ],
-                "Prices & Payment": [
-                    {
+                "Prices & Payment": [{
                         "QUESTION": "Do I need to pay a fee?",
                         "ANSWER": "Product enquiries through MoneyOwl are <b>absolutely free</b>. You only pay your insurance premiums if you subsequently purchase a policy from us."
                     },
@@ -115,8 +115,7 @@
                         "ANSWER": "When buying through MoneyOwl, you enjoy <b>lower cost and up to 50% of the agent's commissions is rebated to you in cash</b>. We take care of all your needs. You have access to our team of licensed Client Advisers and our Client Service Management team is on hand for you to contact if you require any after-sales service or claims with any of your policies. There is no difference with regards to the policy contract, benefits, coverage or premium offered whether the same policy is bought via MoneyOwl or through the insurance company directly."
                     }
                 ],
-                "My Insurance Policy": [
-                    {
+                "My Insurance Policy": [{
                         "QUESTION": "How do I receive my policy documents after my proposal has been accepted by the insurer(s)?",
                         "ANSWER": "The insurance company will mail the policy documents to you directly."
                     },
@@ -137,8 +136,7 @@
                         "ANSWER": "The terms and coverage of your policy <b>will not be affected</b> in any way. In the event that the MoneyOwl representative who has been serving you leaves the company, we will assign another adviser to take over your account so that you will always have a trusted adviser to go to."
                     }
                 ],
-                "Supplementary Retirement Scheme (SRS)": [
-                    {
+                "Supplementary Retirement Scheme (SRS)": [{
                         "QUESTION": "What is the Supplementary Retirement Scheme (SRS)",
                         "ANSWER": "<p>The SRS is a voluntary scheme to encourage individuals to save more for their retirement, over and above their Central Provident Fund (CPF) savings, with the benefit of tax relief. It began in 2001 and is operated by the private sector.</p><p>SRS members can contribute any amount up to a yearly cap of $15,300 for Singaporeans and PRs and $35,700 for foreigners. Every amount of SRS contribution will be eligible for tax relief in the following year of assessment for income tax. SRS contributions may be used to purchase various investment instruments.</p>"
                     },
@@ -179,8 +177,7 @@
                         "ANSWER": "<p>Learn more about our SRS through our easy-to-understand articles.</p><ol type='a'><li><a target='_blank' href=\"/how-to-save-on-taxes-using-the-srs/\">How to Save on Taxes Using the SRS</a></li><li><a target='_blank' href=\"/all-you-need-to-know-about-srs/\">Here’s How to Use Your Funds in the SRS</a></li><li><a target='_blank' href=\"/a-visual-guide-to-srs-part-i/\">A Visual Guide to SRS Part I</a></li><li><a target='_blank' href=\"/a-visual-guide-to-srs-part-ii/\">A Visual Guide to SRS Part II</a></li></ol><p>Find out more about SRS on the Ministry of Finance’s (MOF) webpage: <a target='_blank' href=\"https://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS\">https://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS</a></p><p>And contact our Client Advisory team at <a href=\"mailto:enquiries@moneyowl.com.sg\">enquiries@moneyowl.com.sg</a></p>"
                     }
                 ],
-                "Privacy and Security": [
-                    {
+                "Privacy and Security": [{
                         "QUESTION": "What if MoneyOwl ceases as a business concern and closes down?",
                         "ANSWER": "The terms and coverage of your policy <b>will not be affected</b> in any way.<br/><br/>In the very unlikely event that MoneyOwl closes down, you may still proceed directly to the insurance company for your policy to be serviced."
                     },
@@ -195,8 +192,7 @@
                 ]
             },
             "Will Writing": {
-                "Why Write a Will?": [
-                    {
+                "Why Write a Will?": [{
                         "QUESTION": "Is It necessary to have a Will?",
                         "ANSWER": "Having a well-thought out will is always a wise move. The three common advantages are:<br><br><ol type=\"a\"><li><span>You can decide on how your assets will be distributed after your death. Without a will, your assets may not be given to your choice of beneficiaries. This may lead to serious disputes and disharmony among loved ones.</span></li><li><span>You can appoint the right executors and trustees whom you know and trust. Executors and trustees will help to manage your assets and estate affairs after you pass on. This includes distributing assets according to your instructions and paying your debts and liabilities (using your assets).</span></li><li><span>You can appoint a guardian to take care of your children who are below 21 years old. If you have children, it’s important to make sure that they’re always protected and cared for.</span></li></ol>A will is your final act of love for your loved ones. It helps expedite settlement of your estate and avoids unforeseen complications while they are in grief."
                     },
@@ -209,8 +205,7 @@
                         "ANSWER": "<table class=\" will-table\"><tr><th class='will-th'>Deceased Dies Intestate Leaving:</th><th class='will-th'>Distribution</th></tr><tr><td>Spouse <div class='sub'>(No parents or issue*)</div></td><td><div class='distribute'><div>Spouse</div><div class='percentage'>100%</div></td></tr><tr><td>Spouse, Issue <div class='sub'>(With or without parents)</div></td><td><div class='distribute'><div>Spouse</div><div class='percentage'>50%</div></div><div class='distribute'><div>Issue<span class='sub'>(To be shared equally)</span></div><div class='percentage'>50%</div></div></td></tr><tr><td>Issue <div class='sub'>(No spouse)</div></td><td><div class='distribute'><div>Issue<div class='sub'>(To be shared equally)</div></div><div class='percentage'>100%</div></td></tr><tr><td>Spouse, Parents <div class='sub'>(No issue)</div></td><td><div class='distribute'><div>Spouse</div><div class='percentage'>50%</div></div><div class='distribute'><div>Parents <span class='sub'>(To be shared equally)</span></div><div class='percentage'>50%</div></div></td></tr><tr><td>Parents <div class='sub'>(No spouse or issue)</div></td><td><div class='distribute'><div>Parents<div class='sub'>(To be shared equally)</div></div><div class='percentage'>100%</div></div></td></tr><tr><td>Siblings <div class='sub'>(No spouse, issue or parents)</div></td><td><div class='distribute'><div>Siblings <div class='sub'>(To be shared equally)</div></div><div class='percentage'>100%</div></div></td></tr><tr><td>Grandparents <div class='sub'>(No spouse, issue, parent or siblings)</div></td><td><div class='distribute'><div>Grandparents<div class='sub'>(To be shared equally)</div></div><div class='percentage'>100%</div></div></td></tr><tr><td>Uncles & Aunts <div class='sub'>(No spouse, issue, parents, siblings, grandparents)</div></td><td><div class='distribute'><div>Uncles and Aunts<div class='sub'>(To be shared equally)</div></div><div class='percentage'>100%</div></div></td></tr><tr><td>None of the above</td><td class='distribute'><div>Government</div><div class='percentage'>100%</div></td></tr></table><br><div class='sub'>* “issue” - includes children and the descendants of deceased children.</div>"
                     }
                 ],
-                "Who Is Eligible?": [
-                    {
+                "Who Is Eligible?": [{
                         "QUESTION": "How do I qualify to write a will?",
                         "ANSWER": "<p>You need to be at least 21 years old and of sound mind to write a will. There is no need for your will to be drafted, approved or witnessed by a lawyer as long as your will fulfils the legal requirements.</p><p>To be of a sound mind or have the testamentary capacity:<ol type=\"i\"><li><span>You should understand the nature of the act and what the consequences are;</span></li><li><span>You know and approve the contents of the will, nature and extent of properties;</span></li><li><span>You know who your beneficiaries are and can appreciate their claims on your properties; and</span></li><li><span>You are free from an abnormal state of mind that might distort feelings or judgements relevant to making the will.</span></li><ol></p>"
                     },
@@ -219,8 +214,7 @@
                         "ANSWER": "We designed this will-writing service to be hassle-free to benefit as many people as possible. As most people do not have overseas assets and their distribution wishes are relatively simple, the simple will offered by MoneyOwl may be sufficient for you. If you have the following needs, you may wish to seek legal advise: <br><br><ul><li>Muslim wills. Muslim wills must adhere to Faraid guidelines. Unfortunately, we are not able to provide this service.</li><li>If you want to give a combination of fixed amounts and percentages. For example, if you have $100,000 of assets and wish to give a fixed amount of $40,000 to your mother and the residual assets ($60,000) to be divided among your siblings by proportion.</li><li>If you want to give away specific assets to a particular beneficiary and your other assets to be divided among your other beneficiaries. For example, you have $100,000 of assets and a house and wish to give away your house to your father and the $100,000 assets to be divided among your siblings.</li><li>If your needs are more complex. For example, if you wish to distribute your estate primarily to your spouse and children, but in the event where the entire family passes on in a common disaster, you might want to re-distribute your estate wishes.</li><li>If you are translating this website for a person who does not understand English, please note that the person is unable to use our will writing service. This is because, in addition to the will having to be interpreted for the person in a language that he understands, the sign-off portion where he and the witnesses sign off needs to be amended to state that the content of the will had been explained in his language and that he fully understands the content of the will. We are not able to make such amendments and any handwritten amendment could make the will null and void.</li></ul><br>In MoneyOwl’s will writing process, we will guide you in identifying your beneficiaries and the proportion of estate you intend to distribute, as well as guardians (if you have a young child), executors and trustees. For more advanced needs, you may wish to seek legal advice."
                     }
                 ],
-                "Getting started": [
-                    {
+                "Getting started": [{
                         "QUESTION": "How do I create my will?",
                         "ANSWER": "All you have to do is go through a simple step-by-step process and answer our questions. We will do the magic!"
                     },
@@ -249,8 +243,7 @@
                         "ANSWER": "No, unfortunately. Our will-writing service is an automated one. It only caters to a select few situations and pre-set inheritance options. These are generally the more common scenarios and/or choices for most people."
                     }
                 ],
-                "Managing Your Will": [
-                    {
+                "Managing Your Will": [{
                         "QUESTION": "How do I safekeep my will?",
                         "ANSWER": "You will need to store your original signed hardcopy will in a safe and secure place. You need to decide whom you would like your will to be disclosed to. This person or persons must be informed of the location of the will and be able to access it when the need arises. One good place is to keep it together with your insurance policies. Putting it in locked storage may pose problems when the keys are lost. As of now, digital copies and digital signatures of wills are not acceptable in the court of law."
                     },
@@ -263,16 +256,13 @@
                         "ANSWER": "<ul><li>CPF nomination – you can read more from CPF website and download the form here.<br><a target='_blank' href=\"https://www.cpf.gov.sg/Members/Schemes/schemes/other-matters/cpf-nomination-scheme\">https://www.cpf.gov.sg/Members/Schemes/schemes/other-matters/cpf-nomination-scheme</a></li><li>Schedule of assets – this is a list of assets that you have, eg, property, bank accounts, investment, overseas assets. </li></ul>"
                     }
                 ],
-                "Disclaimer": [
-                    {
-                        "QUESTION": "Disclaimer",
-                        "ANSWER": "MoneyOwl is not a law firm and does not give legal advice. This service is provided as a general service over the Internet and the information provided is not to be construed as legal advice and is not guaranteed to be correct, complete or up-to-date and which may change from time to time. By using this service, you acknowledge that the information, materials and content provided is for information purposes only and should not be construed nor relied upon as legal advice. This service is meant as a publishing service, and all documents provided and produced through this service are meant to provide a guideline for common and standard situations and are provided on an “as is” basis.<br><br>Please note that each person’s situation is unique and your use of this service and the Will(s) produced for your use, may not necessarily fit your particular circumstances. If you have any legal questions or if you are unsure whether the service will be suitable to meet your needs, you are advised to seek specific legal or professional advice.<br><br>MoneyOwl is not responsible for any loss, claim, liability, or damage related to your use of this."
-                    }
-                ]
+                "Disclaimer": [{
+                    "QUESTION": "Disclaimer",
+                    "ANSWER": "MoneyOwl is not a law firm and does not give legal advice. This service is provided as a general service over the Internet and the information provided is not to be construed as legal advice and is not guaranteed to be correct, complete or up-to-date and which may change from time to time. By using this service, you acknowledge that the information, materials and content provided is for information purposes only and should not be construed nor relied upon as legal advice. This service is meant as a publishing service, and all documents provided and produced through this service are meant to provide a guideline for common and standard situations and are provided on an “as is” basis.<br><br>Please note that each person’s situation is unique and your use of this service and the Will(s) produced for your use, may not necessarily fit your particular circumstances. If you have any legal questions or if you are unsure whether the service will be suitable to meet your needs, you are advised to seek specific legal or professional advice.<br><br>MoneyOwl is not responsible for any loss, claim, liability, or damage related to your use of this."
+                }]
             },
             "Investment": {
-                "Getting Started": [
-                    {
+                "Getting Started": [{
                         "QUESTION": "What is the minimum age at which I can start investing?",
                         "ANSWER": "Anyone 18 years old and above can open an Investment Account."
                     },
@@ -305,8 +295,7 @@
                         "ANSWER": "No. We are currently accepting only SGD."
                     }
                 ],
-                "Managing Your Investments": [
-                    {
+                "Managing Your Investments": [{
                         "QUESTION": "Where can I see the value of my investments?",
                         "ANSWER": "You can login to your MoneyOwl Account to check on your portfolio value."
                     },
@@ -328,7 +317,7 @@
                     },
                     {
                         "QUESTION": "How do I submit a monthly buy request?",
-                        "ANSWER": "<p>You can login to your MoneyOwl Account and submit a monthly buy request. We will process all monthly buy requests on the 15<sup>th</sup> of every month, or the next working day, if the 15<sup>th</sup> is not a working day, provided that there are sufficient monies in your Investment Cash Account. <u>To ensure that your investment can be executed, we strongly advise you to transfer your money on the 10<sup>th</sup> of the month (with complete information, including the Reference Code) to ensure that there are sufficient monies in your Investment Cash Account before the 15<sup>th</sup> of the month.</u> If there are insufficient monies in your Investment Cash Account by the 15<sup>th</sup> of the month, the monthly investment request will be processed on the 15<sup>th</sup> of the following month. </p>"
+                        "ANSWER": "<p>You can login to your MoneyOwl Account and submit a monthly buy request. We will process all monthly buy requests on the 15<sup>th</sup> of every month, or the next working day, if the 15<sup>th</sup> is not a working day, provided that there are sufficient monies in your Investment Cash Account. <u>To ensure that your investment can be executed, we strongly advise you to transfer your money on the 10<sup>th</sup> of the month (with complete information, including the Reference Code) to ensure that there are sufficient monies in your Investment Cash Account before the 15<sup>th</sup> of the month.</u> If there are insufficient monies in your Investment Cash Account by the 15<sup>th</sup> of the month, the monthly investment request will be processed on the 15<sup>th</sup> of the following month. <p><a target=\"_blank\" href=\"./assets/docs/faq/Standing_instructions_for_frequently_used_banks.pdf\">Setting up a Standing Instruction</a></p> </p>"
                     },
                     {
                         "QUESTION": "How fast will my buy request be processed?",
@@ -343,8 +332,7 @@
                         "ANSWER": "<p>If there is a buy request which has been processed, you can get your monies back by selling your investments and subsequently withdrawing your monies from your Investment Cash Account.</p>"
                     }
                 ],
-                "Multiple Portfolios": [
-                    {
+                "Multiple Portfolios": [{
                         "QUESTION": "Can I set up multiple portfolios to cater to my different financial goals?",
                         "ANSWER": "Yes, you can set up to a maximum of 20 different investment portfolios."
                     },
@@ -361,10 +349,9 @@
                         "ANSWER": "If you have  unintentionally funded the wrong investment cash account, you  will not be able to transfer  the  funds  from  the  wrongly  funded  investment  cash  account  to  the  intended investment cash account on your own. Please email <a href=\"mailto:clientsupport@moneyowl.com.sg\">clientsupport@moneyowl.com.sg</a> or talk to your client adviser for further assistance."
                     }
                 ],
-                "Joint or SRS Accounts | Joint or SRS (Supplementary Retirement Schemes) Accounts": [
-                    {
+                "Joint or SRS Accounts | Joint or SRS (Supplementary Retirement Schemes) Accounts": [{
                         "QUESTION": "Can I open Joint or SRS Investment Accounts?",
-                        "ANSWER": "<p>Yes, you can. However, please note that we are currently handling the management of these accounts, including the portfolio account statements, offline. It is also a pre-requisite to set up your Personal Investment Account <a target='_blank' href=\"/app/investment/engagement/start-journey\" target='_blank'>https://www.moneyowl.com.sg/investment</a> before opening your Joint Investment Account. <br/><br/>Please email <a href=\"mailto:clientsupport@moneyowl.com.sg\">clientsupport@moneyowl.com.sg</a> for an application form and assistance on next steps.</p>"
+                        "ANSWER": "<p>Yes, you can. However, please note that we are currently handling the management of Joint accounts, including the portfolio account statements, offline. It is also a pre-requisite to set up your Personal Investment Account <a target='_blank' href=\"/app/investment/engagement/start-journey\" target='_blank'>https://www.moneyowl.com.sg/investment</a> before opening your Joint Investment Account. <br/><br/>Please email <a href=\"mailto:clientsupport@moneyowl.com.sg\">clientsupport@moneyowl.com.sg</a> for an application form and assistance on next steps.</p>"
                     },
                     {
                         "QUESTION": "I already have an existing Personal Investment Account. Can I convert this to a Joint or SRS Investment Account?",
@@ -379,8 +366,7 @@
                         "ANSWER": "No. Only cash can be used for Joint Investment Account investments."
                     }
                 ],
-                "Withdrawals": [
-                    {
+                "Withdrawals": [{
                         "QUESTION": "How do I withdraw monies?",
                         "ANSWER": "<p>For funds that are invested in your portfolio, you can choose to sell part or all your portfolio. However, please note that fund units’ Net Asset Value (NAV) fluctuate and portfolio values are not guaranteed. You may receive more or less than the capital invested.</p><p>Redemption monies can be transferred to your Investment Cash Account or bank account.</p><p>For monies that are in your Investment Cash Account, you can choose to withdraw all or part of it to your bank account.</p>"
                     },
@@ -397,8 +383,7 @@
                         "ANSWER": "<p>You can only add one bank account. If you would like to change the bank account, you can login to your MoneyOwl Account and edit the bank account details in the “Edit Profile” page.</p>"
                     }
                 ],
-                "Fees": [
-                    {
+                "Fees": [{
                         "QUESTION": "What are the total fees that I have to pay?",
                         "ANSWER": "The total annual fees you have to pay are as follows:<table class=\"table--bordered\"><tr><td class=\"cell--teal\">MoneyOwl Advisory Fees<br/><small><i>(*Or your special promo rate)</i></small></td><td>0.65% p.a.*</td></tr><tr><td class=\"cell--teal\"><span>Platform Fees</span><br/><small><i>(Paid to iFast)</i></small></td><td>0.18% p.a.</td></tr></table>Excludes fund-level fees of 0.28% to 0.32% p.a. which are already incorporated into the Net Asset Value (NAV) or price of the fund."
                     },
@@ -411,7 +396,10 @@
                         "ANSWER": "There are no fees involved."
                     }
                 ],
-                "General Questions": [
+                "General Questions": [{
+                        "QUESTION": "Why am I not receiving email from MoneyOwl?",
+                        "ANSWER": "Do you have a Hotmail, Live Mail, MSN or Outlook email account? Please add us to your safe senders list to make sure you receive our messages! You might want to check your “Other” or “Junk” mailboxes if you still can’t see our messages in your inbox!<br/><br/>To add MoneyOwl as a safe sender, please follow the steps below:<br/><br/><ol class=\"email-account\"><li>Sign into your email account at <a target=\"_blank\" href=\"https://outlook.live.com/\">https://outlook.live.com/</a></li><li>Go to “Settings” > “View all Outlook Settings” <br/><img src=\"assets/images/faq/settings.png\" class=\"img-responsive with-brdr\"/></li><li> Select “Email” > “ Junk email” and add moneyowl.com.sg to Safe senders and domains list<br/><img src=\"assets/images/faq/email.png\" class=\"img-responsive with-brdr \"/></li></ol>"
+                    },
                     {
                         "QUESTION": "Who is iFAST Financial Pte Ltd?",
                         "ANSWER": "iFAST Financial Pte Ltd provides custodial and transfer agent services to MoneyOwl. <br/> Please refer to <a target='_blank' href=\"https://eservices.mas.gov.sg/fid\">https://eservices.mas.gov.sg/fid</a> for full details of their licence."
@@ -443,7 +431,10 @@
                 ]
             },
             "Comprehensive": {
-                "General": [
+                "General": [{
+                        "QUESTION": "Why am I not receiving email from MoneyOwl?",
+                        "ANSWER": "Do you have a Hotmail, Live Mail, MSN or Outlook email account? Please add us to your safe senders list to make sure you receive our messages! You might want to check your “Other” or “Junk” mailboxes if you still can’t see our messages in your inbox!<br/><br/>To add MoneyOwl as a safe sender, please follow the steps below:<br/><br/><ol class=\"email-account\"><li>Sign into your email account at <a target=\"_blank\" href=\"https://outlook.live.com/\">https://outlook.live.com/</a></li><li>Go to “Settings” > “View all Outlook Settings” <br/><img src=\"assets/images/faq/settings.png\" class=\"img-responsive with-brdr\"/></li><li> Select “Email” > “ Junk email” and add moneyowl.com.sg to Safe senders and domains list<br/><img src=\"assets/images/faq/email.png\" class=\"img-responsive with-brdr \"/></li></ol>"
+                    },
                     {
                         "QUESTION": "What is Comprehensive Financial Planning?",
                         "ANSWER": "<p>Comprehensive financial planning is a process of reviewing your current financial situation, analysing your financial goals and developing a plan to achieve them. It involves improving your cash flow, protecting your assets, growing your wealth for retirement and children’s education funding, and eventual passing of assets efficiently to your heirs.</p>"
@@ -465,8 +456,7 @@
                         "ANSWER": "<p>Currently, our planning approach is on individual basis. For planning as a couple, each member can create his or her own Comprehensive Financial plans and the client adviser can advise them in the same meeting session.</p>"
                     }
                 ],
-                "Getting Started": [
-                    {
+                "Getting Started": [{
                         "QUESTION": "What is the Comprehensive Financial Planning process like?",
                         "ANSWER": "<p>MoneyOwl Comprehensive Financial Planning benefits you with a holistic view of your financial situation and goals and a roadmap to achieve it, through the efficiency and convenience of technology and the competency and empathy of a trusted human adviser.</br></br><strong>Step 1: Create a MoneyOwl account</strong></br></br><strong>Step 2: Guided factfinding journey (about 20mins)</strong></br></br> <span>&nbsp; &nbsp; - &nbsp; Provide information on personal profile, finances, insurance needs, children education and retirement aspirations.</span></br></br> <span>&nbsp; &nbsp; - &nbsp; If you need more time to gather information, you can always save and come back again.<span></br></br><strong>Step 3: Submit your inputs and make payment for Comprehensive Financial Planning fee</strong></br></br> <span>&nbsp; &nbsp; - &nbsp; After submission and payment, a customised comprehensive financial report will be prepared and emailed to you within 3 business days by your assigned client adviser. Your client adviser may also contact you to clarify your inputs. The report includes: </span></br><ul class='comprehensive'><li><span>a)&nbsp;    Your Cashflow statement</span></li><li><span>b)&nbsp;     Net Worth Statement</span></li><li><span>c)&nbsp; Financial Health Check</span></li><li><span>d)&nbsp; Analysis of insurance needs and gaps</span></li> <li><span>e)&nbsp; Analysis of your provision for child’s education funding (if applicable)  </span></li><li><span>f)&nbsp; Analysis of your retirement income at your desired retirement age and throughout retirement period</span></li><li><span>g)&nbsp;  Scenarios of how your retirement can improve by increasing funding, moderating children’s education funding (if applicable) or delaying retirement   </span></li><li><span>h)&nbsp; Analysis and recommendation from MoneyOwl’s proprietary CPF Analyser Tool for in-depth understanding on how you can optimise your CPF for your retirement funding.</span></li><li><span>i)&nbsp; Summary of Action Plan</span></li><li><span>j)&nbsp; Specific recommendation for insurance to close gap   </span></li><li><span>k)&nbsp;Specific recommendation for investment to close gap</span></li></ul><strong>Step 4: Consultation session with our client adviser at our office (23 Keong Saik Road, S089130). </strong></br></br><span>This should typically take about 2 hours. In this session, your client advisers will clarify any questions you may have on your Comprehensive Financial Planning report, highlight areas you should pay attention to, and recommend an action plan to kickstart your journey to achieve your goals. </span></br></br><strong>Step 5: Implementation of action plan when you are ready to begin.</strong></p>"
                     },
@@ -479,8 +469,7 @@
                         "ANSWER": "<p>No, there is no requirement.</br></br>Typically, in a Comprehensive Financial Planning report, there will be a recommended action plan for you to meet your financial goals like retirement and children’s education funding or close any protection gap. It will be beneficial for you to discuss these recommendations and, if necessary, customise it further accordingly to your priority and budget.</p>"
                     }
                 ],
-                "Fees & Payment": [
-                    {
+                "Fees & Payment": [{
                         "QUESTION": "Why is MoneyOwl charging for Comprehensive Financial Planning service?",
                         "ANSWER": "<p>We believe in providing you with independent, conflict-free financial advice that is founded on sound financial planning philosophy coupled with fit-for-purpose solutions. These services require your client adviser to spend sufficient time to understand your financial situation, go through the report with you face to face and help you to prioritise between your goals, amongst others.</br></br>A fee-based model, whilst uncommon in Singapore, is not unique to the rest of the world. In the US and Australia, financial planning services are offered mostly on fee-based model as it has been proven to provide best value to its clients since financial advisers are remunerated based on their professionalism and quality of work done for you, and not by the products you procure from them. This assures you that your client adviser is always on the lookout for your best interest.</p>"
                     },
@@ -501,8 +490,7 @@
                         "ANSWER": "We accept Credit Cards - Mastercard, Visa or American Express."
                     }
                 ],
-                "Privacy & Security": [
-                    {
+                "Privacy & Security": [{
                         "QUESTION": "How will MoneyOwl ensure that my personal particulars are securely stored?",
                         "ANSWER": "Your privacy is our priority. We do not sell or refer your personal information to a third party. MoneyOwl’s platform is built by an experienced technology team led by our very own Chief Technology Officer, undergoes rigorous penetration testing and meets technology risk management guidelines set by MAS to ensure highest security and data protection, so that you can have peace of mind. Our risk management processes are also ISO27001 certified."
                     },

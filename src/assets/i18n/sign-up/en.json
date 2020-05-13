@@ -184,7 +184,8 @@
     "DESCRIPTION": "Enter your email to receive your password reset instructions.",
     "TITLE": "Forgot Password",
     "EMAIL_NOT_FOUND": "Email Not Found",
-    "EMAIL_NOT_FOUND_DESC": "The email you’ve entered doesn’t seem to exist in our database. Please try again."
+    "EMAIL_NOT_FOUND_DESC": "The email you’ve entered doesn’t seem to exist in our database. Please try again.",
+    "EMAIL_RESEND": "To proceed, please verify your email address. A new email verification link is sent to your email address."
   },
   "PRELOGIN": {
     "TITLE": "Are you an existing MoneyOwl user?",

@@ -209,7 +209,7 @@ export class ComprehensiveComponent implements OnInit {
               if (summaryData && summaryData.objectList[0]) {
                   this.cmpService.setComprehensiveSummary(summaryData.objectList[0]);
                   this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
-              }});      
+              }});
           }
         }, (err) => {
           setTimeout(() => {

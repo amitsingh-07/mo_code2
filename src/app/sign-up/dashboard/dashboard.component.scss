@@ -1,273 +1,293 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
-app-dashboard{
-.post-login-dashboard{
-    @include allmobiles{
-        padding: 0 !important;
-    }
-    .widget-block{
-        padding: 0 15px 25px;
-        @include allmobiles{
-            padding-top: 35px;
+app-dashboard {
+    .post-login-dashboard {
+        @include allmobiles {
+            padding: 0 !important;
         }
-    }
-    .user-profile-bg{
-        padding-left: 20px;
-        font-family: $muli-extra-light;
-        font-size: 22px; 
-        font-weight: 200;
-        line-height: 34PX;
-        letter-spacing: -0.22px;
-        @include allmobiles{
-            padding-left: 18px;
-        }
-        @include iPadLandscape{
-            padding-left: 18px;
-        }
-        .user_name{
-            font-family: $muli-semi-bold;
-            font-weight: 600;
-            font-size: 24px;
-            letter-spacing: -0.2px;
-        }
-        .txt-lyt{
-            font-family: $muli-light;
-            font-size: 14px;
-            letter-spacing: -0.14px;
-            font-weight: 300;
-            cursor: pointer;
-        }
-        .user-edit-img{
-            margin-right: 11.5px;
-            width: 5px;
-            height: 21px;
-            cursor: pointer;
-        }
-    }
-   .advisor-profile-bg{
-         border-radius: 6px;
-        padding: 15px 4px 13px;
-        font-family: $muli-regular;
-        letter-spacing: -0.1px;
-        color: #004864;
-        background: $white-color;
-        display: flex;
-        align-items: center;
-        .advisor-details{
-            margin-left: 10px;
-            @include min300max325{
-                margin-left: 4px;
-            }
-            div{
-                &:last-child{
-                    font-family: $muli-semi-bold;
-                    font-size: 16px;
-                    font-weight: 600;
-                    letter-spacing: -0.3px;
-                    color: #004865;
-                }
+        .widget-block {
+            padding: 0 15px 25px;
+            @include allmobiles {
+                padding-top: 35px;
             }
         }
-   }
-    .widgets{
-        .widget{
-            background: $white-color;
-            margin: 20px 15px 20px 15px;
-            border-radius: 6px;
-            box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25);
-            .widget-title{
-                font-family: $muli-bold;
-                font-size: 22px;
+        .user-profile-bg {
+            padding-left: 20px;
+            font-family: $muli-extra-light;
+            font-size: 22px;
+            font-weight: 200;
+            line-height: 34px;
+            letter-spacing: -0.22px;
+            @include allmobiles {
+                padding-left: 0;
+            }
+            @include iPadLandscape {
+                padding-left: 18px;
+            }
+            .user_name {
+                font-family: $muli-semi-bold;
+                font-weight: 600;
+                font-size: 24px;
                 letter-spacing: -0.2px;
-                color: #00a7a7;
-                padding: 20px 18px 11px;
-                display: flex;
-                justify-content: space-between;
-                align-items: baseline;
-                img{
-                    margin-top: 5px;
-                    margin-left: 6px;
-                }   
-                .view_all{
-                    font-family: $muli-regular;
-                    font-size: 16px;
-                    font-weight: normal;
-                    cursor: pointer;
+            }
+            .txt-lyt {
+                font-family: $muli-light;
+                font-size: 14px;
+                letter-spacing: -0.14px;
+                font-weight: 300;
+                cursor: pointer;
+            }
+            .user-edit-img {
+                margin-right: 11.5px;
+                width: 5px;
+                height: 21px;
+                cursor: pointer;
+            }
+        }
+        .advisor-profile-bg {
+            border-radius: 6px;
+            padding: 15px 4px 13px;
+            font-family: $muli-regular;
+            letter-spacing: -0.1px;
+            color: #004864;
+            background: $white-color;
+            display: flex;
+            align-items: center;
+            .advisor-details {
+                margin-left: 10px;
+                @include min300max325 {
+                    margin-left: 4px;
+                }
+                div {
+                    &:last-child {
+                        font-family: $muli-semi-bold;
+                        font-size: 16px;
+                        font-weight: 600;
+                        letter-spacing: -0.3px;
+                        color: #004865;
+                    }
                 }
             }
-            .widget-body{
-                display: flex;
-                align-items: center;
-                font-family: $muli;
-                font-size: 14px;
-                font-weight: normal;
-                letter-spacing: -0.1px;
-                padding: 0 0 30px;
-                .scenarios{
-                    padding: 0 5px;
-                    .primary{
-                        align-items: center;
+        }
+        .widgets {
+            .widget {
+                background: $white-color;
+                margin: 20px 15px 20px 15px;
+                border-radius: 6px;
+                box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25);
+                .widget-title {
+                    font-family: $muli-bold;
+                    font-size: 22px;
+                    letter-spacing: -0.2px;
+                    color: #00a7a7;
+                    padding: 20px 18px 11px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: baseline;
+                    img {
+                        margin-top: 5px;
+                        margin-left: 6px;
                     }
-                    .warning-txt{
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: flex-start;
-                        font-family: $muli-regular;
-                        font-size: 15px;
-                        line-height: 1.5;
-                        letter-spacing: -0.15px;
-                        color: #2d8289;
-                        .investment_icon{
-                            display: flex;
-                            justify-content: flex-end;
-                            align-items: flex-end;
-                            img{
-                                max-width: 100%;
-                                height: auto;
-                                margin: 0;
-                            }
-                        }
-                        a{
-                            color: #ff9c39;
-                        }
-                    }
-                    .portfolio {
+                    .view_all {
                         font-family: $muli-regular;
                         font-size: 16px;
-                        line-height: 1.31;
-                        letter-spacing: -0.1px;
-                        color: #8a9ba9;
-                        padding: 0 12px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-                        .portfolio_value{
+                        font-weight: normal;
+                        cursor: pointer;
+                    }
+                }
+                .widget-body {
+                    display: flex;
+                    align-items: center;
+                    font-family: $muli;
+                    font-size: 14px;
+                    font-weight: normal;
+                    letter-spacing: -0.1px;
+                    padding: 0 0 30px;
+                    .scenarios {
+                        padding: 0 5px;
+                        .primary {
+                            align-items: center;
+                        }
+                        .warning-txt {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: flex-start;
+                            font-family: $muli-regular;
+                            font-size: 15px;
+                            line-height: 1.5;
+                            letter-spacing: -0.15px;
                             color: #2d8289;
-                            .value{
+                            .investment_icon {
+                                display: flex;
+                                justify-content: flex-end;
+                                align-items: flex-end;
+                                img {
+                                    max-width: 100%;
+                                    height: auto;
+                                    margin: 0;
+                                }
+                            }
+                            a {
+                                color: #ff9c39;
+                            }
+                        }
+                        .portfolio {
+                            font-family: $muli-regular;
+                            font-size: 16px;
+                            line-height: 1.31;
+                            letter-spacing: -0.1px;
+                            color: #8a9ba9;
+                            padding: 0 12px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            .portfolio_value {
+                                color: #2d8289;
+                                .value {
+                                    font-family: $muli-bold;
+                                    font-size: 18px;
+                                    letter-spacing: -0.3px;
+                                    color: #00a7a7;
+                                    margin-bottom: 11px;
+                                }
+                            }
+                            .portfolio_footer {
+                                display: flex;
+                                justify-content: space-between;
+                                color: #2d8289;
+                                .flex-col {
+                                    &.col-5 {
+                                        .portfolio_footer_value {
+                                            color: #11b600;
+                                        }
+                                        .negativeValue {
+                                            color: $red-color;
+                                        }
+                                    }
+                                    .portfolio_ref_code {
+                                        cursor: pointer;
+                                        text-decoration: underline;
+                                        color: $invest-ref-code-color;
+                                        font-size: 14px;
+                                        font-family: $muli;
+                                    }
+                                    .portfolio_footer_value {
+                                        font-family: $muli-bold;
+                                        font-size: 18px;
+                                        letter-spacing: -0.2px;
+                                        color: #00a7a7;
+                                        padding-top: 3px;
+                                    }
+                                }
+                            }
+                        }
+                        .btn-ghost {
+                            font-family: $muli-bold;
+                            font-size: 18px;
+                            letter-spacing: -0.1px;
+                            border: 1px solid #00c5c4;
+                            background-color: #ffffff !important;
+                            margin: 18px 0 0;
+                            color: #00a7a7;
+                            div {
+                                &:last-child {
+                                    font-family: $muli-regular;
+                                    font-size: 13px;
+                                    font-weight: normal;
+                                    color: #9b9b9b;
+                                }
+                            }
+                        }
+                        .btn-primary {
+                            font-family: $muli-bold;
+                            font-size: 18px;
+                            letter-spacing: -0.1px;
+                            text-align: center;
+                            color: #ffffff;
+                            margin: 18px 0 0;
+                            box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15);
+                            background-color: #00a7a7;
+                            border: none;
+                            div {
+                                &:last-child {
+                                    font-family: $muli-regular;
+                                    font-size: 13px;
+                                    font-weight: normal;
+                                }
+                            }
+                        }
+                    }
+                    .flex-col-8 {
+                        div {
+                            color: #5e5e5e;
+                            &:first-child {
                                 font-family: $muli-bold;
                                 font-size: 18px;
                                 letter-spacing: -0.3px;
                                 color: #00a7a7;
-                                margin-bottom: 11px;
+                                margin-bottom: 10px;
                             }
                         }
-                        .portfolio_footer{
+                        .time-lapse {
+                            font-family: Muli;
+                            font-size: 18px;
+                            font-weight: normal;
+                            letter-spacing: -0.2px;
                             display: flex;
                             justify-content: space-between;
-                            color: #2d8289;
-                            .flex-col{
-                                &.col-5{
-                                    .portfolio_footer_value{
-                                        color: #11b600;
-                                    }
-                                    .negativeValue {
-                                        color: $red-color;
-                                      }
+                            align-items: center;
+                            margin-top: 10px;
+                            div {
+                                color: #00a7a7;
+                                &:first-child {
+                                    color: #ec681c;
+                                    margin-bottom: 0;
                                 }
-                                .portfolio_ref_code {
-                                    cursor: pointer;
-                                    text-decoration: underline;
-                                    color: $invest-ref-code-color;
-                                    font-size: 14px;
-                                    font-family: $muli;
-                                }
-                                .portfolio_footer_value{
-                                    font-family: $muli-bold;
-                                    font-size: 18px;
-                                    letter-spacing: -0.2px;
-                                    color: #00a7a7;
-                                    padding-top: 3px;
-                                }
+                            }
+                            .flex-row {
+                                justify-content: space-between;
+                                align-items: center;
                             }
                         }
                     }
-                    .btn-ghost{
-                        font-family: $muli-bold;
-                        font-size: 18px;
-                        letter-spacing: -0.1px;
-                        border: 1px solid #00c5c4;
-                        background-color: #ffffff !important;
-                        margin: 18px 0 0;
-                        color: #00a7a7;
-                        div{
-                            &:last-child{
-                                font-family: $muli-regular;
-                                font-size: 13px;
-                                font-weight: normal;
-                                color: #9b9b9b;
-                            }
-                        }
-                    }
-                    .btn-primary{
-                        font-family: $muli-bold;
-                        font-size: 18px;
-                        letter-spacing: -0.1px;
+                    .find-plan {
+                        font-family: $muli-regular;
+                        font-size: 14px;
+                        letter-spacing: -0.11px;
                         text-align: center;
-                        color: #ffffff;
-                        margin: 18px 0 0;
-                        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15);
-                        background-color: #00a7a7;
-                        border: none;
-                        div{
-                            &:last-child{
-                                font-family: $muli-regular;
-                                font-size: 13px;
-                                font-weight: normal;
-                            }
-                        }
-                    }
-                }
-                .flex-col-8{
-                    div{
-                        color: #5e5e5e;
-                        &:first-child{
-                            font-family: $muli-bold;
-                            font-size: 18px;
-                            letter-spacing: -0.3px;
-                            color: #00a7a7;
-                            margin-bottom: 10px;
-                        }
-                    }
-                    .time-lapse{
-                        font-family: Muli;
-                        font-size: 18px;
-                        font-weight: normal;
-                        letter-spacing: -0.2px;
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        margin-top: 10px;
-                        div{
-                            color: #00a7a7;
-                            &:first-child{
-                                color: #ec681c;
-                                margin-bottom: 0;
-                            }
-                        }
-                        .flex-row{
-                            justify-content: space-between;
-                            align-items: center; 
-                        }
-                    }
-                }
-                .find-plan{
-                    font-family: $muli-regular;
-                    font-size: 14px;
-                    letter-spacing: -0.11px;
-                    text-align: center;
-                    color: $teal-color;
-                    margin-top: 12px;
-                    a{
-                        text-decoration: underline;
                         color: $teal-color;
+                        margin-top: 12px;
+                        a {
+                            text-decoration: underline;
+                            color: $teal-color;
+                        }
+                    }
+                }
+                .loader-div {
+                    min-height: 200px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .alert-img-container {
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: -9px;
+                    img {
+                        margin: 0 56px 6px 0;
                     }
                 }
             }
-            .loader-div {
-              min-height: 200px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
+            .investment-widget {
+                margin: 20px 15px 20px!important;
+            }
+            .circle {
+                width: 18px;
+                height: 18px;
+                border-radius: 50%;
+                border: solid 1px #00a7a7;
+                margin-left: 10px;
+                background-image: linear-gradient(8deg, #98dfdf 50%, transparent 50%), linear-gradient(-90deg, #98dfdf 50%, transparent 50%);
             }
             .alert-img-container {
                 display: flex;
@@ -278,26 +298,14 @@ app-dashboard{
                 }
             }
         }
-        .investment-widget{
-            margin: 20px 15px 20px!important;
-        }
-        .circle{
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            border: solid 1px #00a7a7;
-            margin-left: 10px;
-            background-image: linear-gradient(8deg, #98dfdf 50%, transparent 50%), linear-gradient(-90deg, #98dfdf 50%, transparent 50%);
-            }
-        }
     }
     .announcement-div {
-        display: flex; 
-        align-items: center; 
+        display: flex;
+        align-items: center;
         margin-top: 21px;
-        padding: 13px 16px 14px 16px; 
-        border-radius: 6px; 
-        border: solid 3px #ffa32c;  
+        padding: 13px 16px 14px 16px;
+        border-radius: 6px;
+        border: solid 3px #ffa32c;
         background-color: rgba(0, 89, 96, 0.3);
         cursor: pointer;
         .announcement-img {
@@ -310,7 +318,7 @@ app-dashboard{
             font-size: 16px;
             letter-spacing: -0.16px;
             line-height: normal;
-            color: $white-color; 
+            color: $white-color;
         }
     }
 }

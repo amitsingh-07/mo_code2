@@ -40,11 +40,13 @@ export class ComparePlansComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMobileVisibility(true);
     this.plansData = this.directService.getSelectedPlans();
   }
 
   setPageTitle(title: string) {
     this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title, '', false);
   }
 
   showCashValueTooltip() {
