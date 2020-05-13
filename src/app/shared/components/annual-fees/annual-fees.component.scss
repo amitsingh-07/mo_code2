@@ -49,11 +49,16 @@
         font-family: $muli-bold;
         padding-bottom: 0;
       }
+      .wise-saver-annual-fee{
+        font-family: $muli-regular !important;
+      }
 
-      .flex-col {
+      .flex-col-10 {
         .text-lyt {
           font-size: 13px;
           color: $text-color-secondary;
+          width: 100%;
+          float: left;
         }
 
 
