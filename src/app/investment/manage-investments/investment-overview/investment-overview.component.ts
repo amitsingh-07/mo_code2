@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -76,8 +76,8 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     public manageInvestmentsService: ManageInvestmentsService,
     private investmentAccountService: InvestmentAccountService,
     private signUpApiService: SignUpApiService,
-
     private loaderService: LoaderService,
+    private route: ActivatedRoute
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -104,8 +104,26 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.checkMpPopStatus();
     this.toastMsg = this.manageInvestmentsService.getToastMessage();
+
     this.portfolioCategories = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
-    this.selectedCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.ALL;
+    // Param handling and set category
+    this.route.params.subscribe((params) => {
+      if (params['selectedPortfolio']) {
+        switch (params['selectedPortfolio']) {
+          case INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.ALL:
+            this.selectedCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.ALL;
+            break;
+          case INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT:
+            this.selectedCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT;
+            break;
+          case INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER:
+            this.selectedCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER;
+            break;
+        }
+      } else {
+        this.selectedCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.ALL;
+      }
+    });
   }
  ngOnDestroy() {
     this.subscription.unsubscribe();

@@ -48,20 +48,20 @@
               <div class="category-filter">
                 <span class="all-category">{{'YOUR_INVESTMENT.CATEGORIES' | translate}}</span>
                 <label for="{{portfolioCategories.ALL}}">
-                  <input type="radio" id="{{portfolioCategories.ALL}}" name="categories" checked (click)="setSelectedCategory($event)">
+                  <input type="radio" id="{{portfolioCategories.ALL}}" name="categories" [checked]="selectedCategory === portfolioCategories.ALL" (click)="setSelectedCategory($event)">
                   <div>
                     <span>{{'YOUR_INVESTMENT.ALL' | translate}}</span>
                   </div>
                 </label>
                 <label for="{{portfolioCategories.INVESTMENT}}">
-                  <input type="radio" id="{{portfolioCategories.INVESTMENT}}" name="categories" (click)="setSelectedCategory($event)">
+                  <input type="radio" id="{{portfolioCategories.INVESTMENT}}" name="categories" [checked]="selectedCategory === portfolioCategories.INVESTMENT" (click)="setSelectedCategory($event)">
                   <div>
                     <img class="cross-img" src="assets/images/manage-investments/filter-ringicon-investment.svg">
                     <span>{{'YOUR_INVESTMENT.INVESTMENT' | translate}}</span>
                   </div>
                 </label>
                 <label for="{{portfolioCategories.WISESAVER}}">
-                  <input type="radio" id="{{portfolioCategories.WISESAVER}}" name="categories" (click)="setSelectedCategory($event)">
+                  <input type="radio" id="{{portfolioCategories.WISESAVER}}" name="categories" [checked]="selectedCategory === portfolioCategories.WISESAVER" (click)="setSelectedCategory($event)">
                   <div>
                     <img class="cross-img" src="assets/images/manage-investments/filter-ringicon-savings.svg">
                     <span>{{'YOUR_INVESTMENT.WISESAVER' | translate}}</span>
