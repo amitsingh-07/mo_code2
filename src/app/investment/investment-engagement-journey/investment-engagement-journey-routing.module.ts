@@ -20,6 +20,7 @@ import { YourFinancialsComponent } from './your-financials/your-financials.compo
 import {
     YourInvestmentAmountComponent
 } from './your-investment-amount/your-investment-amount.component';
+import { RiskAcknowledgementComponent } from './risk-acknowledgement/risk-acknowledgement.component';
 
 const routes: Routes = [
   {
@@ -83,6 +84,11 @@ const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.START,
     component: StartJourneyComponent,
+    canActivate: [InvestmentEngagementJourneyGuard]
+  },
+  {
+    path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.RISK_ACKNOWLEDGEMENT,
+    component: RiskAcknowledgementComponent,
     canActivate: [InvestmentEngagementJourneyGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }
