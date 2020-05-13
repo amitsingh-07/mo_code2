@@ -48,6 +48,7 @@ import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
+import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -89,6 +90,7 @@ export class DashboardComponent implements OnInit {
   investmentsSummary;
 
   isComprehensiveEnabled = false;
+  portfolioCategory: any;
 
   constructor(
     private router: Router,
@@ -124,6 +126,7 @@ export class DashboardComponent implements OnInit {
       this.isInvestmentConfigEnabled = config.investmentEnabled;
       this.isComprehensiveEnabled = config.comprehensiveEnabled;
     });
+    this.portfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
   }
 
   ngOnInit() {
@@ -235,8 +238,8 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  goToInvOverview() {
-    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.ROOT]);
+  goToInvOverview(selectedPortfolio: any) {
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT + '/' + selectedPortfolio]);
   }
 
   // tslint:disable-next-line:cognitive-complexity
