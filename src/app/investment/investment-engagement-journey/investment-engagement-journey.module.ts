@@ -34,6 +34,7 @@ import { YourFinancialsComponent } from './your-financials/your-financials.compo
 import {
   YourInvestmentAmountComponent
 } from './your-investment-amount/your-investment-amount.component';
+import { SelectPortfolioComponent } from './select-portfolio/select-portfolio.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
@@ -75,7 +76,8 @@ export function createTranslateLoader(http: HttpClient) {
     StartJourneyComponent,
     YourInvestmentAmountComponent,
     FundingMethodComponent,
-    SrsTooltipComponent
+    SrsTooltipComponent,
+    SelectPortfolioComponent
   ],
   providers: [CurrencyPipe, FormatCurrencyPipe],
   entryComponents: [SrsTooltipComponent]
