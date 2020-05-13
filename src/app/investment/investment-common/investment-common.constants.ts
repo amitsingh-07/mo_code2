@@ -30,5 +30,22 @@ export let INVESTMENT_COMMON_CONSTANTS = {
         ALL: 'All',
         INVESTMENT: 'Investment',
         WISESAVER: 'WiseSaver'
+    },
+    WISESAVER_ASSET_ALLOCATION : {
+        TYPE: 'Wisesaver',
+        ASSETS: [
+            {
+              allocationPercentage: 99,
+              type: {
+                type: 'Fixed Deposits'
+              }
+            },
+            {
+              allocationPercentage: 1,
+              type: {
+                type: 'Cash'
+              }
+            }
+          ]
     }
 };
