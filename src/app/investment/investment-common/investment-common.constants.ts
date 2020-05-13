@@ -25,5 +25,10 @@ export let INVESTMENT_COMMON_CONSTANTS = {
         DBS: 'DBS',
         OCBC: 'OCBC',
         UOB: 'UOB'
+    },
+    PORTFOLIO_CATEGORY: {
+        ALL: 'All',
+        INVESTMENT: 'Investment',
+        WISESAVER: 'WiseSaver'
     }
 };
