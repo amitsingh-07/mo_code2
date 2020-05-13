@@ -20,6 +20,7 @@ export class InvestmentEngagementJourneyFormData {
   oneTimeInvestmentChkBox: boolean;
   monthlyInvestmentChkBox: boolean;
   firstTimeUser: boolean;
+  portfolioTypeId: number;
 
   // RISK PROFILE
   riskProfileId: number;
@@ -29,8 +30,10 @@ export class InvestmentEngagementJourneyFormData {
   alternateRiskProfileType: string;
   fundDetails;
   selectedriskProfileId: number;
-  
+
 
   // FUNDING METHOD
   fundingMethod: any;
+
+
 }

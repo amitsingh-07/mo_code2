@@ -79,7 +79,7 @@ export class InvestmentEngagementJourneyService {
       riskProfileId: this.investmentEngagementJourneyFormData.selectedriskProfileId
     };
   }
-
+ 
   currentFormError(form) {
     const invalid = [];
     const invalidFormat = [];
@@ -251,11 +251,13 @@ export class InvestmentEngagementJourneyService {
     };
   }
   setYourFinancial(formData) {
+    console.log(formData)
     this.investmentEngagementJourneyFormData.monthlyIncome = formData.monthlyIncome;
     this.investmentEngagementJourneyFormData.percentageOfSaving = formData.percentageOfSaving;
     this.investmentEngagementJourneyFormData.totalAssets = formData.totalAssets;
     this.investmentEngagementJourneyFormData.totalLiabilities = formData.totalLiabilities;
     this.investmentEngagementJourneyFormData.suffEmergencyFund = formData.suffEmergencyFund;
+    this.investmentEngagementJourneyFormData.portfolioTypeId =formData.portfolioTypeId;
     this.commit();
   }
   getYourInvestmentAmount() {
@@ -271,6 +273,7 @@ export class InvestmentEngagementJourneyService {
     this.investmentEngagementJourneyFormData.monthlyInvestment = formData.monthlyInvestment;
     this.investmentEngagementJourneyFormData.oneTimeInvestmentChkBox = formData.firstChkBox;
     this.investmentEngagementJourneyFormData.monthlyInvestmentChkBox = formData.secondChkBox;
+    this.investmentEngagementJourneyFormData.portfolioTypeId = formData.portfolioTypeId;
     this.commit();
   }
 
@@ -291,7 +294,8 @@ export class InvestmentEngagementJourneyService {
       totalAssets: formData.totalAssets,
       totalLiabilities: formData.totalLiabilities,
       enquiryId: enquiryIdValue,
-      fundingTypeId: invCommonFormValues.initialFundingMethodId
+      fundingTypeId: invCommonFormValues.initialFundingMethodId,
+      portfolioTypeId: formData.portfolioTypeId
     };
   }
 
@@ -396,5 +400,14 @@ export class InvestmentEngagementJourneyService {
     }
     this.investmentEngagementJourneyFormData.firstTimeUser = false;
     this.commit();
+  }
+   /* Filter object from array of objects*/
+   filterDataByInput(inputObject: any, keyMapped: any, data: any) {
+    const filteredData = inputObject.filter((summaryData) => summaryData[keyMapped] === data);
+    if (filteredData && filteredData[0]) {
+      return filteredData[0];
+    } else {
+      return '';
+    }
   }
 }
