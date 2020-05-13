@@ -9,6 +9,7 @@ import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
+import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 
 @Component({
@@ -34,7 +35,8 @@ export class RiskAcknowledgementComponent implements OnInit {
     public headerService: HeaderService,
     public footerService: FooterService,
     public signUpService: SignUpService,
-    private investmentAccountService: InvestmentAccountService
+    private investmentAccountService: InvestmentAccountService,
+    private loaderService: LoaderService,
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -61,6 +63,16 @@ export class RiskAcknowledgementComponent implements OnInit {
     this._location.back();
   }
   goNext() {
+    this.investmentAccountService.getSpecificDropList('portfolioType').subscribe((data) => {
+      this.loaderService.hideLoader();
+     
+
+    },
+      (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PERSONAL_INFO]);
   }
 
