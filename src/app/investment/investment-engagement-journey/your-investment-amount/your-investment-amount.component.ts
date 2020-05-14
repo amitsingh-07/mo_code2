@@ -23,6 +23,7 @@ import {
   INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
 } from '../investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
+import { LoaderService } from '../../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-your-investment-amount',
@@ -53,7 +54,8 @@ export class YourInvestmentAmountComponent implements OnInit {
     public readonly translate: TranslateService,
     private investmentAccountService: InvestmentAccountService,
     private cd: ChangeDetectorRef,
-    private investmentCommonService: InvestmentCommonService
+    private investmentCommonService: InvestmentCommonService,
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
     const self = this;
@@ -149,6 +151,7 @@ export class YourInvestmentAmountComponent implements OnInit {
     }
   }
   goToNext(form) {
+
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
@@ -164,6 +167,28 @@ export class YourInvestmentAmountComponent implements OnInit {
         .replace('$MONTHLY_INVESTMENT$', this.investmentCriteria.monthlyInvestmentMinimum);
       // tslint:disable-next-line:triple-equals
     } else {
+      // this.investmentAccountService.getSpecificDropList('portfolioType').subscribe((data) => {
+      //   this.investmentCommonService.setPortfolioType(data.objectList.portfolioType);
+      //   let portfolioType = this.investmentEngagementJourneyService.filterDataByInput(data.objectList.portfolioType, 'name', 'Wisesaver');
+      //   form.value.portfolioTypeId = portfolioType.id;
+      //   this.investmentEngagementJourneyService.setYourInvestmentAmount(form.value);
+      //   const invCommonFormValues = this.investmentCommonService.getInvestmentCommonFormData();
+      //   this.investmentEngagementJourneyService.savePersonalInfo(invCommonFormValues).subscribe((data) => {
+      //     this.investmentCommonService.clearAccountCreationActions();
+      //     if (data) {
+      //       this.authService.saveEnquiryId(data.objectList.enquiryId);
+      //       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.RISK_ACKNOWLEDGEMENT]);
+      //     }
+      //   },
+      //     (err) => {
+      //       this.investmentAccountService.showGenericErrorModal();
+      //     });
+      //   this.loaderService.hideLoader();
+      // },
+      //   (err) => {
+      //     this.loaderService.hideLoader();
+      //     this.investmentAccountService.showGenericErrorModal();
+      //   });
       this.investmentEngagementJourneyService.setYourInvestmentAmount(form.value);
       if (this.FormDataType.selectPortfolioType ==='wiseSaverPortfolio') {
         this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.RISK_ACKNOWLEDGEMENT]);
