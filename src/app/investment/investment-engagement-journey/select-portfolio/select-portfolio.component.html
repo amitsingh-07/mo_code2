@@ -93,7 +93,7 @@
     <button type="button" class="btn btn__footer--fixed btn-primary width100" (click)="goNext(selectPortfolioForm)"
       [disabled]="!selectPortfolioForm.controls.selectPortfolioType.value">
       <span
-        *ngIf="!investmentEnabled && !wiseSaverEnabled && !selectPortfolioForm.controls.selectPortfolioType">{{'PORTFOLIO.TITLE' | translate}}</span>
+        *ngIf="!selectPortfolioForm.controls.selectPortfolioType.value">{{'PORTFOLIO.TITLE' | translate}}</span>
       <span
         *ngIf="investmentEnabled || ( selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='investPortfolio')">{{'PORTFOLIO.INVESTMENT.FOOTER_BTN_TXT' | translate}}</span>
       <span
