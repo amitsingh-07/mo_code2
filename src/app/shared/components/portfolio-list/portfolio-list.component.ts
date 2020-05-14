@@ -140,7 +140,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     this.authService.saveEnquiryId(null);
     this.investmentCommonService.clearFundingDetails();  // #MO2-2446
     this.investmentCommonService.clearJourneyData();
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
   }
 
   // Method to filter portfolios base on the category
@@ -153,8 +153,8 @@ export class PortfolioListComponent implements OnInit, OnChanges {
       this.filteredNotInvestedList = this.notInvestedList;
       this.filteredInvestedList = this.investedList;
       this.totalPortfoliosLength = this.portfolioList.length;
-      this.filteredTotalAmt.emit({totalCashBal: this.portfolioData.totalCashAccountBalance,
-        totalPortfolioVal: this.portfolioData.totalValue});
+      this.filteredTotalAmt.emit({totalCashBal: this.portfolioData.totalCashAccountBalance ? this.portfolioData.totalCashAccountBalance : 0,
+        totalPortfolioVal: this.portfolioData.totalValue ? this.portfolioData.totalValue : 0});
     }
   }
 
