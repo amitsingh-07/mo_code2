@@ -41,6 +41,7 @@ export class YourInvestmentAmountComponent implements OnInit {
   oneTimeInvestmentChkBoxVal: boolean;
   monthlyInvestmentChkBoxVal: boolean;
   investmentCriteria: IInvestmentCriteria;
+  FormDataType;
 
   constructor(
     private router: Router,
@@ -80,6 +81,7 @@ export class YourInvestmentAmountComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.investmentAmountFormValues = this.investmentEngagementJourneyService.getPortfolioFormData();
+    this.FormDataType = this.investmentEngagementJourneyService.getSelectPortfolioType();
     this.oneTimeInvestmentChkBoxVal = this.investmentAmountFormValues.oneTimeInvestmentChkBox
       ? this.investmentAmountFormValues.oneTimeInvestmentChkBox
       : false;
@@ -163,11 +165,11 @@ export class YourInvestmentAmountComponent implements OnInit {
       // tslint:disable-next-line:triple-equals
     } else {
       this.investmentEngagementJourneyService.setYourInvestmentAmount(form.value);
-      if (null) {
-        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP2]);
-      } 
+      if (this.FormDataType.selectPortfolioType ==='wiseSaverPortfolio') {
+        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.RISK_ACKNOWLEDGEMENT]);
+      } else{
         this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.MY_FINANCIAL]);
-      
+      }
     }
   }
 

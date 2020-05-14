@@ -19,7 +19,6 @@ import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { SeoServiceService } from './../../../shared/Services/seo-service.service';
-import { SlickComponent } from 'ngx-slick';
 
 @Component({
   selector: 'app-start-journey',
@@ -33,24 +32,7 @@ export class StartJourneyComponent implements OnInit {
   promoCode;
   errorMsg: string;
   promoCodeForm: FormGroup;
-  investmentEnabled : boolean = false;
-  wiseSaverEnabled : boolean = false;
-  investmentMoreInfoShow : boolean =  false;
-  wiseSaverMoreInfoShow : boolean =  false;
   @ViewChild('promoCode') promoCodeRef: ElementRef;
-  @ViewChild('carousel') carousel: SlickComponent;
-
-  public imgUrl = 'assets/images/';
-  public currentSlide = 0;
-  // Set config for ng slick
-  slideConfig = {
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    nextArrow: '',
-    prevArrow: '',
-    dots: true,
-    infinite: false,
-  };
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -143,7 +125,7 @@ export class StartJourneyComponent implements OnInit {
   }
   
   redirectToNextScreen(){
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
   }
   
 
@@ -152,38 +134,5 @@ export class StartJourneyComponent implements OnInit {
     ref.componentInstance.errorTitle = 'Error';
     ref.componentInstance.errorDescription = this.errorMsg;
     return false;
-  }
-
-  investPortfolio(event){
-    this.investmentEnabled = !this.investmentEnabled; 
-    this.wiseSaverEnabled = false;      
-  }
-  wiseSaverPortfolio(event){
-    this.wiseSaverEnabled = !this.wiseSaverEnabled;
-    this.investmentEnabled = false;       
-  }
-  investmentMoreInfo(event){
-    this.investmentMoreInfoShow = !this.investmentMoreInfoShow;
-    event.stopPropagation();
-  }
-  wiseSaverMoreInfo(event){
-    this.wiseSaverMoreInfoShow = !this.wiseSaverMoreInfoShow;
-    event.stopPropagation();    
-  }
-  // Go to next slide
-  nextSlide() {
-    this.carousel.slickNext();
-  }
-  // Go back previous slide
-  prevSlide() {
-    this.carousel.slickPrev();
-  }
-  // Go to specific slide
-  goToSlide(slide) {
-    this.carousel.slickGoTo(slide);
-  }
-  // Setting the next slide index on beforeChange event fire
-  beforeSlideChange(e) {
-    this.currentSlide = e.nextSlide;
   }
 }

@@ -397,4 +397,14 @@ export class InvestmentEngagementJourneyService {
     this.investmentEngagementJourneyFormData.firstTimeUser = false;
     this.commit();
   }
+  getSelectPortfolioType(){
+    return  {
+      selectPortfolioType : this.investmentEngagementJourneyFormData.selectPortfolioType,
+    }
+  
+  }
+  setSelectPortfolioType(formValue){
+    this.investmentEngagementJourneyFormData.selectPortfolioType = formValue.selectPortfolioType;
+   this.commit();
+  }
 }
