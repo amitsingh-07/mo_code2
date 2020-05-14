@@ -139,8 +139,8 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   addPortfolio() {
     this.authService.saveEnquiryId(null);
     this.investmentCommonService.clearFundingDetails();  // #MO2-2446
-    this.investmentCommonService.clearJourneyData();
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
+    this.investmentCommonService.clearJourneyData();    
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
   }
 
   // Method to filter portfolios base on the category
