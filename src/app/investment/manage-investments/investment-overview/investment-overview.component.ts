@@ -17,10 +17,6 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import {
   INVESTMENT_COMMON_ROUTE_PATHS
 } from '../../investment-common/investment-common-routes.constants';
-import { InvestmentCommonService } from '../../investment-common/investment-common.service';
-import {
-  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
-} from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
@@ -65,7 +61,6 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
 
   portfolioCategories;
   selectedCategory;
-  filteredPortfolioList;
 
   constructor(
     public readonly translate: TranslateService,
@@ -80,7 +75,6 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     public manageInvestmentsService: ManageInvestmentsService,
     private investmentAccountService: InvestmentAccountService,
     private signUpApiService: SignUpApiService,
-    private investmentCommonService: InvestmentCommonService,
     private loaderService: LoaderService,
     private route: ActivatedRoute
   ) {
@@ -219,8 +213,6 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
       );
     }
     this.showToastMessage();
-
-    this.filteredPortfolioList = this.portfolioList;
   }
 
   ViewTransferInst(productCode) {
@@ -305,13 +297,6 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
 
   verticalScrollPresent() {
     return (document.documentElement.scrollHeight > document.documentElement.clientHeight);
-  }
-
-  addPortfolio() {
-    this.authService.saveEnquiryId(null);
-    this.investmentCommonService.clearFundingDetails();  // #MO2-2446
-    this.investmentCommonService.clearJourneyData();
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
   }
 
   gotoTopUp(portfolio?) {
