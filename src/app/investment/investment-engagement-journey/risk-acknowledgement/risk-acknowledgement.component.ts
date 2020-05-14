@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -9,12 +9,8 @@ import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
-import { LoaderService } from '../../../shared/components/loader/loader.service';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { AppService } from '../../../app.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
-import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import { appConstants } from '../../../app.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
@@ -30,11 +26,6 @@ import { ModelWithButtonComponent } from '../../../shared/modal/model-with-butto
 export class RiskAcknowledgementComponent implements OnInit {
 
   pageTitle: string;
-  title = this.translate.instant('RISK_ACKNOWLEDGMENT.TITLE');
-  description = this.translate.instant('RISK_ACKNOWLEDGMENT.DESC');
-  img = 'assets/images/investment-account/risk-ack.svg';
-  description2 = this.translate.instant('GETSTARTED_STEP1.DESCRIPTION');
-  tab = '1';
 
   constructor(
     public readonly translate: TranslateService,
@@ -48,17 +39,11 @@ export class RiskAcknowledgementComponent implements OnInit {
     public modal: NgbModal,
     private signUpService: SignUpService,
     public investmentAccountService: InvestmentAccountService,
-    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    private manageInvestmentsService: ManageInvestmentsService,
-    private loaderService: LoaderService,
     private investmentCommonService: InvestmentCommonService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('GETSTARTED_STEP1.TITLE');
-      this.title = this.translate.instant('RISK_ACKNOWLEDGMENT.TITLE');
-      this.description = this.translate.instant('RISK_ACKNOWLEDGMENT.DESC');
-
     });
   }
 
@@ -115,6 +100,4 @@ export class RiskAcknowledgementComponent implements OnInit {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
     });
   }
-
-
 }
