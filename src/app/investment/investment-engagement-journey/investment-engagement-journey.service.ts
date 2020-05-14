@@ -251,7 +251,6 @@ export class InvestmentEngagementJourneyService {
     };
   }
   setYourFinancial(formData) {
-    console.log(formData)
     this.investmentEngagementJourneyFormData.monthlyIncome = formData.monthlyIncome;
     this.investmentEngagementJourneyFormData.percentageOfSaving = formData.percentageOfSaving;
     this.investmentEngagementJourneyFormData.totalAssets = formData.totalAssets;

@@ -31,9 +31,7 @@ export class InvestmentEngagementJourneyFormData {
   fundDetails;
   selectedriskProfileId: number;
 
-
   // FUNDING METHOD
   fundingMethod: any;
-
 
 }
