@@ -62,8 +62,9 @@ app-investment-period {
             font-size: 13px;
             padding-top: 10px;
 
-            div :first-child {
-              color: $investment-time-horizon-clr;
+            div:first-child {
+              color: $investment-time-horizon-desc-clr;
+
             }
           }
         }
