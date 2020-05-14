@@ -284,7 +284,6 @@ export class InvestmentCommonService {
     );
   }
   setPortfolioType(portfolioType){
-    console.log(portfolioType)
     this.investmentCommonFormData.portfolioType = portfolioType;
     this.commit();
   }
