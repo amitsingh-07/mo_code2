@@ -42,7 +42,7 @@ export class YourInvestmentAmountComponent implements OnInit {
   oneTimeInvestmentChkBoxVal: boolean;
   monthlyInvestmentChkBoxVal: boolean;
   investmentCriteria: IInvestmentCriteria;
-  FormDataType;
+  selectedPortfolioType;
 
   constructor(
     private router: Router,
@@ -83,7 +83,7 @@ export class YourInvestmentAmountComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.investmentAmountFormValues = this.investmentEngagementJourneyService.getPortfolioFormData();
-    this.FormDataType = this.investmentEngagementJourneyService.getSelectPortfolioType();
+    this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
     this.oneTimeInvestmentChkBoxVal = this.investmentAmountFormValues.oneTimeInvestmentChkBox
       ? this.investmentAmountFormValues.oneTimeInvestmentChkBox
       : false;
@@ -169,7 +169,7 @@ export class YourInvestmentAmountComponent implements OnInit {
     } else {
       this.investmentAccountService.getSpecificDropList('portfolioType').subscribe((data) => {
         this.investmentCommonService.setPortfolioType(data.objectList.portfolioType);
-        if (this.FormDataType.selectPortfolioType === 'wiseSaverPortfolio') {
+        if (this.selectedPortfolioType === 'wiseSaverPortfolio') {
           let portfolioType = this.investmentEngagementJourneyService.filterDataByInput(data.objectList.portfolioType, 'name', 'Wisesaver');
           form.value.portfolioTypeId = portfolioType.id;
           this.investmentEngagementJourneyService.setYourInvestmentAmount(form.value);

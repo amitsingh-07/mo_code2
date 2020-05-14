@@ -2,11 +2,11 @@
     <div class="portfolio-page-title hidden-sm">{{'PORTFOLIO.TITLE' | translate}}</div>
     <!-- Investment Portfolio -->
     <form name="selectPortfolioForm" [formGroup]="selectPortfolioForm" id="selectPortfolioForm">
-        <div class="investment-portfolio" formControlName="selectPortfolioType" id="selectPortfolioType" name="selectPortfolioForm" value="investPortfolio" ngDefaultControl (click)="setSelectPortfolioType($event,'investPortfolio')">
+        <div class="investment-portfolio" formControlName="selectPortfolioType" id="selectPortfolioType" name="selectPortfolioForm" value="investPortfolio" ngDefaultControl (click)="setSelectPortfolioType('investPortfolio')">
             <div class="portfolio-cards" [ngClass]="{'active': investmentEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='investPortfolio', 'more-info-shadow': investmentMoreInfoShow}">
                 <div class="portfolio-cards__select" *ngIf="investmentEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='investPortfolio'">
-                    <img src="{{imgUrl}}/wisesaver/circle-tick.svg"></div>
-                <div class="portfolio-cards__img"><img src="{{imgUrl}}/wisesaver/investment-guy.svg"></div>
+                    <img src="assets/images/wisesaver/circle-tick.svg"></div>
+                <div class="portfolio-cards__img"><img src="assets/images/wisesaver/investment-guy.svg"></div>
                 <div class="portfolio-cards__details">
                     <div class="portfolio-cards__details__title">{{'PORTFOLIO.INVESTMENT.TITLE' | translate}}</div>
                     <div class="portfolio-cards__details__desc">{{'PORTFOLIO.INVESTMENT.DESC' | translate}}</div>
@@ -39,13 +39,13 @@
             </div>
         </div>
         <!-- WiseSaver Portfolio -->
-        <div class="wisesaver-portfolio" formControlName="selectPortfolioType" id="selectPortfolioType" name="selectPortfolioType" value="wiseSaverPortfolio" ngDefaultControl (click)="setSelectPortfolioType($event,'wiseSaverPortfolio')">
+        <div class="wisesaver-portfolio" formControlName="selectPortfolioType" id="selectPortfolioType" name="selectPortfolioType" value="wiseSaverPortfolio" ngDefaultControl (click)="setSelectPortfolioType('wiseSaverPortfolio')">
             <div class="portfolio-cards" [ngClass]="{'active': wiseSaverEnabled  || selectPortfolioForm.controls.selectPortfolioType && 
         selectPortfolioForm.controls.selectPortfolioType.value ==='wiseSaverPortfolio',
         'more-info-shadow': wiseSaverMoreInfoShow }">
                 <div class="portfolio-cards__select" *ngIf="wiseSaverEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='wiseSaverPortfolio'">
-                    <img src="{{imgUrl}}/wisesaver/circle-tick.svg"></div>
-                <div class="portfolio-cards__img"><img src="{{imgUrl}}/wisesaver/wisesaver-family.svg"></div>
+                    <img src="assets/images/wisesaver/circle-tick.svg"></div>
+                <div class="portfolio-cards__img"><img src="assets/images/wisesaver/wisesaver-family.svg"></div>
                 <div class="portfolio-cards__details">
                     <div class="portfolio-cards__details__title">{{'PORTFOLIO.WISESAVER.TITLE' | translate}}</div>
                     <div class="portfolio-cards__details__desc">{{'PORTFOLIO.WISESAVER.DESC' | translate}}</div>

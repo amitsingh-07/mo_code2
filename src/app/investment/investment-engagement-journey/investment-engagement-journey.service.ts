@@ -401,9 +401,7 @@ export class InvestmentEngagementJourneyService {
     this.commit();
   }
   getSelectPortfolioType() {
-    return {
-      selectPortfolioType: this.investmentEngagementJourneyFormData.selectPortfolioType,
-    }
+    return this.investmentEngagementJourneyFormData.selectPortfolioType;
   }
 
   setSelectPortfolioType(formValue) {

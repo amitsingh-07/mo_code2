@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import {
-  Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation, Input
+  Component, HostListener, OnInit, ViewChild, ViewEncapsulation, Input
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,9 +13,7 @@ import { LoaderService } from '../../../shared/components/loader/loader.service'
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
-import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { SeoServiceService } from './../../../shared/Services/seo-service.service';
@@ -38,10 +36,7 @@ export class SelectPortfolioComponent implements OnInit {
   @ViewChild('carousel') carousel: SlickComponent;
 
   selectPortfolioForm: FormGroup;
-  formValues;
-
-
-  public imgUrl = 'assets/images/';
+  selectedPortfolioType;
   public currentSlide = 0;
   // Set config for ng slick
   slideConfig = {
@@ -83,10 +78,10 @@ export class SelectPortfolioComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.formValues = this.investmentEngagementJourneyService.getSelectPortfolioType();
+    this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
     this.selectPortfolioForm = new FormGroup({
       selectPortfolioType: new FormControl(
-        this.formValues.selectPortfolioType, Validators.required)
+        this.selectedPortfolioType, Validators.required)
     });
   }
   @HostListener('input', ['$event'])
@@ -118,7 +113,7 @@ export class SelectPortfolioComponent implements OnInit {
     this.wiseSaverMoreInfoShow = !this.wiseSaverMoreInfoShow;
     event.stopPropagation();
   }
-  setSelectPortfolioType(event, value) {
+  setSelectPortfolioType(value) {
     this.selectPortfolioForm.controls.selectPortfolioType.setValue(value);
     if (value === 'investPortfolio') {
       this.investmentEnabled = !this.investmentEnabled;
