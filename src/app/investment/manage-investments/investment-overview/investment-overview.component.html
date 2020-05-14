@@ -38,7 +38,7 @@
                 <span>{{'YOUR_INVESTMENT.BACK_DASHBOARD' | translate}} </span>
               </div>
               <div class="your_portfolio_label flex-col-12" id="investment_overview_your_portfolios">
-                <ng-container *ngIf="!filteredPortfolioList || filteredPortfolioList.length < 2; else multiplePortfolio">
+                <ng-container *ngIf="!portfolioList || portfolioList.length < 2; else multiplePortfolio">
                   {{'YOUR_INVESTMENT.MY_PORTFOLIO' | translate}}
                 </ng-container>
                 <ng-template #multiplePortfolio>
@@ -108,23 +108,11 @@
     </div>
   </div>
 </section>
-<app-portfolio-list *ngIf="investmentoverviewlist" [portfolioList]="filteredPortfolioList" [portfolioCategory]="selectedCategory"
+<app-portfolio-list *ngIf="investmentoverviewlist" [portfolioList]="portfolioList" [portfolioCategory]="selectedCategory"
   [showTotalReturn]="investmentoverviewlist.showTotalReturn" (detailSelected)="yourPortfolio($event)"
   (investAgainSelected)="investAgain($event)" (transferInstSelected)="ViewTransferInst($event)"
   (topUpSelected)="gotoTopUp($event)" [portfolioData]="investmentoverviewlist" (filteredTotalAmt)="setFilteredValue($event)">
 </app-portfolio-list>
-<div class="container-fluid max-width--1024 no-portfolio-container"
-  *ngIf="investmentoverviewlist && (!filteredPortfolioList || filteredPortfolioList.length == 0)">
-  <div class="form-group-with-bg no-portfolio">
-    <div class="flex-col align-center">
-      <div class="msg"> {{'YOUR_INVESTMENT.NO_PORTFOLIOS_YET' | translate}} <br>
-        {{'YOUR_INVESTMENT.ADD_PORTFOLIO_START_INVEST' | translate}} </div>
-      <div class="add-portfolio-icon"><img src="assets/images/add-portfolio-icon.svg" alt="" /></div>
-      <button type="button" class="btn btn-primary" id="add_portfolio" (click)="addPortfolio()">
-        {{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}} </button>
-    </div>
-  </div>
-</div>
 <div *ngIf="investmentoverviewlist" class="srs-block">
   <div class="container-fluid max-width--1024">
     <div class="srs-reminder">

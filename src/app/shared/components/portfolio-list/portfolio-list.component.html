@@ -1,5 +1,5 @@
 <!-- Widget Content-->
-<div class="multiple-portfolio-container" *ngIf="portfolioList?.length > 0">
+<div class="multiple-portfolio-container" *ngIf="totalPortfoliosLength > 0; else noFilteredPortfolios">
     <div class="container-fluid max-width--1024">
         <div class="multiple-portfolio-block">
             <div class="multiple-portfolio-header">
@@ -88,4 +88,17 @@
         </div>
     </div>
 </div>
+<ng-template #noFilteredPortfolios>
+    <div class="container-fluid max-width--1024 no-portfolio-container">
+        <div class="form-group-with-bg no-portfolio">
+            <div class="flex-col align-center">
+                <div class="msg"> {{'YOUR_INVESTMENT.NO_PORTFOLIOS_YET' | translate}} <br>
+                    {{'YOUR_INVESTMENT.ADD_PORTFOLIO_START_INVEST' | translate}} </div>
+                <div class="add-portfolio-icon"><img src="assets/images/add-portfolio-icon.svg" alt="" /></div>
+                <button type="button" class="btn btn-primary" id="add_portfolio" (click)="addPortfolio()">
+                    {{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}} </button>
+            </div>
+        </div>
+    </div>
+</ng-template>
 <!-- / Widget Content-->
