@@ -34,4 +34,6 @@ export class InvestmentEngagementJourneyFormData {
   // FUNDING METHOD
   fundingMethod: any;
 
+  // SELECT PORTFOLIO
+  selectPortfolioType:any;
 }

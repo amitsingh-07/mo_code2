@@ -400,6 +400,16 @@ export class InvestmentEngagementJourneyService {
     this.investmentEngagementJourneyFormData.firstTimeUser = false;
     this.commit();
   }
+  getSelectPortfolioType(){
+    return  {
+      selectPortfolioType : this.investmentEngagementJourneyFormData.selectPortfolioType,
+    }
+  }
+  
+  setSelectPortfolioType(formValue){
+    this.investmentEngagementJourneyFormData.selectPortfolioType = formValue.selectPortfolioType;
+   this.commit();
+  }
    /* Filter object from array of objects*/
    filterDataByInput(inputObject: any, keyMapped: any, data: any) {
     const filteredData = inputObject.filter((summaryData) => summaryData[keyMapped] === data);
@@ -410,3 +420,4 @@ export class InvestmentEngagementJourneyService {
     }
   }
 }
+

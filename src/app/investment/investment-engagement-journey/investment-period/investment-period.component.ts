@@ -13,6 +13,7 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
+import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 
 const assetImgPath = './assets/images/';
 
@@ -34,6 +35,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
   sliderMinValue = 0;
   sliderMaxValue = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.personal_info.max_investment_years;
   isSufficientInvYears = false;
+
 
   constructor(
     // tslint:disable-next-line
@@ -115,6 +117,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
     }, 1);
     this.isSufficientInvYears =
       value > INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.personal_info.min_investment_period ? true : false;
+
     this.cd.detectChanges();
   }
 
@@ -135,9 +138,31 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
         'errorMessage'
       ];
       return false;
+    } else if (form.value.investmentPeriod < 4) {
+      this.showModalPopUp(form.value.investmentPeriod);
+    } else {
+      this.investmentEngagementJourneyService.setPersonalInfo(form.value);
+      return true;
     }
-    this.investmentEngagementJourneyService.setPersonalInfo(form.value);
-    return true;
+  }
+
+  showModalPopUp(value) {
+    const investmentPeriodValue = {
+      period: value
+    };
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('PERSONAL_INFO.MODAL.TITLE');
+    ref.componentInstance.errorMessageHTML = this.translate.instant('PERSONAL_INFO.MODAL.MESSAGE', investmentPeriodValue);
+    ref.componentInstance.investmentPeriodImg = true;
+    ref.componentInstance.primaryActionLabel = this.translate.instant('PERSONAL_INFO.MODAL.BTN_LBL1');
+    ref.componentInstance.secondaryActionLabel = this.translate.instant('PERSONAL_INFO.MODAL.BTN_LBL2');
+    ref.componentInstance.secondaryActionDim = true;
+    ref.componentInstance.primaryAction.subscribe((emittedValue) => {
+      ref.dismiss();
+    });
+    ref.componentInstance.secondaryAction.subscribe((emittedValue) => {
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+    });
   }
 
   goToNext(form) {

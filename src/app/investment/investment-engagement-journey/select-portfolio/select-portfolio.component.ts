@@ -1,8 +1,8 @@
 import { Location } from '@angular/common';
 import {
-    Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation, Input
+  Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation, Input
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -30,11 +30,15 @@ export class SelectPortfolioComponent implements OnInit {
   pageTitle: string;
   isDisabled: boolean;
   errorMsg: string;
-  investmentEnabled : boolean = false;
-  wiseSaverEnabled : boolean = false;
-  investmentMoreInfoShow : boolean =  false;
-  wiseSaverMoreInfoShow : boolean =  false;
+  investmentEnabled: boolean = false;
+  wiseSaverEnabled: boolean = false;
+  investmentMoreInfoShow: boolean = false;
+  wiseSaverMoreInfoShow: boolean = false;
   @ViewChild('carousel') carousel: SlickComponent;
+
+  selectPortfolioForm: FormGroup;
+  formValues;
+
 
   public imgUrl = 'assets/images/';
   public currentSlide = 0;
@@ -78,8 +82,10 @@ export class SelectPortfolioComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-
-    this.authService.authenticate().subscribe((token) => {
+    this.formValues = this.investmentEngagementJourneyService.getSelectPortfolioType();
+    this.selectPortfolioForm = new FormGroup({
+      selectPortfolioType: new FormControl(
+        this.formValues.selectPortfolioType, Validators.required)
     });
   }
   @HostListener('input', ['$event'])
@@ -90,28 +96,36 @@ export class SelectPortfolioComponent implements OnInit {
   goBack() {
     this._location.back();
   }
-  goNext() {
+  goNext(Form) {
+    this.investmentEngagementJourneyService.setSelectPortfolioType(Form.value)
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
     this.redirectToNextScreen();
   }
-  redirectToNextScreen(){
+  redirectToNextScreen() {
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
   }
-  investPortfolio(event){
-    this.investmentEnabled = !this.investmentEnabled; 
-    this.wiseSaverEnabled = false;      
+  investPortfolio(event) {
+    this.investmentEnabled = !this.investmentEnabled;
+    this.wiseSaverEnabled = false;
   }
-  wiseSaverPortfolio(event){
-    this.wiseSaverEnabled = !this.wiseSaverEnabled;
-    this.investmentEnabled = false;       
-  }
-  investmentMoreInfo(event){
+
+  investmentMoreInfo(event) {
     this.investmentMoreInfoShow = !this.investmentMoreInfoShow;
     event.stopPropagation();
   }
-  wiseSaverMoreInfo(event){
+  wiseSaverMoreInfo(event) {
     this.wiseSaverMoreInfoShow = !this.wiseSaverMoreInfoShow;
-    event.stopPropagation();    
+    event.stopPropagation();
+  }
+  setSelectPortfolioType(event, value) {
+    this.selectPortfolioForm.controls.selectPortfolioType.setValue(value);
+    if (value === 'investPortfolio') {
+      this.investmentEnabled = !this.investmentEnabled;
+      this.wiseSaverEnabled = false;
+    } else {
+      this.wiseSaverEnabled = !this.wiseSaverEnabled;
+      this.investmentEnabled = false;
+    }
   }
   // Go to next slide
   nextSlide() {
