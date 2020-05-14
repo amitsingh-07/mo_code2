@@ -13,7 +13,7 @@
             "Insurance": {
                 "General": [{
                         "QUESTION": "Why am I not receiving email from MoneyOwl?",
-                        "ANSWER": "Do you have a Hotmail, Live Mail, MSN or Outlook email account? Please add us to your safe senders list to make sure you receive our messages! You might want to check your “Other” or “Junk” mailboxes if you still can’t see our messages in your inbox!<br/><br/>To add MoneyOwl as a safe sender, please follow the steps below:<br/><br/><ol class=\"email-account\"><li>Sign into your email account at <a target=\"_blank\" href=\"https://outlook.live.com/\">https://outlook.live.com/</a></li><li>Go to “Settings” > “View all Outlook Settings” <br/><img src=\"assets/images/faq/settings.png\" class=\"img-responsive \" /></li><li> Select “Email” > “ Junk email” and add moneyowl.com.sg to Safe senders and domains list<br/><img src=\"assets/images/faq/email.png\" class=\"img-responsive \" /></li></ol>"
+                        "ANSWER": "Do you have a Hotmail, Live Mail, MSN or Outlook email account? Please add us to your safe senders list to make sure you receive our messages! You might want to check your “Other” or “Junk” mailboxes if you still can’t see our messages in your inbox!<br/><br/>To add MoneyOwl as a safe sender, please follow the steps below:<br/><br/><ol class=\"email-account\"><li>Sign into your email account at <a target=\"_blank\" href=\"https://outlook.live.com/\">https://outlook.live.com/</a></li><li>Go to “Settings” > “View all Outlook Settings” <br/><img src=\"assets/images/faq/settings.png\" class=\"img-responsive with-brdr \" /></li><li> Select “Email” > “ Junk email” and add moneyowl.com.sg to Safe senders and domains list<br/><img src=\"assets/images/faq/email.png\" class=\"img-responsive with-brdr\" /></li></ol>"
                     },
                     {
                         "QUESTION": "How should I get started? What insurance products should I buy?",
@@ -351,7 +351,7 @@
                 ],
                 "Joint or SRS Accounts | Joint or SRS (Supplementary Retirement Schemes) Accounts": [{
                         "QUESTION": "Can I open Joint or SRS Investment Accounts?",
-                        "ANSWER": "<p>Yes, you can. However, please note that we are currently handling the management of these accounts, including the portfolio account statements, offline. It is also a pre-requisite to set up your Personal Investment Account <a target='_blank' href=\"/app/investment/engagement/start-journey\" target='_blank'>https://www.moneyowl.com.sg/investment</a> before opening your Joint Investment Account. <br/><br/>Please email <a href=\"mailto:clientsupport@moneyowl.com.sg\">clientsupport@moneyowl.com.sg</a> for an application form and assistance on next steps.</p>"
+                        "ANSWER": "<p>Yes, you can. However, please note that we are currently handling the management of Joint accounts, including the portfolio account statements, offline. It is also a pre-requisite to set up your Personal Investment Account <a target='_blank' href=\"/app/investment/engagement/start-journey\" target='_blank'>https://www.moneyowl.com.sg/investment</a> before opening your Joint Investment Account. <br/><br/>Please email <a href=\"mailto:clientsupport@moneyowl.com.sg\">clientsupport@moneyowl.com.sg</a> for an application form and assistance on next steps.</p>"
                     },
                     {
                         "QUESTION": "I already have an existing Personal Investment Account. Can I convert this to a Joint or SRS Investment Account?",
@@ -385,11 +385,11 @@
                 ],
                 "Fees": [{
                         "QUESTION": "What are the total fees that I have to pay?",
-                        "ANSWER": "The total annual fees you have to pay are as follows:<table class=\"table--bordered\"><tr><td class=\"cell--teal\">MoneyOwl Advisory Fees<br/><small><i>(*Or your special promo rate)</i></small></td><td>0.65% p.a.*</td></tr><tr><td class=\"cell--teal\"><span>Platform Fees</span><br/><small><i>(Paid to iFast)</i></small></td><td>0.18% p.a.</td></tr><tr><td class=\"cell--teal\"><span>Fund Expense Ratio <i>(Estimated)</i></span><br/><small><i>(Payable to Dimensional Fund Advisors)</i></small></td><td>0.3% to 0.4% p.a.</td></tr></table>"
+                        "ANSWER": "The total annual fees you have to pay are as follows:<table class=\"table--bordered\"><tr><td class=\"cell--teal\">MoneyOwl Advisory Fees<br/><small><i>(*Or your special promo rate)</i></small></td><td>0.65% p.a.*</td></tr><tr><td class=\"cell--teal\"><span>Platform Fees</span><br/><small><i>(Paid to iFast)</i></small></td><td>0.18% p.a.</td></tr></table>Excludes fund-level fees of 0.28% to 0.32% p.a. which are already incorporated into the Net Asset Value (NAV) or price of the fund."
                     },
                     {
                         "QUESTION": "How are fees deducted?",
-                        "ANSWER": "The fees are deducted from the units in your portfolio on a quarterly basis. For MoneyOwl, projected returns are net of Total Fees."
+                        "ANSWER": "The MoneyOwl Advisory and Platform fees are deducted from the units in your portfolio on a quarterly basis. For MoneyOwl, projected returns are net of Total Fees."
                     },
                     {
                         "QUESTION": "Are there any fees if I close my MoneyOwl Investment Account?",
@@ -398,7 +398,7 @@
                 ],
                 "General Questions": [{
                         "QUESTION": "Why am I not receiving email from MoneyOwl?",
-                        "ANSWER": "Do you have a Hotmail, Live Mail, MSN or Outlook email account? Please add us to your safe senders list to make sure you receive our messages! You might want to check your “Other” or “Junk” mailboxes if you still can’t see our messages in your inbox!<br/><br/>To add MoneyOwl as a safe sender, please follow the steps below:<br/><br/><ol class=\"email-account\"><li>Sign into your email account at <a target=\"_blank\" href=\"https://outlook.live.com/\">https://outlook.live.com/</a></li><li>Go to “Settings” > “View all Outlook Settings” <br/><img src=\"assets/images/faq/settings.png\" class=\"img-responsive \"/></li><li> Select “Email” > “ Junk email” and add moneyowl.com.sg to Safe senders and domains list<br/><img src=\"assets/images/faq/email.png\" class=\"img-responsive \"/></li></ol>"
+                        "ANSWER": "Do you have a Hotmail, Live Mail, MSN or Outlook email account? Please add us to your safe senders list to make sure you receive our messages! You might want to check your “Other” or “Junk” mailboxes if you still can’t see our messages in your inbox!<br/><br/>To add MoneyOwl as a safe sender, please follow the steps below:<br/><br/><ol class=\"email-account\"><li>Sign into your email account at <a target=\"_blank\" href=\"https://outlook.live.com/\">https://outlook.live.com/</a></li><li>Go to “Settings” > “View all Outlook Settings” <br/><img src=\"assets/images/faq/settings.png\" class=\"img-responsive with-brdr\"/></li><li> Select “Email” > “ Junk email” and add moneyowl.com.sg to Safe senders and domains list<br/><img src=\"assets/images/faq/email.png\" class=\"img-responsive with-brdr \"/></li></ol>"
                     },
                     {
                         "QUESTION": "Who is iFAST Financial Pte Ltd?",
@@ -433,7 +433,7 @@
             "Comprehensive": {
                 "General": [{
                         "QUESTION": "Why am I not receiving email from MoneyOwl?",
-                        "ANSWER": "Do you have a Hotmail, Live Mail, MSN or Outlook email account? Please add us to your safe senders list to make sure you receive our messages! You might want to check your “Other” or “Junk” mailboxes if you still can’t see our messages in your inbox!<br/><br/>To add MoneyOwl as a safe sender, please follow the steps below:<br/><br/><ol class=\"email-account\"><li>Sign into your email account at <a target=\"_blank\" href=\"https://outlook.live.com/\">https://outlook.live.com/</a></li><li>Go to “Settings” > “View all Outlook Settings” <br/><img src=\"assets/images/faq/settings.png\" class=\"img-responsive \"/></li><li> Select “Email” > “ Junk email” and add moneyowl.com.sg to Safe senders and domains list<br/><img src=\"assets/images/faq/email.png\" class=\"img-responsive \"/></li></ol>"
+                        "ANSWER": "Do you have a Hotmail, Live Mail, MSN or Outlook email account? Please add us to your safe senders list to make sure you receive our messages! You might want to check your “Other” or “Junk” mailboxes if you still can’t see our messages in your inbox!<br/><br/>To add MoneyOwl as a safe sender, please follow the steps below:<br/><br/><ol class=\"email-account\"><li>Sign into your email account at <a target=\"_blank\" href=\"https://outlook.live.com/\">https://outlook.live.com/</a></li><li>Go to “Settings” > “View all Outlook Settings” <br/><img src=\"assets/images/faq/settings.png\" class=\"img-responsive with-brdr\"/></li><li> Select “Email” > “ Junk email” and add moneyowl.com.sg to Safe senders and domains list<br/><img src=\"assets/images/faq/email.png\" class=\"img-responsive with-brdr \"/></li></ol>"
                     },
                     {
                         "QUESTION": "What is Comprehensive Financial Planning?",

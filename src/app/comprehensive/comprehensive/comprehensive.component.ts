@@ -205,11 +205,11 @@ export class ComprehensiveComponent implements OnInit {
         this.loaderService.showLoader({ title: this.loading, autoHide: false });
         this.comprehensiveApiService.ValidatePromoCode(promoCode).subscribe((data: any) => {
           if (data && data.objectList[0].validatePromoCode) {
-            this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((data: any) => {
-              if (data && data.objectList[0]) {
-                  this.cmpService.setComprehensiveSummary(data.objectList[0]);
+            this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((summaryData: any) => {
+              if (summaryData && summaryData.objectList[0]) {
+                  this.cmpService.setComprehensiveSummary(summaryData.objectList[0]);
                   this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
-              }});      
+              }});
           }
         }, (err) => {
           setTimeout(() => {

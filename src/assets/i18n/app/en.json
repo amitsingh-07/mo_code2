@@ -96,7 +96,8 @@
         "TITLE": "Settings",
         "SORT_BY": "Sort by",
         "APPLY_FILTERS": "Apply Filters",
-        "SORT": [{
+        "SORT": [
+            {
                 "displayText": "Highest Ranking",
                 "value": "premium.ranking"
             },
@@ -457,8 +458,9 @@
                 "QRCODE": {
                     "TITLE": "Scan & Transfer by QR Code",
                     "DESC": "Top up by scanning or saving this QR Code to your bank’s PayNow option.",
-                    "REFCODE": "Enter reference code",
-                    "SAVEBTN": "Save QR Image"
+                    "REFCODE": "Enter Reference Code",
+                    "SAVEBTN": "Save QR Image",
+                    "ALT_STEPS": "Alternatively, follow these steps to top up by entering UEN number."
                 }
             }
         }
@@ -474,5 +476,11 @@
         "ACCOUNT_CREATION_PENDING_TITLE": "Sorry, Investment Account Setup in-progress",
         "ACCOUNT_CREATION_PENDING_ERROR": "Please wait for account to be ready to add or view portfolio.",
         "NOT_ALLOW_USER_ERROR": "Your investment account set up is unsuccessful and portfolio creation is not allowed."
+    },
+    "INVEST_MAINTENANCE": {
+        "TITLE": "Maintenance In Progress",
+        "CONTENT": "We’ll be back again shortly. Please check our homepage for the schedule of maintenance.",
+        "CONTACT_US": "Contact Us",
+        "ABT_MO": "MoneyOwl Pte Ltd is a financial adviser and fund management company licensed by MAS. We are a joint venture between NTUC Enterprise Co-operative Ltd and Providend Holding Pte Ltd. Capital Markets Services Licence No: CMS100758. {{copyrightYear}} MoneyOwl Pte Ltd. All Rights Reserved."
     }
 }
