@@ -24,7 +24,8 @@ import { SlickComponent } from 'ngx-slick';
 @Component({
   selector: 'app-select-portfolio',
   templateUrl: './select-portfolio.component.html',
-  styleUrls: ['./select-portfolio.component.scss']
+  styleUrls: ['./select-portfolio.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SelectPortfolioComponent implements OnInit {
   pageTitle: string;
