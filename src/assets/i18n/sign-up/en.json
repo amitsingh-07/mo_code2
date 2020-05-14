@@ -317,7 +317,8 @@
       "WISE_SAVER_PORTFOLIOS": "WiseSaver Portfolios",
       "CASH_BALANCE": "Cash Balance",
       "CASH_ACCOUNT_BALANCE_TITLE": "Cash Account",
-      "CASH_ACCOUNT_BALANCE_MESSAGE": "The cash account is where all your investment funds are held before it is transferred to a portfolio or your bank account."
+      "CASH_ACCOUNT_BALANCE_MESSAGE": "The cash account is where all your investment funds are held before it is transferred to a portfolio or your bank account.",
+      "SERVICE_UNAVAILABLE": "Sorry, this service is temporarily unavailable. Please try again later."
     },
     "WILL_WRITING": {
       "TITLE": "Will Writing",

@@ -37,9 +37,7 @@ export class AllocationComponent implements OnInit, OnChanges {
       this.allocationDetails = false;
     } else if (this.assets) {
       this.assets.forEach((allocation) => {
-        const groupedAllocation = this.groupByProperty(allocation.groupedAllocationDetails);
-        this.investmentEngagementJourneyService.sortByProperty(groupedAllocation, 'name', 'asc');
-        allocation.groupedAllocationDetails = groupedAllocation;
+        allocation.groupedAllocationDetails = this.groupByProperty(allocation.groupedAllocationDetails);
       });
       this.allocationDetails = true;
     }

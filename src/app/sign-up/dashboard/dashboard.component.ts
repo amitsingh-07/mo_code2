@@ -92,6 +92,9 @@ export class DashboardComponent implements OnInit {
   isComprehensiveEnabled = false;
   portfolioCategory: any;
 
+  // iFast Maintenance
+  iFastMaintenance = false;
+
   constructor(
     private router: Router,
     private configService: ConfigService,
@@ -368,6 +371,13 @@ export class DashboardComponent implements OnInit {
 
   enableInvestment() {
     this.isInvestmentEnabled = true;
+    // Check if iFast is in maintenance
+    this.configService.getConfig().subscribe((config) => {
+      if (config.iFastMaintenance && this.configService.checkIFastStatus(config.maintenanceStartTime, config.maintenanceEndTime)) {
+        this.iFastMaintenance = true;
+        this.isInvestmentEnabled = false;
+      }
+    });
   }
 
   // Will-writing

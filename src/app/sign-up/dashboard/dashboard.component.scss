@@ -269,6 +269,14 @@ app-dashboard {
                     align-items: center;
                     justify-content: center;
                 }
+                .alert-img-container {
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: -9px;
+                    img {
+                        margin: 0 56px 6px 0;
+                    }
+                }
             }
             .investment-widget {
                 margin: 20px 15px 20px!important;
@@ -459,6 +467,14 @@ app-dashboard {
                     padding: 0px 18px 0px 0px;
                 }
               }
+            .alert-img-container {
+                display: flex;
+                justify-content: flex-end;
+                margin-top: -9px;
+                img {
+                    margin: 0 56px 6px 0;
+                }
+            }
         }
     }
     .announcement-div {
