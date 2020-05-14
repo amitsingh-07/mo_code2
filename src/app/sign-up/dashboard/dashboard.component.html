@@ -31,7 +31,54 @@
                     </div>
                     <div class="widgets">
                         <app-comprehensive-dashboard *ngIf='isComprehensiveEnabled'></app-comprehensive-dashboard>
-                        <div class="widget">
+                        <!-- Investment WiseSaver New Card -->
+                        <div class="widget" *ngIf="isInvestmentEnabled && showPortfolioPurchased">
+                            <ng-container *ngIf="isInvestmentEnabled; else loader">
+                                <div class="widget-title widget-portfolio-title" >
+                                    <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
+                                    </span>
+                                    <button type="button" class="btn-with-icon top_up_btn" id="top-up_button" (click)="gotoTopUp()">
+                                        <span class="topup-btn-img"><img id="top-up_img"
+                                            src="assets/images/dashboard-currency.svg" alt="" /></span>
+                                        <span>{{'DASHBOARD.INVESTMENT.TOP_UP' | translate}}</span>
+                                    </button>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="flex-row widget-portfolio-body">                                      
+                                        <div class="flex-col-6 border-portfolio-section">
+                                            <div class="flex total-portfolio-title">{{'DASHBOARD.INVESTMENT.TOTAL_PORTFOLIO_VALUE' | translate}} </div>
+                                            <div class="flex total-portfolio-value">{{(investmentsSummary && investmentsSummary.portfolioSummary.overallPortfolioValue ? investmentsSummary.portfolioSummary.overallPortfolioValue : 0) | formatCurrency}} <img (click)="goToInvOverview(portfolioCategory.ALL)" src="assets/images/dashboard-arrow.svg" alt="" /></div>
+                                        </div>                                       
+                                        <div class="flex-col-6 widget-portfolio-right-section">
+                                            <div class="flex total-portfolio-title total-portfolio-title-width">{{'DASHBOARD.INVESTMENT.TOTAL_CASH_BALANCE_VALUE' | translate}}<img (click)="showCashAccountPopUp()" src="assets/images/dashboard-help.svg" alt="" /></div>
+                                            <div class="flex total-portfolio-value">{{(investmentsSummary && investmentsSummary.portfolioSummary.overallCashAccountBalance ? investmentsSummary.portfolioSummary.overallCashAccountBalance : 0) | formatCurrency}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                    <div class="row widget-portfolio-type-content" >
+                                        <div class="col-md-6">
+                                            <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.INVESTMENT)">
+                                                <span class='dashboard-invest-portfolio'></span>
+                                                <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.INVESTMENT_PORTFOLIOS' | translate}}</p>
+                                                <p class='portfolio-type-box-value'>{{(investmentsSummary && investmentsSummary.portfolioSummary.investmentPortfolio && investmentsSummary.portfolioSummary.investmentPortfolio.totalPortfolioValue ? investmentsSummary.portfolioSummary.investmentPortfolio.totalPortfolioValue : 0) | formatCurrency}}</p>
+                                                <p class="portfolio-type-cash-balance">{{'DASHBOARD.INVESTMENT.CASH_BALANCE' | translate}}: {{(investmentsSummary && investmentsSummary.portfolioSummary.investmentPortfolio && investmentsSummary.portfolioSummary.investmentPortfolio.totalCashAccountBalance ? investmentsSummary.portfolioSummary.investmentPortfolio.totalCashAccountBalance : 0) | formatCurrency}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 widget-portfolio-type-right">
+                                            <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.WISESAVER)">
+                                                <span class='dashboard-wise-portfolio'></span>
+                                                <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.WISE_SAVER_PORTFOLIOS' | translate}}</p>
+                                                <p class='portfolio-type-box-value'>{{(investmentsSummary && investmentsSummary.portfolioSummary.wiseSaverPortfolio && investmentsSummary.portfolioSummary.wiseSaverPortfolio.totalPortfolioValue ? investmentsSummary.portfolioSummary.totalPortfolioValue : 0) | formatCurrency}}</p>
+                                                <p class="portfolio-type-cash-balance">{{'DASHBOARD.INVESTMENT.CASH_BALANCE' | translate}}: {{(investmentsSummary && investmentsSummary.portfolioSummary.wiseSaverPortfolio && investmentsSummary.portfolioSummary.wiseSaverPortfolio.totalCashAccountBalance ? investmentsSummary.portfolioSummary.wiseSaverPortfolio.totalCashAccountBalance : 0) | formatCurrency}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                            </ng-container>
+                        </div>
+
+                        <div class="widget" [hidden] = "showPortfolioPurchased">
                             <ng-container *ngIf="isInvestmentEnabled; else loader">
                                 <div class="widget-title">
                                     <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}

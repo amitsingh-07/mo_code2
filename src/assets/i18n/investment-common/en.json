@@ -19,16 +19,16 @@
     "PROJECTED_RETURNS": "Projected Returns",
     "PROJECTED_VALUE": "Projected Value",
     "YEAR": "Year",
-    "ONE_TIME_INVESTMENT": "one-time investment",
+    "ONE_TIME_INVESTMENT": "One-time Amount",
     "AND": "&",
-    "MONTHLY_INVESTMENT": "monthly investment",
+    "MONTHLY_INVESTMENT": "Monthly Amount",
     "FOR": "for",
     "CONFIRM": "Confirm",
     "CONTINUE": "Continue",
     "EDIT_INVESTMENT": {
       "TITLE": "Review My Inputs",
-      "ONE_TIME_INVESTMENT": "One-time Investment",
-      "MONTHLY_INVESTMENT": "Monthly Investment"
+      "ONE_TIME_INVESTMENT": "One-time Amount",
+      "MONTHLY_INVESTMENT": "Monthly Amount"
     },
     "MODAL": {
       "PROJECTED_RETURNS": {
@@ -55,10 +55,16 @@
     "VIEW_FUND_DETAILS": "View Fund Details",
     "TITLE": "Confirm Portfolio",
     "PORTFOLIO": "Portfolio",
+    "WISE_SAVER_PORTOFOLIO": {
+      "TITLE_DESC": "The underlying cash fund holds assets primarily in <strong>Singapore Dollar</strong> deposits. ",
+      "RATE_TITLE": "Estimated Return",
+      "RATE_DESC": "This rate will be updated periodically as market and economic conditions change.",
+      "PORTFOLIO_DESC": "This is based on the weighted average gross yield of the underlying deposits placed with the counterparty financial institution which has a minimum short- term rating of F2 by Fitch, P-2 by Moody’s, or A-2 by S&P."
+    },
     "ERRORS": {
       "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
       "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
-      "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time investment or Monthly Investment."
+      "ATLEAST_ONE_SHOULD_INVEST": "Either you have to fund One-time amount or Monthly amount."
     },
     "ADD_PORTFOLIO_NAME": {
       "TITLE": "Name Your Portfolio",
@@ -101,7 +107,7 @@
   "FUNDING_INSTRUCTIONS": {
     "TITLE": "Fund Your Account",
     "OK_GOT_IT": "Okay, Got It!",
-    "YOUR_INVESTMENT": "Your Investment",
+    "YOUR_INVESTMENT": "Your Buy Request",
     "ONE_TIME": "one-time",
     "MONTH": "mth",
     "YOUR_PORTFOLIO": "Your Portfolio",
@@ -193,8 +199,8 @@
     "SRS_DESC": "You <u>MUST</u> ensure sufficient fund in your SRS Account. Amount will be deducted immediately to process the buy request.",
     "CONTINUE": "Continue",
     "STEP_2": "Step 2",
-    "SELECT" :"Select Funding Method",
-    "SELECT_SRS_OPERATOR":"Select SRS Operator",
+    "SELECT": "Select Funding Method",
+    "SELECT_SRS_OPERATOR": "Select SRS Operator",
     "SHOW_MODAL": {
       "TITLE": "Reassess Risk Profile?",
       "DESC": "You have just changed how you want to fund this {{userGivenPortfolioName}} to using {{userFundingMethod}}. Do you want to reassess your risk profile?"

@@ -19,6 +19,41 @@
       "META_KEYWORDS": ""
     }
   },
+  "PORTFOLIO": {
+    "TITLE": "Select Portfolio",
+    "INVESTMENT": {
+      "TITLE": "Investment Portfolio",
+      "DESC": "Better returns with a longer time horizon",
+      "MORE_INFO": "More Info",
+      "FOOTER_BTN_TXT": "Choose Investment Portfolio",
+      "SLIDES": {
+        "P1": "Our Investment Portfolios give you the best probability of a successful investment experience by helping you to achieve your financial goals.",
+        "P2": "Let us choose the right asset allocation for you so that you can stay invested for the long haul with as little guesswork and as little stress as possible.",
+        "HEADING": "What's great?",
+        "LIST_ITEM_1": "Suitable for longer-term investing",
+        "LIST_ITEM_2": "Globally diversified",
+        "LIST_ITEM_3": "No stock picking",
+        "LIST_ITEM_4": "Low costs",
+        "LIST_ITEM_5": "Invest from as low as $50/month"
+      }
+    },
+    "WISESAVER": {
+      "TITLE": "WiseSaver Portfolio",
+      "DESC": "Great for shorter savings period",
+      "MORE_INFO": "More Info",
+      "FOOTER_BTN_TXT": "Choose WiseSaver Portfolio",
+      "SLIDES": {
+        "P1": "This is a cash management portfolio that gives you safe and stable returns that are comparable to SGD fixed deposits regardless of how much or how long you are saving.",
+        "P2": "You can park your emergency funds or spare cash here with the confidence that you can easily access them whenever you need them.",
+        "HEADING": "What's great?",
+        "LIST_ITEM_1": "Suitable for short-term investing",
+        "LIST_ITEM_2": "Low to no risk",
+        "LIST_ITEM_3": "No lock-in period",
+        "LIST_ITEM_4": "No Advisory or Platform Fee",
+        "LIST_ITEM_5": "Save from as low as $50/month"
+      }
+    }
+  },
   "FUNDING_METHOD": {
     "TITLE": "Select Funding Method",
     "DESC": "I want to fund this portfolio using",
@@ -64,13 +99,19 @@
     "LIST_LBL_4": "Up to 11",
     "LIST_LBL_5": "Up to 14",
     "LIST_LBL_6": "15 or more",
-    "LIST_LBL_DESC_1": "Not recommended to invest",
+    "LIST_LBL_DESC_1": "Not suitable to invest.<br>Consider WiseSaver instead.",
     "LIST_LBL_DESC_2": "Up to 20% Equities (80% Bonds)",
     "LIST_LBL_DESC_3": "Up to 40% Equities (60% Bonds)",
     "LIST_LBL_DESC_4": "Up to 60% Equities (40% Bonds)",
     "LIST_LBL_DESC_5": "Up to 80% Equities (20% Bonds)",
     "LIST_LBL_DESC_6": "Up to 100% Equities",
-    "TIME_HORIZON_ALERT": "Our final recommendation will depend on your willingness to take risk and other factors."
+    "TIME_HORIZON_ALERT": "Our final recommendation will depend on your willingness to take risk and other factors.",
+    "MODAL": {
+      "TITLE": "Less than 4 years of investment period",
+      "MESSAGE": "It is not recommended to invest with only {{period}} years of investment time horizon.<br> <br>You may want to consider our <strong>WiseSaver Portfolio</strong> instead.",
+      "BTN_LBL1": "Review Investment Period",
+      "BTN_LBL2": "Go to WiseSaver Portfolio"
+    }
   },
   "GETSTARTED_STEP2": {
     "TITLE": "Step 2",
@@ -84,12 +125,12 @@
     "STEP_2_LABEL": "Step 2"
   },
   "INVESTMENT_AMOUNT": {
-    "TITLE": "Your Investment Amount",
-    "INVESTMENT_AMOUNT_LBL": "How much do you want to invest?",
-    "INITIAL_DEPOSIT_LBL": "One-Time Investment",
-    "MONTHLY_DEPOSIT_LBL": "Monthly Investment",
+    "TITLE": "Your Funding Amount",
+    "INVESTMENT_AMOUNT_LBL": "How much do you want to fund? ",
+    "INITIAL_DEPOSIT_LBL": "One-time Amount",
+    "MONTHLY_DEPOSIT_LBL": "Monthly Amount",
     "AT_LEAST_ONE": "Select at least one of the following.",
-    "INVESTMENT_LBL": "I want to invest",
+    "INVESTMENT_LBL": "I want to fund",
     "MIN_100": "Min. $100",
     "MIN_50": "Min. $50"
   },
@@ -149,8 +190,14 @@
     "PROCEED": "Proceed",
     "EDIT_INVESTMENT": {
       "TITLE": "Review My Inputs",
-      "ONE_TIME_INVESTMENT": "One-time Investment",
-      "MONTHLY_INVESTMENT": "Monthly Investment"
+      "ONE_TIME_INVESTMENT": "One-time Amount",
+      "MONTHLY_INVESTMENT": "Monthly Amount"
+    },
+    "WISE_SAVER_PORTOFOLIO": {
+      "TITLE_DESC": "The underlying cash fund holds assets primarily in <strong>Singapore Dollar</strong> deposits. ",
+      "RATE_TITLE": "Estimated Return",
+      "RATE_DESC": "This rate will be updated periodically as market and economic conditions change.",
+      "PORTFOLIO_DESC": "This is based on the weighted average gross yield of the underlying deposits placed with the counterparty financial institution which has a minimum short- term rating of F2 by Fitch, P-2 by Moody’s, or A-2 by S&P."
     },
     "MODAL_TITLE": "Portfolio Recommendations",
     "MODAL_DESC": "In the next step, we will be showing you the recommended portfolio that is most suited to your profile.",
@@ -171,7 +218,7 @@
     "ERRORS": {
       "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
       "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
-      "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time investment or Monthly Investment."
+      "ATLEAST_ONE_SHOULD_INVEST": "Either you have to fund One-time amount or Monthly amount."
     }
   },
   "WHATS_THE_RISK": {
@@ -205,5 +252,9 @@
       "TITLE": "Submitting Request",
       "DESC": "Please wait"
     }
+  },
+  "RISK_ACKNOWLEDGMENT": {
+    "TITLE": "You are investing in a cash fund.",
+    "DESC": "By proceeding with this, you agree that you have low willingness to bear risk for this portfolio."
   }
 }

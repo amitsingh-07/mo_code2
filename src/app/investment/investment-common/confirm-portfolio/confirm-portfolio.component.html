@@ -11,7 +11,7 @@
     </div>
   <div class="portfolio-allocation-details">
     <div class="flex-col-12 portfolio-allocation-details__container">
-      <div class="portfolio-allocation-details__content white-bg">
+      <div class="portfolio-allocation-details__content white-bg" *ngIf="portfolio.portfolioType === 'Investment'">
         <div class="flex-col-12 portfolio-allocation-details__content__desc">
             <div class="portfolio_img hidden-sm"><img src={{iconImage}} id="riskProfileImg" /></div>
           <div class="flex-col-12 portfolio-allocation-details__content__block"
@@ -30,11 +30,11 @@
     <div class="flex-col-12 asset-allocation">
       <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
       <!-- bonds -->
-      <app-allocation [assets]="portfolio.sectorAllocations" [funds]="portfolio.funds" [colors]="colors"></app-allocation>
+      <app-allocation [portfolioType] = "portfolio.portfolioType" [assets]="portfolio.sectorAllocations" [funds]="portfolio.funds" [colors]="colors"></app-allocation>
     </div>
     <div class="flex-col-12 annual-fees mt0">
       <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ANNUAL_FEES' | translate}}</div>
-      <app-annual-fees [feeDetails]="portfolio.feeDetails"></app-annual-fees>
+      <app-annual-fees [portfolioType] = "portfolio.portfolioType" [feeDetails]="portfolio.feeDetails"></app-annual-fees>
     </div>
     <div class="faq_link"><a target="_blank" routerLink="/faq" fragment="investment">{{
         'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a></div>
