@@ -75,14 +75,25 @@
                       {{totalValue | formatCurrency}}
                     </div>
                     <div class="total_values_label" id="investment_overview_totalportfolio_value_lab">
-                      {{'YOUR_INVESTMENT.TOTAL_PORTFOLIO_VALUE' | translate}}</div>
+                      <ng-container *ngIf="selectedCategory === portfolioCategories.ALL;else portfolioVal">
+                        {{'YOUR_INVESTMENT.TOTAL_PORTFOLIO_VALUE' | translate}}
+                      </ng-container>
+                      <ng-template #portfolioVal>
+                        {{'YOUR_INVESTMENT.PORTFOLIO_VALUE' | translate}}
+                      </ng-template>
+                    </div>
                   </div>
                 </div>
                 <div class="form-group-with-bg--content">
                   <div class="flex-row mb20 total_cash_balance">
                     <div class="flex-col">
                       <div class="total_cash_label" id="investment_overview_total_returns_labl">
-                        {{'YOUR_INVESTMENT.TOTAL_CASH_BALANCE' | translate}}
+                        <ng-container *ngIf="selectedCategory === portfolioCategories.ALL;else cashBalance">
+                          {{'YOUR_INVESTMENT.TOTAL_CASH_BALANCE' | translate}}
+                        </ng-container>
+                        <ng-template #cashBalance>
+                          {{'YOUR_INVESTMENT.CASH_BALANCE' | translate}}
+                        </ng-template>
                         <img (click)="showCashAccountPopUp()" src="assets/images/tooltip-icon.svg" alt="" />
                       </div>
                     </div>
