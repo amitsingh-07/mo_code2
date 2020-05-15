@@ -48,6 +48,7 @@
     "INVESTMENT": "Investment",
     "WISESAVER": "WiseSaver",
     "TOTAL_PORTFOLIO_VALUE": "Total Portfolio Value",
+    "PORTFOLIO_VALUE": "Portfolio Value",
     "TOTAL_RETURNS": "Total Returns ",
     "FROM_START_OF_INVESTMENT": "From start of investment",
     "TOTAL_INVESTED": "Total Invested",
@@ -77,6 +78,7 @@
     "ADD_PORTFOLIO_START_INVEST": "Add a portfolio to start investing!",
     "SCROLL_TO_TOP": "Scroll To Top",
     "TOTAL_CASH_BALANCE": "Total Cash Balance",
+    "CASH_BALANCE": "Cash Balance",
     "VIEW": "View",
     "SUCCESS_MSG": "Portfolio {{profileName}} has been added",
     "NOT_YET_INVESTED": "Not Yet Invested",
@@ -141,7 +143,7 @@
         "MESSAGE": "This shows you how much $1 of your investment would have grown throughout your investment period, without considering the size and timing of interim cash inflows or outflows. This is also known as the time-weighted return."
       },
       "CASH_ACCOUNT_BALANCE": {
-        "TITLE": "Cash Account",
+        "TITLE": "Cash Account Balance",
         "MESSAGE": "The cash account is where all your investment funds are held before it is transferred to a portfolio or your bank account."
       },
       "RENAME_PORTFOLIO": {
