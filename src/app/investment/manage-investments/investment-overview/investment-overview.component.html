@@ -75,10 +75,10 @@
                       {{totalValue | formatCurrency}}
                     </div>
                     <div class="total_values_label" id="investment_overview_totalportfolio_value_lab">
-                      <ng-container *ngIf="selectedCategory === portfolioCategories.ALL;else cashBalance">
+                      <ng-container *ngIf="selectedCategory === portfolioCategories.ALL;else portfolioVal">
                         {{'YOUR_INVESTMENT.TOTAL_PORTFOLIO_VALUE' | translate}}
                       </ng-container>
-                      <ng-template #cashBalance>
+                      <ng-template #portfolioVal>
                         {{'YOUR_INVESTMENT.PORTFOLIO_VALUE' | translate}}
                       </ng-template>
                     </div>
