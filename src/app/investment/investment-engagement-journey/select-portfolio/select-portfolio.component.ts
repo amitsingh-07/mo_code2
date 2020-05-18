@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import {
-  Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation, Input
+  Component, HostListener, OnInit, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,9 +13,7 @@ import { LoaderService } from '../../../shared/components/loader/loader.service'
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
-import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { SeoServiceService } from './../../../shared/Services/seo-service.service';
