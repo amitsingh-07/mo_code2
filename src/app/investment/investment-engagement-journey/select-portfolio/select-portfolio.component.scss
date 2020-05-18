@@ -30,15 +30,15 @@ app-select-portfolio {
         }
         &__select {
             position: absolute;
-            top: 15px;
-            left: 15px;
+            top: 20px;
+            left: 20px;
             img {
                 width: 30px;
                 height: 30px;
             }
         }
         &__img {
-            margin-right: 10px;
+            margin-right: 20px;
         }
         &__details {
             &__title {
@@ -67,7 +67,7 @@ app-select-portfolio {
         z-index: 997;
         background-color: $white-color;
         color: $silver-grey-color;
-        padding: 30px;
+        padding: 35px 25px;
         line-height: 22px;
         font-family: $muli-regular;
         font-size: 16px;
@@ -77,6 +77,7 @@ app-select-portfolio {
             font-size: 16px;
             font-family: $muli-regular;
             color: $silver-grey-color;
+            width: 285px;
             ul {
                 padding-left: 0;
             }
@@ -95,14 +96,18 @@ app-select-portfolio {
     .btn:disabled {
         color: $btn-disabled-teal-color;
     }
-    .slick-dots li button:before {
-        font-size: 8px;
-        color: $slick-dot-inactive-color;
-        opacity: 1;
-    }
-    .slick-dots li.slick-active button:before {
-        font-size: 8px;
-        color: $robins-egg-blue-color;
+    .slick-dots li {
+        width: 10px;
+        height: 10px;
+        button:before {
+            font-size: 8px;
+            color: $slick-dot-inactive-color;
+            opacity: 1;
+        }
+        &.slick-active button:before {
+            font-size: 8px;
+            color: $robins-egg-blue-color;
+        }
     }
     .more-info-shadow {
         box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.5);

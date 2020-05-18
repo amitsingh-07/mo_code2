@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import {
-  Component, HostListener, OnInit, ViewChild, ViewEncapsulation, Input
+  Component, HostListener, OnInit, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
