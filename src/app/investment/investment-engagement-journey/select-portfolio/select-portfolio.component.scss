@@ -43,6 +43,9 @@ app-select-portfolio {
         &__details {
             &__title {
                 font-size: 18px;
+                @include max360 {
+                    font-size: 17px;
+                }
                 font-family: $muli-bold;
                 margin-bottom: 10px;
             }
@@ -77,7 +80,6 @@ app-select-portfolio {
             font-size: 16px;
             font-family: $muli-regular;
             color: $silver-grey-color;
-            width: 285px;
             ul {
                 padding-left: 0;
             }
