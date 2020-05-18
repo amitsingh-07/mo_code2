@@ -1,0 +1,13 @@
+{
+  "promoId": 32,
+  "type": 1,
+  "owner": "Tokio Marine",
+  "title": "Enjoy 24 Months Additional Coverage for Free",
+  "thumbnail": "assets/promotions/images/32/thumbnail.jpg",
+  "banner": "assets/promotions/images/32/banner.jpg",
+  "desc": "Enjoy additional coverage by paying the same premiums!",
+  "date_created": "1585670400000",
+  "date_expiry": "1593532799000",
+  "tag": ["Insurance", "Protection"],
+  "external": false
+}

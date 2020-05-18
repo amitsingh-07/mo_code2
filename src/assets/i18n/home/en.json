@@ -71,19 +71,19 @@
         "TITLE":"Why MoneyOwl?",
         "BTN_LABEL":"Read More",
         "REASONS": [{
-                "IMAGE":"/assets/images/value_prop/mas-licensed.svg",
+                "IMAGE":"assets/images/value_prop/mas-licensed.svg",
                 "LABEL":"MAS-licensed"
             },{
-                "IMAGE":"/assets/images/value_prop/high-tech.svg",
+                "IMAGE":"assets/images/value_prop/high-tech.svg",
                 "LABEL":"High-tech +<br/> Human wisdom"
             },{
-                "IMAGE":"/assets/images/value_prop/salary-advice.svg",
+                "IMAGE":"assets/images/value_prop/salary-advice.svg",
                 "LABEL":"Non commissioned-<br/>based Advisers"
             },{
-                "IMAGE":"/assets/images/value_prop/national.svg",
+                "IMAGE":"assets/images/value_prop/national.svg",
                 "LABEL":"Integration with National Schemes"
             },{
-                "IMAGE":"/assets/images/value_prop/secure.svg",
+                "IMAGE":"assets/images/value_prop/secure.svg",
                 "LABEL":"Secure Platform"
             }]
     },

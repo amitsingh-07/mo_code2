@@ -23,7 +23,7 @@
                     Premium Discount %
                     </div>
                 <div class="info--details">
-                    15% premium discount for all policy years
+                    25% premium discount for all policy years
                     </div>
                 </div>
         </div>

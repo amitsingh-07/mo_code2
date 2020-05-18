@@ -8,7 +8,7 @@
     </span>
   </button>
   <div class="search-input-container" [class.show]="isDropdownOpen">
-    <img src="../../../assets/images/search-icon.svg" alt="" />
+    <img src="assets/images/search-icon.svg" alt="" />
     <input type="search" #searchInputElement (click)="preventPropogation($event)" class="search-control"
       [formControlName]="searchControlName" placeholder="{{ 'DROPDOWN.SEARCH' | translate}}...">
   </div>

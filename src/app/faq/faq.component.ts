@@ -8,12 +8,13 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { ConfigService, IConfig } from './../config/config.service';
-import { SeoServiceService } from './../shared/Services/seo-service.service';
 
 import { FooterService } from '../shared/footer/footer.service';
+import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { NavbarService } from '../shared/navbar/navbar.service';
-
+import { environment } from './../../environments/environment';
+import { ConfigService, IConfig } from './../config/config.service';
+import { SeoServiceService } from './../shared/Services/seo-service.service';
 import { IFAQSection } from './faq.interface';
 
 @Component({
@@ -34,12 +35,14 @@ export class FAQComponent implements OnInit, AfterViewChecked {
   isInvestmentEnabled = true;
   isComprehensiveEnabled = true;
   viewChecked = false;
+  isLoggedIn = false;
+  public showBreadCrumbs = true;
 
   @ViewChild('faqContainer') FaqElement: ElementRef;
 
   constructor(private navbarService: NavbarService, private footerService: FooterService, private seoService: SeoServiceService,
-    public translate: TranslateService, public renderer: Renderer2, private configService: ConfigService,
-    public route: ActivatedRoute) {
+              public translate: TranslateService, public renderer: Renderer2, private configService: ConfigService,
+              public authService: AuthenticationService, public route: ActivatedRoute) {
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.isWillWritingEnabled = config.willWritingEnabled;
       this.isInvestmentEnabled = config.investmentEnabled;
@@ -53,6 +56,10 @@ export class FAQComponent implements OnInit, AfterViewChecked {
         }
       });
     });
+
+    if (this.authService.isSignedUser()) {
+      this.isLoggedIn = true;
+    }
   }
 
   ngOnInit() {
@@ -64,7 +71,12 @@ export class FAQComponent implements OnInit, AfterViewChecked {
         this.translate.instant('FAQ_GENERAL.DESCRIPTION'),
         this.translate.instant('FAQ_GENERAL.KEYWORDS'));
     });
-    this.navbarService.setNavbarMode(1);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(9);
+      this.showBreadCrumbs = false;
+    } else {
+      this.navbarService.setNavbarMode(1);
+    }
     this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(true);
   }

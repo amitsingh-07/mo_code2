@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -10,7 +11,9 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { environment } from './../../../environments/environment';
 import { FooterService } from './../../shared/footer/footer.service';
+
 @Component({
   selector: 'app-edit-password',
   templateUrl: './edit-password.component.html',
@@ -45,7 +48,11 @@ export class EditPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMode(102);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(104);
+    } else {
+      this.navbarService.setNavbarMode(102);
+    }
     this.footerService.setFooterVisibility(false);
     this.buildForgotPasswordForm();
   }

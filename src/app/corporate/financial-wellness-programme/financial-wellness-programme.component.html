@@ -3,9 +3,11 @@
     <div class="financial__header--inner">
       <div class="sub-navigation">
         <div class="sub-navigation--inner">
-          <span routerLink="/">Home</span>
-          <i class="material-icons">keyboard_arrow_right</i>
-          <span>Financial Wellness Programme</span>
+          <ng-container *ngIf="showBreadCrumbs">
+            <span routerLink="/">Home</span>
+            <i class="material-icons">keyboard_arrow_right</i>
+            <span>Financial Wellness Programme</span>
+          </ng-container>
         </div>
       </div>
       <div class="header--title">
@@ -21,7 +23,7 @@
           class="txt-orange">{{'FINANCIAL_WELLNESS_PROGRAMME.TEXT.T3'|translate}}</span>
       <span [innerHtml]="'FINANCIAL_WELLNESS_PROGRAMME.TEXT.T4'|translate"></span></div>
       <div class="financial-desc">
-        <div class="financial-desc-logo"><img src="/assets/images/financial-wellness/financial-desc-logo.svg" /></div>
+        <div class="financial-desc-logo"><img src="assets/images/financial-wellness/financial-desc-logo.svg" /></div>
         <div>{{'FINANCIAL_WELLNESS_PROGRAMME.TEXT.T5'|translate}}
         </div>
       </div>
@@ -31,19 +33,19 @@
             <span>{{'FINANCIAL_WELLNESS_PROGRAMME.TEXT.T7'|translate}}</span></div>
           <div class="financial-benefits__employees--container">
             <div class="flex align-flex-start">
-              <span class="benefits-icon"><img src="/assets/images/financial-wellness/icon_tick_teal.svg" /></span>
+              <span class="benefits-icon"><img src="assets/images/financial-wellness/icon_tick_teal.svg" /></span>
               <span>{{'FINANCIAL_WELLNESS_PROGRAMME.TEXT.T8'|translate}}</span>
             </div>
             <div class="flex align-flex-start">
-              <span class="benefits-icon"><img src="/assets/images/financial-wellness/icon_tick_teal.svg" /></span>
+              <span class="benefits-icon"><img src="assets/images/financial-wellness/icon_tick_teal.svg" /></span>
               <span>{{'FINANCIAL_WELLNESS_PROGRAMME.TEXT.T9'|translate}}</span>
             </div>
             <div class="flex align-flex-start">
-              <span class="benefits-icon"><img src="/assets/images/financial-wellness/icon_tick_teal.svg" /></span>
+              <span class="benefits-icon"><img src="assets/images/financial-wellness/icon_tick_teal.svg" /></span>
               <span>{{'FINANCIAL_WELLNESS_PROGRAMME.TEXT.T10'|translate}}</span>
             </div>
             <div class="flex align-flex-start">
-              <span class="benefits-icon"><img src="/assets/images/financial-wellness/icon_tick_teal.svg" /></span>
+              <span class="benefits-icon"><img src="assets/images/financial-wellness/icon_tick_teal.svg" /></span>
               <span>{{'FINANCIAL_WELLNESS_PROGRAMME.TEXT.T11'|translate}}</span>
             </div>
           </div>
@@ -53,15 +55,15 @@
             <span>{{'FINANCIAL_WELLNESS_PROGRAMME.TEXT.T13'|translate}}</span></div>
           <div class="financial-benefits__companies--container">
             <div class="flex align-flex-start">
-              <span class="benefits-icon"><img src="/assets/images/financial-wellness/icon_tick_teal.svg" /></span>
+              <span class="benefits-icon"><img src="assets/images/financial-wellness/icon_tick_teal.svg" /></span>
               <span>{{'FINANCIAL_WELLNESS_PROGRAMME.TEXT.T14'|translate}}</span>
             </div>
             <div class="flex align-flex-start">
-              <span class="benefits-icon"><img src="/assets/images/financial-wellness/icon_tick_teal.svg" /></span>
+              <span class="benefits-icon"><img src="assets/images/financial-wellness/icon_tick_teal.svg" /></span>
               <span>{{'FINANCIAL_WELLNESS_PROGRAMME.TEXT.T15'|translate}}</span>
             </div>
             <div class="flex align-flex-start">
-              <span class="benefits-icon"><img src="/assets/images/financial-wellness/icon_tick_teal.svg" /></span>
+              <span class="benefits-icon"><img src="assets/images/financial-wellness/icon_tick_teal.svg" /></span>
               <span>{{'FINANCIAL_WELLNESS_PROGRAMME.TEXT.T16'|translate}}</span>
             </div>
           </div>
@@ -78,20 +80,20 @@
         <div class="key-areas">
           <div class="key-areas__header">{{'FINANCIAL_WELLNESS_PROGRAMME.INNER_CONTENT.HEADER'|translate}} </div>
           <div class="key-areas__container mb20">
-            <div class="point-logo ht1 hidden-sm"><img src="/assets/images/financial-wellness/1.svg" /></div>
+            <div class="point-logo ht1 hidden-sm"><img src="assets/images/financial-wellness/1.svg" /></div>
             <div class="point-txt">
               <div class="txt-bold title-orange">
-                <div class="point-logo hidden-md hidden-lg"><img src="/assets/images/financial-wellness/1.svg" /></div>
+                <div class="point-logo hidden-md hidden-lg"><img src="assets/images/financial-wellness/1.svg" /></div>
                 <div>{{'FINANCIAL_WELLNESS_PROGRAMME.INNER_CONTENT.TEXT.T5'|translate}}</div>
               </div>
               <div>{{'FINANCIAL_WELLNESS_PROGRAMME.INNER_CONTENT.TEXT.T6'|translate}}</div>
             </div>
           </div>
           <div class="key-areas__container mb20">
-            <div class="point-logo ht2 hidden-sm"><img src="/assets/images/financial-wellness/2.svg" /></div>
+            <div class="point-logo ht2 hidden-sm"><img src="assets/images/financial-wellness/2.svg" /></div>
             <div class="point-txt">
               <div class="txt-bold title-teal">
-                <div class="point-logo hidden-md hidden-lg"><img src="/assets/images/financial-wellness/2.svg" /></div>
+                <div class="point-logo hidden-md hidden-lg"><img src="assets/images/financial-wellness/2.svg" /></div>
                 <div>{{'FINANCIAL_WELLNESS_PROGRAMME.INNER_CONTENT.TEXT.T7'|translate}}</div>
               </div>
               <div>{{'FINANCIAL_WELLNESS_PROGRAMME.INNER_CONTENT.TEXT.T8'|translate}}<span
@@ -102,10 +104,10 @@
             </div>
           </div>
           <div class="key-areas__container">
-            <div class="point-logo ht3 hidden-sm"><img src="/assets/images/financial-wellness/3.svg" /></div>
+            <div class="point-logo ht3 hidden-sm"><img src="assets/images/financial-wellness/3.svg" /></div>
             <div class="point-txt">
               <div class="txt-bold title-blue">
-                <div class="point-logo hidden-md hidden-lg"><img src="/assets/images/financial-wellness/3.svg" /></div>
+                <div class="point-logo hidden-md hidden-lg"><img src="assets/images/financial-wellness/3.svg" /></div>
                 <div>{{'FINANCIAL_WELLNESS_PROGRAMME.INNER_CONTENT.TEXT.T12'|translate}}</div>
               </div>
               <div>{{'FINANCIAL_WELLNESS_PROGRAMME.INNER_CONTENT.TEXT.T13'|translate}}</div>
@@ -125,18 +127,18 @@
           <div class="working-adults--title">{{'FINANCIAL_WELLNESS_PROGRAMME.EMPLOYEE.TEXT.T2'|translate}}</div>
           <div class="working-adults__logo">
             <div class="working-adults__logo--item">
-              <img src="/assets/images/financial-wellness/logo-list1.svg" />
+              <img src="assets/images/financial-wellness/logo-list1.svg" />
             </div>
             <div class="working-adults__logo--item">
-              <img src="/assets/images/financial-wellness/logo-list2.svg" />
+              <img src="assets/images/financial-wellness/logo-list2.svg" />
             </div>
             <div class="working-adults__logo--item">
-              <img src="/assets/images/financial-wellness/logo-list3.svg" />
+              <img src="assets/images/financial-wellness/logo-list3.svg" />
             </div>
           </div>
           <div class="working-adults--disclaimer">{{'FINANCIAL_WELLNESS_PROGRAMME.EMPLOYEE.TEXT.T3'|translate}}</div>
           <div class="working-adults__stress">
-            <div class="working-adults__stress--logo"><img src="/assets/images/financial-wellness/stress-logo.svg" />
+            <div class="working-adults__stress--logo"><img src="assets/images/financial-wellness/stress-logo.svg" />
             </div>
             <div class="working-adults__stress--content">
               <div>{{'FINANCIAL_WELLNESS_PROGRAMME.EMPLOYEE.TEXT.T4'|translate}}</div>
@@ -156,25 +158,25 @@
         <div class="about-moneyowl-licensed-tab-section__container">
           <div class="flex hidden-sm">
             <div class="about-moneyowl-licensed-tab-section__container--icon">
-              <img src="/assets/images/financial-wellness/bionic.svg" />
+              <img src="assets/images/financial-wellness/bionic.svg" />
               <p>{{'FINANCIAL_WELLNESS_PROGRAMME.ABOUT_US.TEXT.T2'|translate}}</p>
             </div>
             <div class="about-moneyowl-licensed-tab-section__container--icon">
-              <img src="/assets/images/financial-wellness/conflict-free.svg" />
+              <img src="assets/images/financial-wellness/conflict-free.svg" />
               <p>{{'FINANCIAL_WELLNESS_PROGRAMME.ABOUT_US.TEXT.T3'|translate}}</p>
             </div>
             <div class="about-moneyowl-licensed-tab-section__container--icon">
-              <img src="/assets/images/financial-wellness/secure.svg" />
+              <img src="assets/images/financial-wellness/secure.svg" />
               <p>{{'FINANCIAL_WELLNESS_PROGRAMME.ABOUT_US.TEXT.T4'|translate}}</p>
             </div>
             <div class="about-moneyowl-licensed-tab-section__container--icon">
-              <img src="/assets/images/financial-wellness/social_enterprise.svg" />
+              <img src="assets/images/financial-wellness/social_enterprise.svg" />
             </div>
           </div>
           <div class="note">
-            <div class="pb20" (click)="navigateTo('/about-us/why-moneyowl')">
+            <div class="pb20" (click)="goToExternal('/why-moneyowl')">
               {{'FINANCIAL_WELLNESS_PROGRAMME.ABOUT_US.TEXT.T5'|translate}}</div>
-            <div (click)="navigateTo('/about-us')">{{'FINANCIAL_WELLNESS_PROGRAMME.ABOUT_US.TEXT.T6'|translate}}</div>
+            <div (click)="goToExternal('/about-us')">{{'FINANCIAL_WELLNESS_PROGRAMME.ABOUT_US.TEXT.T6'|translate}}</div>
           </div>
         </div>
       </div>
@@ -188,19 +190,19 @@
         <div class="literacy-trainers__container__trainers">
           <div class="literacy-trainers__container__trainers__list" (click)="navigateTo('/works/financial-literacy')">
             <div class="literacy-trainers__container__trainers__list--thumbnail">
-              <img src="/assets/images/corporate/financial-literacy-team/chris.png" />
+              <img src="assets/images/corporate/financial-literacy-team/chris.png" />
               <p>{{'FINANCIAL_WELLNESS_PROGRAMME.ABOUT_US.TEXT.T9'|translate}}</p>
             </div>
             <div class="literacy-trainers__container__trainers__list--thumbnail">
-              <img src="/assets/images/corporate/financial-literacy-team/felicia.png" />
+              <img src="assets/images/corporate/financial-literacy-team/felicia.png" />
               <p>{{'FINANCIAL_WELLNESS_PROGRAMME.ABOUT_US.TEXT.T10'|translate}}</p>
             </div>
             <div class="literacy-trainers__container__trainers__list--thumbnail">
-              <img src="/assets/images/corporate/financial-literacy-team/lena.png" />
+              <img src="assets/images/corporate/financial-literacy-team/lena.png" />
               <p>{{'FINANCIAL_WELLNESS_PROGRAMME.ABOUT_US.TEXT.T11'|translate}}</p>
             </div>
             <div class="literacy-trainers__container__trainers__list--thumbnail">
-              <img src="/assets/images/corporate/financial-literacy-team/albert.png" />
+              <img src="assets/images/corporate/financial-literacy-team/albert.png" />
               <p>{{'FINANCIAL_WELLNESS_PROGRAMME.ABOUT_US.TEXT.T12'|translate}}</p>
             </div>
           </div>

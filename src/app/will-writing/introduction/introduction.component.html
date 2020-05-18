@@ -75,6 +75,41 @@
               </div>
               <div class="FAQ" (click)="openFAQ()" id="intro-faq-link">{{ 'WILL_WRITING.INTRODUCTION.FAQ_LINK_TITLE' |
               translate}}</div>
+              <div class="subscribe__section" #subscribeSection>
+                <div class="subscribe__section--bg">
+                </div>
+                <form class="subscribe__form--plugin" name="subscribeForm" id="subscribeForm" [formGroup]="subscribeForm">
+                  <div class="subscribe-title--container">
+                    <div class="subscribe--will-title">
+                      {{'WILL_WRITING.INTRODUCTION.NEWSLETTER.WILL_TITLE' | translate}}
+                      </div>
+                    <div class="subscribe--icon hidden-sm">
+                      <img src="assets/images/owl--mini.svg" />
+                    </div>
+                    </div>
+                  <div class="subscribe-promo--container">
+                    <div class="subscribe--promo">
+                      {{'WILL_WRITING.INTRODUCTION.NEWSLETTER.PROMO_TITLE' | translate}}
+                      </div>
+                    </div>
+                  <div class="subscribe-input--container">
+                    <div class="row">
+                      <input class="flex-col-6 form-control" type="text" placeholder="{{'WILL_WRITING.INTRODUCTION.NEWSLETTER.PLACEHOLDER.FIRST_NAME' | translate}}"
+                        formControlName="firstName" />
+                      <input class="flex-col-6 form-control" type="text" placeholder="{{'WILL_WRITING.INTRODUCTION.NEWSLETTER.PLACEHOLDER.LAST_NAME' | translate}}"
+                        formControlName="lastName" />
+                    </div>
+                    <div class="row">
+                      <input class="form-control" type="email" placeholder="{{'WILL_WRITING.INTRODUCTION.NEWSLETTER.PLACEHOLDER.EMAIL' | translate}}"
+                        formControlName="email" />
+                    </div>
+                    <p class="sub-message" [ngClass]="{'success': subscribeSuccess, 'active': subscribeMessage !== ''}">{{subscribeMessage}}</p>
+                    <button class="btn btn-primary-dark subscribe-btn" (click)="subscribeMember()">{{'WILL_WRITING.INTRODUCTION.NEWSLETTER.SUBSCRIBE' |
+                      translate}}</button>
+                  </div>
+                  <p class="subscribe--subtext">{{'WILL_WRITING.INTRODUCTION.NEWSLETTER.SUBTEXT' | translate}}</p>
+                </form>
+              </div>
               <div class="offer-code">
                 <div class="time-period" id="intro-offer-period">{{ 'WILL_WRITING.INTRODUCTION.OFFER_PERIOD' |
                 translate}}</div>
@@ -84,8 +119,11 @@
                     id="intro-promo-text-field" />
                 </div>
                 <div id="intro-no-promocode">{{ 'WILL_WRITING.INTRODUCTION.NO_PROMOCODE' | translate}}</div>
-                <div>{{ 'WILL_WRITING.INTRODUCTION.SUBSCRIBE' | translate}}<span id="intro-get-now"
-                    (click)="getOneNow()" class='getOneNow'>{{ 'WILL_WRITING.INTRODUCTION.GET_NOW' | translate}}</span>
+                <div>
+                  <div>{{ 'WILL_WRITING.INTRODUCTION.SUBSCRIBE' | translate}}</div>
+                  {{ 'WILL_WRITING.INTRODUCTION.ABOVE_AND' | translate}}
+                  <span id="intro-get-now"
+                    (click)="goToSubcribeForm()" class='getOneNow'>{{ 'WILL_WRITING.INTRODUCTION.GET_NOW' | translate}}</span>
                 </div>
               </div>
               <button type="button" [disabled]="!promoCodeForm.valid || isDisabled" (click)="save(promoCodeForm)"

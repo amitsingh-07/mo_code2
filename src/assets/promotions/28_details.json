@@ -1,0 +1,14 @@
+{
+  "promoId": 28,
+  "type": 5,
+  "owner": "MoneyOwl",
+  "title": "Promotion Rates for NTUC members for Year-long Promotion",
+  "thumbnail": "assets/promotions/images/28/thumbnail.jpg",
+  "banner": "assets/promotions/images/28/banner.jpg",
+  "desc": "From 1st Jul 20 to 30th Jun 21",
+  "date_created": "1593532800000",
+  "date_expiry": "1625068799000",
+  "tag": [],
+  "external": false,
+  "tnc": false
+}

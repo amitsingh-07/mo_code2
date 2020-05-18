@@ -1,14 +1,20 @@
 <footer *ngIf="showFooter" class="footer__wrapper">
   <div class="footer__group primary">
     <div class="footer__group--inner">
-      <div class="footer-link__btn" [routerLink]="['/about-us']">
+      <div *ngIf="showFooterItems" class="footer-link__btn" [routerLink]="['/about-us']">
         <span class="icon contact-icon"></span>
         <span>{{'FOOTER.TOP_SECTION.ABOUT_US.TITLE' | translate }}</span>
+      </div>
+      <ng-container *ngIf="hubspotLiveChat; else zendeskLiveChat">
+        <div class="footer-link__btn">
         </div>
-      <div class="footer-link__btn" onclick="javascript:void($zopim.livechat.window.openPopout())">
-        <span class="icon chat-icon"></span>
-        <span>{{'FOOTER.TOP_SECTION.LIVE_CHAT.TITLE' | translate}}</span> 
+      </ng-container>
+      <ng-template #zendeskLiveChat>
+        <div class="footer-link__btn" onclick="javascript:void($zopim.livechat.window.openPopout())">
+          <span class="icon chat-icon"></span>
+          <span>{{'FOOTER.TOP_SECTION.LIVE_CHAT.TITLE' | translate}}</span>
         </div>
+      </ng-template>
       </div>
     </div> 
   <div class="footer__group tertiary">
@@ -81,11 +87,13 @@
       <div class="footer-copyright">
         <span>{{'FOOTER.BOTTOM_SECTION.CITATION' | translate}}</span>
         <span>
-          <a routerLink="/terms-of-use">{{'FOOTER.BOTTOM_SECTION.LEGAL.TERMS_OF_USE.LABEL' | translate}}</a> | 
-          <a routerLink="/privacy-policy">{{'FOOTER.BOTTOM_SECTION.LEGAL.PRIVACY_POLICY.LABEL' | translate}}</a> | 
-          <a routerLink="/security-policy">{{'FOOTER.BOTTOM_SECTION.LEGAL.SECURITY_POLICY.LABEL' | translate}}</a> | 
-          <a routerLink="/disclosures">{{'FOOTER.BOTTOM_SECTION.LEGAL.DISCLOSURE.LABEL' | translate}}</a> | 
-          <a routerLink="/fair-dealing">{{'FOOTER.BOTTOM_SECTION.LEGAL.FAIR_DEALING.LABEL' | translate}}</a> | 
+          <ng-container *ngIf="showFooterItems">
+            <a routerLink="/terms-of-use">{{'FOOTER.BOTTOM_SECTION.LEGAL.TERMS_OF_USE.LABEL' | translate}}</a> | 
+            <a routerLink="/privacy-policy">{{'FOOTER.BOTTOM_SECTION.LEGAL.PRIVACY_POLICY.LABEL' | translate}}</a> | 
+            <a routerLink="/security-policy">{{'FOOTER.BOTTOM_SECTION.LEGAL.SECURITY_POLICY.LABEL' | translate}}</a> | 
+            <a routerLink="/disclosures">{{'FOOTER.BOTTOM_SECTION.LEGAL.DISCLOSURE.LABEL' | translate}}</a> | 
+            <a routerLink="/fair-dealing">{{'FOOTER.BOTTOM_SECTION.LEGAL.FAIR_DEALING.LABEL' | translate}}</a> |
+          </ng-container>
           {{copyrightYear}} {{'FOOTER.BOTTOM_SECTION.ALL_RIGHTS_RESERVED' | translate}}      
         </span>
       </div>

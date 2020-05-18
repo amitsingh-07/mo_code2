@@ -91,6 +91,9 @@ export class PromotionService {
     if (!in_promotion.external) {
       promotion.logo = this.getPartnerLogo(in_promotion.owner);
     }
+    if (in_promotion.tnc == false) {
+      promotion.tnc = in_promotion.tnc;
+    }
     if (in_promotion.bundle_enquiry_form_type) {
       promotion.bundle_enquiry_form_type = in_promotion.bundle_enquiry_form_type;
     }
@@ -110,10 +113,10 @@ export class PromotionService {
     if (owner) {
       let partner_name = owner.toLowerCase();
       partner_name = partner_name.replace(/ /g, '');
-      const logo = '/assets/images/partners/logo-' + partner_name + '.png';
+      const logo = 'assets/images/partners/logo-' + partner_name + '.png';
       return logo;
     } else {
-      return '/assets/images/partners/logo-placeholder.png';
+      return 'assets/images/partners/logo-placeholder.png';
     }
   }
 }

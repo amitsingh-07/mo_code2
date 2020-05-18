@@ -17,7 +17,7 @@
             {{ bankDetails ? bankDetails?.referenceNumber :paynowDetails?.referenceNumber }}
           </div>
           <div class="flex">
-            <div class="note-icon"><img src="../../../assets/images/investment-account/note-icon.svg" /></div>
+            <div class="note-icon"><img src="assets/images/investment-account/note-icon.svg" /></div>
             <div class="note" innerHTML="{{ 'TOPUP_REQUEST.NOTE' | translate }}"></div>
           </div>
         </div>
@@ -30,7 +30,7 @@
           <div class="pay-tab">{{ 'TOPUP_REQUEST.BANK_TRANSFER' | translate }}</div>
         </div>
         <div class="tab-link-item" [class.active]="activeMode == 'PAYNOW'" (click)="selectFundingMethod('PAYNOW')">
-          <div class="pay-tab"><img src="../../../assets/images/topupwithdraw\paynow.png" alt="" /></div>
+          <div class="pay-tab"><img src="assets/images/topupwithdraw\paynow.png" alt="" /></div>
         </div>
       </div>
       <div class="tab-content-container">
