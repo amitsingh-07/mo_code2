@@ -36,10 +36,7 @@ export class SelectPortfolioComponent implements OnInit {
   @ViewChild('carousel') carousel: SlickComponent;
 
   selectPortfolioForm: FormGroup;
-  formValues;
-
-
-  public imgUrl = 'assets/images/';
+  selectedPortfolioType;
   public currentSlide = 0;
   // Set config for ng slick
   slideConfig = {
@@ -81,10 +78,10 @@ export class SelectPortfolioComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.formValues = this.investmentEngagementJourneyService.getSelectPortfolioType();
+    this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
     this.selectPortfolioForm = new FormGroup({
       selectPortfolioType: new FormControl(
-        this.formValues.selectPortfolioType, Validators.required)
+        this.selectedPortfolioType, Validators.required)
     });
   }
   @HostListener('input', ['$event'])
@@ -116,7 +113,7 @@ export class SelectPortfolioComponent implements OnInit {
     this.wiseSaverMoreInfoShow = !this.wiseSaverMoreInfoShow;
     event.stopPropagation();
   }
-  setSelectPortfolioType(event, value) {
+  setSelectPortfolioType(value) {
     this.selectPortfolioForm.controls.selectPortfolioType.setValue(value);
     if (value === 'investPortfolio') {
       this.investmentEnabled = !this.investmentEnabled;

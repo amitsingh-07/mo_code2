@@ -47,7 +47,6 @@ export class ConfirmPortfolioComponent implements OnInit {
   isAllocationOpen = false;
   confirmPortfolioValue;
   investmentCriteria: IInvestmentCriteria;
-  portfolioType:any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -68,7 +67,6 @@ export class ConfirmPortfolioComponent implements OnInit {
       this.pageTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.TITLE');
       this.setPageTitle(this.pageTitle);
     });
-    this.portfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
   }
 
   setPageTitle(title: string) {
@@ -91,7 +89,7 @@ export class ConfirmPortfolioComponent implements OnInit {
           this.authService.saveEnquiryId(data.objectList.enquiryId);
         }
         this.portfolio = data.objectList;
-       if( this.portfolioType === 'investPortfolio'){
+       if( this.portfolio.portfolioType === 'Investment'){
         this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
        }
         const fundingParams = this.constructFundingParams(data.objectList);
@@ -232,7 +230,7 @@ export class ConfirmPortfolioComponent implements OnInit {
         const namingFormData = {
           defaultPortfolioName: data.objectList.portfolioName,
           recommendedCustomerPortfolioId: this.portfolio.customerPortfolioId,
-          recommendedRiskProfileId: this.portfolioType === 'investPortfolio'?  this.portfolio.riskProfile.id :7
+          recommendedRiskProfileId: this.portfolio.portfolioType === 'Investment' ? this.portfolio.riskProfile.id : 7
         };
         this.investmentAccountService.setPortfolioNamingFormData(namingFormData);
         this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_ACCOUNT_DETAILS]);
