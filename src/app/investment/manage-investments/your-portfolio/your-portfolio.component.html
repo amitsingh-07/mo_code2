@@ -29,7 +29,7 @@
                   <div class="user_portfolio_lbl">{{portfolio.portfolioName}}</div>
                   <div class="flex-row space-between">
                     <div class="portfolio-type flex align-center"><span *ngIf="portfolio?.fundingTypeValue === 'SRS'"
-                        class="portfolio-fund-type mr10">{{'YOUR_INVESTMENT.SRS' | translate}}</span>{{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type} }}
+                        class="portfolio-fund-type mr10">{{'YOUR_INVESTMENT.SRS' | translate}}</span>{{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile} }}
                     </div>
                     <div class="more-menu">
                       <div class="dropdown-control">
