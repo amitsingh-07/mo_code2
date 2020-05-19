@@ -19,16 +19,16 @@
     "PROJECTED_RETURNS": "Projected Returns",
     "PROJECTED_VALUE": "Projected Value",
     "YEAR": "Year",
-    "ONE_TIME_INVESTMENT": "one-time investment",
+    "ONE_TIME_INVESTMENT": "One-time Amount",
     "AND": "&",
-    "MONTHLY_INVESTMENT": "monthly investment",
+    "MONTHLY_INVESTMENT": "Monthly Amount",
     "FOR": "for",
     "CONFIRM": "Confirm",
     "CONTINUE": "Continue",
     "EDIT_INVESTMENT": {
       "TITLE": "Review My Inputs",
-      "ONE_TIME_INVESTMENT": "One-time amount",
-      "MONTHLY_INVESTMENT": "Monthly amount"
+      "ONE_TIME_INVESTMENT": "One-time Amount",
+      "MONTHLY_INVESTMENT": "Monthly Amount"
     },
     "MODAL": {
       "PROJECTED_RETURNS": {
