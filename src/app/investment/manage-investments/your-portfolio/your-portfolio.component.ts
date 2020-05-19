@@ -52,6 +52,11 @@ export class YourPortfolioComponent implements OnInit {
   portfolioWithdrawRequests = false;
   showAnnualizedReturns = false;
 
+  totalInvested: any; // Cost of investment
+  profitAndLoss: any; // Unrealised gain/loss
+  profitAndLossPercentage: any; // Simple returns
+  showTimeWeightedReturns = true;
+
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -108,6 +113,16 @@ export class YourPortfolioComponent implements OnInit {
       this.yearlyReturns = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio.yearlyReturns
         ? this.portfolio.dPMSPortfolio.yearlyReturns
         : null;
+      this.totalInvested = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['totalInvested']
+        ? this.portfolio.dPMSPortfolio['totalInvested']
+        : 0;
+      this.profitAndLoss = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['profitAndLoss']
+        ? this.portfolio.dPMSPortfolio['profitAndLoss']
+        : 0;
+      this.profitAndLossPercentage = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['profitAndLossPercentage']
+        ? this.portfolio.dPMSPortfolio['profitAndLossPercentage']
+        : 0;
+      this.profitAndLoss = 123;
       this.getTransferDetails(this.portfolio.customerPortfolioId);
       this.riskProfileImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
       if (this.portfolio.pendingRequestDTO && this.portfolio.pendingRequestDTO.transactionDetailsDTO) { /* Pending Transactions ? */
@@ -445,5 +460,8 @@ export class YourPortfolioComponent implements OnInit {
         }
       });
     }
+  }
+  toggleReturns() {
+    this.showTimeWeightedReturns = !this.showTimeWeightedReturns;
   }
 }

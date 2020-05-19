@@ -378,18 +378,55 @@ app-your-portfolio {
           margin-top: 6px;
         }
         .total_return_label {
-          color: $text-color-secondary;
-          font-size: 16px;
-          color: $dark-teal-color;
+          font-family: $muli-regular;
+          color: $black-color;
+          font-size: 13px;
+          letter-spacing: -0.24px;
+          padding-right: 50px;
+          @include allmobiles{
+            padding-right: 38px;
+          }
           img{
             cursor: pointer;
+          }
+        }
+        .padding-none {
+          @include allmobiles{
+            padding-right: 0px !important;
+          }
+        }
+        .next-row {
+          @include allmobiles{
+            order: +1;
+            flex: 1 0 100%;
+            padding-top: 15px;
+          }
+        }
+        .arrow-img {
+          padding-left: 8px;
+        }
+        .upward {
+          transform: rotate(180deg);
+          -webkit-transform: rotate(180deg);
+        }
+        .currency_value {
+          font-family: $muli-bold;
+          font-size: 16px;
+          letter-spacing: -0.16px;
+          line-height: 1.31;
+          text-align: left;
+          color: $teal-color;
+          word-break: break-all;
+          &.negativeValue {
+            color: $red-color;
           }
         }
         .total_return_value {
           font-family: $muli-bold;
           font-size: 16px;
-          letter-spacing: -0.2px;
-          text-align: right;
+          letter-spacing: -0.16px;
+          line-height: 1.31;
+          text-align: left;
           color: $transaction-panel-buy-color;
           word-break: break-all;
           &.negativeValue {
@@ -509,7 +546,7 @@ app-your-portfolio {
           }
         }
         .form-group-with-bg .form-group-with-bg--content {
-          padding: 18px 17px 25px 23px;
+          padding: 20px 20px 19px;
           .flex-row:not(:last-child) {
             margin-bottom: 0px;
           }
