@@ -404,10 +404,14 @@ app-your-portfolio {
         }
         .arrow-img {
           padding-left: 8px;
+          vertical-align: middle;
         }
         .upward {
           transform: rotate(180deg);
           -webkit-transform: rotate(180deg);
+          vertical-align: middle;
+          padding-left: 0px;
+          padding-right: 8px;
         }
         .currency_value {
           font-family: $muli-bold;

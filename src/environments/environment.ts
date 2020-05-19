@@ -1,4 +1,3 @@
-import { isDebugMode } from '../app/shared/logger/console-logger.service';
 import { IEnvironment } from './environment.interface';
 
 // This file can be replaced during build by using the `fileReplacements` array.
@@ -8,9 +7,9 @@ import { IEnvironment } from './environment.interface';
 export const environment: IEnvironment = {
   production: false,
   isDebugMode: true,
-  apiBaseUrl: 'https://bfa-dev.ntucbfa.cloud',
+  apiBaseUrl: 'https://newmouat1.ntucbfa.com',
   myInfoClientId: 'STG2-MYINFO-SELF-TEST',
-  myInfoCallbackBaseUrl: 'https://bfa-dev.ntucbfa.cloud/myinfo',
+  myInfoCallbackBaseUrl: 'https://localhost:3001',
   myInfoAuthorizeUrl: 'https://test.api.myinfo.gov.sg/com/v3/authorise',
   gAdPropertyId: 'AW-782920447',
   gaPropertyId: 'UA-125256446-1',
