@@ -117,6 +117,11 @@ app-withdrawal {
         cursor: not-allowed;
       }
     }
+
+    input[type='checkbox']+label {
+      background-size: 20px;
+      padding-left: 30px;
+    }
   }
 
   .form-control {
@@ -129,9 +134,10 @@ app-withdrawal {
         color: $form-control-disabled-txt-color !important;
       }
 
-      .input-control {
-        background: $form-control-disabled-bg-color2 !important;
+      input {
         color: $form-control-disabled-txt-color !important;
+        -webkit-text-fill-color: $form-control-disabled-txt-color !important;
+        background: $form-control-disabled-bg-color2 !important;
         cursor: not-allowed;
       }
     }
