@@ -136,6 +136,7 @@ app-withdrawal {
 
       input {
         color: $form-control-disabled-txt-color !important;
+        -webkit-text-fill-color: $form-control-disabled-txt-color !important;
         background: $form-control-disabled-bg-color2 !important;
         cursor: not-allowed;
       }
