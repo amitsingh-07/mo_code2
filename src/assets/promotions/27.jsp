@@ -4,7 +4,7 @@
     <div>
       <ul class="promo__list--type-disc">
         <li>NTUC Members to get 60% agent's commission rebates (public rate at 50% commission)</li>
-        <li>Promotion runs from 4th June 20 to 6th May 21</li>
+        <li>Promotion runs from 8th Jun 20 to 30th Apr 21</li>
       </ul>
       <br />
       <p>
@@ -17,7 +17,7 @@
           <li>Plans using CPF monies</li>
         </ul>
       </p>
-      <p>Please note that insurance policy T&C applies. (Info: <a target="_blank" href="https://www.moneyowl.com.sg/terms-and-conditions-privacy-policy/">https://www.moneyowl.com.sg/terms-and-conditions-privacy-policy/</a>) This
+      <p>Please note that insurance policies T&C applies. (Info: <a target="_blank" href="https://www.moneyowl.com.sg/terms-and-conditions-privacy-policy/">https://www.moneyowl.com.sg/terms-and-conditions-privacy-policy/</a>) This
         advertisement has not been reviewed by the Monetary Authority of Singapore.</p>
     </div>
     <!-- <li><strong>Investment</strong></li>
