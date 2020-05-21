@@ -86,7 +86,7 @@
               </div>
             </div>
             <!-- AMOUNT -->
-            <div class="form-group"
+            <div class="form-group form-group-padding"
               *ngIf="withdrawForm.controls.withdrawType.value && withdrawForm.get('withdrawAmount')">
               <div class="flex-row">
                 <div class="flex-col-4">
@@ -118,10 +118,10 @@
                   </div>
                 </div>
               </div>
-              <div class="flex-row">
+              <div class="flex-row"
+                *ngIf="withdrawForm.controls.withdrawAmount.errors && withdrawForm.controls.withdrawAmount.errors.MinWithdrawal">
                 <div class="flex-col-12">
-                  <div class="withdraw-error"
-                    *ngIf="withdrawForm.controls.withdrawAmount.errors && withdrawForm.controls.withdrawAmount.errors.MinWithdrawal">
+                  <div class="withdraw-error">
                     <img src="assets/images/info-orange.svg" alt="" />
                     <span [innerHTML]="'WITHDRAW.MIN_WITHDRAWAL_INFO' | translate:translateParams"> </span>
                   </div>
