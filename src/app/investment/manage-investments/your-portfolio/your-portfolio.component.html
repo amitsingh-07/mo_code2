@@ -28,8 +28,10 @@
                 <div class="user_portfolio flex-col">
                   <div class="user_portfolio_lbl">{{portfolio.portfolioName}}</div>
                   <div class="flex-row space-between">
-                    <div class="portfolio-type flex align-center"><span *ngIf="portfolio?.fundingTypeValue === 'SRS'"
-                        class="portfolio-fund-type mr10">{{'YOUR_INVESTMENT.SRS' | translate}}</span>{{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type} }}
+                    <div class="portfolio-type flex align-center">
+                      <span *ngIf="portfolio?.fundingTypeValue === 'SRS'" class="portfolio-fund-type mr10">{{'YOUR_INVESTMENT.SRS' | translate}}</span>
+                      <ng-container *ngIf="portfolio?.riskProfile; else wisesaverportfolio">{{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type} }}</ng-container>
+                      <ng-template #wisesaverportfolio>{{'YOUR_PORTFOLIO.WISESAVER_PORTFOLIO' | translate}}</ng-template>
                     </div>
                     <div class="more-menu">
                       <div class="dropdown-control">

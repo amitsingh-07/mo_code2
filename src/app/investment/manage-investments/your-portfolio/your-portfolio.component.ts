@@ -109,7 +109,11 @@ export class YourPortfolioComponent implements OnInit {
         ? this.portfolio.dPMSPortfolio.yearlyReturns
         : null;
       this.getTransferDetails(this.portfolio.customerPortfolioId);
-      this.riskProfileImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
+      if (this.portfolio['riskProfile']) {
+        this.riskProfileImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
+      } else {
+        this.riskProfileImage = ProfileIcons[6]['icon'];
+      }
       if (this.portfolio.pendingRequestDTO && this.portfolio.pendingRequestDTO.transactionDetailsDTO) { /* Pending Transactions ? */
         this.investmentEngagementJourneyService.sortByProperty(
           this.portfolio.pendingRequestDTO.transactionDetailsDTO,

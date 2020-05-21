@@ -9,7 +9,7 @@
                 <div class="portfolio-cards__img"><img src="assets/images/wisesaver/investment-guy.svg"></div>
                 <div class="portfolio-cards__details">
                     <div class="portfolio-cards__details__title">{{'PORTFOLIO.INVESTMENT.TITLE' | translate}}</div>
-                    <div class="portfolio-cards__details__desc">{{'PORTFOLIO.INVESTMENT.DESC' | translate}}</div>
+                    <div class="portfolio-cards__details__desc" [innerHTML]="'PORTFOLIO.INVESTMENT.DESC' | translate"></div>
                     <div class="portfolio-cards__details__more" (click)="investmentMoreInfo($event)">
                         {{'PORTFOLIO.INVESTMENT.MORE_INFO' | translate}}<i class="material-icons" *ngIf="!investmentMoreInfoShow">keyboard_arrow_down</i><i class="material-icons" *ngIf="investmentMoreInfoShow">keyboard_arrow_up</i></div>
                 </div>
@@ -48,7 +48,7 @@
                 <div class="portfolio-cards__img"><img src="assets/images/wisesaver/wisesaver-family.svg"></div>
                 <div class="portfolio-cards__details">
                     <div class="portfolio-cards__details__title">{{'PORTFOLIO.WISESAVER.TITLE' | translate}}</div>
-                    <div class="portfolio-cards__details__desc">{{'PORTFOLIO.WISESAVER.DESC' | translate}}</div>
+                    <div class="portfolio-cards__details__desc" [innerHTML]="'PORTFOLIO.WISESAVER.DESC' | translate"></div>
                     <div class="portfolio-cards__details__more" (click)="wiseSaverMoreInfo($event)">
                         {{'PORTFOLIO.WISESAVER.MORE_INFO' | translate}}<i class="material-icons" *ngIf="!wiseSaverMoreInfoShow">keyboard_arrow_down</i><i class="material-icons" *ngIf="wiseSaverMoreInfoShow">keyboard_arrow_up</i></div>
                 </div>

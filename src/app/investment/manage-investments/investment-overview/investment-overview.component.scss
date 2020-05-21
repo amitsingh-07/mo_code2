@@ -262,13 +262,20 @@ app-investment-overview {
                                 padding: 20px 15px;
                             }
                             .portfolio-icon {
-                                max-width: 32px !important;
-                                max-height: 32px !important;
-                                margin-top: 8px;
+                                border: solid 3px #e3c94e !important;
+                                border-radius: 22.5px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                width: 44px;
+                                height: 44px;
                                 img {
-                                    width: 100%;
-                                    height: auto;
+                                    width: 32px;
+                                    height: 32px;
                                 }
+                            }
+                            .ws-border {
+                                border: solid 3px #49a5c9 !important;
                             }
                             .portfolio-details {
                                 display: flex;
