@@ -379,6 +379,19 @@ app-your-portfolio {
         }
         .total_return_label {
           font-family: $muli-regular;
+          color: $dark-teal-color;
+          font-size: 16px;
+          letter-spacing: -0.24px;
+          padding-right: 50px;
+          @include allmobiles{
+            padding-right: 38px;
+          }
+          img{
+            cursor: pointer;
+          }
+        }
+        .portfolio_info_label {
+          font-family: $muli-regular;
           color: $black-color;
           font-size: 13px;
           letter-spacing: -0.24px;
@@ -388,6 +401,18 @@ app-your-portfolio {
           }
           img{
             cursor: pointer;
+          }
+          .total_return_value {
+            font-family: $muli-bold;
+            font-size: 16px;
+            letter-spacing: -0.16px;
+            line-height: 1.31;
+            text-align: left;
+            color: $transaction-panel-buy-color;
+            word-break: break-all;
+            &.negativeValue {
+              color: $red-color;
+            }
           }
         }
         .padding-none {
@@ -430,11 +455,27 @@ app-your-portfolio {
           font-size: 16px;
           letter-spacing: -0.16px;
           line-height: 1.31;
-          text-align: left;
+          text-align: right;
           color: $transaction-panel-buy-color;
           word-break: break-all;
           &.negativeValue {
             color: $red-color;
+          }
+        }
+        .calculate_tooltip {
+          font-family: $muli-regular;
+          font-size: 14px;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: -0.26px;
+          color: $crusta-orange-color;
+          width: fit-content;
+          padding-top: 15px;
+          cursor: pointer;
+          @include allmobiles{
+            padding-top: 10px;
           }
         }
         .your_portfolio_label {
@@ -550,7 +591,7 @@ app-your-portfolio {
           }
         }
         .form-group-with-bg .form-group-with-bg--content {
-          padding: 20px 20px 19px;
+          padding: 18px 17px 25px 23px;
           .flex-row:not(:last-child) {
             margin-bottom: 0px;
           }
@@ -859,5 +900,45 @@ app-your-portfolio {
       }
     }
 
+  }
+}
+.modal-body {
+  width: 375px;
+  margin: 0 auto;
+  @include allmobiles{
+    width: auto;
+  }
+}
+.modal-body-title {
+  padding-bottom: 10px;
+}
+.modal-body-message {
+  .teal-txt {
+    font-family: $muli-bold;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.16px;
+    color: $teal-color;
+  }
+  .grey-txt {
+    font-family: $muli-semi-bold;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.16px;
+    color: $silver-grey-color;
+  }
+  p {
+    font-family: $muli-regular;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.16px;
+    color: $silver-grey-color;
+  }
+  a {
+    font-family: $muli-bold;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.16px;
+    color: $brdr-dark-color;
   }
 }

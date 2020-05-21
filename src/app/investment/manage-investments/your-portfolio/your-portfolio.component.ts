@@ -52,6 +52,7 @@ export class YourPortfolioComponent implements OnInit {
   portfolioWithdrawRequests = false;
   showAnnualizedReturns = false;
 
+  showPortfolioInfo = false; // Display the below 3 information
   totalInvested: any; // Cost of investment
   profitAndLoss: any; // Unrealised gain/loss
   profitAndLossPercentage: any; // Simple returns
@@ -80,6 +81,7 @@ export class YourPortfolioComponent implements OnInit {
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.translate.use(config.language);
       this.showAnnualizedReturns = config.showAnnualizedReturns;
+      this.showPortfolioInfo = config['showPortfolioInfo'];
     });
   }
 
@@ -122,7 +124,6 @@ export class YourPortfolioComponent implements OnInit {
       this.profitAndLossPercentage = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['profitAndLossPercentage']
         ? this.portfolio.dPMSPortfolio['profitAndLossPercentage']
         : 0;
-      this.profitAndLoss = 123;
       this.getTransferDetails(this.portfolio.customerPortfolioId);
       if (this.portfolio['riskProfile']) {
         this.riskProfileImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
@@ -465,7 +466,18 @@ export class YourPortfolioComponent implements OnInit {
       });
     }
   }
+
   toggleReturns() {
     this.showTimeWeightedReturns = !this.showTimeWeightedReturns;
+  }
+
+  showCalculationTooltip() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'modal-body-message'});
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'YOUR_PORTFOLIO.MODAL.CALCULATE.TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'YOUR_PORTFOLIO.MODAL.CALCULATE.MESSAGE'
+    );
   }
 }

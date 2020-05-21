@@ -133,6 +133,7 @@
     "UNREALISED_GAIN_LOSS": "Unrealised Gain/Loss",
     "TIME_WEIGHTED_RETURN": "Time-weighted Return",
     "SIMPLE_RETURN": "Simple Return",
+    "CALCULATE_TOOLTIP": "How do we calculate?",
     "FROM_START_OF_INVESTMENT": "From start of investment",
     "YEARLY_RETURNS": "Yearly Returns",
     "ANNUALIZED_RETURNS": "Annualized Returns",
@@ -171,6 +172,10 @@
         "DESC": "Please note that this portfolio is being rebalanced. This process will be completed in 6 to 7 working days.",
         "DESC_ONE": "Requests for redemptions will only be submitted for processing after rebalancing is completed. ",
         "FAQ_LINK": "For more information, visit our FAQs."
+      },
+      "CALCULATE": {
+        "TITLE": "How do we calculate",
+        "MESSAGE": "<span class='teal-txt'>Portfolio Value</span><br><p>Calculated by adding up the current value of the funds in your portfolio.</p><p>For each fund, this value is calculated by taking the number of units you own in the fund x latest price (NAV).</p><span class='teal-txt'>Cost of Investment</span><br><p>Calculated by adding up the Cost of Investment of the funds in your portfolio.</p><p>For each fund, this is calculated by taking the number of units you own in the fund x Weighted Average Cost of Investment (WAC).</p><p><a href='/'>Refer to FAQ for more information on how WAC is calculated</a></p><span class='teal-txt'>Unrealised Gain/Loss</span><br><p>Calculated by taking the difference between your Portfolio Value and your Cost of Investment.</p><p><span class='teal-txt'>Time-weighted Return</span><br><p>Calculated by multiplying your daily returns over your investment period. This calculation ignores the amount of interim cash inflows or outflows.</p> <p class='grey-txt'>E.g. Time-weighted returns over 2-day period = (1+ Day 1’s % returns) x (1 + Day 2’s % returns) – 1.</p><p><a href='/'>Refer to FAQ for a more detailed explanation of Time-weighted returns</a></p><span class='teal-txt'>Simple Return</span><br><p>Calculated by dividing your Unrealised Gain/Loss over your Cost of Investment.</p>"
       }
     },
     "PENDING_REQUEST_INFO": "You have {{count}} Buy Requests",
