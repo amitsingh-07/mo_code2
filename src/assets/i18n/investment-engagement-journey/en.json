@@ -254,7 +254,7 @@
         }
     },
     "RISK_ACKNOWLEDGMENT": {
-        "TITLE": "You are investing in a cash fund.",
-        "DESC": "By proceeding with this, you agree that you have low willingness to bear risk for this portfolio."
+        "TITLE": "You are investing in a<br> cash fund.",
+        "DESC": "By proceeding with this, you agree<br> that you have low willingness to<br> bear risk for this portfolio."
     }
 }
