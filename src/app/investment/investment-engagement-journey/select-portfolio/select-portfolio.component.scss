@@ -23,6 +23,7 @@ app-select-portfolio {
         margin-bottom: 15px;
         position: relative;
         z-index: 998;
+        cursor: pointer;
         &.active {
             background-color: $portfolio-card-text-color;
             color: $white-color;
