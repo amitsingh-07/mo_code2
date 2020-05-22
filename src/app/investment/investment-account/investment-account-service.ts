@@ -1965,28 +1965,6 @@ export class InvestmentAccountService {
   isReassessActive() {
     return this.investmentAccountFormData.isReassessActive;
   }
-  getCountryListByFilter(data) {
-    const countryList = [];
-    const sortedCountryList = [];
-    data.forEach((nationality) => {
-      if (!nationality.blocked) {
-        nationality.countries.forEach((country) => {
-          if (!country.countryBlocked) {
-            countryList.push(country);
-          }
-        });
-      }
-    });
-    INVESTMENT_ACCOUNT_CONSTANTS.PRIORITIZED_COUNTRY_LIST_CODES.forEach((countryCode) => {
-      const filteredCountry = countryList.filter(
-        (country) => country.countryCode === countryCode
-      );
-      sortedCountryList.push(filteredCountry[0]);
-      countryList.splice(countryList.indexOf(filteredCountry[0]), 1);
-    });
-    this.investmentEngagementJourneyService.sortByProperty(countryList, 'name', 'asc');
-    return sortedCountryList.concat(countryList);
-  }
   getCountriesFormDataByFilter() {
     const countryList = [];
     this.investmentAccountFormData.countryList.forEach((country) => {
@@ -1997,13 +1975,11 @@ export class InvestmentAccountService {
     return countryList;
   }
   getCountryByCountryCode(countryCode, countryList) {
-    let country = '';
     let blockFlag = false;
     const selectedCountry = countryList.filter(
       (countries) => countries.countryCode === countryCode
     );
     if (selectedCountry[0]) {
-      country = selectedCountry[0];
       blockFlag = (selectedCountry[0]['countryBlocked']);
     }
     return blockFlag;
@@ -2013,8 +1989,8 @@ export class InvestmentAccountService {
     if (this.investmentAccountFormData.country && this.investmentAccountFormData.country.countryCode) {
       blockedCountry = this.getCountryByCountryCode(this.investmentAccountFormData.country.countryCode, countryList);
     }
-    if (!blockedCountry && this.investmentAccountFormData.country && this.investmentAccountFormData.country.countryCode) {
-      blockedCountry = this.getCountryByCountryCode(this.investmentAccountFormData.country.countryCode, countryList);
+    if (!blockedCountry && this.investmentAccountFormData.mailCountry && this.investmentAccountFormData.mailCountry.countryCode) {
+      blockedCountry = this.getCountryByCountryCode(this.investmentAccountFormData.mailCountry.countryCode, countryList);
     }
     return blockedCountry;
   }
