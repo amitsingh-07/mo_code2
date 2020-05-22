@@ -1,47 +1,46 @@
 <div class="app-confirm-portfolio investment-account">
-<div class="step-indicator-container">
-  <div class="container-fluid max-width--1024">
-    <app-step-indicator [count]="2" [activeStepIndex]="0" [mode]="0"></app-step-indicator>
-  </div>
-</div>
-<div class="container-fluid max-width--1024" *ngIf="portfolio">
-    <div class="hidden-sm-md page-details">
-        <div>Step 1</div>
-        <div class="page-title">Confirm Portfolio</div>
-    </div>
-  <div class="portfolio-allocation-details">
-    <div class="flex-col-12 portfolio-allocation-details__container">
-      <div class="portfolio-allocation-details__content white-bg" *ngIf="portfolio.portfolioType === 'Investment'">
-        <div class="flex-col-12 portfolio-allocation-details__content__desc">
-            <div class="portfolio_img hidden-sm"><img src={{iconImage}} id="riskProfileImg" /></div>
-          <div class="flex-col-12 portfolio-allocation-details__content__block"
-            [innerHTML]="'PORTFOLIO_RECOMMENDATION.USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
+    <div class="step-indicator-container">
+        <div class="container-fluid max-width--1024">
+            <app-step-indicator [count]="2" [activeStepIndex]="0" [mode]="0"></app-step-indicator>
         </div>
-      </div>
-      <app-portfolio-info [portfolio]="portfolio"></app-portfolio-info>
-      <hr>
-      <div class="portfolio-allocation-details__content">
-        <div class="flex-col-12 portfolio-allocation-details__content__desc">
-          <div class="flex-row review-edit" (click)="openEditInvestmentModal()"><span>{{
+    </div>
+    <div class="container-fluid max-width--1024" *ngIf="portfolio">
+        <div class="hidden-sm-md page-details">
+            <div>{{ 'PORTFOLIO_RECOMMENDATION.STEP1' | translate}}</div>
+            <div class="page-title">{{ 'PORTFOLIO_RECOMMENDATION.CONFIRM_PORTFOLIO' | translate}}</div>
+        </div>
+        <div class="portfolio-allocation-details">
+            <div class="flex-col-12 portfolio-allocation-details__container">
+                <div class="portfolio-allocation-details__content white-bg" *ngIf="portfolio.portfolioType === 'Investment'">
+                    <div class="flex-col-12 portfolio-allocation-details__content__desc">
+                        <div class="portfolio_img hidden-sm"><img src={{iconImage}} id="riskProfileImg" /></div>
+                        <div class="flex-col-12 portfolio-allocation-details__content__block" [innerHTML]="'PORTFOLIO_RECOMMENDATION.USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
+                    </div>
+                </div>
+                <app-portfolio-info [portfolio]="portfolio"></app-portfolio-info>
+                <hr>
+                <div class="portfolio-allocation-details__content">
+                    <div class="flex-col-12 portfolio-allocation-details__content__desc">
+                        <div class="flex-row review-edit" (click)="openEditInvestmentModal()"><span>{{
               'PORTFOLIO_RECOMMENDATION.REVIEW_INPUTS' | translate}}</span><span class="edit_button"></span></div>
-        </div>
-      </div>
-    </div>
-    <div class="flex-col-12 asset-allocation">
-      <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
-      <!-- bonds -->
-      <app-allocation [portfolioType] = "portfolio.portfolioType" [assets]="portfolio.sectorAllocations" [funds]="portfolio.funds" [colors]="colors"></app-allocation>
-    </div>
-    <div class="flex-col-12 annual-fees mt0">
-      <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ANNUAL_FEES' | translate}}</div>
-      <app-annual-fees [portfolioType] = "portfolio.portfolioType" [feeDetails]="portfolio.feeDetails"></app-annual-fees>
-    </div>
-    <div class="faq_link"><a target="_blank" routerLink="/faq" fragment="investment">{{
+                    </div>
+                </div>
+            </div>
+            <div class="flex-col-12 asset-allocation">
+                <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
+                <!-- bonds -->
+                <app-allocation [portfolioType]="portfolio.portfolioType" [assets]="portfolio.sectorAllocations" [funds]="portfolio.funds" [colors]="colors"></app-allocation>
+            </div>
+            <div class="flex-col-12 annual-fees mt0">
+                <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ANNUAL_FEES' | translate}}</div>
+                <app-annual-fees [portfolioType]="portfolio.portfolioType" [feeDetails]="portfolio.feeDetails"></app-annual-fees>
+            </div>
+            <div class="faq_link"><a target="_blank" routerLink="/faq" fragment="investment">{{
         'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a></div>
-  </div>
-  <div class="text-center">
-  <button type="button" (click)="confirmPortfolio()" class="btn btn__footer--fixed btn-primary width100">{{
+        </div>
+        <div class="text-center">
+            <button type="button" (click)="confirmPortfolio()" class="btn btn__footer--fixed btn-primary width100">{{
     'PORTFOLIO_RECOMMENDATION.CONTINUE' | translate}}</button>
-  </div>
-</div>
+        </div>
+    </div>
 </div>
