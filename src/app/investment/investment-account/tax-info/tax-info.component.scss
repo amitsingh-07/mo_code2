@@ -3,6 +3,14 @@
 
 app-tax-info {
   .app-tax-info {
+    .tooltip-block-icon {
+      background: url('/assets/images/investment-account/tin-info.svg') no-repeat;
+      height: 20px;
+      width: 20px;
+      cursor: pointer;
+      display: block;
+      margin: 5px 0 0 5px;
+    }
     .flex-row {
       align-items: center;
     }
