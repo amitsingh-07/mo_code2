@@ -96,7 +96,7 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
     if (environment.hideHomepage) {
       this.navbarService.setNavbarMode(104);
     } else {
-      this.navbarService.setNavbarMode(102);
+    this.navbarService.setNavbarMode(102);
     }
     this.setPageTitle(this.pageTitle);
     this.footerService.setFooterVisibility(false);
