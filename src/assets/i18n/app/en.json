@@ -96,7 +96,8 @@
         "TITLE": "Settings",
         "SORT_BY": "Sort by",
         "APPLY_FILTERS": "Apply Filters",
-        "SORT": [{
+        "SORT": [
+            {
                 "displayText": "Highest Ranking",
                 "value": "premium.ranking"
             },
@@ -457,8 +458,9 @@
                 "QRCODE": {
                     "TITLE": "Scan & Transfer by QR Code",
                     "DESC": "Top up by scanning or saving this QR Code to your bank’s PayNow option.",
-                    "REFCODE": "Enter reference code",
-                    "SAVEBTN": "Save QR Image"
+                    "REFCODE": "Enter Reference Code",
+                    "SAVEBTN": "Save QR Image",
+                    "ALT_STEPS": "Alternatively, follow these steps to top up by entering UEN number."
                 }
             }
         }

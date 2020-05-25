@@ -256,6 +256,7 @@ export class InvestmentEngagementJourneyService {
     this.investmentEngagementJourneyFormData.totalAssets = formData.totalAssets;
     this.investmentEngagementJourneyFormData.totalLiabilities = formData.totalLiabilities;
     this.investmentEngagementJourneyFormData.suffEmergencyFund = formData.suffEmergencyFund;
+    this.investmentEngagementJourneyFormData.portfolioTypeId = formData.portfolioTypeId;
     this.commit();
   }
   getYourInvestmentAmount() {
@@ -271,6 +272,7 @@ export class InvestmentEngagementJourneyService {
     this.investmentEngagementJourneyFormData.monthlyInvestment = formData.monthlyInvestment;
     this.investmentEngagementJourneyFormData.oneTimeInvestmentChkBox = formData.firstChkBox;
     this.investmentEngagementJourneyFormData.monthlyInvestmentChkBox = formData.secondChkBox;
+    this.investmentEngagementJourneyFormData.portfolioTypeId = formData.portfolioTypeId;
     this.commit();
   }
 
@@ -291,7 +293,8 @@ export class InvestmentEngagementJourneyService {
       totalAssets: formData.totalAssets,
       totalLiabilities: formData.totalLiabilities,
       enquiryId: enquiryIdValue,
-      fundingTypeId: invCommonFormValues.initialFundingMethodId
+      fundingTypeId: invCommonFormValues.initialFundingMethodId,
+      portfolioTypeId: formData.portfolioTypeId
     };
   }
 
@@ -397,4 +400,24 @@ export class InvestmentEngagementJourneyService {
     this.investmentEngagementJourneyFormData.firstTimeUser = false;
     this.commit();
   }
+  getSelectPortfolioType() {
+    return this.investmentEngagementJourneyFormData.selectPortfolioType;
+  }
+
+  setSelectPortfolioType(formValue) {
+    this.investmentEngagementJourneyFormData.selectPortfolioType = formValue.selectPortfolioType;
+    this.commit();
+  }
+  /* Filter object from array of objects*/
+  filterDataByInput(inputObject: any, keyMapped: any, data: any) {
+    if (inputObject) {
+      const filteredData = inputObject.filter((summaryData) => summaryData[keyMapped] === data);
+      if (filteredData && filteredData[0]) {
+        return filteredData[0];
+      } else {
+        return '';
+      }
+    }
+  }
 }
+

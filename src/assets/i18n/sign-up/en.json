@@ -312,6 +312,14 @@
       "PORTFOLIO_EXIST_TITLE": "Portfolio Already Exist",
       "PORTFOLIO_EXIST_DESC": "You have already selected a portfolio. Please proceed to Top up, Fund or Delete the selected portfolio.",
       "PORTFOLIO_EXIST_BTN_LABEL": "Proceed To Portfolio",
+      "TOP_UP": "Top Up",
+      "TOTAL_PORTFOLIO_VALUE": "Total Portfolio Value",
+      "TOTAL_CASH_BALANCE_VALUE": "Total Cash Balance ",
+      "INVESTMENT_PORTFOLIOS": "Investment Portfolios",
+      "WISE_SAVER_PORTFOLIOS": "WiseSaver Portfolios",
+      "CASH_BALANCE": "Cash Balance",
+      "CASH_ACCOUNT_BALANCE_TITLE": "Cash Account Balance",
+      "CASH_ACCOUNT_BALANCE_MESSAGE": "The cash account is where all your investment funds are held before it is transferred to a portfolio or your bank account.",
       "SERVICE_UNAVAILABLE": "Sorry, this service is temporarily unavailable. Please try again later."
     },
     "WILL_WRITING": {

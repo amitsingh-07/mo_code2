@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { CarouselModalComponent } from './../../../shared/modal/carousel-modal/carousel-modal.component';
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -18,17 +17,12 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import {
   INVESTMENT_COMMON_ROUTE_PATHS
 } from '../../investment-common/investment-common-routes.constants';
-import { InvestmentCommonService } from '../../investment-common/investment-common.service';
-import {
-  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
-} from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
-import {
-  InvestmentEngagementJourneyService
-} from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
 import { environment } from './../../../../environments/environment';
+import { CarouselModalComponent } from './../../../shared/modal/carousel-modal/carousel-modal.component';
+import { INVESTMENT_COMMON_CONSTANTS } from './../../investment-common/investment-common.constants';
 
 @Component({
   selector: 'app-investment-overview',
@@ -65,6 +59,9 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   toastMsg;
   private subscription: Subscription;
 
+  portfolioCategories;
+  selectedCategory;
+
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -78,9 +75,8 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     public manageInvestmentsService: ManageInvestmentsService,
     private investmentAccountService: InvestmentAccountService,
     private signUpApiService: SignUpApiService,
-    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    private investmentCommonService: InvestmentCommonService,
     private loaderService: LoaderService,
+    private route: ActivatedRoute
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -94,12 +90,12 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(true);
     if (environment.hideHomepage) {
       this.navbarService.setNavbarMode(105);
     } else {
       this.navbarService.setNavbarMode(103);
     }
+    this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
     this.getInvestmentOverview();
     this.headerSubscription();
@@ -107,6 +103,26 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.checkMpPopStatus();
     this.toastMsg = this.manageInvestmentsService.getToastMessage();
+
+    this.portfolioCategories = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
+    // Param handling and set category
+    this.route.params.subscribe((params) => {
+      if (params['selectedPortfolio']) {
+        switch (params['selectedPortfolio']) {
+          case INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.ALL:
+            this.selectedCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.ALL;
+            break;
+          case INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT:
+            this.selectedCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT;
+            break;
+          case INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER:
+            this.selectedCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER;
+            break;
+        }
+      } else {
+        this.selectedCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.ALL;
+      }
+    });
   }
  ngOnDestroy() {
     this.subscription.unsubscribe();
@@ -283,13 +299,6 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     return (document.documentElement.scrollHeight > document.documentElement.clientHeight);
   }
 
-  addPortfolio() {
-    this.authService.saveEnquiryId(null);
-    this.investmentCommonService.clearFundingDetails();  // #MO2-2446
-    this.investmentCommonService.clearJourneyData();
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
-  }
-
   gotoTopUp(portfolio?) {
     // Added check if got portfolio, set it as selected one else set null for the main top up button
     if (portfolio) {
@@ -401,4 +410,23 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     }
   }
 
+  backDashboard(event?) {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+    if (event) {
+      event.stopPropagation();
+    }
+  }
+
+  // Set the selected category
+  setSelectedCategory(category) {
+    this.selectedCategory = category.target.id;
+  }
+
+  // Set the filtered value from portfolio list
+  setFilteredValue(value) {
+    setTimeout(() => {
+      this.totalValue = value['totalPortfolioVal'];
+      this.cashAccountBalance = value['totalCashBal'];
+    });
+  }
 }

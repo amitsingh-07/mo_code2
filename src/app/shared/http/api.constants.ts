@@ -50,7 +50,7 @@ export let apiConstants = {
         enquiryByEmail: ACCOUNT_API_BASE_URL + '/enquiryByEmail',
         getPopupStatus: ACCOUNT_API_BASE_URL + '/getTrackStatus',
         setPopupStatus: ACCOUNT_API_BASE_URL + '/setTrackStatus',
-        enquireRetirementPlan: ACCOUNT_API_BASE_URL + '/ads/postRetirementPlanning',
+        enquireRetirementPlan: ACCOUNT_API_BASE_URL + '/postRetirementPlanning',
         sendWelcomeMail: ACCOUNT_API_BASE_URL + '/sendWelcomeMail',
         financialWellness: ACCOUNT_API_BASE_URL + '/corp/updateLeadGen',
         article: {

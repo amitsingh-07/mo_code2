@@ -89,7 +89,9 @@ export class ConfirmPortfolioComponent implements OnInit {
           this.authService.saveEnquiryId(data.objectList.enquiryId);
         }
         this.portfolio = data.objectList;
+       if( this.portfolio.portfolioType === 'Investment'){
         this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
+       }
         const fundingParams = this.constructFundingParams(data.objectList);
         this.manageInvestmentsService.setFundingDetails(fundingParams);
         if (this.portfolio.fundingTypeId) {
@@ -228,7 +230,7 @@ export class ConfirmPortfolioComponent implements OnInit {
         const namingFormData = {
           defaultPortfolioName: data.objectList.portfolioName,
           recommendedCustomerPortfolioId: this.portfolio.customerPortfolioId,
-          recommendedRiskProfileId: this.portfolio.riskProfile.id
+          recommendedRiskProfileId: this.portfolio.portfolioType === 'Investment' ? this.portfolio.riskProfile.id : 7
         };
         this.investmentAccountService.setPortfolioNamingFormData(namingFormData);
         this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_ACCOUNT_DETAILS]);

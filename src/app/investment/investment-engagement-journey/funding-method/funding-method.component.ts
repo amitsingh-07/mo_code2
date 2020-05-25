@@ -34,6 +34,7 @@ export class FundingMethodComponent implements OnInit {
   fundingMethodNameSrs;
   loaderTitle: string;
   loaderDesc: string;
+  selectedPortfolioType;
 
   constructor(
     public readonly translate: TranslateService,
@@ -65,6 +66,7 @@ export class FundingMethodComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.getOptionListCollection();
     this.formValues = this.investmentCommonService.getInitialFundingMethod();
+    this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
     this.fundingMethodForm = new FormGroup({
       initialFundingMethodId: new FormControl(
         this.formValues.initialFundingMethodId, Validators.required)
@@ -110,6 +112,10 @@ export class FundingMethodComponent implements OnInit {
   }
   goToNext(form) {
     this.investmentCommonService.setInitialFundingMethod(form.value);
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+    if (this.selectedPortfolioType ==='wiseSaverPortfolio') {
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
+    } else{
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+    }
   }
 }

@@ -1,5 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -12,18 +13,21 @@ import {
 import {
     ProfileIcons
 } from '../../../investment/investment-engagement-journey/recommendation/profileIcons';
-import {
-    ManageInvestmentsService
-} from '../../../investment/manage-investments/manage-investments.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
+import { AuthenticationService } from '../../http/auth/authentication.service';
 import { ErrorModalComponent } from '../../modal/error-modal/error-modal.component';
+import { INVESTMENT_COMMON_CONSTANTS } from './../../../investment/investment-common/investment-common.constants';
+import { InvestmentCommonService } from './../../../investment/investment-common/investment-common.service';
+import {
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+ } from './../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 
 @Component({
   selector: 'app-portfolio-list',
   templateUrl: './portfolio-list.component.html',
   styleUrls: ['./portfolio-list.component.scss']
 })
-export class PortfolioListComponent implements OnInit {
+export class PortfolioListComponent implements OnInit, OnChanges {
 
   selected;
   userProfileInfo;
@@ -34,28 +38,43 @@ export class PortfolioListComponent implements OnInit {
   showAllForInvested: boolean;
   showAllForNotInvested: boolean;
   topClickedFlag: boolean;
+  totalPortfoliosLength: number;
+
   @Input('portfolioList') portfolioList;
   @Input('showTotalReturn') showTotalReturn;
   @Input('portfolioData') portfolioData;
+  @Input('portfolioCategory') portfolioCategory;
   @Output() transferInstSelected = new EventEmitter<boolean>();
   @Output() detailSelected = new EventEmitter<boolean>();
   @Output() topUpSelected = new EventEmitter<boolean>();
   @Output() investAgainSelected = new EventEmitter<boolean>();
+  @Output() filteredTotalAmt = new EventEmitter<any>();
 
-  constructor(public readonly translate: TranslateService,
-              private modal: NgbModal,
-              private manageInvestmentsService: ManageInvestmentsService,
-              public signUpService: SignUpService,
-              private currencyPipe: CurrencyPipe,
-              private investmentAccountService: InvestmentAccountService,
-              private investmentEngagementService: InvestmentEngagementJourneyService) {
+  // Filtered Portfolio List
+  filteredInvestedList: any;
+  filteredNotInvestedList: any;
+
+  constructor(
+    public readonly translate: TranslateService,
+    private modal: NgbModal,
+    public signUpService: SignUpService,
+    private currencyPipe: CurrencyPipe,
+    public authService: AuthenticationService,
+    private investmentAccountService: InvestmentAccountService,
+    private investmentEngagementService: InvestmentEngagementJourneyService,
+    private investmentCommonService: InvestmentCommonService,
+    private router: Router) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => { });
   }
 
   ngOnInit() {
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
+  }
+
+  ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
     this.portfoioSpliter();
+    this.filterPortfolios();
   }
 
   showHideToggle(elementName: string) {
@@ -116,4 +135,41 @@ export class PortfolioListComponent implements OnInit {
     ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.Message');
     this.topClickedFlag = true;
   }
+
+  addPortfolio() {
+    this.authService.saveEnquiryId(null);
+    this.investmentCommonService.clearFundingDetails();  // #MO2-2446
+    this.investmentCommonService.clearJourneyData();
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+  }
+
+  // Method to filter portfolios base on the category
+  filterPortfolios() {
+    if (this.portfolioCategory === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT) {
+      this.filterAndCalculate(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT);
+    } else if (this.portfolioCategory === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER) {
+      this.filterAndCalculate(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER);
+    } else {
+      this.filteredNotInvestedList = this.notInvestedList;
+      this.filteredInvestedList = this.investedList;
+      this.totalPortfoliosLength = this.portfolioList.length;
+      this.filteredTotalAmt.emit({totalCashBal: this.portfolioData.totalCashAccountBalance ? this.portfolioData.totalCashAccountBalance : 0,
+        totalPortfolioVal: this.portfolioData.totalValue ? this.portfolioData.totalValue : 0});
+    }
+  }
+
+  // Filter by category and calculate the new values
+  filterAndCalculate(category) {
+    this.filteredNotInvestedList = this.notInvestedList.filter((portfolio) => {
+      return portfolio['portfolioCategory'] === category;
+    });
+    this.filteredInvestedList = this.investedList.filter((portfolio) => {
+      return portfolio['portfolioCategory'] === category;
+    });
+    this.totalPortfoliosLength = this.filteredNotInvestedList.length + this.filteredInvestedList.length;
+    const portfolioVal = this.filteredNotInvestedList.concat(this.filteredInvestedList).reduce((a, c) => a + c.portfolioValue, 0);
+    const cashBal = this.filteredNotInvestedList.concat(this.filteredInvestedList).reduce((a, c) => a + c.cashAccountBalance, 0);
+    this.filteredTotalAmt.emit({totalCashBal: cashBal, totalPortfolioVal: portfolioVal});
+  }
+
 }

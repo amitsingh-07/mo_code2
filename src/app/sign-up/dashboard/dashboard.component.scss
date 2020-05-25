@@ -289,6 +289,192 @@ app-dashboard {
                 margin-left: 10px;
                 background-image: linear-gradient(8deg, #98dfdf 50%, transparent 50%), linear-gradient(-90deg, #98dfdf 50%, transparent 50%);
             }
+            .btn-with-icon {
+                border-radius: 6px;
+                box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.21) !important;
+                background-color: $btn-primary-backgrnd-color;
+                font-family: $muli-bold;
+                font-size: 21px;
+                line-height: normal;
+                letter-spacing: -0.3px;
+                text-align: center;
+                color: $white-color;
+                width: 135px;
+                height: 45px;
+                padding: 10px 0px;
+                cursor: pointer;
+                &.top_up_btn {
+                    font-size: 15px;
+                    line-height: 23px;
+                    background-color: $white-color;
+                    color: $secondary-action-color;
+                    border: 1px solid #f1f1f1;
+                    display: flex;
+                    justify-content: center;
+                    &:active, &:focus {
+                        outline: none;
+                        background-color: $white-color;
+                    }
+                    &.disabled{
+                      cursor: not-allowed;
+                    }
+                    .topup-btn-img {
+                        height: 25px;
+                        width: 35px;
+                        margin-right: 5px;
+                        display: flex;
+                        img {
+                            width: 100%;
+                            height: auto;
+                            margin: 0;
+                        }
+                    }
+                }
+                &:active {
+                    outline: none;
+                    background-color: $btn-primary-backgrnd-color;
+                }
+                &:hover {
+                    outline: none;
+                }
+                &:focus {
+                    outline: none;
+                    background-color: $btn-primary-backgrnd-color;
+                }
+                img {
+                    margin-left: 8px;
+                    margin-top: -1px;
+                }
+            }
+            .total-portfolio-title {
+                height: 16px;
+                font-family: $muli-regular;
+                font-size: 13px;
+                font-weight: normal;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: 1.25;
+                letter-spacing: -0.24px;
+                color: #000000;
+                img {
+                    cursor: pointer;
+                    margin-left:5px;
+                }
+              }
+              .total-portfolio-title-width {
+                width: 140px;
+              }
+              .total-portfolio-value{
+                width: 93px;
+                height: 20px;
+                font-family: $muli;
+                font-size: 16px;
+                font-weight: bold;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: -0.17px;
+                color: #00a7a7;
+                img {
+                    cursor: pointer;
+                    margin-left:5px;
+                    margin-top:5px;
+                }
+              }
+              .border-portfolio-section {
+                border-right: 1px solid rgba(0, 0, 0, 0.25);
+              }
+              .widget-portfolio-title {
+                padding:20px 18px 5px;
+                align-items: self-start!important;
+                line-height: 1.25;
+              }
+              .widget-portfolio-body {
+                padding:0px 18px 11px;
+              }
+              .widget-portfolio-right-section {
+                padding-left:15px;
+              }
+              .portfolio-type-box {
+                border-radius: 6px;
+                box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.21);
+                border: solid 1px #f1f1f1;
+                background-color: #ffffff;
+                color: #00a7a7;
+                padding: 20px;
+                position: relative;
+                margin-bottom: 15px;
+                cursor: pointer;
+              }
+              .portfolio-type-box-title {
+                height: 20px;
+                font-family: $muli;
+                font-size: 16px;
+                font-weight: 600;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: -0.17px;
+                color: #000000;
+              }
+
+              .portfolio-type-box-value {
+                height: 20px;
+                font-family: $muli;
+                font-size: 16px;
+                font-weight: bold;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: -0.17px;
+                color: #00a7a7;
+              }
+              .widget-portfolio-type-content{
+                padding:0px 18px 10px 18px;
+              }
+              .portfolio-type-cash-balance {
+                height: 16px;
+                font-family: $muli;
+                font-size: 13px;
+                font-weight: normal;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: -0.24px;
+                text-align: right;
+                color: #9b9b9b;
+              }
+              .dashboard-invest-portfolio {    
+                background: url("/assets/images/dashboard-invest-portfolio.svg") no-repeat;
+                width: 55px;
+                height: 6px;
+                background-repeat: no-repeat;
+                position: absolute;
+                top: 0;
+                left: 0;
+              }
+              .dashboard-wise-portfolio{   
+                background: url("/assets/images/dashboard-wise-portfolio.svg") no-repeat;
+                width: 55px;
+                height: 6px;
+                background-repeat: no-repeat;
+                position: absolute;
+                top: 0;
+                left: 0;
+              }              
+              @media (min-width: 768px){
+                .widget-portfolio-type-right{
+                    padding: 0px 18px 0px 0px;
+                }
+              }
+            .alert-img-container {
+                display: flex;
+                justify-content: flex-end;
+                margin-top: -9px;
+                img {
+                    margin: 0 56px 6px 0;
+                }
+            }
         }
     }
     .announcement-div {

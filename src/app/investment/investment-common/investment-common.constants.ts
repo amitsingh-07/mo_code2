@@ -25,5 +25,27 @@ export let INVESTMENT_COMMON_CONSTANTS = {
         DBS: 'DBS',
         OCBC: 'OCBC',
         UOB: 'UOB'
+    },
+    PORTFOLIO_CATEGORY: {
+        ALL: 'All',
+        INVESTMENT: 'Investment',
+        WISESAVER: 'Wisesaver'
+    },
+    WISESAVER_ASSET_ALLOCATION : {
+        TYPE: 'Wisesaver',
+        ASSETS: [
+            {
+              allocationPercentage: 99,
+              type: {
+                type: 'Fixed Deposits'
+              }
+            },
+            {
+              allocationPercentage: 1,
+              type: {
+                type: 'Cash'
+              }
+            }
+          ]
     }
 };
