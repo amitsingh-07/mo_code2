@@ -182,7 +182,9 @@
                         <div class="flex-row">
                           <div class="flex-col-5">
                             <label for="employment_details-mailcountry-drpdown" id="employment_details-mailcountry-lbl">{{
-                                  'EMPLOYMENT_DETAILS.COUNTRY' | translate}}</label>
+                                  'EMPLOYMENT_DETAILS.COUNTRY' | translate}}
+                                <i class="tooltip-icon" id="countryHelpIcon" (click)="showHelpModalCountry()"></i>
+                            </label>
                           </div>
                           <div class="flex-col-7">
                             <div class="dropdown-control">

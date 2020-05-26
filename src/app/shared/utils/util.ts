@@ -67,4 +67,30 @@ export class Util {
             return parseInt(value, 10);
         }
     }
+
+    public static routeParamStringToObject(routeParams: string[]): any {
+        if (routeParams != null) {
+            const routeParamsObj = {};
+            routeParams.forEach((routeString) => {
+                const tempRouteString = routeString.split('=');
+                routeParamsObj[tempRouteString[0]] = tempRouteString[1];
+            });
+            return routeParamsObj;
+        }
+        return null;
+    }
+
+    public static breakdownRoute(routePath: string): any {
+        // /accounts/update-bank?addBank=false#bank
+        const routeBase1 = routePath.split('?');
+        const routeBase = routeBase1[0];
+        const routeBase2 = routeBase1[1] !== undefined ? routeBase1[1].split('#') : '';
+        const routeParamsObj = this.routeParamStringToObject(routeBase2[0] !== undefined ? routeBase2[0].split('&') : null);
+        const routeFragment = routeBase2[1];
+        return {
+            base: routeBase,
+            params: routeParamsObj,
+            fragments: routeFragment
+        };
+    }
 }

@@ -313,6 +313,7 @@ export class ApiService {
   }
 
   verifyOTP(payload: IVerifyRequestOTP) {
+    console.log('Verifying Payload --- Entered otp is:' + payload.otp);
     return this.http.post(apiConstants.endpoint.verifyOTP + this.handleErrorFlag, payload)
       .pipe(
         // tslint:disable-next-line:no-identical-functions

@@ -196,6 +196,9 @@ app-edit-profile{
     }
   }
   .edit-button {
+    display:inline-flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 57px;
     border-radius: 6px;
@@ -213,6 +216,11 @@ app-edit-profile{
       color: #c1eaea;
       border: solid 1px #bfe9e9;
       cursor: not-allowed;
+    }
+    .lock{
+      display:inline-block;
+      margin-left: 10px;
+      margin-top: 2px;
     }
   }
   .bank-account{

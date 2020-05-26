@@ -19,6 +19,9 @@ export let apiConstants = {
         authenticateWorkshop: 'svc/account/account-microservice/authenticateWorkshop',
         login: 'login',
         logout: ACCOUNT_API_BASE_URL + '/logout',
+        send2faOTP: ACCOUNT_API_BASE_URL + '/send2FAOTP',
+        authenticate2faOTP: ACCOUNT_API_BASE_URL + '/validate2FA',
+        verify2faOTP: ACCOUNT_API_BASE_URL + '/is2FAuthenticated',
         getProfileList: ACCOUNT_API_BASE_URL + '/getProfileTypeList',
         getProtectionTypesList: INSURANCE_API_BASE_URL + '/getProtectionTypesList',
         getLongTermCareList: INSURANCE_API_BASE_URL + '/getCareGiverList',
@@ -48,7 +51,7 @@ export let apiConstants = {
         enquiryByEmail: ACCOUNT_API_BASE_URL + '/enquiryByEmail',
         getPopupStatus: ACCOUNT_API_BASE_URL + '/getTrackStatus',
         setPopupStatus: ACCOUNT_API_BASE_URL + '/setTrackStatus',
-        enquireRetirementPlan: ACCOUNT_API_BASE_URL + '/ads/postRetirementPlanning',
+        enquireRetirementPlan: ACCOUNT_API_BASE_URL + '/postRetirementPlanning',
         sendWelcomeMail: ACCOUNT_API_BASE_URL + '/sendWelcomeMail',
         financialWellness: ACCOUNT_API_BASE_URL + '/corp/updateLeadGen',
         article: {

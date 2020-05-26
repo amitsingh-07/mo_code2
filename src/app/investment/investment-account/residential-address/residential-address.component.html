@@ -22,7 +22,9 @@
                   <div class="flex-row">
                     <div class="flex-col-5">
                       <label for="residentialAddress-country-drpdown"
-                        id="residentialAddress-country-lbl">{{ 'RESIDENTIAL_ADDRESS.COUNTRY' | translate}}</label>
+                        id="residentialAddress-country-lbl">{{ 'RESIDENTIAL_ADDRESS.COUNTRY' | translate}}
+                        <i class="tooltip-icon" id="countryHelpIcon" (click)="showHelpModalCountry()"></i>
+                      </label>
                     </div>
                     <div class="flex-col-7">
                       <div class="dropdown-control"
@@ -237,7 +239,9 @@
                     <div class="flex-row">
                       <div class="flex-col-5">
                         <label for="residentialAddress-mailcountry-drpdown"
-                          id="residentialAddress-mailcountry-lbl">{{ 'RESIDENTIAL_ADDRESS.COUNTRY' | translate}}</label>
+                          id="residentialAddress-mailcountry-lbl">{{ 'RESIDENTIAL_ADDRESS.COUNTRY' | translate}}
+                          <i class="tooltip-icon" id="countryHelpIcon" (click)="showHelpModalCountry()"></i>
+                        </label>
                       </div>
                       <div class="flex-col-7">
                         <div class="dropdown-control">
