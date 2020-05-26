@@ -243,7 +243,6 @@ export class AuthenticationService {
     const verifyUrl = apiConstants.endpoint.verify2faOTP;
     return this.httpClient.get<IServerResponse>(`${this.apiBaseUrl}/${verifyUrl}${handleError}`)
       .pipe(map((response) => {
-        console.log('Response from verifying 2fa', response);
         return response;
       }));
   }
@@ -272,7 +271,7 @@ export class AuthenticationService {
       console.log('Response From Verify 2fa', data);
       if (data.responseMessage.responseCode === 6011) {
         window.setTimeout(() => {
-          console.log('Validating in 5 seconds');
+          console.log('Validating in ' + interval + ' seconds');
           this.clear2FAToken();
         }, (1000 * interval));
       } else {

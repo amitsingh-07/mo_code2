@@ -120,6 +120,9 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
         this.is2faAuthorized = true;
       } else {
         this.is2faAuthorized = false;
+        this.getEditProfileData();
+        this.showAddBankDetails(this.investmentStatus);
+        this.getSrsDetails();
       }
       // console.log('is2faAuthorized', this.is2faAuthorized);
     });
@@ -169,7 +172,6 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
     this.signUpService.getEditProfileInfo().subscribe((data) => {
       this.entireUserData = data.objectList;
       if (data.objectList) {
-        console.log(data.objectList);
         if (data.objectList.personalInformation) {
           this.personalData = data.objectList.personalInformation;
         }
