@@ -48,27 +48,31 @@ export class JwtInterceptor implements HttpInterceptor {
             request = request.clone({
                 headers: new HttpHeaders({
                     'Content-Type': 'image/png',
-                    'Authorization': `${this.auth.getToken()}`
+                    'Authorization': `${this.auth.getToken()}`,
+                    'sessionId': `${this.auth.getSessionId()}`
                 })
             });
         } else if (request.url.indexOf('saveDocuments') > -1) { // for upload documents
             request = request.clone({
                 headers: new HttpHeaders({
-                    Authorization: `${this.auth.getToken()}`
+                    Authorization: `${this.auth.getToken()}`,
+                    sessionId: `${this.auth.getSessionId()}`
                 })
             });
         } else if (request.url.indexOf('authenticate') > -1) { // for login{
             request = request.clone({
                 headers: new HttpHeaders({
                     'Content-Type': 'application/json',
-                    'Authorization': `${this.auth.getAppSecretKey()}`
+                    'Authorization': `${this.auth.getAppSecretKey()}`,
+                    'sessionId': `${this.auth.getSessionId()}`
                 })
             });
         } else {
             request = request.clone({
                 headers: new HttpHeaders({
                     'Content-Type': 'application/json',
-                    'Authorization': `${this.auth.getToken()}`
+                    'Authorization': `${this.auth.getToken()}`,
+                    'sessionId': `${this.auth.getSessionId()}`
                 })
             });
         }

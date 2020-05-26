@@ -98,6 +98,7 @@
   },
   "VERIFY_MOBILE": {
     "TITLE": "Verify Your Mobile",
+    "2FA_TITLE": "Authenticate Now",
     "FORM": {
       "INSTRUCTION": "Enter the 6-digit OTP code sent to:",
       "EDIT_NUMBER": "Edit Number",
@@ -118,6 +119,7 @@
     "LOADING": {
       "VERIFYING": "Verifying...",
       "VERIFIED": "Mobile Verified!",
+      " VERIFIED2FA": "2FA Verified",
       "SENDING": "Sending New OTP"
     }
   },
