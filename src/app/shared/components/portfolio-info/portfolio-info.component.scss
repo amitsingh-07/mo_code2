@@ -1,296 +1,279 @@
 @import '../../../../variables';
 @import '../../../../mixins';
-
 .portfolio-info-container {
-  padding: 30px;
-
-  @include allmobiles {
-    padding: 15px;
-  }
-
-  background-color: $portfolio-allocation-container-bg-color;
-  border-radius: 6px 6px 0 0;
-
+    padding: 30px;
+    @include allmobiles {
+        padding: 15px;
+    }
+    background-color: $portfolio-allocation-container-bg-color;
+    border-radius: 6px 6px 0 0;
 }
 
 .portfolio-type-details {
-  font-family: $muli-italic;
-  font-size: 16px;
-  font-style: italic;
-  line-height: 1.31;
-  letter-spacing: -0.1px;
-  color: $white-color;
-
-  .portfolio-type-details-title {
-    font-family: $muli-bold;
-    font-size: 24px;
-    font-style: normal;
-    line-height: 0.88;
-    letter-spacing: -0.3px;
-    padding-bottom: 11px;
-  }
-
-  .portfolio-type-details-desc {
-    color: $review-text-color;
-  }
+    font-family: $muli-italic;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.31;
+    letter-spacing: -0.1px;
+    color: $white-color;
+    .portfolio-type-details-title {
+        font-family: $muli-bold;
+        font-size: 24px;
+        font-style: normal;
+        line-height: 0.88;
+        letter-spacing: -0.3px;
+        padding-bottom: 20px;
+    }
+    .portfolio-type-details-desc {
+        color: $review-text-color;
+    }
+    .wise-portfolio-type-details-desc {
+        color: $jungle-mist-blue-color;
+        font-family: $muli-regular;
+    }
+    .wise-saver-desc {
+        margin: 20px 0;
+        padding: 20px 0;
+        background-color: $black-squeeze-grey-color;
+        color: $black-color;
+        ;
+        border-radius: 6px;
+    }
+    .wise-saver-value {
+        background: $wisesaver-value-bg-color;
+        padding: 10px 30px;
+        border-radius: 6px;
+        font-family: $muli-bold;
+        font-style: normal;
+    }
+    .wise-saver-value-container {
+        margin: 15px;
+        padding-bottom: 5px;
+    }
+    .wise-saver-rate-title {
+        font-family: $muli-regular;
+        font-size: 14px;
+        padding: 15px 0 5px 0;
+    }
+    .wise-saver-rate-desc {
+        font-family: $muli-italic;
+        font-size: 13px;
+        color: $dark-grey-color;
+    }
+    .wise-saver-portfolio-desc {
+        color: $jungle-mist-blue-color;
+        font-family: $muli-regular;
+    }
 }
 
 .portfolio-graph-block {
-  margin-top: 28px;
-  text-align: center;
-
-  .portfolio-graph-container {
-    font-family: $muli-bold;
-    font-size: 18px;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: $white-color;
-    padding-top: 30px;
-    // position: relative;
-
-    .graph {
-      width: 315px;
-      height: 205px;
-      margin: 0 auto;
-      position: relative;
-
-      @include max360 {
-        width: 315px;
-        width: 100%;
-      }
-
-      img {
-        max-width: 100%;
-        height: auto;
-        margin: 0;
-
-        @include allmobiles {
-          width: 315px;
-          height: 205px;
-        }
-      }
-
-      img.big {
-        display: none;
-      }
-
-      img.small {
-        display: block;
-      }
-    }
-
-    @media(min-width:$col-md) {
-      .graph {
-        width: 560px;
-
-        img.big {
-          display: block;
-          width: 100%;
-        }
-
-        img.small {
-          display: none;
-        }
-      }
-    }
-
-    @media(min-width:$col-lg) {
-      .graph {
-        width: 720px;
-        height: 235px;
-      }
-    }
-
-    .graph_values {
-      position: absolute;
-      top: 0px;
-      text-align: left;
-
-      span {
-        padding: 0px 10px 5px;
-        position: relative;
+    margin-top: 28px;
+    text-align: center;
+    .portfolio-graph-container {
+        font-family: $muli-bold;
+        font-size: 18px;
+        font-style: normal;
+        font-stretch: normal;
         line-height: normal;
-
-        &:first-child {
-          top: -31px;
-
-          @include allmobiles {
-            top: -33px;
-          }
-
-          @include max360 {
-            top: -27px !important;
-          }
+        letter-spacing: normal;
+        color: $white-color;
+        padding-top: 30px;
+        // position: relative;
+        .graph {
+            width: 315px;
+            height: 205px;
+            margin: 0 auto;
+            position: relative;
+            @include max360 {
+                width: 315px;
+                width: 100%;
+            }
+            img {
+                max-width: 100%;
+                height: auto;
+                margin: 0;
+                @include allmobiles {
+                    width: 315px;
+                    height: 205px;
+                }
+            }
+            img.big {
+                display: none;
+            }
+            img.small {
+                display: block;
+            }
         }
-
-        &:nth-child(2) {
-          top: 9px;
-
-          @include allmobiles {
-            top: -5px;
-          }
-
-          @include max360 {
-            top: 0 !important;
-          }
-
-          @include tablet {
-            top: -8px;
-          }
+        @media(min-width:$col-md) {
+            .graph {
+                width: 560px;
+                img.big {
+                    display: block;
+                    width: 100%;
+                }
+                img.small {
+                    display: none;
+                }
+            }
         }
-
-        &:last-child {
-          top: 39px;
-
-          @include allmobiles {
-            top: 15px;
-          }
-
-          @include max360 {
-            top: 20px !important;
-          }
-
-          @include tablet {
-            top: 8px;
-          }
-
-          @include ieSpecific {
-            margin-top: 30px !important;
-          }
+        @media(min-width:$col-lg) {
+            .graph {
+                width: 720px;
+                height: 235px;
+            }
         }
-      }
+        .graph_values {
+            position: absolute;
+            top: 0px;
+            text-align: left;
+            span {
+                padding: 0px 10px 5px;
+                position: relative;
+                line-height: normal;
+                &:first-child {
+                    top: -31px;
+                    @include allmobiles {
+                        top: -33px;
+                    }
+                    @include max360 {
+                        top: -27px !important;
+                    }
+                }
+                &:nth-child(2) {
+                    top: 9px;
+                    @include allmobiles {
+                        top: -5px;
+                    }
+                    @include max360 {
+                        top: 0 !important;
+                    }
+                    @include tablet {
+                        top: -8px;
+                    }
+                }
+                &:last-child {
+                    top: 39px;
+                    @include allmobiles {
+                        top: 15px;
+                    }
+                    @include max360 {
+                        top: 20px !important;
+                    }
+                    @include tablet {
+                        top: 8px;
+                    }
+                    @include ieSpecific {
+                        margin-top: 30px !important;
+                    }
+                }
+            }
+        }
+        .time-lapse {
+            justify-content: space-between;
+            font-family: $muli-regular;
+            font-size: 13px;
+            line-height: 1.23;
+            letter-spacing: -0.2px;
+            padding-top: 9.8px;
+            span {
+                &:last-child {
+                    font-family: $muli-bold;
+                }
+            }
+        }
     }
-
-    .time-lapse {
-      justify-content: space-between;
-      font-family: $muli-regular;
-      font-size: 13px;
-      line-height: 1.23;
-      letter-spacing: -0.2px;
-      padding-top: 9.8px;
-
-      span {
-        &:last-child {
-          font-family: $muli-bold;
-        }
-      }
-    }
-  }
 }
 
 .portfolio-graph-indicator {
-  font-family: $muli-italic;
-  font-size: 14px;
-  font-style: italic;
-  letter-spacing: -0.1px;
-  color: $review-text-color;
-
-  .web-flex {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-
-    @include allmobiles {
-      flex-direction: column;
-      padding-top: 26px;
-      margin-top: 0px !important;
+    font-family: $muli-italic;
+    font-size: 14px;
+    font-style: italic;
+    letter-spacing: -0.1px;
+    color: $review-text-color;
+    .web-flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+        @include allmobiles {
+            flex-direction: column;
+            padding-top: 26px;
+            margin-top: 0px !important;
+        }
+        @media(min-width:$col-md) {
+            margin-top: -11px !important;
+            flex-direction: none !important;
+        }
+        @include minMobilemaxPhablet {
+            margin-top: 20px !important;
+            flex-direction: column;
+        }
+        @media(min-width:$col-lg) {
+            margin-top: 11px !important;
+        }
     }
-
-    @media(min-width:$col-md) {
-      margin-top: -11px !important;
-      flex-direction: none !important;
+    .indicators {
+        justify-content: space-evenly;
+        margin-bottom: 5px;
+        @include allmobiles {
+            margin: 0 auto;
+        }
+        .flex-row {
+            align-items: center;
+            padding-right: 18px;
+        }
+        .circle {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            &.best {
+                background-color: $portfolio-recommend-best;
+            }
+            &.median {
+                background-color: $portfolio-recommend-median;
+            }
+            &.worst {
+                background-color: $portfolio-recommend-worst;
+            }
+        }
     }
-
-    @include minMobilemaxPhablet {
-      margin-top: 20px !important;
-      flex-direction: column;
+    .capital {
+        justify-content: center;
+        align-items: center;
+        @include allmobiles {
+            padding-top: 10px;
+            padding-bottom: 31px;
+        }
+        span {
+            &:first-child {
+                padding-right: 9px;
+            }
+        }
     }
-
-    @media(min-width:$col-lg) {
-      margin-top: 11px !important;
+    .desc {
+        margin: 30px auto 0;
+        border-radius: 6px;
+        background-color: $portfolio-recommend-bg;
+        max-width: 720px;
+        padding: 16px 22px;
+        text-align: left;
+        @include allmobiles {
+            border-radius: 0;
+            padding: 0;
+            background-color: transparent;
+        }
+        div {
+            font-size: 14px;
+            line-height: normal;
+            padding-bottom: 10px;
+            text-align: left;
+            @include allmobiles {
+                margin-top: 0px;
+            }
+            strong {
+                font-weight: bold;
+            }
+        }
     }
-  }
-
-  .indicators {
-    justify-content: space-evenly;
-    margin-bottom: 5px;
-
-    @include allmobiles {
-
-      margin: 0 auto;
-    }
-
-    .flex-row {
-      align-items: center;
-      padding-right: 18px;
-    }
-
-    .circle {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      margin-right: 8px;
-
-      &.best {
-        background-color: $portfolio-recommend-best;
-      }
-
-      &.median {
-        background-color: $portfolio-recommend-median;
-      }
-
-      &.worst {
-        background-color: $portfolio-recommend-worst;
-      }
-    }
-  }
-
-  .capital {
-    justify-content: center;
-    align-items: center;
-
-    @include allmobiles {
-      padding-top: 10px;
-      padding-bottom: 31px;
-    }
-
-    span {
-      &:first-child {
-        padding-right: 9px;
-      }
-    }
-  }
-
-  .desc {
-    margin: 30px auto 0;
-    border-radius: 6px;
-    background-color: $portfolio-recommend-bg;
-    max-width: 720px;
-    padding: 16px 22px;
-    text-align: left;
-
-    @include allmobiles {
-      border-radius: 0;
-      padding: 0;
-      background-color: transparent;
-    }
-
-    div {
-      font-size: 14px;
-      line-height: normal;
-      padding-bottom: 10px;
-      text-align: left;
-
-      @include allmobiles {
-        margin-top: 0px;
-      }
-
-      strong {
-        font-weight: bold;
-      }
-    }
-  }
 }

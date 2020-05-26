@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { FundDetailsComponent } from '../../../investment/investment-common/fund-details/fund-details.component';
 import { InvestmentEngagementJourneyService } from '../../../investment/investment-engagement-journey/investment-engagement-journey.service';
+import { INVESTMENT_COMMON_CONSTANTS } from '../../../investment/investment-common/investment-common.constants';
 
 @Component({
   selector: 'app-allocation',
@@ -15,9 +16,11 @@ export class AllocationComponent implements OnInit, OnChanges {
   @Input('assets') assets;
   @Input('funds') funds;
   @Input('colors') colors;
+  @Input('portfolioType') portfolioType;
 
   event1 = true;
   event2 = true;
+  allocationDetails: boolean;
 
   constructor(
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
@@ -29,9 +32,15 @@ export class AllocationComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.assets.forEach((allocation) => {
-      allocation.groupedAllocationDetails = this.groupByProperty(allocation.groupedAllocationDetails);
-    });
+    if (this.portfolioType === INVESTMENT_COMMON_CONSTANTS.WISESAVER_ASSET_ALLOCATION.TYPE) {
+      this.assets = INVESTMENT_COMMON_CONSTANTS.WISESAVER_ASSET_ALLOCATION.ASSETS;
+      this.allocationDetails = false;
+    } else if (this.assets) {
+      this.assets.forEach((allocation) => {
+        allocation.groupedAllocationDetails = this.groupByProperty(allocation.groupedAllocationDetails);
+      });
+      this.allocationDetails = true;
+    }
   }
 
   groupByProperty(targetObj) {

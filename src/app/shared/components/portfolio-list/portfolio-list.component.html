@@ -1,14 +1,20 @@
 <!-- Widget Content-->
-<div class="multiple-portfolio-container" *ngIf="portfolioList?.length > 0">
+<div class="multiple-portfolio-container" *ngIf="totalPortfoliosLength > 0; else noFilteredPortfolios">
     <div class="container-fluid max-width--1024">
         <div class="multiple-portfolio-block">
-            <div class="multiple-portfolio-header">{{'YOUR_INVESTMENT.TOTAL_OF' | translate}} {{portfolioList?.length}}</div>
+            <div class="multiple-portfolio-header">
+                {{'YOUR_INVESTMENT.TOTAL_OF' | translate}} {{totalPortfoliosLength}}
+                <div (click)="addPortfolio()" class="add_portfolio_label cursor_pointer" id="investment_overview_total_of">
+                    <img class="pr5" src="assets/images/investment-account/plus-white.svg">
+                    <span>{{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}}</span>
+                </div>
+            </div>
             <div class="multiple-portfolio-content">
-                <div class="multiple-portfolio-type" *ngIf="notInvestedList?.length > 0">
+                <div class="multiple-portfolio-type" *ngIf="filteredNotInvestedList?.length > 0">
                     <div class="multiple-portfolio-type-title">{{'YOUR_INVESTMENT.NOT_YET_INVESTED' | translate}}</div>
-                    <div class="portfolio-list" *ngFor="let portfolio of notInvestedList; let i = index;">
+                    <div class="portfolio-list" *ngFor="let portfolio of filteredNotInvestedList; let i = index;">
                         <div (click)="detail(portfolio)" class="portfolio" *ngIf="(i <= 4) || showAllForNotInvested">
-                            <div class="portfolio-icon"><img [src]="getImg(portfolio?.riskProfileId)" /></div>
+                            <div class="portfolio-icon" [ngClass]="portfolio?.riskProfileId == 7 ? 'ws-border' : ''"><img [src]="getImg(portfolio?.riskProfileId)" /></div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
@@ -34,16 +40,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="list-btn" *ngIf="notInvestedList.length > 5">
-                        <span *ngIf="!showAllForNotInvested" (click)="showHideToggle('showAllForNotInvested')">{{'YOUR_INVESTMENT.LIST_ALL' | translate}} ({{ notInvestedList.length - 5 }})<img src="assets/images/investment-account/list-down.svg" /></span>
+                    <div class="list-btn" *ngIf="filteredNotInvestedList.length > 5">
+                        <span *ngIf="!showAllForNotInvested" (click)="showHideToggle('showAllForNotInvested')">{{'YOUR_INVESTMENT.LIST_ALL' | translate}} ({{ filteredNotInvestedList.length - 5 }})<img src="assets/images/investment-account/list-down.svg" /></span>
                         <span *ngIf="showAllForNotInvested" (click)="showHideToggle('showAllForNotInvested')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}} <img class="show-less" src="assets/images/investment-account/list-down.svg" /></span>
                     </div>
                 </div>
-                <div class="multiple-portfolio-type" *ngIf="investedList?.length > 0">
+                <div class="multiple-portfolio-type" *ngIf="filteredInvestedList?.length > 0">
                     <div class="multiple-portfolio-type-title">{{'YOUR_INVESTMENT.INVESTED' | translate}}</div>
-                    <div (click)="detail(portfolio)" class="portfolio-list invested" *ngFor="let portfolio of investedList; let i = index;">
+                    <div (click)="detail(portfolio)" class="portfolio-list invested" *ngFor="let portfolio of filteredInvestedList; let i = index;">
                         <div *ngIf="(i <= 4) || showAllForInvested" class="portfolio">
-                            <div class="portfolio-icon"><img [src]="getImg(portfolio?.riskProfileId)" /></div>
+                            <div class="portfolio-icon" [ngClass]="portfolio?.riskProfileId == 7 ? 'ws-border' : ''"><img [src]="getImg(portfolio?.riskProfileId)" /></div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
@@ -73,8 +79,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="list-btn" *ngIf="investedList.length > 5">
-                        <span *ngIf="!showAllForInvested" (click)="showHideToggle('showAllForInvested')">{{'YOUR_INVESTMENT.LIST_ALL' | translate}} ({{ investedList.length - 5}})<img src="assets/images/investment-account/list-down.svg" /></span>
+                    <div class="list-btn" *ngIf="filteredInvestedList.length > 5">
+                        <span *ngIf="!showAllForInvested" (click)="showHideToggle('showAllForInvested')">{{'YOUR_INVESTMENT.LIST_ALL' | translate}} ({{ filteredInvestedList.length - 5}})<img src="assets/images/investment-account/list-down.svg" /></span>
                         <span *ngIf="showAllForInvested" (click)="showHideToggle('showAllForInvested')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}}<img class="show-less" src="assets/images/investment-account/list-down.svg" /></span>
                     </div>
                 </div>
@@ -82,4 +88,17 @@
         </div>
     </div>
 </div>
+<ng-template #noFilteredPortfolios>
+    <div class="container-fluid max-width--1024 no-portfolio-container">
+        <div class="form-group-with-bg no-portfolio">
+            <div class="flex-col align-center">
+                <div class="msg"> {{'YOUR_INVESTMENT.NO_PORTFOLIOS_YET' | translate}} <br>
+                    {{'YOUR_INVESTMENT.ADD_PORTFOLIO_START_INVEST' | translate}} </div>
+                <div class="add-portfolio-icon"><img src="assets/images/add-portfolio-icon.svg" alt="" /></div>
+                <button type="button" class="btn btn-primary" id="add_portfolio" (click)="addPortfolio()">
+                    {{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}} </button>
+            </div>
+        </div>
+    </div>
+</ng-template>
 <!-- / Widget Content-->

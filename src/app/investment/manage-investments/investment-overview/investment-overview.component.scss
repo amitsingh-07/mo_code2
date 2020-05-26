@@ -1,41 +1,72 @@
 @import '../../../../_variables.scss';
 @import '../../../../_mixins.scss';
+
 app-investment-overview {
+
+    .invest-section {
+      @include allmobiles {
+        top: 0px;
+      }
+    }
+
     .invest-bg-content {
         .container-fluid {
             padding-bottom: 20px !important;
-        }
-    }
-    .user_summary {
-        font-family: $muli-regular;
-        font-size: 18px;
-        line-height: 1.28;
-        letter-spacing: -0.2px;
-        padding: 0 15px 30px 0;
-        position: relative;
-        max-width: 300px;
-        @include allmobiles {
-            padding: 0 15px 30px 15px;
         }
     }
     .cursor_pointer {
         cursor: pointer;
     }
     .your_portfolio_label {
-        font-size: 21px;
-        font-family: $muli-bold;
-        letter-spacing: -0.21px;
+        font-size: 28px;
+        font-family: $muli-regular;
+        letter-spacing: -0.28px;
         color: $white-color;
     }
-    .add_portfolio_label {
-        font-size: 16px;
-        font-family: $muli-bold;
-        letter-spacing: -0.3px;
-        color: $white-color;
-        text-align: right;
+    .category-filter {
+        padding: 17px 0 20px;
         display: flex;
         align-items: center;
-        z-index: 1;
+        .all-category {
+            font-family: $muli-regular;
+            margin-right: 8px;
+            font-size: 13px;
+            letter-spacing: -0.12px;
+            line-height: normal;
+            color: $white-color;
+        }
+        label {
+            display: flex;
+            margin-bottom: 0px;
+        }
+        label > div {
+            padding: 0 10px;
+            background-color: #00a7a7;
+            height: 28px;
+            margin-right: 8px;
+            border-radius: 17px;
+            cursor: pointer;
+        }
+        label > div > span {
+            font-family: $muli-bold;
+            font-size: 13px;
+            letter-spacing: -0.12px;
+            line-height: normal;
+            color: $white-color;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        label > div > img {
+            display: none;
+            margin-right: 5px;
+        }
+        input[type="radio"]:checked ~ * {
+            background-color: $pine-green-color;
+        }
+        input[type="radio"]:checked ~ div > img {
+            margin-top: 1px;
+            display: inline-block;
+        }
     }
     .form-group-with-bg {
         box-shadow: 0 10px 14px 0 $btn-proceed-shadow-color;
@@ -148,15 +179,12 @@ app-investment-overview {
     .container-fluid {
         &.max-width--1024 {
             @include allmobiles {
-                padding-left: 15px !important;
-                padding-right: 15px !important;
-                padding-bottom: 20px !important;
+                padding: 15px 15px 20px !important;
             }
             &.no-portfolio-container {
                 padding-bottom: 0 !important;
                 padding-top: 20px !important;
                 @include allmobiles {
-                    padding-top: 80px !important;
                     padding-bottom: 20px !important;
                 }
             }
@@ -166,10 +194,6 @@ app-investment-overview {
         position: relative;
         top: 10px;
         padding-bottom: 10px;
-        @include allmobiles {
-            top: 70px;
-            padding-bottom: 70px;
-        }
         .container-fluid {
             &.max-width--1024 {
                 padding-top: 0 !important;
@@ -186,11 +210,26 @@ app-investment-overview {
                 font-size: 13px;
                 letter-spacing: -0.24px;
                 text-align: right;
-                color: #ffffff;
-                padding: 20px 30px;
+                color: $white-color;
+                padding: 10px 20px;
                 background-color: #3bbfbf;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
                 @include allmobiles {
                     padding: 10px 15px;
+                }
+                div {
+                    display: flex;
+                    align-items: center;
+                    span {
+                        font-family: $muli-bold;
+                        font-size: 16px;
+                        letter-spacing: -0.3px;
+                        color: $white-color;
+                        line-height: normal;
+                    }
                 }
             }
             .multiple-portfolio-content {
@@ -223,13 +262,20 @@ app-investment-overview {
                                 padding: 20px 15px;
                             }
                             .portfolio-icon {
-                                max-width: 32px !important;
-                                max-height: 32px !important;
-                                margin-top: 8px;
+                                border: solid 3px #e3c94e !important;
+                                border-radius: 22.5px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                width: 44px;
+                                height: 44px;
                                 img {
-                                    width: 100%;
-                                    height: auto;
+                                    width: 32px;
+                                    height: 32px;
                                 }
+                            }
+                            .ws-border {
+                                border: solid 3px #49a5c9 !important;
                             }
                             .portfolio-details {
                                 display: flex;
@@ -382,22 +428,29 @@ app-investment-overview {
             }
         }
     }
+    .scroll-btn-div {
+        margin-bottom: 20px;
+        @include allmobiles {
+            margin: 20px 0;
+        }
+    }
     .btn-primary {
         &.scroll-btn {
-            width: 100%;
+            padding: 7px 11px 6px 12px;
             margin: 0 auto !important;
-            font-family: $muli-regular !important;
-            font-size: 14px;
+            font-family: $muli-semi-bold !important;
+            font-size: 12px;
             letter-spacing: -0.26px;
-            border-radius: 0px;
+            border-radius: 14px;
             text-align: center;
-            color: #3ec5c5 !important;
-            background-color: #00a0a0 !important;
+            color: $teal-color !important;
+            font-weight: 600;
+            background-color: $portfolio-card-bg-color !important;
             &:hover,
             &:active,
             &:focus {
                 color: #3ec5c5 !important;
-                background-color: #00a0a0 !important;
+                background-color: $portfolio-card-bg-color !important;
             }
         }
     }
@@ -441,13 +494,14 @@ app-investment-overview {
         display: flex;
         justify-content: flex-end;
         .new-investment-div {
+            display: none;
             position: absolute;
             top: 0;
             width: 100%;
             max-width: 373px;
-            margin-top: -16px;
+            margin-top: -30px;
             @include allmobiles {
-                margin-top: 0px;
+                margin-top: -32px;
                 max-width: 100%;
             }
             z-index: 1;
@@ -479,6 +533,29 @@ app-investment-overview {
                     font-family: $muli-bold;
                 }
             }
+        }
+    }
+    .back-dashboard {
+        display: none;
+
+        @include allmobiles {
+          display: flex;
+          align-items: center;
+          margin-top: -20px;
+          margin-bottom: 10px;
+        }
+
+        img {
+            margin-right: 6px;
+            margin-left: -4px;
+        }
+
+        span {
+          font-family: $muli-semi-bold;
+          font-size: 13px;
+          letter-spacing: -0.12px;
+          line-height: normal;
+          color: $white-color;
         }
     }
     .mp-animation {

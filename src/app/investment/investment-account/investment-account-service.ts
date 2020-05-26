@@ -1965,4 +1965,39 @@ export class InvestmentAccountService {
   isReassessActive() {
     return this.investmentAccountFormData.isReassessActive;
   }
+  getCountriesFormDataByFilter() {
+    const countryList = [];
+    this.investmentAccountFormData.countryList.forEach((country) => {
+      if (!country.countryBlocked) {
+        countryList.push(country);
+      }
+    });
+    return countryList;
+  }
+  getCountryByCountryCode(countryCode, countryList) {
+    let blockFlag = false;
+    const selectedCountry = countryList.filter(
+      (countries) => countries.countryCode === countryCode
+    );
+    if (selectedCountry[0]) {
+      blockFlag = (selectedCountry[0]['countryBlocked']);
+    }
+    return blockFlag;
+  }
+  checkCountryBlockList(countryList) {
+    let blockedCountry = false;
+    if (this.investmentAccountFormData.country && this.investmentAccountFormData.country.countryCode) {
+      blockedCountry = this.getCountryByCountryCode(this.investmentAccountFormData.country.countryCode, countryList);
+    }
+    if (!blockedCountry && this.investmentAccountFormData.mailCountry && this.investmentAccountFormData.mailCountry.countryCode) {
+      blockedCountry = this.getCountryByCountryCode(this.investmentAccountFormData.mailCountry.countryCode, countryList);
+    }
+    return blockedCountry;
+  }
+  clearBlockedCountry() {
+    this.investmentAccountFormData.isMyInfoEnabled = false;
+    this.clearResidentialAddressFormData();
+    this.clearEmailAddressFormData();
+    this.commit();
+  }
 }
