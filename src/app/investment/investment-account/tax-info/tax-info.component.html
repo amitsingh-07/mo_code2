@@ -27,7 +27,8 @@
                     <div class="flex-row">
                       <div class="flex-col-4">
                         <label for="name" class="country_text"
-                          id="tax-info-label">{{ 'TAX_INFO.COUNTRY_TEXT' | translate}}</label>
+                          id="tax-info-label">{{ 'TAX_INFO.COUNTRY_TEXT' | translate}}
+                          <i class="tooltip-block-icon" id="countryHelpIcon" (click)="showHelpModalCountry()"></i></label>
                       </div>
                       <div class="flex-col-8">
                         <div class="dropdown-control"

@@ -34,6 +34,7 @@ export class EmploymentDetailsComponent implements OnInit {
   industryList;
   occupationList;
   isEditProfile: any;
+  tooltipDetails: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -50,6 +51,7 @@ export class EmploymentDetailsComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('EMPLOYMENT_DETAILS.TITLE');
+      this.tooltipDetails = this.translate.instant('BLOCKED_COUNTRY_TOOLTIP');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -66,7 +68,7 @@ export class EmploymentDetailsComponent implements OnInit {
     this.getEmployeList();
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
-    this.countries = this.investmentAccountService.getCountriesFormData();
+    this.countries = this.investmentAccountService.getCountriesFormDataByFilter();
     // Set employment status in MyInfo
     if (this.formValues.isMyInfoEnabled) {
       this.setEmploymentStatus();
@@ -458,5 +460,14 @@ export class EmploymentDetailsComponent implements OnInit {
         this.investmentAccountService.setCaratTo(el, 100, contentList);
       }
     }
+  }
+
+  showHelpModalCountry() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.tooltipDetails.TITLE;
+    // tslint:disable-next-line:max-line-length
+    ref.componentInstance.errorDescription = this.tooltipDetails.DESC;
+    ref.componentInstance.buttonLabel = this.tooltipDetails.GOT_IT;
+    return false;
   }
 }
