@@ -75,6 +75,7 @@
                   </div>
                   <button type="button" class="edit-button" id="editEmployeButton" (click)="editUserDetails()">
                       {{'EDIT_PROFILE.EDIT' | translate}}
+                      <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock.svg" />
                   </button>
               </div>
           </div>
@@ -105,6 +106,7 @@
                   </div>
                   <button type="button" class="edit-button" id="editEmployeButton" (click)="editPassword()">
                       {{'EDIT_PROFILE.EDIT' | translate}}
+                      <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock.svg" />
                   </button>
               </div>
           </div>
@@ -446,6 +448,7 @@
                       </div>
                       <button type="button" class="edit-button" (click)="editEmployeDetails()" id="editEmployeButton">
                           {{'EDIT_PROFILE.EDIT' | translate}}
+                          <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock.svg" />
                       </button>
                   </div>
               </div>
@@ -496,6 +499,7 @@
                           <button type="button" class="edit-button" id="editEmployeButton" (click)="editBankDetails()"
                               [disabled]="disableBankSrsEdit">
                               {{'EDIT_PROFILE.EDIT' | translate}}
+                              <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock.svg" />
                           </button>
                       </div>
                       <div class="no-details" *ngIf="!bankDetails">
@@ -508,6 +512,7 @@
                               <button type="button" class="edit-button" id="editEmployeButton"
                                   (click)="addBankDetails()" [disabled]="disableBankSrsEdit">
                                   {{'EDIT_PROFILE.ADD_BANK' | translate}}
+                                  <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock.svg" />
                               </button>
                           </div>
                       </div>
@@ -555,6 +560,7 @@
                               (click)="updateSrsDetails(srsDetails?.srsAccountNumber?.conformedValue, {name: srsDetails?.srsOperator}, srsDetails?.customerId, false)"
                               [disabled]="disableBankSrsEdit">
                               {{'EDIT_PROFILE.EDIT' | translate}}
+                              <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock.svg" />
                           </button>
                       </div>
                   </div>

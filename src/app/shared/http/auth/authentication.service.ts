@@ -206,31 +206,46 @@ export class AuthenticationService {
   }
 
   //2FA Implementation
-  private send2faRequest(handleError?: any) {
+  public send2faRequest(handleError?: any) {
     if (!handleError) {
       handleError = '';
     }
     console.log('Sent 2fa Authentication Request');
     const send2faOtpUrl = apiConstants.endpoint.send2faOTP;
+
     return this.httpClient.get<IServerResponse>(`${this.apiBaseUrl}/${send2faOtpUrl}${handleError}`)
       .pipe(map((response) => {
         // login successful if there's a jwt token in the response
         if (response && response.objectList[0] && response.objectList[0].securityToken) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
+          console.log('send2faRequest response',response);
           this.saveAuthDetails(response.objectList[0]);
         }
         return response;
+    }));
+  }
+  public doValidate2fa(otp: string, handleError?: string) {
+    if (!handleError) {
+      handleError = '?handleError=true';
+    }
+    const validate2faBody = {
+      twoFactorOtpString: otp
+    };
+
+    const authenticateUrl = apiConstants.endpoint.authenticate2faOTP;
+    return this.httpClient.post<IServerResponse>(`${this.apiBaseUrl}/${authenticateUrl}${handleError}`, validate2faBody)
+      .pipe(map((response) => {
+        return response;
       }));
   }
-
-  public send2faAuthenticate() {
-    console.log('send2faAuthenticate Running');
-    const customerRef: any = JSON.parse(sessionStorage.getItem(appConstants.APP_CUSTOMER_ID));
-    if (customerRef.id != null) {
-      console.log('CustomerRef', customerRef.id);
-      return this.send2faRequest();
-    }
-    return EMPTY;
+  private doVerify2fa() {
+    const handleError = '?handleError=true';
+    const verifyUrl = apiConstants.endpoint.verify2faOTP;
+    return this.httpClient.get<IServerResponse>(`${this.apiBaseUrl}/${verifyUrl}${handleError}`)
+      .pipe(map((response) => {
+        console.log('Response from verifying 2fa', response);
+        return response;
+      }));
   }
 
   public get2FAToken() {
@@ -239,23 +254,34 @@ export class AuthenticationService {
   }
 
   public set2FAToken(token: any) {
-    let expiryTime = 15;
+    let expiryTime = 50;
     if (environment.expire2faTime) {
       expiryTime = environment.expire2faTime;
     }
     sessionStorage.setItem(appConstants.APP_2FA_KEY, token);
     this.get2FAToken();
-    const timeout = window.setTimeout(() => {
-      console.log('running timeout');
+    window.setTimeout(() => {
       this.clear2FAToken();
     }, (1000 * expiryTime));
   }
 
   public clear2FAToken() {
-    console.log('session clearing');
-    sessionStorage.removeItem(appConstants.APP_2FA_KEY);
-    this.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
-    this.get2faAuth.next(sessionStorage.getItem(appConstants.APP_2FA_KEY));
+    const interval = 2;
+    //Start BE Validation check to anticipate BE token check
+    this.doVerify2fa().subscribe((data) => {
+      console.log('Response From Verify 2fa', data);
+      if (data.responseMessage.responseCode === 6011) {
+        window.setTimeout(() => {
+          console.log('Validating in 5 seconds');
+          this.clear2FAToken();
+        }, (1000 * interval));
+      } else {
+        console.log('session clearing');
+        sessionStorage.removeItem(appConstants.APP_2FA_KEY);
+        this.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
+        this.get2faAuth.next(sessionStorage.getItem(appConstants.APP_2FA_KEY));
+      }
+    });
   }
 
   public is2FAVerified() {

@@ -40,7 +40,7 @@ export class TwoFactorAuthGuardService implements CanActivate {
     } else {
       // Is anything else
       console.log('Sending 2FA Authenticate to BE');
-      this.authService.send2faAuthenticate().subscribe((response) => {
+      this.authService.send2faRequest().subscribe((response) => {
         console.log('2fa created on BE:', response);
       });
       this.signUpService.setRedirectUrl(redirectUrl);
