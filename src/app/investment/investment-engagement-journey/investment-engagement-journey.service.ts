@@ -282,20 +282,31 @@ export class InvestmentEngagementJourneyService {
     return this.investmentApiService.savePersonalInfo(payload);
   }
   constructInvObjectiveRequest(invCommonFormValues) {
+    const selectedPortfolioType = this.getSelectPortfolioType();
     const formData = this.getPortfolioFormData();
     const enquiryIdValue = Number(this.authService.getEnquiryId());
-    return {
-      investmentPeriod: formData.investmentPeriod,
-      monthlyIncome: formData.monthlyIncome,
-      initialInvestment: formData.initialInvestment,
-      monthlyInvestment: formData.monthlyInvestment,
-      percentageOfSaving: formData.percentageOfSaving,
-      totalAssets: formData.totalAssets,
-      totalLiabilities: formData.totalLiabilities,
-      enquiryId: enquiryIdValue,
-      fundingTypeId: invCommonFormValues.initialFundingMethodId,
-      portfolioTypeId: formData.portfolioTypeId
-    };
+    if (selectedPortfolioType === 'investPortfolio') {
+      return {
+        investmentPeriod: formData.investmentPeriod,
+        monthlyIncome: formData.monthlyIncome,
+        initialInvestment: formData.initialInvestment,
+        monthlyInvestment: formData.monthlyInvestment,
+        percentageOfSaving: formData.percentageOfSaving,
+        totalAssets: formData.totalAssets,
+        totalLiabilities: formData.totalLiabilities,
+        enquiryId: enquiryIdValue,
+        fundingTypeId: invCommonFormValues.initialFundingMethodId,
+        portfolioTypeId: formData.portfolioTypeId
+      };
+    } else {
+      return {
+        enquiryId: enquiryIdValue,
+        initialInvestment: formData.initialInvestment,
+        monthlyInvestment: formData.monthlyInvestment,
+        fundingTypeId: invCommonFormValues.initialFundingMethodId,
+        portfolioTypeId: formData.portfolioTypeId
+      };
+    }
   }
 
   setPortfolioSplashModalCounter(value: number) {
