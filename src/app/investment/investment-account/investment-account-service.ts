@@ -2000,4 +2000,24 @@ export class InvestmentAccountService {
     this.clearEmailAddressFormData();
     this.commit();
   }
+  getCountryFromNationalityCodeByFilter(nationalityCode) {
+    let country = '';
+    const selectedNationality = this.investmentAccountFormData.nationalityList.filter(
+      (nationality) => nationality.nationalityCode === nationalityCode
+    );
+    if (selectedNationality[0] && selectedNationality[0].countries[0] && !selectedNationality[0].countries[0].countryBlocked) {
+      country = selectedNationality[0].countries[0];
+    }
+    return country;
+  }
+  getCountryFromCountryCodeByFilter(countryCode) {
+    let country = '';
+    const selectedCountry = this.investmentAccountFormData.countryList.filter(
+      (countries) => countries.countryCode === countryCode
+    );
+    if (selectedCountry[0] && !selectedCountry[0].countryBlocked) {
+      country = selectedCountry[0];
+    }
+    return country;
+  }
 }

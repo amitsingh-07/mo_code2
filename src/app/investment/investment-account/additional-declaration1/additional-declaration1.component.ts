@@ -156,11 +156,11 @@ export class AdditionalDeclaration1Component implements OnInit {
     if (this.addInfoFormValues.pepCountry) {
       defaultCountry = this.addInfoFormValues.pepCountry;
     } else if (this.isUserNationalitySingapore) {
-      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
+      defaultCountry = this.investmentAccountService.getCountryFromNationalityCodeByFilter(
         INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_NATIONALITY_CODE
       );
     } else {
-      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
+      defaultCountry = this.investmentAccountService.getCountryFromNationalityCodeByFilter(
         this.addInfoFormValues.nationalityCode
       );
     }
