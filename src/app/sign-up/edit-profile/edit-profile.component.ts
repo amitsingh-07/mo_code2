@@ -102,11 +102,11 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
     this.footerService.setFooterVisibility(false);
     this.headerSubscription();
     this.buildForgotPasswordForm();
-    this.getEditProfileData();
+    // this.getEditProfileData();
+    // this.showAddBankDetails(this.investmentStatus);
+    // this.getSrsDetails();
     this.isMailingAddressSame = true;
     this.investmentStatus = this.investmentCommonService.getInvestmentStatus();
-    this.showAddBankDetails(this.investmentStatus);
-    this.getSrsDetails();
     // Check if iFast is in maintenance
     this.configService.getConfig().subscribe((config) => {
       if (config.iFastMaintenance && this.configService.checkIFastStatus(config.maintenanceStartTime, config.maintenanceEndTime)) {
@@ -120,10 +120,10 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
         this.is2faAuthorized = true;
       } else {
         this.is2faAuthorized = false;
-        this.getEditProfileData();
-        this.showAddBankDetails(this.investmentStatus);
-        this.getSrsDetails();
       }
+      this.getEditProfileData();
+      this.showAddBankDetails(this.investmentStatus);
+      this.getSrsDetails();
       // console.log('is2faAuthorized', this.is2faAuthorized);
     });
   }
@@ -170,6 +170,7 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
   // tslint:disable-next-line:cognitive-complexity
   getEditProfileData() {
     this.signUpService.getEditProfileInfo().subscribe((data) => {
+      console.log('editprofileInfoCall',data);
       this.entireUserData = data.objectList;
       if (data.objectList) {
         if (data.objectList.personalInformation) {
@@ -193,9 +194,9 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
         }
         if (this.personalData) {
           this.fullName = this.personalData.fullName ?
-            this.personalData.fullName : this.personalData.firstName + ' ' + this.personalData.lastName;
-          this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
-          this.setNric(this.personalData.nricNumber);
+          this.personalData.fullName : this.personalData.firstName + ' ' + this.personalData.lastName;
+          this.compinedName = this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
+          this.compinednricNum = this.setNric(this.personalData.nricNumber);
           if (this.personalData.passportNumber) {
             this.compinedPassport = 'Passport: ' + this.personalData.passportNumber;
           }
@@ -229,16 +230,6 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
       maskedStr = maskedStr + '*';
     }
     return maskedStr;
-  }
-
-  setTwoLetterProfileName(firstName, LastName) {
-    const first = firstName.charAt(0);
-    const second = LastName.charAt(0);
-    this.compinedName = first.toUpperCase() + second.toUpperCase();
-  }
-
-  setNric(nric) {
-    this.compinednricNum = 'NRIC Number: ' + nric;
   }
 
   setAddres(address1, address2) {
@@ -404,5 +395,13 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-   
+  setTwoLetterProfileName(firstName, LastName) {
+    const first = firstName.charAt(0);
+    const second = LastName.charAt(0);
+    return first.toUpperCase() + second.toUpperCase();
+  }
+
+  setNric(nric) {
+    return 'NRIC Number: ' + nric;
+  }
 }

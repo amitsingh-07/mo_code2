@@ -129,7 +129,6 @@ export class VerifyMobileComponent implements OnInit {
           if (this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
             console.log('Calling Verity 2FA');
             this.verify2FA(otp);
-
             this.authService.setFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE, false);
           } else {
             console.log('Calling Verity OTP');
@@ -194,8 +193,29 @@ export class VerifyMobileComponent implements OnInit {
    */
   requestNewCode() {
     this.progressModal = true;
-    this.mobileNumberVerifiedMessage = this.loading['sending'];
+    if (this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
+      console.log('Triggering New Verify 2FA');
+      this.requestNew2faOTP();
+    } else {
+      console.log('Triggering New Verify OTP');
+      this.requestNewVerifyOTP();
+    }
+  }
+
+  requestNewVerifyOTP() {
     this.signUpApiService.requestNewOTP().subscribe((data) => {
+      this.verifyMobileForm.reset();
+      this.progressModal = false;
+      this.showCodeSentText = true;
+    });
+  }
+  /** 
+   * request a new 2fa OTP
+   */
+  requestNew2faOTP() {
+    this.progressModal = true;
+    this.mobileNumberVerifiedMessage = this.loading['sending'];
+    this.authService.send2faRequest().subscribe((data) => {
       this.verifyMobileForm.reset();
       this.progressModal = false;
       this.showCodeSentText = true;

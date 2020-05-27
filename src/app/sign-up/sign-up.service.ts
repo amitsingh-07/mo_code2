@@ -330,6 +330,16 @@ export class SignUpService {
     // API Call here
     return this.apiService.getEditProfileList();
   }
+
+  /**
+   * retrieve new userInformation
+   */
+  updateCustProfile(data: any) {
+    if (data) {
+        // console.log('current customer Data', JSON.parse(sessionStorage.getItem(SIGNUP_SESSION_STORAGE_KEY)));
+    }
+  }
+
   constructEditPassword(oldpassword, newpassword) {
     return {
       oldPassword: oldpassword,
@@ -637,4 +647,5 @@ export class SignUpService {
       fundTypeId: this.signUpFormData.fundTypeId
     };
   }
+  
 }
