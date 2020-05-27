@@ -17,6 +17,8 @@ import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investm
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
+import { LoaderService } from '../../../shared/components/loader/loader.service';
+import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 
 @Component({
   selector: 'app-risk-acknowledgement',
@@ -39,7 +41,9 @@ export class RiskAcknowledgementComponent implements OnInit {
     public modal: NgbModal,
     private signUpService: SignUpService,
     public investmentAccountService: InvestmentAccountService,
-    private investmentCommonService: InvestmentCommonService
+    private investmentCommonService: InvestmentCommonService,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
+    private loaderService:LoaderService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -58,9 +62,27 @@ export class RiskAcknowledgementComponent implements OnInit {
           this.investmentAccountService.showGenericErrorModal();
         });
     }
+    this.loaderService.showLoader({ title: this.translate.instant('COMMON_LOADER.TITLE') });
+    this.getPortfolioAllocationDetails();
   }
   goBack() {
     this._location.back();
+  }
+  getPortfolioAllocationDetails() {
+    const params = this.constructgetAllocationParams();
+    this.investmentEngagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
+      this.loaderService.hideLoader();
+    },
+      (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  }
+
+  constructgetAllocationParams() {
+    return {
+      enquiryId: this.authService.getEnquiryId()
+    };
   }
   goNext() {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
