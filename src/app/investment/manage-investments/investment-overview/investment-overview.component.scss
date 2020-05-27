@@ -77,18 +77,15 @@ app-investment-overview {
             padding: 20px 20px 17px;
             .total_values {
                 font-family: $muli-bold;
-                font-size: 32px;
+                font-size: 21px;
                 letter-spacing: -0.4px;
                 text-align: center;
                 color: $white-color;
                 word-break: break-all;
-                @include allmobiles {
-                    font-size: 30px;
-                }
             }
             .total_values_label {
                 font-family: $muli-regular;
-                font-size: 16px;
+                font-size: 13px;
                 line-height: 0.88;
                 letter-spacing: -0.1px;
                 text-align: center;
@@ -98,7 +95,7 @@ app-investment-overview {
         }
         .form-group-with-bg--content {
             .flex-row {
-                align-items: flex-start;
+                align-items: center;
                 justify-content: space-between;
             }
             .total_cash_balance {
@@ -446,6 +443,7 @@ app-investment-overview {
             color: $teal-color !important;
             font-weight: 600;
             background-color: $portfolio-card-bg-color !important;
+            box-shadow: none !important;
             &:hover,
             &:active,
             &:focus {

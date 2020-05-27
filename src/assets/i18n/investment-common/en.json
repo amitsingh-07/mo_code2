@@ -15,7 +15,7 @@
         "AGREE": "I Agree"
     },
     "PORTFOLIO_RECOMMENDATION": {
-        "STEP1": "Step-1",
+        "STEP1": "Step 1",
         "CONFIRM_PORTFOLIO": "Confirm Portfolio",
         "ASSET_ALLOCATION_BREAKDOWN": "Asset Allocation Breakdown",
         "PROJECTED_RETURNS": "Projected Returns",
@@ -75,7 +75,7 @@
             "ADD_PORTFOLIO_NAME_LAB": "Let’s name this portfolio! (optional)",
             "VALIDATION_MESSAGE": "First character should not be space",
             "ERROR_MESSAGE": "Sorry, this portfolio name is taken up by another existing portfolio. Please think of another name.",
-            "NAME_YOUR_PORTFOLIO": "Name your portfolio",
+            "NAME_YOUR_PORTFOLIO": "Name Your Portfolio",
             "CREATE_PORTFOLIO": "Create Portfolio"
         },
         "ADD_PORTFOLIO_STATUS": {
