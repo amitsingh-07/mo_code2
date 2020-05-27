@@ -24,7 +24,7 @@
         "INVESTMENT": {
             "TITLE": "Investment Portfolio",
             "DESC": "Better returns with a longer <br>time horizon",
-            "MORE_INFO": "More Info",
+            "MORE_INFO": "More info",
             "FOOTER_BTN_TXT": "Choose Investment Portfolio",
             "SLIDES": {
                 "P1": "Our Investment Portfolios give you the best probability of a successful investment experience by helping you to achieve your financial goals.",
@@ -40,7 +40,7 @@
         "WISESAVER": {
             "TITLE": "WiseSaver Portfolio",
             "DESC": "Great for shorter savings <br>period",
-            "MORE_INFO": "More Info",
+            "MORE_INFO": "More info",
             "FOOTER_BTN_TXT": "Choose WiseSaver Portfolio",
             "SLIDES": {
                 "P1": "This is a cash management portfolio that gives you safe and stable returns that are comparable to SGD fixed deposits regardless of how much or how long you are saving.",
@@ -169,7 +169,7 @@
         "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?"
     },
     "PORTFOLIO_RECOMMENDATION": {
-        "STEP1": "Step-1",
+        "STEP1": "Step 1",
         "CONFIRM_PORTFOLIO": "Confirm Portfolio",
         "USER_INPUT_SUB_TEXT": "Almost there, here’s your projected portfolio value for<strong> {{ onetime }} one-time amount </strong> &amp; <strong> {{ monthly }} monthly amount </strong> for {{ period }} years.",
         "REVIEW_INPUTS": "Review My Inputs",
