@@ -81,7 +81,7 @@ export class TaxInfoComponent implements OnInit {
       });
     } else if (this.investmentAccountService.isSingaporeResident()) {
       const data = {
-        taxCountry: this.investmentAccountService.getCountryFromCountryCode(INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_COUNTRY_CODE),
+        taxCountry: this.investmentAccountService.getCountryFromCountryCodeByFilter(INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_COUNTRY_CODE),
         radioTin: true,
         tinNumber: this.taxInfoFormValues.nricNumber
       };

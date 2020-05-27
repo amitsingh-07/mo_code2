@@ -216,7 +216,7 @@ export class EmploymentDetailsComponent implements OnInit {
           empCountry: [
             this.formValues.empCountry
               ? this.formValues.empCountry
-              : this.investmentAccountService.getCountryFromNationalityCode(
+              : this.investmentAccountService.getCountryFromNationalityCodeByFilter(
                 INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_NATIONALITY_CODE
               ),
             Validators.required
