@@ -26,6 +26,7 @@
                   <img [src]="riskProfileImage" />
                 </div>
                 <div class="user_portfolio flex-col">
+                  <div class="user_portfolio_ref_code">{{'YOUR_INVESTMENT.REF_CODE' | translate}} {{portfolio.referenceCode}}</div>
                   <div class="user_portfolio_lbl">{{portfolio.portfolioName}}</div>
                   <div class="flex-row space-between">
                     <div class="portfolio-type flex align-center">
