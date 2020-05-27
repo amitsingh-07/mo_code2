@@ -172,4 +172,12 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     this.filteredTotalAmt.emit({totalCashBal: cashBal, totalPortfolioVal: portfolioVal});
   }
 
+  setBorderClass(portfolio) {
+    if (portfolio['portfolioCategory'] === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER) {
+      return 'ws-border';
+    } else {
+      return '';
+    }
+  }
+
 }
