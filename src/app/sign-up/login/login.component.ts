@@ -258,7 +258,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             } else {
               this.goToNext();
             }
-          } else if (data.responseMessage.responseCode === 5016) {
+          } else if (data.responseMessage.responseCode === 5016 || data.responseMessage.responseCode === 5011) {
             this.loginForm.controls['captchaValue'].reset();
             this.loginForm.controls['loginPassword'].reset();
             this.openErrorModal(data.responseMessage.responseDescription);
