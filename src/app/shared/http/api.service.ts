@@ -313,8 +313,10 @@ export class ApiService {
   }
 
   verifyOTP(payload: IVerifyRequestOTP) {
-    console.log('Verifying Payload --- Entered otp is:' + payload.otp);
-    return this.http.post(apiConstants.endpoint.verifyOTP + this.handleErrorFlag, payload)
+    const verifyOTPEditOrSignUpFlow = payload.editProfile === true ?
+      apiConstants.endpoint.verifyOTP + '?isEditProfile=true&' + this.handleErrorFlag :
+      apiConstants.endpoint.verifyOTP + this.handleErrorFlag
+      return this.http.post(verifyOTPEditOrSignUpFlow, payload)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
@@ -607,9 +609,9 @@ export class ApiService {
       );
   }
 
-    // Payment
+  // Payment
   getRequestSignature(payload) {
-      return this.http.post(apiConstants.endpoint.payment.getRequestSignature, payload)
+    return this.http.post(apiConstants.endpoint.payment.getRequestSignature, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -617,23 +619,23 @@ export class ApiService {
 
   cancelPayment(payload) {
     return this.http.post(apiConstants.endpoint.payment.cancelPayment, payload)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
   getLastSuccessfulSubmittedTs() {
     return this.http.get(apiConstants.endpoint.payment.getLastSuccessfulSubmittedTs)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
   getCustPromoCodeByCategory(payload) {
     return this.http.post(apiConstants.endpoint.payment.getCustPromoCodeByCategory, payload)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
 }
