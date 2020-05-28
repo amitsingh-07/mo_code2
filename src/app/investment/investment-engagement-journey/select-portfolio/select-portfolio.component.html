@@ -14,29 +14,29 @@
                         {{'PORTFOLIO.INVESTMENT.MORE_INFO' | translate}}<i class="material-icons" *ngIf="!investmentMoreInfoShow">keyboard_arrow_down</i><i class="material-icons" *ngIf="investmentMoreInfoShow">keyboard_arrow_up</i></div>
                 </div>
             </div>
-            <div class="portfolio-info" *ngIf="investmentMoreInfoShow">
-                <ngx-slick class="carousel" #carousel [config]="slideConfig" (beforeChange)="beforeSlideChange($event)">
-                    <div ngxSlickItem>
-                        <div class="portfolio-info__slide-item">
-                            <p>{{'PORTFOLIO.INVESTMENT.SLIDES.P1' | translate}}
-                            </p>
-                            <p> {{'PORTFOLIO.INVESTMENT.SLIDES.P2' | translate}}</p>
-                        </div>
+        </div>
+        <div class="portfolio-info" *ngIf="investmentMoreInfoShow">
+            <ngx-slick class="carousel" #carousel [config]="slideConfig" (beforeChange)="beforeSlideChange($event)">
+                <div ngxSlickItem>
+                    <div class="portfolio-info__slide-item">
+                        <p>{{'PORTFOLIO.INVESTMENT.SLIDES.P1' | translate}}
+                        </p>
+                        <p> {{'PORTFOLIO.INVESTMENT.SLIDES.P2' | translate}}</p>
                     </div>
-                    <div ngxSlickItem>
-                        <div class="portfolio-info__slide-item">
-                            <div class="portfolio-info__heading">{{'PORTFOLIO.INVESTMENT.SLIDES.HEADING' | translate}}</div>
-                            <ul>
-                                <li>{{'PORTFOLIO.INVESTMENT.SLIDES.LIST_ITEM_1' | translate}}</li>
-                                <li>{{'PORTFOLIO.INVESTMENT.SLIDES.LIST_ITEM_2' | translate}}</li>
-                                <li>{{'PORTFOLIO.INVESTMENT.SLIDES.LIST_ITEM_3' | translate}}</li>
-                                <li>{{'PORTFOLIO.INVESTMENT.SLIDES.LIST_ITEM_4' | translate}}</li>
-                                <li>{{'PORTFOLIO.INVESTMENT.SLIDES.LIST_ITEM_5' | translate}}</li>
-                            </ul>
-                        </div>
+                </div>
+                <div ngxSlickItem>
+                    <div class="portfolio-info__slide-item">
+                        <div class="portfolio-info__heading">{{'PORTFOLIO.INVESTMENT.SLIDES.HEADING' | translate}}</div>
+                        <ul>
+                            <li>{{'PORTFOLIO.INVESTMENT.SLIDES.LIST_ITEM_1' | translate}}</li>
+                            <li>{{'PORTFOLIO.INVESTMENT.SLIDES.LIST_ITEM_2' | translate}}</li>
+                            <li>{{'PORTFOLIO.INVESTMENT.SLIDES.LIST_ITEM_3' | translate}}</li>
+                            <li>{{'PORTFOLIO.INVESTMENT.SLIDES.LIST_ITEM_4' | translate}}</li>
+                            <li>{{'PORTFOLIO.INVESTMENT.SLIDES.LIST_ITEM_5' | translate}}</li>
+                        </ul>
                     </div>
-                </ngx-slick>
-            </div>
+                </div>
+            </ngx-slick>
         </div>
         <!-- WiseSaver Portfolio -->
         <div class="wisesaver-portfolio" formControlName="selectPortfolioType" id="selectPortfolioType" name="selectPortfolioType" value="wiseSaverPortfolio" ngDefaultControl (click)="setSelectPortfolioType('wiseSaverPortfolio')">
@@ -53,30 +53,30 @@
                         {{'PORTFOLIO.WISESAVER.MORE_INFO' | translate}}<i class="material-icons" *ngIf="!wiseSaverMoreInfoShow">keyboard_arrow_down</i><i class="material-icons" *ngIf="wiseSaverMoreInfoShow">keyboard_arrow_up</i></div>
                 </div>
             </div>
-            <div class="portfolio-info" *ngIf="wiseSaverMoreInfoShow">
-                <ngx-slick class="carousel" #carousel [config]="slideConfig" (beforeChange)="beforeSlideChange($event)">
-                    <div ngxSlickItem>
-                        <div class="portfolio-info__slide-item">
-                            <p>
-                                {{'PORTFOLIO.WISESAVER.SLIDES.P1' | translate}}
-                            </p>
-                            <p> {{'PORTFOLIO.WISESAVER.SLIDES.P2' | translate}}</p>
-                        </div>
+        </div>
+        <div class="portfolio-info" *ngIf="wiseSaverMoreInfoShow">
+            <ngx-slick class="carousel" #carousel [config]="slideConfig" (beforeChange)="beforeSlideChange($event)">
+                <div ngxSlickItem>
+                    <div class="portfolio-info__slide-item">
+                        <p>
+                            {{'PORTFOLIO.WISESAVER.SLIDES.P1' | translate}}
+                        </p>
+                        <p> {{'PORTFOLIO.WISESAVER.SLIDES.P2' | translate}}</p>
                     </div>
-                    <div ngxSlickItem>
-                        <div class="portfolio-info__slide-item">
-                            <div class="portfolio-info__heading">{{'PORTFOLIO.WISESAVER.SLIDES.HEADING' | translate}}</div>
-                            <ul>
-                                <li>{{'PORTFOLIO.WISESAVER.SLIDES.LIST_ITEM_1' | translate}}</li>
-                                <li>{{'PORTFOLIO.WISESAVER.SLIDES.LIST_ITEM_2' | translate}}</li>
-                                <li>{{'PORTFOLIO.WISESAVER.SLIDES.LIST_ITEM_3' | translate}}</li>
-                                <li>{{'PORTFOLIO.WISESAVER.SLIDES.LIST_ITEM_4' | translate}}</li>
-                                <li>{{'PORTFOLIO.WISESAVER.SLIDES.LIST_ITEM_5' | translate}}</li>
-                            </ul>
-                        </div>
+                </div>
+                <div ngxSlickItem>
+                    <div class="portfolio-info__slide-item">
+                        <div class="portfolio-info__heading">{{'PORTFOLIO.WISESAVER.SLIDES.HEADING' | translate}}</div>
+                        <ul>
+                            <li>{{'PORTFOLIO.WISESAVER.SLIDES.LIST_ITEM_1' | translate}}</li>
+                            <li>{{'PORTFOLIO.WISESAVER.SLIDES.LIST_ITEM_2' | translate}}</li>
+                            <li>{{'PORTFOLIO.WISESAVER.SLIDES.LIST_ITEM_3' | translate}}</li>
+                            <li>{{'PORTFOLIO.WISESAVER.SLIDES.LIST_ITEM_4' | translate}}</li>
+                            <li>{{'PORTFOLIO.WISESAVER.SLIDES.LIST_ITEM_5' | translate}}</li>
+                        </ul>
                     </div>
-                </ngx-slick>
-            </div>
+                </div>
+            </ngx-slick>
         </div>
         <!--Footer button-->
         <button type="button" class="btn btn__footer--fixed btn-primary width100" (click)="goNext(selectPortfolioForm)" [disabled]="!selectPortfolioForm.controls.selectPortfolioType.value">

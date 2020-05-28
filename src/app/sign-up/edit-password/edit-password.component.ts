@@ -57,13 +57,6 @@ export class EditPasswordComponent implements OnInit {
     }
     this.footerService.setFooterVisibility(false);
     this.buildForgotPasswordForm();
-
-    this.authService.get2faAuthEvent.subscribe((token) => {
-      if (token) {
-      } else {
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
-      }
-    });
   }
   buildForgotPasswordForm() {
     this.formValues = this.signUpService.getForgotPasswordInfo();

@@ -216,7 +216,7 @@ export class EmploymentDetailsComponent implements OnInit {
           empCountry: [
             this.formValues.empCountry
               ? this.formValues.empCountry
-              : this.investmentAccountService.getCountryFromNationalityCode(
+              : this.investmentAccountService.getCountryFromNationalityCodeByFilter(
                 INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_NATIONALITY_CODE
               ),
             Validators.required
@@ -467,7 +467,7 @@ export class EmploymentDetailsComponent implements OnInit {
     ref.componentInstance.errorTitle = this.tooltipDetails.TITLE;
     // tslint:disable-next-line:max-line-length
     ref.componentInstance.errorDescription = this.tooltipDetails.DESC;
-    ref.componentInstance.buttonLabel = this.tooltipDetails.GOT_IT;
+    ref.componentInstance.tooltipButtonLabel = this.tooltipDetails.GOT_IT;
     return false;
   }
 }

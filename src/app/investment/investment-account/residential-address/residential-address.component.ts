@@ -202,7 +202,7 @@ export class ResidentialAddressComponent implements OnInit {
             {
               value: this.formValues.mailCountry
                 ? this.formValues.mailCountry
-                : this.investmentAccountService.getCountryFromNationalityCode(
+                : this.investmentAccountService.getCountryFromNationalityCodeByFilter(
                     this.formValues.nationalityCode
                   ),
               disabled: this.investmentAccountService.isDisabled('mailCountry')
@@ -353,11 +353,11 @@ export class ResidentialAddressComponent implements OnInit {
     if (this.formValues.country) {
       defaultCountry = this.formValues.country;
     } else if (this.isUserNationalitySingapore) {
-      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
+      defaultCountry = this.investmentAccountService.getCountryFromNationalityCodeByFilter(
         INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_NATIONALITY_CODE
       );
     } else {
-      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
+      defaultCountry = this.investmentAccountService.getCountryFromNationalityCodeByFilter(
         this.formValues.nationalityCode
       );
     }
@@ -467,7 +467,7 @@ export class ResidentialAddressComponent implements OnInit {
     ref.componentInstance.errorTitle = this.tooltipDetails.TITLE;
     // tslint:disable-next-line:max-line-length
     ref.componentInstance.errorDescription = this.tooltipDetails.DESC;
-    ref.componentInstance.buttonLabel = this.tooltipDetails.GOT_IT;
+    ref.componentInstance.tooltipButtonLabel = this.tooltipDetails.GOT_IT;
     return false;
   }
 }

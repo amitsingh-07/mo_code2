@@ -81,7 +81,7 @@ export class TaxInfoComponent implements OnInit {
       });
     } else if (this.investmentAccountService.isSingaporeResident()) {
       const data = {
-        taxCountry: this.investmentAccountService.getCountryFromCountryCode(INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_COUNTRY_CODE),
+        taxCountry: this.investmentAccountService.getCountryFromCountryCodeByFilter(INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_COUNTRY_CODE),
         radioTin: true,
         tinNumber: this.taxInfoFormValues.nricNumber
       };
@@ -333,7 +333,7 @@ export class TaxInfoComponent implements OnInit {
     ref.componentInstance.errorTitle = this.tooltipDetails.TITLE;
     // tslint:disable-next-line:max-line-length
     ref.componentInstance.errorDescription = this.tooltipDetails.DESC;
-    ref.componentInstance.buttonLabel = this.tooltipDetails.GOT_IT;
+    ref.componentInstance.tooltipButtonLabel = this.tooltipDetails.GOT_IT;
     return false;
   }  
 }
