@@ -292,7 +292,11 @@ export class ApiService {
   }
 
   requestNewOTP(payload: IVerifyRequestOTP) {
-    return this.http.post(apiConstants.endpoint.resendOTP, payload)
+    const resendOTPEditOrSignUpFlow = payload.editProfile === true ?
+    apiConstants.endpoint.resendOTP + '?isEditProfile=true':
+    apiConstants.endpoint.resendOTP 
+    return this.http.post(resendOTPEditOrSignUpFlow, payload)
+   // return this.http.post(apiConstants.endpoint.resendOTP, payload)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
@@ -313,10 +317,7 @@ export class ApiService {
   }
 
   verifyOTP(payload: IVerifyRequestOTP) {
-    const verifyOTPEditOrSignUpFlow = payload.editProfile === true ?
-      apiConstants.endpoint.verifyOTP + '?isEditProfile=true&' + this.handleErrorFlag :
-      apiConstants.endpoint.verifyOTP + this.handleErrorFlag
-      return this.http.post(verifyOTPEditOrSignUpFlow, payload)
+     return this.http.post(apiConstants.endpoint.verifyOTP + this.handleErrorFlag, payload)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
