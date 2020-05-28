@@ -96,11 +96,14 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
     if (environment.hideHomepage) {
       this.navbarService.setNavbarMode(104);
     } else {
-    this.navbarService.setNavbarMode(102);
+      this.navbarService.setNavbarMode(102);
     }
     this.setPageTitle(this.pageTitle);
     this.footerService.setFooterVisibility(false);
     this.headerSubscription();
+    this.getEditProfileData();
+    this.showAddBankDetails(this.investmentStatus);
+    this.getSrsDetails();
     this.buildForgotPasswordForm();
     this.isMailingAddressSame = true;
     this.investmentStatus = this.investmentCommonService.getInvestmentStatus();
@@ -118,9 +121,6 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
       } else {
         this.is2faAuthorized = false;
       }
-      this.getEditProfileData();
-      this.showAddBankDetails(this.investmentStatus);
-      this.getSrsDetails();
       // console.log('is2faAuthorized', this.is2faAuthorized);
     });
   }
@@ -167,7 +167,7 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
   // tslint:disable-next-line:cognitive-complexity
   getEditProfileData() {
     this.signUpService.getEditProfileInfo().subscribe((data) => {
-      console.log('editprofileInfoCall',data);
+      console.log('editprofileInfoCall', data);
       this.entireUserData = data.objectList;
       if (data.objectList) {
         if (data.objectList.personalInformation) {
@@ -191,7 +191,7 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
         }
         if (this.personalData) {
           this.fullName = this.personalData.fullName ?
-          this.personalData.fullName : this.personalData.firstName + ' ' + this.personalData.lastName;
+            this.personalData.fullName : this.personalData.firstName + ' ' + this.personalData.lastName;
           this.compinedName = this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
           this.compinednricNum = this.setNric(this.personalData.nricNumber);
           if (this.personalData.passportNumber) {
