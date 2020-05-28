@@ -48,7 +48,6 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   @Output() detailSelected = new EventEmitter<boolean>();
   @Output() topUpSelected = new EventEmitter<boolean>();
   @Output() investAgainSelected = new EventEmitter<boolean>();
-  @Output() filteredTotalAmt = new EventEmitter<any>();
 
   // Filtered Portfolio List
   filteredInvestedList: any;
@@ -153,8 +152,6 @@ export class PortfolioListComponent implements OnInit, OnChanges {
       this.filteredNotInvestedList = this.notInvestedList;
       this.filteredInvestedList = this.investedList;
       this.totalPortfoliosLength = this.portfolioList.length;
-      this.filteredTotalAmt.emit({totalCashBal: this.portfolioData.totalCashAccountBalance ? this.portfolioData.totalCashAccountBalance : 0,
-        totalPortfolioVal: this.portfolioData.totalValue ? this.portfolioData.totalValue : 0});
     }
   }
 
@@ -167,9 +164,6 @@ export class PortfolioListComponent implements OnInit, OnChanges {
       return portfolio['portfolioCategory'] === category;
     });
     this.totalPortfoliosLength = this.filteredNotInvestedList.length + this.filteredInvestedList.length;
-    const portfolioVal = this.filteredNotInvestedList.concat(this.filteredInvestedList).reduce((a, c) => a + c.portfolioValue, 0);
-    const cashBal = this.filteredNotInvestedList.concat(this.filteredInvestedList).reduce((a, c) => a + c.cashAccountBalance, 0);
-    this.filteredTotalAmt.emit({totalCashBal: cashBal, totalPortfolioVal: portfolioVal});
   }
 
 }
