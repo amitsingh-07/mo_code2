@@ -69,7 +69,7 @@
                                             <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.WISESAVER)">
                                                 <span class='dashboard-wise-portfolio'></span>
                                                 <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.WISE_SAVER_PORTFOLIOS' | translate}}</p>
-                                                <p class='portfolio-type-box-value'>{{(investmentsSummary && investmentsSummary.portfolioSummary.wiseSaverPortfolio && investmentsSummary.portfolioSummary.wiseSaverPortfolio.totalPortfolioValue ? investmentsSummary.portfolioSummary.totalPortfolioValue : 0) | formatCurrency}}</p>
+                                                <p class='portfolio-type-box-value'>{{(investmentsSummary && investmentsSummary.portfolioSummary.wiseSaverPortfolio && investmentsSummary.portfolioSummary.wiseSaverPortfolio.totalPortfolioValue ? investmentsSummary.portfolioSummary.wiseSaverPortfolio.totalPortfolioValue : 0) | formatCurrency}}</p>
                                                 <p class="portfolio-type-cash-balance">{{'DASHBOARD.INVESTMENT.CASH_BALANCE' | translate}}: {{(investmentsSummary && investmentsSummary.portfolioSummary.wiseSaverPortfolio && investmentsSummary.portfolioSummary.wiseSaverPortfolio.totalCashAccountBalance ? investmentsSummary.portfolioSummary.wiseSaverPortfolio.totalCashAccountBalance : 0) | formatCurrency}}</p>
                                             </div>
                                         </div>
