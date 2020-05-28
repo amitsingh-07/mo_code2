@@ -31,6 +31,7 @@ export class ErrorModalComponent implements OnInit {
   @Output() retry: EventEmitter<any> = new EventEmitter();
   @Output() resendEmail: EventEmitter<any> = new EventEmitter();
   @Input() emailSent: boolean;
+  @Input() tooltipButtonLabel: string;
 
   constructor(public activeModal: NgbActiveModal, private router: Router) { }
 
