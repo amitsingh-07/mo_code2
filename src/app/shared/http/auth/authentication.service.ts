@@ -173,6 +173,7 @@ export class AuthenticationService {
   }
 
   public logout() {
+    sessionStorage.removeItem(appConstants.APP_2FA_KEY);
     return this.http.get(apiConstants.endpoint.logout)
       .pipe(
         // tslint:disable-next-line:no-identical-functions

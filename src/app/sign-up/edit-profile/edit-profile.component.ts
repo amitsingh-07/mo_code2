@@ -102,9 +102,6 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
     this.footerService.setFooterVisibility(false);
     this.headerSubscription();
     this.buildForgotPasswordForm();
-    // this.getEditProfileData();
-    // this.showAddBankDetails(this.investmentStatus);
-    // this.getSrsDetails();
     this.isMailingAddressSame = true;
     this.investmentStatus = this.investmentCommonService.getInvestmentStatus();
     // Check if iFast is in maintenance

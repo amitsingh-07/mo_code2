@@ -94,7 +94,7 @@ const routes: Routes = [
   },
   { path: SIGN_UP_ROUTES.EDIT_PASSWORD,
     component: EditPasswordComponent,
-    canActivate: [AuthGuard, TwoFactorAuthGuardService]
+    canActivate: [AuthGuard]
   },
   { path: SIGN_UP_ROUTES.EDIT_RESIDENTIAL,
     component: EditResidentialAddressComponent,
