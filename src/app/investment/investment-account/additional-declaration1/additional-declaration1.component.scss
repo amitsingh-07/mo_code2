@@ -2,7 +2,16 @@
 @import '../../../../_mixins.scss';
 
 app-additional-declaration1 {
-  .app-add-step1 {
+  .app-add-step1 {    
+    .tooltip-icon {
+      background: url('/assets/images/investment-account/blocked-help-icon.svg') no-repeat;
+      height: 18px;
+      width: 18px;
+      cursor: pointer;
+      display: block;
+      float: right;
+      margin: 5px 0 0 5px;
+    }
     .dropdown-control {
       .dependent-count {
         color: $text-color-secondary;

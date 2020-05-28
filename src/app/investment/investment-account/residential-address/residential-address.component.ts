@@ -27,6 +27,7 @@ export class ResidentialAddressComponent implements OnInit {
   isUserNationalitySingapore: any;
   reasonList: any;
   showOtherTex = false;
+  tooltipDetails: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -41,6 +42,7 @@ export class ResidentialAddressComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RESIDENTIAL_ADDRESS.TITLE');
+      this.tooltipDetails = this.translate.instant('BLOCKED_COUNTRY_TOOLTIP');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -56,7 +58,7 @@ export class ResidentialAddressComponent implements OnInit {
     this.getReasoneList(); // API CALLING FOR REASONLIST
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
-    this.countries = this.investmentAccountService.getCountriesFormData();
+    this.countries = this.investmentAccountService.getCountriesFormDataByFilter();
     this.addressForm = this.buildForm();
     this.addOrRemoveAdditionalControls(this.addressForm.get('country').value);
     this.observeCountryChange();
@@ -200,7 +202,7 @@ export class ResidentialAddressComponent implements OnInit {
             {
               value: this.formValues.mailCountry
                 ? this.formValues.mailCountry
-                : this.investmentAccountService.getCountryFromNationalityCode(
+                : this.investmentAccountService.getCountryFromNationalityCodeByFilter(
                     this.formValues.nationalityCode
                   ),
               disabled: this.investmentAccountService.isDisabled('mailCountry')
@@ -351,11 +353,11 @@ export class ResidentialAddressComponent implements OnInit {
     if (this.formValues.country) {
       defaultCountry = this.formValues.country;
     } else if (this.isUserNationalitySingapore) {
-      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
+      defaultCountry = this.investmentAccountService.getCountryFromNationalityCodeByFilter(
         INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_NATIONALITY_CODE
       );
     } else {
-      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
+      defaultCountry = this.investmentAccountService.getCountryFromNationalityCodeByFilter(
         this.formValues.nationalityCode
       );
     }
@@ -458,5 +460,14 @@ export class ResidentialAddressComponent implements OnInit {
       isDisabled = this.investmentAccountService.isDisabled(field);
     }
     return isDisabled;
+  }
+  
+  showHelpModalCountry() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.tooltipDetails.TITLE;
+    // tslint:disable-next-line:max-line-length
+    ref.componentInstance.errorDescription = this.tooltipDetails.DESC;
+    ref.componentInstance.buttonLabel = this.tooltipDetails.GOT_IT;
+    return false;
   }
 }

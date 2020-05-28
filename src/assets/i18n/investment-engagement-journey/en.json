@@ -24,7 +24,7 @@
         "INVESTMENT": {
             "TITLE": "Investment Portfolio",
             "DESC": "Better returns with a longer <br>time horizon",
-            "MORE_INFO": "More Info",
+            "MORE_INFO": "More info",
             "FOOTER_BTN_TXT": "Choose Investment Portfolio",
             "SLIDES": {
                 "P1": "Our Investment Portfolios give you the best probability of a successful investment experience by helping you to achieve your financial goals.",
@@ -40,7 +40,7 @@
         "WISESAVER": {
             "TITLE": "WiseSaver Portfolio",
             "DESC": "Great for shorter savings <br>period",
-            "MORE_INFO": "More Info",
+            "MORE_INFO": "More info",
             "FOOTER_BTN_TXT": "Choose WiseSaver Portfolio",
             "SLIDES": {
                 "P1": "This is a cash management portfolio that gives you safe and stable returns that are comparable to SGD fixed deposits regardless of how much or how long you are saving.",
@@ -169,6 +169,8 @@
         "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?"
     },
     "PORTFOLIO_RECOMMENDATION": {
+        "STEP1": "Step 1",
+        "CONFIRM_PORTFOLIO": "Confirm Portfolio",
         "USER_INPUT_SUB_TEXT": "Almost there, here’s your projected portfolio value for<strong> {{ onetime }} one-time amount </strong> &amp; <strong> {{ monthly }} monthly amount </strong> for {{ period }} years.",
         "REVIEW_INPUTS": "Review My Inputs",
         "ASSET_ALLOCATION": "Asset Allocation",
@@ -188,6 +190,7 @@
         "TITLE": "Your Portfolio Details",
         "PORTFOLIO": "Portfolio",
         "PROCEED": "Proceed",
+        "WISESAVER_VALUE": "1.62% p.a.",
         "EDIT_INVESTMENT": {
             "TITLE": "Review My Inputs",
             "ONE_TIME_INVESTMENT": "One-time Amount",
@@ -196,7 +199,7 @@
         "WISE_SAVER_PORTOFOLIO": {
             "TITLE_DESC": "The underlying cash fund holds assets primarily in <strong>Singapore Dollar</strong> deposits. ",
             "RATE_TITLE": "Estimated Return",
-            "RATE_DESC": "This rate will be updated periodically as market and economic conditions change.",
+            "RATE_DESC": "This rate will be updated periodically as<br> market and economic conditions change.",
             "PORTFOLIO_DESC": "This is based on the weighted average gross yield of the underlying deposits placed with the counterparty financial institution which has a minimum short- term rating of F2 by Fitch, P-2 by Moody’s, or A-2 by S&P."
         },
         "MODAL_TITLE": "Portfolio Recommendations",
@@ -254,7 +257,7 @@
         }
     },
     "RISK_ACKNOWLEDGMENT": {
-        "TITLE": "You are investing in a cash fund.",
-        "DESC": "By proceeding with this, you agree that you have low willingness to bear risk for this portfolio."
+        "TITLE": "You are investing in a<br> cash fund.",
+        "DESC": "By proceeding with this, you agree<br> that you have low willingness to<br> bear risk for this portfolio."
     }
 }

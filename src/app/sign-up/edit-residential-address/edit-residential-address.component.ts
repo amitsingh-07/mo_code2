@@ -67,7 +67,7 @@ export class EditResidentialAddressComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
-    this.countries = this.investmentAccountService.getCountriesFormData();
+    this.countries = this.investmentAccountService.getCountriesFormDataByFilter();
     this.addressForm = this.buildForm();
     this.addOrRemoveAdditionalControls(this.addressForm.get('country').value);
     this.observeCountryChange();

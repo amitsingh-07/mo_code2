@@ -28,6 +28,7 @@ export class AdditionalDeclaration1Component implements OnInit {
   addInfoFormValues: any;
   countries: any;
   isUserNationalitySingapore;
+  tooltipDetails: any;
 
   constructor(
     public headerService: HeaderService,
@@ -45,6 +46,7 @@ export class AdditionalDeclaration1Component implements OnInit {
     this.translate.get('COMMON').subscribe(() => {
       this.pageTitle = this.translate.instant('ADDITIONAL_DECLARATION.TITLE');
       this.translator = this.translate.instant('PERSONAL_DECLARATION');
+      this.tooltipDetails = this.translate.instant('BLOCKED_COUNTRY_TOOLTIP');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -58,7 +60,7 @@ export class AdditionalDeclaration1Component implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.getOccupationList();
-    this.countries = this.investmentAccountService.getCountriesFormData();
+    this.countries = this.investmentAccountService.getCountriesFormDataByFilter();
     this.addInfoFormValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.addInfoForm = this.buildForm();
     this.addOrRemoveAdditionalControls(this.addInfoForm.get('pepCountry').value);
@@ -154,11 +156,11 @@ export class AdditionalDeclaration1Component implements OnInit {
     if (this.addInfoFormValues.pepCountry) {
       defaultCountry = this.addInfoFormValues.pepCountry;
     } else if (this.isUserNationalitySingapore) {
-      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
+      defaultCountry = this.investmentAccountService.getCountryFromNationalityCodeByFilter(
         INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_NATIONALITY_CODE
       );
     } else {
-      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(
+      defaultCountry = this.investmentAccountService.getCountryFromNationalityCodeByFilter(
         this.addInfoFormValues.nationalityCode
       );
     }
@@ -301,5 +303,13 @@ export class AdditionalDeclaration1Component implements OnInit {
         this.investmentAccountService.setCaratTo(el, 100, contentList);
       }
     }
+  }
+  showHelpModalCountry() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.tooltipDetails.TITLE;
+    // tslint:disable-next-line:max-line-length
+    ref.componentInstance.errorDescription = this.tooltipDetails.DESC;
+    ref.componentInstance.buttonLabel = this.tooltipDetails.GOT_IT;
+    return false;
   }
 }
