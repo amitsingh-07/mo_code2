@@ -422,7 +422,7 @@ export class InvestmentEngagementJourneyService {
   /* Filter object from array of objects*/
   filterDataByInput(inputObject: any, keyMapped: any, data: any) {
     if (inputObject) {
-      const filteredData = inputObject.filter((summaryData) => summaryData[keyMapped] === data);
+      const filteredData = inputObject.filter((summaryData) => summaryData[keyMapped].toUpperCase() === data.toUpperCase());
       if (filteredData && filteredData[0]) {
         return filteredData[0];
       } else {
