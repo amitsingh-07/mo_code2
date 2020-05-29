@@ -197,7 +197,7 @@
             "MONTHLY_INVESTMENT": "Monthly Amount"
         },
         "WISE_SAVER_PORTOFOLIO": {
-            "TITLE_DESC": "The underlying cash fund holds assets primarily in <strong>Singapore Dollar</strong> deposits. ",
+            "TITLE_DESC": "The underlying cash fund holds assets primarily in <span class=\"bold-text\">Singapore Dollar</span> deposits. ",
             "RATE_TITLE": "Estimated Return",
             "RATE_DESC": "This rate will be updated periodically as<br> market and economic conditions change.",
             "PORTFOLIO_DESC": "This is based on the weighted average gross yield of the underlying deposits placed with the counterparty financial institution which has a minimum short- term rating of F2 by Fitch, P-2 by Moody’s, or A-2 by S&P."
@@ -229,8 +229,8 @@
     },
     "FUND_DETAILS": {
         "TITLE": "Fund Details",
-        "DOWNLOAD_FACTSHEET": "Download Factsheet",
-        "DOWNLOAD_HIGHLIGHT_FACTSHEET": "Download Product Highlight Sheet"
+        "DOWNLOAD_PRIMARY": "Download Product Highlight Sheet",
+        "DOWNLOAD_SECONDARY": "Download Product Prospectus"
     },
     "RISK_PROFILE": {
         "TITLE": "Your Recommendation",
