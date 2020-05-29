@@ -22,7 +22,7 @@ export class PortfolioInfoComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.updateProjectionSubText();
-    this.isWiseSaverPortfolio = (this.portfolio.portfolioType.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.WISESAVER_ASSET_ALLOCATION.TYPE);
+    this.isWiseSaverPortfolio = (this.portfolio.portfolioType.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY_TYPE.WISESAVER);
   }
 
   ngOnChanges() {
