@@ -1,5 +1,5 @@
 <div class="modal-body white-bg">
-  <div class="modal-body-title" [ngClass]="{'border-0': !portfolioType, 'wise-saver-title': !portfolioType}" id="fund-details-title">{{'FUND_DETAILS.TITLE' | translate}}</div>
+  <div class="modal-body-title border-0 wise-saver-title" id="fund-details-title">{{'FUND_DETAILS.TITLE' | translate}}</div>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')" id="fund-details-close_button">
     <span aria-hidden="true"></span>
   </button>
@@ -35,7 +35,7 @@
        
        <div class="funding-content funding-wise-saver" [ngClass]="{'border-0': !portfolioType}" [class.first]="j === 0" id="fund-details-content_{{j}}">
          {{fund.htmlDesc}}        
-         <a download target="_blank" [href]="getHighlightSheetLink(fund)" class="btn btn-primary width100 mt20" id="fund_details_download_btn_{{j}}">Download Highlight Sheet</a>      
+         <a download target="_blank" [href]="getHighlightSheetLink(fund)" class="btn btn-primary width100 mt20" id="fund_details_download_btn_{{j}}">Download Product Highlight Sheet</a>      
        </div>
      </div>
      <a download target="_blank" [href]="getProspectusLink(fundDetails[0])" class="btn btn-white width100" id="fund_details_download_prospectus">Download Product Prospectus</a>
