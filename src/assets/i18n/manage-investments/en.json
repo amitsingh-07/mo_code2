@@ -99,24 +99,24 @@
       "NEW_INVESTMENT_UPDATE": "We’ve new investment updates.",
       "SHOW_ME_AROUND": "Show me around!",
       "MP_WALKTHROUGH_SLIDES": [{
-          "IMAGE": "mp-walkthrough/portfolio-view.svg",
-          "IMG_TITLE": "Improved Portfolio View",
-          "TEXT": "See your portfolio value and returns, buy requests and cash balance at a glance."
+          "IMAGE": "mp-walkthrough/wisesaver-saving.svg",
+          "IMG_TITLE": "WiseSaver Savings Portfolio",
+          "TEXT": "Our newly launched cash management portfolio that gives you safe and stable returns."
         },
         {
-          "IMAGE": "mp-walkthrough/multiple-portfolios.svg",
-          "IMG_TITLE": "Multiple Portfolios",
-          "TEXT": "Add up to 20 portfolios for your different financial needs."
+          "IMAGE": "mp-walkthrough/fund-portfolio-using-srs.svg",
+          "IMG_TITLE": "Fund Portfolio Using SRS Account",
+          "TEXT": "You now have the option to use your SRS account to boost your retirement savings."
         },
         {
-          "IMAGE": "mp-walkthrough/manage-request.svg",
-          "IMG_TITLE": "Manage Requests",
-          "TEXT": "See your top up and withdrawal requests status and amount."
+          "IMAGE": "mp-walkthrough/request-in-progress.svg",
+          "IMG_TITLE": "Requests In Progress",
+          "TEXT": "Quick glance of the number of requests in progress in your portfolio."
         },
         {
-          "IMAGE": "mp-walkthrough/more-button.svg",
-          "IMG_TITLE": "Manage with More Button",
-          "TEXT": "Use the More button to manage your portfolio. Top up, withdraw, rename portfolio and more…"
+          "IMAGE": "mp-walkthrough/portfolio-categories.svg",
+          "IMG_TITLE": "Portfolio Categories",
+          "TEXT": "Category filter added to help you sort your portfolio view."
         }
       ],
       "START_BTN": "Skip",
