@@ -296,8 +296,7 @@ export class ApiService {
       apiConstants.endpoint.resendOTP + '?isEditProfile=true' :
       apiConstants.endpoint.resendOTP;
     return this.http.post(resendOTPEditOrSignUpFlow, payload)
-      // return this.http.post(apiConstants.endpoint.resendOTP, payload)
-      .pipe(
+     .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
