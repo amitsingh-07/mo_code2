@@ -25,6 +25,7 @@ export class AuthenticationService {
   apiBaseUrl = '';
   private get2faAuth = new BehaviorSubject('');
   get2faAuthEvent = this.get2faAuth.asObservable();
+  private timer2fa: any;
 
   constructor(
     private httpClient: HttpClient, public jwtHelper: JwtHelperService,
@@ -173,7 +174,6 @@ export class AuthenticationService {
   }
 
   public logout() {
-    sessionStorage.removeItem(appConstants.APP_2FA_KEY);
     return this.http.get(apiConstants.endpoint.logout)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
@@ -219,11 +219,11 @@ export class AuthenticationService {
         // login successful if there's a jwt token in the response
         if (response && response.objectList[0] && response.objectList[0].securityToken) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          console.log('send2faRequest response',response);
+          console.log('send2faRequest response', response);
           this.saveAuthDetails(response.objectList[0]);
         }
         return response;
-    }));
+      }));
   }
   public doValidate2fa(otp: string, handleError?: string) {
     if (!handleError) {
@@ -260,28 +260,53 @@ export class AuthenticationService {
     }
     sessionStorage.setItem(appConstants.APP_2FA_KEY, token);
     this.get2FAToken();
-    window.setTimeout(() => {
+    this.timer2fa = window.setTimeout(() => {
       this.clear2FAToken();
     }, (1000 * expiryTime));
   }
 
-  public clear2FAToken() {
-    const interval = 2;
-    //Start BE Validation check to anticipate BE token check
-    this.doVerify2fa().subscribe((data) => {
-      console.log('Response From Verify 2fa', data);
-      if (data.responseMessage.responseCode === 6011) {
-        window.setTimeout(() => {
-          console.log('Validating in ' + interval + ' seconds');
-          this.clear2FAToken();
-        }, (1000 * interval));
-      } else {
-        console.log('session clearing');
-        sessionStorage.removeItem(appConstants.APP_2FA_KEY);
-        this.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
-        this.get2faAuth.next(sessionStorage.getItem(appConstants.APP_2FA_KEY));
-      }
-    });
+  public clear2FAToken(tries?: number) {
+    let interval = 2;
+    let maxTry = 5;
+    let currentTry = 0;
+    if (environment.expire2faTime) {
+      interval = environment.expire2faPollRate;
+    }
+    if (environment.expire2faMaxCheck) {
+      maxTry = environment.expire2faMaxCheck;
+    }
+    if (tries != null) {
+      currentTry = tries;
+      currentTry++;
+    }
+    console.log('Try no.:', currentTry);
+    if (currentTry === maxTry) {
+      console.log('maxTry is hit', maxTry);
+      this.doClear2FASession(true);
+    } else {
+      //Start BE Validation check to anticipate BE token check
+      this.doVerify2fa().subscribe((data) => {
+        if (data.responseMessage.responseCode === 6011 || currentTry == maxTry) {
+          clearTimeout(this.timer2fa);
+          this.timer2fa = window.setTimeout(() => {
+            console.log('Validating in ' + interval + ' seconds at try no.' + currentTry);
+            this.clear2FAToken(currentTry);
+          }, (1000 * interval));
+        } else {
+          this.doClear2FASession(true);
+        }
+      });
+    }
+  }
+  public doClear2FASession(errorPopup?: boolean) {
+    console.log('session clearing');
+    clearTimeout(this.timer2fa);
+    console.log(this.timer2fa);
+    sessionStorage.removeItem(appConstants.APP_2FA_KEY);
+    if(errorPopup) {
+      this.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
+    }
+    this.get2faAuth.next(sessionStorage.getItem(appConstants.APP_2FA_KEY));
   }
 
   public is2FAVerified() {

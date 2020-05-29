@@ -24,13 +24,22 @@ app-your-portfolio {
           width:52px;
           height: 52px;
           margin-right: 15px;
+          margin-top: 4px;
           @include allmobiles{
             margin-right: 9px;
+            margin-top: 10px;
           }
           img{
             width: 100%;
             height: auto;
           }
+        }
+        .user_portfolio_ref_code {
+          font-family: $muli-regular;
+          font-size: 12px;
+          line-height: 1.58;
+          letter-spacing: -0.16px;
+          color: $white-color;
         }
         .user_portfolio_lbl{
           font-family: $muli-bold;
@@ -378,22 +387,104 @@ app-your-portfolio {
           margin-top: 6px;
         }
         .total_return_label {
-          color: $text-color-secondary;
-          font-size: 16px;
+          font-family: $muli-regular;
           color: $dark-teal-color;
+          font-size: 16px;
+          letter-spacing: -0.24px;
+          padding-right: 50px;
+          @include allmobiles{
+            padding-right: 38px;
+          }
           img{
             cursor: pointer;
+          }
+        }
+        .portfolio_info_label {
+          font-family: $muli-regular;
+          color: $black-color;
+          font-size: 13px;
+          letter-spacing: -0.24px;
+          padding-right: 50px;
+          @include allmobiles{
+            padding-right: 38px;
+          }
+          img{
+            cursor: pointer;
+          }
+          .total_return_value {
+            font-family: $muli-bold;
+            font-size: 16px;
+            letter-spacing: -0.16px;
+            line-height: 1.31;
+            text-align: left;
+            color: $transaction-panel-buy-color;
+            word-break: break-all;
+            &.negativeValue {
+              color: $red-color;
+            }
+          }
+        }
+        .padding-none {
+          @include allmobiles{
+            padding-right: 0px !important;
+          }
+        }
+        .next-row {
+          @include allmobiles{
+            order: +1;
+            flex: 1 0 100%;
+            padding-top: 15px;
+          }
+        }
+        .arrow-img {
+          padding-left: 8px;
+          vertical-align: middle;
+        }
+        .upward {
+          transform: rotate(180deg);
+          -webkit-transform: rotate(180deg);
+          vertical-align: middle;
+          padding-left: 0px;
+          padding-right: 8px;
+        }
+        .currency_value {
+          font-family: $muli-bold;
+          font-size: 16px;
+          letter-spacing: -0.16px;
+          line-height: 1.31;
+          text-align: left;
+          color: $teal-color;
+          word-break: break-all;
+          &.negativeValue {
+            color: $red-color;
           }
         }
         .total_return_value {
           font-family: $muli-bold;
           font-size: 16px;
-          letter-spacing: -0.2px;
+          letter-spacing: -0.16px;
+          line-height: 1.31;
           text-align: right;
           color: $transaction-panel-buy-color;
           word-break: break-all;
           &.negativeValue {
             color: $red-color;
+          }
+        }
+        .calculate_tooltip {
+          font-family: $muli-regular;
+          font-size: 14px;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: -0.26px;
+          color: $crusta-orange-color;
+          width: fit-content;
+          padding-top: 15px;
+          cursor: pointer;
+          @include allmobiles{
+            padding-top: 10px;
           }
         }
         .your_portfolio_label {
@@ -818,5 +909,45 @@ app-your-portfolio {
       }
     }
 
+  }
+}
+.modal-body {
+  width: 375px;
+  margin: 0 auto;
+  @include allmobiles{
+    width: auto;
+  }
+}
+.modal-body-title {
+  padding-bottom: 10px;
+}
+.modal-body-message {
+  .teal-txt {
+    font-family: $muli-bold;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.16px;
+    color: $teal-color;
+  }
+  .grey-txt {
+    font-family: $muli-semi-bold;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.16px;
+    color: $silver-grey-color;
+  }
+  p {
+    font-family: $muli-regular;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.16px;
+    color: $silver-grey-color;
+  }
+  a {
+    font-family: $muli-bold;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.16px;
+    color: $brdr-dark-color;
   }
 }
