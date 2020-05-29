@@ -27,7 +27,8 @@ import { InvestmentEngagementJourneyService } from '../investment-engagement-jou
 })
 export class RiskAcknowledgementComponent implements OnInit {
 
-  pageTitle: string;
+  loaderTitle: string;
+  loaderDesc: string;
 
   constructor(
     public readonly translate: TranslateService,
@@ -43,11 +44,14 @@ export class RiskAcknowledgementComponent implements OnInit {
     public investmentAccountService: InvestmentAccountService,
     private investmentCommonService: InvestmentCommonService,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    private loaderService:LoaderService
+    private loaderService: LoaderService
   ) {
+
     this.translate.use('en');
+    const self = this;
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('GETSTARTED_STEP1.TITLE');
+      self.loaderTitle = this.translate.instant('FUNDING_METHOD.LOADER_TITLE');
+      self.loaderDesc = this.translate.instant('FUNDING_METHOD.LOADER_DESC');
     });
   }
 
@@ -62,7 +66,10 @@ export class RiskAcknowledgementComponent implements OnInit {
           this.investmentAccountService.showGenericErrorModal();
         });
     }
-    this.loaderService.showLoader({ title: this.translate.instant('COMMON_LOADER.TITLE') });
+    this.loaderService.showLoader({
+      title: this.loaderTitle,
+      desc: this.loaderDesc
+    });
     this.getPortfolioAllocationDetails();
   }
   goBack() {

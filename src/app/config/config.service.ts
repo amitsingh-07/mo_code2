@@ -31,6 +31,7 @@ export interface IConfig {
   iFastMaintenance: boolean;
   maintenanceStartTime: string;
   maintenanceEndTime: string;
+  showPortfolioInfo: boolean;
 }
 
 const CACHE_SIZE = 1;
