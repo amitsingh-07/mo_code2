@@ -200,7 +200,7 @@ export class VerifyMobileComponent implements OnInit {
   }
 
   requestNewVerifyOTP() {
-    this.signUpApiService.requestNewOTP().subscribe((data) => {
+    this.signUpApiService.requestNewOTP(this.editProfile).subscribe((data) => {
       this.verifyMobileForm.reset();
       this.progressModal = false;
       this.showCodeSentText = true;
