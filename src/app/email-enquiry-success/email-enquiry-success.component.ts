@@ -7,6 +7,7 @@ import { SIGN_UP_ROUTE_PATHS } from './../sign-up/sign-up.routes.constants';
 import { FooterService } from '../shared/footer/footer.service';
 import { NavbarService } from '../shared/navbar/navbar.service';
 import { environment } from './../../environments/environment';
+import { FBPixelService } from '../shared/analytics/fb-pixel.service';
 
 @Component({
   selector: 'app-email-enquiry-success',
@@ -27,11 +28,13 @@ export class EmailEnquirySuccessComponent implements OnInit {
     public footerService: FooterService,
     public navbarService: NavbarService,
     public authService: AuthenticationService,
+    private fbPixelService: FBPixelService,
     private router: Router) {
     this.isSignedUser = this.authService.isSignedUser();
   }
 
   ngOnInit() {
+    this.fbPixelService.track('Lead');
     this.navbarService.setNavbarMode(2);
     this.footerService.setFooterVisibility(false);
   }

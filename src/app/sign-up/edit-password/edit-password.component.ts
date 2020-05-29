@@ -13,6 +13,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
 import { FooterService } from './../../shared/footer/footer.service';
+import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-edit-password',
@@ -34,6 +35,7 @@ export class EditPasswordComponent implements OnInit {
     public navbarService: NavbarService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
+    private authService: AuthenticationService,
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService) {

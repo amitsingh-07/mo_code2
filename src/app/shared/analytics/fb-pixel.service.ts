@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
-declare var fbq: any;
+declare const fbq: any;
 
 @Injectable({
   providedIn: 'root'
@@ -22,4 +22,12 @@ export class FBPixelService {
       }
     });
    }
-}
+
+   track(trackId: string) {
+    console.log('FB Pixel Track:', trackId);
+    if (typeof fbq === 'function') {
+      fbq('track', trackId);
+    }
+   }
+
+  }

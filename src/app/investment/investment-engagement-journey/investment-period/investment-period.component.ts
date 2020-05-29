@@ -161,6 +161,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
       ref.dismiss();
     });
     ref.componentInstance.secondaryAction.subscribe((emittedValue) => {
+    this.investmentEngagementJourneyService.setSelectPortfolioType({selectPortfolioType:'wiseSaverPortfolio'});
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
     });
   }

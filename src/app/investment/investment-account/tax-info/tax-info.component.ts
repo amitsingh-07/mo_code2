@@ -39,6 +39,7 @@ export class TaxInfoComponent implements OnInit {
   formCount: number;
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   showNricHint = false;
+  tooltipDetails: any;
 
   constructor(
     public headerService: HeaderService,
@@ -55,6 +56,7 @@ export class TaxInfoComponent implements OnInit {
     this.translate.get('COMMON').subscribe(() => {
       this.pageTitle = this.translate.instant('TAX_INFO.TITLE');
       this.translator = this.translate.instant('TAX_INFO');
+      this.tooltipDetails = this.translate.instant('BLOCKED_COUNTRY_TOOLTIP');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -68,7 +70,7 @@ export class TaxInfoComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.getReasonList();
     this.taxInfoFormValues = this.investmentAccountService.getInvestmentAccountFormData();
-    this.countries = this.investmentAccountService.getCountriesFormData();
+    this.countries = this.investmentAccountService.getCountriesFormDataByFilter();
     this.taxInfoForm = this.formBuilder.group({
       addTax: this.formBuilder.array([])
     });
@@ -79,7 +81,7 @@ export class TaxInfoComponent implements OnInit {
       });
     } else if (this.investmentAccountService.isSingaporeResident()) {
       const data = {
-        taxCountry: this.investmentAccountService.getCountryFromCountryCode(INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_COUNTRY_CODE),
+        taxCountry: this.investmentAccountService.getCountryFromCountryCodeByFilter(INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_COUNTRY_CODE),
         radioTin: true,
         tinNumber: this.taxInfoFormValues.nricNumber
       };
@@ -325,4 +327,13 @@ export class TaxInfoComponent implements OnInit {
       }
     }
   }
+  
+  showHelpModalCountry() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.tooltipDetails.TITLE;
+    // tslint:disable-next-line:max-line-length
+    ref.componentInstance.errorDescription = this.tooltipDetails.DESC;
+    ref.componentInstance.tooltipButtonLabel = this.tooltipDetails.GOT_IT;
+    return false;
+  }  
 }

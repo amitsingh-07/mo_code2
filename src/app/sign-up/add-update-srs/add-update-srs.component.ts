@@ -25,6 +25,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
+import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-add-update-srs',
@@ -41,13 +42,15 @@ export class AddUpdateSrsComponent implements OnInit {
   srsAgentBankList;
   srsDetail;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private router: Router,
     private footerService: FooterService,
     private route: ActivatedRoute,
     public headerService: HeaderService,
     public navbarService: NavbarService,
     private signUpService: SignUpService,
+    private authService: AuthenticationService,
     private modal: NgbModal,
     public investmentAccountService: InvestmentAccountService,
     public manageInvestmentsService: ManageInvestmentsService,
@@ -77,6 +80,12 @@ export class AddUpdateSrsComponent implements OnInit {
     this.getSrsBankOperator();
     this.buildForm();
     this.addorRemoveAccNoValidator();
+    this.authService.get2faAuthEvent.subscribe((token) => {
+      if (token) {
+      } else {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+      }
+    });
   }
 
   buildForm() {
