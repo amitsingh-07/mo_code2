@@ -15,7 +15,7 @@ export const environment: IEnvironment = {
   gAdPropertyId: 'AW-782920447',
   gaPropertyId: 'UA-125256446-1',
   hideHomepage: false,
-  expire2faTime: 58,
+  expire2faTime: 178,
   expire2faPollRate: 2,
   expire2faMaxCheck: 5
 };

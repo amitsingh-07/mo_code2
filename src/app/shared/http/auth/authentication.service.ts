@@ -25,6 +25,8 @@ export class AuthenticationService {
   apiBaseUrl = '';
   private get2faAuth = new BehaviorSubject('');
   get2faAuthEvent = this.get2faAuth.asObservable();
+  private get2faUpdate = new BehaviorSubject(''); 
+  get2faUpdateEvent = this.get2faUpdate.asObservable();
   private timer2fa: any;
 
   constructor(
@@ -92,7 +94,7 @@ export class AuthenticationService {
     if (sessionStorage) {
       sessionStorage.setItem(appConstants.APP_JWT_TOKEN_KEY, auth.securityToken);
       sessionStorage.setItem(appConstants.APP_SESSION_ID_KEY, auth.sessionId);
-    }
+  }
   }
 
   clearAuthDetails() {
@@ -266,6 +268,7 @@ export class AuthenticationService {
   }
 
   public clear2FAToken(tries?: number) {
+    console.log('clear2FAToken Function Triggered NOT DOclear2faToken');
     let interval = 2;
     let maxTry = 5;
     let currentTry = 0;
@@ -280,33 +283,41 @@ export class AuthenticationService {
       currentTry++;
     }
     console.log('Try no.:', currentTry);
-    if (currentTry === maxTry) {
+    if (currentTry >= maxTry) {
       console.log('maxTry is hit', maxTry);
-      this.doClear2FASession(true);
+      this.doClear2FASession({errorPopup: true, updateData: true});
     } else {
       //Start BE Validation check to anticipate BE token check
       this.doVerify2fa().subscribe((data) => {
-        if (data.responseMessage.responseCode === 6011 || currentTry == maxTry) {
+        if (data.responseMessage.responseCode === 6011 || currentTry < maxTry) {
           clearTimeout(this.timer2fa);
+          console.log('cleared initial timer', this.timer2fa);
           this.timer2fa = window.setTimeout(() => {
             console.log('Validating in ' + interval + ' seconds at try no.' + currentTry);
             this.clear2FAToken(currentTry);
           }, (1000 * interval));
         } else {
-          this.doClear2FASession(true);
+          this.doClear2FASession({errorPopup: true, updateData: true});
         }
       });
     }
   }
-  public doClear2FASession(errorPopup?: boolean) {
-    console.log('session clearing');
+  public doClear2FASession(option?: any) {
+    console.log('do Clear 2FA Session Triggered');
+    console.log('options for doClear2FASession:', option);
+    console.log('previous final timer', this.timer2fa);
     clearTimeout(this.timer2fa);
-    console.log(this.timer2fa);
+    console.log('clearing final timer',this.timer2fa);
     sessionStorage.removeItem(appConstants.APP_2FA_KEY);
-    if(errorPopup) {
+    if (option && option.errorPopup) {
       this.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
     }
-    this.get2faAuth.next(sessionStorage.getItem(appConstants.APP_2FA_KEY));
+    if (option && option.updateData) {
+      console.log('update Event pushed');
+      this.get2faUpdate.next(sessionStorage.getItem(appConstants.APP_2FA_KEY));
+    }
+    console.log('2faAuth after session is cleared', sessionStorage.getItem(appConstants.APP_2FA_KEY));
+    this.get2faAuth.next(sessionStorage.getItem(appConstants.APP_2FA_KEY)); // PROBLEM IS HERE
   }
 
   public is2FAVerified() {

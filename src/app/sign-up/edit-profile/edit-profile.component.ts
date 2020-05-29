@@ -90,6 +90,23 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
       this.showSRSSuccessModel();
     });
     this.getNationalityCountryList();
+
+    this.authService.get2faAuthEvent.subscribe((token) => {
+      if (token) {
+        this.is2faAuthorized = true;
+      } else {
+        this.is2faAuthorized = false;
+      }
+    });
+    this.authService.get2faUpdateEvent.subscribe((token) => {
+      console.log('2faUpdate Event:', token);
+      if(token) {}
+      else {
+        this.getEditProfileData();
+        this.showAddBankDetails(this.investmentStatus);
+        this.getSrsDetails();
+      }
+    });
   }
 
   ngOnInit() {
@@ -111,14 +128,6 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
     this.configService.getConfig().subscribe((config) => {
       if (config.iFastMaintenance && this.configService.checkIFastStatus(config.maintenanceStartTime, config.maintenanceEndTime)) {
         this.disableBankSrsEdit = true;
-      }
-    });
-
-    this.authService.get2faAuthEvent.subscribe((token) => {
-      if (token) {
-        this.is2faAuthorized = true;
-      } else {
-        this.is2faAuthorized = false;
       }
     });
   }
@@ -164,59 +173,57 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // tslint:disable-next-line:cognitive-complexity
   getEditProfileData() {
-    if (this.authService.isAuthenticated()) {
-      this.signUpService.getEditProfileInfo().subscribe((data) => {
-        this.entireUserData = data.objectList;
-        if (data.objectList) {
-          if (data.objectList.personalInformation) {
-            this.personalData = data.objectList.personalInformation;
-          }
-          if (data.objectList && data.objectList.contactDetails && data.objectList.contactDetails.homeAddress) {
-            this.residentialAddress = data.objectList.contactDetails.homeAddress;
-          }
-          // Hidden the Employment details
-          // this.empolymentDetails = data.objectList.employmentDetails;
-          this.empolymentDetails = null;
-          if (data.objectList.customerBankDetail) {
-            this.bankDetails = data.objectList.customerBankDetail[0];
-          }
-          if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
-            this.mailingAddress = data.objectList.contactDetails.mailingAddress;
-            this.isMailingAddressSame = false;
-          }
-          if (data.objectList.contactDetails) {
-            this.contactDetails = data.objectList.contactDetails;
-          }
-          if (this.personalData) {
-            this.fullName = this.personalData.fullName ?
-              this.personalData.fullName : this.personalData.firstName + ' ' + this.personalData.lastName;
-            this.compinedName = this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
-            this.compinednricNum = this.setNric(this.personalData.nricNumber);
-            if (this.personalData.passportNumber) {
-              this.compinedPassport = 'Passport: ' + this.personalData.passportNumber;
-            }
-            if (this.personalData && this.personalData.isSingaporeResident) {
-              this.isSingaporeResident = this.personalData.isSingaporeResident;
-            }
-            this.constructDate(this.personalData.dateOfBirth);
-          }
+    this.signUpService.getEditProfileInfo().subscribe((data) => {
+      this.entireUserData = data.objectList;
+      if (data.objectList) {
+        if (data.objectList.personalInformation) {
+          this.personalData = data.objectList.personalInformation;
         }
-        // tslint:disable-next-line:max-line-length
-        if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress) {
-          this.employerAddress = this.empolymentDetails.employerDetails.detailedemployerAddress;
+        if (data.objectList && data.objectList.contactDetails && data.objectList.contactDetails.homeAddress) {
+          this.residentialAddress = data.objectList.contactDetails.homeAddress;
         }
-        if (this.residentialAddress && this.residentialAddress.country && this.residentialAddress.country.nationalityCode) {
-          this.resNationality = this.residentialAddress.country.nationalityCode;
+        // Hidden the Employment details
+        // this.empolymentDetails = data.objectList.employmentDetails;
+        this.empolymentDetails = null;
+        if (data.objectList.customerBankDetail) {
+          this.bankDetails = data.objectList.customerBankDetail[0];
         }
-        if (this.mailingAddress && this.mailingAddress.country && this.mailingAddress.country.nationalityCode) {
-          this.mailNationality = this.mailingAddress.country.nationalityCode;
+        if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
+          this.mailingAddress = data.objectList.contactDetails.mailingAddress;
+          this.isMailingAddressSame = false;
         }
-        // tslint:disable-next-line:max-line-length
-        if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode) {
-          this.employerNationality = this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode;
+        if (data.objectList.contactDetails) {
+          this.contactDetails = data.objectList.contactDetails;
         }
-      });
-    }
+        if (this.personalData) {
+          this.fullName = this.personalData.fullName ?
+            this.personalData.fullName : this.personalData.firstName + ' ' + this.personalData.lastName;
+          this.compinedName = this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
+          this.compinednricNum = this.setNric(this.personalData.nricNumber);
+          if (this.personalData.passportNumber) {
+            this.compinedPassport = 'Passport: ' + this.personalData.passportNumber;
+          }
+          if (this.personalData && this.personalData.isSingaporeResident) {
+            this.isSingaporeResident = this.personalData.isSingaporeResident;
+          }
+          this.constructDate(this.personalData.dateOfBirth);
+        }
+      }
+      // tslint:disable-next-line:max-line-length
+      if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress) {
+        this.employerAddress = this.empolymentDetails.employerDetails.detailedemployerAddress;
+      }
+      if (this.residentialAddress && this.residentialAddress.country && this.residentialAddress.country.nationalityCode) {
+        this.resNationality = this.residentialAddress.country.nationalityCode;
+      }
+      if (this.mailingAddress && this.mailingAddress.country && this.mailingAddress.country.nationalityCode) {
+        this.mailNationality = this.mailingAddress.country.nationalityCode;
+      }
+      // tslint:disable-next-line:max-line-length
+      if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode) {
+        this.employerNationality = this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode;
+      }
+    });
   }
 
   createMaskString(val) {
@@ -343,6 +350,7 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
   getSrsDetails() {
     this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
       if (data) {
+        console.log('srsData', data);
         this.srsDetails = data;
         this.getInvestmentOverview();
       }

@@ -80,6 +80,7 @@ export class AddUpdateSrsComponent implements OnInit {
     this.getSrsBankOperator();
     this.buildForm();
     this.addorRemoveAccNoValidator();
+    
     this.authService.get2faAuthEvent.subscribe((token) => {
       if (token) {
       } else {
