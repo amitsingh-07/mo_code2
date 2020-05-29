@@ -32,7 +32,7 @@ export class AllocationComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    if (this.portfolioType === INVESTMENT_COMMON_CONSTANTS.WISESAVER_ASSET_ALLOCATION.TYPE) {
+    if (this.portfolioType.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.WISESAVER_ASSET_ALLOCATION.TYPE) {
       this.assets = INVESTMENT_COMMON_CONSTANTS.WISESAVER_ASSET_ALLOCATION.ASSETS;
       this.allocationDetails = false;
     } else if (this.assets) {

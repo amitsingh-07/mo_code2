@@ -21,7 +21,7 @@ export class AnnualFeesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.portfolioTypeFlag = (this.portfolioType === INVESTMENT_COMMON_CONSTANTS.WISESAVER_ASSET_ALLOCATION.TYPE);
+    this.portfolioTypeFlag = (this.portfolioType.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.WISESAVER_ASSET_ALLOCATION.TYPE);
   }
 
 }
