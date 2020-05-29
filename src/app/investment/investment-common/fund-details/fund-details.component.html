@@ -20,10 +20,10 @@
       </div>
       <div class="funding-content" [class.first]="j === 0" id="fund-details-content_{{j}}">
         {{fund.htmlDesc}}        
-        <a download target="_blank" [href]="getHighlightSheetLink(fund)" class="btn btn-primary width100 mt20" id="fund_details_download_btn_{{j}}">Download Highlight Sheet</a>      
+        <a download target="_blank" [href]="getHighlightSheetLink(fund)" class="btn btn-primary width100 mt20 fund-details-primary-btn" id="fund_details_download_btn_{{j}}">{{'FUND_DETAILS.DOWNLOAD_PRIMARY' | translate}}</a>      
       </div>
     </div>
-    <a download target="_blank" [href]="getProspectusLink(fundDetails[0])" class="btn btn-white width100" id="fund_details_download_prospectus">Download Product Prospectus</a>
+    <a download target="_blank" [href]="getProspectusLink(fundDetails[0])" class="btn btn-white width100" id="fund_details_download_prospectus">{{'FUND_DETAILS.DOWNLOAD_SECONDARY' | translate}}</a>
    </div>
    <div class="fund-details-content" *ngIf = "!portfolioType">
      <div class="dimentional" [ngClass]="{'border-0': !portfolioType}">
@@ -35,9 +35,9 @@
        
        <div class="funding-content funding-wise-saver" [ngClass]="{'border-0': !portfolioType}" [class.first]="j === 0" id="fund-details-content_{{j}}">
          {{fund.htmlDesc}}        
-         <a download target="_blank" [href]="getHighlightSheetLink(fund)" class="btn btn-primary width100 mt20" id="fund_details_download_btn_{{j}}">Download Highlight Sheet</a>      
+         <a download target="_blank" [href]="getHighlightSheetLink(fund)" class="btn btn-primary width100 mt20 fund-details-primary-btn" id="fund_details_download_btn_{{j}}">{{'FUND_DETAILS.DOWNLOAD_PRIMARY' | translate}}</a>      
        </div>
      </div>
-     <a download target="_blank" [href]="getProspectusLink(fundDetails[0])" class="btn btn-white width100" id="fund_details_download_prospectus">Download Product Prospectus</a>
+     <a download target="_blank" [href]="getProspectusLink(fundDetails[0])" class="btn btn-white width100" id="fund_details_download_prospectus">{{'FUND_DETAILS.DOWNLOAD_SECONDARY' | translate}}</a>
     </div>
 </div>
