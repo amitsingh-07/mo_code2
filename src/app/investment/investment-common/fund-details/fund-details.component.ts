@@ -72,7 +72,7 @@ export class FundDetailsComponent implements OnInit {
   }
   getProspectusLink(fund) {
     //let prospectusFileName = fund.prospectusLink; // TODO: getting null from backend
-    let prospectusFileName = 'prospectus.pdf';
+    let prospectusFileName = (this.portfolioType) ? 'prospectus_investment.pdf' : 'prospectus_wise_saver.pdf';
     return window.location.origin + '/app/assets/docs/portfolio/fund/' + prospectusFileName;
   }
 }

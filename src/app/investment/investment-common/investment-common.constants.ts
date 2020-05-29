@@ -29,10 +29,14 @@ export let INVESTMENT_COMMON_CONSTANTS = {
     PORTFOLIO_CATEGORY: {
         ALL: 'All',
         INVESTMENT: 'Investment',
-        WISESAVER: 'Wisesaver'
+        WISESAVER: 'WiseSaver'
+    },
+    PORTFOLIO_CATEGORY_TYPE:{
+      INVESTMENT: 'INVESTMENT',
+      WISESAVER: 'WISESAVER'
     },
     WISESAVER_ASSET_ALLOCATION : {
-        TYPE: 'Wisesaver',
+        TYPE: 'WISESAVER',
         ASSETS: [
             {
               allocationPercentage: 99,
