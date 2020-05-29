@@ -174,7 +174,6 @@ export class AuthenticationService {
   }
 
   public logout() {
-    this.doClear2FASession();
     return this.http.get(apiConstants.endpoint.logout)
       .pipe(
         // tslint:disable-next-line:no-identical-functions

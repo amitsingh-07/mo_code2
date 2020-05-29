@@ -454,6 +454,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.isLoggedIn = false;
     this.authService.clearAuthDetails();
     this.authService.clearSession();
+    this.authService.doClear2FASession();
     this.appService.clearData();
     this.appService.startAppSession();
     this.selectedPlansService.clearData();
