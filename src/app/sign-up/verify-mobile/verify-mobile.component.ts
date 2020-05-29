@@ -129,7 +129,6 @@ export class VerifyMobileComponent implements OnInit {
           if (this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
             console.log('Calling Verity 2FA');
             this.verify2FA(otp);
-            this.authService.setFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE, false);
           } else {
             console.log('Calling Verity OTP');
             this.verifyOTP(otp);
@@ -170,18 +169,16 @@ export class VerifyMobileComponent implements OnInit {
     this.progressModal = true;
     this.mobileNumberVerifiedMessage = this.loading['verifying'];
     this.authService.doValidate2fa(otp).subscribe((data: any) => {
-      console.log('Response data', data);
       if (data.responseMessage.responseCode === 6011) {
         this.mobileNumberVerified = true;
         this.authService.set2FAToken(data.responseMessage.responseCode);
         this.mobileNumberVerifiedMessage = this.loading['verified2fa'];
-      } else if (data.responseMessage.responseCode === 5123) {
-        console.log('Errored In 5123');
+        this.authService.setFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE, false);
+      } else if (data.responseMessage.responseCode === 5123 || data.responseMessage.responseCode === 5009) {
         const title = data.responseMessage.responseCode === 5123 ? this.errorModal['title'] : this.errorModal['expiredTitle'];
         const message = data.responseMessage.responseCode === 5123 ? this.errorModal['message'] : this.errorModal['expiredMessage'];
         this.openErrorModal(title, message, false);
       } else {
-        console.log('Errored in somewhere idk');
         this.progressModal = false;
         this.errorHandler.handleCustomError(data, true);
       }
@@ -233,7 +230,6 @@ export class VerifyMobileComponent implements OnInit {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED]);
     } else if (redirect_url) {
       this.signUpService.clearRedirectUrl();
-      console.log('Redirect Url: ' + redirect_url);
       const brokenRoute = Util.breakdownRoute(redirect_url);
       this.router.navigate([brokenRoute.base], {
             fragment: brokenRoute.fragments != null ? brokenRoute.fragments : null,

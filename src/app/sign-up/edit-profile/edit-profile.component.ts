@@ -115,13 +115,11 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
     });
 
     this.authService.get2faAuthEvent.subscribe((token) => {
-      // console.log('2fa event triggered:', token);
       if (token) {
         this.is2faAuthorized = true;
       } else {
         this.is2faAuthorized = false;
       }
-      // console.log('is2faAuthorized', this.is2faAuthorized);
     });
   }
 
@@ -166,58 +164,59 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // tslint:disable-next-line:cognitive-complexity
   getEditProfileData() {
-    this.signUpService.getEditProfileInfo().subscribe((data) => {
-      console.log('editprofileInfoCall', data);
-      this.entireUserData = data.objectList;
-      if (data.objectList) {
-        if (data.objectList.personalInformation) {
-          this.personalData = data.objectList.personalInformation;
-        }
-        if (data.objectList && data.objectList.contactDetails && data.objectList.contactDetails.homeAddress) {
-          this.residentialAddress = data.objectList.contactDetails.homeAddress;
-        }
-        // Hidden the Employment details
-        // this.empolymentDetails = data.objectList.employmentDetails;
-        this.empolymentDetails = null;
-        if (data.objectList.customerBankDetail) {
-          this.bankDetails = data.objectList.customerBankDetail[0];
-        }
-        if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
-          this.mailingAddress = data.objectList.contactDetails.mailingAddress;
-          this.isMailingAddressSame = false;
-        }
-        if (data.objectList.contactDetails) {
-          this.contactDetails = data.objectList.contactDetails;
-        }
-        if (this.personalData) {
-          this.fullName = this.personalData.fullName ?
-            this.personalData.fullName : this.personalData.firstName + ' ' + this.personalData.lastName;
-          this.compinedName = this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
-          this.compinednricNum = this.setNric(this.personalData.nricNumber);
-          if (this.personalData.passportNumber) {
-            this.compinedPassport = 'Passport: ' + this.personalData.passportNumber;
+    if (this.authService.isAuthenticated()) {
+      this.signUpService.getEditProfileInfo().subscribe((data) => {
+        this.entireUserData = data.objectList;
+        if (data.objectList) {
+          if (data.objectList.personalInformation) {
+            this.personalData = data.objectList.personalInformation;
           }
-          if (this.personalData && this.personalData.isSingaporeResident) {
-            this.isSingaporeResident = this.personalData.isSingaporeResident;
+          if (data.objectList && data.objectList.contactDetails && data.objectList.contactDetails.homeAddress) {
+            this.residentialAddress = data.objectList.contactDetails.homeAddress;
           }
-          this.constructDate(this.personalData.dateOfBirth);
+          // Hidden the Employment details
+          // this.empolymentDetails = data.objectList.employmentDetails;
+          this.empolymentDetails = null;
+          if (data.objectList.customerBankDetail) {
+            this.bankDetails = data.objectList.customerBankDetail[0];
+          }
+          if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
+            this.mailingAddress = data.objectList.contactDetails.mailingAddress;
+            this.isMailingAddressSame = false;
+          }
+          if (data.objectList.contactDetails) {
+            this.contactDetails = data.objectList.contactDetails;
+          }
+          if (this.personalData) {
+            this.fullName = this.personalData.fullName ?
+              this.personalData.fullName : this.personalData.firstName + ' ' + this.personalData.lastName;
+            this.compinedName = this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
+            this.compinednricNum = this.setNric(this.personalData.nricNumber);
+            if (this.personalData.passportNumber) {
+              this.compinedPassport = 'Passport: ' + this.personalData.passportNumber;
+            }
+            if (this.personalData && this.personalData.isSingaporeResident) {
+              this.isSingaporeResident = this.personalData.isSingaporeResident;
+            }
+            this.constructDate(this.personalData.dateOfBirth);
+          }
         }
-      }
-      // tslint:disable-next-line:max-line-length
-      if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress) {
-        this.employerAddress = this.empolymentDetails.employerDetails.detailedemployerAddress;
-      }
-      if (this.residentialAddress && this.residentialAddress.country && this.residentialAddress.country.nationalityCode) {
-        this.resNationality = this.residentialAddress.country.nationalityCode;
-      }
-      if (this.mailingAddress && this.mailingAddress.country && this.mailingAddress.country.nationalityCode) {
-        this.mailNationality = this.mailingAddress.country.nationalityCode;
-      }
-      // tslint:disable-next-line:max-line-length
-      if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode) {
-        this.employerNationality = this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode;
-      }
-    });
+        // tslint:disable-next-line:max-line-length
+        if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress) {
+          this.employerAddress = this.empolymentDetails.employerDetails.detailedemployerAddress;
+        }
+        if (this.residentialAddress && this.residentialAddress.country && this.residentialAddress.country.nationalityCode) {
+          this.resNationality = this.residentialAddress.country.nationalityCode;
+        }
+        if (this.mailingAddress && this.mailingAddress.country && this.mailingAddress.country.nationalityCode) {
+          this.mailNationality = this.mailingAddress.country.nationalityCode;
+        }
+        // tslint:disable-next-line:max-line-length
+        if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode) {
+          this.employerNationality = this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode;
+        }
+      });
+    }
   }
 
   createMaskString(val) {
