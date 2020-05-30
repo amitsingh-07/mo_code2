@@ -25,7 +25,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
-import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-add-update-srs',
@@ -82,8 +82,7 @@ export class AddUpdateSrsComponent implements OnInit {
     this.addorRemoveAccNoValidator();
     
     this.authService.get2faAuthEvent.subscribe((token) => {
-      if (token) {
-      } else {
+      if (!token) {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       }
     });

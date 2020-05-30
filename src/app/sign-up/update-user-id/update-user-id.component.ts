@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ConfigService, IConfig } from '../../config/config.service';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
@@ -16,7 +17,6 @@ import { FooterService } from './../../shared/footer/footer.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 import { ValidateRange } from './range.validator';
-import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-update-user-id',
@@ -85,8 +85,7 @@ export class UpdateUserIdComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
 
     this.authService.get2faAuthEvent.subscribe((token) => {
-      if (token) {
-      } else {
+      if (!token) {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       }
     });

@@ -92,8 +92,7 @@ export class AddUpdateBankComponent implements OnInit {
     });
 
     this.authService.get2faAuthEvent.subscribe((token) => {
-      if (token) {
-      } else {
+      if (!token) {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       }
     });
