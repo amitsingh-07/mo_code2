@@ -148,17 +148,6 @@ export class AuthenticationService {
     return !isTokenExpired && isLoggedInToken;
   }
 
-  // public send2FARequest() {
-  //   const payload = {
-  //     customerRef: "",
-  //     otp: "",
-  //     editProfile: false
-  //   }: IVerifyRequestOTP;
-
-  //   return this.apiService.requestNewOTP(payload);
-  // }
-
-
   saveEnquiryId(id) {
     if (sessionStorage) {
       sessionStorage.setItem(appConstants.APP_ENQUIRY_ID, id);
