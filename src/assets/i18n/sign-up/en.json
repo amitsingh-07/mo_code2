@@ -114,7 +114,7 @@
     },
     "EXPIRED_ERROR_MODAL": {
       "ERROR_TITLE": "Expired OTP Code",
-      "ERROR_MESSAGE": "Your OTP is expired. Please click on Resend OTP link to get new OTP"
+      "ERROR_MESSAGE": "Your OTP has expired. Please click on Resend OTP link to get new OTP"
     },
     "LOADING": {
       "VERIFYING": "Verifying...",
