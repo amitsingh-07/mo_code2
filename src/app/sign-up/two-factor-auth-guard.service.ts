@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, RouterStateSnapshot, NavigationEnd, GuardsCheckEnd } from '@angular/router';
+import { CanActivate, GuardsCheckEnd, Router } from '@angular/router';
 
+import { filter } from 'rxjs/operators';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SIGN_UP_ROUTE_PATHS } from './sign-up.routes.constants';
 import { SignUpService } from './sign-up.service';
-import { filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TwoFactorAuthGuardService implements CanActivate {
   constructor(private route: Router,
-    private authService: AuthenticationService,
-    private signUpService: SignUpService,
+              private authService: AuthenticationService,
+              private signUpService: SignUpService,
   ) {
   }
   canActivate(): boolean {
@@ -57,7 +57,7 @@ export class TwoFactorAuthGuardService implements CanActivate {
 // tslint:disable-next-line:max-classes-per-file
 export class TwoFactorScreenGuardService implements CanActivate {
   constructor(private route: Router,
-    private authService: AuthenticationService
+              private authService: AuthenticationService
   ) {
   }
   canActivate(): boolean {

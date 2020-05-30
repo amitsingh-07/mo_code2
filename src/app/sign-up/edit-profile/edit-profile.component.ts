@@ -28,7 +28,7 @@ import { FooterService } from './../../shared/footer/footer.service';
   styleUrls: ['./edit-profile.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
+export class EditProfileComponent implements OnInit, OnDestroy {
   resetPasswordForm: FormGroup;
   formValues: any;
   personalData: any;
@@ -100,8 +100,7 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
     });
     this.authService.get2faUpdateEvent.subscribe((token) => {
       console.log('2faUpdate Event:', token);
-      if(token) {}
-      else {
+      if(!token) {
         this.getEditProfileData();
         this.showAddBankDetails(this.investmentStatus);
         this.getSrsDetails();
@@ -130,10 +129,6 @@ export class EditProfileComponent implements OnInit, OnDestroy, AfterViewInit {
         this.disableBankSrsEdit = true;
       }
     });
-  }
-
-  ngAfterViewInit() {
-
   }
 
   setPageTitle(title: string) {

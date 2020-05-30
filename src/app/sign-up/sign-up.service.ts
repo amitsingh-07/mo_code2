@@ -157,15 +157,6 @@ export class SignUpService {
     };
   }
 
-  new2FARequest(otpNo: number) {
-    let payload: IVerifyRequestOTP;
-    payload = {
-      customerRef: "Testing",
-      otp: otpNo,
-    };
-    return this.apiService.requestNewOTP(payload);
-  }
-
   /**
    * get form errors.
    * @param form - form details.
@@ -329,15 +320,6 @@ export class SignUpService {
   getEditProfileInfo() {
     // API Call here
     return this.apiService.getEditProfileList();
-  }
-
-  /**
-   * retrieve new userInformation
-   */
-  updateCustProfile(data: any) {
-    if (data) {
-        // console.log('current customer Data', JSON.parse(sessionStorage.getItem(SIGNUP_SESSION_STORAGE_KEY)));
-    }
   }
 
   constructEditPassword(oldpassword, newpassword) {

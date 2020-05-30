@@ -16,15 +16,15 @@ import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { Util } from '../../shared/utils/util';
 import { WillWritingService } from '../../will-writing/will-writing.service';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
-import { DirectService } from './../../direct/direct.service';
-import { GuideMeService } from './../../guide-me/guide-me.service';
 import { appConstants } from './../../../app/app.constants';
 import { AppService } from './../../../app/app.service';
-import { Util } from 'src/app/shared/utils/util';
+import { DirectService } from './../../direct/direct.service';
+import { GuideMeService } from './../../guide-me/guide-me.service';
 
 @Component({
   selector: 'app-verify-mobile',
