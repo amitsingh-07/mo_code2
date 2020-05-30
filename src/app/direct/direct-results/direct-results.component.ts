@@ -10,6 +10,7 @@ import { Subject } from 'rxjs/internal/Subject';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { StateStoreService } from '../../shared/Services/state-store.service';
 import { PRODUCT_CATEGORY_INDEX } from '../direct.constants';
+import { FBPixelService } from '../../shared/analytics/fb-pixel.service';
 import { MobileModalComponent } from './../../guide-me/mobile-modal/mobile-modal.component';
 import {
   CreateAccountModelComponent
@@ -25,7 +26,6 @@ import { DIRECT_ROUTE_PATHS } from './../direct-routes.constants';
 import { DirectApiService } from './../direct.api.service';
 import { DirectService } from './../direct.service';
 import { DirectResultsState } from './direct-results.state';
-import { FBPixelService } from 'src/app/shared/analytics/fb-pixel.service';
 
 const mobileThreshold = 567;
 

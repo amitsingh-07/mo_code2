@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, GuardsCheckEnd, Router } from '@angular/router';
 
 import { filter } from 'rxjs/operators';
+
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SIGN_UP_ROUTE_PATHS } from './sign-up.routes.constants';
 import { SignUpService } from './sign-up.service';
