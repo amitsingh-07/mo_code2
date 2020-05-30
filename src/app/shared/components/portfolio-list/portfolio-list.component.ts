@@ -166,4 +166,12 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     this.totalPortfoliosLength = this.filteredNotInvestedList.length + this.filteredInvestedList.length;
   }
 
+  setBorderClass(portfolio) {
+    if (portfolio['portfolioCategory'].toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER.toUpperCase()) {
+      return 'ws-border';
+    } else {
+      return '';
+    }
+  }
+
 }

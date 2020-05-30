@@ -10,6 +10,7 @@ import { Subject } from 'rxjs/internal/Subject';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { StateStoreService } from '../../shared/Services/state-store.service';
 import { PRODUCT_CATEGORY_INDEX } from '../direct.constants';
+import { FBPixelService } from '../../shared/analytics/fb-pixel.service';
 import { MobileModalComponent } from './../../guide-me/mobile-modal/mobile-modal.component';
 import {
   CreateAccountModelComponent
@@ -57,6 +58,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
 
   constructor(
     private directService: DirectService, private directApiService: DirectApiService,
+    private fbPixelService: FBPixelService,
     private router: Router, private translate: TranslateService, public navbarService: NavbarService,
     public modal: NgbModal, private selectedPlansService: SelectedPlansService,
     private authService: AuthenticationService, private route: ActivatedRoute,
@@ -481,6 +483,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
 
   proceedSelection() {
     this.selectedPlansService.setSelectedPlan(this.state.selectedPlans, this.state.enquiryId);
+    this.fbPixelService.track('ProceedEnquiry');
     if (this.authService.isSignedUser()) {
       this.selectedPlansService.updateInsuranceEnquiry().subscribe((data) => {
         if (data.responseMessage.responseCode === 6000) {

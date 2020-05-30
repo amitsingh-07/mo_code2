@@ -30,13 +30,16 @@
     .wise-portfolio-type-details-desc {
         color: $jungle-mist-blue-color;
         font-family: $muli-regular;
+        .bold-text {
+            font-family: $muli-bold;
+            font-style: normal;
+        }
     }
     .wise-saver-desc {
         margin: 20px 0;
         padding: 20px 0;
         background-color: $black-squeeze-grey-color;
         color: $black-color;
-        ;
         border-radius: 6px;
     }
     .wise-saver-value {

@@ -1,27 +1,39 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { EMPTY, throwError } from 'rxjs';
+import { EMPTY, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
+import { ErrorModalComponent } from '../../modal/error-modal/error-modal.component';
 import { Util } from '../../utils/util';
 import { apiConstants } from '../api.constants';
 import { IServerResponse } from '../interfaces/server-response.interface';
 import { appConstants } from './../../../app.constants';
 import { BaseService } from './../base.service';
 import { RequestCache } from './../http-cache.service';
+import { environment } from './../../../../environments/environment';
 
 export const APP_JWT_TOKEN_KEY = 'app-jwt-token';
 const APP_SESSION_ID_KEY = 'app-session-id';
 const APP_ENQUIRY_ID = 'app-enquiry-id';
+const FROM_JOURNEY_HM = 'from_journey';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   apiBaseUrl = '';
+  private get2faAuth = new BehaviorSubject('');
+  get2faAuthEvent = this.get2faAuth.asObservable();
+  private get2faUpdate = new BehaviorSubject(''); 
+  get2faUpdateEvent = this.get2faUpdate.asObservable();
+  private timer2fa: any;
+
   constructor(
     private httpClient: HttpClient, public jwtHelper: JwtHelperService,
-    private cache: RequestCache, private http: BaseService) {
+    private cache: RequestCache, private http: BaseService,
+    private modal: NgbModal
+  ) {
 
     this.apiBaseUrl = Util.getApiBaseUrl();
   }
@@ -31,7 +43,7 @@ export class AuthenticationService {
   }
 
   // tslint:disable-next-line: max-line-length
-  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string, enqId?: number, journeyType?: string , finlitEnabled?: boolean, accessCode?: string) {
+  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string, enqId?: number, journeyType?: string, finlitEnabled?: boolean, accessCode?: string) {
     const authenticateBody = {
       email: (userEmail && this.isUserNameEmail(userEmail)) ? userEmail : '',
       mobile: (userEmail && !this.isUserNameEmail(userEmail)) ? userEmail : '',
@@ -82,7 +94,7 @@ export class AuthenticationService {
     if (sessionStorage) {
       sessionStorage.setItem(appConstants.APP_JWT_TOKEN_KEY, auth.securityToken);
       sessionStorage.setItem(appConstants.APP_SESSION_ID_KEY, auth.sessionId);
-    }
+  }
   }
 
   clearAuthDetails() {
@@ -184,4 +196,159 @@ export class AuthenticationService {
     const isTokenExpired = this.jwtHelper.isTokenExpired(token);
     return !isTokenExpired && isLoggedInToken;
   }
+
+  //2FA Implementation
+  public send2faRequest(handleError?: any) {
+    if (!handleError) {
+      handleError = '';
+    }
+    console.log('Sent 2fa Authentication Request');
+    const send2faOtpUrl = apiConstants.endpoint.send2faOTP;
+
+    return this.httpClient.get<IServerResponse>(`${this.apiBaseUrl}/${send2faOtpUrl}${handleError}`)
+      .pipe(map((response) => {
+        // login successful if there's a jwt token in the response
+        if (response && response.objectList[0] && response.objectList[0].securityToken) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          console.log('send2faRequest response', response);
+          this.saveAuthDetails(response.objectList[0]);
+        }
+        return response;
+      }));
+  }
+  public doValidate2fa(otp: string, handleError?: string) {
+    if (!handleError) {
+      handleError = '?handleError=true';
+    }
+    const validate2faBody = {
+      twoFactorOtpString: otp
+    };
+
+    const authenticateUrl = apiConstants.endpoint.authenticate2faOTP;
+    return this.httpClient.post<IServerResponse>(`${this.apiBaseUrl}/${authenticateUrl}${handleError}`, validate2faBody)
+      .pipe(map((response) => {
+        return response;
+      }));
+  }
+  private doVerify2fa() {
+    const handleError = '?handleError=true';
+    const verifyUrl = apiConstants.endpoint.verify2faOTP;
+    return this.httpClient.get<IServerResponse>(`${this.apiBaseUrl}/${verifyUrl}${handleError}`)
+      .pipe(map((response) => {
+        return response;
+      }));
+  }
+
+  public get2FAToken() {
+    console.log('get2FAToken triggered');
+    this.get2faAuth.next(sessionStorage.getItem(appConstants.APP_2FA_KEY));
+  }
+
+  public set2FAToken(token: any) {
+    let expiryTime = 50;
+    if (environment.expire2faTime) {
+      expiryTime = environment.expire2faTime;
+    }
+    sessionStorage.setItem(appConstants.APP_2FA_KEY, token);
+    this.get2FAToken();
+    this.timer2fa = window.setTimeout(() => {
+      this.clear2FAToken();
+    }, (1000 * expiryTime));
+  }
+
+  public clear2FAToken(tries?: number) {
+    console.log('clear2FAToken Function Triggered NOT DOclear2faToken');
+    let interval = 2;
+    let maxTry = 5;
+    let currentTry = 0;
+    if (environment.expire2faTime) {
+      interval = environment.expire2faPollRate;
+    }
+    if (environment.expire2faMaxCheck) {
+      maxTry = environment.expire2faMaxCheck;
+    }
+    if (tries != null) {
+      currentTry = tries;
+      currentTry++;
+    }
+    console.log('Try no.:', currentTry);
+    if (currentTry >= maxTry) {
+      console.log('maxTry is hit', maxTry);
+      this.doClear2FASession({errorPopup: true, updateData: true});
+    } else {
+      //Start BE Validation check to anticipate BE token check
+      this.doVerify2fa().subscribe((data) => {
+        if (data.responseMessage.responseCode === 6011 || currentTry < maxTry) {
+          clearTimeout(this.timer2fa);
+          console.log('cleared initial timer', this.timer2fa);
+          this.timer2fa = window.setTimeout(() => {
+            console.log('Validating in ' + interval + ' seconds at try no.' + currentTry);
+            this.clear2FAToken(currentTry);
+          }, (1000 * interval));
+        } else {
+          this.doClear2FASession({errorPopup: true, updateData: true});
+        }
+      });
+    }
+  }
+  public doClear2FASession(option?: any) {
+    console.log('do Clear 2FA Session Triggered');
+    console.log('options for doClear2FASession:', option);
+    console.log('previous final timer', this.timer2fa);
+    clearTimeout(this.timer2fa);
+    console.log('clearing final timer',this.timer2fa);
+    sessionStorage.removeItem(appConstants.APP_2FA_KEY);
+    if (option && option.errorPopup) {
+      this.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
+    }
+    if (option && option.updateData) {
+      console.log('update Event pushed');
+      this.get2faUpdate.next(sessionStorage.getItem(appConstants.APP_2FA_KEY));
+    }
+    console.log('2faAuth after session is cleared', sessionStorage.getItem(appConstants.APP_2FA_KEY));
+    this.get2faAuth.next(sessionStorage.getItem(appConstants.APP_2FA_KEY)); // PROBLEM IS HERE
+  }
+
+  public is2FAVerified() {
+    const token = sessionStorage.getItem(appConstants.APP_2FA_KEY);
+    if (!token) {
+      return false;
+    }
+    return true;
+  }
+
+  public getFromJourney(key: string) {
+    if (sessionStorage) {
+      const fromJourneyHm = new Map(JSON.parse(window.sessionStorage.getItem(FROM_JOURNEY_HM)));
+      return fromJourneyHm.get(key);
+    }
+    return null;
+  }
+
+  public setFromJourney(key: string, data: any) {
+    if (sessionStorage) {
+      const oldFromJourneyHm = new Map(JSON.parse(window.sessionStorage.getItem(FROM_JOURNEY_HM)));
+      oldFromJourneyHm.set(key, data);
+      sessionStorage.setItem(FROM_JOURNEY_HM, JSON.stringify(Array.from(oldFromJourneyHm)));
+    }
+  }
+
+  /**
+   * open invalid otp error modal.
+   * @param title - title for error modal.
+   * @param message - error description for error modal time password.
+   * @param showErrorButton - show try again button or not.
+   */
+  openErrorModal(title, message, buttonLabel) {
+    const error = {
+      errorTitle: title,
+      errorMessage: message,
+      errorButtonLabel: buttonLabel
+    };
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'otp-error-modal' });
+    ref.componentInstance.errorTitle = error.errorTitle;
+    ref.componentInstance.errorMessage = error.errorMessage;
+    ref.componentInstance.buttonLabel = error.errorButtonLabel;
+  }
+
 }

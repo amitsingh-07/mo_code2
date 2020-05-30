@@ -18,6 +18,7 @@ import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
+import { IVerifyRequestOTP } from './signup-types';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -320,6 +321,7 @@ export class SignUpService {
     // API Call here
     return this.apiService.getEditProfileList();
   }
+
   constructEditPassword(oldpassword, newpassword) {
     return {
       oldPassword: oldpassword,
@@ -627,4 +629,5 @@ export class SignUpService {
       fundTypeId: this.signUpFormData.fundTypeId
     };
   }
+  
 }
