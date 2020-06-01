@@ -551,25 +551,25 @@ export class ManageInvestmentsService {
   }
 
   getSrsAccountDetails(): Observable<ISrsAccountDetails> {
-      return this.investmentApiService.getSrsAccountDetails().map((data: any) => {
-        if (data && data.objectList && data.objectList.accountNumber &&
-          data.objectList.srsBankOperator && data.objectList.srsBankOperator.name) {
-          console.log(data.objectList.accountNumber);
-          const srsAccountDetails = {
-            // srsAccountNumber: data.objectList.accountNumber,
-            srsAccountNumber: this.srsAccountFormat(data.objectList.accountNumber, data.objectList.srsBankOperator.name),
-            srsOperator: data.objectList.srsBankOperator.name,
-            customerId: data.objectList.customerId
-          };
-          this.setSrsAccountDetails(srsAccountDetails);
-          return srsAccountDetails;
-        } else {
-          return null;
-        }
-      },
-        (err) => {
-          this.investmentAccountService.showGenericErrorModal();
-        });
+    return this.investmentApiService.getSrsAccountDetails().map((data: any) => {
+      if (data && data.objectList && data.objectList.accountNumber &&
+        data.objectList.srsBankOperator && data.objectList.srsBankOperator.name) {
+        console.log(data.objectList.accountNumber);
+        const srsAccountDetails = {
+          // srsAccountNumber: data.objectList.accountNumber,
+          srsAccountNumber: this.srsAccountFormat(data.objectList.accountNumber, data.objectList.srsBankOperator.name),
+          srsOperator: data.objectList.srsBankOperator.name,
+          customerId: data.objectList.customerId
+        };
+        this.setSrsAccountDetails(srsAccountDetails);
+        return srsAccountDetails;
+      } else {
+        return null;
+      }
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   setSrsAccountDetails(srsAccountDetails: ISrsAccountDetails) {
