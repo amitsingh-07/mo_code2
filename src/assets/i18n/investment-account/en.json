@@ -133,6 +133,11 @@
       "modalTitle": "Oops, Unable To Proceed",
       "modalMessage": "Due to compliance issues, MoneyOwl is unable to accept customers who are US Citizens, Permanent Residents or Tax Residents.",
       "ButtonTitle": "Back To Dashboard"
+    },
+    "blockedCountry": {
+      "blockedCountryTitle": "Oops, Unable To Proceed",
+      "blockedCountryMessage": "We are unable to open your investment account as your country of residency is listed under the restricted country list.If information is incorrect, please update your MyInfo and try again. Alternatively, you can choose to open your investment account manually (non-myinfo).",
+      "blockedCountryButtonTitle": "Back To Dashboard"
     }
   },
   "FINANCIAL_DETAILS": {
@@ -348,5 +353,10 @@
       "TITLE": "Almost There!",
       "DESC": "You may upload your verification documents later and your set up will be complete!"
     }
+  },  
+  "BLOCKED_COUNTRY_TOOLTIP": {
+    "TITLE": "We do not accept applications if you reside or have tax residencies in the following countries.",
+    "DESC": "Afghanistan, Albania, Algeria, Angola, Anguilla, Antigua and Barbuda, Argentina, Armenia, Azerbaijan, Bahamas, Bangladesh, Belarus, Belize, Benin, Bolivia, Bosnia-Herzegovina, Botswana, Brazil, Burkina Faso, Burundi, Cameroon, Cambodia, Cape Verde, Central African Republic, Chad, Columbia, Comoros, Congo (Brazzaville), Congo (The Democratic Republic), Cook Islands, Costa Rica, Cote D’Ivoire, Cuba, Curacao, Cyprus, Djibouti, Dominican Republic, Ecuador, Egypt, El Salvador, Equatorial Guinea, Eritrea, Ethiopia, Gabon, Gambia, Ghana, Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti, Honduras, Iceland, India, Iran (Islamic Republic of), Iraq, Jamaica, Kazakhstan, Kenya, Kosovo, Kyrgyzstan, Lao People’s Democratic Republic, Laos, Latvia, Lebanon, Liberia, Lesotho, Libya, Liechtenstein, Macau, Madagascar, Malawi, Maldives, Mali, Marshall Islands, Mauritania, Mexico, Moldova, Mongolia, Monaco, Morocco, Mozambique, Myanmar, Namibia, Nauru, Nepal, Nicaragua, Niger, Nigeria, Niue, North Korea, Pakistan, Palau, Panama, Papua New Guinea, Paraguay, Peru, Philippines, Russian Federation, Saudi Arabia, Senegal, Serbia, Seychelles, Sierra Leone, Somalia, South Sudan, Sri Lanka, St Kitts & Nevis, Sudan, Swaziland, Syria, Tajikistan, Tanzania, The Southern Philippines, The Sulu/Sulawesi, Seas Littoral, The Trans-Sahara, Timor-Leste, Togo, Trinidad and Tobago, Tunisia, Turkey, Turkmenistan, Uganda, Ukraine, United Arab Emirates, Uzbekistan, Vanuatu, Venezuela, Vietnam, West Bank (Palestinian Territory, Occupied), Yemen, Zambia, Zimbabwe.",
+    "GOT_IT": "Got It"
   }
 }
