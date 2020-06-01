@@ -41,6 +41,7 @@ export class AddUpdateSrsComponent implements OnInit {
   fundingMethods: any;
   srsAgentBankList;
   srsDetail;
+  fundTypeId: number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -80,12 +81,41 @@ export class AddUpdateSrsComponent implements OnInit {
     this.getSrsBankOperator();
     this.buildForm();
     this.addorRemoveAccNoValidator();
-    
+
     this.authService.get2faAuthEvent.subscribe((token) => {
       if (!token) {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       }
     });
+    this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
+      this.loaderService.hideLoaderForced();
+      if (data.responseMessage.responseCode >= 6000 && data && data.objectList) {
+        this.fundTypeId = this.getFundTypeId(data.objectList.portfolios);
+      }
+    });
+
+    this.manageInvestmentsService.getSrsAccountDetails().subscribe((data: any) => {
+      if (data) {
+        this.signUpService.setEditProfileSrsDetails(
+          data.srsAccountNumber.conformedValue,
+          { name: data.srsOperator },
+          data.customerId,
+          this.fundTypeId
+        );
+        this.addUpdateSrsFrom.patchValue({
+          srsAccount: data.srsAccountNumber.conformedValue
+        });
+      }
+    });
+
+  }
+
+  getFundTypeId(protfolios) {
+    for (const obj of protfolios) {
+      if (obj['fundingTypeValue'] === 'SRS') {
+        return obj['fundingTypeId'];
+      }
+    }
   }
 
   buildForm() {

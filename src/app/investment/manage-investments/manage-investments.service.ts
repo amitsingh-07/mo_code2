@@ -551,14 +551,12 @@ export class ManageInvestmentsService {
   }
 
   getSrsAccountDetails(): Observable<ISrsAccountDetails> {
-    const srsAccountDetailsSession = this.getSrsFormData();
-    if (srsAccountDetailsSession) {
-      return Observable.of(srsAccountDetailsSession);
-    } else {
       return this.investmentApiService.getSrsAccountDetails().map((data: any) => {
         if (data && data.objectList && data.objectList.accountNumber &&
           data.objectList.srsBankOperator && data.objectList.srsBankOperator.name) {
+          console.log(data.objectList.accountNumber);
           const srsAccountDetails = {
+            // srsAccountNumber: data.objectList.accountNumber,
             srsAccountNumber: this.srsAccountFormat(data.objectList.accountNumber, data.objectList.srsBankOperator.name),
             srsOperator: data.objectList.srsBankOperator.name,
             customerId: data.objectList.customerId
@@ -572,7 +570,6 @@ export class ManageInvestmentsService {
         (err) => {
           this.investmentAccountService.showGenericErrorModal();
         });
-    }
   }
 
   setSrsAccountDetails(srsAccountDetails: ISrsAccountDetails) {

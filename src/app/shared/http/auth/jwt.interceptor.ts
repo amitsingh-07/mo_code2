@@ -89,7 +89,6 @@ export class JwtInterceptor implements HttpInterceptor {
                     } else if (queryMap['handleError'] && queryMap['handleError'] === 'true') {
                         selfHandleError = true;
                     }
-
                     if (selfHandleError) {
                         return event.body;
                     } else {

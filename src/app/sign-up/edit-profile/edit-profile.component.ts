@@ -117,11 +117,11 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.footerService.setFooterVisibility(false);
     this.headerSubscription();
     this.getEditProfileData();
+    this.investmentStatus = this.investmentCommonService.getInvestmentStatus();
     this.showAddBankDetails(this.investmentStatus);
     this.getSrsDetails();
     this.buildForgotPasswordForm();
     this.isMailingAddressSame = true;
-    this.investmentStatus = this.investmentCommonService.getInvestmentStatus();
     // Check if iFast is in maintenance
     this.configService.getConfig().subscribe((config) => {
       if (config.iFastMaintenance && this.configService.checkIFastStatus(config.maintenanceStartTime, config.maintenanceEndTime)) {
@@ -309,6 +309,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     } else {
       AccountHolderName = this.fullName;
     }
+    this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, null, null, null, true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: true }, fragment: 'bank' });
   }

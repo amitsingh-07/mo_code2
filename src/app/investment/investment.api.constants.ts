@@ -39,7 +39,7 @@ export let investmentApiConstants = {
             confirmPortfolio: INVESTMENT_API_BASE_URL + '/customer/portfolios/$customerPortfolioId$/accept?handleError=true',
             savePortfolioName: INVESTMENT_API_BASE_URL + '/customer/saveOrUpdatePortfolioName?handleError=true',
             getPortfolioDetailsWithAuth: INVESTMENT_API_BASE_URL + '/portfolios/recent',
-            gerSrsDetails: ACCOUNT_API_BASE_URL + '/customer/getSrsBankDetails',
+            gerSrsDetails: ACCOUNT_API_BASE_URL + '/customer/getSrsBankDetails?handleError=true',
             saveSrsAccountDetails: ACCOUNT_API_BASE_URL + '/customer/$CUSTOMER_PORTFOLIO_ID$/srsbankDetails',
             getInvestmentNote: INVESTMENT_API_BASE_URL + '/holiday/alert?handleError=true'
         },

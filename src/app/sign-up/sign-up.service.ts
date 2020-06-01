@@ -612,7 +612,6 @@ export class SignUpService {
   }
 
   //srs details
-
   setEditProfileSrsDetails(accountNumber, srsBankOperator, customerId, fundTypeId) {
     this.signUpFormData.srsAccountNumber = accountNumber;
     this.signUpFormData.srsOperatorBank = srsBankOperator;
