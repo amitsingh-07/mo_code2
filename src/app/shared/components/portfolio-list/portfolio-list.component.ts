@@ -167,7 +167,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   }
 
   setBorderClass(portfolio) {
-    if (portfolio['portfolioCategory'] === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER) {
+    if (portfolio['portfolioCategory'].toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER.toUpperCase()) {
       return 'ws-border';
     } else {
       return '';

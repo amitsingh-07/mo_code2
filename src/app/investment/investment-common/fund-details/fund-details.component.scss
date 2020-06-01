@@ -3,17 +3,16 @@
 
 app-fund-details {
   .modal-body-title {
-    text-align: center;
+    text-align: left;
     font-family: $muli-semi-bold;
     font-size: 24px;
     font-weight: 400;
     letter-spacing: -0.3px;
-    justify-content: center;
     color: $teal-color;
-    border-bottom: 1px solid $fund-details-title-brdr;
     margin-bottom: 0;
     margin-right: 0;
     padding-bottom: 10px;
+    padding-left: 20px;
   }
 
   .modal-body.white-bg .close {
@@ -201,6 +200,12 @@ app-fund-details {
   }  
   .wise-saver-title {
     text-align: left!important;
-    margin-left: 20px;
+    margin-left: 5px;
+  }
+  .fund-details-primary-btn {
+    font-family: $muli-bold !important;
+    @include allmobiles {
+      font-size: 16px !important;
+    }
   }
 }
