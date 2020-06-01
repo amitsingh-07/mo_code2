@@ -99,7 +99,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       }
     });
     this.authService.get2faUpdateEvent.subscribe((token) => {
-      if(!token) {
+      if (!token) {
         this.getEditProfileData();
         this.showAddBankDetails(this.investmentStatus);
         this.getSrsDetails();
