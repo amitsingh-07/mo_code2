@@ -40,7 +40,7 @@ export let apiConstants = {
         userProfileInfo: ACCOUNT_API_BASE_URL + '/getCustomerProfileDetails?handleError=true',
         editContactDeatails: ACCOUNT_API_BASE_URL + '/updateAddress',
         editPassword: ACCOUNT_API_BASE_URL + '/editPassword',
-        editProfile: ACCOUNT_API_BASE_URL + '/customer/customerProfile',
+        editProfile: ACCOUNT_API_BASE_URL + '/customer/customerProfile?handleError=true',
         editEmployerAddress: ACCOUNT_API_BASE_URL + '/updateEmployment',
         emailValidityCheck: ACCOUNT_API_BASE_URL + '/emailValidityCheck',
         detailCustomerSummary: ACCOUNT_API_BASE_URL + '/getDetailedCustomerSummary',
