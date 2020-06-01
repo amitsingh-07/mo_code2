@@ -96,6 +96,19 @@ export class AddUpdateBankComponent implements OnInit {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       }
     });
+
+    this.signUpService.getEditProfileInfo().subscribe((data) => {
+      if (data.objectList.customerBankDetail) {
+        const bankDetails = data.objectList.customerBankDetail[0];
+        this.investmentAccountService.setEditProfileBankDetail(bankDetails.accountName, bankDetails.bank, bankDetails.accountNumber, bankDetails.id, false);
+        this.bankForm.patchValue({
+          accountHolderName: bankDetails.accountName,
+          bank: bankDetails.bank,
+          accountNo: bankDetails.accountNumber
+        });
+      }
+    });
+
   }
   buildBankForm() {
     this.formValues = this.investmentAccountService.getBankInfo();
