@@ -149,7 +149,7 @@ export class AddUpdateBankComponent implements OnInit {
           title: this.translate.instant('GENERAL_LOADER.TITLE'),
           desc: this.translate.instant('GENERAL_LOADER.DESC')
         });
-        this.manageInvestmentsService.saveNewBank(form.getRawValue()).subscribe((response) => {
+        this.manageInvestmentsService.saveProfileNewBank(form.getRawValue()).subscribe((response) => {
           this.loaderService.hideLoader();
           if (response.responseMessage.responseCode < 6000) {
             if (

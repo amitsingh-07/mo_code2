@@ -345,7 +345,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   getSrsDetails() {
     this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
       if (data) {
-        console.log('srsData', data);
         this.srsDetails = data;
         this.getInvestmentOverview();
       }

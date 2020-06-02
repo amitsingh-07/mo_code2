@@ -91,9 +91,7 @@ export class VerifyMobileComponent implements OnInit {
         number: this.signUpService.getUserMobileNo()
       };
     } else {
-      console.log('Get Mobile Number');
       this.mobileNumber = this.signUpService.getMobileNumber();
-      console.log('Mobile Number: ', this.mobileNumber);
     }
 
 

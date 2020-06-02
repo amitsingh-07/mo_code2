@@ -339,7 +339,7 @@ export class SignUpService {
     const data = this.constructUpdateBankPayload(bank, fullName, accountNum, id);
     return this.apiService.saveNewBank(data);
   }
-  updateBankInfoProfile(bank, fullName, accountNum, id) { 
+  updateBankInfoProfile(bank, fullName, accountNum, id) {
     const data = this.constructUpdateBankPayload(bank, fullName, accountNum, id);
     return this.apiService.saveNewBankProfile(data);
   }

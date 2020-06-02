@@ -278,6 +278,11 @@ export class ManageInvestmentsService {
     return this.apiService.saveNewBank(payload);
   }
 
+  saveProfileNewBank(data) {
+    const payload = this.constructSaveNewBankRequest(data);
+    return this.apiService.saveNewBankProfile(payload);
+  }
+
   constructSaveNewBankRequest(data) {
     const request = {};
     request['bank'] = data.bank;
@@ -554,7 +559,6 @@ export class ManageInvestmentsService {
     return this.investmentApiService.getSrsAccountDetails().map((data: any) => {
       if (data && data.objectList && data.objectList.accountNumber &&
         data.objectList.srsBankOperator && data.objectList.srsBankOperator.name) {
-        console.log(data.objectList.accountNumber);
         const srsAccountDetails = {
           // srsAccountNumber: data.objectList.accountNumber,
           srsAccountNumber: this.srsAccountFormat(data.objectList.accountNumber, data.objectList.srsBankOperator.name),
@@ -576,7 +580,6 @@ export class ManageInvestmentsService {
     return this.investmentApiService.getProfileSrsAccountDetails().map((data: any) => {
       if (data && data.objectList && data.objectList.accountNumber &&
         data.objectList.srsBankOperator && data.objectList.srsBankOperator.name) {
-        console.log(data.objectList.accountNumber);
         const srsAccountDetails = {
           // srsAccountNumber: data.objectList.accountNumber,
           srsAccountNumber: this.srsAccountFormat(data.objectList.accountNumber, data.objectList.srsBankOperator.name),
