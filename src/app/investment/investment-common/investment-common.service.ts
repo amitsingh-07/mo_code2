@@ -283,13 +283,21 @@ export class InvestmentCommonService {
       }
     );
   }
-  setPortfolioType(portfolioType){
+  setPortfolioType(portfolioType) {
     this.investmentCommonFormData.portfolioType = portfolioType;
     this.commit();
   }
-  getPortfolioType(){
+  getPortfolioType() {
     return {
       portfolioType: this.investmentCommonFormData.portfolioType
     };
+  }
+  setSelectedPortfolioType(selectedPortfolioType) {
+    this.investmentCommonFormData.selectedPortfolioType = selectedPortfolioType;
+    this.commit();
+  }
+  getSelectedPortfolioType() {
+   return this.investmentCommonFormData.selectedPortfolioType
+    
   }
 }

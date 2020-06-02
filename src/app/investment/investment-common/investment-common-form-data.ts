@@ -13,6 +13,7 @@ export class InvestmentCommonFormData {
     srsOperatorBank: any;
     srsAccountNumber: string;
     portfolioType:any;
+    selectedPortfolioType:string;
 }
 
 export interface IAccountCreationActions {
