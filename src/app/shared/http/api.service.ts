@@ -576,6 +576,13 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  
+  saveNewBankProfile(data) {
+    return this.http.post(investmentApiConstants.endpoint.investment.addProfileNewBank, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 
   // Get customer pop up status
   getPopupStatus(payload) {

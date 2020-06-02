@@ -1953,6 +1953,9 @@ export class InvestmentAccountService {
   getSrsAccountDetails() {
     return this.investmentApiService.getSrsAccountDetails();
   }
+  getProfileSrsAccountDetails() {
+    return this.investmentApiService.getProfileSrsAccountDetails();
+  }
 
   activateReassess() {
     this.investmentAccountFormData.isReassessActive = true;

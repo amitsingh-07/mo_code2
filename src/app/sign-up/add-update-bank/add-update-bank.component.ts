@@ -182,7 +182,7 @@ export class AddUpdateBankComponent implements OnInit {
           title: this.translate.instant('GENERAL_LOADER.TITLE'),
           desc: this.translate.instant('GENERAL_LOADER.DESC')
         });
-        this.signUpService.updateBankInfo(form.value.bank,
+        this.signUpService.updateBankInfoProfile(form.value.bank,
           form.value.accountHolderName, accountNum, this.updateId).subscribe((data) => {
             this.loaderService.hideLoader();
             // tslint:disable-next-line:triple-equals

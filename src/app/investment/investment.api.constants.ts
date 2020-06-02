@@ -41,12 +41,15 @@ export let investmentApiConstants = {
             getPortfolioDetailsWithAuth: INVESTMENT_API_BASE_URL + '/portfolios/recent',
             gerSrsDetails: ACCOUNT_API_BASE_URL + '/customer/getSrsBankDetails?handleError=true',
             saveSrsAccountDetails: ACCOUNT_API_BASE_URL + '/customer/$CUSTOMER_PORTFOLIO_ID$/srsbankDetails',
+            getProfileSrsDetails: ACCOUNT_API_BASE_URL + '/customer/profile/getSrsBankDetails?handleError=true',
+            saveProfileSrsAccountDetails: ACCOUNT_API_BASE_URL + '/customer/profile/$CUSTOMER_PORTFOLIO_ID$/srsbankDetails',
             getInvestmentNote: INVESTMENT_API_BASE_URL + '/holiday/alert?handleError=true'
         },
         investment: {
             getUserAddress: ACCOUNT_API_BASE_URL + '/customer/address',
             getUserBankList: ACCOUNT_API_BASE_URL + '/customer/banks',
-            addNewBank: ACCOUNT_API_BASE_URL + '/customer/bank?handleError=true',
+            addProfileNewBank: ACCOUNT_API_BASE_URL + '/customer/bank?handleError=true',
+            addNewBank: INVESTMENT_API_BASE_URL + '/customer/bank?handleError=true',
             getTransactions: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/transactions/search',
             getStatement: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/statements/',
             monthlyInvestmentInfo: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/CustomerInvestmentObjective',

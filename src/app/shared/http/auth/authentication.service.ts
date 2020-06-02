@@ -248,6 +248,7 @@ export class AuthenticationService {
     if (environment.expire2faTime) {
       expiryTime = environment.expire2faTime;
     }
+    console.log('expiry time:', expiryTime);
     sessionStorage.setItem(appConstants.APP_2FA_KEY, token);
     this.get2FAToken();
     this.timer2fa = window.setTimeout(() => {
