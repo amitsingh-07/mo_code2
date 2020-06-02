@@ -149,7 +149,7 @@ export class AddUpdateBankComponent implements OnInit {
           title: this.translate.instant('GENERAL_LOADER.TITLE'),
           desc: this.translate.instant('GENERAL_LOADER.DESC')
         });
-        this.manageInvestmentsService.saveNewBank(form.getRawValue()).subscribe((response) => {
+        this.manageInvestmentsService.saveProfileNewBank(form.getRawValue()).subscribe((response) => {
           this.loaderService.hideLoader();
           if (response.responseMessage.responseCode < 6000) {
             if (
@@ -182,7 +182,7 @@ export class AddUpdateBankComponent implements OnInit {
           title: this.translate.instant('GENERAL_LOADER.TITLE'),
           desc: this.translate.instant('GENERAL_LOADER.DESC')
         });
-        this.signUpService.updateBankInfo(form.value.bank,
+        this.signUpService.updateBankInfoProfile(form.value.bank,
           form.value.accountHolderName, accountNum, this.updateId).subscribe((data) => {
             this.loaderService.hideLoader();
             // tslint:disable-next-line:triple-equals

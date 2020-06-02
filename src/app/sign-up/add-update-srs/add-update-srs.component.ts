@@ -94,7 +94,7 @@ export class AddUpdateSrsComponent implements OnInit {
       }
     });
 
-    this.manageInvestmentsService.getSrsAccountDetails().subscribe((data: any) => {
+    this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data: any) => {
       if (data) {
         this.signUpService.setEditProfileSrsDetails(
           data.srsAccountNumber.conformedValue,
@@ -245,7 +245,7 @@ export class AddUpdateSrsComponent implements OnInit {
         accountNumber: formValue.srsAccount ? formValue.srsAccount.replace(/[-]/g, '') : null,
         operatorId: opertorId ? opertorId : null
       };
-      this.investmentCommonService.saveSrsAccountDetails(reqParams, this.srsDetail.customerId).subscribe((data) => {
+      this.investmentCommonService.saveProfileSrsAccountDetails(reqParams, this.srsDetail.customerId).subscribe((data) => {
         this.manageInvestmentsService.setSrsAccountDetails(null);
         this.manageInvestmentsService.setSrsSuccessFlag(true);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
