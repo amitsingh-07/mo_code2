@@ -363,9 +363,20 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  getProfileSrsAccountDetails() {
+    return this.http.get(investmentApiConstants.endpoint.investmentAccount.getProfileSrsDetails);
+  }
   saveSrsAccountDetails(data, customerPortfolioId) {
     return this.http.post(
       investmentApiConstants.endpoint.investmentAccount.saveSrsAccountDetails.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId), data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  saveProfileSrsAccountDetails(data, customerPortfolioId) {
+    return this.http.post(
+      // tslint:disable-next-line: max-line-length
+      investmentApiConstants.endpoint.investmentAccount.saveProfileSrsAccountDetails.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId), data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
