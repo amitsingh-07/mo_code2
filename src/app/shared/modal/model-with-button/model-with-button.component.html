@@ -8,7 +8,7 @@
 </div>
 <div class="modal-body white-bg">
   <div class="modal-body-title"> 
-    <div id="errorModeltitle" [innerHTML]="errorTitle"></div>
+    <div id="errorModeltitle" [ngClass]="{'title-bd-style': titleStyle}" [innerHTML]="errorTitle"></div>
     <span *ngIf="warningIcon" class="warning-icon"><img id="warning_icon" src="assets/images/investment-account/topup-alert.svg"
     alt="" /></span>
     <span *ngIf="lockIcon" class="lock"><img src="assets/images/lock.svg" ></span>

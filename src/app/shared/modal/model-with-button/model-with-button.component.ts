@@ -36,6 +36,7 @@ export class ModelWithButtonComponent implements OnInit {
   @Output() secondaryAction = new EventEmitter<any>();
   @Output() yesClickAction = new EventEmitter<any>();
   @Output() noClickAction = new EventEmitter<any>();
+  @Input() titleStyle = false;
 
   constructor(
     public activeModal: NgbActiveModal,
