@@ -12,9 +12,7 @@ export function onAppInit(injector: Injector): () => Promise<any> {
           if (i.path === '') {
             i.redirectTo = 'accounts/login';
           }
-          return i.path !== 'home'  && i.path !== 'learn' && i.path !== 'terms-of-use'
-          && i.path !== 'privacy-policy' && i.path !== 'disclosures'
-          && i.path !== 'fair-dealing' && i.path !== 'security-policy';
+          return i.path !== 'home'  && i.path !== 'learn';
         });
         router.resetConfig(userPermittedRoutes);
       }
