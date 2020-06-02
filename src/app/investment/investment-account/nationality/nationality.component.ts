@@ -153,7 +153,6 @@ export class NationalityComponent implements OnInit {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = modalTitle;
     ref.componentInstance.errorMessage = modalMessage;
-    ref.componentInstance.titleStyle = true;
     ref.componentInstance.primaryActionLabel = this.blockedCountryModal.blockedCountryButtonTitle;
     ref.componentInstance.primaryAction.subscribe(() => {
       this.investmentAccountService.clearBlockedCountry();
