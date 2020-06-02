@@ -136,7 +136,7 @@
     },
     "blockedCountry": {
       "blockedCountryTitle": "Oops, Unable To Proceed",
-      "blockedCountryMessage": "We are unable to open your investment account as your country of residency is listed under the restricted country list.If information is incorrect, please update your MyInfo and try again. Alternatively, you can choose to open your investment account manually (non-myinfo).",
+      "blockedCountryMessage": "We are unable to open your investment account as your country of residency is listed under the restricted country list. If information is incorrect, please update your MyInfo and try again. Alternatively, you can choose to open your investment account manually (non-myinfo).",
       "blockedCountryButtonTitle": "Back To Dashboard"
     }
   },
