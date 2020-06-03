@@ -76,12 +76,6 @@ export class NationalityComponent implements OnInit {
         this.selectNationalityForm.controls.nationality.setValue(nationalityObj);
       }
       this.buildAdditionalControls();
-      if (this.investmentAccountService.checkCountryBlockList(this.countryList)) {
-        this.showBlockedCountryErrorMessage(
-          this.blockedCountryModal.blockedCountryTitle,
-          this.blockedCountryModal.blockedCountryMessage
-        );
-      }
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
@@ -173,7 +167,7 @@ export class NationalityComponent implements OnInit {
           this.blockedNationalityModal.blockedNationalityTitle,
           this.blockedNationalityModal.blockedNationalityMessage
         );
-      } else if (this.investmentAccountService.checkCountryBlockList(this.countryList)) {
+      } else if (this.investmentAccountService.checkCountryBlockList()) {
         this.showBlockedCountryErrorMessage(
           this.blockedCountryModal.blockedCountryTitle,
           this.blockedCountryModal.blockedCountryMessage

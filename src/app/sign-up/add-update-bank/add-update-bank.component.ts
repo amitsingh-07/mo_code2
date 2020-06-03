@@ -21,6 +21,7 @@ import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
+import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-add-update-bank',
@@ -45,6 +46,7 @@ export class AddUpdateBankComponent implements OnInit {
     private route: ActivatedRoute,
     public headerService: HeaderService,
     public navbarService: NavbarService,
+    public authService: AuthenticationService,
     private signUpService: SignUpService,
     private modal: NgbModal,
     public investmentAccountService: InvestmentAccountService,
@@ -88,6 +90,25 @@ export class AddUpdateBankComponent implements OnInit {
       this.signUpService.validateBankAccNo]);
       this.bankForm.get('accountNo').updateValueAndValidity();
     });
+
+    this.authService.get2faAuthEvent.subscribe((token) => {
+      if (!token) {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+      }
+    });
+
+    this.signUpService.getEditProfileInfo().subscribe((data) => {
+      if (data.objectList.customerBankDetail) {
+        const bankDetails = data.objectList.customerBankDetail[0];
+        this.investmentAccountService.setEditProfileBankDetail(bankDetails.accountName, bankDetails.bank, bankDetails.accountNumber, bankDetails.id, false);
+        this.bankForm.patchValue({
+          accountHolderName: bankDetails.accountName,
+          bank: bankDetails.bank,
+          accountNo: bankDetails.accountNumber
+        });
+      }
+    });
+
   }
   buildBankForm() {
     this.formValues = this.investmentAccountService.getBankInfo();
@@ -128,7 +149,7 @@ export class AddUpdateBankComponent implements OnInit {
           title: this.translate.instant('GENERAL_LOADER.TITLE'),
           desc: this.translate.instant('GENERAL_LOADER.DESC')
         });
-        this.manageInvestmentsService.saveNewBank(form.getRawValue()).subscribe((response) => {
+        this.manageInvestmentsService.saveProfileNewBank(form.getRawValue()).subscribe((response) => {
           this.loaderService.hideLoader();
           if (response.responseMessage.responseCode < 6000) {
             if (
@@ -161,7 +182,7 @@ export class AddUpdateBankComponent implements OnInit {
           title: this.translate.instant('GENERAL_LOADER.TITLE'),
           desc: this.translate.instant('GENERAL_LOADER.DESC')
         });
-        this.signUpService.updateBankInfo(form.value.bank,
+        this.signUpService.updateBankInfoProfile(form.value.bank,
           form.value.accountHolderName, accountNum, this.updateId).subscribe((data) => {
             this.loaderService.hideLoader();
             // tslint:disable-next-line:triple-equals

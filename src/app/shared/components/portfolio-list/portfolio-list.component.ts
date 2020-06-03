@@ -158,12 +158,20 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   // Filter by category and calculate the new values
   filterAndCalculate(category) {
     this.filteredNotInvestedList = this.notInvestedList.filter((portfolio) => {
-      return portfolio['portfolioCategory'] === category;
+      return portfolio['portfolioCategory'].toUpperCase() === category.toUpperCase();
     });
     this.filteredInvestedList = this.investedList.filter((portfolio) => {
-      return portfolio['portfolioCategory'] === category;
+      return portfolio['portfolioCategory'].toUpperCase() === category.toUpperCase();
     });
     this.totalPortfoliosLength = this.filteredNotInvestedList.length + this.filteredInvestedList.length;
+  }
+
+  setBorderClass(portfolio) {
+    if (portfolio['portfolioCategory'].toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER.toUpperCase()) {
+      return 'ws-border';
+    } else {
+      return '';
+    }
   }
 
 }
