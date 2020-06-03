@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ConfigService, IConfig } from '../../config/config.service';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
@@ -45,6 +46,7 @@ export class UpdateUserIdComponent implements OnInit {
     public footerService: FooterService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
+    private authService: AuthenticationService,
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService,
@@ -81,6 +83,23 @@ export class UpdateUserIdComponent implements OnInit {
     this.buildUpdateAccountForm();
     this.getCountryCode();
     this.footerService.setFooterVisibility(false);
+
+    this.authService.get2faAuthEvent.subscribe((token) => {
+      if (!token) {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+      }
+    });
+
+    this.signUpService.getEditProfileInfo().subscribe((data) => {
+      const personalData = data.objectList.personalInformation;
+      if (personalData) {
+        this.updateUserIdForm.patchValue({
+          countryCode: personalData.countryCode,
+          mobileNumber: personalData.mobileNumber,
+          email: personalData.email
+        });
+      }
+    });
   }
 
   /**
@@ -158,9 +177,9 @@ export class UpdateUserIdComponent implements OnInit {
     let formValues = this.updateUserIdForm.value;
     if (this.distribution) {
       const newValues = {
-        'countryCode' : this.updateUserIdForm.controls['countryCode'].value,
-        'mobileNumber' : this.updateUserIdForm.controls['mobileNumber'].value,
-        'email' : this.updateUserIdForm.controls['email'].value
+        'countryCode': this.updateUserIdForm.controls['countryCode'].value,
+        'mobileNumber': this.updateUserIdForm.controls['mobileNumber'].value,
+        'email': this.updateUserIdForm.controls['email'].value
       };
       formValues = newValues;
     }
@@ -190,7 +209,7 @@ export class UpdateUserIdComponent implements OnInit {
   private validateContacts() {
     return (group: FormGroup) => {
       if (this.OldMobileNumber === group.controls['mobileNumber'].value
-      && this.OldEmail === group.controls['email'].value) {
+        && this.OldEmail === group.controls['email'].value) {
         return group.controls['mobileNumber'].setErrors({ notChanged: true });
       } else {
         return group.controls['mobileNumber'].setErrors(null);

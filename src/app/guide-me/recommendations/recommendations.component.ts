@@ -16,6 +16,7 @@ import { SlickComponent } from 'ngx-slick';
 import { Subscription } from 'rxjs';
 
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '../../../../node_modules/@angular/router';
+import { FBPixelService } from '../../shared/analytics/fb-pixel.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
@@ -49,13 +50,14 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
 
   constructor(
     private carouselConfig: NgbCarouselConfig, private elRef: ElementRef,
+    private fbPixelService: FBPixelService,
     private translate: TranslateService, public navbarService: NavbarService,
     private guideMeApiService: GuideMeApiService, private calculateService: GuideMeCalculateService,
     private currency: CurrencyPipe, private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService, public modal: NgbModal, private router: Router,
     private stateStoreService: StateStoreService, private route: ActivatedRoute,
     private location: Location, private authService: AuthenticationService) {
-
+  
     /* ************** STATE HANDLING - START ***************** */
     this.componentName = this.route.routeConfig.component.name;
 
@@ -284,6 +286,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
 
   proceed() {
     this.selectedPlansService.setSelectedPlan(this.state.selectedPlans, this.state.enquiryId);
+    this.fbPixelService.track('ProceedEnquiry');
     if (this.authService.isSignedUser()) {
       this.selectedPlansService.updateInsuranceEnquiry().subscribe((data) => {
         if (data.responseMessage.responseCode === 6000) {

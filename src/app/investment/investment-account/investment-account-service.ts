@@ -743,7 +743,8 @@ export class InvestmentAccountService {
       id: countryDetails.id,
       countryCode: countryDetails.countryCode,
       name: countryDetails.country,
-      phoneCode: countryDetails.phoneCode
+      phoneCode: countryDetails.phoneCode,
+      countryBlocked: countryDetails.countryBlocked
     };
   }
 
@@ -1953,6 +1954,9 @@ export class InvestmentAccountService {
   getSrsAccountDetails() {
     return this.investmentApiService.getSrsAccountDetails();
   }
+  getProfileSrsAccountDetails() {
+    return this.investmentApiService.getProfileSrsAccountDetails();
+  }
 
   activateReassess() {
     this.investmentAccountFormData.isReassessActive = true;
@@ -1984,13 +1988,15 @@ export class InvestmentAccountService {
     }
     return blockFlag;
   }
-  checkCountryBlockList(countryList) {
+  checkCountryBlockList() {
     let blockedCountry = false;
-    if (this.investmentAccountFormData.country && this.investmentAccountFormData.country.countryCode) {
-      blockedCountry = this.getCountryByCountryCode(this.investmentAccountFormData.country.countryCode, countryList);
+    if (this.investmentAccountFormData.country && this.investmentAccountFormData.country.countryCode
+      && this.investmentAccountFormData.country.countryBlocked) {
+      blockedCountry = true;
     }
-    if (!blockedCountry && this.investmentAccountFormData.mailCountry && this.investmentAccountFormData.mailCountry.countryCode) {
-      blockedCountry = this.getCountryByCountryCode(this.investmentAccountFormData.mailCountry.countryCode, countryList);
+    if (!blockedCountry && this.investmentAccountFormData.mailCountry && this.investmentAccountFormData.mailCountry.countryCode
+       && this.investmentAccountFormData.mailCountry.countryBlocked) {
+      blockedCountry = true;
     }
     return blockedCountry;
   }

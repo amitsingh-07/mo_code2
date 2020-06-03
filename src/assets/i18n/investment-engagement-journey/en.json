@@ -108,7 +108,7 @@
         "TIME_HORIZON_ALERT": "Our final recommendation will depend on your willingness to take risk and other factors.",
         "MODAL": {
             "TITLE": "Less than 4 years of investment period",
-            "MESSAGE": "It is not recommended to invest with only {{period}} years of investment time horizon.<br> <br>You may want to consider our <strong>WiseSaver Portfolio</strong> instead.",
+            "MESSAGE": "It is not recommended to invest with only {{period}} years of investment time horizon.<br> <br>You may want to consider our <span class=\"bold-text\">WiseSaver Portfolio</span> instead.",
             "BTN_LBL1": "Review Investment Period",
             "BTN_LBL2": "Go to WiseSaver Portfolio"
         }
