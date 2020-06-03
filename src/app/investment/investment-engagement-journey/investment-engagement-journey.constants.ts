@@ -13,7 +13,7 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
     special_question_order: 4
   },
   SELECT_POROFOLIO_TYPE :{
-    INVESTPORTFOLIO:'investPortfolio',
-    WISESAVERPORTFOLIO:'wiseSaverPortfolio'
+    INVEST_PORTFOLIO:'investPortfolio',
+    WISESAVER_PORTFOLIO:'wiseSaverPortfolio'
   }
 };

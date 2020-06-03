@@ -28,6 +28,8 @@ import { ManageInvestmentsService } from '../../manage-investments/manage-invest
 import { IInvestmentCriteria } from '../investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment-engagement-journey/investment-engagement-journey.constants';
+import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -89,11 +91,11 @@ export class ConfirmPortfolioComponent implements OnInit {
           this.authService.saveEnquiryId(data.objectList.enquiryId);
         }
         this.portfolio = data.objectList;
-        if (this.portfolio.portfolioType === 'Investment') {
-          this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: 'investPortfolio' });
+        if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT) {
+          this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO });
           this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
         } else {
-          this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: 'wiseSaverPortfolio' });
+          this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO });
         }
         const fundingParams = this.constructFundingParams(data.objectList);
         this.manageInvestmentsService.setFundingDetails(fundingParams);
