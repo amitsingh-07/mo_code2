@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { environment } from './../environments/environment';
-import { EXT_ROUTES } from './external-routes.constants';
+import { EXT_ROUTE_CONST, EXT_ROUTES } from './external-routes.constants';
 
 @Injectable()
 export class ExternalRouteGuard implements CanActivate {
-  constructor(private router: Router) { }
+  constructor() { }
 
   // Guard to route old module in app to external url like WordPress homepage
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
@@ -17,11 +17,21 @@ export class ExternalRouteGuard implements CanActivate {
       if (environment.hideHomepage) {
         window.location.href = searchResult[0].EXTERNAL_URL;
       } else {
-        window.location.assign(searchResult[0].UAT_URL);
+        window.location.assign(EXT_ROUTE_CONST.UAT_DOMAIN + searchResult[0].EXTERNAL_URL);
       }
       return false;
     } else {
-      return true;
+      // Route to promotions page if theres is promotions in the url else not found page
+      if (state.url.startsWith(EXT_ROUTE_CONST.PROMOTION_LINK)) {
+        if (!environment.hideHomepage) {
+          window.location.href = EXT_ROUTE_CONST.PROMOTION_LINK;
+        } else {
+          window.location.assign(EXT_ROUTE_CONST.UAT_DOMAIN + EXT_ROUTE_CONST.PROMOTION_LINK);
+        }
+        return false;
+      } else {
+        return true;
+      }
     }
   }
 }

@@ -9,7 +9,6 @@ import { ComprehensiveEnableGuard } from './comprehensive/comprehensive-enable-g
 import {
   EmailEnquirySuccessComponent
 } from './email-enquiry-success/email-enquiry-success.component';
-import { FAQComponent } from './faq/faq.component';
 import { HomeComponent } from './home/home.component';
 import { InvestmentChildEnableGuard } from './investment/investment-engagement-journey/investment-child-enable-guard';
 import { InvestmentEnableGuard } from './investment/investment-engagement-journey/investment-enable-guard';
@@ -38,7 +37,6 @@ const routes: Routes = [
       { path: 'guideme', loadChildren: './guide-me/guide-me.module#GuideMeModule' },
       { path: 'accounts', loadChildren: './sign-up/sign-up.module#SignUpModule' },
       { path: 'myinfo', component: CallBackComponent },
-      { path: 'faq', component: FAQComponent },
       { path: 'investment-maintenance', component: InvestmentMaintenanceComponent, canActivate: [InvestmentMaintenanceGuard]},
       {
         path: APP_ROUTES.COMPREHENSIVE, loadChildren: './comprehensive/comprehensive.module#ComprehensiveModule',
