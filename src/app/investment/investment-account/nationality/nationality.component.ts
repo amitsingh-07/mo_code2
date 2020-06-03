@@ -76,12 +76,6 @@ export class NationalityComponent implements OnInit {
         this.selectNationalityForm.controls.nationality.setValue(nationalityObj);
       }
       this.buildAdditionalControls();
-      if (this.investmentAccountService.checkCountryBlockList()) {
-        this.showBlockedCountryErrorMessage(
-          this.blockedCountryModal.blockedCountryTitle,
-          this.blockedCountryModal.blockedCountryMessage
-        );
-      }
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
