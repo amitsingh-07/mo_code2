@@ -376,20 +376,20 @@
     ],
     "MONTHLY_CASH_NOTE": [
       "Please fund by the 10th of the month for the recurring buy request.",
-      "This request will only be processed once your cash account has sufficient funds. ",
+      "This request will only be processed once your cash account has sufficient funds.",
       "If there are insufficient monies in your cash account by the 10th of the month, the monthly buy request will be processed on the 15th of the following month.",
       "You may submit a new monthly buy request before the 15th to overwrite this.",
       "Once this request is being processed, it cannot be changed or deleted."
     ],
     "SUFFICIENT_ONETIME_CASH_NOTE": [
-      "This request will only be processed once your cash account has sufficient funds. ",
+      "This request will only be processed once your cash account has sufficient funds.",
       "Once this request is being processed, it cannot be changed or deleted. "
     ],
     "INSUFFICIENT_ONETIME_CASH_NOTE": [
-      "This request will only be processed once your cash account has sufficient funds. ",
+      "This request will only be processed once your cash account has sufficient funds.",
       "This request will expire if you do not fund within 7 working days.",
       "You may submit a new one-time buy request to overwrite this.",
-      "Once this request is being processed, it cannot be changed or deleted. "
+      "Once this request is being processed, it cannot be changed or deleted."
     ],
 
     "SUBMIT_REQUEST": "Submit Request"
