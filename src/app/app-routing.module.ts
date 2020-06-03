@@ -18,8 +18,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ExternalRouteGuard } from './external-route-guard';
 import { InvestmentMaintenanceGuard } from './investment-maintenance/investment-maintenance-guard';
 import { InvestmentMaintenanceComponent } from './investment-maintenance/investment-maintenance.component';
-import { PromotionChildEnableGuard } from './promotion/promotion-child-enable-guard';
-import { PromotionEnableGuard } from './promotion/promotion-enable-guard';
 import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
@@ -76,11 +74,6 @@ const routes: Routes = [
         loadChildren: './will-writing/will-writing.module#WillWritingModule',
         canActivate: [WillWritingEnableGuard],
         canActivateChild: [WillWritingChildEnableGuard]
-      },
-      {
-        path: 'promotions', loadChildren: './promotion/promotion.module#PromotionModule',
-        canActivate: [PromotionEnableGuard],
-        canActivateChild: [PromotionChildEnableGuard]
       },
       {
         path: 'retirement-planning',

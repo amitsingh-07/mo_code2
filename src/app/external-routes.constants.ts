@@ -38,5 +38,10 @@ export const EXT_ROUTES = {
         IN_APP_ROUTE: '/fair-dealing',
         EXTERNAL_URL: '/fair-dealing/',
         UAT_URL: 'https://newmouat1.ntucbfa.com/fair-dealing/'
+    },
+    {
+        IN_APP_ROUTE: '/promotions',
+        EXTERNAL_URL: '/promotions/',
+        UAT_URL: 'https://newmouat1.ntucbfa.com/promotions/'
     }]
 };
