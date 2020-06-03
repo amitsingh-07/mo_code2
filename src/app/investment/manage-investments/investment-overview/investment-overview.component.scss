@@ -442,7 +442,7 @@ app-investment-overview {
             text-align: center;
             color: $teal-color !important;
             font-weight: 600;
-            background-color: $portfolio-card-bg-color !important;
+            background-color: $white-color;
             box-shadow: none !important;
             &:hover,
             &:active,
@@ -499,7 +499,7 @@ app-investment-overview {
             max-width: 373px;
             margin-top: -30px;
             @include allmobiles {
-                margin-top: -32px;
+                margin-top: -15px;
                 max-width: 100%;
             }
             z-index: 1;
