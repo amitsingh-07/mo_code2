@@ -62,7 +62,6 @@ export class NationalityComponent implements OnInit {
     this.selectNationalityForm = new FormGroup({
       nationality: new FormControl(this.selectNationalityFormValues.nationality, Validators.required)
     });
-    this.getNationalityCountryList();
   }
 
   getNationalityCountryList() {
