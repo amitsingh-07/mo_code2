@@ -25,6 +25,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-add-update-srs',
@@ -40,14 +41,17 @@ export class AddUpdateSrsComponent implements OnInit {
   fundingMethods: any;
   srsAgentBankList;
   srsDetail;
+  fundTypeId: number;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private router: Router,
     private footerService: FooterService,
     private route: ActivatedRoute,
     public headerService: HeaderService,
     public navbarService: NavbarService,
     private signUpService: SignUpService,
+    private authService: AuthenticationService,
     private modal: NgbModal,
     public investmentAccountService: InvestmentAccountService,
     public manageInvestmentsService: ManageInvestmentsService,
@@ -77,6 +81,41 @@ export class AddUpdateSrsComponent implements OnInit {
     this.getSrsBankOperator();
     this.buildForm();
     this.addorRemoveAccNoValidator();
+
+    this.authService.get2faAuthEvent.subscribe((token) => {
+      if (!token) {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+      }
+    });
+    this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
+      this.loaderService.hideLoaderForced();
+      if (data.responseMessage.responseCode >= 6000 && data && data.objectList) {
+        this.fundTypeId = this.getFundTypeId(data.objectList.portfolios);
+      }
+    });
+
+    this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data: any) => {
+      if (data) {
+        this.signUpService.setEditProfileSrsDetails(
+          data.srsAccountNumber.conformedValue,
+          { name: data.srsOperator },
+          data.customerId,
+          this.fundTypeId
+        );
+        this.addUpdateSrsFrom.patchValue({
+          srsAccount: data.srsAccountNumber.conformedValue
+        });
+      }
+    });
+
+  }
+
+  getFundTypeId(protfolios) {
+    for (const obj of protfolios) {
+      if (obj['fundingTypeValue'] === 'SRS') {
+        return obj['fundingTypeId'];
+      }
+    }
   }
 
   buildForm() {
@@ -206,7 +245,7 @@ export class AddUpdateSrsComponent implements OnInit {
         accountNumber: formValue.srsAccount ? formValue.srsAccount.replace(/[-]/g, '') : null,
         operatorId: opertorId ? opertorId : null
       };
-      this.investmentCommonService.saveSrsAccountDetails(reqParams, this.srsDetail.customerId).subscribe((data) => {
+      this.investmentCommonService.saveProfileSrsAccountDetails(reqParams, this.srsDetail.customerId).subscribe((data) => {
         this.manageInvestmentsService.setSrsAccountDetails(null);
         this.manageInvestmentsService.setSrsSuccessFlag(true);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);

@@ -61,7 +61,7 @@ app-withdrawal {
     .cash-balance {
       border-top: 1px solid $white-color;
       padding-top: 19px;
-      margin-top: 23px;
+      margin-top: 20px;
       font-size: 16px;
       color: $withdrawal-cash-balance-color;
       justify-content: space-between;
@@ -117,6 +117,11 @@ app-withdrawal {
         cursor: not-allowed;
       }
     }
+
+    input[type='checkbox']+label {
+      background-size: 20px;
+      padding-left: 30px;
+    }
   }
 
   .form-control {
@@ -129,9 +134,10 @@ app-withdrawal {
         color: $form-control-disabled-txt-color !important;
       }
 
-      .input-control {
-        background: $form-control-disabled-bg-color2 !important;
+      input {
         color: $form-control-disabled-txt-color !important;
+        -webkit-text-fill-color: $form-control-disabled-txt-color !important;
+        background: $form-control-disabled-bg-color2 !important;
         cursor: not-allowed;
       }
     }
@@ -139,6 +145,18 @@ app-withdrawal {
     .input-control {
       &#withdraw-type-srs {
         text-align: left !important;
+      }
+    }
+  }
+
+  .form-group {
+    &.form-group-padding {
+      .flex-row:nth-child(1) {
+        margin-bottom: 10px;
+      }
+
+      .flex-row:nth-child(2) {
+        margin-bottom: 20px;
       }
     }
   }

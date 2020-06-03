@@ -13,7 +13,7 @@ export class GoogleAnalyticsService{
     // Initialization for Google Pixel
     this.gtag('js', new Date());
     this.gtag('config', environment.gAdPropertyId);
-    console.log((<any>window).dataLayer);
+    // console.log((<any>window).dataLayer);
 
     // Router Events
     this.router.events.subscribe((event) => {

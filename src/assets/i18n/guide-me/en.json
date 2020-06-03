@@ -196,7 +196,7 @@
     "MODAL_DATA": {
       "TITLE": "Long-Term Care",
       "DESCRIPTION": "<p>If one is unable to perform at least 3 of the below activities, he or she is considered severely disabled and would need <span class=\"modal-text-secondary\">Long-Term Care</span> with the help of a caregiver.</p>",
-      "LOGO_DESCRIPTION": "<div class=\"modal__icon-container\"><div  class=\"modal__icons\"><img src=\"../assets/images/washing.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/feeding.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/dressing.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/toileting.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/mobility.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/transferring.png\"/></div>\n</div>"
+      "LOGO_DESCRIPTION": "<div class=\"modal__icon-container\"><div  class=\"modal__icons\"><img src=\"assets/images/washing.png\"/></div>\n<div class=\"modal__icons\"><img src=\"assets/images/feeding.png\"/></div>\n<div class=\"modal__icons\"><img src=\"assets/images/dressing.png\"/></div>\n<div class=\"modal__icons\"><img src=\"assets/images/toileting.png\"/></div>\n<div class=\"modal__icons\"><img src=\"assets/images/mobility.png\"/></div>\n<div class=\"modal__icons\"><img src=\"assets/images/transferring.png\"/></div>\n</div>"
     }
   },
   "HOSPITAL_PLAN": {

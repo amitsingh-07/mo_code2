@@ -3,7 +3,9 @@ import { GUIDE_ME_ROUTES } from './guide-me/guide-me-routes.constants';
 export let appConstants = {
     APP_JWT_TOKEN_KEY: 'app-jwt-token',
     APP_SESSION_ID_KEY: 'app-session-id',
+    APP_2FA_KEY: 'app-2fa',
     APP_ENQUIRY_ID: 'app-enquiry-id',
+    APP_CUSTOMER_ID: 'app_customer_id',
     accessTokenLocalStorage: '',
     defaultContentTypeHeader: '',
     userLocalStorage: '',
