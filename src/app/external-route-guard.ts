@@ -23,7 +23,7 @@ export class ExternalRouteGuard implements CanActivate {
     } else {
       // Route to promotions page if theres is promotions in the url else not found page
       if (state.url.startsWith(EXT_ROUTE_CONST.PROMOTION_LINK)) {
-        if (!environment.hideHomepage) {
+        if (environment.hideHomepage) {
           window.location.href = EXT_ROUTE_CONST.PROMOTION_LINK;
         } else {
           window.location.assign(EXT_ROUTE_CONST.UAT_DOMAIN + EXT_ROUTE_CONST.PROMOTION_LINK);
