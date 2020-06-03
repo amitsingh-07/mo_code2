@@ -18,6 +18,7 @@ import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagem
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { SeoServiceService } from './../../../shared/Services/seo-service.service';
 import { SlickComponent } from 'ngx-slick';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 
 @Component({
   selector: 'app-select-portfolio',
@@ -93,7 +94,7 @@ export class SelectPortfolioComponent implements OnInit {
     this._location.back();
   }
   goNext(Form) {
-    this.investmentEngagementJourneyService.setSelectPortfolioType(Form.value)
+    this.investmentEngagementJourneyService.setSelectPortfolioType(Form.value);
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
     this.redirectToNextScreen();
   }
@@ -115,7 +116,7 @@ export class SelectPortfolioComponent implements OnInit {
   }
   setSelectPortfolioType(value) {
     this.selectPortfolioForm.controls.selectPortfolioType.setValue(value);
-    if (value === 'investPortfolio') {
+    if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
       this.investmentEnabled = !this.investmentEnabled;
       this.wiseSaverEnabled = false;
     } else {
