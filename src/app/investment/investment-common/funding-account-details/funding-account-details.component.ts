@@ -189,8 +189,8 @@ export class FundingAccountDetailsComponent implements OnInit {
       this.investmentAccountService.activateReassess();
       this.investmentCommonService.setInitialFundingMethod({ initialFundingMethodId: value });
       this.investmentCommonService.clearConfirmedFundingMethod();
-      const selectedPortfolioType = this.investmentCommonService.getSelectedPortfolioType();
-      if (selectedPortfolioType === 'Investment') {
+      const selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
+      if (selectedPortfolioType === 'investPortfolio') {
         this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
       } else {
         this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);

@@ -89,10 +89,12 @@ export class ConfirmPortfolioComponent implements OnInit {
           this.authService.saveEnquiryId(data.objectList.enquiryId);
         }
         this.portfolio = data.objectList;
-        this.investmentCommonService.setSelectedPortfolioType(this.portfolio.portfolioType);
-       if( this.portfolio.portfolioType === 'Investment'){
-        this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
-       }
+        if (this.portfolio.portfolioType === 'Investment') {
+          this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: 'investPortfolio' });
+          this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
+        } else {
+          this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: 'wiseSaverPortfolio' });
+        }
         const fundingParams = this.constructFundingParams(data.objectList);
         this.manageInvestmentsService.setFundingDetails(fundingParams);
         if (this.portfolio.fundingTypeId) {

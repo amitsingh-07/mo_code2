@@ -93,7 +93,7 @@ export class SelectPortfolioComponent implements OnInit {
     this._location.back();
   }
   goNext(Form) {
-    this.investmentEngagementJourneyService.setSelectPortfolioType(Form.value)
+    this.investmentEngagementJourneyService.setSelectPortfolioType(Form.value);
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
     this.redirectToNextScreen();
   }

@@ -292,12 +292,4 @@ export class InvestmentCommonService {
       portfolioType: this.investmentCommonFormData.portfolioType
     };
   }
-  setSelectedPortfolioType(selectedPortfolioType) {
-    this.investmentCommonFormData.selectedPortfolioType = selectedPortfolioType;
-    this.commit();
-  }
-  getSelectedPortfolioType() {
-   return this.investmentCommonFormData.selectedPortfolioType
-    
-  }
-}
+ }
