@@ -55,7 +55,7 @@ export class ReviewBuyRequestModalComponent implements OnInit {
 
   oneTimeBuyRequestInfo() {
     this.requestAmount = Number(this.fundDetails['oneTimeInvestment']) || 0;
-    this.requestType = MANAGE_INVESTMENTS_CONSTANTS.TOPUP.ONETINE_INVESTMENT;
+    this.requestType = MANAGE_INVESTMENTS_CONSTANTS.TOPUP.ONETIME_BUY_REQUEST;
     this.oneTimeMonthlyLbl = this.translate.instant('REVIEW_BUY_REQUEST.ONE_TIME_LBL');
     if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CASH) {
       if (this.fundDetails['isAmountExceedBalance'] === true) {
@@ -70,7 +70,7 @@ export class ReviewBuyRequestModalComponent implements OnInit {
   }
   monthlyBuyRequestInfo() {
     this.requestAmount = Number(this.fundDetails['monthlyInvestment']) || 0;
-    this.requestType = MANAGE_INVESTMENTS_CONSTANTS.TOPUP.MONTHLY_INVESTMENT;
+    this.requestType = MANAGE_INVESTMENTS_CONSTANTS.TOPUP.MONTHLY_BUY_REQUEST;
     this.oneTimeMonthlyLbl = this.translate.instant('REVIEW_BUY_REQUEST.MONTHLY_LBL');
     if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CASH) {
       this.noteArray = this.translate.instant('REVIEW_BUY_REQUEST.MONTHLY_CASH_NOTE');
