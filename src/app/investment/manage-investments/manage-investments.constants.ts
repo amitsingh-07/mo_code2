@@ -11,8 +11,8 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
     ONETINE_INVESTMENT: 'One-time Investment',
     MONTHLY_AMOUNT: 'Monthly Amount',
     ONETIME_AMOUNT: 'One-time Amount',
-    ONETIME_BUY_REQUEST:'One-time buy',
-    MONTHLY_BUY_REQUEST:'Monthly buy',
+    ONETIME_BUY_REQUEST: 'One-time buy',
+    MONTHLY_BUY_REQUEST: 'Monthly buy',
     SRS_OPERATOR: {
       DBS: 'DBS',
       OCBC: 'OCBC',
@@ -24,10 +24,13 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
     },
     TOPUP_TYPES: {
       ONE_TIME: {
-        NAME: 'One-time Amount'
+        NAME: 'One-time Amount',
+        VALUE: 'One-time'
+
       },
       MONTHLY: {
-        NAME: 'Monthly Amount'
+        NAME: 'Monthly Amount',
+        VALUE: 'Monthly'
       }
     }
   },
