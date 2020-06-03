@@ -32,17 +32,17 @@ export class InvestmentEngagementJourneyFormErrors {
       one: {
         errorTitle: 'Oops! Review <br>Amount',
         errorMessage:
-          'We require a one-time amount of at least $$ONE_TIME_INVESTMENT$ or a monthly amount of at least $$MONTHLY_INVESTMENT$.'
+          'We require a one-time amount of at least $$ONE_TIME_AMOUNT$ or a monthly amount of at least $$MONTHLY_AMOUNT$.'
       },
       two: {
         errorTitle: 'Oops! Review Monthly<br>Amount',
         errorMessage:
-          'We require a monthly amount of at least $$MONTHLY_INVESTMENT$.'
+          'We require a monthly amount of at least $$MONTHLY_AMOUNT$.'
       },
       three: {
         errorTitle: 'Oops! Review One-time<br>Amount',
         errorMessage:
-          'We require a one-time amount of at least $$ONE_TIME_INVESTMENT$.'
+          'We require a one-time amount of at least $$ONE_TIME_AMOUNT$.'
       },
       four: {
         errorTitle: 'Invalid Amount',

@@ -111,14 +111,14 @@ export class ManageInvestmentsService {
     // tslint:disable-next-line:triple-equals
     if (
       Number(form.value.oneTimeInvestmentAmount) < this.manageInvestmentsFormData.minimumBalanceOfTopup
-      && form.value.Investment === 'One-time Investment'
+      && form.value.Investment === 'One-time Amount'
     ) {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['zero']);
       return this.topUPFormError.formFieldErrors['topupValidations']['zero'];
       // tslint:disable-next-line:max-line-length
     } else if (
       Number(form.value.MonthlyInvestmentAmount) < this.manageInvestmentsFormData.minimumBalanceOfTopup
-      && form.value.Investment === 'Monthly Investment'
+      && form.value.Investment === 'Monthly Amount'
       && ((Number(form.value.MonthlyInvestmentAmount) === 0 && !allowMonthlyZero) || (Number(form.value.MonthlyInvestmentAmount) !== 0))
     ) {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['more']);

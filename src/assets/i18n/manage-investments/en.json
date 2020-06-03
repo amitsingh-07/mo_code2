@@ -356,9 +356,9 @@
     "SRS_OPERATOR": "SRS Operator:",
     "SRS_ACCOUNT_NUMBER": "SRS Account Number:",
     "MONTHLY_SRS_NOTE": [
-      "Please ensure sufficient funds in your SRS Account by the 10th of every month as monthly investments will be processed on the 15th or next working day if the 15th is a weekend or public holiday.",
+      "Please ensure sufficient funds in your SRS account by the 10th of every month as the monthly buy request will be processed on the 15th or next working day if the 15th is a weekend or public holiday.",
       "If there are insufficient funds in your SRS account, this request will fail, and you may incur transactional costs.",
-      "You may submit a new monthly investment amount before the 15th to overwrite your existing monthly investment amount."
+      "You may submit a new monthly buy request before the 15th to overwrite this."
     ],
     "ONETIME_SRS_NOTE": [
       "This request will be processed immediately once request is submitted.",
@@ -367,20 +367,20 @@
     ],
     "MONTHLY_CASH_NOTE": [
       "Please fund by the 10th of the month for the recurring buy request.",
-      "This request will only be processed once your cash account has sufficient funds.",
-      "If there are insufficient monies in your Investment Cash Account by the 10th of the month, the monthly investment request will be processed on the 15th of the following month.",
-      "You may submit a new monthly investment amount before the 15th to overwrite this request.",
+      "This request will only be processed once your cash account has sufficient funds. ",
+      "If there are insufficient monies in your cash account by the 10th of the month, the monthly buy request will be processed on the 15th of the following month.",
+      "You may submit a new monthly buy request before the 15th to overwrite this.",
       "Once this request is being processed, it cannot be changed or deleted."
     ],
     "SUFFICIENT_ONETIME_CASH_NOTE": [
-      "This request will only be processed once your cash account has sufficient funds.",
-      "Once this request is being processed, it cannot be changed or deleted."
+      "This request will only be processed once your cash account has sufficient funds. ",
+      "Once this request is being processed, it cannot be changed or deleted. "
     ],
     "INSUFFICIENT_ONETIME_CASH_NOTE": [
-      "This request will only be processed once your cash account has sufficient funds.",
+      "This request will only be processed once your cash account has sufficient funds. ",
       "This request will expire if you do not fund within 7 working days.",
-      "You may submit a new one-time investment amount to overwrite this request.",
-      "Once this request is being processed, it cannot be changed or deleted."
+      "You may submit a new one-time buy request to overwrite this.",
+      "Once this request is being processed, it cannot be changed or deleted. "
     ],
 
     "SUBMIT_REQUEST": "Submit Request"
