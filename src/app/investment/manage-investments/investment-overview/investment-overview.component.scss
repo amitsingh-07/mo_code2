@@ -74,7 +74,7 @@ app-investment-overview {
         margin-bottom: 20px;
         .your_total_value {
             background-color: $withdrawal-amount-panel-bg-color;
-            padding: 20px 20px 17px;
+            padding: 20px;
             .total_values {
                 font-family: $muli-bold;
                 font-size: 21px;
@@ -82,6 +82,8 @@ app-investment-overview {
                 text-align: center;
                 color: $white-color;
                 word-break: break-all;
+                line-height: 14px;
+                padding-bottom: 5px;
             }
             .total_values_label {
                 font-family: $muli-regular;
@@ -442,7 +444,7 @@ app-investment-overview {
             text-align: center;
             color: $teal-color !important;
             font-weight: 600;
-            background-color: $portfolio-card-bg-color !important;
+            background-color: $white-color;
             box-shadow: none !important;
             &:hover,
             &:active,
@@ -499,7 +501,7 @@ app-investment-overview {
             max-width: 373px;
             margin-top: -30px;
             @include allmobiles {
-                margin-top: -32px;
+                margin-top: -15px;
                 max-width: 100%;
             }
             z-index: 1;

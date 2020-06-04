@@ -5,7 +5,7 @@ app-fund-details {
   .modal-body-title {
     text-align: left;
     font-family: $muli-semi-bold;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 400;
     letter-spacing: -0.3px;
     color: $teal-color;
@@ -33,7 +33,7 @@ app-fund-details {
   .modal-body {
     padding: 20px 0 !important;
     max-height: 100%;
-
+    width: 100%;
     @include allmobiles {
       border-radius: 0;
       min-height: 100vh;
@@ -202,11 +202,14 @@ app-fund-details {
     text-align: left!important;
     margin-left: 5px;
   }
+  .btn-wrapper {
+    margin-top: 15px;
+    @include desktop {
+      padding: 0 50px;
+    }
+  }
   .fund-details-primary-btn {
     font-family: $muli-bold !important;
-    font-size: 16px;
-    @include allmobiles {
-      font-size: 16px !important;
-    }
+    font-size: 16px !important;
   }
 }

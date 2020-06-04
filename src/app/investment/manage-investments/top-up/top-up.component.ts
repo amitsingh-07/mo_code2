@@ -94,7 +94,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     this.topForm = this.formBuilder.group({
       portfolio: [this.formValues.selectedCustomerPortfolio, Validators.required],
       Investment: [
-        this.formValues.Investment ? this.formValues.Investment : 'One-time Investment',
+        this.formValues.Investment ? this.formValues.Investment : MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.ONE_TIME.VALUE,
         Validators.required
       ],
       oneTimeInvestmentAmount: [
@@ -178,7 +178,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
 
   buildFormInvestment() {
-    if (this.formValues.Investment === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.MONTHLY_INVESTMENT) {
+    if (this.formValues.Investment === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.MONTHLY.VALUE) {
       this.topForm.addControl(
         'MonthlyInvestmentAmount',
         new FormControl('', Validators.required)
@@ -225,7 +225,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     }
   }
   setOnetimeMinAmount(data) {
-    if (this.formValues.Investment === 'Monthly Investment') {
+    if (this.formValues.Investment === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.MONTHLY.VALUE) {
       this.manageInvestmentsService.setInvestmentValue(data.monthlyInvestmentMinimum);
     } else {
       this.manageInvestmentsService.setInvestmentValue(data.oneTimeInvestmentMinimum);
@@ -250,8 +250,8 @@ export class TopUpComponent implements OnInit, OnDestroy {
         const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
         ref.componentInstance.errorTitle = error.errorTitle;
         ref.componentInstance.errorMessage = error.errorMessage
-          .replace('$ONE_TIME_INVESTMENT$', this.investmentCriteria.oneTimeInvestmentMinimum)
-          .replace('$MONTHLY_INVESTMENT$', this.investmentCriteria.monthlyInvestmentMinimum);
+          .replace('$ONE_TIME_AMOUNT$', this.investmentCriteria.oneTimeInvestmentMinimum)
+          .replace('$MONTHLY_AMOUNT$', this.investmentCriteria.monthlyInvestmentMinimum);
         // tslint:disable-next-line:triple-equals
       } else {
         this.saveAndProceed(form);
@@ -278,7 +278,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
       portfolio: this.formValues.portfolio,
       oneTimeInvestment: this.formValues.oneTimeInvestmentAmount, // topup
       monthlyInvestment: this.formValues.MonthlyInvestmentAmount ? this.formValues.MonthlyInvestmentAmount : 0, // topup
-      fundingType: this.formValues.Investment === 'Monthly Investment'
+      fundingType: this.formValues.Investment === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.MONTHLY.VALUE
         ? MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.MONTHLY
         : MANAGE_INVESTMENTS_CONSTANTS.FUNDING_INSTRUCTIONS.ONETIME,
       isAmountExceedBalance: this.topupAmount > 0 ? true : false,
@@ -363,10 +363,10 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
 
   checkIfExistingBuyRequest(form) {
-    if (this.formValues.Investment === 'Monthly Investment' && this.currentMonthlyInvAmount) {
+    if (this.formValues.Investment === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.MONTHLY.VALUE && this.currentMonthlyInvAmount) {
       this.showConfirmOverwriteModal(form, this.currentMonthlyInvAmount, 'MonthlyInvestmentAmount',
         'TOPUP.CONFIRM_OVERWRITE_MODAL.DESC');
-    } else if ((this.formValues.Investment === 'One-time Investment' || !this.formValues.Investment)
+    } else if ((this.formValues.Investment === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.ONE_TIME.VALUE || !this.formValues.Investment)
       && this.awaitingOrPendingAmount) {
       if (this.fundDetails.portfolio.fundingTypeValue.toUpperCase() === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.CASH) {
         this.showConfirmOverwriteModal(form, this.awaitingOrPendingAmount, 'oneTimeInvestmentAmount',
