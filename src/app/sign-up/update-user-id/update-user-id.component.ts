@@ -16,7 +16,7 @@ import { environment } from './../../../environments/environment';
 import { FooterService } from './../../shared/footer/footer.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
-import { ValidateRange } from './range.validator';
+import { ValidateChange, ValidateRange } from './range.validator';
 
 @Component({
   selector: 'app-update-user-id',
@@ -93,12 +93,21 @@ export class UpdateUserIdComponent implements OnInit {
     this.signUpService.getEditProfileInfo().subscribe((data) => {
       const personalData = data.objectList.personalInformation;
       if (personalData) {
+        if(this.updateUserIdForm) {
+          this.updateUserIdForm.controls['mobileNumber'].setValidators([Validators.required, ValidateRange, ValidateChange(personalData.mobileNumber)]);
+        }
         this.updateUserIdForm.patchValue({
           countryCode: personalData.countryCode,
           mobileNumber: personalData.mobileNumber,
           email: personalData.email
         });
+        
+        this.signUpService.setContactDetails(personalData.countryCode, personalData.mobileNumber, personalData.email);
+        this.OldCountryCode = personalData.countryCode;
+        this.OldEmail = personalData.email;
+        this.OldMobileNumber = personalData.mobileNumber;
       }
+
     });
   }
 
@@ -113,9 +122,9 @@ export class UpdateUserIdComponent implements OnInit {
     this.OldEmail = this.formValues.OldEmail;
     this.updateUserIdForm = this.formBuilder.group({
       countryCode: [this.formValues.countryCode, [Validators.required]],
-      mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
+      mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange, ValidateChange(this.OldCountryCode)]],
       email: [this.formValues.email, [Validators.required, Validators.email]]
-    }, { validator: this.validateContacts() });
+    });
   }
 
   /**
@@ -142,7 +151,6 @@ export class UpdateUserIdComponent implements OnInit {
       this.updateUserAccount();
     }
   }
-
   /**
    * set country code.
    * @param countryCode - country code detail.
@@ -152,7 +160,7 @@ export class UpdateUserIdComponent implements OnInit {
     this.defaultCountryCode = countryCode;
     this.updateUserIdForm.controls['countryCode'].setValue(countryCode);
     if (countryCode === '+65') {
-      mobileControl.setValidators([Validators.required, ValidateRange]);
+      mobileControl.setValidators([Validators.required, ValidateRange, ValidateChange(this.OldMobileNumber)]);
     } else {
       mobileControl.setValidators([Validators.required, Validators.pattern(RegexConstants.CharactersLimit)]);
     }
