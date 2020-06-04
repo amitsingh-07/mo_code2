@@ -54,7 +54,7 @@
     "TOTAL_INVESTED": "Total Invested",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance",
     "TOTAL_OF": "Total of",
-    "MY_PORTFOLIO": "My Portfolio",
+    "MY_PORTFOLIO": "My Portfolios",
     "MY_PORTFOLIOS": "My Portfolios",
     "PORTFOLIO_VALUES": "Portfolio Value",
     "NO_INVESTMENT_YET": "Please transfer your money to your account to start investing.",
@@ -339,7 +339,9 @@
     "VIEW_FUND_DETAILS": "View Fund Details"
   },
   "FUND_DETAILS": {
-    "TITLE": "Fund Details"
+    "TITLE": "Fund Details",
+    "DOWNLOAD_PRIMARY": "Download Product Highlight Sheet",
+    "DOWNLOAD_SECONDARY": "Download Product Prospectus"
   },
   "ASSET_ALLOCATION": {
     "TITLE": "Asset Allocation",
