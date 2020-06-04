@@ -339,7 +339,9 @@
     "VIEW_FUND_DETAILS": "View Fund Details"
   },
   "FUND_DETAILS": {
-    "TITLE": "Fund Details"
+    "TITLE": "Fund Details",
+    "DOWNLOAD_PRIMARY": "Download Product Highlight Sheet",
+    "DOWNLOAD_SECONDARY": "Download Product Prospectus"
   },
   "ASSET_ALLOCATION": {
     "TITLE": "Asset Allocation",
