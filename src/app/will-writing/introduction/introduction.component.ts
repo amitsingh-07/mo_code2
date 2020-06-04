@@ -14,6 +14,8 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { WILL_WRITING_ROUTE_PATHS, WP_WILL_WRITING_ROUTE } from '../will-writing-routes.constants';
 import { WillWritingApiService } from '../will-writing.api.service';
 import { WillWritingService } from '../will-writing.service';
+import { environment } from './../../../environments/environment';
+import { APP_ROUTES } from './../../app-routes.constants';
 import { SeoServiceService } from './../../shared/Services/seo-service.service';
 import { SubscribeMember } from './../../shared/Services/subscribeMember';
 
@@ -179,6 +181,10 @@ export class IntroductionComponent implements OnInit {
   }
 
   getPromoCode() {
-    window.open(WP_WILL_WRITING_ROUTE.MAILING_LIST, '_blank');
+    if (environment.hideHomepage) {
+      window.open(WP_WILL_WRITING_ROUTE.MAILING_LIST, '_blank');
+    } else {
+      this.router.navigate([APP_ROUTES.HOME], {fragment: 'subscribe'});
+    }
   }
 }
