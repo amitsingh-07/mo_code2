@@ -21,6 +21,7 @@ import { InvestmentApiService } from '../investment-api.service';
 import {
   InvestmentEngagementJourneyService
 } from '../investment-engagement-journey/investment-engagement-journey.service';
+import { INVESTMENT_COMMON_CONSTANTS } from './../investment-common/investment-common.constants';
 import { ISrsAccountDetails, ManageInvestmentsFormData } from './manage-investments-form-data';
 import { ManageInvestmentsFormError } from './manage-investments-form-error';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './manage-investments-routes.constants';
@@ -45,6 +46,7 @@ export class ManageInvestmentsService {
   private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
   private topUPFormError: any = new TopUPFormError();
   private managementFormError: any = new ManageInvestmentsFormError();
+  selectedPortfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.ALL;
 
   constructor(
     public readonly translate: TranslateService,
@@ -630,5 +632,9 @@ export class ManageInvestmentsService {
   }
   getSrsSuccessFlag() {
     return this.manageInvestmentsFormData.isSrsAccountUpdated;
+  }
+
+  setSelectedPortfolioCategory(category) {
+    this.selectedPortfolioCategory = category;
   }
 }
