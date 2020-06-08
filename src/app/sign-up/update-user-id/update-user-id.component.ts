@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -93,15 +93,20 @@ export class UpdateUserIdComponent implements OnInit {
     this.signUpService.getEditProfileInfo().subscribe((data) => {
       const personalData = data.objectList.personalInformation;
       if (personalData) {
-        if(this.updateUserIdForm) {
-          this.updateUserIdForm.controls['mobileNumber'].setValidators([Validators.required, ValidateRange, ValidateChange(personalData.mobileNumber)]);
+        if (this.updateUserIdForm) {
+          this.updateUserIdForm.setValidators(
+            this.validateGroupChange({
+              'countryCode': personalData.countryCode,
+              'mobileNumber': personalData.mobileNumber,
+              'email': personalData.email
+            }));
         }
         this.updateUserIdForm.patchValue({
           countryCode: personalData.countryCode,
           mobileNumber: personalData.mobileNumber,
           email: personalData.email
         });
-        
+
         this.signUpService.setContactDetails(personalData.countryCode, personalData.mobileNumber, personalData.email);
         this.OldCountryCode = personalData.countryCode;
         this.OldEmail = personalData.email;
@@ -122,9 +127,16 @@ export class UpdateUserIdComponent implements OnInit {
     this.OldEmail = this.formValues.OldEmail;
     this.updateUserIdForm = this.formBuilder.group({
       countryCode: [this.formValues.countryCode, [Validators.required]],
-      mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange, ValidateChange(this.OldCountryCode)]],
+      mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
       email: [this.formValues.email, [Validators.required, Validators.email]]
-    });
+    }, {
+      validator: this.validateGroupChange({
+        'countryCode': this.OldCountryCode,
+        'mobileNumber': this.OldMobileNumber,
+        'email': this.OldEmail
+      })
+    }
+    );
   }
 
   /**
@@ -160,7 +172,7 @@ export class UpdateUserIdComponent implements OnInit {
     this.defaultCountryCode = countryCode;
     this.updateUserIdForm.controls['countryCode'].setValue(countryCode);
     if (countryCode === '+65') {
-      mobileControl.setValidators([Validators.required, ValidateRange, ValidateChange(this.OldMobileNumber)]);
+      mobileControl.setValidators([Validators.required, ValidateRange]);
     } else {
       mobileControl.setValidators([Validators.required, Validators.pattern(RegexConstants.CharactersLimit)]);
     }
@@ -212,6 +224,25 @@ export class UpdateUserIdComponent implements OnInit {
         this.investmentAccountService.showGenericErrorModal();
       }
     });
+  }
+
+  private validateGroupChange(params: any): ValidatorFn {
+    return (group: FormGroup): ValidationErrors => {
+      const keys = Object.keys(params);
+      let hasChange = false;
+      for (const key of keys) {
+        if (group.controls[key]) {
+          if (params[key] !== group.controls[key].value) {
+            hasChange = true;
+          }
+        }
+      }
+      if (hasChange) {
+        return null;
+      } else {
+        return { notChanged: true };
+      }
+    };
   }
 
   private validateContacts() {

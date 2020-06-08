@@ -181,10 +181,21 @@ export class SignUpService {
     const errors: any = {};
     errors.errorMessages = [];
     errors.title = this.createAccountFormError.formFieldErrors.errorTitle;
+
     for (const name in controls) {
       if (controls[name].invalid &&
         this.createAccountFormError.formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage) {
         errors.errorMessages.push(this.createAccountFormError.formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage);
+      }
+    }
+
+    if(Object.keys(errors.errorMessages).length <= 0) {
+      console.log('Error Key:', Object.keys(form.errors)[0]);
+      if(form.invalid && this.createAccountFormError.formErrors[Object.keys(form.errors)[0]]) {
+        if(this.createAccountFormError.formErrors[Object.keys(form.errors)[0]].errorTitle) {
+          errors.title = this.createAccountFormError.formErrors[Object.keys(form.errors)[0]].errorTitle;
+        }
+        errors.errorMessages.push(this.createAccountFormError.formErrors[Object.keys(form.errors)[0]].errorMessage);
       }
     }
     return errors;
