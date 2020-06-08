@@ -334,7 +334,7 @@ export class AuthenticationService {
       errorMessage: message,
       errorButtonLabel: buttonLabel
     };
-    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'otp-error-modal' });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'otp-2fa-error-modal' });
     ref.componentInstance.errorTitle = error.errorTitle;
     ref.componentInstance.errorMessage = error.errorMessage;
     ref.componentInstance.buttonLabel = error.errorButtonLabel;
