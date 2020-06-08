@@ -96,9 +96,9 @@ export class UpdateUserIdComponent implements OnInit {
         if (this.updateUserIdForm) {
           this.updateUserIdForm.setValidators(
             this.validateGroupChange({
-              'countryCode': this.OldCountryCode,
-              'mobileNumber': this.OldMobileNumber,
-              'email': this.OldEmail
+              'countryCode': personalData.countryCode,
+              'mobileNumber': personalData.mobileNumber,
+              'email': personalData.email
             }));
         }
         this.updateUserIdForm.patchValue({
@@ -228,29 +228,19 @@ export class UpdateUserIdComponent implements OnInit {
 
   private validateGroupChange(params: any): ValidatorFn {
     return (group: FormGroup): ValidationErrors => {
-      console.log('Validate Group Change');
-      const keys = params.keys();
-      let finalTest = false;
-      for(let key of keys) {
-        console.log('Key', key);
-        if(group.controls[key]) {
-          console.log('Current Control', group.controls[key]);
-          const oldValue = params[key];
-          const newValue = group.controls[key];
-          console.log('Old Value:', oldValue);
-          console.log('New Value:', newValue);
-          if(oldValue === newValue) {
-            finalTest = true;
-          } else {
-            finalTest = false;
+      const keys = Object.keys(params);
+      let hasChange = false;
+      for (const key of keys) {
+        if (group.controls[key]) {
+          if (params[key] !== group.controls[key].value) {
+            hasChange = true;
           }
         }
       }
-      
-      if (finalTest) {
+      if (hasChange) {
         return null;
       } else {
-        group.controls[keys[0]].setErrors({ notChanged: true});
+        return { notChanged: true };
       }
     };
   }
