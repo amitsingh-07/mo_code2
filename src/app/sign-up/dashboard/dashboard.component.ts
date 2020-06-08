@@ -242,7 +242,8 @@ export class DashboardComponent implements OnInit {
   }
 
   goToInvOverview(selectedPortfolio: any) {
-    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT + '/' + selectedPortfolio]);
+    this.manageInvestmentsService.setSelectedPortfolioCategory(selectedPortfolio);
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
   }
 
   // tslint:disable-next-line:cognitive-complexity

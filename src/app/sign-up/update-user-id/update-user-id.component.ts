@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,7 +16,7 @@ import { environment } from './../../../environments/environment';
 import { FooterService } from './../../shared/footer/footer.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
-import { ValidateRange } from './range.validator';
+import { ValidateChange, ValidateRange } from './range.validator';
 
 @Component({
   selector: 'app-update-user-id',
@@ -93,12 +93,26 @@ export class UpdateUserIdComponent implements OnInit {
     this.signUpService.getEditProfileInfo().subscribe((data) => {
       const personalData = data.objectList.personalInformation;
       if (personalData) {
+        if (this.updateUserIdForm) {
+          this.updateUserIdForm.setValidators(
+            this.validateGroupChange({
+              'countryCode': personalData.countryCode,
+              'mobileNumber': personalData.mobileNumber,
+              'email': personalData.email
+            }));
+        }
         this.updateUserIdForm.patchValue({
           countryCode: personalData.countryCode,
           mobileNumber: personalData.mobileNumber,
           email: personalData.email
         });
+
+        this.signUpService.setContactDetails(personalData.countryCode, personalData.mobileNumber, personalData.email);
+        this.OldCountryCode = personalData.countryCode;
+        this.OldEmail = personalData.email;
+        this.OldMobileNumber = personalData.mobileNumber;
       }
+
     });
   }
 
@@ -115,7 +129,14 @@ export class UpdateUserIdComponent implements OnInit {
       countryCode: [this.formValues.countryCode, [Validators.required]],
       mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
       email: [this.formValues.email, [Validators.required, Validators.email]]
-    }, { validator: this.validateContacts() });
+    }, {
+      validator: this.validateGroupChange({
+        'countryCode': this.OldCountryCode,
+        'mobileNumber': this.OldMobileNumber,
+        'email': this.OldEmail
+      })
+    }
+    );
   }
 
   /**
@@ -142,7 +163,6 @@ export class UpdateUserIdComponent implements OnInit {
       this.updateUserAccount();
     }
   }
-
   /**
    * set country code.
    * @param countryCode - country code detail.
@@ -204,6 +224,25 @@ export class UpdateUserIdComponent implements OnInit {
         this.investmentAccountService.showGenericErrorModal();
       }
     });
+  }
+
+  private validateGroupChange(params: any): ValidatorFn {
+    return (group: FormGroup): ValidationErrors => {
+      const keys = Object.keys(params);
+      let hasChange = false;
+      for (const key of keys) {
+        if (group.controls[key]) {
+          if (params[key] !== group.controls[key].value) {
+            hasChange = true;
+          }
+        }
+      }
+      if (hasChange) {
+        return null;
+      } else {
+        return { notChanged: true };
+      }
+    };
   }
 
   private validateContacts() {

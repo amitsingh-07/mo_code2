@@ -35,7 +35,6 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   welcomeInfo;
   investmentoverviewlist: any;
   portfolioList;
-  totalReturns: any;
   cashAccountBalance: any;
   totalValue: any;
   selectedDropDown;
@@ -105,24 +104,6 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     this.toastMsg = this.manageInvestmentsService.getToastMessage();
 
     this.portfolioCategories = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
-    // Param handling and set category
-    this.route.params.subscribe((params) => {
-      if (params['selectedPortfolio']) {
-        switch (params['selectedPortfolio']) {
-          case INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.ALL:
-            this.selectedCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.ALL;
-            break;
-          case INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT:
-            this.selectedCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT;
-            break;
-          case INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER:
-            this.selectedCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER;
-            break;
-        }
-      } else {
-        this.selectedCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.ALL;
-      }
-    });
   }
  ngOnDestroy() {
     this.subscription.unsubscribe();
@@ -191,15 +172,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
 
   setInvestmentData(data) {
     this.investmentoverviewlist = (data.objectList) ? data.objectList : {};
-    this.totalReturns = this.investmentoverviewlist.totalReturns
-      ? this.investmentoverviewlist.totalReturns
-      : 0;
-    this.cashAccountBalance = this.investmentoverviewlist['overallCashAccountBalance']
-      ? this.investmentoverviewlist['overallCashAccountBalance']
-      : 0;
-    this.totalValue = this.investmentoverviewlist['overallPortfolioValue']
-      ? this.investmentoverviewlist['overallPortfolioValue']
-      : 0;
+    this.setSelectedCategory(this.manageInvestmentsService.selectedPortfolioCategory);
     this.portfolioList = (this.investmentoverviewlist.portfolios) ? this.investmentoverviewlist.portfolios : [];
     this.totalPortfolio = this.portfolioList.length;
     this.welcomeInfo = {
@@ -417,10 +390,11 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Set the selected category
+  // Set the selected category base on dashboard click and category filter change
   setSelectedCategory(category) {
-    this.selectedCategory = category.target.id;
-    switch (category.target.id) {
+    this.selectedCategory = category;
+    this.manageInvestmentsService.setSelectedPortfolioCategory(category);
+    switch (category) {
       case INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.ALL:
         this.cashAccountBalance = this.investmentoverviewlist['overallCashAccountBalance']
           ? this.investmentoverviewlist['overallCashAccountBalance'] : 0;
