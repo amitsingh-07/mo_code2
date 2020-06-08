@@ -94,7 +94,7 @@ export class AuthenticationService {
     if (sessionStorage) {
       sessionStorage.setItem(appConstants.APP_JWT_TOKEN_KEY, auth.securityToken);
       sessionStorage.setItem(appConstants.APP_SESSION_ID_KEY, auth.sessionId);
-  }
+    }
   }
 
   clearAuthDetails() {
@@ -271,7 +271,7 @@ export class AuthenticationService {
       currentTry++;
     }
     if (currentTry >= maxTry) {
-      this.doClear2FASession({errorPopup: true, updateData: true});
+      this.doClear2FASession({ errorPopup: true, updateData: true });
     } else {
       //Start BE Validation check to anticipate BE token check
       this.doVerify2fa().subscribe((data) => {
@@ -281,7 +281,7 @@ export class AuthenticationService {
             this.clear2FAToken(currentTry);
           }, (1000 * interval));
         } else {
-          this.doClear2FASession({errorPopup: true, updateData: true});
+          this.doClear2FASession({ errorPopup: true, updateData: true });
         }
       });
     }

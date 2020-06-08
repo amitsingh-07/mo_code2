@@ -16,7 +16,8 @@ import { environment } from './../../../environments/environment';
 import { FooterService } from './../../shared/footer/footer.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
-import { ValidateChange, ValidateRange } from './range.validator';
+import { ValidateRange } from './range.validator';
+import { ValidateGroupChange } from './formGroup.change.validator';
 
 @Component({
   selector: 'app-update-user-id',
@@ -95,7 +96,7 @@ export class UpdateUserIdComponent implements OnInit {
       if (personalData) {
         if (this.updateUserIdForm) {
           this.updateUserIdForm.setValidators(
-            this.validateGroupChange({
+            ValidateGroupChange({
               'countryCode': personalData.countryCode,
               'mobileNumber': personalData.mobileNumber,
               'email': personalData.email
@@ -130,7 +131,7 @@ export class UpdateUserIdComponent implements OnInit {
       mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
       email: [this.formValues.email, [Validators.required, Validators.email]]
     }, {
-      validator: this.validateGroupChange({
+      validator: ValidateGroupChange({
         'countryCode': this.OldCountryCode,
         'mobileNumber': this.OldMobileNumber,
         'email': this.OldEmail
@@ -224,36 +225,6 @@ export class UpdateUserIdComponent implements OnInit {
         this.investmentAccountService.showGenericErrorModal();
       }
     });
-  }
-
-  private validateGroupChange(params: any): ValidatorFn {
-    return (group: FormGroup): ValidationErrors => {
-      const keys = Object.keys(params);
-      let hasChange = false;
-      for (const key of keys) {
-        if (group.controls[key]) {
-          if (params[key] !== group.controls[key].value) {
-            hasChange = true;
-          }
-        }
-      }
-      if (hasChange) {
-        return null;
-      } else {
-        return { notChanged: true };
-      }
-    };
-  }
-
-  private validateContacts() {
-    return (group: FormGroup) => {
-      if (this.OldMobileNumber === group.controls['mobileNumber'].value
-        && this.OldEmail === group.controls['email'].value) {
-        return group.controls['mobileNumber'].setErrors({ notChanged: true });
-      } else {
-        return group.controls['mobileNumber'].setErrors(null);
-      }
-    };
   }
 
   onlyNumber(el) {
