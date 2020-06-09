@@ -2,6 +2,9 @@
 @import '../../../../../mixins';
 
 app-confirm-withdrawal-modal {
+  .modal-body {
+    width: 500px;
+  }
   .edit-investment-modal {
     font-family: $muli;
 
