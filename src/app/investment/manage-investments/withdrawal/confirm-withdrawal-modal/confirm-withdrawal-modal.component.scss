@@ -3,7 +3,9 @@
 
 app-confirm-withdrawal-modal {
   .modal-body {
-    width: 500px;
+    @include desktop {
+      width: 500px;
+    }
   }
   .edit-investment-modal {
     font-family: $muli;
