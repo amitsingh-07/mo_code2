@@ -912,6 +912,19 @@ body.modal-open::-webkit-scrollbar {
   }
 }
 
+.otp-2fa-error-modal{
+  .btn.btn-primary{
+    background-color:#00a7a7;
+    font-family:$muli-bold;
+  }
+  @include allmobiles {
+    .modal-body {
+      margin-bottom: 60px;
+    }
+  }
+  
+}
+
 .will-custom-modal {
   .modal-header {
     width: 375px !important;

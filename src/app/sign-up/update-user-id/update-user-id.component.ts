@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,7 +16,10 @@ import { environment } from './../../../environments/environment';
 import { FooterService } from './../../shared/footer/footer.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
-import { ValidateChange, ValidateRange } from './range.validator';
+import { ValidateRange } from './range.validator';
+import { ValidateGroupChange } from './formGroup.change.validator';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-update-user-id',
@@ -24,7 +27,7 @@ import { ValidateChange, ValidateRange } from './range.validator';
   styleUrls: ['./update-user-id.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class UpdateUserIdComponent implements OnInit {
+export class UpdateUserIdComponent implements OnInit, OnDestroy {
   private distribution: any;
   private pageTitle: string;
 
@@ -38,6 +41,7 @@ export class UpdateUserIdComponent implements OnInit {
   OldEmail;
   updateMobile: boolean;
   updateEmail: boolean;
+  protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -84,18 +88,22 @@ export class UpdateUserIdComponent implements OnInit {
     this.getCountryCode();
     this.footerService.setFooterVisibility(false);
 
-    this.authService.get2faAuthEvent.subscribe((token) => {
+    this.authService.get2faAuthEvent
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((token) => {
       if (!token) {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       }
     });
 
-    this.signUpService.getEditProfileInfo().subscribe((data) => {
+    this.signUpService.getEditProfileInfo()
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data) => {
       const personalData = data.objectList.personalInformation;
       if (personalData) {
         if (this.updateUserIdForm) {
           this.updateUserIdForm.setValidators(
-            this.validateGroupChange({
+            ValidateGroupChange({
               'countryCode': personalData.countryCode,
               'mobileNumber': personalData.mobileNumber,
               'email': personalData.email
@@ -112,10 +120,21 @@ export class UpdateUserIdComponent implements OnInit {
         this.OldEmail = personalData.email;
         this.OldMobileNumber = personalData.mobileNumber;
       }
+    });
 
+    this.authService.get2faErrorEvent
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data) => {
+      if(data) {
+        this.authService.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
+      }
     });
   }
 
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
   /**
    * build update account form.
    */
@@ -130,7 +149,7 @@ export class UpdateUserIdComponent implements OnInit {
       mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
       email: [this.formValues.email, [Validators.required, Validators.email]]
     }, {
-      validator: this.validateGroupChange({
+      validator: ValidateGroupChange({
         'countryCode': this.OldCountryCode,
         'mobileNumber': this.OldMobileNumber,
         'email': this.OldEmail
@@ -224,36 +243,6 @@ export class UpdateUserIdComponent implements OnInit {
         this.investmentAccountService.showGenericErrorModal();
       }
     });
-  }
-
-  private validateGroupChange(params: any): ValidatorFn {
-    return (group: FormGroup): ValidationErrors => {
-      const keys = Object.keys(params);
-      let hasChange = false;
-      for (const key of keys) {
-        if (group.controls[key]) {
-          if (params[key] !== group.controls[key].value) {
-            hasChange = true;
-          }
-        }
-      }
-      if (hasChange) {
-        return null;
-      } else {
-        return { notChanged: true };
-      }
-    };
-  }
-
-  private validateContacts() {
-    return (group: FormGroup) => {
-      if (this.OldMobileNumber === group.controls['mobileNumber'].value
-        && this.OldEmail === group.controls['email'].value) {
-        return group.controls['mobileNumber'].setErrors({ notChanged: true });
-      } else {
-        return group.controls['mobileNumber'].setErrors(null);
-      }
-    };
   }
 
   onlyNumber(el) {

@@ -224,7 +224,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
               const redirect = data.responseMessage.responseCode === 6000;
               this.updateInsuranceEnquiry(insuranceEnquiry, data, redirect);
             } else if (data.responseMessage.responseCode === 6000) {
-              this.googleAnalyticsService.emitConversionsTracker(trackingConstants.ga.createAccount);
               this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
             } else if (data.responseMessage.responseCode === 6008 ||
               data.responseMessage.responseCode === 5006) {
