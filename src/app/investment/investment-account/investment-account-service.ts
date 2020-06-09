@@ -743,7 +743,8 @@ export class InvestmentAccountService {
       id: countryDetails.id,
       countryCode: countryDetails.countryCode,
       name: countryDetails.country,
-      phoneCode: countryDetails.phoneCode
+      phoneCode: countryDetails.phoneCode,
+      countryBlocked: countryDetails.countryBlocked
     };
   }
 
@@ -1964,5 +1965,62 @@ export class InvestmentAccountService {
   }
   isReassessActive() {
     return this.investmentAccountFormData.isReassessActive;
+  }
+  getCountriesFormDataByFilter() {
+    const countryList = [];
+    this.investmentAccountFormData.countryList.forEach((country) => {
+      if (!country.countryBlocked) {
+        countryList.push(country);
+      }
+    });
+    return countryList;
+  }
+  getCountryByCountryCode(countryCode, countryList) {
+    let blockFlag = false;
+    const selectedCountry = countryList.filter(
+      (countries) => countries.countryCode === countryCode
+    );
+    if (selectedCountry[0]) {
+      blockFlag = (selectedCountry[0]['countryBlocked']);
+    }
+    return blockFlag;
+  }
+  checkCountryBlockList() {
+    let blockedCountry = false;
+    if (this.investmentAccountFormData.country && this.investmentAccountFormData.country.countryCode
+      && this.investmentAccountFormData.country.countryBlocked) {
+      blockedCountry = true;
+    }
+    if (!blockedCountry && this.investmentAccountFormData.mailCountry && this.investmentAccountFormData.mailCountry.countryCode
+       && this.investmentAccountFormData.mailCountry.countryBlocked) {
+      blockedCountry = true;
+    }
+    return blockedCountry;
+  }
+  clearBlockedCountry() {
+    this.investmentAccountFormData.isMyInfoEnabled = false;
+    this.clearResidentialAddressFormData();
+    this.clearEmailAddressFormData();
+    this.commit();
+  }
+  getCountryFromNationalityCodeByFilter(nationalityCode) {
+    let country = '';
+    const selectedNationality = this.investmentAccountFormData.nationalityList.filter(
+      (nationality) => nationality.nationalityCode === nationalityCode
+    );
+    if (selectedNationality[0] && selectedNationality[0].countries[0] && !selectedNationality[0].countries[0].countryBlocked) {
+      country = selectedNationality[0].countries[0];
+    }
+    return country;
+  }
+  getCountryFromCountryCodeByFilter(countryCode) {
+    let country = '';
+    const selectedCountry = this.investmentAccountFormData.countryList.filter(
+      (countries) => countries.countryCode === countryCode
+    );
+    if (selectedCountry[0] && !selectedCountry[0].countryBlocked) {
+      country = selectedCountry[0];
+    }
+    return country;
   }
 }
