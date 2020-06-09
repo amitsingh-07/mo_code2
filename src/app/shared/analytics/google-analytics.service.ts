@@ -3,7 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { environment } from './../../../environments/environment';
 
 declare let ga: any;
-declare let gtag: Function;
+declare let gtag: any;
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +11,10 @@ declare let gtag: Function;
 export class GoogleAnalyticsService {
   constructor(public router: Router) {
     // Initialization for Google Pixel
-    gtag('js', new Date());
-    gtag('config', environment.gAdPropertyId);
-    // console.log((<any>window).dataLayer);
+    if(typeof gtag === 'function') {
+      gtag('js', new Date());
+      gtag('config', environment.gAdPropertyId);
+    }
 
     // Router Events
     this.router.events.subscribe((event) => {
