@@ -9,6 +9,7 @@ import { NavbarService } from '../shared/navbar/navbar.service';
 import { environment } from './../../environments/environment';
 import { FBPixelService } from '../shared/analytics/fb-pixel.service';
 import { GoogleAnalyticsService } from '../shared/analytics/google-analytics.service';
+import { trackingConstants } from '../shared/analytics/tracking.constants';
 
 @Component({
   selector: 'app-email-enquiry-success',
@@ -37,7 +38,7 @@ export class EmailEnquirySuccessComponent implements OnInit {
 
   ngOnInit() {
     this.fbPixelService.track('Lead');
-    this.googleAnalyticsService.emitConversionsTracker('1UJJCOPO89IBEP_VqfUC');
+    this.googleAnalyticsService.emitConversionsTracker(trackingConstants.ga.emailEnquirySuccess);
     this.navbarService.setNavbarMode(2);
     this.footerService.setFooterVisibility(false);
   }
