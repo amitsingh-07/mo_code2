@@ -1,18 +1,18 @@
 import { Injectable, OnInit } from '@angular/core';
-import { NavigationEnd, Router} from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { environment } from './../../../environments/environment';
 
-declare var ga: any;
-declare var gtag: any;
+declare let ga: any;
+declare let gtag: Function;
 
 @Injectable({
   providedIn: 'root'
 })
-export class GoogleAnalyticsService{
+export class GoogleAnalyticsService {
   constructor(public router: Router) {
     // Initialization for Google Pixel
-    this.gtag('js', new Date());
-    this.gtag('config', environment.gAdPropertyId);
+    gtag('js', new Date());
+    gtag('config', environment.gAdPropertyId);
     // console.log((<any>window).dataLayer);
 
     // Router Events
@@ -30,50 +30,46 @@ export class GoogleAnalyticsService{
     });
   }
 
-  //  Implementing gtag
-  public gtag(...args: any[]) {
-    (<any>window).dataLayer.push(arguments);
-  }
-
   // Emit Conversions
   public emitConversionsTracker(trackingId: string) {
-    console.log((<any>window).dataLayer);
-    const url = this.router.url;
     const updatedTrackingId: string = environment.gAdPropertyId + '/' + trackingId;
-    this.gtag(
-      'event', 'conversion', {
-      'send_to': updatedTrackingId
+    if (typeof gtag === 'function') {
+      gtag(
+        'event', 'conversion', {
+        send_to: updatedTrackingId
       }
-    );
+      );
+      return true;
+    }
     return false;
   }
 
   public emitEvent(eventCategory: string,
-                   eventAction: string,
-                   eventLabel: string = null,
-                   eventValue: number = null) {
+    eventAction: string,
+    eventLabel: string = null,
+    eventValue: number = null) {
     if (typeof ga === 'function') {
       ga('send', 'event', {
         eventCategory,
         eventLabel,
         eventAction,
         eventValue
-        });
-      }
+      });
     }
+  }
 
   public emitSocial(socialNetwork: string,
-                    socialAction: string,
-                    socialTarget: string,
-                    ) {
-      if (typeof ga === 'function') {
-        ga('send', 'social', {
-          socialNetwork,
-          socialAction,
-          socialTarget
-          });
-        }
-      }
+    socialAction: string,
+    socialTarget: string,
+  ) {
+    if (typeof ga === 'function') {
+      ga('send', 'social', {
+        socialNetwork,
+        socialAction,
+        socialTarget
+      });
+    }
+  }
 
   // Timing Functions
   public startTime(timeId: string) {
@@ -84,7 +80,7 @@ export class GoogleAnalyticsService{
     d.setTime(d.getTime() + expireDays * 24 * 60 * 60 * 1000);
     const expires = `expires=${d.toUTCString()}`;
     document.cookie = `${name}=${currDate}; ${expires}`;
-    }
+  }
 
   public getTime(timeId: string) {
     const name: string = 'time_' + timeId;
@@ -98,11 +94,11 @@ export class GoogleAnalyticsService{
     const currDate = `${d.toUTCString()}`;
 
     for (let i = 0; i < caLen; i += 1) {
-          c = ca[i].replace(/^\s+/g, '');
-          if (c.indexOf(cookieName) === 0) {
-              oldDate = c.substring(cookieName.length, c.length);
-          }
+      c = ca[i].replace(/^\s+/g, '');
+      if (c.indexOf(cookieName) === 0) {
+        oldDate = c.substring(cookieName.length, c.length);
       }
+    }
     if (oldDate !== 'null') {
       timeDiff = (Date.parse(currDate) - Date.parse(oldDate));
       return timeDiff;
@@ -117,20 +113,20 @@ export class GoogleAnalyticsService{
     const d: Date = new Date();
     d.setTime(d.getTime() + 1000 * 10); // Setting Expire in 10secs
     const expires = `expires=${d.toUTCString()}`;
-    document.cookie =  `${name}=${empty}; ${expires}`;
+    document.cookie = `${name}=${empty}; ${expires}`;
   }
 
   public emitTime(timeId: string,
-                  timingCategory: string,
-                  timingVar: string,
-                  timingLabel: string = null
-                ) {
-      const timingValue = this.getTime(timeId);
+    timingCategory: string,
+    timingVar: string,
+    timingLabel: string = null
+  ) {
+    const timingValue = this.getTime(timeId);
+    this.endTime(timeId);
+    if (typeof ga === 'function') {
       this.endTime(timeId);
-      if (typeof ga === 'function') {
-        this.endTime(timeId);
-        ga('send', 'timing', [timingCategory], [timingVar], [timingValue], [timingLabel]);
-                }
-      }
+      ga('send', 'timing', [timingCategory], [timingVar], [timingValue], [timingLabel]);
+    }
+  }
 
 }
