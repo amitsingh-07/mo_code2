@@ -8,12 +8,3 @@ export function ValidateRange(control): { [key: string]: boolean } | null {
   //Success
   return null;
 }
-
-export function ValidateChange(oldValue: string): ValidatorFn {
-  return (control: AbstractControl): {[key: string]: boolean} | null => {
-    if (oldValue === (control.value)) {
-      return { notChanged: true };
-    }
-    return null;
-  };
-}
