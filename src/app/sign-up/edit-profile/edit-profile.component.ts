@@ -136,6 +136,14 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         this.disableBankSrsEdit = true;
       }
     });
+
+    this.authService.get2faErrorEvent
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data) => {
+      if(data) {
+        this.authService.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
+      }
+    });
   }
 
   ngOnDestroy() {

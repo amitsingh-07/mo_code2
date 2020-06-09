@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -18,6 +18,8 @@ import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 import { ValidateRange } from './range.validator';
 import { ValidateGroupChange } from './formGroup.change.validator';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-update-user-id',
@@ -25,7 +27,7 @@ import { ValidateGroupChange } from './formGroup.change.validator';
   styleUrls: ['./update-user-id.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class UpdateUserIdComponent implements OnInit {
+export class UpdateUserIdComponent implements OnInit, OnDestroy {
   private distribution: any;
   private pageTitle: string;
 
@@ -39,6 +41,7 @@ export class UpdateUserIdComponent implements OnInit {
   OldEmail;
   updateMobile: boolean;
   updateEmail: boolean;
+  protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -85,13 +88,17 @@ export class UpdateUserIdComponent implements OnInit {
     this.getCountryCode();
     this.footerService.setFooterVisibility(false);
 
-    this.authService.get2faAuthEvent.subscribe((token) => {
+    this.authService.get2faAuthEvent
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((token) => {
       if (!token) {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       }
     });
 
-    this.signUpService.getEditProfileInfo().subscribe((data) => {
+    this.signUpService.getEditProfileInfo()
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data) => {
       const personalData = data.objectList.personalInformation;
       if (personalData) {
         if (this.updateUserIdForm) {
@@ -113,10 +120,21 @@ export class UpdateUserIdComponent implements OnInit {
         this.OldEmail = personalData.email;
         this.OldMobileNumber = personalData.mobileNumber;
       }
+    });
 
+    this.authService.get2faErrorEvent
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data) => {
+      if(data) {
+        this.authService.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
+      }
     });
   }
 
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
   /**
    * build update account form.
    */

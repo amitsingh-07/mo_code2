@@ -25,6 +25,8 @@ export class AuthenticationService {
   apiBaseUrl = '';
   private get2faAuth = new BehaviorSubject('');
   get2faAuthEvent = this.get2faAuth.asObservable();
+  private get2faError = new BehaviorSubject(false);
+  get2faErrorEvent = this.get2faError.asObservable();
   private get2faUpdate = new BehaviorSubject(''); 
   get2faUpdateEvent = this.get2faUpdate.asObservable();
   private timer2fa: any;
@@ -290,7 +292,8 @@ export class AuthenticationService {
     clearTimeout(this.timer2fa);
     sessionStorage.removeItem(appConstants.APP_2FA_KEY);
     if (option && option.errorPopup) {
-      this.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
+      this.get2faError.next(true);
+      this.get2faError.next(false);
     }
     if (option && option.updateData) {
       this.get2faUpdate.next(sessionStorage.getItem(appConstants.APP_2FA_KEY));
