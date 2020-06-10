@@ -188,7 +188,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
   // tslint:disable-next-line:cognitive-complexity
   getEditProfileData() {
-    this.editProfileSubscription = this.signUpService.getEditProfileInfo().subscribe((data) => {
+     this.signUpService.getEditProfileInfo().subscribe((data) => {
       const responseMessage = data.responseMessage;
       if (responseMessage.responseCode === 6000) {
         this.entireUserData = data.objectList;
