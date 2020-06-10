@@ -57,10 +57,14 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
           }
         }
     });
+
+    this.googleAnalyticsService.initGoogleAnalyticsService();
+
     // Check NavbarMode
     this.navbarService.currentNavbarMode.subscribe((navbarMode) => {
       this.navbarMode = navbarMode;
     });
+
   }
 
   ngOnInit() {
