@@ -132,6 +132,7 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.signUpService.clearRedirectUrl();
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }

@@ -122,6 +122,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.signUpService.clearRedirectUrl();
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
