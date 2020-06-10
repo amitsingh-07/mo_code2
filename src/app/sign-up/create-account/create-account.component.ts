@@ -2,7 +2,7 @@ import { flatMap } from 'rxjs/operators';
 
 import { Location } from '@angular/common';
 import {
-  AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation, OnDestroy
+  AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -92,7 +92,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     if (!this.authService.isAuthenticated()) {
       this.refreshToken();
     }
-    console.log('Loaded Create Account Component');
     if (this.appService.getJourneyType() == null || this.appService.getJourneyType() === '') {
       this.appService.setJourneyType(appConstants.JOURNEY_TYPE_SIGNUP);
     }
