@@ -108,20 +108,8 @@ export const EXT_ROUTES = {
         EXTERNAL_URL: '/promotions/retirewise/'
     },
     {
-        IN_APP_ROUTE: '/promotions/24',
-        EXTERNAL_URL: '/promotions/manulife-manuprotect-term-plan/'
-    },
-    {
-        IN_APP_ROUTE: '/promotions/25',
-        EXTERNAL_URL: '/promotions/singlife-term-life-series-two/'
-    },
-    {
         IN_APP_ROUTE: '/promotions/26',
         EXTERNAL_URL: '/promotions/singlife-critical-illness-plan/'
-    },
-    {
-        IN_APP_ROUTE: '/promotions/31',
-        EXTERNAL_URL: '/promotions/manulife-premium-discount-products/'
     },
     {
         IN_APP_ROUTE: '/promotions/32',
