@@ -95,7 +95,7 @@ export class VerifyMobileComponent implements OnInit {
     }
 
 
-    if(this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
+    if (this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
       this.editProfile = true;
     }
   }
@@ -226,21 +226,21 @@ export class VerifyMobileComponent implements OnInit {
     if (redirect_url && redirect_url === SIGN_UP_ROUTE_PATHS.EDIT_PROFILE) {
       this.signUpService.clearRedirectUrl();
       this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED]);
+    } else if (journeyType) {
+        if (journeyType === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
+          this.sendWelcomeEmail();
+        }
+        this.resendEmailVerification();
     } else if (redirect_url) {
+      // Do a final redirect
       this.signUpService.clearRedirectUrl();
       const brokenRoute = Util.breakdownRoute(redirect_url);
       this.router.navigate([brokenRoute.base], {
-            fragment: brokenRoute.fragments != null ? brokenRoute.fragments : null,
-            preserveFragment: true,
-            queryParams: brokenRoute.params != null ? brokenRoute.params : null,
-            queryParamsHandling: 'merge',
-           }
-          );
-    } else {
-      if (journeyType === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
-        this.sendWelcomeEmail();
-      }
-      this.resendEmailVerification();
+        fragment: brokenRoute.fragments != null ? brokenRoute.fragments : null,
+        preserveFragment: true,
+        queryParams: brokenRoute.params != null ? brokenRoute.params : null,
+        queryParamsHandling: 'merge',
+      });
     }
   }
 

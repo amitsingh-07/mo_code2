@@ -1,11 +1,13 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription, Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { InvestmentCommonService } from './../../investment/investment-common/investment-common.service';
 
+import { CustomErrorHandlerService } from 'src/app/shared/http/custom-error-handler.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
@@ -21,8 +23,7 @@ import { environment } from './../../../environments/environment';
 import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
-import { CustomErrorHandlerService } from 'src/app/shared/http/custom-error-handler.service';
-import { takeUntil } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-edit-profile',
@@ -61,9 +62,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   showAddbank = false;
   dobFormat: any;
   private subscription: Subscription;
-  private editProfileSubscription: Subscription;
-  private investmentSubscription: Subscription;
-  private srsSubscription: Subscription;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
   srsDetails;
   formatedAccountNumber;
