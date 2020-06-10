@@ -2,312 +2,221 @@
 @import '../../../mixins';
 
 .container-fluid {
-    background-color: #fff;
-    padding: 50px 60px 65px;
-    @include allmobiles{
-        padding: 10px 0 !important;
-        border-radius: 0;
-    }
-}
-.banner-image{
-    margin: 0 32px;
-    @include allmobiles{
-        width: 178px;
-        height: 153px;
-        object-fit: contain;
-        margin: auto;
-        margin-bottom: 16px;
-        img{
-            padding-top: 19px;
-        }
-    }
-}
-.instructions {
-    border-radius: 6px;
-    background-color: #fff;
-    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25);   
-    @include allmobiles{
-        margin: 0 16px !important;
-    }
-}
-.instruction-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    letter-spacing: -0.3px;
-    color: #636363;
-    padding: 30px 25px;
-    .list-none{
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-        li{
-            margin-bottom: 16px; 
-            &:last-child{
-                margin: 0;
-            }
-        }
-        .under-line{
-            text-decoration: underline;
-        }
-        &:last-child{
-            .instruction_step{
-                margin-bottom: 0;
-            }
-        }
-        &.inner-list{
-            padding-left: 21px;
-            padding-top: 16px;
-            li{
-                margin: 0; 
-            }
-            .instruction_step{
-                font-family: $muli-bold;
-                img{
-                    margin-right: 10.5px;
-                } 
-            }
-        }
-    }
-    .instruction_step{
-        display: flex;
-        flex-direction: row;
-        align-items: baseline;
-        margin-bottom: 16px;
-        .circle{
-            width: 7px;
-            height: 7px;
-            padding: 3px;
-            background-color: #2d8289;
-            border-radius: 50%;
-            margin-right: 18px;
-        }
-    }
-    
-    // div{
-    //     margin-bottom: 16px;
-    //     &:last-child{
-    //         margin-bottom: 0;
-    //     }
-    //     span{
-    //         display: flex;
-    //     }
-    // }
-}
-.no-promo {
-    border-radius: 7px;
-    display: flex;
-    flex-direction: column;
-    background-color: #2d8289;
-    justify-content: center;
-    align-items: center;
-    input{
-        border-radius: 27.5px;
-        width:90%;
-        padding: 13px;
-        border: none;
-    }
-    .instruction-content{
-        color: #fff;
-        justify-content: space-around;
-        align-items: center;
-        @include allmobiles{
-            margin-bottom: 17px;
-        }
-        div{
-            padding-left:20px;
-            &:first-child{
-                width: 60%;
-                padding: 0 15px;
-                @include allmobiles{
-                    width: 100%;
-                }
-            }
-        }
-        & > * {
-          margin-bottom: 17px;  
-          text-align: center;
-        }
-        button{
-            font-family: $muli-bold;
-            font-size: 16px;
-            background-color: #00c5c4;
-            color: $white-color;
-            @include allmobiles{
-                width: 166px;
-                height: 46px;
-                border-radius: 6px;
-                padding: 0;
-            }
-        }
-    }
-}
-.mask {
-    background-color: #2d8289;
-    font-size: 22px;
-    font-family: $muli-bold;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    padding: 15px 0;
-    text-align: center;
-    @include allmobiles {
-        font-size: 18px;
-    }
+  background-color: $white-color;
+  padding: 87px 105px 65px;
+  max-width: 550px;
+  min-height: calc(100vh - 84px);
+
+  @include allmobiles {
+    padding: 27px 18px 56px !important;
+    border-radius: 0;
   }
-.promocode {
-    margin-top: 70px;
-    @include allmobiles {
-        margin-top: 25px;
-        padding: 0;
-        margin-bottom: 70px;
-    }
-    .FAQ {
-        font-family: $muli-bold;
-        margin-top: 25px;
-        font-size: 16px;
-        letter-spacing: -0.17px;
-        text-align: center;
-        color: #00a7a7;
-        cursor: pointer;
-    }
-    .offer-code{
-        font-family: $muli-semi-bold;
-        font-size: 18px;
-        line-height: 2.5;
-        letter-spacing: -0.2px;
-        text-align: center;
-        color: #2d8289;
-        .brdr-btm{
-            border: solid 0.5px #00a7a7;
-        }
-        .time-period {
-            font-family: $muli-bold;
-            line-height: 45px;
-            position: relative;
-            top: 20px;
-            width: 30%;
-            padding: 0px 10px;
-            background: #fff;
-            margin: 0 auto;
-            @include allmobiles{
-                position: none;
-                top: 0;
-                width: 100%;
-            }
-        }
-        input{
-            border-radius: 6px;
-            font-family: $muli-bold;
-            font-size: 16px;
-            letter-spacing: -0.2px;
-            text-align: center;
-            color: #2d8289;
-            border: solid 1px #c2d9ec;
-            padding: 18px 35px;
-            width: 247px;
-            height: 54px;
-          }
-        input::placeholder{
-            font-family: $muli-light;
-            font-size: 16px;
-            font-weight: 300;
-            font-style: italic;
-            color: #a4a4a4 !important;
-        }
-        #intro-no-promocode {
-            padding-top: 22px;
-            line-height: normal;
-            padding-bottom: 10px;
-        }
-        div{
-            &:last-child{
-                font-weight: 100;
-                font-family: $muli-regular;
-                color: #2d8289;
-                font-size: 16px;
-                line-height: normal;
-                span{
-                    font-family: $muli-bold;
-                    cursor: pointer;
-                }
-            }
-            .getOneNow {
-                font-family: $muli-bold;
-                cursor: pointer;
-                text-decoration: underline;
-            }
-        }
-    }
-    .btn:disabled{
-        box-shadow: none !important;
-        background-color: #bff1f1;
-        color: #ffffff;
-    }
 }
-.proceed-msg{
-    display: flex;
-    flex-direction: column;
-    .sub-title{
-        color: #333846;
-    }
-    h2{
-        color: #00a7a7;
-        @include allmobiles {
-            font-size: 20px;
-            letter-spacing: -0.4px;
-            text-align: center;
-            color: #066360;
-            padding-top: 16px;
-        }
-    }
-    @include allmobiles {
-        flex-direction: column-reverse;
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.will-instructions {
+  font-family: $muli-regular;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.31;
+  letter-spacing: -0.16px;
+  color: $dark-grey-color;
+}
+
+.mt-25 {
+  margin-top: 25px;
+}
+
+.owl-icon {
+  width: 115px;
+  height: 116px;
+}
+
+.will-writing-txt {
+  font-family: $muli-bold;
+  font-size: 18px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.18px;
+  color: $black-color;
+  margin-top: 38px;
+}
+
+.limited-time {
+  font-family: $muli-regular;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: -0.16px;
+  color: $limited-text;
+  margin-top: 5px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.free-tag {
+  display: flex;
+  padding-top: 6px;
+
+  span {
+    font-family: $muli-bold;
+    font-size: 16px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.25px;
+    color: $black-color;
+    text-decoration: line-through;
+    padding-left: 8px;
+  }
+
+  @include max360 {
+    font-size: 13px;
+  }
+
+  @include iphoneX {
+    font-size: 13px;
+  }
+
+  @include iphone6 {
+    font-size: 13px;
+  }
+}
+
+.promocode-entry {
+  position: relative;
+  text-align: center;
+  width: 280px;
+  margin-top: 40px;
+}
+
+.promocode-entry:before {
+  content: "";
+  display: block;
+  border-top: solid 1px $teal-color;
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  top: 50%;
+  z-index: 0;
+}
+
+.promocode-entry span {
+  font-family: $muli-bold;
+  font-size: 16px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.15px;
+  text-align: center;
+  color: $teal-color;
+  background: $white-color;
+  padding: 0 22px;
+  position: relative;
+  z-index: 1;
+}
+
+.no-promo {
+    font-family: $muli-regular;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: -0.26px;
+    text-align: center;
+    color: #005960;
+    margin-top: 10px;
+
+    span {
+        font-family: $muli-bold;
+        letter-spacing: -0.25px;
     }
 }
 
-.subscribe__section{
-    position: relative; 
-    display:flex;
-    width:100%;
-    height:auto; //For Subscribe to be active height:253px
-    margin-top:30px;
-    justify-content:center;
-    align-items:flex-start;
-    z-index:1;
-    @include minMobilemaxPhablet{
-        margin-top: 30px;
+.promocode {
+  margin-top: 18px;
+  padding: 0 30px;
+
+  @include allmobiles {
+    margin-top: 16px;
+    padding: 0;
+    margin-bottom: 70px;
+  }
+
+  .offer-code {
+    input {
+      border-radius: 6px;
+      font-family: $muli-bold;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+      text-align: center;
+      color: $dark-teal-color;
+      border: solid 1px $spindle-color;
+      padding: 18px 35px;
+      width: 247px;
+      height: 54px;
     }
-    .subscribe__form--plugin{
-        margin-bottom: 24px;
-        .subscribe-title--container{
-            .subscribe--will-title{
-                @include allmobiles{
-                    font-size: 26px;
-                }
-            }
-        }
+
+    input::placeholder {
+      font-family: $muli-light;
+      font-size: 16px;
+      font-weight: 300;
+      font-style: italic;
+      color: $silver-chalice-color !important;
     }
-    .subscribe__section--bg{
-        position: absolute;
-        background-repeat: repeat-x;
-        width:100%;
-        bottom:0px;
-        left:0px;
+
+    #intro-no-promocode {
+      padding-top: 22px;
+      line-height: normal;
+      padding-bottom: 10px;
     }
-    .subscribe__section--footer{
-        position: absolute;
-        display:block;
-        width:100%;
-        height:10px;
-        bottom:0px;
-        left:0px;
-        background-color:$dark-teal-color;
-        .orange{
-            position: absolute;
-            display:block;
-            background-color:$orange-color;
-            width:34%;
-            height:100%;
-        }
+
+    .getOneNow {
+        font-family: $muli-bold;
+        cursor: pointer;
+        text-decoration: underline;
     }
-} 
+  }
+
+  .btn {
+      margin-top: 30px !important;
+  }
+
+  .btn:disabled {
+    box-shadow: none !important;
+    background-color: $btn-disabled;
+    color: $white-color;
+  }
+}
+
+ul {
+  width: 100%;
+  padding: 0;
+}
+li{
+  list-style: none;
+}
+li::before {
+  content: '';
+  background-color: $teal-color;
+  border-radius: 50%;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  padding: 0 ;
+  vertical-align: middle;
+  margin-right: 15px;
+}
