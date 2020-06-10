@@ -2,7 +2,7 @@ import { flatMap } from 'rxjs/operators';
 
 import { Location } from '@angular/common';
 import {
-  AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
+  AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation, OnDestroy
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -92,6 +92,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     if (!this.authService.isAuthenticated()) {
       this.refreshToken();
     }
+    console.log('Loaded Create Account Component');
+    if (this.appService.getJourneyType() == null || this.appService.getJourneyType() === '') {
+      this.appService.setJourneyType(appConstants.JOURNEY_TYPE_SIGNUP);
+    }
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
@@ -101,7 +105,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     if (!this.authService.isAuthenticated()) {
-      this.loaderService.showLoader({title: 'Loading'});
+      this.loaderService.showLoader({ title: 'Loading' });
       this.authService.authenticate().subscribe((token) => {
         this.refreshCaptcha();
         this.loaderService.hideLoader();
@@ -273,7 +277,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       if (!data && redirect) {
         this.router.navigate([redirect]);
       }
-    }).catch((e) => {});
+    }).catch((e) => { });
     if (title) {
       ref.componentInstance.errorTitle = title;
       ref.componentInstance.buttonLabel = buttonLabel;
