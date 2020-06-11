@@ -5,7 +5,7 @@ export const EXT_ROUTE_CONST = {
 export const EXT_ROUTES = {
     ROUTE_URL: [{
         IN_APP_ROUTE: '/works',
-        EXTERNAL_URL: '/works'
+        EXTERNAL_URL: '/works/'
     },
     {
         IN_APP_ROUTE: '/works/financial-literacy',
