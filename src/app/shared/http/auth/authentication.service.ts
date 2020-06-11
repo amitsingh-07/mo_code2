@@ -341,6 +341,7 @@ export class AuthenticationService {
     ref.componentInstance.errorTitle = error.errorTitle;
     ref.componentInstance.errorMessage = error.errorMessage;
     ref.componentInstance.buttonLabel = error.errorButtonLabel;
+    ref.componentInstance.closeBtn = false;
   }
 
 }
