@@ -241,6 +241,8 @@ export class VerifyMobileComponent implements OnInit {
         queryParams: brokenRoute.params != null ? brokenRoute.params : null,
         queryParamsHandling: 'merge',
       });
+    } else {
+      this.resendEmailVerification();
     }
   }
 
