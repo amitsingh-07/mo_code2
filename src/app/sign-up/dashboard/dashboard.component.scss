@@ -102,7 +102,7 @@ app-dashboard {
                     font-size: 14px;
                     font-weight: normal;
                     letter-spacing: -0.1px;
-                    padding: 0 0 30px;
+                    padding: 0 0 15px;
                     .scenarios {
                         padding: 0 5px;
                         .primary {
@@ -375,6 +375,7 @@ app-dashboard {
                 line-height: normal;
                 letter-spacing: -0.17px;
                 color: #00a7a7;
+                cursor: pointer;
                 img {
                     cursor: pointer;
                     margin-left:5px;
@@ -405,6 +406,7 @@ app-dashboard {
                 position: relative;
                 margin-bottom: 15px;
                 cursor: pointer;
+                height: 135px;
               }
               .portfolio-type-box-title {
                 height: 20px;
