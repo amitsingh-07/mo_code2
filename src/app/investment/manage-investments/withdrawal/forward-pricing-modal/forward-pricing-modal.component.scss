@@ -1,9 +1,12 @@
 @import '../../../../../variables.scss';
+@import '../../../../../mixins';
 
 app-forward-pricing-modal {
   .forward-pricing-modal {
     .modal-body {
-      width: 500px;
+      @include desktop {
+        width: 500px;
+      }
     }
     font-family: $muli;
 

@@ -132,7 +132,9 @@
         "AT_LEAST_ONE": "Select at least one of the following.",
         "INVESTMENT_LBL": "I want to fund",
         "MIN_100": "Min. $100",
-        "MIN_50": "Min. $50"
+        "MIN_50": "Min. $50",
+        "MIN": "Min.",
+        "MONTH": "/mth"
     },
     "MY_FINANCIALS": {
         "REVIEW_INPUT": "Review My Inputs",
