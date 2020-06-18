@@ -2,6 +2,7 @@
 @import '../../../../mixins';
 
 .modal-body {
+  width: 500px;
   $self: &;
   padding: 0;
   overflow: hidden;
