@@ -2,7 +2,9 @@
 @import '../../../../mixins';
 
 .modal-body {
-  width: 500px;
+  @include desktop {
+    width: 500px;
+  }
   $self: &;
   padding: 0;
   padding-bottom: 20px;
