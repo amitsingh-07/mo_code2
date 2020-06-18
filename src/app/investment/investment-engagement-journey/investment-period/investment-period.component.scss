@@ -61,7 +61,7 @@ app-investment-period {
           &.flex-row {
             font-size: 13px;
             padding-top: 10px;
-
+            width: 100%;
             div:first-child {
               color: $investment-time-horizon-desc-clr;
 
@@ -78,7 +78,6 @@ app-investment-period {
         display: flex;
         justify-content: space-between;
         align-items: center;
-
         &.title {
           color: $investment-time-horizon-clr;
           border: 1px solid $investment-time-horizon-desc-title-brdr-clr;

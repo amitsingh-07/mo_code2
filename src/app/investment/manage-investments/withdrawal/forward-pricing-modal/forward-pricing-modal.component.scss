@@ -2,6 +2,9 @@
 
 app-forward-pricing-modal {
   .forward-pricing-modal {
+    .modal-body {
+      width: 500px;
+    }
     font-family: $muli;
 
     .modal-body-title {

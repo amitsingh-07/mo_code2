@@ -48,12 +48,13 @@ app-select-portfolio {
                     font-size: 17px;
                 }
                 font-family: $muli-bold;
-                margin-bottom: 10px;
+                margin-bottom: 5px;
+                letter-spacing: -0.19px;
             }
             &__desc {
                 font-size: 13px;
                 font-family: $muli-regular;
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
             &__more {
                 color: $crusta-orange-color;
