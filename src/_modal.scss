@@ -913,7 +913,7 @@ body.modal-open::-webkit-scrollbar {
 
 .otp-2fa-error-modal{
   .btn.btn-primary{
-    background-color:#00a7a7;
+    background-color:$teal-color;
     font-family:$muli-bold;
   }
   @include allmobiles {
