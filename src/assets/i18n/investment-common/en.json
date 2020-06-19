@@ -27,7 +27,7 @@
         "FOR": "for",
         "CONFIRM": "Confirm",
         "CONTINUE": "Continue",
-        "WISESAVER_VALUE": "1.62% p.a.",
+        "WISESAVER_VALUE": "0.74% p.a.",
         "EDIT_INVESTMENT": {
             "TITLE": "Review My Inputs",
             "ONE_TIME_INVESTMENT": "One-time Amount",
@@ -60,9 +60,8 @@
         "PORTFOLIO": "Portfolio",
         "WISE_SAVER_PORTOFOLIO": {
             "TITLE_DESC": "The underlying cash fund holds assets primarily in <span class=\"bold-text\">Singapore Dollar</span> deposits. ",
-            "RATE_TITLE": "Estimated Return",
-            "RATE_DESC": "This rate will be updated periodically as<br> market and economic conditions change.",
-            "PORTFOLIO_DESC": "This is based on the weighted average gross yield of the underlying deposits placed with the counterparty financial institution which has a minimum short- term rating of F2 by Fitch, P-2 by Moody’s, or A-2 by S&P."
+            "RATE_TITLE": "Current Rate",
+            "PORTFOLIO_DESC": "This rate is the gross indicative yield of the underlying cash fund, which may fluctuate as market and economic conditions change. We will update this rate periodically as the yield changes."
         },
         "ERRORS": {
             "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
