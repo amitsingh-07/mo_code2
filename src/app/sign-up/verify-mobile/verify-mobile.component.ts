@@ -223,10 +223,7 @@ export class VerifyMobileComponent implements OnInit {
   redirectToPasswordPage() {
     const redirect_url = this.signUpService.getRedirectUrl();
     const journeyType = this.appService.getJourneyType();
-    if (redirect_url && redirect_url === SIGN_UP_ROUTE_PATHS.EDIT_PROFILE) {
-      this.signUpService.clearRedirectUrl();
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED]);
-    } else if (journeyType) {
+    if (journeyType) {
       if (journeyType === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
         this.sendWelcomeEmail();
       }

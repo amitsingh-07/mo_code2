@@ -95,7 +95,6 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       }
     });
-
     this.signUpService.getEditProfileInfo()
     .pipe(takeUntil(this.ngUnsubscribe))
     .subscribe((data) => {
@@ -121,7 +120,6 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
         this.OldMobileNumber = personalData.mobileNumber;
       }
     });
-
     this.authService.get2faErrorEvent
     .pipe(takeUntil(this.ngUnsubscribe))
     .subscribe((data) => {
@@ -129,10 +127,13 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
         this.authService.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
       }
     });
+
   }
 
   ngOnDestroy() {
-    this.signUpService.clearRedirectUrl();
+    if(this.signUpService.getRedirectUrl() !== SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED) {
+      this.signUpService.clearRedirectUrl();
+    }
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
@@ -155,8 +156,7 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
         'mobileNumber': this.OldMobileNumber,
         'email': this.OldEmail
       })
-    }
-    );
+    });
   }
 
   /**
@@ -228,7 +228,7 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
         this.signUpService.setContactDetails(this.updateUserIdForm.value.countryCode,
           this.updateUserIdForm.value.mobileNumber, this.updateUserIdForm.value.email);
         this.signUpService.setEditContact(true, this.updateMobile, this.updateEmail);
-        this.signUpService.setRedirectUrl(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE);
+        this.signUpService.setRedirectUrl(SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED);
         if (data.objectList[0] && data.objectList[0].customerRef) {
           this.signUpService.setCustomerRef(data.objectList[0].customerRef);
         }
