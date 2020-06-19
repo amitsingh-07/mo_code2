@@ -1,10 +1,10 @@
 <div class="modal-body white-bg">
-  <div class="modal-body-title" id="fund-details-title">{{'FUND_DETAILS.TITLE' | translate}}</div>
+  <div class="modal-body-title border-0 wise-saver-title" id="fund-details-title">{{'FUND_DETAILS.TITLE' | translate}}</div>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')" id="fund-details-close_button">
     <span aria-hidden="true"></span>
   </button>
   <!--  Bank Transfer: -->
-  <div class="fund-details-content">
+  <div class="fund-details-content" *ngIf = "portfolioType">
     <div class="dimentional">
       <div class="img-container">
         <img src="assets/images/dimensional.png" id="fund-details-img" />
@@ -20,9 +20,24 @@
       </div>
       <div class="funding-content" [class.first]="j === 0" id="fund-details-content_{{j}}">
         {{fund.htmlDesc}}        
-        <a download target="_blank" [href]="getHighlightSheetLink(fund)" class="btn btn-primary width100 mt20" id="fund_details_download_btn_{{j}}">Download Highlight Sheet</a>      
+        <div class="btn-wrapper"><a download target="_blank" [href]="getHighlightSheetLink(fund)" class="btn btn-primary width100 mt20 fund-details-primary-btn" id="fund_details_download_btn_{{j}}">{{'FUND_DETAILS.DOWNLOAD_PRIMARY' | translate}}</a></div>     
       </div>
     </div>
-    <a download target="_blank" [href]="getProspectusLink(fundDetails[0])" class="btn btn-white width100" id="fund_details_download_prospectus">Download Product Prospectus</a>
+    <a download target="_blank" [href]="getProspectusLink(fundDetails[0])" class="btn btn-white width100" id="fund_details_download_prospectus">{{'FUND_DETAILS.DOWNLOAD_SECONDARY' | translate}}</a>
    </div>
+   <div class="fund-details-content" *ngIf = "!portfolioType">
+     <div class="dimentional" [ngClass]="{'border-0': !portfolioType}">
+       <div class="img-container">
+         <img src="assets/images/fullerton-fund-management.png" id="fund-details-img" />
+       </div>
+     </div>
+     <div *ngFor="let fund of fundDetails; let i = index; let j = index;" #i id="fund-details-{{i}}">{{fundDetails.fund}}
+       
+       <div class="funding-content funding-wise-saver" [ngClass]="{'border-0': !portfolioType}" [class.first]="j === 0" id="fund-details-content_{{j}}">
+         {{fund.htmlDesc}}        
+         <div class="btn-wrapper"><a download target="_blank" [href]="getHighlightSheetLink(fund)" class="btn btn-primary width100 mt20 fund-details-primary-btn" id="fund_details_download_btn_{{j}}">{{'FUND_DETAILS.DOWNLOAD_PRIMARY' | translate}}</a></div>   
+       </div>
+     </div>
+     <a download target="_blank" [href]="getProspectusLink(fundDetails[0])" class="btn btn-white width100" id="fund_details_download_prospectus">{{'FUND_DETAILS.DOWNLOAD_SECONDARY' | translate}}</a>
+    </div>
 </div>

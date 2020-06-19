@@ -26,10 +26,13 @@
                   <img [src]="riskProfileImage" />
                 </div>
                 <div class="user_portfolio flex-col">
+                  <div class="user_portfolio_ref_code">{{'YOUR_INVESTMENT.REF_CODE' | translate}} {{portfolio.referenceCode}}</div>
                   <div class="user_portfolio_lbl">{{portfolio.portfolioName}}</div>
                   <div class="flex-row space-between">
-                    <div class="portfolio-type flex align-center"><span *ngIf="portfolio?.fundingTypeValue === 'SRS'"
-                        class="portfolio-fund-type mr10">{{'YOUR_INVESTMENT.SRS' | translate}}</span>{{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type} }}
+                    <div class="portfolio-type flex align-center">
+                      <span *ngIf="portfolio?.fundingTypeValue === 'SRS'" class="portfolio-fund-type mr10">{{'YOUR_INVESTMENT.SRS' | translate}}</span>
+                      <ng-container *ngIf="portfolio?.riskProfile; else wisesaverportfolio">{{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type} }}</ng-container>
+                      <ng-template #wisesaverportfolio>{{'YOUR_PORTFOLIO.WISESAVER_PORTFOLIO' | translate}}</ng-template>
                     </div>
                     <div class="more-menu">
                       <div class="dropdown-control">
@@ -120,19 +123,57 @@
                     <!--Form Content-->
                     <div class="form-group-with-bg--content" *ngIf="portfolio.showTotalReturn">
                       <div class="flex-row">
-                        <div class="flex-col-7">
-                          <div id="your_portfolio_totalreturn_lb" class="total_return_label" for="total return">
-                            {{'YOUR_PORTFOLIO.TOTAL_RETURNS' | translate}}
-                            <img (click)="showTotalReturnPopUp()" src="assets/images/tooltip-icon.svg"
-                              alt="" />
+                        <ng-container *ngIf="showPortfolioInfo; else totalReturns">
+                          <div class="flex-col-4" class="portfolio_info_label">
+                            {{'YOUR_PORTFOLIO.COST_OF_INVESTMENT' | translate}}
+                            <div id="your_portfolio_cost_of_investment" class="currency_value" [class.negativeValue]="totalInvested < 0">
+                              {{totalInvested | currency:'USD':'symbol-narrow':'1.0-2'}}
+                            </div>
                           </div>
-                        </div>
-                        <div class="flex-col-5">
-                          <div id="your_portfolio_totalreturn_value" class="total_return_value"
-                            [class.negativeValue]="totalReturnsPercentage < 0" for="total value">
-                            {{formatReturns(totalReturnsPercentage)}}{{totalReturnsPercentage | number : '1.0-2'}}%
+                          <div class="portfolio_info_label next-row">
+                            {{'YOUR_PORTFOLIO.UNREALISED_GAIN_LOSS' | translate}}
+                            <div id="your_portfolio_unrealised_gain_loss" class="currency_value" [class.negativeValue]="profitAndLoss < 0">
+                              {{profitAndLoss | currency:'USD':'symbol-narrow':'1.0-2'}}
+                            </div>
                           </div>
-                        </div>
+                          <div id="your_portfolio_totalreturn_lb" class="portfolio_info_label padding-none" for="total return">
+                            <ng-container *ngIf="showTimeWeightedReturns; else simpleReturns">
+                              {{'YOUR_PORTFOLIO.TIME_WEIGHTED_RETURN' | translate}}
+                            </ng-container>
+                            <ng-template #simpleReturns>
+                              {{'YOUR_PORTFOLIO.SIMPLE_RETURN' | translate}}
+                            </ng-template>
+                            <img (click)="toggleReturns()" src="assets/images/arrow-down.svg" alt="" class="arrow-img"
+                              [class.upward]="!showTimeWeightedReturns" />
+                            <div *ngIf="showTimeWeightedReturns; else simpleReturnsPercent" id="your_portfolio_totalreturn_value"
+                              class="total_return_value" [class.negativeValue]="totalReturnsPercentage < 0" for="total value">
+                              {{formatReturns(totalReturnsPercentage)}}{{totalReturnsPercentage | number : '1.0-2'}}%
+                            </div>
+                            <ng-template #simpleReturnsPercent>
+                              <div id="your_portfolio_totalreturn_value" class="total_return_value"
+                                [class.negativeValue]="profitAndLossPercentage < 0" for="total value">
+                                {{formatReturns(profitAndLossPercentage)}}{{profitAndLossPercentage | number : '1.0-2'}}%
+                              </div>
+                            </ng-template>
+                          </div>
+                        </ng-container>
+                        <ng-template #totalReturns>
+                          <div class="flex-col-7">
+                            <div id="your_portfolio_totalreturn_lb" class="total_return_label" for="total return">
+                              {{'YOUR_PORTFOLIO.TOTAL_RETURNS' | translate}}
+                              <img (click)="showTotalReturnPopUp()" src="assets/images/tooltip-icon.svg" alt="" />
+                            </div>
+                          </div>
+                          <div class="flex-col-5">
+                            <div id="your_portfolio_totalreturn_value" class="total_return_value"
+                              [class.negativeValue]="totalReturnsPercentage < 0" for="total value">
+                              {{formatReturns(totalReturnsPercentage)}}{{totalReturnsPercentage | number : '1.0-2'}}%
+                            </div>
+                          </div>
+                        </ng-template>
+                      </div>
+                      <div *ngIf="showPortfolioInfo" class="calculate_tooltip" (click)="showCalculationTooltip()">
+                        {{'YOUR_PORTFOLIO.CALCULATE_TOOLTIP' | translate}}
                       </div>
                       <div class="flex-row mt20" *ngIf="showAnnualizedReturns && yearlyReturns">
                         <div class="flex-col-7">
@@ -162,17 +203,52 @@
                     </div>
                     <div class="form-group-with-bg--content" *ngIf="portfolio.showTotalReturn">
                       <div class="flex-row">
-                        <div class="flex-col-9">
-                          <div id="your_portfolio_totalreturn_lb" class="total_return_label" for="total return">
-                            {{'YOUR_PORTFOLIO.TOTAL_RETURNS' | translate}}
-                            <img (click)="showTotalReturnPopUp()" src="assets/images/tooltip-icon.svg"
-                              alt="" />
+                        <ng-container *ngIf="showPortfolioInfo; else totalReturns">
+                          <div class="flex-col-4" class="portfolio_info_label">
+                            {{'YOUR_PORTFOLIO.COST_OF_INVESTMENT' | translate}}
+                            <div id="your_portfolio_cost_of_investment" class="currency_value" [class.negativeValue]="totalInvested < 0">
+                              {{0 | currency:'USD':'symbol-narrow':'1.0-2'}}
+                            </div>
                           </div>
-                        </div>
-                        <div class="flex-col-3">
-                          <div id="your_portfolio_totalreturn_value" class="total_return_value" for="total value">0%
+                          <div class="portfolio_info_label next-row">
+                            {{'YOUR_PORTFOLIO.UNREALISED_GAIN_LOSS' | translate}}
+                            <div id="your_portfolio_unrealised_gain_loss" class="currency_value" [class.negativeValue]="profitAndLoss < 0">
+                              {{0 | currency:'USD':'symbol-narrow':'1.0-2'}}
+                            </div>
                           </div>
-                        </div>
+                          <div id="your_portfolio_totalreturn_lb" class="portfolio_info_label padding-none" for="total return">
+                            <ng-container *ngIf="showTimeWeightedReturns; else simpleReturns">
+                              {{'YOUR_PORTFOLIO.TIME_WEIGHTED_RETURN' | translate}}
+                            </ng-container>
+                            <ng-template #simpleReturns>
+                              {{'YOUR_PORTFOLIO.SIMPLE_RETURN' | translate}}
+                            </ng-template>
+                            <img (click)="toggleReturns()" src="assets/images/arrow-down.svg" alt="" class="arrow-img"
+                              [class.upward]="!showTimeWeightedReturns" />
+                            <div *ngIf="showTimeWeightedReturns; else simpleReturnsPercent" id="your_portfolio_totalreturn_value"
+                              class="total_return_value" [class.negativeValue]="totalReturnsPercentage < 0" for="total value">
+                              {{0 | number : '1.0-2'}}%
+                            </div>
+                            <ng-template #simpleReturnsPercent>
+                              <div id="your_portfolio_totalreturn_value" class="total_return_value"
+                                [class.negativeValue]="profitAndLossPercentage < 0" for="total value">
+                                {{0 | number : '1.0-2'}}%
+                              </div>
+                            </ng-template>
+                          </div>
+                        </ng-container>
+                        <ng-template #totalReturns>
+                          <div class="flex-col-9">
+                            <div id="your_portfolio_totalreturn_lb" class="total_return_label" for="total return">
+                              {{'YOUR_PORTFOLIO.TOTAL_RETURNS' | translate}}
+                              <img (click)="showTotalReturnPopUp()" src="assets/images/tooltip-icon.svg" alt="" />
+                            </div>
+                          </div>
+                          <div class="flex-col-3">
+                            <div id="your_portfolio_totalreturn_value" class="total_return_value" for="total value">0%
+                            </div>
+                          </div>
+                        </ng-template>
                       </div>
                     </div>
                   </div>

@@ -1,0 +1,27 @@
+<div class="back-btn hidden-lg" (click)="goBack()">
+</div>
+<div class="intro-block">
+    <div class="container-fluid max-width--1024">
+        <div class="intro-block__content">
+            <div class="row text-center">
+                <div class="col-12">
+                    <div class="banner-image mb20">
+                        <img src="assets/images/investment-account/risk-ack.svg" id="introImg" />
+                    </div>
+                </div>
+                <div class="col-12 intro-blocsk__content__desc">
+                    <p class="intro-block__content__heading risk-title text-center" id="introHeading" [innerHTML]="'RISK_ACKNOWLEDGMENT.TITLE'| translate"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="step1-block">
+        <div class="risk-acknlg-desc-wrapper investment position-relative">
+            <p class="risk-acknlg-desc" id="introTitle" [innerHTML]="'RISK_ACKNOWLEDGMENT.DESC' | translate"></p>
+            <button class="btn btn-proceed btn__footer--fixed width100" (click)="goNext()" id="getStartedStep1Btn">
+          {{'GETSTARTED_STEP1.PROCEED' | translate}}
+        </button>
+        </div>
+    </div>
+</div>
+

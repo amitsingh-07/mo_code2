@@ -17,8 +17,8 @@
     "CONFIRM_OVERWRITE_MODAL": {
       "TITLE": "Buy Request Exist",
       "DESC": "You have an <strong>existing monthly buy request of {{existingOrderAmount}}</strong>. Click 'Yes' to overwrite this with your new monthly buy request of {{newOrderAmount}}.",
-      "ONE_TIME_DESC": "Please note that you have an <strong>existing one-time order of {{existingOrderAmount}}</strong>. Click 'Yes' to overwrite this with your new one-time buy request of {{newOrderAmount}}.",
-      "SRS_ONE_TIME": "Please note that you have an <strong>existing one-time order of {{existingOrderAmount}}</strong> in processing status and can initiate new buy order only upon completion of this order.",
+      "ONE_TIME_DESC": "Please note that you have an <strong>existing one-time buy request of {{existingOrderAmount}}</strong>. Click 'Yes' to overwrite this with your new one-time buy request of {{newOrderAmount}}.",
+      "SRS_ONE_TIME": "Please note that you have an <strong>existing one-time buy request of {{existingOrderAmount}}</strong> in processing status and can initiate new buy order only upon completion of this order.",
       "YES": "Yes",
       "NO": "No"
     }
@@ -42,14 +42,19 @@
   },
   "YOUR_INVESTMENT": {
     "TITLE": "Your Investments",
-    "PROFILE_DEC": "Here’s a performance summary of your investments.",
+    "BACK_DASHBOARD": "Dashboard",
+    "CATEGORIES": "Categories",
+    "ALL": "All",
+    "INVESTMENT": "Investment",
+    "WISESAVER": "WiseSaver",
     "TOTAL_PORTFOLIO_VALUE": "Total Portfolio Value",
+    "PORTFOLIO_VALUE": "Portfolio Value",
     "TOTAL_RETURNS": "Total Returns ",
     "FROM_START_OF_INVESTMENT": "From start of investment",
     "TOTAL_INVESTED": "Total Invested",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance",
     "TOTAL_OF": "Total of",
-    "MY_PORTFOLIO": "My Portfolio",
+    "MY_PORTFOLIO": "My Portfolios",
     "MY_PORTFOLIOS": "My Portfolios",
     "PORTFOLIO_VALUES": "Portfolio Value",
     "NO_INVESTMENT_YET": "Please transfer your money to your account to start investing.",
@@ -73,12 +78,13 @@
     "ADD_PORTFOLIO_START_INVEST": "Add a portfolio to start investing!",
     "SCROLL_TO_TOP": "Scroll To Top",
     "TOTAL_CASH_BALANCE": "Total Cash Balance",
+    "CASH_BALANCE": "Cash Balance",
     "VIEW": "View",
     "SUCCESS_MSG": "Portfolio {{profileName}} has been added",
     "NOT_YET_INVESTED": "Not Yet Invested",
     "TOP_UP": "Top Up",
-    "BUY_REQUEST": "buy request",
-    "BUY_REQUESTS": "buy requests",
+    "BUY_REQUEST": "Request in progress",
+    "BUY_REQUESTS": "Requests in progress",
     "CA_LABEL": "Cash Account:",
     "REBALANCE": "Rebalancing",
     "REF_LABEL": "Ref Code:",
@@ -93,24 +99,24 @@
       "NEW_INVESTMENT_UPDATE": "We’ve new investment updates.",
       "SHOW_ME_AROUND": "Show me around!",
       "MP_WALKTHROUGH_SLIDES": [{
-          "IMAGE": "mp-walkthrough/portfolio-view.svg",
-          "IMG_TITLE": "Improved Portfolio View",
-          "TEXT": "See your portfolio value and returns, buy requests and cash balance at a glance."
+          "IMAGE": "mp-walkthrough/wisesaver-saving.svg",
+          "IMG_TITLE": "WiseSaver Savings Portfolio",
+          "TEXT": "Our newly launched cash management portfolio that gives you safe and stable returns."
         },
         {
-          "IMAGE": "mp-walkthrough/multiple-portfolios.svg",
-          "IMG_TITLE": "Multiple Portfolios",
-          "TEXT": "Add up to 20 portfolios for your different financial needs."
+          "IMAGE": "mp-walkthrough/fund-portfolio-using-srs.svg",
+          "IMG_TITLE": "Fund Portfolio Using SRS Account",
+          "TEXT": "You now have the option to use your SRS account to boost your retirement savings."
         },
         {
-          "IMAGE": "mp-walkthrough/manage-request.svg",
-          "IMG_TITLE": "Manage Requests",
-          "TEXT": "See your top up and withdrawal requests status and amount."
+          "IMAGE": "mp-walkthrough/request-in-progress.svg",
+          "IMG_TITLE": "Requests In Progress",
+          "TEXT": "Quick glance of the number of requests in progress in your portfolio."
         },
         {
-          "IMAGE": "mp-walkthrough/more-button.svg",
-          "IMG_TITLE": "Manage with More Button",
-          "TEXT": "Use the More button to manage your portfolio. Top up, withdraw, rename portfolio and more…"
+          "IMAGE": "mp-walkthrough/portfolio-categories.svg",
+          "IMG_TITLE": "Portfolio Categories",
+          "TEXT": "Category filter added to help you sort your portfolio view."
         }
       ],
       "START_BTN": "Skip",
@@ -121,8 +127,13 @@
     "TITLE": "Your Portfolio",
     "PORTFOLIO": "Portfolio",
     "TOP_UP": "Top Up",
-    "TOTAL_VALUE": "Total Value",
+    "TOTAL_VALUE": "Portfolio Value",
     "TOTAL_RETURNS": "Total Returns",
+    "COST_OF_INVESTMENT": "Cost of Investment",
+    "UNREALISED_GAIN_LOSS": "Unrealised Gain/Loss",
+    "TIME_WEIGHTED_RETURN": "Time-weighted Return",
+    "SIMPLE_RETURN": "Simple Return",
+    "CALCULATE_TOOLTIP": "How do we calculate?",
     "FROM_START_OF_INVESTMENT": "From start of investment",
     "YEARLY_RETURNS": "Yearly Returns",
     "ANNUALIZED_RETURNS": "Annualized Returns",
@@ -137,7 +148,7 @@
         "MESSAGE": "This shows you how much $1 of your investment would have grown throughout your investment period, without considering the size and timing of interim cash inflows or outflows. This is also known as the time-weighted return."
       },
       "CASH_ACCOUNT_BALANCE": {
-        "TITLE": "Cash Account",
+        "TITLE": "Cash Account Balance",
         "MESSAGE": "The cash account is where all your investment funds are held before it is transferred to a portfolio or your bank account."
       },
       "RENAME_PORTFOLIO": {
@@ -161,12 +172,17 @@
         "DESC": "Please note that this portfolio is being rebalanced. This process will be completed in 6 to 7 working days.",
         "DESC_ONE": "Requests for redemptions will only be submitted for processing after rebalancing is completed. ",
         "FAQ_LINK": "For more information, visit our FAQs."
+      },
+      "CALCULATE": {
+        "TITLE": "How do we calculate",
+        "MESSAGE": "<span class='teal-txt'>Portfolio Value</span><br><p>Calculated by adding up the current value of the funds in your portfolio.</p><p>For each fund, this value is calculated by taking the number of units you own in the fund x latest price (NAV).</p><span class='teal-txt'>Cost of Investment</span><br><p>Calculated by adding up the Cost of Investment of the funds in your portfolio.</p><p>For each fund, this is calculated by taking the number of units you own in the fund x Weighted Average Cost of Investment (WAC).</p><p><a href='/'>Refer to FAQ for more information on how WAC is calculated</a></p><span class='teal-txt'>Unrealised Gain/Loss</span><br><p>Calculated by taking the difference between your Portfolio Value and your Cost of Investment.</p><p><span class='teal-txt'>Time-weighted Return</span><br><p>Calculated by multiplying your daily returns over your investment period. This calculation ignores the amount of interim cash inflows or outflows.</p> <p class='grey-txt'>E.g. Time-weighted returns over 2-day period = (1+ Day 1’s % returns) x (1 + Day 2’s % returns) – 1.</p><p><a href='/'>Refer to FAQ for a more detailed explanation of Time-weighted returns</a></p><span class='teal-txt'>Simple Return</span><br><p>Calculated by dividing your Unrealised Gain/Loss over your Cost of Investment.</p>"
       }
     },
     "PENDING_REQUEST_INFO": "You have {{count}} Buy Requests",
     "PENDING_REQUEST_INFO_SINGLE": "You have {{count}} Buy Request",
     "PENDING_NO_REQUEST_INFO": "You have no Buy Requests",
     "RISK_PROFILE_NAME": "{{riskProfileName}} Portfolio",
+    "WISESAVER_PORTFOLIO": "WiseSaver Portfolio",
     "MORE": "More",
     "PORTFOLIO_SUMMARY": "Portfolio <span>Summary</span>",
     "WHATS_NEXT": "What’s Next?",
@@ -323,7 +339,9 @@
     "VIEW_FUND_DETAILS": "View Fund Details"
   },
   "FUND_DETAILS": {
-    "TITLE": "Fund Details"
+    "TITLE": "Fund Details",
+    "DOWNLOAD_PRIMARY": "Download Product Highlight Sheet",
+    "DOWNLOAD_SECONDARY": "Download Product Prospectus"
   },
   "ASSET_ALLOCATION": {
     "TITLE": "Asset Allocation",
@@ -349,9 +367,9 @@
     "SRS_OPERATOR": "SRS Operator:",
     "SRS_ACCOUNT_NUMBER": "SRS Account Number:",
     "MONTHLY_SRS_NOTE": [
-      "Please ensure sufficient funds in your SRS Account by the 10th of every month as monthly investments will be processed on the 15th or next working day if the 15th is a weekend or public holiday.",
+      "Please ensure sufficient funds in your SRS account by the 10th of every month as the monthly buy request will be processed on the 15th or next working day if the 15th is a weekend or public holiday.",
       "If there are insufficient funds in your SRS account, this request will fail, and you may incur transactional costs.",
-      "You may submit a new monthly investment amount before the 15th to overwrite your existing monthly investment amount."
+      "You may submit a new monthly buy request before the 15th to overwrite this."
     ],
     "ONETIME_SRS_NOTE": [
       "This request will be processed immediately once request is submitted.",
@@ -361,18 +379,18 @@
     "MONTHLY_CASH_NOTE": [
       "Please fund by the 10th of the month for the recurring buy request.",
       "This request will only be processed once your cash account has sufficient funds.",
-      "If there are insufficient monies in your Investment Cash Account by the 10th of the month, the monthly investment request will be processed on the 15th of the following month.",
-      "You may submit a new monthly investment amount before the 15th to overwrite this request.",
+      "If there are insufficient monies in your cash account by the 10th of the month, the monthly buy request will be processed on the 15th of the following month.",
+      "You may submit a new monthly buy request before the 15th to overwrite this.",
       "Once this request is being processed, it cannot be changed or deleted."
     ],
     "SUFFICIENT_ONETIME_CASH_NOTE": [
       "This request will only be processed once your cash account has sufficient funds.",
-      "Once this request is being processed, it cannot be changed or deleted."
+      "Once this request is being processed, it cannot be changed or deleted. "
     ],
     "INSUFFICIENT_ONETIME_CASH_NOTE": [
       "This request will only be processed once your cash account has sufficient funds.",
       "This request will expire if you do not fund within 7 working days.",
-      "You may submit a new one-time investment amount to overwrite this request.",
+      "You may submit a new one-time buy request to overwrite this.",
       "Once this request is being processed, it cannot be changed or deleted."
     ],
 

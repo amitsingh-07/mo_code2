@@ -74,8 +74,8 @@
                   <!-- radio button -->
                   <div class="topup-radio-button hidden mb10">
                     <input id="tupup_radio_button_1"
-                      (change)="selectedInvestment(topupTypes.ONE_TIME.NAME, investmentCriteria.oneTimeInvestmentMinimum)"
-                      value="{{topupTypes.ONE_TIME.NAME}}" formControlName="Investment" name="Investment" type="radio"
+                      (change)="selectedInvestment(topupTypes.ONE_TIME.VALUE, investmentCriteria.oneTimeInvestmentMinimum)"
+                      value="{{topupTypes.ONE_TIME.VALUE}}" formControlName="Investment" name="Investment" type="radio"
                       class="field radio" tabindex="1" />
                     <label for="tupup_radio_button_1">
                       <div id="topup_investmenttype_name" class="input-label-white mb10">{{topupTypes.ONE_TIME.NAME}}
@@ -87,8 +87,8 @@
                   </div>
                   <div class="topup-radio-button hidden mb10">
                     <input id="tupup_radio_button_2"
-                      (change)="selectedInvestment(topupTypes.MONTHLY.NAME, investmentCriteria.monthlyInvestmentMinimum)"
-                      value="{{topupTypes.MONTHLY.NAME}}" formControlName="Investment" name="Investment" type="radio"
+                      (change)="selectedInvestment(topupTypes.MONTHLY.VALUE, investmentCriteria.monthlyInvestmentMinimum)"
+                      value="{{topupTypes.MONTHLY.VALUE}}" formControlName="Investment" name="Investment" type="radio"
                       class="field radio" tabindex="2" />
                     <label for="tupup_radio_button_2">
                       <div id="topup_investmenttype_name" class="input-label-white mb10">{{topupTypes.MONTHLY.NAME}}

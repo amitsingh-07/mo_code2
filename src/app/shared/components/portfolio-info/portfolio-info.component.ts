@@ -2,6 +2,7 @@
 import { Component, Input, OnChanges, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { FormatCurrencyPipe } from '../../Pipes/format-currency.pipe';
+import { INVESTMENT_COMMON_CONSTANTS } from '../../../investment/investment-common/investment-common.constants';
 
 @Component({
   selector: 'app-portfolio-info',
@@ -14,11 +15,14 @@ export class PortfolioInfoComponent implements OnInit, OnChanges {
   @Input('portfolio') portfolio;
 
   portfolioProjectionSubText;
+  isWiseSaverPortfolio: boolean;
+
 
   constructor(private formatCurrencyPipe: FormatCurrencyPipe) { }
 
   ngOnInit() {
     this.updateProjectionSubText();
+    this.isWiseSaverPortfolio = (this.portfolio.portfolioType.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY_TYPE.WISESAVER);
   }
 
   ngOnChanges() {

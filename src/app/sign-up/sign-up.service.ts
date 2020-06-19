@@ -18,6 +18,7 @@ import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
+import { IVerifyRequestOTP } from './signup-types';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -180,10 +181,21 @@ export class SignUpService {
     const errors: any = {};
     errors.errorMessages = [];
     errors.title = this.createAccountFormError.formFieldErrors.errorTitle;
+
     for (const name in controls) {
       if (controls[name].invalid &&
         this.createAccountFormError.formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage) {
         errors.errorMessages.push(this.createAccountFormError.formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage);
+      }
+    }
+
+    if(Object.keys(errors.errorMessages).length <= 0) {
+      console.log('Error Key:', Object.keys(form.errors)[0]);
+      if(form.invalid && this.createAccountFormError.formErrors[Object.keys(form.errors)[0]]) {
+        if(this.createAccountFormError.formErrors[Object.keys(form.errors)[0]].errorTitle) {
+          errors.title = this.createAccountFormError.formErrors[Object.keys(form.errors)[0]].errorTitle;
+        }
+        errors.errorMessages.push(this.createAccountFormError.formErrors[Object.keys(form.errors)[0]].errorMessage);
       }
     }
     return errors;
@@ -320,6 +332,7 @@ export class SignUpService {
     // API Call here
     return this.apiService.getEditProfileList();
   }
+
   constructEditPassword(oldpassword, newpassword) {
     return {
       oldPassword: oldpassword,
@@ -337,6 +350,11 @@ export class SignUpService {
     const data = this.constructUpdateBankPayload(bank, fullName, accountNum, id);
     return this.apiService.saveNewBank(data);
   }
+  updateBankInfoProfile(bank, fullName, accountNum, id) {
+    const data = this.constructUpdateBankPayload(bank, fullName, accountNum, id);
+    return this.apiService.saveNewBankProfile(data);
+  }
+  
   // tslint:disable-next-line:no-identical-functions
   constructUpdateBankPayload(bank, fullName, accountNum, id) {
     const request = {};
@@ -610,7 +628,6 @@ export class SignUpService {
   }
 
   //srs details
-
   setEditProfileSrsDetails(accountNumber, srsBankOperator, customerId, fundTypeId) {
     this.signUpFormData.srsAccountNumber = accountNumber;
     this.signUpFormData.srsOperatorBank = srsBankOperator;
@@ -627,4 +644,5 @@ export class SignUpService {
       fundTypeId: this.signUpFormData.fundTypeId
     };
   }
+  
 }

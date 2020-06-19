@@ -7,12 +7,12 @@ export class TopUPFormError {
       // tslint:disable-next-line:no-duplicate-string
       zero: {
         errorTitle: 'Oops! Review Investment Amount',
-        errorMessage: 'We require a one-time investment of at least $$ONE_TIME_INVESTMENT$.'
+        errorMessage: 'We require a one-time amount of at least $$ONE_TIME_AMOUNT$.'
       },
       // tslint:disable-next-line:max-line-length
       more: {
         errorTitle: 'Oops! Review Investment Amount',
-        errorMessage: 'We require a monthly investment of at least $$MONTHLY_INVESTMENT$.'
+        errorMessage: 'We require a monthly amount of at least $$MONTHLY_AMOUNT$.'
       }
       // tslint:disable-next-line:max-line-length
     }

@@ -35,8 +35,8 @@
       </div>
       <div class="to-account">
         <img *ngIf="riskProfileImg" src="{{riskProfileImg}}" alt="" />
-        <img *ngIf="!riskProfileImg" src="assets/images/investment-account/growth_icon.svg" alt="" />
-        <div>{{ 'FUNDING_INSTRUCTIONS.YOUR_PORTFOLIO' | translate }}</div>
+        <img *ngIf="!riskProfileImg" src="assets/images/investment-account/wise-saver-icon.svg" alt="" />
+        <!-- <div>{{ 'FUNDING_INSTRUCTIONS.YOUR_PORTFOLIO' | translate }}</div> -->
         <div class="strong multiline-ellipsis">
           {{(PortfolioName ? PortfolioName : fundDetails.portfolio.riskProfile.type)}}</div>
       </div>

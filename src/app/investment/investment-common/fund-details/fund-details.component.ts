@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -28,6 +28,8 @@ export class FundDetailsComponent implements OnInit {
   fund;
   fundDetail: any;
   prospectusFile: any;
+  
+  @Input('portfolioType') portfolioType;
 
   constructor(
     public readonly translate: TranslateService,
@@ -70,7 +72,7 @@ export class FundDetailsComponent implements OnInit {
   }
   getProspectusLink(fund) {
     //let prospectusFileName = fund.prospectusLink; // TODO: getting null from backend
-    let prospectusFileName = 'prospectus.pdf';
+    let prospectusFileName = (this.portfolioType) ? 'prospectus_investment.pdf' : 'prospectus_wise_saver.pdf';
     return window.location.origin + '/app/assets/docs/portfolio/fund/' + prospectusFileName;
   }
 }

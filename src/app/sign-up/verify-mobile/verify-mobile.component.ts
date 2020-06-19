@@ -16,14 +16,15 @@ import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { Util } from '../../shared/utils/util';
 import { WillWritingService } from '../../will-writing/will-writing.service';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
-import { DirectService } from './../../direct/direct.service';
-import { GuideMeService } from './../../guide-me/guide-me.service';
 import { appConstants } from './../../../app/app.constants';
 import { AppService } from './../../../app/app.service';
+import { DirectService } from './../../direct/direct.service';
+import { GuideMeService } from './../../guide-me/guide-me.service';
 
 @Component({
   selector: 'app-verify-mobile',
@@ -31,6 +32,7 @@ import { AppService } from './../../../app/app.service';
   styleUrls: ['./verify-mobile.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
+
 export class VerifyMobileComponent implements OnInit {
   private errorModal = {};
   private loading = {};
@@ -70,6 +72,7 @@ export class VerifyMobileComponent implements OnInit {
       this.loading['verifying'] = result.LOADING.VERIFYING;
       this.loading['verified'] = result.LOADING.VERIFIED;
       this.loading['sending'] = result.LOADING.SENDING;
+      this.loading['verified2fa'] = result.LOADING.VERIFIED2FA;
     });
   }
 
@@ -89,6 +92,11 @@ export class VerifyMobileComponent implements OnInit {
       };
     } else {
       this.mobileNumber = this.signUpService.getMobileNumber();
+    }
+
+
+    if (this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
+      this.editProfile = true;
     }
   }
 
@@ -116,7 +124,13 @@ export class VerifyMobileComponent implements OnInit {
         otpArr.push(form.value[value]);
         if (value === 'otp6') {
           const otp = otpArr.join('');
-          this.verifyOTP(otp);
+          if (this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
+            console.log('Calling Verity 2FA');
+            this.verify2FA(otp);
+          } else {
+            console.log('Calling Verity OTP');
+            this.verifyOTP(otp);
+          }
         }
       }
     }
@@ -146,12 +160,57 @@ export class VerifyMobileComponent implements OnInit {
   }
 
   /**
+   * verify 2fa mobile number
+   * @param code - 2fa otp.
+   */
+  verify2FA(otp) {
+    this.progressModal = true;
+    this.mobileNumberVerifiedMessage = this.loading['verifying'];
+    this.authService.doValidate2fa(otp).subscribe((data: any) => {
+      if (data.responseMessage.responseCode === 6011) {
+        this.mobileNumberVerified = true;
+        this.authService.set2FAToken(data.responseMessage.responseCode);
+        this.mobileNumberVerifiedMessage = this.loading['verified2fa'];
+        this.authService.setFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE, false);
+      } else if (data.responseMessage.responseCode === 5123 || data.responseMessage.responseCode === 5009) {
+        const title = data.responseMessage.responseCode === 5123 ? this.errorModal['title'] : this.errorModal['expiredTitle'];
+        const message = data.responseMessage.responseCode === 5123 ? this.errorModal['message'] : this.errorModal['expiredMessage'];
+        this.openErrorModal(title, message, false);
+      } else {
+        this.progressModal = false;
+        this.errorHandler.handleCustomError(data, true);
+      }
+    });
+  }
+
+  /**
    * request a new OTP.
    */
   requestNewCode() {
     this.progressModal = true;
+    if (this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
+      console.log('Triggering New Verify 2FA');
+      this.requestNew2faOTP();
+    } else {
+      console.log('Triggering New Verify OTP');
+      this.requestNewVerifyOTP();
+    }
+  }
+
+  requestNewVerifyOTP() {
+    this.signUpApiService.requestNewOTP(this.editProfile).subscribe((data) => {
+      this.verifyMobileForm.reset();
+      this.progressModal = false;
+      this.showCodeSentText = true;
+    });
+  }
+  /** 
+   * request a new 2fa OTP
+   */
+  requestNew2faOTP() {
+    this.progressModal = true;
     this.mobileNumberVerifiedMessage = this.loading['sending'];
-    this.signUpApiService.requestNewOTP().subscribe((data) => {
+    this.authService.send2faRequest().subscribe((data) => {
       this.verifyMobileForm.reset();
       this.progressModal = false;
       this.showCodeSentText = true;
@@ -164,13 +223,22 @@ export class VerifyMobileComponent implements OnInit {
   redirectToPasswordPage() {
     const redirect_url = this.signUpService.getRedirectUrl();
     const journeyType = this.appService.getJourneyType();
-    if (redirect_url && redirect_url === SIGN_UP_ROUTE_PATHS.EDIT_PROFILE) {
-      this.signUpService.clearRedirectUrl();
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED]);
-    } else {
+    if (journeyType) {
       if (journeyType === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
         this.sendWelcomeEmail();
       }
+      this.resendEmailVerification();
+    } else if (redirect_url) {
+      // Do a final redirect
+      this.signUpService.clearRedirectUrl();
+      const brokenRoute = Util.breakdownRoute(redirect_url);
+      this.router.navigate([brokenRoute.base], {
+        fragment: brokenRoute.fragments != null ? brokenRoute.fragments : null,
+        preserveFragment: true,
+        queryParams: brokenRoute.params != null ? brokenRoute.params : null,
+        queryParamsHandling: 'merge',
+      });
+    } else {
       this.resendEmailVerification();
     }
   }
@@ -184,6 +252,7 @@ export class VerifyMobileComponent implements OnInit {
     const mobileNo = this.mobileNumber.number.toString();
     this.signUpApiService.resendEmailVerification(mobileNo, false).subscribe((data) => {
       if (data.responseMessage.responseCode === 6007) {
+        this.navbarService.logoutUser();
         this.signUpService.clearData();
         this.selectedPlansService.clearData();
         this.willWritingService.clearServiceData();

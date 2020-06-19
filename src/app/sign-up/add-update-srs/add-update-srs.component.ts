@@ -1,6 +1,6 @@
 
 
-import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -25,6 +25,9 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-update-srs',
@@ -32,7 +35,7 @@ import { InvestmentCommonService } from '../../investment/investment-common/inve
   styleUrls: ['./add-update-srs.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AddUpdateSrsComponent implements OnInit {
+export class AddUpdateSrsComponent implements OnInit, OnDestroy {
   pageTitle: string;
   addUpdateSrsFrom: FormGroup;
   formValues;
@@ -40,14 +43,18 @@ export class AddUpdateSrsComponent implements OnInit {
   fundingMethods: any;
   srsAgentBankList;
   srsDetail;
+  fundTypeId: number;
+  protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private router: Router,
     private footerService: FooterService,
     private route: ActivatedRoute,
     public headerService: HeaderService,
     public navbarService: NavbarService,
     private signUpService: SignUpService,
+    private authService: AuthenticationService,
     private modal: NgbModal,
     public investmentAccountService: InvestmentAccountService,
     public manageInvestmentsService: ManageInvestmentsService,
@@ -77,6 +84,60 @@ export class AddUpdateSrsComponent implements OnInit {
     this.getSrsBankOperator();
     this.buildForm();
     this.addorRemoveAccNoValidator();
+
+    this.authService.get2faAuthEvent
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((token) => {
+      if (!token) {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+      }
+    });
+    this.manageInvestmentsService.getInvestmentOverview()
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data) => {
+      this.loaderService.hideLoaderForced();
+      if (data.responseMessage.responseCode >= 6000 && data && data.objectList) {
+        this.fundTypeId = this.getFundTypeId(data.objectList.portfolios);
+      }
+    });
+
+    this.manageInvestmentsService.getProfileSrsAccountDetails()
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data: any) => {
+      if (data) {
+        this.signUpService.setEditProfileSrsDetails(
+          data.srsAccountNumber.conformedValue,
+          { name: data.srsOperator },
+          data.customerId,
+          this.fundTypeId
+        );
+        this.addUpdateSrsFrom.patchValue({
+          srsAccount: data.srsAccountNumber.conformedValue
+        });
+      }
+    });
+
+    this.authService.get2faErrorEvent
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data) => {
+      if(data) {
+        this.authService.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.signUpService.clearRedirectUrl();
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
+
+  getFundTypeId(protfolios) {
+    for (const obj of protfolios) {
+      if (obj['fundingTypeValue'] === 'SRS') {
+        return obj['fundingTypeId'];
+      }
+    }
   }
 
   buildForm() {
@@ -206,7 +267,7 @@ export class AddUpdateSrsComponent implements OnInit {
         accountNumber: formValue.srsAccount ? formValue.srsAccount.replace(/[-]/g, '') : null,
         operatorId: opertorId ? opertorId : null
       };
-      this.investmentCommonService.saveSrsAccountDetails(reqParams, this.srsDetail.customerId).subscribe((data) => {
+      this.investmentCommonService.saveProfileSrsAccountDetails(reqParams, this.srsDetail.customerId).subscribe((data) => {
         this.manageInvestmentsService.setSrsAccountDetails(null);
         this.manageInvestmentsService.setSrsSuccessFlag(true);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
