@@ -40,6 +40,7 @@ import { COMPREHENSIVE_ROUTE_PATHS } from './../../comprehensive/comprehensive-r
 import { InvestmentAccountService } from './../../investment/investment-account/investment-account-service';
 import { StateStoreService } from './../../shared/Services/state-store.service';
 import { LoginFormError } from './login-form-error';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -49,6 +50,8 @@ import { LoginFormError } from './login-form-error';
 export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   private distribution: any;
   private loginFormError: any = new LoginFormError();
+  
+  //login_password_txt
 
   loginForm: FormGroup;
   formValues: any;
@@ -62,6 +65,46 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   progressModal = false;
   investmentEnquiryId;
   finlitEnabled = false;
+  capslockOn: boolean;
+  capslockFocus :boolean;
+  
+
+
+
+@HostListener('window:click', ['$event']) onClick(event){
+ if (event.getModifierState && event.getModifierState('CapsLock')) {
+   this.capslockOn = true;
+  } else {
+   this.capslockOn = false;
+  }
+ }
+
+@HostListener('window:keydown', ['$event'])
+onKeyDown(event){
+if (event.getModifierState && event.getModifierState('CapsLock')) {
+  this.capslockOn = true;
+  } else {
+   this.capslockOn = false;
+  }
+}
+
+@HostListener('window:keyup', ['$event'])
+ onKeyUp(event){
+ if (event.getModifierState && event.getModifierState('CapsLock')) {
+  this.capslockOn = true;
+ } else {
+  this.capslockOn = false;
+ }
+}
+
+onFocus(){
+this.capslockFocus=true;
+}
+onBlur(){
+  this.capslockFocus=false;;
+}
+
+
 
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
 
@@ -71,10 +114,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.welcomeTitle.nativeElement.scrollIntoView(true);
     }
   }
-
-  constructor(
+ constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder, private appService: AppService,
+    private el: ElementRef,
     private modal: NgbModal, private configService: ConfigService,
     private googleAnalyticsService: GoogleAnalyticsService,
     public authService: AuthenticationService,
@@ -94,7 +137,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private investmentAccountService: InvestmentAccountService,
     private loaderService: LoaderService,
     private investmentCommonService: InvestmentCommonService,
-    private helper: HelperService) {
+    private helper: HelperService,private elementHost: ElementRef) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
@@ -110,9 +153,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
+    
   }
-
-  /**
+ /**
    * Initialize tasks.
    */
   ngOnInit() {
@@ -146,7 +189,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       }
 
     }
-  }
+    history.state.data;
+    }
 
   ngAfterViewInit() {
     if (this.signUpService.getCaptchaShown()) {
@@ -274,7 +318,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
             if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
               this.updateInsuranceEnquiry(insuranceEnquiry, data, true);
-            } else {
+             } else {
               this.callErrorModal(data);
             }
           } else {
@@ -332,7 +376,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       } else {
         this.selectedPlansService.clearData();
         this.stateStoreService.clearAllStates();
-        this.goToNext();
+        this.router.navigate(['email-enquiry/success']);
       }
     });
   }

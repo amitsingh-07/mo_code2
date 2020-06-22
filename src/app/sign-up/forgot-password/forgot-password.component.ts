@@ -41,6 +41,7 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
   buttonTitle;
   captchaSrc = '';
   emailResend: string;
+  isInsuranceFlow;
 
   constructor(
     // tslint:disable-next-line
@@ -61,6 +62,7 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
     this.route.params.subscribe((params) => {
       this.heighlightMobileNumber = params.heighlightMobileNumber;
     });
+    
 
     this.translate.get('COMMON').subscribe((result: string) => {
       this.emailNotFoundTitle = this.translate.instant('FORGOTPASSWORD.EMAIL_NOT_FOUND');
