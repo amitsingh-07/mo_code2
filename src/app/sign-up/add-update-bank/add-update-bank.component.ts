@@ -93,7 +93,9 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
       this.bankForm.get('accountNo').updateValueAndValidity();
     });
 
-    this.authService.get2faAuthEvent.subscribe((token) => {
+    this.authService.get2faAuthEvent
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((token) => {
       if (!token) {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       }
