@@ -21,6 +21,7 @@ import { InvestmentApiService } from '../investment-api.service';
 import {
   InvestmentEngagementJourneyService
 } from '../investment-engagement-journey/investment-engagement-journey.service';
+import { INVESTMENT_COMMON_CONSTANTS } from './../investment-common/investment-common.constants';
 import { ISrsAccountDetails, ManageInvestmentsFormData } from './manage-investments-form-data';
 import { ManageInvestmentsFormError } from './manage-investments-form-error';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './manage-investments-routes.constants';
@@ -45,6 +46,7 @@ export class ManageInvestmentsService {
   private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
   private topUPFormError: any = new TopUPFormError();
   private managementFormError: any = new ManageInvestmentsFormError();
+  selectedPortfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.ALL;
 
   constructor(
     public readonly translate: TranslateService,
@@ -111,14 +113,14 @@ export class ManageInvestmentsService {
     // tslint:disable-next-line:triple-equals
     if (
       Number(form.value.oneTimeInvestmentAmount) < this.manageInvestmentsFormData.minimumBalanceOfTopup
-      && form.value.Investment === 'One-time Investment'
+      && form.value.Investment === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.ONE_TIME.VALUE
     ) {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['zero']);
       return this.topUPFormError.formFieldErrors['topupValidations']['zero'];
       // tslint:disable-next-line:max-line-length
     } else if (
       Number(form.value.MonthlyInvestmentAmount) < this.manageInvestmentsFormData.minimumBalanceOfTopup
-      && form.value.Investment === 'Monthly Investment'
+      && form.value.Investment ===  MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.MONTHLY.VALUE
       && ((Number(form.value.MonthlyInvestmentAmount) === 0 && !allowMonthlyZero) || (Number(form.value.MonthlyInvestmentAmount) !== 0))
     ) {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['more']);
@@ -276,6 +278,11 @@ export class ManageInvestmentsService {
   saveNewBank(data) {
     const payload = this.constructSaveNewBankRequest(data);
     return this.apiService.saveNewBank(payload);
+  }
+
+  saveProfileNewBank(data) {
+    const payload = this.constructSaveNewBankRequest(data);
+    return this.apiService.saveNewBankProfile(payload);
   }
 
   constructSaveNewBankRequest(data) {
@@ -551,28 +558,45 @@ export class ManageInvestmentsService {
   }
 
   getSrsAccountDetails(): Observable<ISrsAccountDetails> {
-    const srsAccountDetailsSession = this.getSrsFormData();
-    if (srsAccountDetailsSession) {
-      return Observable.of(srsAccountDetailsSession);
-    } else {
-      return this.investmentApiService.getSrsAccountDetails().map((data: any) => {
-        if (data && data.objectList && data.objectList.accountNumber &&
-          data.objectList.srsBankOperator && data.objectList.srsBankOperator.name) {
-          const srsAccountDetails = {
-            srsAccountNumber: this.srsAccountFormat(data.objectList.accountNumber, data.objectList.srsBankOperator.name),
-            srsOperator: data.objectList.srsBankOperator.name,
-            customerId: data.objectList.customerId
-          };
-          this.setSrsAccountDetails(srsAccountDetails);
-          return srsAccountDetails;
-        } else {
-          return null;
-        }
-      },
-        (err) => {
-          this.investmentAccountService.showGenericErrorModal();
-        });
-    }
+    return this.investmentApiService.getSrsAccountDetails().map((data: any) => {
+      if (data && data.objectList && data.objectList.accountNumber &&
+        data.objectList.srsBankOperator && data.objectList.srsBankOperator.name) {
+        const srsAccountDetails = {
+          // srsAccountNumber: data.objectList.accountNumber,
+          srsAccountNumber: this.srsAccountFormat(data.objectList.accountNumber, data.objectList.srsBankOperator.name),
+          srsOperator: data.objectList.srsBankOperator.name,
+          customerId: data.objectList.customerId
+        };
+        this.setSrsAccountDetails(srsAccountDetails);
+        return srsAccountDetails;
+      } else {
+        return null;
+      }
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  }
+
+  getProfileSrsAccountDetails(): Observable<ISrsAccountDetails> {
+    return this.investmentApiService.getProfileSrsAccountDetails().map((data: any) => {
+      if (data && data.objectList && data.objectList.accountNumber &&
+        data.objectList.srsBankOperator && data.objectList.srsBankOperator.name) {
+        const srsAccountDetails = {
+          // srsAccountNumber: data.objectList.accountNumber,
+          srsAccountNumber: this.srsAccountFormat(data.objectList.accountNumber, data.objectList.srsBankOperator.name),
+          srsOperator: data.objectList.srsBankOperator.name,
+          customerId: data.objectList.customerId
+        };
+        this.setSrsAccountDetails(srsAccountDetails);
+        return srsAccountDetails;
+      } else {
+        return null;
+      }
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   setSrsAccountDetails(srsAccountDetails: ISrsAccountDetails) {
@@ -608,5 +632,9 @@ export class ManageInvestmentsService {
   }
   getSrsSuccessFlag() {
     return this.manageInvestmentsFormData.isSrsAccountUpdated;
+  }
+
+  setSelectedPortfolioCategory(category) {
+    this.selectedPortfolioCategory = category;
   }
 }

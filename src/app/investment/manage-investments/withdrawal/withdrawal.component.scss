@@ -61,7 +61,7 @@ app-withdrawal {
     .cash-balance {
       border-top: 1px solid $white-color;
       padding-top: 19px;
-      margin-top: 23px;
+      margin-top: 20px;
       font-size: 16px;
       color: $withdrawal-cash-balance-color;
       justify-content: space-between;
@@ -145,6 +145,18 @@ app-withdrawal {
     .input-control {
       &#withdraw-type-srs {
         text-align: left !important;
+      }
+    }
+  }
+
+  .form-group {
+    &.form-group-padding {
+      .flex-row:nth-child(1) {
+        margin-bottom: 10px;
+      }
+
+      .flex-row:nth-child(2) {
+        margin-bottom: 20px;
       }
     }
   }

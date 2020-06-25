@@ -17,6 +17,7 @@ import {
 } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { SrsTooltipComponent } from '../srs-tooltip/srs-tooltip.component';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 
 @Component({
   selector: 'app-funding-method',
@@ -34,6 +35,7 @@ export class FundingMethodComponent implements OnInit {
   fundingMethodNameSrs;
   loaderTitle: string;
   loaderDesc: string;
+  selectedPortfolioType;
 
   constructor(
     public readonly translate: TranslateService,
@@ -65,6 +67,7 @@ export class FundingMethodComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.getOptionListCollection();
     this.formValues = this.investmentCommonService.getInitialFundingMethod();
+    this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
     this.fundingMethodForm = new FormGroup({
       initialFundingMethodId: new FormControl(
         this.formValues.initialFundingMethodId, Validators.required)
@@ -110,6 +113,10 @@ export class FundingMethodComponent implements OnInit {
   }
   goToNext(form) {
     this.investmentCommonService.setInitialFundingMethod(form.value);
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+    if (this.selectedPortfolioType ===INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO) {
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
+    } else{
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+    }
   }
 }

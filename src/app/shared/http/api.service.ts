@@ -292,8 +292,11 @@ export class ApiService {
   }
 
   requestNewOTP(payload: IVerifyRequestOTP) {
-    return this.http.post(apiConstants.endpoint.resendOTP, payload)
-      .pipe(
+    const resendOTPEditOrSignUpFlow = payload.editProfile === true ?
+      apiConstants.endpoint.resendOTP + '?isEditProfile=true' :
+      apiConstants.endpoint.resendOTP;
+    return this.http.post(resendOTPEditOrSignUpFlow, payload)
+     .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
@@ -573,6 +576,13 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  
+  saveNewBankProfile(data) {
+    return this.http.post(investmentApiConstants.endpoint.investment.addProfileNewBank, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 
   // Get customer pop up status
   getPopupStatus(payload) {
@@ -606,9 +616,9 @@ export class ApiService {
       );
   }
 
-    // Payment
+  // Payment
   getRequestSignature(payload) {
-      return this.http.post(apiConstants.endpoint.payment.getRequestSignature, payload)
+    return this.http.post(apiConstants.endpoint.payment.getRequestSignature, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -616,23 +626,23 @@ export class ApiService {
 
   cancelPayment(payload) {
     return this.http.post(apiConstants.endpoint.payment.cancelPayment, payload)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
   getLastSuccessfulSubmittedTs() {
     return this.http.get(apiConstants.endpoint.payment.getLastSuccessfulSubmittedTs)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
   getCustPromoCodeByCategory(payload) {
     return this.http.post(apiConstants.endpoint.payment.getCustPromoCodeByCategory, payload)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
 }

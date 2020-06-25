@@ -56,6 +56,18 @@ app-investment-period {
         padding: 0;
         margin: 0;
         list-style: none;
+
+        div {
+          &.flex-row {
+            font-size: 13px;
+            padding-top: 10px;
+            width: 100%;
+            div:first-child {
+              color: $investment-time-horizon-desc-clr;
+
+            }
+          }
+        }
       }
 
       li {
@@ -66,7 +78,6 @@ app-investment-period {
         display: flex;
         justify-content: space-between;
         align-items: center;
-
         &.title {
           color: $investment-time-horizon-clr;
           border: 1px solid $investment-time-horizon-desc-title-brdr-clr;
@@ -187,4 +198,8 @@ app-investment-period {
       width: 96%;
     }
   }
+}
+
+.bold-text {
+  font-family: $muli-bold;
 }

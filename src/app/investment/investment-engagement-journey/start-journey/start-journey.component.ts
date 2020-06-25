@@ -33,7 +33,6 @@ export class StartJourneyComponent implements OnInit {
   errorMsg: string;
   promoCodeForm: FormGroup;
   @ViewChild('promoCode') promoCodeRef: ElementRef;
-
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -126,7 +125,7 @@ export class StartJourneyComponent implements OnInit {
   }
   
   redirectToNextScreen(){
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
   }
   
 

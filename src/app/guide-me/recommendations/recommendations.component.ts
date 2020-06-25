@@ -16,6 +16,7 @@ import { SlickComponent } from 'ngx-slick';
 import { Subscription } from 'rxjs';
 
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '../../../../node_modules/@angular/router';
+import { FBPixelService } from '../../shared/analytics/fb-pixel.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
@@ -25,7 +26,6 @@ import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
 import { CreateAccountModelComponent } from './create-account-model/create-account-model.component';
 import { RecommendationsState } from './recommendations.state';
-import { FBPixelService } from 'src/app/shared/analytics/fb-pixel.service';
 
 @Component({
   selector: 'app-recommendations',

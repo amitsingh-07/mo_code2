@@ -48,7 +48,7 @@ export class ManageInvestmentsFormError {
       },
       MinValue: {
         errorTitle: 'Invalid Withdraw Type Amount',
-        errorMessage: 'Withdrawal amount should more than 0.'
+        errorMessage: 'Withdrawal amount should be more than 0.'
       },
       MinWithdrawal: {
         errorTitle: 'Minimum Withdrawal amount',

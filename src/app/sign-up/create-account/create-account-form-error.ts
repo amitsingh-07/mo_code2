@@ -1,4 +1,10 @@
 export class CreateAccountFormError {
+  formErrors: object = {
+    notChanged: {
+      errorTitle: 'Not Changed',
+      errorMessage: 'Update Mobile Number / Email address'
+    }
+  };
   formFieldErrors: object = {
     errorTitle: 'Invalid Form',
     countryCode: {
@@ -54,6 +60,10 @@ export class CreateAccountFormError {
       email: {
         errorTitle: 'Invalid E-mail',
         errorMessage: 'Please enter a valid email address in the format yourname@example.com'
+      },
+      notChanged: {
+        errorTitle: 'Not Changed',
+        errorMessage: 'Update Mobile Number / Email address'
       }
     },
     confirmEmail: {

@@ -13,4 +13,7 @@ export interface IEnvironment {
     adRollAdvId?: string; // AdRoll Advert Id
     brand ?: string; // Project G
     hideHomepage?: boolean; // Toggle MO homepage on/off
+    expire2faTime?: number; // time before 2fa timeout
+    expire2faPollRate?: number; // interval for checks
+    expire2faMaxCheck?: number; // max number of checks
 }

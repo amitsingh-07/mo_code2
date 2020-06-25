@@ -134,6 +134,7 @@ constructor(
       if (!this.islocked) {
         this.getComprehensiveCall();
       } else if (this.getComprehensiveSummaryDashboard.dobPopUpEnable) {
+            this.setComprehensiveSummary(false, '');
             const toolTipParams = {
               TITLE: '',
               DESCRIPTION: this.translate.instant('COMPREHENSIVE.DASHBOARD.WARNING_POPUP'),

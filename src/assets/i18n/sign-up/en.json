@@ -98,6 +98,7 @@
   },
   "VERIFY_MOBILE": {
     "TITLE": "Verify Your Mobile",
+    "2FA_TITLE": "Authenticate Now",
     "FORM": {
       "INSTRUCTION": "Enter the 6-digit OTP code sent to:",
       "EDIT_NUMBER": "Edit Number",
@@ -113,11 +114,12 @@
     },
     "EXPIRED_ERROR_MODAL": {
       "ERROR_TITLE": "Expired OTP Code",
-      "ERROR_MESSAGE": "Your OTP is expired. Please click on Resend OTP link to get new OTP"
+      "ERROR_MESSAGE": "Your OTP has expired. Please click on Resend OTP link to get new OTP"
     },
     "LOADING": {
       "VERIFYING": "Verifying...",
       "VERIFIED": "Mobile Verified!",
+      " VERIFIED2FA": "2FA Verified",
       "SENDING": "Sending New OTP"
     }
   },
@@ -282,7 +284,7 @@
     },
     "INVESTMENT": {
       "TITLE_MY_INVESTMENT": "My Investment",
-      "TITLE_INVESTMENT": "Investment",
+      "TITLE_INVESTMENT": "Investment & Savings",
       "VIEW_ALL": "View all",
       "VIEW": "View",
       "CREATE_YOUR_PORTFOLIO": "Create Your Portfolio",
@@ -300,16 +302,24 @@
       "ESTIMATED_MINS": "Estimated 5-15 mins",
       "ADD_PORTFOLIO": " Add Portfolio",
       "ESTIMATED_THREE_MINS": "Estimated 3 mins",
-      "CDD_CHECK_ONGOING": "Verification of investment account details in progress.",
-      "CDD_CHECK_FAIL_DESC": "Investment account set up unsuccessful. Please verify your details.",
+      "CDD_CHECK_ONGOING": "Verification of your account setup is in progress.",
+      "CDD_CHECK_FAIL_DESC": "Your account set up is unsuccessful. Please verify your details.",
       "VERIFY_DETAILS": "Verify Now",
-      "SETUP_YOUR_ACCOUNT_DESC": "To proceed, please set up your investment account.",
+      "SETUP_YOUR_ACCOUNT_DESC": "To proceed, please set up your account.",
       "SET_UP_ACCOUNT": "Set-Up Account",
-      "SUSPENDED_INVESTMENT_ACCOUNT": "Your account has been suspended. Email us at <a  class=\"hyperlink_color\" href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> or call us at (65) 6329 9188 for assistance.",
+      "SUSPENDED_INVESTMENT_ACCOUNT": "Your investment account set up is unsuccessful. Email us at <a  class=\"hyperlink_color\" href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> or call us at (65) 6329 9188 for assistance.",
       "UNSUCCESSFUL_INVESTMENT_ACCOUNT": "Your investment account set up is unsuccessful. Email us at <a  class=\"hyperlink_color\" href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> or call us at (65) 6329 9188 for assistance.",
       "PORTFOLIO_EXIST_TITLE": "Portfolio Already Exist",
       "PORTFOLIO_EXIST_DESC": "You have already selected a portfolio. Please proceed to Top up, Fund or Delete the selected portfolio.",
       "PORTFOLIO_EXIST_BTN_LABEL": "Proceed To Portfolio",
+      "TOP_UP": "Top Up",
+      "TOTAL_PORTFOLIO_VALUE": "Total Portfolio Value",
+      "TOTAL_CASH_BALANCE_VALUE": "Total Cash Balance ",
+      "INVESTMENT_PORTFOLIOS": "Investment Portfolios",
+      "WISE_SAVER_PORTFOLIOS": "WiseSaver Portfolios",
+      "CASH_BALANCE": "Cash Balance",
+      "CASH_ACCOUNT_BALANCE_TITLE": "Cash Account Balance",
+      "CASH_ACCOUNT_BALANCE_MESSAGE": "The cash account is where all your investment funds are held before it is transferred to a portfolio or your bank account.",
       "SERVICE_UNAVAILABLE": "Sorry, this service is temporarily unavailable. Please try again later."
     },
     "WILL_WRITING": {

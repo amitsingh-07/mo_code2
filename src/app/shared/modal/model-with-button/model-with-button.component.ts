@@ -32,6 +32,7 @@ export class ModelWithButtonComponent implements OnInit {
   @Input() secondaryActionDim: boolean;
   @Input() isInlineButton: boolean;
   @Input() closeBtn = true;
+  @Input() investmentPeriodImg :any;
   @Output() primaryAction = new EventEmitter<any>();
   @Output() secondaryAction = new EventEmitter<any>();
   @Output() yesClickAction = new EventEmitter<any>();
