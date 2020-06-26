@@ -27,7 +27,7 @@ export class AuthenticationService {
   get2faAuthEvent = this.get2faAuth.asObservable();
   private get2faError = new BehaviorSubject(false);
   get2faErrorEvent = this.get2faError.asObservable();
-  private get2faUpdate = new BehaviorSubject(''); 
+  private get2faUpdate = new BehaviorSubject('');
   get2faUpdateEvent = this.get2faUpdate.asObservable();
   private timer2fa: any;
 
@@ -298,7 +298,7 @@ export class AuthenticationService {
     if (option && option.updateData) {
       this.get2faUpdate.next(sessionStorage.getItem(appConstants.APP_2FA_KEY));
     }
-    this.get2faAuth.next(sessionStorage.getItem(appConstants.APP_2FA_KEY)); // PROBLEM IS HERE
+    this.get2faAuth.next(''); // PROBLEM IS HERE
   }
 
   public is2FAVerified() {
