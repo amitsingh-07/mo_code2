@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,7 +16,10 @@ import { environment } from './../../../environments/environment';
 import { FooterService } from './../../shared/footer/footer.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
-import { ValidateChange, ValidateRange } from './range.validator';
+import { ValidateRange } from './range.validator';
+import { ValidateGroupChange } from './formGroup.change.validator';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-update-user-id',
@@ -24,7 +27,7 @@ import { ValidateChange, ValidateRange } from './range.validator';
   styleUrls: ['./update-user-id.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class UpdateUserIdComponent implements OnInit {
+export class UpdateUserIdComponent implements OnInit, OnDestroy {
   private distribution: any;
   private pageTitle: string;
 
@@ -38,6 +41,7 @@ export class UpdateUserIdComponent implements OnInit {
   OldEmail;
   updateMobile: boolean;
   updateEmail: boolean;
+  protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -84,33 +88,55 @@ export class UpdateUserIdComponent implements OnInit {
     this.getCountryCode();
     this.footerService.setFooterVisibility(false);
 
-    this.authService.get2faAuthEvent.subscribe((token) => {
+    this.authService.get2faAuthEvent
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((token) => {
       if (!token) {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       }
     });
-
-    this.signUpService.getEditProfileInfo().subscribe((data) => {
+    this.signUpService.getEditProfileInfo()
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data) => {
       const personalData = data.objectList.personalInformation;
       if (personalData) {
-        if(this.updateUserIdForm) {
-          this.updateUserIdForm.controls['mobileNumber'].setValidators([Validators.required, ValidateRange, ValidateChange(personalData.mobileNumber)]);
+        if (this.updateUserIdForm) {
+          this.updateUserIdForm.setValidators(
+            ValidateGroupChange({
+              'countryCode': personalData.countryCode,
+              'mobileNumber': personalData.mobileNumber,
+              'email': personalData.email
+            }));
         }
         this.updateUserIdForm.patchValue({
           countryCode: personalData.countryCode,
           mobileNumber: personalData.mobileNumber,
           email: personalData.email
         });
-        
+
         this.signUpService.setContactDetails(personalData.countryCode, personalData.mobileNumber, personalData.email);
         this.OldCountryCode = personalData.countryCode;
         this.OldEmail = personalData.email;
         this.OldMobileNumber = personalData.mobileNumber;
       }
-
     });
+    this.authService.get2faErrorEvent
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data) => {
+      if(data) {
+        this.authService.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
+      }
+    });
+
   }
 
+  ngOnDestroy() {
+    if(this.signUpService.getRedirectUrl() !== SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED) {
+      this.signUpService.clearRedirectUrl();
+    }
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
   /**
    * build update account form.
    */
@@ -122,8 +148,14 @@ export class UpdateUserIdComponent implements OnInit {
     this.OldEmail = this.formValues.OldEmail;
     this.updateUserIdForm = this.formBuilder.group({
       countryCode: [this.formValues.countryCode, [Validators.required]],
-      mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange, ValidateChange(this.OldCountryCode)]],
+      mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
       email: [this.formValues.email, [Validators.required, Validators.email]]
+    }, {
+      validator: ValidateGroupChange({
+        'countryCode': this.OldCountryCode,
+        'mobileNumber': this.OldMobileNumber,
+        'email': this.OldEmail
+      })
     });
   }
 
@@ -160,7 +192,7 @@ export class UpdateUserIdComponent implements OnInit {
     this.defaultCountryCode = countryCode;
     this.updateUserIdForm.controls['countryCode'].setValue(countryCode);
     if (countryCode === '+65') {
-      mobileControl.setValidators([Validators.required, ValidateRange, ValidateChange(this.OldMobileNumber)]);
+      mobileControl.setValidators([Validators.required, ValidateRange]);
     } else {
       mobileControl.setValidators([Validators.required, Validators.pattern(RegexConstants.CharactersLimit)]);
     }
@@ -196,7 +228,7 @@ export class UpdateUserIdComponent implements OnInit {
         this.signUpService.setContactDetails(this.updateUserIdForm.value.countryCode,
           this.updateUserIdForm.value.mobileNumber, this.updateUserIdForm.value.email);
         this.signUpService.setEditContact(true, this.updateMobile, this.updateEmail);
-        this.signUpService.setRedirectUrl(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE);
+        this.signUpService.setRedirectUrl(SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED);
         if (data.objectList[0] && data.objectList[0].customerRef) {
           this.signUpService.setCustomerRef(data.objectList[0].customerRef);
         }
@@ -212,17 +244,6 @@ export class UpdateUserIdComponent implements OnInit {
         this.investmentAccountService.showGenericErrorModal();
       }
     });
-  }
-
-  private validateContacts() {
-    return (group: FormGroup) => {
-      if (this.OldMobileNumber === group.controls['mobileNumber'].value
-        && this.OldEmail === group.controls['email'].value) {
-        return group.controls['mobileNumber'].setErrors({ notChanged: true });
-      } else {
-        return group.controls['mobileNumber'].setErrors(null);
-      }
-    };
   }
 
   onlyNumber(el) {

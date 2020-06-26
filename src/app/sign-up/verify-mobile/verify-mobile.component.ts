@@ -95,7 +95,7 @@ export class VerifyMobileComponent implements OnInit {
     }
 
 
-    if(this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
+    if (this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
       this.editProfile = true;
     }
   }
@@ -223,23 +223,22 @@ export class VerifyMobileComponent implements OnInit {
   redirectToPasswordPage() {
     const redirect_url = this.signUpService.getRedirectUrl();
     const journeyType = this.appService.getJourneyType();
-    if (redirect_url && redirect_url === SIGN_UP_ROUTE_PATHS.EDIT_PROFILE) {
-      this.signUpService.clearRedirectUrl();
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED]);
-    } else if (redirect_url) {
-      this.signUpService.clearRedirectUrl();
-      const brokenRoute = Util.breakdownRoute(redirect_url);
-      this.router.navigate([brokenRoute.base], {
-            fragment: brokenRoute.fragments != null ? brokenRoute.fragments : null,
-            preserveFragment: true,
-            queryParams: brokenRoute.params != null ? brokenRoute.params : null,
-            queryParamsHandling: 'merge',
-           }
-          );
-    } else {
+    if (journeyType) {
       if (journeyType === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
         this.sendWelcomeEmail();
       }
+      this.resendEmailVerification();
+    } else if (redirect_url) {
+      // Do a final redirect
+      this.signUpService.clearRedirectUrl();
+      const brokenRoute = Util.breakdownRoute(redirect_url);
+      this.router.navigate([brokenRoute.base], {
+        fragment: brokenRoute.fragments != null ? brokenRoute.fragments : null,
+        preserveFragment: true,
+        queryParams: brokenRoute.params != null ? brokenRoute.params : null,
+        queryParamsHandling: 'merge',
+      });
+    } else {
       this.resendEmailVerification();
     }
   }
@@ -253,6 +252,7 @@ export class VerifyMobileComponent implements OnInit {
     const mobileNo = this.mobileNumber.number.toString();
     this.signUpApiService.resendEmailVerification(mobileNo, false).subscribe((data) => {
       if (data.responseMessage.responseCode === 6007) {
+        this.navbarService.logoutUser();
         this.signUpService.clearData();
         this.selectedPlansService.clearData();
         this.willWritingService.clearServiceData();

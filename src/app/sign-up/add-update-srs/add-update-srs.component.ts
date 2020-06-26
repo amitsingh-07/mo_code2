@@ -1,6 +1,6 @@
 
 
-import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -26,6 +26,8 @@ import { SignUpService } from '../sign-up.service';
 
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-update-srs',
@@ -33,7 +35,7 @@ import { AuthenticationService } from '../../shared/http/auth/authentication.ser
   styleUrls: ['./add-update-srs.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AddUpdateSrsComponent implements OnInit {
+export class AddUpdateSrsComponent implements OnInit, OnDestroy {
   pageTitle: string;
   addUpdateSrsFrom: FormGroup;
   formValues;
@@ -42,6 +44,7 @@ export class AddUpdateSrsComponent implements OnInit {
   srsAgentBankList;
   srsDetail;
   fundTypeId: number;
+  protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -82,19 +85,25 @@ export class AddUpdateSrsComponent implements OnInit {
     this.buildForm();
     this.addorRemoveAccNoValidator();
 
-    this.authService.get2faAuthEvent.subscribe((token) => {
+    this.authService.get2faAuthEvent
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((token) => {
       if (!token) {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       }
     });
-    this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
+    this.manageInvestmentsService.getInvestmentOverview()
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data) => {
       this.loaderService.hideLoaderForced();
       if (data.responseMessage.responseCode >= 6000 && data && data.objectList) {
         this.fundTypeId = this.getFundTypeId(data.objectList.portfolios);
       }
     });
 
-    this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data: any) => {
+    this.manageInvestmentsService.getProfileSrsAccountDetails()
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data: any) => {
       if (data) {
         this.signUpService.setEditProfileSrsDetails(
           data.srsAccountNumber.conformedValue,
@@ -108,6 +117,19 @@ export class AddUpdateSrsComponent implements OnInit {
       }
     });
 
+    this.authService.get2faErrorEvent
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data) => {
+      if(data) {
+        this.authService.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.signUpService.clearRedirectUrl();
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   getFundTypeId(protfolios) {

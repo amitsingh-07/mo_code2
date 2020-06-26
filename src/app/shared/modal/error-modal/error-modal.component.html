@@ -3,7 +3,7 @@
   </div>
   <div class="modal-body white-bg" id="erorr_popup">
     <div class="modal-body-title" *ngIf="errorTitle" [innerHTML]="errorTitle" id="error_title"></div>
-    <button type="button" class="close" aria-label="Close" id="error_cross_img" (click)="activeModal.dismiss('Cross click')">
+    <button *ngIf="closeBtnToggle" type="button" class="close" aria-label="Close" id="error_cross_img" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true"></span>
       </button>
     <div class="modal-body-message" id="error_message">

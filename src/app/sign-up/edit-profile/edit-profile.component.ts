@@ -1,11 +1,13 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { InvestmentCommonService } from './../../investment/investment-common/investment-common.service';
 
+import { CustomErrorHandlerService } from 'src/app/shared/http/custom-error-handler.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
@@ -21,6 +23,7 @@ import { environment } from './../../../environments/environment';
 import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
+
 
 @Component({
   selector: 'app-edit-profile',
@@ -59,6 +62,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   showAddbank = false;
   dobFormat: any;
   private subscription: Subscription;
+  protected ngUnsubscribe: Subject<void> = new Subject<void>();
   srsDetails;
   formatedAccountNumber;
   fundTypeId: number;
@@ -82,7 +86,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     public manageInvestmentsService: ManageInvestmentsService,
     public readonly translate: TranslateService,
     private loaderService: LoaderService,
-    private configService: ConfigService) {
+    private configService: ConfigService,
+    private customErrorHandler: CustomErrorHandlerService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
       this.pageTitle = this.translate.instant('EDIT_PROFILE.MY_PROFILE');
@@ -128,6 +134,21 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         this.disableBankSrsEdit = true;
       }
     });
+
+    this.authService.get2faErrorEvent
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data) => {
+      if(data) {
+        this.authService.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+    this.navbarService.unsubscribeBackPress();
   }
 
   setPageTitle(title: string) {
@@ -167,55 +188,64 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
   // tslint:disable-next-line:cognitive-complexity
   getEditProfileData() {
-    this.signUpService.getEditProfileInfo().subscribe((data) => {
-      this.entireUserData = data.objectList;
-      if (data.objectList) {
-        if (data.objectList.personalInformation) {
-          this.personalData = data.objectList.personalInformation;
-        }
-        if (data.objectList && data.objectList.contactDetails && data.objectList.contactDetails.homeAddress) {
-          this.residentialAddress = data.objectList.contactDetails.homeAddress;
-        }
-        // Hidden the Employment details
-        // this.empolymentDetails = data.objectList.employmentDetails;
-        this.empolymentDetails = null;
-        if (data.objectList.customerBankDetail) {
-          this.bankDetails = data.objectList.customerBankDetail[0];
-        }
-        if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
-          this.mailingAddress = data.objectList.contactDetails.mailingAddress;
-          this.isMailingAddressSame = false;
-        }
-        if (data.objectList.contactDetails) {
-          this.contactDetails = data.objectList.contactDetails;
-        }
-        if (this.personalData) {
-          this.fullName = this.personalData.fullName ?
-            this.personalData.fullName : this.personalData.firstName + ' ' + this.personalData.lastName;
-          this.compinedName = this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
-          this.compinednricNum = this.setNric(this.personalData.nricNumber);
-          if (this.personalData.passportNumber) {
-            this.compinedPassport = 'Passport: ' + this.personalData.passportNumber;
+     this.signUpService.getEditProfileInfo().subscribe((data) => {
+      const responseMessage = data.responseMessage;
+      if (responseMessage.responseCode === 6000) {
+        this.entireUserData = data.objectList;
+        if (data.objectList) {
+          if (data.objectList.personalInformation) {
+            this.personalData = data.objectList.personalInformation;
           }
-          if (this.personalData && this.personalData.isSingaporeResident) {
-            this.isSingaporeResident = this.personalData.isSingaporeResident;
+          if (data.objectList && data.objectList.contactDetails && data.objectList.contactDetails.homeAddress) {
+            this.residentialAddress = data.objectList.contactDetails.homeAddress;
           }
-          this.constructDate(this.personalData.dateOfBirth);
+          // Hidden the Employment details
+          // this.empolymentDetails = data.objectList.employmentDetails;
+          this.empolymentDetails = null;
+          if (data.objectList.customerBankDetail) {
+            this.bankDetails = data.objectList.customerBankDetail[0];
+          }
+          if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
+            this.mailingAddress = data.objectList.contactDetails.mailingAddress;
+            this.isMailingAddressSame = false;
+          }
+          if (data.objectList.contactDetails) {
+            this.contactDetails = data.objectList.contactDetails;
+          }
+          if (this.personalData) {
+            this.fullName = this.personalData.fullName ?
+              this.personalData.fullName : this.personalData.firstName + ' ' + this.personalData.lastName;
+            this.compinedName = this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
+            this.compinednricNum = this.setNric(this.personalData.nricNumber);
+            if (this.personalData.passportNumber) {
+              this.compinedPassport = 'Passport: ' + this.personalData.passportNumber;
+            }
+            if (this.personalData && this.personalData.isSingaporeResident) {
+              this.isSingaporeResident = this.personalData.isSingaporeResident;
+            }
+            this.constructDate(this.personalData.dateOfBirth);
+          }
         }
-      }
-      // tslint:disable-next-line:max-line-length
-      if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress) {
-        this.employerAddress = this.empolymentDetails.employerDetails.detailedemployerAddress;
-      }
-      if (this.residentialAddress && this.residentialAddress.country && this.residentialAddress.country.nationalityCode) {
-        this.resNationality = this.residentialAddress.country.nationalityCode;
-      }
-      if (this.mailingAddress && this.mailingAddress.country && this.mailingAddress.country.nationalityCode) {
-        this.mailNationality = this.mailingAddress.country.nationalityCode;
-      }
-      // tslint:disable-next-line:max-line-length
-      if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode) {
-        this.employerNationality = this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode;
+        // tslint:disable-next-line:max-line-length
+        if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress) {
+          this.employerAddress = this.empolymentDetails.employerDetails.detailedemployerAddress;
+        }
+        if (this.residentialAddress && this.residentialAddress.country && this.residentialAddress.country.nationalityCode) {
+          this.resNationality = this.residentialAddress.country.nationalityCode;
+        }
+        if (this.mailingAddress && this.mailingAddress.country && this.mailingAddress.country.nationalityCode) {
+          this.mailNationality = this.mailingAddress.country.nationalityCode;
+        }
+        // tslint:disable-next-line:max-line-length
+        if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode) {
+          this.employerNationality = this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode;
+        }
+      } else { // catch exceptions
+        if (responseMessage.responseCode === 5015) {
+          this.authService.clearSession();
+          this.navbarService.logoutUser();
+          this.customErrorHandler.handleAuthError();
+        }
       }
     });
   }
@@ -322,10 +352,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-    this.navbarService.unsubscribeBackPress();
-  }
   constructDate(dob) {
     this.dobFormat = dob;
     if (dob) {
@@ -343,15 +369,17 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   getSrsDetails() {
-    this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
-      if (data) {
-        this.srsDetails = data;
-        this.getInvestmentOverview();
-      }
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+    this.manageInvestmentsService.getProfileSrsAccountDetails()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data) => {
+        if (data) {
+          this.srsDetails = data;
+          this.getInvestmentOverview();
+        }
+      },
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
   }
 
   getInvestmentOverview() {
@@ -362,17 +390,19 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         autoHide: false
       });
     });
-    this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
-      this.loaderService.hideLoaderForced();
-      if (data.responseMessage.responseCode >= 6000 && data && data.objectList) {
-        this.manageInvestmentsService.setUserPortfolioList(data.objectList.portfolios);
-        this.fundTypeId = this.getFundTypeId(data.objectList.portfolios)
-      }
-    },
-      (err) => {
+    this.manageInvestmentsService.getInvestmentOverview()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data) => {
         this.loaderService.hideLoaderForced();
-        this.investmentAccountService.showGenericErrorModal();
-      });
+        if (data.responseMessage.responseCode >= 6000 && data && data.objectList) {
+          this.manageInvestmentsService.setUserPortfolioList(data.objectList.portfolios);
+          this.fundTypeId = this.getFundTypeId(data.objectList.portfolios)
+        }
+      },
+        (err) => {
+          this.loaderService.hideLoaderForced();
+          this.investmentAccountService.showGenericErrorModal();
+        });
   }
 
   getFundTypeId(protfolios) {

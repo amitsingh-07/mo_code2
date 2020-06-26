@@ -112,11 +112,9 @@ export class InvestmentAccountService {
     const countryList = [];
     const sortedCountryList = [];
     data.forEach((nationality) => {
-      if (!nationality.blocked) {
-        nationality.countries.forEach((country) => {
-          countryList.push(country);
-        });
-      }
+      nationality.countries.forEach((country) => {
+        countryList.push(country);
+      });
     });
     INVESTMENT_ACCOUNT_CONSTANTS.PRIORITIZED_COUNTRY_LIST_CODES.forEach((countryCode) => {
       const filteredCountry = countryList.filter(

@@ -25,6 +25,8 @@ export class AuthenticationService {
   apiBaseUrl = '';
   private get2faAuth = new BehaviorSubject('');
   get2faAuthEvent = this.get2faAuth.asObservable();
+  private get2faError = new BehaviorSubject(false);
+  get2faErrorEvent = this.get2faError.asObservable();
   private get2faUpdate = new BehaviorSubject(''); 
   get2faUpdateEvent = this.get2faUpdate.asObservable();
   private timer2fa: any;
@@ -94,7 +96,7 @@ export class AuthenticationService {
     if (sessionStorage) {
       sessionStorage.setItem(appConstants.APP_JWT_TOKEN_KEY, auth.securityToken);
       sessionStorage.setItem(appConstants.APP_SESSION_ID_KEY, auth.sessionId);
-  }
+    }
   }
 
   clearAuthDetails() {
@@ -271,7 +273,7 @@ export class AuthenticationService {
       currentTry++;
     }
     if (currentTry >= maxTry) {
-      this.doClear2FASession({errorPopup: true, updateData: true});
+      this.doClear2FASession({ errorPopup: true, updateData: true });
     } else {
       //Start BE Validation check to anticipate BE token check
       this.doVerify2fa().subscribe((data) => {
@@ -281,7 +283,7 @@ export class AuthenticationService {
             this.clear2FAToken(currentTry);
           }, (1000 * interval));
         } else {
-          this.doClear2FASession({errorPopup: true, updateData: true});
+          this.doClear2FASession({ errorPopup: true, updateData: true });
         }
       });
     }
@@ -290,7 +292,8 @@ export class AuthenticationService {
     clearTimeout(this.timer2fa);
     sessionStorage.removeItem(appConstants.APP_2FA_KEY);
     if (option && option.errorPopup) {
-      this.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
+      this.get2faError.next(true);
+      this.get2faError.next(false);
     }
     if (option && option.updateData) {
       this.get2faUpdate.next(sessionStorage.getItem(appConstants.APP_2FA_KEY));
@@ -334,10 +337,11 @@ export class AuthenticationService {
       errorMessage: message,
       errorButtonLabel: buttonLabel
     };
-    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'otp-error-modal' });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'otp-2fa-error-modal' });
     ref.componentInstance.errorTitle = error.errorTitle;
     ref.componentInstance.errorMessage = error.errorMessage;
     ref.componentInstance.buttonLabel = error.errorButtonLabel;
+    ref.componentInstance.closeBtn = false;
   }
 
 }

@@ -3,6 +3,7 @@ import { CanActivate, GuardsCheckEnd, Router } from '@angular/router';
 
 import { filter } from 'rxjs/operators';
 
+import { AppService } from '../app.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SIGN_UP_ROUTE_PATHS } from './sign-up.routes.constants';
 import { SignUpService } from './sign-up.service';
@@ -12,11 +13,13 @@ import { SignUpService } from './sign-up.service';
 })
 export class TwoFactorAuthGuardService implements CanActivate {
   constructor(private route: Router,
+              private appService: AppService,
               private authService: AuthenticationService,
               private signUpService: SignUpService,
   ) {
   }
   canActivate(): boolean {
+    this.appService.setJourneyType('');
     let redirectUrl = null;
     this.route.events.pipe(
       filter(event => event instanceof GuardsCheckEnd)

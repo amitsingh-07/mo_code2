@@ -81,7 +81,8 @@
     "PERSONAL_INFO": {
         "TITLE": "Your Investment Period",
         "STEP_1_LABEL": "Step 1",
-        "YEARS": "Years",
+        "YEARS": " Years",
+        "YEAR": " Year",
         "BORN_ON": "I was born on",
         "INVESTMENT_PERIOD": "Your Investment Period",
         "HOW_MANY_YEARS": "For how many years do you want to stay invested?",
@@ -108,7 +109,7 @@
         "TIME_HORIZON_ALERT": "Our final recommendation will depend on your willingness to take risk and other factors.",
         "MODAL": {
             "TITLE": "Less than 4 years of investment period",
-            "MESSAGE": "It is not recommended to invest with only {{period}} years of investment time horizon.<br> <br>You may want to consider our <span class=\"bold-text\">WiseSaver Portfolio</span> instead.",
+            "MESSAGE": "It is not recommended to invest with only {{period}} of investment time horizon.<br> <br>You may want to consider our <span class=\"bold-text\">WiseSaver Portfolio</span> instead.",
             "BTN_LBL1": "Review Investment Period",
             "BTN_LBL2": "Go to WiseSaver Portfolio"
         }
@@ -132,7 +133,9 @@
         "AT_LEAST_ONE": "Select at least one of the following.",
         "INVESTMENT_LBL": "I want to fund",
         "MIN_100": "Min. $100",
-        "MIN_50": "Min. $50"
+        "MIN_50": "Min. $50",
+        "MIN": "Min.",
+        "MONTH": "/mth"
     },
     "MY_FINANCIALS": {
         "REVIEW_INPUT": "Review My Inputs",
@@ -190,7 +193,7 @@
         "TITLE": "Your Portfolio Details",
         "PORTFOLIO": "Portfolio",
         "PROCEED": "Proceed",
-        "WISESAVER_VALUE": "1.62% p.a.",
+        "WISESAVER_VALUE": "0.79% p.a.",
         "EDIT_INVESTMENT": {
             "TITLE": "Review My Inputs",
             "ONE_TIME_INVESTMENT": "One-time Amount",

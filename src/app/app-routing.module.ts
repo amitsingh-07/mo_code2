@@ -9,14 +9,13 @@ import { ComprehensiveEnableGuard } from './comprehensive/comprehensive-enable-g
 import {
   EmailEnquirySuccessComponent
 } from './email-enquiry-success/email-enquiry-success.component';
+import { ExternalRouteGuard } from './external-route-guard';
 import { HomeComponent } from './home/home.component';
+import { InvestmentMaintenanceGuard } from './investment-maintenance/investment-maintenance-guard';
+import { InvestmentMaintenanceComponent } from './investment-maintenance/investment-maintenance.component';
 import { InvestmentChildEnableGuard } from './investment/investment-engagement-journey/investment-child-enable-guard';
 import { InvestmentEnableGuard } from './investment/investment-engagement-journey/investment-enable-guard';
 import { NotFoundComponent } from './not-found/not-found.component';
-
-import { ExternalRouteGuard } from './external-route-guard';
-import { InvestmentMaintenanceGuard } from './investment-maintenance/investment-maintenance-guard';
-import { InvestmentMaintenanceComponent } from './investment-maintenance/investment-maintenance.component';
 import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';

@@ -5,7 +5,7 @@ export const EXT_ROUTE_CONST = {
 export const EXT_ROUTES = {
     ROUTE_URL: [{
         IN_APP_ROUTE: '/works',
-        EXTERNAL_URL: '/works'
+        EXTERNAL_URL: '/works/'
     },
     {
         IN_APP_ROUTE: '/works/financial-literacy',
@@ -108,23 +108,15 @@ export const EXT_ROUTES = {
         EXTERNAL_URL: '/promotions/retirewise/'
     },
     {
-        IN_APP_ROUTE: '/promotions/24',
-        EXTERNAL_URL: '/promotions/manulife-manuprotect-term-plan/'
-    },
-    {
-        IN_APP_ROUTE: '/promotions/25',
-        EXTERNAL_URL: '/promotions/singlife-term-life-series-two/'
-    },
-    {
         IN_APP_ROUTE: '/promotions/26',
         EXTERNAL_URL: '/promotions/singlife-critical-illness-plan/'
     },
     {
-        IN_APP_ROUTE: '/promotions/31',
-        EXTERNAL_URL: '/promotions/manulife-premium-discount-products/'
-    },
-    {
         IN_APP_ROUTE: '/promotions/32',
         EXTERNAL_URL: '/promotions/tokiomarine-free-24-months-additional-coverage/'
+    },
+    {
+        IN_APP_ROUTE: '/assets/docs/faq/Standing_instructions_for_frequently_used_banks.pdf',
+        EXTERNAL_URL: '/wp-content/uploads/2020/05/Standing_instructions_for_frequently_used_banks.pdf'
     }]
 };

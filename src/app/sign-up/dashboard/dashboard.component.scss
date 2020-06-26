@@ -102,7 +102,7 @@ app-dashboard {
                     font-size: 14px;
                     font-weight: normal;
                     letter-spacing: -0.1px;
-                    padding: 0 0 30px;
+                    padding: 0 0 15px;
                     .scenarios {
                         padding: 0 5px;
                         .primary {
@@ -375,6 +375,7 @@ app-dashboard {
                 line-height: normal;
                 letter-spacing: -0.17px;
                 color: #00a7a7;
+                cursor: pointer;
                 img {
                     cursor: pointer;
                     margin-left:5px;
@@ -398,13 +399,14 @@ app-dashboard {
               .portfolio-type-box {
                 border-radius: 6px;
                 box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.21);
-                border: solid 1px #f1f1f1;
-                background-color: #ffffff;
-                color: #00a7a7;
-                padding: 20px;
+                border: solid 1px $border-light;
+                background-color: $white-color;
+                color: $teal-color;
+                padding: 30px 20px 24px;
                 position: relative;
                 margin-bottom: 15px;
                 cursor: pointer;
+                height: 120px;
               }
               .portfolio-type-box-title {
                 height: 20px;
@@ -415,7 +417,8 @@ app-dashboard {
                 font-style: normal;
                 line-height: normal;
                 letter-spacing: -0.17px;
-                color: #000000;
+                color: $black-color;
+                margin-bottom: 10px;
               }
 
               .portfolio-type-box-value {
@@ -427,7 +430,8 @@ app-dashboard {
                 font-style: normal;
                 line-height: normal;
                 letter-spacing: -0.17px;
-                color: #00a7a7;
+                color: $teal-color;
+                margin-bottom:0;
               }
               .widget-portfolio-type-content{
                 padding:0px 18px 10px 18px;
@@ -442,7 +446,8 @@ app-dashboard {
                 line-height: normal;
                 letter-spacing: -0.24px;
                 text-align: right;
-                color: #9b9b9b;
+                color: $dusty-grey-color;
+                margin-bottom: 0;
               }
               .dashboard-invest-portfolio {    
                 background: url("/assets/images/dashboard-invest-portfolio.svg") no-repeat;

@@ -1,6 +1,6 @@
-import { distinctUntilChanged } from 'rxjs/operators';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
-import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -22,6 +22,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
 import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-add-update-bank',
@@ -29,7 +30,7 @@ import { AuthenticationService } from 'src/app/shared/http/auth/authentication.s
   styleUrls: ['./add-update-bank.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AddUpdateBankComponent implements OnInit {
+export class AddUpdateBankComponent implements OnInit, OnDestroy {
   pageTitle;
   formValues: any;
   banks: any;
@@ -38,6 +39,7 @@ export class AddUpdateBankComponent implements OnInit {
   queryParams: any;
   buttonTitle;
   updateId: any;
+  protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -91,13 +93,17 @@ export class AddUpdateBankComponent implements OnInit {
       this.bankForm.get('accountNo').updateValueAndValidity();
     });
 
-    this.authService.get2faAuthEvent.subscribe((token) => {
+    this.authService.get2faAuthEvent
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((token) => {
       if (!token) {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       }
     });
 
-    this.signUpService.getEditProfileInfo().subscribe((data) => {
+    this.signUpService.getEditProfileInfo()
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data) => {
       if (data.objectList.customerBankDetail) {
         const bankDetails = data.objectList.customerBankDetail[0];
         this.investmentAccountService.setEditProfileBankDetail(bankDetails.accountName, bankDetails.bank, bankDetails.accountNumber, bankDetails.id, false);
@@ -108,8 +114,21 @@ export class AddUpdateBankComponent implements OnInit {
         });
       }
     });
-
+    this.authService.get2faErrorEvent
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data) => {
+      if(data) {
+        this.authService.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
+      }
+    });
   }
+
+  ngOnDestroy() {
+    this.signUpService.clearRedirectUrl();
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
+
   buildBankForm() {
     this.formValues = this.investmentAccountService.getBankInfo();
     this.updateId = this.formValues.id;
