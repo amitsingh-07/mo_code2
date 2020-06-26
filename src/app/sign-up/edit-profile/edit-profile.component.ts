@@ -87,7 +87,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     public readonly translate: TranslateService,
     private loaderService: LoaderService,
     private configService: ConfigService,
-    private customErrorHandler: CustomErrorHandlerService
+    private customErrorHandler: CustomErrorHandlerService,
+    private sessionsService: SessionsService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
@@ -242,7 +243,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         }
       } else { // catch exceptions
         if (responseMessage.responseCode === 5015) {
+          this.sessionsService.destroyInstance();
           this.authService.clearSession();
+          this.sessionsService.createNewActiveInstance();
           this.navbarService.logoutUser();
           this.customErrorHandler.handleAuthError();
         }

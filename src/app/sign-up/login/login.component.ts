@@ -40,6 +40,7 @@ import { COMPREHENSIVE_ROUTE_PATHS } from './../../comprehensive/comprehensive-r
 import { InvestmentAccountService } from './../../investment/investment-account/investment-account-service';
 import { StateStoreService } from './../../shared/Services/state-store.service';
 import { LoginFormError } from './login-form-error';
+import { SessionsService } from 'src/app/shared/Services/sessions/sessions.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -78,6 +79,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private modal: NgbModal, private configService: ConfigService,
     private googleAnalyticsService: GoogleAnalyticsService,
     public authService: AuthenticationService,
+    public sessionsService: SessionsService,
     public navbarService: NavbarService,
     public footerService: FooterService,
     private signUpApiService: SignUpApiService,
@@ -126,7 +128,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       const userInfo = this.signUpService.getUserProfileInfo();
       if (userInfo) {
         this.signUpService.setUserProfileInfo(null);
+        this.sessionsService.destroyInstance();
         this.authService.clearSession();
+        this.sessionsService.createNewActiveInstance();
         this.authService.clearAuthDetails();
         this.navbarService.logoutUser();
         this.appService.clearData();
