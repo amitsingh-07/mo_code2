@@ -50,9 +50,6 @@ import { LoginFormError } from './login-form-error';
 export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   private distribution: any;
   private loginFormError: any = new LoginFormError();
-
-  //login_password_txt
-
   loginForm: FormGroup;
   formValues: any;
   defaultCountryCode;
@@ -98,7 +95,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private investmentAccountService: InvestmentAccountService,
     private loaderService: LoaderService,
     private investmentCommonService: InvestmentCommonService,
-    private helper: HelperService, private elementHost: ElementRef) {
+    private helper: HelperService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
@@ -150,7 +147,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       }
 
     }
-    history.state.data;
   }
 
   ngAfterViewInit() {
