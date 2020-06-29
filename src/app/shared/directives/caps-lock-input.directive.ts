@@ -20,7 +20,6 @@ export class CapsLockInputDirective {
     const capsOn = event.getModifierState && event.getModifierState('CapsLock');
     this.capsLock.emit(capsOn);
   }
- 
 }
 
 
