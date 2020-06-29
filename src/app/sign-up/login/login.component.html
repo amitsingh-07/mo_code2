@@ -45,9 +45,10 @@
           <div class="flex-row mb20">
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label"
-                [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.loginPassword)}">
+                [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.loginPassword)}"
+                (capsLock)="capsOn=$event">
                 <input type="password" appInputFocus #loginPassword id="login_password_txt" class="form-control"
-                  formControlName="loginPassword" required  (focus)="onFocus()" (blur)="onBlur()">
+                  formControlName="loginPassword" required (focus)="onFocus()" (blur)="onBlur()">
                 <label class="form-control-placeholder" for="login_password_txt"
                   id="login_password_lbl">{{ 'LOGIN.FORM.PASSWORD' | translate}}</label>
                 <span id="login_showpassword_button"
@@ -55,7 +56,7 @@
                   (click)="showHidePassword(loginPassword)"></span>
               </div>
             </div>
-            <div class="caps_lock_title" *ngIf="capslockOn && capslockFocus">Caps Lock is on.</div>
+            <div class="caps_lock_title" *ngIf="capsOn && capslockFocus">Caps Lock is on.</div>
           </div>
 
           <div class="flex-row mb20" *ngIf='finlitEnabled'>

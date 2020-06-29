@@ -50,7 +50,7 @@ import { LoginFormError } from './login-form-error';
 export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   private distribution: any;
   private loginFormError: any = new LoginFormError();
-  
+
   //login_password_txt
 
   loginForm: FormGroup;
@@ -65,47 +65,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   progressModal = false;
   investmentEnquiryId;
   finlitEnabled = false;
-  capslockOn: boolean;
-  capslockFocus :boolean;
-  
-
-
-
-@HostListener('window:click', ['$event']) onClick(event){
- if (event.getModifierState && event.getModifierState('CapsLock')) {
-   this.capslockOn = true;
-  } else {
-   this.capslockOn = false;
-  }
- }
-
-@HostListener('window:keydown', ['$event'])
-onKeyDown(event){
-if (event.getModifierState && event.getModifierState('CapsLock')) {
-  this.capslockOn = true;
-  } else {
-   this.capslockOn = false;
-  }
-}
-
-@HostListener('window:keyup', ['$event'])
- onKeyUp(event){
- if (event.getModifierState && event.getModifierState('CapsLock')) {
-  this.capslockOn = true;
- } else {
-  this.capslockOn = false;
- }
-}
-
-onFocus(){
-this.capslockFocus=true;
-}
-onBlur(){
-  this.capslockFocus=false;;
-}
-
-
-
+  capsOn: boolean;
+  capslockFocus: boolean;
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
 
   @HostListener('window:resize', ['$event'])
@@ -114,7 +75,7 @@ onBlur(){
       this.welcomeTitle.nativeElement.scrollIntoView(true);
     }
   }
- constructor(
+  constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder, private appService: AppService,
     private el: ElementRef,
@@ -137,7 +98,7 @@ onBlur(){
     private investmentAccountService: InvestmentAccountService,
     private loaderService: LoaderService,
     private investmentCommonService: InvestmentCommonService,
-    private helper: HelperService,private elementHost: ElementRef) {
+    private helper: HelperService, private elementHost: ElementRef) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
@@ -153,11 +114,11 @@ onBlur(){
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
-    
+
   }
- /**
-   * Initialize tasks.
-   */
+  /**
+    * Initialize tasks.
+    */
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(101);
@@ -190,7 +151,7 @@ onBlur(){
 
     }
     history.state.data;
-    }
+  }
 
   ngAfterViewInit() {
     if (this.signUpService.getCaptchaShown()) {
@@ -234,7 +195,7 @@ onBlur(){
     }
     this.loginForm = this.formBuilder.group({
       loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile)]],
-      loginPassword: [this.formValues.loginPassword, [Validators.required]],      
+      loginPassword: [this.formValues.loginPassword, [Validators.required]],
       captchaValue: ['']
     });
     if (this.finlitEnabled) {
@@ -318,14 +279,14 @@ onBlur(){
             const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
             if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
               this.updateInsuranceEnquiry(insuranceEnquiry, data, true);
-             } else {
+            } else {
               this.callErrorModal(data);
             }
           } else {
             this.loginForm.controls['captchaValue'].reset();
             this.loginForm.controls['loginPassword'].reset();
             if (this.finlitEnabled) {
-             this.loginForm.controls['accessCode'].reset();
+              this.loginForm.controls['accessCode'].reset();
             }
             this.openErrorModal(data.responseMessage.responseDescription);
             this.signUpService.setCaptchaCount();
@@ -511,5 +472,11 @@ onBlur(){
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
+  }
+  onFocus() {
+    this.capslockFocus = true;
+  }
+  onBlur() {
+    this.capslockFocus = false;
   }
 }
