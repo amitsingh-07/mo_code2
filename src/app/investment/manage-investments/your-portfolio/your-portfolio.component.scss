@@ -430,8 +430,9 @@ app-your-portfolio {
         .next-row {
           @include allmobiles{
             order: +1;
-            flex: 1 0 100%;
+            flex: 1 0 50%;
             padding-top: 15px;
+            padding-right: 0px;
           }
         }
         .arrow-img {
@@ -598,7 +599,7 @@ app-your-portfolio {
           }
         }
         .form-group-with-bg .form-group-with-bg--content {
-          padding: 18px 17px 25px 23px;
+          padding: 20px 20px 19px;
           .flex-row:not(:last-child) {
             margin-bottom: 0px;
           }
