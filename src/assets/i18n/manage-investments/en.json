@@ -133,6 +133,7 @@
     "UNREALISED_GAIN_LOSS": "Unrealised Gain/Loss",
     "TIME_WEIGHTED_RETURN": "Time-weighted Return",
     "SIMPLE_RETURN": "Simple Return",
+    "NET_DEPOSITS": "Net Deposits",
     "CALCULATE_TOOLTIP": "How do we calculate?",
     "FROM_START_OF_INVESTMENT": "From start of investment",
     "YEARLY_RETURNS": "Yearly Returns",
