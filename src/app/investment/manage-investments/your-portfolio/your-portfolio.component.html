@@ -156,6 +156,12 @@
                               </div>
                             </ng-template>
                           </div>
+                          <div class="portfolio_info_label next-row">
+                            {{'YOUR_PORTFOLIO.NET_DEPOSITS' | translate}}
+                            <div id="your_portfolio_net_deposits" class="currency_value" >
+                              {{investmentAmount | currency:'USD':'symbol-narrow':'1.0-2'}}
+                            </div>
+                          </div>
                         </ng-container>
                         <ng-template #totalReturns>
                           <div class="flex-col-7">
@@ -235,6 +241,12 @@
                                 {{0 | number : '1.0-2'}}%
                               </div>
                             </ng-template>
+                          </div>
+                          <div class="portfolio_info_label next-row">
+                            {{'YOUR_PORTFOLIO.NET_DEPOSITS' | translate}}
+                            <div id="your_portfolio_net_deposits" class="currency_value" >
+                              {{investmentAmount | currency:'USD':'symbol-narrow':'1.0-2'}}
+                            </div>
                           </div>
                         </ng-container>
                         <ng-template #totalReturns>
