@@ -57,6 +57,7 @@ export class YourPortfolioComponent implements OnInit {
   profitAndLoss: any; // Unrealised gain/loss
   profitAndLossPercentage: any; // Simple returns
   showTimeWeightedReturns = true;
+  investmentAmount: any; // Net Deposits
 
   constructor(
     public readonly translate: TranslateService,
@@ -124,6 +125,9 @@ export class YourPortfolioComponent implements OnInit {
       this.profitAndLossPercentage = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['profitAndLossPercentage']
         ? this.portfolio.dPMSPortfolio['profitAndLossPercentage']
         : 0;
+      this.investmentAmount = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['investmentAmount']
+          ? this.portfolio.dPMSPortfolio['investmentAmount']
+          : 0;
       this.getTransferDetails(this.portfolio.customerPortfolioId);
       if (this.portfolio['riskProfile']) {
         this.riskProfileImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
