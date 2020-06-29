@@ -75,7 +75,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder, private appService: AppService,
-    private el: ElementRef,
     private modal: NgbModal, private configService: ConfigService,
     private googleAnalyticsService: GoogleAnalyticsService,
     public authService: AuthenticationService,
