@@ -40,6 +40,7 @@ import { COMPREHENSIVE_ROUTE_PATHS } from './../../comprehensive/comprehensive-r
 import { InvestmentAccountService } from './../../investment/investment-account/investment-account-service';
 import { StateStoreService } from './../../shared/Services/state-store.service';
 import { LoginFormError } from './login-form-error';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -49,7 +50,6 @@ import { LoginFormError } from './login-form-error';
 export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   private distribution: any;
   private loginFormError: any = new LoginFormError();
-
   loginForm: FormGroup;
   formValues: any;
   defaultCountryCode;
@@ -62,7 +62,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   progressModal = false;
   investmentEnquiryId;
   finlitEnabled = false;
-
+  capsOn: boolean;
+  capslockFocus: boolean;
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
 
   @HostListener('window:resize', ['$event'])
@@ -71,7 +72,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.welcomeTitle.nativeElement.scrollIntoView(true);
     }
   }
-
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder, private appService: AppService,
@@ -110,11 +110,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
-  }
 
+  }
   /**
-   * Initialize tasks.
-   */
+    * Initialize tasks.
+    */
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(101);
@@ -190,7 +190,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     this.loginForm = this.formBuilder.group({
       loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile)]],
-      loginPassword: [this.formValues.loginPassword, [Validators.required]],      
+      loginPassword: [this.formValues.loginPassword, [Validators.required]],
       captchaValue: ['']
     });
     if (this.finlitEnabled) {
@@ -281,7 +281,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             this.loginForm.controls['captchaValue'].reset();
             this.loginForm.controls['loginPassword'].reset();
             if (this.finlitEnabled) {
-             this.loginForm.controls['accessCode'].reset();
+              this.loginForm.controls['accessCode'].reset();
             }
             this.openErrorModal(data.responseMessage.responseDescription);
             this.signUpService.setCaptchaCount();
@@ -332,7 +332,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       } else {
         this.selectedPlansService.clearData();
         this.stateStoreService.clearAllStates();
-        this.goToNext();
+        this.router.navigate(['email-enquiry/success']);
       }
     });
   }
@@ -467,5 +467,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
+  }
+  onFocus() {
+    this.capslockFocus = true;
+  }
+  onBlur() {
+    this.capslockFocus = false;
   }
 }
