@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -12,13 +12,17 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS, MANAGE_INVESTMENTS_ROUTES } from '../manage-investments-routes.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
 import { ConfirmWithdrawalModalComponent } from '../withdrawal/confirm-withdrawal-modal/confirm-withdrawal-modal.component';
 import {
   ForwardPricingModalComponent
 } from '../withdrawal/forward-pricing-modal/forward-pricing-modal.component';
 import { AddBankModalComponent } from './add-bank-modal/add-bank-modal.component';
+import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
+import { INVESTMENT_ACCOUNT_ROUTES, INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-withdrawal-bank-account',
@@ -26,7 +30,7 @@ import { AddBankModalComponent } from './add-bank-modal/add-bank-modal.component
   styleUrls: ['./withdrawal-bank-account.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class WithdrawalBankAccountComponent implements OnInit {
+export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
   pageTitle: string;
   bankForm;
   formValues: any;
@@ -37,6 +41,7 @@ export class WithdrawalBankAccountComponent implements OnInit {
   fullName: string;
   hideAddBankAccount = true;
   isRequestSubmitted = false;
+  protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
     public readonly translate: TranslateService,
@@ -49,7 +54,8 @@ export class WithdrawalBankAccountComponent implements OnInit {
     public manageInvestmentsService: ManageInvestmentsService,
     private loaderService: LoaderService,
     private investmentAccountService: InvestmentAccountService,
-    private signUpService: SignUpService
+    private signUpService: SignUpService,
+    private authService: AuthenticationService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => { });
@@ -65,6 +71,28 @@ export class WithdrawalBankAccountComponent implements OnInit {
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.userInfo = this.signUpService.getUserProfileInfo();
     this.fullName = this.userInfo.fullName ? this.userInfo.fullName : this.userInfo.firstName + ' ' + this.userInfo.lastName;
+
+    this.signUpService.getEditProfileInfo()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data) => {
+        const personalData = data.objectList.personalInformation;
+        if (personalData) {
+          this.signUpService.setContactDetails(personalData.countryCode, personalData.mobileNumber, personalData.email);
+        }
+      });
+
+    this.authService.get2faErrorEvent
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data) => {
+        if (data) {
+          this.authService.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
+        }
+      });
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   getLookupList() {
@@ -180,6 +208,17 @@ export class WithdrawalBankAccountComponent implements OnInit {
     }
   }
 
+  verify2faNewBank() {
+    if (this.authService.is2FAVerified()) {
+      this.showNewBankFormModal();
+    } else {
+      this.signUpService.setRedirectUrl(MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL_PAYMENT_METHOD);
+      console.log('Show Update Bank');
+      this.authService.set2faVerifyAllowed(true);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_2FA], { skipLocationChange: true });
+    }
+  }
+
   showNewBankFormModal() {
     const ref = this.modal.open(AddBankModalComponent, {
       centered: true
@@ -188,7 +227,7 @@ export class WithdrawalBankAccountComponent implements OnInit {
     ref.componentInstance.fullName = this.fullName;
     ref.componentInstance.saved.subscribe((data) => {
       ref.close();
-      this.manageInvestmentsService.saveNewBank(data).subscribe((response) => {
+      this.manageInvestmentsService.saveProfileNewBank(data).subscribe((response) => {
         if (response.responseMessage.responseCode >= 6000) {
           this.getUserBankList(); // refresh updated bank list
         } else if (
@@ -214,6 +253,17 @@ export class WithdrawalBankAccountComponent implements OnInit {
         });
     });
     this.dismissPopup(ref);
+  }
+
+  verify2faEditBank(index) {
+    if (this.authService.is2FAVerified()) {
+      this.showEditBankFormModal(index);
+    } else {
+      console.log('2FA not verified');
+      this.signUpService.setRedirectUrl(MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL_PAYMENT_METHOD);
+      this.authService.set2faVerifyAllowed(true);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_2FA], { skipLocationChange: true });
+    }
   }
   showEditBankFormModal(index) {
     const ref = this.modal.open(AddBankModalComponent, {

@@ -23,6 +23,7 @@ import { environment } from './../../../environments/environment';
 import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
+import { SessionsService } from 'src/app/shared/Services/sessions/sessions.service';
 
 
 @Component({
@@ -283,6 +284,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
   editUserDetails() {
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
+    this.authService.set2faVerifyAllowed(true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_ID]);
   }
 
@@ -332,6 +334,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     // tslint:disable-next-line:max-line-length accountName
     this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, this.bankDetails.bank, this.bankDetails.accountNumber, this.bankDetails.id, false);
+    this.authService.set2faVerifyAllowed(true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: false }, fragment: 'bank' });
   }
 
@@ -344,6 +347,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     }
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, null, null, null, true);
+    this.authService.set2faVerifyAllowed(true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: true }, fragment: 'bank' });
   }
 
@@ -368,6 +372,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   updateSrsDetails(srsAccountNumber, srsBankOperator, customerId, srsBankFlag) {
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     this.signUpService.setEditProfileSrsDetails(srsAccountNumber, srsBankOperator, customerId, this.fundTypeId);
+    this.authService.set2faVerifyAllowed(true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS], { queryParams: { srsBank: srsBankFlag }, fragment: 'bank' });
   }
 

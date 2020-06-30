@@ -30,6 +30,7 @@ export class AuthenticationService {
   private get2faUpdate = new BehaviorSubject('');
   get2faUpdateEvent = this.get2faUpdate.asObservable();
   private timer2fa: any;
+  private is2faVerifyAllowed: boolean = false;
 
   constructor(
     private httpClient: HttpClient, public jwtHelper: JwtHelperService,
@@ -307,6 +308,13 @@ export class AuthenticationService {
       return false;
     }
     return true;
+  }
+
+  public set2faVerifyAllowed(allowed: boolean) {
+    this.is2faVerifyAllowed = allowed;
+  }
+  public get2faVerifyAllowed() {
+    return this.is2faVerifyAllowed;
   }
 
   public getFromJourney(key: string) {
