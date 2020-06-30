@@ -14,7 +14,7 @@
   <div class="row">
     <div class="col-12">
       <button type="button" class="action-button" (click)="activeModal.dismiss('Cross click')" id="errorModeButton">
-        {{ 'COMMON.OKAY' | translate}}
+        {{ restrictedBtn ? restrictedBtn : 'COMMON.OKAY' | translate}}
       </button>
     </div>
   </div>

@@ -16,6 +16,8 @@ import { InvestmentCommonService } from '../../investment-common/investment-comm
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
+import { ToolTipModalComponent } from 'src/app/shared/modal/tooltip-modal/tooltip-modal.component';
+import { UnsupportedDeviceModalComponent } from 'src/app/shared/modal/unsupported-device-modal/unsupported-device-modal.component';
 
 @Component({
   selector: 'app-nationality',
@@ -220,5 +222,17 @@ export class NationalityComponent implements OnInit {
 
   isDisabled() {
     return this.investmentAccountService.isDisabled('nationality');
+  }
+  openModal(){
+    const ref = this.modal.open(UnsupportedDeviceModalComponent, {
+      centered: true
+    });
+    ref.componentInstance.errorTitle = this.translate.instant('SELECT_NATIONALITY.POPUP_TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('SELECT_NATIONALITY.POPUP_DESC');
+    ref.componentInstance.restrictedBtn =  this.translate.instant('SELECT_NATIONALITY.POPUP_BTN');
+    ref.result.then(
+      (result) => { },
+    );
+    return false;
   }
 }

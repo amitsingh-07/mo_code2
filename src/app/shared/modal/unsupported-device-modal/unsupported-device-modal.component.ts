@@ -22,6 +22,7 @@ export class UnsupportedDeviceModalComponent implements OnInit {
   @Input() errorTitle: any;
   @Input() errorMessage: any;
   @Input() errorMessageHTML: any;
+  @Input() restrictedBtn : any;
 
   constructor(
     public activeModal: NgbActiveModal,
