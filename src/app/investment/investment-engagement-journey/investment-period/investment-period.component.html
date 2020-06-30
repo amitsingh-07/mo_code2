@@ -32,7 +32,8 @@
             <div *ngIf="personalInfoForm.controls.investmentPeriod.value">
               <h5 id="personalInfoInvestmentContent">{{ 'PERSONAL_INFO.I_WANT_INVEST_LBL' | translate}}
                 <span id="personalInfoInvestmentYears" class="period-count">{{personalInfoForm.controls.investmentPeriod.value}}</span>
-                {{ 'PERSONAL_INFO.YEARS' | translate}}</h5>
+                <span *ngIf="personalInfoForm.controls.investmentPeriod.value ===1">{{ 'PERSONAL_INFO.YEAR' | translate}}</span>
+                <span *ngIf="personalInfoForm.controls.investmentPeriod.value > 1">{{ 'PERSONAL_INFO.YEARS' | translate}}</span></h5>
             </div>
             <div innerHTML="{{'PERSONAL_INFO.NOTE' | translate}}"></div>
           </div>

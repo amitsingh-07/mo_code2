@@ -8,7 +8,7 @@ export class InvestmentEngagementJourneyFormErrors {
       more: {
         errorTitle: 'Invalid Amount',
         errorMessage:
-          'Either One-Time amount has to be more than $$ONE_TIME_INVESTMENT$ or Monthly amount has to be more than $$MONTHLY_INVESTMENT$'
+          'Either One-Time amount has to be more than $$ONE_TIME_AMOUNT$ or Monthly amount has to be more than $$MONTHLY_AMOUNT$'
       },
       moreasset: {
         errorTitle: 'Oops! Is this correct?',
