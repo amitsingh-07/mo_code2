@@ -56,7 +56,7 @@ export class YourPortfolioComponent implements OnInit {
   totalInvested: any; // Cost of investment
   profitAndLoss: any; // Unrealised gain/loss
   profitAndLossPercentage: any; // Simple returns
-  showTimeWeightedReturns = true;
+  showTimeWeightedReturns = false;
   investmentAmount: any; // Net Deposits
 
   constructor(
