@@ -130,13 +130,19 @@
                               {{totalInvested | currency:'USD':'symbol-narrow':'1.0-2'}}
                             </div>
                           </div>
-                          <div class="portfolio_info_label next-row">
-                            {{'YOUR_PORTFOLIO.UNREALISED_GAIN_LOSS' | translate}}
-                            <div id="your_portfolio_unrealised_gain_loss" class="currency_value" [class.negativeValue]="profitAndLoss < 0">
-                              {{profitAndLoss | currency:'USD':'symbol-narrow':'1.0-2'}}
+                          <div class="portfolio_info_label">
+                            {{'YOUR_PORTFOLIO.NET_DEPOSITS' | translate}}
+                            <div id="your_portfolio_net_deposits" class="currency_value" [class.negativeValue]="investmentAmount < 0">
+                              {{investmentAmount | currency:'USD':'symbol-narrow':'1.0-2'}}
                             </div>
                           </div>
-                          <div id="your_portfolio_totalreturn_lb" class="portfolio_info_label padding-none" for="total return">
+                          <div class="portfolio_info_label next-row">
+                            {{'YOUR_PORTFOLIO.UNREALISED_GAIN_LOSS' | translate}}
+                            <div id="your_portfolio_unrealised_gain_loss" class="total_return_value" [class.negativeValue]="unrealisedGainOrLoss < 0">
+                              {{formatReturns(unrealisedGainOrLoss)}}{{unrealisedGainOrLoss | currency:'USD':'symbol-narrow':'1.0-2'}}
+                            </div>
+                          </div>
+                          <div id="your_portfolio_totalreturn_lb" class="portfolio_info_label padding-none next-row" for="total return">
                             <ng-container *ngIf="showTimeWeightedReturns; else simpleReturns">
                               {{'YOUR_PORTFOLIO.TIME_WEIGHTED_RETURN' | translate}}
                             </ng-container>
@@ -210,13 +216,19 @@
                               {{0 | currency:'USD':'symbol-narrow':'1.0-2'}}
                             </div>
                           </div>
-                          <div class="portfolio_info_label next-row">
-                            {{'YOUR_PORTFOLIO.UNREALISED_GAIN_LOSS' | translate}}
-                            <div id="your_portfolio_unrealised_gain_loss" class="currency_value" [class.negativeValue]="profitAndLoss < 0">
+                          <div class="portfolio_info_label">
+                            {{'YOUR_PORTFOLIO.NET_DEPOSITS' | translate}}
+                            <div id="your_portfolio_net_deposits" class="currency_value" [class.negativeValue]="investmentAmount < 0">
                               {{0 | currency:'USD':'symbol-narrow':'1.0-2'}}
                             </div>
                           </div>
-                          <div id="your_portfolio_totalreturn_lb" class="portfolio_info_label padding-none" for="total return">
+                          <div class="portfolio_info_label next-row">
+                            {{'YOUR_PORTFOLIO.UNREALISED_GAIN_LOSS' | translate}}
+                            <div id="your_portfolio_unrealised_gain_loss" class="currency_value" [class.negativeValue]="unrealisedGainOrLoss < 0">
+                              {{0 | currency:'USD':'symbol-narrow':'1.0-2'}}
+                            </div>
+                          </div>
+                          <div id="your_portfolio_totalreturn_lb" class="portfolio_info_label padding-none next-row" for="total return">
                             <ng-container *ngIf="showTimeWeightedReturns; else simpleReturns">
                               {{'YOUR_PORTFOLIO.TIME_WEIGHTED_RETURN' | translate}}
                             </ng-container>

@@ -9,6 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { flatMap } from 'rxjs/operators';
 
+import { SessionsService } from 'src/app/shared/Services/sessions/sessions.service';
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
@@ -33,14 +34,14 @@ import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
+import { COMPREHENSIVE_ROUTE_PATHS } from './../../comprehensive/comprehensive-routes.constants';
+import { InvestmentAccountService } from './../../investment/investment-account/investment-account-service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { HelperService } from './../../shared/http/helper.service';
 import { IError } from './../../shared/http/interfaces/error.interface';
-import { COMPREHENSIVE_ROUTE_PATHS } from './../../comprehensive/comprehensive-routes.constants';
-import { InvestmentAccountService } from './../../investment/investment-account/investment-account-service';
 import { StateStoreService } from './../../shared/Services/state-store.service';
 import { LoginFormError } from './login-form-error';
-import { SessionsService } from 'src/app/shared/Services/sessions/sessions.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -50,7 +51,6 @@ import { SessionsService } from 'src/app/shared/Services/sessions/sessions.servi
 export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   private distribution: any;
   private loginFormError: any = new LoginFormError();
-
   loginForm: FormGroup;
   formValues: any;
   defaultCountryCode;
@@ -63,7 +63,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   progressModal = false;
   investmentEnquiryId;
   finlitEnabled = false;
-
+  capsOn: boolean;
+  capslockFocus: boolean;
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
 
   @HostListener('window:resize', ['$event'])
@@ -72,7 +73,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.welcomeTitle.nativeElement.scrollIntoView(true);
     }
   }
-
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder, private appService: AppService,
@@ -112,11 +112,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
-  }
 
+  }
   /**
-   * Initialize tasks.
-   */
+    * Initialize tasks.
+    */
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(101);
@@ -194,7 +194,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     this.loginForm = this.formBuilder.group({
       loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile)]],
-      loginPassword: [this.formValues.loginPassword, [Validators.required]],      
+      loginPassword: [this.formValues.loginPassword, [Validators.required]],
       captchaValue: ['']
     });
     if (this.finlitEnabled) {
@@ -285,7 +285,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             this.loginForm.controls['captchaValue'].reset();
             this.loginForm.controls['loginPassword'].reset();
             if (this.finlitEnabled) {
-             this.loginForm.controls['accessCode'].reset();
+              this.loginForm.controls['accessCode'].reset();
             }
             this.openErrorModal(data.responseMessage.responseDescription);
             this.signUpService.setCaptchaCount();
@@ -336,7 +336,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       } else {
         this.selectedPlansService.clearData();
         this.stateStoreService.clearAllStates();
-        this.goToNext();
+        this.router.navigate(['email-enquiry/success']);
       }
     });
   }
@@ -471,5 +471,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
+  }
+  onFocus() {
+    this.capslockFocus = true;
+  }
+  onBlur() {
+    this.capslockFocus = false;
   }
 }

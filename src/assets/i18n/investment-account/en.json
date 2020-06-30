@@ -124,6 +124,8 @@
     "CONTINUE": "Continue",
     "BEFORE_WE_PROCEED": "Before We Proceed...",
     "WHATS_YOUR_NATIONALITY": "What's your nationality?",
+    "IMPORTANT_NOTICE":"<strong>Important:</strong> Please note that we do not accept applications if you ",
+    "RESTRICTED_COUNTRIES":"<strong><u>reside or have tax residencies in the following restricted countries.</u></strong>",
     "blockedNationality": {
       "blockedNationalityTitle": "Oops, Unable To Proceed",
       "blockedNationalityMessage": "Due to compliance issues, MoneyOwl is unable to accept customers from the selected country.",
