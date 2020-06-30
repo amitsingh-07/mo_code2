@@ -33,7 +33,7 @@ export class NationalityComponent implements OnInit {
   ButtonTitle: any;
   blockedNationalityModal: any;
   blockedCountryModal: any;
-  tooltipDetails:any;
+  tooltipDetails: any;
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -224,7 +224,7 @@ export class NationalityComponent implements OnInit {
   isDisabled() {
     return this.investmentAccountService.isDisabled('nationality');
   }
-  openModal(){
+  openModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.tooltipDetails.TITLE;
     ref.componentInstance.errorDescription = this.tooltipDetails.DESC;
