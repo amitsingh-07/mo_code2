@@ -54,9 +54,9 @@ export class YourPortfolioComponent implements OnInit {
 
   showPortfolioInfo = false; // Display the below 3 information
   totalInvested: any; // Cost of investment
-  profitAndLoss: any; // Unrealised gain/loss
+  unrealisedGainOrLoss: any; // Unrealised gain/loss
   profitAndLossPercentage: any; // Simple returns
-  showTimeWeightedReturns = true;
+  showTimeWeightedReturns = false;
   investmentAmount: any; // Net Deposits
 
   constructor(
@@ -119,8 +119,8 @@ export class YourPortfolioComponent implements OnInit {
       this.totalInvested = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['totalInvested']
         ? this.portfolio.dPMSPortfolio['totalInvested']
         : 0;
-      this.profitAndLoss = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['profitAndLoss']
-        ? this.portfolio.dPMSPortfolio['profitAndLoss']
+      this.unrealisedGainOrLoss = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['unrealisedGainOrLoss']
+        ? this.portfolio.dPMSPortfolio['unrealisedGainOrLoss']
         : 0;
       this.profitAndLossPercentage = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['profitAndLossPercentage']
         ? this.portfolio.dPMSPortfolio['profitAndLossPercentage']
@@ -463,7 +463,7 @@ export class YourPortfolioComponent implements OnInit {
   }
   getSrsAccDetails() {
     if (this.portfolio.fundingTypeValue === 'SRS') {
-      this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
+      this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
         if (data) {
           this.srsAccDetail = data;
         }

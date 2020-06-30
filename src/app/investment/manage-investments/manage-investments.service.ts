@@ -586,6 +586,7 @@ export class ManageInvestmentsService {
           // srsAccountNumber: data.objectList.accountNumber,
           srsAccountNumber: this.srsAccountFormat(data.objectList.accountNumber, data.objectList.srsBankOperator.name),
           srsOperator: data.objectList.srsBankOperator.name,
+          srsOperatorId: data.objectList.srsBankOperator.id,
           customerId: data.objectList.customerId
         };
         this.setSrsAccountDetails(srsAccountDetails);
