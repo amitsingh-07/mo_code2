@@ -463,7 +463,7 @@ export class YourPortfolioComponent implements OnInit {
   }
   getSrsAccDetails() {
     if (this.portfolio.fundingTypeValue === 'SRS') {
-      this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
+      this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
         if (data) {
           this.srsAccDetail = data;
         }
