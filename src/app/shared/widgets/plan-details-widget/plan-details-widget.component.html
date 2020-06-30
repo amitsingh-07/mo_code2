@@ -75,7 +75,7 @@
           </h2>
         </div>
     </div>
-    <div *ngIf="promoDiscount" (click)="redirectToPromoPage(data.id)" class="insurance-plan-widget__container__discount__block">{{promoDiscount}}</div>
+    <div *ngIf="promoDiscount && !isPromoDiscountHidden" (click)="redirectToPromoPage(data.promotion)" class="insurance-plan-widget__container__discount__block">{{promoDiscount}}</div>
     <div style="margin-bottom: 15px;">
       <div class="insurance-plan-widget__container__rank__wrapper flex-row" style="display: flex; flex: 1">
         <div class="insurance-plan-widget__container__rank-box flex-col-4" *ngIf="canShowRanking">
@@ -114,6 +114,7 @@
         <span *ngIf="!isSelected">{{ 'BUTTON.SELECT_PLAN' | translate }}</span>
         <span *ngIf="isSelected">{{ 'BUTTON.UN_SELECT' | translate }}</span>
       </button>
+      <p class="see-more-details" *ngIf="this.data.brochureLink !== 'NA'"><a target="_blank" [href]="this.data.brochureLink">{{ 'PRODUCT_DETAILS.SEE_MORE_DETAILS' | translate}}</a></p>
     </div>
   </div>
   <div class="row mt20" *ngIf="isDirect" [hidden]="isViewMode">

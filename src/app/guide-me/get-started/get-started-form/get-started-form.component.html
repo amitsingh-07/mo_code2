@@ -33,9 +33,9 @@
                 required id="getStrdInpt3">
               <div class="input-group-append">
                 <button (click)="d.toggle()" class="btn btn-primary" type="button" id="getStrdBtn1">
-                  <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="userInfoForm.get('dob').valid || userInfoForm.get('dob').pristine || !doberror" src="./assets/images/calendar-normal.svg"
+                  <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="userInfoForm.get('dob').valid || userInfoForm.get('dob').pristine || !doberror" src="assets/images/calendar-normal.svg"
                   />
-                  <img class="date-picker-image--invalid" id="getStrdImg1" *ngIf="doberror && !userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine" src="./assets/images/calendar-error.svg"
+                  <img class="date-picker-image--invalid" id="getStrdImg1" *ngIf="doberror && !userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine" src="assets/images/calendar-error.svg"
                   />
                 </button>
               </div>

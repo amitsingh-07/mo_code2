@@ -47,6 +47,8 @@ import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { environment } from './../../../environments/environment';
+import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -88,6 +90,10 @@ export class DashboardComponent implements OnInit {
   investmentsSummary;
 
   isComprehensiveEnabled = false;
+  portfolioCategory: any;
+
+  // iFast Maintenance
+  iFastMaintenance = false;
 
   constructor(
     private router: Router,
@@ -123,13 +129,18 @@ export class DashboardComponent implements OnInit {
       this.isInvestmentConfigEnabled = config.investmentEnabled;
       this.isComprehensiveEnabled = config.comprehensiveEnabled;
     });
+    this.portfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
   }
 
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(100);
     this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(9);
+    } else {
+      this.navbarService.setNavbarMode(100);
+    }
     this.loadOptionListCollection();
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
       if (userInfo.responseMessage.responseCode < 6000) {
@@ -230,8 +241,9 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  goToInvOverview() {
-    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.ROOT]);
+  goToInvOverview(selectedPortfolio: any) {
+    this.manageInvestmentsService.setSelectedPortfolioCategory(selectedPortfolio);
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
   }
 
   // tslint:disable-next-line:cognitive-complexity
@@ -360,6 +372,13 @@ export class DashboardComponent implements OnInit {
 
   enableInvestment() {
     this.isInvestmentEnabled = true;
+    // Check if iFast is in maintenance
+    this.configService.getConfig().subscribe((config) => {
+      if (config.iFastMaintenance && this.configService.checkIFastStatus(config.maintenanceStartTime, config.maintenanceEndTime)) {
+        this.iFastMaintenance = true;
+        this.isInvestmentEnabled = false;
+      }
+    });
   }
 
   // Will-writing
@@ -432,5 +451,26 @@ export class DashboardComponent implements OnInit {
         }
       }, (error) => console.log('ERROR: ', error));
     }
+  }
+  gotoTopUp() {
+    this.manageInvestmentsService.setSelectedCustomerPortfolioId(null);
+    this.manageInvestmentsService.setSelectedCustomerPortfolio(null);
+    this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
+      if (data.responseMessage.responseCode >= 6000) {
+        const investmentoverviewlist = (data.objectList) ? data.objectList : {};
+        const portfolioList = (investmentoverviewlist.portfolios) ? investmentoverviewlist.portfolios : [];
+        this.manageInvestmentsService.setUserPortfolioList(portfolioList);
+        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
+      }
+    });
+  }
+  showCashAccountPopUp() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'DASHBOARD.INVESTMENT.CASH_ACCOUNT_BALANCE_TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'DASHBOARD.INVESTMENT.CASH_ACCOUNT_BALANCE_MESSAGE'
+    );
   }
 }

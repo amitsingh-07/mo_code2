@@ -44,6 +44,7 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
   locationSubscription: SubscriptionLike;
   state: DirectState = new DirectState();
   componentName: string;
+  components = [];
 
   constructor(
     private router: Router, public navbarService: NavbarService,
@@ -60,7 +61,9 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
       if (event instanceof NavigationStart && event.url !== '/direct') {
         this.stateStoreService.saveState(this.componentName, this.state);
       } else if (event instanceof NavigationEnd) {
-
+        const url = this.router.parseUrl(event.url);
+        const fragmentIndex = this.directService.resolveProductCategoryIndex(url.fragment);
+        this.directService.setProdCategoryIndex(fragmentIndex);
       }
     });
     if (this.stateStoreService.has(this.componentName)) {
@@ -110,7 +113,6 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
   }
 
   ngOnInit() {
-    this.state.container = this.container;
     const selectedPlans = this.planService.getSelectedPlan();
     const selectedComparePlans = this.directService.getSelectedPlans();
     if ((selectedPlans && selectedPlans.enquiryId) ||
@@ -168,24 +170,22 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
   addComponent(componentClass: Type<any>) {
     // Create component dynamically inside the ng-template
     const componentFactory = this.factoryResolver.resolveComponentFactory(componentClass);
-    const component = this.state.container.createComponent(componentFactory);
+    const component = this.container.createComponent(componentFactory);
     component.instance.isMobileView = this.state.isMobileView;
 
     // Push the component so that we can keep track of which components are created
-    this.state.components.push(component);
+    this.components.push(component);
   }
 
   removeComponent(componentClass: Type<any>) {
     // Find the component
-    if (this.state.components) {
-      const component = this.state.components.find((thisComponent) => thisComponent.instance instanceof componentClass);
-      const componentIndex = this.state.components.indexOf(component);
+    const component = this.components.find((thisComponent) => thisComponent.instance instanceof componentClass);
+    const componentIndex = this.components.indexOf(component);
 
-      if (componentIndex !== -1) {
-        // Remove component from both view and array
-        this.state.container.remove(this.state.container.indexOf(component));
-        this.state.components.splice(componentIndex, 1);
-      }
+    if (componentIndex !== -1) {
+      // Remove component from both view and array
+      this.container.remove(this.container.indexOf(component));
+      this.components.splice(componentIndex, 1);
     }
   }
 }

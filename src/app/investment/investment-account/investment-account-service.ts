@@ -112,11 +112,9 @@ export class InvestmentAccountService {
     const countryList = [];
     const sortedCountryList = [];
     data.forEach((nationality) => {
-      if (!nationality.blocked) {
-        nationality.countries.forEach((country) => {
-          countryList.push(country);
-        });
-      }
+      nationality.countries.forEach((country) => {
+        countryList.push(country);
+      });
     });
     INVESTMENT_ACCOUNT_CONSTANTS.PRIORITIZED_COUNTRY_LIST_CODES.forEach((countryCode) => {
       const filteredCountry = countryList.filter(
@@ -743,7 +741,8 @@ export class InvestmentAccountService {
       id: countryDetails.id,
       countryCode: countryDetails.countryCode,
       name: countryDetails.country,
-      phoneCode: countryDetails.phoneCode
+      phoneCode: countryDetails.phoneCode,
+      countryBlocked: countryDetails.countryBlocked
     };
   }
 
@@ -834,13 +833,21 @@ export class InvestmentAccountService {
     };
   }
 
-  dateFormatFromApi(date: string) {
-    const dateArr: any = date ? date.split(' ')[0].split('/') : [];
-    return {
-      year: Number(dateArr[2]),
-      month: Number(dateArr[0]),
-      day: Number(dateArr[1])
-    };
+  dateFormatFromApi(date: string, separator: string) {
+    const dateArr: any = date ? date.split(' ')[0].split(separator) : [];
+    if (separator === '-') {
+      return {
+        year: Number(dateArr[0]),
+        month: Number(dateArr[1]),
+        day: Number(dateArr[2])
+      };
+    } else {
+      return {
+        year: Number(dateArr[2]),
+        month: Number(dateArr[0]),
+        day: Number(dateArr[1])
+      };
+    }
   }
 
   isDisabled(fieldName): boolean {
@@ -1594,7 +1601,7 @@ export class InvestmentAccountService {
     this.investmentAccountFormData.fullName = identityDetails.customer.nricName;
     this.investmentAccountFormData.nricNumber = identityDetails.nricNumber ? identityDetails.nricNumber.toUpperCase() : '';
     this.investmentAccountFormData.dob = this.dateFormatFromApi(
-      identityDetails.customer.dateOfBirth
+      identityDetails.customer.dateOfBirth, '-'
     );
     this.investmentAccountFormData.gender = identityDetails.customer.gender;
     this.investmentAccountFormData.birthCountry = this.getCountryFromCountryCode(
@@ -1609,7 +1616,7 @@ export class InvestmentAccountService {
     );
     this.investmentAccountFormData.passportNumber = identityDetails.passportNumber ? identityDetails.passportNumber.toUpperCase() : '';
     this.investmentAccountFormData.passportExpiry = this.dateFormatFromApi(
-      identityDetails.passportExpiryDate
+      identityDetails.passportExpiryDate, '/'
     );
     this.commit();
   }
@@ -1945,6 +1952,9 @@ export class InvestmentAccountService {
   getSrsAccountDetails() {
     return this.investmentApiService.getSrsAccountDetails();
   }
+  getProfileSrsAccountDetails() {
+    return this.investmentApiService.getProfileSrsAccountDetails();
+  }
 
   activateReassess() {
     this.investmentAccountFormData.isReassessActive = true;
@@ -1956,5 +1966,62 @@ export class InvestmentAccountService {
   }
   isReassessActive() {
     return this.investmentAccountFormData.isReassessActive;
+  }
+  getCountriesFormDataByFilter() {
+    const countryList = [];
+    this.investmentAccountFormData.countryList.forEach((country) => {
+      if (!country.countryBlocked) {
+        countryList.push(country);
+      }
+    });
+    return countryList;
+  }
+  getCountryByCountryCode(countryCode, countryList) {
+    let blockFlag = false;
+    const selectedCountry = countryList.filter(
+      (countries) => countries.countryCode === countryCode
+    );
+    if (selectedCountry[0]) {
+      blockFlag = (selectedCountry[0]['countryBlocked']);
+    }
+    return blockFlag;
+  }
+  checkCountryBlockList() {
+    let blockedCountry = false;
+    if (this.investmentAccountFormData.country && this.investmentAccountFormData.country.countryCode
+      && this.investmentAccountFormData.country.countryBlocked) {
+      blockedCountry = true;
+    }
+    if (!blockedCountry && this.investmentAccountFormData.mailCountry && this.investmentAccountFormData.mailCountry.countryCode
+       && this.investmentAccountFormData.mailCountry.countryBlocked) {
+      blockedCountry = true;
+    }
+    return blockedCountry;
+  }
+  clearBlockedCountry() {
+    this.investmentAccountFormData.isMyInfoEnabled = false;
+    this.clearResidentialAddressFormData();
+    this.clearEmailAddressFormData();
+    this.commit();
+  }
+  getCountryFromNationalityCodeByFilter(nationalityCode) {
+    let country = '';
+    const selectedNationality = this.investmentAccountFormData.nationalityList.filter(
+      (nationality) => nationality.nationalityCode === nationalityCode
+    );
+    if (selectedNationality[0] && selectedNationality[0].countries[0] && !selectedNationality[0].countries[0].countryBlocked) {
+      country = selectedNationality[0].countries[0];
+    }
+    return country;
+  }
+  getCountryFromCountryCodeByFilter(countryCode) {
+    let country = '';
+    const selectedCountry = this.investmentAccountFormData.countryList.filter(
+      (countries) => countries.countryCode === countryCode
+    );
+    if (selectedCountry[0] && !selectedCountry[0].countryBlocked) {
+      country = selectedCountry[0];
+    }
+    return country;
   }
 }

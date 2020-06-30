@@ -10,17 +10,17 @@ import { AuthenticationService } from '../../../shared/http/auth/authentication.
 import { IPageComponent } from '../../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../investment-engagement-journey-routes.constants';
 import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
+  INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS
 } from '../investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 
@@ -99,7 +99,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
       totalAssets: new FormControl(this.financialFormValue.totalAssets),
       totalLiabilities: new FormControl(this.financialFormValue.totalLiabilities),
       suffEmergencyFund: new FormControl(
-      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.sufficient_emergency_fund)
+        INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.my_financials.sufficient_emergency_fund)
     });
   }
 
@@ -109,7 +109,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     ref.componentInstance.errorMessage = this.modalData.modalMessage;
     ref.componentInstance.primaryActionLabel = this.translator.RETURN_HOME;
     ref.componentInstance.primaryAction.subscribe((emittedValue) => {
-      this.router.navigate(['home']);
+      window.open('/', '_self');
     });
   }
 
@@ -160,6 +160,9 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
 
   saveAndProceed(form: any) {
     const invCommonFormValues = this.investmentCommonService.getInvestmentCommonFormData();
+    let portfolioTypeArray = this.investmentCommonService.getPortfolioType();
+    let portfolioType = this.investmentEngagementJourneyService.filterDataByInput(portfolioTypeArray.portfolioType, 'name', 'Investment');
+    form.value.portfolioTypeId = portfolioType.id;
     this.investmentEngagementJourneyService.setYourFinancial(form.value);
     this.investmentEngagementJourneyService.savePersonalInfo(invCommonFormValues).subscribe((data) => {
       this.investmentCommonService.clearAccountCreationActions();
@@ -210,10 +213,10 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
 
   setControlValues(financialDetails) {
     if (financialDetails) {
-    this.myFinancialForm.controls.monthlyIncome.setValue(financialDetails.monthlyIncome);
-    this.myFinancialForm.controls.percentageOfSaving.setValue(financialDetails.incomePercentageSaved);
-    this.myFinancialForm.controls.totalAssets.setValue(financialDetails.totalAssets);
-    this.myFinancialForm.controls.totalLiabilities.setValue(financialDetails.totalLoans);
+      this.myFinancialForm.controls.monthlyIncome.setValue(financialDetails.monthlyIncome);
+      this.myFinancialForm.controls.percentageOfSaving.setValue(financialDetails.incomePercentageSaved);
+      this.myFinancialForm.controls.totalAssets.setValue(financialDetails.totalAssets);
+      this.myFinancialForm.controls.totalLiabilities.setValue(financialDetails.totalLoans);
     }
   }
 }

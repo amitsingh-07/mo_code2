@@ -5,8 +5,8 @@
         <div class="flex-col-6">
           <button  [ngClass]="{'active': versionTypeEnabled}" type="button" class="btn btn-primary btn-lite width100" id="prfBtn1"
             (click)="setComprehensivePlan(false)">
-            <div class="ft-18" for="name">Lite <span *ngIf='versionTypeEnabled'><img src="../../../assets/images/comprehensive/dashboard-comprehensive-lite-corporate-small.svg"></span>
-              <span *ngIf='!versionTypeEnabled'><img src="../../../assets/images/comprehensive/dashboard-comprehensive-lite-corporate-small-disabled.svg"></span>
+            <div class="ft-18" for="name">Lite <span *ngIf='versionTypeEnabled'><img src="assets/images/comprehensive/dashboard-comprehensive-lite-corporate-small.svg"></span>
+              <span *ngIf='!versionTypeEnabled'><img src="assets/images/comprehensive/dashboard-comprehensive-lite-corporate-small-disabled.svg"></span>
             </div>
           </button>
         </div>
@@ -23,7 +23,7 @@
       <div [ngClass]="{'hidden': !isLoadComplete}">
         <!--Form Header-->
         <div class="form-group-with-bg--header">
-          <div class="mb10" *ngIf='versionTypeEnabled'><img src="../../../assets/images/comprehensive/dashboard-comprehensive-lite-corporate-big.svg"></div>
+          <div class="mb10" *ngIf='versionTypeEnabled'><img src="assets/images/comprehensive/dashboard-comprehensive-lite-corporate-big.svg"></div>
           <div class="flex space-btwn align-items-start">
             <div>
               <div class="form-group-with-bg--header-label pr10">
@@ -119,14 +119,14 @@
             <div class="flex-col-12">
         
               <button *ngIf="isReportGenerated" (click)="downloadComprehensiveReport()" type="button" class="btn btn-view width100" id="prfBtn1">
-                <div class="ft-18" for="name">
-                  {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_VIEW_REPORT' | translate}}
-                  <div class="label-grey ft-13" for="name">
+                <div class="ft-18 "  for="name">
+                <span class="download-report"> {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_VIEW_REPORT' | translate}}</span> 
+                  <div class="label-grey ft-13 last-update" for="name">
                     {{ ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_LAST_UPDATED' | translate).replace('LAST_UPDATED_DATE', submittedDate | date: 'dd MMM yyyy')}}
                   </div>
                 </div>
               </button>
-              <span class="report-error-msg" *ngIf="!isReportGenerated" >{{'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_REPORT_ERROR_MSG'| translate}} </span>
+              <div class="report-error-msg flex" *ngIf="!isReportGenerated" > <span class="mr10"><img src="assets/images/comprehensive/error-icon/exclamation_alert_icon.svg" width="22" height="19" /></span><span>{{'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_REPORT_ERROR_MSG'| translate}} </span></div>
             </div>
           </div>
           <div class="flex-row align-start" [hidden]="comprehensivePlanning !== 3">

@@ -1,17 +1,17 @@
 <div class="modal-header">
   <div class="modal-title popup-header-icon" *ngIf="imgType == 1">
-    <img src="./assets/images/owl.svg" id="errorModelImage" />
+    <img src="assets/images/owl.svg" id="errorModelImage" />
   </div>
   <div class="modal-title popup-header-icon glass" *ngIf="imgType == 2">
-    <img src="./assets/images/investment-account/fees_owl.svg" id="errorModelImage" />
+    <img src="assets/images/investment-account/fees_owl.svg" id="errorModelImage" />
   </div>
 </div>
 <div class="modal-body white-bg">
   <div class="modal-body-title"> 
     <div id="errorModeltitle" [innerHTML]="errorTitle"></div>
-    <span *ngIf="warningIcon" class="warning-icon"><img id="warning_icon" src="../../../assets/images/investment-account/topup-alert.svg"
+    <span *ngIf="warningIcon" class="warning-icon"><img id="warning_icon" src="assets/images/investment-account/topup-alert.svg"
     alt="" /></span>
-    <span *ngIf="lockIcon" class="lock"><img src="../../../../assets/images/lock.svg" ></span>
+    <span *ngIf="lockIcon" class="lock"><img src="assets/images/lock.svg" ></span>
   </div>
   <button *ngIf="closeBtn" type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true" id="errorModelCloseIcon"></span>
@@ -21,7 +21,10 @@
     </div>
   <div class="modal-body-message" *ngIf="errorMessage" id="errorModelMessage"  [innerHTML]="errorMessage"></div>
   <div class="modal-body-message " *ngIf="errorMessageHTML" id="errorModelMessage" [innerHTML]="errorMessageHTML"></div>
-  
+
+  <div *ngIf="investmentPeriodImg"  class="investment-img" id="investment-img" > 
+    <img src="assets/images/investment-account/investment_personal.svg" >
+  </div>
   <div class="row">
     <div class="col-12" [ngClass]="{'col-12': !isInlineButton, 'col-6': isInlineButton}" *ngIf="primaryActionLabel">
       <button type="button" class="action-button " (click)="primaryActionSelected()" id="errorModeButton">

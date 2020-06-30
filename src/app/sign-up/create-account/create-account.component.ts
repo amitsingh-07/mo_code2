@@ -2,7 +2,7 @@ import { flatMap } from 'rxjs/operators';
 
 import { Location } from '@angular/common';
 import {
-  AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
+  AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation, HostListener
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -45,7 +45,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   private description: string;
 
   createAccountForm: FormGroup;
-  formValues: any;
   defaultCountryCode;
   countryCodeOptions;
   captchaSrc: any = '';
@@ -57,6 +56,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   passwordFocus = false;
 
   submitted: boolean = false;
+  capsOn: boolean;
+  capslockFocus: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -93,6 +94,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     if (!this.authService.isAuthenticated()) {
       this.refreshToken();
     }
+    if (this.appService.getJourneyType() == null || this.appService.getJourneyType() === '') {
+      this.appService.setJourneyType(appConstants.JOURNEY_TYPE_SIGNUP);
+    }
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);
@@ -102,7 +106,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     if (!this.authService.isAuthenticated()) {
-      this.loaderService.showLoader({title: 'Loading'});
+      this.loaderService.showLoader({ title: 'Loading' });
       this.authService.authenticate().subscribe((token) => {
         this.refreshCaptcha();
         this.loaderService.hideLoader();
@@ -125,47 +129,39 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
    * build account form.
    */
   buildAccountInfoForm() {
-    this.formValues = this.signUpService.getAccountInfo();
-    this.formValues.countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.defaultCountryCode;
-    this.formValues.termsOfConditions = this.formValues.termsOfConditions ? this.formValues.termsOfConditions : true;
-    this.formValues.marketingAcceptance = this.formValues.marketingAcceptance ? this.formValues.marketingAcceptance : false;
     if (this.distribution) {
-      let email_in: string;
-      if (this.formValues.email) {
-        email_in = this.formValues.email;
-      }
       if (this.distribution.login) {
         this.createAccountForm = this.formBuilder.group({
-          countryCode: [this.formValues.countryCode, [Validators.required]],
-          mobileNumber: [this.formValues.mobileNumber, [Validators.required]],
-          firstName: [this.formValues.firstName, [Validators.required, Validators.minLength(2),
+          countryCode: ['', [Validators.required]],
+          mobileNumber: ['', [Validators.required]],
+          firstName: ['', [Validators.required, Validators.minLength(2),
           Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]],
-          lastName: [this.formValues.lastName, [Validators.required, Validators.minLength(2),
+          lastName: ['', [Validators.required, Validators.minLength(2),
           Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]],
-          email: [email_in, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
-          confirmEmail: [this.formValues.email],
+          email: ['', [Validators.required, Validators.pattern(this.distribution.login.regex)]],
+          confirmEmail: [''],
           password: ['', [Validators.required, ValidatePassword]],
           confirmPassword: [''],
-          termsOfConditions: [this.formValues.termsOfConditions],
-          marketingAcceptance: [this.formValues.marketingAcceptance],
+          termsOfConditions: [true],
+          marketingAcceptance: [false],
           captcha: ['', [Validators.required]]
         }, { validator: this.validateMatchPasswordEmail() });
         return false;
       }
     }
     this.createAccountForm = this.formBuilder.group({
-      countryCode: [this.formValues.countryCode, [Validators.required]],
-      mobileNumber: [this.formValues.mobileNumber, [Validators.required]],
-      firstName: [this.formValues.firstName, [Validators.required, Validators.minLength(2),
+      countryCode: ['', [Validators.required]],
+      mobileNumber: ['', [Validators.required]],
+      firstName: ['', [Validators.required, Validators.minLength(2),
       Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]],
-      lastName: [this.formValues.lastName, [Validators.required, Validators.minLength(2),
+      lastName: ['', [Validators.required, Validators.minLength(2),
       Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]],
-      email: [this.formValues.email, [Validators.required, Validators.email]],
-      confirmEmail: [this.formValues.email],
+      email: ['', [Validators.required, Validators.email]],
+      confirmEmail: [''],
       password: ['', [Validators.required, ValidatePassword]],
       confirmPassword: [''],
-      termsOfConditions: [this.formValues.termsOfConditions],
-      marketingAcceptance: [this.formValues.marketingAcceptance],
+      termsOfConditions: [true],
+      marketingAcceptance: [false],
       captcha: ['', [Validators.required]]
     }, { validator: this.validateMatchPasswordEmail() });
     return true;
@@ -205,7 +201,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   getCountryCode() {
     this.signUpApiService.getCountryCodeList().subscribe((data) => {
       this.countryCodeOptions = [data[0]];
-      const countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.countryCodeOptions[0].code;
+      const countryCode = this.countryCodeOptions[0].code;
       this.setCountryCode(countryCode);
     });
   }
@@ -233,7 +229,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
               const redirect = data.responseMessage.responseCode === 6000;
               this.updateInsuranceEnquiry(insuranceEnquiry, data, redirect);
             } else if (data.responseMessage.responseCode === 6000) {
-              this.googleAnalyticsService.emitConversionsTracker(trackingConstants.ga.createAccount);
               this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
             } else if (data.responseMessage.responseCode === 6008 ||
               data.responseMessage.responseCode === 5006) {
@@ -283,7 +278,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       if (!data && redirect) {
         this.router.navigate([redirect]);
       }
-    });
+    }).catch((e) => { });
     if (title) {
       ref.componentInstance.errorTitle = title;
       ref.componentInstance.buttonLabel = buttonLabel;
@@ -429,5 +424,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     } else {
       this.passwordFocus = !this.passwordFocus;
     }
+  }
+  onFocus() {
+    this.capslockFocus = true;
+  }
+  onBlur() {
+    this.capslockFocus = false;;
   }
 }

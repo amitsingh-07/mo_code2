@@ -41,12 +41,17 @@
         height:100%;
         background-size:cover;
         background-position-y: 30%;
-        @include tablet{
-        }
         @include minMobilemaxPhablet{
-            position: relative; 
-            height:375px;
-            background-position:center;
+            display:none;
+        }
+        &.mobile{
+            display:none;
+            @include minMobilemaxPhablet{
+                display:block;
+                position: relative; 
+                height:375px;
+                background-position:center;
+            }            
         }
     }
 }

@@ -7,12 +7,16 @@ import { IEnvironment } from './environment.interface';
 export const environment: IEnvironment = {
   production: false,
   isDebugMode: true,
-  apiBaseUrl: 'https://bfa-uat.ntucbfa.com',
+  apiBaseUrl: 'https://bfa-dev.ntucbfa.cloud',
   myInfoClientId: 'STG2-MYINFO-SELF-TEST',
   myInfoCallbackBaseUrl: 'https://localhost:3001',
   myInfoAuthorizeUrl: 'https://test.api.myinfo.gov.sg/com/v3/authorise',
   gAdPropertyId: 'AW-782920447',
-  gaPropertyId: 'UA-125256446-1'
+  gaPropertyId: 'UA-125256446-1',
+  hideHomepage: false,
+  expire2faTime: 175,
+  expire2faPollRate: 2,
+  expire2faMaxCheck: 5
 };
 
 /*

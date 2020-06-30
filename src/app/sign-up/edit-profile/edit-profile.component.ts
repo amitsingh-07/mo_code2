@@ -1,11 +1,13 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { InvestmentCommonService } from './../../investment/investment-common/investment-common.service';
 
+import { CustomErrorHandlerService } from 'src/app/shared/http/custom-error-handler.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
@@ -13,13 +15,16 @@ import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { SrsSuccessModalComponent } from '../add-update-srs/srs-success-modal/srs-success-modal.component';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { environment } from './../../../environments/environment';
+import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
-import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
-import { SrsSuccessModalComponent } from '../add-update-srs/srs-success-modal/srs-success-modal.component';
+
+
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -57,9 +62,13 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   showAddbank = false;
   dobFormat: any;
   private subscription: Subscription;
+  protected ngUnsubscribe: Subject<void> = new Subject<void>();
   srsDetails;
   formatedAccountNumber;
   fundTypeId: number;
+  is2faAuthorized: boolean;
+
+  disableBankSrsEdit = false;
 
   constructor(
     // tslint:disable-next-line
@@ -76,7 +85,10 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     public investmentAccountService: InvestmentAccountService,
     public manageInvestmentsService: ManageInvestmentsService,
     public readonly translate: TranslateService,
-    private loaderService: LoaderService) {
+    private loaderService: LoaderService,
+    private configService: ConfigService,
+    private customErrorHandler: CustomErrorHandlerService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
       this.pageTitle = this.translate.instant('EDIT_PROFILE.MY_PROFILE');
@@ -84,20 +96,61 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.showSRSSuccessModel();
     });
     this.getNationalityCountryList();
+
+    this.authService.get2faAuthEvent.subscribe((token) => {
+      if (token) {
+        this.is2faAuthorized = true;
+      } else {
+        this.is2faAuthorized = false;
+      }
+    });
+    this.authService.get2faUpdateEvent.subscribe((token) => {
+      if (!token) {
+        this.getEditProfileData();
+        this.showAddBankDetails(this.investmentStatus);
+        this.getSrsDetails();
+      }
+    });
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMode(102);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(104);
+    } else {
+      this.navbarService.setNavbarMode(102);
+    }
     this.setPageTitle(this.pageTitle);
     this.footerService.setFooterVisibility(false);
     this.headerSubscription();
-    this.buildForgotPasswordForm();
     this.getEditProfileData();
-    this.isMailingAddressSame = true;
     this.investmentStatus = this.investmentCommonService.getInvestmentStatus();
     this.showAddBankDetails(this.investmentStatus);
     this.getSrsDetails();
+    this.buildForgotPasswordForm();
+    this.isMailingAddressSame = true;
+    // Check if iFast is in maintenance
+    this.configService.getConfig().subscribe((config) => {
+      if (config.iFastMaintenance && this.configService.checkIFastStatus(config.maintenanceStartTime, config.maintenanceEndTime)) {
+        this.disableBankSrsEdit = true;
+      }
+    });
+
+    this.authService.get2faErrorEvent
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data) => {
+      if(data) {
+        this.authService.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
+      }
+    });
   }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+    this.navbarService.unsubscribeBackPress();
+  }
+
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
@@ -135,55 +188,64 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
   // tslint:disable-next-line:cognitive-complexity
   getEditProfileData() {
-    this.signUpService.getEditProfileInfo().subscribe((data) => {
-      this.entireUserData = data.objectList;
-      if (data.objectList) {
-        if (data.objectList.personalInformation) {
-          this.personalData = data.objectList.personalInformation;
-        }
-        if (data.objectList && data.objectList.contactDetails && data.objectList.contactDetails.homeAddress) {
-          this.residentialAddress = data.objectList.contactDetails.homeAddress;
-        }
-        // Hidden the Employment details
-        // this.empolymentDetails = data.objectList.employmentDetails;
-        this.empolymentDetails = null;
-        if (data.objectList.customerBankDetail) {
-          this.bankDetails = data.objectList.customerBankDetail[0];
-        }
-        if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
-          this.mailingAddress = data.objectList.contactDetails.mailingAddress;
-          this.isMailingAddressSame = false;
-        }
-        if (data.objectList.contactDetails) {
-          this.contactDetails = data.objectList.contactDetails;
-        }
-        if (this.personalData) {
-          this.fullName = this.personalData.fullName ?
-            this.personalData.fullName : this.personalData.firstName + ' ' + this.personalData.lastName;
-          this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
-          this.setNric(this.personalData.nricNumber);
-          if (this.personalData.passportNumber) {
-            this.compinedPassport = 'Passport: ' + this.personalData.passportNumber;
+     this.signUpService.getEditProfileInfo().subscribe((data) => {
+      const responseMessage = data.responseMessage;
+      if (responseMessage.responseCode === 6000) {
+        this.entireUserData = data.objectList;
+        if (data.objectList) {
+          if (data.objectList.personalInformation) {
+            this.personalData = data.objectList.personalInformation;
           }
-          if (this.personalData && this.personalData.isSingaporeResident) {
-            this.isSingaporeResident = this.personalData.isSingaporeResident;
+          if (data.objectList && data.objectList.contactDetails && data.objectList.contactDetails.homeAddress) {
+            this.residentialAddress = data.objectList.contactDetails.homeAddress;
           }
-          this.constructDate(this.personalData.dateOfBirth);
+          // Hidden the Employment details
+          // this.empolymentDetails = data.objectList.employmentDetails;
+          this.empolymentDetails = null;
+          if (data.objectList.customerBankDetail) {
+            this.bankDetails = data.objectList.customerBankDetail[0];
+          }
+          if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
+            this.mailingAddress = data.objectList.contactDetails.mailingAddress;
+            this.isMailingAddressSame = false;
+          }
+          if (data.objectList.contactDetails) {
+            this.contactDetails = data.objectList.contactDetails;
+          }
+          if (this.personalData) {
+            this.fullName = this.personalData.fullName ?
+              this.personalData.fullName : this.personalData.firstName + ' ' + this.personalData.lastName;
+            this.compinedName = this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
+            this.compinednricNum = this.setNric(this.personalData.nricNumber);
+            if (this.personalData.passportNumber) {
+              this.compinedPassport = 'Passport: ' + this.personalData.passportNumber;
+            }
+            if (this.personalData && this.personalData.isSingaporeResident) {
+              this.isSingaporeResident = this.personalData.isSingaporeResident;
+            }
+            this.constructDate(this.personalData.dateOfBirth);
+          }
         }
-      }
-      // tslint:disable-next-line:max-line-length
-      if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress) {
-        this.employerAddress = this.empolymentDetails.employerDetails.detailedemployerAddress;
-      }
-      if (this.residentialAddress && this.residentialAddress.country && this.residentialAddress.country.nationalityCode) {
-        this.resNationality = this.residentialAddress.country.nationalityCode;
-      }
-      if (this.mailingAddress && this.mailingAddress.country && this.mailingAddress.country.nationalityCode) {
-        this.mailNationality = this.mailingAddress.country.nationalityCode;
-      }
-      // tslint:disable-next-line:max-line-length
-      if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode) {
-        this.employerNationality = this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode;
+        // tslint:disable-next-line:max-line-length
+        if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress) {
+          this.employerAddress = this.empolymentDetails.employerDetails.detailedemployerAddress;
+        }
+        if (this.residentialAddress && this.residentialAddress.country && this.residentialAddress.country.nationalityCode) {
+          this.resNationality = this.residentialAddress.country.nationalityCode;
+        }
+        if (this.mailingAddress && this.mailingAddress.country && this.mailingAddress.country.nationalityCode) {
+          this.mailNationality = this.mailingAddress.country.nationalityCode;
+        }
+        // tslint:disable-next-line:max-line-length
+        if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode) {
+          this.employerNationality = this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode;
+        }
+      } else { // catch exceptions
+        if (responseMessage.responseCode === 5015) {
+          this.authService.clearSession();
+          this.navbarService.logoutUser();
+          this.customErrorHandler.handleAuthError();
+        }
       }
     });
   }
@@ -195,16 +257,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       maskedStr = maskedStr + '*';
     }
     return maskedStr;
-  }
-
-  setTwoLetterProfileName(firstName, LastName) {
-    const first = firstName.charAt(0);
-    const second = LastName.charAt(0);
-    this.compinedName = first.toUpperCase() + second.toUpperCase();
-  }
-
-  setNric(nric) {
-    this.compinednricNum = 'NRIC Number: ' + nric;
   }
 
   setAddres(address1, address2) {
@@ -274,6 +326,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     } else {
       AccountHolderName = this.fullName;
     }
+    this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     // tslint:disable-next-line:max-line-length accountName
     this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, this.bankDetails.bank, this.bankDetails.accountNumber, this.bankDetails.id, false);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: false }, fragment: 'bank' });
@@ -286,6 +339,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     } else {
       AccountHolderName = this.fullName;
     }
+    this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, null, null, null, true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: true }, fragment: 'bank' });
   }
@@ -298,10 +352,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-    this.navbarService.unsubscribeBackPress();
-  }
   constructDate(dob) {
     this.dobFormat = dob;
     if (dob) {
@@ -313,20 +363,23 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   updateSrsDetails(srsAccountNumber, srsBankOperator, customerId, srsBankFlag) {
+    this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     this.signUpService.setEditProfileSrsDetails(srsAccountNumber, srsBankOperator, customerId, this.fundTypeId);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS], { queryParams: { srsBank: srsBankFlag }, fragment: 'bank' });
   }
 
   getSrsDetails() {
-    this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
-      if (data) {
-        this.srsDetails = data;
-        this.getInvestmentOverview();
-      }
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+    this.manageInvestmentsService.getProfileSrsAccountDetails()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data) => {
+        if (data) {
+          this.srsDetails = data;
+          this.getInvestmentOverview();
+        }
+      },
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
   }
 
   getInvestmentOverview() {
@@ -337,17 +390,19 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         autoHide: false
       });
     });
-    this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
-      this.loaderService.hideLoaderForced();
-      if (data.responseMessage.responseCode >= 6000 && data && data.objectList) {
-        this.manageInvestmentsService.setUserPortfolioList(data.objectList.portfolios);
-        this.fundTypeId = this.getFundTypeId(data.objectList.portfolios)
-      }
-    },
-      (err) => {
+    this.manageInvestmentsService.getInvestmentOverview()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data) => {
         this.loaderService.hideLoaderForced();
-        this.investmentAccountService.showGenericErrorModal();
-      });
+        if (data.responseMessage.responseCode >= 6000 && data && data.objectList) {
+          this.manageInvestmentsService.setUserPortfolioList(data.objectList.portfolios);
+          this.fundTypeId = this.getFundTypeId(data.objectList.portfolios)
+        }
+      },
+        (err) => {
+          this.loaderService.hideLoaderForced();
+          this.investmentAccountService.showGenericErrorModal();
+        });
   }
 
   getFundTypeId(protfolios) {
@@ -366,5 +421,15 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       });
       this.manageInvestmentsService.setSrsSuccessFlag(false)
     }
+  }
+
+  setTwoLetterProfileName(firstName, LastName) {
+    const first = firstName.charAt(0);
+    const second = LastName.charAt(0);
+    return first.toUpperCase() + second.toUpperCase();
+  }
+
+  setNric(nric) {
+    return 'NRIC Number: ' + nric;
   }
 }

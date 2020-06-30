@@ -21,13 +21,14 @@
                   <div class="widget-title">
                     <span>Tax Residence</span>
                     <span class="delete-icon" *ngIf="x !== 0"><img (click)="removeTaxForm(taxInfoForm , x)"
-                        src="../../../assets/images/investment-account/delete.svg" alt="" /></span>
+                        src="assets/images/investment-account/delete.svg" alt="" /></span>
                   </div>
                   <div class="widget-body" [formGroupName]="x">
                     <div class="flex-row">
                       <div class="flex-col-4">
-                        <label for="name" class="country_text"
-                          id="tax-info-label">{{ 'TAX_INFO.COUNTRY_TEXT' | translate}}</label>
+                        <label for="name" 
+                          id="tax-info-label">{{ 'TAX_INFO.COUNTRY_TEXT' | translate}}
+                          <i class="tooltip-block-icon" id="countryHelpIcon" (click)="showHelpModalCountry()"></i></label>
                       </div>
                       <div class="flex-col-8">
                         <div class="dropdown-control"
@@ -124,7 +125,7 @@
                       *ngIf="taxInfoItem.controls.showTinHint.value === true && taxInfoItem.controls.radioTin.value === true">
                       {{ 'TAX_INFO.NRIC_HINT' | translate}}</div>
                     <div class="thumb-close-icon" (click)="removeTaxForm(taxInfoForm , x)">
-                      <img src="../../../assets/images/close-button-dark.svg" alt="x" />
+                      <img src="assets/images/close-button-dark.svg" alt="x" />
                     </div>
                   </div>
                   <div class="tax-lbl">{{ 'TAX_INFO.TAX_OTHER_COUNTRY' | translate}}</div>

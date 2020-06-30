@@ -907,9 +907,20 @@ body.modal-open::-webkit-scrollbar {
 .otp-error-modal {
   @include allmobiles {
     .modal-body {
-      margin-bottom: 60px;
     }
   }
+}
+
+.otp-2fa-error-modal{
+  .btn.btn-primary{
+    background-color:$teal-color;
+    font-family:$muli-bold;
+  }
+  @include allmobiles {
+    .modal-body {
+    }
+  }
+  
 }
 
 .will-custom-modal {

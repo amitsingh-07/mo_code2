@@ -16,6 +16,7 @@ import { InvestmentCommonService } from '../../investment-common/investment-comm
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
+import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 
 @Component({
   selector: 'app-nationality',
@@ -31,6 +32,8 @@ export class NationalityComponent implements OnInit {
   editModalData: any;
   ButtonTitle: any;
   blockedNationalityModal: any;
+  blockedCountryModal: any;
+  tooltipDetails: any;
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -49,6 +52,8 @@ export class NationalityComponent implements OnInit {
     this.translate.get('COMMON').subscribe(() => {
       this.editModalData = this.translate.instant('SELECT_NATIONALITY.editModalData');
       this.blockedNationalityModal = this.translate.instant('SELECT_NATIONALITY.blockedNationality');
+      this.blockedCountryModal = this.translate.instant('SELECT_NATIONALITY.blockedCountry');
+      this.tooltipDetails = this.translate.instant('BLOCKED_COUNTRY_TOOLTIP');
     });
   }
 
@@ -141,6 +146,17 @@ export class NationalityComponent implements OnInit {
     });
   }
 
+  showBlockedCountryErrorMessage(modalTitle: any, modalMessage: any) {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = modalTitle;
+    ref.componentInstance.errorMessage = modalMessage;
+    ref.componentInstance.primaryActionLabel = this.blockedCountryModal.blockedCountryButtonTitle;
+    ref.componentInstance.primaryAction.subscribe(() => {
+      this.investmentAccountService.clearBlockedCountry();
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+    });
+  }
+
   goToNext(form) {
     if (form.valid) {
       this.saveNationality(form);
@@ -153,6 +169,11 @@ export class NationalityComponent implements OnInit {
         this.showErrorMessage(
           this.blockedNationalityModal.blockedNationalityTitle,
           this.blockedNationalityModal.blockedNationalityMessage
+        );
+      } else if (this.investmentAccountService.checkCountryBlockList()) {
+        this.showBlockedCountryErrorMessage(
+          this.blockedCountryModal.blockedCountryTitle,
+          this.blockedCountryModal.blockedCountryMessage
         );
       } else if (form.controls.unitedStatesResident) {
         const nationalityName = form.controls.nationality.value.name.toUpperCase();
@@ -202,5 +223,12 @@ export class NationalityComponent implements OnInit {
 
   isDisabled() {
     return this.investmentAccountService.isDisabled('nationality');
+  }
+  openModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.tooltipDetails.TITLE;
+    ref.componentInstance.errorDescription = this.tooltipDetails.DESC;
+    ref.componentInstance.tooltipButtonLabel = this.tooltipDetails.GOT_IT;
+    return false;
   }
 }

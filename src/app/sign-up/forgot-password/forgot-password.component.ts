@@ -40,6 +40,7 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
   heighlightMobileNumber;
   buttonTitle;
   captchaSrc = '';
+  emailResend: string;
 
   constructor(
     // tslint:disable-next-line
@@ -65,6 +66,7 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
       this.emailNotFoundTitle = this.translate.instant('FORGOTPASSWORD.EMAIL_NOT_FOUND');
       this.emailNotFoundDesc = this.translate.instant('FORGOTPASSWORD.EMAIL_NOT_FOUND_DESC');
       this.buttonTitle = this.translate.instant('COMMON.TRY_AGAIN');
+      this.emailResend = this.translate.instant('FORGOTPASSWORD.EMAIL_RESEND');
     });
     if (!this.authService.isAuthenticated()) {
       this.authService.authenticate().subscribe((token) => {
@@ -128,6 +130,14 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
             this.navbarService.logoutUser();
           }
           this.router.navigate([SIGN_UP_ROUTE_PATHS.FORGOT_PASSWORD_RESULT]);
+        } else if (data.responseMessage.responseCode === 5012) {
+          this.signUpApiService.resendEmailVerification(form.value.email, true).subscribe((data) => {
+            if (data.responseMessage.responseCode === 6007) {
+              const ref = this.modal.open(ErrorModalComponent, { centered: true });
+              ref.componentInstance.errorMessage = this.emailResend;
+              this.refreshCaptcha();
+            }
+          });
         } else {
           const ref = this.modal.open(ErrorModalComponent, { centered: true });
           ref.componentInstance.errorMessage = data.responseMessage.responseDescription;

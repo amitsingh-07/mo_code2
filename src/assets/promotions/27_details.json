@@ -1,0 +1,14 @@
+{
+  "promoId": 27,
+  "type": 5,
+  "owner": "MoneyOwl",
+  "title": "Promotion Rates for NTUC members for May Day",
+  "thumbnail": "assets/promotions/images/27/thumbnail.png",
+  "banner": "assets/promotions/images/27/banner.jpg",
+  "desc": "From 18th Jun 20 to 30th Apr 21",
+  "date_created": "1592409600000",
+  "date_expiry": "1619798399000",
+  "tag": [],
+  "external": false,
+  "tnc": false
+}

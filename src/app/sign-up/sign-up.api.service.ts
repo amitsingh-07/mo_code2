@@ -106,10 +106,11 @@ export class SignUpApiService {
    * form request new OTP request.
    * @returns IVerifyRequestOTP - VerifyRequest
    */
-  requestNewOTPBodyRequest(): IVerifyRequestOTP {
+  requestNewOTPBodyRequest(editProf): IVerifyRequestOTP {
     const custRef = this.signUpService.getCustomerRef();
     return {
-      customerRef: custRef
+      customerRef: custRef,
+      editProfile: editProf
     };
   }
 
@@ -155,8 +156,8 @@ export class SignUpApiService {
   /**
    * request new one time password.
    */
-  requestNewOTP() {
-    const payload = this.requestNewOTPBodyRequest();
+  requestNewOTP(editProfile?) {
+    const payload = this.requestNewOTPBodyRequest(editProfile);
     return this.apiService.requestNewOTP(payload);
   }
 

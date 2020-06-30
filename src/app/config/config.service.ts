@@ -28,6 +28,10 @@ export interface IConfig {
   comprehensiveLiveEnabled: boolean;
   showAnnualizedReturns: boolean;
   paymentEnabled: boolean;
+  iFastMaintenance: boolean;
+  maintenanceStartTime: string;
+  maintenanceEndTime: string;
+  showPortfolioInfo: boolean;
 }
 
 const CACHE_SIZE = 1;
@@ -70,5 +74,17 @@ export class ConfigService {
     }
     // return an observable with a user-facing error message
     return throwError('Something bad happened; please try again later.');
+  }
+
+  // Method to check iFast downtime on May 9
+  checkIFastStatus(startTime, endTime) {
+    const startDateTime = new Date(startTime);
+    const endDateTime = new Date(endTime);
+
+    if (Date.now() >= startDateTime.valueOf() && Date.now() <= endDateTime.valueOf()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

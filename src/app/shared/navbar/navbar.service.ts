@@ -136,6 +136,8 @@ export class NavbarService {
     this.pageHelpIcon.next(false);
     this.pageSettingsIcon.next(false);
     this.pageFilterIcon.next(false);
+    this.pageSuperTitle.next('');
+    this.pageSubTitle.next('');
   }
   setClearAllNotify(isVisible: boolean) {
     this.pageClearNotify.next(isVisible);
@@ -220,5 +222,9 @@ export class NavbarService {
 
   logoutUser() {
     this.logoutSubject.next('LOGGED_OUT');
+  }
+
+  clearSessionData() {
+    this.logoutSubject.next('CLEAR_SESSION_DATA');
   }
 }

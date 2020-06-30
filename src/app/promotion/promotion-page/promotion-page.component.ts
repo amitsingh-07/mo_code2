@@ -10,6 +10,8 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PromotionApiService } from '../promotion.api.service';
 import { IPromotion } from '../promotion.interface';
 import { PromotionService } from '../promotion.service';
+import { environment } from './../../../environments/environment';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-promotion-page',
@@ -27,14 +29,20 @@ export class PromotionPageComponent implements OnInit {
   public promoDetails = {} as IPromotion;
   public promoContent = '';
   public promoTnc = '';
+  public isLoggedIn = false;
+  public showBreadCrumbs = true;
 
   constructor(
     public navbarService: NavbarService, private router: Router, private route: ActivatedRoute,
     public footerService: FooterService, private renderer: Renderer2,
     private translate: TranslateService, private configService: ConfigService,
     private promotionService: PromotionService, private promotionApiService: PromotionApiService,
-    private el: ElementRef,
-    private cdRef: ChangeDetectorRef) { }
+    private el: ElementRef, public authService: AuthenticationService,
+    private cdRef: ChangeDetectorRef) {
+      if (this.authService.isSignedUser()) {
+        this.isLoggedIn = true;
+      }
+    }
 
   ngOnInit() {
     this.configService.getConfig().subscribe((config) => {
@@ -43,7 +51,12 @@ export class PromotionPageComponent implements OnInit {
     });
     this.navbarService.setNavbarMobileVisibility(false);
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(9);
+      this.showBreadCrumbs = false;
+    } else {
+      this.navbarService.setNavbarMode(1);
+    }
     this.footerService.setFooterVisibility(true);
 
     this.route.params.subscribe((params) => {
@@ -64,13 +77,22 @@ getPromoDetails() {
           this.promoDetails = this.promotionService.createPromotion(details);
           // Setting Banner background-image
           const banner = this.BannerElement.nativeElement.childNodes[0];
+          const bannerMobile = this.BannerElement.nativeElement.childNodes[1];
           if (this.promoDetails.banner) {
             this.renderer.setStyle(banner,
                                 'background-image',
                                 'url(' + this.promoDetails.banner + ')'
                                 );
+            this.renderer.setStyle(bannerMobile,
+                                'background-image',
+                                'url(' + this.promoDetails.thumbnail + ')'
+                                );
           } else {
             this.renderer.setStyle(banner,
+                                'background-image',
+                                'url(' + this.promoDetails.thumbnail + ')'
+                                );
+            this.renderer.setStyle(bannerMobile,
                                 'background-image',
                                 'url(' + this.promoDetails.thumbnail + ')'
                                 );
@@ -81,9 +103,11 @@ getPromoDetails() {
             this.addRedirectEvent();
           });
           // Getting promo tnc
-          this.promotionApiService.getPromoTnc(this.promoId).subscribe((tnc) => {
-            this.promoTnc = tnc;
-          });
+          if(this.promoDetails.tnc !== false) {
+            this.promotionApiService.getPromoTnc(this.promoId).subscribe((tnc) => {
+              this.promoTnc = tnc;
+            });
+          }
         });
       } else {
         this.router.navigate(['../promotions/']);
@@ -99,11 +123,11 @@ getPromoDetails() {
     this.router.navigate(['../promotions/16']);
   }
 
-  addRedirectEvent() {    
-    this.cdRef.detectChanges();    
+  addRedirectEvent() {
+    this.cdRef.detectChanges();
     var el = this.el.nativeElement.querySelector('.text-underline');
-    if(el) {
+    if (el) {
       el.addEventListener('click', this.redirect.bind(this));
-    }    
+    }
   }
 }

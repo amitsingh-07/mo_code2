@@ -13,7 +13,7 @@ export const RegexConstants = {
         UpperLower: /^(?=.*[a-z])(?=.*[A-Z])/, // Should have atleast one lower case and one upper case
         NumberSymbol: /^(?=.*\d)(?=.*[!"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~\s])/ // Should have atleast one number and one speacial symbol
     },
-    EmailOrMobile: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})|([0-9]{8,10})+$/,
+    EmailOrMobile: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4}\S*$)|([0-9]{8,10})+$/,
     AlphanumericWithSpaces: /^[a-zA-Z0-9\s]*$/,
     SixDigitNumber: /^[0-9]{6}$/,
     SixDigitPromo: /^[a-zA-Z0-9]{6}$/,
@@ -48,9 +48,9 @@ export const RegexConstants = {
         POSB: /^[0-9]{9}$/
     },
     operatorMask: {
-        DBS: [/\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, '-', /\d/, /\d/, /\d/], /* 4-6-1-3 */
-        OCBC: [/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/], /* 3-6-3 */
-        UOB: [/\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/], /* 2-5-2 */
+        DBS: [/\d|\*/, /\d|\*/, /\d|\*/, /\d|\*/, '-', /\d|\*/, /\d|\*/, /\d|\*/, /\d|\*/, /\d|\*/, /\d|\*/, '-', /\d|\*/, '-', /\d|\*/, /\d|\*/, /\d|\*/], /* 4-6-1-3 */
+        OCBC: [/\d|\*/, /\d|\*/, /\d|\*/, '-', /\d|\*/, /\d|\*/, /\d|\*/, /\d|\*/, /\d|\*/, /\d|\*/, '-', /\d|\*/, /\d|\*/, /\d|\*/], /* 3-6-3 */
+        UOB: [/\d|\*/, /\d|\*/, '-', /\d|\*/, /\d|\*/, /\d|\*/, /\d|\*/, /\d|\*/, '-', /\d|\*/, /\d|\*/], /* 2-5-2 */
     },
     operatorMaskForValidation: {
         DBS: /^\d{4}-?\d{6}-?\d{1}-?\d{3}$/, /* 4-6-1-3 */

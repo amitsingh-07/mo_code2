@@ -10,6 +10,7 @@ import { Subject } from 'rxjs/internal/Subject';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { StateStoreService } from '../../shared/Services/state-store.service';
 import { PRODUCT_CATEGORY_INDEX } from '../direct.constants';
+import { FBPixelService } from '../../shared/analytics/fb-pixel.service';
 import { MobileModalComponent } from './../../guide-me/mobile-modal/mobile-modal.component';
 import {
   CreateAccountModelComponent
@@ -51,11 +52,13 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   filteredCountSubject = new Subject<any>();
   subscription: Subscription;
   filterCountSubscription: Subscription;
+  backPressSubscription: Subscription;
 
   filteredResult = [];
 
   constructor(
     private directService: DirectService, private directApiService: DirectApiService,
+    private fbPixelService: FBPixelService,
     private router: Router, private translate: TranslateService, public navbarService: NavbarService,
     public modal: NgbModal, private selectedPlansService: SelectedPlansService,
     private authService: AuthenticationService, private route: ActivatedRoute,
@@ -116,6 +119,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     this.filterCountSubscription = this.filteredCountSubject.subscribe((planList) => {
       this.filteredResult = planList;
     });
+    this.backPressSubscription = this.navbarService.subscribeBackPress().subscribe((event) => {});
   }
 
   initRecommendationsCall() {
@@ -143,6 +147,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   ngOnDestroy() {
+    this.backPressSubscription.unsubscribe();
     this.subscription.unsubscribe();
     this.filterCountSubscription.unsubscribe();
     if (this.routeSubscription instanceof Subscription) {
@@ -180,8 +185,11 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       this.state.resultsEmptyMessage = data.responseMessage.responseDescription;
       return;
     }
-    if(this.state.selectedCategory.id === PRODUCT_CATEGORY_INDEX.CRITICAL_ILLNESS){
-      this.ciCoverDetailsPopup();
+    if (this.state.selectedCategory.id === PRODUCT_CATEGORY_INDEX.CRITICAL_ILLNESS) {
+      const { earlyCI } = this.directService.getCriticalIllnessForm();
+      if (!earlyCI) {
+        this.ciCoverDetailsPopup();
+      }
     }
     this.state.resultsEmptyMessage = '';
     this.state.enquiryId = data.objectList[0].enquiryId;
@@ -475,6 +483,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
 
   proceedSelection() {
     this.selectedPlansService.setSelectedPlan(this.state.selectedPlans, this.state.enquiryId);
+    this.fbPixelService.track('ProceedEnquiry');
     if (this.authService.isSignedUser()) {
       this.selectedPlansService.updateInsuranceEnquiry().subscribe((data) => {
         if (data.responseMessage.responseCode === 6000) {

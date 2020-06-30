@@ -8,12 +8,16 @@ import { IEnvironment } from './environment.interface';
 export const environment: IEnvironment = {
   production: false,
   isDebugMode: true,
-  apiBaseUrl: 'https://bfa-dev2.ntucbfa.cloud',
+  apiBaseUrl: 'https://newmouat1.ntucbfa.com',
   myInfoClientId: 'STG2-MYINFO-SELF-TEST',
-  myInfoCallbackBaseUrl: 'https://bfa-dev2.ntucbfa.cloud/myinfo',
+  myInfoCallbackBaseUrl: 'https://newmouat1.ntucbfa.com/app/myinfo',
   myInfoAuthorizeUrl: 'https://test.api.myinfo.gov.sg/com/v3/authorise',
   gAdPropertyId: 'AW-782920447',
-  gaPropertyId: 'UA-125256446-1'
+  gaPropertyId: 'UA-125256446-1',
+  hideHomepage: true,
+  expire2faTime: 178,
+  expire2faPollRate: 2,
+  expire2faMaxCheck: 5
 };
 
 /*

@@ -1,23 +1,27 @@
-const INSURANCE_API_BASE_URL = 'insurance/insurance-needs-microservice/api';
-const INSURANCE_RECOMMEND_API_BASE_URL = 'recommend/recomm-microservice/api';
-const ARTICLE_API_BASE_URL = 'product/insurance-product/api/article';
-const ABOUT_US_API_BASE_URL = 'product/insurance-product/api';
-const ACCOUNT_API_BASE_URL = 'account/account-microservice/api';
-const SUBSCRIPTION_API_BASE_URL = 'product/insurance-product/api';
-const WILL_WRITING_API_BASE_URL = 'wills/wills-microservice/api/wills';
-const NOTIFICATION_API_BASE_URL = 'notification/notify-microservice/api/notifications';
-const COMPREHENSIVE_API_BASE_URL = 'recommend/recomm-microservice/api/customer/comprehensive/';
-const FINANCE_API_BASE_URL = 'finance/finhealth/api/customer/comprehensive/';
-const COMPREHENSIVE_REPORT_API_BASE_URL = 'comp/comprehensive-microservice/api/';
-const PAYMENT_API_BASE_URL = 'pymtgw/';
-const INVEST_API_BASE_URL = 'invest/investment-microservice/api/';
+const INSURANCE_API_BASE_URL = 'svc/insurance/insurance-needs-microservice/api';
+const INSURANCE_RECOMMEND_API_BASE_URL = 'svc/recommend/recomm-microservice/api';
+const ARTICLE_API_BASE_URL = 'svc/product/insurance-product/api/article';
+const ABOUT_US_API_BASE_URL = 'svc/product/insurance-product/api';
+const ACCOUNT_API_BASE_URL = 'svc/account/account-microservice/api';
+const SUBSCRIPTION_API_BASE_URL = 'svc/product/insurance-product/api';
+const WILL_WRITING_API_BASE_URL = 'svc/wills/wills-microservice/api/wills';
+const NOTIFICATION_API_BASE_URL = 'svc/notification/notify-microservice/api/notifications';
+const COMPREHENSIVE_API_BASE_URL = 'svc/recommend/recomm-microservice/api/customer/comprehensive/';
+const FINANCE_API_BASE_URL = 'svc/finance/finhealth/api/customer/comprehensive/';
+const COMPREHENSIVE_REPORT_API_BASE_URL = 'svc/comp/comprehensive-microservice/api/';
+const PAYMENT_API_BASE_URL = 'svc/pymtgw/';
+const INVEST_API_BASE_URL = 'svc/invest/investment-microservice/api/';
 
 export let apiConstants = {
     endpoint: {
-        authenticate: 'account/account-microservice/authenticate',
-        authenticateWorkshop: 'account/account-microservice/authenticateWorkshop',
+        getCaptcha: 'svc/account/account-microservice/getCaptcha',
+        authenticate: 'svc/account/account-microservice/authenticate',
+        authenticateWorkshop: 'svc/account/account-microservice/authenticateWorkshop',
         login: 'login',
         logout: ACCOUNT_API_BASE_URL + '/logout',
+        send2faOTP: ACCOUNT_API_BASE_URL + '/send2FAOTP',
+        authenticate2faOTP: ACCOUNT_API_BASE_URL + '/validate2FA',
+        verify2faOTP: ACCOUNT_API_BASE_URL + '/is2FAuthenticated',
         getProfileList: ACCOUNT_API_BASE_URL + '/getProfileTypeList',
         getProtectionTypesList: INSURANCE_API_BASE_URL + '/getProtectionTypesList',
         getLongTermCareList: INSURANCE_API_BASE_URL + '/getCareGiverList',
@@ -25,18 +29,18 @@ export let apiConstants = {
         getRiskAssessmentQuestions: INVEST_API_BASE_URL + 'RiskAssessment',
         getRecommendations: INSURANCE_RECOMMEND_API_BASE_URL + '/getRecommendations',
         updateProductEnquiry: ACCOUNT_API_BASE_URL + '/updateCustomerEnquiry',
-        getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfoV3',
+        getMyInfoValues: 'svc/sginfo/myinfo-microservice/api/getMyInfoV3',
         signUp: ACCOUNT_API_BASE_URL + '/signupV2',
         updateUserId: ACCOUNT_API_BASE_URL + '/updatePersonalDetails?handleError=true',
         verifyOTP: ACCOUNT_API_BASE_URL + '/verifyOTP',
         resendOTP: ACCOUNT_API_BASE_URL + '/resendOTP',
         verifyEmail: ACCOUNT_API_BASE_URL + '/verifyEmail',
         resetPassword: ACCOUNT_API_BASE_URL + '/resetPassword',
-        forgotPassword: ACCOUNT_API_BASE_URL + '/forgotPassword',
+        forgotPassword: ACCOUNT_API_BASE_URL + '/forgotPassword?handleError=true',
         userProfileInfo: ACCOUNT_API_BASE_URL + '/getCustomerProfileDetails?handleError=true',
         editContactDeatails: ACCOUNT_API_BASE_URL + '/updateAddress',
         editPassword: ACCOUNT_API_BASE_URL + '/editPassword',
-        editProfile: ACCOUNT_API_BASE_URL + '/customer/customerProfile',
+        editProfile: ACCOUNT_API_BASE_URL + '/customer/customerProfile?handleError=true',
         editEmployerAddress: ACCOUNT_API_BASE_URL + '/updateEmployment',
         emailValidityCheck: ACCOUNT_API_BASE_URL + '/emailValidityCheck',
         detailCustomerSummary: ACCOUNT_API_BASE_URL + '/getDetailedCustomerSummary',
@@ -47,7 +51,7 @@ export let apiConstants = {
         enquiryByEmail: ACCOUNT_API_BASE_URL + '/enquiryByEmail',
         getPopupStatus: ACCOUNT_API_BASE_URL + '/getTrackStatus',
         setPopupStatus: ACCOUNT_API_BASE_URL + '/setTrackStatus',
-        enquireRetirementPlan: ACCOUNT_API_BASE_URL + '/ads/postRetirementPlanning',
+        enquireRetirementPlan: ACCOUNT_API_BASE_URL + '/postRetirementPlanning',
         sendWelcomeMail: ACCOUNT_API_BASE_URL + '/sendWelcomeMail',
         financialWellness: ACCOUNT_API_BASE_URL + '/corp/updateLeadGen',
         article: {
@@ -96,11 +100,11 @@ export let apiConstants = {
             downloadComprehensiveReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'downloadLiteReportPdf',
             saveStepIndicator: COMPREHENSIVE_API_BASE_URL + 'saveComprehensiveStepCompletion',
             generateComprehensiveReport: COMPREHENSIVE_API_BASE_URL + 'generateComprehensiveReport',
-            createReportRequest: COMPREHENSIVE_REPORT_API_BASE_URL + 'createReportRequest',
             getReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'getReport',
             getComprehensiveSummaryDashboard: COMPREHENSIVE_API_BASE_URL + 'fetchComprehensiveStatus',
             getProductAmount: ACCOUNT_API_BASE_URL + '/productPricing',
             updateComprehensiveStatus: COMPREHENSIVE_API_BASE_URL +'updateComprehensiveReportStatus',
+            insuranceData: 'assets/comprehensive/insurancePlan.json'
         },
         payment: {
             getRequestSignature: PAYMENT_API_BASE_URL + 'getRequestSignature',

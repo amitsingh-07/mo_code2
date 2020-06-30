@@ -16,6 +16,7 @@ import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyProfile } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
+import { environment } from './../../../environments/environment';
 import { ConfigService } from './../../config/config.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
@@ -47,6 +48,8 @@ export class ComprehensiveComponent implements OnInit {
   includingGst = false;
   fetchData: string;
   loading: string;
+  imageSrc = 'assets/images/comprehensive/free-tag.svg';
+
   constructor(
     private appService: AppService, private cmpService: ComprehensiveService,
     private route: ActivatedRoute, private router: Router, public translate: TranslateService,
@@ -56,6 +59,9 @@ export class ComprehensiveComponent implements OnInit {
     public footerService: FooterService, private sanitizer: DomSanitizer, private comprehensiveApiService: ComprehensiveApiService) {
     this.configService.getConfig().subscribe((config: any) => {
       this.paymentEnabled = config.paymentEnabled;
+      if (this.paymentEnabled) {
+        this.imageSrc = 'assets/images/comprehensive/limited-offer.svg';
+      }
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
@@ -65,22 +71,24 @@ export class ComprehensiveComponent implements OnInit {
         this.fetchData = this.translate.instant('MYINFO.FETCH_MODAL_DATA.TITLE');
         this.loading = this.translate.instant('COMMON_LOADER.TITLE');
         this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.translate.instant('CMP.COMPREHENSIVE.VIDEO_LINK'));
+        this.navbarService.setPageTitle(this.translate.instant('CMP.COMPREHENSIVE.PAGE_TITLE'), '', false);
+
+        const isUnsupportedNoteShown = this.signUpService.getUnsupportedNoteShownFlag();
+        this.signUpService.mobileOptimizedObservable$.subscribe((mobileOptimizedView) => {
+          if (!this.signUpService.isMobileDevice() && !mobileOptimizedView && !isUnsupportedNoteShown) {
+            this.signUpService.showUnsupportedDeviceModal();
+            this.signUpService.setUnsupportedNoteShownFlag();
+          }
+        });
       });
     });
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarComprehensive(true);
     this.footerService.setFooterVisibility(false);
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
-    const isUnsupportedNoteShown = this.signUpService.getUnsupportedNoteShownFlag();
     this.buildPromoCodeForm();
-    this.signUpService.mobileOptimizedObservable$.subscribe((mobileOptimizedView) => {
-      if (!this.signUpService.isMobileDevice() && !mobileOptimizedView && !isUnsupportedNoteShown) {
-        this.signUpService.showUnsupportedDeviceModal();
-        this.signUpService.setUnsupportedNoteShownFlag();
-      }
-    });
 
     if (this.authService.isSignedUser()) {
       const action = this.appService.getAction();
@@ -164,7 +172,12 @@ export class ComprehensiveComponent implements OnInit {
     } else if (redirectUrl && (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isValidatedPromoCode)) {
       this.router.navigate([redirectUrl]);
     } else if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isValidatedPromoCode) {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+      this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((data: any) => {
+        if (data && data.objectList[0]) {
+          this.cmpService.setComprehensiveSummary(data.objectList[0]);
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+        }
+      });
     }
 
     setTimeout(() => {
@@ -196,7 +209,11 @@ export class ComprehensiveComponent implements OnInit {
         this.loaderService.showLoader({ title: this.loading, autoHide: false });
         this.comprehensiveApiService.ValidatePromoCode(promoCode).subscribe((data: any) => {
           if (data && data.objectList[0].validatePromoCode) {
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+            this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((summaryData: any) => {
+              if (summaryData && summaryData.objectList[0]) {
+                  this.cmpService.setComprehensiveSummary(summaryData.objectList[0]);
+                  this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+              }});
           }
         }, (err) => {
           setTimeout(() => {

@@ -36,6 +36,11 @@ const routes: Routes = [
     canActivate: [ManageInvestmentsGuard]
   },
   {
+    path: MANAGE_INVESTMENTS_ROUTES.YOUR_INVESTMENT + '/:selectedPortfolio',
+    component: InvestmentOverviewComponent,
+    canActivate: [ManageInvestmentsGuard]
+  },  
+  {
     path: MANAGE_INVESTMENTS_ROUTES.YOUR_PORTFOLIO,
     component: YourPortfolioComponent,
     canActivate: [ManageInvestmentsGuard]

@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
+import { FooterService } from '../../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
@@ -26,7 +27,6 @@ import {
 import { IAccountCreationActions } from '../investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
-import { FooterService } from '../../../shared/footer/footer.service';
 
 @Component({
   selector: 'app-add-portfolio-name',
@@ -114,12 +114,17 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
 
   savePortfolioName(portfolioName) {
     this.loaderService.showLoader({
-      title: 'Loading.',
-      desc: 'Please wait.'
+      title: this.translate.instant(
+        'PORTFOLIO_RECOMMENDATION.CREATING_ADDITIONAL_ACCOUNT_LOADER.TITLE'
+      ),
+      desc: this.translate.instant(
+        'PORTFOLIO_RECOMMENDATION.CREATING_ADDITIONAL_ACCOUNT_LOADER.DESCRIPTION'
+      ),
+      autoHide: false
     });
     const param = this.constructSavePortfolioNameParams(portfolioName);
     this.investmentCommonService.savePortfolioName(param).subscribe((response) => {
-      this.loaderService.hideLoader();
+      this.loaderService.hideLoaderForced();
       if (response.responseMessage.responseCode === 6000) {
         this.investmentAccountService.setDefaultPortfolioName(portfolioName);
         this.showErrorMessage = false;
@@ -131,7 +136,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
       }
     },
       (err) => {
-        this.loaderService.hideLoader();
+        this.loaderService.hideLoaderForced();
         this.investmentAccountService.showGenericErrorModal();
       });
   }
@@ -167,13 +172,14 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
         ),
         desc: this.translate.instant(
           'PORTFOLIO_RECOMMENDATION.CREATING_ACCOUNT_LOADER.DESCRIPTION'
-        )
+        ),
+        autoHide: false
       });
       const pepData = this.investmentAccountService.getPepData();
       this.investmentAccountService.verifyAML().subscribe(
         (response) => {
           this.isRequestSubmitted = false;
-          this.loaderService.hideLoader();
+          this.loaderService.hideLoaderForced();
           if (response.objectList && response.objectList.status) {
             this.investmentAccountService.setAccountCreationStatus(
               response.objectList.status
@@ -208,7 +214,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
         },
         (err) => {
           this.isRequestSubmitted = false;
-          this.loaderService.hideLoader();
+          this.loaderService.hideLoaderForced();
           this.investmentAccountService.showGenericErrorModal();
         }
       );
@@ -234,12 +240,13 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
           'PORTFOLIO_RECOMMENDATION.CREATING_ADDITIONAL_ACCOUNT_LOADER.DESCRIPTION'
         ) : this.translate.instant(
           'PORTFOLIO_RECOMMENDATION.CREATING_ACCOUNT_LOADER.DESCRIPTION'
-        )
+        ),
+        autoHide: false
       });
       this.investmentAccountService.createInvestmentAccount(params).subscribe(
         (response) => {
           this.isRequestSubmitted = false;
-          this.loaderService.hideLoader();
+          this.loaderService.hideLoaderForced();
           if (response.responseMessage.responseCode < 6000) {
             // ERROR SCENARIO
             if (
@@ -282,7 +289,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
         },
         (err) => {
           this.isRequestSubmitted = false;
-          this.loaderService.hideLoader();
+          this.loaderService.hideLoaderForced();
           this.investmentAccountService.showGenericErrorModal();
         }
       );

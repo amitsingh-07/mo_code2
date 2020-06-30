@@ -108,7 +108,7 @@ export class ComprehensiveApiService {
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
     getInsurancePlanning() {
-        return this.httpClient.get('../../assets/comprehensive/insurancePlan.json')
+        return this.httpClient.get(apiConstants.endpoint.comprehensive.insuranceData)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
     getPromoCode() {
@@ -148,11 +148,6 @@ export class ComprehensiveApiService {
     generateComprehensiveReport(payload) {
         return this.http
             .post(apiConstants.endpoint.comprehensive.generateComprehensiveReport, payload)
-            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
-    }
-    createReportRequest(payload) {
-        return this.http
-            .post(apiConstants.endpoint.comprehensive.createReportRequest, payload)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
     getReport() {

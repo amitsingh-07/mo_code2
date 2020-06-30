@@ -9,7 +9,7 @@ import {
 import {
   HTTP_INTERCEPTORS, HttpClient, HttpClientJsonpModule, HttpClientModule
 } from '@angular/common/http';
-import { Injector, NgModule } from '@angular/core';
+import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
@@ -88,9 +88,15 @@ import {
   RecommendationsModalComponent
 } from './shared/modal/recommendations-modal/recommendations-modal.component';
 
+import { onAppInit } from './app.initializer';
 import { ComprehensiveChildEnableGuard } from './comprehensive/comprehensive-child-enable-guard';
 import { ComprehensiveEnableGuard } from './comprehensive/comprehensive-enable-guard';
 import { EmailEnquirySuccessComponent } from './email-enquiry-success/email-enquiry-success.component';
+import { ExternalRouteGuard } from './external-route-guard';
+import { InvestmentMaintenanceGuard } from './investment-maintenance/investment-maintenance-guard';
+import { InvestmentMaintenanceComponent } from './investment-maintenance/investment-maintenance.component';
+import { PaymentChildEnableGuard } from './payment/payment-child-enable-guard';
+import { PaymentEnableGuard } from './payment/payment-enable-guard';
 import {
   LoginCreateAccountModelComponent
 } from './shared/modal/login-create-account-model/login-create-account-model.component';
@@ -121,9 +127,6 @@ import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
-
-import { PaymentChildEnableGuard } from './payment/payment-child-enable-guard';
-import { PaymentEnableGuard } from './payment/payment-enable-guard';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -173,7 +176,8 @@ export function tokenGetterFn() {
     DiyModalComponent,
     NotFoundComponent,
     EmailEnquirySuccessComponent,
-    RestrictAddPortfolioModalComponent
+    RestrictAddPortfolioModalComponent,
+    InvestmentMaintenanceComponent
   ],
   imports: [
     BrowserModule,
@@ -200,6 +204,12 @@ export function tokenGetterFn() {
     })
   ],
   providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: onAppInit,
+      multi: true,
+      deps: [Injector]
+    },
     NgbActiveModal,
     AuthenticationService, CustomErrorHandlerService, RequestCache,
     AppService, TitleCasePipe, PendingChangesGuard, DefaultErrors,
@@ -230,7 +240,9 @@ export function tokenGetterFn() {
     ComprehensiveChildEnableGuard,
     AboutAge,
     PaymentEnableGuard,
-    PaymentChildEnableGuard
+    PaymentChildEnableGuard,
+    InvestmentMaintenanceGuard,
+    ExternalRouteGuard
   ],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -253,5 +265,3 @@ export class AppModule {
     routingService.loadRouting();
   }
 }
-
-

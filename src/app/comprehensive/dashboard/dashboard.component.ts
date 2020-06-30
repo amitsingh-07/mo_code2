@@ -10,10 +10,12 @@ import { FileUtil } from '../../shared/utils/file.util';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyProfile } from '../comprehensive-types';
+import { environment } from './../../../environments/environment';
 import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
+
 @Component({
   selector: 'app-comprehensive-dashboard',
   templateUrl: './dashboard.component.html',
@@ -66,7 +68,11 @@ constructor(
       this.fetchData = this.translate.instant('MYINFO.FETCH_MODAL_DATA.TITLE');
     });
       this.navbarService.setNavbarVisibility(true);
-      this.navbarService.setNavbarMode(100);
+      if (environment.hideHomepage) {
+        this.navbarService.setNavbarMode(9);
+      } else {
+        this.navbarService.setNavbarMode(100);
+      }
       this.navbarService.setNavbarMobileVisibility(false);
     /**
      * 0 - Waiting for report
@@ -128,6 +134,7 @@ constructor(
       if (!this.islocked) {
         this.getComprehensiveCall();
       } else if (this.getComprehensiveSummaryDashboard.dobPopUpEnable) {
+            this.setComprehensiveSummary(false, '');
             const toolTipParams = {
               TITLE: '',
               DESCRIPTION: this.translate.instant('COMPREHENSIVE.DASHBOARD.WARNING_POPUP'),
@@ -135,13 +142,21 @@ constructor(
             };
             this.comprehensiveService.openTooltipModalWithDismiss(toolTipParams);
           } else {
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+            this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((data: any) => {
+              if (data && data.objectList[0]) {
+                  this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
+                  this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+              }});
           }
     } else if ( this.versionTypeEnabled &&
       (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) || (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR)){
         this.getComprehensiveCall();
     } else{
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+      this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((data: any) => {
+        if (data && data.objectList[0]) {
+            this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+        }});
     }
     
   }

@@ -49,7 +49,7 @@ export class TopupStatusComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit() {
-    this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMode(10);
     this.navbarService.setNavbarMobileVisibility(false);
     this.manageInvestmentsService.clearTopUpData();
     this.route.params.subscribe((params) => {

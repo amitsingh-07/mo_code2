@@ -57,7 +57,7 @@ export class WithdrawalBankAccountComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(6);
+    this.navbarService.setNavbarMode(10);
     this.footerService.setFooterVisibility(false);
     this.getLookupList();
     this.getUserBankList();

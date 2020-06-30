@@ -104,15 +104,17 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.distribution = config.distribution;
-    });    
+    });
     if (route.snapshot.data[0]) {
       this.finlitEnabled = route.snapshot.data[0]['finlitEnabled'];
+      this.appService.clearJourneys();
+      this.appService.clearPromoCode();
     }
   }
 
   /**
-   * Initialize tasks.
-   */
+    * Initialize tasks.
+    */
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(101);
@@ -188,7 +190,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     this.loginForm = this.formBuilder.group({
       loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile)]],
-      loginPassword: [this.formValues.loginPassword, [Validators.required]],      
+      loginPassword: [this.formValues.loginPassword, [Validators.required]],
       captchaValue: ['']
     });
     if (this.finlitEnabled) {
@@ -279,7 +281,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             this.loginForm.controls['captchaValue'].reset();
             this.loginForm.controls['loginPassword'].reset();
             if (this.finlitEnabled) {
-             this.loginForm.controls['accessCode'].reset();
+              this.loginForm.controls['accessCode'].reset();
             }
             this.openErrorModal(data.responseMessage.responseDescription);
             this.signUpService.setCaptchaCount();

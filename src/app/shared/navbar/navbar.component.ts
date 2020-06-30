@@ -5,8 +5,8 @@ import {
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
-import { appConstants } from '../../app.constants';
 import { APP_ROUTES } from '../../app-routes.constants';
+import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
@@ -19,15 +19,17 @@ import {
   DASHBOARD_PATH, EDIT_PROFILE_PATH, SIGN_UP_ROUTE_PATHS
 } from '../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../sign-up/sign-up.service';
+import { CustomErrorHandlerService } from '../http/custom-error-handler.service';
 import { DefaultErrors } from '../modal/error-modal/default-errors';
 import { ProgressTrackerService } from '../modal/progress-tracker/progress-tracker.service';
 import { Util } from '../utils/util';
+import { environment } from './../../../environments/environment';
 import { ComprehensiveService } from './../../comprehensive/comprehensive.service';
+import { SelectedPlansService } from './../Services/selected-plans.service';
+import { MenuConfig } from './config/menu.config';
 import { INavbarConfig } from './config/navbar.config.interface';
 import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
-import { CustomErrorHandlerService } from '../http/custom-error-handler.service';
-import { SelectedPlansService } from './../Services/selected-plans.service';
 
 @Component({
   selector: 'app-navbar',
@@ -99,6 +101,24 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   journeyType: string;
   isComprehensivePath: boolean;
+  hideHomepage = false;
+
+  // Menu show/hide configure
+  showHome = true;
+  showInsure = true;
+  showWills = true;
+  showInvest = true;
+  showComprehensive = true;
+  showFWP = true;
+  showFLT = true;
+  showPromotions = true;
+  showLearn = false;
+  showAbtUs = true;
+  showCustomerReviews = true;
+  showWhyMO = true;
+  showCareers = true;
+  showContactUs = true;
+  showFAQs = true;
 
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
@@ -159,8 +179,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.logoutObservable$.subscribe((data) => {
       if (data === 'LOGGED_OUT') {
         this.clearLoginDetails();
+      } else if (data === 'CLEAR_SESSION_DATA') {
+        this.clearLoginDetails(false);
       }
     });
+    this.hideHomepage = environment.hideHomepage;
+    if (this.hideHomepage) {
+      this.setMenuDisplay();
+    }
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -423,15 +449,22 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }
   }
 
-  clearLoginDetails() {
+  clearLoginDetails(isRedirect: boolean = true) {
     this.signUpService.setUserProfileInfo(null);
     this.isLoggedIn = false;
     this.authService.clearAuthDetails();
     this.authService.clearSession();
+    this.authService.doClear2FASession({errorPopup: false, updateData: false});
     this.appService.clearData();
     this.appService.startAppSession();
     this.selectedPlansService.clearData();
-    this.router.navigate([appConstants.homePageUrl]);
+    if (isRedirect) {
+      if (this.showHome) {
+        this.router.navigate([appConstants.homePageUrl]);
+      } else {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+      }
+    }
   }
 
   // Route to Dashboard
@@ -450,7 +483,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   // If its current route, close the menu else navigate as usual
   checkCurrentRouteAndNavigate(route) {
     if (this.router.url === route) {
-      this.toggleMenu();
+      this.hideMenu();
     } else {
       this.router.navigate([route]);
     }
@@ -474,5 +507,23 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
   reloadProgressTracker() {
     this.progressTrackerService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+  }
+
+  setMenuDisplay() {
+    this.showHome = MenuConfig.showHome;
+    this.showInsure = MenuConfig.services.showInsure;
+    this.showWills = MenuConfig.services.showWills;
+    this.showInvest = MenuConfig.services.showInvest;
+    this.showComprehensive = MenuConfig.services.showComprehensive;
+    this.showFWP = MenuConfig.corporate.showFWP;
+    this.showFLT = MenuConfig.corporate.showFLT;
+    this.showPromotions = MenuConfig.showPromotions;
+    this.showLearn = MenuConfig.showLearn;
+    this.showAbtUs = MenuConfig.aboutUs.showAbtUs;
+    this.showCustomerReviews = MenuConfig.aboutUs.showCustomerReviews;
+    this.showWhyMO = MenuConfig.aboutUs.showWhyMO;
+    this.showCareers = MenuConfig.aboutUs.showCareers;
+    this.showContactUs = MenuConfig.aboutUs.showContactUs;
+    this.showFAQs = MenuConfig.aboutUs.showFAQs;
   }
 }

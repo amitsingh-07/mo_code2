@@ -1,0 +1,14 @@
+{
+  "promoId": 29,
+  "type": 5,
+  "owner": "MoneyOwl",
+  "title": "Promotion Rates for NTUC members for NTUC Family Membership",
+  "thumbnail": "assets/promotions/images/29/thumbnail.jpg",
+  "banner": "assets/promotions/images/29/banner.jpg",
+  "desc": "From 1st Oct 20",
+  "date_created": "1601481600000",
+  "date_expiry": "2556028799000",
+  "tag": [],
+  "external": false,
+  "tnc": false
+}

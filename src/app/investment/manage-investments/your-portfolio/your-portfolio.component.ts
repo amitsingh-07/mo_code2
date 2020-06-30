@@ -21,6 +21,7 @@ import { IToastMessage } from '../manage-investments-form-data';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS, PORTFOLIO_WITHDRAWAL_KEYS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
+import { environment } from './../../../../environments/environment';
 import { SignUpService } from './../../../sign-up/sign-up.service';
 import { RenameInvestmentModalComponent } from './rename-investment-modal/rename-investment-modal.component';
 
@@ -51,6 +52,13 @@ export class YourPortfolioComponent implements OnInit {
   portfolioWithdrawRequests = false;
   showAnnualizedReturns = false;
 
+  showPortfolioInfo = false; // Display the below 3 information
+  totalInvested: any; // Cost of investment
+  unrealisedGainOrLoss: any; // Unrealised gain/loss
+  profitAndLossPercentage: any; // Simple returns
+  showTimeWeightedReturns = false;
+  investmentAmount: any; // Net Deposits
+
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -74,6 +82,7 @@ export class YourPortfolioComponent implements OnInit {
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.translate.use(config.language);
       this.showAnnualizedReturns = config.showAnnualizedReturns;
+      this.showPortfolioInfo = config['showPortfolioInfo'];
     });
   }
 
@@ -83,7 +92,11 @@ export class YourPortfolioComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(103);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(105);
+    } else {
+      this.navbarService.setNavbarMode(103);
+    }
     this.footerService.setFooterVisibility(false);
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.moreList = MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.MORE_LIST;
@@ -103,8 +116,24 @@ export class YourPortfolioComponent implements OnInit {
       this.yearlyReturns = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio.yearlyReturns
         ? this.portfolio.dPMSPortfolio.yearlyReturns
         : null;
+      this.totalInvested = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['totalInvested']
+        ? this.portfolio.dPMSPortfolio['totalInvested']
+        : 0;
+      this.unrealisedGainOrLoss = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['unrealisedGainOrLoss']
+        ? this.portfolio.dPMSPortfolio['unrealisedGainOrLoss']
+        : 0;
+      this.profitAndLossPercentage = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['profitAndLossPercentage']
+        ? this.portfolio.dPMSPortfolio['profitAndLossPercentage']
+        : 0;
+      this.investmentAmount = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['investmentAmount']
+          ? this.portfolio.dPMSPortfolio['investmentAmount']
+          : 0;
       this.getTransferDetails(this.portfolio.customerPortfolioId);
-      this.riskProfileImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
+      if (this.portfolio['riskProfile']) {
+        this.riskProfileImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
+      } else {
+        this.riskProfileImage = ProfileIcons[6]['icon'];
+      }
       if (this.portfolio.pendingRequestDTO && this.portfolio.pendingRequestDTO.transactionDetailsDTO) { /* Pending Transactions ? */
         this.investmentEngagementJourneyService.sortByProperty(
           this.portfolio.pendingRequestDTO.transactionDetailsDTO,
@@ -216,7 +245,7 @@ export class YourPortfolioComponent implements OnInit {
   gotoTopUp(monthly?: boolean) {
     const data = this.manageInvestmentsService.getTopUp();
     data['Investment'] = monthly ?
-      MANAGE_INVESTMENTS_CONSTANTS.TOPUP.MONTHLY_INVESTMENT : MANAGE_INVESTMENTS_CONSTANTS.TOPUP.ONETINE_INVESTMENT;
+    MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.MONTHLY.VALUE : MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.ONE_TIME.VALUE;
     this.manageInvestmentsService.setTopUp(data);
     this.manageInvestmentsService.setSelectedCustomerPortfolioId(this.portfolio.customerPortfolioId);
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
@@ -434,11 +463,25 @@ export class YourPortfolioComponent implements OnInit {
   }
   getSrsAccDetails() {
     if (this.portfolio.fundingTypeValue === 'SRS') {
-      this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
+      this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
         if (data) {
           this.srsAccDetail = data;
         }
       });
     }
+  }
+
+  toggleReturns() {
+    this.showTimeWeightedReturns = !this.showTimeWeightedReturns;
+  }
+
+  showCalculationTooltip() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'modal-body-message'});
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'YOUR_PORTFOLIO.MODAL.CALCULATE.TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'YOUR_PORTFOLIO.MODAL.CALCULATE.MESSAGE'
+    );
   }
 }

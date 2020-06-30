@@ -11,5 +11,9 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
   },
   risk_assessment: {
     special_question_order: 4
+  },
+  SELECT_POROFOLIO_TYPE :{
+    INVEST_PORTFOLIO:'investPortfolio',
+    WISESAVER_PORTFOLIO:'wiseSaverPortfolio'
   }
 };

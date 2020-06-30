@@ -12,6 +12,7 @@ export class InvestmentCommonFormData {
     fundingType: string;
     srsOperatorBank: any;
     srsAccountNumber: string;
+    portfolioType:any;
 }
 
 export interface IAccountCreationActions {

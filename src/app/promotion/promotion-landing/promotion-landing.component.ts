@@ -1,14 +1,15 @@
-import { ConfigService } from './../../config/config.service';
 import { Component, HostListener, OnInit } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { PromotionService } from '../promotion.service';
+import { environment } from './../../../environments/environment';
+import { ConfigService } from './../../config/config.service';
 import { FooterService } from './../../shared/footer/footer.service';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
-import { PromotionApiService } from './../promotion.api.service';
-
 import { SeoServiceService } from './../../shared/Services/seo-service.service';
+import { PromotionApiService } from './../promotion.api.service';
 import { IPromoCategory } from './promo-category.interface';
 
 @Component({
@@ -22,6 +23,8 @@ export class PromotionLandingComponent implements OnInit {
   public mobileThreshold = 567;
   private categorySelect: number;
   public categorySelectTxt: string;
+  public isLoggedIn = false;
+  public showBreadCrumbs = true;
 
   constructor(
     public navbarService: NavbarService, private router: Router,
@@ -29,7 +32,7 @@ export class PromotionLandingComponent implements OnInit {
     private translate: TranslateService,
     private promotionService: PromotionService,
     private promotionApiService: PromotionApiService,
-    private seoService: SeoServiceService) {
+    private seoService: SeoServiceService, public authService: AuthenticationService) {
       this.selectCategory(0);
       this.configService.getConfig().subscribe((config) => {
         this.translate.setDefaultLang(config.language);
@@ -42,6 +45,9 @@ export class PromotionLandingComponent implements OnInit {
           this.translate.instant('PROMO_LANDING.META.META_DESCRIPTION'),
           this.translate.instant('PROMO_LANDING.META.META_KEYWORDS'));
       });
+      if (this.authService.isSignedUser()) {
+        this.isLoggedIn = true;
+      }
     }
 
   @HostListener('window:resize', [])
@@ -55,13 +61,17 @@ export class PromotionLandingComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(false);
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(9);
+      this.showBreadCrumbs = false;
+    } else {
+      this.navbarService.setNavbarMode(1);
+    }
     this.footerService.setFooterVisibility(true);
 
     this.promotionApiService.getPromoList().subscribe((promotions) => {
       this.promotionApiService.getPromoCategory().subscribe((categories) => {
           this.promoList = this.promotionService.processPromoList(promotions, categories);
-          // console.log(this.promoList);
           this.genCategoryList();
         });
     });

@@ -65,17 +65,6 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
   resultsPageTitle: string;
 
   selectedCategoryId = 0;
-  routerOptions = [
-    { link: 'life-protection', id: 0 },
-    { link: 'critical-illness', id: 1 },
-    { link: 'occupational-disability', id: 2 },
-    { link: 'hospital-plan', id: 3 },
-    { link: 'long-term-care', id: 4 },
-    { link: 'education', id: 5 },
-    { link: 'savings', id: 5 },
-    { link: 'retirement-income', id: 6 },
-    { link: 'srs-approved-plans', id: 7 }
-  ];
 
   minProdSearch: string;
   /*
@@ -224,6 +213,9 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
       catId = catId - 1;
     }
     this.openProductCategory(catId);
+    if (this.innerWidth < this.mobileThreshold) {
+      this.directService.updateUserInfo();
+    }
   }
 
   formSubmitted(data) {
@@ -254,21 +246,15 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
   initCategorySetup() {
     this.directService.setProductCategoryList(this.productCategoryList);
     this.selectedCategory = this.directService.getProductCategory();
-    let categoryIndex = this.selectedCategory.id;
-    /*
-    if (this.selectedCategory && categoryIndex) {
-      categoryIndex = categoryIndex - 1;
-      this.selectProductCategory(this.productCategoryList[categoryIndex], categoryIndex);
-      this.openProductCategory(categoryIndex);
-    } else if (this.innerWidth >= this.mobileThreshold) {
-      this.openProductCategory(0);
+    this.directService.prodCategoryIndex.subscribe((fragmentIndex) => {
+      if (this.innerWidth > this.mobileThreshold) {
+        this.selectProductCategory(this.productCategoryList[fragmentIndex], fragmentIndex);
+        this.openProductCategory(fragmentIndex);
+      }
+    });
+    if (this.innerWidth <= this.mobileThreshold) {
+      this.toggleSelectVisibility = true;
     }
-    */
-
-    if (this.innerWidth >= this.mobileThreshold) {
-      this.openProductCategory(0);
-    }
-
     this.directService.updateUserInfo();
   }
 

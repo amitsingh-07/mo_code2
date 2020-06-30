@@ -80,6 +80,7 @@ export class InvestmentCommonService {
     this.investmentCommonFormData.fundingType = null;
     this.investmentCommonFormData.srsOperatorBank = null;
     this.investmentCommonFormData.srsAccountNumber = null;
+    this.commit();
   }
 
   clearInvestmentCommonFormData() {
@@ -251,6 +252,9 @@ export class InvestmentCommonService {
   saveSrsAccountDetails(params, customerPortfolioId) {
     return this.investmentApiService.saveSrsAccountDetails(params, customerPortfolioId);
   }
+  saveProfileSrsAccountDetails(params, customerPortfolioId) {
+    return this.investmentApiService.saveProfileSrsAccountDetails(params, customerPortfolioId);
+  }
 
   getInvestmentCriteriaFromApi() {
     const params = this.constructParamsForInvestmentCriteria();
@@ -282,5 +286,13 @@ export class InvestmentCommonService {
       }
     );
   }
-
-}
+  setPortfolioType(portfolioType) {
+    this.investmentCommonFormData.portfolioType = portfolioType;
+    this.commit();
+  }
+  getPortfolioType() {
+    return {
+      portfolioType: this.investmentCommonFormData.portfolioType
+    };
+  }
+ }

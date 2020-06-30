@@ -10,20 +10,22 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../../../shared/footer/footer.service';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
 import {
-    InvestmentEngagementJourneyService
+  InvestmentEngagementJourneyService
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
 import { InvestmentCommonService } from '../investment-common.service';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment-engagement-journey/investment-engagement-journey.constants';
+import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 
 @Component({
   selector: 'app-funding-account-details',
@@ -56,6 +58,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private investmentCommonService: InvestmentCommonService,
     public investmentAccountService: InvestmentAccountService,
+    public manageInvestmentsService: ManageInvestmentsService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -79,24 +82,22 @@ export class FundingAccountDetailsComponent implements OnInit {
 
   getSrsAccDetailsAndOptionListCol() {
     Observable.forkJoin(
-      this.investmentAccountService.getSrsAccountDetails(),
+      this.manageInvestmentsService.getProfileSrsAccountDetails(),
       this.investmentAccountService.getAllDropDownList()
     ).subscribe((response) => {
       this.callbackForGetSrsAccountDetails(response[0]);
       this.callbackForOptionListCollection(response[1]);
     },
-    (err) => {
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   callbackForGetSrsAccountDetails(data) {
-    if (data.responseMessage.responseCode >= 6000 && data.objectList) {
-      if (data.objectList.accountNumber && data.objectList.srsBankOperator) {
-        this.isSrsAccountAvailable = true;
-        this.srsAccountDetails = data.objectList;
-        this.setSrsAccountDetails(this.srsAccountDetails);
-      }
+    if (data && data['srsAccountNumber'] && data['srsOperator']) {
+      this.isSrsAccountAvailable = true;
+      this.srsAccountDetails = data;
+      this.setSrsAccountDetails(data);
     }
   }
 
@@ -113,7 +114,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   buildForm() {
     this.fundingAccountDetailsForm = this.formBuilder.group({
       // tslint:disable-next-line:max-line-length
-      confirmedFundingMethodId: [this.formValues.confirmedFundingMethodId ? this.formValues.confirmedFundingMethodId : this.formValues.initialFundingMethodId , Validators.required]
+      confirmedFundingMethodId: [this.formValues.confirmedFundingMethodId ? this.formValues.confirmedFundingMethodId : this.formValues.initialFundingMethodId, Validators.required]
     });
   }
 
@@ -189,7 +190,12 @@ export class FundingAccountDetailsComponent implements OnInit {
       this.investmentAccountService.activateReassess();
       this.investmentCommonService.setInitialFundingMethod({ initialFundingMethodId: value });
       this.investmentCommonService.clearConfirmedFundingMethod();
-      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+      const selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
+      if (selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
+        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+      } else {
+        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
+      }
     });
     ref.componentInstance.noClickAction.subscribe((emittedValue) => { // No do not Reassess
       ref.close();
@@ -322,10 +328,10 @@ export class FundingAccountDetailsComponent implements OnInit {
 
   setSrsAccountDetails(data) {
     if (data) {
-      const operatorBank = this.getOperatorIdByName(data.srsBankOperator.id, this.srsAgentBankList);
+      const operatorBank = this.getOperatorIdByName(data.srsOperatorId, this.srsAgentBankList);
       if (operatorBank && this.fundingAccountDetailsForm.get('srsFundingDetails')) {
         this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsOperatorBank').setValue(operatorBank);
-        this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsAccountNumber').setValue(data.accountNumber);
+        this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsAccountNumber').setValue(data.srsAccountNumber.conformedValue);
       }
     }
   }
