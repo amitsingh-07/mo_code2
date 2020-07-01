@@ -402,7 +402,6 @@ app-your-portfolio {
           color: $black-color;
           font-size: 13px;
           letter-spacing: -0.24px;
-          padding-right: 50px;
           @include allmobiles{
             padding-right: 38px;
           }
@@ -599,8 +598,11 @@ app-your-portfolio {
         }
         .form-group-with-bg .form-group-with-bg--content {
           padding: 20px 20px 19px;
-          .flex-row:not(:last-child) {
-            margin-bottom: 0px;
+          .flex-row {
+            justify-content: space-between;
+            @include allmobiles{
+              justify-content: unset;
+            }
           }
         }
         hr {
