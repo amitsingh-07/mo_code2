@@ -474,6 +474,8 @@
       "ESTIMATED_PAYOUT": "Estimated Payout",
       "MONTH": "mth",
       "SET_RETIREMENT_SUM": "Retirement Sum Set Aside @ 55",
+      "TOPUP_AMOUNT":"Topup amount after 55",
+      "WITHDRAWAL_AMOUNT":"Withdrawal from RA after 55",
       "YOUR_HOME": "Your Home",
       "MARKET_VALUE": "At market value",
       "ADD_INVESTMENT_PROPERTIES": "Add Investment Properties",
