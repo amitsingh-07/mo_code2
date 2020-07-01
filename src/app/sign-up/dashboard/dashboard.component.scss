@@ -393,6 +393,11 @@ app-dashboard {
               .widget-portfolio-body {
                 padding:0px 18px 11px;
               }
+              @-moz-document url-prefix() {
+                .widget-portfolio-body {
+                    min-width: 350px;
+                }
+              }  
               .widget-portfolio-right-section {
                 padding-left:15px;
               }
