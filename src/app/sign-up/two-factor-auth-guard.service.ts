@@ -33,18 +33,14 @@ export class TwoFactorAuthGuardService implements CanActivate {
     this.signUpService.setRedirectUrl(redirectUrl);
     // Is Signed Users and is 2FA verified
     if (this.authService.isSignedUser() && this.authService.is2FAVerified()) {
-      console.log('2fa Auth Guard Part 1');
       this.authService.setFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE, false);
       this.authService.set2faVerifyAllowed(false);
       return true;
     } else if (!this.authService.isSignedUser()) {
-      console.log('2fa Auth Guard Part 2');
       this.authService.set2faVerifyAllowed(false);
       this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       return false;
     } else {
-      console.log('2fa Auth Guard Part 3');
-      console.log('2FAVerify Page Allowed? : ', this.authService.get2faVerifyAllowed());
       this.signUpService.setRedirectUrl(redirectUrl);
       this.route.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_2FA]);
       return false;
@@ -63,14 +59,11 @@ export class TwoFactorScreenGuardService implements CanActivate {
   ) {
   }
   canActivate(): boolean {
-    console.log('2FAVerifyScreenGuard Page Allowed? : ', this.authService.get2faVerifyAllowed());
     if (!this.authService.get2faVerifyAllowed()) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       return false;
     }
-    this.authService.send2faRequest().subscribe((response) => {
-      // console.log('2fa created on BE:', response);
-    });
+    this.authService.send2faRequest();
     return true;
   }
 }
