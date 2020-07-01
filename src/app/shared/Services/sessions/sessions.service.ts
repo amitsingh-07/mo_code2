@@ -28,12 +28,12 @@ export class SessionsService {
 
   // Creating New Instance
   newInstance() {
-    if(window.localStorage && window.sessionStorage) {
+    if (window.localStorage && window.sessionStorage) {
       const randId = Math.random().toString(36).substring(7);
       const sessMgt: ISessionMgt = JSON.parse(window.localStorage.getItem(INSTANCE_MGT));
       sessMgt.sessionList.push(randId);
       this.commit(sessMgt);
-      if(this.authService.is2FAVerified()){
+      if (this.authService.is2FAVerified()) {
         window.location.reload();
       }
       return randId;
@@ -42,14 +42,14 @@ export class SessionsService {
   }
 
   getInstance() {
-    if(window.localStorage && window.sessionStorage && window.sessionStorage.getItem(INSTANCE_ID)) {
+    if (window.localStorage && window.sessionStorage && window.sessionStorage.getItem(INSTANCE_ID)) {
       return window.sessionStorage.getItem(INSTANCE_ID);
     }
   }
 
   // Setting Active Instance
   setActiveInstance(instId: string) {
-    if(window.localStorage && window.sessionStorage && window.localStorage.getItem(INSTANCE_MGT)) {
+    if (window.localStorage && window.sessionStorage && window.localStorage.getItem(INSTANCE_MGT)) {
       const sessMgt: ISessionMgt = JSON.parse(window.localStorage.getItem(INSTANCE_MGT));
       sessMgt.active = instId;
       this.commit(sessMgt);
@@ -57,13 +57,18 @@ export class SessionsService {
     }
   }
 
+  createNewActiveInstance() {
+    const randId = this.newInstance();
+    this.setActiveInstance(randId);
+  }
+
   // Destroy Old Instance
   destroyInstance() {
-    if(window.localStorage && window.sessionStorage) {
+    if (window.localStorage && window.sessionStorage) {
       const oldInstId = window.sessionStorage.getItem(INSTANCE_ID);
       const sessMgt: ISessionMgt = JSON.parse(window.localStorage.getItem(INSTANCE_MGT));
       const sessList = sessMgt.sessionList;
-      sessList.splice(sessList.indexOf(oldInstId),1);
+      sessList.splice(sessList.indexOf(oldInstId), 1);
       sessMgt.sessionList = sessList;
       this.commit(sessMgt);
     }

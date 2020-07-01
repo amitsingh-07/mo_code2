@@ -1,6 +1,6 @@
 import { browser } from 'protractor';
 
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -33,7 +33,7 @@ import { GuideMeService } from './../../guide-me/guide-me.service';
   encapsulation: ViewEncapsulation.None,
 })
 
-export class VerifyMobileComponent implements OnInit {
+export class VerifyMobileComponent implements OnInit, OnDestroy {
   private errorModal = {};
   private loading = {};
 
@@ -45,6 +45,7 @@ export class VerifyMobileComponent implements OnInit {
   progressModal: boolean;
   newCodeRequested: boolean;
   editProfile: boolean;
+  two2faAuth: boolean;
   fromLoginPage: string;
 
   constructor(
@@ -94,10 +95,11 @@ export class VerifyMobileComponent implements OnInit {
       this.mobileNumber = this.signUpService.getMobileNumber();
     }
 
+    this.two2faAuth = this.authService.get2faVerifyAllowed();
+  }
 
-    if (this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
-      this.editProfile = true;
-    }
+  ngOnDestroy() {
+    this.authService.set2faVerifyAllowed(false);
   }
 
   /**
@@ -124,7 +126,7 @@ export class VerifyMobileComponent implements OnInit {
         otpArr.push(form.value[value]);
         if (value === 'otp6') {
           const otp = otpArr.join('');
-          if (this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
+          if (this.authService.get2faVerifyAllowed()) {
             console.log('Calling Verity 2FA');
             this.verify2FA(otp);
           } else {
