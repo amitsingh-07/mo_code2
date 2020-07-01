@@ -3,6 +3,9 @@ import { FormBuilder } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -19,10 +22,9 @@ import {
   ForwardPricingModalComponent
 } from '../withdrawal/forward-pricing-modal/forward-pricing-modal.component';
 import { AddBankModalComponent } from './add-bank-modal/add-bank-modal.component';
-import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
+import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { INVESTMENT_ACCOUNT_ROUTES, INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-withdrawal-bank-account',
@@ -41,6 +43,7 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
   fullName: string;
   hideAddBankAccount = true;
   isRequestSubmitted = false;
+  error2fa: any;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
@@ -59,6 +62,21 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => { });
+    this.translate.get('ERROR').subscribe((results: string) => {
+      this.error2fa = {
+        title: this.translate.instant('ERROR.2FA_SESSION_EXPIRED.TITLE'),
+        subtitle: this.translate.instant('ERROR.2FA_SESSION_EXPIRED.SUB_TITLE'),
+        button: this.translate.instant('ERROR.2FA_SESSION_EXPIRED.SUB_TITLE'),
+      };
+
+      this.authService.get2faErrorEvent
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe((data) => {
+          if (data) {
+            this.authService.openErrorModal(this.error2fa.title, this.error2fa.subtitle, this.error2fa.button);
+          }
+        });
+    });
   }
 
   ngOnInit() {
@@ -81,13 +99,7 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
         }
       });
 
-    this.authService.get2faErrorEvent
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((data) => {
-        if (data) {
-          this.authService.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
-        }
-      });
+
   }
 
   ngOnDestroy() {
