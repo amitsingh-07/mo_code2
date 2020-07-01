@@ -33,6 +33,7 @@ import {
 } from './view-all-notifications/view-all-notifications.component';
 
 import { AddUpdateSrsComponent } from './add-update-srs/add-update-srs.component';
+import { TwoFactorAuthGuardService, TwoFactorScreenGuardService } from './two-factor-auth-guard.service';
 
 const routes: Routes = [
   {
@@ -52,6 +53,10 @@ const routes: Routes = [
   { path: SIGN_UP_ROUTES.VERIFY_MOBILE,
     component: VerifyMobileComponent,
     canActivate: [SignUpAccessGuard]
+  },
+  { path: SIGN_UP_ROUTES.TWOFA_MOBILE,
+    component: VerifyMobileComponent,
+    canActivate: [TwoFactorScreenGuardService]
   },
   { path: SIGN_UP_ROUTES.ACCOUNT_CREATED,
     component: AccountCreatedComponent
@@ -97,7 +102,7 @@ const routes: Routes = [
   },
   { path: SIGN_UP_ROUTES.UPDATE_USER_ID,
     component: UpdateUserIdComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, TwoFactorAuthGuardService]
   },
   { path: SIGN_UP_ROUTES.ACCOUNT_UPDATED,
     component: AccountUpdatedComponent,
@@ -110,11 +115,11 @@ const routes: Routes = [
   },
   { path: SIGN_UP_ROUTES.UPDATE_BANK,
     component: AddUpdateBankComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, TwoFactorAuthGuardService]
   },
   { path: SIGN_UP_ROUTES.UPDATE_SRS,
     component: AddUpdateSrsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, TwoFactorAuthGuardService]
   },
   { path: SIGN_UP_ROUTES.FINLIT_LOGIN,
     component: LoginComponent,

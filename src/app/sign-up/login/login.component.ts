@@ -41,6 +41,7 @@ import { HelperService } from './../../shared/http/helper.service';
 import { IError } from './../../shared/http/interfaces/error.interface';
 import { StateStoreService } from './../../shared/Services/state-store.service';
 import { LoginFormError } from './login-form-error';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -50,7 +51,6 @@ import { LoginFormError } from './login-form-error';
 export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   private distribution: any;
   private loginFormError: any = new LoginFormError();
-
   loginForm: FormGroup;
   formValues: any;
   defaultCountryCode;
@@ -63,7 +63,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   progressModal = false;
   investmentEnquiryId;
   finlitEnabled = false;
-
+  capsOn: boolean;
+  capslockFocus: boolean;
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
 
   @HostListener('window:resize', ['$event'])
@@ -72,7 +73,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.welcomeTitle.nativeElement.scrollIntoView(true);
     }
   }
-
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder, private appService: AppService,
@@ -112,8 +112,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
-  }
 
+  }
   /**
     * Initialize tasks.
     */
@@ -262,7 +262,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             } else {
               this.goToNext();
             }
-          } else if (data.responseMessage.responseCode === 5016) {
+          } else if (data.responseMessage.responseCode === 5016 || data.responseMessage.responseCode === 5011) {
             this.loginForm.controls['captchaValue'].reset();
             this.loginForm.controls['loginPassword'].reset();
             this.openErrorModal(data.responseMessage.responseDescription);
@@ -336,7 +336,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       } else {
         this.selectedPlansService.clearData();
         this.stateStoreService.clearAllStates();
-        this.goToNext();
+        this.router.navigate(['email-enquiry/success']);
       }
     });
   }
@@ -471,5 +471,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
+  }
+  onFocus() {
+    this.capslockFocus = true;
+  }
+  onBlur() {
+    this.capslockFocus = false;
   }
 }
