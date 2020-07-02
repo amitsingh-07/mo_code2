@@ -17,10 +17,13 @@
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img [src]="getImg(portfolio?.riskProfileId)" /></div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
-                                    <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
-                                    <span class="portfolio-fund-type" *ngIf="portfolio?.fundingTypeValue == 'SRS'">
-                                  {{'YOUR_INVESTMENT.SRS' | translate}}
-                                </span>
+                                    <span class="portfolio-lbl flex-col-10">{{portfolio?.portfolioName}}</span>
+                                    <div class='flex-col-1'>
+                                        <span class="right portfolio-fund-type" *ngIf="portfolio?.fundingTypeValue == 'SRS'">
+                                    {{'YOUR_INVESTMENT.SRS' | translate}}
+                                        </span>
+                                    </div>
+                                    <span class='right'><img class="detailed-arrow-icon" src="assets/images/manage-investments/side-arrow-icon.svg"></span>
                                 </div>
                                 <div class="ref-code">{{'YOUR_INVESTMENT.REF_LABEL' | translate}} {{portfolio.refNo}}</div>
                                 <div class="portfolio-value">
@@ -52,11 +55,14 @@
                             <div class="portfolio-icon" [ngClass]="portfolio?.riskProfileId == 7 ? 'ws-border' : ''"><img [src]="getImg(portfolio?.riskProfileId)" /></div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
-                                    <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
-                                    <span *ngIf="portfolio?.fundingTypeValue == 'SRS'" class="portfolio-fund-type">
-                                  {{'YOUR_INVESTMENT.SRS' | translate}}
-                                </span>
-                                </div>
+                                    <span class="portfolio-lbl flex-col-10">{{portfolio?.portfolioName}}</span>
+                                    <div class='flex-col-1'>
+                                        <span *ngIf="portfolio?.fundingTypeValue == 'SRS'" class="right portfolio-fund-type">
+                                    {{'YOUR_INVESTMENT.SRS' | translate}}
+                                        </span>
+                                    </div>
+                                    <span class='right'><img class="detailed-arrow-icon" src="assets/images/manage-investments/side-arrow-icon.svg"></span>
+                                 </div>
                                 <div class="ref-code">{{'YOUR_INVESTMENT.REF_LABEL' | translate}} {{portfolio?.refNo}}</div>
                                 <div class="portfolio-value">
                                     <span *ngIf="!portfolio?.portfolioValue">$0</span>
