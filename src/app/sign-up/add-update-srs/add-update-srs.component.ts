@@ -117,12 +117,18 @@ export class AddUpdateSrsComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.authService.get2faErrorEvent
-    .pipe(takeUntil(this.ngUnsubscribe))
-    .subscribe((data) => {
-      if(data) {
-        this.authService.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
-      }
+    this.translate.get('ERROR').subscribe((results) => {
+      this.authService.get2faErrorEvent
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data) => {
+        if(data) {
+          this.authService.openErrorModal(
+            results.SESSION_2FA_EXPIRED.TITLE,
+            results.SESSION_2FA_EXPIRED.SUB_TITLE,
+            results.SESSION_2FA_EXPIRED.BUTTON
+            );
+        }
+      });
     });
   }
 
