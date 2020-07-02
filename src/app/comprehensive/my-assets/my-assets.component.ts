@@ -256,8 +256,8 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         value: (this.assetDetails && this.showRetirementAccount) ? this.assetDetails.retirementSum : '',
         disabled: this.viewMode
       }, []],
-      topUpAmount: [{
-        value: (this.assetDetails && this.showRetirementAccount) ? this.assetDetails.topUpAmount : '',
+      topupAmount: [{
+        value: (this.assetDetails && this.showRetirementAccount) ? this.assetDetails.topupAmount : '',
         disabled: this.viewMode
       }, []],
       withdrawalAmount: [{
