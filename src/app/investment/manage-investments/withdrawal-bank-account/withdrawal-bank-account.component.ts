@@ -224,7 +224,6 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
       this.showNewBankFormModal();
     } else {
       this.signUpService.setRedirectUrl(MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL_PAYMENT_METHOD);
-      console.log('Show Update Bank');
       this.authService.set2faVerifyAllowed(true);
       this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_2FA], { skipLocationChange: true });
     }
@@ -270,7 +269,6 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
     if (this.authService.is2FAVerified()) {
       this.showEditBankFormModal(index);
     } else {
-      console.log('2FA not verified');
       this.signUpService.setRedirectUrl(MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL_PAYMENT_METHOD);
       this.authService.set2faVerifyAllowed(true);
       this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_2FA], { skipLocationChange: true });

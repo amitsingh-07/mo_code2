@@ -82,7 +82,6 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     this.translate.get('ERROR').subscribe((results: any) => {
       this.authService.get2faSendErrorEvent.pipe(takeUntil(this.ngUnsubscribe)).subscribe((data) => {
       if(data) {
-          console.log('Error translate:', results);
           const error2fa = {
             title: results.SEND_2FA_FAILED.TITLE,
             subtitle: results.SEND_2FA_FAILED.SUB_TITLE,
@@ -147,10 +146,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
         if (value === 'otp6') {
           const otp = otpArr.join('');
           if (this.authService.get2faVerifyAllowed()) {
-            console.log('Calling Verity 2FA');
             this.verify2FA(otp);
           } else {
-            console.log('Calling Verity OTP');
             this.verifyOTP(otp);
           }
         }
