@@ -40,7 +40,7 @@ export const COMPREHENSIVE_CONST = {
             API_KEY: 'comprehensiveAssets',
             API_TOTAL_BUCKET_KEY: 'totalAnnualAssets',
             MONTHLY_INPUT_CALC: [],
-            POP_FORM_INPUT: ['enquiryId', 'totalAnnualAssets', 'customerId', 'id', 'assetId', 'estimatedPayout', 'retirementSum','topUpAmount','withdrawalAmount'],
+            POP_FORM_INPUT: ['enquiryId', 'totalAnnualAssets', 'customerId', 'id', 'assetId', 'estimatedPayout', 'retirementSum','topupAmount','withdrawalAmount'],
             BUCKET_INPUT_CALC: ['cashInBank', 'savingsBonds', 'cpfOrdinaryAccount', 'cpfSpecialAccount', 'cpfMediSaveAccount',
                 'homeMarketValue', 'investmentAmount_0', 'otherAssetsValue', 'investmentPropertiesValue', 'cpfRetirementAccount'],
             RETIREMENT_AGE: 54,
