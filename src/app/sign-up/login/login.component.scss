@@ -250,11 +250,20 @@ input::-webkit-caps-lock-indicator {
       transform: rotate(360deg);
     }
   }
-
-  .caps_lock_title {
-    color: $white-color;
-    font-family: $muli-bold;
-    text-align: center;
+  .alert-msg{
+    font-family: $muli-italic;
+    font-size: 14px;
+    padding-top: 5px;
+    div{
+      display: flex;
+      align-items: center;
+      .alert-icon{
+        width: 15px;
+        height: 15px;
+        display: flex;
+        margin-right: 7px;
+      }
+    }
   }
-
+  
 }
