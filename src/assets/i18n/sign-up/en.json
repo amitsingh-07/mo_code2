@@ -19,7 +19,8 @@
       "VIEW_DETAILS": "View Details",
       "SAVE_AND_CONTINUE": "Save and Continue"
     },
-    "DUPLICATE_ERROR": "Oops! A will has already been drafted for this identification number. If you wish to edit or download your will, please log in to your account."
+    "DUPLICATE_ERROR": "Oops! A will has already been drafted for this identification number. If you wish to edit or download your will, please log in to your account.",
+    "CAPS_LOCK_IS_ON":"Caps Lock is on"
   },
   "SIGNUP_ERRORS": {
     "TITLE": "You have an account with us!",
