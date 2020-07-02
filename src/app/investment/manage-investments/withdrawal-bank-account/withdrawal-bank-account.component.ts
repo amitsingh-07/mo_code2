@@ -61,12 +61,11 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
     private authService: AuthenticationService
   ) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => { });
-    this.translate.get('ERROR').subscribe((results: string) => {
+    this.translate.get('ERROR').subscribe((results: any) => {
       this.error2fa = {
-        title: this.translate.instant('ERROR.2FA_SESSION_EXPIRED.TITLE'),
-        subtitle: this.translate.instant('ERROR.2FA_SESSION_EXPIRED.SUB_TITLE'),
-        button: this.translate.instant('ERROR.2FA_SESSION_EXPIRED.SUB_TITLE'),
+        title: results.SESSION_2FA_EXPIRED.TITLE,
+        subtitle: results.SESSION_2FA_EXPIRED.SUB_TITLE,
+        button: results.SESSION_2FA_EXPIRED.BUTTON,
       };
 
       this.authService.get2faErrorEvent

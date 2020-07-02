@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs/internal/Subject';
 
 import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -25,6 +27,7 @@ import { appConstants } from './../../../app/app.constants';
 import { AppService } from './../../../app/app.service';
 import { DirectService } from './../../direct/direct.service';
 import { GuideMeService } from './../../guide-me/guide-me.service';
+
 
 @Component({
   selector: 'app-verify-mobile',
@@ -47,7 +50,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   editProfile: boolean;
   two2faAuth: boolean;
   fromLoginPage: string;
-
+  protected ngUnsubscribe: Subject<void> = new Subject<void>();
+  
   constructor(
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
@@ -75,6 +79,20 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       this.loading['sending'] = result.LOADING.SENDING;
       this.loading['verified2fa'] = result.LOADING.VERIFIED2FA;
     });
+    this.translate.get('ERROR').subscribe((results: any) => {
+      this.authService.get2faSendErrorEvent.pipe(takeUntil(this.ngUnsubscribe)).subscribe((data) => {
+      if(data) {
+          console.log('Error translate:', results);
+          const error2fa = {
+            title: results.SEND_2FA_FAILED.TITLE,
+            subtitle: results.SEND_2FA_FAILED.SUB_TITLE,
+            button: results.SEND_2FA_FAILED.BUTTON,
+          };
+          this.authService.openErrorModal(error2fa.title, error2fa.subtitle, error2fa.button);
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+        }
+      });
+    });
   }
 
   ngOnInit() {
@@ -100,6 +118,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.authService.set2faVerifyAllowed(false);
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   /**
