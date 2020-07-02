@@ -262,6 +262,9 @@
                           </div>
                         </ng-template>
                       </div>
+                      <div *ngIf="showPortfolioInfo" class="calculate_tooltip" (click)="showCalculationTooltip()">
+                        {{'YOUR_PORTFOLIO.CALCULATE_TOOLTIP' | translate}}
+                      </div>
                     </div>
                   </div>
                 </div>
