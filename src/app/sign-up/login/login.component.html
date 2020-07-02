@@ -56,7 +56,12 @@
                   (click)="showHidePassword(loginPassword)"></span>
               </div>
             </div>
-            <div class="caps_lock_title" *ngIf="capsOn && capslockFocus">{{'COMMON.CAPS_LOCK_IS_ON' | translate}}</div>
+            <div class="alert-msg" *ngIf="capsOn && capslockFocus">
+              <div>
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{'COMMON.CAPS_LOCK_IS_ON' | translate}}</span>
+              </div>
+            </div>
           </div>
 
           <div class="flex-row mb20" *ngIf='finlitEnabled'>
