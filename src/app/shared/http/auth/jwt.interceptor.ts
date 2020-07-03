@@ -19,6 +19,7 @@ import { RequestCache } from '../http-cache.service';
 import { IServerResponse } from '../interfaces/server-response.interface';
 import { AuthenticationService } from './authentication.service';
 import { EMPTY } from 'rxjs';
+import { SessionsService } from '../../Services/sessions/sessions.service';
 
 const exceptionUrlList: Set<string> = new Set([apiConstants.endpoint.authenticate]);
 
@@ -26,7 +27,7 @@ const exceptionUrlList: Set<string> = new Set([apiConstants.endpoint.authenticat
 export class JwtInterceptor implements HttpInterceptor {
 
     constructor(
-        public auth: AuthenticationService, public cache: RequestCache,
+        public auth: AuthenticationService, public cache: RequestCache, public sessionsService: SessionsService,
         public errorHandler: CustomErrorHandlerService, public router: Router, private navbarService: NavbarService) {
     }
 
@@ -102,7 +103,9 @@ export class JwtInterceptor implements HttpInterceptor {
         }, (err: any) => {
             if (err instanceof HttpErrorResponse) {
                 if (err.status === 401 || err.status === 403) {
+                    this.sessionsService.destroyInstance();
                     this.auth.clearSession();
+                    this.sessionsService.createNewActiveInstance();
                     this.navbarService.logoutUser();
                     this.errorHandler.handleAuthError(err);
                 } else
