@@ -121,7 +121,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
   //  #get the SRS Details
   getSrsAccountDetails() {
-    this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
+    this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
       if (data) {
         this.srsAccountDetails = data;
       } else {

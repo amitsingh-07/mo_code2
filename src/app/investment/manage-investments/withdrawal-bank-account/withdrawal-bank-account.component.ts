@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
+import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
@@ -49,7 +50,8 @@ export class WithdrawalBankAccountComponent implements OnInit {
     public manageInvestmentsService: ManageInvestmentsService,
     private loaderService: LoaderService,
     private investmentAccountService: InvestmentAccountService,
-    private signUpService: SignUpService
+    private signUpService: SignUpService,
+    public authService: AuthenticationService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => { });
@@ -77,19 +79,21 @@ export class WithdrawalBankAccountComponent implements OnInit {
   }
 
   getUserBankList() {
-    this.manageInvestmentsService.getUserBankList().subscribe((data) => {
-      if (data.responseMessage.responseCode >= 6000) {
-        this.userBankList = data.objectList;
-        if (this.userBankList.length > 0) {
-          this.hideAddBankAccount = false;
+    this.authService.get2faUpdateEvent.subscribe((token) => {
+      this.manageInvestmentsService.getUserBankList().subscribe((data) => {
+        if (data.responseMessage.responseCode >= 6000) {
+          this.userBankList = data.objectList;
+          if (this.userBankList.length > 0) {
+            this.hideAddBankAccount = false;
+          }
+          this.pageTitle = this.getTitle();
+          this.setPageTitle(this.pageTitle);
         }
-        this.pageTitle = this.getTitle();
-        this.setPageTitle(this.pageTitle);
-      }
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+      },
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
+    });
   }
 
   getTitle() {
