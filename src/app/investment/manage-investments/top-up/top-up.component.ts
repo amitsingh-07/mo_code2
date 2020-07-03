@@ -121,7 +121,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
   //  #get the SRS Details
   getSrsAccountDetails() {
-    this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
+    this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
       if (data) {
         this.srsAccountDetails = data;
       } else {
@@ -356,6 +356,21 @@ export class TopUpComponent implements OnInit, OnDestroy {
 
   showReviewBuyRequestModal(form) {
     const ref = this.modal.open(ReviewBuyRequestModalComponent, { centered: true, windowClass: 'review-buy-request-modal' });
+    this.authService.get2faUpdateEvent.subscribe((token) => {
+      if (!token) {
+        this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
+          if (data) {
+            this.srsAccountDetails = data;
+            ref.componentInstance.srsDetails = data;
+          } else {
+            this.srsAccountDetails = null;
+          }
+        },
+          (err) => {
+            this.investmentAccountService.showGenericErrorModal();
+          });
+      }
+    });
     ref.componentInstance.fundDetails = this.fundDetails;
     ref.componentInstance.submitRequest.subscribe((emittedValue) => {
       this.checkIfExistingBuyRequest(form);

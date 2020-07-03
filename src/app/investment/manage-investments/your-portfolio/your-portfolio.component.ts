@@ -463,10 +463,12 @@ export class YourPortfolioComponent implements OnInit {
   }
   getSrsAccDetails() {
     if (this.portfolio.fundingTypeValue === 'SRS') {
-      this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
-        if (data) {
-          this.srsAccDetail = data;
-        }
+      this.authService.get2faUpdateEvent.subscribe((token) => {
+        this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
+          if (data) {
+            this.srsAccDetail = data;
+          }
+        });
       });
     }
   }
