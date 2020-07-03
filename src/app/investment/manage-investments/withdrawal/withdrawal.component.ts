@@ -16,6 +16,7 @@ import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.con
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
 import { environment } from './../../../../environments/environment';
+import { AuthenticationService } from './../../../shared/http/auth/authentication.service';
 import {
   ConfirmWithdrawalModalComponent
 } from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
@@ -58,7 +59,8 @@ export class WithdrawalComponent implements OnInit {
     private loaderService: LoaderService,
     private investmentAccountService: InvestmentAccountService,
     private signUpService: SignUpService,
-    private decimalPipe: DecimalPipe
+    private decimalPipe: DecimalPipe,
+    public authService: AuthenticationService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -89,6 +91,10 @@ export class WithdrawalComponent implements OnInit {
     };
     this.buildForm();
     this.setSelectedPortfolio();
+    this.getAndSetSrsDetails();
+  }
+
+  getAndSetSrsDetails() {
     this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
       if (data) {
         this.srsAccountInfo = data;
@@ -315,12 +321,26 @@ export class WithdrawalComponent implements OnInit {
     const ref = this.modal.open(ConfirmWithdrawalModalComponent, {
       centered: true
     });
+    this.authService.get2faUpdateEvent.subscribe((token) => {
+      if (!token) {
+        this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
+          if (data) {
+            this.srsAccountInfo = data;
+            ref.componentInstance.srsAccountInfo = data;
+          } else {
+            this.srsAccountInfo = null;
+          }
+        },
+          (err) => {
+            this.investmentAccountService.showGenericErrorModal();
+          });
+      }
+    });
     ref.componentInstance.withdrawAmount = this.withdrawForm.get('withdrawAmount').value;
     ref.componentInstance.withdrawType = this.withdrawForm.get('withdrawType').value;
     ref.componentInstance.portfolioValue = this.formValues.withdrawPortfolio.portfolioValue;
     ref.componentInstance.portfolio = this.formValues.withdrawPortfolio;
     ref.componentInstance.userInfo = this.signUpService.getUserProfileInfo();
-    ref.componentInstance.srsAccountInfo = this.srsAccountInfo;
     ref.componentInstance.confirmed.subscribe(() => {
       ref.close();
       this.manageInvestmentsService.setWithdrawalTypeFormData(form.getRawValue(), this.isRedeemAll);
@@ -332,6 +352,7 @@ export class WithdrawalComponent implements OnInit {
       this.showLearnMoreModal(form);
     });
     this.dismissPopup(ref);
+    
   }
 
   showLearnMoreModal(form) {

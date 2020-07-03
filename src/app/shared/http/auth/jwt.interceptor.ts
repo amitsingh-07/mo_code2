@@ -27,8 +27,8 @@ const exceptionUrlList: Set<string> = new Set([apiConstants.endpoint.authenticat
 export class JwtInterceptor implements HttpInterceptor {
 
     constructor(
-        public auth: AuthenticationService, public cache: RequestCache, public sessionsService: SessionsService,
-        public errorHandler: CustomErrorHandlerService, public router: Router, private navbarService: NavbarService) {
+        public auth: AuthenticationService, public cache: RequestCache, public errorHandler: CustomErrorHandlerService,
+        public router: Router, private navbarService: NavbarService, public sessionsService: SessionsService) {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
