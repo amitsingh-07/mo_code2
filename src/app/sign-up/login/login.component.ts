@@ -9,6 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { flatMap } from 'rxjs/operators';
 
+import { SessionsService } from 'src/app/shared/Services/sessions/sessions.service';
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';
@@ -33,11 +34,11 @@ import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
+import { COMPREHENSIVE_ROUTE_PATHS } from './../../comprehensive/comprehensive-routes.constants';
+import { InvestmentAccountService } from './../../investment/investment-account/investment-account-service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { HelperService } from './../../shared/http/helper.service';
 import { IError } from './../../shared/http/interfaces/error.interface';
-import { COMPREHENSIVE_ROUTE_PATHS } from './../../comprehensive/comprehensive-routes.constants';
-import { InvestmentAccountService } from './../../investment/investment-account/investment-account-service';
 import { StateStoreService } from './../../shared/Services/state-store.service';
 import { LoginFormError } from './login-form-error';
 
@@ -78,6 +79,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private modal: NgbModal, private configService: ConfigService,
     private googleAnalyticsService: GoogleAnalyticsService,
     public authService: AuthenticationService,
+    public sessionsService: SessionsService,
     public navbarService: NavbarService,
     public footerService: FooterService,
     private signUpApiService: SignUpApiService,
@@ -126,7 +128,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       const userInfo = this.signUpService.getUserProfileInfo();
       if (userInfo) {
         this.signUpService.setUserProfileInfo(null);
+        this.sessionsService.destroyInstance();
         this.authService.clearSession();
+        this.sessionsService.createNewActiveInstance();
         this.authService.clearAuthDetails();
         this.navbarService.logoutUser();
         this.appService.clearData();
