@@ -149,7 +149,7 @@
                             <ng-template #simpleReturns>
                               {{'YOUR_PORTFOLIO.SIMPLE_RETURN' | translate}}
                             </ng-template>
-                            <img (click)="toggleReturns()" src="assets/images/arrow-down.svg" alt="" class="arrow-img"
+                            <img (click)="toggleReturns()" src="assets/images/icon-chevron-up.svg" alt="" class="arrow-img"
                               [class.upward]="!showTimeWeightedReturns" />
                             <div *ngIf="showTimeWeightedReturns; else simpleReturnsPercent" id="your_portfolio_totalreturn_value"
                               class="total_return_value" [class.negativeValue]="totalReturnsPercentage < 0" for="total value">
@@ -235,7 +235,7 @@
                             <ng-template #simpleReturns>
                               {{'YOUR_PORTFOLIO.SIMPLE_RETURN' | translate}}
                             </ng-template>
-                            <img (click)="toggleReturns()" src="assets/images/arrow-down.svg" alt="" class="arrow-img"
+                            <img (click)="toggleReturns()" src="assets/images/icon-chevron-up.svg" alt="" class="arrow-img"
                               [class.upward]="!showTimeWeightedReturns" />
                             <div *ngIf="showTimeWeightedReturns; else simpleReturnsPercent" id="your_portfolio_totalreturn_value"
                               class="total_return_value" [class.negativeValue]="totalReturnsPercentage < 0" for="total value">
@@ -261,6 +261,9 @@
                             </div>
                           </div>
                         </ng-template>
+                      </div>
+                      <div *ngIf="showPortfolioInfo" class="calculate_tooltip" (click)="showCalculationTooltip()">
+                        {{'YOUR_PORTFOLIO.CALCULATE_TOOLTIP' | translate}}
                       </div>
                     </div>
                   </div>

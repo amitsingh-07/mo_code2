@@ -16,6 +16,7 @@ import { InvestmentCommonService } from '../../investment-common/investment-comm
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
+import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 
 @Component({
   selector: 'app-nationality',
@@ -32,6 +33,7 @@ export class NationalityComponent implements OnInit {
   ButtonTitle: any;
   blockedNationalityModal: any;
   blockedCountryModal: any;
+  tooltipDetails: any;
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -51,6 +53,7 @@ export class NationalityComponent implements OnInit {
       this.editModalData = this.translate.instant('SELECT_NATIONALITY.editModalData');
       this.blockedNationalityModal = this.translate.instant('SELECT_NATIONALITY.blockedNationality');
       this.blockedCountryModal = this.translate.instant('SELECT_NATIONALITY.blockedCountry');
+      this.tooltipDetails = this.translate.instant('BLOCKED_COUNTRY_TOOLTIP');
     });
   }
 
@@ -220,5 +223,12 @@ export class NationalityComponent implements OnInit {
 
   isDisabled() {
     return this.investmentAccountService.isDisabled('nationality');
+  }
+  openModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.tooltipDetails.TITLE;
+    ref.componentInstance.errorDescription = this.tooltipDetails.DESC;
+    ref.componentInstance.tooltipButtonLabel = this.tooltipDetails.GOT_IT;
+    return false;
   }
 }
