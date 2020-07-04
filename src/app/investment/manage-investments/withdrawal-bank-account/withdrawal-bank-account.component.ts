@@ -44,6 +44,7 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
   hideAddBankAccount = true;
   isRequestSubmitted = false;
   error2fa: any;
+  activeRef: any;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
@@ -61,18 +62,20 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
     private authService: AuthenticationService
   ) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => { });
-    this.translate.get('ERROR').subscribe((results: string) => {
+    this.translate.get('ERROR').subscribe((results: any) => {
       this.error2fa = {
-        title: this.translate.instant('ERROR.2FA_SESSION_EXPIRED.TITLE'),
-        subtitle: this.translate.instant('ERROR.2FA_SESSION_EXPIRED.SUB_TITLE'),
-        button: this.translate.instant('ERROR.2FA_SESSION_EXPIRED.SUB_TITLE'),
+        title: results.SESSION_2FA_EXPIRED.TITLE,
+        subtitle: results.SESSION_2FA_EXPIRED.SUB_TITLE,
+        button: results.SESSION_2FA_EXPIRED.BUTTON,
       };
 
       this.authService.get2faErrorEvent
         .pipe(takeUntil(this.ngUnsubscribe))
         .subscribe((data) => {
           if (data) {
+            if (this.activeRef !== undefined) {
+              this.activeRef.close();
+            }
             this.authService.openErrorModal(this.error2fa.title, this.error2fa.subtitle, this.error2fa.button);
           }
         });
@@ -98,8 +101,6 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
           this.signUpService.setContactDetails(personalData.countryCode, personalData.mobileNumber, personalData.email);
         }
       });
-
-
   }
 
   ngOnDestroy() {
@@ -117,19 +118,21 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
   }
 
   getUserBankList() {
-    this.manageInvestmentsService.getUserBankList().subscribe((data) => {
-      if (data.responseMessage.responseCode >= 6000) {
-        this.userBankList = data.objectList;
-        if (this.userBankList.length > 0) {
-          this.hideAddBankAccount = false;
+    this.authService.get2faUpdateEvent.subscribe((token) => {
+      this.manageInvestmentsService.getUserBankList().subscribe((data) => {
+        if (data.responseMessage.responseCode >= 6000) {
+          this.userBankList = data.objectList;
+          if (this.userBankList.length > 0) {
+            this.hideAddBankAccount = false;
+          }
+          this.pageTitle = this.getTitle();
+          this.setPageTitle(this.pageTitle);
         }
-        this.pageTitle = this.getTitle();
-        this.setPageTitle(this.pageTitle);
-      }
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+      },
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
+    });
   }
 
   getTitle() {
@@ -176,27 +179,27 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
   }
 
   showConfirmWithdrawModal() {
-    const ref = this.modal.open(ConfirmWithdrawalModalComponent, {
+    this.activeRef = this.modal.open(ConfirmWithdrawalModalComponent, {
       centered: true
     });
-    ref.componentInstance.withdrawAmount = this.formValues.withdrawAmount;
-    ref.componentInstance.withdrawType = this.formValues.withdrawType;
-    ref.componentInstance.portfolio = this.formValues.withdrawPortfolio;
+    this.activeRef.componentInstance.withdrawAmount = this.formValues.withdrawAmount;
+    this.activeRef.componentInstance.withdrawType = this.formValues.withdrawType;
+    this.activeRef.componentInstance.portfolio = this.formValues.withdrawPortfolio;
     if (this.userBankList && this.userBankList.length) {
-      ref.componentInstance.bankAccountNo = this.userBankList[0].accountNumber;
+      this.activeRef.componentInstance.bankAccountNo = this.userBankList[0].accountNumber;
       this.formValues['bankAccountNo'] = this.userBankList[0].accountNumber;
     }
-    ref.componentInstance.userInfo = this.userInfo;
-    ref.componentInstance.confirmed.subscribe((data) => {
-      ref.close();
+    this.activeRef.componentInstance.userInfo = this.userInfo;
+    this.activeRef.componentInstance.confirmed.subscribe((data) => {
+      this.activeRef.close();
       this.saveWithdrawal();
       // confirmed
     });
-    ref.componentInstance.showLearnMore.subscribe(() => {
-      ref.close();
+    this.activeRef.componentInstance.showLearnMore.subscribe(() => {
+      this.dismissPopup(this.activeRef);
       this.showLearnMoreModal();
     });
-    this.dismissPopup(ref);
+    this.dismissPopup(this.activeRef);
   }
 
   showLearnMoreModal() {
@@ -225,20 +228,19 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
       this.showNewBankFormModal();
     } else {
       this.signUpService.setRedirectUrl(MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL_PAYMENT_METHOD);
-      console.log('Show Update Bank');
       this.authService.set2faVerifyAllowed(true);
       this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_2FA], { skipLocationChange: true });
     }
   }
 
   showNewBankFormModal() {
-    const ref = this.modal.open(AddBankModalComponent, {
+    this.activeRef = this.modal.open(AddBankModalComponent, {
       centered: true
     });
-    ref.componentInstance.banks = this.banks;
-    ref.componentInstance.fullName = this.fullName;
-    ref.componentInstance.saved.subscribe((data) => {
-      ref.close();
+    this.activeRef.componentInstance.banks = this.banks;
+    this.activeRef.componentInstance.fullName = this.fullName;
+    this.activeRef.componentInstance.saved.subscribe((data) => {
+      this.activeRef.close();
       this.manageInvestmentsService.saveProfileNewBank(data).subscribe((response) => {
         if (response.responseMessage.responseCode >= 6000) {
           this.getUserBankList(); // refresh updated bank list
@@ -264,28 +266,27 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
           this.investmentAccountService.showGenericErrorModal();
         });
     });
-    this.dismissPopup(ref);
+    this.dismissPopup(this.activeRef);
   }
 
   verify2faEditBank(index) {
     if (this.authService.is2FAVerified()) {
       this.showEditBankFormModal(index);
     } else {
-      console.log('2FA not verified');
       this.signUpService.setRedirectUrl(MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL_PAYMENT_METHOD);
       this.authService.set2faVerifyAllowed(true);
       this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_2FA], { skipLocationChange: true });
     }
   }
   showEditBankFormModal(index) {
-    const ref = this.modal.open(AddBankModalComponent, {
+    this.activeRef = this.modal.open(AddBankModalComponent, {
       centered: true
     });
-    ref.componentInstance.bankDetails = this.userBankList[index];
-    ref.componentInstance.fullName = this.fullName;
-    ref.componentInstance.banks = this.banks;
-    ref.componentInstance.saved.subscribe((data) => {
-      ref.close();
+    this.activeRef.componentInstance.bankDetails = this.userBankList[index];
+    this.activeRef.componentInstance.fullName = this.fullName;
+    this.activeRef.componentInstance.banks = this.banks;
+    this.activeRef.componentInstance.saved.subscribe((data) => {
+      this.activeRef.close();
       this.manageInvestmentsService.updateBankInfo(data.bank, data.accountHolderName,
         data.accountNo, this.userBankList[index].id).subscribe((response) => {
           if (response.responseMessage.responseCode >= 6000) {
@@ -312,7 +313,7 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
             this.investmentAccountService.showGenericErrorModal();
           });
     });
-    this.dismissPopup(ref);
+    this.dismissPopup(this.activeRef);
   }
   saveWithdrawal() {
     if (!this.isRequestSubmitted) {

@@ -7,17 +7,18 @@ import { AppService } from '../app.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SIGN_UP_ROUTE_PATHS } from './sign-up.routes.constants';
 import { SignUpService } from './sign-up.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TwoFactorAuthGuardService implements CanActivate {
   constructor(private route: Router,
-              private appService: AppService,
-              private authService: AuthenticationService,
-              private signUpService: SignUpService,
-  ) {
-  }
+    private appService: AppService,
+    private authService: AuthenticationService,
+    private signUpService: SignUpService,
+  ) { }
+
   canActivate(): boolean {
     this.appService.setJourneyType('');
     let redirectUrl = null;
@@ -54,16 +55,20 @@ export class TwoFactorAuthGuardService implements CanActivate {
 
 // tslint:disable-next-line:max-classes-per-file
 export class TwoFactorScreenGuardService implements CanActivate {
-  constructor(private route: Router,
-              private authService: AuthenticationService
-  ) {
-  }
+  error2fa: any;
+  constructor(private route: Router, private authService: AuthenticationService
+  ) {}
+
   canActivate(): boolean {
     if (!this.authService.get2faVerifyAllowed()) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       return false;
     }
-    this.authService.send2faRequest();
+    this.authService.send2faRequest().subscribe((data) => {
+      if (data.responseMessage.responseCode !== 6000) {
+        this.authService.get2faSendError.next(true);
+      }
+    });
     return true;
   }
 }
