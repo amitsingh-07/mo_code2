@@ -76,7 +76,14 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       this.premiumAmount = this.data.premium.premiumAmount;
       if (this.data.promotion && this.data.promotion.promoDiscount) {
         this.promoDiscount = this.data.promotion.promoDiscount;
-        this.isPromoDiscountHidden = this.data.promotion.expired === 'FALSE' ? false : true;
+        const expiryDate = Date.parse(this.data.promotion.expiredDate);
+        const d = new Date();
+        const currentDate = d.getTime();
+        if (currentDate < expiryDate && this.data.promotion.expired === 'FALSE') {
+          this.isPromoDiscountHidden = false;
+        } else {
+          this.isPromoDiscountHidden = true;
+        }
       }
       this.productName = this.data.productName;
       this.coverageDuration = this.data.premium.durationName;
