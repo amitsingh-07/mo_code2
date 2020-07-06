@@ -247,8 +247,8 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
   }
 
   redirectToPromoPage(promo: any) {
-    if (promo && promo.id) {
-      window.open(`${window.location.protocol}//${window.location.host}/app/promotions/${promo.id}`, '_blank');
+    if (promo && promo.link) {
+      window.open(`${window.location.protocol}//${window.location.host}${promo.link}`, '_blank');
     }
     return;
   }
