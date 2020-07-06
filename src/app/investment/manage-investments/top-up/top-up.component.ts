@@ -121,7 +121,9 @@ export class TopUpComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     // On page destroy, set the top up values back to default
     this.manageInvestmentsService.clearTopUpData();
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
   //  #get the SRS Details
   getSrsAccountDetails() {
