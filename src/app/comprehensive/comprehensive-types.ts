@@ -199,7 +199,7 @@ export interface IMyAssets {
     schemeType?: string;
     estimatedPayout?: number;
     retirementSum?: number;
-    topUpAmount?: number;
+    topupAmount?: number;
     withdrawalAmount?: number;
 }
 export interface IOtherProperties {

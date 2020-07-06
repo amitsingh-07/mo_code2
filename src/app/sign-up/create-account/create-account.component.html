@@ -97,7 +97,7 @@
           <div class="flex-row mb10">
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label" [ngClass]="{'inline-error': submitted && account.email.errors}">
-                <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email" required>
+                <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email" required (keydown.space)="$event.preventDefault();">
                 <label class="form-control-placeholder"
                   for="lastName">{{ 'CREATE_ACCOUNT.FORM.EMAIL.LABEL' | translate}}</label>
               </div>
@@ -120,7 +120,7 @@
                 class="form-group-floating-label">
                 <input type="text" id="crtAccInpt5" (blur)="showValidity('confirmEmail')"
                   (focus)="showValidity('confirmEmail')" class="form-control" #confirmEmail
-                  formControlName="confirmEmail" required>
+                  formControlName="confirmEmail" required (keydown.space)="$event.preventDefault();">
                 <label class="form-control-placeholder"
                   for="lastName">{{ 'CREATE_ACCOUNT.FORM.CONFIRM_EMAIL.LABEL' | translate}}</label>
                 <div class="error-tooltip"
@@ -223,8 +223,13 @@
                 <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.CONFIRM_PASSWORD.ERROR.MATCH' | translate}}</span>
               </div>
             </div>
+            <div class="alert-msg" *ngIf="capsOn && capslockFocus">
+              <div>
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{'COMMON.CAPS_LOCK_IS_ON' | translate}}</span>
+              </div>
+            </div>
           </div>
-          <div class="caps_lock_title" *ngIf="capsOn && capslockFocus">{{'COMMON.CAPS_LOCK_IS_ON' | translate}}</div>
           <div class="flex-row mb10">
             <span class="mb20">{{ 'COMMON.CAPTCHA_TITLE' | translate}}</span>
             <div class="flex-col-6 stretch">
