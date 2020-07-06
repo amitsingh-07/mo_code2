@@ -118,19 +118,21 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
   }
 
   getUserBankList() {
-    this.manageInvestmentsService.getUserBankList().subscribe((data) => {
-      if (data.responseMessage.responseCode >= 6000) {
-        this.userBankList = data.objectList;
-        if (this.userBankList.length > 0) {
-          this.hideAddBankAccount = false;
+    this.authService.get2faUpdateEvent.subscribe((token) => {
+      this.manageInvestmentsService.getUserBankList().subscribe((data) => {
+        if (data.responseMessage.responseCode >= 6000) {
+          this.userBankList = data.objectList;
+          if (this.userBankList.length > 0) {
+            this.hideAddBankAccount = false;
+          }
+          this.pageTitle = this.getTitle();
+          this.setPageTitle(this.pageTitle);
         }
-        this.pageTitle = this.getTitle();
-        this.setPageTitle(this.pageTitle);
-      }
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+      },
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
+    });
   }
 
   getTitle() {
