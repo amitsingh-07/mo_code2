@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -27,7 +28,7 @@ import { AddBankModalComponent } from './add-bank-modal/add-bank-modal.component
   styleUrls: ['./withdrawal-bank-account.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class WithdrawalBankAccountComponent implements OnInit {
+export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
   pageTitle: string;
   bankForm;
   formValues: any;
@@ -38,6 +39,7 @@ export class WithdrawalBankAccountComponent implements OnInit {
   fullName: string;
   hideAddBankAccount = true;
   isRequestSubmitted = false;
+  private subscription: Subscription;
 
   constructor(
     public readonly translate: TranslateService,
@@ -69,6 +71,10 @@ export class WithdrawalBankAccountComponent implements OnInit {
     this.fullName = this.userInfo.fullName ? this.userInfo.fullName : this.userInfo.firstName + ' ' + this.userInfo.lastName;
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   getLookupList() {
     this.manageInvestmentsService.getAllDropDownList().subscribe((data) => {
       this.banks = data.objectList.bankList;
@@ -79,7 +85,7 @@ export class WithdrawalBankAccountComponent implements OnInit {
   }
 
   getUserBankList() {
-    this.authService.get2faUpdateEvent.subscribe((token) => {
+    this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
       this.manageInvestmentsService.getUserBankList().subscribe((data) => {
         if (data.responseMessage.responseCode >= 6000) {
           this.userBankList = data.objectList;

@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 import { ConfigService, IConfig } from '../../../config/config.service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
@@ -31,7 +32,7 @@ import { RenameInvestmentModalComponent } from './rename-investment-modal/rename
   styleUrls: ['./your-portfolio.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class YourPortfolioComponent implements OnInit {
+export class YourPortfolioComponent implements OnInit, OnDestroy {
   pageTitle: string;
   moreList: any;
   portfolio;
@@ -58,6 +59,7 @@ export class YourPortfolioComponent implements OnInit {
   profitAndLossPercentage: any; // Simple returns
   showTimeWeightedReturns = false;
   investmentAmount: any; // Net Deposits
+  private subscription: Subscription;
 
   constructor(
     public readonly translate: TranslateService,
@@ -102,6 +104,10 @@ export class YourPortfolioComponent implements OnInit {
     this.moreList = MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.MORE_LIST;
     this.getCustomerPortfolioDetailsById(this.formValues.selectedCustomerPortfolioId);
     this.showBuyRequest();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   getCustomerPortfolioDetailsById(customerPortfolioId) {
@@ -463,11 +469,16 @@ export class YourPortfolioComponent implements OnInit {
   }
   getSrsAccDetails() {
     if (this.portfolio.fundingTypeValue === 'SRS') {
-      this.authService.get2faUpdateEvent.subscribe((token) => {
+      this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
         this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
           if (data) {
             this.srsAccDetail = data;
+          } else {
+            this.srsAccDetail = null;
           }
+        },
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
         });
       });
     }
