@@ -1,15 +1,15 @@
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
+import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
@@ -22,9 +22,6 @@ import {
   ForwardPricingModalComponent
 } from '../withdrawal/forward-pricing-modal/forward-pricing-modal.component';
 import { AddBankModalComponent } from './add-bank-modal/add-bank-modal.component';
-import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
-import { INVESTMENT_ACCOUNT_ROUTES, INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
-
 
 @Component({
   selector: 'app-withdrawal-bank-account',
@@ -46,6 +43,7 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
   error2fa: any;
   activeRef: any;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
+  private subscription: Subscription;
 
   constructor(
     public readonly translate: TranslateService,
@@ -106,6 +104,9 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   getLookupList() {
@@ -118,7 +119,7 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
   }
 
   getUserBankList() {
-    this.authService.get2faUpdateEvent.subscribe((token) => {
+    this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
       this.manageInvestmentsService.getUserBankList().subscribe((data) => {
         if (data.responseMessage.responseCode >= 6000) {
           this.userBankList = data.objectList;
