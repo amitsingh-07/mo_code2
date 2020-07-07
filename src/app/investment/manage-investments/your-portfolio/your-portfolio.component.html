@@ -157,8 +157,8 @@
                             </div>
                             <ng-template #simpleReturnsPercent>
                               <div id="your_portfolio_totalreturn_value" class="total_return_value"
-                                [class.negativeValue]="profitAndLossPercentage < 0" for="total value">
-                                {{formatReturns(profitAndLossPercentage)}}{{profitAndLossPercentage | number : '1.0-2'}}%
+                                [class.negativeValue]="simpleReturnsValue < 0" for="total value">
+                                {{formatReturns(simpleReturnsValue)}}{{simpleReturnsValue | number : '1.0-2'}}%
                               </div>
                             </ng-template>
                           </div>
@@ -243,7 +243,7 @@
                             </div>
                             <ng-template #simpleReturnsPercent>
                               <div id="your_portfolio_totalreturn_value" class="total_return_value"
-                                [class.negativeValue]="profitAndLossPercentage < 0" for="total value">
+                                [class.negativeValue]="simpleReturnsValue < 0" for="total value">
                                 {{0 | number : '1.0-2'}}%
                               </div>
                             </ng-template>
