@@ -1,9 +1,10 @@
 import { DecimalPipe } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -31,7 +32,7 @@ import {
   encapsulation: ViewEncapsulation.None,
   providers: [DecimalPipe]
 })
-export class WithdrawalComponent implements OnInit {
+export class WithdrawalComponent implements OnInit, OnDestroy {
   pageTitle: string;
   withdrawForm;
   formValues;
@@ -46,6 +47,8 @@ export class WithdrawalComponent implements OnInit {
   entitlements: any;
   userProfileInfo;
   srsAccountInfo: any;
+  cfmWithdrawalModal: NgbModalRef;
+  private subscription: Subscription;
 
   constructor(
     public readonly translate: TranslateService,
@@ -92,6 +95,12 @@ export class WithdrawalComponent implements OnInit {
     this.buildForm();
     this.setSelectedPortfolio();
     this.getAndSetSrsDetails();
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   getAndSetSrsDetails() {
@@ -318,15 +327,15 @@ export class WithdrawalComponent implements OnInit {
   }
 
   showConfirmWithdrawModal(form) {
-    const ref = this.modal.open(ConfirmWithdrawalModalComponent, {
+    this.cfmWithdrawalModal = this.modal.open(ConfirmWithdrawalModalComponent, {
       centered: true
     });
-    this.authService.get2faUpdateEvent.subscribe((token) => {
+    this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
       if (!token) {
         this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
           if (data) {
             this.srsAccountInfo = data;
-            ref.componentInstance.srsAccountInfo = data;
+            this.cfmWithdrawalModal.componentInstance.srsAccountInfo = data;
           } else {
             this.srsAccountInfo = null;
           }
@@ -336,23 +345,22 @@ export class WithdrawalComponent implements OnInit {
           });
       }
     });
-    ref.componentInstance.withdrawAmount = this.withdrawForm.get('withdrawAmount').value;
-    ref.componentInstance.withdrawType = this.withdrawForm.get('withdrawType').value;
-    ref.componentInstance.portfolioValue = this.formValues.withdrawPortfolio.portfolioValue;
-    ref.componentInstance.portfolio = this.formValues.withdrawPortfolio;
-    ref.componentInstance.userInfo = this.signUpService.getUserProfileInfo();
-    ref.componentInstance.confirmed.subscribe(() => {
-      ref.close();
+    this.cfmWithdrawalModal.componentInstance.withdrawAmount = this.withdrawForm.get('withdrawAmount').value;
+    this.cfmWithdrawalModal.componentInstance.withdrawType = this.withdrawForm.get('withdrawType').value;
+    this.cfmWithdrawalModal.componentInstance.portfolioValue = this.formValues.withdrawPortfolio.portfolioValue;
+    this.cfmWithdrawalModal.componentInstance.portfolio = this.formValues.withdrawPortfolio;
+    this.cfmWithdrawalModal.componentInstance.userInfo = this.signUpService.getUserProfileInfo();
+    this.cfmWithdrawalModal.componentInstance.confirmed.subscribe(() => {
+      this.cfmWithdrawalModal.close();
       this.manageInvestmentsService.setWithdrawalTypeFormData(form.getRawValue(), this.isRedeemAll);
       this.saveWithdrawal();
       // confirmed
     });
-    ref.componentInstance.showLearnMore.subscribe(() => {
-      ref.close();
+    this.cfmWithdrawalModal.componentInstance.showLearnMore.subscribe(() => {
+      this.cfmWithdrawalModal.close();
       this.showLearnMoreModal(form);
     });
-    this.dismissPopup(ref);
-    
+    this.dismissPopup(this.cfmWithdrawalModal);
   }
 
   showLearnMoreModal(form) {

@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -51,6 +52,8 @@ export class TopUpComponent implements OnInit, OnDestroy {
   awaitingOrPendingAmount;
   topupTypes = MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES;
   investmentCriteria: IInvestmentCriteria;
+  reviewBuyRequestModal: NgbModalRef;
+  private subscription: Subscription;
 
   constructor(
     public readonly translate: TranslateService,
@@ -118,6 +121,9 @@ export class TopUpComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     // On page destroy, set the top up values back to default
     this.manageInvestmentsService.clearTopUpData();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
   //  #get the SRS Details
   getSrsAccountDetails() {
@@ -355,13 +361,14 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
 
   showReviewBuyRequestModal(form) {
-    const ref = this.modal.open(ReviewBuyRequestModalComponent, { centered: true, windowClass: 'review-buy-request-modal' });
-    this.authService.get2faUpdateEvent.subscribe((token) => {
+    this.reviewBuyRequestModal = this.modal.open(ReviewBuyRequestModalComponent,
+      { centered: true, windowClass: 'review-buy-request-modal' });
+    this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
       if (!token) {
         this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
           if (data) {
             this.srsAccountDetails = data;
-            ref.componentInstance.srsDetails = data;
+            this.reviewBuyRequestModal.componentInstance.srsDetails = data;
           } else {
             this.srsAccountDetails = null;
           }
@@ -371,8 +378,8 @@ export class TopUpComponent implements OnInit, OnDestroy {
           });
       }
     });
-    ref.componentInstance.fundDetails = this.fundDetails;
-    ref.componentInstance.submitRequest.subscribe((emittedValue) => {
+    this.reviewBuyRequestModal.componentInstance.fundDetails = this.fundDetails;
+    this.reviewBuyRequestModal.componentInstance.submitRequest.subscribe((emittedValue) => {
       this.checkIfExistingBuyRequest(form);
     });
   }
