@@ -60,24 +60,6 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
     private authService: AuthenticationService
   ) {
     this.translate.use('en');
-    this.translate.get('ERROR').subscribe((results: any) => {
-      this.error2fa = {
-        title: results.SESSION_2FA_EXPIRED.TITLE,
-        subtitle: results.SESSION_2FA_EXPIRED.SUB_TITLE,
-        button: results.SESSION_2FA_EXPIRED.BUTTON,
-      };
-
-      this.authService.get2faErrorEvent
-        .pipe(takeUntil(this.ngUnsubscribe))
-        .subscribe((data) => {
-          if (data) {
-            if (this.activeRef !== undefined) {
-              this.activeRef.close();
-            }
-            this.authService.openErrorModal(this.error2fa.title, this.error2fa.subtitle, this.error2fa.button);
-          }
-        });
-    });
   }
 
   ngOnInit() {
@@ -98,6 +80,26 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
         if (personalData) {
           this.signUpService.setContactDetails(personalData.countryCode, personalData.mobileNumber, personalData.email);
         }
+      });
+
+    this.translate.get('ERROR')
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((results: any) => {
+        this.error2fa = {
+          title: results.SESSION_2FA_EXPIRED.TITLE,
+          subtitle: results.SESSION_2FA_EXPIRED.SUB_TITLE,
+          button: results.SESSION_2FA_EXPIRED.BUTTON,
+        };
+        this.authService.get2faErrorEvent
+          .pipe(takeUntil(this.ngUnsubscribe))
+          .subscribe((data) => {
+            if (data) {
+              if (this.activeRef !== undefined) {
+                this.activeRef.close();
+              }
+              this.authService.openErrorModal(this.error2fa.title, this.error2fa.subtitle, this.error2fa.button);
+            }
+          });
       });
   }
 
