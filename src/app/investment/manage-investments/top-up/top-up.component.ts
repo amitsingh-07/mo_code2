@@ -127,11 +127,21 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
   //  #get the SRS Details
   getSrsAccountDetails() {
-    this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
-      if (data) {
-        this.srsAccountDetails = data;
-      } else {
-        this.srsAccountDetails = null;
+    this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
+      if (!token) {
+        this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
+          if (data) {
+            this.srsAccountDetails = data;
+            if (this.reviewBuyRequestModal) {
+              this.reviewBuyRequestModal.componentInstance.srsDetails = data;
+            }
+          } else {
+            this.srsAccountDetails = null;
+          }
+        },
+          (err) => {
+            this.investmentAccountService.showGenericErrorModal();
+          });
       }
     });
   }
@@ -363,21 +373,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   showReviewBuyRequestModal(form) {
     this.reviewBuyRequestModal = this.modal.open(ReviewBuyRequestModalComponent,
       { centered: true, windowClass: 'review-buy-request-modal' });
-    this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
-      if (!token) {
-        this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
-          if (data) {
-            this.srsAccountDetails = data;
-            this.reviewBuyRequestModal.componentInstance.srsDetails = data;
-          } else {
-            this.srsAccountDetails = null;
-          }
-        },
-          (err) => {
-            this.investmentAccountService.showGenericErrorModal();
-          });
-      }
-    });
+    this.reviewBuyRequestModal.componentInstance.srsDetails = this.srsAccountDetails;
     this.reviewBuyRequestModal.componentInstance.fundDetails = this.fundDetails;
     this.reviewBuyRequestModal.componentInstance.submitRequest.subscribe((emittedValue) => {
       this.checkIfExistingBuyRequest(form);
