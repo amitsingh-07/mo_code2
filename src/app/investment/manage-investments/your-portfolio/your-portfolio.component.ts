@@ -56,7 +56,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   showPortfolioInfo = false; // Display the below 3 information
   totalInvested: any; // Cost of investment
   unrealisedGainOrLoss: any; // Unrealised gain/loss
-  simpleReturns: any; // Simple returns
+  simpleReturnsValue: any; // Simple returns
   showTimeWeightedReturns = false;
   investmentAmount: any; // Net Deposits
   private subscription: Subscription;
@@ -130,7 +130,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
       this.unrealisedGainOrLoss = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['unrealisedGainOrLoss']
         ? this.portfolio.dPMSPortfolio['unrealisedGainOrLoss']
         : 0;
-      this.simpleReturns = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['simpleReturns']
+      this.simpleReturnsValue = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['simpleReturns']
         ? this.portfolio.dPMSPortfolio['simpleReturns']
         : 0;
       this.investmentAmount = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['investmentAmount']
