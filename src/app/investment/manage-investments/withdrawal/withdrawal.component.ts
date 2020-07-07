@@ -104,16 +104,23 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
   }
 
   getAndSetSrsDetails() {
-    this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
-      if (data) {
-        this.srsAccountInfo = data;
-      } else {
-        this.srsAccountInfo = null;
+    this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
+      if (!token) {
+        this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
+          if (data) {
+            this.srsAccountInfo = data;
+            if (this.cfmWithdrawalModal) {
+              this.cfmWithdrawalModal.componentInstance.srsAccountInfo = data;
+            }
+          } else {
+            this.srsAccountInfo = null;
+          }
+        },
+          (err) => {
+            this.investmentAccountService.showGenericErrorModal();
+          });
       }
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+    });
   }
 
   // Set selected portfolio's entitlements, cash balance
@@ -330,21 +337,7 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
     this.cfmWithdrawalModal = this.modal.open(ConfirmWithdrawalModalComponent, {
       centered: true
     });
-    this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
-      if (!token) {
-        this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
-          if (data) {
-            this.srsAccountInfo = data;
-            this.cfmWithdrawalModal.componentInstance.srsAccountInfo = data;
-          } else {
-            this.srsAccountInfo = null;
-          }
-        },
-          (err) => {
-            this.investmentAccountService.showGenericErrorModal();
-          });
-      }
-    });
+    this.cfmWithdrawalModal.componentInstance.srsAccountInfo = this.srsAccountInfo;
     this.cfmWithdrawalModal.componentInstance.withdrawAmount = this.withdrawForm.get('withdrawAmount').value;
     this.cfmWithdrawalModal.componentInstance.withdrawType = this.withdrawForm.get('withdrawType').value;
     this.cfmWithdrawalModal.componentInstance.portfolioValue = this.formValues.withdrawPortfolio.portfolioValue;
