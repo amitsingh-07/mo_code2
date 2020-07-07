@@ -207,7 +207,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
    */
   requestNewCode() {
     this.progressModal = true;
-    if (this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
+    if (this.authService.get2faVerifyAllowed()) {
       console.log('Triggering New Verify 2FA');
       this.requestNew2faOTP();
     } else {
