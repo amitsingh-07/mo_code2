@@ -216,7 +216,13 @@
             "karmaConfig": "src/karma.conf.js",
             "styles": ["src/styles.scss"],
             "scripts": [],
-            "assets": ["src/favicon.ico", "src/assets", "src/myinfo"]
+            "assets": ["src/favicon.ico", "src/assets", "src/myinfo"],
+            "stylePreprocessorOptions": {
+           "includePaths": [
+                "src/styles",
+                "src/themes/default"
+              ]
+            }
           }
         },
         "lint": {

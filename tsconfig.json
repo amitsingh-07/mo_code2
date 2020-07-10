@@ -21,6 +21,9 @@
     "src/**/*"
   ],
   "files": [
-    "node_modules/jqwidgets-framework/jqwidgets-ts/angular_jqxslider.ts"
+      "app/app.module.ts",
+        "main.ts",
+        "polyfills.ts",
+       "node_modules/jqwidgets-framework/jqwidgets-ts/angular_jqxslider.ts"
   ]
 }
