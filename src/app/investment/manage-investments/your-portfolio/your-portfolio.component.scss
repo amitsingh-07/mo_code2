@@ -444,8 +444,11 @@ app-your-portfolio {
           padding-left: 0px;
           padding-right: 8px;
         }
-        .pad-right {
-          padding-right: 48.2px;
+        .return_label {
+          cursor: pointer;
+        }
+        .margin-right {
+          margin-right: 48.2px;
         }
         .currency_value {
           font-family: $muli-bold;
