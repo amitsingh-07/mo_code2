@@ -1,19 +1,19 @@
 <div class="comprehensive hidden-sm-md">
-    <!--Step indicator-->
-    <div class="step-indicator-wrapper">
-      <div class="step-indicator-container" id="moDpdnt2StepIndctr">
-        <app-step-indicator [count]="6" [activeStepIndex]="4" [mode]="1"></app-step-indicator>
-      </div>
+  <!--Step indicator-->
+  <div class="step-indicator-wrapper">
+    <div class="step-indicator-container" id="moDpdnt2StepIndctr">
+      <app-step-indicator [count]="6" [activeStepIndex]="4" [mode]="1"></app-step-indicator>
     </div>
-    <!--Step indicator /-->
+  </div>
+  <!--Step indicator /-->
 </div>
 <!--Container fluid-->
 <div class="container-fluid max-width--1024 comprehensive">
   <!--Step indicator-->
   <div class="step-indicator-container hidden-lg" id="moDpdnt2StepIndctr">
-      <app-step-indicator [count]="6" [activeStepIndex]="4" [mode]="1"></app-step-indicator>
-    </div>
-    <!--Step indicator /-->
+    <app-step-indicator [count]="6" [activeStepIndex]="4" [mode]="1"></app-step-indicator>
+  </div>
+  <!--Step indicator /-->
   <div class="comprehensive__page-sub-heading mt30">{{'CMP.MY_ASSETS.TITLE'|translate}}</div>
   <div class="comprehensive__page-content">{{'CMP.MY_ASSETS.HEADER'|translate}}</div>
   <!--Income bucket-->
@@ -150,15 +150,15 @@
           {{'CMP.MY_ASSETS.AUTO_FILL'| translate}}
           <img class="auto-fill-logo" src="assets/images/comprehensive/myinfo-logo.svg">
         </div>
-        
-        
+
+
         <div class="flex-row  mt-3" *ngIf="showRetirementAccount">
           <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_ASSETS.SCHEME' | translate}}<div
                 class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
-          <div class="flex-col-7">            
+          <div class="flex-col-7">
             <div class="dropdown-control">
               <div ngbDropdown id="schemeTypeDropDown">
                 <button type="button" class="btn btn-dropdown" id="schemeTypeDropDown" ngbDropdownToggle
@@ -167,7 +167,7 @@
                   <span *ngIf="schemeType !== ''">{{schemeType}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownSchemeType">
-              
+
                   <button type="button" class="dropdown-item earnings-dropdown" appComprehensiveViewMode="{{viewMode}}"
                     mode=1 *ngFor="let schemeType of schemeTypeList; let i=index"
                     (click)="selectSchemeType(schemeType)">
@@ -179,11 +179,11 @@
           </div>
         </div>
 
-        
+
         <div class="flex-row" *ngIf="showRetirementAccount">
           <div class="flex-col-5">
-            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_ASSETS.ESTIMATED_PAYOUT' | translate}}<div
-                class="form-group-with-bg--content-sub-label"></div>
+            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_ASSETS.ESTIMATED_PAYOUT' | translate}}
+              <div class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
           <div class="flex-col-7">
@@ -191,18 +191,19 @@
               <i>$</i>
               <input type="text" class="input-control" appCurrencyInput #estimatedPayout maxLength="5"
                 formControlName="estimatedPayout">
-                <i class="right">/ {{'CMP.MY_ASSETS.MONTH'|translate}}</i>
+              <i class="right">/ {{'CMP.MY_ASSETS.MONTH'|translate}}</i>
             </div>
           </div>
         </div>
 
-        
+
         <div class="flex-row" *ngIf="showRetirementAccount">
           <div class="flex-col-5">
-            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_ASSETS.SET_RETIREMENT_SUM' | translate}}
-              <span class="help-icon" (click)="showToolTipModal('SET_RETIREMENT_SUM_TITLE','SET_RETIREMENT_SUM_MESSAGE')"></span>
-              <div class="form-group-with-bg--content-sub-label"></div>
+            <div class="form-group-with-bg--content-label" for="name">{{'CMP.MY_ASSETS.SET_RETIREMENT_SUM'| translate}}
+              <span class="help-icon"
+                (click)="showToolTipModal('SET_RETIREMENT_SUM_TITLE','SET_RETIREMENT_SUM_MESSAGE')"></span>
             </div>
+
           </div>
           <div class="flex-col-7">
             <div class="form-control" [ngClass]="{'view-mode': viewMode}">
@@ -227,10 +228,11 @@
             </div>
           </div>
         </div>
-        
+
         <div class="flex-row" *ngIf="showRetirementAccount">
           <div class="flex-col-5">
-            <div class="form-group-with-bg--content-label" for="name">{{ 'CMP.MY_ASSETS.WITHDRAWAL_AMOUNT' | translate}}
+            <div class="form-group-with-bg--content-label" for="name"
+              [innerHTML]="'CMP.MY_ASSETS.WITHDRAWAL_AMOUNT' | translate">
               <div class="form-group-with-bg--content-sub-label"></div>
             </div>
           </div>
@@ -260,7 +262,7 @@
         </div>
       </div>
       <!--Form Content-->
-      <div class="form-group-with-bg--content" >
+      <div class="form-group-with-bg--content">
         <div class="flex-row">
           <div class="flex-col-5">
             <div class="form-group-with-bg--content-label" for="name">{{'CMP.FORM_LABEL.AMOUNT'|translate}}<div
