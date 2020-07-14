@@ -28,8 +28,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
     constructor(
         public auth: AuthenticationService, public cache: RequestCache, public errorHandler: CustomErrorHandlerService,
-        public router: Router, private navbarService: NavbarService, public sessionsService: SessionsService) {
-    }
+        public router: Router, private navbarService: NavbarService, private sessionsService: SessionsService) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (!request.url) {
@@ -109,12 +108,12 @@ export class JwtInterceptor implements HttpInterceptor {
                     this.navbarService.logoutUser();
                     this.errorHandler.handleAuthError(err);
                 } else
-                if (err.message.match('I/O error on PUT request')) {
-                    this.errorHandler.handleSubscribeError(err);
+                    if (err.message.match('I/O error on PUT request')) {
+                        this.errorHandler.handleSubscribeError(err);
                     }
-                } else {
-                    this.errorHandler.handleError(err);
-                }
+            } else {
+                this.errorHandler.handleError(err);
+            }
         });
     }
 

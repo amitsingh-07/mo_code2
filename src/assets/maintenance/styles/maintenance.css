@@ -51,7 +51,7 @@ a span.footer-contact {
     display: inline-block;
     color: #ffffff;
     text-decoration: none;
-    margin-left: 50px;
+    margin-left: 45px;
     margin-top: 20px;
 }
 .footer-contact img {
@@ -99,5 +99,6 @@ a span.footer-contact {
     }
     a span.footer-contact {
         margin-top: 10px;
+        margin-left: 0;
     }
 }
