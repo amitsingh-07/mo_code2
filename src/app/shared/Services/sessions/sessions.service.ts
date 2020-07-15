@@ -33,7 +33,7 @@ export class SessionsService {
       const sessMgt: ISessionMgt = JSON.parse(window.localStorage.getItem(INSTANCE_MGT));
       sessMgt.sessionList.push(randId);
       this.commit(sessMgt);
-      if (this.authService.is2FAVerified()) {
+      if (this.authService.isAuthenticated()) {
         window.location.reload();
       }
       return randId;
