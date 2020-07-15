@@ -236,12 +236,13 @@ export class AuthenticationService {
       }));
   }
   private doVerify2fa() {
-    const handleError = '?handleError=false';
+    const handleError = '?handleError=true';
     const verifyUrl = apiConstants.endpoint.verify2faOTP;
     return this.httpClient.get<IServerResponse>(`${this.apiBaseUrl}/${verifyUrl}${handleError}`)
-      .pipe(map((response) => {
-        return response;
-      }));
+      .pipe(
+        map((response) => {
+          return response;
+        }));
   }
 
   public get2FAToken() {
