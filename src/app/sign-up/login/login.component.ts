@@ -483,4 +483,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.loginForm.controls.loginUsername.setValue(pastedEmailText);
     event.preventDefault();
   }
+  onKeyPressEvent(event: any) {
+    return (event.which !== 32);
+  }
 }

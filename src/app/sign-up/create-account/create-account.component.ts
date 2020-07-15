@@ -440,4 +440,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       }
     event.preventDefault();
     }
+    onKeyPressEvent(event: any) {
+      return (event.which !== 32);
+    }
 }
