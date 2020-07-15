@@ -25,5 +25,5 @@ export let appConstants = {
         COMPREHENSIVE: 'app-comprehensive-session',
         COMPREHENSIVE_LITE: 'app-comprehensive-lite-session',
         COMPREHENSIVE_VERSION: 'app-comprehensive-version'
-    }
+    } 
 };

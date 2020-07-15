@@ -19,7 +19,7 @@ getTestBed().initTestEnvironment(
   platformBrowserDynamicTesting()
 );
 // Then we find all the tests.
-const context = require.context('./app/investment/investment-engagement-journey/start-journey/', true, /start-journey\.component\.spec\.ts$/);
+const context = require.context('./app/investment/', true, /\.spec\.ts$/);
 
 // And load the modules.
 context.keys().map(context);
