@@ -65,6 +65,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   finlitEnabled = false;
   capsOn: boolean;
   capslockFocus: boolean;
+
+
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
 
   @HostListener('window:resize', ['$event'])
@@ -73,7 +75,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.welcomeTitle.nativeElement.scrollIntoView(true);
     }
   }
-  constructor(
+
+ constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder, private appService: AppService,
     private modal: NgbModal, private configService: ConfigService,
@@ -97,6 +100,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private loaderService: LoaderService,
     private investmentCommonService: InvestmentCommonService,
     private helper: HelperService) {
+      
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
@@ -156,7 +160,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.signUpService.getCaptchaShown()) {
       this.setCaptchaValidator();
     }
+   
+    
   }
+
 
   setCaptchaValidator() {
     this.showCaptcha = true;
@@ -477,5 +484,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   onBlur() {
     this.capslockFocus = false;
+  }
+  onPaste(event: ClipboardEvent) {
+    const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '');
+    this.loginForm.controls.loginUsername.setValue(pastedEmailText);
+    event.preventDefault();
   }
 }

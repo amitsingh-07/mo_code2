@@ -32,7 +32,7 @@ import { GoogleAnalyticsService } from './../../shared/analytics/google-analytic
 import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
 import { trackingConstants } from './../../shared/analytics/tracking.constants';
-
+import{SIGN_UP_CONFIG} from '../sign-up.constant';
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
@@ -430,5 +430,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
   onBlur() {
     this.capslockFocus = false;;
+  }
+  onPaste(event: ClipboardEvent, key) {
+  const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '');
+   if( key === SIGN_UP_CONFIG.SIGN_UP.EMAIL) {
+    this.createAccountForm.controls.email.setValue(pastedEmailText);
+   }else{
+    this.createAccountForm.controls.confirmEmail.setValue(pastedEmailText);
+   }
+   event.preventDefault();
   }
 }
