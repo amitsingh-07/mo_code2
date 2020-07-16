@@ -97,7 +97,7 @@
           <div class="flex-row mb10">
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label" [ngClass]="{'inline-error': submitted && account.email.errors}">
-                <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email" required (keydown.space)="$event.preventDefault();">
+                <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email"  (paste)="onPaste($event, 'email')" (keypress)="onKeyPressEvent($event)" required>
                 <label class="form-control-placeholder"
                   for="lastName">{{ 'CREATE_ACCOUNT.FORM.EMAIL.LABEL' | translate}}</label>
               </div>
@@ -120,7 +120,7 @@
                 class="form-group-floating-label">
                 <input type="text" id="crtAccInpt5" (blur)="showValidity('confirmEmail')"
                   (focus)="showValidity('confirmEmail')" class="form-control" #confirmEmail
-                  formControlName="confirmEmail" required (keydown.space)="$event.preventDefault();">
+                  formControlName="confirmEmail"  (paste)="onPaste($event, 'confirmEmail')" (keypress)="onKeyPressEvent($event)" required>
                 <label class="form-control-placeholder"
                   for="lastName">{{ 'CREATE_ACCOUNT.FORM.CONFIRM_EMAIL.LABEL' | translate}}</label>
                 <div class="error-tooltip"
