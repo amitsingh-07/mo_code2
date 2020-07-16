@@ -29,11 +29,13 @@ export class SessionsService {
   // Creating New Instance
   newInstance() {
     if (window.localStorage && window.sessionStorage) {
-      const randId = Math.random().toString(36).substring(7);
+      const date = new Date();
+      const timestamp = date.getTime();
+      const randId = Math.random().toString(36).substring(7) + timestamp;
       const sessMgt: ISessionMgt = JSON.parse(window.localStorage.getItem(INSTANCE_MGT));
       sessMgt.sessionList.push(randId);
       this.commit(sessMgt);
-      if (this.authService.isAuthenticated()) {
+      if (this.authService.isSignedUser()) {
         window.location.reload();
       }
       return randId;
