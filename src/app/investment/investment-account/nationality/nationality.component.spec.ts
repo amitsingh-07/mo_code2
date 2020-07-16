@@ -37,7 +37,7 @@ import { AuthenticationService } from './../../../shared/http/auth/authenticatio
 import { InvestmentTitleBarComponent } from '../../../shared/components/investment-title-bar/investment-title-bar.component';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 
-import { AccountStatusComponent } from './account-status.component';
+
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 
