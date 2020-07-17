@@ -58,7 +58,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   submitted: boolean = false;
   capsOn: boolean;
   capslockFocus: boolean;
-
   constructor(
     private formBuilder: FormBuilder,
     private modal: NgbModal,
@@ -440,7 +439,15 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       }
     event.preventDefault();
     }
-    onKeyPressEvent(event: any) {
-      return (event.which !== 32);
+  onKeyupEvent(event, key) {
+    if (event.target.value) {
+       const enterEmail = event.target.value.replace(/\s/g, '');
+      if (key === SIGN_UP_CONFIG.SIGN_UP.EMAIL) {
+         this.createAccountForm.controls.email.setValue(enterEmail);
+        } else {
+          this.createAccountForm.controls.confirmEmail.setValue(enterEmail);
+      }
     }
+  }
 }
+

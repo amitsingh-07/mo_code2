@@ -34,7 +34,7 @@
               <div class="form-group-floating-label"
                 [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.loginUsername)}">
                 <input type="text" appInputFocus id="login_username_txt" class="form-control" #loginUsername
-                formControlName="loginUsername" (paste)="onPaste($event)" (keypress)="onKeyPressEvent($event)" required>
+                formControlName="loginUsername" (paste)="onPaste($event)" required>
                 <label class="form-control-placeholder" for="login_username_txt"
                   id="login_username_lbl">{{ 'LOGIN.FORM.USERNAME' | translate}}</label>
               </div>
