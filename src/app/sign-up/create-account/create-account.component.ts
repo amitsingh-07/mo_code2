@@ -432,21 +432,13 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
   onPaste(event: ClipboardEvent, key) {
     const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '');
-     if( key === SIGN_UP_CONFIG.SIGN_UP.EMAIL) {
-        this.createAccountForm.controls.email.setValue(pastedEmailText);
-      } else {
-        this.createAccountForm.controls.confirmEmail.setValue(pastedEmailText);
-      }
+    this.createAccountForm.controls[key].setValue(pastedEmailText);
     event.preventDefault();
-    }
+  }
   onKeyupEvent(event, key) {
     if (event.target.value) {
-       const enterEmail = event.target.value.replace(/\s/g, '');
-      if (key === SIGN_UP_CONFIG.SIGN_UP.EMAIL) {
-         this.createAccountForm.controls.email.setValue(enterEmail);
-        } else {
-          this.createAccountForm.controls.confirmEmail.setValue(enterEmail);
-      }
+      const enterEmail = event.target.value.replace(/\s/g, '');
+      this.createAccountForm.controls[key].setValue(enterEmail);
     }
   }
 }

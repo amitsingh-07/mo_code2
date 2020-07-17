@@ -73,13 +73,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.welcomeTitle.nativeElement.scrollIntoView(true);
     }
   }
-  @HostListener('keyup', ['$event'])
-  onKeyup(event) {
-    if(event.target.value) {
-    const enterValue = event.target.value.replace(/\s/g, '');
-    this.loginForm.controls.loginUsername.setValue(enterValue);
-   }
- }
+  
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder, private appService: AppService,
@@ -490,5 +484,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.loginForm.controls.loginUsername.setValue(pastedEmailText);
     event.preventDefault();
   }
-  
+  onKeyupEvent(event) {
+     if (event.target.value) {
+        const emailValue = event.target.value.replace(/\s/g, '');
+        this.loginForm.controls.loginUsername.setValue(emailValue);
+     }
+  }
 }
