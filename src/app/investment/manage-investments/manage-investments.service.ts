@@ -275,11 +275,6 @@ export class ManageInvestmentsService {
     return this.investmentApiService.getUserAddress();
   }
 
-  saveNewBank(data) {
-    const payload = this.constructSaveNewBankRequest(data);
-    return this.apiService.saveNewBank(payload);
-  }
-
   saveProfileNewBank(data) {
     const payload = this.constructSaveNewBankRequest(data);
     return this.apiService.saveNewBankProfile(payload);
@@ -295,7 +290,7 @@ export class ManageInvestmentsService {
   updateBankInfo(bank, fullName, accountNum, id) {
     // API Call here
     const data = this.constructUpdateBankPayload(bank, fullName, accountNum, id);
-    return this.apiService.saveNewBank(data);
+    return this.apiService.saveNewBankProfile(data);
   }
   // tslint:disable-next-line:no-identical-functions
   constructUpdateBankPayload(bank, fullName, accountNum, id) {
@@ -586,6 +581,7 @@ export class ManageInvestmentsService {
           // srsAccountNumber: data.objectList.accountNumber,
           srsAccountNumber: this.srsAccountFormat(data.objectList.accountNumber, data.objectList.srsBankOperator.name),
           srsOperator: data.objectList.srsBankOperator.name,
+          srsOperatorId: data.objectList.srsBankOperator.id,
           customerId: data.objectList.customerId
         };
         this.setSrsAccountDetails(srsAccountDetails);

@@ -199,6 +199,8 @@ export interface IMyAssets {
     schemeType?: string;
     estimatedPayout?: number;
     retirementSum?: number;
+    topupAmount?: number;
+    withdrawalAmount?: number;
 }
 export interface IOtherProperties {
     enquiryId: number;

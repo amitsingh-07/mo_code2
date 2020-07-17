@@ -52,14 +52,14 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   cpfFromMyInfo = false;
   viewMode: boolean;
   myinfoChangeListener: Subscription;
-  showRetirementAccount: boolean= false;
+  showRetirementAccount: boolean = false;
   myAge: any;
   comprehensiveJourneyMode;
   saveData: string;
   schemeTypeList: any;
   schemeType = '';
   getAge: number;
-  frsConfig =  '';
+  frsConfig = '';
   brsConfig = '';
 
   // tslint:disable-next-line:cognitive-complexity
@@ -88,11 +88,11 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     const today: Date = new Date();
     this.myAge = this.comprehensiveService.getMyProfile().dateOfBirth;
     this.getAge = this.aboutAge.calculateAge(this.myAge, today);
-    if ( this.getAge > COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.RETIREMENT_AGE ) {
+    if (this.getAge > COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.RETIREMENT_AGE) {
       this.showRetirementAccount = true;
       const retirementSumConfigValue = this.comprehensiveService.retirementSumFindByBirthDate(this.myAge);
       this.brsConfig = (retirementSumConfigValue && retirementSumConfigValue['BRS']) ? retirementSumConfigValue['BRS'] : '';
-      this.frsConfig = (retirementSumConfigValue && retirementSumConfigValue['FRS']) ? retirementSumConfigValue['FRS']: '';
+      this.frsConfig = (retirementSumConfigValue && retirementSumConfigValue['FRS']) ? retirementSumConfigValue['FRS'] : '';
     }
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '') {
@@ -108,7 +108,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
               oaFormControl.setValue(cpfValues.oa);
               saFormControl.setValue(cpfValues.sa);
               maFormControl.setValue(cpfValues.ma);
-              const retirementAccount = this.showRetirementAccount  ? cpfValues.ra : null;
+              const retirementAccount = this.showRetirementAccount ? cpfValues.ra : null;
               raFormControl.setValue(retirementAccount);
               saFormControl.markAsDirty();
               maFormControl.markAsDirty();
@@ -129,10 +129,10 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         }
       }
     });
-    
+
     this.assetDetails = this.comprehensiveService.getMyAssets();
     this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
-    if (!this.comprehensiveJourneyMode && this.assetDetails  ) {
+    if (!this.comprehensiveJourneyMode && this.assetDetails) {
       this.assetDetails.homeMarketValue = 0;
       this.assetDetails.otherAssetsValue = 0;
       this.assetDetails.investmentPropertiesValue = 0;
@@ -243,13 +243,27 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       cpfOrdinaryAccount: [{ value: this.assetDetails ? this.assetDetails.cpfOrdinaryAccount : '', disabled: this.viewMode }, []],
       cpfSpecialAccount: [{ value: this.assetDetails ? this.assetDetails.cpfSpecialAccount : '', disabled: this.viewMode }, []],
       cpfMediSaveAccount: [{ value: this.assetDetails ? this.assetDetails.cpfMediSaveAccount : '', disabled: this.viewMode }, []],
-      cpfRetirementAccount:[{ value: this.assetDetails ? this.assetDetails.cpfRetirementAccount : '', disabled: this.viewMode }, []],
-      schemeType:[{ value: (this.assetDetails && this.showRetirementAccount) ? this.assetDetails.schemeType : '', 
-      disabled: this.viewMode }, []],
-      estimatedPayout:[{ value: (this.assetDetails && this.showRetirementAccount) ? this.assetDetails.estimatedPayout : '', 
-      disabled: this.viewMode }, []],
-      retirementSum:[{ value: (this.assetDetails && this.showRetirementAccount) ? this.assetDetails.retirementSum : '',
-      disabled: this.viewMode }, []],
+      cpfRetirementAccount: [{ value: this.assetDetails ? this.assetDetails.cpfRetirementAccount : '', disabled: this.viewMode }, []],
+      schemeType: [{
+        value: (this.assetDetails && this.showRetirementAccount) ? this.assetDetails.schemeType : '',
+        disabled: this.viewMode
+      }, []],
+      estimatedPayout: [{
+        value: (this.assetDetails && this.showRetirementAccount) ? this.assetDetails.estimatedPayout : '',
+        disabled: this.viewMode
+      }, []],
+      retirementSum: [{
+        value: (this.assetDetails && this.showRetirementAccount) ? this.assetDetails.retirementSum : '',
+        disabled: this.viewMode
+      }, []],
+      topupAmount: [{
+        value: (this.assetDetails && this.showRetirementAccount) ? this.assetDetails.topupAmount : '',
+        disabled: this.viewMode
+      }, []],
+      withdrawalAmount: [{
+        value: (this.assetDetails && this.showRetirementAccount) ? this.assetDetails.withdrawalAmount : '',
+        disabled: this.viewMode
+      }, []],
       homeMarketValue: [{ value: this.assetDetails ? this.assetDetails.homeMarketValue : '', disabled: this.viewMode }, []],
       investmentPropertiesValue: [{
         value: this.assetDetails ? this.assetDetails.investmentPropertiesValue : '',
@@ -327,10 +341,10 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   setInvestValidation(totalLength) {
     const otherInvestmentControl = this.myAssetsForm.controls['assetsInvestmentSet']['controls'][0].controls;
     //if (totalLength === 1) {
-      otherInvestmentControl['typeOfInvestment'].setValidators([]);
-      otherInvestmentControl['typeOfInvestment'].updateValueAndValidity();
-      otherInvestmentControl['investmentAmount'].setValidators([]);
-      otherInvestmentControl['investmentAmount'].updateValueAndValidity();
+    otherInvestmentControl['typeOfInvestment'].setValidators([]);
+    otherInvestmentControl['typeOfInvestment'].updateValueAndValidity();
+    otherInvestmentControl['investmentAmount'].setValidators([]);
+    otherInvestmentControl['investmentAmount'].updateValueAndValidity();
     /*} else {
       otherInvestmentControl['typeOfInvestment'].setValidators([Validators.required]);
       otherInvestmentControl['typeOfInvestment'].updateValueAndValidity();
@@ -344,7 +358,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     if (this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
       this.myAssetsForm.markAsDirty();
     }
-   this.investTypeValidation();
+    this.investTypeValidation();
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
 
@@ -378,7 +392,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
           this.comprehensiveApiService.saveAssets(this.assetDetails).subscribe((data) => {
             this.comprehensiveService.setMyAssets(this.assetDetails);
             if (this.comprehensiveService.getMySteps() === 1
-            && this.comprehensiveService.getMySubSteps() < 5) {
+              && this.comprehensiveService.getMySubSteps() < 5) {
               this.comprehensiveService.setStepCompletion(1, 5).subscribe((data1: any) => {
                 this.loaderService.hideLoader();
                 this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES]);
@@ -402,8 +416,8 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     if (toolTipTitle === 'SET_RETIREMENT_SUM_TITLE') {
       const sumTitle = this.translate.instant('CMP.MY_ASSETS.TOOLTIP.' + toolTipMessage);
       const toolTipParamsRetirementSum = {
-          TITLE: this.translate.instant('CMP.MY_ASSETS.TOOLTIP.' + toolTipTitle),
-          DESCRIPTION: sumTitle.replace('BRS_VAL', this.brsConfig).replace('FRS_VAL', this.frsConfig)
+        TITLE: this.translate.instant('CMP.MY_ASSETS.TOOLTIP.' + toolTipTitle),
+        DESCRIPTION: sumTitle.replace('BRS_VAL', this.brsConfig).replace('FRS_VAL', this.frsConfig)
       };
       this.comprehensiveService.openTooltipModal(toolTipParamsRetirementSum);
     } else {

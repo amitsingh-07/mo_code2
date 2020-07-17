@@ -32,6 +32,7 @@ export class ReviewBuyRequestModalComponent implements OnInit {
   isAmtExceeded = false;
   oneTimeMonthlyInfo: string;
   @Output() submitRequest: EventEmitter<any> = new EventEmitter();
+  @Input() srsDetails;
 
   constructor(public activeModal: NgbActiveModal,
               public readonly translate: TranslateService,
