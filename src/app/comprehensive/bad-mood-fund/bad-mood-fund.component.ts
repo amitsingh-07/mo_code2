@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -19,7 +19,8 @@ import { ComprehensiveService } from './../comprehensive.service';
 @Component({
   selector: 'app-bad-mood-fund',
   templateUrl: './bad-mood-fund.component.html',
-  styleUrls: ['./bad-mood-fund.component.scss']
+  styleUrls: ['./bad-mood-fund.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
   sliderValue = 0;
