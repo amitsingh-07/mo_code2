@@ -27,9 +27,12 @@ export class AuthenticationService {
   get2faAuthEvent = this.get2faAuth.asObservable();
   private get2faError = new BehaviorSubject(false);
   get2faErrorEvent = this.get2faError.asObservable();
-  private get2faUpdate = new BehaviorSubject(''); 
+  public get2faSendError = new BehaviorSubject(false);
+  get2faSendErrorEvent = this.get2faSendError.asObservable();
+  private get2faUpdate = new BehaviorSubject('');
   get2faUpdateEvent = this.get2faUpdate.asObservable();
   private timer2fa: any;
+  private is2faVerifyAllowed: boolean = false;
 
   constructor(
     private httpClient: HttpClient, public jwtHelper: JwtHelperService,
@@ -204,7 +207,7 @@ export class AuthenticationService {
     if (!handleError) {
       handleError = '';
     }
-    // console.log('Sent 2fa Authentication Request');
+    console.log('Sent 2fa Authentication Request');
     const send2faOtpUrl = apiConstants.endpoint.send2faOTP;
 
     return this.httpClient.get<IServerResponse>(`${this.apiBaseUrl}/${send2faOtpUrl}${handleError}`)
@@ -236,9 +239,10 @@ export class AuthenticationService {
     const handleError = '?handleError=true';
     const verifyUrl = apiConstants.endpoint.verify2faOTP;
     return this.httpClient.get<IServerResponse>(`${this.apiBaseUrl}/${verifyUrl}${handleError}`)
-      .pipe(map((response) => {
-        return response;
-      }));
+      .pipe(
+        map((response) => {
+          return response;
+        }));
   }
 
   public get2FAToken() {
@@ -298,7 +302,7 @@ export class AuthenticationService {
     if (option && option.updateData) {
       this.get2faUpdate.next(sessionStorage.getItem(appConstants.APP_2FA_KEY));
     }
-    this.get2faAuth.next(sessionStorage.getItem(appConstants.APP_2FA_KEY)); // PROBLEM IS HERE
+    this.get2faAuth.next(''); // PROBLEM IS HERE
   }
 
   public is2FAVerified() {
@@ -307,6 +311,13 @@ export class AuthenticationService {
       return false;
     }
     return true;
+  }
+
+  public set2faVerifyAllowed(allowed: boolean) {
+    this.is2faVerifyAllowed = allowed;
+  }
+  public get2faVerifyAllowed() {
+    return this.is2faVerifyAllowed;
   }
 
   public getFromJourney(key: string) {

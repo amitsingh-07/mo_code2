@@ -402,9 +402,8 @@ app-your-portfolio {
           color: $black-color;
           font-size: 13px;
           letter-spacing: -0.24px;
-          padding-right: 50px;
-          @include allmobiles{
-            padding-right: 38px;
+          @include allmobiles {
+            width: 146px;
           }
           img{
             cursor: pointer;
@@ -422,15 +421,14 @@ app-your-portfolio {
             }
           }
         }
-        .padding-none {
+        .right-col {
           @include allmobiles{
-            padding-right: 0px !important;
+            width: 155px !important;
           }
         }
         .next-row {
           @include allmobiles{
             order: +1;
-            flex: 1 0 100%;
             padding-top: 15px;
           }
         }
@@ -444,6 +442,16 @@ app-your-portfolio {
           vertical-align: middle;
           padding-left: 0px;
           padding-right: 8px;
+        }
+        .return_label {
+          cursor: pointer;
+          width: fit-content;
+        }
+        .margin-right {
+          margin-right: 48.2px;
+          @include allmobiles{
+            margin-right: 0px;
+          }
         }
         .currency_value {
           font-family: $muli-bold;
@@ -482,7 +490,7 @@ app-your-portfolio {
           padding-top: 15px;
           cursor: pointer;
           @include allmobiles{
-            padding-top: 10px;
+            padding-top: 14px;
           }
         }
         .your_portfolio_label {
@@ -598,8 +606,9 @@ app-your-portfolio {
           }
         }
         .form-group-with-bg .form-group-with-bg--content {
-          padding: 18px 17px 25px 23px;
-          .flex-row:not(:last-child) {
+          padding: 20px 20px 19px;
+          .flex-row {
+            justify-content: space-between;
             margin-bottom: 0px;
           }
         }

@@ -1,9 +1,10 @@
 import { DecimalPipe } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -16,6 +17,7 @@ import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.con
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
 import { environment } from './../../../../environments/environment';
+import { AuthenticationService } from './../../../shared/http/auth/authentication.service';
 import {
   ConfirmWithdrawalModalComponent
 } from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
@@ -30,7 +32,7 @@ import {
   encapsulation: ViewEncapsulation.None,
   providers: [DecimalPipe]
 })
-export class WithdrawalComponent implements OnInit {
+export class WithdrawalComponent implements OnInit, OnDestroy {
   pageTitle: string;
   withdrawForm;
   formValues;
@@ -45,6 +47,8 @@ export class WithdrawalComponent implements OnInit {
   entitlements: any;
   userProfileInfo;
   srsAccountInfo: any;
+  cfmWithdrawalModal: NgbModalRef;
+  private subscription: Subscription;
 
   constructor(
     public readonly translate: TranslateService,
@@ -58,7 +62,8 @@ export class WithdrawalComponent implements OnInit {
     private loaderService: LoaderService,
     private investmentAccountService: InvestmentAccountService,
     private signUpService: SignUpService,
-    private decimalPipe: DecimalPipe
+    private decimalPipe: DecimalPipe,
+    public authService: AuthenticationService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -89,16 +94,33 @@ export class WithdrawalComponent implements OnInit {
     };
     this.buildForm();
     this.setSelectedPortfolio();
-    this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
-      if (data) {
-        this.srsAccountInfo = data;
-      } else {
-        this.srsAccountInfo = null;
+    this.getAndSetSrsDetails();
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  getAndSetSrsDetails() {
+    this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
+      if (!token) {
+        this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
+          if (data) {
+            this.srsAccountInfo = data;
+            if (this.cfmWithdrawalModal) {
+              this.cfmWithdrawalModal.componentInstance.srsAccountInfo = data;
+            }
+          } else {
+            this.srsAccountInfo = null;
+          }
+        },
+          (err) => {
+            this.investmentAccountService.showGenericErrorModal();
+          });
       }
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+    });
   }
 
   // Set selected portfolio's entitlements, cash balance
@@ -312,26 +334,26 @@ export class WithdrawalComponent implements OnInit {
   }
 
   showConfirmWithdrawModal(form) {
-    const ref = this.modal.open(ConfirmWithdrawalModalComponent, {
+    this.cfmWithdrawalModal = this.modal.open(ConfirmWithdrawalModalComponent, {
       centered: true
     });
-    ref.componentInstance.withdrawAmount = this.withdrawForm.get('withdrawAmount').value;
-    ref.componentInstance.withdrawType = this.withdrawForm.get('withdrawType').value;
-    ref.componentInstance.portfolioValue = this.formValues.withdrawPortfolio.portfolioValue;
-    ref.componentInstance.portfolio = this.formValues.withdrawPortfolio;
-    ref.componentInstance.userInfo = this.signUpService.getUserProfileInfo();
-    ref.componentInstance.srsAccountInfo = this.srsAccountInfo;
-    ref.componentInstance.confirmed.subscribe(() => {
-      ref.close();
+    this.cfmWithdrawalModal.componentInstance.srsAccountInfo = this.srsAccountInfo;
+    this.cfmWithdrawalModal.componentInstance.withdrawAmount = this.withdrawForm.get('withdrawAmount').value;
+    this.cfmWithdrawalModal.componentInstance.withdrawType = this.withdrawForm.get('withdrawType').value;
+    this.cfmWithdrawalModal.componentInstance.portfolioValue = this.formValues.withdrawPortfolio.portfolioValue;
+    this.cfmWithdrawalModal.componentInstance.portfolio = this.formValues.withdrawPortfolio;
+    this.cfmWithdrawalModal.componentInstance.userInfo = this.signUpService.getUserProfileInfo();
+    this.cfmWithdrawalModal.componentInstance.confirmed.subscribe(() => {
+      this.cfmWithdrawalModal.close();
       this.manageInvestmentsService.setWithdrawalTypeFormData(form.getRawValue(), this.isRedeemAll);
       this.saveWithdrawal();
       // confirmed
     });
-    ref.componentInstance.showLearnMore.subscribe(() => {
-      ref.close();
+    this.cfmWithdrawalModal.componentInstance.showLearnMore.subscribe(() => {
+      this.cfmWithdrawalModal.close();
       this.showLearnMoreModal(form);
     });
-    this.dismissPopup(ref);
+    this.dismissPopup(this.cfmWithdrawalModal);
   }
 
   showLearnMoreModal(form) {

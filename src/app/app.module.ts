@@ -127,6 +127,7 @@ import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
+import { SessionsService } from './shared/Services/sessions/sessions.service';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -224,7 +225,7 @@ export function tokenGetterFn() {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true,
-      deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, NavbarService]
+      deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, NavbarService, SessionsService]
     }, Formatter, CurrencyPipe, RoutingService,
     StateStoreService, Util, FileUtil,
     InvestmentEnableGuard,
