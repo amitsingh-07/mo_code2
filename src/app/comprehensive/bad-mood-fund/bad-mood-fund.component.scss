@@ -1,7 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
-app-bad-mood-fund {
-  .comprehensive {
+.comprehensive {
     $minus-content-color:#ff872f;
     .title {
       font-size: 18px;
@@ -39,12 +38,4 @@ app-bad-mood-fund {
     .minus-bad-mood {
       color:$minus-content-color;
     }
-    .help-icon {
-      position: absolute;
-      right:0;
-    }
-    .pos-relative {
-      position: relative;
-    }
-  }
 }
