@@ -1,79 +1,95 @@
-import { Location } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { Injector } from '@angular/core';
-import { async, ComponentFixture, fakeAsync, getTestBed, inject, TestBed, tick } from '@angular/core/testing';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HttpModule, XHRBackend } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
-import { By } from '@angular/platform-browser';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { Router, Routes } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { JwtModule } from '@auth0/angular-jwt';
-import { NgbActiveModal, NgbModal, NgbModalRef, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { concat, Observable, of, throwError } from 'rxjs';
-import 'rxjs/add/observable/of';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateModule } from '@ngx-translate/core';
 
-import { CurrencyPipe } from '@angular/common';
-import { appConstants } from '../../../app.constants';
-
-
-import { tokenGetterFn } from 
-'../../../../assets/mocks/service/shared-service';
-
-import { FooterService } from '../../../shared/footer/footer.service';
-import { HeaderService } from '../../../shared/header/header.service';
-import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { InvestmentApiService } from '../../investment-api.service';
-
-import { AppService } from './../../../app.service';
-import { LoaderService } from './../../../shared/components/loader/loader.service';
-import { ApiService } from './../../../shared/http/api.service';
-import { AuthenticationService } from './../../../shared/http/auth/authentication.service';
-
-import { InvestmentTitleBarComponent } from '../../../shared/components/investment-title-bar/investment-title-bar.component';
-import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
-
-
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-
-
-
-import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
-import {
-    INVESTMENT_COMMON_ROUTE_PATHS
-} from '../../investment-common/investment-common-routes.constants';
-import { InvestmentCommonService } from '../../investment-common/investment-common.service';
-import {
-    MANAGE_INVESTMENTS_ROUTE_PATHS
-} from '../../manage-investments/manage-investments-routes.constants';
-import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
-import { InvestmentAccountService } from '../investment-account-service';
-import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
-
+import { FooterService } from 'src/app/shared/footer/footer.service';
+import { MockInvestmentAccountService } from './../../../../assets/mocks/service/shared-service';
+import { NavbarService } from './../../../shared/navbar/navbar.service';
+import { InvestmentAccountService } from './../investment-account-service';
 import { AdditionalDeclaration1Component } from './additional-declaration1.component';
 
 describe('AdditionalDeclaration1Component', () => {
   let component: AdditionalDeclaration1Component;
   let fixture: ComponentFixture<AdditionalDeclaration1Component>;
+  let investAccountService: MockInvestmentAccountService;
+  let router: Router;
+  let navbarService: NavbarService;
+  let footerService: FooterService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdditionalDeclaration1Component ]
+      imports: [TranslateModule.forRoot(), RouterTestingModule.withRoutes([]), NgbModule.forRoot(), HttpClientTestingModule,
+      HttpModule, FormsModule, ReactiveFormsModule, JwtModule.forRoot({config: {}}) ],
+      declarations: [ AdditionalDeclaration1Component ],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [NgbActiveModal, JwtHelperService, InvestmentAccountService,
+        {provide: InvestmentAccountService, useClass: MockInvestmentAccountService}
+      ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AdditionalDeclaration1Component);
+    router = TestBed.get(Router);
+    investAccountService = TestBed.get(InvestmentAccountService);
+    navbarService = TestBed.get(NavbarService);
+    footerService = TestBed.get(FooterService);
+
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  });
+
+  it('should create AdditionalDeclaration1Component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should set page title', () => {
+    const setPageTitleSpy = spyOn(navbarService, 'setPageTitle');
+    component.setPageTitle('ADDITIONAL_DECLARATION.TITLE');
+    expect(setPageTitleSpy).toHaveBeenCalledWith('ADDITIONAL_DECLARATION.TITLE');
+  });
+
+  it('should execute ngOnInit', () => {
+    const setNavbarModeSpy = spyOn(navbarService, 'setNavbarMode');
+    const setNavbarMobileVisibilitySpy = spyOn(navbarService, 'setNavbarMobileVisibility');
+    const setFooterVisibilitySpy = spyOn(footerService, 'setFooterVisibility');
+    spyOn(investAccountService, 'isSingaporeResident').and.returnValue(true);
+    const getOccupationListSpy = spyOn(component, 'getOccupationList');
+    spyOn(investAccountService, 'getCountriesFormDataByFilter').and.returnValue([]);
+    spyOn(investAccountService, 'getInvestmentAccountFormData').and.returnValue({});
+    // spyOn(component, 'buildForm').and.returnValue(new FormGroup({pepCountry:  new FormControl('')}));
+    const observeCountryChangeSpy = spyOn(component, 'observeCountryChange');
+    const observeOccupationChangeSpy = spyOn(component, 'observeOccupationChange');
+    const loadDDCRoadmapSpy = spyOn(investAccountService, 'loadDDCRoadmap');
+    component.ngOnInit();
+    expect(setNavbarModeSpy).toHaveBeenCalledWith(6);
+    expect(setNavbarMobileVisibilitySpy).toHaveBeenCalledWith(true);
+    expect(setFooterVisibilitySpy).toHaveBeenCalledWith(false);
+    expect(component.isUserNationalitySingapore).toEqual(true);
+    expect(getOccupationListSpy).toHaveBeenCalled();
+    expect(component.addInfoFormValues).toEqual({});
+    // expect(component.addInfoForm).toEqual({pepCountry: ''});
+    expect(component.countries).toEqual([]);
+    expect(observeCountryChangeSpy).toHaveBeenCalled();
+    expect(observeOccupationChangeSpy).toHaveBeenCalled();
+    expect(loadDDCRoadmapSpy).toHaveBeenCalled();
+  });
+
+  it('should buildForm', () => {
+    spyOn(component, 'buildForm').and.returnValue({});
+    component.buildForm();
+    // expect(loadDDCRoadmapSpy).toHaveBeenCalled();
   });
 });
