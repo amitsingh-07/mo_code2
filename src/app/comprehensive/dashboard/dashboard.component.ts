@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 
 import { AppService } from '../../app.service';
@@ -13,6 +14,7 @@ import { IMyProfile } from '../comprehensive-types';
 import { environment } from './../../../environments/environment';
 import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
+import { PaymentInstructionModalComponent } from './../../shared/modal/payment-instruction-modal/payment-instruction-modal.component';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 
@@ -58,7 +60,8 @@ constructor(
     private navbarService: NavbarService,
     private downloadfile: FileUtil,
     private authService: AuthenticationService,
-    private loaderService: LoaderService, private appService: AppService) {
+    private loaderService: LoaderService, private appService: AppService,
+    private modal: NgbModal) {
       this.appService.clearPromoCode();
       this.configService.getConfig().subscribe((config) => {
       this.translate.setDefaultLang(config.language);
@@ -332,5 +335,10 @@ constructor(
       }
 
     });
+  }
+  showPaymentModal() {
+    const ref = this.modal.open(PaymentInstructionModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = 'Title';
+    ref.componentInstance.errorMessage = 'Body';
   }
 }
