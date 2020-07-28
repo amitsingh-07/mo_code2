@@ -1,12 +1,29 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 app-payment-instruction-modal {
+  .description img{
+    margin-right: 20px;
+  }
+  .modal-body-title {
+    display: flex;
+    padding:20px;
+    div {
+      flex-grow: 0;
+      flex-basis: auto;
+    }
+    span.lock {
+      padding-left: 5px;
+      img {
+        vertical-align: initial !important;
+      }
+    }
+  }
 .modal-body {
     background-color: $teal-color !important;
     padding: 0 !important;
 }
 .modal-body-message {
-  padding: 30px;
+  padding: 0 50px 30px 50px;
 }
 .instruction-content {
   color: $instruction-content-color;
@@ -236,8 +253,8 @@ app-payment-instruction-modal {
 
 }
 .faq-link {
-  text-align: center;
-  padding-bottom: 20px;
+  text-align: left;
+  padding: 10px 30px;
   a {
       font-family: $muli-bold;
       font-size: 16px;

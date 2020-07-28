@@ -338,7 +338,5 @@ constructor(
   }
   showPaymentModal() {
     const ref = this.modal.open(PaymentInstructionModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = 'Title';
-    ref.componentInstance.errorMessage = 'Body';
   }
 }

@@ -20,14 +20,10 @@ import {
   styleUrls: ['./payment-instruction-modal.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PaymentInstructionModalComponent implements OnInit {
-  @Input() errorTitle: any;
-  @Input() errorMessage: any;
+export class PaymentInstructionModalComponent implements OnInit {  
   @Input() closeBtn = true;
   activeMode = 'BANK';  
-  showBankTransferSteps = true;
-  bankDetails = { bankAccountNumber: '072-001715-3', receipientName: 'MoneyOwl Pte Ltd', referenceNumber: '464', bankName: 'DBS Bank Limited', };
-  paynowDetails = {bankAccountNumber:'201820691C', receipientName: 'MONEYOWL PRIVATE LIMITED'}
+  
   constructor(
     public activeModal: NgbActiveModal,
     private router: Router,
@@ -60,6 +56,6 @@ export class PaymentInstructionModalComponent implements OnInit {
     this.showPopUp();
   }
   getQrCodeImg() {
-    return document.getElementsByTagName('base')[0].href + 'assets/images/paynow-qrcode.png';
+    return document.getElementsByTagName('base')[0].href + 'assets/images/comprehensive/qrcode.png';
   }
 }

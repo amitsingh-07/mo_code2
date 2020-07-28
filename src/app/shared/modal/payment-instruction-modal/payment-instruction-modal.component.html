@@ -1,53 +1,45 @@
 <div class="modal-header">
   <div class="modal-title popup-header-icon">
-    <img src="assets/images/owl.svg" id="errorModelImage" />
+    <img src="assets/images/owl.svg"/>
   </div>
 </div>
 <div class="modal-body">
     <div class="bg-white">
   <div class="modal-body-title"> 
-    <div id="errorModeltitle">Payment Instruction</div>
-       
+    <div>{{ 'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.TITLE' | translate }}</div>       
   </div>
   <button *ngIf="closeBtn" type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true" id="errorModelCloseIcon"></span>
   </button>
-  <div class="modal-body-message" *ngIf="errorMessage" id="errorModelMessage"><div class="flex align-center"><img src="assets/images/comprehensive/payment.svg"><span>You may do a Bank Transfer or PayNow to make payment.</span></div> </div>
+  <div class="modal-body-message"><div class="flex align-center description"><img src="assets/images/comprehensive/payment.svg"><span innerHTML="{{ 'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.DESCRIPTION' | translate }}"></span></div> </div>
   </div>
   <!-- TRANSFER DETAILS -->
   <div class="transfer-details-wrapper">
-    <div class="text-center">How to Make Payment</div> 
+    <div class="text-center">{{ 'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.MAKE_PAYMENT' | translate }}</div> 
     <div class="transfer-details">
         <div class="tab-links">
           <div class="tab-link-item active" [class.active]="activeMode == 'BANK'" (click)="selectFundingMethod('BANK')">
-            <div class="pay-tab"> Bank Transfer</div>
+            <div class="pay-tab">{{ 'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.BANK_TRANSFER' | translate }}</div> 
           </div>
           <div class="tab-link-item" [class.active]="activeMode == 'PAYNOW'" (click)="selectFundingMethod('PAYNOW')">
             <div class="pay-tab"><img src="assets/images/topupwithdraw\paynow.png" alt="" /></div>
           </div>
         </div>
         <div class="tab-content-container">
-          <!-- TAB 1 -->
-          <div class="tab-content" [class.active]="activeMode == 'BANK'" >
-            <div class="instruction-txt" innerHTML="{{ 'FUNDING_INSTRUCTIONS.LOGIN_TO_NETBANKING_BANK' | translate }}">
-            </div>
-          </div>
           <!-- New Bank Transfer Instruction Start -->
           <div class="tab-content fund-instruction" [class.active]="activeMode == 'BANK'"
             >
             <div class="instruction-content">
           
-              <div class="steps-title" *ngIf="showBankTransferIns">{{ 'TRANSFER_INSTRUCTION.STEPS_TITLE_BANK' | translate }}</div>
-              <div class="steps-title" *ngIf="!showBankTransferIns">{{ 'TRANSFER_INSTRUCTION.STEPS_TITLE_PAYNOW' | translate }}
-              </div>
-          
+              <div class="steps-title">{{ 'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.STEPS_TITLE_BANK' | translate }}</div>
+                      
               <ul class="list-none">
                   <li class="flex">
                       <div class="circle"></div>
                       <div class="section text-black">
                           <div class="sub-section step">
-                              {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_1' | translate}}</div>
-                          <div class="sub-section" innerHTML="{{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_1' | translate}}">
+                              {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_1' | translate}}</div>
+                          <div class="sub-section" innerHTML="{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_1' | translate}}">
                           </div>
                       </div>
                   </li>
@@ -55,8 +47,8 @@
                       <div class="circle"></div>
                       <div class="section text-black">
                           <div class="sub-section step">
-                              {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_2' | translate}}</div>
-                          <div class="sub-section" innerHTML="{{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_2' | translate}}">
+                              {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_2' | translate}}</div>
+                          <div class="sub-section" innerHTML="{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_2' | translate}}">
                           </div>
                       </div>
                   </li>
@@ -64,44 +56,31 @@
                       <div class="circle"></div>
                       <div class="section">
                           <div class="sub-section step">
-                              {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_3' | translate}}</div>
+                              {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_3' | translate}}</div>
                           <div class="sub-section">
-                              {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_3' | translate}}</div>
+                              {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_3' | translate}}</div>
           
                           <!--  Bank Transfer: -->
-                          <div class="bank-details" *ngIf="showBankTransferIns">
+                          <div class="bank-details">
                               <div class="flex-col">
                                   <div class="bank-details-title">
-                                      {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.RECIPENTS_NAME' | translate}}
+                                      {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.RECIPENTS_NAME' | translate}}
                                   </div>
-                                  <div class="bank-details-content"><span>{{bankDetails?.receipientName}}</span><img class="ml10" (click)="showToolTipModal()" src="assets/images/tooltip-icon.svg" alt="" /></div>
+                                  <div class="bank-details-content"><span>{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.RECIPENT' | translate}}</span></div>
           
                               </div>
                               <div class="flex-col">
                                   <div class="bank-details-title">
-                                      {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.BANK_NAME' | translate}}</div>
-                                  <div class="bank-details-content"><span>{{bankDetails?.bankName}}</span></div>
+                                      {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.BANK_NAME' | translate}}</div>
+                                  <div class="bank-details-content"><span>{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.BANK' | translate}}</span></div>
                               </div>
                               <div class="flex-col">
                                   <div class="bank-details-title">
-                                      {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.BANK_ACC_NO' | translate}}</div>
-                                  <div class="bank-details-content"><span>{{bankDetails?.bankAccountNumber}}</span></div>
+                                      {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.BANK_ACC_NO' | translate}}</div>
+                                  <div class="bank-details-content"><span>{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.BANK_ACC' | translate}}</span></div>
                               </div>
                           </div>
           
-                          <!--  PayNow Transfer: -->
-                          <div class="bank-details" *ngIf="!showBankTransferIns">
-                              <div class="flex-col">
-                                  <div class="bank-details-title">
-                                      {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.UNIQUE_ENTITY_NO' | translate}}</div>
-                                  <div class="bank-details-content"><span>{{paynowDetails?.bankAccountNumber}}</span></div>
-                              </div>
-                              <div class="flex-col">
-                                  <div class="bank-details-title">
-                                      {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.ENTITY_NAME' | translate}}</div>
-                                  <div class="bank-details-content"><span>{{paynowDetails?.receipientName}}</span><img class="ml10" (click)="showToolTipModal()" src="assets/images/tooltip-icon.svg" alt="" /></div>
-                              </div>
-                          </div>
                       </div>
                   </li>
           
@@ -110,19 +89,12 @@
                       <div class="circle"></div>
                       <div class="section">
                           <div class="sub-section step">
-                              {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_4' | translate}}</div>
+                              {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_4' | translate}}</div>
                           <div class="sub-section">
-                              {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_4' | translate}}</div>
+                              {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_4' | translate}}</div>
           
-                          <div class="sub-section ref_code_num_container">
-                              <span class="info-text">
-                      <img src="assets/images/alert-red.svg">
-                    </span>
-                              <strong class="ref_num">{{ showBankTransferIns ? bankDetails?.referenceNumber : paynowDetails?.referenceNumber}}</strong>
-                          </div>
-          
-                          <div class="sub-section ref-code-info">
-                              <span class="ref-code-context" innerHTML="{{ 'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.ADD_REFERENCE_CODE_INFO' | translate }}"></span>
+                         <div class="sub-section ref-code-info">
+                              <span class="ref-code-context" innerHTML="{{ 'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.ADD_REFERENCE_CODE_INFO' | translate }}"></span>
                           </div>
                       </div>
                   </li>
@@ -131,9 +103,9 @@
                       <div class="circle"></div>
                       <div class="section text-black">
                           <div class="sub-section step">
-                              {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_5' | translate}}</div>
+                              {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_5' | translate}}</div>
                           <div class="sub-section">
-                              {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_5' | translate}}</div>
+                              {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_5' | translate}}</div>
                       </div>
                   </li>
           
@@ -141,44 +113,36 @@
                       <div class="circle"></div>
                       <div class="section text-black">
                           <div class="sub-section step">
-                              {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_6' | translate}}</div>
-                          <div class="sub-section" innerHTML="{{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_6' | translate}}">
+                              {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_6' | translate}}</div>
+                          <div class="sub-section" innerHTML="{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_6' | translate}}">
                           </div>
                       </div>
                   </li>
               </ul>
-              <div class="faq-link"><a target="_blank" routerLink="/faq" fragment="investment">For more information, visit our FAQs.</a></div>
+              <div class="faq-link"><a target="_blank" routerLink="/faq" fragment="comprehensive">{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FAQ' | translate}}</a></div>
           </div>
           </div>
           <!-- New Bank Transfer Instruction End -->
           <!-- TAB 2 -->
           <div class="tab-content" [class.active]="activeMode == 'PAYNOW'" >
-            <div class="instruction-txt"
-              innerHTML="{{ 'FUNDING_INSTRUCTIONS.LOGIN_TO_NETBANKING_PAYNOW' | translate }}">
-            </div>
             <div class="instruction-content">
-              <div class="qrcode" *ngIf="!showBankTransferIns">
-                  <div class="qrcode__title">{{ 'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.QRCODE.TITLE' | translate }}</div>
-                  <div class="qrcode__desc">{{ 'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.QRCODE.DESC' | translate }} </div>
+              <div class="qrcode" >
+                  <div class="qrcode__title">{{ 'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.QRCODE.TITLE' | translate }}</div>
+                  <div class="qrcode__desc">{{ 'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.QRCODE.DESC' | translate }} </div>
                   <div class="qrcode__imgcontainer">
-                      <img src="assets/images/paynow-qrcode.png" alt="" />
+                      <img src="assets/images/comprehensive/qrcode.png" alt="" />
                   </div>
-                  <div class="qrcode__refcode">{{ 'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.QRCODE.REFCODE' | translate }}</div>
-                  <div class="qrcode__refcode-box">
-                      <span class="qrcode__refcode-icon">
-                      <img src="assets/images/alert-red.svg">
-                    </span>
-                      <strong class="qrcode__refcode-num">{{ showBankTransferIns ? bankDetails?.referenceNumber : paynowDetails?.referenceNumber}}</strong>
-                  </div>
+                  <div class="qrcode__refcode">{{ 'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.QRCODE.REFCODE' | translate }}</div>
+                  
                   <div class="qrcode__refcode-info">
-                      <div class="qrcode__refcode-info--text" innerHTML="{{ 'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.ADD_REFERENCE_CODE_INFO' | translate }}"></div>
+                      <div class="qrcode__refcode-info--text" innerHTML="{{ 'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.NOTE' | translate }}"></div>
                   </div>
-                  <a class="qrcode__save-btn hidden-lg" download target="_blank" [href]="getQrCodeImg()">{{ 'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.QRCODE.SAVEBTN' | translate }} </a>
-                  <div class="qrcode__alt-steps">{{ 'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.QRCODE.ALT_STEPS' | translate }}</div>
+                  <a class="qrcode__save-btn hidden-lg" download target="_blank" [href]="getQrCodeImg()">{{ 'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.QRCODE.SAVEBTN' | translate }} </a>
+                  <div class="qrcode__alt-steps">{{ 'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.QRCODE.ALT_STEPS' | translate }}</div>
               </div>
           
-              <div class="steps-title" *ngIf="showBankTransferIns">{{ 'TRANSFER_INSTRUCTION.STEPS_TITLE_BANK' | translate }}</div>
-              <div class="steps-title" *ngIf="!showBankTransferIns">{{ 'TRANSFER_INSTRUCTION.STEPS_TITLE_PAYNOW' | translate }}
+             
+              <div class="steps-title" >{{ 'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.STEPS_TITLE_PAYNOW' | translate }}
               </div>
           
               <ul class="list-none">
@@ -186,8 +150,8 @@
                       <div class="circle"></div>
                       <div class="section text-black">
                           <div class="sub-section step">
-                              {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_1' | translate}}</div>
-                          <div class="sub-section" innerHTML="{{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_1' | translate}}">
+                              {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_1' | translate}}</div>
+                          <div class="sub-section" innerHTML="{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_1' | translate}}">
                           </div>
                       </div>
                   </li>
@@ -195,8 +159,8 @@
                       <div class="circle"></div>
                       <div class="section text-black">
                           <div class="sub-section step">
-                              {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_2' | translate}}</div>
-                          <div class="sub-section" innerHTML="{{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_2' | translate}}">
+                              {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_2' | translate}}</div>
+                          <div class="sub-section" innerHTML="{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_2' | translate}}">
                           </div>
                       </div>
                   </li>
@@ -204,42 +168,23 @@
                       <div class="circle"></div>
                       <div class="section">
                           <div class="sub-section step">
-                              {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_3' | translate}}</div>
+                              {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_3' | translate}}</div>
                           <div class="sub-section">
-                              {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_3' | translate}}</div>
+                              {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_3' | translate}}</div>
           
-                          <!--  Bank Transfer: -->
-                          <div class="bank-details" *ngIf="showBankTransferIns">
-                              <div class="flex-col">
-                                  <div class="bank-details-title">
-                                      {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.RECIPENTS_NAME' | translate}}
-                                  </div>
-                                  <div class="bank-details-content"><span>{{bankDetails?.receipientName}}</span><img class="ml10" (click)="showToolTipModal()" src="assets/images/tooltip-icon.svg" alt="" /></div>
-          
-                              </div>
-                              <div class="flex-col">
-                                  <div class="bank-details-title">
-                                      {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.BANK_NAME' | translate}}</div>
-                                  <div class="bank-details-content"><span>{{bankDetails?.bankName}}</span></div>
-                              </div>
-                              <div class="flex-col">
-                                  <div class="bank-details-title">
-                                      {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.BANK_ACC_NO' | translate}}</div>
-                                  <div class="bank-details-content"><span>{{bankDetails?.bankAccountNumber}}</span></div>
-                              </div>
-                          </div>
+                         
           
                           <!--  PayNow Transfer: -->
-                          <div class="bank-details" *ngIf="!showBankTransferIns">
+                          <div class="bank-details">
                               <div class="flex-col">
                                   <div class="bank-details-title">
-                                      {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.UNIQUE_ENTITY_NO' | translate}}</div>
-                                  <div class="bank-details-content"><span>{{paynowDetails?.bankAccountNumber}}</span></div>
+                                      {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.UNIQUE_ENTITY_NO' | translate}}</div>
+                                  <div class="bank-details-content"><span>{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.UNIQUE_ENTITY' | translate}}</span></div>
                               </div>
                               <div class="flex-col">
                                   <div class="bank-details-title">
-                                      {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.ENTITY_NAME' | translate}}</div>
-                                  <div class="bank-details-content"><span>{{paynowDetails?.receipientName}}</span><img class="ml10" (click)="showToolTipModal()" src="assets/images/tooltip-icon.svg" alt="" /></div>
+                                      {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.ENTITY_NAME' | translate}}</div>
+                                  <div class="bank-details-content"><span>{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.ENTITY' | translate}}</span></div>
                               </div>
                           </div>
                       </div>
@@ -250,19 +195,13 @@
                       <div class="circle"></div>
                       <div class="section">
                           <div class="sub-section step">
-                              {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_4' | translate}}</div>
+                              {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_4' | translate}}</div>
                           <div class="sub-section">
-                              {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_4' | translate}}</div>
+                              {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_4' | translate}}</div>
           
-                          <div class="sub-section ref_code_num_container">
-                              <span class="info-text">
-                      <img src="assets/images/alert-red.svg">
-                    </span>
-                              <strong class="ref_num">{{ showBankTransferIns ? bankDetails?.referenceNumber : paynowDetails?.referenceNumber}}</strong>
-                          </div>
-          
+                          
                           <div class="sub-section ref-code-info">
-                              <span class="ref-code-context" innerHTML="{{ 'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.ADD_REFERENCE_CODE_INFO' | translate }}"></span>
+                              <span class="ref-code-context" innerHTML="{{ 'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.ADD_REFERENCE_CODE_INFO' | translate }}"></span>
                           </div>
                       </div>
                   </li>
@@ -271,9 +210,9 @@
                       <div class="circle"></div>
                       <div class="section text-black">
                           <div class="sub-section step">
-                              {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_5' | translate}}</div>
+                              {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_5' | translate}}</div>
                           <div class="sub-section">
-                              {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_5' | translate}}</div>
+                              {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_5' | translate}}</div>
                       </div>
                   </li>
           
@@ -281,21 +220,23 @@
                       <div class="circle"></div>
                       <div class="section text-black">
                           <div class="sub-section step">
-                              {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_6' | translate}}</div>
-                          <div class="sub-section" innerHTML="{{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_6' | translate}}">
+                              {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.STEP_6' | translate}}</div>
+                          <div class="sub-section" innerHTML="{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_6' | translate}}">
                           </div>
                       </div>
                   </li>
               </ul>
-              <div class="faq-link"><a target="_blank" routerLink="/faq" fragment="investment">For more information, visit our FAQs.</a></div>
+              <div class="faq-link"><a target="_blank" routerLink="/faq" fragment="comprehensive">{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FAQ' | translate}}</a></div>
           </div>
         </div>
       </div>
     </div>
+    
+    
+    <button type="button"
+    (click)="activeModal.dismiss('Cross click')" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+    id="portfolioRecommendationNextBtn">
+    {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.GOT_IT' | translate}}
+    </button>
     </div>
 </div>
-<button type="button"
-(click)="goToNext('PORTFOLIO')" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-id="portfolioRecommendationNextBtn">
-Okay, Got It!
-</button>
