@@ -407,7 +407,8 @@
             "COMPREHENSIVE_PLANNING_LAST_SUBMITTED_DATE": "Last Submitted LAST_SUBMITTED_DATE",
             "WARNING_POPUP": "Note that your DOB/Gender is different from Investment journey. Reach adviser on how to proceed",
             "COMPREHENSIVE_PLANNING_SUBMITTED": "Once your report is ready, you will be contacted via email to set up an appointment with the adviser.",
-            "COMPREHENSIVE_REPORT_ERROR_MSG": "We faced an error when generating your report. Please click on “Make Changes” to generate a new report."
+            "COMPREHENSIVE_REPORT_ERROR_MSG": "We faced an error when generating your report. Please click on “Make Changes” to generate a new report.",
+            "COMPREHENSIVE_PAYMENT_INSTRUCTION": "Payment Instructions"
         }
     },
     "TRANSFER_INSTRUCTION": {

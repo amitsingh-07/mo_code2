@@ -59,5 +59,7 @@ export class PaymentInstructionModalComponent implements OnInit {
   showTipModal() {
     this.showPopUp();
   }
-
+  getQrCodeImg() {
+    return document.getElementsByTagName('base')[0].href + 'assets/images/paynow-qrcode.png';
+  }
 }
