@@ -1,6 +1,6 @@
 export const COMPREHENSIVE_CONST = {
     PROMOTION: {
-        AMOUNT: 535
+        AMOUNT: 99
     },
     PROMO_CODE: {
         GET: 'GET_PROMO_CODE',
@@ -256,6 +256,9 @@ export const COMPREHENSIVE_CONST = {
         SUBMITTED: 'submitted',
         READY: 'ready',
         ERROR: 'error'
+    },
+    PAYMENT_STATUS:{
+        PENDING:"PENDING"
     },
     REPORT_PDF_NAME: 'MoneyOwl-Comprehensive.pdf',
     RETIREMENT_PLAN: {
