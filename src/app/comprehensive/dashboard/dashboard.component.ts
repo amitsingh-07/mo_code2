@@ -49,7 +49,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
   enquiryId: any;
   isReportGenerated = false;
   fetchData : string;
-
+  paymentInstructions = false;
 constructor(
     private router: Router,
     private translate: TranslateService,
@@ -303,7 +303,9 @@ constructor(
         this.getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', this.getCurrentVersionType);
         if (this.getComprehensiveSummaryDashboard !== '') {
           this.islocked = this.getComprehensiveSummaryDashboard.isLocked;
-         
+          this.paymentInstructions = (this.getComprehensiveSummaryDashboard.paymentStatus
+          && this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING
+          && this.getCurrentVersionType === this.getComprehensiveSummaryDashboard.type);
           this.promoCodeValidated = this.getComprehensiveSummaryDashboard.isValidatedPromoCode;
           this.reportStatus = this.getComprehensiveSummaryDashboard.reportStatus;
           this.enquiryId= this.getComprehensiveSummaryDashboard.enquiryId;

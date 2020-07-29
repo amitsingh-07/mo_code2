@@ -416,6 +416,7 @@
                 "MAKE_PAYMENT": "How to Make Payment",
                 "BANK_TRANSFER": "Bank Transfer",
                 "FAQ": "For more information, visit our FAQs.",
+                "FAQ_LINK": "https://www.moneyowl.com.sg/faq-comprehensive/#comprehensive|2",
                 "INSTITUTION_TYPE_BANK": "bank", 
                 "INSTITUTION_TYPE_PAY_NOW": "PayNow",
                 "TOP_UP_REQUEST_LBL": "You do not have any Top Up Requests.",
