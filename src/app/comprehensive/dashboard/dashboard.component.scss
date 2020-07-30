@@ -174,4 +174,10 @@
     .last-update{
         font-family:$muli-regular!important;
     }
+    #payment-instruction {
+        border: solid 1px $robins-egg-blue-color !important;
+        background-color: $white-color!important;
+        color:$teal-color !important;
+        box-shadow: none !important;
+    }
 }
