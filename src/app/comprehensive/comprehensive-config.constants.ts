@@ -1,6 +1,6 @@
 export const COMPREHENSIVE_CONST = {
     PROMOTION: {
-        AMOUNT: 535
+        AMOUNT: 99
     },
     PROMO_CODE: {
         GET: 'GET_PROMO_CODE',
