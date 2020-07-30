@@ -175,8 +175,9 @@
         font-family:$muli-regular!important;
     }
     #payment-instruction {
-        border: solid 1px #00c5c4!important;
+        border: solid 1px $robins-egg-blue-color !important;
         background-color: $white-color!important;
-        color:#00a7a7!important;
+        color:$teal-color !important;
+        box-shadow: none !important;
     }
 }
