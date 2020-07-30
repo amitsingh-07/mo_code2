@@ -279,5 +279,10 @@ export const COMPREHENSIVE_CONST = {
         SPECIAL_QUESTION_ORDER: 4
     },
     BANNER_NOTE_START_TIME: 1580918400000,
-    BANNER_NOTE_END_TIME: 1581436799000
+    BANNER_NOTE_END_TIME: 1581436799000,
+    PAYMENT_STATUS: {
+        PENDING: 'pending',
+        PAID: 'paid',
+        WAIVED: 'waived'
+    }
 };
