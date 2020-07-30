@@ -4,6 +4,13 @@ app-payment-instruction-modal {
   .description img {
     margin-right: 20px;
   }
+  .mt-20{
+    margin-top: 20px;
+  }
+  .payment-support-mail {
+    color: $black-color!important;
+    cursor: pointer;
+  }
   .modal-body-title {
     display: flex;
     padding: 20px 25px;
