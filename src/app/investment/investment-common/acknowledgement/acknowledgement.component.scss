@@ -80,7 +80,11 @@ app-acknowledgement {
         .flex {
           align-items: center;
           justify-content: space-between;
+          &.alinment {
+            align-items: baseline; 
+          }
         }
+        
 
         .disc {
           width: 5px;
@@ -151,6 +155,7 @@ app-acknowledgement {
     .italic {
       font-style: italic;
       color: $acknowledgement-text-color;
+      margin-bottom: 1.0rem;
     }
 
     .flex-row {
