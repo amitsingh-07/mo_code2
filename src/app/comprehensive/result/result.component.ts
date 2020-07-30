@@ -25,7 +25,7 @@ export class ResultComponent implements OnInit, OnDestroy {
   alertTitle: string;
   alertMessage: string;
   comprehensiveJourneyMode: boolean;
-  isPayment:boolean;
+  isPayment: boolean;
   @Output() backPressed: EventEmitter<any> = new EventEmitter();
   constructor(private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
     private translate: TranslateService,
@@ -55,7 +55,7 @@ export class ResultComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
-    if(this.comprehensiveJourneyMode){
+    if (this.comprehensiveJourneyMode) {
       this.paymentStatus();
     }
     this.loaderService.hideLoaderForced();
@@ -68,12 +68,12 @@ export class ResultComponent implements OnInit, OnDestroy {
       }
     });
   }
-  paymentStatus(){
-    let comprehensiveData= this.comprehensiveService.getComprehensiveEnquiry();
-    if(comprehensiveData.paymentStatus.toLocaleLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING || comprehensiveData.reportStatus.toLocaleLowerCase() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW){
-      this.isPayment =true;
-    }else{
-      this.isPayment =false;
+  paymentStatus() {
+    let comprehensiveData = this.comprehensiveService.getComprehensiveEnquiry();
+    if (comprehensiveData.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING || comprehensiveData.reportStatus.toLowerCase() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+      this.isPayment = true;
+    } else {
+      this.isPayment = false;
     }
 
   }
