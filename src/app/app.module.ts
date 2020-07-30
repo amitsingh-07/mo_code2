@@ -83,6 +83,9 @@ import { LoaderComponent } from './shared/modal/loader/loader.component';
 import {
   ModelWithButtonComponent
 } from './shared/modal/model-with-button/model-with-button.component';
+import {
+  PaymentInstructionModalComponent
+} from './shared/modal/payment-instruction-modal/payment-instruction-modal.component';
 import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.component';
 import {
   RecommendationsModalComponent
@@ -178,7 +181,8 @@ export function tokenGetterFn() {
     NotFoundComponent,
     EmailEnquirySuccessComponent,
     RestrictAddPortfolioModalComponent,
-    InvestmentMaintenanceComponent
+    InvestmentMaintenanceComponent,
+    PaymentInstructionModalComponent
   ],
   imports: [
     BrowserModule,
@@ -252,7 +256,7 @@ export function tokenGetterFn() {
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent, TermsModalComponent,
     SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent,
     FundDetailsComponent, UnsupportedDeviceModalComponent, RestrictAddPortfolioModalComponent,
-    LoginCreateAccountModelComponent, SummaryModalComponent]
+    LoginCreateAccountModelComponent, SummaryModalComponent, PaymentInstructionModalComponent]
 })
 
 export class AppModule {
