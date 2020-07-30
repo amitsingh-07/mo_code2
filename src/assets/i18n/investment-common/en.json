@@ -56,7 +56,7 @@
         "MEDIAN": "Median",
         "WORST": "Worst",
         "CAPITAL_INVESTED": "Capital Invested",
-        "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period. All projections are net of all fees. The median projected return (net of all fees) is {{investedPercentage}}.",
+        "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period. The median projected return (net of all fees) is {{investedPercentage}}. All projections are net of all fees (based on standard rate of 0.6% p.a). You may be enjoying a lower advisory fee, which means projected values would be higher than shown.",
         "MEDIAN_PROJECTED_RETURN": "The median projected return (net of all fees) is {{investedPercentage}}.",
         "VIEW_FUND_DETAILS": "View Fund Details",
         "TITLE": "Confirm Portfolio",
