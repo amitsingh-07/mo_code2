@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, ViewEncapsulation, OnChanges } from '@angular/core';
 import { ConfigService, IConfig } from './../../../config/config.service';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../../investment/investment-common/investment-common.constants';
-import { PercentageInputDirective } from './../../../../../../../DEV2/bfa-frontend/src/app/shared/directives/percentage-input.directive';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
