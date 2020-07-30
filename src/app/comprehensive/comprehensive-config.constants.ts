@@ -257,9 +257,6 @@ export const COMPREHENSIVE_CONST = {
         READY: 'ready',
         ERROR: 'error'
     },
-    PAYMENT_STATUS:{
-        PENDING:"PENDING"
-    },
     REPORT_PDF_NAME: 'MoneyOwl-Comprehensive.pdf',
     RETIREMENT_PLAN: {
         MIN_AGE: 45,
