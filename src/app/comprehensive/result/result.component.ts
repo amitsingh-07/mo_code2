@@ -55,7 +55,9 @@ export class ResultComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
-    this.paymentStatus();
+    if(this.comprehensiveJourneyMode){
+      this.paymentStatus();
+    }
     this.loaderService.hideLoaderForced();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.progressService.setReadOnly(true);
@@ -68,7 +70,7 @@ export class ResultComponent implements OnInit, OnDestroy {
   }
   paymentStatus(){
     let comprehensiveData= this.comprehensiveService.getComprehensiveEnquiry();
-    if(comprehensiveData.paymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING || comprehensiveData.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW){
+    if(comprehensiveData.paymentStatus.toLocaleLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING || comprehensiveData.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW){
       this.isPayment =true;
     }else{
       this.isPayment =false;
