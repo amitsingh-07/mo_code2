@@ -52,6 +52,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   srsAccDetail;
   portfolioWithdrawRequests = false;
   showAnnualizedReturns = false;
+  addTopMargin: boolean;
 
   showPortfolioInfo = false; // Display the below 3 information
   totalInvested: any; // Cost of investment
@@ -60,6 +61,8 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   showTimeWeightedReturns = false;
   investmentAmount: any; // Net Deposits
   private subscription: Subscription;
+
+  showFixedToastMessage: boolean;
 
   constructor(
     public readonly translate: TranslateService,
@@ -104,6 +107,13 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
     this.moreList = MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.MORE_LIST;
     this.getCustomerPortfolioDetailsById(this.formValues.selectedCustomerPortfolioId);
     this.showBuyRequest();
+
+    this.manageInvestmentsService.copyToastSubject.subscribe((data) => {
+      if (data) {
+        this.addTopMargin = false;
+        this.showCopyToast(data);
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -398,9 +408,16 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 1);
+
+    this.hideToastMessage();
+  }
+
+  hideToastMessage() {
     setTimeout(() => {
       this.isToastMessageShown = false;
+      this.showFixedToastMessage = false;
       this.toastMsg = null;
+      this.addTopMargin = true;
     }, 3000);
   }
 
@@ -498,5 +515,19 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
     ref.componentInstance.errorMessage = this.translate.instant(
       'YOUR_PORTFOLIO.MODAL.CALCULATE.MESSAGE'
     );
+  }
+
+  showCopyToast(data) {
+    this.toastMsg = data;
+    this.showFixedToastMessage = true;
+    this.hideToastMessage();
+  }
+
+  notify(event) {
+    this.addTopMargin = true;
+    const toasterMsg = {
+      desc: this.translate.instant('TRANSFER_INSTRUCTION.COPIED')
+    };
+    this.showCopyToast(toasterMsg);
   }
 }
