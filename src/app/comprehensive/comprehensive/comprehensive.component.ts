@@ -44,7 +44,7 @@ export class ComprehensiveComponent implements OnInit {
   productAmount = COMPREHENSIVE_CONST.PROMOTION.AMOUNT;
   getComprehensiveSummaryDashboard: any;
   isBannerNoteVisible: boolean;
-  paymentEnabled = false;
+  paymentEnabled = true;
   includingGst = false;
   fetchData: string;
   loading: string;
@@ -58,7 +58,7 @@ export class ComprehensiveComponent implements OnInit {
     private loaderService: LoaderService, private signUpService: SignUpService,
     public footerService: FooterService, private sanitizer: DomSanitizer, private comprehensiveApiService: ComprehensiveApiService) {
     this.configService.getConfig().subscribe((config: any) => {
-      this.paymentEnabled = config.paymentEnabled;
+      // this.paymentEnabled = config.paymentEnabled;
       if (this.paymentEnabled) {
         this.imageSrc = 'assets/images/comprehensive/limited-offer.svg';
       }
@@ -211,9 +211,10 @@ export class ComprehensiveComponent implements OnInit {
           if (data && data.objectList[0].validatePromoCode) {
             this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((summaryData: any) => {
               if (summaryData && summaryData.objectList[0]) {
-                  this.cmpService.setComprehensiveSummary(summaryData.objectList[0]);
-                  this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
-              }});
+                this.cmpService.setComprehensiveSummary(summaryData.objectList[0]);
+                this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+              }
+            });
           }
         }, (err) => {
           setTimeout(() => {
