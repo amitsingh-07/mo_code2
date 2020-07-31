@@ -82,7 +82,10 @@
                                                 {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.RECIPENTS_NAME' | translate}}
                                             </div>
                                             <div class="bank-details-content">
-                                                <span>{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.RECIPENT' | translate}}</span>
+                                                <span #recipient>{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.RECIPENT' | translate}}</span>
+                                                <span copy-clipboard [copy-clipboard]="recipient"
+                                                  (copied)="notify($event)" class="copy-icon"><img alt="copy"
+                                                    src="assets/images/copy-clipboard.svg" /></span>  
                                             </div>
 
                                         </div>
@@ -91,7 +94,10 @@
                                                 {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.BANK_NAME' | translate}}
                                             </div>
                                             <div class="bank-details-content">
-                                                <span>{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.BANK' | translate}}</span>
+                                                <span #bank>{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.BANK' | translate}}</span>
+                                                <span copy-clipboard [copy-clipboard]="bank"
+                                                  (copied)="notify($event)" class="copy-icon"><img alt="copy"
+                                                    src="assets/images/copy-clipboard.svg" /></span>  
                                             </div>
                                         </div>
                                         <div class="flex-col">
@@ -99,7 +105,10 @@
                                                 {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.BANK_ACC_NO' | translate}}
                                             </div>
                                             <div class="bank-details-content">
-                                                <span>{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.BANK_ACC' | translate}}</span>
+                                                <span #bankAccNo>{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.BANK_ACC' | translate}}</span>
+                                                <span copy-clipboard [copy-clipboard]="bankAccNo"
+                                                (copied)="notify($event)" class="copy-icon"><img alt="copy"
+                                                  src="assets/images/copy-clipboard.svg" /></span>  
                                             </div>
                                         </div>
                                     </div>
@@ -232,7 +241,10 @@
                                                 {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.UNIQUE_ENTITY_NO' | translate}}
                                             </div>
                                             <div class="bank-details-content">
-                                                <span>{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.UNIQUE_ENTITY' | translate}}</span>
+                                                <span #uen>{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.UNIQUE_ENTITY' | translate}}</span>
+                                                <span copy-clipboard [copy-clipboard]="uen"
+                                                  (copied)="notify($event)" class="copy-icon"><img alt="copy"
+                                                    src="assets/images/copy-clipboard.svg" /></span>  
                                             </div>
                                         </div>
                                         <div class="flex-col">
@@ -240,7 +252,10 @@
                                                 {{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.ENTITY_NAME' | translate}}
                                             </div>
                                             <div class="bank-details-content">
-                                                <span>{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.ENTITY' | translate}}</span>
+                                                <span #entity>{{'COMPREHENSIVE.DASHBOARD.TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.ENTITY' | translate}}</span>
+                                                <span copy-clipboard [copy-clipboard]="entity"
+                                                  (copied)="notify($event)" class="copy-icon"><img alt="copy"
+                                                    src="assets/images/copy-clipboard.svg" /></span>  
                                             </div>
                                         </div>
                                     </div>
