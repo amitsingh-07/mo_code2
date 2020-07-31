@@ -15,6 +15,7 @@ export class InstructionStepsComponent implements OnInit {
   @Input() showBankTransferIns;
 
   @Output() showToolTip: EventEmitter<any> = new EventEmitter();
+  @Output() showCopyToast: EventEmitter<any> = new EventEmitter();
 
   constructor(public readonly translate: TranslateService,
               private modal: NgbModal) { }
@@ -28,5 +29,9 @@ export class InstructionStepsComponent implements OnInit {
 
   getQrCodeImg() {
     return document.getElementsByTagName('base')[0].href + 'assets/images/paynow-qrcode.png';
+  }
+
+  notify(event) {
+    this.showCopyToast.emit(event);
   }
 }
