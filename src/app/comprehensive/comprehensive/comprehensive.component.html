@@ -19,7 +19,7 @@
           <img [src]="imageSrc">
           <span [ngStyle]="{'text-decoration': paymentEnabled ? 'none' : 'line-through'}">${{productAmount}} {{'CMP.COMPREHENSIVE.INCLUSIVE_GST' | translate}}</span>
         </div>
-        <div class="limited-time">{{'CMP.COMPREHENSIVE.LIMITED_TIME' | translate}}</div>
+        <!-- <div class="limited-time">{{'CMP.COMPREHENSIVE.LIMITED_TIME' | translate}}</div> -->
       </div>
       <div [hidden]="promoCodeValidated" class="promocode-entry"><span>{{'CMP.COMPREHENSIVE.ENTER_PROMO_CODE' | translate}}</span></div>
       <div class="promocode">
