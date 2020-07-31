@@ -47,6 +47,8 @@ export class FundingInstructionsComponent implements OnInit {
   timelineMessage;
   showBankTransferSteps = true;
   PortfolioName: any;
+  showFixedToastMessage: boolean;
+  toastMsg: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -338,5 +340,22 @@ export class FundingInstructionsComponent implements OnInit {
       timelineMessage = this.translate.instant('FUNDING_INSTRUCTIONS.PROCESS_TIME_INFO');
     }
     return timelineMessage;
+  }
+
+  notify(event) {
+    const toasterMsg = {
+      desc: this.translate.instant('TRANSFER_INSTRUCTION.COPIED')
+    };
+
+    this.toastMsg = toasterMsg;
+    this.showFixedToastMessage = true;
+    this.hideToastMessage();
+  }
+
+  hideToastMessage() {
+    setTimeout(() => {
+      this.showFixedToastMessage = false;
+      this.toastMsg = null;
+    }, 3000);
   }
 }
