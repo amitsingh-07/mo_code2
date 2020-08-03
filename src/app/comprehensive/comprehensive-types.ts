@@ -37,6 +37,7 @@ export interface IComprehensiveEnquiry {
     reportSubmittedTimeStamp: string;
     isDobUpdated: boolean;
     dobPopUpEnable: boolean;
+    paymentStatus:string;
 }
 export interface IPromoCode {
     comprehensivePromoCodeToken: string;
