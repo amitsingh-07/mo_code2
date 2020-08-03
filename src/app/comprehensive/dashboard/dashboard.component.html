@@ -56,8 +56,11 @@
           </div>
           <div class="flex-row align-start" [hidden]="comprehensivePlanning !== 0">
             <div class="flex-col-8">
-              <div class="form-group-with-bg--content-label" for="name">
+              <div class="form-group-with-bg--content-label" for="name" *ngIf='!paymentInstructions'>
                 {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_SUBMITTED' | translate}}
+              </div>
+              <div class="form-group-with-bg--content-label" for="name" *ngIf='paymentInstructions'>
+                {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_SUBMITTED_PAYMENT' | translate}}
               </div>
             </div>
             <div class="flex-col-4 text-right">
