@@ -83,6 +83,10 @@ app-acknowledgement {
           &.alinment {
             align-items: baseline; 
           }
+          &.asterisk {
+            padding: 0px;
+            align-items: baseline;
+          }
         }
         
 
@@ -93,6 +97,7 @@ app-acknowledgement {
           background: $acknowledgement-text-color;
           padding: 0 !important;
         }
+       
       }
 
       li {
