@@ -118,5 +118,10 @@ export const EXT_ROUTES = {
     {
         IN_APP_ROUTE: '/assets/docs/faq/Standing_instructions_for_frequently_used_banks.pdf',
         EXTERNAL_URL: '/wp-content/uploads/2020/05/Standing_instructions_for_frequently_used_banks.pdf'
-    }]
+    },
+    {
+        IN_APP_ROUTE: '/faq-comprehensive-payment',
+        EXTERNAL_URL: '/faq-comprehensive/#comprehensive|2'
+    }
+]
 };
