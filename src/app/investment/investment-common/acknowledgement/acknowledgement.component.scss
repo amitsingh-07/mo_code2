@@ -80,11 +80,12 @@ app-acknowledgement {
         .flex {
           align-items: center;
           justify-content: space-between;
+
           &.alinment {
-            align-items: baseline; 
+            align-items: baseline;
           }
         }
-        
+
 
         .disc {
           width: 5px;
@@ -93,6 +94,7 @@ app-acknowledgement {
           background: $acknowledgement-text-color;
           padding: 0 !important;
         }
+
       }
 
       li {
