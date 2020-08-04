@@ -44,11 +44,10 @@ export class ComprehensiveComponent implements OnInit {
   productAmount = COMPREHENSIVE_CONST.PROMOTION.AMOUNT;
   getComprehensiveSummaryDashboard: any;
   isBannerNoteVisible: boolean;
-  paymentEnabled = true;
   includingGst = false;
   fetchData: string;
   loading: string;
-  imageSrc = 'assets/images/comprehensive/free-tag.svg';
+
 
   constructor(
     private appService: AppService, private cmpService: ComprehensiveService,
@@ -58,10 +57,6 @@ export class ComprehensiveComponent implements OnInit {
     private loaderService: LoaderService, private signUpService: SignUpService,
     public footerService: FooterService, private sanitizer: DomSanitizer, private comprehensiveApiService: ComprehensiveApiService) {
     this.configService.getConfig().subscribe((config: any) => {
-      // this.paymentEnabled = config.paymentEnabled;
-      if (this.paymentEnabled) {
-        this.imageSrc = 'assets/images/comprehensive/limited-offer.svg';
-      }
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
@@ -93,9 +88,7 @@ export class ComprehensiveComponent implements OnInit {
     if (this.authService.isSignedUser()) {
       const action = this.appService.getAction();
       this.loaderService.showLoader({ title: this.fetchData, autoHide: false });
-      if (this.paymentEnabled) {
-        this.getProductAmount();
-      }
+      this.getProductAmount();
       const comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
       let getCurrentVersionType = this.cmpService.getComprehensiveCurrentVersion();
       if ((getCurrentVersionType === '' || getCurrentVersionType === null ||
@@ -148,12 +141,11 @@ export class ComprehensiveComponent implements OnInit {
       });
 
     } else {
-      if (this.paymentEnabled) {
-        this.authService.authenticate().subscribe((data: any) => {
-          this.getProductAmount();
-          this.authService.clearAuthDetails();
-        });
-      }
+      this.authService.authenticate().subscribe((data: any) => {
+        this.getProductAmount();
+        this.authService.clearAuthDetails();
+      });
+
     }
     this.isBannerNoteVisible = this.isCurrentDateInRange(COMPREHENSIVE_CONST.BANNER_NOTE_START_TIME,
       COMPREHENSIVE_CONST.BANNER_NOTE_END_TIME);
