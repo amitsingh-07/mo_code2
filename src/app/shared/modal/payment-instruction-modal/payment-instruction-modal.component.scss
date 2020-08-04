@@ -10,10 +10,11 @@ app-payment-instruction-modal {
   .payment-support-mail {
     color: $black-color!important;
     cursor: pointer;
+    letter-spacing: -0.11px;
   }
   .modal-body-title {
     display: flex;
-    padding: 20px 25px;
+    padding: 20px 25px 10px 25px;
     div {
       flex-grow: 0;
       flex-basis: auto;
@@ -39,7 +40,7 @@ app-payment-instruction-modal {
     }
   }
   .modal-body-message {
-    padding: 0 50px 50px 30px;
+    padding: 0 50px 35px 30px;
   }
   .instruction-content {
     color: $instruction-content-color;
@@ -101,12 +102,18 @@ app-payment-instruction-modal {
         &--text {
           font-size: 13px;
           color: $black-color;
+          line-height: 16px;
+          letter-spacing: -0.11px;
           span {
             color: $dark-red-color;
             font-family: $muli-bold;
           }
           span u {
             text-decoration: underline;
+          }
+          b {
+            font-family: $muli-bold;
+            color: $black-color !important;
           }
         }
       }
@@ -177,10 +184,16 @@ app-payment-instruction-modal {
             letter-spacing: -0.16px;
             font-family: $muli-regular !important;
             font-weight: normal !important;
+            font-size: 16px;
+            line-height: 22px;
             span {
               font-family: $muli-bold;
               color: $ref-code-context-must-color;
               letter-spacing: -0.15px;
+            }
+            b {
+              font-family: $muli-bold;
+              color: $black-color !important;
             }
           }
         }
