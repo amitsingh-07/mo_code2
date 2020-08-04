@@ -480,4 +480,10 @@ app-payment-instruction-modal {
   .btn__footer--fixed {
     margin-top: 10px !important;
   }
+  .border-left-right {
+    @include desktop {
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+    }
+  }
 }
