@@ -337,7 +337,10 @@
     "PORTFOLIO": "Portfolio"
   },
   "PORTFOLIO_RECOMMENDATION": {
-    "VIEW_FUND_DETAILS": "View Fund Details"
+    "VIEW_FUND_DETAILS": "View Fund Details",
+    "EXPENSIVE_RATIO":" Enjoy 0% fees for the 1st $10,000 until end of 2021. Fees include fund level fee of {{expensiveRatio}} p.a. which is incorporated into the NAV.<span> <a target='_blank' href=\"/investment/\">View our fees table.</a></span>",
+    "FUND_EXPENSIVE_RATIO":"Fund Expense Ratio",
+    "TOTAL_FEE":"Total Fee"
   },
   "FUND_DETAILS": {
     "TITLE": "Fund Details",
