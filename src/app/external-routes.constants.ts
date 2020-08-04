@@ -126,6 +126,5 @@ export const EXT_ROUTES = {
     {
         IN_APP_ROUTE: '/investment-page',
         EXTERNAL_URL: '/investment/'
-    }
-]
+    }]
 };
