@@ -55,8 +55,8 @@ export class AppService {
    * clear session storage data.
    */
   clearData() {
+    this.journeyType = null;
     if (window.sessionStorage) {
-      this.journeyType = null;
       sessionStorage.removeItem(SESSION_STORAGE_KEY);
       sessionStorage.removeItem(SESSION_CUSTOMER);
     }
