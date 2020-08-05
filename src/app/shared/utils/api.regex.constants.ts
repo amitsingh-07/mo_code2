@@ -58,5 +58,6 @@ export const RegexConstants = {
         UOB: /^\d{2}-?\d{5}-?\d{2}$/, /* 2-5-2 */
     },
     MobileNumber: /^(8|9)\d{7}$/,
-    portfolioName: /^\S.*$/
+    portfolioName: /^\S.*$/,
+    trimSpace: /\s\s+/g
 };
