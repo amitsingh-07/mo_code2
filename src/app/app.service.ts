@@ -55,6 +55,7 @@ export class AppService {
    * clear session storage data.
    */
   clearData() {
+    this.journeyType = null;
     if (window.sessionStorage) {
       sessionStorage.removeItem(SESSION_STORAGE_KEY);
       sessionStorage.removeItem(SESSION_CUSTOMER);
@@ -116,7 +117,7 @@ export class AppService {
     }
   }
   clearJourneys() {
-    this.journeyType = ''
+    this.journeyType = null;
     if (window.sessionStorage) {
       // App data
       sessionStorage.removeItem(SESSION_STORAGE_KEY);
