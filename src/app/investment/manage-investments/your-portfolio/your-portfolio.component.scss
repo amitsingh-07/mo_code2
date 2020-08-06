@@ -914,6 +914,11 @@ app-your-portfolio {
     }
 
   }
+  .pad-top {
+    @include iphone5 {
+      padding-top: 15px;
+    }
+  }
 }
 .modal-body {
   width: 375px;
