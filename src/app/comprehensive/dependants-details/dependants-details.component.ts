@@ -203,6 +203,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     if (!this.viewMode) {
       if (this.validateDependantForm(form)) {
         form.value.dependentMappingList.forEach((dependant: any, index) => {
+          form.value.dependentMappingList[index].name = dependant.name.trim().replace(RegexConstants.trimSpace, ' ');
           form.value.dependentMappingList[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
           form.value.dependentMappingList[index].enquiryId = this.comprehensiveService.getEnquiryId();
         });
