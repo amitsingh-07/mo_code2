@@ -2,6 +2,14 @@
 @import '../../../../mixins';
 
 app-funding-instructions {
+  
+  .toast-msg-fixed-block {
+    @include desktop {
+      top: 100px;
+      right: 40px;
+    }
+  }
+
   .fund-your-account {
     &.clearfix {
       overflow: auto;
@@ -396,7 +404,7 @@ app-funding-instructions {
         }
 
         .ref-code {
-          padding: 14px 0 10px;
+          padding: 14px 10px 10px 10px;
           font-family: $muli-bold;
           font-size: 18px;
           line-height: 1.17;
@@ -407,6 +415,17 @@ app-funding-instructions {
           border: 2px solid $fund-ref-brdr-color;
           background-color: $fund-ref-bg-color;
           margin-bottom: 15px;
+          display: flex;
+          justify-content: center;
+
+          span:first-child {
+            flex-grow: 1;
+          }
+
+          .copy-icon {
+            cursor: pointer;
+            margin-top: -3px;
+          }
         }
 
         .note-icon {
