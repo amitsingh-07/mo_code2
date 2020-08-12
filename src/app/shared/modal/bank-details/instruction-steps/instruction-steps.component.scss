@@ -1,4 +1,5 @@
 @import '../../../../../variables';
+@import '../../../../../mixins';
 app-instruction-steps {
     .instruction-content {
         padding-top: 20px;
@@ -32,29 +33,50 @@ app-instruction-steps {
             }
             &__refcode-box {
                 background-color: $cinderella-color;
-                padding: 13px 20px !important;
+                padding: 13px 13px 11px 20px !important;
                 color: $dark-red-color;
                 border-radius: 6px;
                 border: 1px solid $red-color;
                 margin: 7px 33px;
                 line-height: 20px;
                 display: flex;
-                align-items: center;
-                justify-content: center;
+                // align-items: center;
+                justify-content: flex-start;
+                margin: 7px auto;
+
+                @include desktop {
+                  max-width: 243px;
+                }
+
+                @include tablet {
+                  max-width: 243px;
+                }
+
+                @include allmobiles {
+                  max-width: 230px;
+                }
             }
             &__refcode-icon {
                 display: inline-block;
                 margin-right: 10px;
-                margin-top: 2px;
+                margin-top: 1px;
             }
             &__refcode-num {
                 font-family: $muli-bold;
                 font-size: 18px;
                 color: $dark-red-color;
+                display: flex;
+                flex-grow: 1;
+            }
+            &__copy-icon {
+                cursor: pointer;
             }
             &__refcode-info {
+                width: 230px;
+                margin: auto;
                 text-align: left;
-                padding: 0 33px;
+                letter-spacing: -0.12px;
+                line-height: normal;
                 &--text {
                     font-size: 13px;
                     color: $black-color;
@@ -71,12 +93,13 @@ app-instruction-steps {
                 background-color: $teal-color;
                 padding: 10px 20px;
                 color: $white-color;
-                margin: 15px 60px;
+                margin: 18px auto 40px;
                 display: block;
                 border-radius: 6px;
                 text-decoration: none;
                 font-size: 14px;
                 font-family: $muli-semi-bold;
+                width: 153px;
             }
             &__alt-steps {
                 font-size: 16px;
@@ -84,6 +107,7 @@ app-instruction-steps {
                 text-align: left;
                 margin-top: 30px;
                 padding-left: 10px;
+                letter-spacing: normal;
             }
         }
         .steps-title {
@@ -107,6 +131,12 @@ app-instruction-steps {
             .text-black {
                 .sub-section {
                     color: $black-color;
+                }
+            }
+
+            &:nth-child(3) {
+                .section {
+                    width: 100%;
                 }
             }
             .section {
@@ -179,6 +209,12 @@ app-instruction-steps {
                     vertical-align: top;
                     cursor: pointer;
                 }
+
+                .copy-icon {
+                    margin-top: -3px;
+                    position: absolute;
+                    right: 35px;
+                }
             }
         }
         .ref_code_num_container {
@@ -186,12 +222,12 @@ app-instruction-steps {
             align-items: center;
             // height: 50px;
             background-color: $ref-code-container-bg;
-            padding: 13px 20px !important;
+            padding: 13px 13px 13px 20px !important;
             color: $ref-code-container-color;
             border-radius: 6px;
             border: 1px solid $ref-code-container-brdr-color;
             margin: 20px 20px 10px 20px;
-            max-width: 155px;
+            max-width: 230px;
             .info-text {
                 // position: relative;
                 display: flex;
@@ -214,8 +250,14 @@ app-instruction-steps {
             .ref_num {
                 font-family: $muli-semi-bold;
                 font-size: 18px;
-                letter-spacing: -0.16px;
+                letter-spacing: -0.34px;
                 line-height: 22px;
+                flex-grow: 1;
+            }
+
+            .copy-icon {
+                cursor: pointer;
+                margin-top: -3px;
             }
         }
         .ref-code-info {

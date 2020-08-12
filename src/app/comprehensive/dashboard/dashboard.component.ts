@@ -50,6 +50,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
   isReportGenerated = false;
   fetchData : string;
   paymentInstructions = false;
+  showFixedToastMessage: boolean;
+  toastMsg: any;
 constructor(
     private router: Router,
     private translate: TranslateService,
@@ -340,5 +342,21 @@ constructor(
   }
   showPaymentModal() {
     const ref = this.modal.open(PaymentInstructionModalComponent, { centered: true });
+    ref.componentInstance.showCopyToast.subscribe((data) => {
+      this.showCopyToast(data);
+    });
+  }
+
+  showCopyToast(data) {
+    this.toastMsg = data;
+    this.showFixedToastMessage = true;
+    this.hideToastMessage();
+  }
+
+  hideToastMessage() {
+    setTimeout(() => {
+      this.showFixedToastMessage = false;
+      this.toastMsg = null;
+    }, 3000);
   }
 }
