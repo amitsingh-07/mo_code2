@@ -22,8 +22,10 @@ import {
 })
 export class PaymentInstructionModalComponent implements OnInit {  
   @Input() closeBtn = true;
-  activeMode = 'BANK';  
-  
+  activeMode = 'BANK';
+
+  @Output() showCopyToast: EventEmitter<any> = new EventEmitter();
+
   constructor(
     public activeModal: NgbActiveModal,
     private router: Router,
@@ -57,5 +59,12 @@ export class PaymentInstructionModalComponent implements OnInit {
   }
   getQrCodeImg() {
     return document.getElementsByTagName('base')[0].href + 'assets/images/comprehensive/qrcode.png';
+  }
+
+  notify(event) {
+    const toasterMsg = {
+      desc: this.translate.instant('TRANSFER_INSTRUCTION.COPIED')
+    };
+    this.showCopyToast.emit(toasterMsg);
   }
 }

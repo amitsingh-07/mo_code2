@@ -1,3 +1,14 @@
+<!-- Copy toaster -->
+<div class="toast-msg-fixed-block" *ngIf="showFixedToastMessage">
+  <div class="toast-msg-container">
+    <div class="flex-col-1">
+      <img src="assets/images/topupwithdraw/check_orange.svg" alt="" />
+    </div>
+    <div class="flex-col-11">
+      <div class="toast-msg">{{toastMsg?.desc}}</div>
+    </div>
+  </div>
+</div>
 <div class="container-fluid max-width--1024 comprehensive"
   *ngIf="((getComprehensiveSummary && getComprehensiveSummary.comprehensiveEnquiry !== null && getComprehensiveSummary.comprehensiveEnquiry.isValidatedPromoCode) || isComprehensiveLiveEnabled) && isComprehensiveEnabled">
   <div class="comprehensive" [ngClass] = "{'dashboard-lite': comprehensiveLiteEnabled }">
