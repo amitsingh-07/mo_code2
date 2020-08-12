@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { conformToMask } from 'text-mask-core';
 
 import { HttpClient } from '@angular/common/http';
@@ -47,6 +47,7 @@ export class ManageInvestmentsService {
   private topUPFormError: any = new TopUPFormError();
   private managementFormError: any = new ManageInvestmentsFormError();
   selectedPortfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.ALL;
+  copyToastSubject = new Subject();
 
   constructor(
     public readonly translate: TranslateService,
@@ -452,6 +453,13 @@ export class ManageInvestmentsService {
     this.transferInstructionModal.componentInstance.topUpActionBtn.subscribe(() => {
       this.transferInstructionModal.dismiss();
       this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
+    });
+
+    this.transferInstructionModal.componentInstance.showCopied.subscribe(() => {
+      const toasterMsg = {
+        desc: this.translate.instant('TRANSFER_INSTRUCTION.COPIED')
+      };
+      this.copyToastSubject.next(toasterMsg);
     });
   }
 

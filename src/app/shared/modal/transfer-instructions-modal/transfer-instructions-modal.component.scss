@@ -103,7 +103,7 @@
     }
     .cash-account-content{
       .ref-code{
-        padding: 14px 0 10px;
+        padding: 14px 13px 10px 10px;
         font-family: $muli-bold;
         font-size: 18px;
         line-height: 1.17;
@@ -114,6 +114,27 @@
         border: 2px solid #00a7a7;
         background-color: #ffffff;
         margin-bottom: 15px;
+        display: flex;
+        justify-content: center;
+
+        span:first-child {
+          flex-grow: 1;
+        }
+
+        .copy-icon {
+          cursor: pointer;
+
+          @include desktop {
+            position: absolute;
+            right: 45px;
+            margin-top: -4px;
+          }
+
+          @include allmobiles {
+            position: relative;
+            top: -3px;
+          }
+        }
       }
       .note-icon{
         width: 24px;

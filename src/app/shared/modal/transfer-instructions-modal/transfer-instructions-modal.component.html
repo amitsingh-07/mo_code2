@@ -25,8 +25,12 @@
       <!--Form Content-->
       <div class="form-group-with-bg--content">
         <div class="cash-account-content">
-          <div class="ref-code">{{ 'TRANSFER_INSTRUCTION.REFERENCE_CODE_LBL' | translate }}
-            {{bankDetails.referenceNumber}}</div>
+          <div class="ref-code">
+            <span>{{ 'TRANSFER_INSTRUCTION.REFERENCE_CODE_LBL' | translate }}
+              {{bankDetails.referenceNumber}}</span>
+            <span copy-clipboard [context]="bankDetails.referenceNumber" (copied)="notify($event)"
+              class="copy-icon"><img alt="copy" src="assets/images/copy-clipboard.svg" /></span>
+          </div>
           <div class="flex align-flex-start">
             <div class="note-icon"><img src="assets/images/investment-account/note-icon.svg" /></div>
             <div class="note" innerHTML="{{'TRANSFER_INSTRUCTION.NOTE' | translate}}"></div>
@@ -53,12 +57,12 @@
       <!-- TAB 1 -->
       <div class="tab-content" [class.active]="activeMode == 'BANK'">
         <app-instruction-steps [showBankTransferIns]="showBankTransferSteps" [bankDetails]="bankDetails"
-          (showToolTip)="showTipModal()"></app-instruction-steps>
+          (showToolTip)="showTipModal()" (showCopyToast)="notify($event)" ></app-instruction-steps>
       </div>
       <!-- TAB 2 -->
       <div class="tab-content" [class.active]="activeMode == 'PAYNOW'">
         <app-instruction-steps [showBankTransferIns]="!showBankTransferSteps" [paynowDetails]="paynowDetails"
-          (showToolTip)="showTipModal()"></app-instruction-steps>
+          (showToolTip)="showTipModal()" (showCopyToast)="notify($event)" ></app-instruction-steps>
       </div>
     </div>
 
