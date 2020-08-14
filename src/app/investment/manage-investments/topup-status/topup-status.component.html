@@ -23,7 +23,9 @@
           <div class="investment-value">{{fundDetails['exceededAmount'] | formatCurrency}}</div>
           <div class="cash-account-balance">{{ 'TOPUP_REQUEST.CASH_ACCOUNT_BALANCE_LBL' | translate }}
             {{cashBalance | formatCurrency}}</div>
-          <div class="ref-code">
+          <div class="ref-code" copy-clipboard
+            [context]="bankDetails ? bankDetails?.referenceNumber :paynowDetails?.referenceNumber"
+            (copied)="notify($event)">
             <span>{{ 'TOPUP_REQUEST.REFERENCE_CODE_LBL' | translate }}
               {{ bankDetails ? bankDetails?.referenceNumber :paynowDetails?.referenceNumber }}</span>
             <span copy-clipboard [context]="bankDetails ? bankDetails?.referenceNumber :paynowDetails?.referenceNumber"

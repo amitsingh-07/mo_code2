@@ -32,6 +32,7 @@ app-instruction-steps {
                 font-family: $muli-regular;
             }
             &__refcode-box {
+                cursor: pointer;
                 background-color: $cinderella-color;
                 padding: 13px 13px 11px 20px !important;
                 color: $dark-red-color;
@@ -201,6 +202,7 @@ app-instruction-steps {
                 font-size: 16px;
                 letter-spacing: -0.3px;
                 color: $bank-centent-color;
+                margin-top: 2px;
                 strong {
                     margin-right: 15px;
                     font-weight: 600;
@@ -210,14 +212,18 @@ app-instruction-steps {
                     cursor: pointer;
                 }
 
+                .copy-txt {
+                  cursor: pointer;
+                }
+                
                 .copy-icon {
                     margin-top: -3px;
-                    position: absolute;
-                    right: 35px;
+                    float: right;
                 }
             }
         }
         .ref_code_num_container {
+            cursor: pointer;
             display: flex;
             align-items: center;
             // height: 50px;
