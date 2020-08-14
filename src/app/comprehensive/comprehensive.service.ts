@@ -405,7 +405,7 @@ export class ComprehensiveService {
       name: dependant.name,
       dateOfBirth: dependant.dateOfBirth,
       gender: dependant.gender,
-      enquiryId: dependant.enquiryId,
+      enquiryId: this.getEnquiryId(),
       location: childEndowment.location,
       educationCourse: childEndowment.educationCourse,
       educationSpendingShare: childEndowment.educationSpendingShare,
