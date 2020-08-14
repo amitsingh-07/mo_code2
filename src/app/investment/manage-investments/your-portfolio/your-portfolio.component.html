@@ -552,12 +552,11 @@
                 <!--Form Content-->
                 <div class="form-group-with-bg--content">
                   <div class="cash-account-content">
-                    <div class="ref-code">{{'YOUR_PORTFOLIO.REFERENCE_CODE' | translate}}:
+                    <div class="ref-code" copy-clipboard [context]="portfolio.referenceCode" (copied)="notify($event)">
+                      {{'YOUR_PORTFOLIO.REFERENCE_CODE' | translate}}:
                       {{portfolio.referenceCode }}
-                      <span copy-clipboard
-                        [context]="portfolio.referenceCode"
-                        (copied)="notify($event)" class="copy-icon"><img alt="copy"
-                          src="assets/images/copy-clipboard.svg" /></span>
+                      <span copy-clipboard [context]="portfolio.referenceCode" (copied)="notify($event)"
+                        class="copy-icon"><img alt="copy" src="assets/images/copy-clipboard.svg" /></span>
                     </div>
                     <div class="flex">
                       <div class="note-icon"><img src="assets/images/investment-account/note-icon.svg" /></div>

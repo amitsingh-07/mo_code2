@@ -855,7 +855,8 @@ app-your-portfolio {
 
           .cash-account-content{
             padding-top: 5px;
-            .ref-code{
+            .ref-code {
+              cursor: pointer;
               padding: 14px 13px 10px 10px;
               font-family: $muli-bold;
               font-size: 18px;
