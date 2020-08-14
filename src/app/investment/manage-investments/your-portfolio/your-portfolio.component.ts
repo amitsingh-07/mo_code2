@@ -104,6 +104,11 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
     this.moreList = MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.MORE_LIST;
     this.getCustomerPortfolioDetailsById(this.formValues.selectedCustomerPortfolioId);
     this.showBuyRequest();
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.ROOT]);   
+      }
+  });
   }
 
   ngOnDestroy() {
