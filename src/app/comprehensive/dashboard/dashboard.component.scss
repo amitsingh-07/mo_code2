@@ -1,6 +1,71 @@
 @import '../../../variables';
 @import '../../../mixins';
 
+// Copied Toast Msg
+.toast-msg-fixed-block {
+  position: fixed;
+  z-index: 9999;
+  min-width: 180px;
+  margin: 0 auto;
+
+  @include desktop {
+    top: 20px;
+    right: 40px;
+  }
+
+  @include tablet {
+    top: 20px;
+    right: 40px;
+  }
+
+  @include allmobiles {
+    width: 100%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .toast-msg-container {
+    color: #e57300;
+    background: #fff;
+    padding: 19px;
+    background-color: #fff1e3;
+    font-family: "Muli Bold", sans-serif;
+    font-size: 15px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    width: 180px;
+    position: absolute;
+    right: 15px;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+
+    @include allmobiles {
+      border-radius: 0;
+      padding: 19px;
+      width: 100%;
+      left: 0;
+      right: 0;
+      box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5);
+    }
+
+    img {
+      width: 32px;
+    }
+
+    .toast-msg {
+      margin-left: 32px;
+      word-wrap: break-word;
+      letter-spacing: -0.11px;
+      line-height: normal;
+      margin-top: -3px;
+
+      @include allmobiles {
+        margin-left: 16px;
+      }
+    }
+  }
+}
+
 .comprehensive {
     .widget {
         background:$white-color;

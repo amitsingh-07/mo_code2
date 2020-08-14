@@ -82,6 +82,7 @@ import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
 import { NotesComponent } from './components/notes/notes.component';
 import { CapsLockInputDirective } from './directives/caps-lock-input.directive';
+import { CopyClipboardDirective } from './directives/copy-clipboard.directive';
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
@@ -131,7 +132,8 @@ export function createTranslateLoader(http: HttpClient) {
     DropdownWithSearchComponent,
     StartsWithPipe,
     RoadmapComponent,
-    SecurePipe, PortfolioListComponent, InstructionStepsComponent, FormatCurrencyPipe, NotesComponent],
+    SecurePipe, PortfolioListComponent, InstructionStepsComponent, FormatCurrencyPipe, NotesComponent,
+    CopyClipboardDirective],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -172,7 +174,8 @@ export function createTranslateLoader(http: HttpClient) {
     ReviewBuyRequestModalComponent,
     FormatCurrencyPipe,
     NotesComponent,
-    CapsLockInputDirective
+    CapsLockInputDirective,
+    CopyClipboardDirective
   ],
   entryComponents: [
     EditInvestmentModalComponent,
