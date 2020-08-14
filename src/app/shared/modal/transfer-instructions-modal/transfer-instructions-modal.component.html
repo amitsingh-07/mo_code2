@@ -25,7 +25,7 @@
       <!--Form Content-->
       <div class="form-group-with-bg--content">
         <div class="cash-account-content">
-          <div class="ref-code">
+          <div class="ref-code" copy-clipboard [context]="bankDetails.referenceNumber" (copied)="notify($event)">
             <span>{{ 'TRANSFER_INSTRUCTION.REFERENCE_CODE_LBL' | translate }}
               {{bankDetails.referenceNumber}}</span>
             <span copy-clipboard [context]="bankDetails.referenceNumber" (copied)="notify($event)"
