@@ -406,8 +406,8 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  getwiseSaverDetails() {
-    return this.http.get(investmentApiConstants.endpoint.portfolio.WisesaverDetails + '?key=WISE_SAVER_RATE')
+  getWisesaverDetails() {
+    return this.http.get(investmentApiConstants.endpoint.portfolio.getWiseSaverValues + '?key=WISE_SAVER_RATE')
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

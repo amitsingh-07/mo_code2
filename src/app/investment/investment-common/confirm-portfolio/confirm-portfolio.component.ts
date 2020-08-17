@@ -96,7 +96,7 @@ export class ConfirmPortfolioComponent implements OnInit {
           this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO });
           this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
         } else {
-          this.getwiseSaverDetails();
+          this.getWisesaverDetails();
           this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO });
         }
         const fundingParams = this.constructFundingParams(data.objectList);
@@ -115,8 +115,8 @@ export class ConfirmPortfolioComponent implements OnInit {
         };
       });
   }
-  getwiseSaverDetails(){
-    this.investmentCommonService.getwiseSaverDetails().subscribe((data) => {
+  getWisesaverDetails(){
+    this.investmentCommonService.getWisesaverDetails().subscribe((data) => {
       this.wiseSaverDetails = data.objectList;
     });
   }

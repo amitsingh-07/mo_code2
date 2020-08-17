@@ -295,7 +295,7 @@ export class InvestmentCommonService {
       portfolioType: this.investmentCommonFormData.portfolioType
     };
   }
-  getwiseSaverDetails(){
-    return this.investmentApiService.getwiseSaverDetails();
+  getWisesaverDetails(){
+    return this.investmentApiService.getWisesaverDetails();
   }
  }
