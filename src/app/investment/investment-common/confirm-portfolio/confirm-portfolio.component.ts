@@ -49,6 +49,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   isAllocationOpen = false;
   confirmPortfolioValue;
   investmentCriteria: IInvestmentCriteria;
+  wiseSaverDetails :any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -95,6 +96,7 @@ export class ConfirmPortfolioComponent implements OnInit {
           this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO });
           this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
         } else {
+          this.getWiseSaverDetails();
           this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO });
         }
         const fundingParams = this.constructFundingParams(data.objectList);
@@ -113,7 +115,11 @@ export class ConfirmPortfolioComponent implements OnInit {
         };
       });
   }
-
+  getWiseSaverDetails(){
+    this.investmentCommonService.getWiseSaverDetails().subscribe((data) => {
+      this.wiseSaverDetails = data.objectList;
+    });
+  }
   constructFundingParams(data) {
     return {
       source: 'FUNDING',
