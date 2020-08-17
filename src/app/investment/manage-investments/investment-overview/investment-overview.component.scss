@@ -8,6 +8,12 @@ app-investment-overview {
         top: 0px;
       }
     }
+
+    .invest-bg-content {
+        .container-fluid {
+            padding-bottom: 20px !important;
+        }
+    }
     .cursor_pointer {
         cursor: pointer;
     }
@@ -67,7 +73,7 @@ app-investment-overview {
         background-color: $white-color;
         margin-bottom: 20px;
         .your_total_value {
-            background-color: $pine-green-color;
+            background-color: $withdrawal-amount-panel-bg-color;
             padding: 20px;
             .total_values {
                 font-family: $muli-bold;
@@ -102,8 +108,6 @@ app-investment-overview {
                     letter-spacing: -0.15px;
                     img {
                         cursor: pointer;
-                        height: 15px;
-                        padding-left: 2px;
                     }
                 }
                 .total_cash_value {
@@ -174,7 +178,7 @@ app-investment-overview {
     .container-fluid {
         &.max-width--1024 {
             @include allmobiles {
-                padding: 15px 15px 0 !important;
+                padding: 15px 15px 20px !important;
             }
             &.no-portfolio-container {
                 padding-bottom: 0 !important;
@@ -265,7 +269,7 @@ app-investment-overview {
                                 width: 44px;
                                 height: 44px;
                                 img {
-                                    width: 31px;
+                                    width: 32px;
                                     height: 32px;
                                 }
                             }
@@ -446,9 +450,7 @@ app-investment-overview {
             &:active,
             &:focus {
                 color: #3ec5c5 !important;
-                background-color: $white-color !important;
-                color: $teal-color !important;
-                box-shadow: none !important;
+                background-color: $portfolio-card-bg-color !important;
             }
         }
     }

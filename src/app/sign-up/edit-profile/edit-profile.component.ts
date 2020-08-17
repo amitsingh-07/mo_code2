@@ -23,7 +23,6 @@ import { environment } from './../../../environments/environment';
 import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
-import { SessionsService } from 'src/app/shared/Services/sessions/sessions.service';
 
 
 @Component({
@@ -88,8 +87,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     public readonly translate: TranslateService,
     private loaderService: LoaderService,
     private configService: ConfigService,
-    private customErrorHandler: CustomErrorHandlerService,
-    private sessionsService: SessionsService
+    private customErrorHandler: CustomErrorHandlerService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
@@ -137,18 +135,12 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.translate.get('ERROR').subscribe((results) => {
-      this.authService.get2faErrorEvent
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((data) => {
-        if(data) {
-          this.authService.openErrorModal(
-            results.SESSION_2FA_EXPIRED.TITLE,
-            results.SESSION_2FA_EXPIRED.SUB_TITLE,
-            results.SESSION_2FA_EXPIRED.BUTTON
-            );
-        }
-      });
+    this.authService.get2faErrorEvent
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data) => {
+      if(data) {
+        this.authService.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
+      }
     });
   }
 
@@ -250,9 +242,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         }
       } else { // catch exceptions
         if (responseMessage.responseCode === 5015) {
-          this.sessionsService.destroyInstance();
           this.authService.clearSession();
-          this.sessionsService.createNewActiveInstance();
           this.navbarService.logoutUser();
           this.customErrorHandler.handleAuthError();
         }
@@ -290,7 +280,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
   editUserDetails() {
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
-    this.authService.set2faVerifyAllowed(true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_ID]);
   }
 
@@ -340,7 +329,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     // tslint:disable-next-line:max-line-length accountName
     this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, this.bankDetails.bank, this.bankDetails.accountNumber, this.bankDetails.id, false);
-    this.authService.set2faVerifyAllowed(true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: false }, fragment: 'bank' });
   }
 
@@ -353,7 +341,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     }
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, null, null, null, true);
-    this.authService.set2faVerifyAllowed(true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: true }, fragment: 'bank' });
   }
 
@@ -378,7 +365,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   updateSrsDetails(srsAccountNumber, srsBankOperator, customerId, srsBankFlag) {
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     this.signUpService.setEditProfileSrsDetails(srsAccountNumber, srsBankOperator, customerId, this.fundTypeId);
-    this.authService.set2faVerifyAllowed(true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS], { queryParams: { srsBank: srsBankFlag }, fragment: 'bank' });
   }
 

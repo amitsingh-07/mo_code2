@@ -1,4 +1,4 @@
-import 'rxjs/add/observable/timer';
+
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';

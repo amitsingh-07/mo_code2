@@ -257,7 +257,7 @@ app-your-portfolio {
           margin-bottom: 20px;
           .your_total_value {
             background-color: $top-up-your-portfolio-your-total-value-bg;
-            padding: 20px;
+            padding: 20px 20px 17px;
             &.no-returns {
               border-bottom-left-radius: 8px;
               border-bottom-right-radius: 8px;
@@ -366,17 +366,20 @@ app-your-portfolio {
         }
         .total_values {
           font-family: $muli-bold;
-          font-size: 21px;
+          font-size: 32px;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
           letter-spacing: -0.4px;
           text-align: center;
           color: $white-color;
-          word-break: break-all;
-          line-height: 14px;
-          padding-bottom: 5px;
+          @include allmobiles{
+            font-size: 30px;
+          }
         }
         .total_values_label {
           font-family: $muli-regular;
-          font-size: 13px;
+          font-size: 16px;
           line-height: 0.88;
           letter-spacing: -0.1px;
           text-align: center;
@@ -394,7 +397,6 @@ app-your-portfolio {
           }
           img{
             cursor: pointer;
-            height: 15px;
           }
         }
         .portfolio_info_label {
@@ -402,6 +404,7 @@ app-your-portfolio {
           color: $black-color;
           font-size: 13px;
           letter-spacing: -0.24px;
+          padding-right: 50px;
           @include allmobiles{
             padding-right: 38px;
           }
@@ -429,8 +432,8 @@ app-your-portfolio {
         .next-row {
           @include allmobiles{
             order: +1;
+            flex: 1 0 100%;
             padding-top: 15px;
-            padding-right: 24px;
           }
         }
         .arrow-img {
@@ -481,7 +484,7 @@ app-your-portfolio {
           padding-top: 15px;
           cursor: pointer;
           @include allmobiles{
-            padding-top: 14px;
+            padding-top: 10px;
           }
         }
         .your_portfolio_label {
@@ -597,13 +600,9 @@ app-your-portfolio {
           }
         }
         .form-group-with-bg .form-group-with-bg--content {
-          padding: 20px 20px 19px;
-          .flex-row {
-            justify-content: space-between;
+          padding: 18px 17px 25px 23px;
+          .flex-row:not(:last-child) {
             margin-bottom: 0px;
-            @include allmobiles{
-              justify-content: unset;
-            }
           }
         }
         hr {
@@ -652,7 +651,10 @@ app-your-portfolio {
           background: #ffffff;
           .form-group-with-bg--header{
                border-radius: 8px;
-               padding: 20px;
+               padding: 10px 20px 10px;
+               @include allmobiles{
+                 padding: 10px 20px 10px;
+               }
           }
         }
       }

@@ -47,7 +47,7 @@
                                     <div class="flex-row widget-portfolio-body">                                      
                                         <div class="flex-col-6 border-portfolio-section">
                                             <div class="flex total-portfolio-title">{{'DASHBOARD.INVESTMENT.TOTAL_PORTFOLIO_VALUE' | translate}} </div>
-                                            <div class="flex total-portfolio-value" (click)="goToInvOverview(portfolioCategory.ALL)" >{{(investmentsSummary && investmentsSummary.portfolioSummary.overallPortfolioValue ? investmentsSummary.portfolioSummary.overallPortfolioValue : 0) | formatCurrency}} <img src="assets/images/dashboard-arrow.svg" alt="" /></div>
+                                            <div class="flex total-portfolio-value">{{(investmentsSummary && investmentsSummary.portfolioSummary.overallPortfolioValue ? investmentsSummary.portfolioSummary.overallPortfolioValue : 0) | formatCurrency}} <img (click)="goToInvOverview(portfolioCategory.ALL)" src="assets/images/dashboard-arrow.svg" alt="" /></div>
                                         </div>                                       
                                         <div class="flex-col-6 widget-portfolio-right-section">
                                             <div class="flex total-portfolio-title total-portfolio-title-width">{{'DASHBOARD.INVESTMENT.TOTAL_CASH_BALANCE_VALUE' | translate}}<img (click)="showCashAccountPopUp()" src="assets/images/dashboard-help.svg" alt="" /></div>

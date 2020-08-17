@@ -13,8 +13,5 @@ export const environment: IEnvironment = {
   fbPropertyId: '1436376216665984',
   adRollPropertyId: 'IJWYLBK7MZGF7JMIJ2CP3K',
   adRollAdvId: 'J4Q6YE7JGFEZRKPTQGHN6D',
-  hideHomepage: true,
-  expire2faTime: 298,
-  expire2faPollRate: 2,
-  expire2faMaxCheck: 5
+  hideHomepage: true
 };

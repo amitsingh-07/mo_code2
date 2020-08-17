@@ -1,7 +1,7 @@
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/do';
 
-import { Observable } from 'rxjs/Observable';
+import {of as observableOf,  Observable ,  EMPTY } from 'rxjs';
+
+import {tap} from 'rxjs/operators';
 
 import {
     HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest,
@@ -18,8 +18,6 @@ import { CustomErrorHandlerService } from '../custom-error-handler.service';
 import { RequestCache } from '../http-cache.service';
 import { IServerResponse } from '../interfaces/server-response.interface';
 import { AuthenticationService } from './authentication.service';
-import { EMPTY } from 'rxjs';
-import { SessionsService } from '../../Services/sessions/sessions.service';
 
 const exceptionUrlList: Set<string> = new Set([apiConstants.endpoint.authenticate]);
 
@@ -27,8 +25,8 @@ const exceptionUrlList: Set<string> = new Set([apiConstants.endpoint.authenticat
 export class JwtInterceptor implements HttpInterceptor {
 
     constructor(
-        public auth: AuthenticationService, public cache: RequestCache, public errorHandler: CustomErrorHandlerService,
-        public router: Router, private navbarService: NavbarService, public sessionsService: SessionsService) {
+        public auth: AuthenticationService, public cache: RequestCache,
+        public errorHandler: CustomErrorHandlerService, public router: Router, private navbarService: NavbarService) {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -36,7 +34,7 @@ export class JwtInterceptor implements HttpInterceptor {
             return EMPTY;
         }
         const cachedResponse = this.cache.get(request);
-        return cachedResponse ? Observable.of(cachedResponse) : this.sendRequest(request, next, this.cache);
+        return cachedResponse ? observableOf(cachedResponse) : this.sendRequest(request, next, this.cache);
     }
 
     // tslint:disable-next-line:cognitive-complexity
@@ -77,7 +75,7 @@ export class JwtInterceptor implements HttpInterceptor {
                 })
             });
         }
-        return next.handle(request).do((event: HttpEvent<IServerResponse>) => {
+        return next.handle(request).pipe(tap((event: HttpEvent<IServerResponse>) => {
             if (event instanceof HttpResponse) {
                 // do stuff with response if you want
                 const data = event.body;
@@ -103,9 +101,7 @@ export class JwtInterceptor implements HttpInterceptor {
         }, (err: any) => {
             if (err instanceof HttpErrorResponse) {
                 if (err.status === 401 || err.status === 403) {
-                    this.sessionsService.destroyInstance();
                     this.auth.clearSession();
-                    this.sessionsService.createNewActiveInstance();
                     this.navbarService.logoutUser();
                     this.errorHandler.handleAuthError(err);
                 } else
@@ -115,7 +111,7 @@ export class JwtInterceptor implements HttpInterceptor {
                 } else {
                     this.errorHandler.handleError(err);
                 }
-        });
+        }));
     }
 
     saveCache(request: HttpRequest<any>, event: HttpResponse<IServerResponse>) {

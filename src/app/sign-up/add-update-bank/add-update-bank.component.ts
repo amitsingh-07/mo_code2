@@ -93,9 +93,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
       this.bankForm.get('accountNo').updateValueAndValidity();
     });
 
-    this.authService.get2faAuthEvent
-    .pipe(takeUntil(this.ngUnsubscribe))
-    .subscribe((token) => {
+    this.authService.get2faAuthEvent.subscribe((token) => {
       if (!token) {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       }
@@ -114,19 +112,12 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
         });
       }
     });
-
-    this.translate.get('ERROR').subscribe((results) => {
-      this.authService.get2faErrorEvent
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((data) => {
-        if(data) {
-          this.authService.openErrorModal(
-            results.SESSION_2FA_EXPIRED.TITLE,
-            results.SESSION_2FA_EXPIRED.SUB_TITLE,
-            results.SESSION_2FA_EXPIRED.BUTTON
-            );
-        }
-      });
+    this.authService.get2faErrorEvent
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data) => {
+      if(data) {
+        this.authService.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
+      }
     });
   }
 

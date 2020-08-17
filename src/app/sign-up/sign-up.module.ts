@@ -44,15 +44,13 @@ import { EditMobileNumberComponent } from '../shared/modal/edit-mobile-number/ed
 import { AddUpdateSrsComponent } from './add-update-srs/add-update-srs.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { SrsSuccessModalComponent } from './add-update-srs/srs-success-modal/srs-success-modal.component';
-import { TwoFactorAuthGuardService } from './two-factor-auth-guard.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
     [
       { prefix: './assets/i18n/app/', suffix: '.json' },
-      { prefix: './assets/i18n/sign-up/', suffix: '.json' },
-      { prefix: './assets/i18n/error/', suffix: '.json'}
+      { prefix: './assets/i18n/sign-up/', suffix: '.json' }
     ]);
 }
 
@@ -64,7 +62,7 @@ export function createTranslateLoader(http: HttpClient) {
     SharedModule,
     TextMaskModule,
     ComprehensiveModule,
-    NgbModule.forRoot(),
+    NgbModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -97,7 +95,7 @@ export function createTranslateLoader(http: HttpClient) {
     AddUpdateSrsComponent,
     SrsSuccessModalComponent
   ],
-  providers: [SignUpAccessGuard, AuthGuardService, TwoFactorAuthGuardService],
+  providers: [SignUpAccessGuard, AuthGuardService],
   entryComponents: [EditMobileNumberComponent, SrsSuccessModalComponent]
 })
 export class SignUpModule { }

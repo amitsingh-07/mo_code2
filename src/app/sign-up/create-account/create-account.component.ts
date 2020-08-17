@@ -2,7 +2,7 @@ import { flatMap } from 'rxjs/operators';
 
 import { Location } from '@angular/common';
 import {
-  AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation, HostListener
+  AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -56,8 +56,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   passwordFocus = false;
 
   submitted: boolean = false;
-  capsOn: boolean;
-  capslockFocus: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -424,11 +422,5 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     } else {
       this.passwordFocus = !this.passwordFocus;
     }
-  }
-  onFocus() {
-    this.capslockFocus = true;
-  }
-  onBlur() {
-    this.capslockFocus = false;;
   }
 }

@@ -1,6 +1,5 @@
-import 'rxjs/add/observable/forkJoin';
 
-import { Observable } from 'rxjs/Observable';
+import {forkJoin as observableForkJoin,  Observable } from 'rxjs';
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -25,7 +24,6 @@ import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.const
 import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
 import { InvestmentCommonService } from '../investment-common.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment-engagement-journey/investment-engagement-journey.constants';
-import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 
 @Component({
   selector: 'app-funding-account-details',
@@ -58,7 +56,6 @@ export class FundingAccountDetailsComponent implements OnInit {
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private investmentCommonService: InvestmentCommonService,
     public investmentAccountService: InvestmentAccountService,
-    public manageInvestmentsService: ManageInvestmentsService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -81,8 +78,8 @@ export class FundingAccountDetailsComponent implements OnInit {
   }
 
   getSrsAccDetailsAndOptionListCol() {
-    Observable.forkJoin(
-      this.manageInvestmentsService.getProfileSrsAccountDetails(),
+    observableForkJoin(
+      this.investmentAccountService.getSrsAccountDetails(),
       this.investmentAccountService.getAllDropDownList()
     ).subscribe((response) => {
       this.callbackForGetSrsAccountDetails(response[0]);
@@ -94,10 +91,12 @@ export class FundingAccountDetailsComponent implements OnInit {
   }
 
   callbackForGetSrsAccountDetails(data) {
-    if (data && data['srsAccountNumber'] && data['srsOperator']) {
-      this.isSrsAccountAvailable = true;
-      this.srsAccountDetails = data;
-      this.setSrsAccountDetails(data);
+    if (data.responseMessage.responseCode >= 6000 && data.objectList) {
+      if (data.objectList.accountNumber && data.objectList.srsBankOperator) {
+        this.isSrsAccountAvailable = true;
+        this.srsAccountDetails = data.objectList;
+        this.setSrsAccountDetails(this.srsAccountDetails);
+      }
     }
   }
 
@@ -328,10 +327,10 @@ export class FundingAccountDetailsComponent implements OnInit {
 
   setSrsAccountDetails(data) {
     if (data) {
-      const operatorBank = this.getOperatorIdByName(data.srsOperatorId, this.srsAgentBankList);
+      const operatorBank = this.getOperatorIdByName(data.srsBankOperator.id, this.srsAgentBankList);
       if (operatorBank && this.fundingAccountDetailsForm.get('srsFundingDetails')) {
         this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsOperatorBank').setValue(operatorBank);
-        this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsAccountNumber').setValue(data.srsAccountNumber.conformedValue);
+        this.fundingAccountDetailsForm.controls.srsFundingDetails.get('srsAccountNumber').setValue(data.accountNumber);
       }
     }
   }

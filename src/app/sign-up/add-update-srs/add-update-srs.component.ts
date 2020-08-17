@@ -5,8 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import 'rxjs/add/observable/forkJoin';
-import { Observable } from 'rxjs/Observable';
+
+import { Observable ,  Subject } from 'rxjs';
 
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { InvestmentEngagementJourneyService } from '../../investment/investment-engagement-journey/investment-engagement-journey.service';
@@ -26,7 +26,6 @@ import { SignUpService } from '../sign-up.service';
 
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -117,18 +116,12 @@ export class AddUpdateSrsComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.translate.get('ERROR').subscribe((results) => {
-      this.authService.get2faErrorEvent
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((data) => {
-        if(data) {
-          this.authService.openErrorModal(
-            results.SESSION_2FA_EXPIRED.TITLE,
-            results.SESSION_2FA_EXPIRED.SUB_TITLE,
-            results.SESSION_2FA_EXPIRED.BUTTON
-            );
-        }
-      });
+    this.authService.get2faErrorEvent
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((data) => {
+      if(data) {
+        this.authService.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
+      }
     });
   }
 

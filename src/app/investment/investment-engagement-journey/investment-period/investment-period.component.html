@@ -32,8 +32,7 @@
             <div *ngIf="personalInfoForm.controls.investmentPeriod.value">
               <h5 id="personalInfoInvestmentContent">{{ 'PERSONAL_INFO.I_WANT_INVEST_LBL' | translate}}
                 <span id="personalInfoInvestmentYears" class="period-count">{{personalInfoForm.controls.investmentPeriod.value}}</span>
-                <span *ngIf="personalInfoForm.controls.investmentPeriod.value ===1">{{ 'PERSONAL_INFO.YEAR' | translate}}</span>
-                <span *ngIf="personalInfoForm.controls.investmentPeriod.value > 1">{{ 'PERSONAL_INFO.YEARS' | translate}}</span></h5>
+                {{ 'PERSONAL_INFO.YEARS' | translate}}</h5>
             </div>
             <div innerHTML="{{'PERSONAL_INFO.NOTE' | translate}}"></div>
           </div>
@@ -42,7 +41,7 @@
             <div class="pb20">{{'PERSONAL_INFO.TIME_HORIZON_GUIDE' | translate}}</div>
             <div class="desc mb20">
               <ul class="list-none">
-                <li class="title"><div class="flex-row"><div class="flex-col-4">{{'PERSONAL_INFO.TIME_HORIZON_DESC_TITLE_YEAR' | translate}}</div><div class="flex-col-8">{{'PERSONAL_INFO.TIME_HORIZON_DESC_TITLE_ASSET' | translate}}</div></div></li>
+                <li class="title"><div>{{'PERSONAL_INFO.TIME_HORIZON_DESC_TITLE_YEAR' | translate}}</div><div>{{'PERSONAL_INFO.TIME_HORIZON_DESC_TITLE_ASSET' | translate}}</div></li>
                 <div class="flex-row"><div class="flex-col-4">{{'PERSONAL_INFO.LIST_LBL_1' | translate}}</div><div class="txt-nrml flex-col-8" [innerHtml]="'PERSONAL_INFO.LIST_LBL_DESC_1'|translate"></div></div>
                 <li class="flex-row"><div class="flex-col-4">{{'PERSONAL_INFO.LIST_LBL_2' | translate}}</div><div class="txt-nrml flex-col-8">{{'PERSONAL_INFO.LIST_LBL_DESC_2' | translate}}</div></li>
                 <li class="flex-row"><div class="flex-col-4">{{'PERSONAL_INFO.LIST_LBL_3' | translate}}</div><div class="txt-nrml flex-col-8">{{'PERSONAL_INFO.LIST_LBL_DESC_3' | translate}}</div></li>

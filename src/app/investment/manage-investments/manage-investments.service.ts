@@ -1,4 +1,7 @@
-import { Observable } from 'rxjs';
+
+import {of as observableOf,  Observable } from 'rxjs';
+
+import {map} from 'rxjs/operators';
 import { conformToMask } from 'text-mask-core';
 
 import { HttpClient } from '@angular/common/http';
@@ -275,6 +278,11 @@ export class ManageInvestmentsService {
     return this.investmentApiService.getUserAddress();
   }
 
+  saveNewBank(data) {
+    const payload = this.constructSaveNewBankRequest(data);
+    return this.apiService.saveNewBank(payload);
+  }
+
   saveProfileNewBank(data) {
     const payload = this.constructSaveNewBankRequest(data);
     return this.apiService.saveNewBankProfile(payload);
@@ -290,7 +298,7 @@ export class ManageInvestmentsService {
   updateBankInfo(bank, fullName, accountNum, id) {
     // API Call here
     const data = this.constructUpdateBankPayload(bank, fullName, accountNum, id);
-    return this.apiService.saveNewBankProfile(data);
+    return this.apiService.saveNewBank(data);
   }
   // tslint:disable-next-line:no-identical-functions
   constructUpdateBankPayload(bank, fullName, accountNum, id) {
@@ -553,7 +561,7 @@ export class ManageInvestmentsService {
   }
 
   getSrsAccountDetails(): Observable<ISrsAccountDetails> {
-    return this.investmentApiService.getSrsAccountDetails().map((data: any) => {
+    return this.investmentApiService.getSrsAccountDetails().pipe(map((data: any) => {
       if (data && data.objectList && data.objectList.accountNumber &&
         data.objectList.srsBankOperator && data.objectList.srsBankOperator.name) {
         const srsAccountDetails = {
@@ -570,18 +578,17 @@ export class ManageInvestmentsService {
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
-      });
+      }));
   }
 
   getProfileSrsAccountDetails(): Observable<ISrsAccountDetails> {
-    return this.investmentApiService.getProfileSrsAccountDetails().map((data: any) => {
+    return this.investmentApiService.getProfileSrsAccountDetails().pipe(map((data: any) => {
       if (data && data.objectList && data.objectList.accountNumber &&
         data.objectList.srsBankOperator && data.objectList.srsBankOperator.name) {
         const srsAccountDetails = {
           // srsAccountNumber: data.objectList.accountNumber,
           srsAccountNumber: this.srsAccountFormat(data.objectList.accountNumber, data.objectList.srsBankOperator.name),
           srsOperator: data.objectList.srsBankOperator.name,
-          srsOperatorId: data.objectList.srsBankOperator.id,
           customerId: data.objectList.customerId
         };
         this.setSrsAccountDetails(srsAccountDetails);
@@ -592,7 +599,7 @@ export class ManageInvestmentsService {
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
-      });
+      }));
   }
 
   setSrsAccountDetails(srsAccountDetails: ISrsAccountDetails) {
@@ -606,14 +613,14 @@ export class ManageInvestmentsService {
 
   getAllNotes(noteInSession): Observable<any> {
     if (noteInSession) {
-      return Observable.of(noteInSession);
+      return observableOf(noteInSession);
     } else {
-      return this.getInvestmentNoteFromApi().map((data: any) => {
+      return this.getInvestmentNoteFromApi().pipe(map((data: any) => {
         if (data) {
           this.setInvestmentNoteToSession(data.objectList);
           return data.objectList;
         }
-      });
+      }));
     }
   }
 

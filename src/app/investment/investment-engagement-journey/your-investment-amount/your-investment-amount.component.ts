@@ -163,8 +163,8 @@ export class YourInvestmentAmountComponent implements OnInit {
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
       ref.componentInstance.errorTitle = error.errorTitle;
       ref.componentInstance.errorMessageHTML = error.errorMessage
-        .replace('$ONE_TIME_AMOUNT$', this.investmentCriteria.oneTimeInvestmentMinimum)
-        .replace('$MONTHLY_AMOUNT$', this.investmentCriteria.monthlyInvestmentMinimum);
+        .replace('$ONE_TIME_INVESTMENT$', this.investmentCriteria.oneTimeInvestmentMinimum)
+        .replace('$MONTHLY_INVESTMENT$', this.investmentCriteria.monthlyInvestmentMinimum);
       // tslint:disable-next-line:triple-equals
     } else {
       this.investmentAccountService.getSpecificDropList('portfolioType').subscribe((data) => {

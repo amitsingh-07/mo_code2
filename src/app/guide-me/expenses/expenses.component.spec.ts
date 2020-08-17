@@ -20,7 +20,7 @@ describe('ExpensesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientModule, ReactiveFormsModule , NgbModule.forRoot()],
+      imports: [ HttpClientModule, ReactiveFormsModule , NgbModule],
       declarations: [ ExpensesComponent ],
       providers: [{ provide: Router, useValue: mockRouter }]
     })

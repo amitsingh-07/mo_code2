@@ -51,7 +51,7 @@ export function createTranslateLoader(http: HttpClient) {
     CommonModule,
     InvestmentAccountRoutingModule,
     ReactiveFormsModule,
-    NgbModule.forRoot(),
+    NgbModule,
     NouisliderModule,
     SharedModule,
     FormsModule,

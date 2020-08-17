@@ -30,7 +30,6 @@ import { MenuConfig } from './config/menu.config';
 import { INavbarConfig } from './config/navbar.config.interface';
 import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
-import { SessionsService } from '../Services/sessions/sessions.service';
 
 @Component({
   selector: 'app-navbar',
@@ -128,7 +127,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private config: NgbDropdownConfig, private renderer: Renderer2,
     private cdr: ChangeDetectorRef, private router: Router, private configService: ConfigService,
     private signUpService: SignUpService, private authService: AuthenticationService,
-    private sessionsService: SessionsService,
     private modal: NgbModal,
     private appService: AppService,
     public defaultError: DefaultErrors,
@@ -454,10 +452,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   clearLoginDetails(isRedirect: boolean = true) {
     this.signUpService.setUserProfileInfo(null);
     this.isLoggedIn = false;
-    this.sessionsService.destroyInstance();
     this.authService.clearAuthDetails();
     this.authService.clearSession();
-    this.sessionsService.createNewActiveInstance();
     this.authService.doClear2FASession({errorPopup: false, updateData: false});
     this.appService.clearData();
     this.appService.startAppSession();

@@ -54,10 +54,9 @@ export class YourPortfolioComponent implements OnInit {
 
   showPortfolioInfo = false; // Display the below 3 information
   totalInvested: any; // Cost of investment
-  unrealisedGainOrLoss: any; // Unrealised gain/loss
+  profitAndLoss: any; // Unrealised gain/loss
   profitAndLossPercentage: any; // Simple returns
-  showTimeWeightedReturns = false;
-  investmentAmount: any; // Net Deposits
+  showTimeWeightedReturns = true;
 
   constructor(
     public readonly translate: TranslateService,
@@ -119,15 +118,12 @@ export class YourPortfolioComponent implements OnInit {
       this.totalInvested = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['totalInvested']
         ? this.portfolio.dPMSPortfolio['totalInvested']
         : 0;
-      this.unrealisedGainOrLoss = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['unrealisedGainOrLoss']
-        ? this.portfolio.dPMSPortfolio['unrealisedGainOrLoss']
+      this.profitAndLoss = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['profitAndLoss']
+        ? this.portfolio.dPMSPortfolio['profitAndLoss']
         : 0;
       this.profitAndLossPercentage = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['profitAndLossPercentage']
         ? this.portfolio.dPMSPortfolio['profitAndLossPercentage']
         : 0;
-      this.investmentAmount = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['investmentAmount']
-          ? this.portfolio.dPMSPortfolio['investmentAmount']
-          : 0;
       this.getTransferDetails(this.portfolio.customerPortfolioId);
       if (this.portfolio['riskProfile']) {
         this.riskProfileImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
@@ -245,7 +241,7 @@ export class YourPortfolioComponent implements OnInit {
   gotoTopUp(monthly?: boolean) {
     const data = this.manageInvestmentsService.getTopUp();
     data['Investment'] = monthly ?
-    MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.MONTHLY.VALUE : MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.ONE_TIME.VALUE;
+      MANAGE_INVESTMENTS_CONSTANTS.TOPUP.MONTHLY_INVESTMENT : MANAGE_INVESTMENTS_CONSTANTS.TOPUP.ONETINE_INVESTMENT;
     this.manageInvestmentsService.setTopUp(data);
     this.manageInvestmentsService.setSelectedCustomerPortfolioId(this.portfolio.customerPortfolioId);
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
@@ -463,12 +459,10 @@ export class YourPortfolioComponent implements OnInit {
   }
   getSrsAccDetails() {
     if (this.portfolio.fundingTypeValue === 'SRS') {
-      this.authService.get2faUpdateEvent.subscribe((token) => {
-        this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
-          if (data) {
-            this.srsAccDetail = data;
-          }
-        });
+      this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
+        if (data) {
+          this.srsAccDetail = data;
+        }
       });
     }
   }

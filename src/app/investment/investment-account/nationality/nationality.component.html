@@ -94,15 +94,6 @@
         </div>
       </div>
     </form>
-
-    <div class="mt20 flex-row restrict-notice">
-      <div class="flex-col-1"> <img src="assets/images/info.svg" /></div>
-      <div class="pl-2 flex-col-10">
-        <span [innerHtml]="'SELECT_NATIONALITY.IMPORTANT_NOTICE' | translate"></span>
-        <span class="country-list" (click)="openModal()"
-          [innerHtml]="'SELECT_NATIONALITY.RESTRICTED_COUNTRIES' | translate"></span>
-      </div>
-    </div>
     <button type="button" [disabled]="!selectNationalityForm.valid" (click)="goToNext(selectNationalityForm)"
       id="select-nationality_continue_btn" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
       id="riskProfileBtn">{{ 'SELECT_NATIONALITY.CONTINUE' | translate}}</button>

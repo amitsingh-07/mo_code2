@@ -21,7 +21,7 @@ describe('ProtectionNeedsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientModule, ReactiveFormsModule , NgbModule.forRoot()],
+      imports: [ HttpClientModule, ReactiveFormsModule , NgbModule],
       declarations: [ ProtectionNeedsComponent ],
       providers: [ ProtectionNeeds,
         { provide: Router, useValue: mockRouter }]

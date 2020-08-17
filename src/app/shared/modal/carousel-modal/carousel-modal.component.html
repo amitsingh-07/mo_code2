@@ -4,7 +4,7 @@
       class="title-img" />
     <div class="title-txt">{{slides[currentSlide]['TITLE']}}</div>
   </div>
-  <ngx-slick class="carousel" #carousel [config]="slideConfig" (beforeChange)="beforeSlideChange($event)">
+  <ngx-slick-carousel class="carousel" #carousel [config]="slideConfig" (beforeChange)="beforeSlideChange($event)">
     <div ngxSlickItem *ngFor="let slide of slides, let i = index;">
       <div class="slide-item">
         <div *ngIf="slide.IMAGE" [ngClass]="imgClass">
@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-  </ngx-slick>
+  </ngx-slick-carousel>
   <div [ngStyle]="btnDivStyle" class="btn-div">
     <div class="btn-inner-div">
       <ng-container *ngIf="currentSlide === 0">

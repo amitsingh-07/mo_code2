@@ -47,7 +47,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   entitlements: any;
   showAlretPopUp = false;
   selected;
-  showMpPopup = false;
+  showMpPopup = true;
   showAnimation = false;
 
   // transfer instructions
@@ -330,7 +330,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   // Check if user is first time seeing SRS popup
   checkMpPopStatus() {
     if (this.userProfileInfo.id) {
-      this.signUpApiService.getPopupStatus(this.userProfileInfo.id, 'WS_POP').subscribe((status) => {
+      this.signUpApiService.getPopupStatus(this.userProfileInfo.id, 'MP_POP').subscribe((status) => {
         // Check if track_status is available or false
         if (!status.objectList || !status.objectList['trackStatus']) {
           this.showMpPopup = true;
@@ -372,7 +372,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   // Set the status to true as user don't want to see this popup anymore
   closeMpPopup(event?) {
     if (this.userProfileInfo.id) {
-      this.signUpApiService.setPopupStatus(this.userProfileInfo.id, 'WS_POP').subscribe((status) => {
+      this.signUpApiService.setPopupStatus(this.userProfileInfo.id, 'MP_POP').subscribe((status) => {
         if (status.responseMessage.responseCode === 6000) {
           this.showMpPopup = false;
         }

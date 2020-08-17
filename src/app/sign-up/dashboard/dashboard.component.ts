@@ -1,6 +1,5 @@
-import 'rxjs/add/observable/forkJoin';
 
-import { Observable } from 'rxjs/Observable';
+import {forkJoin as observableForkJoin,  Observable } from 'rxjs';
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
@@ -248,7 +247,7 @@ export class DashboardComponent implements OnInit {
 
   // tslint:disable-next-line:cognitive-complexity
   goToDocUpload() {
-    Observable.forkJoin(
+    observableForkJoin(
       this.signUpService.getDetailedCustomerInfo(),
       this.investmentAccountService.getNationalityCountryList()
     ).subscribe((response) => {
@@ -352,7 +351,7 @@ export class DashboardComponent implements OnInit {
   }
 
   verifyCustomerDetails() {
-    Observable.forkJoin(
+    observableForkJoin(
       this.signUpService.getDetailedCustomerInfo(),
       this.investmentAccountService.getNationalityCountryList()
     ).subscribe((response) => {

@@ -1,6 +1,8 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { appConstants } from '../../app.constants';
 import { ConfigService, IConfig } from '../../config/config.service';
@@ -11,7 +13,7 @@ export class InvestmentEnableGuard implements CanActivate {
   constructor(private configService: ConfigService, private router: Router) { }
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    return this.configService.getConfig().map((config: IConfig) => {
+    return this.configService.getConfig().pipe(map((config: IConfig) => {
       // Check if iFast is in maintenance
       if (config.iFastMaintenance && this.configService.checkIFastStatus(config.maintenanceStartTime, config.maintenanceEndTime)) {
           this.router.navigate([APP_ROUTES.INVEST_MAINTENANCE]);
@@ -24,6 +26,6 @@ export class InvestmentEnableGuard implements CanActivate {
           return false;
         }
       }
-    });
+    }));
   }
 }

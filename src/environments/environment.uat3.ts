@@ -13,10 +13,7 @@ export const environment: IEnvironment = {
   myInfoAuthorizeUrl: 'https://test.api.myinfo.gov.sg/com/v3/authorise',
   gAdPropertyId: 'AW-782920447',
   gaPropertyId: 'UA-125256446-1',
-  hideHomepage: true,
-  expire2faTime: 298,
-  expire2faPollRate: 2,
-  expire2faMaxCheck: 5
+  hideHomepage: true
 };
 /*
  * In development mode, to ignore zone related error stack frames such as

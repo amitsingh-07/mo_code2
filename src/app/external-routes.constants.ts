@@ -39,46 +39,46 @@ export const EXT_ROUTES = {
         IN_APP_ROUTE: '/promotions',
         EXTERNAL_URL: '/promotions/'
     },
-    {
-        IN_APP_ROUTE: '/faq',
-        EXTERNAL_URL: '/faq-insurance/'
-    },
-    {
-        IN_APP_ROUTE: '/faq#insurance',
-        EXTERNAL_URL: '/faq-insurance/'
-    },
-    {
-        IN_APP_ROUTE: '/faq#will-writing',
-        EXTERNAL_URL: '/faq-wills/'
-    },
-    {
-        IN_APP_ROUTE: '/faq#investment',
-        EXTERNAL_URL: '/faq-investment/'
-    },
-    {
-        IN_APP_ROUTE: '/faq#comprehensive',
-        EXTERNAL_URL: '/faq-comprehensive/'
-    },
-    {
-        IN_APP_ROUTE: '/faq#srs-joint-account',
-        EXTERNAL_URL: '/faq-investment/#investment|3'
-    },
-    {
-        IN_APP_ROUTE: '/faq?category=insurance',
-        EXTERNAL_URL: '/faq-insurance/'
-    },
-    {
-        IN_APP_ROUTE: '/faq?category=will',
-        EXTERNAL_URL: '/faq-wills/'
-    },
-    {
-        IN_APP_ROUTE: '/faq?category=investment',
-        EXTERNAL_URL: '/faq-investment/'
-    },
-    {
-        IN_APP_ROUTE: '/faq?category=comprehensive',
-        EXTERNAL_URL: '/faq-comprehensive/'
-    },
+    // {
+    //     IN_APP_ROUTE: '/faq',
+    //     EXTERNAL_URL: '/faq-insurance/'
+    // },
+    // {
+    //     IN_APP_ROUTE: '/faq#insurance',
+    //     EXTERNAL_URL: '/faq-insurance/'
+    // },
+    // {
+    //     IN_APP_ROUTE: '/faq#will-writing',
+    //     EXTERNAL_URL: '/faq-wills/'
+    // },
+    // {
+    //     IN_APP_ROUTE: '/faq#investment',
+    //     EXTERNAL_URL: '/faq-investment/'
+    // },
+    // {
+    //     IN_APP_ROUTE: '/faq#comprehensive',
+    //     EXTERNAL_URL: '/faq-comprehensive/'
+    // },
+    // {
+    //     IN_APP_ROUTE: '/faq#srs-joint-account',
+    //     EXTERNAL_URL: '/faq-investment/#investment|3'
+    // },
+    // {
+    //     IN_APP_ROUTE: '/faq?category=insurance',
+    //     EXTERNAL_URL: '/faq-insurance/'
+    // },
+    // {
+    //     IN_APP_ROUTE: '/faq?category=will',
+    //     EXTERNAL_URL: '/faq-wills/'
+    // },
+    // {
+    //     IN_APP_ROUTE: '/faq?category=investment',
+    //     EXTERNAL_URL: '/faq-investment/'
+    // },
+    // {
+    //     IN_APP_ROUTE: '/faq?category=comprehensive',
+    //     EXTERNAL_URL: '/faq-comprehensive/'
+    // },
     {
         IN_APP_ROUTE: '/promotions/1',
         EXTERNAL_URL: '/promotions/aviva-idealincome/'
@@ -114,9 +114,5 @@ export const EXT_ROUTES = {
     {
         IN_APP_ROUTE: '/promotions/32',
         EXTERNAL_URL: '/promotions/tokiomarine-free-24-months-additional-coverage/'
-    },
-    {
-        IN_APP_ROUTE: '/assets/docs/faq/Standing_instructions_for_frequently_used_banks.pdf',
-        EXTERNAL_URL: '/wp-content/uploads/2020/05/Standing_instructions_for_frequently_used_banks.pdf'
     }]
 };

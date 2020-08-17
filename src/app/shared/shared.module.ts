@@ -1,4 +1,4 @@
-import { SlickModule } from 'ngx-slick';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { CommonModule } from '@angular/common';
@@ -81,7 +81,7 @@ import {
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
 import { NotesComponent } from './components/notes/notes.component';
-import { CapsLockInputDirective } from './directives/caps-lock-input.directive';
+
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
@@ -93,7 +93,7 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   imports: [
     CommonModule,
-    NgbModule.forRoot(),
+    NgbModule,
     RouterModule,
     TranslateModule.forRoot({
       loader: {
@@ -104,9 +104,9 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     FormsModule,
     ReactiveFormsModule,
-    SlickModule.forRoot()
+    SlickCarouselModule
   ],
-  exports: [CurrencyInputDirective, PercentageInputDirective, CapsLockInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
+  exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe,
     OrderByPipe,
     ProductDetailComponent,
@@ -171,8 +171,7 @@ export function createTranslateLoader(http: HttpClient) {
     CarouselModalComponent,
     ReviewBuyRequestModalComponent,
     FormatCurrencyPipe,
-    NotesComponent,
-    CapsLockInputDirective
+    NotesComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,

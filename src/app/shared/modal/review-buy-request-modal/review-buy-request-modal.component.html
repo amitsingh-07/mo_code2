@@ -51,11 +51,11 @@
         <div class="top-up-srs-text-lbl pb20">{{'REVIEW_BUY_REQUEST.SRS_LBL' | translate}}</div>
         <div class="flex-col">
           <div class="srs-operator-lbl">{{'REVIEW_BUY_REQUEST.SRS_OPERATOR' | translate}}</div>
-          <div class="srs-bank">{{srsDetails?.srsOperator}}</div>
+          <div class="srs-bank">{{fundDetails.srsDetails.srsOperator}}</div>
         </div>
         <div class="flex-col mt10">
           <div class="srs-operator-lbl">{{'REVIEW_BUY_REQUEST.SRS_ACCOUNT_NUMBER' | translate}}</div>
-          <div  class="srs-bank">{{srsDetails?.srsAccountNumber.conformedValue}}</div>
+          <div  class="srs-bank">{{fundDetails.srsDetails.srsAccountNumber.conformedValue}}</div>
         </div>
       </div>
     </ng-container>
