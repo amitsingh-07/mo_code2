@@ -13,6 +13,8 @@ import { INVESTMENT_COMMON_CONSTANTS } from '../../../investment/investment-comm
 export class PortfolioInfoComponent implements OnInit, OnChanges {
 
   @Input('portfolio') portfolio;
+  @Input('wiseSaverDetails') wiseSaverDetails;
+  
 
   portfolioProjectionSubText;
   isWiseSaverPortfolio: boolean;
