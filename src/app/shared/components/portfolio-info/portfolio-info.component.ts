@@ -14,9 +14,10 @@ export class PortfolioInfoComponent implements OnInit, OnChanges {
 
   @Input('portfolio') portfolio;
   @Input('wiseSaverDetails') wiseSaverDetails;
-  
+
 
   portfolioProjectionSubText;
+  wisaSaverValueText;
   isWiseSaverPortfolio: boolean;
 
 
@@ -25,10 +26,12 @@ export class PortfolioInfoComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.updateProjectionSubText();
     this.isWiseSaverPortfolio = (this.portfolio.portfolioType.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY_TYPE.WISESAVER);
+    this.updateWiseSaverValue();
   }
 
   ngOnChanges() {
     this.updateProjectionSubText();
+    this.updateWiseSaverValue();
   }
 
   updateProjectionSubText() {
@@ -39,4 +42,11 @@ export class PortfolioInfoComponent implements OnInit, OnChanges {
       investedPercentage: this.portfolio.reviewedProjectedReturnsMedian
     };
   }
+  updateWiseSaverValue() {
+    if (this.wiseSaverDetails) {
+      this.wisaSaverValueText = {
+        wiseSaverValue: this.wiseSaverDetails.value 
+      }
+  }
+}
 }
