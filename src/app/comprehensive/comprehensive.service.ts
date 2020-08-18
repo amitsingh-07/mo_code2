@@ -1418,7 +1418,7 @@ export class ComprehensiveService {
         id: '',
         path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
         title: 'No. of years to provide for',
-        value: parseInt(dependentHouseHoldData.noOfYears.toString(), 10) ?  parseInt(dependentHouseHoldData.noOfYears.toString(), 10) + '' : '0',
+        value: dependentHouseHoldData.noOfYears ?  Util.toNumber(dependentHouseHoldData.noOfYears) + '' : '0',
         completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
       });
     }
