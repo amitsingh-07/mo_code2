@@ -62,7 +62,8 @@
               formatCurrency}}</div>
             <div class="cash-account-balance">{{ 'FUNDING_INSTRUCTIONS.CASH_ACCOUNT_BALANCE_LBL' | translate }} $0</div>
             <div class="ref-code">
-              <span>{{ 'FUNDING_INSTRUCTIONS.REFERENCE_CODE_LBL' | translate }}{{ bankDetails ? bankDetails.referenceNumber :paynowDetails.referenceNumber }}
+              <span copy-clipboard [context]="bankDetails ? bankDetails.referenceNumber :paynowDetails.referenceNumber"
+                (copied)="notify($event)" >{{ 'FUNDING_INSTRUCTIONS.REFERENCE_CODE_LBL' | translate }}{{ bankDetails ? bankDetails.referenceNumber :paynowDetails.referenceNumber }}
               </span>
               <span copy-clipboard [context]="bankDetails ? bankDetails.referenceNumber :paynowDetails.referenceNumber"
                 (copied)="notify($event)" class="copy-icon"><img alt="copy"
