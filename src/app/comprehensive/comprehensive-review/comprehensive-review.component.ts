@@ -118,14 +118,14 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       if (currentStep === 4) {
         if (this.isPaymentEnabled && this.comprehensiveJourneyMode) {
           // If payment is enabled and user has not paid, go payment else initiate report gen
-            this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]).then((result) => {
-              if (result === false) {
-                this.loaderService.showLoader({ title:  this.loading, autoHide: false });
-                this.initiateReport();
-              }
-            });
+          this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]).then((result) => {
+            if (result === false) {
+              this.loaderService.showLoader({ title: this.loading, autoHide: false });
+              this.initiateReport();
+            }
+          });
         } else {
-          this.loaderService.showLoader({ title:  this.loading, autoHide: false });
+          this.loaderService.showLoader({ title: this.loading, autoHide: false });
           this.initiateReport();
         }
       } else {
@@ -151,20 +151,23 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
       this.loaderService.hideLoaderForced();
 
-   }, (err) => {
-    this.loaderService.hideLoaderForced();
-   });
+    }, (err) => {
+      this.loaderService.hideLoaderForced();
+    });
   }
+
   @HostListener('input', ['$event'])
   reviewtandcCheck() {
     this.tandcForm.valueChanges.subscribe((form: any) => {
-      console.log(form);
-      let tandcEnableFlag = true;
+      this.tandcEnableFlag = form.tandc;
     });
   }
+
   buildtandcForm() {
+    const reportStatus = this.comprehensiveService.getReportStatus();
+    this.tandcEnableFlag = reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW ? false : true;
     this.tandcForm = this.formBuilder.group({
-      tandc: []
-  });
+      tandc: [this.tandcEnableFlag]
+    });
   }
 }
