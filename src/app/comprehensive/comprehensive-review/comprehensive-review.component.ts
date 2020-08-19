@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -13,6 +13,7 @@ import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ComprehensiveService } from '../comprehensive.service';
 import { PAYMENT_ROUTE_PATHS } from './../../payment/payment-routes.constants';
 import { PaymentService } from './../../payment/payment.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-comprehensive-review',
@@ -22,12 +23,14 @@ import { PaymentService } from './../../payment/payment.service';
 export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   pageId: string;
   pageTitle: string;
+  tandcForm: FormGroup;
   menuClickSubscription: Subscription;
   subscription: Subscription;
   isPaymentEnabled = false;
   comprehensiveJourneyMode: boolean;
   requireToPay = false;
   loading: string;
+  tandcEnableFlag: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
@@ -37,6 +40,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     private comprehensiveService: ComprehensiveService,
     private comprehensiveApiService: ComprehensiveApiService,
     private paymentService: PaymentService,
+    private formBuilder: FormBuilder,
     private loaderService: LoaderService) {
     this.pageId = this.activatedRoute.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
@@ -91,6 +95,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     } else if (!this.comprehensiveService.checkResultData()) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
     }
+    this.buildtandcForm();
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
@@ -149,5 +154,17 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
    }, (err) => {
     this.loaderService.hideLoaderForced();
    });
+  }
+  @HostListener('input', ['$event'])
+  reviewtandcCheck() {
+    this.tandcForm.valueChanges.subscribe((form: any) => {
+      console.log(form);
+      let tandcEnableFlag = true;
+    });
+  }
+  buildtandcForm() {
+    this.tandcForm = this.formBuilder.group({
+      tandc: []
+  });
   }
 }
