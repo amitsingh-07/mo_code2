@@ -9,13 +9,13 @@
     <span *ngIf="!comprehensiveJourneyMode">{{'CMP.REVIEW.ABOUT_LITE' | translate }}</span>
   </div>
   <!--T&C-->
-  <form name="tandcForm" [formGroup]="tandcForm" id="tandcForm">
+  <form *ngIf="!tandcEnableFlag" name="tandcForm" [formGroup]="tandcForm" id="tandcForm">
     <div class="form-group-single-column  mb20 flex-col">
       <div class="checkbox-button">
         <input type="checkbox" class="field checkbox" name="tandc" id="tandc" formControlName="tandc"
           (change)="reviewtandcCheck()">
         <label for="tandc">
-          <div class="tandc">{{'CMP.REVIEW.I_AGREE' | translate}} <a href="https://www.moneyowl.com.sg/terms-of-use"
+          <div class="tandc">{{'CMP.REVIEW.I_AGREE' | translate}} <a target="_blank" routerLink="/terms-of-use"
               target="_blank">{{'CMP.REVIEW.T_C_LINK' | translate}}</a></div>
         </label>
       </div>
@@ -29,7 +29,7 @@
       | translate}}
     </button>
 
-    <button type="button" [disabled]="!tandcEnableFlag" (click)="goToNext()" class="btn btn-primary confirmBtn width100"
+    <button type="button" [disabled]="!enableTc" (click)="goToNext()" class="btn btn-primary confirmBtn width100"
       id="moDpdnt2BtnFooter">
       {{requireToPay && comprehensiveJourneyMode ? ('CMP.REVIEW.CONFIRM_WITH_PAY' | translate) : ('CMP.REVIEW.CONFIRM' | translate)}}
     </button>

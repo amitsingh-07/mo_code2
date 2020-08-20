@@ -31,6 +31,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   requireToPay = false;
   loading: string;
   tandcEnableFlag: boolean;
+  enableTc:boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
@@ -159,15 +160,16 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   @HostListener('input', ['$event'])
   reviewtandcCheck() {
     this.tandcForm.valueChanges.subscribe((form: any) => {
-      this.tandcEnableFlag = form.tandc;
+      this.enableTc = form.tandc;
     });
   }
 
   buildtandcForm() {
     const reportStatus = this.comprehensiveService.getReportStatus();
-    this.tandcEnableFlag = reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW ? false : true;
+    this.tandcEnableFlag = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW);
+    this.enableTc = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW);
     this.tandcForm = this.formBuilder.group({
-      tandc: [this.tandcEnableFlag]
+      tandc: [this.enableTc]
     });
   }
 }
