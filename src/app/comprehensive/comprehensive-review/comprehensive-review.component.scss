@@ -3,7 +3,7 @@
 
 .comprehensive.review {
   background: #fff;
-  height: 95vh !important;
+  height: 98vh !important;
 
   @include desktop {
     &.container-fluid {
@@ -39,7 +39,16 @@
     color: #066360;
     font-family: $muli-regular;
   }
-
+  .tandc {
+    font-size: 16px;
+    color: $termsandcond-link;
+    font-family: $muli-regular;
+  }
+  .tandc a {
+    font-family: $muli-bold;
+    text-decoration: underline;
+    color: $termsandcond-link;
+  }
   .reviewInput {
     margin: 0px !important;
     border-radius: 6px;
