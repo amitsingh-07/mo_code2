@@ -2,7 +2,7 @@ import { flatMap } from 'rxjs/operators';
 
 import { Location } from '@angular/common';
 import {
-  AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
+  AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation, HostListener
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -32,7 +32,7 @@ import { GoogleAnalyticsService } from './../../shared/analytics/google-analytic
 import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
 import { trackingConstants } from './../../shared/analytics/tracking.constants';
-
+import{SIGN_UP_CONFIG} from '../sign-up.constant';
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
@@ -56,7 +56,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   passwordFocus = false;
 
   submitted: boolean = false;
-
+  capsOn: boolean;
+  capslockFocus: boolean;
   constructor(
     private formBuilder: FormBuilder,
     private modal: NgbModal,
@@ -423,4 +424,22 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.passwordFocus = !this.passwordFocus;
     }
   }
+  onFocus() {
+    this.capslockFocus = true;
+  }
+  onBlur() {
+    this.capslockFocus = false;;
+  }
+  onPaste(event: ClipboardEvent, key) {
+    const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '');
+    this.createAccountForm.controls[key].setValue(pastedEmailText);
+    event.preventDefault();
+  }
+  onKeyupEvent(event, key) {
+    if (event.target.value) {
+      const enterEmail = event.target.value.replace(/\s/g, '');
+      this.createAccountForm.controls[key].setValue(enterEmail);
+    }
+  }
 }
+

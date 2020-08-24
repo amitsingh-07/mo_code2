@@ -9,6 +9,16 @@
       "CONTACT_NUMBER_REQUIRED": "*Please enter your contact number",
       "CONTACT_NUMBER_PATTERN": "*Invalid Contact Number",
       "ALL_FIELDS": "*Please enter all the fields"
+    },
+    "SESSION_2FA_EXPIRED": {
+      "TITLE": "Your session to edit profile has expired.",
+      "SUB_TITLE": "",
+      "BUTTON": "Okay"
+    },
+    "SEND_2FA_FAILED": {
+      "TITLE": "An error has occurred. Failed to send OTP for 2FA",
+      "SUB_TITLE": "",
+      "BUTTON": "Okay"
     }
   }
 }

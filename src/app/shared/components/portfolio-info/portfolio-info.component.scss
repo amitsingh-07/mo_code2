@@ -30,6 +30,7 @@
     .wise-portfolio-type-details-desc {
         color: $jungle-mist-blue-color;
         font-family: $muli-regular;
+        font-style: normal;
         .bold-text {
             font-family: $muli-bold;
             font-style: normal;
@@ -57,6 +58,7 @@
         font-family: $muli-regular;
         font-size: 14px;
         padding: 15px 0 5px 0;
+        font-style: normal;
     }
     .wise-saver-rate-desc {
         font-family: $muli-italic;
@@ -66,6 +68,13 @@
     .wise-saver-portfolio-desc {
         color: $jungle-mist-blue-color;
         font-family: $muli-regular;
+        font-style: normal;
+    }
+    .wise-saver-value-date {
+        font-family: $muli-regular;
+        font-size: 14px;
+        font-style: normal;
+        padding-top: 10px;
     }
 }
 

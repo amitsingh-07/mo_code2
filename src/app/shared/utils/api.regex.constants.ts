@@ -13,7 +13,7 @@ export const RegexConstants = {
         UpperLower: /^(?=.*[a-z])(?=.*[A-Z])/, // Should have atleast one lower case and one upper case
         NumberSymbol: /^(?=.*\d)(?=.*[!"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~\s])/ // Should have atleast one number and one speacial symbol
     },
-    EmailOrMobile: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})|([0-9]{8,10})+$/,
+    EmailOrMobile: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4}\S*$)|([0-9]{8,10})+$/,
     AlphanumericWithSpaces: /^[a-zA-Z0-9\s]*$/,
     SixDigitNumber: /^[0-9]{6}$/,
     SixDigitPromo: /^[a-zA-Z0-9]{6}$/,
@@ -58,5 +58,6 @@ export const RegexConstants = {
         UOB: /^\d{2}-?\d{5}-?\d{2}$/, /* 2-5-2 */
     },
     MobileNumber: /^(8|9)\d{7}$/,
-    portfolioName: /^\S.*$/
+    portfolioName: /^\S.*$/,
+    trimSpace: /\s\s+/g
 };

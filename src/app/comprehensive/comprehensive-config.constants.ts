@@ -1,6 +1,6 @@
 export const COMPREHENSIVE_CONST = {
     PROMOTION: {
-        AMOUNT: 535
+        AMOUNT: 99
     },
     PROMO_CODE: {
         GET: 'GET_PROMO_CODE',
@@ -40,7 +40,7 @@ export const COMPREHENSIVE_CONST = {
             API_KEY: 'comprehensiveAssets',
             API_TOTAL_BUCKET_KEY: 'totalAnnualAssets',
             MONTHLY_INPUT_CALC: [],
-            POP_FORM_INPUT: ['enquiryId', 'totalAnnualAssets', 'customerId', 'id', 'assetId', 'estimatedPayout', 'retirementSum'],
+            POP_FORM_INPUT: ['enquiryId', 'totalAnnualAssets', 'customerId', 'id', 'assetId', 'estimatedPayout', 'retirementSum','topupAmount','withdrawalAmount'],
             BUCKET_INPUT_CALC: ['cashInBank', 'savingsBonds', 'cpfOrdinaryAccount', 'cpfSpecialAccount', 'cpfMediSaveAccount',
                 'homeMarketValue', 'investmentAmount_0', 'otherAssetsValue', 'investmentPropertiesValue', 'cpfRetirementAccount'],
             RETIREMENT_AGE: 54,
@@ -276,5 +276,10 @@ export const COMPREHENSIVE_CONST = {
         SPECIAL_QUESTION_ORDER: 4
     },
     BANNER_NOTE_START_TIME: 1580918400000,
-    BANNER_NOTE_END_TIME: 1581436799000
+    BANNER_NOTE_END_TIME: 1581436799000,
+    PAYMENT_STATUS: {
+        PENDING: 'pending',
+        PAID: 'paid',
+        WAIVED: 'waived'
+    }
 };

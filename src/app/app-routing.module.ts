@@ -10,7 +10,6 @@ import {
   EmailEnquirySuccessComponent
 } from './email-enquiry-success/email-enquiry-success.component';
 import { ExternalRouteGuard } from './external-route-guard';
-import { FAQComponent } from './faq/faq.component';
 import { HomeComponent } from './home/home.component';
 import { InvestmentMaintenanceGuard } from './investment-maintenance/investment-maintenance-guard';
 import { InvestmentMaintenanceComponent } from './investment-maintenance/investment-maintenance.component';
@@ -37,7 +36,6 @@ const routes: Routes = [
       { path: 'guideme', loadChildren: () => import('./guide-me/guide-me.module').then(m => m.GuideMeModule) },
       { path: 'accounts', loadChildren: () => import('./sign-up/sign-up.module').then(m => m.SignUpModule) },
       { path: 'myinfo', component: CallBackComponent },
-      { path: 'faq', component: FAQComponent },
       { path: 'investment-maintenance', component: InvestmentMaintenanceComponent, canActivate: [InvestmentMaintenanceGuard]},
       {
         path: APP_ROUTES.COMPREHENSIVE, loadChildren: () => import('./comprehensive/comprehensive.module').then(m => m.ComprehensiveModule),

@@ -1,5 +1,5 @@
 
-import {of as observableOf,  Observable } from 'rxjs';
+import {of as observableOf,  Observable, Subject } from 'rxjs';
 
 import {map} from 'rxjs/operators';
 import { conformToMask } from 'text-mask-core';
@@ -50,6 +50,7 @@ export class ManageInvestmentsService {
   private topUPFormError: any = new TopUPFormError();
   private managementFormError: any = new ManageInvestmentsFormError();
   selectedPortfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.ALL;
+  copyToastSubject = new Subject();
 
   constructor(
     public readonly translate: TranslateService,
@@ -278,11 +279,6 @@ export class ManageInvestmentsService {
     return this.investmentApiService.getUserAddress();
   }
 
-  saveNewBank(data) {
-    const payload = this.constructSaveNewBankRequest(data);
-    return this.apiService.saveNewBank(payload);
-  }
-
   saveProfileNewBank(data) {
     const payload = this.constructSaveNewBankRequest(data);
     return this.apiService.saveNewBankProfile(payload);
@@ -298,7 +294,7 @@ export class ManageInvestmentsService {
   updateBankInfo(bank, fullName, accountNum, id) {
     // API Call here
     const data = this.constructUpdateBankPayload(bank, fullName, accountNum, id);
-    return this.apiService.saveNewBank(data);
+    return this.apiService.saveNewBankProfile(data);
   }
   // tslint:disable-next-line:no-identical-functions
   constructUpdateBankPayload(bank, fullName, accountNum, id) {
@@ -461,6 +457,13 @@ export class ManageInvestmentsService {
       this.transferInstructionModal.dismiss();
       this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
     });
+
+    this.transferInstructionModal.componentInstance.showCopied.subscribe(() => {
+      const toasterMsg = {
+        desc: this.translate.instant('TRANSFER_INSTRUCTION.COPIED')
+      };
+      this.copyToastSubject.next(toasterMsg);
+    });
   }
 
   /*
@@ -589,6 +592,7 @@ export class ManageInvestmentsService {
           // srsAccountNumber: data.objectList.accountNumber,
           srsAccountNumber: this.srsAccountFormat(data.objectList.accountNumber, data.objectList.srsBankOperator.name),
           srsOperator: data.objectList.srsBankOperator.name,
+          srsOperatorId: data.objectList.srsBankOperator.id,
           customerId: data.objectList.customerId
         };
         this.setSrsAccountDetails(srsAccountDetails);

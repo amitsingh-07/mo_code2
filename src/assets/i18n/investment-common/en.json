@@ -27,7 +27,11 @@
         "FOR": "for",
         "CONFIRM": "Confirm",
         "CONTINUE": "Continue",
-        "WISESAVER_VALUE": "1.62% p.a.",
+        "WISESAVER_PERCENTAGE_VALUE": "{{wiseSaverValue}}% p.a.",
+        "WISESAVER_VALUE_DATE": "5-day Moving Average as at",
+        "EXPENSIVE_RATIO":" Enjoy 0% fees for the 1st $10,000 until end of 2021. Fees include fund level fee of {{expensiveRatio}} p.a. which is incorporated into the NAV.<span> <a target='_blank' href=\"/investment/\">View our fees table.</a></span>",
+        "FUND_EXPENSIVE_RATIO":"Fund Expense Ratio",
+        "TOTAL_FEE":"Total Fee",
         "EDIT_INVESTMENT": {
             "TITLE": "Review My Inputs",
             "ONE_TIME_INVESTMENT": "One-time Amount",
@@ -53,16 +57,15 @@
         "MEDIAN": "Median",
         "WORST": "Worst",
         "CAPITAL_INVESTED": "Capital Invested",
-        "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period. All projections are net of all fees. The median projected return (net of all fees) is {{investedPercentage}}.",
+        "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period. The median projected return (net of all fees) is {{investedPercentage}}. All projections are net of all fees (based on standard rate of 0.6% p.a). You may be enjoying a lower advisory fee, which means projected values would be higher than shown.",
         "MEDIAN_PROJECTED_RETURN": "The median projected return (net of all fees) is {{investedPercentage}}.",
         "VIEW_FUND_DETAILS": "View Fund Details",
         "TITLE": "Confirm Portfolio",
         "PORTFOLIO": "Portfolio",
         "WISE_SAVER_PORTOFOLIO": {
             "TITLE_DESC": "The underlying cash fund holds assets primarily in <span class=\"bold-text\">Singapore Dollar</span> deposits. ",
-            "RATE_TITLE": "Estimated Return",
-            "RATE_DESC": "This rate will be updated periodically as<br> market and economic conditions change.",
-            "PORTFOLIO_DESC": "This is based on the weighted average gross yield of the underlying deposits placed with the counterparty financial institution which has a minimum short- term rating of F2 by Fitch, P-2 by Moody’s, or A-2 by S&P."
+            "RATE_TITLE": "Current Rate",
+            "PORTFOLIO_DESC": "This rate is the gross indicative yield of the underlying cash fund, which may fluctuate as market and economic conditions change. We will update this rate periodically as the yield changes."
         },
         "ERRORS": {
             "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",

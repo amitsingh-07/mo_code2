@@ -81,7 +81,8 @@
     "PERSONAL_INFO": {
         "TITLE": "Your Investment Period",
         "STEP_1_LABEL": "Step 1",
-        "YEARS": "Years",
+        "YEARS": " Years",
+        "YEAR": " Year",
         "BORN_ON": "I was born on",
         "INVESTMENT_PERIOD": "Your Investment Period",
         "HOW_MANY_YEARS": "For how many years do you want to stay invested?",
@@ -108,7 +109,7 @@
         "TIME_HORIZON_ALERT": "Our final recommendation will depend on your willingness to take risk and other factors.",
         "MODAL": {
             "TITLE": "Less than 4 years of investment period",
-            "MESSAGE": "It is not recommended to invest with only {{period}} years of investment time horizon.<br> <br>You may want to consider our <span class=\"bold-text\">WiseSaver Portfolio</span> instead.",
+            "MESSAGE": "It is not recommended to invest with only {{period}} of investment time horizon.<br> <br>You may want to consider our <span class=\"bold-text\">WiseSaver Portfolio</span> instead.",
             "BTN_LBL1": "Review Investment Period",
             "BTN_LBL2": "Go to WiseSaver Portfolio"
         }
@@ -132,7 +133,9 @@
         "AT_LEAST_ONE": "Select at least one of the following.",
         "INVESTMENT_LBL": "I want to fund",
         "MIN_100": "Min. $100",
-        "MIN_50": "Min. $50"
+        "MIN_50": "Min. $50",
+        "MIN": "Min.",
+        "MONTH": "/mth"
     },
     "MY_FINANCIALS": {
         "REVIEW_INPUT": "Review My Inputs",
@@ -185,12 +188,16 @@
         "MEDIAN": "Median",
         "WORST": "Worst",
         "CAPITAL_INVESTED": "Capital Invested",
-        "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period. All projections are net of all fees. The median projected return (net of all fees) is {{investedPercentage}}.",
+        "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period. The median projected return (net of all fees) is {{investedPercentage}}. All projections are net of all fees (based on standard rate of 0.6% p.a). You may be enjoying a lower advisory fee, which means projected values would be higher than shown.",
         "VIEW_FUND_DETAILS": "View Fund Details",
         "TITLE": "Your Portfolio Details",
         "PORTFOLIO": "Portfolio",
         "PROCEED": "Proceed",
-        "WISESAVER_VALUE": "1.62% p.a.",
+        "WISESAVER_VALUE": "0.68% p.a.",
+        "WISESAVER_VALUE_DATE": "(5-day Moving Average as at 30 Jul 2020)",
+        "EXPENSIVE_RATIO":" Enjoy 0% fees for the 1st $10,000 until end of 2021. Fees include fund level fee of {{expensiveRatio}} p.a. which is incorporated into the NAV.<span> <a target='_blank' href=\"/investment/\">View our fees table.</a></span>",
+        "FUND_EXPENSIVE_RATIO":"Fund Expense Ratio",
+        "TOTAL_FEE":"Total Fee",
         "EDIT_INVESTMENT": {
             "TITLE": "Review My Inputs",
             "ONE_TIME_INVESTMENT": "One-time Amount",
@@ -229,8 +236,8 @@
     },
     "FUND_DETAILS": {
         "TITLE": "Fund Details",
-        "DOWNLOAD_PRIMARY": "Download Product Highlight Sheet",
-        "DOWNLOAD_SECONDARY": "Download Product Prospectus"
+        "DOWNLOAD_PRIMARY": "Download Product Highlights Sheet",
+        "DOWNLOAD_SECONDARY": "Download Prospectus"
     },
     "RISK_PROFILE": {
         "TITLE": "Your Recommendation",
@@ -258,6 +265,6 @@
     },
     "RISK_ACKNOWLEDGMENT": {
         "TITLE": "You are investing in a<br> cash fund.",
-        "DESC": "By proceeding with this, you agree<br> that you have low willingness to<br> bear risk for this portfolio."
+        "DESC": "This is a low risk portfolio. By<br> proceeding, you agree that this<br> portfolio aligns with your willingness<br> and ability to take risk."
     }
 }

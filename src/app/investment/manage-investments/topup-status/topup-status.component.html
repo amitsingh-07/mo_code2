@@ -1,10 +1,21 @@
+<div class="toast-msg-fixed-block" *ngIf="showFixedToastMessage">
+  <div class="toast-msg-container">
+    <div class="flex-col-2">
+      <img src="assets/images/topupwithdraw/check_orange.svg" alt="" />
+    </div>
+    <div class="flex-col-10">
+      <div class="toast-msg">{{toastMsg?.desc}}</div>
+    </div>
+  </div>
+</div>
+
 <div class="content">
   <div [ngClass]="status === 'success' ? 'sufficient-container' : 'insufficient-container'">
     <img id="" [ngClass]="status === 'success' ? 'success-img' : 'insufficient-success-img'"
       src="assets/images/investment-account/owl-success-tick.svg" alt="" />
     <div class="buy-request-submitted">{{ 'TOPUP_REQUEST.BUY_REQUEST_SUBMITTED' | translate}}</div>
     <div *ngIf="status === 'success'" class="buy-request-msg">{{oneTimeMonthlyMsg}}</div>
-
+   
     <div *ngIf="!oneTimeOrMonthlySufficient() && this.fundDetails.portfolio.fundingTypeValue === 'Cash'"class="cash-account">
       <div class="transfer-text">{{ 'TOPUP_REQUEST.FUNDING_DESC' | translate }}</div>
       <div class="cash-account-summary">
@@ -12,9 +23,14 @@
           <div class="investment-value">{{fundDetails['exceededAmount'] | formatCurrency}}</div>
           <div class="cash-account-balance">{{ 'TOPUP_REQUEST.CASH_ACCOUNT_BALANCE_LBL' | translate }}
             {{cashBalance | formatCurrency}}</div>
-          <div class="ref-code">
-            {{ 'TOPUP_REQUEST.REFERENCE_CODE_LBL' | translate }}
-            {{ bankDetails ? bankDetails?.referenceNumber :paynowDetails?.referenceNumber }}
+          <div class="ref-code" copy-clipboard
+            [context]="bankDetails ? bankDetails?.referenceNumber :paynowDetails?.referenceNumber"
+            (copied)="notify($event)">
+            <span>{{ 'TOPUP_REQUEST.REFERENCE_CODE_LBL' | translate }}
+              {{ bankDetails ? bankDetails?.referenceNumber :paynowDetails?.referenceNumber }}</span>
+            <span copy-clipboard [context]="bankDetails ? bankDetails?.referenceNumber :paynowDetails?.referenceNumber"
+              (copied)="notify($event)" class="copy-icon"><img alt="copy"
+                src="assets/images/copy-clipboard.svg" /></span>
           </div>
           <div class="flex">
             <div class="note-icon"><img src="assets/images/investment-account/note-icon.svg" /></div>
@@ -37,14 +53,14 @@
         <!-- Bank Transfer Instruction Start -->
         <div class="tab-content fund-instruction" [class.active]="activeMode == 'BANK'">
           <app-instruction-steps [showBankTransferIns]="showBankTransferSteps" [bankDetails]="bankDetails"
-            (showToolTip)="showTipModal()">
+            (showToolTip)="showTipModal()" (showCopyToast)="notify($event)" >
           </app-instruction-steps>
         </div>
         <!-- Bank Transfer Instruction End -->
         <!-- PayNow Transfer Instruction Start -->
         <div class="tab-content fund-instruction" [class.active]="activeMode == 'PAYNOW'">
           <app-instruction-steps [showBankTransferIns]="!showBankTransferSteps" [paynowDetails]="paynowDetails"
-            (showToolTip)="showTipModal()">
+            (showToolTip)="showTipModal()" (showCopyToast)="notify($event)" >
           </app-instruction-steps>
         </div>
         <!-- PayNow Transfer Instruction End -->

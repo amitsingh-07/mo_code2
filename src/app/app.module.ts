@@ -83,6 +83,9 @@ import { LoaderComponent } from './shared/modal/loader/loader.component';
 import {
   ModelWithButtonComponent
 } from './shared/modal/model-with-button/model-with-button.component';
+import {
+  PaymentInstructionModalComponent
+} from './shared/modal/payment-instruction-modal/payment-instruction-modal.component';
 import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.component';
 import {
   RecommendationsModalComponent
@@ -127,6 +130,7 @@ import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
+import { SessionsService } from './shared/Services/sessions/sessions.service';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -177,7 +181,8 @@ export function tokenGetterFn() {
     NotFoundComponent,
     EmailEnquirySuccessComponent,
     RestrictAddPortfolioModalComponent,
-    InvestmentMaintenanceComponent
+    InvestmentMaintenanceComponent,
+    PaymentInstructionModalComponent
   ],
   imports: [
     BrowserModule,
@@ -223,7 +228,7 @@ export function tokenGetterFn() {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true,
-      deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, NavbarService]
+      deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, NavbarService, SessionsService]
     }, Formatter, CurrencyPipe, RoutingService,
     StateStoreService, Util, FileUtil,
     InvestmentEnableGuard,
@@ -251,7 +256,7 @@ export function tokenGetterFn() {
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent, TermsModalComponent,
     SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent,
     FundDetailsComponent, UnsupportedDeviceModalComponent, RestrictAddPortfolioModalComponent,
-    LoginCreateAccountModelComponent, SummaryModalComponent]
+    LoginCreateAccountModelComponent, SummaryModalComponent, PaymentInstructionModalComponent]
 })
 
 export class AppModule {

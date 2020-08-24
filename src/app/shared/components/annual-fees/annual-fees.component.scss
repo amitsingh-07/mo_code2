@@ -23,7 +23,7 @@
 
     .flex-row {
       justify-content: space-between;
-      padding-bottom: 18px;
+      padding-bottom: 20px;
 
       .announcement {
         display: flex;
@@ -46,19 +46,19 @@
       }
 
       &:last-child {
-        font-family: $muli-bold;
-        padding-bottom: 0;
-      }
-      .wise-saver-annual-fee{
-        font-family: $muli-regular !important;
+        font-family: $muli-regular;
+        padding-bottom: 20px;
+        font-size: 14px;
+        letter-spacing: -0.13px;
       }
 
-      .flex-col-9 {
+
+      .flex-col-8 {
         .text-lyt {
+          font-family: $muli-regular;
           font-size: 13px;
-          color: $text-color-secondary;
-          width: 100%;
-          float: left;
+          letter-spacing: -0.12px;
+          color: #5e5e5e;
         }
 
 
@@ -66,6 +66,20 @@
 
       .fee_value {
         color: $teal-color;
+        font-family: $muli-bold;
+      }
+
+    }
+
+    .fee_des {
+      font-family: $muli-regular;
+      font-size: 13px;
+      letter-spacing: -0.12px;
+      color: #5e5e5e;
+
+      a {
+        text-decoration: none;
+        color: #ff872f;
         font-family: $muli-bold;
       }
     }

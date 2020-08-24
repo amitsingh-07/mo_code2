@@ -42,7 +42,8 @@ import { YourPortfolioComponent } from './your-portfolio/your-portfolio.componen
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
     { prefix: './assets/i18n/app/', suffix: '.json' },
-    { prefix: './assets/i18n/manage-investments/', suffix: '.json' }
+    { prefix: './assets/i18n/manage-investments/', suffix: '.json' },
+    { prefix: './assets/i18n/error/', suffix: '.json'}
   ]);
 }
 

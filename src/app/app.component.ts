@@ -21,6 +21,7 @@ import { NavbarConfig } from './shared/navbar/config/presets';
 import { NavbarService } from './shared/navbar/navbar.service';
 import { RoutingService } from './shared/Services/routing.service';
 import { SignUpService } from './sign-up/sign-up.service';
+import { SessionsService } from './shared/Services/sessions/sessions.service';
 
 
 declare global {
@@ -49,7 +50,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     private signUpService: SignUpService, private navbarService: NavbarService, private _location: Location,
     private facebookPixelService: FBPixelService, private googleAnalyticsService: GoogleAnalyticsService,
     private modal: NgbModal, public route: Router, public routingService: RoutingService, private location: Location,
-    private configService: ConfigService, private authService: AuthenticationService) {
+    private configService: ConfigService, private authService: AuthenticationService, private sessionsService: SessionsService) {
     this.translate.setDefaultLang('en');
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.translate.setDefaultLang(config.language);
@@ -181,6 +182,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     if (this.authService.isSignedUser()) {
       this.navbarService.logoutUser();
     }
+    this.sessionsService.destroyInstance();
   }
 
   // @HostListener('window:beforeunload', ['$event'])
@@ -190,4 +192,10 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
   //     $event.returnValue = 'Changes you made will not be saved. Do you want to continue?';
   //   }
   // }
+
+  @HostListener('window:focus', ['$event'])
+   onFocus(event: FocusEvent): void {
+    const instId = this.sessionsService.getInstance();
+    this.sessionsService.setActiveInstance(instId);
+   }
 }
