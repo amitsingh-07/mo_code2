@@ -122,9 +122,6 @@ export const EXT_ROUTES = {
     {
         IN_APP_ROUTE: '/faq-comprehensive-payment',
         EXTERNAL_URL: '/faq-comprehensive/#comprehensive|2'
-    },
-    {
-        IN_APP_ROUTE: '/assets/docs/terms-and-use/Important Notice-Robo 3 (181119).pdf',
     }
     ]
 };
