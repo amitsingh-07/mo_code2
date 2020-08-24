@@ -4,9 +4,24 @@
 
   </div>
   <div class="text-center about mb30">
-   <span  *ngIf="comprehensiveJourneyMode">{{ requireToPay ? ('CMP.REVIEW.ABOUT_WITH_PAY' | translate) :  ('CMP.REVIEW.ABOUT' | translate)  }}</span> 
+    <span
+      *ngIf="comprehensiveJourneyMode">{{ requireToPay ? ('CMP.REVIEW.ABOUT_WITH_PAY' | translate) :  ('CMP.REVIEW.ABOUT' | translate)  }}</span>
     <span *ngIf="!comprehensiveJourneyMode">{{'CMP.REVIEW.ABOUT_LITE' | translate }}</span>
   </div>
+  <!--T&C-->
+  <form *ngIf="!tandcEnableFlag" name="tandcForm" [formGroup]="tandcForm" id="tandcForm">
+    <div class="form-group-single-column  mb20 flex-col">
+      <div class="checkbox-button">
+        <input type="checkbox" class="field checkbox" name="tandc" id="tandc" formControlName="tandc"
+          (change)="reviewtandcCheck()">
+        <label for="tandc">
+          <div class="tandc">{{'CMP.REVIEW.I_AGREE' | translate}} <a target="_blank" routerLink="/terms-of-use"
+              target="_blank">{{'CMP.REVIEW.T_C_LINK' | translate}}</a></div>
+        </label>
+      </div>
+    </div>
+  </form>
+  <!--T&C /-->
   <div class="footer-cta">
 
     <button type="button" (click)="goToReviewInput()" class="btn btn-primary-outline  width100 reviewInput"
@@ -14,8 +29,9 @@
       | translate}}
     </button>
 
-    <button type="button" (click)="goToNext()" class="btn btn-primary confirmBtn width100" id="moDpdnt2BtnFooter">
-	{{requireToPay && comprehensiveJourneyMode ? ('CMP.REVIEW.CONFIRM_WITH_PAY' | translate) : ('CMP.REVIEW.CONFIRM' | translate)}}
+    <button type="button" [disabled]="!enableTc" (click)="goToNext()" class="btn btn-primary confirmBtn width100"
+      id="moDpdnt2BtnFooter">
+      {{requireToPay && comprehensiveJourneyMode ? ('CMP.REVIEW.CONFIRM_WITH_PAY' | translate) : ('CMP.REVIEW.CONFIRM' | translate)}}
     </button>
   </div>
 </div>

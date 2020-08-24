@@ -737,7 +737,9 @@
       "ABOUT_LITE": "Please make sure to review your inputs. If everything looks good, click “Confirm” to receive your personalised report.",
       "REVIEW_INPUT": "Review Inputs",
       "CONFIRM": "Confirm",
-      "CONFIRM_WITH_PAY": "Confirm & Pay"
+      "CONFIRM_WITH_PAY": "Confirm & Pay",
+      "I_AGREE": "I agree to MoneyOwl's",
+      "T_C_LINK": "Terms of Use."
     }
   }
 }
