@@ -243,6 +243,7 @@ body.modal-open::-webkit-scrollbar {
     font-size: 32px;
     opacity: 0.4 !important;
     text-shadow: none;
+    outline: none !important;
   }
 
   .help-modal-title {

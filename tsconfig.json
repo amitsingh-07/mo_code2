@@ -24,8 +24,5 @@
   },
   "include": [
     "src/**/*"
-  ],
-  "files": [
-    //"node_modules/jqwidgets-framework/jqwidgets-ts/angular_jqxslider.ts"
   ]
 }
