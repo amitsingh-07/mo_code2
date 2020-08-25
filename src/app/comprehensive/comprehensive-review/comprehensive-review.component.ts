@@ -31,7 +31,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   requireToPay = false;
   loading: string;
   tandcEnableFlag: boolean;
-  enableTc:boolean;
+  enableTc: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
@@ -96,7 +96,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     } else if (!this.comprehensiveService.checkResultData()) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
     }
-    this.buildtandcForm();
+    this.buildTcForm();
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
@@ -164,7 +164,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     });
   }
 
-  buildtandcForm() {
+  buildTcForm() {
     const reportStatus = this.comprehensiveService.getReportStatus();
     this.tandcEnableFlag = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW);
     this.enableTc = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW);
