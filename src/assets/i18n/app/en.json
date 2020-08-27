@@ -532,7 +532,8 @@
                     "ALT_STEPS": "Alternatively, follow these steps to top up by entering UEN number."
                 }
             }
-        }
+        },
+        "COPIED": "Copied"
     },
     "EMAIL_ENQUIRY": {
         "THANKYOU": "Thank you!",

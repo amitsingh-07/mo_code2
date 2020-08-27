@@ -2,6 +2,14 @@
 @import '../../../../_mixins.scss';
 
 app-your-portfolio {
+
+  .toast-msg-top-100 {
+    @include desktop {
+      top: 100px;
+      right: 40px;
+    }
+  }
+
   .invest-bg-content{
     .user_content{
       max-width: 1024px;
@@ -541,7 +549,7 @@ app-your-portfolio {
         }
         .btn-with-icon {
           border-radius: 6px;
-          box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.21) !important !important;
+          box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.21) !important;
           border: 1px solid $fixed-btn-brdr-color;
           background-color: $white-color;
           font-family: $muli-bold;
@@ -847,8 +855,9 @@ app-your-portfolio {
 
           .cash-account-content{
             padding-top: 5px;
-            .ref-code{
-              padding: 14px 0 10px;
+            .ref-code {
+              cursor: pointer;
+              padding: 14px 13px 10px 10px;
               font-family: $muli-bold;
               font-size: 18px;
               line-height: 1.17;
@@ -859,6 +868,11 @@ app-your-portfolio {
               border: 2px solid #00a7a7;
               background-color: #ffffff;
               margin-bottom: 15px;
+
+              .copy-icon {
+                float: right;
+                margin-top: -4px;
+              }
             }
             .note-icon{
               width: 24px;
