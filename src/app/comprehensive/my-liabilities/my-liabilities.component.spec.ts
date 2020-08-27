@@ -105,7 +105,8 @@ describe('MyLiabilitiesComponent', () => {
       return true;
     }
   };
-  let translations: any = '';
+  //let translations: any = '';
+  let translations = require('../../../assets/i18n/comprehensive/en.json');
   const routerStub = {
     navigate: jasmine.createSpy('navigate'),
     navigateByUrl: jasmine.createSpy('navigateByUrl')
@@ -167,7 +168,7 @@ describe('MyLiabilitiesComponent', () => {
     })
       .overrideModule(BrowserDynamicTestingModule, { set: { entryComponents: [ErrorModalComponent, StepIndicatorComponent] } })
       .compileComponents();
-    router = TestBed.get(Router);
+    router = TestBed.get(Router);	
     //router.initialNavigation();
     //spyOn(router, 'navigateByUrl');
   }));
@@ -189,13 +190,14 @@ describe('MyLiabilitiesComponent', () => {
     navbarService = TestBed.get(NavbarService);
     footerService = TestBed.get(FooterService);
     translateService = injector.get(TranslateService);
+	//translateService.use('en');
     comprehensiveService = TestBed.get(ComprehensiveService);
     //comprehensiveAPiService = TestBed.get(comprehensiveAPiService);
     progressTrackerService = TestBed.get(ProgressTrackerService);
     //router = new RouterStub();
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
     //router = TestBed.get(Router);
-    translations = {
+    /*translations = {
       CMP: {
         COMPREHENSIVE_STEPS: {
           STEP: 'Step',
@@ -244,9 +246,10 @@ describe('MyLiabilitiesComponent', () => {
       },
       COMMON: {
       }
-    };
+    };*/ 
+	
     translateService.setTranslation('en', translations);
-
+	translateService.use('en');
     fixture.detectChanges();
   });
 
