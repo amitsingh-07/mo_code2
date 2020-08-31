@@ -182,19 +182,4 @@ export class BaseService {
     }
     return url + queryString;
   }
-
-  handleResponse(res): IServerResponse {
-    // My API sends a new jwt access token with each request,
-    // so store it in the local storage, replacing the old one.
-    const data = res;
-    if (data.responseMessage.responseCode < 6000) {
-      const error: IError = {
-        error: data.responseMessage.responseCode,
-        message: data.responseMessage.responseDescription
-      };
-      throw new Error(this.errorHandler.parseCustomServerErrorToString(error));
-    } else {
-      return data;
-    }
-  }
 }

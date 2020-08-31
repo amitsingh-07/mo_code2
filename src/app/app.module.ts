@@ -1,6 +1,5 @@
 import 'hammerjs';
 
-//import { jqxSliderComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxslider';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import {
@@ -165,7 +164,6 @@ export function tokenGetterFn() {
     PopupModalComponent,
     SuccessModalComponent,
     RestrictAlphabetsDirective,
-    //jqxSliderComponent,
     HeaderComponent,
     FooterComponent,
     CallBackComponent,
