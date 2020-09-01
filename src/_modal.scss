@@ -1254,3 +1254,9 @@ body.modal-open::-webkit-scrollbar {
     display: none;
   }
 }
+@include allmobiles {
+  .modal-dialog-centered {
+    align-items: flex-end !important;
+    min-height: 100% !important;
+  }
+}
