@@ -10,6 +10,19 @@
       {{toastMsg?.link_label}}</div>
   </div>
 </div>
+
+<!-- Copy toaster -->
+<div class="toast-msg-fixed-block" [ngClass]="{'toast-msg-top-100': addTopMargin}" *ngIf="showFixedToastMessage">
+  <div class="toast-msg-container">
+    <div class="flex-col-1">
+      <img src="assets/images/topupwithdraw/check_orange.svg" alt="" />
+    </div>
+    <div class="flex-col-11">
+      <div class="toast-msg">{{toastMsg?.desc}}</div>
+    </div>
+  </div>
+</div>
+
 <section class="invest-section" *ngIf="portfolio">
   <div class="invest-section-items">
     <div class="invest-section-content">
@@ -130,7 +143,7 @@
                               {{totalInvested | formatCurrency}}
                             </div>
                           </div>
-                          <div class="portfolio_info_label right-col">
+                          <div class="portfolio_info_label pad-top right-col">
                             {{'YOUR_PORTFOLIO.NET_DEPOSITS' | translate}}
                             <div id="your_portfolio_net_deposits" class="currency_value" [class.negativeValue]="investmentAmount < 0">
                               {{investmentAmount | formatCurrency}}
@@ -218,7 +231,7 @@
                               {{0 | formatCurrency}}
                             </div>
                           </div>
-                          <div class="portfolio_info_label right-col">
+                          <div class="portfolio_info_label pad-top right-col">
                             {{'YOUR_PORTFOLIO.NET_DEPOSITS' | translate}}
                             <div id="your_portfolio_net_deposits" class="currency_value" [class.negativeValue]="investmentAmount < 0">
                               {{0 | formatCurrency}}
@@ -539,8 +552,12 @@
                 <!--Form Content-->
                 <div class="form-group-with-bg--content">
                   <div class="cash-account-content">
-                    <div class="ref-code">{{'YOUR_PORTFOLIO.REFERENCE_CODE' | translate}}:
-                      {{portfolio.referenceCode }}</div>
+                    <div class="ref-code" copy-clipboard [context]="portfolio.referenceCode" (copied)="notify($event)">
+                      {{'YOUR_PORTFOLIO.REFERENCE_CODE' | translate}}:
+                      {{portfolio.referenceCode }}
+                      <span copy-clipboard [context]="portfolio.referenceCode" (copied)="notify($event)"
+                        class="copy-icon"><img alt="copy" src="assets/images/copy-clipboard.svg" /></span>
+                    </div>
                     <div class="flex">
                       <div class="note-icon"><img src="assets/images/investment-account/note-icon.svg" /></div>
                       <div class="note" innerHTML="{{'YOUR_PORTFOLIO.TRANSFER_NOTE' | translate}}"></div>

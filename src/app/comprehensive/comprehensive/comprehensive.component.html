@@ -10,35 +10,35 @@
   </div>
 </div>
 <div class="container-fluid">
-    <div class="content">
-      <img class="owl-icon" src="assets/images/createAccount-icon.svg">
-      <div class="instructions-txt  mt-25" innerHTML="{{'CMP.COMPREHENSIVE.INSTRUCTIONS' | translate}}"></div>
-      <div class="full-width">
-        <div class="comprehensive-txt">{{'CMP.COMPREHENSIVE.COMPREHENSIVE_PLAN' | translate}}</div>
-        <div class="free-tag">
-          <img [src]="imageSrc">
-          <span [ngStyle]="{'text-decoration': paymentEnabled ? 'none' : 'line-through'}">${{productAmount}} {{'CMP.COMPREHENSIVE.INCLUSIVE_GST' | translate}}</span>
-        </div>
-        <div class="limited-time">{{'CMP.COMPREHENSIVE.LIMITED_TIME' | translate}}</div>
-      </div>
-      <div [hidden]="promoCodeValidated" class="promocode-entry"><span>{{'CMP.COMPREHENSIVE.ENTER_PROMO_CODE' | translate}}</span></div>
-      <div class="promocode">
-        <form [hidden]="promoCodeValidated" [formGroup]="promoCodeForm" id="promoCodeForm" name="promoCodeForm">
-          <div class="offer-code">
-            <div>
-              <input type="text" id="promoCodeInpt" class="form-control promo-code"
-                formControlName="comprehensivePromoCodeToken"
-                placeholder="{{ 'CMP.COMPREHENSIVE.INPUT_PLACEHOLDER' | translate}}">
-            </div>
-            <div class="no-promo">
-              {{ 'CMP.COMPREHENSIVE.NO_PROMOCODE' | translate}}
-              <span id="intro-get-now" (click)="getPromoCode()"
-                class='getOneNow'>{{ 'CMP.COMPREHENSIVE.GET_NOW' | translate}}</span>
-            </div>
-          </div>
-        </form>
-        <button type="button" class="btn btn__footer--fixed btn-primary width100" (click)="getStarted()"
-          id="intro-continue">{{'CMP.COMPREHENSIVE.GET_STARTED' | translate}}</button>
+  <div class="content">
+    <img class="owl-icon" src="assets/images/createAccount-icon.svg">
+    <div class="instructions-txt  mt-25" innerHTML="{{'CMP.COMPREHENSIVE.INSTRUCTIONS' | translate}}"></div>
+    <div class="full-width">
+      <div class="comprehensive-txt">{{'CMP.COMPREHENSIVE.COMPREHENSIVE_PLAN' | translate}}</div>
+      <div class="free-tag">
+        <img src="assets/images/comprehensive/limited-offer.svg">
+        <span>${{productAmount}} {{'CMP.COMPREHENSIVE.INCLUSIVE_GST' | translate}}</span>
       </div>
     </div>
+    <div [hidden]="promoCodeValidated" class="promocode-entry">
+      <span>{{'CMP.COMPREHENSIVE.ENTER_PROMO_CODE' | translate}}</span></div>
+    <div class="promocode">
+      <form [hidden]="promoCodeValidated" [formGroup]="promoCodeForm" id="promoCodeForm" name="promoCodeForm">
+        <div class="offer-code">
+          <div>
+            <input type="text" id="promoCodeInpt" class="form-control promo-code"
+              formControlName="comprehensivePromoCodeToken"
+              placeholder="{{ 'CMP.COMPREHENSIVE.INPUT_PLACEHOLDER' | translate}}">
+          </div>
+          <div class="no-promo">
+            {{ 'CMP.COMPREHENSIVE.NO_PROMOCODE' | translate}}
+            <span id="intro-get-now" (click)="getPromoCode()"
+              class='getOneNow'>{{ 'CMP.COMPREHENSIVE.GET_NOW' | translate}}</span>
+          </div>
+        </div>
+      </form>
+      <button type="button" class="btn btn__footer--fixed btn-primary width100" (click)="getStarted()"
+        id="intro-continue">{{'CMP.COMPREHENSIVE.GET_STARTED' | translate}}</button>
+    </div>
+  </div>
 </div>

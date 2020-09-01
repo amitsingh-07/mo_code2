@@ -7,7 +7,11 @@
     <div class="result-panel__img resultImg"></div>
   </div>
   <div class="text-center about mb30">
-    <div *ngIf="comprehensiveJourneyMode">{{'CMP.RESULT.ABOUT' | translate }}<span class="email"> {{emailID}}</span></div>
+    <div *ngIf="comprehensiveJourneyMode">
+
+      <span *ngIf="!isPayment"> {{'CMP.RESULT.ABOUT' | translate }}<span class="email"> {{emailID}}</span></span>
+      <span *ngIf="isPayment"> {{'CMP.RESULT.ABOUT_PAY' | translate }}</span>
+    </div>
     <div *ngIf="!comprehensiveJourneyMode">{{'CMP.RESULT.ABOUT_LITE' | translate }}</div>
   </div>
   <div class="what-next" *ngIf="comprehensiveJourneyMode">

@@ -37,6 +37,7 @@ export interface IComprehensiveEnquiry {
     reportSubmittedTimeStamp: string;
     isDobUpdated: boolean;
     dobPopUpEnable: boolean;
+    paymentStatus:string;
 }
 export interface IPromoCode {
     comprehensivePromoCodeToken: string;
@@ -60,7 +61,6 @@ export interface IDependantDetail {
     gender: string;
     dateOfBirth: string;
     nation: string;
-    enquiryId: number;
     isInsuranceNeeded: boolean;
 }
 export interface IdependentsSummaryList {
@@ -68,6 +68,7 @@ export interface IdependentsSummaryList {
     houseHoldIncome: string;
     noOfHouseholdMembers: number;
     noOfYears: number;
+    enquiryId: number;
 }
 export interface IChildEndowment {
     id: number;

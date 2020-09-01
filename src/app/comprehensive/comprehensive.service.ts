@@ -405,7 +405,7 @@ export class ComprehensiveService {
       name: dependant.name,
       dateOfBirth: dependant.dateOfBirth,
       gender: dependant.gender,
-      enquiryId: dependant.enquiryId,
+      enquiryId: this.getEnquiryId(),
       location: childEndowment.location,
       educationCourse: childEndowment.educationCourse,
       educationSpendingShare: childEndowment.educationSpendingShare,
@@ -1418,7 +1418,7 @@ export class ComprehensiveService {
         id: '',
         path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
         title: 'No. of years to provide for',
-        value: dependentHouseHoldData.noOfYears ? dependentHouseHoldData.noOfYears + '' : '0',
+        value: dependentHouseHoldData.noOfYears ?  Util.toNumber(dependentHouseHoldData.noOfYears) + '' : '0',
         completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
       });
     }

@@ -6,11 +6,18 @@
             <img src="assets/images/paynow-qrcode.png" alt="" />
         </div>
         <div class="qrcode__refcode">{{ 'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.QRCODE.REFCODE' | translate }}</div>
-        <div class="qrcode__refcode-box">
-            <span class="qrcode__refcode-icon">
+        <div class="qrcode__refcode-box" copy-clipboard
+          [context]="showBankTransferIns ? bankDetails?.referenceNumber : paynowDetails?.referenceNumber"
+          (copied)="notify($event)">
+          <span class="qrcode__refcode-icon">
             <img src="assets/images/alert-red.svg">
           </span>
-            <strong class="qrcode__refcode-num">{{ showBankTransferIns ? bankDetails?.referenceNumber : paynowDetails?.referenceNumber}}</strong>
+          <strong
+            class="qrcode__refcode-num">{{ showBankTransferIns ? bankDetails?.referenceNumber : paynowDetails?.referenceNumber}}</strong>
+          <span copy-clipboard
+            [context]="showBankTransferIns ? bankDetails?.referenceNumber : paynowDetails?.referenceNumber"
+            (copied)="notify($event)" class="qrcode__copy-icon"><img alt="copy"
+              src="assets/images/copy-clipboard.svg" /></span>
         </div>
         <div class="qrcode__refcode-info">
             <div class="qrcode__refcode-info--text" innerHTML="{{ 'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.ADD_REFERENCE_CODE_INFO' | translate }}"></div>
@@ -56,18 +63,30 @@
                         <div class="bank-details-title">
                             {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.RECIPENTS_NAME' | translate}}
                         </div>
-                        <div class="bank-details-content"><span>{{bankDetails?.receipientName}}</span><img class="ml10" (click)="showToolTipModal()" src="assets/images/tooltip-icon.svg" alt="" /></div>
-
+                        <div class="bank-details-content">
+                          <span class="copy-txt" copy-clipboard [context]="bankDetails?.receipientName" (copied)="notify($event)">{{bankDetails?.receipientName}}</span>
+                          <img class="ml10" (click)="showToolTipModal()" src="assets/images/tooltip-icon.svg" alt="" />
+                          <span copy-clipboard [context]="bankDetails?.receipientName" (copied)="notify($event)"
+                            class="copy-icon"><img alt="copy" src="assets/images/copy-clipboard.svg" /></span>
+                        </div>
                     </div>
                     <div class="flex-col">
                         <div class="bank-details-title">
                             {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.BANK_NAME' | translate}}</div>
-                        <div class="bank-details-content"><span>{{bankDetails?.bankName}}</span></div>
+                        <div class="bank-details-content">
+                          <span class="copy-txt" copy-clipboard [context]="bankDetails?.bankName" (copied)="notify($event)">{{bankDetails?.bankName}}</span>
+                          <span copy-clipboard [context]="bankDetails?.bankName" (copied)="notify($event)"
+                            class="copy-icon"><img alt="copy" src="assets/images/copy-clipboard.svg" /></span>
+                        </div>
                     </div>
                     <div class="flex-col">
                         <div class="bank-details-title">
                             {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_BANK_TRANSCTIONS.BANK_ACC_NO' | translate}}</div>
-                        <div class="bank-details-content"><span>{{bankDetails?.bankAccountNumber}}</span></div>
+                        <div class="bank-details-content">
+                          <span class="copy-txt" copy-clipboard [context]="bankDetails?.bankAccountNumber" (copied)="notify($event)">{{bankDetails?.bankAccountNumber}}</span>
+                          <span copy-clipboard [context]="bankDetails?.bankAccountNumber" (copied)="notify($event)"
+                            class="copy-icon"><img alt="copy" src="assets/images/copy-clipboard.svg" /></span>
+                        </div>
                     </div>
                 </div>
 
@@ -76,12 +95,22 @@
                     <div class="flex-col">
                         <div class="bank-details-title">
                             {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.UNIQUE_ENTITY_NO' | translate}}</div>
-                        <div class="bank-details-content"><span>{{paynowDetails?.bankAccountNumber}}</span></div>
+                        <div class="bank-details-content">
+                          <span class="copy-txt" copy-clipboard [context]="paynowDetails?.bankAccountNumber" (copied)="notify($event)">{{paynowDetails?.bankAccountNumber}}</span>
+                          <span copy-clipboard [context]="paynowDetails?.bankAccountNumber" (copied)="notify($event)"
+                            class="copy-icon"><img alt="copy" src="assets/images/copy-clipboard.svg" /></span>
+                        </div>
                     </div>
                     <div class="flex-col">
                         <div class="bank-details-title">
                             {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_PAYNOW.ENTITY_NAME' | translate}}</div>
-                        <div class="bank-details-content"><span>{{paynowDetails?.receipientName}}</span><img class="ml10" (click)="showToolTipModal()" src="assets/images/tooltip-icon.svg" alt="" /></div>
+                        <div class="bank-details-content">
+                          <span class="copy-txt" copy-clipboard [context]="paynowDetails?.receipientName" (copied)="notify($event)">{{paynowDetails?.receipientName}}</span>
+                          <img class="ml10" (click)="showToolTipModal()" src="assets/images/tooltip-icon.svg"
+                            alt="" />
+                          <span copy-clipboard [context]="paynowDetails?.receipientName" (copied)="notify($event)"
+                            class="copy-icon"><img alt="copy" src="assets/images/copy-clipboard.svg" /></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -96,11 +125,18 @@
                 <div class="sub-section">
                     {{'TRANSFER_INSTRUCTION.FUNDING_INSTRUCTIONS.MODAL.SHOW_TRANSACTION_STEPS.LBL_STEP_4' | translate}}</div>
 
-                <div class="sub-section ref_code_num_container">
-                    <span class="info-text">
-            <img src="assets/images/alert-red.svg">
-          </span>
-                    <strong class="ref_num">{{ showBankTransferIns ? bankDetails?.referenceNumber : paynowDetails?.referenceNumber}}</strong>
+                <div class="sub-section ref_code_num_container" copy-clipboard
+                  [context]="showBankTransferIns ? bankDetails?.referenceNumber : paynowDetails?.referenceNumber"
+                  (copied)="notify($event)">
+                  <span class="info-text">
+                    <img src="assets/images/alert-red.svg">
+                  </span>
+                  <strong
+                    class="ref_num">{{ showBankTransferIns ? bankDetails?.referenceNumber : paynowDetails?.referenceNumber}}</strong>
+                  <span copy-clipboard
+                    [context]="showBankTransferIns ? bankDetails?.referenceNumber : paynowDetails?.referenceNumber"
+                    (copied)="notify($event)" class="copy-icon"><img alt="copy"
+                      src="assets/images/copy-clipboard.svg" /></span>
                 </div>
 
                 <div class="sub-section ref-code-info">
