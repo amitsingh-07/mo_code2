@@ -43,7 +43,7 @@
     }
   }
   .modal {
-    position: absolute;
+    position: fixed; //angular9 fix
   }
   .modal-open {
     .profile .col-lg-7 {

@@ -2,6 +2,9 @@
 button {
   box-shadow: none !important;
   cursor: pointer;
+  &.ngb-dp-arrow-btn {
+    background-color: transparent !important;
+  }
 }
 
 button:active {
