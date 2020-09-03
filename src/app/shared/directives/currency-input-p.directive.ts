@@ -25,7 +25,7 @@ export class CurrencyInputPortfolioDirective implements AfterViewInit {
 
     @HostListener('keyup', ['$event'])
     onKeyUp(event: KeyboardEvent) {
-        if (event.keyCode !== 37 && event.keyCode !== 39 && event.keyCode !== 8 && (event.keyCode < 48 || event.keyCode > 57)) {
+        if ((event.keyCode !== 37 && event.keyCode !== 39 && event.keyCode !== 8 && (event.keyCode < 48 || event.keyCode > 57)) || event.keyCode === undefined) {
             const regPattern = this.allowDecimal ? /[^0-9.]/g : /[^0-9]/g;
             this.el.nativeElement.value = this.el.nativeElement.value.replace(regPattern, '');
             this.el.nativeElement.dispatchEvent(new Event('input'));
@@ -46,7 +46,7 @@ export class CurrencyInputPortfolioDirective implements AfterViewInit {
     onblur() {
         this.formatCurrency();
     }
-
+    
     formatCurrency() {
         let currentElement = this.el.nativeElement.value;
         currentElement = currentElement.replace(new RegExp('[,]', 'g'), '');
