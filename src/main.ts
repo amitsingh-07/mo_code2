@@ -10,21 +10,21 @@ if (environment.brand) {
 }
 
 /* Google Tag Manager */
-// if (environment.gtagPropertyId) {
-//   const g_tag_script = document.createElement('script');
-//   // tslint:disable-next-line:max-line-length
-//   g_tag_script.innerHTML = 'window.dataLayer = window.dataLayer || [];\n (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start": new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src= "https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f); })(window,document,"script","dataLayer","' + environment.gtagPropertyId + '");';
-//   document.head.appendChild(g_tag_script);
+if (environment.gtagPropertyId) {
+  const g_tag_script = document.createElement('script');
+  // tslint:disable-next-line:max-line-length
+  g_tag_script.innerHTML = 'window.dataLayer = window.dataLayer || [];\n (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start": new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src= "https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f); })(window,document,"script","dataLayer","' + environment.gtagPropertyId + '");';
+  document.head.appendChild(g_tag_script);
 
-//   const g_tag_noscript = document.createElement('noscript');
-//   const g_tag_iframe = document.createElement('iframe');
-//   g_tag_iframe.setAttribute('src', 'https://www.googletagmanager.com/ns.html?id='+environment.gtagPropertyId);
-//   g_tag_iframe.setAttribute('height', '0');
-//   g_tag_iframe.setAttribute('width', '0');
-//   g_tag_iframe.setAttribute('style', 'display:none;visibility:hidden');
-//   g_tag_noscript.appendChild(g_tag_iframe);
-//   document.body.appendChild(g_tag_noscript);
-// }
+  const g_tag_noscript = document.createElement('noscript');
+  const g_tag_iframe = document.createElement('iframe');
+  g_tag_iframe.setAttribute('src', 'https://www.googletagmanager.com/ns.html?id=' + environment.gtagPropertyId);
+  g_tag_iframe.setAttribute('height', '0');
+  g_tag_iframe.setAttribute('width', '0');
+  g_tag_iframe.setAttribute('style', 'display:none;visibility:hidden');
+  g_tag_noscript.appendChild(g_tag_iframe);
+  document.body.appendChild(g_tag_noscript);
+}
 
 /* Google Ad Pixel Code */
 if (environment.gAdPropertyId) {
