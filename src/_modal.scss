@@ -243,6 +243,7 @@ body.modal-open::-webkit-scrollbar {
     font-size: 32px;
     opacity: 0.4 !important;
     text-shadow: none;
+    outline: none !important;
   }
 
   .help-modal-title {
@@ -1251,5 +1252,11 @@ body.modal-open::-webkit-scrollbar {
 .hide-manual-btn {
   #error_enter_manually {
     display: none;
+  }
+}
+@include allmobiles {
+  .modal-dialog-centered {
+    align-items: flex-end !important;
+    min-height: 100% !important;
   }
 }

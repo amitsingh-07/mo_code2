@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { NgbCarouselConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { SlickComponent } from 'ngx-slick';
+import { SlickCarouselComponent } from 'ngx-slick-carousel';
 import { Subscription } from 'rxjs';
 
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '../../../../node_modules/@angular/router';
@@ -35,7 +35,7 @@ import { RecommendationsState } from './recommendations.state';
   providers: [NgbCarouselConfig]
 })
 export class RecommendationsComponent implements IPageComponent, OnInit, AfterViewChecked, OnDestroy {
-  @ViewChild('recommendationCarousel') recommendationCarousel: SlickComponent;
+  @ViewChild('recommendationCarousel') recommendationCarousel: SlickCarouselComponent;
   @ViewChild('mobileHeaderMenu', { read: ElementRef }) mobileHeaderMenu: ElementRef<any>;
 
   pageTitle: string;

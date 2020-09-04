@@ -1,4 +1,4 @@
-import 'rxjs/add/operator/map';
+
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';

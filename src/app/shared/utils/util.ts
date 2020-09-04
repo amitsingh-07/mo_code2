@@ -68,6 +68,22 @@ export class Util {
         }
     }
 
+    public static toInteger(value: any): number {
+        return parseInt(`${value}`, 10);
+      }
+
+    public static isNumber(value: any): value is number {
+        return !isNaN(this.toInteger(value));
+      }
+
+    public static padNumber(value: number) {
+        if (this.isNumber(value)) {
+          return `0${value}`.slice(-2);
+        } else {
+          return '';
+        }
+      }
+
     public static routeParamStringToObject(routeParams: string[]): any {
         if (routeParams != null) {
             const routeParamsObj = {};

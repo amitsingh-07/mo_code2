@@ -1,6 +1,5 @@
 import 'hammerjs';
 
-import { jqxSliderComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxslider';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import {
@@ -11,12 +10,12 @@ import {
 } from '@angular/common/http';
 import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { DatePipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -165,7 +164,6 @@ export function tokenGetterFn() {
     PopupModalComponent,
     SuccessModalComponent,
     RestrictAlphabetsDirective,
-    jqxSliderComponent,
     HeaderComponent,
     FooterComponent,
     CallBackComponent,
@@ -186,14 +184,13 @@ export function tokenGetterFn() {
   ],
   imports: [
     BrowserModule,
-    NgbModule.forRoot(),
+    NgbModule,
     AppRoutingModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     HttpClientJsonpModule,
-    HttpModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -247,7 +244,8 @@ export function tokenGetterFn() {
     PaymentEnableGuard,
     PaymentChildEnableGuard,
     InvestmentMaintenanceGuard,
-    ExternalRouteGuard
+    ExternalRouteGuard,
+    DatePipe
   ],
   bootstrap: [AppComponent],
   entryComponents: [

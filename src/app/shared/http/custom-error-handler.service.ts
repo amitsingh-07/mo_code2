@@ -1,11 +1,9 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Response, ResponseOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
 
 import { appConstants } from './../../app.constants';
-import { AuthenticationService } from './auth/authentication.service';
 import { HelperService } from './helper.service';
 import { IError } from './interfaces/error.interface';
 import { IServerResponse } from './interfaces/server-response.interface';
@@ -79,14 +77,14 @@ export class CustomErrorHandlerService {
       'Something bad happened; please try again later.');
   }
 
-  tryParseError(error: Response): any {
+  tryParseError(error) {
     try {
-      return error.json().error;
+      return error.body.error;
     } catch (ex) {
       try {
         return error;
       } catch (ex) {
-        return error.toString();
+        return error.body.toString();
       }
     }
   }
@@ -105,10 +103,10 @@ export class CustomErrorHandlerService {
     }
   }
 
-  createCustomError(error: IError): Response {
+  createCustomError(error: IError) {
     try {
       const parsedError = this.parseCustomServerError(error);
-      const responseOptions = new ResponseOptions({
+      const responseOptions = new HttpResponse({
         body: {
           error: { title: parsedError.title, message: parsedError.body }
         },
@@ -116,15 +114,15 @@ export class CustomErrorHandlerService {
         headers: null,
         url: null
       });
-      return new Response(responseOptions);
+      return new HttpResponse(responseOptions);
     } catch (ex) {
-      const responseOptions = new ResponseOptions({
+      const responseOptions = new HttpResponse({
         body: { title: 'Unknown Error!', message: 'Unknown Error Occurred.' },
         status: 400,
         headers: null,
         url: null
       });
-      return new Response(responseOptions);
+      return new HttpResponse(responseOptions);
     }
   }
 

@@ -64,7 +64,7 @@ export function createTranslateLoader(http: HttpClient) {
     SharedModule,
     TextMaskModule,
     ComprehensiveModule,
-    NgbModule.forRoot(),
+    NgbModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
