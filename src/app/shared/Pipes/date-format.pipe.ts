@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { padNumber } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { padNumber } from '../utils/common.util';
 
 @Pipe({
   name: 'formatDate'

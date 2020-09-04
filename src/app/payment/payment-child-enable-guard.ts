@@ -1,6 +1,8 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateChild, Router, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { ConfigService, IConfig } from '../config/config.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SignUpService } from '../sign-up/sign-up.service';
@@ -29,13 +31,13 @@ export class PaymentChildEnableGuard implements CanActivateChild {
         return true;
       } else {
         if (this.isPaymentEnabled) {
-          return this.paymentService.getLastSuccessfulSubmittedTs().map((res) => {
+          return this.paymentService.getLastSuccessfulSubmittedTs().pipe(map((res) => {
             if (res['last_submit_ts'].length === 0) {
               return true;
             } else {
               return false;
             }
-          });
+          }));
         } else {
           return false;
         }

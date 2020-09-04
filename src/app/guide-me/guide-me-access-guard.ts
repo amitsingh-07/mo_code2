@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { GUIDE_ME_ROUTE_PATHS } from './guide-me-routes.constants';

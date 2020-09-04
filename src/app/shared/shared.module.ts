@@ -1,4 +1,4 @@
-import { SlickModule } from 'ngx-slick';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { CommonModule } from '@angular/common';
@@ -94,7 +94,7 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   imports: [
     CommonModule,
-    NgbModule.forRoot(),
+    NgbModule,
     RouterModule,
     TranslateModule.forRoot({
       loader: {
@@ -105,7 +105,7 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     FormsModule,
     ReactiveFormsModule,
-    SlickModule.forRoot()
+    SlickCarouselModule
   ],
   exports: [CurrencyInputDirective, PercentageInputDirective, CapsLockInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe,

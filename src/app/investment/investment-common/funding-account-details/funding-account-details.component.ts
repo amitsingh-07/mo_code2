@@ -1,6 +1,5 @@
-import 'rxjs/add/observable/forkJoin';
 
-import { Observable } from 'rxjs/Observable';
+import {forkJoin as observableForkJoin,  Observable } from 'rxjs';
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -81,7 +80,7 @@ export class FundingAccountDetailsComponent implements OnInit {
   }
 
   getSrsAccDetailsAndOptionListCol() {
-    Observable.forkJoin(
+    observableForkJoin(
       this.manageInvestmentsService.getProfileSrsAccountDetails(),
       this.investmentAccountService.getAllDropDownList()
     ).subscribe((response) => {

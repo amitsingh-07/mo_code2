@@ -49,17 +49,17 @@ export class FundDetailsComponent implements OnInit {
   }
 
   showHide(el) {
-    const fundContentEle = el.getElementsByClassName('funding-content')[0];
+    const fundContentEle = document.getElementsByClassName('funding-content')[el];
     if (
       fundContentEle.classList.contains('active') ||
       fundContentEle.classList.contains('first')
     ) {
       fundContentEle.classList.remove('active');
       fundContentEle.classList.remove('first');
-      el.getElementsByClassName('fund-heading')[0].classList.remove('active');
+      document.getElementsByClassName('fund-heading')[el].classList.remove('active');
     } else {
       fundContentEle.classList.add('active');
-      el.getElementsByClassName('fund-heading')[0].classList.add('active');
+      document.getElementsByClassName('fund-heading')[el].classList.add('active');
     }
   }
 

@@ -128,7 +128,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('subscribeFooter') SubscribeFooter: ElementRef;
   @ViewChild('subscribeSection') SubscribeSection: ElementRef;
   /* Child Elements for Home NavBar */
-  @ViewChild('homeNavInsurance') HomeNavInsurance: ElementRef;
+  @ViewChild('homeNavInsurance', {static: true}) HomeNavInsurance: ElementRef;
   @ViewChild('homeNavWill') HomeNavWill: ElementRef;
   @ViewChild('homeNavInvest') HomeNavInvest: ElementRef;
   @ViewChild('homeNavComprehensive') HomeNavComprehensive: ElementRef;
