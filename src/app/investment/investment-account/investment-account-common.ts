@@ -86,7 +86,7 @@ export class InvestmentAccountCommon {
     control.setValue('');
     fileElem.value = '';
     if (thumbElem) {
-      thumbElem.src = window.location.origin + '/assets/images/' + defaultThumb;
+      thumbElem.src = 'assets/images/' + defaultThumb;
     }
   }
 

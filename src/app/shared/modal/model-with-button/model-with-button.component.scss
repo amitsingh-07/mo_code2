@@ -35,7 +35,7 @@
     &:hover {
       background-color: $robins-egg-blue-color;
       border-color: $action-btn-hover-brdr-color;
-      color: $white-color;
+      color: $white-color !important;
       -webkit-text-fill-color: $white-color;
       @include allmobiles {
         background-color: $white-color !important;
@@ -53,6 +53,7 @@
   &:hover {
       background-color: $robins-egg-blue-color;
       border-color: $action-btn-hover-brdr-color;
+      color: $white-color !important;
   }
   &:active{
     background-color: $action-btn-active-bg;

@@ -1,5 +1,8 @@
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/catch';
+
+import {of as observableOf,  Observable } from 'rxjs';
+
+import {catchError, map} from 'rxjs/operators';
+
 
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -101,9 +104,9 @@ export class InvestmentCommonService {
   getAccountCreationActions(enquiryId?): Observable<IAccountCreationActions> {
     const accStatusInfoFromSession = this.getInvestmentCommonFormData().accountCreationActions;
     if (accStatusInfoFromSession) {
-      return Observable.of(accStatusInfoFromSession);
+      return observableOf(accStatusInfoFromSession);
     } else {
-      return this.getFirstInvAccountCreationStatus(enquiryId).map((data: any) => {
+      return this.getFirstInvAccountCreationStatus(enquiryId).pipe(map((data: any) => {
         if (data && data.objectList) {
           this.setAccountCreationActionsToSession(data.objectList);
           return {
@@ -119,7 +122,7 @@ export class InvestmentCommonService {
       },
         (err) => {
           this.investmentAccountService.showGenericErrorModal();
-        });
+        }));
     }
   }
 
@@ -275,16 +278,16 @@ export class InvestmentCommonService {
       title: this.translate.instant('COMMON_LOADER.TITLE'),
       desc: this.translate.instant('COMMON_LOADER.DESC')
     });
-    return this.getInvestmentCriteriaFromApi().map((data: any) => {
+    return this.getInvestmentCriteriaFromApi().pipe(map((data: any) => {
       this.loaderService.hideLoader();
       return data.objectList;
-    }).catch(
+    }),catchError(
       (error) => {
         this.loaderService.hideLoader();
         // getDefault placeholder
-        return Observable.of(null);
+        return observableOf(null);
       }
-    );
+    ),);
   }
   setPortfolioType(portfolioType) {
     this.investmentCommonFormData.portfolioType = portfolioType;

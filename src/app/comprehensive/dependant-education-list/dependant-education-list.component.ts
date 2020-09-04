@@ -1,7 +1,7 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { toInteger } from './../../shared/utils/common.util';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 

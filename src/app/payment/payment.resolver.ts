@@ -1,6 +1,8 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { ConfigService } from '../config/config.service';
 import { COMPREHENSIVE_CONST } from './../comprehensive/comprehensive-config.constants';
@@ -19,7 +21,7 @@ export class PaymentResolver implements Resolve<any> {
   resolve(): Observable<any> {
     // Get customer's promo code base on the product type
     if (this.paymentEnabled) {
-      return this.paymentService.getCustPromoCodeByCategory(COMPREHENSIVE_CONST.PROMO_CODE.TYPE).map((res) => {
+      return this.paymentService.getCustPromoCodeByCategory(COMPREHENSIVE_CONST.PROMO_CODE.TYPE).pipe(map((res) => {
         if (res.objectList) {
           let byPass = false;
           for (let i = 0; i < PROMO_CODE_PAYMENT_BYPASS.length; i++) {
@@ -35,7 +37,7 @@ export class PaymentResolver implements Resolve<any> {
         }
       }, (error) => {
         return null;
-      });
+      }));
     } else {
       return null;
     }

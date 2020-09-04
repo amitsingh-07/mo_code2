@@ -3,10 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { toInteger } from './../shared/utils/common.util';
 
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';

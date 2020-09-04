@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { toInteger } from '../utils/common.util';
 import { Agent } from 'https';
 
 @Injectable()

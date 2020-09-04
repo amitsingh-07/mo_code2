@@ -2030,6 +2030,7 @@ select:-webkit-autofill:focus {
   .datepicker-upside {
     .dropdown-menu.show {
       top: -240px !important;
+      transform: none !important;
     }
   }
 
