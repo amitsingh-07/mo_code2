@@ -8,7 +8,8 @@ import {
   Type,
   ViewChild,
   ViewContainerRef,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ComponentRef
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -38,6 +39,7 @@ const mobileThreshold = 567;
 
 export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, OnDestroy {
   @ViewChild('directResults', { read: ViewContainerRef }) container: ViewContainerRef;
+  componentRef: ComponentRef<any>;
   pageTitle: string;
 
   routeSubscription: Subscription;
@@ -109,10 +111,13 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
     this.navbarService.unsubscribeBackPress();
     this.navbarService.setNavbarDirectGuided(true);
     this.footerService.setFooterVisibility(false);
-    this.removeComponent(DirectResultsComponent);
+    this.removeComponent(DirectResultsComponent)
   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
     const selectedPlans = this.planService.getSelectedPlan();
     const selectedComparePlans = this.directService.getSelectedPlans();
     if ((selectedPlans && selectedPlans.enquiryId) ||
@@ -125,11 +130,11 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
     }
   }
 
-  ngAfterViewInit() {
-
-  }
-
   ngOnDestroy() {
+    if (this.componentRef) {
+      this.componentRef.destroy();
+    }
+
     if (this.routeSubscription instanceof Subscription) {
       this.routeSubscription.unsubscribe();
     }
@@ -170,21 +175,21 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
   addComponent(componentClass: Type<any>) {
     // Create component dynamically inside the ng-template
     const componentFactory = this.factoryResolver.resolveComponentFactory(componentClass);
-    const component = this.container.createComponent(componentFactory);
-    component.instance.isMobileView = this.state.isMobileView;
+    this.componentRef = this.container.createComponent(componentFactory);
+    this.componentRef.instance.isMobileView = this.state.isMobileView;
 
     // Push the component so that we can keep track of which components are created
-    this.components.push(component);
+    this.components.push(this.componentRef);
   }
 
   removeComponent(componentClass: Type<any>) {
     // Find the component
-    const component = this.components.find((thisComponent) => thisComponent.instance instanceof componentClass);
-    const componentIndex = this.components.indexOf(component);
-
+    //const component = this.components.find((thisComponent) => thisComponent.instance instanceof componentClass);
+    const componentIndex = this.components.indexOf(this.componentRef);
     if (componentIndex !== -1) {
       // Remove component from both view and array
-      this.container.remove(this.container.indexOf(component));
+      //this.container.remove(this.container.indexOf(this.componentRef));
+      this.componentRef.destroy();
       this.components.splice(componentIndex, 1);
     }
   }
