@@ -111,7 +111,7 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
     this.navbarService.unsubscribeBackPress();
     this.navbarService.setNavbarDirectGuided(true);
     this.footerService.setFooterVisibility(false);
-    this.removeComponent(DirectResultsComponent)
+    this.removeComponent(DirectResultsComponent);
   }
 
   ngOnInit() {
