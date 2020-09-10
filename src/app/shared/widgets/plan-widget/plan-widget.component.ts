@@ -9,7 +9,8 @@ import {
   OnInit,
   Output,
   Renderer2,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ChangeDetectorRef
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -70,7 +71,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   constructor(
     private currency: CurrencyPipe, public modal: NgbModal, private elRef: ElementRef,
     private renderer: Renderer2, private translate: TranslateService, private titleCasePipe: TitleCasePipe,
-    private planService: SelectedPlansService, private round: RoundPipe) {
+    private planService: SelectedPlansService, private round: RoundPipe, private cd: ChangeDetectorRef) {
     this.highlights = [];
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((data) => {
@@ -228,6 +229,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
         this.isRankContainerSet = true;
       }
     }
+    this.cd.detectChanges();
   }
 
   viewDetails() {

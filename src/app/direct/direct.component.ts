@@ -9,7 +9,8 @@ import {
   ViewChild,
   ViewContainerRef,
   ViewEncapsulation,
-  ComponentRef
+  ComponentRef,
+  ChangeDetectorRef 
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -54,7 +55,7 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
     public modal: NgbModal, private route: ActivatedRoute,
     private factoryResolver: ComponentFactoryResolver, private appService: AppService,
     private planService: SelectedPlansService, private stateStoreService: StateStoreService,
-    private location: Location, private seoService: SeoServiceService) {
+    private location: Location, private seoService: SeoServiceService, private changeDetector: ChangeDetectorRef) {
 
     /* ************** STATE HANDLING - START ***************** */
     this.componentName = DirectComponent.name;
@@ -115,9 +116,6 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
   }
 
   ngOnInit() {
-  }
-
-  ngAfterViewInit() {
     const selectedPlans = this.planService.getSelectedPlan();
     const selectedComparePlans = this.directService.getSelectedPlans();
     if ((selectedPlans && selectedPlans.enquiryId) ||
@@ -126,8 +124,17 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
         this.directService.setModalFreeze(true);
       }
       this.state.hideForm = true;
+    }
+  }
+
+  ngAfterViewInit() {
+    const selectedPlans = this.planService.getSelectedPlan();
+    const selectedComparePlans = this.directService.getSelectedPlans();
+    if ((selectedPlans && selectedPlans.enquiryId) ||
+      (selectedComparePlans && selectedComparePlans.hasOwnProperty('length') && selectedComparePlans.length > 0)) {
       this.formSubmitCallback();
     }
+    this.changeDetector.detectChanges();
   }
 
   ngOnDestroy() {
@@ -184,11 +191,9 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
 
   removeComponent(componentClass: Type<any>) {
     // Find the component
-    //const component = this.components.find((thisComponent) => thisComponent.instance instanceof componentClass);
     const componentIndex = this.components.indexOf(this.componentRef);
     if (componentIndex !== -1) {
       // Remove component from both view and array
-      //this.container.remove(this.container.indexOf(this.componentRef));
       this.componentRef.destroy();
       this.components.splice(componentIndex, 1);
     }
