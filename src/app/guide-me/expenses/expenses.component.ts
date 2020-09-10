@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -14,7 +14,7 @@ import { IMyExpenses } from './expenses.interface';
   templateUrl: './expenses.component.html',
   styleUrls: ['./expenses.component.scss']
 })
-export class ExpensesComponent implements IPageComponent, OnInit {
+export class ExpensesComponent implements IPageComponent, OnInit, AfterViewInit {
   pageTitle: string;
   expensesForm: FormGroup;
   expensesFormValues: IMyExpenses;
@@ -22,7 +22,7 @@ export class ExpensesComponent implements IPageComponent, OnInit {
 
   constructor(
     private router: Router, public navbarService: NavbarService,
-    private guideMeService: GuideMeService, private translate: TranslateService) {
+    private guideMeService: GuideMeService, private translate: TranslateService, private changeDetectorRef: ChangeDetectorRef) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('MY_EXPENSES.TITLE');
@@ -39,6 +39,10 @@ export class ExpensesComponent implements IPageComponent, OnInit {
     });
 
     this.setFormTotalValue();
+  }
+
+  ngAfterViewInit() {
+    this.changeDetectorRef.detectChanges();
   }
 
   setFormTotalValue() {
