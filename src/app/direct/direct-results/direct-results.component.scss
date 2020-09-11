@@ -87,6 +87,9 @@ app-direct-results {
       color: white;
       padding: 5px 10px !important;
       border: 1px solid #fff;
+      &:hover {
+        color: $white-color;
+      }
       @include allmobiles {
         color: $app-backgrnd-color;
         padding: 5px 10px !important;
@@ -97,6 +100,9 @@ app-direct-results {
   .compare {
     background: white;
     color: #00A7A7;
+    &:hover {
+      color: $app-backgrnd-color;
+    }
   }
 
   .lbl {
