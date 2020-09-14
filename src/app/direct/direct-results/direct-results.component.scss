@@ -90,6 +90,9 @@ app-direct-results {
       &:hover {
         color: $white-color;
       }
+      &:disabled:hover {
+        color: $btn-disabled-color;
+      }
       @include allmobiles {
         color: $app-backgrnd-color;
         padding: 5px 10px !important;
