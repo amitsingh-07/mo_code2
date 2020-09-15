@@ -176,7 +176,8 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
     if (this.hasSpouse) {
       let members = [];
       const spouse: any = this.willWritingService.getSpouseInfo();
-      members = [...spouse, ...form.value];
+      const arrConvert = [form.value];
+      members = [...spouse, ...arrConvert];
       return this.willWritingService.checkDuplicateUin(members);
     } else {
       return true;
