@@ -1,6 +1,6 @@
 import { GuideMeService } from './../../guide-me/guide-me.service';
 import { Location } from '@angular/common';
-import { Component, Input, OnDestroy, OnInit, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, QueryList, ViewChildren, ViewEncapsulation, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -35,7 +35,7 @@ const mobileThreshold = 567;
   styleUrls: ['./direct-results.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy {
+export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy, AfterContentChecked {
 
   @Input() isMobileView: boolean;
   @ViewChildren('planWidget') planWidgets: QueryList<PlanWidgetComponent>;
@@ -62,7 +62,8 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     private router: Router, private translate: TranslateService, public navbarService: NavbarService,
     public modal: NgbModal, private selectedPlansService: SelectedPlansService,
     private authService: AuthenticationService, private route: ActivatedRoute,
-    private stateStoreService: StateStoreService, private location: Location, private guidemeService: GuideMeService) {
+    private stateStoreService: StateStoreService, private location: Location, private guidemeService: GuideMeService,
+    private changeDetector: ChangeDetectorRef) {
 
     /* ************** STATE HANDLING - START ***************** */
     this.componentName = DirectResultsComponent.name;
@@ -144,6 +145,10 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     } else {
       this.state.isMobileView = false;
     }
+  }
+
+  ngAfterContentChecked() {
+    this.changeDetector.detectChanges();
   }
 
   ngOnDestroy() {
@@ -463,10 +468,8 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   compare() {
-    console.log(this.state.selectedComparePlans);
     this.directService.setProtectionType(this.state.searchResult[0]['protectionType']);
     this.directService.setSelectedPlans(this.state.selectedComparePlans);
-    console.log(this.state.selectedComparePlans);
     this.router.navigate([DIRECT_ROUTE_PATHS.COMPARE_PLANS]);
   }
 
