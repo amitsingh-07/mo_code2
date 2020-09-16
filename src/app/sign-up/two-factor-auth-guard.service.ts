@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, GuardsCheckEnd, Router } from '@angular/router';
-
+import { CanActivate, GuardsCheckEnd, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 import { AppService } from '../app.service';
@@ -19,19 +19,9 @@ export class TwoFactorAuthGuardService implements CanActivate {
     private signUpService: SignUpService,
   ) { }
 
-  canActivate(): boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     this.appService.setJourneyType('');
-    let redirectUrl = null;
-    this.route.events.pipe(
-      filter(event => event instanceof GuardsCheckEnd)
-    )
-      .subscribe((e: GuardsCheckEnd) => {
-        if (redirectUrl == null) {
-          redirectUrl = e.url;
-          this.signUpService.setRedirectUrl(e.url);
-        }
-      });
-    this.signUpService.setRedirectUrl(redirectUrl);
+    this.signUpService.setRedirectUrl(state.url);
     // Is Signed Users and is 2FA verified
     if (this.authService.isSignedUser() && this.authService.is2FAVerified()) {
       this.authService.setFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE, false);
@@ -42,10 +32,10 @@ export class TwoFactorAuthGuardService implements CanActivate {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       return false;
     } else {
-      this.signUpService.setRedirectUrl(redirectUrl);
       this.route.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_2FA]);
       return false;
     }
+	  
   }
 }
 
