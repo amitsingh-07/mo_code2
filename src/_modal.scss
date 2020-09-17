@@ -49,6 +49,7 @@ body.modal-open {
   overflow: hidden;
   width: 100%;
   background-color: $black-color;
+  padding-right: 0 !important
 }
 
 body.modal-open {
@@ -681,6 +682,9 @@ body.modal-open::-webkit-scrollbar {
     bottom: initial;
     margin-top: 27px;
     position: relative;
+  }
+  .modal-dialog-centered {
+    align-items: center !important;
   }
 }
 
