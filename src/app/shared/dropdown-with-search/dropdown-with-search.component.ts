@@ -25,7 +25,7 @@ export class DropdownWithSearchComponent implements OnInit {
   @Output() itemSelected = new EventEmitter<boolean>();
   isDropdownOpen = false;
   selectedValue;
-  @ViewChild('searchInputElement') searchInputElement: ElementRef;
+  @ViewChild('searchInputElement', {static: true}) searchInputElement: ElementRef;
 
   constructor(private parent: FormGroupDirective) {
   }
