@@ -70,6 +70,8 @@ export class DropdownWithSearchComponent implements OnInit {
     this.isDropdownOpen = event;
     if (event) {
       setTimeout(() => {
+        this.form.controls[this.searchControlName].setValue(this.searchInputElement.nativeElement.value);
+        this.form.controls[this.searchControlName].updateValueAndValidity();
         this.searchInputElement.nativeElement.focus();
       });
     }

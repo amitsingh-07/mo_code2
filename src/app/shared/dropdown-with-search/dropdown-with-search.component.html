@@ -1,5 +1,5 @@
 <div ngbDropdown (openChange)="toggleDropdown($event)" [formGroup]="form" [placement]="placement">
-  <button [disabled]="disabled" class="btn btn-dropdown" id="birth-country-drpdown_{{randomNo}}" ngbDropdownToggle>
+  <button [disabled]="disabled" class="btn btn-dropdown" id="birth-country-drpdown_{{randomNo}}" ngbDropdownToggle [class.show]="!isDropdownOpen">
     <span *ngIf="!selectedValue">
       {{placeholderText}}
     </span>
@@ -9,7 +9,7 @@
   </button>
   <div class="search-input-container" [class.show]="isDropdownOpen">
     <img src="assets/images/search-icon.svg" alt="" />
-    <input type="search" #searchInputElement (click)="preventPropogation($event)" class="search-control"
+    <input type="search" #searchInputElement (keyup)="toggleDropdown(true)" (click)="toggleDropdown(true);preventPropogation($event)" class="search-control"
       [formControlName]="searchControlName" placeholder="{{ 'DROPDOWN.SEARCH' | translate}}...">
   </div>
   <div class="dropdown with-search" autocomplete="off" ngbDropdownMenu>
