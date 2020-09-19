@@ -32,7 +32,7 @@
                     <div class="widgets">
                         <app-comprehensive-dashboard *ngIf='isComprehensiveEnabled'></app-comprehensive-dashboard>
                         <!-- Investment WiseSaver New Card -->
-                        <div class="widget" *ngIf="isInvestmentEnabled && showPortfolioPurchased">
+                        <div class="widget" *ngIf="showPortfolioPurchased">
                             <ng-container *ngIf="isInvestmentEnabled; else loader">
                                 <div class="widget-title widget-portfolio-title" >
                                     <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
