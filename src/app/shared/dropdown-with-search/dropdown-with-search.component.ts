@@ -69,12 +69,16 @@ export class DropdownWithSearchComponent implements OnInit {
   toggleDropdown(event) {
     this.isDropdownOpen = event;
     if (event) {
+      this.setOptionList();
       setTimeout(() => {
-        this.form.controls[this.searchControlName].setValue(this.searchInputElement.nativeElement.value);
-        this.form.controls[this.searchControlName].updateValueAndValidity();
         this.searchInputElement.nativeElement.focus();
       });
     }
+  }
+  setOptionList() {    
+    this.isDropdownOpen = true;
+    this.form.controls[this.searchControlName].setValue(this.searchInputElement.nativeElement.value);
+    this.form.controls[this.searchControlName].updateValueAndValidity();
   }
 
 }
