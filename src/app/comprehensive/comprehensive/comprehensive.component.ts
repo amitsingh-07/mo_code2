@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { APP_ROUTES } from '../../app-routes.constants';
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
@@ -55,6 +55,7 @@ export class ComprehensiveComponent implements OnInit {
     public navbarService: NavbarService, private configService: ConfigService,
     private authService: AuthenticationService, public modal: NgbModal,
     private loaderService: LoaderService, private signUpService: SignUpService,
+    private formBuilder: FormBuilder,
     public footerService: FooterService, private sanitizer: DomSanitizer, private comprehensiveApiService: ComprehensiveApiService) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -84,7 +85,6 @@ export class ComprehensiveComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
     this.buildPromoCodeForm();
-
     if (this.authService.isSignedUser()) {
       const action = this.appService.getAction();
       this.loaderService.showLoader({ title: this.fetchData, autoHide: false });
@@ -178,8 +178,8 @@ export class ComprehensiveComponent implements OnInit {
   }
 
   buildPromoCodeForm() {
-    this.promoCodeForm = new FormGroup({
-      comprehensivePromoCodeToken: new FormControl(''),
+    this.promoCodeForm = this.formBuilder.group({
+      comprehensivePromoCodeToken: ["", [Validators.required, Validators.pattern(RegexConstants.SixDigitPromo)]]
     });
   }
   getStarted() {
