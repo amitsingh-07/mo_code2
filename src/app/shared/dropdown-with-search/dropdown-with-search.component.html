@@ -9,7 +9,7 @@
   </button>
   <div class="search-input-container" [class.show]="isDropdownOpen">
     <img src="assets/images/search-icon.svg" alt="" />
-    <input type="search" #searchInputElement (keyup)="setOptionList();myDrop.open();" (click)="setOptionList();preventPropogation($event)" class="search-control"
+    <input autofocus type="search" #searchInputElement (keyup)="setOptionList();myDrop.open();" (click)="setOptionList();preventPropogation($event)" class="search-control"
       [formControlName]="searchControlName" placeholder="{{ 'DROPDOWN.SEARCH' | translate}}...">
   </div>
   <div class="dropdown with-search" autocomplete="off" ngbDropdownMenu>
