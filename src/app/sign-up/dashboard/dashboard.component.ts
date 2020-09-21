@@ -1,13 +1,10 @@
-
-import {forkJoin as observableForkJoin,  Observable } from 'rxjs';
-
+import { forkJoin as observableForkJoin } from 'rxjs';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ConfigService, IConfig } from '../../config/config.service';
-// Insurance
 import { GuideMeApiService } from '../../guide-me/guide-me.api.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
 import {
@@ -39,7 +36,6 @@ import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
-// Will Writing
 import { WillWritingApiService } from '../../will-writing/will-writing.api.service';
 import { WillWritingService } from '../../will-writing/will-writing.service';
 import { SignUpApiService } from '../sign-up.api.service';
@@ -60,8 +56,6 @@ export class DashboardComponent implements OnInit {
   showPortfolioPurchased = false;
   showStartInvesting = false;
   showInvestmentDetailsSaved = false;
-  showNoInvestmentAccount = false;
-  showAddPortfolio = false;
   showCddCheckOngoing = false;
   showSuspendedAccount = false;
   showBlockedNationalityStatus = false;
