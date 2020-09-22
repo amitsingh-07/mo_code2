@@ -108,10 +108,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
       if (!this.stateStoreService.has(this.componentName) && (!this.state || !this.state.enquiryId)) {
         this.getRecommendationsFromServer();
       }
-    }, 500);
-
-    this.state.recommendationCarousel = this.recommendationCarousel;
-    this.state.mobileHeaderMenu = this.mobileHeaderMenu;
+    }, 500);    
   }
 
   ngOnDestroy() {
@@ -122,6 +119,8 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
 
   ngAfterViewChecked() {
     this.state.enableScroll = true;
+    this.state.recommendationCarousel = this.recommendationCarousel;
+    this.state.mobileHeaderMenu = this.mobileHeaderMenu;
   }
 
   afterChange(e) {
