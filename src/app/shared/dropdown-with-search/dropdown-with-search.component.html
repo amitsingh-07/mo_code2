@@ -1,5 +1,5 @@
-<div ngbDropdown (openChange)="toggleDropdown($event)" [formGroup]="form" [placement]="placement">
-  <button [disabled]="disabled" class="btn btn-dropdown" id="birth-country-drpdown_{{randomNo}}" ngbDropdownToggle>
+<div ngbDropdown (openChange)="toggleDropdown($event)"  #myDrop="ngbDropdown" [formGroup]="form" [placement]="placement" class="width100 d-inline-block" autoclose="false">
+  <button [disabled]="disabled" class="btn btn-dropdown" id="birth-country-drpdown_{{randomNo}}" ngbDropdownToggle [class.show]="!isDropdownOpen">
     <span *ngIf="!selectedValue">
       {{placeholderText}}
     </span>
@@ -9,19 +9,19 @@
   </button>
   <div class="search-input-container" [class.show]="isDropdownOpen">
     <img src="assets/images/search-icon.svg" alt="" />
-    <input type="search" #searchInputElement (click)="preventPropogation($event)" class="search-control"
+    <input autofocus type="search" #searchInputElement (keyup)="setOptionList();myDrop.open();" (click)="setOptionList();preventPropogation($event)" class="search-control"
       [formControlName]="searchControlName" placeholder="{{ 'DROPDOWN.SEARCH' | translate}}...">
   </div>
   <div class="dropdown with-search" autocomplete="off" ngbDropdownMenu>
     <ng-container *ngIf="optionList | startsWith : form.controls[searchControlName].value : displayKey as result;">
-      <button class="dropdown-item"
+      <button ngbDropdownItem class="dropdown-item"
         *ngFor="let option of result | startsWith : form.controls[searchControlName].value : displayKey; let i = index;"
-        (click)="emitSelected(option)"
+        (click)="emitSelected(option);myDrop.close();"
         id="dropdown-w-search-option-{{randomNo}}_{{i}}">{{ option[displayKey] | titlecase}}</button>
 
 
       <ng-container *ngIf="!result.length" [ngTemplateOutlet]="noItems">
-        <div class="no-result" (click)="preventPropogation($event)">{{'COMMON_ERRORS.NO_RESULT' | translate}}</div>
+        <div ngbDropdownItem class="no-result" (click)="preventPropogation($event)">{{'COMMON_ERRORS.NO_RESULT' | translate}}</div>
       </ng-container>
     </ng-container>
   </div>

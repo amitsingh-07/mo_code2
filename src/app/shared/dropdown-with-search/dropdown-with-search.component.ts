@@ -25,7 +25,7 @@ export class DropdownWithSearchComponent implements OnInit {
   @Output() itemSelected = new EventEmitter<boolean>();
   isDropdownOpen = false;
   selectedValue;
-  @ViewChild('searchInputElement') searchInputElement: ElementRef;
+  @ViewChild('searchInputElement', {static: true}) searchInputElement: ElementRef;
 
   constructor(private parent: FormGroupDirective) {
   }
@@ -69,10 +69,16 @@ export class DropdownWithSearchComponent implements OnInit {
   toggleDropdown(event) {
     this.isDropdownOpen = event;
     if (event) {
-      setTimeout(() => {
-        this.searchInputElement.nativeElement.focus();
-      });
+      this.setOptionList();      
     }
+  }
+  setOptionList() {    
+    this.isDropdownOpen = true;
+    this.form.controls[this.searchControlName].setValue(this.searchInputElement.nativeElement.value);
+    this.form.controls[this.searchControlName].updateValueAndValidity();
+    setTimeout(() => {
+      this.searchInputElement.nativeElement.focus();
+    }, 100);
   }
 
 }

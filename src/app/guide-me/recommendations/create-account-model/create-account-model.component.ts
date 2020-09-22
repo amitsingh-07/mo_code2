@@ -77,6 +77,7 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
     if (this.signUpService.getCaptchaShown()) {
       this.setCaptchaValidator();
     }
+    this.changeDetectorRef.detectChanges();
   }
 
   setCaptchaValidator() {
