@@ -70,9 +70,13 @@ export class DropdownWithSearchComponent implements OnInit {
     this.isDropdownOpen = event;
 	this.cd.detectChanges();
     if (event) { 
+      setTimeout(() => {
         this.searchInputElement.nativeElement.focus();
+      });
     } else {
-		this.searchInputElement.nativeElement.blur();
+	  setTimeout(() => {
+        this.searchInputElement.nativeElement.blur();
+      });
 	}
   }
 }
