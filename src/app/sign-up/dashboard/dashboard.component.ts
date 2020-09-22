@@ -187,7 +187,8 @@ export class DashboardComponent implements OnInit {
       if (data.responseMessage && data.responseMessage.responseCode === 6000) {
         this.insurance.hasInsurance = true;
         this.insurance.isGuidedJourney = data.objectList[0].financialStatusMapping !== null;
-        this.insurance.lastTransactionDate = data.objectList[0].lastEnquiredDate.split('T')[0];
+		const lastTransact = new Date(data.objectList[0].lastEnquiredDate.split(' ')[0]);
+		this.insurance.lastTransactionDate = lastTransact;
         if (!this.guideMeService.checkGuidedDataLoaded() && this.insurance.isGuidedJourney) {
           this.guideMeService.convertResponseToGuideMeFormData(data.objectList[0]);
         }
