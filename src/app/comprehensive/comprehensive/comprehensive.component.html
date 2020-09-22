@@ -26,9 +26,9 @@
       <form [hidden]="promoCodeValidated" [formGroup]="promoCodeForm" id="promoCodeForm" name="promoCodeForm">
         <div class="offer-code">
           <div>
-            <input type="text" id="comprehensivePromoCodeToken" #comprehensivePromoCodeToken class="form-control promo-code"
+            <input type="text" id="comprehensivePromoCodeToken" class="form-control promo-code"
               formControlName="comprehensivePromoCodeToken"
-              placeholder="{{ 'CMP.COMPREHENSIVE.INPUT_PLACEHOLDER' | translate}}"  (input)="comprehensivePromoCodeToken.value=$event.target.value.toUpperCase()">
+              placeholder="{{ 'CMP.COMPREHENSIVE.INPUT_PLACEHOLDER' | translate}}">
           </div>
           <div class="no-promo">
             {{ 'CMP.COMPREHENSIVE.NO_PROMOCODE' | translate}}
