@@ -326,7 +326,7 @@ app-comprehensive {
       color: $white-color;
     }
   }
-  input#comprehensivePromoCodeToken {
+  input.promo-code {
     text-transform: uppercase;
   }
 }
