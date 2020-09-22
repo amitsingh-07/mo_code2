@@ -1,5 +1,5 @@
 <div ngbDropdown (openChange)="toggleDropdown($event)" [formGroup]="form" [placement]="placement">
-  <button [disabled]="disabled" class="btn btn-dropdown" id="birth-country-drpdown_{{randomNo}}" ngbDropdownToggle>
+  <button [disabled]="disabled" class="btn btn-dropdown" id="birth-country-drpdown_{{randomNo}}"  [class.show]="!isDropdownOpen" ngbDropdownToggle>
     <span *ngIf="!selectedValue">
       {{placeholderText}}
     </span>
