@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { AfterViewInit, Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -34,7 +34,7 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
   constructor(
     private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private guideMeService: GuideMeService,
-    private currencyPipe: CurrencyPipe) {
+    private currencyPipe: CurrencyPipe, private changeDetectorRef: ChangeDetectorRef) {
 
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -56,6 +56,7 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.isUserInputIncome = false;
+    this.changeDetectorRef.detectChanges();
   }
 
   setPageTitle(title: string) {

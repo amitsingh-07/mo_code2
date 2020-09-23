@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { SlickComponent } from 'ngx-slick';
+import { SlickCarouselComponent } from 'ngx-slick-carousel';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -22,7 +22,7 @@ export class CarouselModalComponent implements OnInit {
   @Input() btnDivStyle = {};
   @Output() closeAction = new EventEmitter<any>();
 
-  @ViewChild('carousel') carousel: SlickComponent;
+  @ViewChild('carousel') carousel: SlickCarouselComponent;
   public imgUrl = 'assets/images/';
 
   public currentSlide = 0;

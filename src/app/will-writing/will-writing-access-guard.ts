@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { WILL_WRITING_ROUTE_PATHS } from './will-writing-routes.constants';
 import { WillWritingService } from './will-writing.service';
 

@@ -5,8 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import 'rxjs/add/observable/forkJoin';
-import { Observable } from 'rxjs/Observable';
+
+import { Observable ,  Subject } from 'rxjs';
 
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { InvestmentEngagementJourneyService } from '../../investment/investment-engagement-journey/investment-engagement-journey.service';
@@ -26,7 +26,6 @@ import { SignUpService } from '../sign-up.service';
 
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({

@@ -1,7 +1,7 @@
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/do';
 
-import { Observable } from 'rxjs/Observable';
+import {of as observableOf,  Observable ,  EMPTY } from 'rxjs';
+
+import {tap} from 'rxjs/operators';
 
 import {
     HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest,
@@ -18,9 +18,7 @@ import { CustomErrorHandlerService } from '../custom-error-handler.service';
 import { RequestCache } from '../http-cache.service';
 import { IServerResponse } from '../interfaces/server-response.interface';
 import { AuthenticationService } from './authentication.service';
-import { EMPTY } from 'rxjs';
 import { SessionsService } from '../../Services/sessions/sessions.service';
-
 const exceptionUrlList: Set<string> = new Set([apiConstants.endpoint.authenticate]);
 
 @Injectable({ providedIn: 'root' })
@@ -35,7 +33,7 @@ export class JwtInterceptor implements HttpInterceptor {
             return EMPTY;
         }
         const cachedResponse = this.cache.get(request);
-        return cachedResponse ? Observable.of(cachedResponse) : this.sendRequest(request, next, this.cache);
+        return cachedResponse ? observableOf(cachedResponse) : this.sendRequest(request, next, this.cache);
     }
 
     // tslint:disable-next-line:cognitive-complexity
@@ -76,7 +74,7 @@ export class JwtInterceptor implements HttpInterceptor {
                 })
             });
         }
-        return next.handle(request).do((event: HttpEvent<IServerResponse>) => {
+        return next.handle(request).pipe(tap((event: HttpEvent<IServerResponse>) => {
             if (event instanceof HttpResponse) {
                 // do stuff with response if you want
                 const data = event.body;
@@ -111,10 +109,10 @@ export class JwtInterceptor implements HttpInterceptor {
                     if (err.message.match('I/O error on PUT request')) {
                         this.errorHandler.handleSubscribeError(err);
                     }
-            } else {
-                this.errorHandler.handleError(err);
-            }
-        });
+                } else {
+                    this.errorHandler.handleError(err);
+                }
+        }));
     }
 
     saveCache(request: HttpRequest<any>, event: HttpResponse<IServerResponse>) {

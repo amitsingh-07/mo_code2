@@ -17,7 +17,7 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { SeoServiceService } from './../../../shared/Services/seo-service.service';
-import { SlickComponent } from 'ngx-slick';
+import { SlickCarouselComponent } from 'ngx-slick-carousel';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 
 @Component({
@@ -34,7 +34,7 @@ export class SelectPortfolioComponent implements OnInit {
   wiseSaverEnabled: boolean = false;
   investmentMoreInfoShow: boolean = false;
   wiseSaverMoreInfoShow: boolean = false;
-  @ViewChild('carousel') carousel: SlickComponent;
+  @ViewChild('carousel') carousel: SlickCarouselComponent;
 
   selectPortfolioForm: FormGroup;
   selectedPortfolioType;

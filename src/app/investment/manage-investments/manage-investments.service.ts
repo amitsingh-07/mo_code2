@@ -1,4 +1,7 @@
-import { Observable, Subject } from 'rxjs';
+
+import {of as observableOf,  Observable, Subject } from 'rxjs';
+
+import {map} from 'rxjs/operators';
 import { conformToMask } from 'text-mask-core';
 
 import { HttpClient } from '@angular/common/http';
@@ -561,7 +564,7 @@ export class ManageInvestmentsService {
   }
 
   getSrsAccountDetails(): Observable<ISrsAccountDetails> {
-    return this.investmentApiService.getSrsAccountDetails().map((data: any) => {
+    return this.investmentApiService.getSrsAccountDetails().pipe(map((data: any) => {
       if (data && data.objectList && data.objectList.accountNumber &&
         data.objectList.srsBankOperator && data.objectList.srsBankOperator.name) {
         const srsAccountDetails = {
@@ -578,11 +581,11 @@ export class ManageInvestmentsService {
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
-      });
+      }));
   }
 
   getProfileSrsAccountDetails(): Observable<ISrsAccountDetails> {
-    return this.investmentApiService.getProfileSrsAccountDetails().map((data: any) => {
+    return this.investmentApiService.getProfileSrsAccountDetails().pipe(map((data: any) => {
       if (data && data.objectList && data.objectList.accountNumber &&
         data.objectList.srsBankOperator && data.objectList.srsBankOperator.name) {
         const srsAccountDetails = {
@@ -600,7 +603,7 @@ export class ManageInvestmentsService {
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
-      });
+      }));
   }
 
   setSrsAccountDetails(srsAccountDetails: ISrsAccountDetails) {
@@ -614,14 +617,14 @@ export class ManageInvestmentsService {
 
   getAllNotes(noteInSession): Observable<any> {
     if (noteInSession) {
-      return Observable.of(noteInSession);
+      return observableOf(noteInSession);
     } else {
-      return this.getInvestmentNoteFromApi().map((data: any) => {
+      return this.getInvestmentNoteFromApi().pipe(map((data: any) => {
         if (data) {
           this.setInvestmentNoteToSession(data.objectList);
           return data.objectList;
         }
-      });
+      }));
     }
   }
 

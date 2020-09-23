@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { SIGN_UP_ROUTE_PATHS } from './sign-up.routes.constants';
 import { SignUpService } from './sign-up.service';
 

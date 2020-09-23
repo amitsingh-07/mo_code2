@@ -133,7 +133,7 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
             }
           }
         });
-        setTimeout(this.initCategorySetup(), 50);
+        setTimeout(() => this.initCategorySetup(), 50);
 
       });
     });

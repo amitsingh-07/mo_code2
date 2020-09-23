@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -22,7 +22,7 @@ import { IMyAssets } from './my-assets.interface';
   templateUrl: './my-assets.component.html',
   styleUrls: ['./my-assets.component.scss']
 })
-export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
+export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, AfterViewInit {
   myinfoChangeListener: Subscription;
   pageTitle: string;
   assetsForm: FormGroup;
@@ -38,7 +38,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
     private myInfoService: MyInfoService,
     public guideMeApiService: GuideMeApiService, private configService: ConfigService,
     private guideMeService: GuideMeService, private translate: TranslateService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute, private changeDetectorRef: ChangeDetectorRef) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('MY_ASSETS.TITLE');
@@ -90,6 +90,11 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
 
     this.setFormTotalValue();
   }
+
+  ngAfterViewInit() {
+    this.changeDetectorRef.detectChanges();
+  }
+
   ngOnDestroy(): void {
     if (this.myinfoChangeListener) {
       this.myinfoChangeListener.unsubscribe();
