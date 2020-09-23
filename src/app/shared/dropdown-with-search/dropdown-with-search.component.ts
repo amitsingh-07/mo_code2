@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation, ChangeDetectorRef
+  Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import {
   FormControl, FormGroupDirective
@@ -27,7 +27,7 @@ export class DropdownWithSearchComponent implements OnInit {
   selectedValue;
   @ViewChild('searchInputElement', { static: true }) searchInputElement: ElementRef;
 
-  constructor(private parent: FormGroupDirective, private cd: ChangeDetectorRef) {
+  constructor(private parent: FormGroupDirective) {
   }
 
   ngOnInit() {
