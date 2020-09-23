@@ -1,8 +1,8 @@
 import {
-  Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation, ChangeDetectorRef 
+  Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation, ChangeDetectorRef
 } from '@angular/core';
 import {
-  ControlContainer, FormControl, FormGroup, FormGroupDirective, Validators
+  FormControl, FormGroupDirective
 } from '@angular/forms';
 
 @Component({
@@ -25,7 +25,7 @@ export class DropdownWithSearchComponent implements OnInit {
   @Output() itemSelected = new EventEmitter<boolean>();
   isDropdownOpen = false;
   selectedValue;
-  @ViewChild('searchInputElement', {static: true}) searchInputElement: ElementRef;
+  @ViewChild('searchInputElement', { static: true }) searchInputElement: ElementRef;
 
   constructor(private parent: FormGroupDirective, private cd: ChangeDetectorRef) {
   }
@@ -68,15 +68,10 @@ export class DropdownWithSearchComponent implements OnInit {
 
   toggleDropdown(event) {
     this.isDropdownOpen = event;
-	this.cd.detectChanges();
-    if (event) { 
+    if (event) {
       setTimeout(() => {
         this.searchInputElement.nativeElement.focus();
-      }, 1000);
-    } else {
-      setTimeout(() => {
-        this.searchInputElement.nativeElement.blur();
-      }, 1000);
-	}
+      });
+    }
   }
 }
