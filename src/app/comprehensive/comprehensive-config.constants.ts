@@ -282,5 +282,9 @@ export const COMPREHENSIVE_CONST = {
         PENDING: 'pending',
         PAID: 'paid',
         WAIVED: 'waived'
+    },
+    LONG_TERM_SHIELD_TYPE:{
+        CARE_SHEILD:"careShield",
+        ELDER_SHEILD:"elderShield"
     }
 };
