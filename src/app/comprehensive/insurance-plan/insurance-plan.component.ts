@@ -28,7 +28,8 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   insurancePlanForm: FormGroup;
   insurancePlanFormValues: IInsurancePlan;
-  longTermInsurance = true;
+  longTermInsurance = false;
+  showLongTermInsurance = false;
   haveHDB = false;
   submitted = false;
   insurancePlanningDependantModal: any;
@@ -63,18 +64,28 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         }
       });
     });
-    if (this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) <
-      COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE) {
-      this.longTermInsurance = false;
+    if (this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) >
+      COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE && (this.age.getBirthYear(this.comprehensiveService.getMyProfile().dateOfBirth) >
+        COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_YEAR)) {
+      this.longTermInsurance = true;
     }
+    if (this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) > COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE
+    ) {
+      this.showLongTermInsurance = true;
+    }
+
+
     this.hospitalType = this.comprehensiveService.getDownOnLuck().hospitalPlanName;
     this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
+    if (this.insurancePlanFormValues.haveLongTermPopup) {
+      this.showToolTipModal(this.translate.instant('CMP.INSURANCE_PLAN.TOOLTIP.CARE_SHIELD_TITLE'), this.translate.instant('CMP.INSURANCE_PLAN.TOOLTIP.CARE_SHIELD_MESSAGE'))
+    }
     this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
     this.buildInsuranceForm();
     const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
     if (cmpSummary.comprehensiveSpending && cmpSummary.comprehensiveSpending.HLtypeOfHome) {
       if (cmpSummary.comprehensiveSpending.HLtypeOfHome.toLocaleLowerCase() !== 'private'
-        || (cmpSummary.comprehensiveSpending.mortgageTypeOfHome && 
+        || (cmpSummary.comprehensiveSpending.mortgageTypeOfHome &&
           cmpSummary.comprehensiveSpending.mortgageTypeOfHome.toLocaleLowerCase() !== 'private')) {
         this.haveHDB = true;
       } else {
@@ -107,7 +118,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
       }, [Validators.required]],
       lifeProtectionAmount: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.lifeProtectionAmount :
-         COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT,
+          COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT,
         disabled: this.viewMode
       }, [Validators.required]],
       haveHDBHomeProtectionScheme: [{
@@ -141,8 +152,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
       otherLongTermCareInsuranceAmount: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.otherLongTermCareInsuranceAmount
           : 0, disabled: this.viewMode
-      }, [Validators.required]],
-
+      }, [Validators.required]]
     });
   }
   ngOnInit() {
@@ -213,7 +223,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
             form.value.otherLongTermCareInsuranceAmount = 0;
           }
         }
-        if(!form.value.haveHospitalPlan){
+        if (!form.value.haveHospitalPlan) {
           form.value.haveHospitalPlanWithRider = 0;
         }
 
@@ -222,6 +232,11 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         if (form.value.haveCPFDependentsProtectionScheme !== 1 || form.value.lifeProtectionAmount == '') {
           form.value.lifeProtectionAmount = 0;
         }
+        if (this.longTermInsurance) {
+          form.value.shieldType = "careShield";
+        } else {
+          form.value.shieldType = "elderShield";
+        }
 
         this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
           if (form.value.haveCPFDependentsProtectionScheme !== 1) {
@@ -229,7 +244,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
           }
           this.comprehensiveService.setInsurancePlanningList(form.value);
           if (this.comprehensiveService.getMySteps() === 2
-          && this.comprehensiveService.getMySubSteps() < 1) {
+            && this.comprehensiveService.getMySubSteps() < 1) {
             this.comprehensiveService.setStepCompletion(2, 1).subscribe((data1: any) => {
               this.showSummaryModal();
             });

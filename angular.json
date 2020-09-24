@@ -8,7 +8,11 @@
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
-      "schematics": { "@schematics/angular:component": { "style": "scss" } },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -21,10 +25,16 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-			"rebaseRootRelativeCssUrls": true,
-            "assets": [ "src/favicon.ico", "src/assets", "src/myinfo" ],
+            "rebaseRootRelativeCssUrls": true,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/myinfo"
+            ],
             "styles": [
-              { "input": "./node_modules/bootstrap/dist/css/bootstrap.css" },
+              {
+                "input": "./node_modules/bootstrap/dist/css/bootstrap.css"
+              },
               "src/styles.scss",
               "./node_modules/font-awesome/css/font-awesome.css"
             ],
@@ -219,22 +229,44 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": { "browserTarget": "bfa-frontend:build" },
+          "options": {
+            "browserTarget": "bfa-frontend:build"
+          },
           "configurations": {
-            "dev": { "browserTarget": "bfa-frontend:build" },
-            "production": { "browserTarget": "bfa-frontend:build:production" },
-            "prod": { "browserTarget": "bfa-frontend:build:prod" },
-            "uat": { "browserTarget": "bfa-frontend:build:uat" },
-            "uat3": { "browserTarget": "bfa-frontend:build:uat3" },
-            "newmo": { "browserTarget": "bfa-frontend:build:newmo" },
-            "newmodev": { "browserTarget": "bfa-frontend:build:newmodev" },
-            "newmouat3": { "browserTarget": "bfa-frontend:build:newmouat3" },
-            "common": { "browserTarget": "bfa-frontend:build:common" }
+            "dev": {
+              "browserTarget": "bfa-frontend:build"
+            },
+            "production": {
+              "browserTarget": "bfa-frontend:build:production"
+            },
+            "prod": {
+              "browserTarget": "bfa-frontend:build:prod"
+            },
+            "uat": {
+              "browserTarget": "bfa-frontend:build:uat"
+            },
+            "uat3": {
+              "browserTarget": "bfa-frontend:build:uat3"
+            },
+            "newmo": {
+              "browserTarget": "bfa-frontend:build:newmo"
+            },
+            "newmodev": {
+              "browserTarget": "bfa-frontend:build:newmodev"
+            },
+            "newmouat3": {
+              "browserTarget": "bfa-frontend:build:newmouat3"
+            },
+            "common": {
+              "browserTarget": "bfa-frontend:build:common"
+            }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": { "browserTarget": "bfa-frontend:build" }
+          "options": {
+            "browserTarget": "bfa-frontend:build"
+          }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -243,16 +275,27 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": [ "src/styles.scss" ],
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": [],
-            "assets": [ "src/favicon.ico", "src/assets", "src/myinfo" ]
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/myinfo"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [ "src/tsconfig.app.json", "src/tsconfig.spec.json" ],
-            "exclude": [ "**/node_modules/**" ]
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -268,16 +311,28 @@
             "devServerTarget": "bfa-frontend:serve"
           },
           "configurations": {
-            "production": { "devServerTarget": "bfa-frontend:serve:production" },
-            "uat": { "devServerTarget": "bfa-frontend:serve:uat" }
+            "production": {
+              "devServerTarget": "bfa-frontend:serve:production"
+            },
+            "uat": {
+              "devServerTarget": "bfa-frontend:serve:uat"
+            }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
-          "options": { "tsConfig": "e2e/tsconfig.e2e.json", "exclude": [ "**/node_modules/**" ] }
+          "options": {
+            "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "bfa-frontend"
+  "defaultProject": "bfa-frontend",
+  "cli": {
+    "analytics": false
+  }
 }
