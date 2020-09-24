@@ -77,7 +77,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
 
     this.hospitalType = this.comprehensiveService.getDownOnLuck().hospitalPlanName;
     this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
-    if (this.insurancePlanFormValues.haveLongTermPopup) {
+    if (this.insurancePlanFormValues && this.insurancePlanFormValues.haveLongTermPopup) {
       this.showToolTipModal(this.translate.instant('CMP.INSURANCE_PLAN.TOOLTIP.CARE_SHIELD_TITLE'), this.translate.instant('CMP.INSURANCE_PLAN.TOOLTIP.CARE_SHIELD_MESSAGE'))
     }
     this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
