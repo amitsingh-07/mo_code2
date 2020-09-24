@@ -78,9 +78,13 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
       ((this.comprehensiveService.getComprehensiveEnquiry().reportStatus != COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) || (this.insurancePlanFormValues.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHEILD))) {
       this.longTermInsurance = true;
     }
-    if (this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) > COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE
-    ) {
-      this.showLongTermInsurance = true;
+    if ((this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) > COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE)) {
+      if ((this.comprehensiveService.getComprehensiveEnquiry().reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) && (this.insurancePlanFormValues.shieldType === null)) {
+        this.showLongTermInsurance = false;
+      } else {
+        this.showLongTermInsurance = true;
+      }
+
     }
     this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
     this.buildInsuranceForm();
