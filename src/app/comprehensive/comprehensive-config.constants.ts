@@ -40,109 +40,109 @@ export const COMPREHENSIVE_CONST = {
             API_KEY: 'comprehensiveAssets',
             API_TOTAL_BUCKET_KEY: 'totalAnnualAssets',
             MONTHLY_INPUT_CALC: [],
-            POP_FORM_INPUT: ['enquiryId', 'totalAnnualAssets', 'customerId', 'id', 'assetId', 'estimatedPayout', 'retirementSum','topupAmount','withdrawalAmount'],
+            POP_FORM_INPUT: ['enquiryId', 'totalAnnualAssets', 'customerId', 'id', 'assetId', 'estimatedPayout', 'retirementSum', 'topupAmount', 'withdrawalAmount'],
             BUCKET_INPUT_CALC: ['cashInBank', 'savingsBonds', 'cpfOrdinaryAccount', 'cpfSpecialAccount', 'cpfMediSaveAccount',
                 'homeMarketValue', 'investmentAmount_0', 'otherAssetsValue', 'investmentPropertiesValue', 'cpfRetirementAccount'],
             RETIREMENT_AGE: 54,
-            RETIREMENT_SUM_BIRTH_DATE : {
+            RETIREMENT_SUM_BIRTH_DATE: {
                 1948: {
-                    BORN_DATE : '07/01/1948',
+                    BORN_DATE: '07/01/1948',
                     TILL_DATE: '06/30/1949',
                     BRS: '40,000',
                     FRS: '80,000'
                 },
                 1949: {
-                    BORN_DATE : '07/01/1949',
+                    BORN_DATE: '07/01/1949',
                     TILL_DATE: '06/30/1950',
                     BRS: '42,250',
                     FRS: '84,500'
                 },
                 1950: {
-                    BORN_DATE : '07/01/1950',
+                    BORN_DATE: '07/01/1950',
                     TILL_DATE: '06/30/1951',
                     BRS: '45,000',
                     FRS: '90,000'
                 },
                 1951: {
-                    BORN_DATE : '07/01/1951',
+                    BORN_DATE: '07/01/1951',
                     TILL_DATE: '06/30/1952',
                     BRS: '47,300',
                     FRS: '94,600'
                 },
                 1952: {
-                    BORN_DATE : '07/01/1952',
+                    BORN_DATE: '07/01/1952',
                     TILL_DATE: '06/30/1953',
                     BRS: '49,800',
                     FRS: '99,600'
                 },
                 1953: {
-                    BORN_DATE : '07/01/1953',
+                    BORN_DATE: '07/01/1953',
                     TILL_DATE: '06/30/1954',
                     BRS: '53,000',
                     FRS: '106,000'
                 },
                 1954: {
-                    BORN_DATE : '07/01/1954',
+                    BORN_DATE: '07/01/1954',
                     TILL_DATE: '06/30/1955',
                     BRS: '58,500',
                     FRS: '117,000'
                 },
                 1955: {
-                    BORN_DATE : '07/01/1955',
+                    BORN_DATE: '07/01/1955',
                     TILL_DATE: '06/30/1956',
                     BRS: '61,500',
                     FRS: '123,000'
                 },
                 1956: {
-                    BORN_DATE : '07/01/1956',
+                    BORN_DATE: '07/01/1956',
                     TILL_DATE: '06/30/1957',
                     BRS: '65,500',
                     FRS: '131,000'
                 },
                 1957: {
-                    BORN_DATE : '07/01/1957',
+                    BORN_DATE: '07/01/1957',
                     TILL_DATE: '06/30/1958',
                     BRS: '69,500',
                     FRS: '139,000'
                 },
                 1958: {
-                    BORN_DATE : '07/01/1958',
+                    BORN_DATE: '07/01/1958',
                     TILL_DATE: '06/30/1959',
                     BRS: '74,000',
                     FRS: '148,000'
                 },
                 1959: {
-                    BORN_DATE : '07/01/1959',
+                    BORN_DATE: '07/01/1959',
                     TILL_DATE: '06/30/1960',
                     BRS: '77,500',
                     FRS: '155,000'
                 },
                 1960: {
-                    BORN_DATE : '07/01/1960',
+                    BORN_DATE: '07/01/1960',
                     TILL_DATE: '12/31/1961',
                     BRS: '80,500',
                     FRS: '161,000'
                 },
                 1962: {
-                    BORN_DATE : '01/01/1962',
+                    BORN_DATE: '01/01/1962',
                     TILL_DATE: '12/31/1962',
                     BRS: '83,000',
                     FRS: '166,000'
                 },
                 1963: {
-                    BORN_DATE : '01/01/1963',
+                    BORN_DATE: '01/01/1963',
                     TILL_DATE: '12/31/1963',
                     BRS: '85,500',
                     FRS: '171,000'
                 },
                 1964: {
-                    BORN_DATE : '01/01/1964',
+                    BORN_DATE: '01/01/1964',
                     TILL_DATE: '12/31/1964',
                     BRS: '88,000',
                     FRS: '176,000'
                 },
                 1965: {
-                    BORN_DATE : '01/01/1965',
+                    BORN_DATE: '01/01/1965',
                     TILL_DATE: '12/31/1965',
                     BRS: '90,500',
                     FRS: '181,000'
@@ -159,7 +159,8 @@ export const COMPREHENSIVE_CONST = {
         },
     },
     INSURANCE_PLAN: {
-        LONG_TERM_INSURANCE_AGE: 40,
+        LONG_TERM_INSURANCE_AGE: 30,
+        LONG_TERM_INSURANCE_YEAR: 1980,
         LIFE_PROTECTION_AMOUNT: 46000
     },
     SUMMARY_CALC_CONST: {
@@ -281,5 +282,9 @@ export const COMPREHENSIVE_CONST = {
         PENDING: 'pending',
         PAID: 'paid',
         WAIVED: 'waived'
+    },
+    LONG_TERM_SHIELD_TYPE: {
+        CARE_SHEILD: "careShield",
+        ELDER_SHEILD: "elderShield"
     }
 };

@@ -42,4 +42,10 @@ export class AboutAge {
 		let age = calculateYear - birthYear;
 		return age;
 	}
+	getBirthYear(date): number {
+		const dateParts = date.split('/');
+		const dateOfBirth = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
+		const birthYear = dateOfBirth.getFullYear();
+		return birthYear;
+	}
 }
