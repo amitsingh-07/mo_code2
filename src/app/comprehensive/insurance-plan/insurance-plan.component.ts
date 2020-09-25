@@ -64,9 +64,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         }
       });
     });
-
-
-
+    
     this.hospitalType = this.comprehensiveService.getDownOnLuck().hospitalPlanName;
     this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
     if (this.insurancePlanFormValues && this.insurancePlanFormValues.haveLongTermPopup) {
