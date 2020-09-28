@@ -14,6 +14,7 @@ import { ComprehensiveService } from '../comprehensive.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
+import { Util } from '../../shared/utils/util';
 
 
 @Component({
@@ -64,25 +65,24 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         }
       });
     });
-    
+
     this.hospitalType = this.comprehensiveService.getDownOnLuck().hospitalPlanName;
     this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
     if (this.insurancePlanFormValues && this.insurancePlanFormValues.haveLongTermPopup) {
       this.showToolTipModal(this.translate.instant('CMP.INSURANCE_PLAN.TOOLTIP.CARE_SHIELD_TITLE'), this.translate.instant('CMP.INSURANCE_PLAN.TOOLTIP.CARE_SHIELD_MESSAGE'))
     }
-    if ((this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) >
-      COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE && (this.age.getBirthYear(this.comprehensiveService.getMyProfile().dateOfBirth) >
-        COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_YEAR)) &&
+    const userAge = this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date());
+    const userYear = this.age.getBirthYear(this.comprehensiveService.getMyProfile().dateOfBirth);
+    if ((userAge > COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE && userYear >
+      COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_YEAR) &&
       ((this.comprehensiveService.getComprehensiveEnquiry().reportStatus != COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) || (this.insurancePlanFormValues.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHEILD))) {
       this.longTermInsurance = true;
     }
-    if ((this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date()) > COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE)) {
-      if ((this.comprehensiveService.getComprehensiveEnquiry().reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) && (this.insurancePlanFormValues.shieldType === null)) {
+    if (userAge > COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE) {
+      this.showLongTermInsurance = true;
+      if ((this.comprehensiveService.getComprehensiveEnquiry().reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) && Util.isEmptyOrNull(this.insurancePlanFormValues.shieldType) && this.longTermInsurance) {
         this.showLongTermInsurance = false;
-      } else {
-        this.showLongTermInsurance = true;
       }
-
     }
     this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
     this.buildInsuranceForm();
@@ -156,7 +156,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
       otherLongTermCareInsuranceAmount: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.otherLongTermCareInsuranceAmount
           : 0, disabled: this.viewMode
-      }, [Validators.required]]
+      }, []]
     });
   }
   ngOnInit() {
@@ -213,7 +213,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     } else {
       const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
       if (!form.pristine || cmpSummary.comprehensiveInsurancePlanning === null ||
-        this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+        this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT) {
         if (!form.controls.homeProtectionCoverageAmount.pristine) {
           this.comprehensiveService.setHomeLoanChanges(false);
         }
