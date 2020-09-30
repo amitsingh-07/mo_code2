@@ -186,7 +186,7 @@ app-funding-intro {
       width: 337px;
       background: #ffffff;
       box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.21) !important;
-      color: #00a7a7 !important;
+      color: $teal-color !important;
       @include allmobiles {
         width: 100%;
       }
