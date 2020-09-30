@@ -199,8 +199,8 @@ app-topup-status {
     .transfer-details {
       margin: 22px 0px 0px;
       color: $fund-transfer-details-color;
-      @include allmobiles{
-        margin: 22px 0px 82px;
+      @include allmobiles {
+        margin: 22px 0px 82px !important;
       }
       .tab-links {
         display: flex;
