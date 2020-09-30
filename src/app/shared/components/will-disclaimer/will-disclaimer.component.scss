@@ -162,3 +162,8 @@ app-terms {
     padding-top: 20px;
   }
 }
+.btn-primary {
+  @include allmobiles{
+    margin-bottom: 30px;
+  }
+}
