@@ -41,7 +41,6 @@ app-instruction-steps {
                 margin: 7px 33px;
                 line-height: 20px;
                 display: flex;
-                // align-items: center;
                 justify-content: flex-start;
                 margin: 7px auto;
 
@@ -226,7 +225,6 @@ app-instruction-steps {
             cursor: pointer;
             display: flex;
             align-items: center;
-            // height: 50px;
             background-color: $ref-code-container-bg;
             padding: 13px 13px 13px 20px !important;
             color: $ref-code-container-color;
@@ -235,23 +233,13 @@ app-instruction-steps {
             margin: 20px 20px 10px 20px;
             max-width: 230px;
             .info-text {
-                // position: relative;
                 display: flex;
                 margin-right: 10px;
                 img {
                     width: 15px;
                     height: 15px;
-                    // margin-top: 7px;
                     vertical-align: inherit;
                 }
-                // &-content {
-                //   position: absolute;
-                //   top: 0.18rem;
-                //   left: 0.37rem;
-                //   color: $white-color;
-                //   font-size: 11px;
-                //   font-weight: bold;
-                // }
             }
             .ref_num {
                 font-family: $muli-semi-bold;
@@ -275,41 +263,10 @@ app-instruction-steps {
             font-size: 18px;
         }
     }
-    // .setup-auto-deposit {
-    //   border: 1.5px solid $dark-teal-color;
-    //   border-radius: 6px;
-    //   padding: 25px;
-    //   position: relative;
-    //   margin: 0px 18px 20px;
-    //   display: flex;
-    //   justify-content: center;
-    //   .head {
-    //     font-family: $muli-bold;
-    //     font-size: 16px;
-    //     text-align: center;
-    //     color: $teal-color;
-    //     position: absolute;
-    //     top: -18px;
-    //     padding: 5px 15px 5px 55px;
-    //     display: flex;
-    //     flex: 1;
-    //     background: url('../../../../../assets/images/investment-account/tinyowl.svg') no-repeat;
-    //     background-color: $white-color;
-    //     background-position: 15px 4px;
-    //   }
-    //   p {
-    //     color: $black-color;
-    //     text-align: center;
-    //     margin: 0;
-    //     font-size: 16px;
-    //   }
-    // }
+
     .faq-link {
         text-align: center;
         padding-bottom: 20px;
-        @include allmobiles {
-            padding-bottom: 80px;
-        }
         a {
             font-family: $muli-bold;
             font-size: 16px;
@@ -320,20 +277,4 @@ app-instruction-steps {
             text-decoration: none;
         }
     }
-    // :host /deep/ .ref-code-context {
-    //   color: $black-color;
-    // }
-    // :host /deep/ .ref-code-bold {
-    //   font-family: $muli-bold;
-    //   color: $red-color;
-    //   text-decoration: underline;
-    // }
-    // :host /deep/ .ref-code-quote {
-    //   font-family: $muli-bold;
-    //   color: $red-color;
-    // }
-    // :host /deep/ .sub-section-bold {
-    //   font-family: $muli-bold;
-    //   color: $black-color;
-    // }
 }
