@@ -307,6 +307,9 @@ app-instruction-steps {
     .faq-link {
         text-align: center;
         padding-bottom: 20px;
+        @include allmobiles {
+            padding-bottom: 50px;
+        }
         a {
             font-family: $muli-bold;
             font-size: 16px;
