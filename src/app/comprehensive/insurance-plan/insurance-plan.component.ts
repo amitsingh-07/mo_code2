@@ -79,7 +79,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     const userYear = this.age.getBirthYear(this.comprehensiveService.getMyProfile().dateOfBirth);
     if ((userAge > COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE && userYear >
       COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_YEAR) &&
-      ((this.comprehensiveService.getComprehensiveEnquiry().reportStatus != COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) || (this.insurancePlanFormValues.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHEILD))) {
+      ((this.comprehensiveService.getComprehensiveEnquiry().reportStatus != COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) || (this.insurancePlanFormValues.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHIELD))) {
       this.longTermInsurance = true;
     }
     if (userAge > COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE) {
@@ -240,18 +240,23 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         if (form.value.haveCPFDependentsProtectionScheme !== 1 || form.value.lifeProtectionAmount == '') {
           form.value.lifeProtectionAmount = 0;
         }
-        if (this.longTermInsurance) {
+       
+        if(this.showLongTermInsurance){
+           if (this.longTermInsurance) {
             form.value.haveLongTermElderShield = null;
             form.value.longTermElderShieldAmount = null;
-          form.value.shieldType = COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHEILD;
-        } else {
-          form.value.shieldType = COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.ELDER_SHEILD;
-        }
-        if(!this.showLongTermInsurance){
+            form.value.shieldType = COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHIELD;
+           } else{
+            form.value.shieldType = COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.ELDER_SHIELD;
+           } 
+        } else{
             form.value.haveLongTermElderShield = null;
             form.value.longTermElderShieldAmount = null;
             form.value.otherLongTermCareInsuranceAmount = null;
+            form.value.shieldType = COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.NO_SHIELD;
+    
         }
+         
 
         this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
           if (form.value.haveCPFDependentsProtectionScheme !== 1) {
