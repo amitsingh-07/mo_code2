@@ -190,7 +190,9 @@
         "LOGIN": "Log In",
         "DISCLAIMER": "Note: Premiums quoted are only an estimate based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers. For Hospital Plan, the premium shown does not include the premium for MediShield Life.",
         "OR": "or",
-        "ENQUIRY_TITLE": "Receive more info on selected plans via email",
+        "ENQUIRY_TITLE": "Fill up form below",
+        "SEND_QUOTE_TITLE": "Almost there...",
+        "SEND_QUOTE_DESC": "Submit your interest below to find out more from our Client Adviser.",
         "FORM": {
             "FIRST_NAME": {
                 "LABEL": "First Name",
