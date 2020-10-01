@@ -1,14 +1,10 @@
-import 'rxjs/add/observable/forkJoin';
-
-import { Observable } from 'rxjs/Observable';
-
+import { forkJoin as observableForkJoin } from 'rxjs';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ConfigService, IConfig } from '../../config/config.service';
-// Insurance
 import { GuideMeApiService } from '../../guide-me/guide-me.api.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
 import {
@@ -40,7 +36,6 @@ import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
-// Will Writing
 import { WillWritingApiService } from '../../will-writing/will-writing.api.service';
 import { WillWritingService } from '../../will-writing/will-writing.service';
 import { SignUpApiService } from '../sign-up.api.service';
@@ -61,8 +56,6 @@ export class DashboardComponent implements OnInit {
   showPortfolioPurchased = false;
   showStartInvesting = false;
   showInvestmentDetailsSaved = false;
-  showNoInvestmentAccount = false;
-  showAddPortfolio = false;
   showCddCheckOngoing = false;
   showSuspendedAccount = false;
   showBlockedNationalityStatus = false;
@@ -194,7 +187,8 @@ export class DashboardComponent implements OnInit {
       if (data.responseMessage && data.responseMessage.responseCode === 6000) {
         this.insurance.hasInsurance = true;
         this.insurance.isGuidedJourney = data.objectList[0].financialStatusMapping !== null;
-        this.insurance.lastTransactionDate = data.objectList[0].lastEnquiredDate.split('T')[0];
+		const lastTransact = new Date(data.objectList[0].lastEnquiredDate.split(' ')[0]);
+		this.insurance.lastTransactionDate = lastTransact;
         if (!this.guideMeService.checkGuidedDataLoaded() && this.insurance.isGuidedJourney) {
           this.guideMeService.convertResponseToGuideMeFormData(data.objectList[0]);
         }
@@ -248,7 +242,7 @@ export class DashboardComponent implements OnInit {
 
   // tslint:disable-next-line:cognitive-complexity
   goToDocUpload() {
-    Observable.forkJoin(
+    observableForkJoin(
       this.signUpService.getDetailedCustomerInfo(),
       this.investmentAccountService.getNationalityCountryList()
     ).subscribe((response) => {
@@ -352,7 +346,7 @@ export class DashboardComponent implements OnInit {
   }
 
   verifyCustomerDetails() {
-    Observable.forkJoin(
+    observableForkJoin(
       this.signUpService.getDetailedCustomerInfo(),
       this.investmentAccountService.getNationalityCountryList()
     ).subscribe((response) => {

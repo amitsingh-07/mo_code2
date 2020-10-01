@@ -11,6 +11,9 @@
   @include desktop {
     top: 25px !important;
     left: 145px;
+    .modal-dialog {
+      transform: translate(0,0) !important;
+    }
   }
 }
 

@@ -22,7 +22,7 @@ import { AuthenticationService } from './../../shared/http/auth/authentication.s
 
 export class PromotionPageComponent implements OnInit {
 
-  @ViewChild('banner') BannerElement: ElementRef;
+  @ViewChild('banner', {static: false}) BannerElement: ElementRef;
 
   //   promotionList: IPromotion[];
   private promoId: number;

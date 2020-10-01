@@ -8,7 +8,9 @@ import {
   Type,
   ViewChild,
   ViewContainerRef,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ComponentRef,
+  ChangeDetectorRef 
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -38,6 +40,7 @@ const mobileThreshold = 567;
 
 export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, OnDestroy {
   @ViewChild('directResults', { read: ViewContainerRef }) container: ViewContainerRef;
+  componentRef: ComponentRef<any>;
   pageTitle: string;
 
   routeSubscription: Subscription;
@@ -52,7 +55,7 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
     public modal: NgbModal, private route: ActivatedRoute,
     private factoryResolver: ComponentFactoryResolver, private appService: AppService,
     private planService: SelectedPlansService, private stateStoreService: StateStoreService,
-    private location: Location, private seoService: SeoServiceService) {
+    private location: Location, private seoService: SeoServiceService, private changeDetector: ChangeDetectorRef) {
 
     /* ************** STATE HANDLING - START ***************** */
     this.componentName = DirectComponent.name;
@@ -121,15 +124,24 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
         this.directService.setModalFreeze(true);
       }
       this.state.hideForm = true;
-      this.formSubmitCallback();
     }
   }
 
   ngAfterViewInit() {
-
+    const selectedPlans = this.planService.getSelectedPlan();
+    const selectedComparePlans = this.directService.getSelectedPlans();
+    if ((selectedPlans && selectedPlans.enquiryId) ||
+      (selectedComparePlans && selectedComparePlans.hasOwnProperty('length') && selectedComparePlans.length > 0)) {
+      this.formSubmitCallback();
+    }
+    this.changeDetector.detectChanges();
   }
 
   ngOnDestroy() {
+    if (this.componentRef) {
+      this.componentRef.destroy();
+    }
+
     if (this.routeSubscription instanceof Subscription) {
       this.routeSubscription.unsubscribe();
     }
@@ -170,21 +182,19 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
   addComponent(componentClass: Type<any>) {
     // Create component dynamically inside the ng-template
     const componentFactory = this.factoryResolver.resolveComponentFactory(componentClass);
-    const component = this.container.createComponent(componentFactory);
-    component.instance.isMobileView = this.state.isMobileView;
+    this.componentRef = this.container.createComponent(componentFactory);
+    this.componentRef.instance.isMobileView = this.state.isMobileView;
 
     // Push the component so that we can keep track of which components are created
-    this.components.push(component);
+    this.components.push(this.componentRef);
   }
 
   removeComponent(componentClass: Type<any>) {
     // Find the component
-    const component = this.components.find((thisComponent) => thisComponent.instance instanceof componentClass);
-    const componentIndex = this.components.indexOf(component);
-
+    const componentIndex = this.components.indexOf(this.componentRef);
     if (componentIndex !== -1) {
       // Remove component from both view and array
-      this.container.remove(this.container.indexOf(component));
+      this.componentRef.destroy();
       this.components.splice(componentIndex, 1);
     }
   }

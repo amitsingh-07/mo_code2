@@ -26,9 +26,9 @@ export function createTranslateLoader(http: HttpClient) {
 
 @NgModule({
   imports: [
-    CommonModule, ReactiveFormsModule, NgbModule.forRoot(),
+    CommonModule, ReactiveFormsModule, NgbModule,
     AboutUsRoutingModule,
-    NgbModule.forRoot(),
+    NgbModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

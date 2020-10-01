@@ -1,3 +1,5 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -21,7 +23,7 @@ export class InvestmentEngagementJourneyGuardService implements CanActivate {
   ) {}
   canActivate() {
     if (this.authService.isSignedUser() && !this.investmentAccountService.isReassessActive()) {
-      return this.investmentCommonService.getAccountCreationActions().map((data) => {
+      return this.investmentCommonService.getAccountCreationActions().pipe(map((data) => {
         if (this.investmentCommonService.isUserNotAllowed(data)) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
           return false;
@@ -41,7 +43,7 @@ export class InvestmentEngagementJourneyGuardService implements CanActivate {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
           return false;
         }
-      });
+      }));
     } else {
       if (this.authService.getToken() === null && this.authService.getSessionId() === null) {
         this.authService.authenticate().subscribe((token) => {
