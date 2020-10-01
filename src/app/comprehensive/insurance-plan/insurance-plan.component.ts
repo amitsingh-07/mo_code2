@@ -42,6 +42,8 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   DownLuck: HospitalPlan;
   viewMode: boolean;
   liabilitiesDetails: IMyLiabilities;
+  careShieldTitle:string;
+  careShieldMessage:string;
   constructor(
     private navbarService: NavbarService, private progressService: ProgressTrackerService,
     private translate: TranslateService,
@@ -59,6 +61,8 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
         this.insurancePlanningDependantModal = this.translate.instant('CMP.MODAL.INSURANCE_PLANNING_MODAL.DEPENDANTS');
         this.insurancePlanningNonDependantModal = this.translate.instant('CMP.MODAL.INSURANCE_PLANNING_MODAL.NO_DEPENDANTS');
+        this.careShieldTitle=this.translate.instant('CARE_SHIELD_TITLE');
+        this.careShieldMessage=this.translate.instant('CARE_SHIELD_MESSAGE');
         if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
           this.routerEnabled = !this.summaryRouterFlag;
           this.showSummaryModal();
@@ -69,7 +73,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     this.hospitalType = this.comprehensiveService.getDownOnLuck().hospitalPlanName;
     this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
     if (this.insurancePlanFormValues && this.insurancePlanFormValues.haveLongTermPopup) {
-      this.showToolTipModal(this.translate.instant('CMP.INSURANCE_PLAN.TOOLTIP.CARE_SHIELD_TITLE'), this.translate.instant('CMP.INSURANCE_PLAN.TOOLTIP.CARE_SHIELD_MESSAGE'))
+      this.showToolTipModal(this.careShieldTitle,this.careShieldMessage )
     }
     const userAge = this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date());
     const userYear = this.age.getBirthYear(this.comprehensiveService.getMyProfile().dateOfBirth);
@@ -247,6 +251,10 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
             form.value.lifeProtectionAmount = COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT;
           }
           this.comprehensiveService.setInsurancePlanningList(form.value);
+          if (this.insurancePlanFormValues && this.insurancePlanFormValues.haveLongTermPopup) {
+              this.comprehensiveService.setCareshieldFlag();
+            }
+          
           if (this.comprehensiveService.getMySteps() === 2
             && this.comprehensiveService.getMySubSteps() < 1) {
             this.comprehensiveService.setStepCompletion(2, 1).subscribe((data1: any) => {
