@@ -132,7 +132,7 @@
                 <div class="flex-col-12">
                   <div class="withdraw-error">
                     <img src="assets/images/info-orange.svg" alt="" />
-                    <span> Withdrawal amount should not be more than the Cash Account Balance </span>
+                    <span [innerHTML]="'WITHDRAW.WITHDRAWAL_ERROR_CASH' | translate:translateParams"> </span>
                   </div>
                 </div>
               </div>
@@ -141,7 +141,7 @@
                   <div class="flex-col-12">
                     <div class="withdraw-error">
                       <img src="assets/images/info-orange.svg" alt="" />
-                      <span > Withdrawal amount should not be more than the Portfolio Balance</span>
+                      <span [innerHTML]="'WITHDRAW.WITHDRAWAL_ERROR_PORTFOLIO' | translate:translateParams"> </span>
                     </div>
                   </div>
               </div>
