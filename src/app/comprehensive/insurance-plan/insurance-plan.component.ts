@@ -241,9 +241,16 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
           form.value.lifeProtectionAmount = 0;
         }
         if (this.longTermInsurance) {
+            form.value.haveLongTermElderShield = null;
+            form.value.longTermElderShieldAmount = null;
           form.value.shieldType = COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHEILD;
         } else {
           form.value.shieldType = COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.ELDER_SHEILD;
+        }
+        if(!this.showLongTermInsurance){
+            form.value.haveLongTermElderShield = null;
+            form.value.longTermElderShieldAmount = null;
+            form.value.otherLongTermCareInsuranceAmount = null;
         }
 
         this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
@@ -252,7 +259,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
           }
           this.comprehensiveService.setInsurancePlanningList(form.value);
           if (this.insurancePlanFormValues && this.insurancePlanFormValues.haveLongTermPopup) {
-              this.comprehensiveService.setCareshieldFlag();
+              this.comprehensiveService.setCareshieldFlag(false);
             }
           
           if (this.comprehensiveService.getMySteps() === 2

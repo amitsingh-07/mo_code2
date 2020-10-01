@@ -607,8 +607,8 @@ export class ComprehensiveService {
     this.comprehensiveFormData.comprehensiveDetails.comprehensiveInsurancePlanning = comprehensiveInsurancePlanning;
     this.commit();
   }
-  setCareshieldFlag() {
-    this.comprehensiveFormData.comprehensiveDetails.comprehensiveInsurancePlanning.haveLongTermPopup = false;
+  setCareshieldFlag(careshieldFlag:boolean) {
+    this.comprehensiveFormData.comprehensiveDetails.comprehensiveInsurancePlanning.haveLongTermPopup = careshieldFlag;
     this.commit();
   }
   setHospitalPlan(hospitalPlanList: IHospitalPlanList[]) {
