@@ -284,7 +284,8 @@ export const COMPREHENSIVE_CONST = {
         WAIVED: 'waived'
     },
     LONG_TERM_SHIELD_TYPE: {
-        CARE_SHEILD: "careShield",
-        ELDER_SHEILD: "elderShield"
+        CARE_SHIELD: "careShield",
+        ELDER_SHIELD: "elderShield",
+        NO_SHIELD: "noShield"
     }
 };

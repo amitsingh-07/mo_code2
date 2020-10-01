@@ -607,6 +607,10 @@ export class ComprehensiveService {
     this.comprehensiveFormData.comprehensiveDetails.comprehensiveInsurancePlanning = comprehensiveInsurancePlanning;
     this.commit();
   }
+  setCareshieldFlag(careshieldFlag:boolean) {
+    this.comprehensiveFormData.comprehensiveDetails.comprehensiveInsurancePlanning.haveLongTermPopup = careshieldFlag;
+    this.commit();
+  }
   setHospitalPlan(hospitalPlanList: IHospitalPlanList[]) {
     this.comprehensiveFormData.hospitalPlanList = hospitalPlanList;
     this.commit();
@@ -1413,12 +1417,12 @@ export class ComprehensiveService {
       value: dependentHouseHoldData.houseHoldIncome ? dependentHouseHoldData.houseHoldIncome + '' : '',
       completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
     });
-    if (!comprehensiveVersion){
+    if (!comprehensiveVersion) {
       subItemsArray.push({
         id: '',
         path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
         title: 'No. of years to provide for',
-        value: dependentHouseHoldData.noOfYears ?  Util.toNumber(dependentHouseHoldData.noOfYears) + '' : '0',
+        value: dependentHouseHoldData.noOfYears ? Util.toNumber(dependentHouseHoldData.noOfYears) + '' : '0',
         completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
       });
     }
@@ -2656,7 +2660,7 @@ export class ComprehensiveService {
   dateFoundInBetween(dateOfBirth, minDate, maxDate) {
     const minDateCal = new Date(minDate);
     const maxDateCal = new Date(maxDate);
-    return (dateOfBirth >= minDateCal &&  dateOfBirth <= maxDateCal);
+    return (dateOfBirth >= minDateCal && dateOfBirth <= maxDateCal);
   }
   /**
    * Retirement sum find BRS/FRS based on birth date
@@ -2667,13 +2671,13 @@ export class ComprehensiveService {
     const dateOfBirth = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
 
     const birthYear = dateOfBirth.getFullYear();
-    const retireSumConfig1 = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.RETIREMENT_SUM_BIRTH_DATE[birthYear-1];
+    const retireSumConfig1 = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.RETIREMENT_SUM_BIRTH_DATE[birthYear - 1];
     const retireSumConfig2 = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.RETIREMENT_SUM_BIRTH_DATE[birthYear];
-    if (!Util.isEmptyOrNull(retireSumConfig1) && 
-    this.dateFoundInBetween(dateOfBirth, retireSumConfig1.BORN_DATE, retireSumConfig1.TILL_DATE)) {
+    if (!Util.isEmptyOrNull(retireSumConfig1) &&
+      this.dateFoundInBetween(dateOfBirth, retireSumConfig1.BORN_DATE, retireSumConfig1.TILL_DATE)) {
       return retireSumConfig1;
-    } else if (!Util.isEmptyOrNull(retireSumConfig2) && 
-    this.dateFoundInBetween(dateOfBirth, retireSumConfig2.BORN_DATE, retireSumConfig2.TILL_DATE)) {
+    } else if (!Util.isEmptyOrNull(retireSumConfig2) &&
+      this.dateFoundInBetween(dateOfBirth, retireSumConfig2.BORN_DATE, retireSumConfig2.TILL_DATE)) {
       return retireSumConfig2;
     } else {
       return '';
