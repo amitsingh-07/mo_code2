@@ -277,13 +277,7 @@ export class ManageInvestmentsService {
     this.manageInvestmentsFormData.isRedeemAll = isRedeemAll;
     this.commit();
   }
-  setTransfrFormData(data) {
-    this.manageInvestmentsFormData.transferFrom = data.transferFrom;
-    this.manageInvestmentsFormData.transferTo = data.transferTo;
-    this.manageInvestmentsFormData.transferAmount = data.transferAmount;
-    this.manageInvestmentsFormData.transFerRedeem = data.transFerRedeem;
-    this.commit();
-  }
+  
   clearWithdrawalTypeFormData() {
     this.manageInvestmentsFormData.withdrawType = null;
     this.manageInvestmentsFormData.withdrawAmount = null;
@@ -331,7 +325,7 @@ export class ManageInvestmentsService {
     const payload = this.constructSellPortfolioRequestParams(data);
     return this.investmentApiService.sellPortfolio(data.withdrawPortfolio.customerPortfolioId, payload);
   }
-
+ 
   constructSellPortfolioRequestParams(data) {
     const request = {};
     request['withdrawType'] = data.withdrawType ? data.withdrawType.value : null;
@@ -674,4 +668,26 @@ export class ManageInvestmentsService {
     return this.investmentApiService.getTransferCashPortfolioList();
   }
 
+  TransferCash(data) {
+    const payload = this.constructTransferCashParams(data);
+    return this.investmentApiService.TransferCash(payload);
+  }
+  constructTransferCashParams(data) {
+    const request = {};
+    request['sourceRefNo'] = data.transferFrom.refno;
+    request['destinationRefNo'] = data.transferTo.refno;
+    request['amount'] = data.transferAmount ;
+    request['redeemAll'] = data.TransferAll;
+    return request;
+   }
+  setTransfrFormData(data ,TransferAll) {
+    if(data &&data.transferFrom && data.transferTo){
+      this.manageInvestmentsFormData.transferFrom = data.transferFrom;
+      this.manageInvestmentsFormData.transferTo = data.transferTo;
+      this.manageInvestmentsFormData.transferAmount = data.transferAmount;
+      this.manageInvestmentsFormData.TransferAll =TransferAll;
+      this.commit();
+    }
+   
+  }
 }

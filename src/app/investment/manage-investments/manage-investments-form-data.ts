@@ -41,7 +41,7 @@ export class ManageInvestmentsFormData {
   transferFrom: any;
   transferTo: any;
   transferAmount: number;
-  transFerRedeem: boolean;
+  TransferAll: boolean;
 }
 
 export interface IToastMessage {

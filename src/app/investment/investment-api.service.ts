@@ -427,4 +427,15 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+
+    TransferCash(data) {
+      const url = './assets/mock-data/transfercash.json';
+   // const url = investmentApiConstants.endpoint.investmentAccount.sellPortfolio.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+     //return this.http.post(url, data)
+     return this.http.getMock(url)
+      // .pipe(
+      //   catchError((error: HttpErrorResponse) => this.handleError(error))
+      // );
+  }
 }

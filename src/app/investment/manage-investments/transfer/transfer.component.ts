@@ -38,6 +38,7 @@ export class TransferComponent implements OnInit {
   cashBalance :any;
   initalCashPortfolio:any;
   destinationCashPortfolioList;
+  isRequestSubmitted = false;
   noteArray = [
     "Transfer service will not be available from 11:30pm to 12:00am daily for system maintenance. In the event that the service is unavailable or unsuccesssful, please try again later.",
     "Transfer between Cash Accounts will be processed and completed immediately. "
@@ -135,9 +136,8 @@ export class TransferComponent implements OnInit {
     return !control.pristine && !control.valid;
   }
   goToNext(From) {
-    this.manageInvestmentsService.setTransfrFormData(From);
     this.showConfirmWithdrawModal(From);
-    //this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
+    
   }
   TransferAllChecked() {
   if (this.transferForm.controls.transferAll.value && this.transferForm.controls.transferFrom.value) {
@@ -162,12 +162,22 @@ export class TransferComponent implements OnInit {
     ref.componentInstance.TransferAmount =this.transferForm.get('transferAmount').value;
     ref.componentInstance.afterTransfer = this.cashBalance - this.transferForm.controls.transferAmount.value;
     ref.componentInstance.confirmed.subscribe(() => {
-      ref.dismiss();
-      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TRANSFER_SUCCESS]);
+      ref.close();
+      this.manageInvestmentsService.setTransfrFormData(form.getRawValue(), false);
+    this.saveTransfer() 
+     
     
       
     });
+    this.dismissPopup(ref);
    }
+   dismissPopup(ref: NgbModalRef) {
+    this.router.events.forEach((event) => {
+      if (event instanceof NavigationStart) {
+        ref.close();
+      }
+    });
+  }
    
    destinationcCashPortfolioList() {
     this.destinationCashPortfolioList= [];
@@ -196,5 +206,54 @@ export class TransferComponent implements OnInit {
         }
       }
     }
+
+    saveTransfer() {
+      if (!this.isRequestSubmitted) {
+        this.isRequestSubmitted = true;
+        this.loaderService.showLoader({
+          title: this.translate.instant('Tranfer'),
+          desc: this.translate.instant('Loading.....')
+        });
+        this.manageInvestmentsService.TransferCash(this.formValues).subscribe(
+          (response) => {
+            this.isRequestSubmitted = false;
+            this.loaderService.hideLoader();
+            if (response.responseMessage.responseCode < 6000) {
+              if (
+                response.objectList &&
+                response.objectList.length &&
+                response.objectList[response.objectList.length - 1].serverStatus &&
+                response.objectList[response.objectList.length - 1].serverStatus.errors &&
+                response.objectList[response.objectList.length - 1].serverStatus.errors.length
+              ) {
+                this.showCustomErrorModal(
+                  'Error!',
+                  response.objectList[response.objectList.length - 1].serverStatus.errors[0].msg
+                );
+              } else if (response.responseMessage && response.responseMessage.responseDescription) {
+                const errorResponse = response.responseMessage.responseDescription;
+                this.showCustomErrorModal('Error!', errorResponse);
+              } else {
+                this.investmentAccountService.showGenericErrorModal();
+              }
+            } else {
+              this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TRANSFER_SUCCESS]);
+            }
+          },
+          (err) => {
+            this.isRequestSubmitted = false;
+            this.loaderService.hideLoader();
+            this.investmentAccountService.showGenericErrorModal();
+          }
+        );
+      }
+    }
+
+    showCustomErrorModal(title, desc) {
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = title;
+      ref.componentInstance.errorMessage = desc;
+    }
+  
   
 }
