@@ -38,6 +38,8 @@ import {
 } from './withdrawal/forward-pricing-modal/forward-pricing-modal.component';
 import { WithdrawalComponent } from './withdrawal/withdrawal.component';
 import { YourPortfolioComponent } from './your-portfolio/your-portfolio.component';
+import { TransferComponent } from './transfer/transfer.component';
+import { TransferStatusComponent } from './transfer-status/transfer-status.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
@@ -79,7 +81,9 @@ export function createTranslateLoader(http: HttpClient) {
     TransactionsComponent,
     HoldingsComponent,
     AssetAllocationComponent,
-    RenameInvestmentModalComponent
+    RenameInvestmentModalComponent,
+    TransferComponent,
+    TransferStatusComponent
   ],
   entryComponents: [ConfirmWithdrawalModalComponent, AddBankModalComponent, ForwardPricingModalComponent,
     RenameInvestmentModalComponent],

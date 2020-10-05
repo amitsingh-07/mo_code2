@@ -412,4 +412,19 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  // TRNASFER MOCK DATA
+  getTransferEntityList() {
+    const url = './assets/mock-data/transferEntityFile.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  getTransferCashPortfolioList() {
+    const url = './assets/mock-data/cashportfolioList.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

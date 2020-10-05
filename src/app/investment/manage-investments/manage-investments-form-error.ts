@@ -70,6 +70,21 @@ export class ManageInvestmentsFormError {
         errorTitle: 'Invalid Bank',
         errorMessage: 'Select a bank or add new bank to withdraw.'
       }
+    },
+    transferAmount: {
+      required: {
+        errorTitle: 'Invalid Transfer Amount',
+        errorMessage: 'Enter Transfer Amount.'
+      },
+      MoreThanCashBalance: {
+        errorTitle: 'Invalid Transfer Type Amount',
+        errorMessage: 'Transfer amount should not be more than the Cash balance.'
+      },
+     
+      MinValue: {
+        errorTitle: 'Invalid Withdraw Type Amount',
+        errorMessage: 'Withdrawal amount should be more than 0.'
+      }
     }
   };
 }

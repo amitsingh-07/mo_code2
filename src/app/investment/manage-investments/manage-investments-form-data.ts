@@ -1,3 +1,5 @@
+import { AnySoaRecord } from "dns";
+
 export class ManageInvestmentsFormData {
   // PERSONAL INFO
   investmentype: string;
@@ -34,6 +36,12 @@ export class ManageInvestmentsFormData {
   isSrsAccountUpdated: boolean; //issrsaccountupdated
 
   investmentNote: any;
+
+  //TRANSFER SCREEN
+  transferFrom: any;
+  transferTo: any;
+  transferAmount: number;
+  transFerRedeem: boolean;
 }
 
 export interface IToastMessage {

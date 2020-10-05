@@ -1,0 +1,22 @@
+{
+    "exception": null,
+    "objectList": [{
+         "cashAccountId": "TAC2009160025",
+            "refno": "G0015288",
+            "currency": "SGD",
+            "cashAccountBalance": 3390.0,
+            "portfolioName": "Wisesaver Portfolio Cash1 Test"
+        },
+        {
+            "cashAccountId": "TAC2009160024",
+            "refno": "G0015285",
+            "currency": "SGD",
+            "cashAccountBalance": 3859.0,
+            "portfolioName": "Invest Cash 1"
+        
+    }],
+    "responseMessage": {
+        "responseCode": 6000,
+        "responseDescription": "Successful response"
+    }
+}

@@ -309,15 +309,19 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         break;
       }
       case 2: {
-        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TRANSACTION]);
+        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TRANSFER]);
         break;
       }
       case 3: {
+        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TRANSACTION]);
+        break;
+      }
+      case 4: {
         this.showErrorMessage = false;
         this.showRenamePortfolioModal();
         break;
       }
-      case 4: {
+      case 5: {
         if (this.portfolio.entitlements.showWithdrawPvToBa || this.portfolio.entitlements.showWithdrawPvToCa ||
           this.portfolio.entitlements.showWithdrawCaToBa || this.portfolio.entitlements.showWithdrawPvToSRS) {
           this.manageInvestmentsService.clearWithdrawalTypeFormData();
@@ -325,12 +329,13 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         }
         break;
       }
-      case 5: {
+      case 6: {
         if (this.portfolio.entitlements.showDelete) {
           this.showDeletePortfolioModal();
         }
         break;
       }
+     
     }
   }
 

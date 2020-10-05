@@ -1,0 +1,26 @@
+{
+    "exception": null,
+    "objectList": {
+        "responseCode": 0,
+        "responseDescription": null,
+        "portfolioActions": {
+            "portfolioStatus": "PURCHASED",
+            "portfolioLoaded": true,
+            "transactionStatus": false,
+            "rspUserAccountLevel": true,
+            "showDelete": false,
+            "showTransfer": true,
+            "showTopup": true,
+            "showWithdrawPvToBa": true,
+            "showWithdrawPvToCa": true,
+            "showWithdrawCaToBa": true,
+            "showWithdrawPvToSRS": false,
+            "processMonthly": true,
+            "processAwaitingFundTransaction": true
+        }
+    },
+    "responseMessage": {
+        "responseCode": 6000,
+        "responseDescription": "Successful response"
+    }
+}

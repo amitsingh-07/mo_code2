@@ -54,7 +54,7 @@
                             {{'YOUR_PORTFOLIO.MORE' | translate}}</button>
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                             <button class="dropdown-item"
-                              [class.disabled]="(option.value === 'TOPUP' && !portfolio.entitlements.showTopup) || (option.value === 'DELETE_PORTFOLIO' && !portfolio.entitlements.showDelete) ||
+                              [class.disabled]="(option.value === 'TOPUP' && !portfolio.entitlements.showTopup) ||(option.value === 'TRANSFER' && !portfolio.entitlements.showTopup)|| (option.value === 'DELETE_PORTFOLIO' && !portfolio.entitlements.showDelete) ||
                               (option.value === 'WITHDRAWAL' && (!portfolio.entitlements.showWithdrawPvToBa && !portfolio.entitlements.showWithdrawPvToCa && !portfolio.entitlements.showWithdrawCaToBa && !portfolio.entitlements.showWithdrawPvToSRS))"
                               *ngFor="let option of moreList; let i = index;" (click)="selectMoreOption(option)"
                               id="additional_declaration_sourse-drpdown-option-{{i}}">

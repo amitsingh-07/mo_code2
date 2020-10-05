@@ -1,0 +1,20 @@
+<div class="content" *ngIf="TransferEntityList">
+  <div class="flex-div">
+    <img src="assets/images/investment-account/owl-success-tick.svg" id="add_submit_custModalImg2" />
+    <div class="success-text-content">
+      <p class="custom-modal--title mt20" id="upload-document-later-lab">
+        Transfer has been completed!
+      </p>
+
+      <button (click)="goToNext('../investment/manage/portfolio/transactions')" id="upload-document-later-back_to_dash_board" type="button"
+        class="btn btn-primary width100 special-btn">
+        View Transaction History</button>
+      <button  *ngIf="TransferEntityList.portfolioActions.showTransfer"(click)="goToNext('../investment/manage/portfolio/transfer')" id="upload-document-later-back_to_dash_board" type="button"
+        class="btn  btn-primary width100 special-btn" >
+        Make Another Transfer</button>
+    </div>
+    <button (click)="goToNext('../investment/manage/portfolio')" id="upload-document-later-back_to_dash_board" type="button"
+      class="btn btn__footer--fixed btn-primary width100">
+      Back to My Portfolios</button>
+  </div>
+</div>

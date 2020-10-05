@@ -13,6 +13,8 @@ import { WithdrawalBankAccountComponent } from './withdrawal-bank-account/withdr
 import { WithdrawalStatusComponent } from './withdrawal-status/withdrawal-status.component';
 import { WithdrawalComponent } from './withdrawal/withdrawal.component';
 import { YourPortfolioComponent } from './your-portfolio/your-portfolio.component';
+import { TransferComponent } from './transfer/transfer.component';
+import { TransferStatusComponent } from './transfer-status/transfer-status.component';
 
 const routes: Routes = [
   {
@@ -74,6 +76,16 @@ const routes: Routes = [
     path: MANAGE_INVESTMENTS_ROUTES.ASSET_ALLOCATION,
     component: AssetAllocationComponent,
     canActivate: [ManageInvestmentsGuard]
+  },
+  {
+    path: MANAGE_INVESTMENTS_ROUTES.TRANSFER,
+    component: TransferComponent
+    //canActivate: [ManageInvestmentsGuard]
+  },
+  {
+    path: MANAGE_INVESTMENTS_ROUTES.TRANSFER_SUCCESS,
+    component: TransferStatusComponent
+    //canActivate: [ManageInvestmentsGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }
 ];
