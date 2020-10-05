@@ -607,7 +607,7 @@ export class ComprehensiveService {
     this.comprehensiveFormData.comprehensiveDetails.comprehensiveInsurancePlanning = comprehensiveInsurancePlanning;
     this.commit();
   }
-  setCareshieldFlag(careshieldFlag:boolean) {
+  setCareshieldFlag(careshieldFlag: boolean) {
     this.comprehensiveFormData.comprehensiveDetails.comprehensiveInsurancePlanning.haveLongTermPopup = careshieldFlag;
     this.commit();
   }
@@ -1659,7 +1659,8 @@ export class ComprehensiveService {
     let ocpDisabilityValue = '$0 /mth';
     let longTermCareValue = '$0 /mth';
     let otherLongTermCareValue = '$0 /mth';
-    const longTermCareList = [];
+    let longTermCareList = [];
+    let hideLongTermInsurance = true;
 
     if (isCompleted) {
       const haveHospitalPlan =
@@ -1719,36 +1720,43 @@ export class ComprehensiveService {
         ) + ' /mth';
       }
 
-      if (
-        !Util.isEmptyOrNull(
-          cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield
-        )
-      ) {
-        if (
-          cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield ===
-          1
-        ) {
-          longTermCareValue = this.transformAsCurrency(
-            cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount
-          ) + ' /mth';
-          otherLongTermCareValue = this.transformAsCurrency(
-            cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount
-          ) + ' /mth';
-          longTermCareList.push({
-            title: 'Other coverage amount',
-            value: otherLongTermCareValue,
-          });
 
-        } else if (
-          cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield ===
-          0
-        ) {
-          longTermCareValue = 'No';
-        } else if (
-          cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield ===
-          2
-        ) {
-          longTermCareValue = 'Not Sure';
+      if ((!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield) && cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1) || cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHIELD || cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.ELDER_SHIELD) {
+        longTermCareValue = this.transformAsCurrency(
+          cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount
+        ) + ' /mth';
+
+        otherLongTermCareValue = this.transformAsCurrency(
+          cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount
+        ) + ' /mth';
+        longTermCareList.push({
+          title: 'Other coverage amount',
+          value: otherLongTermCareValue,
+        });
+        if (cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHIELD) {
+          longTermCareValue = otherLongTermCareValue;
+          longTermCareList = [];
+        }
+      } else if (
+        cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield ===
+        0
+      ) {
+        longTermCareValue = 'No';
+      } else if (
+        cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield ===
+        2
+      ) {
+        longTermCareValue = 'Not Sure';
+      }
+
+    }
+    if (this.getMyProfile().dateOfBirth) {
+      const userAge = this.ageUtil.calculateAge(this.getMyProfile().dateOfBirth, new Date());
+      if (userAge > COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE) {
+        hideLongTermInsurance = false;
+        if ((cmpSummary.comprehensiveEnquiry.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) && Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.shieldType) && (userAge <
+          COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE_OLD)) {
+          hideLongTermInsurance = true;
         }
       }
     }
@@ -1793,12 +1801,7 @@ export class ComprehensiveService {
           title: 'Long-Term Care',
           value: longTermCareValue,
           completed: (isCompleted && (this.validateSteps(2, 1))),
-          hidden: this.getMyProfile().dateOfBirth
-            ? this.ageUtil.calculateAge(
-              this.getMyProfile().dateOfBirth,
-              new Date()
-            ) < COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE
-            : true,
+          hidden: hideLongTermInsurance,
           list: longTermCareList
         }
       ]

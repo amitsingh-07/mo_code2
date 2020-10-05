@@ -42,8 +42,8 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   DownLuck: HospitalPlan;
   viewMode: boolean;
   liabilitiesDetails: IMyLiabilities;
-  careShieldTitle:string;
-  careShieldMessage:string;
+  careShieldTitle: string;
+  careShieldMessage: string;
   constructor(
     private navbarService: NavbarService, private progressService: ProgressTrackerService,
     private translate: TranslateService,
@@ -61,8 +61,8 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
         this.insurancePlanningDependantModal = this.translate.instant('CMP.MODAL.INSURANCE_PLANNING_MODAL.DEPENDANTS');
         this.insurancePlanningNonDependantModal = this.translate.instant('CMP.MODAL.INSURANCE_PLANNING_MODAL.NO_DEPENDANTS');
-        this.careShieldTitle=this.translate.instant('CARE_SHIELD_TITLE');
-        this.careShieldMessage=this.translate.instant('CARE_SHIELD_MESSAGE');
+        this.careShieldTitle = this.translate.instant('CARE_SHIELD_TITLE');
+        this.careShieldMessage = this.translate.instant('CARE_SHIELD_MESSAGE');
         if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
           this.routerEnabled = !this.summaryRouterFlag;
           this.showSummaryModal();
@@ -73,7 +73,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     this.hospitalType = this.comprehensiveService.getDownOnLuck().hospitalPlanName;
     this.insurancePlanFormValues = this.comprehensiveService.getInsurancePlanningList();
     if (this.insurancePlanFormValues && this.insurancePlanFormValues.haveLongTermPopup) {
-      this.showToolTipModal(this.careShieldTitle,this.careShieldMessage )
+      this.showToolTipModal(this.careShieldTitle, this.careShieldMessage)
     }
     const userAge = this.age.calculateAge(this.comprehensiveService.getMyProfile().dateOfBirth, new Date());
     const userYear = this.age.getBirthYear(this.comprehensiveService.getMyProfile().dateOfBirth);
@@ -84,7 +84,8 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     }
     if (userAge > COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE) {
       this.showLongTermInsurance = true;
-      if ((this.comprehensiveService.getComprehensiveEnquiry().reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) && Util.isEmptyOrNull(this.insurancePlanFormValues.shieldType) && this.longTermInsurance) {
+      if ((this.comprehensiveService.getComprehensiveEnquiry().reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) && Util.isEmptyOrNull(this.insurancePlanFormValues.shieldType) && (userAge <
+        COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE_OLD)) {
         this.showLongTermInsurance = false;
       }
     }
@@ -240,23 +241,23 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         if (form.value.haveCPFDependentsProtectionScheme !== 1 || form.value.lifeProtectionAmount == '') {
           form.value.lifeProtectionAmount = 0;
         }
-       
-        if(this.showLongTermInsurance){
-           if (this.longTermInsurance) {
+
+        if (this.showLongTermInsurance) {
+          if (this.longTermInsurance) {
             form.value.haveLongTermElderShield = null;
             form.value.longTermElderShieldAmount = null;
             form.value.shieldType = COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHIELD;
-           } else{
+          } else {
             form.value.shieldType = COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.ELDER_SHIELD;
-           } 
-        } else{
-            form.value.haveLongTermElderShield = null;
-            form.value.longTermElderShieldAmount = null;
-            form.value.otherLongTermCareInsuranceAmount = null;
-            form.value.shieldType = COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.NO_SHIELD;
-    
+          }
+        } else {
+          form.value.haveLongTermElderShield = null;
+          form.value.longTermElderShieldAmount = null;
+          form.value.otherLongTermCareInsuranceAmount = null;
+          form.value.shieldType = COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.NO_SHIELD;
+
         }
-         
+
 
         this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
           if (form.value.haveCPFDependentsProtectionScheme !== 1) {
@@ -264,9 +265,9 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
           }
           this.comprehensiveService.setInsurancePlanningList(form.value);
           if (this.insurancePlanFormValues && this.insurancePlanFormValues.haveLongTermPopup) {
-              this.comprehensiveService.setCareshieldFlag(false);
-            }
-          
+            this.comprehensiveService.setCareshieldFlag(false);
+          }
+
           if (this.comprehensiveService.getMySteps() === 2
             && this.comprehensiveService.getMySubSteps() < 1) {
             this.comprehensiveService.setStepCompletion(2, 1).subscribe((data1: any) => {
