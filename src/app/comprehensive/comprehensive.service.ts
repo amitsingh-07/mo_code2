@@ -1720,7 +1720,7 @@ export class ComprehensiveService {
       }
 
       if (!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield)) {
-        if ( cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1 && cmpSummary.comprehensiveEnquiry.reportStatus===COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED ) {
+        if ( cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1 && cmpSummary.comprehensiveEnquiry.reportStatus===COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED && Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.shieldType)) {
           longTermCareValue = this.transformAsCurrency(
             cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount
           ) + ' /mth';
@@ -1786,7 +1786,7 @@ export class ComprehensiveService {
           title: 'Long-Term Care',
           value: longTermCareValue,
           completed: (isCompleted && (this.validateSteps(2, 1))),
-          hidden: this.getMyProfile().dateOfBirth ? (this.ageUtil.calculateAge(this.getMyProfile().dateOfBirth,new Date()) > COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE) && (this.validateSteps(2, 1)) : false,
+          hidden: this.getMyProfile().dateOfBirth ? !((this.ageUtil.calculateAge(this.getMyProfile().dateOfBirth,new Date()) > COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE)) : true,
           list: longTermCareList
         }
       ]
