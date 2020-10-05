@@ -127,6 +127,24 @@
                   </div>
                 </div>
               </div>
+              <div class="flex-row"
+                *ngIf="withdrawForm.controls.withdrawAmount.errors && withdrawForm.controls.withdrawAmount.errors.MoreThanBalanceCash">
+                <div class="flex-col-12">
+                  <div class="withdraw-error">
+                    <img src="assets/images/info-orange.svg" alt="" />
+                    <span [innerHTML]="'WITHDRAW.WITHDRAWAL_ERROR_CASH' | translate:translateParams"> </span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row"
+                *ngIf="withdrawForm.controls.withdrawAmount.errors && withdrawForm.controls.withdrawAmount.errors.MoreThanBalancePortfolio">
+                  <div class="flex-col-12">
+                    <div class="withdraw-error">
+                      <img src="assets/images/info-orange.svg" alt="" />
+                      <span [innerHTML]="'WITHDRAW.WITHDRAWAL_ERROR_PORTFOLIO' | translate:translateParams"> </span>
+                    </div>
+                  </div>
+              </div>
               <div class="cash-balance">
                 <div class="row mb15" *ngIf="this.withdrawForm.controls.withdrawType.value && !isFromPortfolio">
                   <div class="col-7">
@@ -173,7 +191,7 @@
               </div>
             </div>
           </form>
-          <button type="button" [disabled]="!withdrawForm.get('withdrawType').value" (click)="goToNext(withdrawForm)"
+          <button type="button" [disabled]="!withdrawForm.valid" (click)="goToNext(withdrawForm)"
             class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="portfolioRecommendationNextBtn">{{
             'LABEL.CONTINUE' | translate}}</button>
         </div>

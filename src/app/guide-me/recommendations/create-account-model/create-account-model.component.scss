@@ -2,6 +2,10 @@
 @import '../../../../mixins';
 
 app-create-account-model {
+  .modal-body {
+    width: 375px;
+    margin: 0 auto 80px;
+  }
   .selected-count {
     background-color: #ff872f;
     width: 39px;
@@ -19,17 +23,16 @@ app-create-account-model {
     @include allmobiles {
       float: left;
       margin-left: 10px;
-      //margin-top: 10px;
     }
   }
 
   .lbl-selected {
-    font-family: $muli-regular;
+    font-family: $muli-bold;
     font-size: 18px;
     line-height: 1.11;
     letter-spacing: -0.2px;
     color: #5e5e5e;
-    margin-right: 100px;
+    margin-right: 0 !important;
 
     @include allmobiles {
       margin-right: 0;
@@ -53,7 +56,6 @@ app-create-account-model {
     position: inherit;
     background-repeat: no-repeat;
     border: 0;
-    //margin-left: 15px;
     margin-top: 6px;
     cursor: pointer;
     outline: none!important;
@@ -79,28 +81,31 @@ app-create-account-model {
       padding-bottom: 30px;
 
       hr {
-        border-color: #5e5e5e;
+        border-top: 1px solid $silver-grey-color !important;
+        border: none;
       }
 
       .or-circle {
-        background-color: #ffffff;
-        border-color: #ffffff;
-        color: #5e5e5e;
+        background-color: $white-color;
+        border-color: $white-color;
+        color: $silver-grey-color;
         font-size: 18px;
         font-family: $muli-regular !important;
         top: 1px;
       }
     }
-
-    .txt-bold {
+    .txt-bold, .txt-normal {
       font-family: $muli-bold;
       font-size: 16px;
       line-height: 1.25;
       letter-spacing: -0.16px;
       text-align: center;
-      color: #5e5e5e;
+      color: $silver-grey-color;
       max-width: 205px;
       margin: 0 auto 20px;
+    }
+    .txt-normal {
+      font-family: $muli-regular;
     }
 
     .txt-black {
@@ -110,7 +115,7 @@ app-create-account-model {
     .form-group-floating-label {
       border-radius: 6px;
       border: 1px solid rgba(94, 94, 94, 0.3);
-      background-color: #ffffff;
+      background-color: $white-color;
     }
 
     .checkbox-button {
@@ -118,7 +123,7 @@ app-create-account-model {
         font-family: $muli-semi-bold;
         font-size: 15px;
         letter-spacing: -0.28px;
-        color: #5e5e5e;
+        color: $silver-grey-color;
       }
     }
   }
@@ -139,5 +144,36 @@ app-create-account-model {
 
   .btn {
     font-family: $muli-bold;
+  }
+  .send-qoute-placeholder {
+    margin-top: 200px;
+  }
+  .send-quote {
+    background-color: $send-quote-bgcolor;
+    padding: 40px 25px 30px 25px;
+    color: $darker-teal-color;
+    position: absolute;
+    left: 0;
+    top: 65px;
+    right: 0;
+    .title {
+      font-size: 16px;
+      font-family: $muli-regular;
+    }
+    .desc-wrapper {
+      display: flex;
+      font-size: 18px;
+      font-family: $muli-bold;
+      justify-content: space-between;
+      line-height: 22px;
+      letter-spacing: -0.18px;
+      .desc {
+        width: 238px;
+      }
+      img {
+        width: 70px;
+        height: 70px;
+      }
+    }
   }
 }
