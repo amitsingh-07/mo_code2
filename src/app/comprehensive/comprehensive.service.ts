@@ -1659,7 +1659,7 @@ export class ComprehensiveService {
     let ocpDisabilityValue = '$0 /mth';
     let longTermCareValue = '$0 /mth';
     let otherLongTermCareValue = '$0 /mth';
-    const longTermCareList = [];
+    let longTermCareList = [];
 
     if (isCompleted) {
       const haveHospitalPlan =
@@ -1724,9 +1724,7 @@ export class ComprehensiveService {
         longTermCareValue = this.transformAsCurrency(
           cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount
         ) + ' /mth';
-        if (cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHIELD) {
-          longTermCareValue = 'No';
-        }
+
         otherLongTermCareValue = this.transformAsCurrency(
           cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount
         ) + ' /mth';
@@ -1734,7 +1732,10 @@ export class ComprehensiveService {
           title: 'Other coverage amount',
           value: otherLongTermCareValue,
         });
-
+        if (cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHIELD) {
+          longTermCareValue = otherLongTermCareValue;
+          longTermCareList = [];
+        }
       } else if (
         cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield ===
         0
