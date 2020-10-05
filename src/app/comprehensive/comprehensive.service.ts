@@ -53,6 +53,7 @@ import {
   IRegularSavings,
   IRetirementPlan,
 } from './comprehensive-types';
+import { Agent } from 'http';
 @Injectable({
   providedIn: 'root'
 })
@@ -1660,6 +1661,7 @@ export class ComprehensiveService {
     let longTermCareValue = '$0 /mth';
     let otherLongTermCareValue = '$0 /mth';
     let longTermCareList = [];
+    let showLongTermInsurance = true;
 
     if (isCompleted) {
       const haveHospitalPlan =
@@ -1749,7 +1751,18 @@ export class ComprehensiveService {
       }
 
     }
-
+    if (this.getMyProfile().dateOfBirth) {
+      const userYear = this.ageUtil.getBirthYear(this.getMyProfile().dateOfBirth);
+      const userAge = this.ageUtil.calculateAge(this.getMyProfile().dateOfBirth, new Date());
+      if (userAge > COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE) {
+        showLongTermInsurance = false;
+        if ((cmpSummary.comprehensiveEnquiry.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) && Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.shieldType) && userYear >
+          COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_YEAR) {
+          showLongTermInsurance = true;
+        }
+      }
+    }
+    
     return {
       title: 'Risk-Proof Your Journey',
       expanded: true,
@@ -1790,7 +1803,7 @@ export class ComprehensiveService {
           title: 'Long-Term Care',
           value: longTermCareValue,
           completed: (isCompleted && (this.validateSteps(2, 1))),
-          hidden: this.getMyProfile().dateOfBirth ? !((this.ageUtil.calculateAge(this.getMyProfile().dateOfBirth, new Date()) > COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE)) : true,
+          hidden: showLongTermInsurance,
           list: longTermCareList
         }
       ]
