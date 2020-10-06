@@ -1725,7 +1725,6 @@ export class ComprehensiveService {
         longTermCareValue = this.transformAsCurrency(
           cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount
         ) + ' /mth';
-
         otherLongTermCareValue = this.transformAsCurrency(
           cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount
         ) + ' /mth';
@@ -1733,7 +1732,7 @@ export class ComprehensiveService {
           title: 'Other coverage amount',
           value: otherLongTermCareValue,
         });
-        if (cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHIELD) {
+        if (cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHIELD && (this.validateSteps(2, 1))) {
           longTermCareValue = otherLongTermCareValue;
           longTermCareList = [];
         }
@@ -1802,7 +1801,7 @@ export class ComprehensiveService {
           value: longTermCareValue,
           completed: (isCompleted && (this.validateSteps(2, 1))),
           hidden: hideLongTermInsurance,
-          list: longTermCareList
+          list: (this.validateSteps(2, 1)) ? longTermCareList : []
         }
       ]
     };
@@ -1897,7 +1896,7 @@ export class ComprehensiveService {
       value: retirementAgeValue,
       completed: (isCompleted && (this.validateSteps(isStepCompleted, 1)))
     });
-    if (this.getComprehensiveVersion() && cmpSummary.comprehensiveRetirementPlanning) {
+    if (this.getComprehensiveVersion() && cmpSummary.comprehensiveRetirementPlanning && (this.validateSteps(isStepCompleted, 1))) {
       cmpSummary.comprehensiveRetirementPlanning.retirementIncomeSet.forEach((item, index) => {
         subItemsArray.push({
           id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN + '1',
@@ -1926,7 +1925,7 @@ export class ComprehensiveService {
           path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
           title: 'Lump Sum Amount ' + (index + 1),
           value: '',
-          completed: isCompleted,
+          completed: (isCompleted && (this.validateSteps(isStepCompleted, 1))),
           list: [{
             title: 'Maturity Amount',
             value: this.transformAsCurrency(item.maturityAmount)
