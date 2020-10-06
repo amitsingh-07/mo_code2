@@ -1,18 +1,19 @@
 {
     "exception": null,
-    "objectList": [{
+    "objectList": [
+        {
          "cashAccountId": "TAC2009160025",
-            "refno": "G0015288",
+            "refno": "G0016203",
             "currency": "SGD",
-            "cashAccountBalance": 3390.0,
-            "portfolioName": "Wisesaver Portfolio Cash1 Test"
+            "cashAccountBalance": 4000,
+            "portfolioName": "Equity Portfolio"
         },
         {
             "cashAccountId": "TAC2009160024",
-            "refno": "G0015285",
+            "refno": "G0016204",
             "currency": "SGD",
-            "cashAccountBalance": 3859.0,
-            "portfolioName": "Invest Cash 1"
+            "cashAccountBalance": 6000,
+            "portfolioName": "WiseSaver Portfolio"
         
     }],
     "responseMessage": {

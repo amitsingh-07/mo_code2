@@ -14,14 +14,14 @@
       <div class="transfer-body">
         <div class="tranfer_lbl">Transfer From:</div>
         <div class="transfer_value">{{transferFrom.portfolioName}}
-          <div>Cash Account {{transferFrom.refNo}}</div>
+          <div>Cash Account {{transferFrom.refno}}</div>
         </div>
       </div>
       <div class="transfer-body">
         <div class="tranfer_lbl">Transfer To:</div>
         <div class="transfer_value">{{transferTo.portfolioName}}
 
-          <div>Cash Account {{transferTo.refNo}}</div>
+          <div>Cash Account {{transferTo.refno}}</div>
         </div>
       </div>
       <div class="transfer-body" >
@@ -47,6 +47,6 @@
 
     </div>
     <button type="button" (click)="confirmWithdrawal($event)" class="btn btn-primary-dark width100 mt5"
-      id="incomeBtn">Confirm And Submit</button>
+      id="incomeBtn">Confirm Transfer</button>
   </div>
 </div>

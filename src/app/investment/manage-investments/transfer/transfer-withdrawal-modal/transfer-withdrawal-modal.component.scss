@@ -8,9 +8,16 @@ app-transfer-withdrawal-modal {
       padding-bottom: 30px;
     }
   }
-
+  .modal-body-title {
+   margin-bottom: 7px;
+   padding-bottom: 0px;
+   
+}
   .transfer-body {
     padding-bottom: 16px;
+    .transfer-body :last-child{
+      padding-bottom: 30px;
+    }
 
     .tranfer_lbl {
       font-family: $muli-light;

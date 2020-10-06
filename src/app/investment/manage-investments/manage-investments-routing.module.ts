@@ -79,13 +79,13 @@ const routes: Routes = [
   },
   {
     path: MANAGE_INVESTMENTS_ROUTES.TRANSFER,
-    component: TransferComponent
-    //canActivate: [ManageInvestmentsGuard]
+    component: TransferComponent,
+    canActivate: [ManageInvestmentsGuard]
   },
   {
     path: MANAGE_INVESTMENTS_ROUTES.TRANSFER_SUCCESS,
-    component: TransferStatusComponent
-    //canActivate: [ManageInvestmentsGuard]
+    component: TransferStatusComponent,
+    canActivate: [ManageInvestmentsGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }
 ];

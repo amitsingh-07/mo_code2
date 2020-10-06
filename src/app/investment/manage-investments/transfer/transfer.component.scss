@@ -2,6 +2,18 @@
 @import '../../../../mixins';
 
 app-transfer {
+  span.placeholder_color{
+    color: #9b9b9b;
+  }
+  
+  h2 {
+    font-size: 30px !important;
+    margin-bottom: 15px;
+
+    @include allmobiles {
+      font-size: 21px;
+    }
+  }
   .faq_link {
     font-family: $muli-semi-bold;
     font-size: 16px;
@@ -92,6 +104,24 @@ app-transfer {
         :last-child {
           margin-bottom: 10px;
         }
+      }
+    }
+  }
+  .form-control {
+    &.disabled {
+      background: $form-control-disabled-bg-color2;
+      color: $form-control-disabled-txt-color;
+      border: 1px solid $form-control-disabled-border-color;
+
+      i {
+        color: $form-control-disabled-txt-color !important;
+      }
+
+      input {
+        color: $form-control-disabled-txt-color !important;
+        -webkit-text-fill-color: $form-control-disabled-txt-color !important;
+        background: $form-control-disabled-bg-color2 !important;
+        cursor: not-allowed;
       }
     }
   }

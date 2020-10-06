@@ -142,7 +142,10 @@ export class TransferComponent implements OnInit {
   TransferAllChecked() {
   if (this.transferForm.controls.transferAll.value && this.transferForm.controls.transferFrom.value) {
         const cashBalance = this.transferForm.get('transferFrom').value.cashAccountBalance ? this.transferForm.get('transferFrom').value.cashAccountBalance.toString() : this.transferForm.get('transferFrom').value.accountBalance.toString() ; 
-        this.transferForm.controls.transferAmount.setValue(cashBalance);
+        this.transferForm.controls.transferAmount.setValue(this.decimalPipe.transform(cashBalance, '1.2-2').replace(/,/g, ''));
+        //  ? parseFloat(this.decimalPipe.transform(value.currentValue, '1.2-2').replace(/,/g, ''))
+        //: 0;
+        //
         this.transferForm.get('transferAmount').disable();
         this.isTransferAllChecked = true;
       } else {

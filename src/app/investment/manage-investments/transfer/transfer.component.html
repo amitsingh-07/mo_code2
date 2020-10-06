@@ -17,6 +17,7 @@
         <div class="max-width col-lg-6 col-md-6">
           <form id="withdraw_form" name="withdrawForm" [formGroup]="transferForm">
             <div class="form-group">
+              <!-- TRANSFER FROM -->
               <div class="flex-row">
                 <div class="flex-col-4">
                   <label for="withdraw-portfolio-drpdown" id="withdraw-portfolio-lbl">
@@ -27,17 +28,17 @@
                     [ngClass]="{'inline-error':getInlineErrorStatus(transferForm.controls.transferFrom)}">
                     <div ngbDropdown>
                       <button class="btn btn-dropdown without-border" id="withdraw-portfolio-drpdown" ngbDropdownToggle>
-                        <span *ngIf="!transferForm.controls.transferFrom.value">Select Cash Account
+                        <span *ngIf="!transferForm.controls.transferFrom.value" class="placeholder_color">Select Cash Account
                         </span>
                         <span class="capital-letter"
-                          *ngIf="transferForm.controls.transferFrom.value">{{transferForm.controls.transferFrom.value.portfolioName + ' - ' + transferForm.controls.transferFrom.value.refNo}}></span>
+                          *ngIf="transferForm.controls.transferFrom.value">{{transferForm.controls.transferFrom.value.portfolioName + ' - ' + transferForm.controls.transferFrom.value.refno}}></span>
 
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <button class="dropdown-item capital-letter"
                           *ngFor="let portfolio of sourceCashPortfolioList; let i = index;"
                           (click)="setDropDownValue('transferFrom', portfolio)"
-                          id="withdraw-portfolio-option-{{i}}">{{portfolio.portfolioName + ' - ' + portfolio.refNo}}</button>
+                          id="withdraw-portfolio-option-{{i}}">{{portfolio.portfolioName + ' - ' + portfolio.refno}}</button>
                       </div>
                     </div>
                   </div>
@@ -53,7 +54,7 @@
                   <div class="dropdown-control">
                     <div ngbDropdown>
                       <button class="btn btn-dropdown without-border" id="withdraw-portfolio-drpdown" ngbDropdownToggle>
-                        <span *ngIf="!transferForm.controls.transferTo.value">Select Cash Account
+                        <span *ngIf="!transferForm.controls.transferTo.value" class="placeholder_color">Select Cash Account
                         </span>
 
                         <span class="capital-letter"
@@ -93,8 +94,8 @@
                 <div class="flex-col-4"></div>
                 <div class="flex-col-8">
                   <div class="checkbox-button one-label">
-                    <input id="transferAll" name="dependantSelection" type="checkbox" [value]=false
-                      class="field radio" mode=1 formControlName="transferAll" (change)="TransferAllChecked()">
+                    <input id="transferAll" name="dependantSelection" type="checkbox" [value]=false class="field radio"
+                      mode=1 formControlName="transferAll" (change)="TransferAllChecked()">
                     <label id="dependantNoLabel" for="transferAll">
                       <span class="input-label-grey">Transfer all</span>
                     </label>
@@ -133,8 +134,7 @@
             </div>
             <!-- AMOUNT -->
           </form>
-
-          <div class="note-class">
+      <div class="note-class">
             <div class=note-text>
               Note: </div>
             <div *ngFor="let note of noteArray, let i = index;" class="note-list">

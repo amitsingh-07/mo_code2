@@ -2,13 +2,15 @@
 @import '../../../../mixins';
 
 .bg-color {
-  background-color: #edeff1 !important;
+  background-color: #2d8289 !important;
 }
 
 app-transfer-status {
     .content {
         padding: 100px 32px 10px 30px; 
         text-align: center;
+        max-width: 374px;
+        margin: auto;
     }
   .custom-modal--title {
     width: 241px;

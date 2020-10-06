@@ -16,7 +16,6 @@ export class TransferWithdrawalModalComponent implements OnInit {
   @Input() transferTo: any;
   @Input() transferFrom: any;
   @Output() confirmed: EventEmitter<any> = new EventEmitter();
-  // @Output() showLearnMore: EventEmitter<any> = new EventEmitter();
 
   constructor(public activeModal: NgbActiveModal,
   
@@ -34,9 +33,7 @@ export class TransferWithdrawalModalComponent implements OnInit {
     this.confirmed.emit();
     
   }
-  learnMore() {
-    // this.showLearnMore.emit();
-  }
+  
 }
 
 
