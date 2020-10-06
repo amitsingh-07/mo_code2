@@ -3,8 +3,10 @@
 
 app-create-account-model {
   .modal-body {
-    width: 375px;
-    margin: 0 auto 80px;
+    @include desktop {
+      width: 375px;
+      margin: 0 auto;
+    }
   }
   .selected-count {
     background-color: #ff872f;
@@ -159,6 +161,8 @@ app-create-account-model {
     .title {
       font-size: 16px;
       font-family: $muli-regular;
+      line-height: 21px;
+      letter-spacing: -0.16px;
     }
     .desc-wrapper {
       display: flex;
