@@ -89,6 +89,7 @@ export class TransferComponent implements OnInit {
       this.sourceCashPortfolioList = data.objectList;
        console.log(this.sourceCashPortfolioList);
       this.buildForm();
+      this.setSelectedPortfolio();
       this.cashBalance = (this.transferForm.get('transferFrom').value && this.transferForm.get('transferFrom').value.cashAccountBalance)  ? this.transferForm.get('transferFrom').value.cashAccountBalance  :this.transferForm.get('transferFrom').value.accountBalance;
       this.destinationcCashPortfolioList();
     });
@@ -166,7 +167,7 @@ export class TransferComponent implements OnInit {
     ref.componentInstance.afterTransfer = this.cashBalance - this.transferForm.controls.transferAmount.value;
     ref.componentInstance.confirmed.subscribe(() => {
       ref.close();
-      this.manageInvestmentsService.setTransfrFormData(form.getRawValue(), false);
+      this.manageInvestmentsService.setTransfrFormData(form.getRawValue(), this.isTransferAllChecked);
     this.saveTransfer() 
      
     
@@ -257,6 +258,17 @@ export class TransferComponent implements OnInit {
       ref.componentInstance.errorTitle = title;
       ref.componentInstance.errorMessage = desc;
     }
-  
+    setSelectedPortfolio() {
+      if (this.formValues) {
+        // Set the customerPortfolioId depend on which is the portfolio
+        const customerPortfolioId = this.formValues.transferFrom ?
+          this.formValues.transferFrom.customerPortfolioId : this.formValues.selectedCustomerPortfolio;
+        const data = this.sourceCashPortfolioList.find((portfolio) => {
+          return portfolio.portfolioName ===this.formValues.selectedCustomerPortfolio.portfolioName ;
+        });
+        this.setDropDownValue('transferFrom', data);
+        
+      }
+    }
   
 }
