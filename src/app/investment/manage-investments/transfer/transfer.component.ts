@@ -17,8 +17,8 @@ import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
 import { environment } from './../../../../environments/environment';
 import { AuthenticationService } from './../../../shared/http/auth/authentication.service';
-import { TransferWithdrawalModalComponent } from './transfer-withdrawal-modal/transfer-withdrawal-modal.component';
-import { element } from 'protractor';
+import { TransferModalComponent } from './transfer-modal/transfer-modal.component';
+
 
 
 @Component({
@@ -30,21 +30,18 @@ import { element } from 'protractor';
 })
 export class TransferComponent implements OnInit {
   transferForm: FormGroup;
- sourceCashPortfolioList;
+  sourceCashPortfolioList:any;
   formValues: any;
   userProfileInfo: any;
   pageTitle : string;
   isTransferAllChecked = false;
   cashBalance :any;
-  initalCashPortfolio:any;
+  initialCashPortfolio:any;
   destinationCashPortfolioList;
   isRequestSubmitted = false;
-  noteArray = [
-    "Transfer service will not be available from 11:30pm to 12:00am daily for system maintenance. In the event that the service is unavailable or unsuccesssful, please try again later.",
-    "Transfer between Cash Accounts will be processed and completed immediately. "
-    
-  ];
+  noteArray :any;
   private subscription: Subscription;
+
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -62,8 +59,9 @@ export class TransferComponent implements OnInit {
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('Transfer between Cash Accounts');
+      this.pageTitle = this.translate.instant('TRANSFER.TITLE');
       this.setPageTitle(this.pageTitle);
+      this.noteArray =this.translate.instant('TRANSFER.TRANSFER_NOTE');
     });
   }
 
@@ -75,7 +73,6 @@ export class TransferComponent implements OnInit {
       this.navbarService.setNavbarMode(103);
     }
     this.footerService.setFooterVisibility(false);
-   
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.getTransferCashPortfolioList();
@@ -91,33 +88,33 @@ export class TransferComponent implements OnInit {
       this.buildForm();
       this.setSelectedPortfolio();
       this.cashBalance = (this.transferForm.get('transferFrom').value && this.transferForm.get('transferFrom').value.cashAccountBalance)  ? this.transferForm.get('transferFrom').value.cashAccountBalance  :this.transferForm.get('transferFrom').value.accountBalance;
-      this.destinationcCashPortfolioList();
+      this.destinationCashPortfolio();
     });
   }
-
+  
+  destinationCashPortfolio() {
+    this.destinationCashPortfolioList= [];
+    this.initialCashPortfolio = (this.transferForm.get('transferFrom').value && this.transferForm.get('transferFrom').value.portfolioName) ? this.transferForm.get('transferFrom').value.portfolioName :this.formValues.selectedCustomerPortfolio.portfolioName;
+    this.sourceCashPortfolioList.forEach(element => {
+     if(this.initialCashPortfolio !== element.portfolioName ){
+       return this.destinationCashPortfolioList.push(element);
+     }
+     
+   });
+   return this.destinationCashPortfolioList;
+  
+}
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
+
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
-  setDropDownValue(kay, value) {
-   this.transferForm.controls[kay].setValue(value);
-   this.cashBalance = this.transferForm.get('transferFrom').value ?
-   this.transferForm.get('transferFrom').value.cashAccountBalance  :this.transferForm.get('transferFrom').value.accountBalance;
-   this.transferForm.controls.transferTo.setValue(null);
-   this.transferForm.controls.transferAmount.setValue("0");
-   this.transferForm.get('transferAmount').enable();
-   this.transferForm.controls.transferAll.setValue(false);
-   this.isTransferAllChecked = false;
-   this.destinationcCashPortfolioList();
-  }
-  setDropDownValueTwo(kay, value) {
-    this.transferForm.controls[kay].setValue(value);
-  }
- 
+
+  
  buildForm() {
       this.transferForm = this.formBuilder.group({
       transferFrom: [this.formValues.transferFrom 
@@ -133,20 +130,41 @@ export class TransferComponent implements OnInit {
       });
       
   }
+  setSelectedPortfolio() {
+    if (this.formValues) {
+      const customerPortfolioId = this.formValues.transferFrom ?
+        this.formValues.transferFrom.customerPortfolioId : this.formValues.selectedCustomerPortfolio;
+      const data = this.sourceCashPortfolioList.find((portfolio) => {
+        return portfolio.portfolioName ===this.formValues.selectedCustomerPortfolio.portfolioName ;
+      });
+      this.setTransferFrom('transferFrom', data);
+      
+    }
+  }
+  setTransferFrom(kay, value) {
+    this.transferForm.controls[kay].setValue(value);
+    this.cashBalance = this.transferForm.get('transferFrom').value ?
+    this.transferForm.get('transferFrom').value.cashAccountBalance  :this.transferForm.get('transferFrom').value.accountBalance;
+    this.transferForm.controls.transferTo.setValue(null);
+    this.transferForm.controls.transferAmount.setValue("0");
+    this.transferForm.get('transferAmount').enable();
+    this.transferForm.controls.transferAll.setValue(false);
+    this.isTransferAllChecked = false;
+    this.destinationCashPortfolio();
+   }
+
+   setTransferTo(kay, value) {
+     this.transferForm.controls[kay].setValue(value);
+   }
+  
   getInlineErrorStatus(control) {
     return !control.pristine && !control.valid;
   }
-  goToNext(From) {
-    this.showConfirmWithdrawModal(From);
-    
-  }
+  
   TransferAllChecked() {
   if (this.transferForm.controls.transferAll.value && this.transferForm.controls.transferFrom.value) {
         const cashBalance = this.transferForm.get('transferFrom').value.cashAccountBalance ? this.transferForm.get('transferFrom').value.cashAccountBalance.toString() : this.transferForm.get('transferFrom').value.accountBalance.toString() ; 
         this.transferForm.controls.transferAmount.setValue(this.decimalPipe.transform(cashBalance, '1.2-2').replace(/,/g, ''));
-        //  ? parseFloat(this.decimalPipe.transform(value.currentValue, '1.2-2').replace(/,/g, ''))
-        //: 0;
-        //
         this.transferForm.get('transferAmount').disable();
         this.isTransferAllChecked = true;
       } else {
@@ -156,9 +174,11 @@ export class TransferComponent implements OnInit {
       
     }
   }
-
-  showConfirmWithdrawModal(form) {
-    const ref = this.modal.open(TransferWithdrawalModalComponent, {
+  goToNext(From) {
+    this.showConfirmTransferModal(From);
+}
+showConfirmTransferModal(form) {
+    const ref = this.modal.open(TransferModalComponent, {
       centered: true
     });
     ref.componentInstance.transferFrom = this.transferForm.get('transferFrom').value;
@@ -167,7 +187,7 @@ export class TransferComponent implements OnInit {
     ref.componentInstance.afterTransfer = this.cashBalance - this.transferForm.controls.transferAmount.value;
     ref.componentInstance.confirmed.subscribe(() => {
       ref.close();
-      this.manageInvestmentsService.setTransfrFormData(form.getRawValue(), this.isTransferAllChecked);
+    this.manageInvestmentsService.setTransferFormData(form.getRawValue(), this.isTransferAllChecked);
     this.saveTransfer() 
      
     
@@ -183,19 +203,7 @@ export class TransferComponent implements OnInit {
     });
   }
    
-   destinationcCashPortfolioList() {
-    this.destinationCashPortfolioList= [];
-    this.initalCashPortfolio = (this.transferForm.get('transferFrom').value && this.transferForm.get('transferFrom').value.portfolioName) ? this.transferForm.get('transferFrom').value.portfolioName :this.formValues.selectedCustomerPortfolio.portfolioName;
-    this.sourceCashPortfolioList.forEach(element => {
-     if(this.initalCashPortfolio !== element.portfolioName ){
-       return this.destinationCashPortfolioList.push(element);
-     }
-     
-   });
-   console.log(this.destinationCashPortfolioList);
-   return this.destinationCashPortfolioList;
-  
-   }
+ 
    transferAmountValidator(): ValidatorFn {
       this.cashBalance = this.cashBalance ? parseFloat(this.decimalPipe.transform(this.cashBalance, "1.2-2").replace(/,/g, "")) : 0;
     return (control: AbstractControl) => {
@@ -215,8 +223,8 @@ export class TransferComponent implements OnInit {
       if (!this.isRequestSubmitted) {
         this.isRequestSubmitted = true;
         this.loaderService.showLoader({
-          title: this.translate.instant('Tranfer'),
-          desc: this.translate.instant('Loading.....')
+          title: this.translate.instant('TRANSFER.TRANSFER_REQUEST_LOADER.TITLE'),
+          desc: this.translate.instant('TRANSFER.TRANSFER_REQUEST_LOADER.DESC')
         });
         this.manageInvestmentsService.TransferCash(this.formValues).subscribe(
           (response) => {
@@ -258,17 +266,6 @@ export class TransferComponent implements OnInit {
       ref.componentInstance.errorTitle = title;
       ref.componentInstance.errorMessage = desc;
     }
-    setSelectedPortfolio() {
-      if (this.formValues) {
-        // Set the customerPortfolioId depend on which is the portfolio
-        const customerPortfolioId = this.formValues.transferFrom ?
-          this.formValues.transferFrom.customerPortfolioId : this.formValues.selectedCustomerPortfolio;
-        const data = this.sourceCashPortfolioList.find((portfolio) => {
-          return portfolio.portfolioName ===this.formValues.selectedCustomerPortfolio.portfolioName ;
-        });
-        this.setDropDownValue('transferFrom', data);
-        
-      }
-    }
+   
   
 }

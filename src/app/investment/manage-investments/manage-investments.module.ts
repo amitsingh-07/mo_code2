@@ -40,6 +40,7 @@ import { WithdrawalComponent } from './withdrawal/withdrawal.component';
 import { YourPortfolioComponent } from './your-portfolio/your-portfolio.component';
 import { TransferComponent } from './transfer/transfer.component';
 import { TransferStatusComponent } from './transfer-status/transfer-status.component';
+import { TransferModalComponent } from './transfer/transfer-modal/transfer-modal.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
@@ -83,10 +84,11 @@ export function createTranslateLoader(http: HttpClient) {
     AssetAllocationComponent,
     RenameInvestmentModalComponent,
     TransferComponent,
-    TransferStatusComponent
+    TransferStatusComponent,
+    TransferModalComponent
   ],
   entryComponents: [ConfirmWithdrawalModalComponent, AddBankModalComponent, ForwardPricingModalComponent,
-    RenameInvestmentModalComponent],
+    RenameInvestmentModalComponent,TransferModalComponent],
   providers: [CurrencyPipe, FormatCurrencyPipe]
 })
 export class ManageInvestmentsModule {

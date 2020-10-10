@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-lg-6 col-md-6 hidden-sm-md">
           <h2>{{pageTitle}}</h2>
-          <h6>You are transferring money between Cash Accounts. </h6>
+          <h6>{{'TRANSFER.DESC'| translate}}</h6>
           <div class="banner-image">
             <img src="assets/images/investment-account/transfer-web.svg" />
           </div>
@@ -21,14 +21,15 @@
               <div class="flex-row">
                 <div class="flex-col-4">
                   <label for="withdraw-portfolio-drpdown" id="withdraw-portfolio-lbl">
-                    Transfer <br>From</label>
+                    {{'TRANSFER.TRANSFER'| translate}} <br> {{'TRANSFER.FROM'| translate}}</label>
                 </div>
                 <div class="flex-col-8">
                   <div class="dropdown-control"
                     [ngClass]="{'inline-error':getInlineErrorStatus(transferForm.controls.transferFrom)}">
                     <div ngbDropdown>
                       <button class="btn btn-dropdown without-border" id="withdraw-portfolio-drpdown" ngbDropdownToggle>
-                        <span *ngIf="!transferForm.controls.transferFrom.value" class="placeholder_color">Select Cash Account
+                        <span *ngIf="!transferForm.controls.transferFrom.value" class="placeholder_color">
+                          {{'TRANSFER.SELECT_CASH_ACCOUNT'| translate}}
                         </span>
                         <span class="capital-letter"
                           *ngIf="transferForm.controls.transferFrom.value">{{transferForm.controls.transferFrom.value.portfolioName + ' - ' + transferForm.controls.transferFrom.value.refno}}></span>
@@ -37,7 +38,7 @@
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <button class="dropdown-item capital-letter"
                           *ngFor="let portfolio of sourceCashPortfolioList; let i = index;"
-                          (click)="setDropDownValue('transferFrom', portfolio)"
+                          (click)="setTransferFrom('transferFrom', portfolio)"
                           id="withdraw-portfolio-option-{{i}}">{{portfolio.portfolioName + ' - ' + portfolio.refno}}</button>
                       </div>
                     </div>
@@ -48,23 +49,24 @@
               <div class="flex-row">
                 <div class="flex-col-4">
                   <label for="withdraw-portfolio-drpdown" id="withdraw-portfolio-lbl">
-                    Transfer <br>To</label>
+                    {{'TRANSFER.TRANSFER'| translate}} <br> {{'TRANSFER.TO'| translate}} </label>
                 </div>
                 <div class="flex-col-8">
                   <div class="dropdown-control">
                     <div ngbDropdown>
                       <button class="btn btn-dropdown without-border" id="withdraw-portfolio-drpdown" ngbDropdownToggle>
-                        <span *ngIf="!transferForm.controls.transferTo.value" class="placeholder_color">Select Cash Account
+                        <span *ngIf="!transferForm.controls.transferTo.value"
+                          class="placeholder_color">{{'TRANSFER.SELECT_CASH_ACCOUNT'| translate}}
                         </span>
 
                         <span class="capital-letter"
-                          *ngIf="transferForm.controls.transferTo.value">{{transferForm.controls.transferTo.value.portfolioName + ' - ' + transferForm.controls.transferTo.value.refNo}}></span>
+                          *ngIf="transferForm.controls.transferTo.value">{{transferForm.controls.transferTo.value.portfolioName + ' - ' + transferForm.controls.transferTo.value.refno}}</span>
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <button class="dropdown-item capital-letter"
                           *ngFor="let portfolio of destinationCashPortfolioList; let i = index;"
-                          (click)="setDropDownValueTwo('transferTo', portfolio)"
-                          id="withdraw-portfolio-option-{{i}}">{{portfolio.portfolioName + ' - ' + portfolio.refNo}}</button>
+                          (click)="setTransferTo('transferTo', portfolio)"
+                          id="withdraw-portfolio-option-{{i}}">{{portfolio.portfolioName + ' - ' + portfolio.refno}}</button>
                       </div>
                     </div>
                   </div>
@@ -76,7 +78,7 @@
               <div class="flex-row">
                 <div class="flex-col-4">
                   <label class="withdrawal-amount-lbl" for="withdraw-type-drpdown" id="withdraw-type-lbl">
-                    Transfer <br>Amount
+                    {{'TRANSFER.TRANSFER'| translate}}<br> {{'TRANSFER.AMOUNT'| translate}}
                   </label>
                 </div>
                 <div class="flex-col-8">
@@ -97,7 +99,7 @@
                     <input id="transferAll" name="dependantSelection" type="checkbox" [value]=false class="field radio"
                       mode=1 formControlName="transferAll" (change)="TransferAllChecked()">
                     <label id="dependantNoLabel" for="transferAll">
-                      <span class="input-label-grey">Transfer all</span>
+                      <span class="input-label-grey"> {{'TRANSFER.TRANSFER_ALL'| translate}}</span>
                     </label>
                   </div>
                 </div>
@@ -107,14 +109,14 @@
                 <div class="flex-col-12">
                   <div class="withdraw-error">
                     <img src="assets/images/info-orange.svg" alt="" />
-                    <span> "Transfer amount should not be more than the Cash Account Balance </span>
+                    <span>{{'TRANSFER.TRANSFER_MORE_THE_CASH_BALANCE'| translate}} </span>
                   </div>
                 </div>
               </div>
               <div class="cash-balance">
                 <div class="row mb15" *ngIf="transferForm.get('transferFrom').value">
                   <div class="col-7">
-                    Amount Avaliable to Transfer
+                    {{'TRANSFER.AMOUNT_AVAILABLE'| translate}}
                   </div>
                   <div class="col-5 text-right">
                     {{cashBalance|formatCurrency}}
@@ -123,7 +125,7 @@
                 <div class="row"
                   *ngIf="transferForm.get('transferAmount').value && (cashBalance - transferForm.controls.transferAmount.value > 0)">
                   <div class="col-7">
-                    After Transfer
+                    {{'TRANSFER.AFTER_TRANSFER'| translate}}
                   </div>
                   <div class="col-5 text-right">
                     {{cashBalance - transferForm.controls.transferAmount.value | formatCurrency}}
@@ -134,15 +136,15 @@
             </div>
             <!-- AMOUNT -->
           </form>
-      <div class="note-class">
+          <div class="note-class">
             <div class=note-text>
-              Note: </div>
+              {{'TRANSFER.NOTE'| translate}} </div>
             <div *ngFor="let note of noteArray, let i = index;" class="note-list">
               <div class="teal-oval"></div>
               <div class="note-point-text">{{note}}</div>
             </div>
           </div>
-          <button type="button" (click)="goToNext(transferForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary 
+          <button type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-primary 
             width100" id="portfolioRecommendationNextBtn" [disabled]="!transferForm.valid"
             (click)="goToNext(transferForm)">{{ 'LABEL.CONTINUE' | translate}}</button>
 

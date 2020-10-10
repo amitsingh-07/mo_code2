@@ -680,7 +680,7 @@ export class ManageInvestmentsService {
     request['redeemAll'] = data.TransferAll;
     return request;
    }
-  setTransfrFormData(data ,TransferAll) {
+  setTransferFormData(data ,TransferAll) {
     if(data &&data.transferFrom && data.transferTo){
       this.manageInvestmentsFormData.transferFrom = data.transferFrom;
       this.manageInvestmentsFormData.transferTo = data.transferTo;

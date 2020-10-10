@@ -5,12 +5,12 @@ import { MANAGE_INVESTMENTS_CONSTANTS } from '../../manage-investments.constants
 
 @Component({
   selector: 'app-transfer-withdrawal-modal',
-  templateUrl: './transfer-withdrawal-modal.component.html',
-  styleUrls: ['./transfer-withdrawal-modal.component.scss'],
+  templateUrl: './transfer-modal.component.html',
+  styleUrls: ['./transfer-modal.component.scss'],
   encapsulation: ViewEncapsulation.None,
   providers: [DecimalPipe]
 })
-export class TransferWithdrawalModalComponent implements OnInit {
+export class TransferModalComponent implements OnInit {
   currentDate;
   @Input() TransferAmount: any;
   @Input() transferTo: any;

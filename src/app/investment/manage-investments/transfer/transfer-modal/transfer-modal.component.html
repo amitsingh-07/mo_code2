@@ -1,0 +1,49 @@
+<div class="edit-investment-modal">
+  <div class="modal-header">
+    <div class="modal-title popup-header-icon">
+      <img src="assets/images/owl.svg" />
+    </div>
+  </div>
+  <div class="modal-body white-bg">
+    <div class="modal-body-title">{{'TRANSFER.MODAL.CONFIRM_TRANSFER.TITLE'| translate}}</div>
+    <div class="modal-body-desc">{{'TRANSFER.MODAL.CONFIRM_TRANSFER.DESC'| translate}}</div>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true"></span>
+    </button>
+    <div class="modal-body-message">
+      <div class="transfer-body">
+        <div class="tranfer_lbl">{{'TRANSFER.MODAL.CONFIRM_TRANSFER.TRANSFER_FROM'| translate}}</div>
+        <div class="transfer_value">{{transferFrom.portfolioName}}
+          <div>{{'TRANSFER.MODAL.CONFIRM_TRANSFER.CASH_ACCOUNTS'| translate}}{{transferFrom.refno}}</div>
+        </div>
+      </div>
+      <div class="transfer-body">
+        <div class="tranfer_lbl">{{'TRANSFER.MODAL.CONFIRM_TRANSFER.TRANSFER_TO'| translate}}</div>
+        <div class="transfer_value">{{transferTo.portfolioName}}
+
+          <div>{{'TRANSFER.MODAL.CONFIRM_TRANSFER.CASH_ACCOUNTS'| translate}}{{transferTo.refno}}</div>
+        </div>
+      </div>
+      <div class="transfer-body">
+        <div class="tranfer_lbl">{{'TRANSFER.MODAL.CONFIRM_TRANSFER.CASH_ACCOUNTS'| translate}}</div>
+        <div class="transfer_value"> {{currentDate | date:'dd MMM   yyyy'}}
+
+        </div>
+      </div>
+      <div class="transfer-body">
+        <div class="tranfer_lbl">{{'TRANSFER.MODAL.CONFIRM_TRANSFER.TRANSFER_AMOUNT_SGD'| translate}}</div>
+        <div class="transfer_value">{{TransferAmount | formatCurrency  }}
+
+        </div>
+      </div>
+      <div class="transfer-body">
+        <div class="tranfer_lbl">{{'TRANSFER.MODAL.CONFIRM_TRANSFER.BALANCE_AMOUNT_SGD'| translate}}</div>
+        <div class="transfer_value">{{transferTo.cashAccountBalance - TransferAmount  | formatCurrency}}
+
+        </div>
+      </div>
+    </div>
+    <button type="button" (click)="confirmWithdrawal($event)" class="btn btn-primary-dark width100 mt5"
+      id="incomeBtn">{{'TRANSFER.MODAL.CONFIRM_TRANSFER.CONFIRM_TRANSFER'| translate}}</button>
+  </div>
+</div>

@@ -403,5 +403,52 @@
   "TOAST_MESSAGES": {
     "RENAME_PORTFOLIO_SUCCESS": "\"{{oldPortfolioName}}\" has been renamed to \"{{newPortfolioName}}\".",
     "DELTE_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been Deleted."
+  },
+  "TRANSFER": {
+    "TITLE": "Transfer between Cash Accounts",
+    "FROM": "From",
+    "TRANSFER": "Transfer",
+     "TO": "To",
+     "AMOUNT":"Amount",
+     "TRANSFER_FROM":"Transfer From",
+     "TRANSFER_TO":"Transfer To",
+    "TRANSFER_ALL": "Transfer all",
+    "DESC": "You are transferring money between Cash Accounts. ",
+    "AMOUNT_AVAILABLE": "Amount Available to Transfer",
+    "AFTER_TRANSFER": "After Transfer",
+    "SELECT_CASH_ACCOUNT": "Select Cash Account",
+    "FAQ_LINK": "For more information, visit our FAQs.",
+    "NOTE":" Note:",
+    "TRANSFER_NOTE": [
+      "Transfer service will not be available from 11:30pm to 12:00am daily for system maintenance. In the event that the service is unavailable or unsuccesssful, please try again later.",
+      "Transfer between Cash Accounts will be processed and completed immediately. "
+    ],
+    "MODAL": {
+      "CONFIRM_TRANSFER": {
+        "TITLE": "Confirm Transfer",
+        "DESC": "Check below details for transfer between Cash Accounts.",
+        "TRANSFER_FROM": "Transfer From:",
+        "TRANSFER_TO": "Transfer To:",
+        "DATE_OF_TRANSFER": "Date of Transfer:",
+        "TRANSFER_AMOUNT_SGD": "Transfer Amount (SGD):",
+        "BALANCE_AMOUNT_SGD": "Balance Amount (SGD):",
+        "CONFIRM_TRANSFER": "Confirm Transfer",
+        "CASH_ACCOUNTS":"Cash Account "
+       
+       
+      }
+    },
+    "TRANSFER_REQUEST_LOADER": {
+      "TITLE": "Submitting Request",
+      "DESC": "Please wait while we submit the transfer request"
+    },
+    "TRANSFER_MORE_THE_CASH_BALANCE": "Transfer amount should not be more than the Cash Account Balance"
+   
+  },
+  "TRANSFER_SUCCESS": {
+    "TITLE": "Transfer has been completed!",
+    "BACK_TO_PORTFOLIO": "Back to My Portfolios",
+    "BACK_TO_TRANSFER": "Make Another Transfer",
+    "BACK_TO_TRANSACTION_HISTORY": "View Transaction History"
   }
 }
