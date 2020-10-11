@@ -257,13 +257,13 @@ export class InvestmentApiService {
       );
   }
 
-  getTransactionHistory(customerPortfolioId) {
-    const url = investmentApiConstants.endpoint.investment.getTransactions.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
-    return this.http.get(url)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
+  // getTransactionHistory(customerPortfolioId) {
+  //   const url = investmentApiConstants.endpoint.investment.getTransactions.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+  //   return this.http.get(url)
+  //     .pipe(
+  //       catchError((error: HttpErrorResponse) => this.handleError(error))
+  //     );
+  // }
 
   downloadStatement(data, customerPortfolioId) {
     const url = investmentApiConstants.endpoint.investment.getStatement.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
@@ -438,4 +438,12 @@ export class InvestmentApiService {
       //   catchError((error: HttpErrorResponse) => this.handleError(error))
       // );
   }
+  getTransactionHistory() {
+    //transaction1.json
+    const url = './assets/mock-data/transaction1.json';
+    return this.http.getMock(url)
+      //   catchError((error: HttpErrorResponse) => this.handleError(error))
+      // );
+  }
+
 }

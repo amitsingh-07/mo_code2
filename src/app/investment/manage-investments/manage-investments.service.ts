@@ -363,8 +363,8 @@ export class ManageInvestmentsService {
       monthlyInvestmentAmount: Number(monthlyInvestmentAmount)
     };
   }
-  getTransactionHistory(id) {
-    return this.investmentApiService.getTransactionHistory(id);
+  getTransactionHistory() {
+    return this.investmentApiService.getTransactionHistory();
   }
 
   getPortfolioAllocationDetails(params) {
@@ -689,5 +689,12 @@ export class ManageInvestmentsService {
       this.commit();
     }
    
+  }
+  clearSetTransferData() {
+    this.manageInvestmentsFormData.transferFrom = null;
+      this.manageInvestmentsFormData.transferTo = null;
+      this.manageInvestmentsFormData.transferAmount = null;
+      this.manageInvestmentsFormData.TransferAll =null;
+     this.commit();
   }
 }

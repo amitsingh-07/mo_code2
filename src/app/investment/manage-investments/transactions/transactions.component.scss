@@ -191,6 +191,13 @@ app-transactions {
         &.buy {
           color: $transaction-panel-buy-color;
         }
+        &.transfer{
+          font-family: $muli-semi-bold;
+          font-size: 18px;
+          line-height: 1.28;
+          letter-spacing: -0.34px;
+          color: #00a7a7;
+        }
       }
 
       &--title--amount--sale {

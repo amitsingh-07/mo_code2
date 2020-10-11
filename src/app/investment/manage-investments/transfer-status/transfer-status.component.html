@@ -1,6 +1,7 @@
 <div class="content" *ngIf="TransferEntityList">
-  <div class="flex-div">
-    <div>
+  <div class="flex-div relative">
+
+    <div class="relative">
       <img src="assets/images/investment-account/owl-success-tick.svg" id="add_submit_custModalImg2" />
       <div class="success-text-content">
         <p class="custom-modal--title mt20" id="upload-document-later-lab">
@@ -8,7 +9,8 @@
         </p>
       </div>
     </div>
-    <div>
+
+    <div class="absolute">
       <button (click)="goToNext('../investment/manage/portfolio/transactions')"
         id="upload-document-later-back_to_dash_board" type="button" class="btn btn-primary width100 special-btn">
         {{ 'TRANSFER_SUCCESS.BACK_TO_TRANSACTION_HISTORY' | translate}}</button>
@@ -21,6 +23,7 @@
     <button (click)="goToNext('../investment/manage/portfolio')" id="upload-document-later-back_to_dash_board"
       type="button" class="btn btn__footer--fixed btn-primary width100">
       {{ 'TRANSFER_SUCCESS.BACK_TO_PORTFOLIO' | translate}}</button>
+
   </div>
 
 </div>
