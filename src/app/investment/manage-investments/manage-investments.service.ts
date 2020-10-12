@@ -363,8 +363,8 @@ export class ManageInvestmentsService {
       monthlyInvestmentAmount: Number(monthlyInvestmentAmount)
     };
   }
-  getTransactionHistory() {
-    return this.investmentApiService.getTransactionHistory();
+  getTransactionHistory(id) { 
+    return this.investmentApiService.getTransactionHistory(id);
   }
 
   getPortfolioAllocationDetails(params) {
@@ -660,8 +660,8 @@ export class ManageInvestmentsService {
     this.selectedPortfolioCategory = category;
   }
   // Get Mock for Transfer Data
-  getTransferEntityList() {
-    return this.investmentApiService.getTransferEntityList();
+  getTransferEntityList(customerPortfolioId) {
+    return this.investmentApiService.getTransferEntityList(customerPortfolioId);
   }
 
   getTransferCashPortfolioList() {
@@ -676,8 +676,8 @@ export class ManageInvestmentsService {
     const request = {};
     request['sourceRefNo'] = data.transferFrom.refno;
     request['destinationRefNo'] = data.transferTo.refno;
-    request['amount'] = data.transferAmount ;
-    request['redeemAll'] = data.TransferAll;
+    request['amount'] = parseFloat(data.transferAmount) ;
+    request['transferAll'] = data.TransferAll === true ? 'Y' : 'N';
     return request;
    }
   setTransferFormData(data ,TransferAll) {

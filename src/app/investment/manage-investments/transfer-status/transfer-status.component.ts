@@ -10,7 +10,8 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
   encapsulation: ViewEncapsulation.None
 })
 export class TransferStatusComponent implements OnInit {
-  TransferEntityList
+  TransferEntityList :any; 
+  formValues: any;  
   constructor(
     private router:Router,
     private manageInvestmentsService:ManageInvestmentsService,
@@ -19,20 +20,22 @@ export class TransferStatusComponent implements OnInit {
   ) { this.translate.use('en');}
 
   ngOnInit(): void {
-    document.body.classList.add('bg-color');
+    document.body.style.backgroundColor = "Lochinvar";
     this.navbarService.setNavbarVisibility(false);
     this.navbarService.setNavbarMode(10);
     this.navbarService.setNavbarMobileVisibility(false);
+    this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.getTransferEntityList() ;
   }
   goToNext(value){
    this.router.navigate([value]);
   }
   ngOnDestroy() {
-    document.body.classList.remove('bg-color');
+   // document.body.classList.remove('body');
+    document.body.style.backgroundColor = "Lochinvar";
   }
   getTransferEntityList() {
-    this.manageInvestmentsService.getTransferEntityList().subscribe((data) => {
+    this.manageInvestmentsService.getTransferEntityList(this.formValues.selectedCustomerPortfolioId).subscribe((data) => {
      this.TransferEntityList = data.objectList;
      console.log(this.TransferEntityList);
     });

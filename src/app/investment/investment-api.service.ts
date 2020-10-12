@@ -257,13 +257,13 @@ export class InvestmentApiService {
       );
   }
 
-  // getTransactionHistory(customerPortfolioId) {
-  //   const url = investmentApiConstants.endpoint.investment.getTransactions.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
-  //   return this.http.get(url)
-  //     .pipe(
-  //       catchError((error: HttpErrorResponse) => this.handleError(error))
-  //     );
-  // }
+  getTransactionHistory(customerPortfolioId) {
+    const url = investmentApiConstants.endpoint.investment.getTransactions.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.get(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 
   downloadStatement(data, customerPortfolioId) {
     const url = investmentApiConstants.endpoint.investment.getStatement.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
@@ -412,17 +412,20 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  // TRNASFER MOCK DATA
-  getTransferEntityList() {
-    const url = './assets/mock-data/transferEntityFile.json';
-    return this.http.getMock(url)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
+
+
+  // TRNASFER MOCK DATA getActionRequestToken
+
+  getTransferEntityList(customerPortfolioId) {
+    const url = investmentApiConstants.endpoint.investmentAccount.getActionRequestToken.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.get(url)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    )
   }
+
   getTransferCashPortfolioList() {
-    const url = './assets/mock-data/cashportfolioList.json';
-    return this.http.getMock(url)
+    return this.http.get(investmentApiConstants.endpoint.investmentAccount.getCashPortfolioList)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -430,20 +433,11 @@ export class InvestmentApiService {
 
 
     TransferCash(data) {
-      const url = './assets/mock-data/transfercash.json';
-   // const url = investmentApiConstants.endpoint.investmentAccount.sellPortfolio.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
-     //return this.http.post(url, data)
-     return this.http.getMock(url)
-      // .pipe(
-      //   catchError((error: HttpErrorResponse) => this.handleError(error))
-      // );
+      return this.http.post(investmentApiConstants.endpoint.investmentAccount.saveCashTransfer, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
-  getTransactionHistory() {
-    //transaction1.json
-    const url = './assets/mock-data/transaction1.json';
-    return this.http.getMock(url)
-      //   catchError((error: HttpErrorResponse) => this.handleError(error))
-      // );
-  }
+  
 
 }

@@ -1,7 +1,7 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 body{
-background-color: #2d8289 !important;
+background-color:#00a7a7 !important;
 }
 
 app-transfer-status {
@@ -71,7 +71,7 @@ app-transfer-status {
   .btn{
    
     &.special-btn {
-      background-color: #2d8289;
+      background-color: #00a7a7;
       border: 1px solid #ffffff;
       font-family: $muli-regular;
       font-size: 18px;
@@ -80,7 +80,7 @@ app-transfer-status {
       margin-bottom: 20px;
       box-shadow:none !important;
       &:hover{
-        background-color: #2d8289 !important;
+        background-color: #00a7a7 !important;
        border: 1px solid #ffffff;
       }
       &:active{
