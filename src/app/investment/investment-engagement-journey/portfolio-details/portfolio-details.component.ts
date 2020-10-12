@@ -171,6 +171,7 @@ export class PortfolioDetailsComponent implements OnInit {
   getPortfolioAllocationDetails() {
     const params = this.constructgetAllocationParams();
     this.investmentEngagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
+      this.investmentCommonService.clearAccountCreationActions();
       this.portfolio = data.objectList;
       this.userInputSubtext = {
         onetime: this.formatCurrencyPipe.transform(
