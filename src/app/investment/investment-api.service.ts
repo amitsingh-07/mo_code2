@@ -438,6 +438,6 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  
+
 
 }

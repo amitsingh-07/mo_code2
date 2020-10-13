@@ -1,49 +1,23 @@
 {
     "exception": null,
-    "objectList": {
+    "objectList": {​​​​​​​
         "additionalErrorInfo": null,
         "amlVerificationStatus": null,
-        "serverStatus": {
-            "status": "OK",
-            "message": null,
-            "errors": null,
-            "timeStamp": "2020-09-29 18:04:17.462"
-        },
-        "data": {
-            "transferOut": {
-                "transactionId": "TTN200929000109",
-                "cashAccountId": "TAC2009160024",
-                "orderDate": 1601317800000,
-                "transactionCurrency": "SGD",
-                "transactionAmount": 104.0,
-                "status": "complete",
-                "refno": "G0015285",
-                "transactionType": "Transfer Out"
-            },
-            "transferIn": {
-                "transactionId": "TTN200929000110",
-                "cashAccountId": "TAC2009160025",
-                "orderDate": 1601317800000,
-                "transactionCurrency": "SGD",
-                "transactionAmount": 104.0,
-                "status": "complete",
-                "refno": "G0015288",
-                "transactionType": "Transfer In"
-            }
-        }
-    },
-    "responseMessage": {
-        "responseCode": 6000,
-        "responseDescription": "Successful response"
-    }
-}
-
-
-
-
-
-
-
-
-
-
+        "serverStatus": {​​​​​​​
+            "status": "BAD_REQUEST",
+            "message": "Validation Error.",
+            "errors": [
+                {​​​​​​​
+                    "msg": "Transfer service will not be available from 11:30pm to 12:00am daily for system maintenance.",
+                    "code": "CT-14"
+                }​​​​​​​
+            ],
+            "timeStamp": "2020-10-09 18:15:02.086"
+        }​​​​​​​,
+        "data": null
+    }​​​​​​​,
+    "responseMessage": {​​​​​​​
+        "responseCode": 5000,
+        "responseDescription": "We are unable to process the request"
+    }​​​​​​​
+}​​​​​​​

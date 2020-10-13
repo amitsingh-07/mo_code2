@@ -14,7 +14,7 @@
       <button (click)="goToNext('../investment/manage/portfolio/transactions')"
         id="upload-document-later-back_to_dash_board" type="button" class="btn btn-primary width100 special-btn">
         {{ 'TRANSFER_SUCCESS.BACK_TO_TRANSACTION_HISTORY' | translate}}</button>
-      <button *ngIf="TransferEntityList.portfolioActions.showTransfer"
+      <button  *ngIf="TransferEntityList.portfolioActions.showTransfer"
         (click)="goToNext('../investment/manage/portfolio/transfer')" id="upload-document-later-back_to_dash_board"
         type="button" class="btn  btn-primary width100 special-btn">
         {{ 'TRANSFER_SUCCESS.BACK_TO_TRANSFER' | translate}}</button>

@@ -32,7 +32,7 @@
                           {{'TRANSFER.SELECT_CASH_ACCOUNT'| translate}}
                         </span>
                         <span class="capital-letter"
-                          *ngIf="transferForm.controls.transferFrom.value">{{transferForm.controls.transferFrom.value.portfolioName + ' - ' + transferForm.controls.transferFrom.value.refno}}></span>
+                          *ngIf="transferForm.controls.transferFrom.value">{{transferForm.controls.transferFrom.value.portfolioName + ' - ' + transferForm.controls.transferFrom.value.refno}}</span>
 
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
@@ -107,7 +107,7 @@
               <div class="flex-row"
                 *ngIf="transferForm.controls.transferAmount.errors && transferForm.controls.transferAmount.errors.MoreThanCashBalance">
                 <div class="flex-col-12">
-                  <div class="withdraw-error">
+                  <div class="transfer-error">
                     <img src="assets/images/info-orange.svg" alt="" />
                     <span>{{'TRANSFER.TRANSFER_MORE_THE_CASH_BALANCE'| translate}} </span>
                   </div>
@@ -123,7 +123,7 @@
                   </div>
                 </div>
                 <div class="row"
-                  *ngIf="transferForm.get('transferAmount').value && (cashBalance - transferForm.controls.transferAmount.value > 0)">
+                  *ngIf="transferForm.get('transferAmount').value && (cashBalance - transferForm.controls.transferAmount.value > 0) && transferForm.controls.transferAmount.value">
                   <div class="col-7">
                     {{'TRANSFER.AFTER_TRANSFER'| translate}}
                   </div>

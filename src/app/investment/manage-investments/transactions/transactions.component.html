@@ -45,22 +45,22 @@
                             <div class="history-type-transaction">
                               <div [class.buy]="transaction.transactionType.name.toUpperCase() === 'BUY'"
                                 class="transaction-panel__history--details--title--sale"
-                                *ngIf="transaction.transactionType && transaction.transactionType.name.toUpperCase() !== 'FUNDING' && transaction.transactionType.name.toUpperCase() !== 'CASH_WITHDRAW' && transaction.transactionType.name.toUpperCase() !== 'CASH_TRANSFER_ IN' && 
+                                *ngIf="transaction.transactionType && transaction.transactionType.name.toUpperCase() !== 'FUNDING' && transaction.transactionType.name.toUpperCase() !== 'CASH_WITHDRAW' && transaction.transactionType.name.toUpperCase() !== 'CASH_TRANSFER_IN' && 
                                 transaction.transactionType.name.toUpperCase() !== 'CASH_TRANSFER_OUT'">
                                 {{transaction.transactionType.name}}</div>
                               <div *ngIf="transaction.transactionType.name.toUpperCase() === 'FUNDING'">
                                 {{ 'TRANSACTIONS.CASH_TOP_UP' | translate}}</div>
                               <div *ngIf="transaction.transactionType.name.toUpperCase() === 'CASH_WITHDRAW'">
                                 {{ 'TRANSACTIONS.CASH_WITHDRAWAL' | translate}}</div>
-                              <div class="portfolio-name" *ngIf="transaction.portfolio && transaction.transactionType.name.toUpperCase() !== 'CASH_TRANSFER_ IN' && 
+                              <div class="portfolio-name" *ngIf="transaction.portfolio && transaction.transactionType.name.toUpperCase() !== 'CASH_TRANSFER_IN' && 
                               transaction.transactionType.name.toUpperCase() !== 'CASH_TRANSFER_OUT'">{{transaction.portfolio.name}}
                               </div>
                               <!-- cash portfolio transaction  -->
-                              <div [class.transfer]="transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_ IN' || transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_OUT'"
-                               *ngIf="transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_ IN' || 
+                              <div [class.transfer]="transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_IN' || transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_OUT'"
+                               *ngIf="transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_IN' || 
                                transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_OUT'">
                                Cash Account Transfer
-                               <div class="flex-col-12 text-left unit-price" *ngIf="transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_ IN'">
+                               <div class="flex-col-12 text-left unit-price" *ngIf="transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_IN'">
                                 <span>From {{transaction.portfolio.name}}  ({{transaction.linkedRefNo}})</span>
                               
                               </div>
@@ -74,7 +74,7 @@
                             </div>
                           </div>
                           <div class="flex-col-5 text-right"><span
-                              [class.buy]="transaction.transactionType.name.toUpperCase() === 'BUY' || transaction.transactionType.name.toUpperCase() === 'FUNDING' || transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_ IN'"
+                              [class.buy]="transaction.transactionType.name.toUpperCase() === 'BUY' || transaction.transactionType.name.toUpperCase() === 'FUNDING' || transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_IN'"
                               class="transaction-panel__history--details--title--amount--sale">
                               <span
                                 *ngIf="transaction.transactionType.name.toUpperCase() === 'SELL' || transaction.transactionType.name.toUpperCase() === 'CASH_WITHDRAW' || transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_OUT'">-</span>
