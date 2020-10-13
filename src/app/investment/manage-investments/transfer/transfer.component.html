@@ -2,6 +2,8 @@
   <div class="container-fluid max-width--1024">
     <div class="content">
       <div class="row">
+
+         
         <div class="col-lg-6 col-md-6 hidden-sm-md">
           <h2>{{pageTitle}}</h2>
           <h6>{{'TRANSFER.DESC'| translate}}</h6>
@@ -15,6 +17,7 @@
         </div>
 
         <div class="max-width col-lg-6 col-md-6">
+            <h6 class="hidden-lg">{{'TRANSFER.DESC'| translate}}</h6>
           <form id="withdraw_form" name="withdrawForm" [formGroup]="transferForm">
             <div class="form-group">
               <!-- TRANSFER FROM -->

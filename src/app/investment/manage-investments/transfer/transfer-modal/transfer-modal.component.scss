@@ -3,6 +3,7 @@
 
 app-transfer-withdrawal-modal {
   .modal-body {
+    padding: 30px 25px !important;
     .modal-body-desc {
       color: #000000;
       padding-bottom: 30px;
@@ -41,6 +42,9 @@ app-transfer-withdrawal-modal {
       }
     }
     
+  }
+  .mt5{
+    margin-top: 14px !important;
   }
 
 }

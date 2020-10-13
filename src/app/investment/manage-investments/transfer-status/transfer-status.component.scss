@@ -1,46 +1,61 @@
 @import '../../../../variables';
 @import '../../../../mixins';
-body{
-background-color:#00a7a7 !important;
+
+body {
+  background-color: #00a7a7 !important;
 }
 
 app-transfer-status {
-    .content {
-        padding: 100px 32px 10px 30px; 
-        text-align: center;
-        max-width: 374px;
-        margin: auto;
-        .relative{
-           @include desktop{
-            position: relative;
-            bottom: 20px;
-          }
+  .content {
+    padding: 100px 32px 10px 30px;
+    text-align: center;
+    max-width: 374px;
+    margin: auto;
 
-          
-          @include allmobiles{
-            position: relative;
-            bottom: 100px;
-          }
-        }
-        .absolute {
-          @include allmobiles{
-            position: absolute;
-            top: 300px;
-          }
-          @include iphone6plus  {
-            position: absolute;
-            top: 270px;
-          }
-          @include iphone6  {
-            position: absolute;
-            top: 270px;
-          }
-        }
-        
-        
+    .relative {
+      position: relative;
+      bottom: 50px;
+     
+
+      @include allmobiles {
+        position: relative;
+        bottom: 150px;
       }
-        
-    
+      @include iphone6plus {
+        position: relative;
+        bottom: 100px;
+      }
+
+      @include iphone6 {
+        position: relative;
+        bottom: 100px;
+      }
+    }
+
+    .absolute {
+      position: relative;
+      top: 50px;
+
+      @include allmobiles {
+        position: relative;
+        top: 53px;
+      }
+
+      @include iphone6plus {
+        position: relative;
+        top: 0px;
+      }
+
+      @include iphone6 {
+        position: relative;
+        top: 0px;
+      }
+    }
+
+
+  }
+
+
   .custom-modal--title {
     width: 241px;
     height: 70px;
@@ -56,20 +71,21 @@ app-transfer-status {
   .content {
     padding: 100px 32px 10px 30px;
     min-height: calc(100vh - 84px);
-       //min-height: calc(100vh - 30vh);
+    //min-height: calc(100vh - 30vh);
     display: flex;
     flex-direction: column;
     justify-content: center;
 
     @include allmobiles {
-        padding: 100px 32px 10px 30px;
-       height: calc(100vh - 61px);
-       //  height: calc(100vh - 61px);
-       padding-bottom: 0px;
+      padding: 100px 32px 10px 30px;
+      height: calc(100vh - 61px);
+      //  height: calc(100vh - 61px);
+      padding-bottom: 0px;
     }
   }
-  .btn{
-   
+
+  .btn {
+
     &.special-btn {
       background-color: #00a7a7;
       border: 1px solid #ffffff;
@@ -78,24 +94,26 @@ app-transfer-status {
       text-align: center;
       color: #ffffff;
       margin-bottom: 20px;
-      box-shadow:none !important;
-      &:hover{
+      box-shadow: none !important;
+
+      &:hover {
         background-color: #00a7a7 !important;
-       border: 1px solid #ffffff;
+        border: 1px solid #ffffff;
       }
-      &:active{
+
+      &:active {
         background-color: #2d8289 !important;
         border: 1px solid #ffffff;
       }
     }
-    
-    }
-    img {
-        width: 117px;
-        height: 120px;
-        text-align: center;
-      }
-    
-      
-    }
 
+  }
+
+  img {
+    width: 117px;
+    height: 120px;
+    text-align: center;
+  }
+
+
+}
