@@ -70,7 +70,8 @@ export class ResultComponent implements OnInit, OnDestroy {
   }
   paymentStatus() {
     let comprehensiveData = this.comprehensiveService.getComprehensiveEnquiry();
-    if (comprehensiveData.paymentStatus === null || comprehensiveData.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING || comprehensiveData.reportStatus.toLowerCase() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+    if (comprehensiveData.paymentStatus === null || comprehensiveData.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING
+    || comprehensiveData.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING || comprehensiveData.reportStatus.toLowerCase() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
       this.isPayment = true;
     } else {
       this.isPayment = false;
