@@ -167,8 +167,8 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   buildTcForm() {
     const reportStatus = this.comprehensiveService.getReportStatus();
     const comprehensiveData = this.comprehensiveService.getComprehensiveEnquiry();
-    this.tandcEnableFlag = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || comprehensiveData.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING);
-    this.enableTc = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW  || comprehensiveData.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING);
+    this.tandcEnableFlag = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || comprehensiveData.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING || comprehensiveData.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING);
+    this.enableTc = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW  || comprehensiveData.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING || comprehensiveData.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING);
     this.tandcForm = this.formBuilder.group({
       tandc: [this.enableTc]
     });
