@@ -27,7 +27,7 @@ app-transactions {
       padding-left: 37px;
       font-family: $muli-regular;
       letter-spacing: -0.2px;
-      color: #ffffff;
+      color: $white-color;
 
       .user_portfolio {
         padding-bottom: 45px;
@@ -196,7 +196,7 @@ app-transactions {
           font-size: 18px;
           line-height: 1.28;
           letter-spacing: -0.34px;
-          color: #00a7a7;
+          color: $app-backgrnd-color;
         }
       }
 
@@ -264,7 +264,7 @@ app-transactions {
     font-size: 14px;
     letter-spacing: -0.26px;
     text-align: right;
-    color: #777777 !important;
+    color: $grimmy-grey-color !important;
 
     span {
       padding-right: 10px;
