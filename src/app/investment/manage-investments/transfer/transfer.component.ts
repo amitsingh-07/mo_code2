@@ -84,8 +84,7 @@ export class TransferComponent implements OnInit {
     let sourceCashPortfolioList =[];
     this.manageInvestmentsService.getTransferCashPortfolioList().subscribe((data) => {
       this.sourceCashPortfolioList = data.objectList;
-       console.log(this.sourceCashPortfolioList);
-      this.buildForm();
+       this.buildForm();
       this.setSelectedPortfolio();
       this.cashBalance = this.transferForm.get('transferFrom').value ? this.transferForm.get('transferFrom').value.cashAccountBalance : 0;
       this.destinationCashPortfolio();
@@ -227,21 +226,18 @@ showConfirmTransferModal(form) {
           title: this.translate.instant('TRANSFER.TRANSFER_REQUEST_LOADER.TITLE'),
           desc: this.translate.instant('TRANSFER.TRANSFER_REQUEST_LOADER.DESC')
         });
-        this.manageInvestmentsService.TransferCash(this.formValues).subscribe(
-          (response) => {
-            this.isRequestSubmitted = false;
-            this.loaderService.hideLoader();
-            if (response.responseMessage.responseCode < 6000) {
-              if (
-                response.objectList &&
-                response.objectList.length &&
-                response.objectList[response.objectList.length - 1].serverStatus &&
-                response.objectList[response.objectList.length - 1].serverStatus.errors &&
-                response.objectList[response.objectList.length - 1].serverStatus.errors.length
-              ) {
+        this.manageInvestmentsService.TransferCash(this.formValues).subscribe((response) => {
+           this.isRequestSubmitted = false;
+           this.loaderService.hideLoader();
+           if (response.responseMessage.responseCode < 6000) {
+             if (response && 
+              response.objectList &&  
+              response.objectList.serverStatus && 
+              response.objectList.serverStatus.errors &&  
+              response.objectList.serverStatus.errors[0]) {
                 this.showCustomErrorModal(
                   'Error!',
-                  response.objectList[response.objectList.length - 1].serverStatus.errors[0].msg
+                  response.objectList.serverStatus.errors[0].msg
                 );
               } else if (response.responseMessage && response.responseMessage.responseDescription) {
                 const errorResponse = response.responseMessage.responseDescription;
