@@ -431,8 +431,7 @@ export class InvestmentApiService {
       );
   }
 
-
-    TransferCash(data) {
+ TransferCash(data) {
       return this.http.post(investmentApiConstants.endpoint.investmentAccount.saveCashTransfer, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))

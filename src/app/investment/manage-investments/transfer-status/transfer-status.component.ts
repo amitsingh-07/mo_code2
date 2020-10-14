@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ManageInvestmentsService } from '../manage-investments.service';
 import { TranslateService } from '@ngx-translate/core';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
@@ -37,7 +37,6 @@ export class TransferStatusComponent implements OnInit {
   getTransferEntityList() {
     this.manageInvestmentsService.getTransferEntityList(this.formValues.selectedCustomerPortfolioId).subscribe((data) => {
      this.TransferEntityList = data.objectList;
-     console.log(this.TransferEntityList);
     });
   }
 }
