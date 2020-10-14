@@ -59,7 +59,7 @@
                               <div [class.transfer]="transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_IN' || transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_OUT'"
                                *ngIf="transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_IN' || 
                                transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_OUT'">
-                               Cash Account Transfer
+                                {{ 'TRANSACTIONS.CASH_ACCOUNT_TRANSFER' | translate}}
                                <div class="flex-col-12 text-left unit-price" *ngIf="transaction.transactionType.name.toUpperCase() === 'CASH_TRANSFER_IN'">
                                 <span>From {{transaction.portfolio.name}}  ({{transaction.linkedRefNo}})</span>
                               

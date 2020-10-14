@@ -318,6 +318,7 @@
     "UNIT_PRICE": "Unit Price:",
     "UNITS": "Units:",
     "TRANSACTION_ID": "Transaction ID:",
+    "CASH_ACCOUNT_TRANSFER":"Cash Account Transfer",
     "MODAL": {
       "TRANSACTION_FETCH_LOADER": {
         "TITLE": "Loading transaction history",
