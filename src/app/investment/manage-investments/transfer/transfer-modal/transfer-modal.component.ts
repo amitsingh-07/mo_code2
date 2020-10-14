@@ -17,17 +17,13 @@ export class TransferModalComponent implements OnInit {
   @Input() transferFrom: any;
   @Output() confirmed: EventEmitter<any> = new EventEmitter();
 
-  constructor(public activeModal: NgbActiveModal,
-  
-    private decimalPipe: DecimalPipe) { 
+  constructor(public activeModal: NgbActiveModal) { 
      
     }
 
   ngOnInit() {
     this.currentDate = Date.now();
-    console.log(this.currentDate);
-  
-  }
+   }
 
   confirmWithdrawal(event) {
     this.confirmed.emit();
