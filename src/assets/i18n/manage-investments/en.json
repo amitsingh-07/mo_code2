@@ -443,7 +443,7 @@
       "TITLE": "Submitting Request",
       "DESC": "Please wait while we submit the transfer request"
     },
-    "TRANSFER_MORE_THE_CASH_BALANCE": "Transfer amount should not be more than the Cash Account Balance"
+    "TRANSFER_MORE_THE_CASH_BALANCE": "Transfer amount should not be more than available balance"
    
   },
   "TRANSFER_SUCCESS": {
