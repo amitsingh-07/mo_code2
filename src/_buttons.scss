@@ -1114,3 +1114,9 @@ button:active:focus {
     width: calc(100% - 40px);
   }
 }
+
+//Disabled Primary button
+button.btn-primary[disabled]:active, button.btn-primary[disabled], button.btn-primary[disabled]:hover {
+  background-color: $btn-disabled !important;
+  pointer-events: none !important;
+}
