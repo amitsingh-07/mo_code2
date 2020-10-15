@@ -1,5 +1,3 @@
-import { AnySoaRecord } from "dns";
-
 export class ManageInvestmentsFormData {
   // PERSONAL INFO
   investmentype: string;
