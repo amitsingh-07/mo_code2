@@ -1,4 +1,4 @@
-import {  Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DecimalPipe } from '@angular/common';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../../manage-investments.constants';
@@ -17,19 +17,16 @@ export class TransferModalComponent implements OnInit {
   @Input() transferFrom: any;
   @Output() confirmed: EventEmitter<any> = new EventEmitter();
 
-  constructor(public activeModal: NgbActiveModal) { 
-     
-    }
+  constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
     this.currentDate = Date.now();
-   }
+  }
 
   confirmWithdrawal(event) {
     this.confirmed.emit();
-    
   }
-  
+
 }
 
 

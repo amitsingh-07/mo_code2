@@ -33,7 +33,6 @@
                         </span>
                         <span class="capital-letter"
                           *ngIf="transferForm.controls.transferFrom.value">{{transferForm.controls.transferFrom.value.portfolioName + ' - ' + transferForm.controls.transferFrom.value.refno}}</span>
-
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <button class="dropdown-item capital-letter"
@@ -58,7 +57,6 @@
                         <span *ngIf="!transferForm.controls.transferTo.value"
                           class="placeholder_color">{{'TRANSFER.SELECT_CASH_ACCOUNT'| translate}}
                         </span>
-
                         <span class="capital-letter"
                           *ngIf="transferForm.controls.transferTo.value">{{transferForm.controls.transferTo.value.portfolioName + ' - ' + transferForm.controls.transferTo.value.refno}}</span>
                       </button>
@@ -132,7 +130,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
             <!-- AMOUNT -->
           </form>

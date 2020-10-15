@@ -417,9 +417,9 @@ export class InvestmentApiService {
   getTransferEntityList(customerPortfolioId) {
     const url = investmentApiConstants.endpoint.investmentAccount.getActionRequestToken.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
     return this.http.get(url)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    )
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      )
   }
 
   getTransferCashPortfolioList() {
@@ -429,8 +429,8 @@ export class InvestmentApiService {
       );
   }
 
- TransferCash(data) {
-      return this.http.post(investmentApiConstants.endpoint.investmentAccount.saveCashTransfer, data)
+  TransferCash(data) {
+    return this.http.post(investmentApiConstants.endpoint.investmentAccount.saveCashTransfer, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AssetAllocationComponent } from './asset-allocation/asset-allocation.component';
 import { HoldingsComponent } from './holdings/holdings.component';
 import { InvestmentOverviewComponent } from './investment-overview/investment-overview.component';
-import { ManageInvestmentsGuardService as  ManageInvestmentsGuard} from './manage-investments-guard.service';
+import { ManageInvestmentsGuardService as ManageInvestmentsGuard } from './manage-investments-guard.service';
 import { MANAGE_INVESTMENTS_ROUTES } from './manage-investments-routes.constants';
 import { TopUpComponent } from './top-up/top-up.component';
 import { TopupStatusComponent } from './topup-status/topup-status.component';
@@ -41,7 +41,7 @@ const routes: Routes = [
     path: MANAGE_INVESTMENTS_ROUTES.YOUR_INVESTMENT + '/:selectedPortfolio',
     component: InvestmentOverviewComponent,
     canActivate: [ManageInvestmentsGuard]
-  },  
+  },
   {
     path: MANAGE_INVESTMENTS_ROUTES.YOUR_PORTFOLIO,
     component: YourPortfolioComponent,
@@ -94,4 +94,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   declarations: []
 })
-export class ManageInvestmentsRoutingModule {}
+export class ManageInvestmentsRoutingModule { }

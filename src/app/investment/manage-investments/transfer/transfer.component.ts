@@ -18,9 +18,6 @@ import { ManageInvestmentsService } from '../manage-investments.service';
 import { environment } from './../../../../environments/environment';
 import { AuthenticationService } from './../../../shared/http/auth/authentication.service';
 import { TransferModalComponent } from './transfer-modal/transfer-modal.component';
-
-
-
 @Component({
   selector: 'app-transfer',
   templateUrl: './transfer.component.html',
@@ -30,16 +27,16 @@ import { TransferModalComponent } from './transfer-modal/transfer-modal.componen
 })
 export class TransferComponent implements OnInit {
   transferForm: FormGroup;
-  sourceCashPortfolioList:any;
+  sourceCashPortfolioList: any;
   formValues: any;
   userProfileInfo: any;
-  pageTitle : string;
+  pageTitle: string;
   isTransferAllChecked = false;
-  cashBalance :any;
-  initialCashPortfolio:any;
+  cashBalance: any;
+  initialCashPortfolio: any;
   destinationCashPortfolioList;
   isRequestSubmitted = false;
-  noteArray :any;
+  noteArray: any;
   private subscription: Subscription;
 
   constructor(
@@ -61,7 +58,7 @@ export class TransferComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('TRANSFER.TITLE');
       this.setPageTitle(this.pageTitle);
-      this.noteArray =this.translate.instant('TRANSFER.TRANSFER_NOTE');
+      this.noteArray = this.translate.instant('TRANSFER.TRANSFER_NOTE');
     });
   }
 
@@ -76,34 +73,32 @@ export class TransferComponent implements OnInit {
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.getTransferCashPortfolioList();
-   
-   
-   
   }
+
   getTransferCashPortfolioList() {
-    let sourceCashPortfolioList =[];
+    let sourceCashPortfolioList = [];
     this.manageInvestmentsService.getTransferCashPortfolioList().subscribe((data) => {
       this.sourceCashPortfolioList = data.objectList;
-       this.buildForm();
+      this.buildForm();
       this.setSelectedPortfolio();
       this.cashBalance = this.transferForm.get('transferFrom').value ? this.transferForm.get('transferFrom').value.cashAccountBalance : 0;
       this.destinationCashPortfolio();
     });
   }
-  
+
   destinationCashPortfolio() {
-    this.destinationCashPortfolioList= [];
-    if(this.transferForm.get('transferFrom').value){
-    this.initialCashPortfolio = (this.transferForm.get('transferFrom').value && this.transferForm.get('transferFrom').value.portfolioName) ? this.transferForm.get('transferFrom').value.portfolioName :this.formValues.selectedCustomerPortfolio.portfolioName;
-    this.sourceCashPortfolioList.forEach(element => {
-     if(this.initialCashPortfolio !== element.portfolioName ){
-       return this.destinationCashPortfolioList.push(element);
-     }
-     
-   });
-   return this.destinationCashPortfolioList;
+    this.destinationCashPortfolioList = [];
+    if (this.transferForm.get('transferFrom').value) {
+      this.initialCashPortfolio = (this.transferForm.get('transferFrom').value && this.transferForm.get('transferFrom').value.portfolioName) ? this.transferForm.get('transferFrom').value.portfolioName : this.formValues.selectedCustomerPortfolio.portfolioName;
+      this.sourceCashPortfolioList.forEach(element => {
+        if (this.initialCashPortfolio !== element.portfolioName) {
+          return this.destinationCashPortfolioList.push(element);
+        }
+
+      });
+      return this.destinationCashPortfolioList;
+    }
   }
-}
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
@@ -114,34 +109,35 @@ export class TransferComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
 
-  
- buildForm() {
-      this.transferForm = this.formBuilder.group({
-      transferFrom: [this.formValues.transferFrom 
-          ? this.formValues.transferFrom :
-          this.formValues.selectedCustomerPortfolio, 
-          new FormControl('', Validators.required)],
-        transferTo: [this.formValues.transferTo, Validators.required],
-        transferAmount: [this.formValues.transferAmount, 
-          [Validators.required,
-            this.transferAmountValidator(
-           )]],
-           transferAll: []
-      });
-      
+  buildForm() {
+    this.transferForm = this.formBuilder.group({
+      transferFrom: [this.formValues.transferFrom
+        ? this.formValues.transferFrom :
+        this.formValues.selectedCustomerPortfolio,
+      new FormControl('', Validators.required)],
+      transferTo: [this.formValues.transferTo, Validators.required],
+      transferAmount: [this.formValues.transferAmount,
+      [Validators.required,
+      this.transferAmountValidator(
+      )]],
+      transferAll: []
+    });
+
   }
+
   setSelectedPortfolio() {
     if (this.formValues) {
       const customerPortfolioId = this.formValues.transferFrom ?
         this.formValues.transferFrom.customerPortfolioId : this.formValues.selectedCustomerPortfolio;
-        if(this.formValues.selectedCustomerPortfolio && this.formValues.selectedCustomerPortfolio.portfolioName ){
-      const data = this.sourceCashPortfolioList.find((portfolio) => {
-        return portfolio.portfolioName ===this.formValues.selectedCustomerPortfolio.portfolioName ;
-      });
-      this.setTransferFrom('transferFrom', data);
-    }
+      if (this.formValues.selectedCustomerPortfolio && this.formValues.selectedCustomerPortfolio.portfolioName) {
+        const data = this.sourceCashPortfolioList.find((portfolio) => {
+          return portfolio.portfolioName === this.formValues.selectedCustomerPortfolio.portfolioName;
+        });
+        this.setTransferFrom('transferFrom', data);
+      }
     }
   }
+
   setTransferFrom(kay, value) {
     this.transferForm.controls[kay].setValue(value);
     this.cashBalance = this.transferForm.get('transferFrom').value ? this.transferForm.get('transferFrom').value.cashAccountBalance : 0;
@@ -151,131 +147,127 @@ export class TransferComponent implements OnInit {
     this.transferForm.controls.transferAll.setValue(false);
     this.isTransferAllChecked = false;
     this.destinationCashPortfolio();
-   }
+  }
 
-   setTransferTo(kay, value) {
-     this.transferForm.controls[kay].setValue(value);
-   }
-  
+  setTransferTo(kay, value) {
+    this.transferForm.controls[kay].setValue(value);
+  }
+
   getInlineErrorStatus(control) {
     return !control.pristine && !control.valid;
   }
-  
+
   TransferAllChecked() {
-  if (this.transferForm.controls.transferAll.value && this.transferForm.controls.transferFrom.value) {
-        const cashBalance = this.transferForm.get('transferFrom').value.cashAccountBalance ? this.transferForm.get('transferFrom').value.cashAccountBalance.toString() : this.transferForm.get('transferFrom').value.accountBalance.toString() ; 
-        this.transferForm.controls.transferAmount.setValue(this.decimalPipe.transform(cashBalance, '1.2-2').replace(/,/g, ''));
-        this.transferForm.get('transferAmount').disable();
-        this.isTransferAllChecked = true;
-      } else {
-        this.transferForm.controls.transferAmount.setValue("0");
-        this.transferForm.get('transferAmount').enable();
-        this.isTransferAllChecked = false;
-      
+    if (this.transferForm.controls.transferAll.value && this.transferForm.controls.transferFrom.value) {
+      const cashBalance = this.transferForm.get('transferFrom').value.cashAccountBalance ? this.transferForm.get('transferFrom').value.cashAccountBalance.toString() : this.transferForm.get('transferFrom').value.accountBalance.toString();
+      this.transferForm.controls.transferAmount.setValue(this.decimalPipe.transform(cashBalance, '1.2-2').replace(/,/g, ''));
+      this.transferForm.get('transferAmount').disable();
+      this.isTransferAllChecked = true;
+    } else {
+      this.transferForm.controls.transferAmount.setValue("0");
+      this.transferForm.get('transferAmount').enable();
+      this.isTransferAllChecked = false;
+
     }
   }
+
   goToNext(From) {
     this.showConfirmTransferModal(From);
-}
-showConfirmTransferModal(form) {
+  }
+
+  showConfirmTransferModal(form) {
     const ref = this.modal.open(TransferModalComponent, {
       centered: true
     });
     ref.componentInstance.transferFrom = this.transferForm.get('transferFrom').value;
     ref.componentInstance.transferTo = this.transferForm.get('transferTo').value;
-    ref.componentInstance.TransferAmount =this.transferForm.get('transferAmount').value;
+    ref.componentInstance.TransferAmount = this.transferForm.get('transferAmount').value;
     ref.componentInstance.afterTransfer = this.cashBalance - this.transferForm.controls.transferAmount.value;
     ref.componentInstance.confirmed.subscribe(() => {
       ref.close();
-    this.manageInvestmentsService.setTransferFormData(form.getRawValue(), this.isTransferAllChecked);
-    this.saveTransfer() 
-     
-    
-      
+      this.manageInvestmentsService.setTransferFormData(form.getRawValue(), this.isTransferAllChecked);
+      this.saveTransfer()
     });
     this.dismissPopup(ref);
-   }
-   dismissPopup(ref: NgbModalRef) {
+  }
+
+  dismissPopup(ref: NgbModalRef) {
     this.router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
         ref.close();
       }
     });
   }
-   
- 
-   transferAmountValidator(): ValidatorFn {
-      this.cashBalance = this.cashBalance ? parseFloat(this.decimalPipe.transform(this.cashBalance, "1.2-2").replace(/,/g, "")) : 0;
+  transferAmountValidator(): ValidatorFn {
+    this.cashBalance = this.cashBalance ? parseFloat(this.decimalPipe.transform(this.cashBalance, "1.2-2").replace(/,/g, "")) : 0;
     return (control: AbstractControl) => {
       if (control && !isNaN(control.value)) {
         let userInput = control.value ? parseFloat(this.decimalPipe.transform(control.value.replace(/,/g, ""), "1.2-2").replace(/,/g, "")) : 0;
-        if (userInput <= 0) { 
+        if (userInput <= 0) {
           return { MinValue: true };
         }
-        else if (userInput > this.cashBalance) { 
+        else if (userInput > this.cashBalance) {
           return { MoreThanCashBalance: true };
-          }
         }
       }
     }
+  }
 
-    saveTransfer() {
-      if (!this.isRequestSubmitted) {
-        this.isRequestSubmitted = true;
-        this.loaderService.showLoader({
-          title: this.translate.instant('TRANSFER.TRANSFER_REQUEST_LOADER.TITLE'),
-          desc: this.translate.instant('TRANSFER.TRANSFER_REQUEST_LOADER.DESC')
-        });
-        this.manageInvestmentsService.TransferCash(this.formValues).subscribe((response) => {
-           this.isRequestSubmitted = false;
-           this.loaderService.hideLoader();
-           if (response.responseMessage.responseCode < 6000) {
-            if (response && 
-              response.objectList &&  
-              response.objectList.serverStatus && 
-              response.objectList.serverStatus.errors &&  
-              response.objectList.serverStatus.errors[0].code && 
-              response.objectList.serverStatus.errors[0].code === 'CT-14'
-            ) {
-                this.showCustomErrorModal(
-                  'Error!',
-                  this.translate.instant('TRANSFER.SERVICE_NOT_AVAILABLE')
-                );
-              }
-             else if (response && 
-              response.objectList &&  
-              response.objectList.serverStatus && 
-              response.objectList.serverStatus.errors &&  
-              response.objectList.serverStatus.errors[0]) {
-                this.showCustomErrorModal(
-                  'Error!',
-                  response.objectList.serverStatus.errors[0].msg
-                );
-              } else if (response.responseMessage && response.responseMessage.responseDescription) {
-                const errorResponse = response.responseMessage.responseDescription;
-                this.showCustomErrorModal('Error!', errorResponse);
-              } else {
-                this.investmentAccountService.showGenericErrorModal();
-              }
-            } else {
-              this.manageInvestmentsService.clearSetTransferData();
-              this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TRANSFER_SUCCESS]);
-            }
-          },
-          (err) => {
-            this.isRequestSubmitted = false;
-            this.loaderService.hideLoader();
+  saveTransfer() {
+    if (!this.isRequestSubmitted) {
+      this.isRequestSubmitted = true;
+      this.loaderService.showLoader({
+        title: this.translate.instant('TRANSFER.TRANSFER_REQUEST_LOADER.TITLE'),
+        desc: this.translate.instant('TRANSFER.TRANSFER_REQUEST_LOADER.DESC')
+      });
+      this.manageInvestmentsService.TransferCash(this.formValues).subscribe((response) => {
+        this.isRequestSubmitted = false;
+        this.loaderService.hideLoader();
+        if (response.responseMessage.responseCode < 6000) {
+          if (response &&
+            response.objectList &&
+            response.objectList.serverStatus &&
+            response.objectList.serverStatus.errors &&
+            response.objectList.serverStatus.errors[0].code &&
+            response.objectList.serverStatus.errors[0].code === 'CT-14'
+          ) {
+            this.showCustomErrorModal(
+              'Error!',
+              this.translate.instant('TRANSFER.SERVICE_NOT_AVAILABLE')
+            );
+          }
+          else if (response &&
+            response.objectList &&
+            response.objectList.serverStatus &&
+            response.objectList.serverStatus.errors &&
+            response.objectList.serverStatus.errors[0]) {
+            this.showCustomErrorModal(
+              'Error!',
+              response.objectList.serverStatus.errors[0].msg
+            );
+          } else if (response.responseMessage && response.responseMessage.responseDescription) {
+            const errorResponse = response.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
+          } else {
             this.investmentAccountService.showGenericErrorModal();
           }
-        );
-      }
+        } else {
+          this.manageInvestmentsService.clearSetTransferData();
+          this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TRANSFER_SUCCESS]);
+        }
+      },
+        (err) => {
+          this.isRequestSubmitted = false;
+          this.loaderService.hideLoader();
+          this.investmentAccountService.showGenericErrorModal();
+        }
+      );
     }
+  }
 
-    showCustomErrorModal(title, desc) {
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = title;
-      ref.componentInstance.errorMessage = desc;
-    }
-   
-  
+  showCustomErrorModal(title, desc) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.errorMessage = desc;
+  }
 }

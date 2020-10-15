@@ -46,7 +46,7 @@ export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
     { prefix: './assets/i18n/app/', suffix: '.json' },
     { prefix: './assets/i18n/manage-investments/', suffix: '.json' },
-    { prefix: './assets/i18n/error/', suffix: '.json'}
+    { prefix: './assets/i18n/error/', suffix: '.json' }
   ]);
 }
 
@@ -88,7 +88,7 @@ export function createTranslateLoader(http: HttpClient) {
     TransferModalComponent
   ],
   entryComponents: [ConfirmWithdrawalModalComponent, AddBankModalComponent, ForwardPricingModalComponent,
-    RenameInvestmentModalComponent,TransferModalComponent],
+    RenameInvestmentModalComponent, TransferModalComponent],
   providers: [CurrencyPipe, FormatCurrencyPipe]
 })
 export class ManageInvestmentsModule {
