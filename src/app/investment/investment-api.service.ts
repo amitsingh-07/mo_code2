@@ -406,10 +406,34 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
   getWiseSaverDetails() {
     return this.http.get(investmentApiConstants.endpoint.portfolio.getWiseSaverValues + '?key=WISE_SAVER_RATE')
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  getTransferEntityList(customerPortfolioId) {
+    const url = investmentApiConstants.endpoint.investmentAccount.getActionRequestToken.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.get(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      )
+  }
+
+  getTransferCashPortfolioList() {
+    return this.http.get(investmentApiConstants.endpoint.investmentAccount.getCashPortfolioList)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  TransferCash(data) {
+    return this.http.post(investmentApiConstants.endpoint.investmentAccount.saveCashTransfer, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
 }

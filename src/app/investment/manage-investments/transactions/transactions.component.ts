@@ -64,7 +64,7 @@ export class TransactionsComponent implements OnInit {
       );
       const recentStatementAvailDate = this.convertStringToDate(
         this.portfolio.statementCreatedDate
-       );
+      );
       this.statementMonthsList = this.manageInvestmentsService.getMonthListByPeriod(
         accountCreationDate,
         recentStatementAvailDate
@@ -92,23 +92,23 @@ export class TransactionsComponent implements OnInit {
     if (this.portfolio) {
       this.manageInvestmentsService.getTransactionHistory(
         this.portfolio.customerPortfolioId).subscribe((response) => {
-        this.loaderService.hideLoader();
-        this.transactionHistory = response.objectList;
-        this.transactionHistory = this.calculateSplitAmounts(this.transactionHistory);
-        this.investmentEngagementJourneyService.sortByProperty(
-          this.transactionHistory,
-          'createdDate',
-          'desc'
-        );
-        this.transactionHistory = new GroupByPipe().transform(
-          this.transactionHistory,
-          'displayCreatedDate'
-        );
-      },
-      (err) => {
-        this.loaderService.hideLoader();
-        this.investmentAccountService.showGenericErrorModal();
-      });
+          this.loaderService.hideLoader();
+          this.transactionHistory = response.objectList;
+          this.transactionHistory = this.calculateSplitAmounts(this.transactionHistory);
+          this.investmentEngagementJourneyService.sortByProperty(
+            this.transactionHistory,
+            'createdDate',
+            'desc'
+          );
+          this.transactionHistory = new GroupByPipe().transform(
+            this.transactionHistory,
+            'displayCreatedDate'
+          );
+        },
+          (err) => {
+            this.loaderService.hideLoader();
+            this.investmentAccountService.showGenericErrorModal();
+          });
     } else {
       this.loaderService.hideLoader();
     }
@@ -139,10 +139,10 @@ export class TransactionsComponent implements OnInit {
       this.loaderService.hideLoader();
       this.downloadFile(response, month);
     },
-    (err) => {
-      this.loaderService.hideLoader();
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   constructDonwloadStatementParams(data) {

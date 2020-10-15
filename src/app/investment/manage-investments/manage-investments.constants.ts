@@ -62,10 +62,12 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
   INVESTMENT_OVERVIEW: {
     MORE_LIST: [
       { id: 1, name: 'Top Up', value: 'TOPUP' },
-      { id: 2, name: 'Transactions / Statements', value: 'TRANSACTIONS_STATEMENTS' },
-      { id: 3, name: 'Rename Portfolio', value: 'RENAME_PORTFOLIO' },
-      { id: 4, name: 'Withdrawal', value: 'WITHDRAWAL' },
-      { id: 5, name: 'Delete Portfolio', value: 'DELETE_PORTFOLIO' }
+      { id: 2, name: 'Transfer', value: 'TRANSFER' },
+      { id: 3, name: 'Transactions / Statements', value: 'TRANSACTIONS_STATEMENTS' },
+      { id: 4, name: 'Rename Portfolio', value: 'RENAME_PORTFOLIO' },
+      { id: 5, name: 'Withdrawal', value: 'WITHDRAWAL' },
+      { id: 6, name: 'Delete Portfolio', value: 'DELETE_PORTFOLIO' }
+     
     ],
     TRANSACTIONS: 'Transactions',
     WITHDRAWAL: 'Withdrawal'
