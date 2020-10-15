@@ -28,10 +28,3 @@ export class TransferModalComponent implements OnInit {
   }
 
 }
-
-
-
-
-
-
-
