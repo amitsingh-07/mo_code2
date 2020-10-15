@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DecimalPipe } from '@angular/common';
-import { MANAGE_INVESTMENTS_CONSTANTS } from '../../manage-investments.constants';
 
 @Component({
   selector: 'app-transfer-withdrawal-modal',

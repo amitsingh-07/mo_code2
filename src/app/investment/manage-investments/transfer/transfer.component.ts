@@ -1,6 +1,6 @@
 import { DecimalPipe } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, ValidatorFn, Validators, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,10 +13,8 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
-import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
 import { environment } from './../../../../environments/environment';
-import { AuthenticationService } from './../../../shared/http/auth/authentication.service';
 import { TransferModalComponent } from './transfer-modal/transfer-modal.component';
 @Component({
   selector: 'app-transfer',
@@ -25,7 +23,7 @@ import { TransferModalComponent } from './transfer-modal/transfer-modal.componen
   encapsulation: ViewEncapsulation.None,
   providers: [DecimalPipe]
 })
-export class TransferComponent implements OnInit {
+export class TransferComponent implements OnInit, OnDestroy {
   transferForm: FormGroup;
   sourceCashPortfolioList: any;
   formValues: any;
@@ -51,7 +49,6 @@ export class TransferComponent implements OnInit {
     private loaderService: LoaderService,
     private investmentAccountService: InvestmentAccountService,
     private signUpService: SignUpService,
-    public authService: AuthenticationService,
     private decimalPipe: DecimalPipe
   ) {
     this.translate.use('en');
