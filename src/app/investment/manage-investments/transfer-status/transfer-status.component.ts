@@ -31,8 +31,7 @@ export class TransferStatusComponent implements OnInit {
    this.router.navigate([value]);
   }
   ngOnDestroy() {
-   // document.body.classList.remove('body');
-    document.body.style.backgroundColor = "Lochinvar";
+  document.body.style.backgroundColor = "Lochinvar";
   }
   getTransferEntityList() {
     this.manageInvestmentsService.getTransferEntityList(this.formValues.selectedCustomerPortfolioId).subscribe((data) => {

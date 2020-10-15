@@ -15,12 +15,13 @@ app-transfer-status {
     .relative {
       position: relative;
       bottom: 50px;
-     
+
 
       @include allmobiles {
         position: relative;
         bottom: 150px;
       }
+
       @include iphone6plus {
         position: relative;
         bottom: 100px;
@@ -55,7 +56,6 @@ app-transfer-status {
 
   }
 
-
   .custom-modal--title {
     width: 241px;
     height: 70px;
@@ -85,7 +85,6 @@ app-transfer-status {
   }
 
   .btn {
-
     &.special-btn {
       background-color: $teal-color;
       border: 1px solid $white-color;

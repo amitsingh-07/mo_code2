@@ -4,19 +4,23 @@
 app-transfer-withdrawal-modal {
   .modal-body {
     padding: 30px 25px !important;
+
     .modal-body-desc {
       color: $black-color;
       padding-bottom: 30px;
     }
   }
+
   .modal-body-title {
-   margin-bottom: 7px;
-   padding-bottom: 0px;
-   
-}
+    margin-bottom: 7px;
+    padding-bottom: 0px;
+
+  }
+
   .transfer-body {
     padding-bottom: 16px;
-    .transfer-body :last-child{
+
+    .transfer-body :last-child {
       padding-bottom: 30px;
     }
 
@@ -41,9 +45,10 @@ app-transfer-withdrawal-modal {
 
       }
     }
-    
+
   }
-  .mt5{
+
+  .mt5 {
     margin-top: 14px !important;
   }
 

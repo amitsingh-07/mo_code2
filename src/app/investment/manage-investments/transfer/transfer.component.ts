@@ -230,7 +230,19 @@ showConfirmTransferModal(form) {
            this.isRequestSubmitted = false;
            this.loaderService.hideLoader();
            if (response.responseMessage.responseCode < 6000) {
-             if (response && 
+            if (response && 
+              response.objectList &&  
+              response.objectList.serverStatus && 
+              response.objectList.serverStatus.errors &&  
+              response.objectList.serverStatus.errors[0].code && 
+              response.objectList.serverStatus.errors[0].code === 'CT-14'
+            ) {
+                this.showCustomErrorModal(
+                  'Error!',
+                  this.translate.instant('TRANSFER.SERVICE_NOT_AVAILABLE')
+                );
+              }
+             else if (response && 
               response.objectList &&  
               response.objectList.serverStatus && 
               response.objectList.serverStatus.errors &&  

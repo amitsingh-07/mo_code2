@@ -443,7 +443,9 @@
       "TITLE": "Submitting Request",
       "DESC": "Please wait while we submit the transfer request"
     },
-    "TRANSFER_MORE_THE_CASH_BALANCE": "Transfer amount should not be more than available balance"
+    "TRANSFER_MORE_THE_CASH_BALANCE": "Transfer amount should not be more than available balance",
+    "SERVICE_NOT_AVAILABLE" :"Sorry, the service is currently not available at the moment. Please try again later.",
+    "CT-14":"CT-14"
    
   },
   "TRANSFER_SUCCESS": {

@@ -36,7 +36,7 @@
 
         </div>
       </div>
-      <div class="transfer-body" *ngIf="transferTo.cashAccountBalance - TransferAmount > 0">
+      <div class="transfer-body" *ngIf="transferFrom.cashAccountBalance - TransferAmount > 0">
         <div class="tranfer_lbl">{{'TRANSFER.MODAL.CONFIRM_TRANSFER.BALANCE_AMOUNT_SGD'| translate}}</div>
         <div class="transfer_value">{{transferFrom.cashAccountBalance - TransferAmount  | formatCurrency}}
 
