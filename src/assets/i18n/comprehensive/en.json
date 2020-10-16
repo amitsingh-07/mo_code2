@@ -681,7 +681,9 @@
       "HDB": "Do you have HDB Home Protection Scheme (HPS) coverage?",
       "LONG_TERM_INSURANCE": "Long-Term Care Insurance",
       "LONG_TERM_INSURANCE_LABEL": "Do you have ElderShield?",
-      "LONG_TERM_INSURANCE_LABEL_2": "Other long-term care insurance (ElderShield Supplement)",
+      "LONG_TERM_INSURANCE_LABEL_2": "Other long-term care insurance",
+      "ELDER_SHIELD": "(ElderShield Supplement)",
+      "CARE_SHIELD": "(CareShield Life)",
       "LONG_TERM_INSURANCE_VALUE_1": " I have $300 /mth payout",
       "LONG_TERM_INSURANCE_VALUE_2": "I have $400 /mth payout",
       "LONG_TERM_INSURANCE_VALUE_3": "No, i have no coverage",
@@ -698,7 +700,9 @@
         "LONG_TERM_CARE_INSURANCE_TITLE": "Long Term Care Insurance",
         "LONG_TERM_CARE_INSURANCE_MESSAGE": "The monthly benefit you will receive in the event of a severe disability resulting in the inability to perform 3 out of 6 activities of daily living. ElderShield or CareShield Life is an example of such plans.",
         "CRITICAL_INSURANCE_TITLE": "Critical Illness Insurance",
-        "CRITICAL_INSURANCE_MESSAGE": "The total benefit payable to you from all your insurance policies in the event you are diagnosed with a critical illness such as cancer, heart attack, etc. "
+        "CRITICAL_INSURANCE_MESSAGE": "The total benefit payable to you from all your insurance policies in the event you are diagnosed with a critical illness such as cancer, heart attack, etc. ",
+        "CARE_SHIELD_TITLE":"CareShield Life",
+        "CARE_SHIELD_MESSAGE":"Did you know that CareShield Life, a severe disability insurance, was launched on 1 October 2020? All Singaporeans born 1980 and later will be automatically included into this scheme from 1 Oct or when they turn 30 years old. You may want to review your long term care insurance plans with this change."
       }
     },
     "RESULT": {
