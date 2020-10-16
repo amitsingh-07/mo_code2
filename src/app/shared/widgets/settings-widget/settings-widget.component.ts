@@ -1,6 +1,6 @@
 import { filter } from 'rxjs/operators';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router, NavigationEnd } from '@angular/router';
 
@@ -15,7 +15,7 @@ export interface IDropDownData {
   styleUrls: ['./settings-widget.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class SettingsWidgetComponent implements OnInit {
+export class SettingsWidgetComponent implements OnInit, AfterViewInit {
 
   @Input() sort: any = [];
   @Input() filters: any = [];
@@ -32,7 +32,7 @@ export class SettingsWidgetComponent implements OnInit {
 
   constructor(
     private translate: TranslateService, private router: Router,
-    private activeModal: NgbActiveModal) {
+    private activeModal: NgbActiveModal, private cd: ChangeDetectorRef) {
     this.filterProducts = new EventEmitter();
     this.showFilterTooltip = new EventEmitter();
     this.translate.use('en');
@@ -64,7 +64,9 @@ export class SettingsWidgetComponent implements OnInit {
     this.defaultSort = this.sort[0];
     this.refreshFilters();
   }
-
+  ngAfterViewInit() {
+	  this.cd.detectChanges();
+  }
   refreshFilters() {
     if (this.selectedFilterList && this.selectedFilterList.length > 1) {
 
