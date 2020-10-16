@@ -12,6 +12,7 @@ import { MANAGE_INVESTMENTS_CONSTANTS } from '../../manage-investments.constants
 export class ConfirmWithdrawalModalComponent implements OnInit {
   minBalance;
   showWarningMessage = false;
+  newMessageRebalance = false;
   @Input() withdrawAmount: any;
   @Input() withdrawType: any;
   @Input() portfolio: any;
@@ -26,6 +27,9 @@ export class ConfirmWithdrawalModalComponent implements OnInit {
 
   ngOnInit() {
     this.WITHDRAW_CONSTANTS = MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW;
+    if (this.portfolio.portfolioStatus === 'REBALANCING') {
+      this.showNewMessageForRebalance(this.portfolio.riskProfileType)
+    }
   }
 
   confirmWithdrawal(event) {
@@ -34,5 +38,12 @@ export class ConfirmWithdrawalModalComponent implements OnInit {
   }
   learnMore() {
     this.showLearnMore.emit();
+  }
+  showNewMessageForRebalance(riskType) {
+    if (MANAGE_INVESTMENTS_CONSTANTS.REBALANCE_ADDITIONAL_MESSAGE.includes(riskType.toUpperCase())) {
+      this.newMessageRebalance = true;
+    } else {
+      this.newMessageRebalance = false;
+    }
   }
 }

@@ -53,6 +53,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   portfolioWithdrawRequests = false;
   showAnnualizedReturns = false;
   addTopMargin: boolean;
+  newMessageRebalance =false;
 
   showPortfolioInfo = false; // Display the below 3 information
   totalInvested: any; // Cost of investment
@@ -130,7 +131,10 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   getCustomerPortfolioDetailsById(customerPortfolioId) {
     this.manageInvestmentsService.getCustomerPortfolioDetailsById(customerPortfolioId).subscribe((data) => {
       this.portfolio = data.objectList;
-      this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
+      if(this.portfolio.portfolioStatus === 'REBALANCING'){
+        this.showNewMessageForRebalance(this.portfolio.riskProfile.type)
+      }
+     this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
       this.holdingValues = this.portfolio.dPMSPortfolio ? this.portfolio.dPMSPortfolio.dpmsDetailsDisplay : null;
       this.constructFundingParams(this.portfolio);
       this.totalReturnsPercentage = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio.totalReturns
@@ -183,6 +187,13 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
+  }
+  showNewMessageForRebalance(riskType) {
+    if (MANAGE_INVESTMENTS_CONSTANTS.REBALANCE_ADDITIONAL_MESSAGE.includes(riskType.toUpperCase())) {
+      this.newMessageRebalance = true;
+    } else {
+      this.newMessageRebalance = false;
+    }
   }
 
   getPortfolioWithdrawalRequests(sellRequests) {
