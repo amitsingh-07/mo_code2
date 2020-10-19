@@ -1,9 +1,9 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 
-body {
-  background-color: $teal-color !important;
-}
+.transfer-body {
+  background-color: $dark-teal-color !important;
+ }
 
 app-transfer-status {
   .content {
@@ -86,7 +86,7 @@ app-transfer-status {
 
   .btn {
     &.special-btn {
-      background-color: $teal-color;
+      background-color: $dark-teal-color;
       border: 1px solid $white-color;
       font-family: $muli-regular;
       font-size: 18px;
@@ -96,12 +96,12 @@ app-transfer-status {
       box-shadow: none !important;
 
       &:hover {
-        background-color: $teal-color !important;
+        background-color: $dark-teal-color !important;
         border: 1px solid $white-color;
       }
 
       &:active {
-        background-color: $teal-color !important;
+        background-color: $dark-teal-color !important;
         border: 1px solid $white-color;
       }
     }

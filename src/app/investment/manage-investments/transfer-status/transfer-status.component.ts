@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { ManageInvestmentsService } from '../manage-investments.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -19,6 +19,7 @@ export class TransferStatusComponent implements OnInit {
     private manageInvestmentsService: ManageInvestmentsService,
     public readonly translate: TranslateService,
     public navbarService: NavbarService,
+    private renderer: Renderer2,
   ) { this.translate.use('en'); }
 
   ngOnInit(): void {
@@ -26,6 +27,7 @@ export class TransferStatusComponent implements OnInit {
     this.navbarService.setNavbarVisibility(false);
     this.navbarService.setNavbarMode(10);
     this.navbarService.setNavbarMobileVisibility(false);
+    this.renderer.addClass(document.body, 'transfer-body');
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.getTransferEntityList();
   }
@@ -35,7 +37,7 @@ export class TransferStatusComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    document.body.style.backgroundColor = "Lochinvar";
+    this.renderer.removeClass(document.body, 'transfer-body');
   }
 
   getTransferEntityList() {
