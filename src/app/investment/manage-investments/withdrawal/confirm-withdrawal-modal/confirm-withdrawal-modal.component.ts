@@ -12,7 +12,6 @@ import { MANAGE_INVESTMENTS_CONSTANTS } from '../../manage-investments.constants
 export class ConfirmWithdrawalModalComponent implements OnInit {
   minBalance;
   showWarningMessage = false;
-  newMessageRebalance = false;
   @Input() withdrawAmount: any;
   @Input() withdrawType: any;
   @Input() portfolio: any;
@@ -38,9 +37,9 @@ export class ConfirmWithdrawalModalComponent implements OnInit {
   }
   showNewMessageForRebalance(riskType) {
     if (MANAGE_INVESTMENTS_CONSTANTS.REBALANCE_ADDITIONAL_MESSAGE.includes(riskType.toUpperCase())) {
-      return this.newMessageRebalance = true;
+      return true;
     } else {
-      return this.newMessageRebalance = false;
+      return false;
     }
   }
 }

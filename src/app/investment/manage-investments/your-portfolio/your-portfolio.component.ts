@@ -53,7 +53,6 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   portfolioWithdrawRequests = false;
   showAnnualizedReturns = false;
   addTopMargin: boolean;
-  newMessageRebalance =false;
 
   showPortfolioInfo = false; // Display the below 3 information
   totalInvested: any; // Cost of investment
@@ -187,9 +186,9 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   }
   showNewMessageForRebalance(riskType) {
     if (MANAGE_INVESTMENTS_CONSTANTS.REBALANCE_ADDITIONAL_MESSAGE.includes(riskType.toUpperCase())) {
-      return this.newMessageRebalance = true;
+      return true;
     } else {
-      return this.newMessageRebalance = false;
+      return false;
     }
   }
 
