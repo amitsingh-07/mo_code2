@@ -27,9 +27,6 @@ export class ConfirmWithdrawalModalComponent implements OnInit {
 
   ngOnInit() {
     this.WITHDRAW_CONSTANTS = MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW;
-    if (this.portfolio.portfolioStatus === 'REBALANCING') {
-      this.showNewMessageForRebalance(this.portfolio.riskProfileType)
-    }
   }
 
   confirmWithdrawal(event) {
@@ -41,9 +38,9 @@ export class ConfirmWithdrawalModalComponent implements OnInit {
   }
   showNewMessageForRebalance(riskType) {
     if (MANAGE_INVESTMENTS_CONSTANTS.REBALANCE_ADDITIONAL_MESSAGE.includes(riskType.toUpperCase())) {
-      this.newMessageRebalance = true;
+      return this.newMessageRebalance = true;
     } else {
-      this.newMessageRebalance = false;
+      return this.newMessageRebalance = false;
     }
   }
 }

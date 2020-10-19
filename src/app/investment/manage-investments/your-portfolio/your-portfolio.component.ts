@@ -131,9 +131,6 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   getCustomerPortfolioDetailsById(customerPortfolioId) {
     this.manageInvestmentsService.getCustomerPortfolioDetailsById(customerPortfolioId).subscribe((data) => {
       this.portfolio = data.objectList;
-      if(this.portfolio.portfolioStatus === 'REBALANCING'){
-        this.showNewMessageForRebalance(this.portfolio.riskProfile.type)
-      }
      this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
       this.holdingValues = this.portfolio.dPMSPortfolio ? this.portfolio.dPMSPortfolio.dpmsDetailsDisplay : null;
       this.constructFundingParams(this.portfolio);
@@ -190,9 +187,9 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   }
   showNewMessageForRebalance(riskType) {
     if (MANAGE_INVESTMENTS_CONSTANTS.REBALANCE_ADDITIONAL_MESSAGE.includes(riskType.toUpperCase())) {
-      this.newMessageRebalance = true;
+      return this.newMessageRebalance = true;
     } else {
-      this.newMessageRebalance = false;
+      return this.newMessageRebalance = false;
     }
   }
 
