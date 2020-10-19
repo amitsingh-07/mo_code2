@@ -139,8 +139,8 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.TITLE');
     ref.componentInstance.errorMessage = this.newMessageForRebalance ?
-      this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.desc') :
-      this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.Message');
+      this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.DESC') :
+      this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.MESSAGE');
     this.topClickedFlag = true;
   }
 
