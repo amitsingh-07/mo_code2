@@ -54,6 +54,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     minDate: any;
     getComprehensiveData: any;
     saveData: string;
+    getCurrentVersionType: any;
 
     public onCloseClick(): void {
         this.comprehensiveService.setProgressToolTipShown(true);
@@ -109,13 +110,13 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
         this.loaderService.showLoader({ title: 'Fetching Data' });
         const comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
-        let getCurrentVersionType =  this.comprehensiveService.getComprehensiveCurrentVersion();
-        if ((getCurrentVersionType === '' || getCurrentVersionType === null || getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE ) && comprehensiveLiteEnabled) {
-            getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
+        this.getCurrentVersionType =  this.comprehensiveService.getComprehensiveCurrentVersion();
+        if ((this.getCurrentVersionType === '' || this.getCurrentVersionType === null || this.getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE ) && comprehensiveLiteEnabled) {
+            this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
         } else {
-            getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
+            this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
         }
-        this.comprehensiveApiService.getComprehensiveSummary(getCurrentVersionType).subscribe((data: any) => {
+        this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((data: any) => {
             if (data && data.objectList[0]) {
                 this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
                 this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
@@ -140,7 +141,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             if (event && event !== '') {
                 const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
                 if (previousUrl !== null) {
-                    if ( getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.FULL) { 
+                    if ( this.getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.FULL) { 
                         this.router.navigate([previousUrl]);
                     } else {
                         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
@@ -231,13 +232,14 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                             const payload = {enquiryId: this.userDetails.enquiryId, reportStatus : COMPREHENSIVE_CONST.REPORT_STATUS.NEW};
                             this.comprehensiveApiService.updateComprehensiveReportStatus(payload).subscribe((reportRes: any) => {
                                 if (reportRes) {
-                                    const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
-                                    cmpSummary.baseProfile = this.comprehensiveService.getMyProfile();
-                                    cmpSummary.comprehensiveEnquiry.reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.NEW;
-                                    this.comprehensiveService.setComprehensiveSummary(cmpSummary);
-                                    this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.NEW);
-                                    this.loaderService.hideLoader();
-                                    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+                                    this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((resData: any) => {
+                                        if (resData && resData.objectList[0]) {
+                                            this.comprehensiveService.setComprehensiveSummary(resData.objectList[0]);                                            
+                                            this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.NEW);
+                                            this.loaderService.hideLoader();
+                                            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+                                        }
+                                    });
                                 }
                                 });
                         } else {
