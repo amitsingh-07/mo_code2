@@ -68,11 +68,10 @@ export class FundDetailsComponent implements OnInit {
     if (fund.factSheetLink) {
       highlightSheetFileName = fund.factSheetLink.split('|')[1];
     }
-    return window.location.origin + '/app/assets/docs/portfolio/fund/' + highlightSheetFileName;
+    return '/app/assets/docs/portfolio/fund/' + highlightSheetFileName;
   }
-  getProspectusLink(fund) {
-    //let prospectusFileName = fund.prospectusLink; // TODO: getting null from backend
+  getProspectusLink() {
     let prospectusFileName = (this.portfolioType) ? 'prospectus_investment.pdf' : 'prospectus_wise_saver.pdf';
-    return window.location.origin + '/app/assets/docs/portfolio/fund/' + prospectusFileName;
+    return '/app/assets/docs/portfolio/fund/' + prospectusFileName;
   }
 }
