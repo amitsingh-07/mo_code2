@@ -130,7 +130,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   getCustomerPortfolioDetailsById(customerPortfolioId) {
     this.manageInvestmentsService.getCustomerPortfolioDetailsById(customerPortfolioId).subscribe((data) => {
       this.portfolio = data.objectList;
-      this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
+     this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
       this.holdingValues = this.portfolio.dPMSPortfolio ? this.portfolio.dPMSPortfolio.dpmsDetailsDisplay : null;
       this.constructFundingParams(this.portfolio);
       this.totalReturnsPercentage = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio.totalReturns
@@ -183,6 +183,13 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
+  }
+  showNewMessageForRebalance(riskType) {
+    if (MANAGE_INVESTMENTS_CONSTANTS.REBALANCE_ADDITIONAL_MESSAGE.includes(riskType.toUpperCase())) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   getPortfolioWithdrawalRequests(sellRequests) {
