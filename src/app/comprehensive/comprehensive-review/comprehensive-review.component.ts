@@ -169,7 +169,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     const comprehensiveData = this.comprehensiveService.getComprehensiveEnquiry();
     const paymentStatus = (comprehensiveData.paymentStatus) ? comprehensiveData.paymentStatus.toLowerCase() : '';
     this.tandcEnableFlag = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && paymentStatus !== COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED);
-    this.enableTc = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && paymentStatus != COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED);
+    this.enableTc = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && paymentStatus !== COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED);
     this.tandcForm = this.formBuilder.group({
       tandc: [this.enableTc]
     });
