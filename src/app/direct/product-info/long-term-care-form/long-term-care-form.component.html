@@ -65,5 +65,26 @@
             </div>
         </div> 
       </div>
+      <div class="flex-row">
+        <div class="flex-col-3">
+          <label for="name" id="getStrLbl6">{{ 'LONG_TERM_CARE.PAYOUT_TYPE' | translate}}</label>
+        </div>
+        <div class="flex-col-8 direct-form-grp">
+          <div class="btn-group--toggle" ngbRadioGroup name="radioPayoutType" formControlName="payoutType">
+              <div class="flex-row mb0">
+                <div>
+                  <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl2">
+                    <input ngbButton type="radio" value="Escalating" id="getStrdInpt1"> {{ 'LONG_TERM_CARE.PAYOUT_TYPE_1' | translate}}
+                  </label>
+                  </div>
+                <div>
+                  <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl3">
+                    <input ngbButton type="radio" value="Level" id="getStrdInpt2"> {{ 'LONG_TERM_CARE.PAYOUT_TYPE_2' | translate}}
+                  </label>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
   </div>
 </form>

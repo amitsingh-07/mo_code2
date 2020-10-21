@@ -49,7 +49,8 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
     this.longTermCareForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
-      monthlyPayout: [this.formValues.monthlyPayout, Validators.required]
+      monthlyPayout: [this.formValues.monthlyPayout, Validators.required],
+      payoutType: [this.formValues.payoutType, Validators.required]
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '' && data === '5') {

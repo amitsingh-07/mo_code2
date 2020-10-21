@@ -101,6 +101,17 @@
       <div class="heading">&nbsp;</div>
     </div>
 
+    <div class="flex-col-12 flex title" *ngIf = "protectionType.toLowerCase() === 'long-term care'">
+      <div [ngClass]="{'wide' : plansData && plansData.length === 4}">{{ 'COMPARE_PLANS.PAYOUT_TYPE' | translate}}</div>
+    </div>
+    <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
+      [ngClass]="{'hidden-sm-md': i > 1}" [hidden]="protectionType.toLowerCase() !== 'long-term care'">
+      <div class="plan-content flex">
+        <span>{{(plan.premium.payoutType) ? plan.premium.payoutType : '-'}}</span>
+      </div>
+      <div class="heading">&nbsp;</div>
+    </div>
+
     <div class="flex-col-12 flex title">
       <div [ngClass]="{'wide' : plansData && plansData.length === 4}">{{ 'COMPARE_PLANS.PAYOUT_DETAILS' | translate}}</div>
     </div>

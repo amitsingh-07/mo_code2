@@ -136,7 +136,8 @@ export class DirectApiService {
     getLtcData() {
         const lcp = this.directService.getLongTermCareForm();
         const lcpData: ILongTermCareNeedsData = {
-            monthlyPayout: lcp.monthlyPayout
+            monthlyPayout: lcp.monthlyPayout,
+            payoutType: lcp.payoutType
         } as ILongTermCareNeedsData;
         return lcpData;
     }
