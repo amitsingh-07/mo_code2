@@ -501,7 +501,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       ua.indexOf('Trident/') > -1 ||
       ua.toLowerCase().indexOf('firefox') > -1;
     if (is_ie) {
-      this.browserError = true;
+      // this.browserError = true;
       this.router.navigate([APP_ROUTES.NOT_SUPPORTED]);
     } else {
       this.browserError = false;
