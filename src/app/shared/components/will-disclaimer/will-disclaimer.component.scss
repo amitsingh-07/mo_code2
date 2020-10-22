@@ -167,3 +167,8 @@ app-terms {
       margin-bottom: 60px;
     }
 }
+@include iphone6plus {
+  .btn-primary {
+    margin-bottom: 0px;
+  }
+}

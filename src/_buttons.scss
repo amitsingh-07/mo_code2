@@ -588,6 +588,7 @@ button:active:focus {
 
     &.show {
       display: flex;
+      align-items: center;
     }
 
     @include allmobiles {
@@ -883,12 +884,11 @@ button:active:focus {
       }
 
       .input-group-append {
-        .btn-primary {
+        .btn-primary, button {
           height: 50px;
           box-shadow: none !important;
         }
       }
-
       .dropdown-menu {
         @include allmobiles {
           left: auto !important;
@@ -1080,9 +1080,28 @@ button:active:focus {
     }
   }
 
-  .datepicker-control .input-group-append .btn-primary {
-    box-shadow: none !important;
-    margin: 0;
+  .datepicker-control  {
+    .input-group {
+      &.inline-error {
+        .btn-primary {
+          &:hover {
+            background-color: $inline-error-bg-color !important;
+          }
+        }
+      }
+    }
+    .input-group-append {
+      .btn-primary { 
+        box-shadow: none !important;
+        margin: 0;
+        &:hover, &:active, &:focus {
+          background-color: $white-color !important;
+        }
+        &[disabled]:hover {
+          background-color: rgba(0, 167, 167, 0.15) !important;
+        }
+      }
+    }
   }
 
   .btn {
@@ -1116,7 +1135,23 @@ button:active:focus {
 }
 
 //Disabled Primary button
-button.btn-primary[disabled]:active, button.btn-primary[disabled], button.btn-primary[disabled]:hover {
-  background-color: $btn-disabled !important;
-  pointer-events: none !important;
+button.btn-primary {
+    &.with-white-bg {
+      &[disabled]:active, 
+      &[disabled], 
+      &[disabled]:hover {
+      background-color: $btn-disabled !important;
+      pointer-events: none !important;
+    }
+  }
+}
+button.btn-primary {
+  &.with-green-bg {
+      &[disabled]:active, 
+      &[disabled], 
+      &[disabled]:hover {
+      background-color: $btn-disabled-bg !important;
+      pointer-events: none !important;
+    }
+  }
 }
