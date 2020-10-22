@@ -20,9 +20,9 @@ import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
-
 import { PaymentChildEnableGuard } from './payment/payment-child-enable-guard';
 import { PaymentEnableGuard } from './payment/payment-enable-guard';
+import { NotSupportedComponent } from './not-supported/not-supported.component';
 
 const routes: Routes = [
   {
@@ -87,6 +87,7 @@ const routes: Routes = [
       // Legacy Routes
       { path: 'email-enquiry/success', component: EmailEnquirySuccessComponent },
       { path: 'page-not-found', component: NotFoundComponent },
+      { path: 'browser-not-supported', component: NotSupportedComponent },
       { path: '**', component: NotFoundComponent, canActivate: [ExternalRouteGuard] }
     ]
   }
