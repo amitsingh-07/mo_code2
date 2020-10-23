@@ -135,11 +135,18 @@ export class DirectApiService {
 
     getLtcData() {
         const lcp = this.directService.getLongTermCareForm();
-        const lcpData: ILongTermCareNeedsData = {
-            monthlyPayout: lcp.monthlyPayout,
-            payoutType: lcp.payoutType
-        } as ILongTermCareNeedsData;
-        return lcpData;
+        if(lcp.payoutType) {
+			const lcpData: ILongTermCareNeedsData = {
+				monthlyPayout: lcp.monthlyPayout,
+				payoutType: lcp.payoutType
+			} as ILongTermCareNeedsData;			
+			return lcpData;
+		} else {
+			const lcpData: ILongTermCareNeedsData = {
+				monthlyPayout: lcp.monthlyPayout
+			} as ILongTermCareNeedsData;			
+			return lcpData;
+		}
     }
 
     getDependentsData() {

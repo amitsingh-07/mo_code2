@@ -30,7 +30,7 @@
         <div class="datepicker-control">
             <div class="input-group date-picker mb0"  [ngClass]="{'inline-error': doberror && !longTermCareForm.get('dob').valid  && !longTermCareForm.get('dob').pristine}">
                 <input class="form-control" placeholder="DD / MM / YYYY" formControlName="dob"
-                name="dp" ngbDatepicker #d="ngbDatepicker" autocomplete="off" [minDate]="minDate" [maxDate]="maxDate" (blur)="onDobChange()" (dateSelect)="onDobChange()">
+                name="dp" ngbDatepicker #d="ngbDatepicker" autocomplete="off" [minDate]="minDate" [maxDate]="maxDate" (blur)="onDobChange()" (dateSelect)="onDobChange()" (keyup)="setPayoutType()">
                 <div class="input-group-append">
                   <button (click)="d.toggle()" class="btn btn-primary" type="button">
                       <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="longTermCareForm.get('dob').valid || longTermCareForm.get('dob').pristine || !doberror" src="assets/images/calendar-normal.svg"
@@ -68,7 +68,7 @@
             </div>
         </div> 
       </div>
-      <div class="flex-row"> 
+      <div class="flex-row" [hidden] = '!payoutEnabled'> 
         <div class="flex-col-3">
           <label for="name" id="getStrLbl6">{{ 'LONG_TERM_CARE.PAYOUT_TYPE' | translate}}</label>
         </div>
