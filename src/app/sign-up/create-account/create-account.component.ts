@@ -31,8 +31,10 @@ import { IEnquiryUpdate } from '../signup-types';
 import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
 import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
-import { trackingConstants } from './../../shared/analytics/tracking.constants';
-import{SIGN_UP_CONFIG} from '../sign-up.constant';
+import { ANIMATION_DATA } from '../../../assets/animation/animationData';
+
+const bodymovin = require("../../../assets/scripts/lottie_svg.min.js");
+
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
@@ -58,6 +60,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   submitted: boolean = false;
   capsOn: boolean;
   capslockFocus: boolean;
+
+  // Referral Code
+  showClearBtn: boolean = false;
+  refCodeValidated: boolean = false;
+  showSpinner: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private modal: NgbModal,
@@ -101,6 +109,13 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.footerService.setFooterVisibility(false);
     this.buildAccountInfoForm();
     this.getCountryCode();
+    // Set referral code base on the query param
+    this.route.queryParams.subscribe((params) => {
+      if (params['referral_code'] && this.createAccountForm.controls['referralCode']) {
+        this.createAccountForm.controls['referralCode'].setValue(params['referral_code']);
+      }
+    });
+    this.createAnimation();
   }
 
   ngAfterViewInit() {
@@ -143,7 +158,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
           confirmPassword: [''],
           termsOfConditions: [true],
           marketingAcceptance: [false],
-          captcha: ['', [Validators.required]]
+          captcha: ['', [Validators.required]],
+          referralCode: ['']
         }, { validator: this.validateMatchPasswordEmail() });
         return false;
       }
@@ -161,7 +177,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       confirmPassword: [''],
       termsOfConditions: [true],
       marketingAcceptance: [false],
-      captcha: ['', [Validators.required]]
+      captcha: ['', [Validators.required]],
+      referralCode: ['']
     }, { validator: this.validateMatchPasswordEmail() });
     return true;
   }
@@ -172,6 +189,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
    */
   save(form: any) {
     this.submitted = true;
+    // Set referralCode error to null so as to valid the field if nothing is filled
+    if (this.createAccountForm.controls['referralCode'].value === '') {
+      this.createAccountForm.controls['referralCode'].setErrors(null);
+    }
     if (form.valid) {
       this.signUpService.setAccountInfo(form.value);
       this.openTermsOfConditions();
@@ -238,6 +259,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
             this.createAccountForm.controls['captcha'].setErrors({ match: true });
             this.createAccountForm.controls['password'].reset();
             this.createAccountForm.controls['confirmPassword'].reset();
+          } else if (data.responseMessage.responseCode === 5024) {
+            this.createAccountForm.controls['referralCode'].setErrors({ invalidRefCode: true });
           } else {
             this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
           }
@@ -439,7 +462,59 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     if (event.target.value) {
       const enterEmail = event.target.value.replace(/\s/g, '');
       this.createAccountForm.controls[key].setValue(enterEmail);
+      if(key === 'referralCode' && !this.showSpinner) {
+        this.showClearBtn = true;
+      } else {
+        this.showClearBtn = false;
+      }
+    } else {
+      if(key === 'referralCode') {
+        this.showClearBtn = false;
+      }
     }
+  }
+
+  // Referral Code changes
+
+  applyReferralCode(event) {
+    if (this.createAccountForm.controls['referralCode'].value) {
+      // Show the spinner
+      this.createAccountForm.controls['referralCode'].setErrors(null);
+      this.showClearBtn = false;
+      this.showSpinner = true;
+      // Call validate referral code, replace below code
+      this.signUpService.validateReferralCode(this.createAccountForm.controls['referralCode'].value).subscribe((response)=>{
+        if (response.responseMessage['responseCode'] === 6012) {
+          this.showSpinner = false;
+          this.refCodeValidated = true;
+        } else {
+          this.showSpinner = false;
+          this.showClearBtn = true;
+          this.createAccountForm.controls['referralCode'].setErrors({ invalidRefCode: true });
+        }
+      });
+    }
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
+  clearReferralCode(event) {
+    this.createAccountForm.controls['referralCode'].setValue('');
+    this.showClearBtn = false;
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
+  createAnimation() {
+    const animationData = ANIMATION_DATA.MO_SPINNER;
+    bodymovin.loadAnimation({
+      container: document.getElementById('mo_spinner'), // Required
+      path: '/app/assets/animation/mo_spinner.json', // Required
+      renderer: 'svg', // Required
+      loop: true, // Optional
+      autoplay: true, // Optional
+      animationData: animationData
+    })
   }
 }
 
