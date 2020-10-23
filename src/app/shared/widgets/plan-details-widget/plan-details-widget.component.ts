@@ -189,6 +189,11 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
         });
       }
       this.highlights.push({ title: 'Needs Medical Underwriting:', description: this.data.underWritting });
+      if (this.type === 'long-term care' && this.data.premium.payoutType) {
+        if (this.isDirect) {
+          this.highlights.push({ title: 'Payout Type:', description: this.data.premium.payoutType });
+        }
+      }
     }
   }
 
