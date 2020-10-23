@@ -116,5 +116,10 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
     this.directService.setLongTermCareForm(form.value);
     return true;
   }
-
+  showMonthlyPayoutModal() {
+    this.directService.showToolTipModal(
+      this.translate.instant('LONG_TERM_CARE.TOOLTIP.LONG_TERM_CARE.TITLE'),
+      this.translate.instant('LONG_TERM_CARE.TOOLTIP.LONG_TERM_CARE.MESSAGE')
+    );
+  }
 }

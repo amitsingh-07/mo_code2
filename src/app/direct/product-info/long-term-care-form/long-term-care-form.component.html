@@ -47,7 +47,10 @@
   <div class="form-group direct-form second-form">
       <div class="flex-row">
         <div class="flex-col-3">
-          <label for="name" id="getStrLbl6">{{ 'LONG_TERM_CARE.MONTHLY_PAYOUT.TITLE' | translate}}</label>
+          <div class="form-group-with-bg--content-label" for="name">
+              <div class="with-help-icon">{{ 'LONG_TERM_CARE.MONTHLY_PAYOUT.TITLE' | translate}}
+            <span class="help-icon" (click)="showMonthlyPayoutModal()"></span></div>
+          </div>
         </div>
         <div class="flex-col-8 direct-form-grp">
           <div class="dropdown-control">
@@ -65,7 +68,7 @@
             </div>
         </div> 
       </div>
-      <div class="flex-row">
+      <div class="flex-row" [hidden] = '!payoutEnabled'> 
         <div class="flex-col-3">
           <label for="name" id="getStrLbl6">{{ 'LONG_TERM_CARE.PAYOUT_TYPE' | translate}}</label>
         </div>

@@ -90,7 +90,13 @@
       },
      "PAYOUT_TYPE": "Payout Type",
      "PAYOUT_TYPE_1": "Escalating",
-     "PAYOUT_TYPE_2": "Level"
+     "PAYOUT_TYPE_2": "Level",
+     "TOOLTIP": {
+      "LONG_TERM_CARE": {
+        "TITLE": "Monthly Payout",
+        "MESSAGE": "If you are on CareShield Life, please choose the <b>additional</b> monthly payout you wish to have above your CareShield Life coverage."
+      }
+    }
     },
     "OCCUPATIONAL_DISABILITY": {
       "EMPLOYMENT_TYPE":"Employment Type",
