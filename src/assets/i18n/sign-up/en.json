@@ -83,6 +83,13 @@
           "MATCH": "Password does not match confirmation"
         }
       },
+      "REFERRAL_CODE": {
+        "TITLE": "Have a Referral Code?",
+        "LABEL": "Referral Code (optional)",
+        "ERROR": {
+          "INVALID": "Sorry, this Referral Code is invalid!"
+        }
+      },
       "CAPTCHA": {
         "ERROR": {
           "REQUIRED": "Enter characters shown in the image",
