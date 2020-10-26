@@ -4,7 +4,7 @@
     padding: 0;
     @include allmobiles{
         padding: 60px 0 0 !important;
-        min-height: calc(100vh - 45px);
+        min-height: 100vh;
     }
     @include phablet{
         padding: 60px 0 0 !important;
