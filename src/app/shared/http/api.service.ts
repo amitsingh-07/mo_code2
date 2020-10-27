@@ -645,4 +645,11 @@ export class ApiService {
       );
   }
 
+  validateReferralCode(payload) {
+    return this.http.post(apiConstants.endpoint.validateReferralCode, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
 }
