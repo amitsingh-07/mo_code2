@@ -230,4 +230,12 @@ app-direct-results {
   opacity: 0.6;
   color: $white-color;
 }
+.no-result-msg {
+    width: 600px;
+    margin: 0 auto;
+    @include allmobiles {
+      width: 100%;
+      padding: 15px;
+    }
+  }
 }
