@@ -27,7 +27,7 @@ export class TransferStatusComponent implements OnInit {
     this.navbarService.setNavbarVisibility(false);
     this.navbarService.setNavbarMode(10);
     this.navbarService.setNavbarMobileVisibility(false);
-    this.renderer.addClass(document.body, 'transfer-body');
+    this.renderer.addClass(document.body, 'transfer-success-body');
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.getTransferEntityList();
   }
@@ -37,7 +37,7 @@ export class TransferStatusComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.renderer.removeClass(document.body, 'transfer-body');
+    this.renderer.removeClass(document.body, 'transfer-success-body');
   }
 
   getTransferEntityList() {
