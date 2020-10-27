@@ -31,6 +31,8 @@
         "TITLE": "Identification Number",
         "MESSAGE": "<div class='pt5'>Please enter your details as follows:<br> <div class='flex space-btwn mt10'><div class='flex-col-6'>NRIC Number:</div><div class='flex-col-6'>Singapore Citizens/ Permanent Residents</div></div><div class='flex space-btwn mt10'><div class='flex-col-6'>FIN Number:</div><div class='flex-col-6'>Foreigners</div></div><div class='flex space-btwn mt10'><div class='flex-col-6'>Birth Cert Number:</div><div class='flex-col-6'>Children below 16 years old</div></div><div class='flex space-btwn mt10'><div class='flex-col-6'>Passport Number:</div><div class='flex-col-6'>All others</div></div></div>"
       },
+      "NON_ENGLISH_SPEAKER_TITLE": "Please check the below checkbox if you are producing a will for a person who does not understand English.",
+      "NON_ENGLISH_SPEAKER_LABEL": "I am using this service to produce a will for a person who does not understand English.",
       "RELATIONSHIP_LIST": [{
           "text": "Parent",
           "value": "parent"

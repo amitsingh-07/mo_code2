@@ -315,6 +315,47 @@
     border-right: 0 !important;
 }
 
+.checkbox-title {
+    font-family: $muli-bold;
+    font-size: 18px;
+    color: $dark-teal-color;
+    line-height: normal;
+    letter-spacing: -0.34px;
+}
+
+
+.non-eng-div {
+    padding: 0 35px;
+
+    @include allmobiles {
+        padding: 0 20px;
+    }
+
+    .checkbox-container {
+        display: flex;
+        align-items: center;
+        @include allmobiles {
+            input[type='checkbox'] + label {
+                background-position: left 6px;
+            }
+
+            align-items: flex-start;
+        }
+        padding: 20px;    
+        border-radius: 6px;
+        border: solid 1px rgba(0, 135, 134, 0.4);
+    
+        label {
+            font-family: $muli-semi-bold;
+            color: $black-color;
+            font-size: 16px;
+            line-height: 1.5;
+            letter-spacing: -0.17px;
+    
+        }
+    }
+}
+
 .reminder{
     width: 650px;
     text-align: center;

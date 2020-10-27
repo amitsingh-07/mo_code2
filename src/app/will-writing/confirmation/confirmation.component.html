@@ -332,11 +332,18 @@
               </div>
             </div>
           </div>
+          <div class="non-eng-div mt20">
+            <span class="checkbox-title">{{'WILL_WRITING.COMMON.NON_ENGLISH_SPEAKER_TITLE' | translate}}</span>
+            <div class="checkbox-button checkbox-container mt20">
+              <input id="non-english-checkbox" type="checkbox" class="field checkbox">
+              <label for="non-english-checkbox">{{'WILL_WRITING.COMMON.NON_ENGLISH_SPEAKER_LABEL' | translate}}</label>
+            </div>
+          </div>
         </div>
-        <div class="reminder mb20" innerHTML="{{'WILL_WRITING.CONFIRMATION.REMINDER' | translate}}"></div>
+        <div class="reminder mt30 mb20" innerHTML="{{'WILL_WRITING.CONFIRMATION.REMINDER' | translate}}"></div>
         <div class="stamp-block">
           <div class="col-lg-5 col-sm-12 col-md-5">
-            <button type="button" (click)="goNext()" class="btn btn__footer--fixed width100 btn-primary">
+            <button type="button" (click)="goNext()" class="btn btn__footer--fixed width100 btn-primary mt20">
               <span *ngIf="!existingWill">{{'LABEL.CONTINUE' | translate}}</span>
               <span *ngIf="existingWill">{{'LABEL.SAVE_CONTINUE' | translate}}</span>
             </button>
