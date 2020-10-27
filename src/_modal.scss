@@ -1099,7 +1099,7 @@ body.modal-open::-webkit-scrollbar {
 
   @include desktop {
     .modal-body {
-      height: 100vh;
+      max-height: 100vh;;
       overflow-y: auto;
       padding-bottom: 50px;
     }

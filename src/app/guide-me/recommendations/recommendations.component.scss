@@ -48,7 +48,7 @@ app-recommendations {
     background: $app-backgrnd-color;
 
     @include allmobiles {
-      margin-top: 107px;
+      margin-top: 97px;
     }
   }
   .comparePlans_btn{
@@ -122,22 +122,18 @@ app-recommendations {
     padding: 20px 10px;
     max-width: 1024px;
     margin: 0 auto;
+    @include allmobiles {
+      margin-top: -1px;
+      padding: 15px 10px 0;
+    }
   }
-
-  .recommendation-carousel-item {
-    // width:800px;
-    // margin:0 auto;
-  }
-
   .carousel-content {
     background-color: #fff;
     border-radius: 10px;
     padding: 20px;
     color: #333;
-    //min-height: 550px;
     @include allmobiles {
       padding: 0px;
-      //min-height: 290px;
     }
   }
 
