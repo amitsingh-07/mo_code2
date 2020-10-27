@@ -113,6 +113,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.route.queryParams.subscribe((params) => {
       if (params['referral_code'] && this.createAccountForm.controls['referralCode']) {
         this.createAccountForm.controls['referralCode'].setValue(params['referral_code']);
+        this.showClearBtn = true;
       }
     });
     this.createAnimation();
