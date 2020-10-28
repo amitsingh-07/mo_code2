@@ -644,5 +644,12 @@ export class SignUpService {
       fundTypeId: this.signUpFormData.fundTypeId
     };
   }
+
+  validateReferralCode(referralCode) {
+    // API Call here
+    const data = {"referralCode": referralCode};
+    return this.apiService.validateReferralCode(data);
+  }
+
   
 }

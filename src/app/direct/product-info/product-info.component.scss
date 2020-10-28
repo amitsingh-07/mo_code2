@@ -51,4 +51,12 @@ app-product-info {
       //padding-bottom: 60px !important;
     }
   }
+  @include allmobiles {
+    .prod-info.show {
+      top: 105px;
+    }
+    .prod-info .prod-cat-list__wrapper.show {
+      background-color: $white-color;
+    }
+  }
 }
