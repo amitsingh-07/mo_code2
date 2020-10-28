@@ -81,7 +81,6 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.getPortfolioDetails();
-    this.getInvestmentCriteria();
   }
 
   getPortfolioDetails() {
@@ -92,6 +91,7 @@ export class ConfirmPortfolioComponent implements OnInit {
           this.authService.saveEnquiryId(data.objectList.enquiryId);
         }
         this.portfolio = data.objectList;
+        this.getInvestmentCriteria(this.portfolio);
         if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT) {
           this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO });
           this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
@@ -254,9 +254,11 @@ export class ConfirmPortfolioComponent implements OnInit {
       });
   }
 
-  getInvestmentCriteria() {
-    this.investmentCommonService.getInvestmentCriteria().subscribe((data) => {
-      this.investmentCriteria = data;
-    });
+  getInvestmentCriteria(portfolioValues) {
+    if (portfolioValues.portfolioType) {
+      this.investmentCommonService.getInvestmentCriteria(portfolioValues.portfolioType).subscribe((data) => {
+        this.investmentCriteria = data;
+      });
+    }
   }
 }
