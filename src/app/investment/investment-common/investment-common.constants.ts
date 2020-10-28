@@ -51,5 +51,9 @@ export let INVESTMENT_COMMON_CONSTANTS = {
               }
             }
           ]
+    },
+    ALLOCATION_DETAILS : {
+      MATURITY: 'maturity',
+      CREDIT_RATING: 'credit rating'
     }
 };
