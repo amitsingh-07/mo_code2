@@ -496,13 +496,13 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
           setTimeout(()=>{
             this.showSpinner = false;
             this.refCodeValidated = true;
-          }, 2000);
+          }, 1200);
         } else {
           setTimeout(()=>{
             this.showSpinner = false;
             this.showClearBtn = true;
             this.createAccountForm.controls['referralCode'].setErrors({ invalidRefCode: true });
-          }, 2000);
+          }, 1200);
         }
       });
     }
