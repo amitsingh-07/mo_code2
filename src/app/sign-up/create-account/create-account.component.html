@@ -237,7 +237,9 @@
                 <input type="text" id="crtAccInpt9" formControlName="referralCode" (keyup)="onKeyupEvent($event, 'referralCode')" autocomplete="off" class="form-control" [readonly]="refCodeValidated || showSpinner" required>
                 <label class="form-control-placeholder" for="referralCode">{{'CREATE_ACCOUNT.FORM.REFERRAL_CODE.LABEL' | translate}}</label>
                 <img id="cross-btn" *ngIf="showClearBtn && !refCodeValidated" (click)="clearReferralCode($event)" src="assets/images/button-clear-txt.svg" />
-                <img *ngIf="!refCodeValidated && !showSpinner" (click)="applyReferralCode($event)" src="{{showClearBtn? 'assets/images/button-apply-orange.svg': 'assets/images/button-apply.svg'}}"/>
+                <div *ngIf="!refCodeValidated && !showSpinner" class="spinner-container" (click)="applyReferralCode($event)" [ngStyle]="{'background-color': showClearBtn? '#ff872f' : '#00a7a7'}">
+                  <span>{{'CREATE_ACCOUNT.FORM.REFERRAL_CODE.APPLY_BTN' | translate}}</span>
+                </div>
                 <img id="green-tick" *ngIf="refCodeValidated" src="assets/images/icon-form-tick.svg" />
                 <div [ngStyle]="{'display': showSpinner? 'flex' : 'none'}" class="spinner-container">
                   <div id="mo_spinner"></div>

@@ -86,6 +86,7 @@
       "REFERRAL_CODE": {
         "TITLE": "Have a Referral Code?",
         "LABEL": "Referral Code (optional)",
+        "APPLY_BTN": "Apply",
         "ERROR": {
           "INVALID": "Sorry, this Referral Code is invalid!",
           "APPLY": "Apply to use Referral Code"
