@@ -96,12 +96,14 @@ export class YourInvestmentAmountComponent implements OnInit {
     if (typeof this.monthlyInvestmentChkBoxVal === 'undefined') {
       this.monthlyInvestmentChkBoxVal = true;
     }
-    this.getInvestmentCriteria();
+    this.getInvestmentCriteria(this.selectedPortfolioType);
     this.buildInvestAmountForm();
   }
 
-  getInvestmentCriteria() {
-    this.investmentCommonService.getInvestmentCriteria().subscribe((data) => {
+  getInvestmentCriteria(selectedPortfolioValue) {
+    const portfolioType = selectedPortfolioValue === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO
+      ? INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER : INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT;
+    this.investmentCommonService.getInvestmentCriteria(portfolioType).subscribe((data) => {
       this.investmentCriteria = data;
     });
   }
