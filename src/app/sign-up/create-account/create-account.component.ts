@@ -190,13 +190,20 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
    */
   save(form: any) {
     this.submitted = true;
-    // Set referralCode error to null so as to valid the field if nothing is filled
-    if (this.createAccountForm.controls['referralCode'].value === '') {
-      this.createAccountForm.controls['referralCode'].setErrors(null);
-    }
+    this.validateReferralCode();
     if (form.valid) {
       this.signUpService.setAccountInfo(form.value);
       this.openTermsOfConditions();
+    }
+  }
+
+  validateReferralCode() {
+    // Check if referral code is empty or not
+    // If not empty, check if the apply button has been press
+    if (this.createAccountForm.controls['referralCode'].value === '') {
+      this.createAccountForm.controls['referralCode'].setErrors(null);
+    } else if (!this.refCodeValidated && !this.account.referralCode.errors?.invalidRefCode ) {
+      this.createAccountForm.controls['referralCode'].setErrors({ applyRefCode: true });
     }
   }
 
@@ -486,12 +493,16 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       // Call validate referral code, replace below code
       this.signUpService.validateReferralCode(this.createAccountForm.controls['referralCode'].value).subscribe((response)=>{
         if (response.responseMessage['responseCode'] === 6012) {
-          this.showSpinner = false;
-          this.refCodeValidated = true;
+          setTimeout(()=>{
+            this.showSpinner = false;
+            this.refCodeValidated = true;
+          }, 2000);
         } else {
-          this.showSpinner = false;
-          this.showClearBtn = true;
-          this.createAccountForm.controls['referralCode'].setErrors({ invalidRefCode: true });
+          setTimeout(()=>{
+            this.showSpinner = false;
+            this.showClearBtn = true;
+            this.createAccountForm.controls['referralCode'].setErrors({ invalidRefCode: true });
+          }, 2000);
         }
       });
     }
