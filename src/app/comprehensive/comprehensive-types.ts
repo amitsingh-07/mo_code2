@@ -228,6 +228,8 @@ export interface IInsurancePlan {
     haveLongTermElderShield: number;
     longTermElderShieldAmount: number;
     otherLongTermCareInsuranceAmount: number;
+    shieldType:string;
+    haveLongTermPopup:boolean;
 }
 export interface IRetirementPlan {
     enquiryId: number;
