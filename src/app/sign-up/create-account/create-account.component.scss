@@ -137,13 +137,22 @@ app-create-account {
       display: flex;
       justify-content:center;
       align-items: center;
-      // width: 75px;
+      width: 75px;
       height: 40px;
       padding: 0 25.5px; 
       border-radius:6px;
       margin-top: 2.5px;
       background-color: $crusta-orange-color;
+      cursor: pointer;
   
+      span {
+        font-family: $muli-semi-bold;
+        font-size: 14px;
+        line-height: normal;
+        letter-spacing: -0.26px;
+        color: $white-color;
+      }
+
       #mo_spinner {
         width:24px; 
         height:24px;
