@@ -243,9 +243,10 @@
                   <div id="mo_spinner"></div>
                 </div>
               </div>
-              <div *ngIf="account.referralCode.errors?.invalidRefCode" class="ref-code-error mt5">
+              <div *ngIf="account.referralCode.errors?.invalidRefCode || account.referralCode.errors?.applyRefCode" class="ref-code-error mt5">
                 <img src="assets/images/alert.svg" />
-                <span>{{'CREATE_ACCOUNT.FORM.REFERRAL_CODE.ERROR.INVALID' | translate}}</span>
+                <span *ngIf="account.referralCode.errors?.invalidRefCode">{{'CREATE_ACCOUNT.FORM.REFERRAL_CODE.ERROR.INVALID' | translate}}</span>
+                <span *ngIf="account.referralCode.errors?.applyRefCode">{{'CREATE_ACCOUNT.FORM.REFERRAL_CODE.ERROR.APPLY' | translate}}</span>
               </div>
             </div>
           </div>

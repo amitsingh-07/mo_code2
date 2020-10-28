@@ -87,7 +87,8 @@
         "TITLE": "Have a Referral Code?",
         "LABEL": "Referral Code (optional)",
         "ERROR": {
-          "INVALID": "Sorry, this Referral Code is invalid!"
+          "INVALID": "Sorry, this Referral Code is invalid!",
+          "APPLY": "Apply to use Referral Code"
         }
       },
       "CAPTCHA": {
