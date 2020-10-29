@@ -189,7 +189,7 @@
               </div>
             </div>
           </div>
-          <div class="flex-row mb10">
+          <div class="flex-row mb20">
             <div class="flex-col-12 stretch">
               <div
                 [ngClass]="{'inline-error': (submitted && account.confirmPassword.errors?.required) || (!confirmPwdFocus && !account.password.errors && account.confirmPassword.errors?.notEquivalent)}"
@@ -230,6 +230,28 @@
               </div>
             </div>
           </div>
+          <div class="flex-row mb30">
+            <div class="flex-col-12 stretch">
+              <span class="ref-code-title">{{'CREATE_ACCOUNT.FORM.REFERRAL_CODE.TITLE' | translate}}</span>
+              <div class="ref-code-input form-group-floating-label" [ngClass]="{'inline-error': (submitted && account.referralCode.errors?.invalidRefCode) || (account.referralCode.errors?.invalidRefCode)}">
+                <input type="text" id="crtAccInpt9" formControlName="referralCode" (keyup)="onKeyupEvent($event, 'referralCode')" autocomplete="off" class="form-control" [readonly]="refCodeValidated || showSpinner" required>
+                <label class="form-control-placeholder" for="referralCode">{{'CREATE_ACCOUNT.FORM.REFERRAL_CODE.LABEL' | translate}}</label>
+                <img id="cross-btn" *ngIf="showClearBtn && !refCodeValidated" (click)="clearReferralCode($event)" src="assets/images/button-clear-txt.svg" />
+                <div *ngIf="!refCodeValidated && !showSpinner" class="spinner-container" (click)="applyReferralCode($event)" [ngStyle]="{'background-color': showClearBtn? '#ff872f' : '#00a7a7'}">
+                  <span>{{'CREATE_ACCOUNT.FORM.REFERRAL_CODE.APPLY_BTN' | translate}}</span>
+                </div>
+                <img id="green-tick" *ngIf="refCodeValidated" src="assets/images/icon-form-tick.svg" />
+                <div [ngStyle]="{'display': showSpinner? 'flex' : 'none'}" class="spinner-container">
+                  <div id="mo_spinner"></div>
+                </div>
+              </div>
+              <div *ngIf="account.referralCode.errors?.invalidRefCode || account.referralCode.errors?.applyRefCode" class="ref-code-error mt5">
+                <img src="assets/images/alert.svg" />
+                <span *ngIf="account.referralCode.errors?.invalidRefCode">{{'CREATE_ACCOUNT.FORM.REFERRAL_CODE.ERROR.INVALID' | translate}}</span>
+                <span *ngIf="account.referralCode.errors?.applyRefCode">{{'CREATE_ACCOUNT.FORM.REFERRAL_CODE.ERROR.APPLY' | translate}}</span>
+              </div>
+            </div>
+          </div>
           <div class="flex-row mb10">
             <span class="mb20">{{ 'COMMON.CAPTCHA_TITLE' | translate}}</span>
             <div class="flex-col-6 stretch">
@@ -257,6 +279,7 @@
               </div>
             </div>
           </div>
+          <div class="divider mt30 mb30"></div>
           <div class="checkbox-button one-label mb10" style="display:none">
             <input id="termsOfConditions" name="termsOfConditions" formControlName="termsOfConditions" type="checkbox"
               class="field checkbox" value="I agree to MoneyOwl's Terms of Use and Privacy Policy." required>
@@ -264,7 +287,7 @@
               <div class="title" [innerHtml]="'CREATE_ACCOUNT.FORM.TERMS_OF_USE' | translate"></div>
             </label>
           </div>
-          <div class="checkbox-button one-label">
+          <div class="checkbox-button one-label mb10">
             <input id="marketingAcceptance" name="marketingAcceptance" formControlName="marketingAcceptance"
               type="checkbox" class="field checkbox"
               value="I consent to receiving marketing materials from MoneyOwl, its partners and related organisations, and to disclosing my personal data to the same.">
@@ -273,7 +296,7 @@
             </label>
           </div>
           <button id="nextDependentBtn" [disabled]="createAccountTriggered" (click)="save(createAccountForm)"
-            type="button" class="btn btn__footer--fixed btn-primary width100">{{
+            type="button" class="btn btn__footer--fixed btn-primary width100 mt20">{{
             'COMMON.CONTINUE' | translate }}</button>
         </form>
       </div>

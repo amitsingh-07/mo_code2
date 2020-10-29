@@ -38,4 +38,6 @@ export class SignUpFormData {
   srsOperatorBank: any;
   customerId: number;
   fundTypeId: number;
+  // referral code
+  referralCode: string;
 }
