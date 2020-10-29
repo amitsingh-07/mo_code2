@@ -373,10 +373,10 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  saveProfileSrsAccountDetails(data, customerPortfolioId) {
+  saveProfileSrsAccountDetails(data, customerId) {
     return this.http.post(
       // tslint:disable-next-line: max-line-length
-      investmentApiConstants.endpoint.investmentAccount.saveProfileSrsAccountDetails.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId), data)
+      investmentApiConstants.endpoint.investmentAccount.saveProfileSrsAccountDetails.replace('$CUSTOMER_ID$', customerId), data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

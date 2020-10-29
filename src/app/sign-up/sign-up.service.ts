@@ -631,8 +631,10 @@ export class SignUpService {
   setEditProfileSrsDetails(accountNumber, srsBankOperator, customerId, fundTypeId) {
     this.signUpFormData.srsAccountNumber = accountNumber;
     this.signUpFormData.srsOperatorBank = srsBankOperator;
-    this.signUpFormData.customerId = customerId;
-    this.signUpFormData.fundTypeId = fundTypeId;
+    this.signUpFormData.customerId = customerId;    
+    if (fundTypeId) {
+      this.signUpFormData.fundTypeId = fundTypeId;
+    }
     this.commit();
   }
 
