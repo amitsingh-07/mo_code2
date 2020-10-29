@@ -93,7 +93,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     this.cashBalance = this.manageInvestmentsService.getUserCashBalance();
     this.fundDetails = this.manageInvestmentsService.getFundingDetails();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
-    this.getInvestmentCriteria();
+    
     this.topForm = this.formBuilder.group({
       portfolio: [this.formValues.selectedCustomerPortfolio, Validators.required],
       Investment: [
@@ -108,7 +108,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     if (this.formValues['selectedCustomerPortfolio']) {
       this.getMonthlyInvestmentInfo(this.formValues['selectedCustomerPortfolioId']);
       this.getAwaitingOrPendingInfo(this.formValues['selectedCustomerPortfolioId'],
-        this.awaitingOrPendingReq(this.formValues.selectedCustomerPortfolio.fundingTypeValue));
+      this.awaitingOrPendingReq(this.formValues.selectedCustomerPortfolio.fundingTypeValue));
     }
     if (this.formValues['selectedCustomerPortfolio'] &&
       (this.formValues['selectedCustomerPortfolio'].fundingTypeValue === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS)) {
@@ -160,6 +160,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
 
   setDropDownValue(key, value) {
+    this.getInvestmentCriteria(value.portfolioCategory);
     this.topForm.controls[key].setValue(value);
     this.getMonthlyInvestmentInfo(value['customerPortfolioId']);
     this.getAwaitingOrPendingInfo(value['customerPortfolioId'],
@@ -169,8 +170,8 @@ export class TopUpComponent implements OnInit, OnDestroy {
     }
   }
 
-  getInvestmentCriteria() {
-    this.investmentCommonService.getInvestmentCriteria().subscribe((data) => {
+  getInvestmentCriteria(portfolioType) {
+    this.investmentCommonService.getInvestmentCriteria(portfolioType).subscribe((data) => {
       this.investmentCriteria = data;
       this.setOnetimeMinAmount(data);
     });
@@ -184,8 +185,10 @@ export class TopUpComponent implements OnInit, OnDestroy {
       this.isAmountExceedBalance = false;
     }
   }
-
-  selectedInvestment(investmentType, minAmount) {
+  
+  selectedInvestment(investmentType, amount) {
+    const minAmount = investmentType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.ONE_TIME.VALUE ? amount.oneTimeInvestmentMinimum
+      : amount.monthlyInvestmentMinimum;
     this.manageInvestmentsService.setInvestmentValue(minAmount);
     this.formValues.Investment = investmentType;
     this.isAmountExceedBalance = false;
