@@ -253,7 +253,7 @@
             </div>
           </div>
           <div class="flex-row mb10">
-            <span class="mb20">{{ 'COMMON.CAPTCHA_TITLE' | translate}}</span>
+            <span class="captcha-title mb20">{{ 'COMMON.CAPTCHA_TITLE' | translate}}</span>
             <div class="flex-col-6 stretch">
               <div class="form-group-captcha-wrapper">
                 <img [src]="(captchaSrc | secure | async) || ''" class="captcha-img" />
