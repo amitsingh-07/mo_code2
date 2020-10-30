@@ -4,6 +4,7 @@ export interface IAboutMe {
     gender: string;
     maritalStatus: string;
     noOfChildren: number;
+    isEngSpeaker: boolean;
 }
 
 export interface ISpouse {
@@ -68,6 +69,7 @@ export interface IwillProfile {
     maritalStatusCode: string;
     noOfChildren: number;
     promoCode?: IPromoCode;
+    isEngSpeaker: string;
 }
 
 export interface IWillProfileMembers {

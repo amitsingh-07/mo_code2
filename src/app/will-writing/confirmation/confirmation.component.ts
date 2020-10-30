@@ -6,6 +6,7 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { WillWritingFormData } from '../will-writing-form-data';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
+import { IAboutMe } from './../will-writing-types';
 import { IBeneficiary } from '../will-writing-types';
 import { WillWritingApiService } from '../will-writing.api.service';
 import { WILL_WRITING_CONFIG } from '../will-writing.constants';
@@ -30,6 +31,8 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   willBeneficiary: IBeneficiary[];
   createWillTriggered = false;
 
+  abtMeInfo: IAboutMe
+
   constructor(
     private translate: TranslateService,
     private willWritingService: WillWritingService,
@@ -53,6 +56,8 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
     this.navbarService.setNavbarMode(4);
     this.willWritingService.setFromConfirmPage(false);
     this.willWritingFormData = this.willWritingService.getWillWritingFormData();
+    this.willWritingService.setIsWillCreated
+    this.abtMeInfo = this.willWritingFormData.aboutMe;
     const estateDistribution = this.willWritingFormData.beneficiary.filter((beneficiary) => beneficiary.selected === true);
     this.willBeneficiary = estateDistribution;
     for (const beneficiary of estateDistribution) {
@@ -80,9 +85,14 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
     this.router.navigate([url]);
   }
 
+  setIsEngSpeaker(event) {
+    this.abtMeInfo.isEngSpeaker = event.target.checked;
+  }
+
   goNext() {
     if (!this.createWillTriggered && this.willWritingService.checkDuplicateUinAll()) {
       this.createWillTriggered = true;
+      this.willWritingService.setAboutMeInfo(this.abtMeInfo);
       if (this.authService.isSignedUser()) {
         let createUpdateWill;
         if (!this.willWritingService.getIsWillCreated()) {

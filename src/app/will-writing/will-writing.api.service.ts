@@ -73,7 +73,8 @@ export class WillWritingApiService {
             genderCode: this.gender.get(will.aboutMe.gender),
             maritalStatusCode: this.maritalStatus.get(will.aboutMe.maritalStatus),
             noOfChildren: will.aboutMe.noOfChildren,
-            promoCode: will.promoCode
+            promoCode: will.promoCode,
+            isEngSpeaker: will.aboutMe?.isEngSpeaker === true? 'Y':'N' 
         };
 
         if (this.willWritingService.getIsWillCreated()) {
