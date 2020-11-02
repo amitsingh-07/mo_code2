@@ -38,6 +38,8 @@ export class AddUpdateSrsComponent implements OnInit, OnDestroy {
   srsDetail;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
+  isEdit = true;
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -233,6 +235,7 @@ export class AddUpdateSrsComponent implements OnInit, OnDestroy {
     if (!form.valid) {
       return false;
     } else {
+      this.isEdit = false;
       const formValue = form.getRawValue();
       const reqParams = {};
       const opertorId = this.getOperatorIdByName(formValue.srsOperator.name, this.srsAgentBankList);
@@ -241,13 +244,14 @@ export class AddUpdateSrsComponent implements OnInit, OnDestroy {
         operatorId: opertorId ? opertorId : null
       };
       this.investmentCommonService.saveProfileSrsAccountDetails(reqParams, this.srsDetail.customerId).subscribe(() => {
+        this.isEdit = true;
         this.manageInvestmentsService.setSrsAccountDetails(null);
         this.manageInvestmentsService.setSrsSuccessFlag(true);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
-      },
-        () => {
-          this.investmentAccountService.showGenericErrorModal();
-        });
+      }, () => {
+        this.isEdit = true;
+        this.investmentAccountService.showGenericErrorModal();
+      });
     }
   }
 
