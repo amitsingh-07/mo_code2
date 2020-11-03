@@ -628,13 +628,10 @@ export class SignUpService {
   }
 
   //srs details
-  setEditProfileSrsDetails(accountNumber, srsBankOperator, customerId, fundTypeId?) {
+  setEditProfileSrsDetails(accountNumber, srsBankOperator, customerId) {
     this.signUpFormData.srsAccountNumber = accountNumber;
     this.signUpFormData.srsOperatorBank = srsBankOperator;
-    this.signUpFormData.customerId = customerId;    
-    if (fundTypeId) {
-      this.signUpFormData.fundTypeId = fundTypeId;
-    }
+    this.signUpFormData.customerId = customerId;
     this.commit();
   }
 
@@ -642,8 +639,7 @@ export class SignUpService {
     return {
       srsAccountNumber: this.signUpFormData.srsAccountNumber,
       srsOperatorBank: this.signUpFormData.srsOperatorBank,
-      customerId: this.signUpFormData.customerId,
-      fundTypeId: this.signUpFormData.fundTypeId
+      customerId: this.signUpFormData.customerId
     };
   }
 

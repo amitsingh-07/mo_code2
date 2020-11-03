@@ -37,13 +37,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   personalData: any;
   fullName: string;
   compinedName: string;
-  // compinednricNum: string;
-  // compinedPassport: string;
   residentialAddress: any;
-  // compinedAddress: string;
-  // compinedMailingAddress: string;
   empolymentDetails: any;
-  // compinedEmployerAddress: any;
   bankDetails: any;
   mailingAddress: any;
   contactDetails: any;
@@ -93,6 +88,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.showSRSSuccessModel();
     });
 
+    // Hidden Country list for future use
     // this.getNationalityCountryList();
 
     this.authService.get2faAuthEvent.subscribe((token) => {
@@ -121,7 +117,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.getSrsDetails();
     });
 
-    // this.isMailingAddressSame = true;
+    this.isMailingAddressSame = true;
 
     // Check if iFast is in maintenance
     this.configService.getConfig().subscribe((config) => {
@@ -204,6 +200,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
             this.fullName = this.personalData.fullName ?
               this.personalData.fullName : this.personalData.firstName + ' ' + this.personalData.lastName;
             this.compinedName = this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
+            // Hidden passport details for future use
             // this.compinednricNum = this.setNric(this.personalData.nricNumber);
             // Hidden the passport details
             // if (this.personalData.passportNumber) {
@@ -215,6 +212,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
             this.constructDate(this.personalData.dateOfBirth);
           }
         }
+        // Hidden employer address for future use
         // // tslint:disable-next-line:max-line-length
         // if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress) {
         //   this.employerAddress = this.empolymentDetails.employerDetails.detailedemployerAddress;
