@@ -113,7 +113,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
     this.authService.get2faUpdateEvent.subscribe(() => {
       this.getEditProfileData();
-      this.showAddBankDetails(this.investmentStatus);
       this.getSrsDetails();
     });
 
@@ -184,10 +183,12 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           // this.empolymentDetails = data.objectList.employmentDetails;
           this.empolymentDetails = null;
 
-          // Hidden the bank details
-          // if (data.objectList.customerBankDetail) {
-          //   this.bankDetails = data.objectList.customerBankDetail[0];
-          // }
+          if (data.objectList.customerBankDetail) {
+            this.bankDetails = data.objectList.customerBankDetail[0];
+          }
+          this.showAddBankDetails(this.investmentStatus);
+          
+          // Hidden the mailing address for future use
           // if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
           //   this.mailingAddress = data.objectList.contactDetails.mailingAddress;
           //   this.isMailingAddressSame = false;
