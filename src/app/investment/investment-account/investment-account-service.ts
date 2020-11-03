@@ -129,6 +129,7 @@ export class InvestmentAccountService {
   setDefaultValueForFormData() {
     this.investmentAccountFormData.isMailingAddressSame =
       INVESTMENT_ACCOUNT_CONSTANTS.residential_info.isMailingAddressSame;
+      this.commit();
   }
   clearResidentialAddressFormData() {
     this.investmentAccountFormData.country = null;
