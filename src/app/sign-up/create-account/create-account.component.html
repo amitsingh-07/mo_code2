@@ -233,7 +233,7 @@
           <div class="flex-row mb30">
             <div class="flex-col-12 stretch">
               <span class="ref-code-title">{{'CREATE_ACCOUNT.FORM.REFERRAL_CODE.TITLE' | translate}}</span>
-              <div class="ref-code-input form-group-floating-label" [ngClass]="{'inline-error': (submitted && account.referralCode.errors?.invalidRefCode) || (account.referralCode.errors?.invalidRefCode)}">
+              <div class="ref-code-input form-group-floating-label" [ngClass]="{'inline-error': (submitted && account.referralCode.errors?.invalidRefCode) || (account.referralCode.errors?.invalidRefCode) || (account.referralCode.errors?.applyRefCode)}">
                 <input type="text" id="crtAccInpt9" formControlName="referralCode" (keyup)="onKeyupEvent($event, 'referralCode')" autocomplete="off" class="form-control" [readonly]="refCodeValidated || showSpinner" required>
                 <label class="form-control-placeholder" for="referralCode">{{'CREATE_ACCOUNT.FORM.REFERRAL_CODE.LABEL' | translate}}</label>
                 <img id="cross-btn" *ngIf="showClearBtn && !refCodeValidated" (click)="clearReferralCode($event)" src="assets/images/button-clear-txt.svg" />
