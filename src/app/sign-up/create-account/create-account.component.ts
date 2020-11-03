@@ -51,7 +51,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   countryCodeOptions;
   captchaSrc: any = '';
   isPasswordValid = true;
-  createAccountTriggered = false;
 
   confirmEmailFocus = false;
   confirmPwdFocus = false;
@@ -65,6 +64,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   showClearBtn: boolean = false;
   refCodeValidated: boolean = false;
   showSpinner: boolean = false;
+  createAccBtnDisabled = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -130,6 +130,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.refreshCaptcha();
       this.loaderService.hideLoader();
     }
+    this.createAccountForm.statusChanges.subscribe((data)=>{
+      if (this.createAccountForm.touched || this.createAccountForm.dirty) {
+        this.createAccBtnDisabled = false;
+      }
+    });
   }
 
   refreshToken() {
@@ -238,11 +243,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
    * request one time password.
    */
   createAccount() {
-    if (!this.createAccountTriggered) {
-      this.createAccountTriggered = true;
+    if (!this.createAccBtnDisabled) {
+      this.createAccBtnDisabled = true;
       this.signUpApiService.createAccount(this.createAccountForm.value.captcha, this.createAccountForm.value.password)
         .subscribe((data: any) => {
-          this.createAccountTriggered = false;
+          this.createAccBtnDisabled = false;
           const responseCode = [6000, 6008, 5006];
           if (responseCode.includes(data.responseMessage.responseCode)) {
             if (data.responseMessage.responseCode === 6000 ||
@@ -273,7 +278,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
             this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
           }
         }, (err) => {
-          this.createAccountTriggered = false;
+          this.createAccBtnDisabled = false;
         }).add(() => {
           this.submitted = false;
         });
