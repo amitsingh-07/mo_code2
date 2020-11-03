@@ -232,7 +232,7 @@ export class AddUpdateSrsComponent implements OnInit, OnDestroy {
   }
 
   updateSrsSaveCall(form: any) {
-    if (!form.valid) {
+    if (!form.valid && !this.isEdit) {
       return false;
     } else {
       this.isEdit = false;
