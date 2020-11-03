@@ -191,5 +191,19 @@ app-create-account {
     line-height: normal;
     color: $white-color;
   }
+
+  input#crtAccInpt9.form-control:invalid + .form-control-placeholder {
+    color: $dusty-grey-color;
+  }
+
+  input#crtAccInpt9.form-control:focus + .form-control-placeholder {
+    color: $silver-grey-color !important;
+  }
+
+  .btn:disabled {
+    border: solid 1px #00afaf !important;
+    background-color: #3bbcbc !important;
+    color: #00afaf !important;
+  }
 }
 
