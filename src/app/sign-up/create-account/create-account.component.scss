@@ -200,10 +200,10 @@ app-create-account {
     color: $silver-grey-color !important;
   }
 
-  .btn:disabled {
-    border: solid 1px #00afaf !important;
-    background-color: #3bbcbc !important;
-    color: #00afaf !important;
+  .btn:disabled, .btn:disabled:hover {
+    border: solid 1px $btn-disabled-teal-color !important;
+    background-color: $btn-disabled-light-bg !important;
+    color: $btn-disabled-teal-color !important;
   }
 }
 
