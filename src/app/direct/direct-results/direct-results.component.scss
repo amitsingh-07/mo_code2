@@ -229,6 +229,12 @@ app-direct-results {
   text-align: center;
   opacity: 0.6;
   color: $white-color;
+  @include iPhone11 {
+    padding-bottom: 70px;
+  }
+  @include max360 {
+    padding-bottom: 70px;
+  }
 }
 .no-result-msg {
     width: 600px;
