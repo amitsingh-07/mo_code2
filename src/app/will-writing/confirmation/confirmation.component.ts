@@ -86,7 +86,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   }
 
   setIsEngSpeaker(event) {
-    this.abtMeInfo.isEngSpeaker = event.target.checked;
+    this.abtMeInfo.isEngSpeaker = !event.target.checked;
   }
 
   goNext() {
