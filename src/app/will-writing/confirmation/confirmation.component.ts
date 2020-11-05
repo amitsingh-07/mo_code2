@@ -56,7 +56,6 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
     this.navbarService.setNavbarMode(4);
     this.willWritingService.setFromConfirmPage(false);
     this.willWritingFormData = this.willWritingService.getWillWritingFormData();
-    this.willWritingService.setIsWillCreated
     this.abtMeInfo = this.willWritingFormData.aboutMe;
     const estateDistribution = this.willWritingFormData.beneficiary.filter((beneficiary) => beneficiary.selected === true);
     this.willBeneficiary = estateDistribution;
