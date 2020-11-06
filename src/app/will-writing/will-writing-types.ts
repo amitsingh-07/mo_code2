@@ -30,7 +30,7 @@ export interface IGuardian {
 }
 
 export interface IEligibility {
-    singaporean: string;
+    nationality: string;
     assets: string;
     religion: string;
 }
@@ -70,6 +70,9 @@ export interface IwillProfile {
     noOfChildren: number;
     promoCode?: IPromoCode;
     isEngSpeaker: string;
+    nationalityCode?: IEligibility['nationality'];
+    assetsInSg?: IEligibility['assets'];
+    religionCode?: IEligibility['religion'];
 }
 
 export interface IWillProfileMembers {

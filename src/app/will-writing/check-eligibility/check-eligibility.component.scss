@@ -217,19 +217,15 @@
             }
         }
     }
-     .dropdown-menu{
-        z-index: 999;
-        
-            @include allmobiles {
-                max-height: 200px !important;
-                overflow: auto;
-                top: -205px !important;
-                &.show{
-                    // margin-bottom: 85px;
-                }
-            }
-        
-    }
+     .dropdown-menu {
+       z-index: 999;
+
+       @include allmobiles {
+         max-height: 200px !important;
+         overflow: auto;
+       }
+
+     }
 }
 
 .tooltip-content{
