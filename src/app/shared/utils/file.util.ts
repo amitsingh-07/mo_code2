@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { saveAs } from 'file-saver';
 export const FILE_TYPE = 'application/pdf';
+
 @Injectable()
 export class FileUtil {
 
