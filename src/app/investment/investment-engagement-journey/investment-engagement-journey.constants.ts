@@ -14,6 +14,8 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
   },
   SELECT_POROFOLIO_TYPE :{
     INVEST_PORTFOLIO:'investPortfolio',
-    WISESAVER_PORTFOLIO:'wiseSaverPortfolio'
+    WISESAVER_PORTFOLIO:'wiseSaverPortfolio',
+    INVESTMENT:'Investment',
+    WISESAVER:'Wisesaver'
   }
 };
