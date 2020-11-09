@@ -170,7 +170,8 @@ export class PortfolioDetailsComponent implements OnInit {
   getPortfolioAllocationDetails() {
     const params = this.constructgetAllocationParams();
     this.investmentEngagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
-      this.investmentCommonService.clearAccountCreationActions();
+      // Commented the MO2MP-2503 fix
+      // this.investmentCommonService.clearAccountCreationActions();
       this.portfolio = data.objectList;
       this.getInvestmentCriteria(this.portfolio);
       this.userInputSubtext = {
