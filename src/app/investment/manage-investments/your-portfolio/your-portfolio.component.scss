@@ -851,6 +851,10 @@ app-your-portfolio {
                 height: 24px;
                 display: flex;
               }
+              .rebalance-message{
+                font-family: $muli-regular;
+                margin-top: 10px;
+              }
             }
 
           .cash-account-content{
@@ -935,7 +939,7 @@ app-your-portfolio {
   }
 }
 .modal-body {
-  width: 375px;
+  width: 500px;
   margin: 0 auto;
   @include allmobiles{
     width: auto;

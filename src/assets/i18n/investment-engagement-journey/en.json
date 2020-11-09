@@ -23,7 +23,7 @@
         "TITLE": "Select Portfolio",
         "INVESTMENT": {
             "TITLE": "Investment Portfolio",
-            "DESC": "Better returns with a longer <br>time horizon",
+            "DESC": "Better returns with a longer time horizon",
             "MORE_INFO": "More info",
             "FOOTER_BTN_TXT": "Choose Investment Portfolio",
             "SLIDES": {
@@ -39,7 +39,7 @@
         },
         "WISESAVER": {
             "TITLE": "WiseSaver Portfolio",
-            "DESC": "Great for shorter savings <br>period",
+            "DESC": "Great for shorter savings period",
             "MORE_INFO": "More info",
             "FOOTER_BTN_TXT": "Choose WiseSaver Portfolio",
             "SLIDES": {

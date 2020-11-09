@@ -54,7 +54,7 @@
                             {{'YOUR_PORTFOLIO.MORE' | translate}}</button>
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                             <button class="dropdown-item"
-                              [class.disabled]="(option.value === 'TOPUP' && !portfolio.entitlements.showTopup) || (option.value === 'DELETE_PORTFOLIO' && !portfolio.entitlements.showDelete) ||
+                              [class.disabled]="(option.value === 'TOPUP' && !portfolio.entitlements.showTopup) ||(option.value === 'TRANSFER' && !portfolio.entitlements.showTransfer)|| (option.value === 'DELETE_PORTFOLIO' && !portfolio.entitlements.showDelete) ||
                               (option.value === 'WITHDRAWAL' && (!portfolio.entitlements.showWithdrawPvToBa && !portfolio.entitlements.showWithdrawPvToCa && !portfolio.entitlements.showWithdrawCaToBa && !portfolio.entitlements.showWithdrawPvToSRS))"
                               *ngFor="let option of moreList; let i = index;" (click)="selectMoreOption(option)"
                               id="additional_declaration_sourse-drpdown-option-{{i}}">
@@ -362,7 +362,8 @@
                             <div>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.TITLE' | translate}}</div>
                             <div class="txt-grey mt5">
                               <span>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC' | translate}}</span>
-                              {{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC_ONE' | translate}}</div>
+                              {{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC_ONE' | translate}}
+                            <div class="rebalance-message" *ngIf="showNewMessageForRebalance(portfolio.riskProfile.type)">{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC_TWO' | translate}}</div></div>
                             <div class="txt-orange mt5"><a target="_blank"
                                 href="/app/faq#investment">{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.FAQ_LINK' | translate}}</a>
                             </div>

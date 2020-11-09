@@ -4,13 +4,16 @@
     padding: 0;
     @include allmobiles{
         padding: 60px 0 0 !important;
-        min-height: calc(100vh - 45px);
+        min-height: 100vh;
     }
     @include phablet{
         padding: 60px 0 0 !important;
         min-height: calc(100vh - 45px);
     }
-    background: $white-color;
+    background: $black-squeeze-grey-color;
+    @include desktop {
+        height: 100vh;
+    }
 }
 .notification-panel{
     min-height: 100vh;
@@ -44,6 +47,9 @@
             top: 31px;
             right: 20px;
         }
+    }
+    .notifications-block {
+        background-color: $white-color;
     }
 }
 .notifications-container {
