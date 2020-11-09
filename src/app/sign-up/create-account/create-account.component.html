@@ -233,7 +233,7 @@
           <div class="flex-row mb30">
             <div class="flex-col-12 stretch">
               <span class="ref-code-title">{{'CREATE_ACCOUNT.FORM.REFERRAL_CODE.TITLE' | translate}}</span>
-              <div class="ref-code-input form-group-floating-label" [ngClass]="{'inline-error': (submitted && account.referralCode.errors?.invalidRefCode) || (account.referralCode.errors?.invalidRefCode)}">
+              <div class="ref-code-input form-group-floating-label" [ngClass]="{'inline-error': (submitted && account.referralCode.errors?.invalidRefCode) || (account.referralCode.errors?.invalidRefCode) || (account.referralCode.errors?.applyRefCode)}">
                 <input type="text" id="crtAccInpt9" formControlName="referralCode" (keyup)="onKeyupEvent($event, 'referralCode')" autocomplete="off" class="form-control" [readonly]="refCodeValidated || showSpinner" required>
                 <label class="form-control-placeholder" for="referralCode">{{'CREATE_ACCOUNT.FORM.REFERRAL_CODE.LABEL' | translate}}</label>
                 <img id="cross-btn" *ngIf="showClearBtn && !refCodeValidated" (click)="clearReferralCode($event)" src="assets/images/button-clear-txt.svg" />
@@ -253,7 +253,7 @@
             </div>
           </div>
           <div class="flex-row mb10">
-            <span class="mb20">{{ 'COMMON.CAPTCHA_TITLE' | translate}}</span>
+            <span class="captcha-title mb20">{{ 'COMMON.CAPTCHA_TITLE' | translate}}</span>
             <div class="flex-col-6 stretch">
               <div class="form-group-captcha-wrapper">
                 <img [src]="(captchaSrc | secure | async) || ''" class="captcha-img" />
@@ -295,9 +295,9 @@
               <div class="title">{{ 'CREATE_ACCOUNT.FORM.MARKETING_ACCEPTANCE' | translate }}</div>
             </label>
           </div>
-          <button id="nextDependentBtn" [disabled]="createAccountTriggered" (click)="save(createAccountForm)"
+          <button id="nextDependentBtn" [disabled]="createAccBtnDisabled" (click)="save(createAccountForm)"
             type="button" class="btn btn__footer--fixed btn-primary width100 mt20">{{
-            'COMMON.CONTINUE' | translate }}</button>
+            'COMMON.CREATE_ACCOUNT' | translate }}</button>
         </form>
       </div>
     </div>
