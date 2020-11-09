@@ -195,26 +195,7 @@
       "GET_STARTED": "Get Started",
       "RELIGION": "Religion",
       "INLINE_ERROR": "Please consider seeking advice from a lawyer as you or your assets may be governed under the laws of a foreign jurisdiction.",
-      "RELIGION_LIST": [{
-          "text": "Buddhist",
-          "value": "buddhist"
-        }, {
-        "text": "Christian",
-        "value": "christian"
-      }, {
-        "text": "Hindu",
-        "value": "hindu"
-      }, {
-        "text": "Muslim",
-        "value": "muslim"
-      }, {
-        "text": "Others",
-        "value": "others"
-      }, {
-        "text": "None",
-        "value": "none"
-      }],
-      "ARE_YOU_SINGAPOREAN": "Are you a Singaporean?",
+      "NATIONALITY": "Nationality",
       "YOUR_ASSETS_IN_SINGAPORE": "Are all your assets in Singapore?",
       "FIND_OUT_ASSETS_CAN_DISTRIBUTE": "Find out what assets can be distributed via your will.",
       "TOOLTIP": {
