@@ -130,7 +130,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   getCustomerPortfolioDetailsById(customerPortfolioId) {
     this.manageInvestmentsService.getCustomerPortfolioDetailsById(customerPortfolioId).subscribe((data) => {
       this.portfolio = data.objectList;
-      this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
+     this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
       this.holdingValues = this.portfolio.dPMSPortfolio ? this.portfolio.dPMSPortfolio.dpmsDetailsDisplay : null;
       this.constructFundingParams(this.portfolio);
       this.totalReturnsPercentage = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio.totalReturns
@@ -183,6 +183,13 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
+  }
+  showNewMessageForRebalance(riskType) {
+    if (MANAGE_INVESTMENTS_CONSTANTS.REBALANCE_ADDITIONAL_MESSAGE.includes(riskType.toUpperCase())) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   getPortfolioWithdrawalRequests(sellRequests) {
@@ -309,15 +316,19 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         break;
       }
       case 2: {
-        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TRANSACTION]);
+        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TRANSFER]);
         break;
       }
       case 3: {
+        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TRANSACTION]);
+        break;
+      }
+      case 4: {
         this.showErrorMessage = false;
         this.showRenamePortfolioModal();
         break;
       }
-      case 4: {
+      case 5: {
         if (this.portfolio.entitlements.showWithdrawPvToBa || this.portfolio.entitlements.showWithdrawPvToCa ||
           this.portfolio.entitlements.showWithdrawCaToBa || this.portfolio.entitlements.showWithdrawPvToSRS) {
           this.manageInvestmentsService.clearWithdrawalTypeFormData();
@@ -325,12 +336,13 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         }
         break;
       }
-      case 5: {
+      case 6: {
         if (this.portfolio.entitlements.showDelete) {
           this.showDeletePortfolioModal();
         }
         break;
       }
+     
     }
   }
 

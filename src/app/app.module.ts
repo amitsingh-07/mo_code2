@@ -130,6 +130,7 @@ import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
 import { SessionsService } from './shared/Services/sessions/sessions.service';
+import { NotSupportedComponent } from './not-supported/not-supported.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -180,7 +181,8 @@ export function tokenGetterFn() {
     EmailEnquirySuccessComponent,
     RestrictAddPortfolioModalComponent,
     InvestmentMaintenanceComponent,
-    PaymentInstructionModalComponent
+    PaymentInstructionModalComponent,
+    NotSupportedComponent
   ],
   imports: [
     BrowserModule,

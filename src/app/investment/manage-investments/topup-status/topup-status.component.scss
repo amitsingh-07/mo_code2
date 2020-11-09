@@ -38,8 +38,8 @@ app-topup-status {
       margin: auto;
       padding-bottom: 47px;
       @include allmobiles{
-        width: 335px;
-        padding: 0px;
+        width: 100%;
+        padding: 0px 20px;
       }
     }
     .insufficient-success-img {
