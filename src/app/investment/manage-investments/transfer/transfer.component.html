@@ -113,19 +113,19 @@
               </div>
               <div class="cash-balance">
                 <div class="row mb15" *ngIf="transferForm.get('transferFrom').value">
-                  <div class="col-7">
+                  <div class="col-8">
                     {{'TRANSFER.AMOUNT_AVAILABLE'| translate}}
                   </div>
-                  <div class="col-5 text-right">
+                  <div class="col-4 text-right">
                     {{cashBalance|formatCurrency}}
                   </div>
                 </div>
                 <div class="row"
                   *ngIf="transferForm.get('transferAmount').value && (cashBalance - transferForm.controls.transferAmount.value > 0) && transferForm.controls.transferAmount.value">
-                  <div class="col-7">
+                  <div class="col-8">
                     {{'TRANSFER.AFTER_TRANSFER'| translate}}
                   </div>
-                  <div class="col-5 text-right">
+                  <div class="col-4 text-right">
                     {{cashBalance - transferForm.controls.transferAmount.value | formatCurrency}}
                   </div>
                 </div>
