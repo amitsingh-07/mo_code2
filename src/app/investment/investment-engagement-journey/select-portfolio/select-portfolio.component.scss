@@ -7,6 +7,9 @@ app-select-portfolio {
   .container-fluid {
     &.select-portfolio {
       max-width: 485px;
+      @include desktop {
+        max-width: 600px;
+      }
     }
   }
 
@@ -20,6 +23,9 @@ app-select-portfolio {
   .portfolio-cards {
     border-radius: 6px;
     padding: 30px;
+    @include desktop {
+      padding: 35px 30px;
+    }
     display: flex;
     align-items: center;
     background-color: $portfolio-card-bg-color;
@@ -27,11 +33,6 @@ app-select-portfolio {
     margin-bottom: 15px;
     position: relative;
     z-index: 998;
-
-    @include desktop {
-      width: 445px;
-    }
-
     cursor: pointer;
 
     &.active {
@@ -148,10 +149,7 @@ app-select-portfolio {
   .more-info-shadow {
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.5);
   }
-
-  .btn-primary {
-    @include desktop {
-      margin-left: 50px;
-    }
+  .footer-btn-wrapper {
+    padding: 0 55px;
   }
 }
