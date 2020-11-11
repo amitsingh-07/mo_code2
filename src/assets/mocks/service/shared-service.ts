@@ -63,9 +63,31 @@ export const mockPortfolioService = {
     }
 };
 
-export const mockInvestmentAccountService = {
-
-};
+export class MockInvestmentAccountService {
+    isSingaporeResident() {
+        return true;
+    }
+    getOccupationList(): Observable<any> {
+        return Observable.of({});
+    }
+    getCountriesFormDataByFilter(): any[] {
+        return [];
+    }
+    getInvestmentAccountFormData() {
+        return {};
+    }
+    getCountryFromNationalityCodeByFilter() {
+        return '';
+    }
+    isCountrySingapore(country) {
+        if (country) {
+            return '';
+        } else {
+            return false;
+        }
+    }
+    loadDDCRoadmap() {}
+}
 
 export const mockFooterService = {
     setFooterVisibility(isVisible: string): Observable<any> {
