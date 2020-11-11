@@ -145,11 +145,13 @@ app-direct-results {
       .grey {
         color: $text-color-secondary;
       }
+      .btn-secondary {
+        height: 60px;
+        margin-top: 2px;
+        line-height: normal;
+      }
     }
   }
-
-.results-mobile {
-}
 .results-mobile__compare-plan {
   @extend .flex;
   @extend .space-btwn;
