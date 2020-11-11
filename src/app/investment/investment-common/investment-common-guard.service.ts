@@ -1,3 +1,5 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
@@ -17,14 +19,14 @@ export class InvestmentCommonGuardService implements CanActivate {
   ) {}
   canActivate() {
     if (this.authService.isSignedUser()) {
-      return this.investmentCommonService.getAccountCreationActions().map((data) => {
+      return this.investmentCommonService.getAccountCreationActions().pipe(map((data) => {
         if (data && INVESTMENT_COMMON_CONSTANTS.INVESTMENT_COMMON_GUARD.indexOf(data.accountCreationState) >= 0) {
           this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
           return false;
         } else {
           return true;
         }
-      });
+      }));
     } else {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       return false;

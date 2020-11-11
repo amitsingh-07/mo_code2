@@ -164,7 +164,8 @@
     "ROAD_MAP": {
       "TITLE": "Your Road Map"
     },
-    "NATIONALITY": [{
+    "NATIONALITY": [
+      {
         "text": "Singaporean",
         "value": "singaporean"
       },
@@ -191,7 +192,6 @@
       "HOUSEHOLD_LABEL_1": "No. of<br> Household Members",
       "HOUSEHOLD_LABEL_2": "Monthly Household Income",
       "HOUSEHOLD_MEMBERS_VALUES": [
-        "0",
         "1",
         "2",
         "3",
@@ -216,10 +216,10 @@
         "$20,001 to $40,000",
         "> $40,000"
       ],
-      "NO_OF_YRS_HEADER":"How long do you need to provide for till your family members are no longer financially dependent on you?",
-      "NO_OF_YRS_TITLE":"No. of Years to Provide For",
-      "NO_OF_YRS_LABEL":"No. of Years",
-      "YRS_LABEL":"yrs"
+      "NO_OF_YRS_HEADER": "How long do you need to provide for till your family members are no longer financially dependent on you?",
+      "NO_OF_YRS_TITLE": "No. of Years to Provide For",
+      "NO_OF_YRS_LABEL": "No. of Years",
+      "YRS_LABEL": "yrs"
     },
     "DEPENDANT_DETAILS": {
       "ABOUT": "About your dependants",
@@ -262,7 +262,7 @@
       "MONTHLY_SALARY": "Monthly Salary",
       "ANNUAL_BONUS": "Annual Bonus",
       "ANNUAL_BONUS_DESC": "Bonuses, dividends and other income you earn each year also fill up your bucket!",
-      "ANNUAL_BONUS_DESC_LITE":"Bonuses you earn each year also fill up your bucket!",
+      "ANNUAL_BONUS_DESC_LITE": "Bonuses you earn each year also fill up your bucket!",
       "RENTAL_INCOME": "Monthly Rental Income",
       "OTHER_WORK_INCOME": "Other Monthly Work Income",
       "OTHER_WORK_INCOME_DESC": "(that attracts CPF)",
@@ -275,7 +275,8 @@
       "ADD_DIVIDENDS_NOTE": "You have added all types of annual income",
       "BUCKET_NOTE": "Your annual income bucket",
       "BUCKET_NOTE_TAKEHOME": "(take-home)",
-      "EMPLOYMENT_TYPE_LIST": [{
+      "EMPLOYMENT_TYPE_LIST": [
+        {
           "text": "Employed",
           "value": "employed"
         },
@@ -406,7 +407,8 @@
       },
       "OPTIONAL_VALIDATION_FLAG": false
     },
-    "INVESTMENT_TYPE_LIST": [{
+    "INVESTMENT_TYPE_LIST": [
+      {
         "text": "MoneyOwl - Equity",
         "value": "MoneyOwl - Equity"
       },
@@ -460,22 +462,23 @@
       "CPF_OA": "CPF Ordinary Account (OA)",
       "CPF_SA": "CPF Special Account (SA)",
       "CPF_MA": "CPF Medisave Account (MA)",
-      "CPF_RA" :" CPF Retirement Account (RA)",
-      "SCHEME" : "Scheme",
-      "SCHEME_TYPE_LIST": [{
-        "text": "Retirement Sum",
-        "value": "Retirement Sum"
-      },
-      {
-        "text": "CPF LIFE",
-        "value": "CPF LIFE"
-      }
+      "CPF_RA": " CPF Retirement Account (RA)",
+      "SCHEME": "Scheme",
+      "SCHEME_TYPE_LIST": [
+        {
+          "text": "Retirement Sum",
+          "value": "Retirement Sum"
+        },
+        {
+          "text": "CPF LIFE",
+          "value": "CPF LIFE"
+        }
       ],
       "ESTIMATED_PAYOUT": "Estimated Payout",
       "MONTH": "mth",
       "SET_RETIREMENT_SUM": "Retirement Sum Set Aside @ 55",
-      "TOPUP_AMOUNT":"Topup amount after 55",
-      "WITHDRAWAL_AMOUNT":"Withdrawal from RA <br> after 55",
+      "TOPUP_AMOUNT": "Topup amount after 55",
+      "WITHDRAWAL_AMOUNT": "Withdrawal from RA <br> after 55",
       "YOUR_HOME": "Your Home",
       "MARKET_VALUE": "At market value",
       "ADD_INVESTMENT_PROPERTIES": "Add Investment Properties",
@@ -487,7 +490,8 @@
       "ADD_INVESTMENT": "Add Other Investment",
       "OTHER_ASSETS": "Other Assets",
       "OTHER_ASSETS_HINT": "e.g. Jewellery",
-      "INVESTMENT_TYPE_LIST": [{
+      "INVESTMENT_TYPE_LIST": [
+        {
           "text": "MoneyOwl - Equity",
           "value": "MoneyOwl - Equity"
         },
@@ -601,7 +605,8 @@
     },
     "ERROR_MODAL_TITLE": {
       "MY_PROFILE": "My Profile",
-      "DEPENDANT_DETAIL": [{
+      "DEPENDANT_DETAIL": [
+        {
           "name": "Dependant Details 1"
         },
         {
@@ -644,11 +649,11 @@
       ],
       "RETIREMENT_INCOME": "Retirement Income",
       "LUMP_SUM_BENEFIT": "Lump Sum Amount",
-      "YEARS_OLD":"yrs old",
-      "MIN_AGE":"45 yrs old",
-      "MAX_AGE":"71 yrs old",
-      "MIN_LABEL":"Min.",
-      "MAX_LABEL":"Max.",
+      "YEARS_OLD": "yrs old",
+      "MIN_AGE": "45 yrs old",
+      "MAX_AGE": "71 yrs old",
+      "MIN_LABEL": "Min.",
+      "MAX_LABEL": "Max.",
       "TOOLTIP": {
         "RENTAL_INCOME_TITLE": "Retirement Income",
         "RENTAL_INCOME_MESSAGE": "Any monthly payout you expect to receive during your retirement from an annuity, pension scheme, investment scheme or retirement income insurance product. Please exclude income from CPF LIFE as well as rental, dividends and interest income you have entered under Your Finances.",
@@ -675,7 +680,9 @@
       "HDB": "Do you have HDB Home Protection Scheme (HPS) coverage?",
       "LONG_TERM_INSURANCE": "Long-Term Care Insurance",
       "LONG_TERM_INSURANCE_LABEL": "Do you have ElderShield?",
-      "LONG_TERM_INSURANCE_LABEL_2": "Other long-term care insurance (ElderShield Supplement)",
+      "LONG_TERM_INSURANCE_LABEL_2": "Other long-term care insurance",
+      "ELDER_SHIELD": "(ElderShield Supplement)",
+      "CARE_SHIELD": "(CareShield Life)",
       "LONG_TERM_INSURANCE_VALUE_1": " I have $300 /mth payout",
       "LONG_TERM_INSURANCE_VALUE_2": "I have $400 /mth payout",
       "LONG_TERM_INSURANCE_VALUE_3": "No, i have no coverage",
@@ -692,7 +699,9 @@
         "LONG_TERM_CARE_INSURANCE_TITLE": "Long Term Care Insurance",
         "LONG_TERM_CARE_INSURANCE_MESSAGE": "The monthly benefit you will receive in the event of a severe disability resulting in the inability to perform 3 out of 6 activities of daily living. ElderShield or CareShield Life is an example of such plans.",
         "CRITICAL_INSURANCE_TITLE": "Critical Illness Insurance",
-        "CRITICAL_INSURANCE_MESSAGE": "The total benefit payable to you from all your insurance policies in the event you are diagnosed with a critical illness such as cancer, heart attack, etc. "
+        "CRITICAL_INSURANCE_MESSAGE": "The total benefit payable to you from all your insurance policies in the event you are diagnosed with a critical illness such as cancer, heart attack, etc. ",
+        "CARE_SHIELD_TITLE":"CareShield Life",
+        "CARE_SHIELD_MESSAGE":"Did you know that CareShield Life, a severe disability insurance, was launched on 1 October 2020? All Singaporeans born 1980 and later will be automatically included into this scheme from 1 Oct or when they turn 30 years old. You may want to review your long term care insurance plans with this change."
       }
     },
     "RESULT": {
@@ -700,6 +709,7 @@
       "READY_LITE": "Congratulations! Your report is ready!",
       "ABOUT": "Once it is ready, we will notify you via email at ",
       "ABOUT_LITE": "You can view your personalised report via your dashboard.",
+      "ABOUT_PAY": "Please follow the payment instructions in your Dashboard to make payment.",
       "STEP_TITLE": "What’s Next?",
       "STEP_DESC": "Our adviser will analyse your needs using our proprietary models. He or she may contact you for clarifications on your inputs.",
       "STEP_1": "Keep a lookout for our notification mail!",
@@ -730,7 +740,9 @@
       "ABOUT_LITE": "Please make sure to review your inputs. If everything looks good, click “Confirm” to receive your personalised report.",
       "REVIEW_INPUT": "Review Inputs",
       "CONFIRM": "Confirm",
-      "CONFIRM_WITH_PAY": "Confirm & Pay"
+      "CONFIRM_WITH_PAY": "Confirm & Pay",
+      "I_AGREE": "I agree to MoneyOwl's",
+      "T_C_LINK": "Terms of Use."
     }
   }
 }

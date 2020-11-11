@@ -84,7 +84,8 @@ export class SignUpApiService {
       sessionId: this.authService.getSessionId(),
       captcha,
       journeyType,
-      enquiryId
+      enquiryId,
+      referralCode: getAccountInfo.referralCode
     };
   }
 

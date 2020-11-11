@@ -20,7 +20,7 @@ describe('MyAssetsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientModule, ReactiveFormsModule , NgbModule.forRoot()],
+      imports: [ HttpClientModule, ReactiveFormsModule , NgbModule],
       declarations: [ MyAssetsComponent ],
       providers: [{ provide: Router, useValue: mockRouter }]
     })

@@ -99,5 +99,6 @@ a span.footer-contact {
     }
     a span.footer-contact {
         margin-top: 10px;
+        margin-left: 0;
     }
 }

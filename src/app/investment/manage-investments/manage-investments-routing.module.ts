@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AssetAllocationComponent } from './asset-allocation/asset-allocation.component';
 import { HoldingsComponent } from './holdings/holdings.component';
 import { InvestmentOverviewComponent } from './investment-overview/investment-overview.component';
-import { ManageInvestmentsGuardService as  ManageInvestmentsGuard} from './manage-investments-guard.service';
+import { ManageInvestmentsGuardService as ManageInvestmentsGuard } from './manage-investments-guard.service';
 import { MANAGE_INVESTMENTS_ROUTES } from './manage-investments-routes.constants';
 import { TopUpComponent } from './top-up/top-up.component';
 import { TopupStatusComponent } from './topup-status/topup-status.component';
@@ -13,6 +13,8 @@ import { WithdrawalBankAccountComponent } from './withdrawal-bank-account/withdr
 import { WithdrawalStatusComponent } from './withdrawal-status/withdrawal-status.component';
 import { WithdrawalComponent } from './withdrawal/withdrawal.component';
 import { YourPortfolioComponent } from './your-portfolio/your-portfolio.component';
+import { TransferComponent } from './transfer/transfer.component';
+import { TransferStatusComponent } from './transfer-status/transfer-status.component';
 
 const routes: Routes = [
   {
@@ -39,7 +41,7 @@ const routes: Routes = [
     path: MANAGE_INVESTMENTS_ROUTES.YOUR_INVESTMENT + '/:selectedPortfolio',
     component: InvestmentOverviewComponent,
     canActivate: [ManageInvestmentsGuard]
-  },  
+  },
   {
     path: MANAGE_INVESTMENTS_ROUTES.YOUR_PORTFOLIO,
     component: YourPortfolioComponent,
@@ -75,6 +77,16 @@ const routes: Routes = [
     component: AssetAllocationComponent,
     canActivate: [ManageInvestmentsGuard]
   },
+  {
+    path: MANAGE_INVESTMENTS_ROUTES.TRANSFER,
+    component: TransferComponent,
+    canActivate: [ManageInvestmentsGuard]
+  },
+  {
+    path: MANAGE_INVESTMENTS_ROUTES.TRANSFER_SUCCESS,
+    component: TransferStatusComponent,
+    canActivate: [ManageInvestmentsGuard]
+  },
   { path: '**', redirectTo: '/page-not-found' }
 ];
 
@@ -82,4 +94,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   declarations: []
 })
-export class ManageInvestmentsRoutingModule {}
+export class ManageInvestmentsRoutingModule { }

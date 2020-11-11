@@ -642,7 +642,7 @@ h6 {
           }
 
           &.right {
-            right: -10px;
+            right: 4px;
           }
 
           &.show {
@@ -2030,6 +2030,7 @@ select:-webkit-autofill:focus {
   .datepicker-upside {
     .dropdown-menu.show {
       top: -240px !important;
+      transform: none !important;
     }
   }
 

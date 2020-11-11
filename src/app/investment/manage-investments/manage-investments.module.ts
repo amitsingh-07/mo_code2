@@ -38,12 +38,15 @@ import {
 } from './withdrawal/forward-pricing-modal/forward-pricing-modal.component';
 import { WithdrawalComponent } from './withdrawal/withdrawal.component';
 import { YourPortfolioComponent } from './your-portfolio/your-portfolio.component';
+import { TransferComponent } from './transfer/transfer.component';
+import { TransferStatusComponent } from './transfer-status/transfer-status.component';
+import { TransferModalComponent } from './transfer/transfer-modal/transfer-modal.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
     { prefix: './assets/i18n/app/', suffix: '.json' },
     { prefix: './assets/i18n/manage-investments/', suffix: '.json' },
-    { prefix: './assets/i18n/error/', suffix: '.json'}
+    { prefix: './assets/i18n/error/', suffix: '.json' }
   ]);
 }
 
@@ -52,7 +55,7 @@ export function createTranslateLoader(http: HttpClient) {
     CommonModule,
     ManageInvestmentsRoutingModule,
     ReactiveFormsModule,
-    NgbModule.forRoot(),
+    NgbModule,
     NouisliderModule,
     FormsModule,
     TranslateModule.forRoot({
@@ -79,10 +82,13 @@ export function createTranslateLoader(http: HttpClient) {
     TransactionsComponent,
     HoldingsComponent,
     AssetAllocationComponent,
-    RenameInvestmentModalComponent
+    RenameInvestmentModalComponent,
+    TransferComponent,
+    TransferStatusComponent,
+    TransferModalComponent
   ],
   entryComponents: [ConfirmWithdrawalModalComponent, AddBankModalComponent, ForwardPricingModalComponent,
-    RenameInvestmentModalComponent],
+    RenameInvestmentModalComponent, TransferModalComponent],
   providers: [CurrencyPipe, FormatCurrencyPipe]
 })
 export class ManageInvestmentsModule {

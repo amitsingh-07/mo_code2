@@ -1,4 +1,7 @@
-import { Observable } from 'rxjs';
+
+import {of as observableOf,  Observable, Subject } from 'rxjs';
+
+import {map} from 'rxjs/operators';
 import { conformToMask } from 'text-mask-core';
 
 import { HttpClient } from '@angular/common/http';
@@ -47,6 +50,7 @@ export class ManageInvestmentsService {
   private topUPFormError: any = new TopUPFormError();
   private managementFormError: any = new ManageInvestmentsFormError();
   selectedPortfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.ALL;
+  copyToastSubject = new Subject();
 
   constructor(
     public readonly translate: TranslateService,
@@ -189,6 +193,21 @@ export class ManageInvestmentsService {
     this.manageInvestmentsFormData.userPortfolios = portfolioList;
     this.commit();
   }
+  // GET CCASH PORTFOLIO LIST//
+
+   getCashPortfolioList() { 
+    const CashPortfolioList = [];
+    this.manageInvestmentsFormData.userPortfolios.forEach(portfolio => {
+      if (portfolio.portfolioType === 'Cash' && portfolio.cashAccountBalance) {
+        CashPortfolioList.push(portfolio);
+        CashPortfolioList.sort((a, b) => {
+          return a.portfolioName.toLowerCase().localeCompare(b.portfolioName.toLowerCase());
+        });
+      }
+    });
+    return CashPortfolioList;
+   }
+
   getUserPortfolioList() {
     // Sort portfolio by ascending alphabetical order order
     const sortedArray = this.manageInvestmentsFormData.userPortfolios.sort((a, b) => {
@@ -258,7 +277,7 @@ export class ManageInvestmentsService {
     this.manageInvestmentsFormData.isRedeemAll = isRedeemAll;
     this.commit();
   }
-
+  
   clearWithdrawalTypeFormData() {
     this.manageInvestmentsFormData.withdrawType = null;
     this.manageInvestmentsFormData.withdrawAmount = null;
@@ -306,7 +325,7 @@ export class ManageInvestmentsService {
     const payload = this.constructSellPortfolioRequestParams(data);
     return this.investmentApiService.sellPortfolio(data.withdrawPortfolio.customerPortfolioId, payload);
   }
-
+ 
   constructSellPortfolioRequestParams(data) {
     const request = {};
     request['withdrawType'] = data.withdrawType ? data.withdrawType.value : null;
@@ -344,7 +363,7 @@ export class ManageInvestmentsService {
       monthlyInvestmentAmount: Number(monthlyInvestmentAmount)
     };
   }
-  getTransactionHistory(id) {
+  getTransactionHistory(id) { 
     return this.investmentApiService.getTransactionHistory(id);
   }
 
@@ -453,6 +472,13 @@ export class ManageInvestmentsService {
       this.transferInstructionModal.dismiss();
       this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
     });
+
+    this.transferInstructionModal.componentInstance.showCopied.subscribe(() => {
+      const toasterMsg = {
+        desc: this.translate.instant('TRANSFER_INSTRUCTION.COPIED')
+      };
+      this.copyToastSubject.next(toasterMsg);
+    });
   }
 
   /*
@@ -553,7 +579,7 @@ export class ManageInvestmentsService {
   }
 
   getSrsAccountDetails(): Observable<ISrsAccountDetails> {
-    return this.investmentApiService.getSrsAccountDetails().map((data: any) => {
+    return this.investmentApiService.getSrsAccountDetails().pipe(map((data: any) => {
       if (data && data.objectList && data.objectList.accountNumber &&
         data.objectList.srsBankOperator && data.objectList.srsBankOperator.name) {
         const srsAccountDetails = {
@@ -570,11 +596,11 @@ export class ManageInvestmentsService {
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
-      });
+      }));
   }
 
   getProfileSrsAccountDetails(): Observable<ISrsAccountDetails> {
-    return this.investmentApiService.getProfileSrsAccountDetails().map((data: any) => {
+    return this.investmentApiService.getProfileSrsAccountDetails().pipe(map((data: any) => {
       if (data && data.objectList && data.objectList.accountNumber &&
         data.objectList.srsBankOperator && data.objectList.srsBankOperator.name) {
         const srsAccountDetails = {
@@ -592,7 +618,7 @@ export class ManageInvestmentsService {
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
-      });
+      }));
   }
 
   setSrsAccountDetails(srsAccountDetails: ISrsAccountDetails) {
@@ -606,14 +632,14 @@ export class ManageInvestmentsService {
 
   getAllNotes(noteInSession): Observable<any> {
     if (noteInSession) {
-      return Observable.of(noteInSession);
+      return observableOf(noteInSession);
     } else {
-      return this.getInvestmentNoteFromApi().map((data: any) => {
+      return this.getInvestmentNoteFromApi().pipe(map((data: any) => {
         if (data) {
           this.setInvestmentNoteToSession(data.objectList);
           return data.objectList;
         }
-      });
+      }));
     }
   }
 
@@ -632,5 +658,43 @@ export class ManageInvestmentsService {
 
   setSelectedPortfolioCategory(category) {
     this.selectedPortfolioCategory = category;
+  }
+  // Get Mock for Transfer Data
+  getTransferEntityList(customerPortfolioId) {
+    return this.investmentApiService.getTransferEntityList(customerPortfolioId);
+  }
+
+  getTransferCashPortfolioList() {
+    return this.investmentApiService.getTransferCashPortfolioList();
+  }
+
+  TransferCash(data) {
+    const payload = this.constructTransferCashParams(data);
+    return this.investmentApiService.TransferCash(payload);
+  }
+  constructTransferCashParams(data) {
+    const request = {};
+    request['sourceRefNo'] = data.transferFrom.refno;
+    request['destinationRefNo'] = data.transferTo.refno;
+    request['amount'] = parseFloat(data.transferAmount) ;
+    request['transferAll'] = data.TransferAll === true ? 'Y' : 'N';
+    return request;
+   }
+  setTransferFormData(data ,TransferAll) {
+    if(data &&data.transferFrom && data.transferTo){
+      this.manageInvestmentsFormData.transferFrom = data.transferFrom;
+      this.manageInvestmentsFormData.transferTo = data.transferTo;
+      this.manageInvestmentsFormData.transferAmount = data.transferAmount;
+      this.manageInvestmentsFormData.TransferAll =TransferAll;
+      this.commit();
+    }
+   
+  }
+  clearSetTransferData() {
+    this.manageInvestmentsFormData.transferFrom = null;
+      this.manageInvestmentsFormData.transferTo = null;
+      this.manageInvestmentsFormData.transferAmount = null;
+      this.manageInvestmentsFormData.TransferAll =null;
+     this.commit();
   }
 }

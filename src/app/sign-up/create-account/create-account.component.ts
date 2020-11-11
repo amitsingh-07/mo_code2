@@ -31,8 +31,10 @@ import { IEnquiryUpdate } from '../signup-types';
 import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
 import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
-import { trackingConstants } from './../../shared/analytics/tracking.constants';
-import{SIGN_UP_CONFIG} from '../sign-up.constant';
+import { ANIMATION_DATA } from '../../../assets/animation/animationData';
+
+const bodymovin = require("../../../assets/scripts/lottie_svg.min.js");
+
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
@@ -49,7 +51,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   countryCodeOptions;
   captchaSrc: any = '';
   isPasswordValid = true;
-  createAccountTriggered = false;
 
   confirmEmailFocus = false;
   confirmPwdFocus = false;
@@ -58,6 +59,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   submitted: boolean = false;
   capsOn: boolean;
   capslockFocus: boolean;
+
+  // Referral Code
+  showClearBtn: boolean = false;
+  refCodeValidated: boolean = false;
+  showSpinner: boolean = false;
+  createAccBtnDisabled = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -102,6 +109,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.footerService.setFooterVisibility(false);
     this.buildAccountInfoForm();
     this.getCountryCode();
+    // Set referral code base on the query param
+    this.route.queryParams.subscribe((params) => {
+      if (params['referral_code'] && this.createAccountForm.controls['referralCode']) {
+        this.createAccountForm.controls['referralCode'].setValue(params['referral_code']);
+        this.showClearBtn = true;
+      }
+    });
+    this.createAnimation();
   }
 
   ngAfterViewInit() {
@@ -115,6 +130,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.refreshCaptcha();
       this.loaderService.hideLoader();
     }
+    this.createAccountForm.statusChanges.subscribe((data)=>{
+      if (this.createAccountForm.touched || this.createAccountForm.dirty) {
+        this.createAccBtnDisabled = false;
+      }
+    });
   }
 
   refreshToken() {
@@ -144,7 +164,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
           confirmPassword: [''],
           termsOfConditions: [true],
           marketingAcceptance: [false],
-          captcha: ['', [Validators.required]]
+          captcha: ['', [Validators.required]],
+          referralCode: ['']
         }, { validator: this.validateMatchPasswordEmail() });
         return false;
       }
@@ -162,7 +183,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       confirmPassword: [''],
       termsOfConditions: [true],
       marketingAcceptance: [false],
-      captcha: ['', [Validators.required]]
+      captcha: ['', [Validators.required]],
+      referralCode: ['']
     }, { validator: this.validateMatchPasswordEmail() });
     return true;
   }
@@ -173,9 +195,20 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
    */
   save(form: any) {
     this.submitted = true;
+    this.validateReferralCode();
     if (form.valid) {
       this.signUpService.setAccountInfo(form.value);
       this.openTermsOfConditions();
+    }
+  }
+
+  validateReferralCode() {
+    // Check if referral code is empty or not
+    // If not empty, check if the apply button has been press
+    if (this.createAccountForm.controls['referralCode'].value === '') {
+      this.createAccountForm.controls['referralCode'].setErrors(null);
+    } else if (!this.refCodeValidated && !this.account.referralCode.errors?.invalidRefCode ) {
+      this.createAccountForm.controls['referralCode'].setErrors({ applyRefCode: true });
     }
   }
 
@@ -210,11 +243,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
    * request one time password.
    */
   createAccount() {
-    if (!this.createAccountTriggered) {
-      this.createAccountTriggered = true;
+    if (!this.createAccBtnDisabled) {
+      this.createAccBtnDisabled = true;
       this.signUpApiService.createAccount(this.createAccountForm.value.captcha, this.createAccountForm.value.password)
         .subscribe((data: any) => {
-          this.createAccountTriggered = false;
+          this.createAccBtnDisabled = false;
           const responseCode = [6000, 6008, 5006];
           if (responseCode.includes(data.responseMessage.responseCode)) {
             if (data.responseMessage.responseCode === 6000 ||
@@ -239,11 +272,13 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
             this.createAccountForm.controls['captcha'].setErrors({ match: true });
             this.createAccountForm.controls['password'].reset();
             this.createAccountForm.controls['confirmPassword'].reset();
+          } else if (data.responseMessage.responseCode === 5024) {
+            this.createAccountForm.controls['referralCode'].setErrors({ invalidRefCode: true });
           } else {
             this.showErrorModal('', data.responseMessage.responseDescription, '', '', false);
           }
         }, (err) => {
-          this.createAccountTriggered = false;
+          this.createAccBtnDisabled = false;
         }).add(() => {
           this.submitted = false;
         });
@@ -432,12 +467,71 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.capslockFocus = false;;
   }
   onPaste(event: ClipboardEvent, key) {
-  const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '');
-   if( key === SIGN_UP_CONFIG.SIGN_UP.EMAIL) {
-    this.createAccountForm.controls.email.setValue(pastedEmailText);
-   }else{
-    this.createAccountForm.controls.confirmEmail.setValue(pastedEmailText);
-   }
-   event.preventDefault();
+    const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '');
+    this.createAccountForm.controls[key].setValue(pastedEmailText);
+    event.preventDefault();
+  }
+  onKeyupEvent(event, key) {
+    if (event.target.value) {
+      const enterEmail = event.target.value.replace(/\s/g, '');
+      this.createAccountForm.controls[key].setValue(enterEmail);
+      if(key === 'referralCode' && !this.showSpinner) {
+        this.showClearBtn = true;
+      } else {
+        this.showClearBtn = false;
+      }
+    } else {
+      if(key === 'referralCode') {
+        this.showClearBtn = false;
+      }
+    }
+  }
+
+  // Referral Code changes
+
+  applyReferralCode(event) {
+    if (this.createAccountForm.controls['referralCode'].value) {
+      // Show the spinner
+      this.createAccountForm.controls['referralCode'].setErrors(null);
+      this.showClearBtn = false;
+      this.showSpinner = true;
+      // Call validate referral code, replace below code
+      this.signUpService.validateReferralCode(this.createAccountForm.controls['referralCode'].value).subscribe((response)=>{
+        if (response.responseMessage['responseCode'] === 6012) {
+          setTimeout(()=>{
+            this.showSpinner = false;
+            this.refCodeValidated = true;
+          }, 1200);
+        } else {
+          setTimeout(()=>{
+            this.showSpinner = false;
+            this.showClearBtn = true;
+            this.createAccountForm.controls['referralCode'].setErrors({ invalidRefCode: true });
+          }, 1200);
+        }
+      });
+    }
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
+  clearReferralCode(event) {
+    this.createAccountForm.controls['referralCode'].setValue('');
+    this.showClearBtn = false;
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
+  createAnimation() {
+    const animationData = ANIMATION_DATA.MO_SPINNER;
+    bodymovin.loadAnimation({
+      container: document.getElementById('mo_spinner'), // Required
+      path: '/app/assets/animation/mo_spinner.json', // Required
+      renderer: 'svg', // Required
+      loop: true, // Optional
+      autoplay: true, // Optional
+      animationData: animationData
+    })
   }
 }
+

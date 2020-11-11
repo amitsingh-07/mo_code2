@@ -91,6 +91,7 @@ export interface IHospitalizationNeedsData {
 export interface ILongTermCareNeedsData {
     careGiverTypeId?: number;
     monthlyPayout: number;
+    payoutType?: string;
 }
 
 export interface ISrsApprovedPlanData {

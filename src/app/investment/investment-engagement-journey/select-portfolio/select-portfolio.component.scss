@@ -1,119 +1,155 @@
 @import '../../../../_variables.scss';
 @import '../../../../_mixins.scss';
+
 app-select-portfolio {
-    //WiseSaver Styles
-    .container-fluid {
-        &.select-portfolio {
-            max-width: 485px;
+
+  //WiseSaver Styles
+  .container-fluid {
+    &.select-portfolio {
+      max-width: 485px;
+      @include desktop {
+        max-width: 600px;
+      }
+    }
+  }
+
+  .portfolio-page-title {
+    text-align: center;
+    font-family: $muli-semi-bold;
+    font-size: 30px;
+    margin-bottom: 15px;
+  }
+
+  .portfolio-cards {
+    border-radius: 6px;
+    padding: 30px;
+    @include desktop {
+      padding: 35px 30px;
+    }
+    display: flex;
+    align-items: center;
+    background-color: $portfolio-card-bg-color;
+    color: $portfolio-card-text-color;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 998;
+    cursor: pointer;
+
+    &.active {
+      background-color: $portfolio-card-text-color;
+      color: $white-color;
+      box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.5);
+    }
+
+    &__select {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    &__img {
+      margin-right: 20px;
+    }
+
+    &__details {
+      &__title {
+        font-size: 18px;
+
+        @include max360 {
+          font-size: 17px;
         }
-    }
-    .portfolio-page-title {
-        text-align: center;
-        font-family: $muli-semi-bold;
-        font-size: 30px;
+
+        font-family: $muli-bold;
+        margin-bottom: 5px;
+        letter-spacing: -0.19px;
+      }
+
+      &__desc {
+        font-size: 13px;
+        font-family: $muli-regular;
         margin-bottom: 15px;
-    }
-    .portfolio-cards {
-        border-radius: 6px;
-        padding: 30px;
+      }
+
+      &__more {
+        color: $crusta-orange-color;
+        font-size: 13px;
+        font-family: $muli-semi-bold;
         display: flex;
         align-items: center;
-        background-color: $portfolio-card-bg-color;
-        color: $portfolio-card-text-color;
-        margin-bottom: 15px;
-        position: relative;
-        z-index: 998;
         cursor: pointer;
-        &.active {
-            background-color: $portfolio-card-text-color;
-            color: $white-color;
-            box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.5);
-        }
-        &__select {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            img {
-                width: 30px;
-                height: 30px;
-            }
-        }
-        &__img {
-            margin-right: 20px;
-        }
-        &__details {
-            &__title {
-                font-size: 18px;
-                @include max360 {
-                    font-size: 17px;
-                }
-                font-family: $muli-bold;
-                margin-bottom: 5px;
-                letter-spacing: -0.19px;
-            }
-            &__desc {
-                font-size: 13px;
-                font-family: $muli-regular;
-                margin-bottom: 15px;
-            }
-            &__more {
-                color: $crusta-orange-color;
-                font-size: 13px;
-                font-family: $muli-semi-bold;
-                display: flex;
-                align-items: center;
-                cursor: pointer;
-                width: 85px;
-            }
-        }
+        width: 85px;
+      }
     }
-    .portfolio-info {
-        position: relative;
-        z-index: 997;
-        background-color: $white-color;
-        color: $silver-grey-color;
-        padding: 35px 25px;
-        line-height: 22px;
-        font-family: $muli-regular;
-        font-size: 16px;
-        border-radius: 6px;
-        top: -20px;
-        &__slide-item {
-            font-size: 16px;
-            font-family: $muli-regular;
-            color: $silver-grey-color;
-            ul {
-                padding-left: 0;
-            }
-            li {
-                margin-bottom: 15px;
-                background: url(../../../../assets/images/wisesaver/icon-tick.svg) no-repeat 0 0;
-                padding-left: 30px;
-            }
-        }
-        &__heading {
-            font-size: 16px;
-            font-family: $muli-bold;
-            margin-bottom: 15px;
-        }
+  }
+
+  .portfolio-info {
+    position: relative;
+    z-index: 997;
+    background-color: $white-color;
+    color: $silver-grey-color;
+    padding: 35px 25px;
+    line-height: 22px;
+    font-family: $muli-regular;
+    font-size: 16px;
+    border-radius: 6px;
+    top: -20px;
+
+    @include desktop {
+      width: 445px;
     }
-    .btn:disabled {
-        color: $btn-disabled-teal-color;
+
+    &__slide-item {
+      font-size: 16px;
+      font-family: $muli-regular;
+      color: $silver-grey-color;
+
+      ul {
+        padding-left: 0;
+      }
+
+      li {
+        margin-bottom: 15px;
+        background: url(../../../../assets/images/wisesaver/icon-tick.svg) no-repeat 0 0;
+        padding-left: 30px;
+      }
     }
-    .slick-dots li {
-        width: 10px;
-        height: 10px;
-        button:before {
-            font-size: 8px;
-            color: $slick-dot-inactive-color;
-            opacity: 1;
-        }
-        &.slick-active button:before {
-            font-size: 8px;
-            color: $robins-egg-blue-color;
-        }
+
+    &__heading {
+      font-size: 16px;
+      font-family: $muli-bold;
+      margin-bottom: 15px;
     }
-    .more-info-shadow {
-        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .btn:disabled {
+    color: $btn-disabled-teal-color;
+  }
+
+  .slick-dots li {
+    width: 10px;
+    height: 10px;
+
+    button:before {
+      font-size: 8px;
+      color: $slick-dot-inactive-color;
+      opacity: 1;
     }
+
+    &.slick-active button:before {
+      font-size: 8px;
+      color: $robins-egg-blue-color;
+    }
+  }
+
+  .more-info-shadow {
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.5);
+  }
+  .footer-btn-wrapper {
+    padding: 0 55px;
+  }
 }

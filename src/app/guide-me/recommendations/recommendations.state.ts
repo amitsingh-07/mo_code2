@@ -1,9 +1,9 @@
 import { ElementRef } from '@angular/core';
-import { SlickComponent } from 'ngx-slick';
+import { SlickCarouselComponent } from 'ngx-slick-carousel';
 
 export class RecommendationsState {
 
-    recommendationCarousel: SlickComponent;
+    recommendationCarousel: SlickCarouselComponent;
     mobileHeaderMenu: ElementRef<any>;
 
     pageTitle: string;

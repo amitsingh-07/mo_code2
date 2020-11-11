@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { toInteger } from '../utils/common.util';
 import { Agent } from 'https';
 
 @Injectable()
@@ -41,5 +41,11 @@ export class AboutAge {
 		const calculateYear = dateToCalculate.getFullYear();
 		let age = calculateYear - birthYear;
 		return age;
+	}
+	getBirthYear(date): number {
+		const dateParts = date.split('/');
+		const dateOfBirth = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
+		const birthYear = dateOfBirth.getFullYear();
+		return birthYear;
 	}
 }

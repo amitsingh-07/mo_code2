@@ -20,9 +20,9 @@ import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
-
 import { PaymentChildEnableGuard } from './payment/payment-child-enable-guard';
 import { PaymentEnableGuard } from './payment/payment-enable-guard';
+import { NotSupportedComponent } from './not-supported/not-supported.component';
 
 const routes: Routes = [
   {
@@ -32,61 +32,62 @@ const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path: '9462test-myinfo', component: TestMyInfoComponent },
-      { path: 'direct', loadChildren: './direct/direct.module#DirectModule' },
-      { path: 'guideme', loadChildren: './guide-me/guide-me.module#GuideMeModule' },
-      { path: 'accounts', loadChildren: './sign-up/sign-up.module#SignUpModule' },
+      { path: 'direct', loadChildren: () => import('./direct/direct.module').then(m => m.DirectModule) },
+      { path: 'guideme', loadChildren: () => import('./guide-me/guide-me.module').then(m => m.GuideMeModule) },
+      { path: 'accounts', loadChildren: () => import('./sign-up/sign-up.module').then(m => m.SignUpModule) },
       { path: 'myinfo', component: CallBackComponent },
       { path: 'investment-maintenance', component: InvestmentMaintenanceComponent, canActivate: [InvestmentMaintenanceGuard]},
       {
-        path: APP_ROUTES.COMPREHENSIVE, loadChildren: './comprehensive/comprehensive.module#ComprehensiveModule',
+        path: APP_ROUTES.COMPREHENSIVE, loadChildren: () => import('./comprehensive/comprehensive.module').then(m => m.ComprehensiveModule),
         canActivate: [ComprehensiveEnableGuard],
         canActivateChild: [ComprehensiveChildEnableGuard]
       },
       {
         path: 'investment/engagement',
-        loadChildren: './investment/investment-engagement-journey/investment-engagement-journey.module#InvestmentEngagementJourneyModule',
+        loadChildren: () => import('./investment/investment-engagement-journey/investment-engagement-journey.module').then(m => m.InvestmentEngagementJourneyModule),
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },
       {
         path: 'investment/account',
-        loadChildren: './investment/investment-account/investment-account.module#InvestmentAccountModule',
+        loadChildren: () => import('./investment/investment-account/investment-account.module').then(m => m.InvestmentAccountModule),
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },
       {
         path: 'investment/manage',
-        loadChildren: './investment/manage-investments/manage-investments.module#ManageInvestmentsModule',
+        loadChildren: () => import('./investment/manage-investments/manage-investments.module').then(m => m.ManageInvestmentsModule),
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },
       {
         path: 'investment',
-        loadChildren: './investment/investment-common/investment-common.module#InvestmentCommonModule',
+        loadChildren: () => import('./investment/investment-common/investment-common.module').then(m => m.InvestmentCommonModule),
         canActivate: [InvestmentEnableGuard],
         canActivateChild: [InvestmentChildEnableGuard]
       },
       {
         path: 'will-writing',
-        loadChildren: './will-writing/will-writing.module#WillWritingModule',
+        loadChildren: () => import('./will-writing/will-writing.module').then(m => m.WillWritingModule),
         canActivate: [WillWritingEnableGuard],
         canActivateChild: [WillWritingChildEnableGuard]
       },
       {
         path: 'retirement-planning',
-        loadChildren: './retirement-planning/retirement-planning.module#RetirementPlanningModule',
+        loadChildren: () => import('./retirement-planning/retirement-planning.module').then(m => m.RetirementPlanningModule),
         canActivate: [],
         canActivateChild: []
       },
       {
         path: 'payment',
-        loadChildren: './payment/payment.module#PaymentModule',
+        loadChildren: () => import('./payment/payment.module').then(m => m.PaymentModule),
         canActivate: [PaymentEnableGuard],
         canActivateChild: [PaymentChildEnableGuard]
       },
       // Legacy Routes
       { path: 'email-enquiry/success', component: EmailEnquirySuccessComponent },
       { path: 'page-not-found', component: NotFoundComponent },
+      { path: 'browser-not-supported', component: NotSupportedComponent },
       { path: '**', component: NotFoundComponent, canActivate: [ExternalRouteGuard] }
     ]
   }

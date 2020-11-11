@@ -144,7 +144,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       name: dependant.name,
       dateOfBirth: dependant.dateOfBirth,
       gender: dependant.gender,
-      enquiryId: dependant.enquiryId,
+      enquiryId: this.comprehensiveService.getEnquiryId(),
       location: null,
       educationCourse: null,
       educationSpendingShare: null,

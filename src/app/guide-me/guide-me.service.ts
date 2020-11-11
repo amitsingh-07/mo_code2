@@ -610,7 +610,7 @@ export class GuideMeService {
     this.setMyOcpDisability(data.occupationalDisability);
     this.removeProtectNeedHospitalPlanData();
 
-    if (response.enquiryData.numberOfDependents > 0) {
+    if (response.enquiryData.numberOfDependents > 0 && response.dependentsData) {
       const dependents = [];
       for (const dependentData of response.dependentsData) {
         const dependent = {

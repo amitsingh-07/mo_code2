@@ -1,19 +1,12 @@
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/finally';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
-
+import {throwError as observableThrowError,  Observable } from 'rxjs';
+import {map, finalize,  catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { catchError } from 'rxjs/operators';
 
 import { ConfigService, IConfig } from '../../config/config.service';
 import { Util } from '../utils/util';
 import { CustomErrorHandlerService } from './custom-error-handler.service';
 import { HelperService } from './helper.service';
-import { HttpService } from './http.service';
 import { IError } from './interfaces/error.interface';
 import { IServerResponse } from './interfaces/server-response.interface';
 
@@ -25,7 +18,6 @@ export class BaseService {
   apiBaseUrl = '';
 
   constructor(
-    public http: HttpService,
     public httpClient: HttpClient,
     public errorHandler: CustomErrorHandlerService,
     public helperService: HelperService,
@@ -38,10 +30,10 @@ export class BaseService {
   get(url) {
     this.helperService.showLoader();
     return this.httpClient
-      .get<IServerResponse>(`${this.apiBaseUrl}/${url}`)
-      .finally(() => {
+      .get<IServerResponse>(`${this.apiBaseUrl}/${url}`).pipe(
+      finalize(() => {
         this.helperService.hideLoader();
-      })
+      }))
       .pipe(
         catchError(this.errorHandler.handleError)
       );
@@ -50,10 +42,10 @@ export class BaseService {
   getBlob(url) {
     this.helperService.showLoader();
     return this.httpClient
-      .get(`${this.apiBaseUrl}/${url}`, { responseType: 'blob' })
-      .finally(() => {
+      .get(`${this.apiBaseUrl}/${url}`, { responseType: 'blob' }).pipe(
+      finalize(() => {
         this.helperService.hideLoader();
-      })
+      }))
       .pipe(
         catchError(this.errorHandler.handleError)
       );
@@ -61,10 +53,10 @@ export class BaseService {
 
   getMock(url) {
     return this.httpClient
-      .get<IServerResponse>(url)
-      .finally(() => {
+      .get<IServerResponse>(url).pipe(
+      finalize(() => {
         this.helperService.hideLoader();
-      });
+      }));
   }
 
   getArticle(url) {
@@ -85,10 +77,10 @@ export class BaseService {
     }
 
     return this.httpClient
-      .post<IServerResponse>(`${this.apiBaseUrl}/${url}${param}`, postBody)
-      .finally(() => {
+      .post<IServerResponse>(`${this.apiBaseUrl}/${url}${param}`, postBody).pipe(
+      finalize(() => {
         this.helperService.hideLoader();
-      });
+      }));
   }
 
   postForBlob(url, showLoader?: boolean, showError?: boolean) {
@@ -101,10 +93,10 @@ export class BaseService {
     }
 
     return this.httpClient
-      .get(`${this.apiBaseUrl}/${url}${param}`, { responseType: 'blob' })
-      .finally(() => {
+      .get(`${this.apiBaseUrl}/${url}${param}`, { responseType: 'blob' }).pipe(
+      finalize(() => {
         this.helperService.hideLoader();
-      });
+      }));
   }
 
   patch(url, patchBody: any, showLoader?: boolean, showError?: boolean) {
@@ -117,10 +109,10 @@ export class BaseService {
     }
 
     return this.httpClient
-      .patch<IServerResponse>(`${this.apiBaseUrl}/${url}${param}`, patchBody)
-      .finally(() => {
+      .patch<IServerResponse>(`${this.apiBaseUrl}/${url}${param}`, patchBody).pipe(
+      finalize(() => {
         this.helperService.hideLoader();
-      });
+      }));
   }
 
   postForBlobParam(url, payload: any, showLoader?: boolean, showError?: boolean) {
@@ -132,10 +124,10 @@ export class BaseService {
       param = '?alert=' + showError;
     }
     return this.httpClient
-      .post(`${this.apiBaseUrl}/${url}${param}`, payload, { observe: 'response', responseType: 'blob' })
-      .finally(() => {
+      .post(`${this.apiBaseUrl}/${url}${param}`, payload, { observe: 'response', responseType: 'blob' }).pipe(
+      finalize(() => {
         this.helperService.hideLoader();
-      });
+      }));
   }
   delete(url, postBody: any, showLoader?: boolean, showError?: boolean) {
     if (showLoader) {
@@ -146,23 +138,26 @@ export class BaseService {
       param = '?alert=' + showError;
     }
     return this.httpClient
-      .delete<IServerResponse>(`${this.apiBaseUrl}/${url}${param}`)
-      .finally(() => {
+      .delete<IServerResponse>(`${this.apiBaseUrl}/${url}${param}`).pipe(
+      finalize(() => {
         this.helperService.hideLoader();
-      });
+      }));
   }
 
-  put(url, putData) {
-    this.helperService.showLoader();
-    return this.http
-      .put(url, putData)
-      .map((res: Response) => {
-        return this.handleResponse(res);
-      })
-      .catch((error: Response) => Observable.throw(error))
-      .finally(() => {
+  put(url, putData: any, showLoader?: boolean, showError?: boolean) {
+    if (showLoader) {
+      this.helperService.showLoader();
+    }
+    let param = '';
+    if (showError) {
+      param = '?alert=' + showError;
+    }
+
+    return this.httpClient
+      .put<IServerResponse>(`${this.apiBaseUrl}/${url}${param}`, putData).pipe(
+      finalize(() => {
         this.helperService.hideLoader();
-      });
+      }));
   }
 
   upload(url: string, file: File) {
@@ -186,20 +181,5 @@ export class BaseService {
       }
     }
     return url + queryString;
-  }
-
-  handleResponse(res): IServerResponse {
-    // My API sends a new jwt access token with each request,
-    // so store it in the local storage, replacing the old one.
-    const data = res;
-    if (data.responseMessage.responseCode < 6000) {
-      const error: IError = {
-        error: data.responseMessage.responseCode,
-        message: data.responseMessage.responseDescription
-      };
-      throw new Error(this.errorHandler.parseCustomServerErrorToString(error));
-    } else {
-      return data;
-    }
   }
 }

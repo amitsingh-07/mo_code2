@@ -373,10 +373,10 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  saveProfileSrsAccountDetails(data, customerPortfolioId) {
+  saveProfileSrsAccountDetails(data, customerId) {
     return this.http.post(
       // tslint:disable-next-line: max-line-length
-      investmentApiConstants.endpoint.investmentAccount.saveProfileSrsAccountDetails.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId), data)
+      investmentApiConstants.endpoint.investmentAccount.saveProfileSrsAccountDetails.replace('$CUSTOMER_ID$', customerId), data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -406,4 +406,34 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  getWiseSaverDetails() {
+    return this.http.get(investmentApiConstants.endpoint.portfolio.getWiseSaverValues + '?key=WISE_SAVER_RATE')
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getTransferEntityList(customerPortfolioId) {
+    const url = investmentApiConstants.endpoint.investmentAccount.getActionRequestToken.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.get(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      )
+  }
+
+  getTransferCashPortfolioList() {
+    return this.http.get(investmentApiConstants.endpoint.investmentAccount.getCashPortfolioList)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  TransferCash(data) {
+    return this.http.post(investmentApiConstants.endpoint.investmentAccount.saveCashTransfer, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
 }

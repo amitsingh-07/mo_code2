@@ -75,8 +75,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.welcomeTitle.nativeElement.scrollIntoView(true);
     }
   }
-
- constructor(
+  
+  constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder, private appService: AppService,
     private modal: NgbModal, private configService: ConfigService,
@@ -489,5 +489,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '');
     this.loginForm.controls.loginUsername.setValue(pastedEmailText);
     event.preventDefault();
+  }
+  onKeyupEvent(event) {
+     if (event.target.value) {
+        const emailValue = event.target.value.replace(/\s/g, '');
   }
 }

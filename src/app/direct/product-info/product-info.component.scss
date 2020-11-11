@@ -37,6 +37,9 @@ app-product-info {
     .dropdown-menu {
       height: auto !important;
       max-height: 300px !important;
+      @include desktop {
+        max-height: 400px !important;
+      }
       overflow: auto;
     }
   }
@@ -46,6 +49,14 @@ app-product-info {
 
     @include allmobiles {
       //padding-bottom: 60px !important;
+    }
+  }
+  @include allmobiles {
+    .prod-info.show {
+      top: 105px;
+    }
+    .prod-info .prod-cat-list__wrapper.show {
+      background-color: $white-color;
     }
   }
 }

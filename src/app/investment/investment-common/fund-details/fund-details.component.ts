@@ -49,17 +49,17 @@ export class FundDetailsComponent implements OnInit {
   }
 
   showHide(el) {
-    const fundContentEle = el.getElementsByClassName('funding-content')[0];
+    const fundContentEle = document.getElementsByClassName('funding-content')[el];
     if (
       fundContentEle.classList.contains('active') ||
       fundContentEle.classList.contains('first')
     ) {
       fundContentEle.classList.remove('active');
       fundContentEle.classList.remove('first');
-      el.getElementsByClassName('fund-heading')[0].classList.remove('active');
+      document.getElementsByClassName('fund-heading')[el].classList.remove('active');
     } else {
       fundContentEle.classList.add('active');
-      el.getElementsByClassName('fund-heading')[0].classList.add('active');
+      document.getElementsByClassName('fund-heading')[el].classList.add('active');
     }
   }
 
@@ -68,11 +68,10 @@ export class FundDetailsComponent implements OnInit {
     if (fund.factSheetLink) {
       highlightSheetFileName = fund.factSheetLink.split('|')[1];
     }
-    return window.location.origin + '/app/assets/docs/portfolio/fund/' + highlightSheetFileName;
+    return document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + highlightSheetFileName;
   }
-  getProspectusLink(fund) {
-    //let prospectusFileName = fund.prospectusLink; // TODO: getting null from backend
+  getProspectusLink() {
     let prospectusFileName = (this.portfolioType) ? 'prospectus_investment.pdf' : 'prospectus_wise_saver.pdf';
-    return window.location.origin + '/app/assets/docs/portfolio/fund/' + prospectusFileName;
+    return document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + prospectusFileName;
   }
 }

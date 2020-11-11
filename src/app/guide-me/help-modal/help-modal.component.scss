@@ -19,10 +19,6 @@
       position: absolute !important;
       right: 15px !important;
       top: 25px !important;
-      // float: right;
-      // position: relative;
-      // top: 14px;
-      // right: 5px;
       background-repeat: no-repeat !important;
     }
     .modal .close {
@@ -43,7 +39,7 @@
     }
   }
   .modal {
-    position: absolute;
+    position: fixed;
   }
   .modal-open {
     .profile .col-lg-7 {

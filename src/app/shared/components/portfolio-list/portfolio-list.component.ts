@@ -21,6 +21,7 @@ import { InvestmentCommonService } from './../../../investment/investment-common
 import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
  } from './../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+import { MANAGE_INVESTMENTS_CONSTANTS } from '../../../investment/manage-investments/manage-investments.constants';
 
 @Component({
   selector: 'app-portfolio-list',
@@ -39,6 +40,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   showAllForNotInvested: boolean;
   topClickedFlag: boolean;
   totalPortfoliosLength: number;
+  newMessageForRebalance = false;
 
   @Input('portfolioList') portfolioList;
   @Input('showTotalReturn') showTotalReturn;
@@ -128,10 +130,17 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     return (ProfileIcons[i - 1] && ProfileIcons[i - 1]['icon']) ? ProfileIcons[i - 1]['icon'] : '';
   }
 
-  showRebalanceMessage() {
+  showRebalanceMessage(riskProfileType) {
+   if (MANAGE_INVESTMENTS_CONSTANTS.REBALANCE_ADDITIONAL_MESSAGE.includes(riskProfileType.toUpperCase())){
+      this.newMessageForRebalance = true;
+    } else {
+      this.newMessageForRebalance = false;
+    }
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.TITLE');
-    ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.Message');
+    ref.componentInstance.errorMessage = this.newMessageForRebalance ?
+      this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.DESC') :
+      this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.MESSAGE');
     this.topClickedFlag = true;
   }
 

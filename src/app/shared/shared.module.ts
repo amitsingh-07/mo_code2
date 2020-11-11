@@ -1,4 +1,4 @@
-import { SlickModule } from 'ngx-slick';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { CommonModule } from '@angular/common';
@@ -82,6 +82,7 @@ import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
 import { NotesComponent } from './components/notes/notes.component';
 import { CapsLockInputDirective } from './directives/caps-lock-input.directive';
+import { CopyClipboardDirective } from './directives/copy-clipboard.directive';
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
@@ -93,7 +94,7 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   imports: [
     CommonModule,
-    NgbModule.forRoot(),
+    NgbModule,
     RouterModule,
     TranslateModule.forRoot({
       loader: {
@@ -104,7 +105,7 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     FormsModule,
     ReactiveFormsModule,
-    SlickModule.forRoot()
+    SlickCarouselModule
   ],
   exports: [CurrencyInputDirective, PercentageInputDirective, CapsLockInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe,
@@ -131,7 +132,8 @@ export function createTranslateLoader(http: HttpClient) {
     DropdownWithSearchComponent,
     StartsWithPipe,
     RoadmapComponent,
-    SecurePipe, PortfolioListComponent, InstructionStepsComponent, FormatCurrencyPipe, NotesComponent],
+    SecurePipe, PortfolioListComponent, InstructionStepsComponent, FormatCurrencyPipe, NotesComponent,
+    CopyClipboardDirective],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -172,7 +174,8 @@ export function createTranslateLoader(http: HttpClient) {
     ReviewBuyRequestModalComponent,
     FormatCurrencyPipe,
     NotesComponent,
-    CapsLockInputDirective
+    CapsLockInputDirective,
+    CopyClipboardDirective
   ],
   entryComponents: [
     EditInvestmentModalComponent,

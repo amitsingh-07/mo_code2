@@ -9,6 +9,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ComprehensiveService } from '../comprehensive.service';
+import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 
 @Component({
   selector: 'app-result',
@@ -24,6 +25,7 @@ export class ResultComponent implements OnInit, OnDestroy {
   alertTitle: string;
   alertMessage: string;
   comprehensiveJourneyMode: boolean;
+  isPayment: boolean;
   @Output() backPressed: EventEmitter<any> = new EventEmitter();
   constructor(private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
     private translate: TranslateService,
@@ -53,6 +55,9 @@ export class ResultComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
+    if (this.comprehensiveJourneyMode) {
+      this.paymentStatus();
+    }
     this.loaderService.hideLoaderForced();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.progressService.setReadOnly(true);
@@ -62,6 +67,16 @@ export class ResultComponent implements OnInit, OnDestroy {
         this.progressService.show();
       }
     });
+  }
+  paymentStatus() {
+    let comprehensiveData = this.comprehensiveService.getComprehensiveEnquiry();
+    const paymentStatus = (comprehensiveData.paymentStatus) ? comprehensiveData.paymentStatus.toLowerCase() : '';
+    if (paymentStatus !== COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED && (comprehensiveData.paymentStatus === null || paymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING || paymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING || comprehensiveData.reportStatus.toLowerCase() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW)) {
+      this.isPayment = true;
+    } else {
+      this.isPayment = false;
+    }
+
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
@@ -83,3 +98,4 @@ export class ResultComponent implements OnInit, OnDestroy {
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
   }
 }
+

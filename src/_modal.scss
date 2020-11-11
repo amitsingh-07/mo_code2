@@ -49,6 +49,7 @@ body.modal-open {
   overflow: hidden;
   width: 100%;
   background-color: $black-color;
+  padding-right: 0 !important
 }
 
 body.modal-open {
@@ -243,6 +244,7 @@ body.modal-open::-webkit-scrollbar {
     font-size: 32px;
     opacity: 0.4 !important;
     text-shadow: none;
+    outline: none !important;
   }
 
   .help-modal-title {
@@ -681,6 +683,9 @@ body.modal-open::-webkit-scrollbar {
     margin-top: 27px;
     position: relative;
   }
+  .modal-dialog-centered {
+    align-items: center !important;
+  }
 }
 
 .custom-full-height {
@@ -925,8 +930,6 @@ body.modal-open::-webkit-scrollbar {
 
 .will-custom-modal {
   .modal-header {
-    width: 375px !important;
-
     @include allmobiles {
       width: 100vw !important;
     }
@@ -934,7 +937,7 @@ body.modal-open::-webkit-scrollbar {
 
   .modal-body {
     width: 375px !important;
-
+    margin: 0 auto;
     .modal-body-title {
       width: 310px;
     }
@@ -1094,7 +1097,7 @@ body.modal-open::-webkit-scrollbar {
 
   @include desktop {
     .modal-body {
-      height: 100vh;
+      max-height: 100vh;;
       overflow-y: auto;
       padding-bottom: 50px;
     }
@@ -1251,5 +1254,17 @@ body.modal-open::-webkit-scrollbar {
 .hide-manual-btn {
   #error_enter_manually {
     display: none;
+  }
+}
+@include allmobiles {
+  .modal-dialog-centered {
+    align-items: flex-end !important;
+    min-height: 100% !important;
+  }
+  .full-height-comprehensive {
+    .modal-dialog-centered {
+      align-items: center !important;
+      min-height: 100% !important;
+    }
   }
 }

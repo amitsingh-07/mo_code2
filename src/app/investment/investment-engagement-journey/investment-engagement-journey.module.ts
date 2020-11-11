@@ -8,7 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { SlickModule } from 'ngx-slick';
 
 import {
   CurrencyInputPortfolioDirective
@@ -36,6 +35,7 @@ import {
 } from './your-investment-amount/your-investment-amount.component';
 import { SelectPortfolioComponent } from './select-portfolio/select-portfolio.component';
 import { RiskAcknowledgementComponent } from './risk-acknowledgement/risk-acknowledgement.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
@@ -49,8 +49,9 @@ export function createTranslateLoader(http: HttpClient) {
     CommonModule,
     InvestmentEngagementJourneyRoutingModule,
     ReactiveFormsModule,
-    NgbModule.forRoot(),
+    NgbModule,
     NouisliderModule,
+    SlickCarouselModule,
     FormsModule,
     TranslateModule.forRoot({
       loader: {
@@ -60,8 +61,7 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     SharedModule,
-    RouterModule,
-    SlickModule
+    RouterModule
   ],
   declarations: [
     GetStartedStep1Component,

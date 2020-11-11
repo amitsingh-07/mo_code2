@@ -3,7 +3,7 @@ import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 
 import { AppService } from './app.service';
@@ -23,11 +23,21 @@ import { RoutingService } from './shared/Services/routing.service';
 import { SignUpService } from './sign-up/sign-up.service';
 import { SessionsService } from './shared/Services/sessions/sessions.service';
 
+
+declare global {
+  interface Window {
+      failed:any;
+      success:any;
+      myinfo:any;
+  }
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewInit {
   title = 'Money Owl';
   modalRef: NgbModalRef;
@@ -66,6 +76,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
       this.navbarMode = navbarMode;
     });
 
+    
   }
 
   ngOnInit() {

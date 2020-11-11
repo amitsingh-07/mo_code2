@@ -52,6 +52,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   srsAccDetail;
   portfolioWithdrawRequests = false;
   showAnnualizedReturns = false;
+  addTopMargin: boolean;
 
   showPortfolioInfo = false; // Display the below 3 information
   totalInvested: any; // Cost of investment
@@ -60,6 +61,8 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   showTimeWeightedReturns = false;
   investmentAmount: any; // Net Deposits
   private subscription: Subscription;
+
+  showFixedToastMessage: boolean;
 
   constructor(
     public readonly translate: TranslateService,
@@ -104,6 +107,18 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
     this.moreList = MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.MORE_LIST;
     this.getCustomerPortfolioDetailsById(this.formValues.selectedCustomerPortfolioId);
     this.showBuyRequest();
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.ROOT]);
+      }
+    });
+
+    this.manageInvestmentsService.copyToastSubject.subscribe((data) => {
+      if (data) {
+        this.addTopMargin = false;
+        this.showCopyToast(data);
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -115,7 +130,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   getCustomerPortfolioDetailsById(customerPortfolioId) {
     this.manageInvestmentsService.getCustomerPortfolioDetailsById(customerPortfolioId).subscribe((data) => {
       this.portfolio = data.objectList;
-      this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
+     this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
       this.holdingValues = this.portfolio.dPMSPortfolio ? this.portfolio.dPMSPortfolio.dpmsDetailsDisplay : null;
       this.constructFundingParams(this.portfolio);
       this.totalReturnsPercentage = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio.totalReturns
@@ -134,8 +149,8 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         ? this.portfolio.dPMSPortfolio['simpleReturns']
         : 0;
       this.investmentAmount = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio['investmentAmount']
-          ? this.portfolio.dPMSPortfolio['investmentAmount']
-          : 0;
+        ? this.portfolio.dPMSPortfolio['investmentAmount']
+        : 0;
       this.getTransferDetails(this.portfolio.customerPortfolioId);
       if (this.portfolio['riskProfile']) {
         this.riskProfileImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
@@ -168,6 +183,13 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
+  }
+  showNewMessageForRebalance(riskType) {
+    if (MANAGE_INVESTMENTS_CONSTANTS.REBALANCE_ADDITIONAL_MESSAGE.includes(riskType.toUpperCase())) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   getPortfolioWithdrawalRequests(sellRequests) {
@@ -253,7 +275,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   gotoTopUp(monthly?: boolean) {
     const data = this.manageInvestmentsService.getTopUp();
     data['Investment'] = monthly ?
-    MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.MONTHLY.VALUE : MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.ONE_TIME.VALUE;
+      MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.MONTHLY.VALUE : MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.ONE_TIME.VALUE;
     this.manageInvestmentsService.setTopUp(data);
     this.manageInvestmentsService.setSelectedCustomerPortfolioId(this.portfolio.customerPortfolioId);
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
@@ -294,15 +316,19 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         break;
       }
       case 2: {
-        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TRANSACTION]);
+        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TRANSFER]);
         break;
       }
       case 3: {
+        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TRANSACTION]);
+        break;
+      }
+      case 4: {
         this.showErrorMessage = false;
         this.showRenamePortfolioModal();
         break;
       }
-      case 4: {
+      case 5: {
         if (this.portfolio.entitlements.showWithdrawPvToBa || this.portfolio.entitlements.showWithdrawPvToCa ||
           this.portfolio.entitlements.showWithdrawCaToBa || this.portfolio.entitlements.showWithdrawPvToSRS) {
           this.manageInvestmentsService.clearWithdrawalTypeFormData();
@@ -310,12 +336,13 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         }
         break;
       }
-      case 5: {
+      case 6: {
         if (this.portfolio.entitlements.showDelete) {
           this.showDeletePortfolioModal();
         }
         break;
       }
+     
     }
   }
 
@@ -398,9 +425,16 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 1);
+
+    this.hideToastMessage();
+  }
+
+  hideToastMessage() {
     setTimeout(() => {
       this.isToastMessageShown = false;
+      this.showFixedToastMessage = false;
       this.toastMsg = null;
+      this.addTopMargin = true;
     }, 3000);
   }
 
@@ -479,9 +513,9 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
             this.srsAccDetail = null;
           }
         },
-        (err) => {
-          this.investmentAccountService.showGenericErrorModal();
-        });
+          (err) => {
+            this.investmentAccountService.showGenericErrorModal();
+          });
       });
     }
   }
@@ -491,12 +525,26 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   }
 
   showCalculationTooltip() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'modal-body-message'});
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'modal-body-message' });
     ref.componentInstance.errorTitle = this.translate.instant(
       'YOUR_PORTFOLIO.MODAL.CALCULATE.TITLE'
     );
     ref.componentInstance.errorMessage = this.translate.instant(
       'YOUR_PORTFOLIO.MODAL.CALCULATE.MESSAGE'
     );
+  }
+
+  showCopyToast(data) {
+    this.toastMsg = data;
+    this.showFixedToastMessage = true;
+    this.hideToastMessage();
+  }
+
+  notify(event) {
+    this.addTopMargin = true;
+    const toasterMsg = {
+      desc: this.translate.instant('TRANSFER_INSTRUCTION.COPIED')
+    };
+    this.showCopyToast(toasterMsg);
   }
 }

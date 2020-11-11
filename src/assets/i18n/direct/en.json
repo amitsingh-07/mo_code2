@@ -87,7 +87,16 @@
   "LONG_TERM_CARE": {
     "MONTHLY_PAYOUT": {
       "TITLE": "Monthly Payout"
+      },
+     "PAYOUT_TYPE": "Payout Type",
+     "PAYOUT_TYPE_1": "Escalating",
+     "PAYOUT_TYPE_2": "Level",
+     "TOOLTIP": {
+      "LONG_TERM_CARE": {
+        "TITLE": "Monthly Payout",
+        "MESSAGE": "If you are on CareShield Life, please choose the <b>additional</b> monthly payout you wish to have above your CareShield Life coverage."
       }
+    }
     },
     "OCCUPATIONAL_DISABILITY": {
       "EMPLOYMENT_TYPE":"Employment Type",
@@ -132,6 +141,7 @@
         "COVARAGE_DURATION": "Coverage Duration",
         "PREMIUM_DURATION": "Premium Duration",
         "NEED_UNDERWRITING": "Need Underwriting",
+        "PAYOUT_TYPE": "Payout Type",
         "NEED_UNDERWRITING_TOOLTIP": {
           "TITLE": "Requires Underwriting",
           "DESCRIPTION" : "Before you can be insured under this plan, the insurer will first evaluate you."

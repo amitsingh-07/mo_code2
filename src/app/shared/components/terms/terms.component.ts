@@ -24,7 +24,7 @@ export class TermsComponent implements OnInit {
   dismiss() {
     this.navbarService.setNavbarDirectGuided(false);
     this.footerService.setFooterVisibility(false);
-    this.activeModal.dismiss('Cross click');
+    this.activeModal.close('Cross click');
   }
 
   close() {

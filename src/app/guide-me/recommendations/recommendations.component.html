@@ -37,7 +37,7 @@
     <div class="plan-carousel-container">
       <div class="recommendation-carousel-item">
 
-        <ngx-slick class="carousel" #recommendationCarousel="slick-modal" [config]="slideConfig" (afterChange)="afterChange($event)">
+        <ngx-slick-carousel class="carousel" #recommendationCarousel="slick-carousel" [config]="slideConfig" (afterChange)="afterChange($event)">
             <div ngxSlickItem *ngFor="let recommendation of state.recommendationPlans; let i = index" class="slide">
                 <div>
                     <div class="row" *ngIf="recommendation.productList && recommendation.productList.length > 0" style="justify-content: center; margin-left: 0; margin-right: 0">
@@ -49,7 +49,7 @@
                     </div>
                   </div>
             </div>
-        </ngx-slick>
+        </ngx-slick-carousel>
       </div>
     </div>
 

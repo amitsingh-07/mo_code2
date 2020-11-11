@@ -628,11 +628,10 @@ export class SignUpService {
   }
 
   //srs details
-  setEditProfileSrsDetails(accountNumber, srsBankOperator, customerId, fundTypeId) {
+  setEditProfileSrsDetails(accountNumber, srsBankOperator, customerId) {
     this.signUpFormData.srsAccountNumber = accountNumber;
     this.signUpFormData.srsOperatorBank = srsBankOperator;
     this.signUpFormData.customerId = customerId;
-    this.signUpFormData.fundTypeId = fundTypeId;
     this.commit();
   }
 
@@ -640,9 +639,15 @@ export class SignUpService {
     return {
       srsAccountNumber: this.signUpFormData.srsAccountNumber,
       srsOperatorBank: this.signUpFormData.srsOperatorBank,
-      customerId: this.signUpFormData.customerId,
-      fundTypeId: this.signUpFormData.fundTypeId
+      customerId: this.signUpFormData.customerId
     };
   }
+
+  validateReferralCode(referralCode) {
+    // API Call here
+    const data = {"referralCode": referralCode};
+    return this.apiService.validateReferralCode(data);
+  }
+
   
 }

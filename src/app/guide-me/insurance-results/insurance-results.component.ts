@@ -1,4 +1,4 @@
-import 'rxjs/add/observable/timer';
+
 
 import {
   AfterViewInit,

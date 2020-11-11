@@ -122,7 +122,7 @@ export class FormError {
                 payoutType: {
                         required: {
                                 errorTitle: 'Invalid Payout Type',
-                                errorMessage: 'You have selected an invalid payout type. Please check your entry.'
+                                errorMessage: 'Please select an option.'
                         }
                 },
                 singlePremium: {

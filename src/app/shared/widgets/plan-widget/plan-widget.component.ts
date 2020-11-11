@@ -9,7 +9,8 @@ import {
   OnInit,
   Output,
   Renderer2,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ChangeDetectorRef
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -70,7 +71,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   constructor(
     private currency: CurrencyPipe, public modal: NgbModal, private elRef: ElementRef,
     private renderer: Renderer2, private translate: TranslateService, private titleCasePipe: TitleCasePipe,
-    private planService: SelectedPlansService, private round: RoundPipe) {
+    private planService: SelectedPlansService, private round: RoundPipe, private cd: ChangeDetectorRef) {
     this.highlights = [];
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((data) => {
@@ -101,8 +102,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
       this.coverageDuration = this.data.premium.durationName;
       this.premiumDuration = this.data.premium.premiumTerm;
       this.temp = this.data;
-      this.type = this.type.toLowerCase();
-
+      this.type = this.type.toLowerCase();      
       // Coverage Duration field should not be displayed for all Retirement and SRS types
       if (this.type.indexOf('retirement') < 0 && this.type.indexOf('srs') < 0) {
         this.highlights.push(
@@ -209,6 +209,9 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
         });
       }
       this.highlights.push({ title: 'Needs Medical Underwriting:', description: this.data.underWritting });
+      if (this.type === 'long-term care' && this.data.premium.payoutType) {
+          this.highlights.push({ title: 'Payout Type:', description: this.data.premium.payoutType });
+      }
     }
   }
 
@@ -228,6 +231,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
         this.isRankContainerSet = true;
       }
     }
+    this.cd.detectChanges();
   }
 
   viewDetails() {

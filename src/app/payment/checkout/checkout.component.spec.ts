@@ -37,7 +37,7 @@ describe('CheckoutComponent', () => {
       imports: [
         TranslateModule.forRoot(),
         ReactiveFormsModule,
-        NgbModule.forRoot(),
+        NgbModule,
         RouterTestingModule.withRoutes([])
       ],
       providers: [

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -13,6 +13,7 @@ import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ComprehensiveService } from '../comprehensive.service';
 import { PAYMENT_ROUTE_PATHS } from './../../payment/payment-routes.constants';
 import { PaymentService } from './../../payment/payment.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-comprehensive-review',
@@ -22,12 +23,15 @@ import { PaymentService } from './../../payment/payment.service';
 export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   pageId: string;
   pageTitle: string;
+  tandcForm: FormGroup;
   menuClickSubscription: Subscription;
   subscription: Subscription;
   isPaymentEnabled = false;
   comprehensiveJourneyMode: boolean;
   requireToPay = false;
   loading: string;
+  tandcEnableFlag: boolean;
+  enableTc: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
@@ -37,6 +41,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     private comprehensiveService: ComprehensiveService,
     private comprehensiveApiService: ComprehensiveApiService,
     private paymentService: PaymentService,
+    private formBuilder: FormBuilder,
     private loaderService: LoaderService) {
     this.pageId = this.activatedRoute.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
@@ -91,6 +96,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     } else if (!this.comprehensiveService.checkResultData()) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
     }
+    this.buildTcForm();
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
@@ -113,14 +119,14 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       if (currentStep === 4) {
         if (this.isPaymentEnabled && this.comprehensiveJourneyMode) {
           // If payment is enabled and user has not paid, go payment else initiate report gen
-            this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]).then((result) => {
-              if (result === false) {
-                this.loaderService.showLoader({ title:  this.loading, autoHide: false });
-                this.initiateReport();
-              }
-            });
+          this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]).then((result) => {
+            if (result === false) {
+              this.loaderService.showLoader({ title: this.loading, autoHide: false });
+              this.initiateReport();
+            }
+          });
         } else {
-          this.loaderService.showLoader({ title:  this.loading, autoHide: false });
+          this.loaderService.showLoader({ title: this.loading, autoHide: false });
           this.initiateReport();
         }
       } else {
@@ -146,8 +152,25 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
       this.loaderService.hideLoaderForced();
 
-   }, (err) => {
-    this.loaderService.hideLoaderForced();
-   });
+    }, (err) => {
+      this.loaderService.hideLoaderForced();
+    });
+  }
+
+  @HostListener('input', ['$event'])
+  reviewtandcCheck() {
+    this.tandcForm.valueChanges.subscribe((form: any) => {
+      this.enableTc = form.tandc;
+    });
+  }
+
+  buildTcForm() {
+    const reportStatus = this.comprehensiveService.getReportStatus();
+    const comprehensiveData = this.comprehensiveService.getComprehensiveEnquiry();
+    this.tandcEnableFlag = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || comprehensiveData.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING || comprehensiveData.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING);
+    this.enableTc = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW  || comprehensiveData.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING || comprehensiveData.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING);
+    this.tandcForm = this.formBuilder.group({
+      tandc: [this.enableTc]
+    });
   }
 }
