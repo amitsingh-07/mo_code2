@@ -259,26 +259,27 @@ export class InvestmentCommonService {
     return this.investmentApiService.saveProfileSrsAccountDetails(params, customerPortfolioId);
   }
 
-  getInvestmentCriteriaFromApi() {
-    const params = this.constructParamsForInvestmentCriteria();
+  getInvestmentCriteriaFromApi(selectPortfolioType) {
+    const params = this.constructParamsForInvestmentCriteria(selectPortfolioType);
     return this.investmentApiService.getInvestmentCriteria(params);
   }
 
-  constructParamsForInvestmentCriteria() {
+  constructParamsForInvestmentCriteria(selectPortfolioType) {
     return {
       features: [
         'ONE_TIME_INVESTMENT_MINIMUM',
         'MONTHLY_INVESTMENT_MINIMUM'
-      ]
+      ],
+      "portfolioType": selectPortfolioType
     };
   }
 
-  getInvestmentCriteria(): Observable<IInvestmentCriteria> {
+  getInvestmentCriteria(selectPortfolioType): Observable<IInvestmentCriteria> {
     this.loaderService.showLoader({
       title: this.translate.instant('COMMON_LOADER.TITLE'),
       desc: this.translate.instant('COMMON_LOADER.DESC')
     });
-    return this.getInvestmentCriteriaFromApi().pipe(map((data: any) => {
+    return this.getInvestmentCriteriaFromApi(selectPortfolioType).pipe(map((data: any) => {
       this.loaderService.hideLoader();
       return data.objectList;
     }),catchError(

@@ -102,7 +102,6 @@ export class PortfolioDetailsComponent implements OnInit {
     this.getPortfolioAllocationDetails();
     this.selectedRiskProfile = this.investmentEngagementJourneyService.getSelectedRiskProfileId();
     this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
-    this.getInvestmentCriteria();
   }
 
   setPageTitle(title: string) {
@@ -172,6 +171,7 @@ export class PortfolioDetailsComponent implements OnInit {
     const params = this.constructgetAllocationParams();
     this.investmentEngagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
       this.portfolio = data.objectList;
+      this.getInvestmentCriteria(this.portfolio);
       this.userInputSubtext = {
         onetime: this.formatCurrencyPipe.transform(
           this.portfolio.initialInvestment
@@ -315,9 +315,11 @@ export class PortfolioDetailsComponent implements OnInit {
     this.router.navigate(['/faq'], { fragment: 'investment' });
   }
 
-  getInvestmentCriteria() {
-    this.investmentCommonService.getInvestmentCriteria().subscribe((data) => {
-      this.investmentCriteria = data;
-    });
+  getInvestmentCriteria(portfolioValues) {
+    if (portfolioValues.portfolioType) {
+      this.investmentCommonService.getInvestmentCriteria(portfolioValues.portfolioType).subscribe((data) => {
+        this.investmentCriteria = data;
+      });
+    }
   }
 }
