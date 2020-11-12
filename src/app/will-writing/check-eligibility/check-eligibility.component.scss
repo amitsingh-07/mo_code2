@@ -277,3 +277,8 @@
     line-height: normal;
         
 }
+.btn-ftr-get-started:disabled {
+    background-color: #bff1f1 !important;
+    color: $white-color;
+    opacity: 0.65 !important;
+}

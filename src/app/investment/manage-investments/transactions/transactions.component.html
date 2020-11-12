@@ -52,7 +52,7 @@
                               <div *ngIf="transaction.transactionType.name.toUpperCase() === 'CASH_WITHDRAW'">
                                 {{ 'TRANSACTIONS.CASH_WITHDRAWAL' | translate}}</div>
                               <div class="portfolio-name" *ngIf="transaction.portfolio && transaction.transactionType.name.toUpperCase() !== 'CASH_TRANSFER_IN' && 
-                              transaction.transactionType.name.toUpperCase() !== 'CASH_TRANSFER_OUT'">
+                              transaction.transactionType.name.toUpperCase() !== 'CASH_TRANSFER_OUT' && transaction.transactionType.name.toUpperCase() !== 'CASH_WITHDRAW'">
                                 {{transaction.portfolio.name}}
                               </div>
                               <!-- cash portfolio transaction  -->
