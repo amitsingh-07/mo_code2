@@ -167,13 +167,13 @@
       "RBL_MODAL": {
         "TITLE": "Quarterly Rebalancing In-progress",
         "MESSAGE": "<div class='rebalancing-modal-msg'><div class='mb15'>Please note that your portfolio is being rebalanced. This process will be completed in 6 to 7 working days. <span class='txt-bold'>Requests for redemptions from portfolio(s) will only be submitted for processing after rebalancing is completed.</span></div><div><a class='contact-details mail' target='_blank' href='/app/faq#investment'>For more information, visit our FAQs.</a></div></div>",
-        "DESC": "<div class='rebalancing-modal-msg'><div class='mb15'>Please note that your portfolio is being rebalanced. This process will be completed in 6 to 7 working days. <span class='txt-bold'>Requests for redemptions from portfolio(s) will only be submitted for processing after rebalancing is completed.</span></div><div  class='mb15'>Together with this rebalancing exercise, we will also be revising your asset allocation to include a new fixed income fund (Dimensional Global Core Fixed Income Fund ) into your portfolio. This was a considered move by the Investment Committee to improve our portfolios' resilence against market volatility. </div><div><a class='contact-details mail' target='_blank' href='/app/faq#investment'>For more information, visit our FAQs.</a></div></div>"
+        "DESC": "<div class='rebalancing-modal-msg'><div class='mb15'>Please note that your portfolio is being rebalanced. This process will be completed in 6 to 7 working days. <span class='txt-bold'>Requests for redemptions from portfolio(s) will only be submitted for processing after rebalancing is completed.</span></div><div  class='mb15'>Together with our rebalancing exercise, we will also be revising your asset allocation to include a new fixed income fund (<a  class='contact-details mail' target='_blank' href='/app/the-right-building-blocks/ '>Dimensional Global Core Fixed Income Fund</a>) into your portfolio. This was a considered move  to potentially improve your portfolios’ expected returns and resilience against market volatility.</div><div><a class='contact-details mail' target='_blank' href='/app/faq#investment'>For more information, visit our FAQs.</a></div></div>"
       },
       "RE_BALANCE": {
         "TITLE": "Quarterly Rebalancing In-progress",
         "DESC": "Please note that this portfolio is being rebalanced. This process will be completed in 6 to 7 working days.",
         "DESC_ONE": "Requests for redemptions will only be submitted for processing after rebalancing is completed. ",
-        "DESC_TWO": "Together with this rebalancing exercise, we will also be revising your asset allocation to include a new fixed income fund (Dimensional Global Core Fixed Income Fund) into your portfolio. This was a considered move by the Investment Committee to improve our portfolios' resilence against market volatility. ",
+        "DESC_TWO": "Together with our rebalancing exercise, we will also be revising your asset allocation to include a new fixed income fund (<a  class='txt-orange mt5' target='_blank' href='/app/the-right-building-blocks/'>Dimensional Global Core Fixed Income Fund</a>) into your portfolio. This was a considered move  to potentially improve your portfolios’ expected returns and resilience against market volatility. ",
         "FAQ_LINK": "For more information, visit our FAQs."
       },
       "CALCULATE": {
@@ -266,7 +266,7 @@
           "TITLE": "Quarterly Rebalancing In-progress",
           "DESC": "Please note that this portfolio is being rebalanced. This process will be completed in 6 to 7 working days.",
           "DESC_ONE": "Requests for redemptions will only be submitted for processing after rebalancing is completed. ",
-          "DESC_TWO": "Together with this rebalancing exercise, we will also be revising your asset allocation to include a new fixed income fund (Dimensional Global Core Fixed Income Fund) into your portfolio. This was a considered move by the Investment Committee to improve our portfolios' resilence against market volatility. ",
+          "DESC_TWO": "Together with our rebalancing exercise, we will also be revising your asset allocation to include a new fixed income fund (<a class='contact-details mail' target='_blank' href='/app/the-right-building-blocks/'>Dimensional Global Core Fixed Income Fund</a>) into your portfolio. This was a considered move  to potentially improve your portfolios’ expected returns and resilience against market volatility. ",
           "FAQ_LINK": "For more information, visit our FAQs."
         }
       }
