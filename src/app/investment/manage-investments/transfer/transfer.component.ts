@@ -150,7 +150,7 @@ export class TransferComponent implements OnInit, OnDestroy {
     this.transferForm.controls[kay].setValue(value);
     this.cashBalance = this.transferForm.get('transferFrom').value ? this.transferForm.get('transferFrom').value.cashAccountBalance : 0;
     this.transferForm.controls.transferTo.setValue(null);
-    this.transferForm.controls.transferAmount.setValue("0");
+    this.transferForm.controls.transferAmount.setValue(null);
     this.transferForm.get('transferAmount').enable();
     this.transferForm.controls.transferAll.setValue(false);
     this.isTransferAllChecked = false;
