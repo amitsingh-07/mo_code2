@@ -452,7 +452,7 @@
   },
   "TRANSFER_SUCCESS": {
     "TITLE": "Transfer has been completed!",
-    "BACK_TO_PORTFOLIO": "Back to My Portfolios",
+    "BACK_TO_PORTFOLIO": "Back to My Portfolio",
     "BACK_TO_TRANSFER": "Make Another Transfer",
     "BACK_TO_TRANSACTION_HISTORY": "View Transaction History"
   }
