@@ -150,8 +150,7 @@ export class TransferComponent implements OnInit, OnDestroy {
     this.transferForm.controls[kay].setValue(value);
     this.cashBalance = this.transferForm.get('transferFrom').value ? this.transferForm.get('transferFrom').value.cashAccountBalance : 0;
     this.transferForm.controls.transferTo.setValue(null);
-    this.transferForm.controls.transferAmount.setValue(null);
-    this.transferForm.get('transferAmount').enable();
+    this.transferForm.removeControl('transferAmount');
     this.transferForm.controls.transferAll.setValue(false);
     this.isTransferAllChecked = false;
     this.destinationCashPortfolio(this.cashPortfolioList);
@@ -159,10 +158,19 @@ export class TransferComponent implements OnInit, OnDestroy {
 
   setTransferTo(kay, value) {
     this.transferForm.controls[kay].setValue(value);
+    this.transferForm.addControl(
+      'transferAmount',
+      new FormControl({
+        value: this.formValues.transferAmount,
+      }, [
+        Validators.required,
+        this.transferAmountValidator()
+      ])
+    );
   }
 
   getInlineErrorStatus(control) {
-    return !control.pristine && !control.valid;
+    return (!control.pristine && !control.valid);
   }
 
   TransferAllChecked() {
