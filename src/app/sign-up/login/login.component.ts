@@ -495,3 +495,4 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         const emailValue = event.target.value.replace(/\s/g, '');
   }
 }
+}
