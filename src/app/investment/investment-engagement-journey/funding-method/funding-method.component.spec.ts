@@ -4,8 +4,6 @@ import { FundingMethodComponent } from './funding-method.component';
 import { Injector } from '@angular/core';
 import {fakeAsync, getTestBed, inject, tick } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HttpModule, XHRBackend } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { Router, Routes } from '@angular/router';

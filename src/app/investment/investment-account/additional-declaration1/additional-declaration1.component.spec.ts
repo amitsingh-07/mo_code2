@@ -2,7 +2,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
@@ -25,15 +24,15 @@ describe('AdditionalDeclaration1Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot(), RouterTestingModule.withRoutes([]), NgbModule.forRoot(), HttpClientTestingModule,
-      HttpModule, FormsModule, ReactiveFormsModule, JwtModule.forRoot({config: {}}) ],
-      declarations: [ AdditionalDeclaration1Component ],
+      imports: [TranslateModule.forRoot(), RouterTestingModule.withRoutes([]), NgbModule, HttpClientTestingModule,
+        , FormsModule, ReactiveFormsModule, JwtModule.forRoot({ config: {} })],
+      declarations: [AdditionalDeclaration1Component],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [NgbActiveModal, JwtHelperService, InvestmentAccountService,
-        {provide: InvestmentAccountService, useClass: MockInvestmentAccountService}
+        { provide: InvestmentAccountService, useClass: MockInvestmentAccountService }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

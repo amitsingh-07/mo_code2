@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PaymentInstructionModalComponent } from './model-with-button.component';
+import { PaymentInstructionModalComponent } from './payment-instruction-modal.component';
 
 describe('PaymentInstructionModalComponent', () => {
   let component: PaymentInstructionModalComponent;

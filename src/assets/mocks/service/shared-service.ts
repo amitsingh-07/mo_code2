@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import 'rxjs/add/observable/of';
+import { of } from 'rxjs';
 
 export function tokenGetterFn() {
     return '';
@@ -10,7 +10,7 @@ export const mockAuthService = {
         return true;
     },
     authenticate() {
-        return Observable.of();
+        return of();
     },
     getSessionId() {
         return '123456';
@@ -32,7 +32,7 @@ export const mockCurrencyPipe = {
 export const mockPortfolioService = {
 
     verifyPromoCode() {
-        return Observable.of({
+        return of({
             responseMessage: {
                 responseCode: 6005
             },
@@ -49,7 +49,7 @@ export const mockPortfolioService = {
         };
     },
     getPortfolioAllocationDetails(params) {
-        return Observable.of({
+        return of({
             objectList: {
                 investmentPeriod: 8,
                 initialInvestment: 100.0,
@@ -68,7 +68,7 @@ export class MockInvestmentAccountService {
         return true;
     }
     getOccupationList(): Observable<any> {
-        return Observable.of({});
+        return of({});
     }
     getCountriesFormDataByFilter(): any[] {
         return [];
@@ -91,7 +91,7 @@ export class MockInvestmentAccountService {
 
 export const mockFooterService = {
     setFooterVisibility(isVisible: string): Observable<any> {
-        return Observable.of(false);
+        return of(false);
     }
 };
 

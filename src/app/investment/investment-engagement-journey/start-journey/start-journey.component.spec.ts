@@ -4,8 +4,6 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { Injector } from '@angular/core';
 import { async, ComponentFixture, fakeAsync, getTestBed, inject, TestBed, tick } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HttpModule, XHRBackend } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { Router, Routes } from '@angular/router';
@@ -24,8 +22,8 @@ import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES
 } from '../investment-engagement-journey-routes.constants';
 
-import { tokenGetterFn } from 
-'../../../../assets/mocks/service/shared-service';
+import { tokenGetterFn } from
+  '../../../../assets/mocks/service/shared-service';
 
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
@@ -99,6 +97,7 @@ describe('StartJourneyComponent', () => {
   let investmentApiService: InvestmentApiService;
   let loader: LoaderService;
   let investmentEngagementJourneyService: InvestmentEngagementJourneyService;
+  let httpMock;
 
   let httpClientSpy;
 
@@ -121,14 +120,13 @@ describe('StartJourneyComponent', () => {
           }
         }),
         RouterTestingModule.withRoutes(routes),
-        NgbModule.forRoot(),
+        NgbModule,
         JwtModule.forRoot({
           config: {
             tokenGetter: tokenGetterFn
           }
         }),
-        HttpClientTestingModule,
-        HttpModule
+        HttpClientTestingModule
       ],
       providers: [
         NgbModal,
@@ -138,7 +136,7 @@ describe('StartJourneyComponent', () => {
         AuthenticationService,
         TranslateService,
         CurrencyPipe,
-         { provide: CurrencyPipe, useValue: CurrencyPipe },
+        { provide: CurrencyPipe, useValue: CurrencyPipe },
         { provide: AppService, useValue: mockAppService },
         FooterService,
         NavbarService,
@@ -148,8 +146,6 @@ describe('StartJourneyComponent', () => {
         InvestmentApiService,
         InvestmentEngagementJourneyService,
         { provide: appConstants, useValue: appConstants },
-        { provide: XHRBackend, useClass: MockBackend },
-        MockBackend,
         { provide: Router, useClass: RouterStub }
       ]
     })
@@ -179,6 +175,7 @@ describe('StartJourneyComponent', () => {
     translateService = injector.get(TranslateService);
     investmentApiService = TestBed.get(InvestmentApiService);
     investmentEngagementJourneyService = TestBed.get(InvestmentEngagementJourneyService);
+    httpMock = TestBed.get(HttpTestingController);
 
     router = new RouterStub();
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
@@ -200,8 +197,11 @@ describe('StartJourneyComponent', () => {
     fixture.detectChanges();
   });
 
+  afterEach(() => {
+    httpMock.verify();
+  })
   // it('should load translations', fakeAsync(() => {
-    
+
   //  spyOn(navbarService, TestBed.get(NavbarService)).and.returnValue(of(true));
   //   // spyOn(navbarService, 'setNavbarMode').and.returnValue(Observable.of(6));
   //   // spyOn(footerService, 'setFooterVisibility').and.returnValue(Observable.of(false));
