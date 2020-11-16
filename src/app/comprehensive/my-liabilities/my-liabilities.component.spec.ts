@@ -6,8 +6,6 @@ import { Location, APP_BASE_HREF } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Injector, NO_ERRORS_SCHEMA } from '@angular/core';
-import { HttpModule, XHRBackend } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { RouterModule, Router, Routes, ActivatedRoute } from '@angular/router';
@@ -16,7 +14,6 @@ import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 import { NgbActiveModal, NgbModal, NgbModalRef, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { concat, Observable, of, throwError } from 'rxjs';
-import 'rxjs/add/observable/of';
 
 import { MyLiabilitiesComponent } from './my-liabilities.component';
 
@@ -123,14 +120,13 @@ describe('MyLiabilitiesComponent', () => {
             deps: [HttpClient]
           }
         }),
-        NgbModule.forRoot(),
+        NgbModule,
         JwtModule.forRoot({
           config: {
             tokenGetter: tokenGetterFn
           }
         }),
         HttpClientTestingModule,
-        HttpModule,
         //RouterTestingModule.withRoutes(routes),
         RouterTestingModule.withRoutes([]),
         //RouterModule.forRoot(routes)
@@ -153,9 +149,6 @@ describe('MyLiabilitiesComponent', () => {
         FormBuilder,
         ComprehensiveService,
         ComprehensiveApiService,
-        { provide: appConstants, useValue: appConstants },
-        { provide: XHRBackend, useClass: MockBackend },
-        MockBackend,
         AboutAge,
         RoutingService,
         JwtHelperService,
