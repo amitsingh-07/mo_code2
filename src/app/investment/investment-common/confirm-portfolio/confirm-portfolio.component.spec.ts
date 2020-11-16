@@ -9,7 +9,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { NgbActiveModal, NgbModal, NgbModalRef, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { concat, Observable, of, throwError } from 'rxjs';
-import 'rxjs/add/observable/of';
+
 import { CurrencyPipe } from '@angular/common';
 import { appConstants } from '../../../app.constants';
 import { FooterService } from '../../../shared/footer/footer.service';

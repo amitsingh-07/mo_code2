@@ -14,7 +14,6 @@ import { NgbActiveModal, NgbModal, NgbModalRef, NgbModule } from '@ng-bootstrap/
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { concat, Observable, of, throwError } from 'rxjs';
-import 'rxjs/add/observable/of';
 
 import { CurrencyPipe } from '@angular/common';
 import { appConstants } from '../../../app.constants';

@@ -9,14 +9,13 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { NgbActiveModal, NgbModal, NgbModalRef, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { concat, Observable, of, throwError } from 'rxjs';
-import 'rxjs/add/observable/of';
+
 import { CurrencyPipe } from '@angular/common';
 import { appConstants } from '../../../app.constants';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { InvestmentApiService } from '../../investment-api.service';
-import 'rxjs/add/observable/forkJoin';
 
 
 
