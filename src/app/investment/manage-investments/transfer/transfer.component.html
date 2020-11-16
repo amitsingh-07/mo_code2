@@ -80,8 +80,8 @@
                   </label>
                 </div>
                 <div class="flex-col-8">
-                  <div class="form-control"
-                    [ngClass]="[(getInlineErrorStatus(transferForm.controls.transferAmount)  && !isTransferAllChecked)? 'inline-error' : '',  isTransferAllChecked ? 'disabled' : '']">
+                  <div class="form-control" [ngClass]="[(getInlineErrorStatus(transferForm.controls.transferAmount)  && !isTransferAllChecked)
+                    ? 'inline-error' : '',  isTransferAllChecked ? 'disabled' : '']">
                     <i id="myFinancialDollarSybmOne">$</i>
                     <div>
                       <input class="input-control" type="text" id="withdrawal-type" appCurrencyInput [allowDecimal]=true
@@ -103,7 +103,7 @@
                 </div>
               </div>
               <div class="flex-row"
-                *ngIf="transferForm.controls.transferAmount.errors && transferForm.controls.transferAmount.errors.MoreThanCashBalance">
+                *ngIf="transferForm.controls.transferAmount && transferForm.controls.transferAmount.errors && transferForm.controls.transferAmount.errors.MoreThanCashBalance">
                 <div class="flex-col-12">
                   <div class="transfer-error">
                     <img src="assets/images/info-orange.svg" alt="" />
@@ -121,7 +121,7 @@
                   </div>
                 </div>
                 <div class="row"
-                  *ngIf="transferForm.get('transferAmount').value && (cashBalance - transferForm.controls.transferAmount.value > 0) && transferForm.controls.transferAmount.value && transferForm.valid">
+                  *ngIf="transferForm.controls.transferAmount && transferForm.get('transferAmount').value && (cashBalance - transferForm.controls.transferAmount.value > 0) && transferForm.controls.transferAmount.value && transferForm.valid">
                   <div class="col-8">
                     {{'TRANSFER.AFTER_TRANSFER'| translate}}
                   </div>
@@ -142,7 +142,8 @@
             </div>
           </div>
           <button type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-primary 
-            width100" id="portfolioRecommendationNextBtn" [disabled]="!transferForm.valid"
+            width100" id="portfolioRecommendationNextBtn" [disabled]="!transferForm.valid ||
+            !(transferForm.controls.transferAmount && (transferForm.controls.transferAmount.value > 0))"
             (click)="goToNext(transferForm)">{{ 'LABEL.CONTINUE' | translate}}</button>
         </div>
       </div>
