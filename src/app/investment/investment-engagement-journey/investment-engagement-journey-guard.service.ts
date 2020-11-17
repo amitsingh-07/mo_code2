@@ -1,7 +1,7 @@
 
 import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -21,7 +21,7 @@ export class InvestmentEngagementJourneyGuardService implements CanActivate {
     private translate: TranslateService,
     private investmentCommonService: InvestmentCommonService
   ) {}
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  canActivate(route: ActivatedRouteSnapshot) {
     if (this.authService.isSignedUser() && !this.investmentAccountService.isReassessActive()) {
       return this.investmentCommonService.getAccountCreationActions().pipe(map((data) => {
         if (this.investmentCommonService.isUserNotAllowed(data)) {
