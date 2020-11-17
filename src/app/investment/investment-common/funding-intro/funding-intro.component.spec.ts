@@ -9,7 +9,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { NgbActiveModal, NgbModalRef, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { concat, Observable, of, throwError } from 'rxjs';
-import 'rxjs/add/observable/of';
+
 import {
   AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
 } from '@angular/core';

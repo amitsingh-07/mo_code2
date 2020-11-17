@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { ApiService } from './../shared/http/api.service';
 import { IBundleEnquiry } from './promotion.interface';
-import { padNumber } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { padNumber } from '../shared/utils/common.util';
 
 @Injectable({
   providedIn: 'root'
