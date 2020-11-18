@@ -3,116 +3,104 @@
 
 .transfer-success-body {
   background-color: $dark-teal-color !important;
- }
-
+}
 app-transfer-status {
   .content {
-    padding: 100px 32px 10px 30px;
+    min-height: 100vh;
+    flex-direction: column;
     text-align: center;
     max-width: 374px;
     margin: auto;
+    position: relative;
 
-    .relative {
+    .success-page-content {
       position: relative;
-      bottom: 50px;
+      top: 100px;
+      @include allmobiles {
+        top: 100px;
+      }
 
+      @include minPhabletmaxTablet {
+        top: 40px;
+      }
+
+      @include phablet {
+        top: 20px;
+      }
+      @include desktop {
+        top: 50px;
+      }
+    }
+    .button-position {
+      position: absolute;
+      bottom: 60px;
+      right: 0px;
+      left: 0px;
+      max-width: 374px;
+      margin: auto;
+      @include desktop {
+        bottom: -50px;
+      }
+      
+      @include minPhabletmaxTablet {
+        bottom: 85px;
+      }
+
+      @include phablet {
+        bottom: 30px;
+      }
 
       @include allmobiles {
-        position: relative;
-        bottom: 150px;
-      }
-
-      @include iphone6plus {
-        position: relative;
-        bottom: 100px;
-      }
-
-      @include iphone6 {
-        position: relative;
-        bottom: 100px;
+        bottom:100px;
+        padding: 10px;
+       
       }
     }
-
-    .absolute {
-      position: relative;
-      top: 50px;
-
-      @include allmobiles {
-        position: relative;
-        top: 53px;
-      }
-
-      @include iphone6plus {
-        position: relative;
-        top: 0px;
-      }
-
-      @include iphone6 {
-        position: relative;
-        top: 0px;
-      }
-    }
-
-
-  }
-
-  .custom-modal--title {
-    width: 241px;
-    height: 70px;
-    font-family: $muli-bold;
-    font-size: 28px;
-    font-weight: bold;
-    letter-spacing: -0.21px;
-    text-align: center;
-    color: $white-color;
-    margin: 30px auto;
-  }
-
-  .content {
-    padding: 100px 32px 10px 30px;
-    min-height: calc(100vh - 84px);
-    //min-height: calc(100vh - 30vh);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    @include allmobiles {
-      padding: 100px 32px 10px 30px;
-      height: calc(100vh - 61px);
-      //  height: calc(100vh - 61px);
-      padding-bottom: 0px;
-    }
-  }
-
-  .btn {
-    &.special-btn {
-      background-color: $dark-teal-color;
-      border: 1px solid $white-color;
-      font-family: $muli-regular;
-      font-size: 18px;
+    .custom-modal--title {
+      font-family: $muli-bold;
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: -0.21px;
       text-align: center;
       color: $white-color;
-      margin-bottom: 20px;
-      box-shadow: none !important;
-
-      &:hover {
-        background-color: $dark-teal-color !important;
-        border: 1px solid $white-color;
-      }
-
-      &:active {
-        background-color: $dark-teal-color !important;
-        border: 1px solid $white-color;
-      }
+      margin-top: 20px;
     }
 
-  }
+    .btn {
+      &.btn-position {
+        margin-top: 10px !important;
+        margin-bottom: 30px;
+        width: 82%;
+        @include allmobiles {
+          margin-bottom: 0px;
+          width: 100%;
+        }
+      }
+      &.special-btn {
+        background-color: $dark-teal-color;
+        border: 1px solid $white-color;
+        font-family: $muli-regular;
+        font-size: 18px;
+        text-align: center;
+        color: $white-color;
+        margin-bottom: 20px;
+        box-shadow: none !important;
 
+        &:hover {
+          background-color: $dark-teal-color !important;
+          border: 1px solid $white-color;
+        }
+
+        &:active {
+          background-color: $dark-teal-color !important;
+          border: 1px solid $white-color;
+        }
+      }
+    }
+  }
   img {
     width: 117px;
     height: 120px;
     text-align: center;
   }
-
-
 }
