@@ -184,7 +184,7 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
     const componentFactory = this.factoryResolver.resolveComponentFactory(componentClass);
     this.componentRef = this.container.createComponent(componentFactory);
     this.componentRef.instance.isMobileView = this.state.isMobileView;
-
+    this.componentRef.changeDetectorRef.detectChanges();
     // Push the component so that we can keep track of which components are created
     this.components.push(this.componentRef);
   }
