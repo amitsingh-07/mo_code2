@@ -51,8 +51,9 @@ app-transfer-status {
       }
 
       @include allmobiles {
-        bottom: 60px;
+        bottom:100px;
         padding: 10px;
+       
       }
     }
     .custom-modal--title {
