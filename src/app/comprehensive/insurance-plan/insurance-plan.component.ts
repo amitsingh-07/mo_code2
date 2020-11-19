@@ -249,6 +249,8 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
             form.value.shieldType = COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHIELD;
           } else {
             form.value.shieldType = COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.ELDER_SHIELD;
+            form.value.longTermElderShieldAmount = (form.value.haveLongTermElderShield === 1 && form.value.longTermElderShieldAmount) ? form.value.longTermElderShieldAmount: 0;
+            form.value.otherLongTermCareInsuranceAmount = (form.value.haveLongTermElderShield === 1 && form.value.otherLongTermCareInsuranceAmount) ? form.value.otherLongTermCareInsuranceAmount: 0;;
           }
         } else {
           form.value.haveLongTermElderShield = null;
