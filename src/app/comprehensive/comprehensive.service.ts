@@ -1721,7 +1721,7 @@ export class ComprehensiveService {
       }
 
 
-      if ((!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield) && cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1) || cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHIELD || cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.ELDER_SHIELD) {
+      if ((!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield) && cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1) || cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHIELD || (!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield) && cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1 && cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.ELDER_SHIELD)) {
         longTermCareValue = this.transformAsCurrency(
           cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount
         ) + ' /mth';
