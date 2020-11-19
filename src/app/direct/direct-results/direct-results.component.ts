@@ -69,7 +69,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     this.componentName = DirectResultsComponent.name;
 
     this.routeSubscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart && !this.authService.isSignedUser()) {
+      if (event instanceof NavigationStart) {
         this.state.filteredResult = this.filteredResult;
         this.stateStoreService.saveState(this.componentName, this.state);
       } else if (event instanceof NavigationEnd) {
