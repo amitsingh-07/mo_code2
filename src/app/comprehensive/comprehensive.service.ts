@@ -1722,12 +1722,16 @@ export class ComprehensiveService {
 
 
       if ((!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield) && cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1) || cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHIELD || (!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield) && cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1 && cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.ELDER_SHIELD)) {
-        longTermCareValue = this.transformAsCurrency(
-          cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount
-        ) + ' /mth';
-        otherLongTermCareValue = this.transformAsCurrency(
-          cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount
-        ) + ' /mth';
+          if(!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount)) {
+            longTermCareValue = this.transformAsCurrency(
+              cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount
+            ) + ' /mth';
+          }
+          if(!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount)) {            
+            otherLongTermCareValue = this.transformAsCurrency(
+              cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount
+            ) + ' /mth';
+          }
         longTermCareList.push({
           title: 'Other coverage amount',
           value: otherLongTermCareValue,
