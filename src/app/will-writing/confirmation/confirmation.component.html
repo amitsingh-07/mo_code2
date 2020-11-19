@@ -342,12 +342,10 @@
         </div>
         <div class="reminder mt30 mb20" innerHTML="{{'WILL_WRITING.CONFIRMATION.REMINDER' | translate}}"></div>
         <div class="stamp-block">
-          <div class="col-lg-5 col-sm-12 col-md-5">
             <button type="button" (click)="goNext()" class="btn btn__footer--fixed width100 btn-primary mt20">
               <span *ngIf="!existingWill">{{'LABEL.CONTINUE' | translate}}</span>
               <span *ngIf="existingWill">{{'LABEL.SAVE_CONTINUE' | translate}}</span>
             </button>
-          </div>
           <img class="hidden-sm-md" src="assets/images/will-writing/owl-stamp.svg" />
         </div>
       </div>

@@ -280,7 +280,11 @@
         right: 0px;
         margin-right: 38px;
     }
-    div {
+    button {
+        width: 337px;
+        @include allmobiles {
+            width: 100%;
+        }
         margin: auto;
     }
 }
