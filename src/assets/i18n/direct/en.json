@@ -94,7 +94,7 @@
      "TOOLTIP": {
       "LONG_TERM_CARE": {
         "TITLE": "Monthly Payout",
-        "MESSAGE": "If you are on CareShield Life, please choose the <b>additional</b> monthly payout you wish to have above your CareShield Life coverage."
+        "MESSAGE": "If you are on CareShield Life, please choose the <strong>additional</strong> monthly payout you wish to have above your CareShield Life coverage."
       }
     }
     },
