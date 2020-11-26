@@ -153,21 +153,19 @@ export class TransactionsComponent implements OnInit {
   }
 
   downloadFile(data, month) {
-    const blob = new Blob([data], { type: 'application/pdf' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    document.body.appendChild(a);
-    a.setAttribute('style', 'display: none');
-    a.href = url;
-    a.download = month.monthName + '_' + month.year + '_' + '.pdf';
-    a.click();
-    // window.URL.revokeObjectURL(url);
-    // a.remove();
-    setTimeout(() => {
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    }, 1000);
-
+    const blob = new Blob([data], { type: 'application/pdf' });
+    const url = window.URL.createObjectURL(blob);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const a = document.createElement('a');
+      a.href = url;
+      a.style.display = 'none';
+      a.download = month.monthName + '_' + month.year + '_' + '.pdf';
+      document.body.appendChild(a);
+      a.click();
+      a.parentNode.removeChild(a);
+    };
+    reader.readAsDataURL(blob);
   }
 
   expandCollapseAccordion(groupIndex, transactionIndex) {
