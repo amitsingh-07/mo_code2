@@ -395,27 +395,34 @@ export class DashboardComponent implements OnInit {
     const otherBrowsers = /Android|Windows/.test(navigator.userAgent);
 
     const blob = new Blob([data], { type: 'application/pdf' });
-    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
-    } else {
-      this.downloadFile(data);
-    }
+    // if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+    //   window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
+    // } else {
+    //   this.downloadFile(data);
+    // }
+    this.downloadFile(data);
   }
 
   downloadFile(data: any) {
-    const blob = new Blob([data], { type: 'application/pdf' });
-    const url = window.URL.createObjectURL(blob);
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const a = document.createElement('a');
-      a.href = url;
-      a.style.display = 'none';
-      a.download = 'MoneyOwl Will Writing.pdf';
-      document.body.appendChild(a);
-      a.click();
-      a.parentNode.removeChild(a);
-    };
-    reader.readAsDataURL(blob);
+    const blob = new Blob([data], { type: 'application/pdf' });
+    const url = window.URL.createObjectURL(blob);
+    const reader = new FileReader();
+    const fileName = 'MoneyOwl Will Writing.pdf';
+    reader.onloadend = () => {
+      const result = reader.result;
+      this.download(result.toString().replace(/application\/pdf;/, 'application/pdf; charset=utf-8;'), fileName);
+    };
+    reader.readAsDataURL(blob);
+  }
+
+  download(base64, fileName) {
+    const a = document.createElement('a');
+    a.href = base64;
+    a.style.display = 'none';
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    a.parentNode.removeChild(a);
   }
 
   showCustomErrorModal(title, desc) {
