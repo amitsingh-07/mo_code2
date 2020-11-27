@@ -398,25 +398,23 @@ export class DashboardComponent implements OnInit {
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
       window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
     } else {
-      this.downloadFile(blob);
+      this.downloadFile(data);
     }
   }
 
-  downloadFile(blob: any) {
-    const reader = new FileReader();
-    let objectUrl;
-    reader.onloadend = () => {
-      const a = document.createElement('a');
-      objectUrl = window.URL.createObjectURL(blob);
-      a.href = objectUrl;
-      a.style.display = 'none';
-      a.download = 'MoneyOwl Will Writing.pdf';
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(objectUrl)
-      a.parentNode.removeChild(a);
-    }
-    reader.readAsDataURL(blob);
+  downloadFile(data: any) {
+    const blob = new Blob([data], { type: 'application/pdf' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.setAttribute('style', 'display: none');
+    a.href = url;
+    a.download = 'MoneyOwl Will Writing.pdf';
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, 1000);
   }
 
   showCustomErrorModal(title, desc) {
