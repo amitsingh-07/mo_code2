@@ -404,13 +404,16 @@ export class DashboardComponent implements OnInit {
 
   downloadFile(blob: any) {
     const reader = new FileReader();
+    let objectUrl;
     reader.onloadend = () => {
       const a = document.createElement('a');
-      a.href = reader.result.toString();
+      objectUrl = window.URL.createObjectURL(blob);
+      a.href = objectUrl;
       a.style.display = 'none';
       a.download = 'MoneyOwl Will Writing.pdf';
       document.body.appendChild(a);
       a.click();
+      window.URL.revokeObjectURL(objectUrl)
       a.parentNode.removeChild(a);
     }
     reader.readAsDataURL(blob);
