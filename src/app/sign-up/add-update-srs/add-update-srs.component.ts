@@ -2,22 +2,16 @@
 
 import { Component, HostListener, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import 'rxjs/add/observable/forkJoin';
-import { Observable } from 'rxjs/Observable';
+
+import { Subject } from 'rxjs';
 
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { InvestmentEngagementJourneyService } from '../../investment/investment-engagement-journey/investment-engagement-journey.service';
 import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
-import { LoaderService } from '../../shared/components/loader/loader.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import {
-  IfastErrorModalComponent
-} from '../../shared/modal/ifast-error-modal/ifast-error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
@@ -26,7 +20,6 @@ import { SignUpService } from '../sign-up.service';
 
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -43,25 +36,23 @@ export class AddUpdateSrsComponent implements OnInit, OnDestroy {
   fundingMethods: any;
   srsAgentBankList;
   srsDetail;
-  fundTypeId: number;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
+
+  isEdit = true;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private footerService: FooterService,
-    private route: ActivatedRoute,
     public headerService: HeaderService,
     public navbarService: NavbarService,
     private signUpService: SignUpService,
     private authService: AuthenticationService,
-    private modal: NgbModal,
     public investmentAccountService: InvestmentAccountService,
     public manageInvestmentsService: ManageInvestmentsService,
     public readonly translate: TranslateService,
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    private investmentCommonService: InvestmentCommonService,
-    private loaderService: LoaderService) {
+    private investmentCommonService: InvestmentCommonService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
     });
@@ -86,43 +77,37 @@ export class AddUpdateSrsComponent implements OnInit, OnDestroy {
     this.addorRemoveAccNoValidator();
 
     this.authService.get2faAuthEvent
-    .pipe(takeUntil(this.ngUnsubscribe))
-    .subscribe((token) => {
-      if (!token) {
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
-      }
-    });
-    this.manageInvestmentsService.getInvestmentOverview()
-    .pipe(takeUntil(this.ngUnsubscribe))
-    .subscribe((data) => {
-      this.loaderService.hideLoaderForced();
-      if (data.responseMessage.responseCode >= 6000 && data && data.objectList) {
-        this.fundTypeId = this.getFundTypeId(data.objectList.portfolios);
-      }
-    });
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((token) => {
+        if (!token) {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+        }
+      });
 
     this.manageInvestmentsService.getProfileSrsAccountDetails()
-    .pipe(takeUntil(this.ngUnsubscribe))
-    .subscribe((data: any) => {
-      if (data) {
-        this.signUpService.setEditProfileSrsDetails(
-          data.srsAccountNumber.conformedValue,
-          { name: data.srsOperator },
-          data.customerId,
-          this.fundTypeId
-        );
-        this.addUpdateSrsFrom.patchValue({
-          srsAccount: data.srsAccountNumber.conformedValue
-        });
-      }
-    });
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data: any) => {
+        if (data) {
+          this.srsDetail = data;
+          this.addUpdateSrsFrom.patchValue({
+            srsOperator: { name: data.srsOperator },
+            srsAccount: data.srsAccountNumber.conformedValue
+          });
+        }
+      });
 
-    this.authService.get2faErrorEvent
-    .pipe(takeUntil(this.ngUnsubscribe))
-    .subscribe((data) => {
-      if(data) {
-        this.authService.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
-      }
+    this.translate.get('ERROR').subscribe((results) => {
+      this.authService.get2faErrorEvent
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe((data) => {
+          if (data) {
+            this.authService.openErrorModal(
+              results.SESSION_2FA_EXPIRED.TITLE,
+              results.SESSION_2FA_EXPIRED.SUB_TITLE,
+              results.SESSION_2FA_EXPIRED.BUTTON
+            );
+          }
+        });
     });
   }
 
@@ -130,14 +115,6 @@ export class AddUpdateSrsComponent implements OnInit, OnDestroy {
     this.signUpService.clearRedirectUrl();
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
-  }
-
-  getFundTypeId(protfolios) {
-    for (const obj of protfolios) {
-      if (obj['fundingTypeValue'] === 'SRS') {
-        return obj['fundingTypeId'];
-      }
-    }
   }
 
   buildForm() {
@@ -150,10 +127,9 @@ export class AddUpdateSrsComponent implements OnInit, OnDestroy {
   getSrsBankOperator() {
     this.investmentAccountService.getSpecificDropList('srsAgentBank').subscribe((data) => {
       this.srsAgentBankList = data.objectList.srsAgentBank;
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+    }, () => {
+      this.investmentAccountService.showGenericErrorModal();
+    });
   }
 
   selectSrsOperator(key, value) {
@@ -196,7 +172,7 @@ export class AddUpdateSrsComponent implements OnInit, OnDestroy {
     }
   }
 
-  getAccNoMaxLength(value) {
+  getAccNoMaxLength() {
     let accNoMaxLength;
     switch (this.addUpdateSrsFrom.get('srsOperator').value.name) {
       case SIGN_UP_CONFIG.BANK_KEYS.DBS:
@@ -256,25 +232,26 @@ export class AddUpdateSrsComponent implements OnInit, OnDestroy {
   }
 
   updateSrsSaveCall(form: any) {
-    if (!form.valid) {
+    if (!form.valid && !this.isEdit) {
       return false;
     } else {
+      this.isEdit = false;
       const formValue = form.getRawValue();
       const reqParams = {};
-      reqParams['fundTypeId'] = this.srsDetail['fundTypeId'];
       const opertorId = this.getOperatorIdByName(formValue.srsOperator.name, this.srsAgentBankList);
       reqParams['srsDetails'] = {
         accountNumber: formValue.srsAccount ? formValue.srsAccount.replace(/[-]/g, '') : null,
         operatorId: opertorId ? opertorId : null
       };
-      this.investmentCommonService.saveProfileSrsAccountDetails(reqParams, this.srsDetail.customerId).subscribe((data) => {
+      this.investmentCommonService.saveProfileSrsAccountDetails(reqParams, this.srsDetail.customerId).subscribe(() => {
+        this.isEdit = true;
         this.manageInvestmentsService.setSrsAccountDetails(null);
         this.manageInvestmentsService.setSrsSuccessFlag(true);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
-      },
-        (err) => {
-          this.investmentAccountService.showGenericErrorModal();
-        });
+      }, () => {
+        this.isEdit = true;
+        this.investmentAccountService.showGenericErrorModal();
+      });
     }
   }
 

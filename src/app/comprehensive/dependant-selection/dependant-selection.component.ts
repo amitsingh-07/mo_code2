@@ -104,7 +104,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
     this.householdDetails = this.cmpService.gethouseHoldDetails();
     this.dependantSelectionForm = new FormGroup({
       dependantSelection: new FormControl(this.hasDependant, Validators.required),
-      noOfHouseholdMembers: new FormControl(this.householdDetails ? this.householdDetails.noOfHouseholdMembers : '', Validators.required),
+      noOfHouseholdMembers: new FormControl(this.householdDetails ? this.householdDetails.noOfHouseholdMembers : '', [Validators.required, Validators.min(1), Validators.max(10)]),
       houseHoldIncome: new FormControl(this.householdDetails ? this.householdDetails.houseHoldIncome : '', Validators.required),
       noOfYears: new FormControl(this.householdDetails ? this.householdDetails.noOfYears : 0),
     });
@@ -122,54 +122,54 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
 
   goToNext(dependantSelectionForm) {
     if (this.viewMode) {
-      if (dependantSelectionForm.value.dependantSelection &&  this.comprehensiveJourneyMode) {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
-      } else {
-        this. routerPath();
-      }
+        this. routerPath(dependantSelectionForm);
     } else {
       this.cmpService.setDependantSelection(dependantSelectionForm.value.dependantSelection);
       dependantSelectionForm.value.dependentsList = this.householdDetails.dependentsList;
       this.cmpService.sethouseHoldDetails(dependantSelectionForm.value);
-      if (dependantSelectionForm.value.dependantSelection &&  this.comprehensiveJourneyMode ) {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
-      } else {
-        const payload = {
-          hasDependents: false,
+      const payload = {
+          hasDependents: dependantSelectionForm.value.dependantSelection,
           noOfHouseholdMembers: dependantSelectionForm.value.noOfHouseholdMembers,
           houseHoldIncome: dependantSelectionForm.value.houseHoldIncome,
           noOfYears: dependantSelectionForm.value.noOfYears,
+          enquiryId: this.cmpService.getEnquiryId(),
           dependentMappingList: [{
             id: 0,
             customerId: 0,
-            enquiryId: this.cmpService.getEnquiryId(),
             name: '',
             relationship: '',
             gender: '',
             dateOfBirth: '',
             nation: ''
-          }]
+          }],
+          saveDependentInfo: false
         };
-        this.cmpApiService.addDependents(payload).subscribe((data: any) => {
-          this.cmpService.setHasDependant(false);
-          this.cmpService.setMyDependant([]);
-          this.cmpService.clearEndowmentPlan();
-          if (this.comprehensiveService.getMySteps() === 0) {
+      this.cmpApiService.addDependents(payload).subscribe((data: any) => {
+          this.cmpService.setHasDependant(dependantSelectionForm.value.dependantSelection);
+          const dependantDetails = this.comprehensiveService.getMyDependant();
+          if  (!(dependantSelectionForm.value.dependantSelection && dependantDetails.length > 0)) {
+            this.cmpService.setMyDependant([]);
+            this.cmpService.clearEndowmentPlan();
+          }
+          if (this.comprehensiveService.getMySteps() === 0 && this.comprehensiveService.getMySubSteps() < 1) {
             this.comprehensiveService.setStepCompletion(0, 1).subscribe((data1: any) => {
               this.loaderService.hideLoader();
-              this. routerPath();
+              this. routerPath(dependantSelectionForm);
             });
           } else {
             this.loaderService.hideLoader();
-            this. routerPath();
+            this. routerPath(dependantSelectionForm);
           }
         });
-      }
     }
   }
-  routerPath() {
+  routerPath(dependantSelectionForm) {
     if (this.comprehensiveJourneyMode) {
-      this.showSummaryModal();
+      if (dependantSelectionForm.value.dependantSelection) {
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
+      } else {
+        this.showSummaryModal();
+      }
     } else {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/2']);
     }

@@ -4,5 +4,6 @@ export const APP_ROUTES = {
     COMPREHENSIVE: 'comprehensive',
     GUIDE_ME: 'guideme',
     PAYMENT: 'payment',
+    NOT_SUPPORTED: 'browser-not-supported',
     INVEST_MAINTENANCE: 'investment-maintenance'
 };

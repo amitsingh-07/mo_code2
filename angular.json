@@ -8,15 +8,12 @@
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {
-        "@schematics/angular:component": {
-          "styleext": "scss"
-        }
-      },
+      "schematics": { "@schematics/angular:component": { "style": "scss" } },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "baseHref": "/app/",
             "deployUrl": "/app/",
             "outputPath": "dist/NTUCDev",
@@ -24,19 +21,10 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              {
-                "glob": "**/*",
-                "input": "src/assets/",
-                "output": "/assets/"
-              },
-              "src/myinfo",
-              "src/callback"
-            ],
-            "styles": [{
-                "input": "./node_modules/bootstrap/dist/css/bootstrap.css"
-              },
+			"rebaseRootRelativeCssUrls": true,
+            "assets": [ "src/favicon.ico", "src/assets", "src/myinfo" ],
+            "styles": [
+              { "input": "./node_modules/bootstrap/dist/css/bootstrap.css" },
               "src/styles.scss",
               "./node_modules/font-awesome/css/font-awesome.css"
             ],
@@ -44,85 +32,16 @@
           },
           "configurations": {
             "dev": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.dev.ts"
-              }],
-              "optimization": false,
-              "outputHashing": "all",
-              "sourceMap": true,
-              "extractCss": false,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": false
-            },
-            "production": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true
-            },
-            "prod": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true
-            },
-            "uat": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.uat.ts"
-              }],
-              "optimization": false,
-              "outputHashing": "all",
-              "sourceMap": true,
-              "extractCss": false,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": false
-            },
-            "uat3": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.uat3.ts"
-              }],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true
-            },
-            "newmo": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.newmo.ts"
+                  "with": "src/environments/environment.dev.ts"
                 }
               ],
               "optimization": false,
@@ -135,7 +54,105 @@
               "vendorChunk": false,
               "buildOptimizer": false
             },
+            "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
+            "prod": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
+            "uat": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.uat.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
+            "newmo": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.newmo.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
             "newmodev": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -153,10 +170,18 @@
               "buildOptimizer": false
             },
             "newmouat3": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.newmouat3.ts"
-              }],
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.newmouat3.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -168,10 +193,18 @@
               "buildOptimizer": true
             },
             "common": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.dev.ts"
-              }],
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ],
               "optimization": false,
               "outputHashing": "all",
               "sourceMap": true,
@@ -186,26 +219,22 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "bfa-frontend:build"
-          },
+          "options": { "browserTarget": "bfa-frontend:build" },
           "configurations": {
             "dev": { "browserTarget": "bfa-frontend:build" },
             "production": { "browserTarget": "bfa-frontend:build:production" },
             "prod": { "browserTarget": "bfa-frontend:build:prod" },
             "uat": { "browserTarget": "bfa-frontend:build:uat" },
             "uat3": { "browserTarget": "bfa-frontend:build:uat3" },
-            "newmo": { "browserTarget": "bfa-frontend:build:newmo"},
-            "newmodev": { "browserTarget": "bfa-frontend:build:newmodev"},
-            "newmouat3": { "browserTarget": "bfa-frontend:build:newmouat3"},
+            "newmo": { "browserTarget": "bfa-frontend:build:newmo" },
+            "newmodev": { "browserTarget": "bfa-frontend:build:newmodev" },
+            "newmouat3": { "browserTarget": "bfa-frontend:build:newmouat3" },
             "common": { "browserTarget": "bfa-frontend:build:common" }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "bfa-frontend:build"
-          }
+          "options": { "browserTarget": "bfa-frontend:build" }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -214,16 +243,16 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": ["src/styles.scss"],
+            "styles": [ "src/styles.scss" ],
             "scripts": [],
-            "assets": ["src/favicon.ico", "src/assets", "src/myinfo"]
+            "assets": [ "src/favicon.ico", "src/assets", "src/myinfo" ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [ "src/tsconfig.app.json", "src/tsconfig.spec.json" ],
+            "exclude": [ "**/node_modules/**" ]
           }
         }
       }
@@ -239,20 +268,13 @@
             "devServerTarget": "bfa-frontend:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "bfa-frontend:serve:production"
-            },
-            "uat": {
-              "devServerTarget": "bfa-frontend:serve:uat"
-            }
+            "production": { "devServerTarget": "bfa-frontend:serve:production" },
+            "uat": { "devServerTarget": "bfa-frontend:serve:uat" }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
-          }
+          "options": { "tsConfig": "e2e/tsconfig.e2e.json", "exclude": [ "**/node_modules/**" ] }
         }
       }
     }

@@ -2,6 +2,14 @@
 @import '../../../../_mixins.scss';
 
 app-your-portfolio {
+
+  .toast-msg-top-100 {
+    @include desktop {
+      top: 100px;
+      right: 40px;
+    }
+  }
+
   .invest-bg-content{
     .user_content{
       max-width: 1024px;
@@ -127,7 +135,7 @@ app-your-portfolio {
                 font-family: $muli-regular;
                 text-align: inherit;
                 white-space: nowrap !important;
-                background-color: transparent;
+                background-color: $white-color;
                 border: 0;
                 letter-spacing: -0.2px;
                 color: #000000 !important;
@@ -402,9 +410,8 @@ app-your-portfolio {
           color: $black-color;
           font-size: 13px;
           letter-spacing: -0.24px;
-          padding-right: 50px;
-          @include allmobiles{
-            padding-right: 38px;
+          @include allmobiles {
+            width: 146px;
           }
           img{
             cursor: pointer;
@@ -422,15 +429,14 @@ app-your-portfolio {
             }
           }
         }
-        .padding-none {
+        .right-col {
           @include allmobiles{
-            padding-right: 0px !important;
+            width: 155px !important;
           }
         }
         .next-row {
           @include allmobiles{
             order: +1;
-            flex: 1 0 100%;
             padding-top: 15px;
           }
         }
@@ -444,6 +450,16 @@ app-your-portfolio {
           vertical-align: middle;
           padding-left: 0px;
           padding-right: 8px;
+        }
+        .return_label {
+          cursor: pointer;
+          width: fit-content;
+        }
+        .margin-right {
+          margin-right: 48.2px;
+          @include allmobiles{
+            margin-right: 0px;
+          }
         }
         .currency_value {
           font-family: $muli-bold;
@@ -482,7 +498,7 @@ app-your-portfolio {
           padding-top: 15px;
           cursor: pointer;
           @include allmobiles{
-            padding-top: 10px;
+            padding-top: 14px;
           }
         }
         .your_portfolio_label {
@@ -533,7 +549,7 @@ app-your-portfolio {
         }
         .btn-with-icon {
           border-radius: 6px;
-          box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.21) !important !important;
+          box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.21) !important;
           border: 1px solid $fixed-btn-brdr-color;
           background-color: $white-color;
           font-family: $muli-bold;
@@ -598,8 +614,9 @@ app-your-portfolio {
           }
         }
         .form-group-with-bg .form-group-with-bg--content {
-          padding: 18px 17px 25px 23px;
-          .flex-row:not(:last-child) {
+          padding: 20px 20px 19px;
+          .flex-row {
+            justify-content: space-between;
             margin-bottom: 0px;
           }
         }
@@ -686,6 +703,13 @@ app-your-portfolio {
             // padding-bottom: 10px;
             .flex-row{
               align-items: center;
+              @include iphone5 {
+                span:nth-child(2) {
+                  display: inline-block;
+                  width: 60%;
+                  text-align: left;
+                }
+              }
             }
             .widthdrawal-icon{
               width: 50px;
@@ -698,6 +722,10 @@ app-your-portfolio {
             width: 16px;
             height: 10px;
             display: flex;
+            @include iphone5 {
+              position: relative;
+              right: 35px;
+            }
             img{
               width: 100%;
               height: auto;
@@ -827,6 +855,7 @@ app-your-portfolio {
                   color: #ff872f;
                   text-decoration: none;
                   cursor: pointer;
+                  font-family: $muli-bold;
                 }
               }
               .info-icon{
@@ -834,12 +863,17 @@ app-your-portfolio {
                 height: 24px;
                 display: flex;
               }
+              .rebalance-message{
+                font-family: $muli-regular;
+                margin-top: 10px;
+              }
             }
 
           .cash-account-content{
             padding-top: 5px;
-            .ref-code{
-              padding: 14px 0 10px;
+            .ref-code {
+              cursor: pointer;
+              padding: 14px 13px 10px 10px;
               font-family: $muli-bold;
               font-size: 18px;
               line-height: 1.17;
@@ -850,6 +884,11 @@ app-your-portfolio {
               border: 2px solid #00a7a7;
               background-color: #ffffff;
               margin-bottom: 15px;
+
+              .copy-icon {
+                float: right;
+                margin-top: -4px;
+              }
             }
             .note-icon{
               width: 24px;
@@ -905,9 +944,14 @@ app-your-portfolio {
     }
 
   }
+  .pad-top {
+    @include iphone5 {
+      padding-top: 15px;
+    }
+  }
 }
 .modal-body {
-  width: 375px;
+  width: 500px;
   margin: 0 auto;
   @include allmobiles{
     width: auto;

@@ -72,8 +72,13 @@ $minus-content-color:#ff872f;
       padding-bottom: 50px !important;
     }
     @include iphoneX {
-      padding: 25px 20px 40px !important;
       max-height: calc(100vh - 80px);
+      padding-bottom: 70px !important;
+    }
+    @include iPhone11 {
+      padding-bottom: 100px !important;
+    }
+    @include iphone6plus {
       padding-bottom: 70px !important;
     }
   }

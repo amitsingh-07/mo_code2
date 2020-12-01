@@ -3,10 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { toInteger } from './../shared/utils/common.util';
 
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
@@ -405,7 +405,7 @@ export class ComprehensiveService {
       name: dependant.name,
       dateOfBirth: dependant.dateOfBirth,
       gender: dependant.gender,
-      enquiryId: dependant.enquiryId,
+      enquiryId: this.getEnquiryId(),
       location: childEndowment.location,
       educationCourse: childEndowment.educationCourse,
       educationSpendingShare: childEndowment.educationSpendingShare,
@@ -605,6 +605,10 @@ export class ComprehensiveService {
   }
   setInsurancePlanningList(comprehensiveInsurancePlanning: IInsurancePlan) {
     this.comprehensiveFormData.comprehensiveDetails.comprehensiveInsurancePlanning = comprehensiveInsurancePlanning;
+    this.commit();
+  }
+  setCareshieldFlag(careshieldFlag: boolean) {
+    this.comprehensiveFormData.comprehensiveDetails.comprehensiveInsurancePlanning.haveLongTermPopup = careshieldFlag;
     this.commit();
   }
   setHospitalPlan(hospitalPlanList: IHospitalPlanList[]) {
@@ -1413,12 +1417,12 @@ export class ComprehensiveService {
       value: dependentHouseHoldData.houseHoldIncome ? dependentHouseHoldData.houseHoldIncome + '' : '',
       completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
     });
-    if (!comprehensiveVersion){
+    if (!comprehensiveVersion) {
       subItemsArray.push({
         id: '',
         path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
         title: 'No. of years to provide for',
-        value: dependentHouseHoldData.noOfYears ? dependentHouseHoldData.noOfYears + '' : '0',
+        value: dependentHouseHoldData.noOfYears ? Util.toNumber(dependentHouseHoldData.noOfYears) + '' : '0',
         completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
       });
     }
@@ -1655,7 +1659,8 @@ export class ComprehensiveService {
     let ocpDisabilityValue = '$0 /mth';
     let longTermCareValue = '$0 /mth';
     let otherLongTermCareValue = '$0 /mth';
-    const longTermCareList = [];
+    let longTermCareList = [];
+    let hideLongTermInsurance = true;
 
     if (isCompleted) {
       const haveHospitalPlan =
@@ -1715,36 +1720,46 @@ export class ComprehensiveService {
         ) + ' /mth';
       }
 
-      if (
-        !Util.isEmptyOrNull(
-          cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield
-        )
-      ) {
-        if (
-          cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield ===
-          1
-        ) {
-          longTermCareValue = this.transformAsCurrency(
-            cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount
-          ) + ' /mth';
-          otherLongTermCareValue = this.transformAsCurrency(
-            cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount
-          ) + ' /mth';
-          longTermCareList.push({
-            title: 'Other coverage amount',
-            value: otherLongTermCareValue,
-          });
 
-        } else if (
-          cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield ===
-          0
-        ) {
-          longTermCareValue = 'No';
-        } else if (
-          cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield ===
-          2
-        ) {
-          longTermCareValue = 'Not Sure';
+      if ((!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield) && cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1) || cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHIELD || (!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield) && cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1 && cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.ELDER_SHIELD)) {
+          if(!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount)) {
+            longTermCareValue = this.transformAsCurrency(
+              cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount
+            ) + ' /mth';
+          }
+          if(!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount)) {            
+            otherLongTermCareValue = this.transformAsCurrency(
+              cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount
+            ) + ' /mth';
+          }
+        longTermCareList.push({
+          title: 'Other coverage amount',
+          value: otherLongTermCareValue,
+        });
+        if (cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHIELD && (this.validateSteps(2, 1))) {
+          longTermCareValue = otherLongTermCareValue;
+          longTermCareList = [];
+        }
+      } else if (
+        cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield ===
+        0
+      ) {
+        longTermCareValue = 'No';
+      } else if (
+        cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield ===
+        2
+      ) {
+        longTermCareValue = 'Not Sure';
+      }
+
+    }
+    if (this.getMyProfile().dateOfBirth) {
+      const userAge = this.ageUtil.calculateAge(this.getMyProfile().dateOfBirth, new Date());
+      if (userAge > COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE) {
+        hideLongTermInsurance = false;
+        if ((cmpSummary.comprehensiveEnquiry.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) && Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.shieldType) && (userAge <
+          COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE_OLD)) {
+          hideLongTermInsurance = true;
         }
       }
     }
@@ -1789,13 +1804,8 @@ export class ComprehensiveService {
           title: 'Long-Term Care',
           value: longTermCareValue,
           completed: (isCompleted && (this.validateSteps(2, 1))),
-          hidden: this.getMyProfile().dateOfBirth
-            ? this.ageUtil.calculateAge(
-              this.getMyProfile().dateOfBirth,
-              new Date()
-            ) < COMPREHENSIVE_CONST.INSURANCE_PLAN.LONG_TERM_INSURANCE_AGE
-            : true,
-          list: longTermCareList
+          hidden: hideLongTermInsurance,
+          list: (this.validateSteps(2, 1)) ? longTermCareList : []
         }
       ]
     };
@@ -1890,7 +1900,7 @@ export class ComprehensiveService {
       value: retirementAgeValue,
       completed: (isCompleted && (this.validateSteps(isStepCompleted, 1)))
     });
-    if (this.getComprehensiveVersion() && cmpSummary.comprehensiveRetirementPlanning) {
+    if (this.getComprehensiveVersion() && cmpSummary.comprehensiveRetirementPlanning && (this.validateSteps(isStepCompleted, 1))) {
       cmpSummary.comprehensiveRetirementPlanning.retirementIncomeSet.forEach((item, index) => {
         subItemsArray.push({
           id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN + '1',
@@ -1919,7 +1929,7 @@ export class ComprehensiveService {
           path: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN,
           title: 'Lump Sum Amount ' + (index + 1),
           value: '',
-          completed: isCompleted,
+          completed: (isCompleted && (this.validateSteps(isStepCompleted, 1))),
           list: [{
             title: 'Maturity Amount',
             value: this.transformAsCurrency(item.maturityAmount)
@@ -2656,7 +2666,7 @@ export class ComprehensiveService {
   dateFoundInBetween(dateOfBirth, minDate, maxDate) {
     const minDateCal = new Date(minDate);
     const maxDateCal = new Date(maxDate);
-    return (dateOfBirth >= minDateCal &&  dateOfBirth <= maxDateCal);
+    return (dateOfBirth >= minDateCal && dateOfBirth <= maxDateCal);
   }
   /**
    * Retirement sum find BRS/FRS based on birth date
@@ -2667,13 +2677,13 @@ export class ComprehensiveService {
     const dateOfBirth = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
 
     const birthYear = dateOfBirth.getFullYear();
-    const retireSumConfig1 = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.RETIREMENT_SUM_BIRTH_DATE[birthYear-1];
+    const retireSumConfig1 = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.RETIREMENT_SUM_BIRTH_DATE[birthYear - 1];
     const retireSumConfig2 = COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.RETIREMENT_SUM_BIRTH_DATE[birthYear];
-    if (!Util.isEmptyOrNull(retireSumConfig1) && 
-    this.dateFoundInBetween(dateOfBirth, retireSumConfig1.BORN_DATE, retireSumConfig1.TILL_DATE)) {
+    if (!Util.isEmptyOrNull(retireSumConfig1) &&
+      this.dateFoundInBetween(dateOfBirth, retireSumConfig1.BORN_DATE, retireSumConfig1.TILL_DATE)) {
       return retireSumConfig1;
-    } else if (!Util.isEmptyOrNull(retireSumConfig2) && 
-    this.dateFoundInBetween(dateOfBirth, retireSumConfig2.BORN_DATE, retireSumConfig2.TILL_DATE)) {
+    } else if (!Util.isEmptyOrNull(retireSumConfig2) &&
+      this.dateFoundInBetween(dateOfBirth, retireSumConfig2.BORN_DATE, retireSumConfig2.TILL_DATE)) {
       return retireSumConfig2;
     } else {
       return '';

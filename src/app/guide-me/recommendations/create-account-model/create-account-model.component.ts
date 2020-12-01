@@ -77,6 +77,7 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
     if (this.signUpService.getCaptchaShown()) {
       this.setCaptchaValidator();
     }
+    this.changeDetectorRef.detectChanges();
   }
 
   setCaptchaValidator() {
@@ -99,29 +100,31 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
     Object.keys(form.controls).forEach((key) => {
       form.get(key).markAsDirty();
     });
-    this.formSubmitted = true;
-    this.invalidEmail = false;
-    this.invalidCaptcha = false;
-    this.guideMeApiService.enquiryByEmail(form.value).subscribe((data) => {
-      this.formSubmitted = false;
-      if (data.responseMessage.responseCode === 6000) {
-        this.selectedPlansService.clearData();
-        this.signUpService.removeCaptchaSessionId();
-        this.authService.clearAuthDetails();
-        this.router.navigate(['email-enquiry/success']);
-      } else if (data.responseMessage.responseCode === 5006) {
-        this.invalidEmail = true;
-        this.signUpService.setCaptchaCount();
-        this.enquiryForm.controls['captchaValue'].reset();
-        if (this.signUpService.getCaptchaCount() >= 2) {
-          this.signUpService.setCaptchaShown();
-          this.setCaptchaValidator();
+    if (form.valid) {
+      this.formSubmitted = true;
+      this.invalidEmail = false;
+      this.invalidCaptcha = false;
+      this.guideMeApiService.enquiryByEmail(form.value).subscribe((data) => {
+        this.formSubmitted = false;
+        if (data.responseMessage.responseCode === 6000) {
+          this.selectedPlansService.clearData();
+          this.signUpService.removeCaptchaSessionId();
+          this.authService.clearAuthDetails();
+          this.router.navigate(['email-enquiry/success']);
+        } else if (data.responseMessage.responseCode === 5006) {
+          this.invalidEmail = true;
+          this.signUpService.setCaptchaCount();
+          this.enquiryForm.controls['captchaValue'].reset();
+          if (this.signUpService.getCaptchaCount() >= 2) {
+            this.signUpService.setCaptchaShown();
+            this.setCaptchaValidator();
+          }
+        } else if (data.responseMessage.responseCode === 5016) {
+          this.invalidCaptcha = true;
+          this.resetEnquiryForm();
         }
-      } else if (data.responseMessage.responseCode === 5016) {
-        this.invalidCaptcha = true;
-        this.resetEnquiryForm();
-      }
-    });
+      });
+    }
   }
 
   /**

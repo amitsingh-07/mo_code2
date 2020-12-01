@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -51,6 +52,8 @@ export class TopUpComponent implements OnInit, OnDestroy {
   awaitingOrPendingAmount;
   topupTypes = MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES;
   investmentCriteria: IInvestmentCriteria;
+  reviewBuyRequestModal: NgbModalRef;
+  private subscription: Subscription;
 
   constructor(
     public readonly translate: TranslateService,
@@ -90,7 +93,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     this.cashBalance = this.manageInvestmentsService.getUserCashBalance();
     this.fundDetails = this.manageInvestmentsService.getFundingDetails();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
-    this.getInvestmentCriteria();
+    
     this.topForm = this.formBuilder.group({
       portfolio: [this.formValues.selectedCustomerPortfolio, Validators.required],
       Investment: [
@@ -105,7 +108,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     if (this.formValues['selectedCustomerPortfolio']) {
       this.getMonthlyInvestmentInfo(this.formValues['selectedCustomerPortfolioId']);
       this.getAwaitingOrPendingInfo(this.formValues['selectedCustomerPortfolioId'],
-        this.awaitingOrPendingReq(this.formValues.selectedCustomerPortfolio.fundingTypeValue));
+      this.awaitingOrPendingReq(this.formValues.selectedCustomerPortfolio.fundingTypeValue));
     }
     if (this.formValues['selectedCustomerPortfolio'] &&
       (this.formValues['selectedCustomerPortfolio'].fundingTypeValue === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS.SRS)) {
@@ -118,14 +121,27 @@ export class TopUpComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     // On page destroy, set the top up values back to default
     this.manageInvestmentsService.clearTopUpData();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
   //  #get the SRS Details
   getSrsAccountDetails() {
-    this.manageInvestmentsService.getSrsAccountDetails().subscribe((data) => {
-      if (data) {
-        this.srsAccountDetails = data;
-      } else {
-        this.srsAccountDetails = null;
+    this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
+      if (!token) {
+        this.manageInvestmentsService.getProfileSrsAccountDetails().subscribe((data) => {
+          if (data) {
+            this.srsAccountDetails = data;
+            if (this.reviewBuyRequestModal) {
+              this.reviewBuyRequestModal.componentInstance.srsDetails = data;
+            }
+          } else {
+            this.srsAccountDetails = null;
+          }
+        },
+          (err) => {
+            this.investmentAccountService.showGenericErrorModal();
+          });
       }
     });
   }
@@ -144,6 +160,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
 
   setDropDownValue(key, value) {
+    this.getInvestmentCriteria(value.portfolioCategory);
     this.topForm.controls[key].setValue(value);
     this.getMonthlyInvestmentInfo(value['customerPortfolioId']);
     this.getAwaitingOrPendingInfo(value['customerPortfolioId'],
@@ -153,8 +170,8 @@ export class TopUpComponent implements OnInit, OnDestroy {
     }
   }
 
-  getInvestmentCriteria() {
-    this.investmentCommonService.getInvestmentCriteria().subscribe((data) => {
+  getInvestmentCriteria(portfolioType) {
+    this.investmentCommonService.getInvestmentCriteria(portfolioType).subscribe((data) => {
       this.investmentCriteria = data;
       this.setOnetimeMinAmount(data);
     });
@@ -168,8 +185,10 @@ export class TopUpComponent implements OnInit, OnDestroy {
       this.isAmountExceedBalance = false;
     }
   }
-
-  selectedInvestment(investmentType, minAmount) {
+  
+  selectedInvestment(investmentType, amount) {
+    const minAmount = investmentType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.ONE_TIME.VALUE ? amount.oneTimeInvestmentMinimum
+      : amount.monthlyInvestmentMinimum;
     this.manageInvestmentsService.setInvestmentValue(minAmount);
     this.formValues.Investment = investmentType;
     this.isAmountExceedBalance = false;
@@ -355,9 +374,11 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
 
   showReviewBuyRequestModal(form) {
-    const ref = this.modal.open(ReviewBuyRequestModalComponent, { centered: true, windowClass: 'review-buy-request-modal' });
-    ref.componentInstance.fundDetails = this.fundDetails;
-    ref.componentInstance.submitRequest.subscribe((emittedValue) => {
+    this.reviewBuyRequestModal = this.modal.open(ReviewBuyRequestModalComponent,
+      { centered: true, windowClass: 'review-buy-request-modal' });
+    this.reviewBuyRequestModal.componentInstance.srsDetails = this.srsAccountDetails;
+    this.reviewBuyRequestModal.componentInstance.fundDetails = this.fundDetails;
+    this.reviewBuyRequestModal.componentInstance.submitRequest.subscribe((emittedValue) => {
       this.checkIfExistingBuyRequest(form);
     });
   }

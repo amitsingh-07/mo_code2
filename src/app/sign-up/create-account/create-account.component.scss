@@ -105,4 +105,105 @@ app-create-account {
       }
     }
   }
+ 
+  .ref-code-title {
+    font-family: $muli-bold;
+    font-size: 16px;
+  }
+
+  .ref-code-input {
+    display:flex !important;
+    justify-content: space-between;
+    padding-right: 6px;
+    margin-top: 10px !important;
+
+    img {
+      top: -4px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    #cross-btn {
+      padding-right: 20px;
+    }
+
+    #green-tick {
+      padding-right:14px;
+    }
+
+    .spinner-container {
+      top: -4px;
+      position: relative;
+      display: flex;
+      justify-content:center;
+      align-items: center;
+      width: 75px;
+      height: 40px;
+      padding: 0 25.5px; 
+      border-radius:6px;
+      margin-top: 2.5px;
+      background-color: $crusta-orange-color;
+      cursor: pointer;
+  
+      span {
+        font-family: $muli-semi-bold;
+        font-size: 14px;
+        line-height: normal;
+        letter-spacing: -0.26px;
+        color: $white-color;
+      }
+
+      #mo_spinner {
+        width:24px; 
+        height:24px;
+        background-color: $crusta-orange-color;
+      }
+    }
+  }
+
+  .ref-code-error {
+    display: flex;
+    align-items: center;
+    font-family: $muli-italic;
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: -0.14px;
+
+    img {
+      padding-right: 7px;
+    }
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background-color: $persian-teal-color;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .captcha-title {
+    font-family: $muli-bold;
+    font-size: 16px;
+    letter-spacing: -0.3px;
+    line-height: normal;
+    color: $white-color;
+  }
+
+  input#crtAccInpt9.form-control:invalid + .form-control-placeholder {
+    color: $dusty-grey-color;
+  }
+
+  input#crtAccInpt9.form-control:focus + .form-control-placeholder {
+    color: $silver-grey-color !important;
+  }
+
+  .btn:disabled, .btn:disabled:hover {
+    border: solid 1px $btn-disabled-teal-color !important;
+    background-color: $btn-disabled-light-bg !important;
+    color: $btn-disabled-teal-color !important;
+  }
 }
+

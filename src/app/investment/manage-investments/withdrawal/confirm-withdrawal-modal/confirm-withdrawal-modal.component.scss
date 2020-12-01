@@ -114,6 +114,7 @@ app-confirm-withdrawal-modal {
                 text-decoration: none;
                 cursor: pointer;
                 font-family: $muli-bold;
+                font-size: 13px;
               }
             }
 
@@ -122,6 +123,10 @@ app-confirm-withdrawal-modal {
               height: 24px;
               display: flex;
             }
+            .rebalance-message{
+              font-family: $muli-regular;
+              margin-top: 10px;
+             }
           }
         }
       }

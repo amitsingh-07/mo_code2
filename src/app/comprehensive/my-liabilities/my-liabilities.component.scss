@@ -138,9 +138,12 @@ $grey-color-notes: #9f9f9f;
 }
 
 .mb-10 {
-  margin-bottom: 100px;
+  padding-bottom: 100px;
 }
 
 .otherTypeLoanLabel {
   color: $black-color !important;
+}
+.clickable {
+  cursor: pointer;
 }

@@ -1,7 +1,7 @@
-import { HostListener, Injectable } from '@angular/core';
+import { HostListener, Injectable, Directive } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { ConfirmationModalComponent } from './shared/modal/confirmation-modal/confirmation-modal.component';
 
@@ -9,6 +9,7 @@ export interface IComponentCanDeactivate {
     canDeactivate: () => boolean | Observable<boolean>;
 }
 
+@Directive()
 @Injectable()
 export class PendingChangesGuard implements CanDeactivate<IComponentCanDeactivate> {
 

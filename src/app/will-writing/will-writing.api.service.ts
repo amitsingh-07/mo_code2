@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { padNumber } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { padNumber } from '../shared/utils/common.util';
 import { AppService } from '../app.service';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
@@ -66,6 +66,7 @@ export class WillWritingApiService {
 
     willRequestPayload(customeId?: string): IWill {
         const will = Object.assign([], this.willWritingService.getWillWritingFormData());
+        const eligible = this.willWritingService.getEligibilityDetails();
         const willProfile: IwillProfile = {
             enquiryId: will.enquiryId,
             uin: will.aboutMe.uin,
@@ -73,7 +74,11 @@ export class WillWritingApiService {
             genderCode: this.gender.get(will.aboutMe.gender),
             maritalStatusCode: this.maritalStatus.get(will.aboutMe.maritalStatus),
             noOfChildren: will.aboutMe.noOfChildren,
-            promoCode: will.promoCode
+            promoCode: will.promoCode,
+            isEngSpeaker: will.aboutMe?.isEngSpeaker === true? 'Y':'N',
+            nationalityCode: eligible.nationality,
+            assetsInSg: eligible.assets,
+            religionCode: eligible.religion
         };
 
         if (this.willWritingService.getIsWillCreated()) {

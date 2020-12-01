@@ -181,12 +181,12 @@ app-funding-intro {
 
 
     .btn-proceed {
-      font-family: $muli-bold;
+      font-family: $muli-bold;      
       font-size: 22px;
       width: 337px;
       background: #ffffff;
       box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.21) !important;
-
+      color: $teal-color !important;
       @include allmobiles {
         width: 100%;
       }

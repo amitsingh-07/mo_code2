@@ -14,7 +14,7 @@ describe('PaymentModalComponent', () => {
       declarations: [PaymentModalComponent],
       imports: [
         TranslateModule.forRoot(),
-        NgbModule.forRoot(),
+        NgbModule,
         RouterTestingModule.withRoutes([])
       ],
       providers: [NgbActiveModal]

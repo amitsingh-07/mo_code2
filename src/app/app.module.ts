@@ -1,6 +1,5 @@
 import 'hammerjs';
 
-import { jqxSliderComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxslider';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import {
@@ -11,12 +10,12 @@ import {
 } from '@angular/common/http';
 import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { DatePipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -83,6 +82,9 @@ import { LoaderComponent } from './shared/modal/loader/loader.component';
 import {
   ModelWithButtonComponent
 } from './shared/modal/model-with-button/model-with-button.component';
+import {
+  PaymentInstructionModalComponent
+} from './shared/modal/payment-instruction-modal/payment-instruction-modal.component';
 import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.component';
 import {
   RecommendationsModalComponent
@@ -127,6 +129,8 @@ import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
+import { SessionsService } from './shared/Services/sessions/sessions.service';
+import { NotSupportedComponent } from './not-supported/not-supported.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -161,7 +165,6 @@ export function tokenGetterFn() {
     PopupModalComponent,
     SuccessModalComponent,
     RestrictAlphabetsDirective,
-    jqxSliderComponent,
     HeaderComponent,
     FooterComponent,
     CallBackComponent,
@@ -177,18 +180,19 @@ export function tokenGetterFn() {
     NotFoundComponent,
     EmailEnquirySuccessComponent,
     RestrictAddPortfolioModalComponent,
-    InvestmentMaintenanceComponent
+    InvestmentMaintenanceComponent,
+    PaymentInstructionModalComponent,
+    NotSupportedComponent
   ],
   imports: [
     BrowserModule,
-    NgbModule.forRoot(),
+    NgbModule,
     AppRoutingModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     HttpClientJsonpModule,
-    HttpModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -224,7 +228,7 @@ export function tokenGetterFn() {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true,
-      deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, NavbarService]
+      deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, NavbarService, SessionsService]
     }, Formatter, CurrencyPipe, RoutingService,
     StateStoreService, Util, FileUtil,
     InvestmentEnableGuard,
@@ -242,7 +246,8 @@ export function tokenGetterFn() {
     PaymentEnableGuard,
     PaymentChildEnableGuard,
     InvestmentMaintenanceGuard,
-    ExternalRouteGuard
+    ExternalRouteGuard,
+    DatePipe
   ],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -251,7 +256,7 @@ export function tokenGetterFn() {
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent, TermsModalComponent,
     SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent,
     FundDetailsComponent, UnsupportedDeviceModalComponent, RestrictAddPortfolioModalComponent,
-    LoginCreateAccountModelComponent, SummaryModalComponent]
+    LoginCreateAccountModelComponent, SummaryModalComponent, PaymentInstructionModalComponent]
 })
 
 export class AppModule {

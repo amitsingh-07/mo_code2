@@ -129,6 +129,7 @@ export class InvestmentAccountService {
   setDefaultValueForFormData() {
     this.investmentAccountFormData.isMailingAddressSame =
       INVESTMENT_ACCOUNT_CONSTANTS.residential_info.isMailingAddressSame;
+      this.commit();
   }
   clearResidentialAddressFormData() {
     this.investmentAccountFormData.country = null;
@@ -742,7 +743,8 @@ export class InvestmentAccountService {
       countryCode: countryDetails.countryCode,
       name: countryDetails.country,
       phoneCode: countryDetails.phoneCode,
-      countryBlocked: countryDetails.countryBlocked
+      countryBlocked: countryDetails.countryBlocked,
+      visible: countryDetails.visible
     };
   }
 
@@ -1970,7 +1972,7 @@ export class InvestmentAccountService {
   getCountriesFormDataByFilter() {
     const countryList = [];
     this.investmentAccountFormData.countryList.forEach((country) => {
-      if (!country.countryBlocked) {
+      if (country.visible) {
         countryList.push(country);
       }
     });
@@ -1982,18 +1984,18 @@ export class InvestmentAccountService {
       (countries) => countries.countryCode === countryCode
     );
     if (selectedCountry[0]) {
-      blockFlag = (selectedCountry[0]['countryBlocked']);
+      blockFlag = !(selectedCountry[0]['visible']);
     }
     return blockFlag;
   }
   checkCountryBlockList() {
     let blockedCountry = false;
     if (this.investmentAccountFormData.country && this.investmentAccountFormData.country.countryCode
-      && this.investmentAccountFormData.country.countryBlocked) {
+      && !this.investmentAccountFormData.country.visible) {
       blockedCountry = true;
     }
     if (!blockedCountry && this.investmentAccountFormData.mailCountry && this.investmentAccountFormData.mailCountry.countryCode
-       && this.investmentAccountFormData.mailCountry.countryBlocked) {
+       && !this.investmentAccountFormData.mailCountry.visible) {
       blockedCountry = true;
     }
     return blockedCountry;
@@ -2009,7 +2011,7 @@ export class InvestmentAccountService {
     const selectedNationality = this.investmentAccountFormData.nationalityList.filter(
       (nationality) => nationality.nationalityCode === nationalityCode
     );
-    if (selectedNationality[0] && selectedNationality[0].countries[0] && !selectedNationality[0].countries[0].countryBlocked) {
+    if (selectedNationality[0] && selectedNationality[0].countries[0] && selectedNationality[0].countries[0].visible) {
       country = selectedNationality[0].countries[0];
     }
     return country;
@@ -2019,7 +2021,7 @@ export class InvestmentAccountService {
     const selectedCountry = this.investmentAccountFormData.countryList.filter(
       (countries) => countries.countryCode === countryCode
     );
-    if (selectedCountry[0] && !selectedCountry[0].countryBlocked) {
+    if (selectedCountry[0] && selectedCountry[0].visible) {
       country = selectedCountry[0];
     }
     return country;

@@ -1,10 +1,12 @@
 import { browser } from 'protractor';
 
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs/internal/Subject';
 
 import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -26,6 +28,7 @@ import { AppService } from './../../../app/app.service';
 import { DirectService } from './../../direct/direct.service';
 import { GuideMeService } from './../../guide-me/guide-me.service';
 
+
 @Component({
   selector: 'app-verify-mobile',
   templateUrl: './verify-mobile.component.html',
@@ -33,7 +36,7 @@ import { GuideMeService } from './../../guide-me/guide-me.service';
   encapsulation: ViewEncapsulation.None,
 })
 
-export class VerifyMobileComponent implements OnInit {
+export class VerifyMobileComponent implements OnInit, OnDestroy {
   private errorModal = {};
   private loading = {};
 
@@ -45,8 +48,10 @@ export class VerifyMobileComponent implements OnInit {
   progressModal: boolean;
   newCodeRequested: boolean;
   editProfile: boolean;
+  two2faAuth: boolean;
   fromLoginPage: string;
-
+  protected ngUnsubscribe: Subject<void> = new Subject<void>();
+  
   constructor(
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
@@ -74,6 +79,19 @@ export class VerifyMobileComponent implements OnInit {
       this.loading['sending'] = result.LOADING.SENDING;
       this.loading['verified2fa'] = result.LOADING.VERIFIED2FA;
     });
+    this.translate.get('ERROR').subscribe((results: any) => {
+      this.authService.get2faSendErrorEvent.pipe(takeUntil(this.ngUnsubscribe)).subscribe((data) => {
+      if(data) {
+          const error2fa = {
+            title: results.SEND_2FA_FAILED.TITLE,
+            subtitle: results.SEND_2FA_FAILED.SUB_TITLE,
+            button: results.SEND_2FA_FAILED.BUTTON,
+          };
+          this.authService.openErrorModal(error2fa.title, error2fa.subtitle, error2fa.button);
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+        }
+      });
+    });
   }
 
   ngOnInit() {
@@ -94,10 +112,13 @@ export class VerifyMobileComponent implements OnInit {
       this.mobileNumber = this.signUpService.getMobileNumber();
     }
 
+    this.two2faAuth = this.authService.get2faVerifyAllowed();
+  }
 
-    if (this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
-      this.editProfile = true;
-    }
+  ngOnDestroy() {
+    this.authService.set2faVerifyAllowed(false);
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   /**
@@ -124,11 +145,9 @@ export class VerifyMobileComponent implements OnInit {
         otpArr.push(form.value[value]);
         if (value === 'otp6') {
           const otp = otpArr.join('');
-          if (this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
-            console.log('Calling Verity 2FA');
+          if (this.authService.get2faVerifyAllowed()) {
             this.verify2FA(otp);
           } else {
-            console.log('Calling Verity OTP');
             this.verifyOTP(otp);
           }
         }
@@ -188,7 +207,7 @@ export class VerifyMobileComponent implements OnInit {
    */
   requestNewCode() {
     this.progressModal = true;
-    if (this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
+    if (this.authService.get2faVerifyAllowed()) {
       console.log('Triggering New Verify 2FA');
       this.requestNew2faOTP();
     } else {

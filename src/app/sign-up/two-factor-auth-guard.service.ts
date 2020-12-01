@@ -1,53 +1,41 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, GuardsCheckEnd, Router } from '@angular/router';
-
+import { CanActivate, GuardsCheckEnd, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 import { AppService } from '../app.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SIGN_UP_ROUTE_PATHS } from './sign-up.routes.constants';
 import { SignUpService } from './sign-up.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TwoFactorAuthGuardService implements CanActivate {
   constructor(private route: Router,
-              private appService: AppService,
-              private authService: AuthenticationService,
-              private signUpService: SignUpService,
-  ) {
-  }
-  canActivate(): boolean {
+    private appService: AppService,
+    private authService: AuthenticationService,
+    private signUpService: SignUpService,
+  ) { }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     this.appService.setJourneyType('');
-    let redirectUrl = null;
-    this.route.events.pipe(
-      filter(event => event instanceof GuardsCheckEnd)
-    )
-      .subscribe((e: GuardsCheckEnd) => {
-        if (redirectUrl == null) {
-          redirectUrl = e.url;
-          this.signUpService.setRedirectUrl(e.url);
-        }
-      });
-    this.signUpService.setRedirectUrl(redirectUrl);
+    this.signUpService.setRedirectUrl(state.url);
     // Is Signed Users and is 2FA verified
     if (this.authService.isSignedUser() && this.authService.is2FAVerified()) {
       this.authService.setFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE, false);
+      this.authService.set2faVerifyAllowed(false);
       return true;
     } else if (!this.authService.isSignedUser()) {
+      this.authService.set2faVerifyAllowed(false);
       this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       return false;
     } else {
-      // Is anything else
-      this.authService.send2faRequest().subscribe((response) => {
-        // console.log('2fa created on BE:', response);
-      });
-      this.signUpService.setRedirectUrl(redirectUrl);
-      this.authService.setFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE, true);
       this.route.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_2FA]);
       return false;
     }
+	  
   }
 }
 
@@ -57,15 +45,20 @@ export class TwoFactorAuthGuardService implements CanActivate {
 
 // tslint:disable-next-line:max-classes-per-file
 export class TwoFactorScreenGuardService implements CanActivate {
-  constructor(private route: Router,
-              private authService: AuthenticationService
-  ) {
-  }
+  error2fa: any;
+  constructor(private route: Router, private authService: AuthenticationService
+  ) {}
+
   canActivate(): boolean {
-    if (!this.authService.getFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE)) {
+    if (!this.authService.get2faVerifyAllowed()) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       return false;
     }
+    this.authService.send2faRequest().subscribe((data) => {
+      if (data.responseMessage.responseCode !== 6000) {
+        this.authService.get2faSendError.next(true);
+      }
+    });
     return true;
   }
 }

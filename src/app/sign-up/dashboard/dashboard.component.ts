@@ -1,14 +1,10 @@
-import 'rxjs/add/observable/forkJoin';
-
-import { Observable } from 'rxjs/Observable';
-
+import { forkJoin as observableForkJoin } from 'rxjs';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ConfigService, IConfig } from '../../config/config.service';
-// Insurance
 import { GuideMeApiService } from '../../guide-me/guide-me.api.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
 import {
@@ -40,7 +36,6 @@ import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
-// Will Writing
 import { WillWritingApiService } from '../../will-writing/will-writing.api.service';
 import { WillWritingService } from '../../will-writing/will-writing.service';
 import { SignUpApiService } from '../sign-up.api.service';
@@ -49,6 +44,8 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
+const download = require("../../../assets/scripts/download.js");
+
 
 @Component({
   selector: 'app-dashboard',
@@ -61,8 +58,6 @@ export class DashboardComponent implements OnInit {
   showPortfolioPurchased = false;
   showStartInvesting = false;
   showInvestmentDetailsSaved = false;
-  showNoInvestmentAccount = false;
-  showAddPortfolio = false;
   showCddCheckOngoing = false;
   showSuspendedAccount = false;
   showBlockedNationalityStatus = false;
@@ -194,7 +189,8 @@ export class DashboardComponent implements OnInit {
       if (data.responseMessage && data.responseMessage.responseCode === 6000) {
         this.insurance.hasInsurance = true;
         this.insurance.isGuidedJourney = data.objectList[0].financialStatusMapping !== null;
-        this.insurance.lastTransactionDate = data.objectList[0].lastEnquiredDate.split('T')[0];
+		const lastTransact = new Date(data.objectList[0].lastEnquiredDate.split(' ')[0]);
+		this.insurance.lastTransactionDate = lastTransact;
         if (!this.guideMeService.checkGuidedDataLoaded() && this.insurance.isGuidedJourney) {
           this.guideMeService.convertResponseToGuideMeFormData(data.objectList[0]);
         }
@@ -248,7 +244,7 @@ export class DashboardComponent implements OnInit {
 
   // tslint:disable-next-line:cognitive-complexity
   goToDocUpload() {
-    Observable.forkJoin(
+    observableForkJoin(
       this.signUpService.getDetailedCustomerInfo(),
       this.investmentAccountService.getNationalityCountryList()
     ).subscribe((response) => {
@@ -352,7 +348,7 @@ export class DashboardComponent implements OnInit {
   }
 
   verifyCustomerDetails() {
-    Observable.forkJoin(
+    observableForkJoin(
       this.signUpService.getDetailedCustomerInfo(),
       this.investmentAccountService.getNationalityCountryList()
     ).subscribe((response) => {
@@ -404,23 +400,30 @@ export class DashboardComponent implements OnInit {
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
       window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
     } else {
-      this.downloadFile(data);
+      // this.downloadFile(data, iOS);
+      download(blob, 'MoneyOwl Will Writing.pdf', 'application/pdf');
     }
   }
 
-  downloadFile(data: any) {
+  downloadFile(data: any, iOS) {
     const blob = new Blob([data], { type: 'application/pdf' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    document.body.appendChild(a);
-    a.setAttribute('style', 'display: none');
-    a.href = url;
-    a.download = 'MoneyOwl Will Writing.pdf';
-    a.click();
-    setTimeout(() => {
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    }, 1000);
+    const url = window.URL || window.webkitURL;
+    const pdfUrl = url.createObjectURL(blob);
+    if (iOS) {
+      const win = window.open();
+      win.document.write('<html><head><title>MoneyOwl Will Writing.pdf</title></head><body><embed src=' +pdfUrl+ ' type="application/pdf" width="100%" height="100%" /></body</html>')
+    } else {
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.setAttribute('style', 'display: none');
+      a.href = pdfUrl;
+      a.download = 'MoneyOwl Will Writing.pdf';
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(pdfUrl);
+      }, 1000);
+    }
   }
 
   showCustomErrorModal(title, desc) {

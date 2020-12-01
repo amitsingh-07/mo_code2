@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { padNumber } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { padNumber } from '../shared/utils/common.util';
 
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
@@ -671,7 +671,8 @@ export class WillWritingService {
       uin: data.willProfile.uin,
       gender: this.gender.get(data.willProfile.genderCode),
       maritalStatus: this.maritalStatus.get(data.willProfile.maritalStatusCode),
-      noOfChildren: data.willProfile.noOfChildren
+      noOfChildren: data.willProfile.noOfChildren,
+      isEngSpeaker: data.willProfile?.isEngSpeaker === 'Y' ? true : false
     };
     will.spouse = [];
     will.children = [];

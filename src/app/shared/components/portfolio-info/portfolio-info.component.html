@@ -5,14 +5,15 @@
             <div class="portfolio-type-details-title">
                 {{(isWiseSaverPortfolio) ? (portfolio.portfolioType) : (portfolio.riskProfile.type)}} {{ 'PORTFOLIO_RECOMMENDATION.PORTFOLIO' |translate}}
             </div>
-            <div  *ngIf="isWiseSaverPortfolio">
+            <div  *ngIf="isWiseSaverPortfolio && wiseSaverDetails">
                 <div class="wise-portfolio-type-details-desc" [innerHTML]="'PORTFOLIO_RECOMMENDATION.WISE_SAVER_PORTOFOLIO.TITLE_DESC' | translate:portfolioProjectionSubText">
                 </div>
                 <div class="text-center wise-saver-desc">
                     <img src="assets/images/investment-account/conservative-icon.svg" />
                     <div class="wise-saver-rate-title" [innerHTML]="'PORTFOLIO_RECOMMENDATION.WISE_SAVER_PORTOFOLIO.RATE_TITLE' | translate:portfolioProjectionSubText">
                     </div>
-                    <div class="wise-saver-value-container"><span class="wise-saver-value">{{ 'PORTFOLIO_RECOMMENDATION.WISESAVER_VALUE' |translate}}</span></div>
+                    <div class="wise-saver-value-container"><span class="wise-saver-value" [innerHTML]="'PORTFOLIO_RECOMMENDATION.WISESAVER_PERCENTAGE_VALUE' | translate : wisaSaverValueText"></span></div>
+                    <div class="wise-saver-value-date">({{ 'PORTFOLIO_RECOMMENDATION.WISESAVER_VALUE_DATE' |translate}} {{wiseSaverDetails.effectiveDate | date:'dd MMM yyyy'}})</div>
                 </div>
                 <div class="wise-saver-portfolio-desc" [innerHTML]="'PORTFOLIO_RECOMMENDATION.WISE_SAVER_PORTOFOLIO.PORTFOLIO_DESC'  | translate:portfolioProjectionSubText">
 

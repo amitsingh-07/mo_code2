@@ -28,6 +28,8 @@ export class TopupStatusComponent implements OnInit, OnDestroy {
   showBankTransferSteps = true;
   cashBalance;
   oneTimeMonthlyMsg: string;
+  showFixedToastMessage: boolean;
+  toastMsg: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -148,5 +150,22 @@ export class TopupStatusComponent implements OnInit, OnDestroy {
     ref.componentInstance.errorMessage = this.translate.instant(
       'TOPUP_REQUEST.SHOWPOPUP.MESSAGE'
     );
+  }
+
+  notify(event) {
+    const toasterMsg = {
+      desc: this.translate.instant('TRANSFER_INSTRUCTION.COPIED')
+    };
+
+    this.toastMsg = toasterMsg;
+    this.showFixedToastMessage = true;
+    this.hideToastMessage();
+  }
+
+  hideToastMessage() {
+    setTimeout(() => {
+      this.showFixedToastMessage = false;
+      this.toastMsg = null;
+    }, 3000);
   }
 }

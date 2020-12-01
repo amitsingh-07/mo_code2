@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject, Subscription } from 'rxjs';
@@ -14,7 +14,6 @@ import { ManageInvestmentsService } from '../../investment/manage-investments/ma
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SrsSuccessModalComponent } from '../add-update-srs/srs-success-modal/srs-success-modal.component';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
@@ -23,6 +22,7 @@ import { environment } from './../../../environments/environment';
 import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
+import { SessionsService } from 'src/app/shared/Services/sessions/sessions.service';
 
 
 @Component({
@@ -37,13 +37,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   personalData: any;
   fullName: string;
   compinedName: string;
-  compinednricNum: string;
-  compinedPassport: string;
   residentialAddress: any;
-  compinedAddress: string;
-  compinedMailingAddress: string;
   empolymentDetails: any;
-  compinedEmployerAddress: any;
   bankDetails: any;
   mailingAddress: any;
   contactDetails: any;
@@ -65,21 +60,17 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
   srsDetails;
   formatedAccountNumber;
-  fundTypeId: number;
   is2faAuthorized: boolean;
 
   disableBankSrsEdit = false;
 
   constructor(
-    // tslint:disable-next-line
-    private formBuilder: FormBuilder,
     private modal: NgbModal,
     private footerService: FooterService,
     public headerService: HeaderService,
     public navbarService: NavbarService,
     private investmentCommonService: InvestmentCommonService,
     private signUpService: SignUpService,
-    private route: ActivatedRoute,
     private router: Router,
     public authService: AuthenticationService,
     public investmentAccountService: InvestmentAccountService,
@@ -87,7 +78,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     public readonly translate: TranslateService,
     private loaderService: LoaderService,
     private configService: ConfigService,
-    private customErrorHandler: CustomErrorHandlerService
+    private customErrorHandler: CustomErrorHandlerService,
+    private sessionsService: SessionsService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
@@ -95,20 +87,15 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.setPageTitle(this.pageTitle);
       this.showSRSSuccessModel();
     });
-    this.getNationalityCountryList();
+
+    // Hidden Country list for future use
+    // this.getNationalityCountryList();
 
     this.authService.get2faAuthEvent.subscribe((token) => {
       if (token) {
         this.is2faAuthorized = true;
       } else {
         this.is2faAuthorized = false;
-      }
-    });
-    this.authService.get2faUpdateEvent.subscribe((token) => {
-      if (!token) {
-        this.getEditProfileData();
-        this.showAddBankDetails(this.investmentStatus);
-        this.getSrsDetails();
       }
     });
   }
@@ -122,12 +109,15 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.setPageTitle(this.pageTitle);
     this.footerService.setFooterVisibility(false);
     this.headerSubscription();
-    this.getEditProfileData();
     this.investmentStatus = this.investmentCommonService.getInvestmentStatus();
-    this.showAddBankDetails(this.investmentStatus);
-    this.getSrsDetails();
-    this.buildForgotPasswordForm();
+
+    this.authService.get2faUpdateEvent.subscribe(() => {
+      this.getEditProfileData();
+      this.getSrsDetails();
+    });
+
     this.isMailingAddressSame = true;
+
     // Check if iFast is in maintenance
     this.configService.getConfig().subscribe((config) => {
       if (config.iFastMaintenance && this.configService.checkIFastStatus(config.maintenanceStartTime, config.maintenanceEndTime)) {
@@ -135,12 +125,18 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.authService.get2faErrorEvent
-    .pipe(takeUntil(this.ngUnsubscribe))
-    .subscribe((data) => {
-      if(data) {
-        this.authService.openErrorModal('Your session to edit profile has expired.', '', 'Okay');
-      }
+    this.translate.get('ERROR').subscribe((results) => {
+      this.authService.get2faErrorEvent
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe((data) => {
+          if (data) {
+            this.authService.openErrorModal(
+              results.SESSION_2FA_EXPIRED.TITLE,
+              results.SESSION_2FA_EXPIRED.SUB_TITLE,
+              results.SESSION_2FA_EXPIRED.BUTTON
+            );
+          }
+        });
     });
   }
 
@@ -161,14 +157,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-  showHidePassword(el) {
-    if (el.type === 'password') {
-      el.type = 'text';
-    } else {
-      el.type = 'password';
-    }
-  }
-
   showHide(el) {
     if (el.style.display === '' || el.style.display === 'block') {
       el.style.display = 'none';
@@ -177,18 +165,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-  buildForgotPasswordForm() {
-    this.formValues = this.signUpService.getForgotPasswordInfo();
-    this.resetPasswordForm = this.formBuilder.group({
-      oldPassword: [this.formValues.oldPassword, [Validators.required, Validators.pattern(RegexConstants.Password.Full)]],
-      newPassword: [this.formValues.oldPassword, [Validators.required, Validators.pattern(RegexConstants.Password.Full)]],
-      confirmPassword: [this.formValues.oldPassword, [Validators.required, Validators.pattern(RegexConstants.Password.Full)]]
-    });
-  }
-
   // tslint:disable-next-line:cognitive-complexity
   getEditProfileData() {
-     this.signUpService.getEditProfileInfo().subscribe((data) => {
+    this.signUpService.getEditProfileInfo().subscribe((data) => {
       const responseMessage = data.responseMessage;
       if (responseMessage.responseCode === 6000) {
         this.entireUserData = data.objectList;
@@ -196,19 +175,25 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           if (data.objectList.personalInformation) {
             this.personalData = data.objectList.personalInformation;
           }
-          if (data.objectList && data.objectList.contactDetails && data.objectList.contactDetails.homeAddress) {
-            this.residentialAddress = data.objectList.contactDetails.homeAddress;
-          }
+          // Hidden Residential address
+          // if (data.objectList && data.objectList.contactDetails && data.objectList.contactDetails.homeAddress) {
+          //   this.residentialAddress = data.objectList.contactDetails.homeAddress;
+          // }
           // Hidden the Employment details
           // this.empolymentDetails = data.objectList.employmentDetails;
           this.empolymentDetails = null;
+
           if (data.objectList.customerBankDetail) {
             this.bankDetails = data.objectList.customerBankDetail[0];
           }
-          if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
-            this.mailingAddress = data.objectList.contactDetails.mailingAddress;
-            this.isMailingAddressSame = false;
-          }
+          this.showAddBankDetails(this.investmentStatus);
+          
+          // Hidden the mailing address for future use
+          // if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
+          //   this.mailingAddress = data.objectList.contactDetails.mailingAddress;
+          //   this.isMailingAddressSame = false;
+          // }
+
           if (data.objectList.contactDetails) {
             this.contactDetails = data.objectList.contactDetails;
           }
@@ -216,59 +201,43 @@ export class EditProfileComponent implements OnInit, OnDestroy {
             this.fullName = this.personalData.fullName ?
               this.personalData.fullName : this.personalData.firstName + ' ' + this.personalData.lastName;
             this.compinedName = this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
-            this.compinednricNum = this.setNric(this.personalData.nricNumber);
-            if (this.personalData.passportNumber) {
-              this.compinedPassport = 'Passport: ' + this.personalData.passportNumber;
-            }
-            if (this.personalData && this.personalData.isSingaporeResident) {
-              this.isSingaporeResident = this.personalData.isSingaporeResident;
-            }
+            // Hidden passport details for future use
+            // this.compinednricNum = this.setNric(this.personalData.nricNumber);
+            // Hidden the passport details
+            // if (this.personalData.passportNumber) {
+            //   this.compinedPassport = 'Passport: ' + this.personalData.passportNumber;
+            // }
+            // if (this.personalData && this.personalData.isSingaporeResident) {
+            //   this.isSingaporeResident = this.personalData.isSingaporeResident;
+            // }
             this.constructDate(this.personalData.dateOfBirth);
           }
         }
-        // tslint:disable-next-line:max-line-length
-        if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress) {
-          this.employerAddress = this.empolymentDetails.employerDetails.detailedemployerAddress;
-        }
-        if (this.residentialAddress && this.residentialAddress.country && this.residentialAddress.country.nationalityCode) {
-          this.resNationality = this.residentialAddress.country.nationalityCode;
-        }
-        if (this.mailingAddress && this.mailingAddress.country && this.mailingAddress.country.nationalityCode) {
-          this.mailNationality = this.mailingAddress.country.nationalityCode;
-        }
-        // tslint:disable-next-line:max-line-length
-        if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode) {
-          this.employerNationality = this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode;
-        }
+        // Hidden employer address for future use
+        // // tslint:disable-next-line:max-line-length
+        // if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress) {
+        //   this.employerAddress = this.empolymentDetails.employerDetails.detailedemployerAddress;
+        // }
+        // if (this.residentialAddress && this.residentialAddress.country && this.residentialAddress.country.nationalityCode) {
+        //   this.resNationality = this.residentialAddress.country.nationalityCode;
+        // }
+        // if (this.mailingAddress && this.mailingAddress.country && this.mailingAddress.country.nationalityCode) {
+        //   this.mailNationality = this.mailingAddress.country.nationalityCode;
+        // }
+        // // tslint:disable-next-line:max-line-length
+        // if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode) {
+        //   this.employerNationality = this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode;
+        // }
       } else { // catch exceptions
         if (responseMessage.responseCode === 5015) {
+          this.sessionsService.destroyInstance();
           this.authService.clearSession();
+          this.sessionsService.createNewActiveInstance();
           this.navbarService.logoutUser();
           this.customErrorHandler.handleAuthError();
         }
       }
     });
-  }
-
-  createMaskString(val) {
-    let i;
-    let maskedStr = '';
-    for (i = 0; i < val; i++) {
-      maskedStr = maskedStr + '*';
-    }
-    return maskedStr;
-  }
-
-  setAddres(address1, address2) {
-    this.compinedAddress = address1 + ' ' + address2;
-  }
-
-  setMailingAddres(address1, address2) {
-    this.compinedMailingAddress = address1 + ' ' + address2;
-  }
-
-  setEmployerAddress(address1, address2) {
-    this.compinedEmployerAddress = address1 + ' ' + address2;
   }
 
   editEmployeDetails() {
@@ -280,6 +249,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
   editUserDetails() {
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
+    this.authService.set2faVerifyAllowed(true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_ID]);
   }
 
@@ -329,6 +299,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     // tslint:disable-next-line:max-line-length accountName
     this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, this.bankDetails.bank, this.bankDetails.accountNumber, this.bankDetails.id, false);
+    this.authService.set2faVerifyAllowed(true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: false }, fragment: 'bank' });
   }
 
@@ -341,6 +312,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     }
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, null, null, null, true);
+    this.authService.set2faVerifyAllowed(true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: true }, fragment: 'bank' });
   }
 
@@ -364,7 +336,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
   updateSrsDetails(srsAccountNumber, srsBankOperator, customerId, srsBankFlag) {
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
-    this.signUpService.setEditProfileSrsDetails(srsAccountNumber, srsBankOperator, customerId, this.fundTypeId);
+    this.signUpService.setEditProfileSrsDetails(srsAccountNumber, srsBankOperator, customerId);
+    this.authService.set2faVerifyAllowed(true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_SRS], { queryParams: { srsBank: srsBankFlag }, fragment: 'bank' });
   }
 
@@ -374,16 +347,15 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         if (data) {
           this.srsDetails = data;
-          this.getInvestmentOverview();
         }
       },
-        (err) => {
+        () => {
           this.investmentAccountService.showGenericErrorModal();
         });
   }
 
   getInvestmentOverview() {
-    this.translate.get('COMMON').subscribe((result: string) => {
+    this.translate.get('COMMON').subscribe(() => {
       this.loaderService.showLoader({
         title: this.translate.instant('COMMON.LOADING_TITLE'),
         desc: this.translate.instant('COMMON.LOADING_DESC'),
@@ -396,30 +368,21 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         this.loaderService.hideLoaderForced();
         if (data.responseMessage.responseCode >= 6000 && data && data.objectList) {
           this.manageInvestmentsService.setUserPortfolioList(data.objectList.portfolios);
-          this.fundTypeId = this.getFundTypeId(data.objectList.portfolios)
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.TOPUP]);
         }
-      },
-        (err) => {
-          this.loaderService.hideLoaderForced();
-          this.investmentAccountService.showGenericErrorModal();
-        });
-  }
-
-  getFundTypeId(protfolios) {
-    for (const obj of protfolios) {
-      if (obj['fundingTypeValue'] === 'SRS') {
-        return obj['fundingTypeId'];
-      }
-    }
+      }, () => {
+        this.loaderService.hideLoaderForced();
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   showSRSSuccessModel() {
     if (this.manageInvestmentsService.getSrsSuccessFlag()) {
       const ref = this.modal.open(SrsSuccessModalComponent, { centered: true });
       ref.componentInstance.topUp.subscribe(() => {
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.TOPUP]);
+        this.getInvestmentOverview();
       });
-      this.manageInvestmentsService.setSrsSuccessFlag(false)
+      this.manageInvestmentsService.setSrsSuccessFlag(false);
     }
   }
 
@@ -427,9 +390,5 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     const first = firstName.charAt(0);
     const second = LastName.charAt(0);
     return first.toUpperCase() + second.toUpperCase();
-  }
-
-  setNric(nric) {
-    return 'NRIC Number: ' + nric;
   }
 }

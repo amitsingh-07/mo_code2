@@ -20,9 +20,10 @@ export class TransferInstructionsModalComponent implements OnInit {
   @Output() closeModal: EventEmitter<any> = new EventEmitter();
   @Output() openModal: EventEmitter<any> = new EventEmitter();
   @Output() topUpActionBtn: EventEmitter<any> = new EventEmitter();
+  @Output() showCopied: EventEmitter<any> = new EventEmitter();
 
   constructor(public activeModal: NgbActiveModal,
-              public readonly translate: TranslateService) {
+    public readonly translate: TranslateService) {
   }
 
   ngOnInit() {
@@ -45,5 +46,9 @@ export class TransferInstructionsModalComponent implements OnInit {
   goToTopUp() {
     this.topUpActionBtn.emit();
     this.activeModal.close();
+  }
+
+  notify(event) {
+    this.showCopied.emit();
   }
 }

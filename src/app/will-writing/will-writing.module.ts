@@ -46,7 +46,7 @@ export function createTranslateLoader(http: HttpClient) {
     WillWritingRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    NgbModule.forRoot(),
+    NgbModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

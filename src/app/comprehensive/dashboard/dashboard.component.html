@@ -1,3 +1,14 @@
+<!-- Copy toaster -->
+<div class="toast-msg-fixed-block" *ngIf="showFixedToastMessage">
+  <div class="toast-msg-container">
+    <div class="flex-col-1">
+      <img src="assets/images/topupwithdraw/check_orange.svg" alt="" />
+    </div>
+    <div class="flex-col-11">
+      <div class="toast-msg">{{toastMsg?.desc}}</div>
+    </div>
+  </div>
+</div>
 <div class="container-fluid max-width--1024 comprehensive"
   *ngIf="((getComprehensiveSummary && getComprehensiveSummary.comprehensiveEnquiry !== null && getComprehensiveSummary.comprehensiveEnquiry.isValidatedPromoCode) || isComprehensiveLiveEnabled) && isComprehensiveEnabled">
   <div class="comprehensive" [ngClass] = "{'dashboard-lite': comprehensiveLiteEnabled }">
@@ -56,8 +67,11 @@
           </div>
           <div class="flex-row align-start" [hidden]="comprehensivePlanning !== 0">
             <div class="flex-col-8">
-              <div class="form-group-with-bg--content-label" for="name">
+              <div class="form-group-with-bg--content-label" for="name" *ngIf='!paymentInstructions'>
                 {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_SUBMITTED' | translate}}
+              </div>
+              <div class="form-group-with-bg--content-label" for="name" *ngIf='paymentInstructions'>
+                {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_SUBMITTED_PAYMENT' | translate}}
               </div>
             </div>
             <div class="flex-col-4 text-right">
@@ -161,6 +175,16 @@
               </button>
             </div>
           </div>
+
+          <div class="flex-row align-start" *ngIf='paymentInstructions'>
+            <div class="flex-col-12">
+              <button type="button" class="btn btn-primary width100" id="payment-instruction" (click)="showPaymentModal()">
+                <div class="ft-18" for="name">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PAYMENT_INSTRUCTION' | translate}}
+                </div>
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
       <div [ngClass]="{'hidden': isLoadComplete}" class="ajax-loader-card-inline">

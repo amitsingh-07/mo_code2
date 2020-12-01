@@ -203,18 +203,20 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     if (!this.viewMode) {
       if (this.validateDependantForm(form)) {
         form.value.dependentMappingList.forEach((dependant: any, index) => {
+          form.value.dependentMappingList[index].name = dependant.name.trim().replace(RegexConstants.trimSpace, ' ');
           form.value.dependentMappingList[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
-          form.value.dependentMappingList[index].enquiryId = this.comprehensiveService.getEnquiryId();
         });
         if (!form.pristine) {
           this.hasDependant = form.value.dependentMappingList.length > 0; 
           this.houseHold = this.comprehensiveService.gethouseHoldDetails();
 
           form.value.hasDependents = this.hasDependant;
-          form.value.noOfHouseholdMembers = this.houseHold.noOfHouseholdMembers,
-            form.value.houseHoldIncome = this.houseHold.houseHoldIncome,
-            form.value.noOfYears =  this.houseHold.noOfYears
-            this.loaderService.showLoader({ title: this.saveData });
+          form.value.noOfHouseholdMembers = this.houseHold.noOfHouseholdMembers;
+          form.value.houseHoldIncome = this.houseHold.houseHoldIncome;
+          form.value.noOfYears =  this.houseHold.noOfYears;
+          form.value.saveDependentInfo =  true;
+          form.value.enquiryId = this.comprehensiveService.getEnquiryId();
+          this.loaderService.showLoader({ title: this.saveData });
           this.comprehensiveApiService.addDependents(form.value).subscribe(((data: any) => {
             this.comprehensiveService.setHasDependant(true);
             this.comprehensiveService.setMyDependant(data.objectList[0].dependentsList);

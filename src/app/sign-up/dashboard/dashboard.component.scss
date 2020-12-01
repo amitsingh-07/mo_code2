@@ -205,7 +205,7 @@ app-dashboard {
                             text-align: center;
                             color: #ffffff;
                             margin: 18px 0 0;
-                            box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15);
+                            box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15) !important;
                             background-color: #00a7a7;
                             border: none;
                             div {
@@ -393,6 +393,11 @@ app-dashboard {
               .widget-portfolio-body {
                 padding:0px 18px 11px;
               }
+              @-moz-document url-prefix() {
+                .widget-portfolio-body {
+                    min-width: 350px;
+                }
+              }  
               .widget-portfolio-right-section {
                 padding-left:15px;
               }

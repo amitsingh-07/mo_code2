@@ -21,7 +21,7 @@ describe('ProfileComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientModule, ReactiveFormsModule , NgbModule.forRoot()],
+      imports: [ HttpClientModule, ReactiveFormsModule , NgbModule],
       declarations: [ ProfileComponent ],
       providers: [ Profile,
         { provide: Router, useValue: mockRouter }]

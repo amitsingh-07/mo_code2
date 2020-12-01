@@ -15,7 +15,7 @@ export const environment: IEnvironment = {
   gaPropertyId: 'UA-125256446-1',
   hideHomepage: false,
   mockInvestAccount: true,
-  expire2faTime: 175,
+  expire2faTime: 298,
   expire2faPollRate: 2,
   expire2faMaxCheck: 5
 };

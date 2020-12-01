@@ -11,7 +11,8 @@ export let investmentApiConstants = {
             getRiskAssessmentQuestions: INVESTMENT_API_BASE_URL + '/RiskAssessment',
             updateRiskAssessment: INVESTMENT_API_BASE_URL + '/RiskAssessment',
             getFinancialDetails: INVESTMENT_API_BASE_URL + '/customer/getFinancialDetailsForInvestment',
-            getAllocationDetails: INVESTMENT_API_BASE_URL + '/enquiries/$ENQUIRY_ID$/portfolios/recommend'
+            getAllocationDetails: INVESTMENT_API_BASE_URL + '/enquiries/$ENQUIRY_ID$/portfolios/recommend',
+            getWiseSaverValues : INVESTMENT_API_BASE_URL + '/bfaConfigurationListByKey'
         },
         investmentAccount: {
             nationalityCountrylist: INVESTMENT_API_BASE_URL + '/groupedCountryList',
@@ -42,8 +43,11 @@ export let investmentApiConstants = {
             gerSrsDetails: ACCOUNT_API_BASE_URL + '/customer/getSrsBankDetails?handleError=true',
             saveSrsAccountDetails: ACCOUNT_API_BASE_URL + '/customer/$CUSTOMER_PORTFOLIO_ID$/srsbankDetails',
             getProfileSrsDetails: ACCOUNT_API_BASE_URL + '/customer/profile/getSrsBankDetails?handleError=true',
-            saveProfileSrsAccountDetails: ACCOUNT_API_BASE_URL + '/customer/profile/$CUSTOMER_PORTFOLIO_ID$/srsbankDetails',
-            getInvestmentNote: INVESTMENT_API_BASE_URL + '/holiday/alert?handleError=true'
+            saveProfileSrsAccountDetails: ACCOUNT_API_BASE_URL + '/customer/profile/$CUSTOMER_ID$/srsbankDetails',
+            getInvestmentNote: INVESTMENT_API_BASE_URL + '/holiday/alert?handleError=true',
+            getCashPortfolioList :INVESTMENT_API_BASE_URL + '/customers/portfolios/cashAccountList',
+            getActionRequestToken:INVESTMENT_API_BASE_URL + '/portfolio/$CUSTOMER_PORTFOLIO_ID$/actions',
+            saveCashTransfer :INVESTMENT_API_BASE_URL + '/customer/transferCashAccount?handleError=true'
         },
         investment: {
             getUserAddress: ACCOUNT_API_BASE_URL + '/customer/address',

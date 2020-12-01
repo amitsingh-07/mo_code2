@@ -34,6 +34,12 @@ export class ManageInvestmentsFormData {
   isSrsAccountUpdated: boolean; //issrsaccountupdated
 
   investmentNote: any;
+
+  //TRANSFER SCREEN
+  transferFrom: any;
+  transferTo: any;
+  transferAmount: number;
+  TransferAll: boolean;
 }
 
 export interface IToastMessage {

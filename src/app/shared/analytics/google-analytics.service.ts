@@ -17,6 +17,7 @@ export class GoogleAnalyticsService {
     this.gtag('js', new Date());
     this.gtag('config', environment.gAdPropertyId);
 
+
     // Router Events
     this.router.events.subscribe((event) => {
       try {
@@ -52,9 +53,9 @@ export class GoogleAnalyticsService {
   }
 
   public emitEvent(eventCategory: string,
-                   eventAction: string,
-                   eventLabel: string = null,
-                   eventValue: number = null) {
+    eventAction: string,
+    eventLabel: string = null,
+    eventValue: number = null) {
     if (typeof ga === 'function') {
       ga('send', 'event', {
         eventCategory,
@@ -66,8 +67,8 @@ export class GoogleAnalyticsService {
   }
 
   public emitSocial(socialNetwork: string,
-                    socialAction: string,
-                    socialTarget: string,
+    socialAction: string,
+    socialTarget: string,
   ) {
     if (typeof ga === 'function') {
       ga('send', 'social', {
@@ -124,9 +125,9 @@ export class GoogleAnalyticsService {
   }
 
   public emitTime(timeId: string,
-                  timingCategory: string,
-                  timingVar: string,
-                  timingLabel: string = null
+    timingCategory: string,
+    timingVar: string,
+    timingLabel: string = null
   ) {
     const timingValue = this.getTime(timeId);
     this.endTime(timeId);
