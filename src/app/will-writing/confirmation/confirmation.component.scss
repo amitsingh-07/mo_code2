@@ -3,9 +3,8 @@
 
 .container-fluid {
     background-color: #fff;
-    padding: 50px 60px 65px;
+    padding: 50px 60px 50px 60px;
     font-family: $muli-semi-bold;
-    padding-bottom: 0;
     @include allmobiles{
         padding: 10px 0 !important;
         border-radius: 0;
@@ -276,23 +275,17 @@
 }
 .stamp-block{
     display: flex;
-    justify-content: flex-end;
-    margin-bottom: -65px;
-    .stamp-circle{
-        position: absolute;
-        margin-right: 40px;
-        right: 12%;
-        padding: 19px;
-        border-radius: 50%;
-        border: 1px solid #a4e7e7;
-        width: 210px;
-        height: 210px;
-    }
     img {
-        margin-right: -32px;
+        position: absolute;
+        right: 0px;
+        margin-right: 38px;
     }
-    div {
-        margin-right: 75px;
+    button {
+        width: 337px;
+        @include allmobiles {
+            width: 100%;
+        }
+        margin: auto;
     }
 }
 
@@ -357,7 +350,7 @@
 }
 
 .reminder{
-    width: 650px;
+    max-width: 648px;
     text-align: center;
     margin: 0 auto;
     color: #9e9e9e;

@@ -163,9 +163,9 @@ app-terms {
   }
 }
 @include iPhone11 { 
-    .btn-primary {
-      margin-bottom: 60px;
-    }
+  .modal-body {
+    padding-bottom: 350px !important;
+  }
 }
 @include iphone6plus {
   .btn-primary {
