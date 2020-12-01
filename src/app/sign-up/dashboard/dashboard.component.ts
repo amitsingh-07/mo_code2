@@ -404,19 +404,21 @@ export class DashboardComponent implements OnInit {
 
   downloadFile(data: any, iOS) {
     const blob = new Blob([data], { type: 'application/pdf' });
-    const url = window.URL.createObjectURL(blob);
+    const url = window.URL || window.webkitURL;
+    const pdfUrl = url.createObjectURL(blob);
     if (iOS) {
-      window.open(url, '_blank');
+      const win = window.open();
+      win.document.write('<html><head><title>MoneyOwl Will Writing.pdf</title></head><body><embed src=' +pdfUrl+ ' type="application/pdf" width="100%" height="100%" /></body</html>')
     } else {
       const a = document.createElement('a');
       document.body.appendChild(a);
       a.setAttribute('style', 'display: none');
-      a.href = url;
+      a.href = pdfUrl;
       a.download = 'MoneyOwl Will Writing.pdf';
       a.click();
       setTimeout(() => {
         document.body.removeChild(a);
-        window.URL.revokeObjectURL(url);
+        window.URL.revokeObjectURL(pdfUrl);
       }, 1000);
     }
   }
