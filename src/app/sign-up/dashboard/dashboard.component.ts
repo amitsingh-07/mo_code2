@@ -44,7 +44,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
-const download = require("../../../assets/scripts/download.js");
+const download = require("../../../assets/scripts/FileSaver.js");
 
 
 @Component({
@@ -400,8 +400,8 @@ export class DashboardComponent implements OnInit {
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
       window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
     } else {
-      this.downloadFile(data, iOS);
-      // download.saveAs(blob, 'MoneyOwl Will Writing.pdf');
+      // this.downloadFile(data, iOS);
+      download.saveAs(blob, 'MoneyOwl Will Writing.pdf');
     }
   }
 
