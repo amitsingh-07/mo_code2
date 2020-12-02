@@ -33,10 +33,10 @@
     border: 1px solid rgba(0, 167, 167, 0.4);
 
     &:hover {
-      background-color: $robins-egg-blue-color;
-      border-color: $action-btn-hover-brdr-color;
-      color: $white-color !important;
-      -webkit-text-fill-color: $white-color;
+      background-color: $white-color;
+      border-color: $teal-color;
+      color: $teal-color !important;
+      -webkit-text-fill-color: $teal-color;
       @include allmobiles {
         background-color: $white-color !important;
         color: $teal-color !important;

@@ -4,6 +4,7 @@ export interface IAboutMe {
     gender: string;
     maritalStatus: string;
     noOfChildren: number;
+    isEngSpeaker: boolean;
 }
 
 export interface ISpouse {
@@ -29,7 +30,7 @@ export interface IGuardian {
 }
 
 export interface IEligibility {
-    singaporean: string;
+    nationality: string;
     assets: string;
     religion: string;
 }
@@ -68,6 +69,10 @@ export interface IwillProfile {
     maritalStatusCode: string;
     noOfChildren: number;
     promoCode?: IPromoCode;
+    isEngSpeaker: string;
+    nationalityCode?: IEligibility['nationality'];
+    assetsInSg?: IEligibility['assets'];
+    religionCode?: IEligibility['religion'];
 }
 
 export interface IWillProfileMembers {

@@ -492,7 +492,7 @@ input::placeholder {
     .btn-primary {
       background: $module-fill-color !important;
       border: transparent;
-      box-shadow: none;
+      box-shadow: none !important;
       @extend .align-center;
       @extend .flex;
       @extend .justify-center;

@@ -217,19 +217,15 @@
             }
         }
     }
-     .dropdown-menu{
-        z-index: 999;
-        
-            @include allmobiles {
-                max-height: 200px !important;
-                overflow: auto;
-                top: -205px !important;
-                &.show{
-                    // margin-bottom: 85px;
-                }
-            }
-        
-    }
+     .dropdown-menu {
+       z-index: 999;
+
+       @include allmobiles {
+         max-height: 200px !important;
+         overflow: auto;
+       }
+
+     }
 }
 
 .tooltip-content{
@@ -280,4 +276,9 @@
 .form-group .flex-col-4 .label {
     line-height: normal;
         
+}
+.btn-ftr-get-started:disabled {
+    background-color: #bff1f1 !important;
+    color: $white-color;
+    opacity: 0.65 !important;
 }

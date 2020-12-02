@@ -306,7 +306,8 @@ constructor(
         if (this.getComprehensiveSummaryDashboard !== '') {
           this.islocked = this.getComprehensiveSummaryDashboard.isLocked;
           this.paymentInstructions = (this.getComprehensiveSummaryDashboard.paymentStatus
-          && this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING
+          && (this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING || 
+          this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING)
           && this.getCurrentVersionType === this.getComprehensiveSummaryDashboard.type);
           this.promoCodeValidated = this.getComprehensiveSummaryDashboard.isValidatedPromoCode;
           this.reportStatus = this.getComprehensiveSummaryDashboard.reportStatus;

@@ -193,6 +193,21 @@ export class ManageInvestmentsService {
     this.manageInvestmentsFormData.userPortfolios = portfolioList;
     this.commit();
   }
+  // GET CCASH PORTFOLIO LIST//
+
+   getCashPortfolioList() { 
+    const CashPortfolioList = [];
+    this.manageInvestmentsFormData.userPortfolios.forEach(portfolio => {
+      if (portfolio.portfolioType === 'Cash' && portfolio.cashAccountBalance) {
+        CashPortfolioList.push(portfolio);
+        CashPortfolioList.sort((a, b) => {
+          return a.portfolioName.toLowerCase().localeCompare(b.portfolioName.toLowerCase());
+        });
+      }
+    });
+    return CashPortfolioList;
+   }
+
   getUserPortfolioList() {
     // Sort portfolio by ascending alphabetical order order
     const sortedArray = this.manageInvestmentsFormData.userPortfolios.sort((a, b) => {
@@ -262,7 +277,7 @@ export class ManageInvestmentsService {
     this.manageInvestmentsFormData.isRedeemAll = isRedeemAll;
     this.commit();
   }
-
+  
   clearWithdrawalTypeFormData() {
     this.manageInvestmentsFormData.withdrawType = null;
     this.manageInvestmentsFormData.withdrawAmount = null;
@@ -310,7 +325,7 @@ export class ManageInvestmentsService {
     const payload = this.constructSellPortfolioRequestParams(data);
     return this.investmentApiService.sellPortfolio(data.withdrawPortfolio.customerPortfolioId, payload);
   }
-
+ 
   constructSellPortfolioRequestParams(data) {
     const request = {};
     request['withdrawType'] = data.withdrawType ? data.withdrawType.value : null;
@@ -348,7 +363,7 @@ export class ManageInvestmentsService {
       monthlyInvestmentAmount: Number(monthlyInvestmentAmount)
     };
   }
-  getTransactionHistory(id) {
+  getTransactionHistory(id) { 
     return this.investmentApiService.getTransactionHistory(id);
   }
 
@@ -643,5 +658,43 @@ export class ManageInvestmentsService {
 
   setSelectedPortfolioCategory(category) {
     this.selectedPortfolioCategory = category;
+  }
+  // Get Mock for Transfer Data
+  getTransferEntityList(customerPortfolioId) {
+    return this.investmentApiService.getTransferEntityList(customerPortfolioId);
+  }
+
+  getTransferCashPortfolioList() {
+    return this.investmentApiService.getTransferCashPortfolioList();
+  }
+
+  TransferCash(data) {
+    const payload = this.constructTransferCashParams(data);
+    return this.investmentApiService.TransferCash(payload);
+  }
+  constructTransferCashParams(data) {
+    const request = {};
+    request['sourceRefNo'] = data.transferFrom.refno;
+    request['destinationRefNo'] = data.transferTo.refno;
+    request['amount'] = parseFloat(data.transferAmount) ;
+    request['transferAll'] = data.TransferAll === true ? 'Y' : 'N';
+    return request;
+   }
+  setTransferFormData(data ,TransferAll) {
+    if(data &&data.transferFrom && data.transferTo){
+      this.manageInvestmentsFormData.transferFrom = data.transferFrom;
+      this.manageInvestmentsFormData.transferTo = data.transferTo;
+      this.manageInvestmentsFormData.transferAmount = data.transferAmount;
+      this.manageInvestmentsFormData.TransferAll =TransferAll;
+      this.commit();
+    }
+   
+  }
+  clearSetTransferData() {
+    this.manageInvestmentsFormData.transferFrom = null;
+      this.manageInvestmentsFormData.transferTo = null;
+      this.manageInvestmentsFormData.transferAmount = null;
+      this.manageInvestmentsFormData.TransferAll =null;
+     this.commit();
   }
 }

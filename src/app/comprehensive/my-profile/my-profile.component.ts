@@ -243,11 +243,13 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                                 }
                                 });
                         } else {
-                            const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
-                            cmpSummary.baseProfile = this.comprehensiveService.getMyProfile();
-                            this.comprehensiveService.setComprehensiveSummary(cmpSummary);
-                            this.loaderService.hideLoader();
-                            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+                            this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((resData: any) => {
+                                if (resData && resData.objectList[0]) {
+                                    this.comprehensiveService.setComprehensiveSummary(resData.objectList[0]);     
+                                    this.loaderService.hideLoader();
+                                    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
+                                }
+                            });
                         }
                     });
                 } else {

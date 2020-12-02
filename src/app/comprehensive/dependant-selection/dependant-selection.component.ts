@@ -104,7 +104,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
     this.householdDetails = this.cmpService.gethouseHoldDetails();
     this.dependantSelectionForm = new FormGroup({
       dependantSelection: new FormControl(this.hasDependant, Validators.required),
-      noOfHouseholdMembers: new FormControl(this.householdDetails ? this.householdDetails.noOfHouseholdMembers : '', Validators.required),
+      noOfHouseholdMembers: new FormControl(this.householdDetails ? this.householdDetails.noOfHouseholdMembers : '', [Validators.required, Validators.min(1), Validators.max(10)]),
       houseHoldIncome: new FormControl(this.householdDetails ? this.householdDetails.houseHoldIncome : '', Validators.required),
       noOfYears: new FormControl(this.householdDetails ? this.householdDetails.noOfYears : 0),
     });
