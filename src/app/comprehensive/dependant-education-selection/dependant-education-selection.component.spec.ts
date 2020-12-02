@@ -62,17 +62,6 @@ import { RoutingService } from './../../shared/Services/routing.service';
 
 import { FileUtil } from './../../shared/utils/file.util';
 
-
-export class TestComponent {
-}
-export const routes: Routes = [
-  {
-    path: COMPREHENSIVE_ROUTES.MY_LIABILITIES_SUMMARY,
-    component: TestComponent
-  },
-  { path: COMPREHENSIVE_ROUTES.MY_LIABILITIES_SUMMARY + '/summary', component: TestComponent },
-  { path: COMPREHENSIVE_ROUTES.STEPS + '/3', component: TestComponent },
-];
 class MockRouter {
   navigateByUrl(url: string) { return url; }
 }
@@ -99,7 +88,7 @@ describe('DependantEducationSelectionComponent', () => {
   let loader: LoaderService;
   let comprehensiveAPiService: ComprehensiveApiService;
   let router: Router;
-  const route = ({ routeConfig: { component: { name: 'DependantSelectionComponent' } } } as any) as ActivatedRoute;
+  const route = ({ routeConfig: { component: { name: 'DependantEducationSelectionComponent' } } } as any) as ActivatedRoute;
   let httpClientSpy;
   let currencyPipe: CurrencyPipe;
   const mockAppService = {
@@ -219,7 +208,7 @@ describe('DependantEducationSelectionComponent', () => {
   it('should set page title', () => {
     const setPageTitleSpy = spyOn(navbarService, 'setPageTitleWithIcon');
     component.setPageTitle('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
-    expect(setPageTitleSpy).toHaveBeenCalledWith('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE', { id: 'DependantSelectionComponent', iconClass: 'navbar__menuItem--journey-map' });
+    expect(setPageTitleSpy).toHaveBeenCalledWith('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE', { id: 'DependantEducationSelectionComponent', iconClass: 'navbar__menuItem--journey-map' });
   });
 
 });

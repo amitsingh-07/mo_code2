@@ -13,14 +13,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 import { NgbActiveModal, NgbModal, NgbModalRef, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { concat, Observable, of, throwError } from 'rxjs';
 
 
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
-import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
-import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { IMyLiabilities, IMySummaryModal } from '../comprehensive-types';
-import { ConfigService } from './../../config/config.service';
+
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
@@ -48,16 +44,7 @@ import { AboutAge } from './../../shared/utils/about-age.util';
 import { RoutingService } from './../../shared/Services/routing.service';
 
 import { ComprehensiveComponent } from './comprehensive.component';
-export class TestComponent {
-}
-export const routes: Routes = [
-  {
-    path: COMPREHENSIVE_ROUTES.MY_LIABILITIES_SUMMARY,
-    component: TestComponent
-  },
-  { path: COMPREHENSIVE_ROUTES.MY_LIABILITIES_SUMMARY + '/summary', component: TestComponent },
-  { path: COMPREHENSIVE_ROUTES.STEPS + '/3', component: TestComponent },
-];
+
 class MockRouter {
   navigateByUrl(url: string) { return url; }
 }
@@ -84,7 +71,7 @@ describe('ComprehensiveComponent', () => {
   let loader: LoaderService;
   let comprehensiveAPiService: ComprehensiveApiService;
   let router: Router;
-  const route = ({ routeConfig: { component: { name: 'MyLiabilitiesComponent'} } } as any) as ActivatedRoute;
+  const route = ({ routeConfig: { component: { name: 'ComprehensiveComponent'} } } as any) as ActivatedRoute;
   let httpClientSpy;
   let currencyPipe: CurrencyPipe;
   const mockAppService = {

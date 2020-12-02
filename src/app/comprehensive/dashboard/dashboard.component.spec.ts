@@ -66,16 +66,6 @@ import { ComprehensiveDashboardComponent } from './dashboard.component';
 import { FileUtil } from './../../shared/utils/file.util';
 
 
-export class TestComponent {
-}
-export const routes: Routes = [
-  {
-    path: COMPREHENSIVE_ROUTES.MY_LIABILITIES_SUMMARY,
-    component: TestComponent
-  },
-  { path: COMPREHENSIVE_ROUTES.MY_LIABILITIES_SUMMARY + '/summary', component: TestComponent },
-  { path: COMPREHENSIVE_ROUTES.STEPS + '/3', component: TestComponent },
-];
 class MockRouter {
   navigateByUrl(url: string) { return url; }
 }
