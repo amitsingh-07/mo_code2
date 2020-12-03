@@ -992,6 +992,20 @@ input::placeholder {
       margin-left: 0px;
     }
   }
+  @include tablet {
+    .education-form-wrapper {
+      width: 100%;
+      .education-form {
+        display: flex;
+        padding-top: 40px;
+        border: 1px solid #c0eded;
+        border-radius: 0px 0px 6px 6px;
+        .direct-form {
+          width: 350px !important;
+        }
+      }
+    }
+  }
 }
 
 /* Subscribe Forms */
