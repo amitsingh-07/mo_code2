@@ -69,6 +69,7 @@ class MockRouter {
 }
 
 import { DependantsDetailsComponent } from './dependants-details.component';
+import { NgbDateCustomParserFormatter } from './../../shared/utils/ngb-date-custom-parser-formatter';
 
 describe('DependantsDetailsComponent', () => {
   let component: DependantsDetailsComponent;
@@ -138,6 +139,7 @@ describe('DependantsDetailsComponent', () => {
         TranslateService,
         CurrencyPipe,
         DatePipe,
+        NgbDateCustomParserFormatter,
         { provide: CurrencyPipe, useValue: mockCurrencyPipe },
         { provide: AppService, useValue: mockAppService },
         FooterService,

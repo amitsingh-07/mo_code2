@@ -57,8 +57,6 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
     this.translate.get('COMMON').subscribe((result: string) => {
       // meta tag and title
       this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
-
-      
       this.setPageTitle(this.pageTitle);
       this.validationFlag = this.translate.instant('CMP.MY_LIABILITIES.OPTIONAL_VALIDATION_FLAG');
       this.financeModal = this.translate.instant('CMP.MODAL.FINANCES_MODAL');
