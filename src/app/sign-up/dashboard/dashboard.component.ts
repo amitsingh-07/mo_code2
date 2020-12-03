@@ -44,6 +44,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
+import { DomSanitizer } from '@angular/platform-browser';
 const download = require("../../../assets/scripts/FileSaver.js");
 
 
@@ -108,7 +109,8 @@ export class DashboardComponent implements OnInit {
     public authService: AuthenticationService,
     public errorHandler: CustomErrorHandlerService,
     private guideMeService: GuideMeService,
-    private selectedPlansService: SelectedPlansService
+    private selectedPlansService: SelectedPlansService,
+    private sanitizer: DomSanitizer
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -412,8 +414,9 @@ export class DashboardComponent implements OnInit {
     const a = document.createElement('a');
     document.body.appendChild(a);
     a.setAttribute('style', 'display: none');
-    a.href = pdfUrl;
-    
+    const sanitizeUrl = this.sanitizer.sanitize(5, this.sanitizer.bypassSecurityTrustResourceUrl(pdfUrl));
+    a.href = sanitizeUrl;
+
     if (iOS) {
       a.target = '_blank';
       a.rel = 'noopener';
