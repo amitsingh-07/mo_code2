@@ -44,7 +44,6 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
-import { DomSanitizer } from '@angular/platform-browser';
 const download = require("../../../assets/scripts/FileSaver.js");
 
 
@@ -109,8 +108,7 @@ export class DashboardComponent implements OnInit {
     public authService: AuthenticationService,
     public errorHandler: CustomErrorHandlerService,
     private guideMeService: GuideMeService,
-    private selectedPlansService: SelectedPlansService,
-    private sanitizer: DomSanitizer
+    private selectedPlansService: SelectedPlansService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -402,32 +400,59 @@ export class DashboardComponent implements OnInit {
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
       window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
     } else {
-      this.downloadFile(data, iOS);
-      // download.saveAs(blob, 'MoneyOwl Will Writing.pdf');
+      // this.downloadFile(data, iOS);
+      this.downloadBlob(blob, iOS)
     }
   }
 
   downloadFile(data: any, iOS) {
     const blob = new Blob([data], { type: 'application/pdf' });
-    const pdfUrl = window.URL.createObjectURL(blob);
-
-    const a = document.createElement('a');
-    document.body.appendChild(a);
-    a.setAttribute('style', 'display: none');
-    const sanitizeUrl = this.sanitizer.sanitize(5, this.sanitizer.bypassSecurityTrustResourceUrl(pdfUrl));
-    a.href = sanitizeUrl;
-
+    const url = window.URL || window.webkitURL;
+    const pdfUrl = url.createObjectURL(blob);
     if (iOS) {
-      a.target = '_blank';
-      a.rel = 'noopener';
+      const win = window.open();
+      win.document.write('<html><head><title>MoneyOwl Will Writing.pdf</title></head><body><embed src=' +pdfUrl+ ' type="application/pdf" width="100%" height="100%" /></body</html>')
     } else {
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.setAttribute('style', 'display: none');
+      a.href = pdfUrl;
       a.download = 'MoneyOwl Will Writing.pdf';
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(pdfUrl);
+      }, 1000);
     }
-    a.click();
+  }
+
+  downloadBlob (blob, iOS) {
+    const filename = 'file.pdf'
+    if (iOS) {
+      const reader = new FileReader()
+      reader.onload = e => {
+        const url = e.target.result
+        this.createLinkDownload(url, filename)
+      }
+      reader.readAsDataURL(blob)
+      return
+    }
+    const url = window.URL.createObjectURL(blob)
+    this.createLinkDownload(url, filename)
+  }
+
+  createLinkDownload (url, filename) {
+    const link = document.createElement('a')
+    link.href = url
+    link.download = filename
+    document.body.appendChild(link)
+    link.click()
+    window.URL.revokeObjectURL(url)
     setTimeout(() => {
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(pdfUrl);
-    }, 1000);
+      // For Firefox it is necessary to delay revoking the ObjectURL
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    }, 100)
   }
 
   showCustomErrorModal(title, desc) {
