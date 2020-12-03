@@ -190,7 +190,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.myProfileShow = true;
        this.progressService.updateValue(this.router.url, this.userDetails.firstName);
        this.progressService.refresh();
-        if (this.getComprehensiveEnquiry.isDobUpdated) {
+        if (this.disableDOB) {
             this.validateDOB(this.userDetails.ngbDob);
         }
     }
