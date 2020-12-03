@@ -1,6 +1,6 @@
 import { GetStartedStep2Component } from './get-started-step2.component';
 import { IntroScreenComponent } from '../intro-screen/intro-screen.component';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed,getTestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -13,6 +13,7 @@ import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../investment-engagement-journey-routes.constants';
 import { TranslateService } from '@ngx-translate/core';
+import { Injector, NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('GetStartedStep2Component', () => {
   let component: GetStartedStep2Component;
@@ -21,6 +22,8 @@ describe('GetStartedStep2Component', () => {
   let navbarService: NavbarService;
   let footerService: FooterService;
   let translateService: TranslateService
+  let injector: Injector;
+  let translations = require('../../../../assets/i18n/investment-engagement-journey/en.json');
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -34,28 +37,20 @@ describe('GetStartedStep2Component', () => {
   }));
   beforeEach(() => {
     fixture = TestBed.createComponent(GetStartedStep2Component);
+    injector = getTestBed();
     component = fixture.componentInstance;
     router = TestBed.get(Router);
     navbarService = TestBed.get(NavbarService);
     footerService = TestBed.get(FooterService);
     translateService = TestBed.get(TranslateService);
-    const translations = {
-      GETSTARTED_STEP2: {
-        TITLE: 'Step 2',
-        CAPTION: 'Your Risk Willingness',
-        // tslint:disable-next-line: max-line-length
-        DESCRIPTION: 'In the next step, we will assess your willingness to take risk based on your answers selected for the questionnaire. Your inputs will determine the recommendations suggested.'
-      },
-      GETSTARTED_STEP1: {
-
-        PROCEED: 'Proceed'
-      },
-    };
+    translateService = injector.get(TranslateService);
     translateService.setTranslation('en', translations);
+    translateService.use('en');
+  
     fixture = TestBed.createComponent(GetStartedStep2Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    fixture.detectChanges();
+   
   });
   afterEach(() => {
     TestBed.resetTestingModule();

@@ -1,6 +1,6 @@
 import { GetStartedStep1Component } from './get-started-step1.component';
 import { IntroScreenComponent } from '../intro-screen/intro-screen.component';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { DatePipe } from '@angular/common';
+import { Injector } from '@angular/core';
 
 
 describe('GetStartedStep2Component', () => {
@@ -31,6 +32,9 @@ describe('GetStartedStep2Component', () => {
   let signUpService: SignUpService;
   let authService: AuthenticationService;
   let translateService: TranslateService;
+  let injector: Injector;
+  let translations = require('../../../../assets/i18n/investment-engagement-journey/en.json');
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -43,33 +47,16 @@ describe('GetStartedStep2Component', () => {
   }));
   beforeEach(() => {
     fixture = TestBed.createComponent(GetStartedStep1Component);
+    injector = getTestBed();
     component = fixture.componentInstance;
     router = TestBed.get(Router);
     navbarService = TestBed.get(NavbarService);
     footerService = TestBed.get(FooterService);
     signUpService = TestBed.get(SignUpService);
     authService = TestBed.get(AuthenticationService);
-    translateService = TestBed.get(TranslateService);
-    const translations = {
-      GETSTARTED_STEP1: {
-        TITLE: 'Step 1',
-        CAPTION: 'Your Risk Ability',
-        // tslint:disable-next-line: max-line-length
-        DESCRIPTION: 'In the next step, we will assess your ability to take risk. Your inputs will determine the recommendations suggested.',
-        PROCEED: 'Proceed'
-      },
-      INSURANCE_RESULTS: {
-        TITLE: 'Insurance Title'
-      },
-      COMMON_ERRORS: {
-        API_FAILED: {
-          TITLE: 'Oops !',
-          DESC: 'Something went wrong. Please try again.'
-        },
-        NO_RESULT: 'No result found.'
-      },
-    };
+    translateService = injector.get(TranslateService);
     translateService.setTranslation('en', translations);
+    translateService.use('en');
     fixture = TestBed.createComponent(GetStartedStep1Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
