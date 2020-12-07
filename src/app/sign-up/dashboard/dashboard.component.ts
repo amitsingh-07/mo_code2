@@ -386,8 +386,17 @@ export class DashboardComponent implements OnInit {
     }
   }
   downloadWill() {
+    const newWindow = window.open();
     this.willWritingApiService.downloadWill().subscribe((data: any) => {
-      this.saveAs(data);
+      // this.saveAs(data);
+      const pdfUrl = window.URL.createObjectURL(data);
+      if (newWindow.document.readyState === 'complete') {
+          newWindow.location.assign(pdfUrl);
+        } else {
+          newWindow.onload = () => {
+            newWindow.location.assign(pdfUrl);
+        };
+      }        
     }, (error) => console.log(error));
   }
 
@@ -400,8 +409,7 @@ export class DashboardComponent implements OnInit {
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
       window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
     } else {
-      // this.downloadFile(data, iOS);
-      this.downloadBlob(blob, iOS)
+      this.downloadFile(data, iOS);
     }
   }
 
@@ -409,50 +417,23 @@ export class DashboardComponent implements OnInit {
     const blob = new Blob([data], { type: 'application/pdf' });
     const url = window.URL || window.webkitURL;
     const pdfUrl = url.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.setAttribute('style', 'display: none');
+    a.href = pdfUrl;
     if (iOS) {
-      const win = window.open();
-      win.document.write('<html><head><title>MoneyOwl Will Writing.pdf</title></head><body><embed src=' +pdfUrl+ ' type="application/pdf" width="100%" height="100%" /></body</html>')
+      a.target = "_blank";
+      a.rel = "noopener";
     } else {
-      const a = document.createElement('a');
-      document.body.appendChild(a);
-      a.setAttribute('style', 'display: none');
-      a.href = pdfUrl;
       a.download = 'MoneyOwl Will Writing.pdf';
-      a.click();
-      setTimeout(() => {
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(pdfUrl);
-      }, 1000);
     }
-  }
-
-  downloadBlob (blob, iOS) {
-    const filename = 'file.pdf'
-    if (iOS) {
-      const reader = new FileReader()
-      reader.onload = e => {
-        const url = e.target.result
-        this.createLinkDownload(url, filename)
-      }
-      reader.readAsDataURL(blob)
-      return
-    }
-    const url = window.URL.createObjectURL(blob)
-    this.createLinkDownload(url, filename)
-  }
-
-  createLinkDownload (url, filename) {
-    const link = document.createElement('a')
-    link.href = url
-    link.download = filename
-    document.body.appendChild(link)
-    link.click()
-    window.URL.revokeObjectURL(url)
+    document.body.appendChild(a);
+    const e = document.createEvent('MouseEvents');
+    e.initEvent('click', true, true);
+    a.dispatchEvent(e);
     setTimeout(() => {
-      // For Firefox it is necessary to delay revoking the ObjectURL
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    }, 100)
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(pdfUrl);
+    }, 1000);
   }
 
   showCustomErrorModal(title, desc) {
