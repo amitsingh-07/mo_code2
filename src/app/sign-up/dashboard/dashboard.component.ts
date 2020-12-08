@@ -386,50 +386,34 @@ export class DashboardComponent implements OnInit {
     }
   }
   downloadWill() {
-    const newWindow = window.open();
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    let newWindow;
+    if (iOS) {
+      newWindow = window.open();
+    }
     this.willWritingApiService.downloadWill().subscribe((data: any) => {
-      // this.saveAs(data);
       const pdfUrl = window.URL.createObjectURL(data);
-      if (newWindow.document.readyState === 'complete') {
-          newWindow.location.assign(pdfUrl);
-        } else {
-          newWindow.onload = () => {
-            newWindow.location.assign(pdfUrl);
-        };
-      }        
+      if (iOS) {
+        if (newWindow.document.readyState === 'complete') {
+          newWindow.location.assign(pdfUrl);
+        } else {
+          newWindow.onload = () => {
+            newWindow.location.assign(pdfUrl);
+          };
+        }
+      } else {
+        this.downloadFile(pdfUrl);
+      }
     }, (error) => console.log(error));
   }
 
-  saveAs(data) {
-    const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
-    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    const otherBrowsers = /Android|Windows/.test(navigator.userAgent);
-
-    const blob = new Blob([data], { type: 'application/pdf' });
-    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
-    } else {
-      this.downloadFile(data, iOS);
-    }
-  }
-
-  downloadFile(data: any, iOS) {
-    const blob = new Blob([data], { type: 'application/pdf' });
-    const url = window.URL || window.webkitURL;
-    const pdfUrl = url.createObjectURL(blob);
+  downloadFile(pdfUrl) {
     const a = document.createElement('a');
     a.setAttribute('style', 'display: none');
     a.href = pdfUrl;
-    if (iOS) {
-      a.target = "_blank";
-      a.rel = "noopener";
-    } else {
-      a.download = 'MoneyOwl Will Writing.pdf';
-    }
+    a.download = 'MoneyOwl Will Writing.pdf';
     document.body.appendChild(a);
-    const e = document.createEvent('MouseEvents');
-    e.initEvent('click', true, true);
-    a.dispatchEvent(e);
+    a.click();
     setTimeout(() => {
       document.body.removeChild(a);
       window.URL.revokeObjectURL(pdfUrl);
