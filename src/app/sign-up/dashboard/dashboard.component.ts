@@ -1,4 +1,4 @@
-import { forkJoin as observableForkJoin, Subject, Subscription } from 'rxjs';
+import { forkJoin as observableForkJoin } from 'rxjs';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -89,10 +89,6 @@ export class DashboardComponent implements OnInit {
 
   // iFast Maintenance
   iFastMaintenance = false;
-
-  //Pdf download
-  pdfWindowListener: Subscription;
-  changeListener = new Subject();
 
   constructor(
     private router: Router,
@@ -204,11 +200,6 @@ export class DashboardComponent implements OnInit {
       }
     });
     this.getInvestmentsSummary();
-    this.pdfWindowListener = this.changeListener.subscribe((data)=>{
-      const pdfUrl = window.URL.createObjectURL(data);
-      const win = window.open();
-      win.location.assign(pdfUrl);
-    });
   }
 
   loadOptionListCollection() {
@@ -397,20 +388,19 @@ export class DashboardComponent implements OnInit {
   downloadWill() {
     const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     let newWindow;
-    // if (iOS) {
-    //   newWindow = window.open();
-    // }
+    if (iOS) {
+      newWindow = window.open();
+    }
     this.willWritingApiService.downloadWill().subscribe((data: any) => {
       const pdfUrl = window.URL.createObjectURL(data);
       if (iOS) {
-        this.changeListener.next(data);
-        // if (newWindow.document.readyState === 'complete') {
-        //   newWindow.location.assign(pdfUrl);
-        // } else {
-        //   newWindow.onload = () => {
-        //     newWindow.location.assign(pdfUrl);
-        //   };
-        // }
+        if (newWindow.document.readyState === 'complete') {
+          newWindow.location.assign(pdfUrl);
+        } else {
+          newWindow.onload = () => {
+            newWindow.location.assign(pdfUrl);
+          };
+        }
       } else {
         this.downloadFile(pdfUrl);
       }
