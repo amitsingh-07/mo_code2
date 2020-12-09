@@ -18,6 +18,7 @@
 .notification-panel{
     min-height: 100vh;
     background: $notification-title-bg;
+    overflow-y: scroll;
     @include desktop{
         padding: 0 75px;
     }

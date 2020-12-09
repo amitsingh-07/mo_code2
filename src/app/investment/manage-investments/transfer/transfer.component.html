@@ -73,15 +73,15 @@
             </div>
             <!-- AMOUNT -->
             <div class="form-group form-group-padding">
-              <div class="flex-row">
+              <div class="flex-row" *ngIf="transferForm.get('transferTo') && transferForm.get('transferTo').value">
                 <div class="flex-col-4">
                   <label class="withdrawal-amount-lbl" for="withdraw-type-drpdown" id="withdraw-type-lbl">
                     {{'TRANSFER.TRANSFER'| translate}}<br> {{'TRANSFER.AMOUNT'| translate}}
                   </label>
                 </div>
                 <div class="flex-col-8">
-                  <div class="form-control"
-                    [ngClass]="[(getInlineErrorStatus(transferForm.controls.transferAmount)  && !isTransferAllChecked)? 'inline-error' : '',  isTransferAllChecked ? 'disabled' : '']">
+                  <div class="form-control" [ngClass]="[(getInlineErrorStatus(transferForm.controls.transferAmount)  && !isTransferAllChecked)
+                    ? 'inline-error' : '',  isTransferAllChecked ? 'disabled' : '']">
                     <i id="myFinancialDollarSybmOne">$</i>
                     <div>
                       <input class="input-control" type="text" id="withdrawal-type" appCurrencyInput [allowDecimal]=true
@@ -90,7 +90,7 @@
                   </div>
                 </div>
               </div>
-              <div class="flex-row">
+              <div class="flex-row" *ngIf="transferForm.get('transferTo') && transferForm.get('transferTo').value">
                 <div class="flex-col-4"></div>
                 <div class="flex-col-8">
                   <div class="checkbox-button one-label">
@@ -102,8 +102,7 @@
                   </div>
                 </div>
               </div>
-              <div class="flex-row"
-                *ngIf="transferForm.controls.transferAmount.errors && transferForm.controls.transferAmount.errors.MoreThanCashBalance">
+              <div class="flex-row" *ngIf="transferForm.controls.transferAmount?.errors?.MoreThanCashBalance">
                 <div class="flex-col-12">
                   <div class="transfer-error">
                     <img src="assets/images/info-orange.svg" alt="" />
@@ -113,19 +112,19 @@
               </div>
               <div class="cash-balance">
                 <div class="row mb15" *ngIf="transferForm.get('transferFrom').value">
-                  <div class="col-7">
+                  <div class="col-8">
                     {{'TRANSFER.AMOUNT_AVAILABLE'| translate}}
                   </div>
-                  <div class="col-5 text-right">
+                  <div class="col-4 text-right">
                     {{cashBalance|formatCurrency}}
                   </div>
                 </div>
                 <div class="row"
-                  *ngIf="transferForm.get('transferAmount').value && (cashBalance - transferForm.controls.transferAmount.value > 0) && transferForm.controls.transferAmount.value">
-                  <div class="col-7">
+                  *ngIf="transferForm.get('transferAmount')?.value && (cashBalance - transferForm.controls.transferAmount.value > 0) && transferForm.controls.transferAmount.value && transferForm.valid">
+                  <div class="col-8">
                     {{'TRANSFER.AFTER_TRANSFER'| translate}}
                   </div>
-                  <div class="col-5 text-right">
+                  <div class="col-4 text-right">
                     {{cashBalance - transferForm.controls.transferAmount.value | formatCurrency}}
                   </div>
                 </div>
@@ -142,7 +141,8 @@
             </div>
           </div>
           <button type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-primary 
-            width100" id="portfolioRecommendationNextBtn" [disabled]="!transferForm.valid"
+            width100" id="portfolioRecommendationNextBtn" [disabled]="!transferForm.valid ||
+            !(transferForm.controls.transferAmount?.value > 0)"
             (click)="goToNext(transferForm)">{{ 'LABEL.CONTINUE' | translate}}</button>
         </div>
       </div>

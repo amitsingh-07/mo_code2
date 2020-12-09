@@ -135,7 +135,7 @@ app-your-portfolio {
                 font-family: $muli-regular;
                 text-align: inherit;
                 white-space: nowrap !important;
-                background-color: transparent;
+                background-color: $white-color;
                 border: 0;
                 letter-spacing: -0.2px;
                 color: #000000 !important;
@@ -703,6 +703,13 @@ app-your-portfolio {
             // padding-bottom: 10px;
             .flex-row{
               align-items: center;
+              @include iphone5 {
+                span:nth-child(2) {
+                  display: inline-block;
+                  width: 60%;
+                  text-align: left;
+                }
+              }
             }
             .widthdrawal-icon{
               width: 50px;
@@ -715,6 +722,10 @@ app-your-portfolio {
             width: 16px;
             height: 10px;
             display: flex;
+            @include iphone5 {
+              position: relative;
+              right: 35px;
+            }
             img{
               width: 100%;
               height: auto;
@@ -844,6 +855,7 @@ app-your-portfolio {
                   color: #ff872f;
                   text-decoration: none;
                   cursor: pointer;
+                  font-family: $muli-bold;
                 }
               }
               .info-icon{

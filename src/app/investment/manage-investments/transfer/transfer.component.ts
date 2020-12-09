@@ -35,6 +35,7 @@ export class TransferComponent implements OnInit, OnDestroy {
   destinationCashPortfolioList;
   isRequestSubmitted = false;
   noteArray: any;
+  cashPortfolioList: any;
   private subscription: Subscription;
 
   constructor(
@@ -73,21 +74,31 @@ export class TransferComponent implements OnInit, OnDestroy {
   }
 
   getTransferCashPortfolioList() {
-    let sourceCashPortfolioList = [];
     this.manageInvestmentsService.getTransferCashPortfolioList().subscribe((data) => {
-      this.sourceCashPortfolioList = data.objectList;
+      this.cashPortfolioList = data.objectList;
+      this.sourceCashPortfolio(this.cashPortfolioList);
       this.buildForm();
       this.setSelectedPortfolio();
       this.cashBalance = this.transferForm.get('transferFrom').value ? this.transferForm.get('transferFrom').value.cashAccountBalance : 0;
-      this.destinationCashPortfolio();
+      this.destinationCashPortfolio(this.cashPortfolioList);
     });
   }
 
-  destinationCashPortfolio() {
+  sourceCashPortfolio(cashPortfolioList) {
+    this.sourceCashPortfolioList = [];
+    cashPortfolioList.forEach(element => {
+      if (element.cashAccountBalance > 0) {
+        return this.sourceCashPortfolioList.push(element);
+      }
+    });
+    return this.sourceCashPortfolioList;
+  }
+
+  destinationCashPortfolio(cashPortfolioList) {
     this.destinationCashPortfolioList = [];
     if (this.transferForm.get('transferFrom').value) {
       this.initialCashPortfolio = (this.transferForm.get('transferFrom').value && this.transferForm.get('transferFrom').value.portfolioName) ? this.transferForm.get('transferFrom').value.portfolioName : this.formValues.selectedCustomerPortfolio.portfolioName;
-      this.sourceCashPortfolioList.forEach(element => {
+      cashPortfolioList.forEach(element => {
         if (this.initialCashPortfolio !== element.portfolioName) {
           return this.destinationCashPortfolioList.push(element);
         }
@@ -139,19 +150,27 @@ export class TransferComponent implements OnInit, OnDestroy {
     this.transferForm.controls[kay].setValue(value);
     this.cashBalance = this.transferForm.get('transferFrom').value ? this.transferForm.get('transferFrom').value.cashAccountBalance : 0;
     this.transferForm.controls.transferTo.setValue(null);
-    this.transferForm.controls.transferAmount.setValue("0");
-    this.transferForm.get('transferAmount').enable();
+    this.transferForm.removeControl('transferAmount');
     this.transferForm.controls.transferAll.setValue(false);
     this.isTransferAllChecked = false;
-    this.destinationCashPortfolio();
+    this.destinationCashPortfolio(this.cashPortfolioList);
   }
 
   setTransferTo(kay, value) {
     this.transferForm.controls[kay].setValue(value);
+    this.transferForm.addControl(
+      'transferAmount',
+      new FormControl({
+        value: this.formValues.transferAmount,
+      }, [
+        Validators.required,
+        this.transferAmountValidator()
+      ])
+    );
   }
 
   getInlineErrorStatus(control) {
-    return !control.pristine && !control.valid;
+    return (!control.pristine && !control.valid);
   }
 
   TransferAllChecked() {

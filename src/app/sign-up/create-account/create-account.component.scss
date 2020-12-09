@@ -177,11 +177,33 @@ app-create-account {
   .divider {
     width: 100%;
     height: 1px;
-    border: solid 1px $persian-teal-color;
+    background-color: $persian-teal-color;
   }
 
   .title {
     font-size: 14px;
+  }
+
+  .captcha-title {
+    font-family: $muli-bold;
+    font-size: 16px;
+    letter-spacing: -0.3px;
+    line-height: normal;
+    color: $white-color;
+  }
+
+  input#crtAccInpt9.form-control:invalid + .form-control-placeholder {
+    color: $dusty-grey-color;
+  }
+
+  input#crtAccInpt9.form-control:focus + .form-control-placeholder {
+    color: $silver-grey-color !important;
+  }
+
+  .btn:disabled, .btn:disabled:hover {
+    border: solid 1px $btn-disabled-teal-color !important;
+    background-color: $btn-disabled-light-bg !important;
+    color: $btn-disabled-teal-color !important;
   }
 }
 

@@ -671,7 +671,8 @@ export class WillWritingService {
       uin: data.willProfile.uin,
       gender: this.gender.get(data.willProfile.genderCode),
       maritalStatus: this.maritalStatus.get(data.willProfile.maritalStatusCode),
-      noOfChildren: data.willProfile.noOfChildren
+      noOfChildren: data.willProfile.noOfChildren,
+      isEngSpeaker: data.willProfile?.isEngSpeaker === 'Y' ? true : false
     };
     will.spouse = [];
     will.children = [];

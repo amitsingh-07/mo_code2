@@ -40,6 +40,6 @@
                 </div>
             </div>
         </div>
-        <button [attr.disabled]="(addUpdateSrsFrom.valid && addUpdateSrsFrom.dirty) == true ? null : true" (click)="updateSrsSaveCall(addUpdateSrsFrom)" type="button" class="btn btn__footer--fixed btn-primary width100" id="forgotPasswordButton">{{ 'ADD_UPDATE_SRS.APPLY_CHANGES' | translate}}</button>
+        <button [attr.disabled]="((addUpdateSrsFrom.valid && addUpdateSrsFrom.dirty) == true && isEdit) ? null : true" (click)="updateSrsSaveCall(addUpdateSrsFrom)" type="button" class="btn btn__footer--fixed btn-primary width100" id="forgotPasswordButton">{{ 'ADD_UPDATE_SRS.APPLY_CHANGES' | translate}}</button>
     </form>
 </div>
