@@ -255,8 +255,8 @@ export class InvestmentCommonService {
   saveSrsAccountDetails(params, customerPortfolioId) {
     return this.investmentApiService.saveSrsAccountDetails(params, customerPortfolioId);
   }
-  saveProfileSrsAccountDetails(params, customerPortfolioId) {
-    return this.investmentApiService.saveProfileSrsAccountDetails(params, customerPortfolioId);
+  saveProfileSrsAccountDetails(params, customerId) {
+    return this.investmentApiService.saveProfileSrsAccountDetails(params, customerId);
   }
 
   getInvestmentCriteriaFromApi(selectPortfolioType) {

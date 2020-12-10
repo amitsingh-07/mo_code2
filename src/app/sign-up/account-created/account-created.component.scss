@@ -83,12 +83,12 @@
 
   .custom-modal--title {
     color: $white-color;
-    font-family: $muli-bold;
-    font-size: 24px;
+    font-family: $muli-semi-bold;
+    font-size: 36px;
     letter-spacing: -0.18px;
     line-height: 0.56;
     margin: 0;
-    padding: 12px 0 14px;
+    padding: 12px 0 20px;
 
     @include allmobiles {
       font-size: 20px;

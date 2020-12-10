@@ -1,0 +1,55 @@
+@import '../../../../../variables.scss';
+@import '../../../../../mixins';
+
+app-transfer-withdrawal-modal {
+  .modal-body {
+    padding: 30px 25px !important;
+
+    .modal-body-desc {
+      color: $silver-grey-color;
+      padding-bottom: 30px;
+    }
+  }
+
+  .modal-body-title {
+    margin-bottom: 7px;
+    padding-bottom: 0px;
+
+  }
+
+  .transfer-body {
+    padding-bottom: 16px;
+
+    .transfer-body :last-child {
+      padding-bottom: 30px;
+    }
+
+    .tranfer_lbl {
+      font-family: $muli-light;
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: -0.26px;
+      color: $silver-grey-color;
+    }
+
+    .transfer_value {
+      font-family: $muli-bold;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: -0.19px;
+      color: $teal-color;
+
+      div {
+        font-family: $muli-regular;
+        font-weight: normal;
+
+      }
+    }
+
+  }
+
+  .mt5 {
+    margin-top: 14px !important;
+  }
+
+}

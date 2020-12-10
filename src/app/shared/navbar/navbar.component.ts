@@ -497,10 +497,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   browserCheck() {
     const ua = navigator.userAgent;
     /* MSIE used to detect old browsers and Trident used to newer ones*/
-    const is_ie = ua.indexOf('MSIE ') > -1 ||
-      ua.indexOf('Trident/') > -1 ||
-      ua.toLowerCase().indexOf('firefox') > -1;
+    const is_ie = ua.indexOf('MSIE ') > -1 || ua.indexOf('Trident/') > -1;
+    const isFirefox = ua.toLowerCase().indexOf('firefox') > -1;
     if (is_ie) {
+      this.router.navigate([APP_ROUTES.NOT_SUPPORTED]);
+    } else if (isFirefox) {
       this.browserError = true;
     } else {
       this.browserError = false;

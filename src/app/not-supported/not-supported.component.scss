@@ -1,0 +1,23 @@
+@import '../../variables';
+@import '../../mixins';
+
+/*Modal styles*/
+app-not-supported {
+  .title {
+    font-size: 36px;
+    letter-spacing: -0.38px;
+    font-family: $muli-bold;
+    line-height: normal;
+    color: #066360;
+  }
+  .sub-title {
+    font-size: 18px;
+    font-family: $muli-regular;
+    letter-spacing: normal;
+    line-height: 1.5;
+    color: #000000;
+  }
+  .not-supported-bg {
+    background: #b1dfe1;
+  }
+}

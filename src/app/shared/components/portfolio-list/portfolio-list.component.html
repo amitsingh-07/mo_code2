@@ -72,7 +72,7 @@
                                     <span *ngIf="!portfolio?.cashAccountBalance && portfolio?.fundingTypeValue !== 'SRS'" class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} $0</span>
                                     <span *ngIf="portfolio?.cashAccountBalance && portfolio?.fundingTypeValue !== 'SRS'" class="cash-account-value">{{'YOUR_INVESTMENT.CA_LABEL' | translate}} {{portfolio?.cashAccountBalance | formatCurrency}}</span>
                                 </div>
-                                <div *ngIf="portfolio?.portfolioStatus === 'REBALANCING'" (click)="showRebalanceMessage()" class="reblancing-lbl mt10 flex">
+                                <div *ngIf="portfolio?.portfolioStatus === 'REBALANCING'" (click)="showRebalanceMessage(portfolio.riskProfileType)" class="reblancing-lbl mt10 flex">
                                     <span class="rebalance-logo"><img src="assets/images/investment-account/rebalancing.svg" alt="" /></span>
                                     <span>{{'YOUR_INVESTMENT.REBALANCE' | translate}}</span>
                                 </div>

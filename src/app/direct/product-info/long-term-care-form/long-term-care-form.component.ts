@@ -7,6 +7,8 @@ import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-mod
 import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from '../../direct.service';
 import { Subscription } from 'rxjs';
+import { LONG_TERM_CARE_SHIELD } from '../../direct.constants';
+import { AboutAge } from '../../../shared/utils/about-age.util';
 
 @Component({
   selector: 'app-long-term-care-form',
@@ -26,13 +28,15 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
   minDate;
   maxDate;
   private userInfoSubscription: Subscription;
+  payoutEnabled = false;
 
   constructor(
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter,
     private translate: TranslateService,
     private formBuilder: FormBuilder,
-    private config: NgbDatepickerConfig) {
+    private config: NgbDatepickerConfig,
+	private aboutAge: AboutAge) {
     this.translate.use('en');
     const today: Date = new Date();
     this.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
@@ -49,7 +53,8 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
     this.longTermCareForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
-      monthlyPayout: [this.formValues.monthlyPayout, Validators.required]
+      monthlyPayout: [this.formValues.monthlyPayout, Validators.required],
+      payoutType: [this.formValues.payoutType]
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '' && data === '5') {
@@ -63,6 +68,7 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
       this.longTermCareForm.controls.gender.setValue(data['gender']);
       if (data['dob']) {
         this.longTermCareForm.controls.dob.setValue(data['dob']);
+		    this.setPayoutType();
       }
     });
   }
@@ -78,6 +84,7 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
       const userInfo = this.directService.getUserInfo();
       userInfo.dob = this.longTermCareForm.controls.dob.value;
       this.directService.updateUserInfo(userInfo);
+      this.setPayoutType();
     }
   }
 
@@ -116,4 +123,31 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
     return true;
   }
 
+  showMonthlyPayoutModal() {
+    this.directService.showToolTipModal(
+      this.translate.instant('LONG_TERM_CARE.TOOLTIP.LONG_TERM_CARE.TITLE'),
+      this.translate.instant('LONG_TERM_CARE.TOOLTIP.LONG_TERM_CARE.MESSAGE')
+    );
+  }
+
+  setPayoutType() {
+    const today: Date = new Date();
+      const inputDateFormat = this.parserFormatter.format(this.longTermCareForm.controls.dob.value);
+      const getAge = this.aboutAge.calculateAge(inputDateFormat, today);
+    const payoutTypeControl = this.longTermCareForm.controls.payoutType;
+    if(this.longTermCareForm.controls.dob.value && getAge >= LONG_TERM_CARE_SHIELD.AGE && this.longTermCareForm.controls.dob.value.year >= LONG_TERM_CARE_SHIELD.MIN_YEAR  && this.longTermCareForm.controls.dob.value.year <= LONG_TERM_CARE_SHIELD.MAX_YEAR ) {		
+      payoutTypeControl.setValue(this.formValues.payoutType);
+      payoutTypeControl.setValidators([Validators.required]);
+      payoutTypeControl.updateValueAndValidity();
+      this.payoutEnabled = true;
+      
+    } else {
+      payoutTypeControl.markAsDirty();
+      payoutTypeControl.setValue('');
+      payoutTypeControl.setValidators([]);
+      payoutTypeControl.updateValueAndValidity();
+      this.payoutEnabled = false;
+    }
+  }
+  
 }
