@@ -181,7 +181,7 @@ describe('DashboardComponent', () => {
     translateService = injector.get(TranslateService);
     //translateService.use('en');
     comprehensiveService = TestBed.get(ComprehensiveService);
-    //comprehensiveAPiService = TestBed.get(comprehensiveAPiService);
+    comprehensiveAPiService = TestBed.get(comprehensiveAPiService);
 
     //router = new RouterStub();
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
@@ -193,12 +193,6 @@ describe('DashboardComponent', () => {
   });
 
 
-  afterEach(() => {
-    TestBed.resetTestingModule();
-    appService.clearPromoCode();
-     spyOn(appService,'clearPromoCode').and.returnValue([]);
-
-  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -209,20 +203,63 @@ describe('DashboardComponent', () => {
 
   afterEach(() => {
     TestBed.resetTestingModule();
-  
-    // spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
-    // navbarService.setNavbarComprehensive(true);
-    // footerService.setFooterVisibility(false);
-    // appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
+   // appService.clearPromoCode();
+    component.comprehensivePlanning=4;
+
+    spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
+    component.setComprehensivePlan(true);
+   
+   
+  });
+  it('ngOnInit', () => {
+    component.showFixedToastMessage = true;
+    component.comprehensiveLiteEnabled =  true;
+    component.ngOnInit();
+  });
+  it('generateReport', () => {
+    component.generateReport();
 
   });
-  // it('testing the proceed button', async(() => {
-  //   spyOn(component, 'getStarted');
-  //   const button = fixture.debugElement.nativeElement.querySelector('button');
-  //   button.click();
-  //   fixture.whenStable().then(() => {
-  //     expect(component.getStarted).toHaveBeenCalled();
-  //   });
-  // }));
+  it('downloadComprehensiveReport', () => {
+    component.downloadComprehensiveReport();
+  });
+  it('goToEditProfile', () => {
+    component.goToEditProfile();
+  });
+  it('goToCurrentStep', () => {
+    component.goToCurrentStep();
+  });
+  it('goToEditComprehensivePlan', () => {
+    component.goToEditComprehensivePlan(true);
+  });
+  it('getCurrentComprehensiveStep', () => {
+    component.getCurrentComprehensiveStep();
+  });
+  it('setComprehensivePlan', () => {
+    component.setComprehensivePlan(true);
+  });
+  it('setComprehensiveSummary', () => {
+    component.setComprehensiveSummary(true,COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED);
+  });
+  it('setComprehensiveDashboard', () => {
+    component.setComprehensiveDashboard();
+  });
+  it('showPaymentModal', () => {
+    component.showPaymentModal();
+  });
+  it('showCopyToast', () => {
+    component.showCopyToast(0);
+  });
+  it('hideToastMessage', () => {
+    component.hideToastMessage();
+    setTimeout(() => {
+      component.showFixedToastMessage = false;
+      component.toastMsg = null;
+    }, 3000);
+  });
+  
+  it('testing the proceed button', async(() => {
+    spyOn(component, 'setComprehensiveDashboard');
+  }));
 
 });

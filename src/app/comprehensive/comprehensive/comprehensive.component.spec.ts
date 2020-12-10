@@ -1,7 +1,7 @@
 import { IComprehensiveDetails } from './../comprehensive-types';
 import { async, ComponentFixture, fakeAsync, getTestBed, inject, TestBed, tick } from '@angular/core/testing';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Location, APP_BASE_HREF, DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
@@ -39,7 +39,7 @@ import { AuthenticationService } from './../../shared/http/auth/authentication.s
 
 import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
 import { StepIndicatorComponent } from './../../shared/components/step-indicator/step-indicator.component';
-import { COMPREHENSIVE_ROUTES } from './../comprehensive-routes.constants';
+import { COMPREHENSIVE_ROUTES, COMPREHENSIVE_ROUTE_PATHS } from './../comprehensive-routes.constants';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { RoutingService } from './../../shared/Services/routing.service';
 
@@ -163,7 +163,7 @@ describe('ComprehensiveComponent', () => {
     translateService = injector.get(TranslateService);
 	//translateService.use('en');
     comprehensiveService = TestBed.get(ComprehensiveService);
-    //comprehensiveAPiService = TestBed.get(comprehensiveAPiService);
+    comprehensiveAPiService = TestBed.get(comprehensiveAPiService);
     progressTrackerService = TestBed.get(ProgressTrackerService);
     //router = new RouterStub();
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
@@ -183,6 +183,83 @@ describe('ComprehensiveComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
+  afterEach(() => {
+    TestBed.resetTestingModule();
+    spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
+    navbarService.setNavbarComprehensive(true);
+    footerService.setFooterVisibility(false);
+    appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
+    const comprehensiveLiteEnabled = authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
+    let getCurrentVersionType = comprehensiveService.getComprehensiveCurrentVersion();
+    if ((getCurrentVersionType === '' || getCurrentVersionType === null ||
+      getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE) && comprehensiveLiteEnabled) {
+      getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
+    } else {
+      getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
+    }
+    component.isBannerNoteVisible = component.isCurrentDateInRange(COMPREHENSIVE_CONST.BANNER_NOTE_START_TIME,
+      COMPREHENSIVE_CONST.BANNER_NOTE_END_TIME);
+      spyOn(comprehensiveAPiService, 'getComprehensiveSummaryDashboard').and.returnValue(true); });
+  it('ngOnDestroy', () => {
+    component.ngOnInit();
+  
+  });
+  
+  it('should call go', () => {
+    component.redirect();
+  
+
+  });
+  it('buildPromoCodeForm', () => {
+    component.buildPromoCodeForm();
+  
+  });
+  
+
+  it('getStarted', () => {
+    spyOn(router, 'navigate');
+    component.getStarted();
+  
+    if(authService.isSignedUser()){
+      expect(router.navigate).toHaveBeenCalledWith([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+    }
+  
+  });
+
+  it('getStarted', () => {
+    spyOn(router, 'navigate');
+    component.getStarted();
+    if(!authService.isSignedUser()){
+      expect(component.showSuccessPopup).toHaveBeenCalledWith();
+  
+    }
+  });
+  it('showSuccessPopup', () => {
+    component.showSuccessPopup();
+    
+  
+  });
+  it('getPromoCode', () => {
+    component.getPromoCode();
+    appService.setAction(COMPREHENSIVE_CONST.PROMO_CODE.GET);
+    comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
+  
+  });
+  it('showLoginOrSignUpModal', () => {
+    component.showLoginOrSignUpModal();
+  
+  });
+  it('isCurrentDateInRange', () => {
+    component.isCurrentDateInRange(0,0);
+  
+  });
+   it('getProductAmount', () => {
+    component.getProductAmount();
+  
+  });
+  
+  
   it('form invalid when empty', () => {
     expect(component.promoCodeForm.valid).toBeFalsy();
   });
@@ -213,14 +290,6 @@ describe('ComprehensiveComponent', () => {
 
  //   appService.setAction(COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE);
 
-  
-  });
-  afterEach(() => {
-    TestBed.resetTestingModule();
-    spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
-    navbarService.setNavbarComprehensive(true);
-    footerService.setFooterVisibility(false);
-    appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
   
   });
   // it('testing the proceed button', async(() => {

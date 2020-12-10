@@ -63,7 +63,16 @@ import { RoutingService } from './../../shared/Services/routing.service';
 
 import { FileUtil } from './../../shared/utils/file.util';
 
-
+export class TestComponent {
+}
+export const routes: Routes = [
+  {
+    path: COMPREHENSIVE_ROUTES.DEPENDANT_DETAILS ,
+    component: TestComponent
+  },
+  { path: COMPREHENSIVE_ROUTES.DEPENDANT_SELECTION + '/summary', component: TestComponent },
+  { path: COMPREHENSIVE_ROUTES.STEPS + '/2', component: TestComponent },
+]; 
 class MockRouter {
   navigateByUrl(url: string) { return url; }
 }
@@ -296,12 +305,6 @@ describe('DependantSelectionComponent', () => {
     noOfHouseholdMembers.setValue(1);
     houseHoldIncome.setValue("Below $2,000");
     component.goToNext(component.dependantSelectionForm);
-    // const user: UserInfo = guideMeService.getUserInfo();
-    // Now we can check to make sure the emitted value is correct
-    // const dobObj = JSON.parse(user.dob);
-    // expect(dobObj.year).toBe('1996');
-    // expect(dobObj.month).toBe('10');
-    // expect(dobObj.day).toBe('12');
   });
 
 
@@ -316,8 +319,63 @@ describe('DependantSelectionComponent', () => {
 
   });
 
+  it('buildMyDependantSelectionForm', () => {
+    component.buildMyDependantSelectionForm();
 
-  
+  });
+  it('selectHouseHoldMembers', () => {
+    component.selectHouseHoldMembers(1);
+
+  });
+  it('selectHouseHoldIncome', () => {
+    component.selectHouseHoldIncome("Below $2,000");
+
+  });
+
+  it('showSummaryModal', () => {
+    component.showSummaryModal();
+    component.summaryModalDetails = {
+      setTemplateModal: 1, dependantModelSel: false,
+      contentObj: component.childrenEducationNonDependantModal,
+      nonDependantDetails: {
+        livingCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.EXPENSE,
+        livingPercent: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.PERCENT,
+        livingEstimatedCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.COMPUTED_EXPENSE,
+        medicalBill: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.EXPENSE,
+        medicalYear: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.PERCENT,
+        medicalCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.COMPUTED_EXPENSE
+      },
+      nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2',
+      routerEnabled: component.summaryRouterFlag
+    };
+  comprehensiveService.openSummaryPopUpModal(component.summaryModalDetails);
+
+  });
+
+  it('ngOnDestroy', () => {
+    component.ngOnDestroy();
+
+  });
+  it('should call go next', () => {
+    spyOn(router, 'navigate');
+    component.goToNext(component.dependantSelectionForm);
+    component.viewMode=true;
+    expect(router.navigate).toHaveBeenCalledWith([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION_SUMMARY]);
+  });
+  it('should call go next', () => {
+    spyOn(router, 'navigate');
+    component.goToNext(component.dependantSelectionForm);
+    component.viewMode=false;
+   comprehensiveService.setDependantSelection(component.dependantSelectionForm.value.dependantSelection)
+  });
+  it('should call go next', () => {
+    spyOn(router, 'navigate');
+    component.routerPath(component.dependantSelectionForm);
+    expect(router.navigate).toHaveBeenCalledWith([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION_SUMMARY]);
+  });
+
+
+
   it('should set page title', () => {
     const setPageTitleSpy = spyOn(navbarService, 'setPageTitleWithIcon');
     component.setPageTitle('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');

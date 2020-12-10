@@ -216,22 +216,7 @@ describe('DependantEducationListComponent', () => {
 
   afterEach(() => {
     TestBed.resetTestingModule();
-   const summaryData: any = {comprehensiveEnquiry:{enquiryId:131297,sessionTrackerId:55877,type:'Comprehensive-Lite',hasComprehensive:true,hasDependents:false,hasEndowments:'0',hasRegularSavingsPlans:false,generatedTokenForReportNotification:null,stepCompleted:4,subStepCompleted:0,reportStatus:'edit',isValidatedPromoCode:false,homeLoanUpdatedByLiabilities:null,isLocked:false,isDobUpdated:true,dobPopUpEnable:false,isDobChangedInvestment:null,isConfirmationEmailSent:null,paymentStatus:null,reportSubmittedTimeStamp:'2020-05-06T21:31:35.000+0000'},baseProfile:{firstName:'rini',lastName:'test',dateOfBirth:'06/10/1988',dateOfBirthInvestment:'06/10/1988',nation:null,gender:'male',genderInvestment:'male',email:'mo2uatapr2_1@yopmail.com',mobileNumber:'8998110734',nationalityStatus:'Singapore PR',dobUpdateable:false,journeyType:'Investment',smoker:false},dependentsSummaryList:{dependentsList:[{
-      id: 1,
-      customerId: 0,
-      name: "Navin",
-      relationship: 'Brother',
-      gender: 'Male',
-      dateOfBirth: '25/12/1996',
-      nation: 'singaporean'
-    }],noOfHouseholdMembers:2,houseHoldIncome:"Below $2,000",noOfYears:0},dependentEducationPreferencesList:[ {id: 0,
-      dependentId: 1,
-      enquiryId:131297,
-      location: 'singapore',
-      educationCourse: null,
-      educationSpendingShare: 50,
-      endowmentMaturityAmount: 100,
-      endowmentMaturityYears: 2021}],comprehensiveIncome:{enquiryId:131297,employmentType:'Employed',monthlySalary:70000.0,monthlyRentalIncome:0.0,otherMonthlyWorkIncome:0.0,otherMonthlyIncome:0.0,annualBonus:null,annualDividends:0.0,otherAnnualIncome:0.0},comprehensiveSpending:{enquiryId:131297,monthlyLivingExpenses:60000.0,adHocExpenses:null,homeLoanPayOffUntil:null,mortgagePaymentUsingCPF:0.0,mortgagePaymentUsingCash:0.0,mortgageTypeOfHome:'',mortgagePayOffUntil:null,carLoanPayment:0.0,carLoanPayoffUntil:null,otherLoanPayment:null,otherLoanPayoffUntil:null,HLMortgagePaymentUsingCPF:null,HLMortgagePaymentUsingCash:null,HLtypeOfHome:''},comprehensiveRegularSavingsList:[],comprehensiveDownOnLuck:{enquiryId:131297,badMoodMonthlyAmount:300.0,hospitalPlanId:2,hospitalPlanName:'Government Hospital Ward A'},comprehensiveAssets:{enquiryId:131297,cashInBank:7000.0,savingsBonds:8000.0,cpfOrdinaryAccount:null,cpfSpecialAccount:null,cpfMediSaveAccount:null,cpfRetirementAccount:null,schemeType:null,estimatedPayout:null,topupAmount:null,withdrawalAmount:null,retirementSum:null,homeMarketValue:0.0,investmentPropertiesValue:0.0,assetsInvestmentSet:[{assetId:628,typeOfInvestment:'MoneyOwl - Equity',investmentAmount:null}],otherAssetsValue:0.0,source:'MANUAL'},comprehensiveLiabilities:{enquiryId:131297,homeLoanOutstandingAmount:null,otherPropertyLoanOutstandingAmount:0.0,otherLoanOutstandingAmount:null,carLoansAmount:0.0},comprehensiveInsurancePlanning:null,comprehensiveRetirementPlanning:{enquiryId:131297,retirementAge:'45',haveOtherSourceRetirementIncome:null,retirementIncomeSet:[],lumpSumBenefitSet:[]}};
+    const summaryData: any =  {"comprehensiveEnquiry":{"enquiryId":130580,"sessionTrackerId":51756,"type":"Comprehensive","hasComprehensive":true,"hasDependents":true,"hasEndowments":"1","hasRegularSavingsPlans":true,"generatedTokenForReportNotification":null,"stepCompleted":4,"subStepCompleted":0,"reportStatus":"submitted","isValidatedPromoCode":true,"homeLoanUpdatedByLiabilities":false,"isLocked":true,"isDobUpdated":false,"dobPopUpEnable":false,"isDobChangedInvestment":null,"isConfirmationEmailSent":true,"paymentStatus":"PENDING","reportSubmittedTimeStamp":"2020-12-08T04:34:48.000+0000"},"baseProfile":{"firstName":"sws m","lastName":"sws","dateOfBirth":"25/04/1969","dateOfBirthInvestment":"","nation":null,"gender":"male","genderInvestment":"","email":"ntpraveen22@yopmail.com","mobileNumber":"98982222","nationalityStatus":"Others","dobUpdateable":true,"journeyType":null,"staff":false,"smoker":false},"dependentsSummaryList":{"dependentsList":[{"id":5723,"enquiryId":130580,"name":"ch","relationship":"Child","gender":"Female","dateOfBirth":"24/12/2004","nation":"Singaporean","isInsuranceNeeded":false},{"id":5724,"enquiryId":130580,"name":"ede","relationship":"Parent","gender":"Male","dateOfBirth":"23/05/1987","nation":"Singaporean","isInsuranceNeeded":false}],"noOfHouseholdMembers":3,"houseHoldIncome":"$5,001 to $6,500","noOfYears":null},"dependentEducationPreferencesList":[{"id":1399,"dependentId":5723,"enquiryId":130580,"location":"Singapore","educationCourse":"Medicine","endowmentMaturityAmount":1000.0,"endowmentMaturityYears":2020,"educationSpendingShare":53}],"comprehensiveIncome":{"enquiryId":130580,"employmentType":"Employed","monthlySalary":10000.0,"monthlyRentalIncome":0.0,"otherMonthlyWorkIncome":600.0,"otherMonthlyIncome":null,"annualBonus":8887.0,"annualDividends":88.0,"otherAnnualIncome":80.0},"comprehensiveSpending":{"enquiryId":130580,"monthlyLivingExpenses":4000.0,"adHocExpenses":700.0,"homeLoanPayOffUntil":2020,"mortgagePaymentUsingCPF":null,"mortgagePaymentUsingCash":null,"mortgageTypeOfHome":null,"mortgagePayOffUntil":null,"carLoanPayment":77.0,"carLoanPayoffUntil":2020,"otherLoanPayment":22.0,"otherLoanPayoffUntil":2020,"HLMortgagePaymentUsingCPF":77.0,"HLMortgagePaymentUsingCash":1000.0,"HLtypeOfHome":"New HDB"},"comprehensiveRegularSavingsList":[{"enquiryId":130580,"regularUnitTrust":"MoneyOwl - Equity","regularPaidByCash":55.0,"regularPaidByCPF":55.0},{"enquiryId":130580,"regularUnitTrust":"","regularPaidByCash":null,"regularPaidByCPF":null},{"enquiryId":130580,"regularUnitTrust":"","regularPaidByCash":null,"regularPaidByCPF":null},{"enquiryId":130580,"regularUnitTrust":"","regularPaidByCash":null,"regularPaidByCPF":null},{"enquiryId":130580,"regularUnitTrust":"","regularPaidByCash":null,"regularPaidByCPF":null},{"enquiryId":130580,"regularUnitTrust":"","regularPaidByCash":null,"regularPaidByCPF":null},{"enquiryId":130580,"regularUnitTrust":"","regularPaidByCash":null,"regularPaidByCPF":null},{"enquiryId":130580,"regularUnitTrust":"","regularPaidByCash":null,"regularPaidByCPF":null}],"comprehensiveDownOnLuck":{"enquiryId":130580,"badMoodMonthlyAmount":500.0,"hospitalPlanId":5,"hospitalPlanName":"Government Hospital Ward B2/C"},"comprehensiveAssets":{"enquiryId":130580,"cashInBank":100.0,"savingsBonds":200.0,"cpfOrdinaryAccount":null,"cpfSpecialAccount":null,"cpfMediSaveAccount":null,"cpfRetirementAccount":null,"schemeType":null,"estimatedPayout":null,"topupAmount":null,"withdrawalAmount":null,"retirementSum":null,"homeMarketValue":1000.0,"investmentPropertiesValue":100.0,"assetsInvestmentSet":[{"assetId":866,"typeOfInvestment":"MoneyOwl - Growth","investmentAmount":100.0}],"otherAssetsValue":100.0,"source":"MANUAL"},"comprehensiveLiabilities":{"enquiryId":130580,"homeLoanOutstandingAmount":null,"otherPropertyLoanOutstandingAmount":null,"otherLoanOutstandingAmount":null,"carLoansAmount":null},"comprehensiveInsurancePlanning":{"id":null,"enquiryId":130580,"haveHospitalPlan":null,"haveCPFDependentsProtectionScheme":null,"lifeProtectionAmount":0.0,"haveHDBHomeProtectionScheme":null,"homeProtectionCoverageAmount":null,"otherLifeProtectionCoverageAmount":0.0,"criticalIllnessCoverageAmount":0.0,"disabilityIncomeCoverageAmount":0.0,"haveLongTermElderShield":null,"longTermElderShieldAmount":0,"isDefaultLifeProtectionAmount":null,"haveHospitalPlanWithRider":0,"otherLongTermCareInsuranceAmount":0.0,"shieldType":"elderShield","haveTakenCareShieldQuestions":true,"haveLongTermPopup":false,"calculatedMonthlyPayout":null},"comprehensiveRetirementPlanning":{"enquiryId":130580,"retirementAge":"52","haveOtherSourceRetirementIncome":false,"retirementIncomeSet":[],"lumpSumBenefitSet":[]},"recommendedPortfolio":null,"riskAssessmentAnswer":null};
     comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
     comprehensiveService.setComprehensiveSummary(summaryData);
     spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
@@ -241,9 +226,55 @@ describe('DependantEducationListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  // it('should set page title', () => {
-  //   const setPageTitleSpy = spyOn(navbarService, 'setPageTitleWithIcon');
-  //   component.setPageTitle('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
-  //   expect(setPageTitleSpy).toHaveBeenCalledWith('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE', { id: 'DependantEducationListComponent', iconClass: 'navbar__menuItem--journey-map' });
-  // });
+  it('ngOnInit', () => {
+    component.ngOnInit();
+
+  });
+  it('ngOnDestroy', () => {
+    component.ngOnDestroy();
+
+  });
+  it('buildEndowmentListForm', () => {
+    component.buildEndowmentListForm();
+
+  });
+  it('buildEndowmentDetailsForm', () => {
+    component.buildEndowmentDetailsForm(component.endowmentListForm);
+
+  });
+  it('goToNext', () => {
+    component.goToNext(component.endowmentListForm);
+
+  });
+  it('showToolTipModal', () => {
+    component.showToolTipModal();
+
+  });
+  it('checkDependant', () => {
+    component.checkDependant();
+
+  });
+  it('validateDependantList', () => {
+    component.validateDependantList(component.endowmentListForm);
+
+  });
+  it('payOffYearValid', () => {
+    component.payOffYearValid(2020);
+
+  });
+  it('showSummaryModal', () => {
+    component.showSummaryModal();
+
+  });
+  it('showSummaryModal', () => {
+    component.showDependantSummary(component.endowmentListForm);
+
+  });
+  
+  
+  it('should set page title', () => {
+    const setPageTitleSpy = spyOn(navbarService, 'setPageTitleWithIcon');
+    component.setPageTitle('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
+    expect(setPageTitleSpy).toHaveBeenCalledWith('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE', { id: 'DependantEducationListComponent', iconClass: 'navbar__menuItem--journey-map' });
+  });
 });

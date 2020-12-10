@@ -180,10 +180,9 @@ describe('MyProfileComponent', () => {
     comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
     comprehensiveService.setComprehensiveSummary(summaryData);
     spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
-    spyOn(comprehensiveService, 'getComprehensiveEnquiry').and.returnValue(summaryData.comprehensiveEnquiry);
+    spyOn(comprehensiveService, 'getComprehensiveEnquiry').and.returnValue(true);
     navbarService.setNavbarComprehensive(true);
     component.myProfileShow=true;
-    component.checkRedirect();
    
 
   });
@@ -191,7 +190,54 @@ describe('MyProfileComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('onCloseClick', () => {
+    component.onCloseClick();
+  });
+  it('checkRedirect', () => {
+    component.checkRedirect();
+  });
+  it('ngOnDestroy', () => {
+    component.ngOnDestroy();
+  });
+  it('checkRedirect', () => {
+    component.setPageTitle('CMP.GETTING_STARTED.TITLE');
+  });
+  it('getUserProfileData', () => {
+    component.getUserProfileData();
+  });
+  it('getUserProfileData', () => {
+    component.getUserProfileData();
+  });
 
+  it('setUserProfileData', () => {
+    component.setUserProfileData();
+  });
+
+  it('buildProfileForm', () => {
+    component.buildProfileForm();
+  });
+  
+  it('selectNationality', () => {
+    component.selectNationality('singaporean');
+  });
+  it('validateDOB', () => {
+    component.validateDOB('22/02/1980');
+  });
+  it('validateMoGetStrdForm', () => {
+    component.validateMoGetStrdForm(component.moGetStrdForm);
+  });
+  it('should call  goToNext', () => {
+    spyOn(router, 'navigate');
+    component.goToNext(component.moGetStrdForm);
+    expect(router.navigate).toHaveBeenCalledWith([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION]);
+  });
+  it('should call  goToNext view mode', () => {
+    spyOn(router, 'navigate');
+    component.goToNext(component.moGetStrdForm);
+    component.viewMode=true;
+    expect(router.navigate).toHaveBeenCalledWith([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION]);
+  });
+  
   it('should set page title', () => {
     const setPageTitleSpy = spyOn(navbarService, 'setPageTitleWithIcon');
     component.setPageTitle('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');

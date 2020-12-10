@@ -199,7 +199,7 @@ describe('DependantsDetailsComponent', () => {
 
   afterEach(() => {
     TestBed.resetTestingModule();
-    const summaryData: any = {comprehensiveEnquiry:{enquiryId:131297,sessionTrackerId:55877,type:'Comprehensive-Lite',hasComprehensive:true,hasDependents:false,hasEndowments:'0',hasRegularSavingsPlans:false,generatedTokenForReportNotification:null,stepCompleted:4,subStepCompleted:0,reportStatus:'edit',isValidatedPromoCode:false,homeLoanUpdatedByLiabilities:null,isLocked:false,isDobUpdated:true,dobPopUpEnable:false,isDobChangedInvestment:null,isConfirmationEmailSent:null,paymentStatus:null,reportSubmittedTimeStamp:'2020-05-06T21:31:35.000+0000'},baseProfile:{firstName:'rini',lastName:'test',dateOfBirth:'06/10/1988',dateOfBirthInvestment:'06/10/1988',nation:null,gender:'male',genderInvestment:'male',email:'mo2uatapr2_1@yopmail.com',mobileNumber:'8998110734',nationalityStatus:'Singapore PR',dobUpdateable:false,journeyType:'Investment',smoker:false},"dependentsSummaryList":{"dependentsList":[],"noOfHouseholdMembers":2,"houseHoldIncome":"Below $2,000","noOfYears":0},"dependentEducationPreferencesList":[],comprehensiveIncome:{enquiryId:131297,employmentType:'Employed',monthlySalary:70000.0,monthlyRentalIncome:0.0,otherMonthlyWorkIncome:0.0,otherMonthlyIncome:0.0,annualBonus:null,annualDividends:0.0,otherAnnualIncome:0.0},comprehensiveSpending:{enquiryId:131297,monthlyLivingExpenses:60000.0,adHocExpenses:null,homeLoanPayOffUntil:null,mortgagePaymentUsingCPF:0.0,mortgagePaymentUsingCash:0.0,mortgageTypeOfHome:'',mortgagePayOffUntil:null,carLoanPayment:0.0,carLoanPayoffUntil:null,otherLoanPayment:null,otherLoanPayoffUntil:null,HLMortgagePaymentUsingCPF:null,HLMortgagePaymentUsingCash:null,HLtypeOfHome:''},comprehensiveRegularSavingsList:[],comprehensiveDownOnLuck:{enquiryId:131297,badMoodMonthlyAmount:300.0,hospitalPlanId:2,hospitalPlanName:'Government Hospital Ward A'},comprehensiveAssets:{enquiryId:131297,cashInBank:7000.0,savingsBonds:8000.0,cpfOrdinaryAccount:null,cpfSpecialAccount:null,cpfMediSaveAccount:null,cpfRetirementAccount:null,schemeType:null,estimatedPayout:null,topupAmount:null,withdrawalAmount:null,retirementSum:null,homeMarketValue:0.0,investmentPropertiesValue:0.0,assetsInvestmentSet:[{assetId:628,typeOfInvestment:'MoneyOwl - Equity',investmentAmount:null}],otherAssetsValue:0.0,source:'MANUAL'},comprehensiveLiabilities:{enquiryId:131297,homeLoanOutstandingAmount:null,otherPropertyLoanOutstandingAmount:0.0,otherLoanOutstandingAmount:null,carLoansAmount:0.0},comprehensiveInsurancePlanning:null,comprehensiveRetirementPlanning:{enquiryId:131297,retirementAge:'45',haveOtherSourceRetirementIncome:null,retirementIncomeSet:[],lumpSumBenefitSet:[]}};
+    const summaryData: any = { comprehensiveEnquiry: { enquiryId: 131297, sessionTrackerId: 55877, type: 'Comprehensive-Lite', hasComprehensive: true, hasDependents: false, hasEndowments: '0', hasRegularSavingsPlans: false, generatedTokenForReportNotification: null, stepCompleted: 4, subStepCompleted: 0, reportStatus: 'edit', isValidatedPromoCode: false, homeLoanUpdatedByLiabilities: null, isLocked: false, isDobUpdated: true, dobPopUpEnable: false, isDobChangedInvestment: null, isConfirmationEmailSent: null, paymentStatus: null, reportSubmittedTimeStamp: '2020-05-06T21:31:35.000+0000' }, baseProfile: { firstName: 'rini', lastName: 'test', dateOfBirth: '06/10/1988', dateOfBirthInvestment: '06/10/1988', nation: null, gender: 'male', genderInvestment: 'male', email: 'mo2uatapr2_1@yopmail.com', mobileNumber: '8998110734', nationalityStatus: 'Singapore PR', dobUpdateable: false, journeyType: 'Investment', smoker: false }, "dependentsSummaryList": { "dependentsList": [], "noOfHouseholdMembers": 2, "houseHoldIncome": "Below $2,000", "noOfYears": 0 }, "dependentEducationPreferencesList": [], comprehensiveIncome: { enquiryId: 131297, employmentType: 'Employed', monthlySalary: 70000.0, monthlyRentalIncome: 0.0, otherMonthlyWorkIncome: 0.0, otherMonthlyIncome: 0.0, annualBonus: null, annualDividends: 0.0, otherAnnualIncome: 0.0 }, comprehensiveSpending: { enquiryId: 131297, monthlyLivingExpenses: 60000.0, adHocExpenses: null, homeLoanPayOffUntil: null, mortgagePaymentUsingCPF: 0.0, mortgagePaymentUsingCash: 0.0, mortgageTypeOfHome: '', mortgagePayOffUntil: null, carLoanPayment: 0.0, carLoanPayoffUntil: null, otherLoanPayment: null, otherLoanPayoffUntil: null, HLMortgagePaymentUsingCPF: null, HLMortgagePaymentUsingCash: null, HLtypeOfHome: '' }, comprehensiveRegularSavingsList: [], comprehensiveDownOnLuck: { enquiryId: 131297, badMoodMonthlyAmount: 300.0, hospitalPlanId: 2, hospitalPlanName: 'Government Hospital Ward A' }, comprehensiveAssets: { enquiryId: 131297, cashInBank: 7000.0, savingsBonds: 8000.0, cpfOrdinaryAccount: null, cpfSpecialAccount: null, cpfMediSaveAccount: null, cpfRetirementAccount: null, schemeType: null, estimatedPayout: null, topupAmount: null, withdrawalAmount: null, retirementSum: null, homeMarketValue: 0.0, investmentPropertiesValue: 0.0, assetsInvestmentSet: [{ assetId: 628, typeOfInvestment: 'MoneyOwl - Equity', investmentAmount: null }], otherAssetsValue: 0.0, source: 'MANUAL' }, comprehensiveLiabilities: { enquiryId: 131297, homeLoanOutstandingAmount: null, otherPropertyLoanOutstandingAmount: 0.0, otherLoanOutstandingAmount: null, carLoansAmount: 0.0 }, comprehensiveInsurancePlanning: null, comprehensiveRetirementPlanning: { enquiryId: 131297, retirementAge: '45', haveOtherSourceRetirementIncome: null, retirementIncomeSet: [], lumpSumBenefitSet: [] } };
     comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
     comprehensiveService.setComprehensiveSummary(summaryData);
     spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
@@ -209,6 +209,93 @@ describe('DependantsDetailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('ngOnInit', () => {
+    component.ngOnInit();
+
+  });
+  it('ngOnDestroy', () => {
+    component.ngOnDestroy();
+
+  });
+  it('selectHouseHoldIncome', () => {
+    component.buildDependantForm();
+
+  });
+  it('getCurrentFormsCount', () => {
+    component.getCurrentFormsCount();
+
+  });
+  it('showSummaryModal', () => {
+    component.showSummaryModal();
+
+  });
+
+  it('Select Relationship', () => {
+    component.selectRelationship("brother", 0);
+
+  });
+  it('Select Relationship', () => {
+    component.selectGender("male", 0);
+
+  });
+  it(' selectNationality', () => {
+    component.selectNationality("singaporean", 0);
+
+  });
+  it(' buildDependantDetailsForm', () => {
+    component.buildDependantDetailsForm(component.myDependantForm);
+
+  });
+  it(' buildDependantDetailsForm', () => {
+    component.buildEmptyForm();
+
+  });
+  it(' addDependant', () => {
+    component.addDependant();
+
+  });
+  it(' removeDependant', () => {
+    component.removeDependant(0);
+
+  });
+  it(' validateDependantForm', () => {
+    component.validateDependantForm(component.myDependantForm);
+
+  });
+
+  it(' goToNext', () => {
+    component.goToNext(component.myDependantForm);
+
+  });
+  it(' goToNextPage', () => {
+    component.goToNextPage();
+
+  });
+  it(' showSummaryModal', () => {
+    component.showSummaryModal();
+
+  });
+  it(' getWrapText', () => {
+    component.getWrapText('Name-');
+
+  });
+  it(' setDependentName', () => {
+    component.setDependentName('Name  ', 0);
+
+  });
+  it(' onKeyPressEvent', () => {
+    component.onKeyPressEvent(Event, "Name");
+
+  });
+  it(' onChange', () => {
+    component.onChange(Event);
+
+  });
+  it(' setCaratTo', () => {
+    component.setCaratTo(60, 'position', 'dependentName');
+
+  });
+
 
   it('should set page title', () => {
     const setPageTitleSpy = spyOn(navbarService, 'setPageTitleWithIcon');
