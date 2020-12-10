@@ -1,61 +1,63 @@
 
 
 import { SrsTooltipComponent } from './srs-tooltip.component';
-import { Injector } from '@angular/core';
-import { async, ComponentFixture, fakeAsync, getTestBed, inject, TestBed, tick } from '@angular/core/testing';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { By } from '@angular/platform-browser';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { Router, Routes } from '@angular/router';
+import { IntroScreenComponent } from '../intro-screen/intro-screen.component';
+import { async, ComponentFixture, TestBed,getTestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JwtModule } from '@auth0/angular-jwt';
-import { NgbActiveModal, NgbModal, NgbModalRef, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateModule } from '@ngx-translate/core';
+import { Router } from '@angular/router';
+
+
 import { TranslateService } from '@ngx-translate/core';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { concat, Observable, of, throwError } from 'rxjs';
+import { Injector } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { NavigationEnd} from '@angular/router';
 
-
-import { CurrencyPipe } from '@angular/common';
-import { appConstants } from '../../../app.constants';
-import {
-  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS,
-  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES
-} from '../investment-engagement-journey-routes.constants';
-
-
-
-import { FooterService } from '../../../shared/footer/footer.service';
-import { HeaderService } from '../../../shared/header/header.service';
-import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { InvestmentApiService } from '../../investment-api.service';
-import { createTranslateLoader } from '../investment-engagement-journey.module';
-import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
-import { AppService } from './../../../app.service';
-import { LoaderService } from './../../../shared/components/loader/loader.service';
-import { ApiService } from './../../../shared/http/api.service';
-import { AuthenticationService } from './../../../shared/http/auth/authentication.service';
-
-import { InvestmentTitleBarComponent } from '../../../shared/components/investment-title-bar/investment-title-bar.component';
-import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
+import { filter } from 'rxjs/operators';
 
 describe('SrsTooltipComponent', () => {
   let component: SrsTooltipComponent;
   let fixture: ComponentFixture<SrsTooltipComponent>;
-
+  let router: Router;
+ 
+  let translateService: TranslateService
+  let injector: Injector;
+  let activeModal :NgbActiveModal;
+  let translations = require('../../../../assets/i18n/investment-engagement-journey/en.json');
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SrsTooltipComponent ]
-    })
+      declarations: [ SrsTooltipComponent ],
+      imports: [TranslateModule.forRoot(), RouterTestingModule.withRoutes([]),
+      ReactiveFormsModule, JwtModule.forRoot({ config: {} })],
+    providers: [NgbActiveModal],
+
+  })
     .compileComponents();
+    
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SrsTooltipComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    injector = getTestBed();
+    activeModal= TestBed.get(NgbActiveModal);
+    router = TestBed.get(Router);
+    translateService = TestBed.get(TranslateService);
+    translateService = injector.get(TranslateService);
+    translateService.setTranslation('en', translations);
+    translateService.use('en');
+    fixture.detectChanges();
+   
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should call ngOnInit', () => {
+   component.ngOnInit();
   });
 });
