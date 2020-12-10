@@ -1,61 +1,102 @@
-
-
 import { GetStartedStep1Component } from './get-started-step1.component';
-import { Injector } from '@angular/core';
-import { async, ComponentFixture, fakeAsync, getTestBed, inject, TestBed, tick } from '@angular/core/testing';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { By } from '@angular/platform-browser';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { Router, Routes } from '@angular/router';
+import { IntroScreenComponent } from '../intro-screen/intro-screen.component';
+import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JwtModule } from '@auth0/angular-jwt';
-import { NgbActiveModal, NgbModal, NgbModalRef, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { concat, Observable, of, throwError } from 'rxjs';
-
-
-import { CurrencyPipe } from '@angular/common';
-import { appConstants } from '../../../app.constants';
-import {
-  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS,
-  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES
-} from '../investment-engagement-journey-routes.constants';
-
-
-
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateModule } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 import { FooterService } from '../../../shared/footer/footer.service';
-import { HeaderService } from '../../../shared/header/header.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { InvestmentApiService } from '../../investment-api.service';
-import { createTranslateLoader } from '../investment-engagement-journey.module';
-import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
-import { AppService } from './../../../app.service';
-import { LoaderService } from './../../../shared/components/loader/loader.service';
-import { ApiService } from './../../../shared/http/api.service';
-import { AuthenticationService } from './../../../shared/http/auth/authentication.service';
+import {
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+} from '../investment-engagement-journey-routes.constants';
+import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { HttpClientModule } from '@angular/common/http';
 
-import { InvestmentTitleBarComponent } from '../../../shared/components/investment-title-bar/investment-title-bar.component';
-import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
+import { SignUpService } from '../../../sign-up/sign-up.service';
+import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
+import { DatePipe } from '@angular/common';
+import { Injector } from '@angular/core';
 
-describe('GetStartedStep1Component', () => {
+
+describe('GetStartedStep2Component', () => {
   let component: GetStartedStep1Component;
   let fixture: ComponentFixture<GetStartedStep1Component>;
+  let router: Router;
+  let navbarService: NavbarService;
+  let footerService: FooterService;
+  let signUpService: SignUpService;
+  let authService: AuthenticationService;
+  let translateService: TranslateService;
+  let injector: Injector;
+  let translations = require('../../../../assets/i18n/investment-engagement-journey/en.json');
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GetStartedStep1Component ]
+      declarations: [GetStartedStep1Component, IntroScreenComponent],
+      imports: [TranslateModule.forRoot(), HttpClientModule, RouterTestingModule.withRoutes([]),
+        ReactiveFormsModule, JwtModule.forRoot({ config: {} })],
+      providers: [NgbActiveModal, AuthenticationService, DatePipe, TranslateService],
     })
-    .compileComponents();
+      .compileComponents();
   }));
-
   beforeEach(() => {
+    fixture = TestBed.createComponent(GetStartedStep1Component);
+    injector = getTestBed();
+    component = fixture.componentInstance;
+    router = TestBed.get(Router);
+    navbarService = TestBed.get(NavbarService);
+    footerService = TestBed.get(FooterService);
+    signUpService = TestBed.get(SignUpService);
+    authService = TestBed.get(AuthenticationService);
+    translateService = injector.get(TranslateService);
+    translateService.setTranslation('en', translations);
+    translateService.use('en');
     fixture = TestBed.createComponent(GetStartedStep1Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  });
+
+  it('should create GetStarted Screen', () => {
+    console.log(component);
     expect(component).toBeTruthy();
   });
+  it('should call go back', () => {
+    component.goBack();
+  });
+
+  it('should call go next', () => {
+    spyOn(router, 'navigate');
+    component.goNext();
+    expect(router.navigate).toHaveBeenCalledWith([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PERSONAL_INFO]);
+  });
+
+  it('should execute ngOnInit', () => {
+    const setNavbarModeSpy = spyOn(navbarService, 'setNavbarMode');
+    const setNavbarMobileVisibilitySpy = spyOn(navbarService, 'setNavbarMobileVisibility');
+    const setFooterVisibilitySpy = spyOn(footerService, 'setFooterVisibility');
+    component.ngOnInit();
+    expect(setNavbarModeSpy).toHaveBeenCalledWith(6);
+    expect(setNavbarMobileVisibilitySpy).toHaveBeenCalledWith(false);
+    expect(setFooterVisibilitySpy).toHaveBeenCalledWith(false);
+
+  });
+
+
+  it('should create GetStarted Screen title Content', () => {
+    expect(component.title).toBe('Step 1');
+    expect(component.description).toBe('Your Risk Ability');
+    expect(component.description2).toBe('In the next step, we will assess your ability to take risk. Your inputs will determine the recommendations suggested.');
+  });
+
+
 });

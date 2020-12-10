@@ -98,6 +98,7 @@ describe('StartJourneyComponent', () => {
   let loader: LoaderService;
   let investmentEngagementJourneyService: InvestmentEngagementJourneyService;
   let httpMock;
+  let translations = require('../../../../assets/i18n/investment-engagement-journey/en.json');
 
   let httpClientSpy;
 
@@ -200,135 +201,137 @@ describe('StartJourneyComponent', () => {
   afterEach(() => {
     httpMock.verify();
   })
-  // it('should load translations', fakeAsync(() => {
+  it('should load translations', fakeAsync(() => {
+    const setNavbarModeSpy = spyOn(navbarService, 'setNavbarMode');
+    const setNavbarMobileVisibilitySpy = spyOn(navbarService, 'setNavbarMobileVisibility');
+    const setFooterVisibilitySpy = spyOn(footerService, 'setFooterVisibility');
+    component.ngOnInit();
+    expect(setNavbarModeSpy).toHaveBeenCalledWith(6);
+    expect(setNavbarMobileVisibilitySpy).toHaveBeenCalledWith(true);
+    expect(setFooterVisibilitySpy).toHaveBeenCalledWith(false);
+    component.ngOnInit();
+  }));
 
-  //  spyOn(navbarService, TestBed.get(NavbarService)).and.returnValue(of(true));
-  //   // spyOn(navbarService, 'setNavbarMode').and.returnValue(Observable.of(6));
-  //   // spyOn(footerService, 'setFooterVisibility').and.returnValue(Observable.of(false));
-  //   // spyOn(authService, 'authenticate').and.returnValue(Observable.of(true));
-  //   component.ngOnInit();
-  // }));
+  it('should load translations', async(() => {
+    spyOn(translateService, 'getBrowserLang').and.returnValue('en');
+    const compiled = fixture.debugElement.nativeElement;
+    // the content should be translated to english now
+    expect(compiled.querySelector('.btn').textContent).toEqual(translations.START.GETSTARTED);
+  }));
 
-  // it('should load translations', async(() => {
-  //   spyOn(translateService, 'getBrowserLang').and.returnValue('en');
-  //   const compiled = fixture.debugElement.nativeElement;
-  //   // the content should be translated to english now
-  //   expect(compiled.querySelector('.btn').textContent).toEqual(translations.START.GETSTARTED);
-  // }));
+  it('should call go back', () => {
+    component.goBack();
+  });
 
-  // it('should call go back', () => {
-  //  // component.goBack();
-  // });
+  it('should call go next, on button click if promocode is not empty', () => {
+    component.promoCodeForm.controls.promoCode.setValue('MOTEST1');
+    spyOn(mockAppService, 'setJourneyType');
 
-  // it('should call go next, on button click if promocode is not empty', () => {
-  //   component.promoCodeForm.controls.promoCode.setValue('MOTEST1');
-  //   spyOn(mockAppService, 'setJourneyType');
+    const btn = fixture.debugElement.query(By.css('.btn'));
+    btn.triggerEventHandler('click', null);
+    fixture.detectChanges();
+    console.log('=============not empty==============');
+  });
 
-  //   const btn = fixture.debugElement.query(By.css('.btn'));
-  //   btn.triggerEventHandler('click', null);
-  //   fixture.detectChanges();
-  //   console.log('=============not empty==============');
-  // });
+  it('should call go next, on button click if promocode is empty', () => {
+    component.promoCodeForm.controls.promoCode.setValue(null);
 
-  // it('should call go next, on button click if promocode is empty', () => {
-  //   component.promoCodeForm.controls.promoCode.setValue(null);
+    spyOn(authService, 'saveEnquiryId').and.callThrough();
+    spyOn(router, 'navigate').and.returnValue([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
 
-  //   spyOn(authService, 'saveEnquiryId').and.callThrough();
-  //   spyOn(router, 'navigate').and.returnValue([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+    const btn = fixture.debugElement.query(By.css('.btn'));
+    btn.triggerEventHandler('click', null);
 
-  //   const btn = fixture.debugElement.query(By.css('.btn'));
-  //   btn.triggerEventHandler('click', null);
+    authService.saveEnquiryId(null);
+    expect(authService.saveEnquiryId).toHaveBeenCalledWith(null);
 
-  //   authService.saveEnquiryId(null);
-  //   expect(authService.saveEnquiryId).toHaveBeenCalledWith(null);
+    router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+    expect(router.navigate).toHaveBeenCalledWith([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
 
-  //   router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
-  //   expect(router.navigate).toHaveBeenCalledWith([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+    console.log('==============empty=============');
+  });
 
-  //   console.log('==============empty=============');
-  // });
+  it('portfolio service status: 6005', () => {
+    spyOn(investmentEngagementJourneyService, 'verifyPromoCode').and.callThrough().and.returnValue((mockData.case1));
+    spyOn(loader, 'hideLoader');
+    spyOn(authService, 'saveEnquiryId').and.callThrough();
+    spyOn(router, 'navigate').and.returnValue([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
 
-  // it('portfolio service status: 6005', () => {
-  //   spyOn(investmentEngagementJourneyService, 'verifyPromoCode').and.callThrough().and.returnValue(Observable.of(mockData.case1));
-  //   spyOn(loader, 'hideLoader');
-  //   spyOn(authService, 'saveEnquiryId').and.callThrough();
-  //   spyOn(router, 'navigate').and.returnValue([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+    component.verifyPromoCode(mockData.promoCode);
+    investmentEngagementJourneyService.verifyPromoCode(mockData.promoCode).subscribe((res) => {
+      expect(loader.hideLoader).toHaveBeenCalled();
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(component.promoCode).toEqual(res.responseMessage);
 
-  //   component.verifyPromoCode(mockData.promoCode);
-  //   investmentEngagementJourneyService.verifyPromoCode(mockData.promoCode).subscribe((res) => {
-  //     expect(loader.hideLoader).toHaveBeenCalled();
-  //     fixture.detectChanges();
-  //     fixture.whenStable().then(() => {
-  //       expect(component.promoCode).toEqual(res.responseMessage);
+        expect(authService.saveEnquiryId).toHaveBeenCalledWith(mockData.case1.objectList[0].enquiryId);
 
-  //       expect(authService.saveEnquiryId).toHaveBeenCalledWith(mockData.case1.objectList[0].enquiryId);
+        router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+        expect(router.navigate).toHaveBeenCalledWith([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+      });
+    });
+    expect(investmentEngagementJourneyService.verifyPromoCode).toHaveBeenCalledWith(mockData.promoCode);
+    console.log('==============6005=============');
+  });
 
-  //       router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
-  //       expect(router.navigate).toHaveBeenCalledWith([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
-  //     });
-  //   });
-  //   expect(investmentEngagementJourneyService.verifyPromoCode).toHaveBeenCalledWith(mockData.promoCode);
-  //   console.log('==============6005=============');
-  // });
+  it('portfolio service status: 5017', () => {
+    spyOn(investmentEngagementJourneyService, 'verifyPromoCode').and.returnValue((mockData.case2));
+    spyOn(component, 'showErrorModal');
 
-  // it('portfolio service status: 5017', () => {
-  //   spyOn(investmentEngagementJourneyService, 'verifyPromoCode').and.returnValue(Observable.of(mockData.case2));
-  //   spyOn(component, 'showErrorModal');
+    component.isDisabled = true;
 
-  //   component.isDisabled = true;
+    component.verifyPromoCode(mockData.promoCode);
+    investmentEngagementJourneyService.verifyPromoCode(mockData.promoCode).subscribe((res) => {
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(component.isDisabled).toEqual(false);
+        expect(component.showErrorModal).toHaveBeenCalledTimes(1);
+      });
+    });
+    expect(investmentEngagementJourneyService.verifyPromoCode).toHaveBeenCalledWith(mockData.promoCode);
+    console.log('==============5017=============');
+  });
 
-  //   component.verifyPromoCode(mockData.promoCode);
-  //   investmentEngagementJourneyService.verifyPromoCode(mockData.promoCode).subscribe((res) => {
-  //     fixture.detectChanges();
-  //     fixture.whenStable().then(() => {
-  //       expect(component.isDisabled).toEqual(false);
-  //       expect(component.showErrorModal).toHaveBeenCalledTimes(1);
-  //     });
-  //   });
-  //   expect(investmentEngagementJourneyService.verifyPromoCode).toHaveBeenCalledWith(mockData.promoCode);
-  //   console.log('==============5017=============');
-  // });
+  it('portfolio service status: 6010', () => {
+    spyOn(investmentEngagementJourneyService, 'verifyPromoCode').and.returnValue((mockData.case3));
+    spyOn(loader, 'hideLoader');
 
-  // it('portfolio service status: 6010', () => {
-  //   spyOn(investmentEngagementJourneyService, 'verifyPromoCode').and.returnValue(Observable.of(mockData.case3));
-  //   spyOn(loader, 'hideLoader');
+    comp.verifyPromoCode(mockData.promoCode);
+    investmentEngagementJourneyService.verifyPromoCode(mockData.promoCode).subscribe((res) => {
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(comp.isDisabled).toEqual(false);
+      });
+    });
+    expect(investmentEngagementJourneyService.verifyPromoCode).toHaveBeenCalledWith(mockData.promoCode);
+    console.log('==============6010=============');
+  });
 
-  //   comp.verifyPromoCode(mockData.promoCode);
-  //   investmentEngagementJourneyService.verifyPromoCode(mockData.promoCode).subscribe((res) => {
-  //     fixture.detectChanges();
-  //     fixture.whenStable().then(() => {
-  //       expect(comp.isDisabled).toEqual(false);
-  //     });
-  //   });
-  //   expect(investmentEngagementJourneyService.verifyPromoCode).toHaveBeenCalledWith(mockData.promoCode);
-  //   console.log('==============6010=============');
-  // });
+  it('portfolio service subscribe error', () => {
+    const result = concat(throwError(new Error('oops!')));
+    spyOn(investmentEngagementJourneyService, 'verifyPromoCode').and.callThrough().and.returnValue(result);
+    spyOn(loader, 'hideLoader');
 
-  // it('portfolio service subscribe error', () => {
-  //   const result = concat(throwError(new Error('oops!')));
-  //   spyOn(investmentEngagementJourneyService, 'verifyPromoCode').and.callThrough().and.returnValue(result);
-  //   spyOn(loader, 'hideLoader');
+    component.verifyPromoCode(mockData.promoCode);
+    investmentEngagementJourneyService.verifyPromoCode(mockData.promoCode).subscribe((res) => {
+    }, (error) => {
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(loader.hideLoader).toHaveBeenCalled();
+        expect(component.isDisabled).toEqual(false);
+      });
+    });
+    expect(investmentEngagementJourneyService.verifyPromoCode).toHaveBeenCalledWith(mockData.promoCode);
+    console.log('=============subscribe error==============');
+  });
 
-  //   component.verifyPromoCode(mockData.promoCode);
-  //   investmentEngagementJourneyService.verifyPromoCode(mockData.promoCode).subscribe((res) => {
-  //   }, (error) => {
-  //     fixture.detectChanges();
-  //     fixture.whenStable().then(() => {
-  //       expect(loader.hideLoader).toHaveBeenCalled();
-  //       expect(component.isDisabled).toEqual(false);
-  //     });
-  //   });
-  //   expect(investmentEngagementJourneyService.verifyPromoCode).toHaveBeenCalledWith(mockData.promoCode);
-  //   console.log('=============subscribe error==============');
-  // });
-
-  // it('should call show error modal', () => {
-  //   ngbModalRef = ngbModalService.open(ErrorModalComponent);
-  //   spyOn(ngbModalService, 'open').and.returnValue(ngbModalRef);
-  //   const showModal = comp.showErrorModal();
-  //   expect(ngbModalService.open).toHaveBeenCalled();
-  //   expect(ngbModalRef.componentInstance.errorTitle).toEqual('Error');
-  //   expect(ngbModalRef.componentInstance.errorDescription).toEqual(translations.PROMO_ERROR);
-  //   expect(showModal).toEqual(false);
-  // });
+  it('should call show error modal', () => {
+    ngbModalRef = ngbModalService.open(ErrorModalComponent);
+    spyOn(ngbModalService, 'open').and.returnValue(ngbModalRef);
+    const showModal = comp.showErrorModal();
+    expect(ngbModalService.open).toHaveBeenCalled();
+    expect(ngbModalRef.componentInstance.errorTitle).toEqual('Error');
+    expect(ngbModalRef.componentInstance.errorDescription).toEqual(translations.PROMO_ERROR);
+    expect(showModal).toEqual(false);
+  });
 });
