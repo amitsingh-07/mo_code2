@@ -65,13 +65,64 @@ export class FundDetailsComponent implements OnInit {
 
   getHighlightSheetLink(fund) {
     let highlightSheetFileName;
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    let newWindow;
+    if (iOS) {
+      newWindow = window.open();
+    }
     if (fund.factSheetLink) {
       highlightSheetFileName = fund.factSheetLink.split('|')[1];
     }
-    return document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + highlightSheetFileName;
+    const pdfUrl = document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + highlightSheetFileName;
+    if (iOS) {
+      if (newWindow.document.readyState === 'complete') {
+        newWindow.location.assign(pdfUrl);
+      } else {
+        newWindow.onload = () => {
+          newWindow.location.assign(pdfUrl);
+        };
+      }
+    } else {        
+      this.downloadFile(highlightSheetFileName);
+    }
+    
   }
   getProspectusLink() {
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    let newWindow;
+    if (iOS) {
+      newWindow = window.open();
+    }
     let prospectusFileName = (this.portfolioType) ? 'prospectus_investment.pdf' : 'prospectus_wise_saver.pdf';
-    return document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + prospectusFileName;
+     
+    const pdfUrl = document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + prospectusFileName;
+    if (iOS) {
+      if (newWindow.document.readyState === 'complete') {
+        newWindow.location.assign(pdfUrl);
+      } else {
+        newWindow.onload = () => {
+          newWindow.location.assign(pdfUrl);
+        };
+      }
+    } else {        
+      this.downloadFile(prospectusFileName);
+    }
+  }
+  
+  downloadFile(highlightSheetFileName) {
+    const url = document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + highlightSheetFileName;
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.setAttribute('style', 'display: none');
+    a.href = url;
+    a.download = highlightSheetFileName;
+    a.click();
+    // window.URL.revokeObjectURL(url);
+    // a.remove();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, 1000);
+
   }
 }
