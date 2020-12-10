@@ -32,7 +32,7 @@ import { ComprehensiveService } from './../comprehensive.service';
 import { CurrencyPipe } from '@angular/common';
 import { appConstants } from './../../app.constants';
 
-import { tokenGetterFn, mockCurrencyPipe } from
+import { tokenGetterFn, mockCurrencyPipe, MockComprehensiveService } from
   '../../../assets/mocks/service/shared-service';
 
 import { FooterService } from './../../shared/footer/footer.service';
@@ -104,6 +104,12 @@ describe('MyLiabilitiesComponent', () => {
   };
   //let translations: any = '';
   let translations = require('../../../assets/i18n/comprehensive/en.json');
+  function updateForm(userInfo) {
+    component.myLiabilitiesForm.controls['carLoansAmount'].setValue(userInfo.carLoansAmount);
+    component.myLiabilitiesForm.controls['otherLoanOutstandingAmount'].setValue(userInfo.otherLoanOutstandingAmount);
+    component.myLiabilitiesForm.controls['otherPropertyLoanOutstandingAmount'].setValue(userInfo.otherPropertyLoanOutstandingAmount);
+    component.myLiabilitiesForm.controls['homeLoanOutstandingAmount'].setValue(userInfo.homeLoanOutstandingAmount);
+  }
   const routerStub = {
     navigate: jasmine.createSpy('navigate'),
     navigateByUrl: jasmine.createSpy('navigateByUrl')
@@ -147,6 +153,7 @@ describe('MyLiabilitiesComponent', () => {
         HeaderService,
         LoaderService,
         FormBuilder,
+        //{provide: ComprehensiveService, useValue: MockComprehensiveService },
         ComprehensiveService,
         ComprehensiveApiService,
         AboutAge,
@@ -190,6 +197,7 @@ describe('MyLiabilitiesComponent', () => {
     //router = new RouterStub();
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
     //router = TestBed.get(Router);
+	//component.route = TestBed.get(ActivatedRoute);
     /*translations = {
       CMP: {
         COMPREHENSIVE_STEPS: {
@@ -248,7 +256,7 @@ describe('MyLiabilitiesComponent', () => {
 
   afterEach(() => {
     TestBed.resetTestingModule();
-    const summaryData: any = {comprehensiveEnquiry:{enquiryId:131297,sessionTrackerId:55877,type:'Comprehensive-Lite',hasComprehensive:true,hasDependents:false,hasEndowments:'0',hasRegularSavingsPlans:false,generatedTokenForReportNotification:null,stepCompleted:4,subStepCompleted:0,reportStatus:'edit',isValidatedPromoCode:false,homeLoanUpdatedByLiabilities:null,isLocked:false,isDobUpdated:true,dobPopUpEnable:false,isDobChangedInvestment:null,isConfirmationEmailSent:null,paymentStatus:null,reportSubmittedTimeStamp:'2020-05-06T21:31:35.000+0000'},baseProfile:{firstName:'rini',lastName:'test',dateOfBirth:'06/10/1988',dateOfBirthInvestment:'06/10/1988',nation:null,gender:'male',genderInvestment:'male',email:'mo2uatapr2_1@yopmail.com',mobileNumber:'8998110734',nationalityStatus:'Singapore PR',dobUpdateable:false,journeyType:'Investment',smoker:false},"dependentsSummaryList":{"dependentsList":[],"noOfHouseholdMembers":2,"houseHoldIncome":"Below $2,000","noOfYears":0},"dependentEducationPreferencesList":[],comprehensiveIncome:{enquiryId:131297,employmentType:'Employed',monthlySalary:70000.0,monthlyRentalIncome:0.0,otherMonthlyWorkIncome:0.0,otherMonthlyIncome:0.0,annualBonus:null,annualDividends:0.0,otherAnnualIncome:0.0},comprehensiveSpending:{enquiryId:131297,monthlyLivingExpenses:60000.0,adHocExpenses:null,homeLoanPayOffUntil:null,mortgagePaymentUsingCPF:0.0,mortgagePaymentUsingCash:0.0,mortgageTypeOfHome:'',mortgagePayOffUntil:null,carLoanPayment:0.0,carLoanPayoffUntil:null,otherLoanPayment:null,otherLoanPayoffUntil:null,HLMortgagePaymentUsingCPF:null,HLMortgagePaymentUsingCash:null,HLtypeOfHome:''},comprehensiveRegularSavingsList:[],comprehensiveDownOnLuck:{enquiryId:131297,badMoodMonthlyAmount:300.0,hospitalPlanId:2,hospitalPlanName:'Government Hospital Ward A'},comprehensiveAssets:{enquiryId:131297,cashInBank:7000.0,savingsBonds:8000.0,cpfOrdinaryAccount:null,cpfSpecialAccount:null,cpfMediSaveAccount:null,cpfRetirementAccount:null,schemeType:null,estimatedPayout:null,topupAmount:null,withdrawalAmount:null,retirementSum:null,homeMarketValue:0.0,investmentPropertiesValue:0.0,assetsInvestmentSet:[{assetId:628,typeOfInvestment:'MoneyOwl - Equity',investmentAmount:null}],otherAssetsValue:0.0,source:'MANUAL'},comprehensiveLiabilities:{enquiryId:131297,homeLoanOutstandingAmount:null,otherPropertyLoanOutstandingAmount:0.0,otherLoanOutstandingAmount:null,carLoansAmount:0.0},comprehensiveInsurancePlanning:null,comprehensiveRetirementPlanning:{enquiryId:131297,retirementAge:'45',haveOtherSourceRetirementIncome:null,retirementIncomeSet:[],lumpSumBenefitSet:[]}};
+    const summaryData: any = {comprehensiveEnquiry:{ enquiryId:131297,sessionTrackerId:55877,type:'Comprehensive-Lite',hasComprehensive:true,hasDependents:false,hasEndowments:'0',hasRegularSavingsPlans:false,generatedTokenForReportNotification:null,stepCompleted:4,subStepCompleted:0,reportStatus:'edit',isValidatedPromoCode:false,homeLoanUpdatedByLiabilities:null,isLocked:false,isDobUpdated:true,dobPopUpEnable:false,isDobChangedInvestment:null,isConfirmationEmailSent:null,paymentStatus:null,reportSubmittedTimeStamp:'2020-05-06T21:31:35.000+0000'},baseProfile:{firstName:'rini',lastName:'test',dateOfBirth:'06/10/1988',dateOfBirthInvestment:'06/10/1988',nation:null,gender:'male',genderInvestment:'male',email:'mo2uatapr2_1@yopmail.com',mobileNumber:'8998110734',nationalityStatus:'Singapore PR',dobUpdateable:false,journeyType:'Investment',smoker:false},"dependentsSummaryList":{"dependentsList":[],"noOfHouseholdMembers":2,"houseHoldIncome":"Below $2,000","noOfYears":0},"dependentEducationPreferencesList":[],comprehensiveIncome:{enquiryId:131297,employmentType:'Employed',monthlySalary:70000.0,monthlyRentalIncome:0.0,otherMonthlyWorkIncome:0.0,otherMonthlyIncome:0.0,annualBonus:null,annualDividends:0.0,otherAnnualIncome:0.0},comprehensiveSpending:{enquiryId:131297,monthlyLivingExpenses:60000.0,adHocExpenses:null,homeLoanPayOffUntil:null,mortgagePaymentUsingCPF:0.0,mortgagePaymentUsingCash:0.0,mortgageTypeOfHome:'',mortgagePayOffUntil:null,carLoanPayment:0.0,carLoanPayoffUntil:null,otherLoanPayment:null,otherLoanPayoffUntil:null,HLMortgagePaymentUsingCPF:null,HLMortgagePaymentUsingCash:null,HLtypeOfHome:''},comprehensiveRegularSavingsList:[],comprehensiveDownOnLuck:{enquiryId:131297,badMoodMonthlyAmount:300.0,hospitalPlanId:2,hospitalPlanName:'Government Hospital Ward A'},comprehensiveAssets:{enquiryId:131297,cashInBank:7000.0,savingsBonds:8000.0,cpfOrdinaryAccount:null,cpfSpecialAccount:null,cpfMediSaveAccount:null,cpfRetirementAccount:null,schemeType:null,estimatedPayout:null,topupAmount:null,withdrawalAmount:null,retirementSum:null,homeMarketValue:0.0,investmentPropertiesValue:0.0,assetsInvestmentSet:[{assetId:628,typeOfInvestment:'MoneyOwl - Equity',investmentAmount:null}],otherAssetsValue:0.0,source:'MANUAL'},comprehensiveLiabilities:{enquiryId:131297,homeLoanOutstandingAmount:null,otherPropertyLoanOutstandingAmount:0.0,otherLoanOutstandingAmount:null,carLoansAmount:0.0},comprehensiveInsurancePlanning:null,comprehensiveRetirementPlanning:{enquiryId:131297,retirementAge:'45',haveOtherSourceRetirementIncome:null,retirementIncomeSet:[],lumpSumBenefitSet:[]}};
     comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
     comprehensiveService.setComprehensiveSummary(summaryData);
     //spyOn(comprehensiveService, 'transformAsCurrency').and.returnValue('$10');
@@ -273,5 +281,121 @@ describe('MyLiabilitiesComponent', () => {
     const setPageTitleSpy = spyOn(navbarService, 'setPageTitleWithIcon');
     component.setPageTitle('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
     expect(setPageTitleSpy).toHaveBeenCalledWith('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE', { id: 'MyLiabilitiesComponent', iconClass: 'navbar__menuItem--journey-map' });
+  });
+  
+  it('form valid', () => {
+    expect(component.myLiabilitiesForm.valid).toBe(true);
+  });
+
+  it('myLiabilities form valid', () => {
+    const userInfo = {
+      homeLoanOutstandingAmount: 122,
+      otherPropertyLoanOutstandingAmount: 100,
+      otherLoanOutstandingAmount: 200,
+      carLoansAmount: 270,
+    };
+
+    updateForm(userInfo);
+    expect(component.myLiabilitiesForm.valid).toBe(true);
+
+    //component.save();
+  });
+  it('Trigger Tooltip', () => {
+	const showModal = component.showToolTipModal('HOME_LOAN_OUTSTANDING_TITLE', 'HOME_LOAN_OUTSTANDING_MESSAGE');
+  });
+  /*
+  it('Save service', () => {
+	  //spyOn(comprehensiveAPiService, 'saveLiabilities').and.callThrough().and.returnValue(Observable.of("'responseMessage':{'responseCode':6000,'responseDescription':'Successful response'},'objectList':[]"));
+    //spyOn(loader, 'hideLoader');
+    const data = { 'responseMessage':{'responseCode':6000,'responseDescription':'Successful response'},'objectList':[] };
+    spyOn(comprehensiveAPiService, 'saveLiabilities').and.returnValue(Observable.of(data));
+	  
+  }); */
+  
+  it('should call onTotalOutstanding and get response as zero', () => {
+    //component.totalOutstanding = 0;
+    spyOn(comprehensiveService, 'additionOfCurrency').and.returnValue(0);
+    spyOn(comprehensiveService, 'setBucketImage').and.returnValue('emptyBucket');
+    fixture.detectChanges();
+    component.onTotalOutstanding();
+    comprehensiveService.setBucketImage('', '', 0);
+    comprehensiveService.additionOfCurrency({});
+    expect(component.totalOutstanding).toBe(0);
+    expect(comprehensiveService.additionOfCurrency).toHaveBeenCalledWith({});
+    expect(comprehensiveService.setBucketImage).toHaveBeenCalledWith('', '', 0);
+  }); 
+  
+  it('should redirect to Liabilities Summary true', () => {
+	component.comprehensiveJourneyMode = true;
+    const navigateSpy = spyOn(router, 'navigate');
+    component.routerPath();
+    expect(navigateSpy).toHaveBeenCalledWith(['../comprehensive/my-liabilities/summary']);
+  });
+  
+  it('should redirect to Liabilities Summary false', () => {
+    component.comprehensiveJourneyMode = false;
+    const navigateSpy = spyOn(router, 'navigate');
+    component.routerPath();
+    expect(navigateSpy).toHaveBeenCalledWith(['../comprehensive/my-liabilities/summary']);
+  });
+  
+  
+  it('should redirect to Summary Modal true', () => {
+	component.routerEnabled = true;
+    const navigateSpy = spyOn(router, 'navigate');
+    component.showSummaryModal();
+    expect(navigateSpy).toHaveBeenCalledWith(['../comprehensive/my-liabilities/summary']);
+  }); 
+  
+  it('should redirect to Summary Modal false', () => {
+	component.routerEnabled = false;
+    spyOn(comprehensiveService, 'getLiquidCash').and.returnValue(10);
+    spyOn(comprehensiveService, 'getComputeSpareCash').and.returnValue(10);
+	const summaryModalDetails = {
+        setTemplateModal: 2,
+        contentObj: 'finance Modal',
+        liabilitiesEmergency: true,
+        liabilitiesLiquidCash: 100,
+        liabilitiesMonthlySpareCash: 100,
+        nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/3',
+        routerEnabled: true
+      };
+	  const navigateSpy = spyOn(comprehensiveService, 'openSummaryPopUpModal');
+	  expect(navigateSpy).toHaveBeenCalledWith([summaryModalDetails]);
+    component.showSummaryModal();
+  }); 
+
+  it('should trigger OnChange', () => {
+    component.onChange();
+  });
+
+  it('should trigger ngOnInit', () => {	
+    component.ngOnInit();
+  });
+
+  it('should trigger ngOnDestroy', () => {
+    component.ngOnDestroy();
+  });
+  
+  it('should trigger goToNext true', () => {
+    component.viewMode = true;
+    component.goToNext(component.myLiabilitiesForm);
+  });
+  
+  it('should trigger goToNext false', () => {
+    component.viewMode = false;
+    component.goToNext(component.myLiabilitiesForm);
+  });
+  
+  it('should trigger addPropertyLoan() ', () => {
+    component.addPropertyLoan() ;
+  });
+  
+  it('should trigger buildMyLiabilitiesForm() ', () => {
+    component.buildMyLiabilitiesForm();
+  });
+  
+  it('should trigger validateLiabilities ', () => {
+    component.validateLiabilities(component.myLiabilitiesForm);
   });
 });
