@@ -109,16 +109,14 @@ export class FundDetailsComponent implements OnInit {
     }
   }
   
-  downloadFile(highlightSheetFileName) {
-    const url = document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + highlightSheetFileName;
+  downloadFile(fileName) {
+    const url = document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + fileName;
     const a = document.createElement('a');
     document.body.appendChild(a);
     a.setAttribute('style', 'display: none');
     a.href = url;
-    a.download = highlightSheetFileName;
+    a.download = fileName;
     a.click();
-    // window.URL.revokeObjectURL(url);
-    // a.remove();
     setTimeout(() => {
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
