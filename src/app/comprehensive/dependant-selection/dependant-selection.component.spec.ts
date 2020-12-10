@@ -63,7 +63,16 @@ import { RoutingService } from './../../shared/Services/routing.service';
 
 import { FileUtil } from './../../shared/utils/file.util';
 
-
+export class TestComponent {
+}
+export const routes: Routes = [
+  {
+    path: COMPREHENSIVE_ROUTES.DEPENDANT_DETAILS ,
+    component: TestComponent
+  },
+  { path: COMPREHENSIVE_ROUTES.DEPENDANT_SELECTION + '/summary', component: TestComponent },
+  { path: COMPREHENSIVE_ROUTES.STEPS + '/2', component: TestComponent },
+]; 
 class MockRouter {
   navigateByUrl(url: string) { return url; }
 }
@@ -97,6 +106,7 @@ describe('DependantSelectionComponent', () => {
   };
   //let translations: any = '';
   let translations = require('../../../assets/i18n/comprehensive/en.json');
+  let commonTranslation = require('../../../assets/i18n/app/en.json');
   const routerStub = {
     navigate: jasmine.createSpy('navigate'),
     navigateByUrl: jasmine.createSpy('navigateByUrl')
@@ -193,8 +203,29 @@ describe('DependantSelectionComponent', () => {
 
   afterEach(() => {
     TestBed.resetTestingModule();
-    const summaryData: any = {comprehensiveEnquiry:{enquiryId:131297,sessionTrackerId:55877,type:'Comprehensive-Lite',hasComprehensive:true,hasDependents:false,hasEndowments:'0',hasRegularSavingsPlans:false,generatedTokenForReportNotification:null,stepCompleted:4,subStepCompleted:0,reportStatus:'edit',isValidatedPromoCode:false,homeLoanUpdatedByLiabilities:null,isLocked:false,isDobUpdated:true,dobPopUpEnable:false,isDobChangedInvestment:null,isConfirmationEmailSent:null,paymentStatus:null,reportSubmittedTimeStamp:'2020-05-06T21:31:35.000+0000'},baseProfile:{firstName:'rini',lastName:'test',dateOfBirth:'06/10/1988',dateOfBirthInvestment:'06/10/1988',nation:null,gender:'male',genderInvestment:'male',email:'mo2uatapr2_1@yopmail.com',mobileNumber:'8998110734',nationalityStatus:'Singapore PR',dobUpdateable:false,journeyType:'Investment',smoker:false},"dependentsSummaryList":{"dependentsList":[],"noOfHouseholdMembers":2,"houseHoldIncome":"Below $2,000","noOfYears":0},"dependentEducationPreferencesList":[],comprehensiveIncome:{enquiryId:131297,employmentType:'Employed',monthlySalary:70000.0,monthlyRentalIncome:0.0,otherMonthlyWorkIncome:0.0,otherMonthlyIncome:0.0,annualBonus:null,annualDividends:0.0,otherAnnualIncome:0.0},comprehensiveSpending:{enquiryId:131297,monthlyLivingExpenses:60000.0,adHocExpenses:null,homeLoanPayOffUntil:null,mortgagePaymentUsingCPF:0.0,mortgagePaymentUsingCash:0.0,mortgageTypeOfHome:'',mortgagePayOffUntil:null,carLoanPayment:0.0,carLoanPayoffUntil:null,otherLoanPayment:null,otherLoanPayoffUntil:null,HLMortgagePaymentUsingCPF:null,HLMortgagePaymentUsingCash:null,HLtypeOfHome:''},comprehensiveRegularSavingsList:[],comprehensiveDownOnLuck:{enquiryId:131297,badMoodMonthlyAmount:300.0,hospitalPlanId:2,hospitalPlanName:'Government Hospital Ward A'},comprehensiveAssets:{enquiryId:131297,cashInBank:7000.0,savingsBonds:8000.0,cpfOrdinaryAccount:null,cpfSpecialAccount:null,cpfMediSaveAccount:null,cpfRetirementAccount:null,schemeType:null,estimatedPayout:null,topupAmount:null,withdrawalAmount:null,retirementSum:null,homeMarketValue:0.0,investmentPropertiesValue:0.0,assetsInvestmentSet:[{assetId:628,typeOfInvestment:'MoneyOwl - Equity',investmentAmount:null}],otherAssetsValue:0.0,source:'MANUAL'},comprehensiveLiabilities:{enquiryId:131297,homeLoanOutstandingAmount:null,otherPropertyLoanOutstandingAmount:0.0,otherLoanOutstandingAmount:null,carLoansAmount:0.0},comprehensiveInsurancePlanning:null,comprehensiveRetirementPlanning:{enquiryId:131297,retirementAge:'45',haveOtherSourceRetirementIncome:null,retirementIncomeSet:[],lumpSumBenefitSet:[]}};
-    comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
+    const summaryData: any = {
+      comprehensiveEnquiry: { enquiryId: 131297, sessionTrackerId: 55877, type: 'Comprehensive-Lite', hasComprehensive: true, hasDependents: null, hasEndowments: '0', hasRegularSavingsPlans: false, generatedTokenForReportNotification: null, stepCompleted: 4, subStepCompleted: 0, reportStatus: 'edit', isValidatedPromoCode: false, homeLoanUpdatedByLiabilities: null, isLocked: false, isDobUpdated: true, dobPopUpEnable: false, isDobChangedInvestment: null, isConfirmationEmailSent: null, paymentStatus: null, reportSubmittedTimeStamp: '2020-05-06T21:31:35.000+0000' }, baseProfile: { firstName: 'rini', lastName: 'test', dateOfBirth: '06/10/1988', dateOfBirthInvestment: '06/10/1988', nation: null, gender: 'male', genderInvestment: 'male', email: 'mo2uatapr2_1@yopmail.com', mobileNumber: '8998110734', nationalityStatus: 'Singapore PR', dobUpdateable: false, journeyType: 'Investment', smoker: false }, dependentsSummaryList: {
+        dependentsList: [{
+          id: 1,
+          customerId: 0,
+          name: "Navin",
+          relationship: 'Brother',
+          gender: 'Male',
+          dateOfBirth: '25/12/1996',
+          nation: 'singaporean'
+        }], noOfHouseholdMembers: null, houseHoldIncome: null, noOfYears: 0
+      }, dependentEducationPreferencesList: [{
+        id: 0,
+        dependentId: 1,
+        enquiryId: 131297,
+        location: 'singapore',
+        educationCourse: null,
+        educationSpendingShare: 50,
+        endowmentMaturityAmount: 100,
+        endowmentMaturityYears: 2021
+      }], comprehensiveIncome: { enquiryId: 131297, employmentType: 'Employed', monthlySalary: 70000.0, monthlyRentalIncome: 0.0, otherMonthlyWorkIncome: 0.0, otherMonthlyIncome: 0.0, annualBonus: null, annualDividends: 0.0, otherAnnualIncome: 0.0 }, comprehensiveSpending: { enquiryId: 131297, monthlyLivingExpenses: 60000.0, adHocExpenses: null, homeLoanPayOffUntil: null, mortgagePaymentUsingCPF: 0.0, mortgagePaymentUsingCash: 0.0, mortgageTypeOfHome: '', mortgagePayOffUntil: null, carLoanPayment: 0.0, carLoanPayoffUntil: null, otherLoanPayment: null, otherLoanPayoffUntil: null, HLMortgagePaymentUsingCPF: null, HLMortgagePaymentUsingCash: null, HLtypeOfHome: '' }, comprehensiveRegularSavingsList: [], comprehensiveDownOnLuck: { enquiryId: 131297, badMoodMonthlyAmount: 300.0, hospitalPlanId: 2, hospitalPlanName: 'Government Hospital Ward A' }, comprehensiveAssets: { enquiryId: 131297, cashInBank: 7000.0, savingsBonds: 8000.0, cpfOrdinaryAccount: null, cpfSpecialAccount: null, cpfMediSaveAccount: null, cpfRetirementAccount: null, schemeType: null, estimatedPayout: null, topupAmount: null, withdrawalAmount: null, retirementSum: null, homeMarketValue: 0.0, investmentPropertiesValue: 0.0, assetsInvestmentSet: [{ assetId: 628, typeOfInvestment: 'MoneyOwl - Equity', investmentAmount: null }], otherAssetsValue: 0.0, source: 'MANUAL' }, comprehensiveLiabilities: { enquiryId: 131297, homeLoanOutstandingAmount: null, otherPropertyLoanOutstandingAmount: 0.0, otherLoanOutstandingAmount: null, carLoansAmount: 0.0 }, comprehensiveInsurancePlanning: null, comprehensiveRetirementPlanning: { enquiryId: 131297, retirementAge: '45', haveOtherSourceRetirementIncome: null, retirementIncomeSet: [], lumpSumBenefitSet: [] }
+    };
+    comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
     comprehensiveService.setComprehensiveSummary(summaryData);
     component.comprehensiveJourneyMode = true;
     spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
@@ -204,12 +235,150 @@ describe('DependantSelectionComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('form invalid when empty', () => {
+    expect(component.dependantSelectionForm.valid).toBeFalsy();
+  });
+
+  it('has dependants  validity', () => {
+    let errors = {};
+    const hasDependant = component.dependantSelectionForm.controls['dependantSelection'];
+    expect(hasDependant.valid).toBeFalsy();
+
+
+
+    // Check for invalid has Dependant name
+    hasDependant.setValue(null);
+    errors = hasDependant.errors || {};
+    expect(errors['required']).toBeTruthy();
+
+    // Check for valid has Dependant name
+    hasDependant.setValue(true);
+    errors = hasDependant.errors || {};
+    expect(errors['required']).toBeFalsy();
+
+
+  });
+  it('has dependant  validity', () => {
+    let errors = {};
+    const noOfHouseholdMembers = component.dependantSelectionForm.controls['noOfHouseholdMembers'];
+    expect(noOfHouseholdMembers.valid).toBeFalsy();
+
+
+
+    // Check for invalid has Dependant name
+    noOfHouseholdMembers.setValue(null);
+    errors = noOfHouseholdMembers.errors || {};
+    expect(errors['required']).toBeTruthy();
+
+    // Check for valid has Dependant name
+    noOfHouseholdMembers.setValue(1);
+    errors = noOfHouseholdMembers.errors || {};
+    expect(errors['required']).toBeFalsy();
+
+
+  });
+  it('has dependant  validity', () => {
+    let errors = {};
+    const houseHoldIncome = component.dependantSelectionForm.controls['houseHoldIncome'];
+    expect(houseHoldIncome.valid).toBeFalsy();
+
+
+    // Check for invalid has Dependant name
+    houseHoldIncome.setValue(null);
+    errors = houseHoldIncome.errors || {};
+    expect(errors['required']).toBeTruthy();
+
+    // Check for valid has Dependant name
+    houseHoldIncome.setValue(1);
+    errors = houseHoldIncome.errors || {};
+    expect(errors['required']).toBeFalsy();
+
+
+  });
+
+  it('submitting a form emits user info', () => {
+    expect(component.dependantSelectionForm.valid).toBeFalsy();
+    const hasDependant = component.dependantSelectionForm.controls['dependantSelection'];
+    const noOfHouseholdMembers = component.dependantSelectionForm.controls['noOfHouseholdMembers'];
+    const houseHoldIncome = component.dependantSelectionForm.controls['houseHoldIncome'];
+    hasDependant.setValue(true);
+    noOfHouseholdMembers.setValue(1);
+    houseHoldIncome.setValue("Below $2,000");
+    component.goToNext(component.dependantSelectionForm);
+  });
+
+
+  it('should call go back', () => {
+    spyOn(navbarService, 'goBack');
+  });
+
+  it('should execute ngOnInit', () => {
+    const setNavbarModeSpy = spyOn(navbarService, 'setNavbarComprehensive');
+    component.ngOnInit();
+    expect(setNavbarModeSpy).toHaveBeenCalledWith(true);
+
+  });
+
+  it('buildMyDependantSelectionForm', () => {
+    component.buildMyDependantSelectionForm();
+
+  });
+  it('selectHouseHoldMembers', () => {
+    component.selectHouseHoldMembers(1);
+
+  });
+  it('selectHouseHoldIncome', () => {
+    component.selectHouseHoldIncome("Below $2,000");
+
+  });
+
+  it('showSummaryModal', () => {
+    component.showSummaryModal();
+    component.summaryModalDetails = {
+      setTemplateModal: 1, dependantModelSel: false,
+      contentObj: component.childrenEducationNonDependantModal,
+      nonDependantDetails: {
+        livingCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.EXPENSE,
+        livingPercent: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.PERCENT,
+        livingEstimatedCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.COMPUTED_EXPENSE,
+        medicalBill: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.EXPENSE,
+        medicalYear: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.PERCENT,
+        medicalCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.COMPUTED_EXPENSE
+      },
+      nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2',
+      routerEnabled: component.summaryRouterFlag
+    };
+  comprehensiveService.openSummaryPopUpModal(component.summaryModalDetails);
+
+  });
+
+  it('ngOnDestroy', () => {
+    component.ngOnDestroy();
+
+  });
+  it('should call go next', () => {
+    spyOn(router, 'navigate');
+    component.goToNext(component.dependantSelectionForm);
+    component.viewMode=true;
+    expect(router.navigate).toHaveBeenCalledWith([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION_SUMMARY]);
+  });
+  it('should call go next', () => {
+    spyOn(router, 'navigate');
+    component.goToNext(component.dependantSelectionForm);
+    component.viewMode=false;
+   comprehensiveService.setDependantSelection(component.dependantSelectionForm.value.dependantSelection)
+  });
+  it('should call go next', () => {
+    spyOn(router, 'navigate');
+    component.routerPath(component.dependantSelectionForm);
+    expect(router.navigate).toHaveBeenCalledWith([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION_SUMMARY]);
+  });
+
+
 
   it('should set page title', () => {
     const setPageTitleSpy = spyOn(navbarService, 'setPageTitleWithIcon');
     component.setPageTitle('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
     expect(setPageTitleSpy).toHaveBeenCalledWith('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE', { id: 'DependantSelectionComponent', iconClass: 'navbar__menuItem--journey-map' });
   });
-
-
 });
