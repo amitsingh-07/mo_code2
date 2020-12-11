@@ -19,7 +19,7 @@
   "paymentEnabled": false,
   "iFastMaintenance": true,
   "maintenanceStartTime": "2020-12-11T11:30:00.000+08:00",
-  "maintenanceEndTime": "2020-12-11T12:30:00.000+08:00",
+  "maintenanceEndTime": "2020-12-11T16:30:00.000+08:00",
   "showPortfolioInfo": true,
   "hospitalPlanData": [{
       "id": 0,
