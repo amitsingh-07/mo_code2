@@ -65,7 +65,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   refCodeValidated: boolean = false;
   showSpinner: boolean = false;
   createAccBtnDisabled = true;
-
+  finlitEnabled = false;
   constructor(
     private formBuilder: FormBuilder,
     private modal: NgbModal,
@@ -92,6 +92,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.configService.getConfig().subscribe((config) => {
       this.distribution = config.distribution;
     });
+
+    if (route.snapshot.data[0]) {
+      this.finlitEnabled = route.snapshot.data[0]['finlitEnabled'];
+      this.appService.clearJourneys();
+      this.appService.clearPromoCode();
+    }
   }
 
   /**
@@ -130,7 +136,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.refreshCaptcha();
       this.loaderService.hideLoader();
     }
-    this.createAccountForm.statusChanges.subscribe((data)=>{
+    this.createAccountForm.statusChanges.subscribe((data) => {
       if (this.createAccountForm.touched || this.createAccountForm.dirty) {
         this.createAccBtnDisabled = false;
       }
@@ -197,6 +203,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.submitted = true;
     this.validateReferralCode();
     if (form.valid) {
+      form.value.userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : appConstants.USERTYPE.FINLIT;
       this.signUpService.setAccountInfo(form.value);
       this.openTermsOfConditions();
     }
@@ -207,7 +214,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     // If not empty, check if the apply button has been press
     if (this.createAccountForm.controls['referralCode'].value === '') {
       this.createAccountForm.controls['referralCode'].setErrors(null);
-    } else if (!this.refCodeValidated && !this.account.referralCode.errors?.invalidRefCode ) {
+    } else if (!this.refCodeValidated && !this.account.referralCode.errors?.invalidRefCode) {
       this.createAccountForm.controls['referralCode'].setErrors({ applyRefCode: true });
     }
   }
@@ -475,13 +482,13 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     if (event.target.value) {
       const enterEmail = event.target.value.replace(/\s/g, '');
       this.createAccountForm.controls[key].setValue(enterEmail);
-      if(key === 'referralCode' && !this.showSpinner) {
+      if (key === 'referralCode' && !this.showSpinner) {
         this.showClearBtn = true;
       } else {
         this.showClearBtn = false;
       }
     } else {
-      if(key === 'referralCode') {
+      if (key === 'referralCode') {
         this.showClearBtn = false;
       }
     }
@@ -496,14 +503,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.showClearBtn = false;
       this.showSpinner = true;
       // Call validate referral code, replace below code
-      this.signUpService.validateReferralCode(this.createAccountForm.controls['referralCode'].value).subscribe((response)=>{
+      this.signUpService.validateReferralCode(this.createAccountForm.controls['referralCode'].value).subscribe((response) => {
         if (response.responseMessage['responseCode'] === 6012) {
-          setTimeout(()=>{
+          setTimeout(() => {
             this.showSpinner = false;
             this.refCodeValidated = true;
           }, 1200);
         } else {
-          setTimeout(()=>{
+          setTimeout(() => {
             this.showSpinner = false;
             this.showClearBtn = true;
             this.createAccountForm.controls['referralCode'].setErrors({ invalidRefCode: true });

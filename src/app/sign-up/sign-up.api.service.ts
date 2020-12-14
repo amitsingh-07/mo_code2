@@ -70,7 +70,7 @@ export class SignUpApiService {
     }
 
     journeyType = journeyType.toLowerCase();
-
+console.log(getAccountInfo)
     return {
       customer: {
         countryCode: getAccountInfo.countryCode,
@@ -85,7 +85,8 @@ export class SignUpApiService {
       captcha,
       journeyType,
       enquiryId,
-      referralCode: getAccountInfo.referralCode
+      referralCode: getAccountInfo.referralCode,
+      userType: getAccountInfo.userType
     };
   }
 

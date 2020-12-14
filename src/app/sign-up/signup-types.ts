@@ -5,6 +5,7 @@ export interface ISignUp {
     journeyType: string;
     enquiryId: number;
     referralCode: string;
+    userType: string;
 }
 
 export interface IEnquiryUpdate {
