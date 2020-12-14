@@ -66,6 +66,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   showSpinner: boolean = false;
   createAccBtnDisabled = true;
   finlitEnabled = false;
+  
   constructor(
     private formBuilder: FormBuilder,
     private modal: NgbModal,

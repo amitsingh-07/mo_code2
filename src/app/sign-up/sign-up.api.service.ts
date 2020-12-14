@@ -70,7 +70,6 @@ export class SignUpApiService {
     }
 
     journeyType = journeyType.toLowerCase();
-console.log(getAccountInfo)
     return {
       customer: {
         countryCode: getAccountInfo.countryCode,
