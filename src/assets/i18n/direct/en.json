@@ -168,7 +168,10 @@
         "COMPARE_PLANS": "Compare Plans",
         "PLAN_FOUND": " Plan Found",
         "PLANS_FOUND": " Plans Found",
-        "COMPARE": "Compare"
+        "COMPARE": "Compare",
+        "NO_RESULTS_MSG": "We’re unable to find a recommendation in our database now but our friendly advisers are here to help!",
+        "NO_RESULTS_BTN_MSG": "Click on the button below to get advice on suitable plans.",
+        "NO_RESULTS_BTN_TXT": "Send me recommendations"
       },
       "RESULTS": {
         "TITLE": "Plans"

@@ -246,4 +246,37 @@ app-direct-results {
       padding: 15px;
     }
   }
+  .no-results-box {
+    border-radius: 6px;
+    text-align: center;
+    background-color: $white-color;
+    @include desktop {
+      margin-top: 50px;
+    }
+    &__img {
+      padding-top: 30px;
+    }
+    &__message {
+      font-family: $muli-regular;
+      font-size: 18px;
+      color: $black-color;
+      padding: 20px 40px 30px 40px;
+    }
+    &__separator {
+      height: 1px;
+      background-color: rgba(141, 154, 168, 0.35);
+    }
+    &__btn-message {
+      color: #4a4a4a;
+      font-size: 16px;
+      font-family: $muli-regular;
+      padding: 20px 0;
+    }
+    &__footer-btn {
+      padding: 0 20px 20px;
+      button {
+        width: 100%;
+      }
+    }
+  }
 }
