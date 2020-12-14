@@ -31,6 +31,8 @@
   "DIRECT_LIFE_PROTECTION": {
     "COVERAGE_AMT": {
       "TITLE": "Coverage Amount",
+      "LP_TITLE": "Life Coverage Amount",
+      "CI_TITLE": "CI Coverage Amount",      
       "DOLLAR": "$"
     },
     "DURATION": {
@@ -42,7 +44,9 @@
           "TITLE": "Premium Waiver Rider",
           "MESSAGE": "In the event that you are diagnosed with Critical Illness, your remaining premiums will be waived without affecting the payout benefit to you."
       }
-    }
+    },
+    "OPTIONAL": "(Optional)",
+    "IS_EARLY": "Early CI"
   },
   "EDUCATION": {
     "ABOUT_CHILD": {

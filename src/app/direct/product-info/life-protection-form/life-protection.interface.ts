@@ -5,4 +5,6 @@ export interface ILifeProtection {
     coverageAmt: number;
     premiumWaiver: boolean;
     duration: number;
+    ciCoverageAmount: number;
+    isEarlyCI: boolean;
 }

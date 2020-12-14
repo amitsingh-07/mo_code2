@@ -165,8 +165,10 @@ export class DirectApiService {
         const lifeProtection = this.directService.getLifeProtectionForm();
         const lifeProtectionData: ILifeProtectionNeedsData = {
             coverageAmount: lifeProtection.coverageAmt ? Formatter.getIntValue(lifeProtection.coverageAmt) : 0,
+            ciCoverageAmount: lifeProtection.ciCoverageAmount ? Formatter.getIntValue(lifeProtection.ciCoverageAmount) : '',
             coverageDuration: lifeProtection.duration,
-            isPremiumWaiver: lifeProtection.premiumWaiver
+            isPremiumWaiver: lifeProtection.premiumWaiver,
+            isEarlyCI: lifeProtection.isEarlyCI
         };
         return lifeProtectionData;
     }
