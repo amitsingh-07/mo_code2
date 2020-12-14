@@ -5,7 +5,7 @@ import { formConstants } from '../shared/form-constants';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { HospitalPlan } from './../guide-me/hospital-plan/hospital-plan';
-import { ILifeProtectionNeedsData } from './../guide-me/life-protection/life-protection';
+import { ILifeProtectionNeedsData } from './product-info/life-protection-form/life-protection.interface';
 import {
     ICriticalIllnessData,
     IEnquiryData,
