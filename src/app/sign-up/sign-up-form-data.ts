@@ -40,4 +40,5 @@ export class SignUpFormData {
   fundTypeId: number;
   // referral code
   referralCode: string;
+  userType: string;
 }
