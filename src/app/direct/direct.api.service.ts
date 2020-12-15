@@ -5,7 +5,7 @@ import { formConstants } from '../shared/form-constants';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { HospitalPlan } from './../guide-me/hospital-plan/hospital-plan';
-import { ILifeProtectionNeedsData } from './../guide-me/life-protection/life-protection';
+import { ILifeProtectionNeedsData } from './product-info/life-protection-form/life-protection.interface';
 import {
     ICriticalIllnessData,
     IEnquiryData,
@@ -165,8 +165,10 @@ export class DirectApiService {
         const lifeProtection = this.directService.getLifeProtectionForm();
         const lifeProtectionData: ILifeProtectionNeedsData = {
             coverageAmount: lifeProtection.coverageAmt ? Formatter.getIntValue(lifeProtection.coverageAmt) : 0,
+            ciCoverageAmount: lifeProtection.ciCoverageAmount ? Formatter.getIntValue(lifeProtection.ciCoverageAmount) : '',
             coverageDuration: lifeProtection.duration,
-            isPremiumWaiver: lifeProtection.premiumWaiver
+            isPremiumWaiver: lifeProtection.premiumWaiver,
+            isEarlyCI: lifeProtection.isEarlyCI
         };
         return lifeProtectionData;
     }
