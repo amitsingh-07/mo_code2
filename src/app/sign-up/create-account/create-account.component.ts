@@ -257,8 +257,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
             const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
             if ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
               this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) &&
-              (insuranceEnquiry &&
-                insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)) {
+              ( (insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) 
+              || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0) )) {
               const redirect = data.responseMessage.responseCode === 6000;
               this.updateInsuranceEnquiry(insuranceEnquiry, data, redirect);
             } else if (data.responseMessage.responseCode === 6000) {
@@ -338,11 +338,15 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   updateInsuranceEnquiry(insuranceEnquiry, data: any, redirect: boolean) {
+    const journeyType = (insuranceEnquiry.journeyType === appConstants.JOURNEY_TYPE_DIRECT) ?
+        appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
     const payload: IEnquiryUpdate = {
       customerId: data.objectList[0].customerRef,
       enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
       newCustomer: true,
-      selectedProducts: insuranceEnquiry.plans
+      selectedProducts: insuranceEnquiry.plans,      
+      enquiryProtectionTypeData: insuranceEnquiry.enquiryProtectionTypeData,
+      journeyType: journeyType
     };
     this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
       if (redirect) {

@@ -54,8 +54,8 @@ export class SignUpApiService {
     let enquiryId = -1;
 
     if ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) && (insuranceEnquiry &&
-        insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)) {
+      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) && ( (insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) 
+      || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0) )) {
       enquiryId = insuranceEnquiry.enquiryId;
     } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
       this.willWritingService.getWillCreatedPrelogin()) {
@@ -215,7 +215,7 @@ export class SignUpApiService {
     } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
       this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
       const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-      if (insuranceEnquiry && insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) {
+      if (insuranceEnquiry && ( (insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0) )) {
         journeyType = (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT) ?
           'insurance-direct' : 'insurance-guided';
         enqId = insuranceEnquiry.enquiryId;
