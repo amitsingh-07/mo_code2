@@ -36,6 +36,14 @@ app-sing-pass {
       padding-right: 15px;
     }
 
+    .autofill-text-new {
+      display: block;
+      width: 100%;
+      font-family: $muli-bold;
+      font-size: 14px;
+      color: $dark-grey-color;
+      text-align: center;
+    }
     .autofill-estimation {
       display: none;
     }

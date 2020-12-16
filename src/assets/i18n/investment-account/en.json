@@ -7,7 +7,8 @@
       "VIEW_DETAILS": "View Details",
       "SAVE_AND_CONTINUE": "Save and Continue",
       "PROCEED": "Proceed",
-      "OR": "OR"
+      "OR": "OR",
+      "Or": "Or"
     }
   },
   "POSTLOGIN": {
@@ -282,12 +283,13 @@
   "INVESTMENT_ACCOUNT_MYINFO": {
     "TAB_BUTTON": {
       "LABEL": "Autofill Forms Via",
-      "TIME": "Estimate about 5 mins"
+      "TIME": "Estimate about 5 mins",
+      "LABEL_NEW": "For Singaporeans and PRs only"
     },
     "OPEN_MODAL_DATA": {
       "TITLE": "Login to MyInfo",
-      "DESCRIPTION": "By signing in to MyInfo, the<strong> following information that you have previously entered will be overwritten</strong>.<div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details<br>Employment Details<br>Financial Details </div><br/>Would you like to proceed?",
-      "BTN-TEXT": "Proceed"
+      "DESCRIPTION": "<strong>Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.By signing in to MyInfo, the following information that you have previously entered will be overwritten.</strong> <br><br>Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.<br><br>By signing in to MyInfo, the following information that you have previously entered will be overwritten.<div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br/>Would you like to proceed and overwrite?",
+      "BTN-TEXT": "Yes, Proceed"
     },
     "MYINFO_CONFIRM": {
       "TITLE": "Login to MyInfo",
