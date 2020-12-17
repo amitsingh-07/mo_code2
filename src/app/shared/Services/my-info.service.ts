@@ -36,7 +36,7 @@ export class MyInfoService {
   windowRef: Window;
   
   constructor(
-    private modal: NgbModal, private apiService: ApiService, private router: Router,
+    private modal: NgbModal, private apiService: ApiService, private router: Router
     ) { }
 
   setMyInfoAttributes(attributes) {
