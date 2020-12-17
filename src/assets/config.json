@@ -21,7 +21,12 @@
   "maintenanceStartTime": "2020-09-22T18:00:00.000+08:00",
   "maintenanceEndTime": "2020-09-22T19:00:00.000+08:00",
   "showPortfolioInfo": true,
-  "hospitalPlanData": [{
+  "investment": {
+    "myInfoLoader2StartTime": 60000,
+    "myInfoLoader3StartTime": 90000
+  },
+  "hospitalPlanData": [
+    {
       "id": 0,
       "hospitalClass": "None",
       "hospitalClassDescription": ""
@@ -47,7 +52,8 @@
       "hospitalClassDescription": "Assigned doctor, Up to 9-bedded ward"
     }
   ],
-  "productCategory": [{
+  "productCategory": [
+    {
       "id": 1,
       "prodCatName": "Life Protection",
       "prodCatIcon": "LifeProtection-icon--teal.svg",
