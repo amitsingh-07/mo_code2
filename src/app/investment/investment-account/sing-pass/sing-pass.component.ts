@@ -1,10 +1,10 @@
 import { Component, Input, NgZone, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { Subject, Subscription } from 'rxjs';
-import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
+import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { ConfigService, IConfig } from '../../../config/config.service';
 import {
   ModelWithButtonComponent
@@ -36,13 +36,12 @@ export class SingPassComponent implements OnInit, OnDestroy {
   myInfoSubscription: any;
   isInvestmentMyInfoEnabled = false;
   myinfoChangeListener: Subscription;
-  loadingModalRef: NgbModalRef;
   changeListener = new Subject();
   status;
   secondTimer: any;
   thirdTimer: any;
-  secondPopUpTimer: any;
-  thirdPopUpTimer: any;
+  loader2StartTime: any;
+  loader3StartTime: any;
 
   constructor(
     private configService: ConfigService,
@@ -76,8 +75,8 @@ export class SingPassComponent implements OnInit, OnDestroy {
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.isInvestmentMyInfoEnabled = config.investmentMyInfoEnabled;
-      this.secondPopUpTimer = config.investment.myInfoLoader2StartTime;
-      this.thirdPopUpTimer = config.investment.myInfoLoader3StartTime;
+      this.loader2StartTime = config.investment.myInfoLoader2StartTime;
+      this.loader3StartTime = config.investment.myInfoLoader3StartTime;
     });
   }
 
@@ -161,11 +160,11 @@ export class SingPassComponent implements OnInit, OnDestroy {
   showFetchPopUp() {
     this.secondTimer = setTimeout(() => {
       this.openSecondPopup();
-    }, this.secondPopUpTimer);
+    }, this.loader2StartTime);
 
     this.thirdTimer = setTimeout(() => {
       this.openThirdPopup();
-    }, this.thirdPopUpTimer);
+    }, this.loader3StartTime);
   }
 
   closeMyInfoPopup(error: boolean) {

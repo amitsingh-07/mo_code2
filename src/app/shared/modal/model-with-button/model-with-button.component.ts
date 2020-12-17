@@ -1,5 +1,4 @@
 import { filter } from 'rxjs/operators';
-
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -30,12 +29,10 @@ export class ModelWithButtonComponent implements OnInit {
   @Input() closeBtn = true;
   @Input() investmentPeriodImg: any;
   @Input() spinner: any;
-  @Input() myInfoCloseBtn: true;
   @Output() primaryAction = new EventEmitter<any>();
   @Output() secondaryAction = new EventEmitter<any>();
   @Output() yesClickAction = new EventEmitter<any>();
   @Output() noClickAction = new EventEmitter<any>();
-
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -75,7 +72,6 @@ export class ModelWithButtonComponent implements OnInit {
     this.noClickAction.emit();
     this.activeModal.close();
   }
-  
 
   createAnimation() {
     const animationData = ANIMATION_DATA.MO_SPINNER;
