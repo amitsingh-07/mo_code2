@@ -144,7 +144,7 @@
     "FOREIGNER": {
       "title": "Unable to apply Via MyInfo",
       "message": "Sorry, we are unable to proceed your application via MyInfo as this feature is applicable to Singapore Citizens and Singapore Permanent Residents (PRs) only.<br><br>Please continue with the application by filling up the form manually.<br><br>Supporting documents are required. Takes at least 1 working day to get your account approved.",
-      "Continue_to_Form": "Continue to Form"
+      "btnText": "Continue to Form"
     }
   },
   "FINANCIAL_DETAILS": {

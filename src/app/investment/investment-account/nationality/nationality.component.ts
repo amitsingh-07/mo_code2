@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -17,7 +17,6 @@ import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.con
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
-import { MobileModalComponent } from './../../../guide-me/mobile-modal/mobile-modal.component';
 
 @Component({
   selector: 'app-nationality',
@@ -42,7 +41,6 @@ export class NationalityComponent implements OnInit {
     public footerService: FooterService,
     public activeModal: NgbActiveModal,
     private router: Router,
-    private formBuilder: FormBuilder,
     private investmentAccountService: InvestmentAccountService,
     private investmentCommonService: InvestmentCommonService,
     private modal: NgbModal,
@@ -65,10 +63,9 @@ export class NationalityComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
     this.selectNationalityFormValues = this.investmentAccountService.getInvestmentAccountFormData();
-    if (this.selectNationalityFormValues.isForeigner) {
-      this.investmentAccountService.setIsForeigner(false);
-      this.investmentAccountService.setMyInfoStatus(false);
-      this.showForeigner();
+    if (this.selectNationalityFormValues.showForeignerAlert) {
+      this.investmentAccountService.setForeignerAlert(false);
+      this.showForeignerAlert();
     }
     this.selectNationalityForm = new FormGroup({
       nationality: new FormControl(this.selectNationalityFormValues.nationality, Validators.required)
@@ -240,15 +237,13 @@ export class NationalityComponent implements OnInit {
     return false;
   }
 
-  showForeigner() {
+  showForeignerAlert() {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.foreignerModal.title;
     ref.componentInstance.errorMessageHTML = this.foreignerModal.message;
-    ref.componentInstance.primaryActionLabel = this.foreignerModal.Continue_to_Form;
+    ref.componentInstance.primaryActionLabel = this.foreignerModal.btnText;
     ref.componentInstance.primaryAction.subscribe(() => {
       ref.dismiss();
     });
   }
 }
-
-

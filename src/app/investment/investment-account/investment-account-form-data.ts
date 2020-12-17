@@ -11,7 +11,7 @@ export class InvestmentAccountFormData {
   birthCountry: any;
   passportIssuedCountry: any;
   race: any;
-  isForeigner: boolean;
+  showForeignerAlert: boolean;
 
   // Residential Address
   country: any;

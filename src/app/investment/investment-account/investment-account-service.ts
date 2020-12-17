@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,7 +8,6 @@ import { RoadmapService } from '../../shared/components/roadmap/roadmap.service'
 import { ApiService } from '../../shared/http/api.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { SignUpService } from '../../sign-up/sign-up.service';
 import { InvestmentAccountFormData } from './investment-account-form-data';
 import { InvestmentAccountFormError } from './investment-account-form-error';
 import {
@@ -38,8 +36,6 @@ export class InvestmentAccountService {
   private investmentAccountFormError: any = new InvestmentAccountFormError();
 
   constructor(
-    private signUpService: SignUpService,
-    private http: HttpClient,
     private apiService: ApiService,
     private investmentApiService: InvestmentApiService,
     public authService: AuthenticationService,
@@ -388,8 +384,8 @@ export class InvestmentAccountService {
     this.commit();
   }
 
-  setIsForeigner(status) {
-    this.investmentAccountFormData.isForeigner = status;
+  setForeignerAlert(status) {
+    this.investmentAccountFormData.showForeignerAlert = status;
     this.commit();
   }
 
@@ -678,7 +674,6 @@ export class InvestmentAccountService {
     this.setMyInfoPersonal(data);
     this.setMyInfoResidentialAddress(data);
     this.investmentAccountFormData.disableAttributes = this.disableAttributes;
-    this.investmentAccountFormData.isMyInfoEnabled = true;
     this.commit();
   }
 
@@ -686,9 +681,12 @@ export class InvestmentAccountService {
   setMyInfoPersonal(data) {
     if (data.uin) {
       this.investmentAccountFormData.nricNumber = data.uin.toUpperCase();
-      if (this.investmentAccountFormData.nricNumber.charAt(0) !== 'S') {
-        this.setIsForeigner(true);
-        this.setMyInfoStatus(false);
+      if (this.investmentAccountFormData.nricNumber.charAt(0) === 'S') {
+        this.investmentAccountFormData.showForeignerAlert = false;
+        this.investmentAccountFormData.isMyInfoEnabled = true;
+      } else {
+        this.investmentAccountFormData.showForeignerAlert = true;
+        this.investmentAccountFormData.isMyInfoEnabled = false;
       }
       this.disableAttributes.push('nricNumber');
     }
@@ -752,7 +750,6 @@ export class InvestmentAccountService {
       }
     }
   }
-
 
   dateFormat(date: string) {
     const dateArr: any = date.split('-');

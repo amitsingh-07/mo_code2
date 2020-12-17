@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { ConfigService, IConfig } from '../../../config/config.service';
 import {
@@ -36,7 +36,6 @@ export class SingPassComponent implements OnInit, OnDestroy {
   myInfoSubscription: any;
   isInvestmentMyInfoEnabled = false;
   myinfoChangeListener: Subscription;
-  status;
   secondTimer: any;
   thirdTimer: any;
   loader2StartTime: any;
@@ -74,8 +73,8 @@ export class SingPassComponent implements OnInit, OnDestroy {
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.isInvestmentMyInfoEnabled = config.investmentMyInfoEnabled;
-      this.loader2StartTime = config.investment.myInfoLoader2StartTime;
-      this.loader3StartTime = config.investment.myInfoLoader3StartTime;
+      this.loader2StartTime = config.investment.myInfoLoader2StartTime * 1000;
+      this.loader3StartTime = config.investment.myInfoLoader3StartTime * 1000;
     });
   }
 
@@ -161,17 +160,17 @@ export class SingPassComponent implements OnInit, OnDestroy {
       if (this.myInfoService.loadingModalRef) {
         this.openSecondPopup();
       }
-    }, this.loader2StartTime * 1000);
+    }, this.loader2StartTime);
 
     this.thirdTimer = setTimeout(() => {
       if (this.myInfoService.loadingModalRef) {
         this.openThirdPopup();
       }
-    }, this.loader3StartTime * 1000);
+    }, this.loader3StartTime);
   }
 
   closeMyInfoPopup(error: boolean) {
-    this.myInfoService.closeMyInfoPopup(false);
+    this.myInfoService.closeMyInfoPopup(error);
     clearTimeout(this.secondTimer);
     clearTimeout(this.thirdTimer);
   }
@@ -185,13 +184,13 @@ export class SingPassComponent implements OnInit, OnDestroy {
     this.myInfoService.goToMyInfo();
   }
 
-  // ********SECOND POP UP ********//
+  // ******** SECOND POP UP ********//
   openSecondPopup() {
     this.myInfoService.loadingModalRef.componentInstance.spinner = true;
+    this.myInfoService.loadingModalRef.componentInstance.closeBtn = true;
     this.myInfoService.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
     this.myInfoService.loadingModalRef.componentInstance.errorMessage = 'Sorry that this is taking longer than usual. Please be patient while we fetch your required data from MyInfo.';
     this.myInfoService.loadingModalRef.componentInstance.primaryActionLabel = 'Cancel';
-    this.myInfoService.loadingModalRef.componentInstance.closeBtn = true;
     this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
       this.closeMyInfoPopup(false);
     });
@@ -200,9 +199,9 @@ export class SingPassComponent implements OnInit, OnDestroy {
   // ******** THIRD POP UP ********//
   openThirdPopup() {
     this.myInfoService.loadingModalRef.componentInstance.spinner = true;
-    this.myInfoService.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
     this.myInfoService.loadingModalRef.componentInstance.closeBtn = true;
-    this.myInfoService.loadingModalRef.componentInstance.errorMessage = 'Sorry that this is taking longer than usual. Please be patient while we fetch your required data from MyInfo. ';
+    this.myInfoService.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
+    this.myInfoService.loadingModalRef.componentInstance.errorMessage = 'Sorry that this is taking longer than usual. Please be patient while we fetch your required data from MyInfo.';
     this.myInfoService.loadingModalRef.componentInstance.primaryActionLabel = 'Try Again Later';
     this.myInfoService.loadingModalRef.componentInstance.secondaryActionLabel = 'Create Account Manually';
     this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
