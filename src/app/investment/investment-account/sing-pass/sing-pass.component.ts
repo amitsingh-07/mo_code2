@@ -1,6 +1,6 @@
 import { Component, Input, NgZone, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { Subject, Subscription } from 'rxjs';
@@ -158,11 +158,15 @@ export class SingPassComponent implements OnInit, OnDestroy {
 
   showFetchPopUp() {
     this.secondTimer = setTimeout(() => {
-      this.openSecondPopup();
+      if (this.myInfoService.loadingModalRef) {
+        this.openSecondPopup();
+      }
     }, this.loader2StartTime * 1000);
 
     this.thirdTimer = setTimeout(() => {
-      this.openThirdPopup();
+      if (this.myInfoService.loadingModalRef) {
+        this.openThirdPopup();
+      }
     }, this.loader3StartTime * 1000);
   }
 
