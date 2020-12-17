@@ -7,8 +7,7 @@
       "VIEW_DETAILS": "View Details",
       "SAVE_AND_CONTINUE": "Save and Continue",
       "PROCEED": "Proceed",
-      "OR": "OR",
-      "Or": "Or"
+      "OR": "OR"
     }
   },
   "POSTLOGIN": {
@@ -287,7 +286,7 @@
       "LABEL_NEW": "For Singaporeans and PRs only"
     },
     "OPEN_MODAL_DATA": {
-      "TITLE": "Login to MyInfo",
+      "TITLE": "Login via MyInfo",
       "DESCRIPTION": "<strong>Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.By signing in to MyInfo, the following information that you have previously entered will be overwritten.</strong> <br><br>Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.<br><br>By signing in to MyInfo, the following information that you have previously entered will be overwritten.<div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br/>Would you like to proceed and overwrite?",
       "BTN-TEXT": "Yes, Proceed"
     },
