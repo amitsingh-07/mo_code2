@@ -36,7 +36,6 @@ export class SingPassComponent implements OnInit, OnDestroy {
   myInfoSubscription: any;
   isInvestmentMyInfoEnabled = false;
   myinfoChangeListener: Subscription;
-  changeListener = new Subject();
   status;
   secondTimer: any;
   thirdTimer: any;

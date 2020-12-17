@@ -5,8 +5,7 @@ export let INVESTMENT_ACCOUNT_CONSTANTS = {
     'birthcountry',
     'dob',
     'sex',
-    'regadd',
-    'mailadd'
+    'regadd'
     
   ],
   INVESTMENT_ACCOUNT_GUARD_STATUS: [
