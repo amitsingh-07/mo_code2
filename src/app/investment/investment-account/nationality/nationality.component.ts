@@ -17,6 +17,7 @@ import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.con
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
+import { MobileModalComponent } from './../../../guide-me/mobile-modal/mobile-modal.component';
 
 @Component({
   selector: 'app-nationality',
@@ -34,6 +35,7 @@ export class NationalityComponent implements OnInit {
   blockedNationalityModal: any;
   blockedCountryModal: any;
   tooltipDetails: any;
+  foreignerModal: any;
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -54,6 +56,7 @@ export class NationalityComponent implements OnInit {
       this.blockedNationalityModal = this.translate.instant('SELECT_NATIONALITY.blockedNationality');
       this.blockedCountryModal = this.translate.instant('SELECT_NATIONALITY.blockedCountry');
       this.tooltipDetails = this.translate.instant('BLOCKED_COUNTRY_TOOLTIP');
+      this.foreignerModal = this.translate.instant('SELECT_NATIONALITY.FOREIGNER');
     });
   }
 
@@ -62,6 +65,11 @@ export class NationalityComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
     this.selectNationalityFormValues = this.investmentAccountService.getInvestmentAccountFormData();
+    if (this.selectNationalityFormValues.isForeigner) {
+      this.investmentAccountService.setIsForeigner(false);
+      this.investmentAccountService.setMyInfoStatus(false);
+      this.showForeigner();
+    }
     this.selectNationalityForm = new FormGroup({
       nationality: new FormControl(this.selectNationalityFormValues.nationality, Validators.required)
     });
@@ -231,4 +239,16 @@ export class NationalityComponent implements OnInit {
     ref.componentInstance.tooltipButtonLabel = this.tooltipDetails.GOT_IT;
     return false;
   }
+
+  showForeigner() {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.foreignerModal.title;
+    ref.componentInstance.errorMessageHTML = this.foreignerModal.message;
+    ref.componentInstance.primaryActionLabel = this.foreignerModal.Continue_to_Form;
+    ref.componentInstance.primaryAction.subscribe(() => {
+      ref.dismiss();
+    });
+  }
 }
+
+

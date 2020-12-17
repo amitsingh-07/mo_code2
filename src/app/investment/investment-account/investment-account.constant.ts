@@ -3,14 +3,11 @@ export let INVESTMENT_ACCOUNT_CONSTANTS = {
     'nationality',
     'name',
     'birthcountry',
-    'passportnumber',
-    'passportexpirydate',
     'dob',
     'sex',
     'regadd',
-    'mailadd',
-    'employment',
-    'occupation'
+    'mailadd'
+    
   ],
   INVESTMENT_ACCOUNT_GUARD_STATUS: [
     'BLOCKED_NATIONALITY',
