@@ -32,7 +32,7 @@ export interface IConfig {
   maintenanceStartTime: string;
   maintenanceEndTime: string;
   showPortfolioInfo: boolean;
-  investment:any;
+  investment: any;
 }
 
 const CACHE_SIZE = 1;

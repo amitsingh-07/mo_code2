@@ -22,8 +22,8 @@
   "maintenanceEndTime": "2020-09-22T19:00:00.000+08:00",
   "showPortfolioInfo": true,
   "investment": {
-    "myInfoLoader2StartTime": 60000,
-    "myInfoLoader3StartTime": 90000
+    "myInfoLoader2StartTime": 60,
+    "myInfoLoader3StartTime": 90
   },
   "hospitalPlanData": [
     {

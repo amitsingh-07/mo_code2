@@ -160,11 +160,11 @@ export class SingPassComponent implements OnInit, OnDestroy {
   showFetchPopUp() {
     this.secondTimer = setTimeout(() => {
       this.openSecondPopup();
-    }, this.loader2StartTime);
+    }, this.loader2StartTime * 1000);
 
     this.thirdTimer = setTimeout(() => {
       this.openThirdPopup();
-    }, this.loader3StartTime);
+    }, this.loader3StartTime * 1000);
   }
 
   closeMyInfoPopup(error: boolean) {
