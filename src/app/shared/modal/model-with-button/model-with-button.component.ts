@@ -29,10 +29,12 @@ export class ModelWithButtonComponent implements OnInit {
   @Input() closeBtn = true;
   @Input() investmentPeriodImg: any;
   @Input() spinner: any;
+  @Input() closeButton: any;
   @Output() primaryAction = new EventEmitter<any>();
   @Output() secondaryAction = new EventEmitter<any>();
   @Output() yesClickAction = new EventEmitter<any>();
   @Output() noClickAction = new EventEmitter<any>();
+  @Output() closeAction = new EventEmitter<any>();
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -70,6 +72,11 @@ export class ModelWithButtonComponent implements OnInit {
 
   noButtonClick() {
     this.noClickAction.emit();
+    this.activeModal.close();
+  }
+
+  closeButtonAction() {
+    this.closeAction.emit();
     this.activeModal.close();
   }
 

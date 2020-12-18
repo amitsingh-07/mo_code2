@@ -36,6 +36,7 @@
     <button *ngIf="buttonLabel" type="button" id="error_button" class="btn btn-primary width100 mt10" (click)="activeModal.close()">{{buttonLabel}}</button> 
     <button *ngIf="tooltipButtonLabel" type="button" id="tooltipButtonLabel" class="btn btn-primary width100 mt30 tooltipButtonLabel" (click)="activeModal.close()">{{tooltipButtonLabel}}</button> 
     <div *ngIf="enableResendEmail" (click)="resendEmailVerification()" class="login-mail"><a>Didn’t receive? Resend email verification</a></div>
+    <div *ngIf="enableResendEmail"     [routerLink]="'/accounts/verify-email'" class="login-mail enter-mail"><a>Entered email wrongly? Change email</a></div>
     <p *ngIf="emailSent" class="modal-body-message email-sent"><span>Email Sent!</span></p>
   </div>
   

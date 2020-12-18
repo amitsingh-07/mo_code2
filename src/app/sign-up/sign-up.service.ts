@@ -233,6 +233,25 @@ export class SignUpService {
       redirectUrl: window.location.origin + this.resetPasswordUrl + '?key='
     };
   }
+  setRestEmailInfo(email, captcha) {
+    // API Call here
+    const data = this.constructResetEmailInfo(email, captcha);
+    return this.apiService.resetEmail(data);
+  }
+
+  /**
+   * construct the json for forgot password.
+   * @param data - email and redirect uri.
+   */
+  constructResetEmailInfo(data, captchaValue) {
+    return {
+      email: data,
+      captcha: captchaValue,
+      sessionId: this.authService.getSessionId(),
+      callbackUrl: window.location.origin + "email-verification" + '?key='
+    };
+  }
+  
   /**
    * get login info.
    * @param data - user account details.

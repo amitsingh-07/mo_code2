@@ -34,10 +34,10 @@ export class MyInfoService {
   isMyInfoEnabled = false;
   status;
   windowRef: Window;
-  
+
   constructor(
     private modal: NgbModal, private apiService: ApiService, private router: Router
-    ) { }
+  ) { }
 
   setMyInfoAttributes(attributes) {
     this.attributes = attributes;
@@ -159,7 +159,7 @@ export class MyInfoService {
     };
     this.loadingModalRef = this.modal.open(ModelWithButtonComponent, ngbModalOptions);
     this.loadingModalRef.componentInstance.spinner = true;
-    this.loadingModalRef.componentInstance.closeBtn = true;
+    this.loadingModalRef.componentInstance.closeButton = true;
     this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
     this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from MyInfo.';
     this.loadingModalRef.componentInstance.primaryActionLabel = 'Cancel';
@@ -178,7 +178,7 @@ export class MyInfoService {
   }
 
   closeFetchPopup() {
-    if(this.loadingModalRef) {
+    if (this.loadingModalRef) {
       this.loadingModalRef.close();
     }
   }
