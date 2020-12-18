@@ -128,6 +128,11 @@ app-start {
 
         .desc {
           padding: 19px 0;
+          font-family: $muli-regular;
+          font-size: 15px;
+          b.txt-bold {
+            font-family: $muli-bold;
+          }
         }
       }
     }
