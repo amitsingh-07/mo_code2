@@ -201,7 +201,7 @@ export class SingPassComponent implements OnInit, OnDestroy {
     this.myInfoService.loadingModalRef.componentInstance.spinner = true;
     this.myInfoService.loadingModalRef.componentInstance.closeBtn = true;
     this.myInfoService.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
-    this.myInfoService.loadingModalRef.componentInstance.errorMessage = 'Sorry that this is taking longer than usual. Please be patient while we fetch your required data from MyInfo.';
+    this.myInfoService.loadingModalRef.componentInstance.errorMessage = 'We are still trying to fetch your required data from MyInfo. You may choose to fill in your information manually or try again later.';
     this.myInfoService.loadingModalRef.componentInstance.primaryActionLabel = 'Try Again Later';
     this.myInfoService.loadingModalRef.componentInstance.secondaryActionLabel = 'Create Account Manually';
     this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
