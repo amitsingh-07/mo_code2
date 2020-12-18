@@ -297,7 +297,7 @@
     },
     "MYINFO_CONFIRM": {
       "TITLE": "Login via MyInfo",
-      "DESCRIPTION": "<strong>Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>You will now proceed to login via MyInfo and retrieve your following details.<div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br><br>Would you like to proceed?",
+      "DESCRIPTION": "<strong>Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>You will now proceed to login via MyInfo and retrieve your following details.<div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br>Would you like to proceed?",
       "BTN-TEXT": "Let's go"
     },
     "ERROR_MODAL_DATA": {
