@@ -29,7 +29,6 @@ export class ModelWithButtonComponent implements OnInit {
   @Input() closeBtn = true;
   @Input() investmentPeriodImg: any;
   @Input() spinner: any;
-  @Input() closeButton: any;
   @Output() primaryAction = new EventEmitter<any>();
   @Output() secondaryAction = new EventEmitter<any>();
   @Output() yesClickAction = new EventEmitter<any>();
@@ -75,9 +74,9 @@ export class ModelWithButtonComponent implements OnInit {
     this.activeModal.close();
   }
 
-  closeButtonAction() {
+  closeIconAction() {
     this.closeAction.emit();
-    this.activeModal.close();
+    this.activeModal.dismiss('Cross click');    
   }
 
   createAnimation() {

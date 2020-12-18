@@ -2,25 +2,36 @@
 @import '../../../../mixins';
 
 app-life-protection-form {
-    .ci-optional {
-        font-family: $muli-regular;
-        font-size: 16px;
+  .ci-optional {
+    font-family: $muli-regular;
+    font-size: 16px;
+  }
+
+  @include allmobiles {
+    .direct-form-grp .btn-group--toggle .direct-form-btn--radio.disabled:hover {
+      border-color: rgba(0, 135, 134, 0.4) !important;
+      color: #99cfce !important;
     }
-    @include allmobiles {
-        .direct-form-grp .btn-group--toggle .direct-form-btn--radio.disabled:hover {
-            border-color: rgba(0, 135, 134, 0.4) !important;
-            color: #99cfce !important;
-        }
+  }
+
+  @include desktop {
+    .direct-form-grp .btn-group--toggle .direct-form-btn--radio.disabled:hover {
+      border-color: rgba(0, 135, 134, 0.4) !important;
+      color: #00a7a7 !important;
     }
-    @include desktop {
-        .direct-form-grp .btn-group--toggle .direct-form-btn--radio.disabled:hover {
-            border-color: rgba(0, 135, 134, 0.4) !important;
-            color: #00a7a7 !important;
-        }
+  }
+
+  .help-icon {
+    width: 45px;
+    position: relative;
+    left: 5px;
+  }
+
+  .ci-label {
+    .help-icon {
+      display: inline-block;
+      left: 82px;
+      bottom: 38px;
     }
-    .help-icon{
-        width: 45px;
-        position: relative;
-        left: 5px;
-    }
+  }
 }
