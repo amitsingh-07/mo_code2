@@ -103,7 +103,7 @@
     flex-basis: auto;
   }
   span.lock {
-    padding-left: 5px;
+    padding-left: 10px;
     img {
       vertical-align: initial !important;
     }
@@ -136,6 +136,7 @@
   #mo_spinner {
     width: 24px;
     height: 24px;
-    margin: 0px 10px 2px 0;
+    margin: 3px 10px 0px 0px;
+    display: flex;
   }
 }
