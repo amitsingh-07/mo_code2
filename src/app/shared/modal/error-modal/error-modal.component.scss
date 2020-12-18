@@ -56,7 +56,6 @@
 .login-mail{
     line-height: 20px;
     text-align: center;
-    padding: 10px;
     color: $teal-color;
     margin-top: 20px;
     letter-spacing: -0.16px;
@@ -64,6 +63,9 @@
         text-decoration: underline !important;
         cursor: pointer;
     }
+}
+.enter-mail{
+    margin-top: 5px;
 }
 
 .email-sent {
