@@ -204,7 +204,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.submitted = true;
     this.validateReferralCode();
     if (form.valid) {
-      form.value.userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : appConstants.USERTYPE.FINLIT;
+      form.value.userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : appConstants.USERTYPE.NORMAL;
       this.signUpService.setAccountInfo(form.value);
       this.openTermsOfConditions();
     }
