@@ -15,9 +15,9 @@
     "PROCEED": "Proceed with",
     "PROCEED_WITHOUT": "Proceed without SingPass",
     "APPLY_USING_MYINFO": "Apply Using MyInfo",
-    "AUTOFILL_QUICKLY": "<b>Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only.</b><br> Autofill your information quickly. Supporting documents are not required.",
+    "AUTOFILL_QUICKLY": "<b class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only.</b><br> Autofill your information quickly. Supporting documents are not required.",
     "APPLY_WITHOUT_MYINFO": "Apply Without MyInfo",
-    "FILL_MANUALLY": "<b>Applicable to foreigners and all.</b> Fill in your information manually. Supporting documents are required. Takes at least 1 working day to get your account approved. ",
+    "FILL_MANUALLY": "<b class=\"text-bold\">Applicable to foreigners and all.</b> Fill in your information manually. Supporting documents are required. Takes at least 1 working day to get your account approved. ",
     "MANUALLY": "Fill Form Manually",
     "ESTIMATE_TIME": "Estimate about 10 mins",
     "INVESTMENT_OPENING": "Investment Account Opening",
@@ -292,12 +292,12 @@
     },
     "OPEN_MODAL_DATA": {
       "TITLE": "Login via MyInfo",
-      "DESCRIPTION": "<strong>Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>By signing in to MyInfo, the following information that you have previously entered will be overwritten.<div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br/>Would you like to proceed and overwrite?",
+      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>By signing in to MyInfo, the following information that you have previously entered will be overwritten.<div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br/>Would you like to proceed and overwrite?",
       "BTN-TEXT": "Yes, Proceed"
     },
     "MYINFO_CONFIRM": {
       "TITLE": "Login via MyInfo",
-      "DESCRIPTION": "<strong>Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>You will now proceed to login via MyInfo and retrieve your following details.<div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br>Would you like to proceed?",
+      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>You will now proceed to login via MyInfo and retrieve your following details.<div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br>Would you like to proceed?",
       "BTN-TEXT": "Let's go"
     },
     "ERROR_MODAL_DATA": {
