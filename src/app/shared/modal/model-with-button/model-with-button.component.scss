@@ -1,7 +1,7 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 
-.toggle-btn{
+.toggle-btn {
   flex: 1;
 }
 .padding-right-10 {
@@ -12,7 +12,7 @@
   border-radius: 6px;
   box-shadow: 0 6px 7px 0 $btn-shadow-color !important;
   background-color: $teal-color;
-  border: 1px solid  $teal-color;
+  border: 1px solid $teal-color;
   margin-top: 15px;
   font-family: $muli-bold;
   font-size: 22px;
@@ -51,11 +51,11 @@
   }
 
   &:hover {
-      background-color: $robins-egg-blue-color;
-      border-color: $action-btn-hover-brdr-color;
-      color: $white-color !important;
+    background-color: $robins-egg-blue-color;
+    border-color: $action-btn-hover-brdr-color;
+    color: $white-color !important;
   }
-  &:active{
+  &:active {
     background-color: $action-btn-active-bg;
     color: $white-color;
   }
@@ -81,13 +81,13 @@
   width: 24px;
   height: 24px;
   padding-left: 7px;
-  img{
+  img {
     max-width: 100%;
     height: auto;
     margin: 0;
   }
 }
-.my_info_details{
+.my_info_details {
   font-family: $muli-regular;
   font-size: 16px;
   line-height: 1.31;
@@ -103,27 +103,40 @@
     flex-basis: auto;
   }
   span.lock {
-    padding-left: 5px;
+    padding-left: 10px;
     img {
       vertical-align: initial !important;
     }
   }
 }
-.journey-wrapper{
+.journey-wrapper {
   text-align: center;
- .img-fluid {
-  width: 126px;
-  height: 127px;
-  text-align: center;
-  margin: 10px 0;
-  @include allmobiles{
-    width: 175px;
-    height: 165px;
-    margin: 10px auto 10;
+  .img-fluid {
+    width: 126px;
+    height: 127px;
+    text-align: center;
+    margin: 10px 0;
+    @include allmobiles {
+      width: 175px;
+      height: 165px;
+      margin: 10px auto 10;
+    }
   }
- }
 }
-.investment-img{
+.investment-img {
   text-align: center;
   padding-bottom: 18px;
+}
+
+.modal.hide-close .close {
+  display: block;
+}
+
+.spinner-container {
+  #mo_spinner {
+    width: 24px;
+    height: 24px;
+    margin: 3px 10px 0px 0px;
+    display: flex;
+  }
 }

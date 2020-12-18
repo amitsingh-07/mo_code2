@@ -13,6 +13,8 @@ export interface IEnquiryUpdate {
     enquiryId: number;
     newCustomer?: boolean;
     selectedProducts: IPlan[];
+    enquiryProtectionTypeData: IProtectionType[];
+    journeyType: string;
 }
 
 export interface IPlan {
@@ -57,4 +59,9 @@ export interface IUpdateMobileNumber {
     customerRef: string;
     mobileNumber: string;
     countryCode: string;
+}
+
+export interface IProtectionType {
+    protectionTypeId: number;
+    protectionType: string;
 }
