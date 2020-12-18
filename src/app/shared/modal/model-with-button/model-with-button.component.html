@@ -19,6 +19,9 @@
   <button *ngIf="closeBtn" type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true" id="errorModelCloseIcon"></span>
   </button>
+  <button *ngIf="closeButton" type="button" class="close" aria-label="Close" (click)="closeButtonAction()">
+    <span aria-hidden="true" id="errorModelCloseIcon"></span>
+  </button>
   <div class="journey-wrapper" *ngIf="portfolioExist">
     <img class="img-fluid" src="assets/images/portfolio/existportfolio.svg" />
   </div>
