@@ -197,7 +197,7 @@ export class NationalityComponent implements OnInit {
             this.editModalData.modalTitle,
             this.editModalData.modalMessage
           );
-        } else if (this.selectNationalityFormValues.isMyInfoEnabled && !form.controls.singaporeanResident.value) {
+        } else if (this.selectNationalityFormValues.isMyInfoEnabled && form.controls.singaporeanResident && !form.controls.singaporeanResident.value) {
           this.showForeignerConfirmation(form);
         } else {
           this.moveToNext(form);

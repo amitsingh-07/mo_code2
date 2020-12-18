@@ -154,8 +154,7 @@ export class MyInfoService {
     const ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',
       keyboard: false,
-      centered: true,
-      windowClass: 'hide-close'
+      centered: true
     };
     this.loadingModalRef = this.modal.open(ModelWithButtonComponent, ngbModalOptions);
     this.loadingModalRef.componentInstance.spinner = true;
