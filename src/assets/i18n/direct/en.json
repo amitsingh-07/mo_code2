@@ -190,7 +190,16 @@
             "DESCRIPTION": "<p><strong>Standard:</strong> To be eligible for a payout, you will have to be unable to perform 3 out of 6 Activities of Daily Living (ADLs).</p><p><strong>Lenient:</strong> To be eligible for a payout, you will have to be unable to perform 2 out of 6 Activities of Daily Living (ADLs).</p>",
             "LOGO_DESCRIPTION": "<div class=\"modal__icon-container\"><div  class=\"modal__icons\"><img src=\"assets/images/washing.png\"/></div>\n<div class=\"modal__icons\"><img src=\"assets/images/feeding.png\"/></div>\n<div class=\"modal__icons\"><img src=\"assets/images/dressing.png\"/></div>\n<div class=\"modal__icons\"><img src=\"assets/images/toileting.png\"/></div>\n<div class=\"modal__icons\"><img src=\"assets/images/mobility.png\"/></div>\n<div class=\"modal__icons\"><img src=\"assets/images/transferring.png\"/></div>\n</div>"
         }
+      },
+      "TOOL_TIP":{
+        "LP_TITLE":"Recommended Life Coverage Amount",
+        "LP_DESCRIPTION":"The recommended amount is based on your monthly living expenses multiplied by the number of years to provide for your dependants. If you would also like to provide for your children's education and to pay off all outstanding loans, these should be included.<br><br>If you would like a more accurate assessment, please use our \"Find out what I need\" journey",
+        "CI_TITLE":"Recommended Critical Illness Coverage Amount",
+        "CI_DESCRIPTION":"The recommended amount is 4 times your annual salary including bonuses, minus your existing critical illness coverage."
+
       }
+   
+
   }
 
 

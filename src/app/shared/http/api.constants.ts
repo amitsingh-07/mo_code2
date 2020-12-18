@@ -37,6 +37,7 @@ export let apiConstants = {
         verifyEmail: ACCOUNT_API_BASE_URL + '/verifyEmail',
         resetPassword: ACCOUNT_API_BASE_URL + '/resetPassword',
         forgotPassword: ACCOUNT_API_BASE_URL + '/forgotPassword?handleError=true',
+        resetEmail: ACCOUNT_API_BASE_URL + '/resetEmail',
         userProfileInfo: ACCOUNT_API_BASE_URL + '/getCustomerProfileDetails?handleError=true',
         editContactDeatails: ACCOUNT_API_BASE_URL + '/updateAddress',
         editPassword: ACCOUNT_API_BASE_URL + '/editPassword',
