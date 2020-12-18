@@ -77,6 +77,11 @@
 .modal-body-message {
   margin-bottom: 15px;
 }
+.modal-dialog {
+  @include desktop {
+    width: 375px;
+  }
+}
 .warning-icon {
   width: 24px;
   height: 24px;
