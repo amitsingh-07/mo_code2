@@ -321,15 +321,20 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   checkInsuranceEnquiry(insuranceEnquiry): boolean {
     return ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) &&
-      (insuranceEnquiry && insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0));
+      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) && 
+      ( (insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) 
+      || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0) ));
   }
 
   updateInsuranceEnquiry(insuranceEnquiry, data, errorModal: boolean) {
+    const journeyType = (insuranceEnquiry.journeyType === appConstants.JOURNEY_TYPE_DIRECT) ?
+        appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
     const payload: IEnquiryUpdate = {
       customerId: data.objectList[0].customerId || data.objectList[0].customerRef,
       enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
-      selectedProducts: insuranceEnquiry.plans
+      selectedProducts: insuranceEnquiry.plans,      
+      enquiryProtectionTypeData: insuranceEnquiry.enquiryProtectionTypeData,
+      journeyType: journeyType
     };
     this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
       if (errorModal) {

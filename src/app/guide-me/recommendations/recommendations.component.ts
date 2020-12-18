@@ -284,7 +284,8 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   }
 
   proceed() {
-    this.selectedPlansService.setSelectedPlan(this.state.selectedPlans, this.state.enquiryId);
+    const enquiryProtectionTypeData = [];
+    this.selectedPlansService.setSelectedPlan(this.state.selectedPlans, this.state.enquiryId, enquiryProtectionTypeData);
     this.fbPixelService.track('ProceedEnquiry');
     if (this.authService.isSignedUser()) {
       this.selectedPlansService.updateInsuranceEnquiry().subscribe((data) => {
