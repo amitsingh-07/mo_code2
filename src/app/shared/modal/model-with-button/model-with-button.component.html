@@ -7,23 +7,25 @@
   </div>
 </div>
 <div class="modal-body white-bg">
-  <div class="modal-body-title"> 
+  <div class="modal-body-title">
+    <div [ngStyle]="{'display': spinner? 'flex' : 'none'}" class="spinner-container">
+      <div id="mo_spinner"></div>
+    </div>
     <div id="errorModeltitle" [innerHTML]="errorTitle"></div>
-    <span *ngIf="warningIcon" class="warning-icon"><img id="warning_icon" src="assets/images/investment-account/topup-alert.svg"
-    alt="" /></span>
-    <span *ngIf="lockIcon" class="lock"><img src="assets/images/lock.svg" ></span>
+    <span *ngIf="warningIcon" class="warning-icon"><img id="warning_icon"
+        src="assets/images/investment-account/topup-alert.svg" alt="" /></span>
+    <span *ngIf="lockIcon" class="lock"><img src="assets/images/lock.svg"></span>
   </div>
   <button *ngIf="closeBtn" type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true" id="errorModelCloseIcon"></span>
   </button>
   <div class="journey-wrapper" *ngIf="portfolioExist">
-      <img class="img-fluid" src="assets/images/portfolio/existportfolio.svg" />
-    </div>
-  <div class="modal-body-message" *ngIf="errorMessage" id="errorModelMessage"  [innerHTML]="errorMessage"></div>
+    <img class="img-fluid" src="assets/images/portfolio/existportfolio.svg" />
+  </div>
+  <div class="modal-body-message" *ngIf="errorMessage" id="errorModelMessage" [innerHTML]="errorMessage"></div>
   <div class="modal-body-message " *ngIf="errorMessageHTML" id="errorModelMessage" [innerHTML]="errorMessageHTML"></div>
-
-  <div *ngIf="investmentPeriodImg"  class="investment-img" id="investment-img" > 
-    <img src="assets/images/investment-account/investment_personal.svg" >
+  <div *ngIf="investmentPeriodImg" class="investment-img" id="investment-img">
+    <img src="assets/images/investment-account/investment_personal.svg">
   </div>
   <div class="row">
     <div class="col-12" [ngClass]="{'col-12': !isInlineButton, 'col-6': isInlineButton}" *ngIf="primaryActionLabel">
@@ -31,12 +33,12 @@
         {{primaryActionLabel}}
       </button>
     </div>
-
     <div class="col-12" [ngClass]="{'col-12': !isInlineButton, 'col-6': isInlineButton}" *ngIf="secondaryActionLabel">
-        <button type="button" class="action-button" [class.secondary-button]="secondaryActionDim" (click)="secondaryActionSelected()" id="errorModeButton">
-          {{secondaryActionLabel}}
-        </button>
-      </div>
+      <button type="button" class="action-button" [class.secondary-button]="secondaryActionDim"
+        (click)="secondaryActionSelected()" id="errorModeButton">
+        {{secondaryActionLabel}}
+      </button>
+    </div>
   </div>
 
   <!-- <button type="button"  *ngIf="forgotPassword" class="action-button"   id="errorModeButton2" (click)="activeModal.dismiss('Cross click')">
@@ -45,14 +47,14 @@
   <!-- yes - or - no -->
   <div class="flex-row flex-col-12 space-btwn" *ngIf="yesOrNoButton">
     <div class="toggle-btn padding-right-10">
-        <button type="button" class="btn action-button primary-btn" (click)="yesButtonClick()" id="errorModeButton">
-            Yes
-          </button>
+      <button type="button" class="btn action-button primary-btn" (click)="yesButtonClick()" id="errorModeButton">
+        Yes
+      </button>
     </div>
     <div class="toggle-btn">
-        <button type="button" class="action-button secondary-button" (click)="noButtonClick()" id="errorModeButton">
-            No
-          </button>
+      <button type="button" class="action-button secondary-button" (click)="noButtonClick()" id="errorModeButton">
+        No
+      </button>
     </div>
   </div>
 </div>

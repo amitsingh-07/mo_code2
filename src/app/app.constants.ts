@@ -25,5 +25,13 @@ export let appConstants = {
         COMPREHENSIVE: 'app-comprehensive-session',
         COMPREHENSIVE_LITE: 'app-comprehensive-lite-session',
         COMPREHENSIVE_VERSION: 'app-comprehensive-version'
+    },
+    USERTYPE: {
+        NORMAL: "NORMAL",
+        FINLIT: "finlit"
+    },
+    INSURANCE_JOURNEY_TYPE: {
+        DIRECT: 'insurance-direct',
+        GUIDED: 'insurance-guided'
     }
 };

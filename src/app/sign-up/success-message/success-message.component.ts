@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { appConstants } from 'src/app/app.constants';
 
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -49,7 +50,13 @@ queryParams;
     this.queryParams = this.route.snapshot.queryParams;
   }
   redirectToLogin() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    const userType = this.signUpService.getAccountInfo().userType
+    if(userType === appConstants.USERTYPE.NORMAL){
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    } else{
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
+    }
+  
   }
 
 }
