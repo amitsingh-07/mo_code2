@@ -155,14 +155,17 @@ export class MyInfoService {
       backdrop: 'static',
       keyboard: false,
       centered: true,
-      windowClass: 'hide-close'
     };
     this.loadingModalRef = this.modal.open(ModelWithButtonComponent, ngbModalOptions);
     this.loadingModalRef.componentInstance.spinner = true;
-    this.loadingModalRef.componentInstance.closeButton = true;
+    this.loadingModalRef.componentInstance.closeBtn = true;
     this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
     this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from MyInfo.';
     this.loadingModalRef.componentInstance.primaryActionLabel = 'Cancel';
+    this.loadingModalRef.componentInstance.closeAction.subscribe(() => {
+      this.changeListener.next(this.getMyinfoReturnMessage(CANCELLED));
+      this.cancelMyInfo();
+    });
     this.loadingModalRef.result.then(() => {
       this.changeListener.next(this.getMyinfoReturnMessage(CANCELLED));
       this.cancelMyInfo();
