@@ -126,6 +126,11 @@ const routes: Routes = [
     canActivate: [FinlitLoggedUserGuard],
     data: [{finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN}]
   },
+  { path: SIGN_UP_ROUTES.FINLIT_CREATE_ACCOUNT ,
+    component: CreateAccountComponent,
+    canActivate: [FinlitLoggedUserGuard],
+    data: [{finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN}]
+  },
 
   { path: '**', redirectTo: '/page-not-found' }
 ];

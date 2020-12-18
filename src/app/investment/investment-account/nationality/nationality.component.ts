@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -34,13 +34,13 @@ export class NationalityComponent implements OnInit {
   blockedNationalityModal: any;
   blockedCountryModal: any;
   tooltipDetails: any;
+  foreignerModal: any;
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
     public footerService: FooterService,
     public activeModal: NgbActiveModal,
     private router: Router,
-    private formBuilder: FormBuilder,
     private investmentAccountService: InvestmentAccountService,
     private investmentCommonService: InvestmentCommonService,
     private modal: NgbModal,
@@ -54,6 +54,7 @@ export class NationalityComponent implements OnInit {
       this.blockedNationalityModal = this.translate.instant('SELECT_NATIONALITY.blockedNationality');
       this.blockedCountryModal = this.translate.instant('SELECT_NATIONALITY.blockedCountry');
       this.tooltipDetails = this.translate.instant('BLOCKED_COUNTRY_TOOLTIP');
+      this.foreignerModal = this.translate.instant('SELECT_NATIONALITY.FOREIGNER');
     });
   }
 
@@ -62,6 +63,10 @@ export class NationalityComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
     this.selectNationalityFormValues = this.investmentAccountService.getInvestmentAccountFormData();
+    if (this.selectNationalityFormValues.showForeignerAlert) {
+      this.investmentAccountService.setForeignerAlert(false);
+      this.showForeignerAlert();
+    }
     this.selectNationalityForm = new FormGroup({
       nationality: new FormControl(this.selectNationalityFormValues.nationality, Validators.required)
     });
@@ -230,5 +235,15 @@ export class NationalityComponent implements OnInit {
     ref.componentInstance.errorDescription = this.tooltipDetails.DESC;
     ref.componentInstance.tooltipButtonLabel = this.tooltipDetails.GOT_IT;
     return false;
+  }
+
+  showForeignerAlert() {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.foreignerModal.title;
+    ref.componentInstance.errorMessageHTML = this.foreignerModal.message;
+    ref.componentInstance.primaryActionLabel = this.foreignerModal.btnText;
+    ref.componentInstance.primaryAction.subscribe(() => {
+      ref.dismiss();
+    });
   }
 }

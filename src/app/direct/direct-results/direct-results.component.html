@@ -6,7 +6,7 @@
     <div class="no-results-box__message">{{ 'DIRECT_RESULTS.NO_RESULTS_MSG' | translate}}</div>
     <div class="no-results-box__separator"></div>
     <div class="no-results-box__btn-message">{{ 'DIRECT_RESULTS.NO_RESULTS_BTN_MSG' | translate}}</div>
-    <div class="no-results-box__footer-btn"><button class="btn btn-primary"  (click)="proceedSelection()">{{ 'DIRECT_RESULTS.NO_RESULTS_BTN_TXT' | translate}}</button></div>
+    <div class="no-results-box__footer-btn"><button class="btn btn-primary-dark" (click)="proceedSelection()">{{ 'DIRECT_RESULTS.NO_RESULTS_BTN_TXT' | translate}}</button></div>
   </div>
 </div>
 <div id="results-web" [hidden]="!state.isResultsLoaded || state.resultsEmptyMessage?.length > 0" *ngIf="!state.isMobileView" class="flex-row grp-results hidden-sm-md">
