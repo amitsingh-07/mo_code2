@@ -246,9 +246,6 @@ export class NationalityComponent implements OnInit {
     ref.componentInstance.errorTitle = this.foreignerModal.title;
     ref.componentInstance.errorMessageHTML = this.foreignerModal.message;
     ref.componentInstance.primaryActionLabel = this.foreignerModal.btnText;
-    ref.componentInstance.primaryAction.subscribe(() => {
-      ref.dismiss();
-    });
   }
 
   showForeignerConfirmation(form) {
@@ -262,7 +259,7 @@ export class NationalityComponent implements OnInit {
     });
   }
 
-  moveToNext(form) {    
+  moveToNext(form) {
     this.setNationlityFormData(form);
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
   }
