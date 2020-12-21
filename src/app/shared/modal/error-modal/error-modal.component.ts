@@ -11,7 +11,7 @@ import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
   encapsulation: ViewEncapsulation.None
 })
 export class ErrorModalComponent implements OnInit {
-  
+
   @Input() errorTitle: any;
   @Input() errorMessage: any;
   @Input() errorMessageList: string[];
@@ -32,13 +32,13 @@ export class ErrorModalComponent implements OnInit {
   @Output() selected: EventEmitter<any> = new EventEmitter();
   @Output() retry: EventEmitter<any> = new EventEmitter();
   @Output() resendEmail: EventEmitter<any> = new EventEmitter();
-  @Output() resetEmailVerification:EventEmitter<any> = new EventEmitter();
+  @Output() resetEmailVerification: EventEmitter<any> = new EventEmitter();
   @Input() emailSent: boolean;
   @Input() closeBtn: boolean;
   @Input() tooltipButtonLabel: string;
 
   public closeBtnToggle = true;
-  
+
   constructor(public activeModal: NgbActiveModal, private router: Router) { }
 
   ngOnInit() {
@@ -49,7 +49,7 @@ export class ErrorModalComponent implements OnInit {
         this.activeModal.dismiss();
       });
 
-    if(this.closeBtn != null) {
+    if (this.closeBtn != null) {
       this.closeBtnToggle = this.closeBtn;
     }
   }
@@ -73,8 +73,5 @@ export class ErrorModalComponent implements OnInit {
 
   resendEmailVerification() {
     this.resendEmail.emit();
-  }
-  verifyEmail(){
-    this.router.navigate['../account/verify-email']
   }
 }

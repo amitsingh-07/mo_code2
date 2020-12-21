@@ -30,6 +30,7 @@ const CAPTCHA_SESSION_ID = 'captcha_session_id';
 const USER_MOBILE = 'user_mobile';
 const FROM_LOGIN_PAGE = 'from_login_page';
 const CAPTACHA_COUNT = 'captcha_count';
+const EMAIL = 'email'
 
 @Injectable({
   providedIn: 'root'
@@ -189,10 +190,10 @@ export class SignUpService {
       }
     }
 
-    if(Object.keys(errors.errorMessages).length <= 0) {
+    if (Object.keys(errors.errorMessages).length <= 0) {
       console.log('Error Key:', Object.keys(form.errors)[0]);
-      if(form.invalid && this.createAccountFormError.formErrors[Object.keys(form.errors)[0]]) {
-        if(this.createAccountFormError.formErrors[Object.keys(form.errors)[0]].errorTitle) {
+      if (form.invalid && this.createAccountFormError.formErrors[Object.keys(form.errors)[0]]) {
+        if (this.createAccountFormError.formErrors[Object.keys(form.errors)[0]].errorTitle) {
           errors.title = this.createAccountFormError.formErrors[Object.keys(form.errors)[0]].errorTitle;
         }
         errors.errorMessages.push(this.createAccountFormError.formErrors[Object.keys(form.errors)[0]].errorMessage);
@@ -233,9 +234,9 @@ export class SignUpService {
       redirectUrl: window.location.origin + this.resetPasswordUrl + '?key='
     };
   }
-  setRestEmailInfo(email, captcha) {
+  setRestEmailInfo(email, captcha, OldEmail) {
     // API Call here
-    const data = this.constructResetEmailInfo(email, captcha);
+    const data = this.constructResetEmailInfo(email, captcha, OldEmail);
     return this.apiService.resetEmail(data);
   }
 
@@ -243,15 +244,16 @@ export class SignUpService {
    * construct the json for forgot password.
    * @param data - email and redirect uri.
    */
-  constructResetEmailInfo(data, captchaValue) {
+  constructResetEmailInfo(data, captchaValue, OldEmail) {
     return {
-      email: data,
+      oldEmail: OldEmail,
+      updatedEmail: data,
       captcha: captchaValue,
       sessionId: this.authService.getSessionId(),
       callbackUrl: window.location.origin + "/email-verification" + '?key='
     };
   }
-  
+
   /**
    * get login info.
    * @param data - user account details.
@@ -304,6 +306,14 @@ export class SignUpService {
     if (window.sessionStorage) {
       sessionStorage.setItem(REDIRECT_URL_KEY, url);
     }
+  }
+  setEmail(data) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(EMAIL, data);
+    }
+  }
+  getEmail() {
+    return sessionStorage.getItem(EMAIL);
   }
 
   setEditContact(editContact, mobileUpdate, emailUpdate) {
@@ -373,7 +383,7 @@ export class SignUpService {
     const data = this.constructUpdateBankPayload(bank, fullName, accountNum, id);
     return this.apiService.saveNewBankProfile(data);
   }
-  
+
   // tslint:disable-next-line:no-identical-functions
   constructUpdateBankPayload(bank, fullName, accountNum, id) {
     const request = {};
@@ -664,9 +674,9 @@ export class SignUpService {
 
   validateReferralCode(referralCode) {
     // API Call here
-    const data = {"referralCode": referralCode};
+    const data = { "referralCode": referralCode };
     return this.apiService.validateReferralCode(data);
   }
 
-  
+
 }
