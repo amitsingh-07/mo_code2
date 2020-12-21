@@ -250,7 +250,7 @@ export class SignUpService {
       updatedEmail: data,
       captcha: captchaValue,
       sessionId: this.authService.getSessionId(),
-      callbackUrl: window.location.origin + "/email-verification" + '?key='
+      callbackUrl: window.location.origin + "/app/accounts/email-verification"
     };
   }
 
