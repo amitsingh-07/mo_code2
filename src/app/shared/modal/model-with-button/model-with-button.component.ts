@@ -33,6 +33,7 @@ export class ModelWithButtonComponent implements OnInit {
   @Output() secondaryAction = new EventEmitter<any>();
   @Output() yesClickAction = new EventEmitter<any>();
   @Output() noClickAction = new EventEmitter<any>();
+  @Output() closeAction = new EventEmitter<any>();
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -71,6 +72,11 @@ export class ModelWithButtonComponent implements OnInit {
   noButtonClick() {
     this.noClickAction.emit();
     this.activeModal.close();
+  }
+
+  closeIconAction() {
+    this.closeAction.emit();
+    this.activeModal.dismiss('Cross click');    
   }
 
   createAnimation() {

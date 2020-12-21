@@ -142,8 +142,13 @@
       "blockedCountryButtonTitle": "Back To Dashboard"
     },
     "FOREIGNER": {
-      "title": "Unable to apply Via MyInfo",
+      "title": "Unable to apply via MyInfo",
       "message": "Sorry, we are unable to proceed your application via MyInfo as this feature is applicable to Singapore Citizens and Singapore Permanent Residents (PRs) only.<br><br>Please continue with the application by filling up the form manually.<br><br>Supporting documents are required. Takes at least 1 working day to get your account approved.",
+      "btnText": "Continue to Form"
+    },
+    "FOREIGNER_CONFIRMATION": {
+      "title": "Unable to proceed via MyInfo",
+      "message": "Sorry, we are unable to proceed your application via MyInfo as you have selected \"No\" to the permanent resident status.<br><br>Please continue with the application by filling up the form manually.<br><br>Supporting documents are required. Takes at least 1 working day to get your account approved.",
       "btnText": "Continue to Form"
     }
   },

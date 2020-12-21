@@ -6,22 +6,15 @@
 
     function redirect() {
       var query = null;
-      alert('1');
       if (document.location.href.indexOf('?') >= 0) {
         query = document.location.href.split('?')[1];
       }
-      alert(query);
-      alert('2');
       if (query != null && window.opener && typeof window.opener.failed == 'function') {
-        alert('3');
         window.opener.success(query);
       } else {
-        alert('4');
         if (window.opener && typeof window.opener.failed == 'function') {
-          alert('5');
           window.opener.failed('FAILED');
         } else {
-          alert('6');
           if (!window.close()) {
             window.location.href = '/app/';
           }
