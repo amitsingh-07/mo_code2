@@ -32,7 +32,6 @@ export class ErrorModalComponent implements OnInit {
   @Output() selected: EventEmitter<any> = new EventEmitter();
   @Output() retry: EventEmitter<any> = new EventEmitter();
   @Output() resendEmail: EventEmitter<any> = new EventEmitter();
-  @Output() resetEmailVerification: EventEmitter<any> = new EventEmitter();
   @Input() emailSent: boolean;
   @Input() closeBtn: boolean;
   @Input() tooltipButtonLabel: string;
