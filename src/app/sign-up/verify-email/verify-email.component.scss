@@ -7,7 +7,7 @@ app-verify-email {
 
     a {
       color:$white-color;
-      font-family: 'Muli';
+      font-family: $muli-regular;
       font-size: 16px;
     }
 
@@ -37,7 +37,6 @@ app-verify-email {
     text-decoration: underline;
     cursor: pointer;
     font-size: 13px;
-    //float: right;
     margin-top: 10px;
   }
 }
