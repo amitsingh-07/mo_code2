@@ -248,7 +248,7 @@ export class SignUpService {
       email: data,
       captcha: captchaValue,
       sessionId: this.authService.getSessionId(),
-      callbackUrl: window.location.origin + "email-verification" + '?key='
+      callbackUrl: window.location.origin + "/email-verification" + '?key='
     };
   }
   
