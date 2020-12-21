@@ -14,7 +14,7 @@ export const SIGN_UP_ROUTES = {
   LOGIN: 'login',
   FORGOT_PASSWORD: 'forgot-password',
   FORGOT_PASSWORD_RESULT: 'forgotpass-result',
-  VERIFY_EMAIL:'verify-email',
+  VERIFY_EMAIL: 'verify-email',
   RESET_PASSWORD: 'reset-password',
   SUCCESS_MESSAGE: 'success-message',
   DASHBOARD: 'dashboard',
@@ -28,7 +28,7 @@ export const SIGN_UP_ROUTES = {
   UPDATE_SRS: 'update-srs',
   TOPUP: 'portfolio/top-up',
   FINLIT_LOGIN: 'finlit/login',
-  FINLIT_CREATE_ACCOUNT: 'finlit/sign-up',
+  FINLIT_CREATE_ACCOUNT: 'finlit/sign-up'
 };
 
 export const SIGN_UP_ROUTE_PATHS = {

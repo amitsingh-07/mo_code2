@@ -36,6 +36,7 @@ export class ErrorModalComponent implements OnInit {
   @Input() emailSent: boolean;
   @Input() closeBtn: boolean;
   @Input() tooltipButtonLabel: string;
+  @Input() redirect_url:string;
 
   public closeBtnToggle = true;
 

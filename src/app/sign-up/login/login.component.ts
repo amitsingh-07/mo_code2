@@ -368,6 +368,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.refreshCaptcha();
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorMessage = message;
+    ref.componentInstance.redirect_url = SIGN_UP_ROUTE_PATHS.VERIFY_EMAIL;
     ref.result.then((data) => {
       if (!data && redirect) {
         this.router.navigate([redirect]);
