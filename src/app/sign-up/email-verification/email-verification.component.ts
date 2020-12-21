@@ -81,7 +81,7 @@ export class EmailVerificationComponent implements OnInit {
    * redirect to login page.
    */
   redirectToLogin() {
-    if (this.userType === appConstants.USERTYPE.NORMAL) {
+    if (this.userType.toLowerCase() === appConstants.USERTYPE.NORMAL.toLowerCase()) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
