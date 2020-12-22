@@ -31,6 +31,7 @@ const USER_MOBILE = 'user_mobile';
 const FROM_LOGIN_PAGE = 'from_login_page';
 const CAPTACHA_COUNT = 'captcha_count';
 const EMAIL = 'email'
+const FINLITENABLED = 'finlitenabled';
 
 @Injectable({
   providedIn: 'root'
@@ -309,11 +310,19 @@ export class SignUpService {
   }
   setEmail(data) {
     if (window.sessionStorage) {
-      sessionStorage.setItem(EMAIL, data);
+      sessionStorage.setItem(EMAIL , data);
+    }
+  }
+  getUserType() {
+    return sessionStorage.getItem(FINLITENABLED);
+  }
+  setUserType(data) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(FINLITENABLED, data);
     }
   }
   getEmail() {
-   return sessionStorage.getItem(EMAIL);
+    return sessionStorage.getItem(EMAIL);
   }
   getEmailandFinlit() {
     return {

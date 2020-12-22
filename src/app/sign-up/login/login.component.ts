@@ -224,6 +224,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       });
     }
     this.signUpService.setEmail(form.value.loginUsername);
+    const userType= this.finlitEnabled ? appConstants.USERTYPE.FINLIT: appConstants.USERTYPE.NORMAL;
+    this.signUpService.setUserType(userType);
     const accessCode = (this.finlitEnabled) ? this.loginForm.value.accessCode : '';
     if (!form.valid || ValidatePassword(form.controls['loginPassword'])) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });

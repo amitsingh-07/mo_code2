@@ -46,7 +46,7 @@ export class ForgotPasswordResultComponent implements OnInit {
 
   }
   redirectToLogin() {
-    if (this.signUpService.getEmailandFinlit().userType.toLowerCase() === appConstants.USERTYPE.NORMAL.toLowerCase()) {
+    if (this.signUpService.getUserType() === appConstants.USERTYPE.NORMAL) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
