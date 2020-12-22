@@ -245,9 +245,9 @@ export class SignUpService {
    * construct the json for forgot password.
    * @param data - email and redirect uri.
    */
-  constructResetEmailInfo(data, captchaValue, oldEmail) {
+  constructResetEmailInfo(data, captchaValue, oldLoginEmail) {
     return {
-      oldEmail: oldEmail,
+      oldEmail: oldLoginEmail,
       updatedEmail: data,
       captcha: captchaValue,
       sessionId: this.authService.getSessionId(),
@@ -310,7 +310,7 @@ export class SignUpService {
   }
   setEmail(data) {
     if (window.sessionStorage) {
-      sessionStorage.setItem(EMAIL , data);
+      sessionStorage.setItem(EMAIL, data);
     }
   }
   getUserType() {
