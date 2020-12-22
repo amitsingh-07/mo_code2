@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { toInteger } from '../utils/common.util';
-import { Agent } from 'https';
 
 @Injectable()
 export class AboutAge {
