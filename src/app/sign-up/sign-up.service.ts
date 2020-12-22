@@ -313,7 +313,10 @@ export class SignUpService {
     }
   }
   getEmail() {
-    return sessionStorage.getItem(EMAIL);
+    return {
+      email: this.signUpFormData.email,
+      userType: this.signUpFormData.userType
+    };
   }
 
   setEditContact(editContact, mobileUpdate, emailUpdate) {

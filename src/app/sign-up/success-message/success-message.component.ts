@@ -50,13 +50,12 @@ export class SuccessMessageComponent implements OnInit {
     this.queryParams = this.route.snapshot.queryParams;
   }
   redirectToLogin() {
-    const userType = this.signUpService.getAccountInfo().userType
-    if (userType.toLowerCase() === appConstants.USERTYPE.NORMAL.toLowerCase()) {
+    const userType = (this.signUpService.getEmail().userType);
+    if (userType === appConstants.USERTYPE.NORMAL) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
     }
 
   }
-
 }

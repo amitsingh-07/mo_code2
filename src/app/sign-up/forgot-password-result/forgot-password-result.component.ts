@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { appConstants } from './../../app.constants';
 
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -19,13 +20,15 @@ import { FooterService } from './../../shared/footer/footer.service';
   encapsulation: ViewEncapsulation.None
 })
 export class ForgotPasswordResultComponent implements OnInit {
-
+  verifyEmail = false;
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
+    private route: ActivatedRoute,
+    private signUpService: SignUpService,
     public navbarService: NavbarService,
     public footerService: FooterService
-    ) {
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
     });
@@ -37,8 +40,17 @@ export class ForgotPasswordResultComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(false);
     this.navbarService.setNavbarShadowVisibility(false);
     this.footerService.setFooterVisibility(false);
+    if (this.route.snapshot.data[0]) {
+      this.verifyEmail = this.route.snapshot.data[0]['verifyEmail'];
+    }
+
   }
   redirectToLogin() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    if (this.signUpService.getEmail().userType.toLowerCase() === appConstants.USERTYPE.NORMAL.toLowerCase()) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    } else {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
+    }
+
   }
 }
