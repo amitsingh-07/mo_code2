@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } fro
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs/operators';
+import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
 
 @Component({
   selector: 'app-error-modal',
@@ -10,7 +11,7 @@ import { filter } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None
 })
 export class ErrorModalComponent implements OnInit {
-  
+
   @Input() errorTitle: any;
   @Input() errorMessage: any;
   @Input() errorMessageList: string[];
@@ -34,9 +35,10 @@ export class ErrorModalComponent implements OnInit {
   @Input() emailSent: boolean;
   @Input() closeBtn: boolean;
   @Input() tooltipButtonLabel: string;
+  @Input() redirect_url:string;
 
   public closeBtnToggle = true;
-  
+
   constructor(public activeModal: NgbActiveModal, private router: Router) { }
 
   ngOnInit() {
@@ -47,7 +49,7 @@ export class ErrorModalComponent implements OnInit {
         this.activeModal.dismiss();
       });
 
-    if(this.closeBtn != null) {
+    if (this.closeBtn != null) {
       this.closeBtnToggle = this.closeBtn;
     }
   }

@@ -22,10 +22,10 @@ import { FooterService } from './../../shared/footer/footer.service';
   encapsulation: ViewEncapsulation.None
 })
 export class SuccessMessageComponent implements OnInit {
-buttonTitle;
-message;
-redirectTo;
-queryParams;
+  buttonTitle;
+  message;
+  redirectTo;
+  queryParams;
 
   constructor(
     // tslint:disable-next-line
@@ -50,13 +50,11 @@ queryParams;
     this.queryParams = this.route.snapshot.queryParams;
   }
   redirectToLogin() {
-    const userType = this.signUpService.getAccountInfo().userType
-    if(userType === appConstants.USERTYPE.NORMAL){
+    const userType = (this.signUpService.getEmailandFinlit().userType);
+    if (userType === appConstants.USERTYPE.NORMAL) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
-    } else{
+    } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
     }
-  
   }
-
 }

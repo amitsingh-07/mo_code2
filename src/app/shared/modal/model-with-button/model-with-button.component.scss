@@ -77,6 +77,14 @@
 .modal-body-message {
   margin-bottom: 15px;
 }
+.modal-dialog {
+  @include desktop {
+    width: 375px;
+  }
+}
+.modal-body {
+  padding: 20px;
+}
 .warning-icon {
   width: 24px;
   height: 24px;
@@ -103,7 +111,7 @@
     flex-basis: auto;
   }
   span.lock {
-    padding-left: 5px;
+    padding-left: 10px;
     img {
       vertical-align: initial !important;
     }
@@ -128,14 +136,11 @@
   padding-bottom: 18px;
 }
 
-.modal.hide-close .close {
-  display: block;
-}
-
 .spinner-container {
   #mo_spinner {
     width: 24px;
     height: 24px;
-    margin: 0px 10px 2px 0;
+    margin: 3px 10px 0px 0px;
+    display: flex;
   }
 }

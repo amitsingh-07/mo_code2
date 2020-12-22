@@ -14,6 +14,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { trackingConstants } from 'src/app/shared/analytics/tracking.constants';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-account-created',
@@ -25,7 +26,7 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
   resendEmail: boolean;
   emailTriggered = false;
   emailSent = false;
-
+  finlitEnabled = false;
   routeSubscription: Subscription;
 
   constructor(
@@ -37,6 +38,8 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
     private signUpService: SignUpService,
     private configService: ConfigService,
     private router: Router,
+    private route: ActivatedRoute,
+    private appService: AppService,
     private signUpApiService: SignUpApiService,
     public authService: AuthenticationService) {
     this.translate.use('en');
@@ -64,13 +67,24 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
     if (this.signUpService.getUserMobileNo()) {
       this.resendEmail = true;
     }
+    if (this.route.snapshot.data[0]) {
+      this.finlitEnabled = this.route.snapshot.data[0]['finlitEnabled'];
+      this.appService.clearJourneys();
+      this.appService.clearPromoCode();
+    }
+
   }
 
   /**
    * redirect to login page.
    */
   redirectToLogin() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    if (this.finlitEnabled) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
+    } else {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    }
+
   }
 
   resendEmailVerification() {

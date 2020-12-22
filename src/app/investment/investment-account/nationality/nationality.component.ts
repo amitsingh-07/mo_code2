@@ -35,6 +35,8 @@ export class NationalityComponent implements OnInit {
   blockedCountryModal: any;
   tooltipDetails: any;
   foreignerModal: any;
+  foreignerConfirmModel: any;
+
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -55,6 +57,7 @@ export class NationalityComponent implements OnInit {
       this.blockedCountryModal = this.translate.instant('SELECT_NATIONALITY.blockedCountry');
       this.tooltipDetails = this.translate.instant('BLOCKED_COUNTRY_TOOLTIP');
       this.foreignerModal = this.translate.instant('SELECT_NATIONALITY.FOREIGNER');
+      this.foreignerConfirmModel = this.translate.instant('SELECT_NATIONALITY.FOREIGNER_CONFIRMATION');
     });
   }
 
@@ -194,9 +197,10 @@ export class NationalityComponent implements OnInit {
             this.editModalData.modalTitle,
             this.editModalData.modalMessage
           );
+        } else if (this.selectNationalityFormValues.isMyInfoEnabled && form.controls.singaporeanResident && !form.controls.singaporeanResident.value) {
+          this.showForeignerConfirmation(form);
         } else {
-          this.setNationlityFormData(form);
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
+          this.moveToNext(form);
         }
       }
     }
@@ -242,8 +246,21 @@ export class NationalityComponent implements OnInit {
     ref.componentInstance.errorTitle = this.foreignerModal.title;
     ref.componentInstance.errorMessageHTML = this.foreignerModal.message;
     ref.componentInstance.primaryActionLabel = this.foreignerModal.btnText;
+  }
+
+  showForeignerConfirmation(form) {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.foreignerConfirmModel.title;
+    ref.componentInstance.errorMessageHTML = this.foreignerConfirmModel.message;
+    ref.componentInstance.primaryActionLabel = this.foreignerConfirmModel.btnText;
     ref.componentInstance.primaryAction.subscribe(() => {
-      ref.dismiss();
+      this.investmentAccountService.setMyInfoStatus(false);
+      this.moveToNext(form);
     });
+  }
+
+  moveToNext(form) {
+    this.setNationlityFormData(form);
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
   }
 }

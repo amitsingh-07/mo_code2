@@ -27,7 +27,7 @@ export let appConstants = {
         COMPREHENSIVE_VERSION: 'app-comprehensive-version'
     },
     USERTYPE: {
-        NORMAL: "NORMAL",
+        NORMAL: "normal",
         FINLIT: "finlit"
     },
     INSURANCE_JOURNEY_TYPE: {

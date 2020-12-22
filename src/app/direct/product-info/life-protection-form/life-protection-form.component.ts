@@ -83,7 +83,7 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
       smoker: [this.formValues.smoker],
       coverageAmt: [this.formValues.coverageAmt, Validators.required],
       duration: [this.formValues.duration, Validators.required],
-      premiumWaiver: [false],      
+      premiumWaiver: [false],
       ciCoverageAmount: [this.formValues.ciCoverageAmount],
       isEarlyCI: [this.formValues.isEarlyCI],
     });
@@ -138,32 +138,32 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     this.ci_coverage_amt = in_coverage_amt;
     this.lifeProtectionForm.controls.ciCoverageAmount.setValue(this.ci_coverage_amt);
     const isEarlyCIControl = this.lifeProtectionForm.controls.isEarlyCI;
-    if(this.ci_coverage_amt === '') {
+    if (this.ci_coverage_amt === '') {
       this.durationValues = ['5 Years', '10 Years', 'Till Age 55',
-      'Till Age 60', 'Till Age 65', 'Till Age 70',
-      'Whole Life', 'Whole life w/Multiplier'];      
+        'Till Age 60', 'Till Age 65', 'Till Age 70',
+        'Whole Life', 'Whole life w/Multiplier'];
       this.isEarlyDisabled = true;
       isEarlyCIControl.setValue('');
       isEarlyCIControl.setValidators([]);
       isEarlyCIControl.updateValueAndValidity();
     } else {
       this.durationValues = ['5 Years', '10 Years', 'Till Age 55',
-      'Till Age 60', 'Till Age 65', 'Till Age 70'];    
+        'Till Age 60', 'Till Age 65', 'Till Age 70'];
       this.isEarlyDisabled = false;
       if (this.duration === 'Whole Life' || this.duration === 'Whole life w/Multiplier') {
         this.duration = ''
         this.lifeProtectionForm.controls.duration.setValue(this.duration);
-      }    
+      }
       this.isEarlyDisabled = false;
       isEarlyCIControl.setValidators([Validators.required]);
       isEarlyCIControl.updateValueAndValidity();
     }
-    
+
   }
 
   selectCoverageAmt(in_coverage_amt) {
     this.coverage_amt = in_coverage_amt;
-    this.lifeProtectionForm.controls.coverageAmt.setValue(this.coverage_amt);    
+    this.lifeProtectionForm.controls.coverageAmt.setValue(this.coverage_amt);
   }
 
   selectDuration(in_duration) {
@@ -213,5 +213,10 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     this.directService.setLifeProtectionForm(values);
     return true;
   }
-
+  showToolTip(title, desc) {
+    this.directService.showToolTipModal(
+      this.translate.instant('TOOL_TIP.' + title),
+      this.translate.instant('TOOL_TIP.' + desc)
+    );
+  }
 }

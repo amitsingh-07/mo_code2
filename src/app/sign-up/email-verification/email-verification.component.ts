@@ -19,7 +19,7 @@ export class EmailVerificationComponent implements OnInit {
   showLoader: boolean = true;
   statusMessages: any = {};
   message: string;
-  userType: string;
+  userType = appConstants.USERTYPE.NORMAL;
 
   constructor(
     private signUpApiService: SignUpApiService,
@@ -60,7 +60,9 @@ export class EmailVerificationComponent implements OnInit {
    */
   verifyEmail(verifyCode) {
     this.signUpApiService.verifyEmail(verifyCode).subscribe((data) => {
-      this.userType = data.objectList[0].userType;
+      if( data.objectList[0] &&  data.objectList[0].userType){
+        this.userType = data.objectList[0].userType;
+      }
       if (data.responseMessage.responseCode === 6000) {
         this.email = data.objectList[0].email;
         this.message = this.statusMessages['verified'];
@@ -81,7 +83,7 @@ export class EmailVerificationComponent implements OnInit {
    * redirect to login page.
    */
   redirectToLogin() {
-    if (this.userType === appConstants.USERTYPE.NORMAL) {
+    if (this.userType.toLowerCase() === appConstants.USERTYPE.NORMAL.toLowerCase()) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);

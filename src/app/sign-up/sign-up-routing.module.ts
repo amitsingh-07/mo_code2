@@ -12,11 +12,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import {
-    EditResidentialAddressComponent
+  EditResidentialAddressComponent
 } from './edit-residential-address/edit-residential-address.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import {
-    ForgotPasswordResultComponent
+  ForgotPasswordResultComponent
 } from './forgot-password-result/forgot-password-result.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
@@ -29,11 +29,12 @@ import { SuccessMessageComponent } from './success-message/success-message.compo
 import { UpdateUserIdComponent } from './update-user-id/update-user-id.component';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
 import {
-    ViewAllNotificationsComponent
+  ViewAllNotificationsComponent
 } from './view-all-notifications/view-all-notifications.component';
 
 import { AddUpdateSrsComponent } from './add-update-srs/add-update-srs.component';
 import { TwoFactorAuthGuardService, TwoFactorScreenGuardService } from './two-factor-auth-guard.service';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 const routes: Routes = [
   {
@@ -50,61 +51,94 @@ const routes: Routes = [
     component: CreateAccountComponent,
     canActivate: [LoggedUserGuard]
   },
-  { path: SIGN_UP_ROUTES.VERIFY_MOBILE,
+  {
+    path: SIGN_UP_ROUTES.VERIFY_MOBILE,
     component: VerifyMobileComponent,
     canActivate: [SignUpAccessGuard]
   },
-  { path: SIGN_UP_ROUTES.TWOFA_MOBILE,
+  {
+    path: SIGN_UP_ROUTES.FINLIT_VERIFY_MOBILE,
+    component: VerifyMobileComponent,
+    canActivate: [SignUpAccessGuard, FinlitLoggedUserGuard],
+    data: [{ finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN }]
+  },
+  {
+    path: SIGN_UP_ROUTES.TWOFA_MOBILE,
     component: VerifyMobileComponent,
     canActivate: [TwoFactorScreenGuardService]
   },
-  { path: SIGN_UP_ROUTES.ACCOUNT_CREATED,
+  {
+    path: SIGN_UP_ROUTES.ACCOUNT_CREATED_FINLIT,
+    component: AccountCreatedComponent,
+    canActivate: [FinlitLoggedUserGuard],
+    data: [{ finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN }]
+  },
+  {
+    path: SIGN_UP_ROUTES.ACCOUNT_CREATED,
     component: AccountCreatedComponent
   },
-  { path: SIGN_UP_ROUTES.EMAIL_VERIFIED,
+  {
+    path: SIGN_UP_ROUTES.EMAIL_VERIFIED,
     component: EmailVerificationComponent
   },
-  { path: SIGN_UP_ROUTES.LOGIN,
+  {
+    path: SIGN_UP_ROUTES.LOGIN,
     component: LoginComponent,
     canActivate: [LoggedUserGuard]
   },
-  { path: SIGN_UP_ROUTES.FORGOT_PASSWORD,
+  {
+    path: SIGN_UP_ROUTES.FORGOT_PASSWORD,
     component: ForgotPasswordComponent
   },
-  { path: SIGN_UP_ROUTES.FORGOT_PASSWORD_RESULT,
+  {
+    path: SIGN_UP_ROUTES.FORGOT_PASSWORD_RESULT,
     component: ForgotPasswordResultComponent
   },
-  { path: SIGN_UP_ROUTES.RESET_PASSWORD,
+  {
+    path: SIGN_UP_ROUTES.VERIFY_EMAIL_RESULT,
+    component: ForgotPasswordResultComponent,
+    data: [{ verifyEmail: true }]
+  },
+  {
+    path: SIGN_UP_ROUTES.RESET_PASSWORD,
     component: ResetPasswordComponent
   },
-  { path: SIGN_UP_ROUTES.SUCCESS_MESSAGE,
+  {
+    path: SIGN_UP_ROUTES.SUCCESS_MESSAGE,
     component: SuccessMessageComponent
   },
-  { path: SIGN_UP_ROUTES.DASHBOARD,
+  {
+    path: SIGN_UP_ROUTES.DASHBOARD,
     component: DashboardComponent,
     canActivate: [AuthGuard]
   },
-  { path: SIGN_UP_ROUTES.PRELOGIN,
+  {
+    path: SIGN_UP_ROUTES.PRELOGIN,
     component: PreLoginComponent,
     canActivate: [AuthGuard]
   },
-  { path: SIGN_UP_ROUTES.EDIT_PROFILE,
+  {
+    path: SIGN_UP_ROUTES.EDIT_PROFILE,
     component: EditProfileComponent,
     canActivate: [AuthGuard]
   },
-  { path: SIGN_UP_ROUTES.EDIT_PASSWORD,
+  {
+    path: SIGN_UP_ROUTES.EDIT_PASSWORD,
     component: EditPasswordComponent,
     canActivate: [AuthGuard]
   },
-  { path: SIGN_UP_ROUTES.EDIT_RESIDENTIAL,
+  {
+    path: SIGN_UP_ROUTES.EDIT_RESIDENTIAL,
     component: EditResidentialAddressComponent,
     canActivate: [AuthGuard]
   },
-  { path: SIGN_UP_ROUTES.UPDATE_USER_ID,
+  {
+    path: SIGN_UP_ROUTES.UPDATE_USER_ID,
     component: UpdateUserIdComponent,
     canActivate: [AuthGuard, TwoFactorAuthGuardService]
   },
-  { path: SIGN_UP_ROUTES.ACCOUNT_UPDATED,
+  {
+    path: SIGN_UP_ROUTES.ACCOUNT_UPDATED,
     component: AccountUpdatedComponent,
     canActivate: [AuthGuard]
   },
@@ -113,23 +147,31 @@ const routes: Routes = [
     component: ViewAllNotificationsComponent,
     canActivate: [AuthGuard]
   },
-  { path: SIGN_UP_ROUTES.UPDATE_BANK,
+  {
+    path: SIGN_UP_ROUTES.UPDATE_BANK,
     component: AddUpdateBankComponent,
     canActivate: [AuthGuard, TwoFactorAuthGuardService]
   },
-  { path: SIGN_UP_ROUTES.UPDATE_SRS,
+  {
+    path: SIGN_UP_ROUTES.UPDATE_SRS,
     component: AddUpdateSrsComponent,
     canActivate: [AuthGuard, TwoFactorAuthGuardService]
   },
-  { path: SIGN_UP_ROUTES.FINLIT_LOGIN,
+  {
+    path: SIGN_UP_ROUTES.FINLIT_LOGIN,
     component: LoginComponent,
     canActivate: [FinlitLoggedUserGuard],
-    data: [{finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN}]
+    data: [{ finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN }]
   },
-  { path: SIGN_UP_ROUTES.FINLIT_CREATE_ACCOUNT ,
+  {
+    path: SIGN_UP_ROUTES.FINLIT_CREATE_ACCOUNT,
     component: CreateAccountComponent,
     canActivate: [FinlitLoggedUserGuard],
-    data: [{finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN}]
+    data: [{ finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN }]
+  },
+  {
+    path: SIGN_UP_ROUTES.VERIFY_EMAIL,
+    component: VerifyEmailComponent
   },
 
   { path: '**', redirectTo: '/page-not-found' }

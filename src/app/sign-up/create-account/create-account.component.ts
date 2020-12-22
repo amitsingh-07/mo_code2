@@ -32,6 +32,7 @@ import { GoogleAnalyticsService } from './../../shared/analytics/google-analytic
 import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
 import { ANIMATION_DATA } from '../../../assets/animation/animationData';
+import { SIGN_UP_CONFIG } from '../sign-up.constant';
 
 const bodymovin = require("../../../assets/scripts/lottie_svg.min.js");
 
@@ -66,7 +67,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   showSpinner: boolean = false;
   createAccBtnDisabled = true;
   finlitEnabled = false;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private modal: NgbModal,
@@ -94,8 +95,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.distribution = config.distribution;
     });
 
-    if (route.snapshot.data[0]) {
-      this.finlitEnabled = route.snapshot.data[0]['finlitEnabled'];
+    if (this.route.snapshot.data[0]) {
+      this.finlitEnabled = this.route.snapshot.data[0]['finlitEnabled'];
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
@@ -204,7 +205,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.submitted = true;
     this.validateReferralCode();
     if (form.valid) {
-      form.value.userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : appConstants.USERTYPE.FINLIT;
+      form.value.userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : appConstants.USERTYPE.NORMAL;
       this.signUpService.setAccountInfo(form.value);
       this.openTermsOfConditions();
     }
@@ -265,12 +266,17 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
             const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
             if ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
               this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) &&
-              ( (insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) 
-              || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0) )) {
+              ((insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)
+                || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0))) {
               const redirect = data.responseMessage.responseCode === 6000;
               this.updateInsuranceEnquiry(insuranceEnquiry, data, redirect);
             } else if (data.responseMessage.responseCode === 6000) {
-              this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+              if (this.finlitEnabled) {
+                this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_VERIFY_MOBILE]);
+              } else {
+                this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+              }
+
             } else if (data.responseMessage.responseCode === 6008 ||
               data.responseMessage.responseCode === 5006) {
               this.callErrorModal(data);
@@ -347,12 +353,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
   updateInsuranceEnquiry(insuranceEnquiry, data: any, redirect: boolean) {
     const journeyType = (insuranceEnquiry.journeyType === appConstants.JOURNEY_TYPE_DIRECT) ?
-        appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
+      appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
     const payload: IEnquiryUpdate = {
       customerId: data.objectList[0].customerRef,
       enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
       newCustomer: true,
-      selectedProducts: insuranceEnquiry.plans,      
+      selectedProducts: insuranceEnquiry.plans,
       enquiryProtectionTypeData: insuranceEnquiry.enquiryProtectionTypeData,
       journeyType: journeyType
     };
@@ -539,7 +545,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     bodymovin.loadAnimation({
       container: document.getElementById('mo_spinner'), // Required
       path: '/app/assets/animation/mo_spinner.json', // Required
-      renderer: 'svg', // Required
+      renderer: 'canvas', // Required
       loop: true, // Optional
       autoplay: true, // Optional
       animationData: animationData

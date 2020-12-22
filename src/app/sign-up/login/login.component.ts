@@ -31,7 +31,7 @@ import { WillWritingService } from '../../will-writing/will-writing.service';
 import { ValidatePassword } from '../create-account/password.validator';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
-import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { SIGN_UP_BASE_ROUTE, SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
 import { COMPREHENSIVE_ROUTE_PATHS } from './../../comprehensive/comprehensive-routes.constants';
@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.welcomeTitle.nativeElement.scrollIntoView(true);
     }
   }
-  
+
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder, private appService: AppService,
@@ -223,6 +223,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.authService.authenticate().subscribe((token) => {
       });
     }
+    this.signUpService.setEmail(form.value.loginUsername);
+    const userType= this.finlitEnabled ? appConstants.USERTYPE.FINLIT: appConstants.USERTYPE.NORMAL;
+    this.signUpService.setUserType(userType);
     const accessCode = (this.finlitEnabled) ? this.loginForm.value.accessCode : '';
     if (!form.valid || ValidatePassword(form.controls['loginPassword'])) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
@@ -367,6 +370,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.refreshCaptcha();
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorMessage = message;
+    ref.componentInstance.redirect_url = SIGN_UP_ROUTE_PATHS.VERIFY_EMAIL;
     ref.result.then((data) => {
       if (!data && redirect) {
         this.router.navigate([redirect]);
@@ -387,13 +391,14 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           }
         });
     }
+
   }
+
 
   resendEmailVerification() {
     const isEmail = this.authService.isUserNameEmail(this.loginForm.value.loginUsername);
     return this.signUpApiService.resendEmailVerification(this.loginForm.value.loginUsername, isEmail);
   }
-
   openErrorModal(error) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorMessage = error;
@@ -490,9 +495,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     event.preventDefault();
   }
   onKeyupEvent(event) {
-     if (event.target.value) {
-        const emailValue = event.target.value.replace(/\s/g, '');
-        this.loginForm.controls.loginUsername.setValue(emailValue);
-     }
+    if (event.target.value) {
+      const emailValue = event.target.value.replace(/\s/g, '');
+      this.loginForm.controls.loginUsername.setValue(emailValue);
+    }
   }
 }
