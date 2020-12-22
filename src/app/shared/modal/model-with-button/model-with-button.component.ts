@@ -33,6 +33,7 @@ export class ModelWithButtonComponent implements OnInit {
   @Output() secondaryAction = new EventEmitter<any>();
   @Output() yesClickAction = new EventEmitter<any>();
   @Output() noClickAction = new EventEmitter<any>();
+  @Output() closeAction = new EventEmitter<any>();
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -73,12 +74,17 @@ export class ModelWithButtonComponent implements OnInit {
     this.activeModal.close();
   }
 
+  closeIconAction() {
+    this.closeAction.emit();
+    this.activeModal.dismiss('Cross click');    
+  }
+
   createAnimation() {
     const animationData = ANIMATION_DATA.MO_SPINNER;
     bodymovin.loadAnimation({
       container: document.getElementById('mo_spinner'), // Required
       path: '/app/assets/animation/mo_spinner.json', // Required
-      renderer: 'svg', // Required
+      renderer: 'canvas', // Required
       loop: true, // Optional
       autoplay: true, // Optional
       animationData: animationData

@@ -77,6 +77,14 @@
 .modal-body-message {
   margin-bottom: 15px;
 }
+.modal-dialog {
+  @include desktop {
+    width: 375px;
+  }
+}
+.modal-body {
+  padding: 20px;
+}
 .warning-icon {
   width: 24px;
   height: 24px;
@@ -126,10 +134,6 @@
 .investment-img {
   text-align: center;
   padding-bottom: 18px;
-}
-
-.modal.hide-close .close {
-  display: block;
 }
 
 .spinner-container {
