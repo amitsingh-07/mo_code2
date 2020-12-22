@@ -1,4 +1,3 @@
-import { browser } from 'protractor';
 
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -27,7 +26,6 @@ import { appConstants } from './../../../app/app.constants';
 import { AppService } from './../../../app/app.service';
 import { DirectService } from './../../direct/direct.service';
 import { GuideMeService } from './../../guide-me/guide-me.service';
-import { SIGN_UP_CONFIG } from '../sign-up.constant';
 
 
 @Component({
