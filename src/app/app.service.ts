@@ -17,6 +17,7 @@ export const SESSION_KEY = 'app_session';
 const PROMO_CODE_ACTION_TYPE = 'app_promo_code_action_type';
 const PROMO_CODE = 'app_promo_code';
 const SESSION_CUSTOMER = 'app_customer_id';
+const FINLITENABLED = 'finlitEnabled';
 
 @Injectable({
   providedIn: 'root'
@@ -174,5 +175,11 @@ export class AppService {
 
   getCustomerId() {
     return this.getCustomer().id;
+  }
+  setFinlitUser(finlitEnabled) {
+   sessionStorage.setItem(FINLITENABLED,finlitEnabled)
+  }
+  getFinlitUser() {
+    return sessionStorage.getItem(FINLITENABLED);
   }
 }

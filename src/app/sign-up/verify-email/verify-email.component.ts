@@ -116,7 +116,7 @@ export class VerifyEmailComponent implements OnInit, AfterViewInit {
       ref.componentInstance.errorMessage = error.errorMessage;
       return false;
     } else {
-      this.signUpService.setRestEmailInfo(form.value.email, form.value.captcha,this.signUpService.getEmail()).subscribe((data) => {
+      this.signUpService.setRestEmailInfo(form.value.email, form.value.captcha,this.signUpService.getEmail().email).subscribe((data) => {
         // tslint:disable-next-line:triple-equals
         if (data.responseMessage.responseCode == 6004) {
           const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
@@ -128,7 +128,7 @@ export class VerifyEmailComponent implements OnInit, AfterViewInit {
           if (this.authService.isSignedUser()) {
             this.navbarService.logoutUser();
           }
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.FORGOT_PASSWORD_RESULT]);
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_EMAIL_RESULT]);
         } else if (data.responseMessage.responseCode === 5012) {
           this.signUpApiService.resendEmailVerification(form.value.email, true).subscribe((data) => {
             if (data.responseMessage.responseCode === 6007) {

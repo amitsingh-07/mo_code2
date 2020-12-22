@@ -54,7 +54,12 @@ const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.VERIFY_MOBILE,
     component: VerifyMobileComponent,
-    canActivate: [SignUpAccessGuard]
+    canActivate: [SignUpAccessGuard],
+  }, {
+    path: SIGN_UP_ROUTES.FINLIT_VERIFY_MOBILE,
+    component: VerifyMobileComponent,
+    canActivate: [SignUpAccessGuard, FinlitLoggedUserGuard],
+    data: [{ finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN }]
   },
   {
     path: SIGN_UP_ROUTES.TWOFA_MOBILE,
@@ -62,8 +67,16 @@ const routes: Routes = [
     canActivate: [TwoFactorScreenGuardService]
   },
   {
+    path: SIGN_UP_ROUTES.ACCOUNT_CREATED_FINLIT,
+    component: AccountCreatedComponent,
+    canActivate: [FinlitLoggedUserGuard],
+    data: [{ finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN }]
+
+  },
+  {
     path: SIGN_UP_ROUTES.ACCOUNT_CREATED,
-    component: AccountCreatedComponent
+    component: AccountCreatedComponent,
+
   },
   {
     path: SIGN_UP_ROUTES.EMAIL_VERIFIED,
@@ -81,6 +94,11 @@ const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.FORGOT_PASSWORD_RESULT,
     component: ForgotPasswordResultComponent
+  },
+  {
+    path: SIGN_UP_ROUTES.VERIFY_EMAIL_RESULT,
+    component: ForgotPasswordResultComponent,
+    data: [{ verifyEmail: true }]
   },
   {
     path: SIGN_UP_ROUTES.RESET_PASSWORD,
