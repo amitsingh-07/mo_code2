@@ -2,7 +2,7 @@ import { flatMap } from 'rxjs/operators';
 
 import { Location } from '@angular/common';
 import {
-  AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation, HostListener
+  AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -21,18 +21,15 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { Formatter } from '../../shared/utils/formatter.util';
-import { WillWritingApiService } from '../../will-writing/will-writing.api.service';
-import { WillWritingService } from '../../will-writing/will-writing.service';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
-import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
 import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
 import { ANIMATION_DATA } from '../../../assets/animation/animationData';
-import { SIGN_UP_CONFIG } from '../sign-up.constant';
+
 
 const bodymovin = require("../../../assets/scripts/lottie_svg.min.js");
 
@@ -44,9 +41,6 @@ const bodymovin = require("../../../assets/scripts/lottie_svg.min.js");
 })
 export class CreateAccountComponent implements OnInit, AfterViewInit {
   private distribution: any;
-  private pageTitle: string;
-  private description: string;
-
   createAccountForm: FormGroup;
   defaultCountryCode;
   countryCodeOptions;
@@ -82,13 +76,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private translate: TranslateService,
     private _location: Location,
     private authService: AuthenticationService,
-    private willWritingApiService: WillWritingApiService,
-    private willWritingService: WillWritingService,
     private appService: AppService,
     private apiService: ApiService,
     private selectedPlansService: SelectedPlansService,
-    private changeDetectorRef: ChangeDetectorRef,
-    private googleAnalyticsService: GoogleAnalyticsService
+    private changeDetectorRef: ChangeDetectorRef
   ) {
     this.translate.use('en');
     this.configService.getConfig().subscribe((config) => {

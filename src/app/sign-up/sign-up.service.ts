@@ -1,7 +1,6 @@
 import { Subject, BehaviorSubject } from 'rxjs';
 
 import { DatePipe } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -18,7 +17,6 @@ import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
-import { IVerifyRequestOTP } from './signup-types';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -46,7 +44,6 @@ export class SignUpService {
   private mobileOptimized = new BehaviorSubject(false);
   mobileOptimizedObservable$ = this.mobileOptimized.asObservable();
   constructor(
-    private http: HttpClient,
     private apiService: ApiService,
     public authService: AuthenticationService,
     public configService: ConfigService,
