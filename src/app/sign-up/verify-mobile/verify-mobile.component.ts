@@ -1,4 +1,3 @@
-import { browser } from 'protractor';
 
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -27,7 +26,6 @@ import { appConstants } from './../../../app/app.constants';
 import { AppService } from './../../../app/app.service';
 import { DirectService } from './../../direct/direct.service';
 import { GuideMeService } from './../../guide-me/guide-me.service';
-import { SIGN_UP_CONFIG } from '../sign-up.constant';
 
 
 @Component({
@@ -119,7 +117,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     }
 
     this.two2faAuth = this.authService.get2faVerifyAllowed();
-        if (this.route.snapshot.data[0]) {
+    if (this.route.snapshot.data[0]) {
       this.finlitEnabled = this.route.snapshot.data[0]['finlitEnabled'];
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
