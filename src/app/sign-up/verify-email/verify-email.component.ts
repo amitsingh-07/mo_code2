@@ -116,7 +116,7 @@ export class VerifyEmailComponent implements OnInit, AfterViewInit {
       ref.componentInstance.errorMessage = error.errorMessage;
       return false;
     } else {
-      this.signUpService.setRestEmailInfo(form.value.email, form.value.captcha,this.signUpService.getEmail().email).subscribe((data) => {
+      this.signUpService.setRestEmailInfo(form.value.email, form.value.captcha,this.signUpService.getEmail()).subscribe((data) => {
         // tslint:disable-next-line:triple-equals
         if (data.responseMessage.responseCode == 6004) {
           const ref = this.modal.open(ModelWithButtonComponent, { centered: true });

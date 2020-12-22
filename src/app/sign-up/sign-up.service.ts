@@ -313,6 +313,9 @@ export class SignUpService {
     }
   }
   getEmail() {
+   return sessionStorage.getItem(EMAIL);
+  }
+  getEmailandFinlit() {
     return {
       email: this.signUpFormData.email,
       userType: this.signUpFormData.userType
