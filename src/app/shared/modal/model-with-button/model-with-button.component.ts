@@ -84,7 +84,7 @@ export class ModelWithButtonComponent implements OnInit {
     bodymovin.loadAnimation({
       container: document.getElementById('mo_spinner'), // Required
       path: '/app/assets/animation/mo_spinner.json', // Required
-      renderer: 'svg', // Required
+      renderer: 'canvas', // Required
       loop: true, // Optional
       autoplay: true, // Optional
       animationData: animationData
