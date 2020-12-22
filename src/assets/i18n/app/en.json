@@ -241,7 +241,9 @@
                 "EMAIL": "I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl",
                 "CONTACT": "I also give my consent to be contacted via my mobile phone with regards to this insurance enquiry"
             }
-        }
+        },
+        "LP_TITLE": "Life Coverage",
+        "CI_TITLE": "Critical Illness Coverage"
     },
     "FOOTER": {
         "TOP_SECTION": {

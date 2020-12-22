@@ -29,7 +29,7 @@
     <span *ngIf="state.coverageAmount" class="coverage-amount">{{state.coverageAmount | currency : 'USD' : 'symbol' : '1.0-0' }}</span>
     <br class="hidden-lg" />
     {{ 'RECOMMENDATIONS.PREMIUM_FROM' | translate}}
-    <span class="coverage-premium-from">{{state.premiumFrom | currency}}</span> {{ premiumFrequency }}
+    <span class="coverage-premium-from">{{state.premiumFrom | currency}}</span> {{ state.premiumFrequency }}
   </div>
 </div>
 <div class="container-fluid">
