@@ -30,7 +30,7 @@ import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
 import { ANIMATION_DATA } from '../../../assets/animation/animationData';
 
-
+declare var require: any;
 const bodymovin = require("../../../assets/scripts/lottie_svg.min.js");
 
 @Component({
