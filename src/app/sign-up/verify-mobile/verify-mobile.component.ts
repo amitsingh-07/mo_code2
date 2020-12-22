@@ -1,8 +1,7 @@
-import { browser } from 'protractor';
 
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { takeUntil } from 'rxjs/operators';
@@ -50,8 +49,10 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   editProfile: boolean;
   two2faAuth: boolean;
   fromLoginPage: string;
+  finlitEnabled = false;
+
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
-  
+
   constructor(
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
@@ -67,6 +68,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     private willWritingService: WillWritingService,
     private directService: DirectService,
     private guidemeService: GuideMeService,
+    private route: ActivatedRoute,
     private appService: AppService) {
     this.translate.use('en');
     this.translate.get('VERIFY_MOBILE').subscribe((result: any) => {
@@ -81,7 +83,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     });
     this.translate.get('ERROR').subscribe((results: any) => {
       this.authService.get2faSendErrorEvent.pipe(takeUntil(this.ngUnsubscribe)).subscribe((data) => {
-      if(data) {
+        if (data) {
           const error2fa = {
             title: results.SEND_2FA_FAILED.TITLE,
             subtitle: results.SEND_2FA_FAILED.SUB_TITLE,
@@ -92,6 +94,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
         }
       });
     });
+
+
   }
 
   ngOnInit() {
@@ -113,6 +117,11 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     }
 
     this.two2faAuth = this.authService.get2faVerifyAllowed();
+    if (this.route.snapshot.data[0]) {
+      this.finlitEnabled = this.route.snapshot.data[0]['finlitEnabled'];
+      this.appService.clearJourneys();
+      this.appService.clearPromoCode();
+    }
   }
 
   ngOnDestroy() {
@@ -280,7 +289,12 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
         if (this.signUpService.getUserMobileNo() || this.fromLoginPage) {
           this.signUpService.removeFromLoginPage();
         }
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
+        if (this.finlitEnabled) {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED_FINLIT]);
+        } else {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
+        }
+
       }
     });
   }

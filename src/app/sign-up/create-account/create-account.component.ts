@@ -2,7 +2,7 @@ import { flatMap } from 'rxjs/operators';
 
 import { Location } from '@angular/common';
 import {
-  AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation, HostListener
+  AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -21,17 +21,15 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { Formatter } from '../../shared/utils/formatter.util';
-import { WillWritingApiService } from '../../will-writing/will-writing.api.service';
-import { WillWritingService } from '../../will-writing/will-writing.service';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
-import { GoogleAnalyticsService } from './../../shared/analytics/google-analytics.service';
 import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
 import { ANIMATION_DATA } from '../../../assets/animation/animationData';
+
 
 const bodymovin = require("../../../assets/scripts/lottie_svg.min.js");
 
@@ -43,9 +41,6 @@ const bodymovin = require("../../../assets/scripts/lottie_svg.min.js");
 })
 export class CreateAccountComponent implements OnInit, AfterViewInit {
   private distribution: any;
-  private pageTitle: string;
-  private description: string;
-
   createAccountForm: FormGroup;
   defaultCountryCode;
   countryCodeOptions;
@@ -66,7 +61,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   showSpinner: boolean = false;
   createAccBtnDisabled = true;
   finlitEnabled = false;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private modal: NgbModal,
@@ -81,21 +76,18 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private translate: TranslateService,
     private _location: Location,
     private authService: AuthenticationService,
-    private willWritingApiService: WillWritingApiService,
-    private willWritingService: WillWritingService,
     private appService: AppService,
     private apiService: ApiService,
     private selectedPlansService: SelectedPlansService,
-    private changeDetectorRef: ChangeDetectorRef,
-    private googleAnalyticsService: GoogleAnalyticsService
+    private changeDetectorRef: ChangeDetectorRef
   ) {
     this.translate.use('en');
     this.configService.getConfig().subscribe((config) => {
       this.distribution = config.distribution;
     });
 
-    if (route.snapshot.data[0]) {
-      this.finlitEnabled = route.snapshot.data[0]['finlitEnabled'];
+    if (this.route.snapshot.data[0]) {
+      this.finlitEnabled = this.route.snapshot.data[0]['finlitEnabled'];
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
@@ -265,12 +257,17 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
             const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
             if ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
               this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) &&
-              ( (insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) 
-              || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0) )) {
+              ((insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)
+                || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0))) {
               const redirect = data.responseMessage.responseCode === 6000;
               this.updateInsuranceEnquiry(insuranceEnquiry, data, redirect);
             } else if (data.responseMessage.responseCode === 6000) {
-              this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+              if (this.finlitEnabled) {
+                this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_VERIFY_MOBILE]);
+              } else {
+                this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+              }
+
             } else if (data.responseMessage.responseCode === 6008 ||
               data.responseMessage.responseCode === 5006) {
               this.callErrorModal(data);
@@ -347,12 +344,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
   updateInsuranceEnquiry(insuranceEnquiry, data: any, redirect: boolean) {
     const journeyType = (insuranceEnquiry.journeyType === appConstants.JOURNEY_TYPE_DIRECT) ?
-        appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
+      appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
     const payload: IEnquiryUpdate = {
       customerId: data.objectList[0].customerRef,
       enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
       newCustomer: true,
-      selectedProducts: insuranceEnquiry.plans,      
+      selectedProducts: insuranceEnquiry.plans,
       enquiryProtectionTypeData: insuranceEnquiry.enquiryProtectionTypeData,
       journeyType: journeyType
     };
@@ -539,7 +536,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     bodymovin.loadAnimation({
       container: document.getElementById('mo_spinner'), // Required
       path: '/app/assets/animation/mo_spinner.json', // Required
-      renderer: 'svg', // Required
+      renderer: 'canvas', // Required
       loop: true, // Optional
       autoplay: true, // Optional
       animationData: animationData
