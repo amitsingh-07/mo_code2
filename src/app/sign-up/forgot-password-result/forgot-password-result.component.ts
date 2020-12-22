@@ -42,7 +42,6 @@ export class ForgotPasswordResultComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     if (this.route.snapshot.data[0]) {
       this.verifyEmail = this.route.snapshot.data[0]['verifyEmail'];
-      console.log(this.verifyEmail)
     }
 
   }

@@ -176,10 +176,4 @@ export class AppService {
   getCustomerId() {
     return this.getCustomer().id;
   }
-  setFinlitUser(finlitEnabled) {
-   sessionStorage.setItem(FINLITENABLED,finlitEnabled)
-  }
-  getFinlitUser() {
-    return sessionStorage.getItem(FINLITENABLED);
-  }
 }

@@ -19,7 +19,7 @@ export class EmailVerificationComponent implements OnInit {
   showLoader: boolean = true;
   statusMessages: any = {};
   message: string;
-  userType: string;
+  userType = appConstants.USERTYPE.NORMAL;
 
   constructor(
     private signUpApiService: SignUpApiService,

@@ -97,12 +97,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
     if (this.route.snapshot.data[0]) {
       this.finlitEnabled = this.route.snapshot.data[0]['finlitEnabled'];
-      this.appService.setFinlitUser(this.finlitEnabled);
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
-
-
   }
 
   /**

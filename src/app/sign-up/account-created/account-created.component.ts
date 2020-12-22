@@ -14,7 +14,6 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { trackingConstants } from 'src/app/shared/analytics/tracking.constants';
-import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { AppService } from 'src/app/app.service';
 
 @Component({
@@ -68,14 +67,24 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
     if (this.signUpService.getUserMobileNo()) {
       this.resendEmail = true;
     }
-  
+    if (this.route.snapshot.data[0]) {
+      this.finlitEnabled = this.route.snapshot.data[0]['finlitEnabled'];
+      this.appService.clearJourneys();
+      this.appService.clearPromoCode();
+    }
+
   }
 
   /**
    * redirect to login page.
    */
   redirectToLogin() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    if (this.finlitEnabled) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
+    } else {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    }
+
   }
 
   resendEmailVerification() {

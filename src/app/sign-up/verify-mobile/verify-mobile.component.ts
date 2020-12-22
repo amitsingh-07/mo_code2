@@ -291,7 +291,6 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
         if (this.signUpService.getUserMobileNo() || this.fromLoginPage) {
           this.signUpService.removeFromLoginPage();
         }
-        console.log(this.finlitEnabled)
         if (this.finlitEnabled) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED_FINLIT]);
         } else {

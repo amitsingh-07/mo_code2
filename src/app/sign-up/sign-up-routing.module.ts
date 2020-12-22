@@ -75,7 +75,7 @@ const routes: Routes = [
   },
   {
     path: SIGN_UP_ROUTES.ACCOUNT_CREATED,
-    component: AccountCreatedComponent,
+    component: AccountCreatedComponent
 
   },
   {
