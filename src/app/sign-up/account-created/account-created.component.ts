@@ -68,14 +68,6 @@ export class AccountCreatedComponent implements OnInit, OnDestroy {
     if (this.signUpService.getUserMobileNo()) {
       this.resendEmail = true;
     }
-
-    // if (this.route.snapshot.data[0]) {
-    //   this.finlitEnabled = this.route.snapshot.data[0]['finlitEnabled'];
-    //   SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN = this.finlitEnabled ? true : false;
- 
-    //   this.appService.clearJourneys();
-    //   this.appService.clearPromoCode();
-    // }
   
   }
 
