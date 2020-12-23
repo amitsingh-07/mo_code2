@@ -276,9 +276,10 @@ app-recommendations {
   .coverage-amount,.coverage-premium-from {
     font-family: $muli-bold;
     font-size: 18px;
-    margin-right: 50px;
+    margin-right: 20px;
     @include allmobiles {
       margin-right: 0 !important;
+      font-size: 16px!important;
     }
   }
 
@@ -303,6 +304,12 @@ app-recommendations {
       max-height: auto;
       max-width: auto;
     }
+  }
+}
+.coverage-desc {
+  font-size: 18px!important;
+  @include allmobiles {
+    font-size: 16px!important;
   }
 }
 }
