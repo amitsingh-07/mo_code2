@@ -1,23 +1,41 @@
 @import '../../variables';
 @import '../../mixins';
-
-/*Modal styles*/
-app-not-supported {
-  .title {
-    font-size: 36px;
-    letter-spacing: -0.38px;
-    font-family: $muli-bold;
-    line-height: normal;
-    color: #066360;
-  }
-  .sub-title {
-    font-size: 18px;
-    font-family: $muli-regular;
-    letter-spacing: normal;
-    line-height: 1.5;
-    color: #000000;
-  }
-  .not-supported-bg {
-    background: #b1dfe1;
-  }
+.not-supported-bg {
+    background: $wisesaver-value-bg-color;
+    min-height: 100vh;
+    text-align: center;
+    .content {
+        @include desktop {
+            width: 575px;
+            margin: 0 auto;
+            padding: 50px 0;
+        }
+        @include allmobiles {
+            width: 305px;
+            padding: 110px 0 50px 0;
+            margin: 0 auto;
+        }
+    }
+    .sub-title {
+        font-size: 18px;
+        font-family: $muli-regular;
+        letter-spacing: normal;
+        line-height: 1.5;
+        color: $black-color;
+        @include allmobiles {
+            font-size: 14px;
+        }
+    }
+    .title {
+        font-size: 36px;
+        letter-spacing: -0.38px;
+        font-family: $muli-bold;
+        line-height: normal;
+        color: $watercourse-color;
+        @include allmobiles {
+            font-size: 32px;
+            line-height: 37px;
+            padding-bottom: 20px;
+        }
+    }
 }
