@@ -97,6 +97,14 @@ app-recommendations {
 
     @include allmobiles {
       justify-content: start !important;
+      .plan-type:nth-child(1) {
+        width: 170px;
+      }
+    }
+    @include desktop {
+      .plan-type:nth-child(1) {
+        width: 230px;
+      }
     }
   }
 
@@ -104,8 +112,21 @@ app-recommendations {
     flex-direction: row;
     justify-content: center;
     padding: 20px 30px;
+    display: table;
+    width: 170px;
+    @include allmobiles {
+      padding: 10px;
+    }
     cursor: pointer;
     font-size: 18px;
+    @include allmobiles {
+      font-size: 16px;
+      height: 70px;
+      width: 124px;
+    }
+    @include desktop {
+      display: table;
+    }
     font-family: $muli-bold;
     color: $white-color;
     border-right: 1px solid rgba(255,255,255,0.44);
@@ -115,7 +136,19 @@ app-recommendations {
     background-color: #c0eded;
     color: $app-backgrnd-color;
     font-size: 18px;
-    font-family: $muli-bold;
+    display: table;
+    width: 170px;
+    @include allmobiles {
+      font-size: 16px;
+      height: 70px;
+      width: 124px;
+    }
+    @include desktop {
+      display: table;
+    }
+    @include allmobiles {
+      padding: 10px;
+    }
   }
 
   .plan-carousel-container {
