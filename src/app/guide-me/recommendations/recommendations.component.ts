@@ -224,10 +224,13 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
     if (this.state.activeRecommendationList.productList[0]) {
       const data = this.state.activeRecommendationList.productList[0];
       this.state.premiumFrom = data.premium.premiumAmount;
-
+      this.state.ciCoverageAmount = '';
       this.state.premiumFrequency = this.state.perMonth;
 
       switch (this.state.activeRecommendationType) {
+        case this.state.protectionNeedTypes.LP_CI:
+          this.state.ciCoverageAmount = data.premium.ciSumAssured;          
+          break;
         case this.state.protectionNeedTypes.LIFE_PROTECTION:
           //this.coverageAmount = this.calculateService.getLifeProtectionData().coverageAmount + '';
           break;
@@ -253,6 +256,8 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
     } else {
       this.state.coverageAmount = '';
       this.state.premiumFrom = '';
+      this.state.ciCoverageAmount = '';
+      this.state.premiumFrequency = '';
     }
   }
 

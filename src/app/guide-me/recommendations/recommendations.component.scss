@@ -87,6 +87,7 @@ app-recommendations {
     @include allmobiles {
       padding: 0 !important;
       height: 100vh;
+      border-top: none !important;
     }
   }
 
@@ -97,6 +98,14 @@ app-recommendations {
 
     @include allmobiles {
       justify-content: start !important;
+      .lp-ci-plan-type {
+        width: 170px !important;
+      }
+    }
+    @include desktop {
+      .lp-ci-plan-type {
+        width: 230px !important;
+      }
     }
   }
 
@@ -104,8 +113,21 @@ app-recommendations {
     flex-direction: row;
     justify-content: center;
     padding: 20px 30px;
+    display: table;
+    width: 170px;
+    @include allmobiles {
+      padding: 10px;
+    }
     cursor: pointer;
     font-size: 18px;
+    @include allmobiles {
+      font-size: 16px;
+      height: 70px;
+      width: 124px;
+    }
+    @include desktop {
+      display: table;
+    }
     font-family: $muli-bold;
     color: $white-color;
     border-right: 1px solid rgba(255,255,255,0.44);
@@ -115,7 +137,19 @@ app-recommendations {
     background-color: #c0eded;
     color: $app-backgrnd-color;
     font-size: 18px;
-    font-family: $muli-bold;
+    display: table;
+    width: 170px;
+    @include allmobiles {
+      font-size: 16px;
+      height: 70px;
+      width: 124px;
+    }
+    @include desktop {
+      display: table;
+    }
+    @include allmobiles {
+      padding: 10px;
+    }
   }
 
   .plan-carousel-container {
@@ -266,9 +300,9 @@ app-recommendations {
   .coverage-type
  {
     font-family: $muli-bold;
-    margin-right: 50px;
+    margin-right: 25px;
     font-size: 22px;
-
+    letter-spacing: -0.41px;
     @include allmobiles {
       margin-right: 0px;
     }
@@ -276,9 +310,12 @@ app-recommendations {
   .coverage-amount,.coverage-premium-from {
     font-family: $muli-bold;
     font-size: 18px;
-    margin-right: 50px;
+    margin-right: 25px;
+    letter-spacing: -0.34px;
     @include allmobiles {
       margin-right: 0 !important;
+      font-size: 16px!important;
+      letter-spacing: -0.3px;
     }
   }
 
@@ -303,6 +340,14 @@ app-recommendations {
       max-height: auto;
       max-width: auto;
     }
+  }
+}
+.coverage-desc {
+  font-size: 18px!important;
+  letter-spacing: -0.34px;
+  @include allmobiles {
+    font-size: 16px!important;
+    letter-spacing: -0.3px;
   }
 }
 }
