@@ -97,13 +97,13 @@ app-recommendations {
 
     @include allmobiles {
       justify-content: start !important;
-      .plan-type:nth-child(1) {
-        width: 170px;
+      .lp-ci-plan-type {
+        width: 170px !important;
       }
     }
     @include desktop {
-      .plan-type:nth-child(1) {
-        width: 230px;
+      .lp-ci-plan-type {
+        width: 230px !important;
       }
     }
   }
@@ -299,9 +299,9 @@ app-recommendations {
   .coverage-type
  {
     font-family: $muli-bold;
-    margin-right: 50px;
+    margin-right: 25px;
     font-size: 22px;
-
+    letter-spacing: -0.41px;
     @include allmobiles {
       margin-right: 0px;
     }
@@ -309,10 +309,12 @@ app-recommendations {
   .coverage-amount,.coverage-premium-from {
     font-family: $muli-bold;
     font-size: 18px;
-    margin-right: 20px;
+    margin-right: 25px;
+    letter-spacing: -0.34px;
     @include allmobiles {
       margin-right: 0 !important;
       font-size: 16px!important;
+      letter-spacing: -0.3px;
     }
   }
 
@@ -341,8 +343,10 @@ app-recommendations {
 }
 .coverage-desc {
   font-size: 18px!important;
+  letter-spacing: -0.34px;
   @include allmobiles {
     font-size: 16px!important;
+    letter-spacing: -0.3px;
   }
 }
 }
