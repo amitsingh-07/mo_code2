@@ -6,7 +6,7 @@
     <img src="assets/images/investment-account/fees_owl.svg" id="errorModelImage" />
   </div>
 </div>
-<div class="modal-body white-bg">
+<div class="modal-body white-bg" [ngClass]="{'my-info': myInfo}">
   <div class="modal-body-title">
     <div [ngStyle]="{'display': spinner? 'flex' : 'none'}" class="spinner-container">
       <div id="mo_spinner"></div>
