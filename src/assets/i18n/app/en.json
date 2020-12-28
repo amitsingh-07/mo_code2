@@ -68,7 +68,8 @@
         "CRITICAL_ILLNESS": "Critical Illness",
         "OCCUPATION_DISABILITY": "Occupational Disability",
         "LONG_TERM_CARE": "Long-Term Care",
-        "HOSPITAL_PLAN": "Hospital Plan"
+        "HOSPITAL_PLAN": "Hospital Plan",
+        "LP_CI": "Life Protection with Critical Illness"
     },
     "BUTTON": {
         "PROCEED": "Proceed",
@@ -241,7 +242,9 @@
                 "EMAIL": "I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl",
                 "CONTACT": "I also give my consent to be contacted via my mobile phone with regards to this insurance enquiry"
             }
-        }
+        },
+        "LP_TITLE": "Life Coverage:",
+        "CI_TITLE": "Critical Illness Coverage:"
     },
     "FOOTER": {
         "TOP_SECTION": {
