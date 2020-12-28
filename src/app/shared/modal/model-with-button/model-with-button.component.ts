@@ -31,6 +31,7 @@ export class ModelWithButtonComponent implements OnInit {
   @Input() closeBtn = true;
   @Input() investmentPeriodImg: any;
   @Input() spinner: any;
+  @Input() myInfo: any;
   @Output() primaryAction = new EventEmitter<any>();
   @Output() secondaryAction = new EventEmitter<any>();
   @Output() yesClickAction = new EventEmitter<any>();
