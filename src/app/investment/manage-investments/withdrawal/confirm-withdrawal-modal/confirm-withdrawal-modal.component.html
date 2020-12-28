@@ -69,13 +69,15 @@
             <div class="mr15 info-icon"><img src="assets/images/investment-account/rebalance_info.svg" /></div>
             <div>
               <div>{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.RE_BALANCE.TITLE' | translate}}</div>
-              <div class="txt-grey mt10">
-                <div *ngIf="!showNewMessageForRebalance(portfolio.riskProfileType)"
-                  innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.RE_BALANCE.DESC' | translate}}">
-                </div>
+              <div class="txt-grey mt5">
+                <span>{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.RE_BALANCE.DESC' | translate}}</span>
+                {{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.RE_BALANCE.DESC_ONE' | translate}}
                 <div class="rebalance-message txt-orange" *ngIf="showNewMessageForRebalance(portfolio.riskProfileType)"
-                  innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.RE_BALANCE.DESC_ONE' | translate}}">
-                </div>
+                  innerHTML="{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.RE_BALANCE.DESC_TWO' | translate}}">
+                 </div>
+              </div>
+              <div class="txt-orange mt5"><a target="_blank"
+                  href="/app/faq#investment">{{'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.RE_BALANCE.FAQ_LINK' | translate}}</a>
               </div>
             </div>
           </div>

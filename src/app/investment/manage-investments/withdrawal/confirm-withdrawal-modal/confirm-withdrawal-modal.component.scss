@@ -1,5 +1,5 @@
-@import "../../../../../variables.scss";
-@import "../../../../../mixins";
+@import '../../../../../variables.scss';
+@import '../../../../../mixins';
 
 app-confirm-withdrawal-modal {
   .modal-body {
@@ -100,11 +100,7 @@ app-confirm-withdrawal-modal {
             }
 
             .txt-grey {
-              color: #4a4a4a;
-              font-family: $muli-regular;
-              a.contact-details.mail.size {
-                font-size: 13px;
-              }
+              color: $dark-grey-color;
               span {
                 font-family: $muli-regular;
               }
