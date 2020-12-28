@@ -39,13 +39,18 @@
                   <img [src]="riskProfileImage" />
                 </div>
                 <div class="user_portfolio flex-col">
-                  <div class="user_portfolio_ref_code">{{'YOUR_INVESTMENT.REF_CODE' | translate}} {{portfolio.referenceCode}}</div>
+                  <div class="user_portfolio_ref_code">{{'YOUR_INVESTMENT.REF_CODE' | translate}}
+                    {{portfolio.referenceCode}}</div>
                   <div class="user_portfolio_lbl">{{portfolio.portfolioName}}</div>
                   <div class="flex-row space-between">
                     <div class="portfolio-type flex align-center">
-                      <span *ngIf="portfolio?.fundingTypeValue === 'SRS'" class="portfolio-fund-type mr10">{{'YOUR_INVESTMENT.SRS' | translate}}</span>
-                      <ng-container *ngIf="portfolio?.riskProfile; else wisesaverportfolio">{{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type} }}</ng-container>
-                      <ng-template #wisesaverportfolio>{{'YOUR_PORTFOLIO.WISESAVER_PORTFOLIO' | translate}}</ng-template>
+                      <span *ngIf="portfolio?.fundingTypeValue === 'SRS'"
+                        class="portfolio-fund-type mr10">{{'YOUR_INVESTMENT.SRS' | translate}}</span>
+                      <ng-container *ngIf="portfolio?.riskProfile; else wisesaverportfolio">
+                        {{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type}
+                        }}</ng-container>
+                      <ng-template #wisesaverportfolio>{{'YOUR_PORTFOLIO.WISESAVER_PORTFOLIO' | translate}}
+                      </ng-template>
                     </div>
                     <div class="more-menu">
                       <div class="dropdown-control">
@@ -90,7 +95,8 @@
                     <div class="form-group-with-bg--header ">
                       <div class="start-investing-header">
                         <span class="header-icon"><img
-                            src="assets/images/investment-account/owl-talk-header.svg" /></span><span>{{'YOUR_PORTFOLIO.WHATS_NEXT' | translate}}</span>
+                            src="assets/images/investment-account/owl-talk-header.svg" /></span><span>{{'YOUR_PORTFOLIO.WHATS_NEXT'
+                          | translate}}</span>
                       </div>
                     </div>
                     <div class="form-group-with-bg--content">
@@ -98,9 +104,11 @@
                         <div class="flex-col">
                           <div class="pb10">
                             <span
-                              *ngIf="portfolio.portfolioStatus !== 'PURCHASED' && portfolio.portfolioStatus !== 'REBALANCING'">{{'YOUR_PORTFOLIO.WHATS_NEXT_DESC_NOT_FUNDED' | translate: {portfolioName: portfolio.portfolioName} }}</span>
+                              *ngIf="portfolio.portfolioStatus !== 'PURCHASED' && portfolio.portfolioStatus !== 'REBALANCING'">{{'YOUR_PORTFOLIO.WHATS_NEXT_DESC_NOT_FUNDED'
+                              | translate: {portfolioName: portfolio.portfolioName} }}</span>
                             <span
-                              *ngIf="portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING'  || portfolio.portfolioStatus === 'REBALANCING'">{{'YOUR_PORTFOLIO.WHATS_NEXT_DESC_FUNDED' | translate: {portfolioName: portfolio.portfolioName} }}</span>
+                              *ngIf="portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING'  || portfolio.portfolioStatus === 'REBALANCING'">{{'YOUR_PORTFOLIO.WHATS_NEXT_DESC_FUNDED'
+                              | translate: {portfolioName: portfolio.portfolioName} }}</span>
                           </div>
                           <div class="txt-lyt" (click)="goToTopupInstructionLink()">
                             {{'YOUR_PORTFOLIO.HOW_TO_TOPUP' | translate }}</div>
@@ -127,7 +135,8 @@
                       [ngClass]="{'no-returns': !portfolio.showTotalReturn}">
                       <div id="portdolio_value" class="total_values">
                         <span
-                          *ngIf="portfolio.dPMSPortfolio && portfolio.dPMSPortfolio.currentValue; else display_zero">{{portfolio.dPMSPortfolio.currentValue | formatCurrency}}</span>
+                          *ngIf="portfolio.dPMSPortfolio && portfolio.dPMSPortfolio.currentValue; else display_zero">{{portfolio.dPMSPortfolio.currentValue
+                          | formatCurrency}}</span>
                         <ng-template #display_zero>$0</ng-template>
                       </div>
                       <div id="portdolio_value_lab" class="total_values_label">
@@ -139,24 +148,29 @@
                         <ng-container *ngIf="showPortfolioInfo; else totalReturns">
                           <div class="flex-col-4" class="portfolio_info_label">
                             {{'YOUR_PORTFOLIO.COST_OF_INVESTMENT' | translate}}
-                            <div id="your_portfolio_cost_of_investment" class="currency_value" [class.negativeValue]="totalInvested < 0">
+                            <div id="your_portfolio_cost_of_investment" class="currency_value"
+                              [class.negativeValue]="totalInvested < 0">
                               {{totalInvested | formatCurrency}}
                             </div>
                           </div>
                           <div class="portfolio_info_label pad-top right-col">
                             {{'YOUR_PORTFOLIO.NET_DEPOSITS' | translate}}
-                            <div id="your_portfolio_net_deposits" class="currency_value" [class.negativeValue]="investmentAmount < 0">
+                            <div id="your_portfolio_net_deposits" class="currency_value"
+                              [class.negativeValue]="investmentAmount < 0">
                               {{investmentAmount | formatCurrency}}
                             </div>
                           </div>
                           <div class="portfolio_info_label next-row">
                             {{'YOUR_PORTFOLIO.UNREALISED_GAIN_LOSS' | translate}}
-                            <div id="your_portfolio_unrealised_gain_loss" class="total_return_value" [class.negativeValue]="unrealisedGainOrLoss < 0">
+                            <div id="your_portfolio_unrealised_gain_loss" class="total_return_value"
+                              [class.negativeValue]="unrealisedGainOrLoss < 0">
                               {{formatReturns(unrealisedGainOrLoss)}}{{unrealisedGainOrLoss | formatCurrency}}
                             </div>
                           </div>
-                          <div id="your_portfolio_totalreturn_lb" class="portfolio_info_label right-col next-row" for="total return">
-                            <div class="return_label" [class.margin-right]="!showTimeWeightedReturns" (click)="toggleReturns()">
+                          <div id="your_portfolio_totalreturn_lb" class="portfolio_info_label right-col next-row"
+                            for="total return">
+                            <div class="return_label" [class.margin-right]="!showTimeWeightedReturns"
+                              (click)="toggleReturns()">
                               <ng-container *ngIf="showTimeWeightedReturns; else simpleReturns">
                                 {{'YOUR_PORTFOLIO.TIME_WEIGHTED_RETURN' | translate}}
                               </ng-container>
@@ -164,10 +178,11 @@
                                 {{'YOUR_PORTFOLIO.SIMPLE_RETURN' | translate}}
                               </ng-template>
                               <img src="assets/images/icon-chevron-up.svg" alt="" class="arrow-img"
-                              [class.upward]="!showTimeWeightedReturns" />
+                                [class.upward]="!showTimeWeightedReturns" />
                             </div>
-                            <div *ngIf="showTimeWeightedReturns; else simpleReturnsPercent" id="your_portfolio_totalreturn_value"
-                              class="total_return_value" [class.negativeValue]="totalReturnsPercentage < 0" for="total value">
+                            <div *ngIf="showTimeWeightedReturns; else simpleReturnsPercent"
+                              id="your_portfolio_totalreturn_value" class="total_return_value"
+                              [class.negativeValue]="totalReturnsPercentage < 0" for="total value">
                               {{formatReturns(totalReturnsPercentage)}}{{totalReturnsPercentage | number : '1.0-2'}}%
                             </div>
                             <ng-template #simpleReturnsPercent>
@@ -227,24 +242,29 @@
                         <ng-container *ngIf="showPortfolioInfo; else totalReturns">
                           <div class="flex-col-4" class="portfolio_info_label">
                             {{'YOUR_PORTFOLIO.COST_OF_INVESTMENT' | translate}}
-                            <div id="your_portfolio_cost_of_investment" class="currency_value" [class.negativeValue]="totalInvested < 0">
+                            <div id="your_portfolio_cost_of_investment" class="currency_value"
+                              [class.negativeValue]="totalInvested < 0">
                               {{0 | formatCurrency}}
                             </div>
                           </div>
                           <div class="portfolio_info_label pad-top right-col">
                             {{'YOUR_PORTFOLIO.NET_DEPOSITS' | translate}}
-                            <div id="your_portfolio_net_deposits" class="currency_value" [class.negativeValue]="investmentAmount < 0">
+                            <div id="your_portfolio_net_deposits" class="currency_value"
+                              [class.negativeValue]="investmentAmount < 0">
                               {{0 | formatCurrency}}
                             </div>
                           </div>
                           <div class="portfolio_info_label next-row">
                             {{'YOUR_PORTFOLIO.UNREALISED_GAIN_LOSS' | translate}}
-                            <div id="your_portfolio_unrealised_gain_loss" class="currency_value" [class.negativeValue]="unrealisedGainOrLoss < 0">
+                            <div id="your_portfolio_unrealised_gain_loss" class="currency_value"
+                              [class.negativeValue]="unrealisedGainOrLoss < 0">
                               {{0 | formatCurrency}}
                             </div>
                           </div>
-                          <div id="your_portfolio_totalreturn_lb" class="portfolio_info_label right-col next-row" for="total return">
-                            <div class="return_label" [class.margin-right]="!showTimeWeightedReturns" (click)="toggleReturns()">
+                          <div id="your_portfolio_totalreturn_lb" class="portfolio_info_label right-col next-row"
+                            for="total return">
+                            <div class="return_label" [class.margin-right]="!showTimeWeightedReturns"
+                              (click)="toggleReturns()">
                               <ng-container *ngIf="showTimeWeightedReturns; else simpleReturns">
                                 {{'YOUR_PORTFOLIO.TIME_WEIGHTED_RETURN' | translate}}
                               </ng-container>
@@ -252,10 +272,11 @@
                                 {{'YOUR_PORTFOLIO.SIMPLE_RETURN' | translate}}
                               </ng-template>
                               <img src="assets/images/icon-chevron-up.svg" alt="" class="arrow-img"
-                              [class.upward]="!showTimeWeightedReturns" />
+                                [class.upward]="!showTimeWeightedReturns" />
                             </div>
-                            <div *ngIf="showTimeWeightedReturns; else simpleReturnsPercent" id="your_portfolio_totalreturn_value"
-                              class="total_return_value" [class.negativeValue]="totalReturnsPercentage < 0" for="total value">
+                            <div *ngIf="showTimeWeightedReturns; else simpleReturnsPercent"
+                              id="your_portfolio_totalreturn_value" class="total_return_value"
+                              [class.negativeValue]="totalReturnsPercentage < 0" for="total value">
                               {{0 | number : '1.0-2'}}%
                             </div>
                             <ng-template #simpleReturnsPercent>
@@ -333,9 +354,11 @@
                               <img src="assets/images/investment-account/portfolio-withdrawal.svg" />
                             </span>
                             <span
-                              *ngIf="portfolio?.portfolioStatus !== 'REBALANCING'">{{'YOUR_PORTFOLIO.WITHDRAWALS_IN_PROGRESS' | translate}}</span>
+                              *ngIf="portfolio?.portfolioStatus !== 'REBALANCING'">{{'YOUR_PORTFOLIO.WITHDRAWALS_IN_PROGRESS'
+                              | translate}}</span>
                             <span
-                              *ngIf="portfolio?.portfolioStatus === 'REBALANCING'">{{'YOUR_PORTFOLIO.WITHDRAWALS_IN_QUEUE' | translate}}</span>
+                              *ngIf="portfolio?.portfolioStatus === 'REBALANCING'">{{'YOUR_PORTFOLIO.WITHDRAWALS_IN_QUEUE'
+                              | translate}}</span>
                           </div>
                           <div><span class="downward-icon"><img src="assets/images/dropdown-icon.svg" /></span>
                           </div>
@@ -359,15 +382,16 @@
                           <div class="mr15 info-icon"><img src="assets/images/investment-account/rebalance-info.svg" />
                           </div>
                           <div>
-                            <div>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.TITLE' | translate}}</div>
-                            <div class="txt-grey mt5">
-                              <span>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC' | translate}}</span>
-                              {{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC_ONE' | translate}}
-                            <div class="rebalance-message txt-orange" *ngIf="showNewMessageForRebalance(portfolio.riskProfile.type)"
-                            innerHTML="{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC_TWO' | translate}}"></div></div>
-                            <div class="txt-orange mt5"><a target="_blank"
-                                href="/app/faq#investment">{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.FAQ_LINK' | translate}}</a>
+                            <div>{{'YOUR_PORTFOLIO.MODAL.RBL_MODAL.TITLE' | translate}}</div>
+                            <div class="txt-grey mt10">
+                              <div *ngIf="!showNewMessageForRebalance(portfolio.riskProfile.type)"
+                                innerHTML="{{'YOUR_PORTFOLIO.MODAL.RBL_MODAL.MESSAGE_ONE' | translate}}">
+                                </div>
+                              <div *ngIf="showNewMessageForRebalance(portfolio.riskProfile.type)"
+                                innerHTML="{{'YOUR_PORTFOLIO.MODAL.RBL_MODAL.MESSAGE_TWO' | translate}}">
+                              </div>
                             </div>
+                            <!-- remove -->
                           </div>
                         </div>
                       </div>
@@ -381,9 +405,11 @@
               <div *ngIf="pendingBuyRequests && pendingBuyRequests.value && pendingBuyRequests.value.length"
                 class="pending-buy-rqst-lbl">
                 <span
-                  *ngIf="pendingBuyRequests.value.length > 1; else single_pending_template">{{'YOUR_PORTFOLIO.PENDING_REQUEST_INFO' | translate: { count: pendingBuyRequests.value.length} }}</span>
+                  *ngIf="pendingBuyRequests.value.length > 1; else single_pending_template">{{'YOUR_PORTFOLIO.PENDING_REQUEST_INFO'
+                  | translate: { count: pendingBuyRequests.value.length} }}</span>
                 <ng-template #single_pending_template>
-                  <span>{{'YOUR_PORTFOLIO.PENDING_REQUEST_INFO_SINGLE' | translate: { count: pendingBuyRequests.value.length} }}</span>
+                  <span>{{'YOUR_PORTFOLIO.PENDING_REQUEST_INFO_SINGLE' | translate: { count:
+                    pendingBuyRequests.value.length} }}</span>
                 </ng-template>
               </div>
               <div *ngIf="!pendingBuyRequests" class="pending-buy-rqst-lbl">
@@ -408,12 +434,13 @@
                         {{awaitingRequest.expiryDate | date: "dd MMM y"}}.</div>
                       <div class="flex-col-12 flex-row">
                         <div class="flex align-center"><span
-                            class="fund-state"></span><span>{{awaitingRequest.createdDate | date : "dd MMM, hh:mma"}}</span>
+                            class="fund-state"></span><span>{{awaitingRequest.createdDate | date : "dd MMM,
+                            hh:mma"}}</span>
                         </div>
                         <div class="fund-amt">
                           <span>{{awaitingRequest.amount | formatCurrency}}</span><span class="forward-icon"
-                            *ngIf="false"><img
-                              src="assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                            *ngIf="false"><img src="assets/images/investment-account/forward_portfolio.svg" /></span>
+                        </div>
                       </div>
                     </div>
                   </ng-container>
@@ -427,8 +454,8 @@
                         <div><span>{{recievedRequest.createdDate | date : "dd MMM, hh:mma"}}</span></div>
                         <div class="fund-amt">
                           <span>{{recievedRequest.amount | formatCurrency}}</span><span class="forward-icon"
-                            *ngIf="false"><img
-                              src="assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                            *ngIf="false"><img src="assets/images/investment-account/forward_portfolio.svg" /></span>
+                        </div>
                       </div>
                     </div>
                   </ng-container>
@@ -445,8 +472,8 @@
                           <div>{{processingRequest.createdDate | date : "dd MMM, hh:mma"}}</div>
                           <div class="fund-amt">
                             <span>{{processingRequest.amount | formatCurrency}}</span><span class="forward-icon"
-                              *ngIf="false"><img
-                                src="assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                              *ngIf="false"><img src="assets/images/investment-account/forward_portfolio.svg" /></span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -482,12 +509,13 @@
                       <div class="processing-time">{{'YOUR_PORTFOLIO.MONTHLY_FUND_TIME' | translate}}</div>
                       <div class="flex-col-12 flex-row">
                         <div class="flex align-center"><span
-                            class="fund-state"></span><span>{{awaitingRequest.createdDate | date : "dd MMM, hh:mma"}}</span>
+                            class="fund-state"></span><span>{{awaitingRequest.createdDate | date : "dd MMM,
+                            hh:mma"}}</span>
                         </div>
                         <div class="fund-amt">
                           <span>{{awaitingRequest.amount | formatCurrency}}</span><span class="forward-icon"
-                            *ngIf="false"><img
-                              src="assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                            *ngIf="false"><img src="assets/images/investment-account/forward_portfolio.svg" /></span>
+                        </div>
                       </div>
                     </div>
                   </ng-container>
@@ -501,8 +529,8 @@
                         <div><span>{{recievedRequest.createdDate | date : "dd MMM, hh:mma"}}</span></div>
                         <div class="fund-amt">
                           <span>{{recievedRequest.amount | formatCurrency}}</span><span class="forward-icon"
-                            *ngIf="false"><img
-                              src="assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                            *ngIf="false"><img src="assets/images/investment-account/forward_portfolio.svg" /></span>
+                        </div>
                       </div>
                     </div>
                   </ng-container>
@@ -519,8 +547,8 @@
                           <div>{{processingRequest.createdDate | date : "dd MMM, hh:mma"}}</div>
                           <div class="fund-amt">
                             <span>{{processingRequest.amount | formatCurrency}}</span><span class="forward-icon"
-                              *ngIf="false"><img
-                                src="assets/images/investment-account/forward_portfolio.svg" /></span></div>
+                              *ngIf="false"><img src="assets/images/investment-account/forward_portfolio.svg" /></span>
+                          </div>
                         </div>
                       </div>
                     </div>

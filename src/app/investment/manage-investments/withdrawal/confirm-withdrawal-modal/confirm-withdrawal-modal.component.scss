@@ -1,5 +1,5 @@
-@import '../../../../../variables.scss';
-@import '../../../../../mixins';
+@import "../../../../../variables.scss";
+@import "../../../../../mixins";
 
 app-confirm-withdrawal-modal {
   .modal-body {
@@ -93,16 +93,18 @@ app-confirm-withdrawal-modal {
             font-family: $muli-bold;
             font-size: 13px;
             letter-spacing: -0.11px;
-            color:#000000; 
+            color: #000000;
 
             @include allmobiles {
               padding: 20px 15px;
             }
 
             .txt-grey {
-              color: #4a4a4a; 
-             
-
+              color: #4a4a4a;
+              font-family: $muli-regular;
+              a.contact-details.mail.size {
+                font-size: 13px;
+              }
               span {
                 font-family: $muli-regular;
               }
@@ -123,10 +125,10 @@ app-confirm-withdrawal-modal {
               height: 24px;
               display: flex;
             }
-            .rebalance-message{
+            .rebalance-message {
               font-family: $muli-regular;
               margin-top: 10px;
-             }
+            }
           }
         }
       }
@@ -134,7 +136,6 @@ app-confirm-withdrawal-modal {
 
     .strong {
       font-weight: bold;
-
     }
 
     .amount-section {
