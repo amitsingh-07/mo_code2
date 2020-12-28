@@ -5,13 +5,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import {
-    InvestmentAccountService
+  InvestmentAccountService
 } from '../../../investment/investment-account/investment-account-service';
 import {
-    InvestmentEngagementJourneyService
+  InvestmentEngagementJourneyService
 } from '../../../investment/investment-engagement-journey/investment-engagement-journey.service';
 import {
-    ProfileIcons
+  ProfileIcons
 } from '../../../investment/investment-engagement-journey/recommendation/profileIcons';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { AuthenticationService } from '../../http/auth/authentication.service';
@@ -20,7 +20,7 @@ import { INVESTMENT_COMMON_CONSTANTS } from './../../../investment/investment-co
 import { InvestmentCommonService } from './../../../investment/investment-common/investment-common.service';
 import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
- } from './../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+} from './../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../../../investment/manage-investments/manage-investments.constants';
 
 @Component({
@@ -73,7 +73,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
   }
 
-  ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+  ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
     this.portfoioSpliter();
     this.filterPortfolios();
   }
@@ -131,7 +131,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   }
 
   showRebalanceMessage(riskProfileType) {
-   if (MANAGE_INVESTMENTS_CONSTANTS.REBALANCE_ADDITIONAL_MESSAGE.includes(riskProfileType.toUpperCase())){
+    if (MANAGE_INVESTMENTS_CONSTANTS.REBALANCE_ADDITIONAL_MESSAGE.includes(riskProfileType.toUpperCase())) {
       this.newMessageForRebalance = true;
     } else {
       this.newMessageForRebalance = false;
