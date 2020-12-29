@@ -8,7 +8,7 @@
   </div>
 
   <div class="plan-type-list d-none d-md-flex hidden-sm-md">
-    <div class="plan-type" (click)="jumpToSlide(recommendation, i)" [class.active]="recommendation.protectionType == state.activeRecommendationType" [ngClass]="{'lp-ci-plan-type': recommendation.protectionType === state.protectionNeedTypes.LP_CI}"
+    <div class="plan-type {{recommendation.protectionType.split(' ').join('-')}}" (click)="jumpToSlide(recommendation, i)" [class.active]="recommendation.protectionType == state.activeRecommendationType" [ngClass]="{'lp-ci-plan-type': recommendation.protectionType === state.protectionNeedTypes.LP_CI}"
       *ngFor="let recommendation of state.recommendationPlans; let i = index">
       <span [innerHtml]="recommendation.protectionType ? recommendation.protectionType.split('-').join('&#8209;') : recommendation.protectionType"></span>
     </div>
