@@ -204,6 +204,7 @@ export class SingPassComponent implements OnInit, OnDestroy {
     });
     this.myInfoService.loadingModalRef.componentInstance.secondaryAction.subscribe(() => {
       this.closeMyInfoPopup(false);
+      this.investmentAccountService.setMyInfoStatus(false);
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
     });
   }
