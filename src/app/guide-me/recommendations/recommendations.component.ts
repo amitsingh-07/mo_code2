@@ -127,7 +127,6 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
     this.state.currentSlide = e.currentSlide;
     this.state.activeRecommendationList = this.state.recommendationPlans[this.state.currentSlide];
     this.state.activeRecommendationType = this.state.activeRecommendationList.protectionType;
-
     this.updateCoverageDetails();
     switch (e.slick.currentDirection) {
       // Left
@@ -169,7 +168,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   moveCarouselNext() {
     const container = this.elRef.nativeElement.querySelector('#mobileHeaderMenu');
     const containerBound = container.getBoundingClientRect();
-    const boundElement = container.querySelector('.' + this.state.activeRecommendationType.replace(' ', '-'));
+    const boundElement = container.querySelector('.' + this.state.activeRecommendationType.split(' ').join('-'));
     if (boundElement) {
       const bound = boundElement.getBoundingClientRect();
       if (bound.right > containerBound.right) {
@@ -185,7 +184,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   moveCarouselPrev() {
     const container = this.elRef.nativeElement.querySelector('#mobileHeaderMenu');
     const containerBound = container.getBoundingClientRect();
-    const boundElement = container.querySelector('.' + this.state.activeRecommendationType.replace(' ', '-'));
+    const boundElement = container.querySelector('.' + this.state.activeRecommendationType.split(' ').join('-'));
     if (boundElement) {
       const bound = boundElement.getBoundingClientRect();
       if (bound.left < containerBound.left) {
@@ -203,7 +202,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
       this.state.prevActiveSlide = event.prev;
     } else {
       this.state.nextActiveSlide = event.prev;
-    }
+    }    
     this.state.activeRecommendationType = event.current;
     this.state.activeRecommendationList = this.getCurrentRecommendationList();
     this.updateCoverageDetails();
