@@ -107,6 +107,9 @@ app-recommendations {
     .Hospital-Plan {
       width: 70px;
     }
+    .Life-Protection, .Critical-Illness {
+      width: 100px;
+    }
   }
 
   .plan-type {
@@ -121,6 +124,7 @@ app-recommendations {
     }
     @include desktop {
       display: table;
+      height: 76px;
     }
     font-family: $muli-bold;
     color: $white-color;
@@ -134,6 +138,7 @@ app-recommendations {
     display: table;
     @include desktop {
       display: table;
+      height: 76px;
     }
   }
 
