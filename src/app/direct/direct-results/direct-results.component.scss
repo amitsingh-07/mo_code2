@@ -280,6 +280,10 @@ app-direct-results {
       padding: 0 20px 20px;
       button {
         width: 100%;
+        font-family: $muli-bold;
+        @include allmobiles {
+          font-size: 18px;
+        }
       }
     }
   }
