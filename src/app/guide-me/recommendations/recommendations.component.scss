@@ -64,9 +64,6 @@ app-recommendations {
 
   .container-fluid {
     padding-top: 0 !important;
-    //padding-left: 125px !important;
-    //padding-right: 125px !important;
-    //height: 100vh;
     position: relative;
     border-top: 1px solid #76adb2;
     background: #2d8289;
@@ -95,35 +92,32 @@ app-recommendations {
     display: flex;
     justify-content: center;
     background-color: #00c5c4;
-
     @include allmobiles {
       justify-content: start !important;
-      .lp-ci-plan-type {
-        width: 170px !important;
-      }
     }
-    @include desktop {
-      .lp-ci-plan-type {
-        width: 230px !important;
-      }
+    .Life-Protection-with-Critical-Illness {
+      width: 230px;
+    }
+    .Occupational-Disability {
+      width: 111px;
+    }
+    .Long-Term-Care {
+      width: 100px;
+    }
+    .Hospital-Plan {
+      width: 70px;
     }
   }
 
   .plan-type {
     flex-direction: row;
     justify-content: center;
-    padding: 20px 30px;
+    padding: 11px 30px;
     display: table;
-    width: 170px;
-    @include allmobiles {
-      padding: 10px;
-    }
     cursor: pointer;
     font-size: 18px;
     @include allmobiles {
-      font-size: 16px;
-      height: 70px;
-      width: 124px;
+      height: 38px;
     }
     @include desktop {
       display: table;
@@ -138,17 +132,8 @@ app-recommendations {
     color: $app-backgrnd-color;
     font-size: 18px;
     display: table;
-    width: 170px;
-    @include allmobiles {
-      font-size: 16px;
-      height: 70px;
-      width: 124px;
-    }
     @include desktop {
       display: table;
-    }
-    @include allmobiles {
-      padding: 10px;
     }
   }
 
