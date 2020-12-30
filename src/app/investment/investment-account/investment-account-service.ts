@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,7 +8,6 @@ import { RoadmapService } from '../../shared/components/roadmap/roadmap.service'
 import { ApiService } from '../../shared/http/api.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { SignUpService } from '../../sign-up/sign-up.service';
 import { InvestmentAccountFormData } from './investment-account-form-data';
 import { InvestmentAccountFormError } from './investment-account-form-error';
 import {
@@ -23,6 +21,7 @@ import {
 } from './investment-account.request';
 import { PersonalInfo } from './personal-info/personal-info';
 import { InvestmentApiService } from '../investment-api.service';
+import { RegexConstants } from './../../shared/utils/api.regex.constants';
 
 const SESSION_STORAGE_KEY = 'app_inv_account_session';
 const ACCOUNT_SUCCESS_COUNTER_KEY = 'investment_account_success_counter';
@@ -38,8 +37,6 @@ export class InvestmentAccountService {
   private investmentAccountFormError: any = new InvestmentAccountFormError();
 
   constructor(
-    private signUpService: SignUpService,
-    private http: HttpClient,
     private apiService: ApiService,
     private investmentApiService: InvestmentApiService,
     public authService: AuthenticationService,
@@ -411,7 +408,7 @@ export class InvestmentAccountService {
   setPersonalInfo(data: PersonalInfo) {
     this.clearPersonalInfo();
     if (data.fullName) {
-      this.investmentAccountFormData.fullName = data.fullName.toUpperCase();
+      this.investmentAccountFormData.fullName = data.fullName.trim().replace(RegexConstants.trimSpace, ' ').toUpperCase();
     }
     if (data.nricNumber) {
       this.investmentAccountFormData.nricNumber = data.nricNumber.toUpperCase();
