@@ -287,7 +287,7 @@ describe('RegularSavingPlanComponent', () => {
   });
   
   it('should trigger buildRSPForm() Add RSP form ', () => {
-	component.regularSavingsArray  = [{regularUnitTrust: 10, regularPaidByCash:20, regularPaidByCPF : 30}, {regularUnitTrust: 10, regularPaidByCash:20, regularPaidByCPF : 30}];
+	component.regularSavingsArray  = [{enquiryId:131297, regularUnitTrust: '10', regularPaidByCash:'20', regularPaidByCPF : '30'}, {enquiryId:131297, regularUnitTrust: '10', regularPaidByCash:'20', regularPaidByCPF : '30'}];
     component.buildRSPForm();
   });
   

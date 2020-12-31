@@ -97,3 +97,7 @@ export const mockFooterService = {
 
 export class TestComponent {
 }
+
+export class mockInvestmentEngagementJourneyService {
+    
+}
