@@ -32,7 +32,7 @@ import { ComprehensiveService } from './../comprehensive.service';
 import { CurrencyPipe } from '@angular/common';
 import { appConstants } from './../../app.constants';
 
-import { tokenGetterFn, mockCurrencyPipe, MockComprehensiveService } from
+import { tokenGetterFn, mockCurrencyPipe } from
   '../../../assets/mocks/service/shared-service';
 
 import { FooterService } from './../../shared/footer/footer.service';
