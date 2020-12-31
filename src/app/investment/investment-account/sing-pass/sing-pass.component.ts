@@ -4,13 +4,14 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { Subscription } from 'rxjs';
+import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { ConfigService, IConfig } from '../../../config/config.service';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { MyInfoService } from '../../../shared/Services/my-info.service';
 import {
-    INVESTMENT_ACCOUNT_ROUTE_PATHS, MY_INFO_START_PATH
+  INVESTMENT_ACCOUNT_ROUTE_PATHS, MY_INFO_START_PATH
 } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 
@@ -35,6 +36,10 @@ export class SingPassComponent implements OnInit, OnDestroy {
   myInfoSubscription: any;
   isInvestmentMyInfoEnabled = false;
   myinfoChangeListener: Subscription;
+  secondTimer: any;
+  thirdTimer: any;
+  loader2StartTime: any;
+  loader3StartTime: any;
 
   constructor(
     private configService: ConfigService,
@@ -68,6 +73,8 @@ export class SingPassComponent implements OnInit, OnDestroy {
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.isInvestmentMyInfoEnabled = config.investmentMyInfoEnabled;
+      this.loader2StartTime = config.investment.myInfoLoader2StartTime * 1000;
+      this.loader3StartTime = config.investment.myInfoLoader3StartTime * 1000;
     });
   }
 
@@ -83,7 +90,7 @@ export class SingPassComponent implements OnInit, OnDestroy {
         } else if (myinfoObj.status && myinfoObj.status === 'CANCELLED') {
           this.cancelMyInfo();
         } else {
-          this.myInfoService.closeMyInfoPopup(false);
+          this.closeMyInfoPopup(false);
         }
       }
     });
@@ -97,7 +104,7 @@ export class SingPassComponent implements OnInit, OnDestroy {
 
   cancelMyInfo() {
     this.myInfoService.isMyInfoEnabled = false;
-    this.myInfoService.closeMyInfoPopup(false);
+    this.closeMyInfoPopup(false);
     if (this.myInfoSubscription) {
       this.myInfoSubscription.unsubscribe();
     }
@@ -110,11 +117,13 @@ export class SingPassComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorMessageHTML = this.modelMessge;
       ref.componentInstance.primaryActionLabel = this.modelBtnText;
       ref.componentInstance.lockIcon = true;
+      ref.componentInstance.myInfo = true;
     } else {
       ref.componentInstance.errorTitle = this.modelTitle1;
       ref.componentInstance.errorMessageHTML = this.modelMessge1;
       ref.componentInstance.primaryActionLabel = this.modelBtnText1;
       ref.componentInstance.lockIcon = true;
+      ref.componentInstance.myInfo = true;
     }
     ref.result
       .then(() => {
@@ -124,11 +133,12 @@ export class SingPassComponent implements OnInit, OnDestroy {
   }
 
   getMyInfoData() {
+    this.showFetchPopUp();
     this.myInfoSubscription = this.myInfoService.getMyInfoData().subscribe((data) => {
       if (data && data.objectList[0]) {
         this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
         this.myInfoService.isMyInfoEnabled = false;
-        this.myInfoService.closeMyInfoPopup(false);
+        this.closeMyInfoPopup(false);
         const currentUrl = window.location.toString();
         const rootPoint = currentUrl.split(currentUrl.split('/')[4])[0].substr(0, currentUrl.split(currentUrl.split('/')[4])[0].length - 1);
         const redirectObjective = rootPoint + MY_INFO_START_PATH;
@@ -140,11 +150,31 @@ export class SingPassComponent implements OnInit, OnDestroy {
           });
         }
       } else {
-        this.myInfoService.closeMyInfoPopup(true);
+        this.closeMyInfoPopup(true);
       }
     }, (error) => {
-      this.myInfoService.closeMyInfoPopup(true);
+      this.closeMyInfoPopup(true);
     });
+  }
+
+  showFetchPopUp() {
+    this.secondTimer = setTimeout(() => {
+      if (this.myInfoService.loadingModalRef) {
+        this.openSecondPopup();
+      }
+    }, this.loader2StartTime);
+
+    this.thirdTimer = setTimeout(() => {
+      if (this.myInfoService.loadingModalRef) {
+        this.openThirdPopup();
+      }
+    }, this.loader3StartTime);
+  }
+
+  closeMyInfoPopup(error: boolean) {
+    this.myInfoService.closeMyInfoPopup(error);
+    clearTimeout(this.secondTimer);
+    clearTimeout(this.thirdTimer);
   }
 
   getMyInfo() {
@@ -154,5 +184,30 @@ export class SingPassComponent implements OnInit, OnDestroy {
       this.investmentAccountService.myInfoAttributes
     );
     this.myInfoService.goToMyInfo();
+  }
+
+  // ******** SECOND POP UP ********//
+  openSecondPopup() {
+    this.myInfoService.loadingModalRef.componentInstance.errorMessage = 'Sorry that this is taking longer than usual. Please be patient while we fetch your required data from MyInfo.';
+    this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
+      this.closeMyInfoPopup(false);
+    });
+  }
+
+  // ******** THIRD POP UP ********//
+  openThirdPopup() {
+    this.myInfoService.loadingModalRef.componentInstance.errorMessage = 'We are still trying to fetch your required data from MyInfo. You may choose to fill in your information manually or try again later.';
+    this.myInfoService.loadingModalRef.componentInstance.primaryActionLabel = 'Try Again Later';
+    this.myInfoService.loadingModalRef.componentInstance.secondaryActionLabel = 'Create Account Manually';
+    this.myInfoService.loadingModalRef.componentInstance.secondaryActionDim = true;
+    this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
+      this.closeMyInfoPopup(false);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+    });
+    this.myInfoService.loadingModalRef.componentInstance.secondaryAction.subscribe(() => {
+      this.closeMyInfoPopup(false);
+      this.investmentAccountService.setMyInfoStatus(false);
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
+    });
   }
 }

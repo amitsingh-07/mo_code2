@@ -20,7 +20,7 @@
       "SAVE_AND_CONTINUE": "Save and Continue"
     },
     "DUPLICATE_ERROR": "Oops! A will has already been drafted for this identification number. If you wish to edit or download your will, please log in to your account.",
-    "CAPS_LOCK_IS_ON":"Caps Lock is on"
+    "CAPS_LOCK_IS_ON": "Caps Lock is on"
   },
   "SIGNUP_ERRORS": {
     "TITLE": "You have an account with us!",
@@ -193,11 +193,16 @@
     "BACK_TO": "Back To Login",
     "EMAIL_SENT": "Email Sent!",
     "CHECK_EMAIL": "Please check your email for a link to reset your password. If you do not receive it, check your spam folder.",
+    "CHECK_VERIFY_EMAIL":"A verification link has been sent to your email address. Please verify your email address before logging in.",
     "DESCRIPTION": "Enter your email to receive your password reset instructions.",
     "TITLE": "Forgot Password",
     "EMAIL_NOT_FOUND": "Email Not Found",
     "EMAIL_NOT_FOUND_DESC": "The email you’ve entered doesn’t seem to exist in our database. Please try again.",
     "EMAIL_RESEND": "To proceed, please verify your email address. A new email verification link is sent to your email address."
+  },
+  "VERIFY_EMAIL": {
+    "DESCRIPTION": "Enter your email to receive your verification email.",
+    "TITLE": "Email Verification"
   },
   "PRELOGIN": {
     "TITLE": "Are you an existing MoneyOwl user?",
@@ -355,7 +360,8 @@
     },
     "SRS_JOINT_ACCOUNT": {
       "FIND_OUT_MORE": "Click here to find out more on our new SRS & Joint Account updates!",
-      "SRS_JOINT_ACCOUNT_SLIDES": [{
+      "SRS_JOINT_ACCOUNT_SLIDES": [
+        {
           "TITLE": "New Updates",
           "TITLE_IMG": "srs-joint-account/speaker.svg",
           "IMAGE": "srs-joint-account/srs.svg",

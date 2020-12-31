@@ -16,8 +16,8 @@
         </button>
       </div>
       <div class="flex-col-8">
-        <span class="selected-count">{{data}}</span>
-        <span class="lbl-selected" [hidden]="data >= 2">{{ 'COMMON.LBL_PLAN_SELECTED' | translate}}</span>
+        <span class="selected-count" [hidden]="data === 0">{{data}}</span>
+        <span class="lbl-selected" [hidden]="data >= 2 || data === 0">{{ 'COMMON.LBL_PLAN_SELECTED' | translate}}</span>
         <span class="lbl-selected" [hidden]="data < 2">{{ 'COMMON.LBL_PLANS_SELECTED' | translate}}</span>
       </div>
     </div>

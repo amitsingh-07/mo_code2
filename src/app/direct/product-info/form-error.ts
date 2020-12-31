@@ -130,6 +130,12 @@ export class FormError {
                                 errorTitle: 'Invalid Single Premium Amount',
                                 errorMessage: 'Please select a valid single premium amount.'
                         }
+                },
+                isEarlyCI: {
+                        required: {
+                                errorTitle: 'Invalid Early CI',
+                                errorMessage: 'Please select an option.'
+                        }
                 }
         };
 }

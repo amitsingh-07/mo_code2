@@ -128,8 +128,34 @@ app-start {
 
         .desc {
           padding: 19px 0;
+          font-family: $muli-regular;
+          font-size: 15px;
+          b.txt-bold {
+            font-family: $muli-bold;
+          }
         }
       }
+    }
+    .separator {
+      margin: 40px 0;
+      background-color: $persian-teal-color;
+      height: 2px;
+      text-align: center;
+        .txt-or {
+          color: $morning-glory-color;
+          background-color: $persian-teal-color;
+          border-radius: 50px;
+          width: 50px;
+          height: 50px;
+          text-align: center;
+          line-height: 40px;
+          top: -25px;
+          font-family: "Muli Bold", sans-serif;
+          font-size: 13px;
+          border: 5px solid $teal-color;
+          position: relative;
+          display: inline-block;
+        }
     }
   }
 }
