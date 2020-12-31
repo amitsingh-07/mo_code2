@@ -81,6 +81,17 @@
       margin-bottom: 20px;
     }
   }
+  .form-control {
+    .input-control {
+      &:disabled,
+      &.disabled {
+        color: $form-control-disabled-txt-color !important;
+        -webkit-text-fill-color: $form-control-disabled-txt-color !important;
+        opacity: 1 !important;
+      }
+    }
+  }
+
 }
 
 // investment-account module
@@ -209,6 +220,7 @@
 
   // form-control
   .form-control {
+
     &:disabled,
     &.disabled {
       color: $form-control-disabled-txt-color !important;
@@ -230,28 +242,33 @@
 }
 
 
-.invest-section{
+.invest-section {
   display: block;
   background-color: transparent;
   position: relative;
   margin: 0;
   overflow: visible;
-  @include allmobiles{
-    top:60px;
+
+  @include allmobiles {
+    top: 60px;
   }
-  .invest-section-items{
+
+  .invest-section-items {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    .invest-section-content{
+
+    .invest-section-content {
       position: relative;
       width: 100%;
-      .invest-bg{
+
+      .invest-bg {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         height: 100%;
-        .invest-bg-media{
+
+        .invest-bg-media {
           border: none;
           position: absolute;
           top: 0;
@@ -259,11 +276,13 @@
           width: 100%;
           height: 100%;
           overflow: hidden;
-          & > *{
+
+          &>* {
             transition: all 0.50s ease-in-out;
             transition-property: background, border-radius, color, border-color, box-shadow;
           }
-          .invest-bg-image{
+
+          .invest-bg-image {
             background-image: url("/assets/images/investment_header_web.svg");
             background-position: right top;
             background-attachment: scroll;
@@ -275,27 +294,32 @@
             left: 0;
             width: 100%;
             height: 100%;
-            @include allmobiles{
+
+            @include allmobiles {
               background-size: 150px 100px;
             }
           }
-          .invest-bg-color{
+
+          .invest-bg-color {
             background-color: rgba(0, 167, 167, 0.75);
             background-image: none;
           }
         }
-        .invest-bg-content{
+
+        .invest-bg-content {
           position: relative;
           -webkit-box-flex: 1;
           -ms-flex: 1;
           flex: 1;
           min-width: 0;
           min-height: 1px;
-          .container-fluid{
-            &.max-width--1024{
+
+          .container-fluid {
+            &.max-width--1024 {
               padding-bottom: 0;
               padding-top: 45px !important;
-              @include allmobiles{
+
+              @include allmobiles {
                 padding-left: 15px !important;
                 padding-right: 15px !important;
                 padding-top: 35px !important;
@@ -318,71 +342,76 @@
   z-index: 9999;
   max-width: 1024px;
   margin: 0 auto;
-    @include allmobiles{
-      top: 0px;
+
+  @include allmobiles {
+    top: 0px;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  // &.fade-out-animation {
+  //   -webkit-animation: fadeOut 3100ms ease-in-out;
+  //   /* Chrome, Safari, Opera */
+  //   animation: fadeOut 3100ms ease-in-out;
+  // }
+
+  // /* Chrome, Safari, Opera */
+  // @-webkit-keyframes fadeOut {
+  //   0% {
+  //     opacity: 0.8;
+  //   }
+
+  //   100% {
+  //     opacity: 0;
+  //   }
+  // }
+
+  // /* Standard syntax */
+  // @keyframes fadeOut {
+  //   0% {
+  //     opacity: 1;
+  //   }
+
+  //   100% {
+  //     opacity: 0;
+  //   }
+  // }
+  .toast-msg-container {
+    color: #e57300;
+    background: #fff;
+    padding: 20px;
+    background-color: #fff1e3;
+    // border-top: 1px solid #dfdfdf;
+    font-family: "Muli Bold", sans-serif;
+    font-size: 15px;
+    line-height: 19px;
+    display: flex;
+    //justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+    width: 370px;
+    position: absolute;
+    right: 15px;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+
+    @include allmobiles {
+      border-radius: 0;
+      padding: 30px 20px;
+      width: 100%;
+      left: 0;
+      right: 0;
       box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5);
     }
-    // &.fade-out-animation {
-    //   -webkit-animation: fadeOut 3100ms ease-in-out;
-    //   /* Chrome, Safari, Opera */
-    //   animation: fadeOut 3100ms ease-in-out;
-    // }
 
-    // /* Chrome, Safari, Opera */
-    // @-webkit-keyframes fadeOut {
-    //   0% {
-    //     opacity: 0.8;
-    //   }
+    .toast-msg {
+      width: 200px;
+      margin-left: 14px;
+      word-wrap: break-word;
+    }
 
-    //   100% {
-    //     opacity: 0;
-    //   }
-    // }
-
-    // /* Standard syntax */
-    // @keyframes fadeOut {
-    //   0% {
-    //     opacity: 1;
-    //   }
-
-    //   100% {
-    //     opacity: 0;
-    //   }
-    // }
-    .toast-msg-container {
-      color: #e57300;
-      background: #fff;
-      padding: 20px;
-      background-color: #fff1e3;
-      // border-top: 1px solid #dfdfdf;
-      font-family: "Muli Bold", sans-serif;
-      font-size: 15px;
-      line-height: 19px;
-      display: flex;
-      //justify-content: space-between;
-      align-items: center;
-      border-radius: 6px;
-      width: 370px;
-      position: absolute;
-      right: 15px;
-      box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
-      @include allmobiles{
-        border-radius: 0;
-        padding: 30px 20px;
-        width: 100%;
-        left: 0;
-        right: 0;
-        box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5);
-      }
-      .toast-msg{
-        width: 200px;
-        margin-left: 14px;
-        word-wrap: break-word;
-      }
-      .flex-col-3{
-        color: #00a7a7;
-        text-align: right;
-      }
+    .flex-col-3 {
+      color: #00a7a7;
+      text-align: right;
+    }
   }
 }
 
