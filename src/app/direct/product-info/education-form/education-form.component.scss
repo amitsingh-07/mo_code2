@@ -77,4 +77,46 @@ fieldset {
     font-size: 16px;
   }
 }
+.education-form {
+    @include desktop {
+      display: flex;
+      border: 1px solid $form-title-backgrnd-color;
+      border-radius: 0px 0px 6px 6px;
+      padding-top: 22px;
+      justify-content: space-between;
+      padding-right: 20px;
+      &:nth-child(2) {
+        .flex-row {
+          padding-right: 0 !important;
+        }
+      }
+    }
+    @include allmobiles {
+      border: 1px solid #009A99;
+      border-radius: 0px 0px 6px 6px;
+    }
+    .form-group {
+      &.direct-form {
+        border: none;
+        border-radius: 0;
+      }
+    }
+    @include allmobiles {
+      .direct-form {
+        padding: 0 0;
+      }
+      .direct-form:nth-child(1) {
+        padding-top: 20px;
+      }
+    }
+  }
+  .education-form-wrapper {
+    @include allmobiles {
+      margin: 0 20px;
+    }
+    @include desktop {
+      min-width: 756px;
+      justify-content: space-between;
+    }
+  }
 }

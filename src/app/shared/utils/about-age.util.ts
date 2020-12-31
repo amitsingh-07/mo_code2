@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Util } from './util';
+<<<<<<< .mine
+import { Util } from './util';
+=======
+import { toInteger } from '../utils/common.util';
+>>>>>>> .theirs
 
 
 @Injectable()

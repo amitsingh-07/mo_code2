@@ -1,6 +1,14 @@
 <app-edit-product-info (editProdInfo)="editProdInfo()" [hidden]="state.isComparePlanEnabled && state.isMobileView"></app-edit-product-info>
 <div class="prod-info__backdrop show" [hidden]="!state.toggleBackdropVisibility"></div>
-<div [hidden]="!state.isResultsLoaded || state.resultsEmptyMessage?.length == 0" class="mt10 text-center no-result-msg">{{state.resultsEmptyMessage}}</div>
+<div [hidden]="!state.isResultsLoaded || state.resultsEmptyMessage?.length == 0" class="mt10 text-center no-result-msg">
+  <div class="no-results-box">
+    <div class="no-results-box__img"><img src="assets/images/direct/owl-no-result.svg" width="80" height="80"></div>
+    <div class="no-results-box__message">{{ 'DIRECT_RESULTS.NO_RESULTS_MSG' | translate}}</div>
+    <div class="no-results-box__separator"></div>
+    <div class="no-results-box__btn-message">{{ 'DIRECT_RESULTS.NO_RESULTS_BTN_MSG' | translate}}</div>
+    <div class="no-results-box__footer-btn"><button class="btn btn-primary-dark" (click)="proceedSelection()">{{ 'DIRECT_RESULTS.NO_RESULTS_BTN_TXT' | translate}}</button></div>
+  </div>
+</div>
 <div id="results-web" [hidden]="!state.isResultsLoaded || state.resultsEmptyMessage?.length > 0" *ngIf="!state.isMobileView" class="flex-row grp-results hidden-sm-md">
   <div class="flex-col-8 pr20" *ngFor="let category of state.searchResult; let i = index">
     <div class="text-center">

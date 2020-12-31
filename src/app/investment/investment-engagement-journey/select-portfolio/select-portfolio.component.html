@@ -79,12 +79,12 @@
             </ngx-slick-carousel>
         </div>
         <!--Footer button-->
-        <button type="button" class="btn btn__footer--fixed btn-primary width100" (click)="goNext(selectPortfolioForm)" [disabled]="!selectPortfolioForm.controls.selectPortfolioType.value">
+        <div class="footer-btn-wrapper"><button type="button" class="btn btn__footer--fixed btn-primary width100" (click)="goNext(selectPortfolioForm)" [disabled]="!selectPortfolioForm.controls.selectPortfolioType.value">
       <span
         *ngIf="!selectPortfolioForm.controls.selectPortfolioType.value">{{'PORTFOLIO.TITLE' | translate}}</span>
       <span
         *ngIf="investmentEnabled || ( selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='investPortfolio')">{{'PORTFOLIO.INVESTMENT.FOOTER_BTN_TXT' | translate}}</span>
       <span
-        *ngIf="wiseSaverEnabled || ( selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='wiseSaverPortfolio')">{{'PORTFOLIO.WISESAVER.FOOTER_BTN_TXT' | translate}}</span></button>
+        *ngIf="wiseSaverEnabled || ( selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='wiseSaverPortfolio')">{{'PORTFOLIO.WISESAVER.FOOTER_BTN_TXT' | translate}}</span></button></div>
     </form>
 </div>

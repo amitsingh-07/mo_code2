@@ -851,6 +851,7 @@ input::placeholder {
 
     @include allmobiles {
       margin-bottom: 30px;
+      font-family: $muli-bold;
     }
   }
 
@@ -990,6 +991,20 @@ input::placeholder {
 
     @include allmobiles {
       margin-left: 0px;
+    }
+  }
+  @include tablet {
+    .education-form-wrapper {
+      width: 100%;
+      .education-form {
+        display: flex;
+        padding-top: 40px;
+        border: 1px solid #c0eded;
+        border-radius: 0px 0px 6px 6px;
+        .direct-form {
+          width: 350px !important;
+        }
+      }
     }
   }
 }
@@ -1456,7 +1471,7 @@ input::placeholder {
   textarea:disabled,
   .input-control:disabled,
   .form-control.view-mode {
-    -webkit-text-fill-color: #00a7a7;
+    -webkit-text-fill-color: #00a7a7 !important;
     opacity: 1;
   }
 

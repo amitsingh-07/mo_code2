@@ -1,4 +1,4 @@
-import { IPlan } from './../../sign-up/signup-types';
+import { IPlan, IProtectionType } from './../../sign-up/signup-types';
 import { IMyExpenses } from './../../guide-me/expenses/expenses.interface';
 import { IMyIncome } from './../../guide-me/income/income.interface';
 import { IExistingCoverage } from './../../guide-me/insurance-results/existing-coverage-modal/existing-coverage.interface';
@@ -122,4 +122,7 @@ export interface IEnquiryByEmail {
         sessionId: string;
     };
     enquiryId: number;
+    enquiryProtectionTypeData: IProtectionType[];
+    journeyType: string;
+
 }

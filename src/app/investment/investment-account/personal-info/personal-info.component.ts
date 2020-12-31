@@ -360,6 +360,7 @@ export class PersonalInfoComponent implements OnInit {
   }
 
   setControlValue(value, controlName, formName) {
+    value = value.trim().replace(RegexConstants.trimSpace, ' ');
     this.investmentAccountService.setControlValue(value, controlName, formName);
   }
 
@@ -370,7 +371,7 @@ export class PersonalInfoComponent implements OnInit {
   @HostListener('input', ['$event'])
   onChange(event) {
     const id = event.target.id;
-    if (id !== '') {
+    if (id === 'fullname') {
       const content = event.target.innerText;
       if (content.length >= 100) {
         const contentList = content.substring(0, 100);

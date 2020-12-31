@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MyInfoService } from '../shared/Services/my-info.service';
-
+import { appConstants } from './../app.constants';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import {
@@ -149,6 +149,8 @@ export class GuideMeApiService {
 
     enquiryByEmailRequest(data: any): IEnquiryByEmail {
         const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+        const journeyType = (insuranceEnquiry.journeyType === appConstants.JOURNEY_TYPE_DIRECT) ?
+        appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
         return {
             selectedProducts: insuranceEnquiry.plans,
             firstName: data.firstName,
@@ -161,7 +163,9 @@ export class GuideMeApiService {
                 captcha: data.captchaValue,
                 sessionId: this.authService.getSessionId()
             },
-            enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId)
+            enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
+            enquiryProtectionTypeData: insuranceEnquiry.enquiryProtectionTypeData,
+            journeyType: journeyType
         }
     }
 

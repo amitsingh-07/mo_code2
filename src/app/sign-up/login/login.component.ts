@@ -17,7 +17,6 @@ import {
   INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
-import { GoogleAnalyticsService } from '../../shared/analytics/google-analytics.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { ApiService } from '../../shared/http/api.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -30,7 +29,6 @@ import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes
 import { WillWritingService } from '../../will-writing/will-writing.service';
 import { ValidatePassword } from '../create-account/password.validator';
 import { SignUpApiService } from '../sign-up.api.service';
-import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
@@ -73,12 +71,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.welcomeTitle.nativeElement.scrollIntoView(true);
     }
   }
-  
+
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder, private appService: AppService,
     private modal: NgbModal, private configService: ConfigService,
-    private googleAnalyticsService: GoogleAnalyticsService,
     public authService: AuthenticationService,
     public sessionsService: SessionsService,
     public navbarService: NavbarService,
@@ -223,6 +220,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.authService.authenticate().subscribe((token) => {
       });
     }
+    this.signUpService.setEmail(form.value.loginUsername);
+    const userType= this.finlitEnabled ? appConstants.USERTYPE.FINLIT: appConstants.USERTYPE.NORMAL;
+    this.signUpService.setUserType(userType);
     const accessCode = (this.finlitEnabled) ? this.loginForm.value.accessCode : '';
     if (!form.valid || ValidatePassword(form.controls['loginPassword'])) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
@@ -321,15 +321,20 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   checkInsuranceEnquiry(insuranceEnquiry): boolean {
     return ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) &&
-      (insuranceEnquiry && insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0));
+      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) && 
+      ( (insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) 
+      || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0) ));
   }
 
   updateInsuranceEnquiry(insuranceEnquiry, data, errorModal: boolean) {
+    const journeyType = (insuranceEnquiry.journeyType === appConstants.JOURNEY_TYPE_DIRECT) ?
+        appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
     const payload: IEnquiryUpdate = {
       customerId: data.objectList[0].customerId || data.objectList[0].customerRef,
       enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
-      selectedProducts: insuranceEnquiry.plans
+      selectedProducts: insuranceEnquiry.plans,      
+      enquiryProtectionTypeData: insuranceEnquiry.enquiryProtectionTypeData,
+      journeyType: journeyType
     };
     this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
       if (errorModal) {
@@ -362,6 +367,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.refreshCaptcha();
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorMessage = message;
+    ref.componentInstance.redirect_url = SIGN_UP_ROUTE_PATHS.VERIFY_EMAIL;
     ref.result.then((data) => {
       if (!data && redirect) {
         this.router.navigate([redirect]);
@@ -382,13 +388,14 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           }
         });
     }
+
   }
+
 
   resendEmailVerification() {
     const isEmail = this.authService.isUserNameEmail(this.loginForm.value.loginUsername);
     return this.signUpApiService.resendEmailVerification(this.loginForm.value.loginUsername, isEmail);
   }
-
   openErrorModal(error) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorMessage = error;
@@ -485,9 +492,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     event.preventDefault();
   }
   onKeyupEvent(event) {
-     if (event.target.value) {
-        const emailValue = event.target.value.replace(/\s/g, '');
-        this.loginForm.controls.loginUsername.setValue(emailValue);
-     }
+    if (event.target.value) {
+      const emailValue = event.target.value.replace(/\s/g, '');
+      this.loginForm.controls.loginUsername.setValue(emailValue);
+    }
   }
 }

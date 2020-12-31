@@ -2,7 +2,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { NavbarService } from '../shared/navbar/navbar.service';
 import { FooterService } from '../shared/footer/footer.service';
-
 @Component({
   selector: 'app-not-supported',
   templateUrl: './not-supported.component.html',
