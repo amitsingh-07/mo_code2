@@ -77,13 +77,14 @@
 .modal-body-message {
   margin-bottom: 15px;
 }
-.modal-dialog {
-  @include desktop {
-    width: 375px;
-  }
-}
 .modal-body {
   padding: 20px;
+  &.my-info {
+    @include desktop {
+      width: 375px !important;
+      margin: 0 auto !important;
+    }
+  }
 }
 .warning-icon {
   width: 24px;
@@ -127,7 +128,7 @@
     @include allmobiles {
       width: 175px;
       height: 165px;
-      margin: 10px auto 10;
+      margin: 10px auto 10px;
     }
   }
 }

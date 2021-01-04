@@ -851,6 +851,7 @@ input::placeholder {
 
     @include allmobiles {
       margin-bottom: 30px;
+      font-family: $muli-bold;
     }
   }
 
@@ -1470,7 +1471,7 @@ input::placeholder {
   textarea:disabled,
   .input-control:disabled,
   .form-control.view-mode {
-    -webkit-text-fill-color: #00a7a7;
+    -webkit-text-fill-color: #00a7a7 !important;
     opacity: 1;
   }
 

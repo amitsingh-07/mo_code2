@@ -17,7 +17,6 @@ import {
   INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
-import { GoogleAnalyticsService } from '../../shared/analytics/google-analytics.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { ApiService } from '../../shared/http/api.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -30,8 +29,7 @@ import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes
 import { WillWritingService } from '../../will-writing/will-writing.service';
 import { ValidatePassword } from '../create-account/password.validator';
 import { SignUpApiService } from '../sign-up.api.service';
-import { SIGN_UP_CONFIG } from '../sign-up.constant';
-import { SIGN_UP_BASE_ROUTE, SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
 import { COMPREHENSIVE_ROUTE_PATHS } from './../../comprehensive/comprehensive-routes.constants';
@@ -78,7 +76,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     // tslint:disable-next-line
     private formBuilder: FormBuilder, private appService: AppService,
     private modal: NgbModal, private configService: ConfigService,
-    private googleAnalyticsService: GoogleAnalyticsService,
     public authService: AuthenticationService,
     public sessionsService: SessionsService,
     public navbarService: NavbarService,
@@ -224,6 +221,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       });
     }
     this.signUpService.setEmail(form.value.loginUsername);
+    const userType= this.finlitEnabled ? appConstants.USERTYPE.FINLIT: appConstants.USERTYPE.NORMAL;
+    this.signUpService.setUserType(userType);
     const accessCode = (this.finlitEnabled) ? this.loginForm.value.accessCode : '';
     if (!form.valid || ValidatePassword(form.controls['loginPassword'])) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });

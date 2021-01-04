@@ -272,11 +272,18 @@ app-direct-results {
       font-size: 16px;
       font-family: $muli-regular;
       padding: 20px 0;
+      @include allmobiles {
+        padding: 20px;
+      }
     }
     &__footer-btn {
       padding: 0 20px 20px;
       button {
         width: 100%;
+        font-family: $muli-bold;
+        @include allmobiles {
+          font-size: 18px;
+        }
       }
     }
   }
