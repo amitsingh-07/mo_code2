@@ -52,7 +52,7 @@
     "@angular/language-service": "^9.1.12",
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^12.19.9",
+    "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
     "dotenv": "^6.0.0",
     "eslint": "^5.16.0",
