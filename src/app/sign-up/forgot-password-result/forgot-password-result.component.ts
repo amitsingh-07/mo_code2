@@ -41,10 +41,10 @@ export class ForgotPasswordResultComponent implements OnInit {
 
   }
   redirectToLogin() {
-    if (this.signUpService.getUserType() === appConstants.USERTYPE.NORMAL) {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
-    } else {
+    if (this.signUpService.getUserType() === appConstants.USERTYPE.FINLIT) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
+    } else {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     }
 
   }
