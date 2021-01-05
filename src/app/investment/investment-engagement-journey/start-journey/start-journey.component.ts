@@ -1,13 +1,10 @@
 import { Location } from '@angular/common';
-import {
-    Component, OnInit, ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { appConstants } from '../../../app.constants';
 import { AppService } from '../../../app.service';
-import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
@@ -29,7 +26,6 @@ export class StartJourneyComponent implements OnInit {
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
-    private loaderService: LoaderService,
     private appService: AppService,
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -54,9 +50,6 @@ export class StartJourneyComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-
-    this.authService.authenticate().subscribe((token) => {
-    });
   }
 
   setPageTitle(title: string) {
