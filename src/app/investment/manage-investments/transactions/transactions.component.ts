@@ -86,13 +86,14 @@ export class TransactionsComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.loaderService.showLoader({
         title: this.translate.instant('TRANSACTIONS.MODAL.TRANSACTION_FETCH_LOADER.TITLE'),
-        desc: this.translate.instant('TRANSACTIONS.MODAL.TRANSACTION_FETCH_LOADER.MESSAGE')
+        desc: this.translate.instant('TRANSACTIONS.MODAL.TRANSACTION_FETCH_LOADER.MESSAGE'),
+        autoHide: false
       });
     });
     if (this.portfolio) {
       this.manageInvestmentsService.getTransactionHistory(
         this.portfolio.customerPortfolioId).subscribe((response) => {
-          this.loaderService.hideLoader();
+          this.loaderService.hideLoaderForced();
           this.transactionHistory = response.objectList;
           this.transactionHistory = this.calculateSplitAmounts(this.transactionHistory);
           this.investmentEngagementJourneyService.sortByProperty(
@@ -106,11 +107,11 @@ export class TransactionsComponent implements OnInit {
           );
         },
           (err) => {
-            this.loaderService.hideLoader();
+            this.loaderService.hideLoaderForced();
             this.investmentAccountService.showGenericErrorModal();
           });
     } else {
-      this.loaderService.hideLoader();
+      this.loaderService.hideLoaderForced();
     }
   }
 
