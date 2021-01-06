@@ -81,10 +81,8 @@
       margin-bottom: 20px;
     }
   }
-
   .form-control {
     .input-control {
-
       &:disabled,
       &.disabled {
         color: $form-control-disabled-txt-color !important;
@@ -243,6 +241,7 @@
   }
 }
 
+
 .invest-section {
   display: block;
   background-color: transparent;
@@ -348,8 +347,7 @@
     top: 0px;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5);
   }
-
-
+  
   .toast-msg-container {
     color: #e57300;
     background: #fff;
@@ -389,6 +387,7 @@
     }
   }
 }
+
 
 // Copied Toast Msg
 .toast-msg-fixed-block {
@@ -454,6 +453,7 @@
     }
   }
 }
+
 
 .portfolio-fund-type {
   width: 28px;
