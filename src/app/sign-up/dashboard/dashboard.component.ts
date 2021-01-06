@@ -44,7 +44,6 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
-const download = require("../../../assets/scripts/FileSaver.js");
 
 
 @Component({

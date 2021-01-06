@@ -40,6 +40,8 @@ export class SingPassComponent implements OnInit, OnDestroy {
   thirdTimer: any;
   loader2StartTime: any;
   loader3StartTime: any;
+  loader2Modal: any;
+  loader3Modal: any;
 
   constructor(
     private configService: ConfigService,
@@ -69,6 +71,12 @@ export class SingPassComponent implements OnInit, OnDestroy {
       );
       this.modelBtnText1 = this.translate.instant(
         'INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.BTN-TEXT'
+      );
+      this.loader2Modal = this.translate.instant(
+        'INVESTMENT_ACCOUNT_MYINFO.LOADER2'
+      );
+      this.loader3Modal = this.translate.instant(
+        'INVESTMENT_ACCOUNT_MYINFO.LOADER3'
       );
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
@@ -188,7 +196,7 @@ export class SingPassComponent implements OnInit, OnDestroy {
 
   // ******** SECOND POP UP ********//
   openSecondPopup() {
-    this.myInfoService.loadingModalRef.componentInstance.errorMessage = 'Sorry that this is taking longer than usual. Please be patient while we fetch your required data from MyInfo.';
+    this.myInfoService.loadingModalRef.componentInstance.errorMessage = this.loader2Modal.message;
     this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
       this.closeMyInfoPopup(false);
     });
@@ -196,9 +204,9 @@ export class SingPassComponent implements OnInit, OnDestroy {
 
   // ******** THIRD POP UP ********//
   openThirdPopup() {
-    this.myInfoService.loadingModalRef.componentInstance.errorMessage = 'We are still trying to fetch your required data from MyInfo. You may choose to fill in your information manually or try again later.';
-    this.myInfoService.loadingModalRef.componentInstance.primaryActionLabel = 'Try Again Later';
-    this.myInfoService.loadingModalRef.componentInstance.secondaryActionLabel = 'Create Account Manually';
+    this.myInfoService.loadingModalRef.componentInstance.errorMessage = this.loader3Modal.message;
+    this.myInfoService.loadingModalRef.componentInstance.primaryActionLabel = this.loader3Modal.primaryActionLabel;
+    this.myInfoService.loadingModalRef.componentInstance.secondaryActionLabel = this.loader3Modal.secondaryActionLabel;
     this.myInfoService.loadingModalRef.componentInstance.secondaryActionDim = true;
     this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
       this.closeMyInfoPopup(false);
