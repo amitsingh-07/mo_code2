@@ -81,8 +81,10 @@
       margin-bottom: 20px;
     }
   }
+
   .form-control {
     .input-control {
+
       &:disabled,
       &.disabled {
         color: $form-control-disabled-txt-color !important;
@@ -241,7 +243,6 @@
   }
 }
 
-
 .invest-section {
   display: block;
   background-color: transparent;
@@ -348,33 +349,7 @@
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5);
   }
 
-  // &.fade-out-animation {
-  //   -webkit-animation: fadeOut 3100ms ease-in-out;
-  //   /* Chrome, Safari, Opera */
-  //   animation: fadeOut 3100ms ease-in-out;
-  // }
 
-  // /* Chrome, Safari, Opera */
-  // @-webkit-keyframes fadeOut {
-  //   0% {
-  //     opacity: 0.8;
-  //   }
-
-  //   100% {
-  //     opacity: 0;
-  //   }
-  // }
-
-  // /* Standard syntax */
-  // @keyframes fadeOut {
-  //   0% {
-  //     opacity: 1;
-  //   }
-
-  //   100% {
-  //     opacity: 0;
-  //   }
-  // }
   .toast-msg-container {
     color: #e57300;
     background: #fff;
@@ -414,7 +389,6 @@
     }
   }
 }
-
 
 // Copied Toast Msg
 .toast-msg-fixed-block {
@@ -480,7 +454,6 @@
     }
   }
 }
-
 
 .portfolio-fund-type {
   width: 28px;
