@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -29,6 +29,7 @@ import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/t
 
 import { FinancialDetailsComponent } from './financial-details.component';
 import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 
 describe('FinancialDetailsComponent', () => {
   let component: FinancialDetailsComponent;
@@ -102,19 +103,22 @@ describe('FinancialDetailsComponent', () => {
     const setNavbarModeSpy = spyOn(navbarService, 'setNavbarMode');
     const setNavbarMobileVisibilitySpy = spyOn(navbarService, 'setNavbarMobileVisibility');
     const setFooterVisibilitySpy = spyOn(footerService, 'setFooterVisibility');
-    spyOn(investmentEngagementJourneyService, 'getPortfolioFormData').and.returnValue({});
-    spyOn(investAccountService, 'getInvestmentAccountFormData').and.returnValue({});
+    component.ngOnInit();
+ // spyOn(investmentEngagementJourneyService, 'getPortfolioFormData').and.returnValue({});
+   // spyOn(investAccountService, 'getInvestmentAccountFormData').and.returnValue({});
     const loadDDCRoadmapSpy = spyOn(investAccountService, 'loadDDCRoadmap');
     expect(setNavbarModeSpy).toHaveBeenCalledWith(6);
     expect(setNavbarMobileVisibilitySpy).toHaveBeenCalledWith(true);
     expect(setFooterVisibilitySpy).toHaveBeenCalledWith(false);
+   // expect(loadDDCRoadmapSpy).toHaveBeenCalled();
+
     let errors = {};
     let annualHouseHoldIncomeRange = component.financialDetails.controls['annualHouseHoldIncomeRange'];
     expect(annualHouseHoldIncomeRange.valid).toBeFalsy();
     errors = annualHouseHoldIncomeRange.errors || {};
     expect(errors['required']).toBeTruthy();
     annualHouseHoldIncomeRange.setValue(6);
-    expect(loadDDCRoadmapSpy).toHaveBeenCalled();
+   
 
     let numberOfHouseHoldMembers = component.financialDetails.controls['numberOfHouseHoldMembers'];
     expect(numberOfHouseHoldMembers.valid).toBeFalsy();
@@ -123,6 +127,12 @@ describe('FinancialDetailsComponent', () => {
     numberOfHouseHoldMembers.setValue(3);
    
   });
+ 
 
+  it('should navigate to Funding method Step1 if investment portfolio,', () => {
+    spyOn(router, 'navigate');
+    component.goToNext(component.financialDetails);
+   expect(router.navigate).toHaveBeenCalledWith['../investment/account/tax-info'];
+  });
   
 });
