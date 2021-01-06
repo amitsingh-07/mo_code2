@@ -173,4 +173,9 @@ export class ComprehensiveApiService {
             .post(apiConstants.endpoint.comprehensive.getProductAmount, payload)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
+    generateComprehensiveCashflow(payload) {
+        return this.http
+            .post(apiConstants.endpoint.comprehensive.generateComprehensiveCashflow, payload)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    }
 }
