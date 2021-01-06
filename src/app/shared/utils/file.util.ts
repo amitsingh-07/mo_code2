@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 export const FILE_TYPE = 'application/pdf';
 
-declare var require: any;
-
 @Injectable()
 export class FileUtil {
 
@@ -29,9 +27,7 @@ export class FileUtil {
   }
 
   public downloadFile(data: any, fileName: string): void {
-    var FileSaver = require('file-saver');
     const blob = new Blob([data], { type: FILE_TYPE });
-    FileSaver.saveAs(blob, fileName);
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     document.body.appendChild(a);
