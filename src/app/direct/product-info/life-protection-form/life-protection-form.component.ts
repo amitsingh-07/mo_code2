@@ -25,16 +25,20 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
   lifeProtectionForm: FormGroup;
   formValues: any;
   coverage_amt = '';
+  ci_coverage_amt = '';
   duration = '';
   doberror = false;
+  isEarlyDisabled = true;
 
   coverageAmtValuesTemp: number[] = Array(10).fill(100000).map((x, i) => x += i * 100000);
   coverageAmtValues = Array(12);
+  ciCoverageAmtValues = [];
   durationValues = ['5 Years', '10 Years', 'Till Age 55',
     'Till Age 60', 'Till Age 65', 'Till Age 70',
     'Whole Life', 'Whole life w/Multiplier'];
   minDate;
   maxDate;
+
   private userInfoSubscription: Subscription;
 
   constructor(
@@ -56,11 +60,20 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     this.coverageAmtValuesTemp.forEach((element, index) => {
       this.coverageAmtValues[index] = this.directService.convertToCurrency(element);
     });
+    const ciAdditionalValue = [50000];
+
+    const ciCoverageAmtValuesTemp = ciAdditionalValue.concat(this.coverageAmtValuesTemp);
+    ciCoverageAmtValuesTemp.forEach((element, index) => {
+      this.ciCoverageAmtValues[index] = this.directService.convertToCurrency(element);
+    });
     this.formValues = JSON.parse(JSON.stringify(this.directService.getLifeProtectionForm()));
     this.formValues.gender = this.formValues.gender;
     this.formValues.smoker = this.formValues.smoker;
     this.formValues.premiumWaiver = this.formValues.premiumWaiver;
     if (this.formValues.premiumWaiver !== undefined) {
+      this.formValues.premiumWaiver = this.formValues.premiumWaiver === true ? 'yes' : 'no';
+    }
+    if (this.formValues.isEarlyCI !== undefined) {
       this.formValues.premiumWaiver = this.formValues.premiumWaiver === true ? 'yes' : 'no';
     }
 
@@ -70,7 +83,9 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
       smoker: [this.formValues.smoker],
       coverageAmt: [this.formValues.coverageAmt, Validators.required],
       duration: [this.formValues.duration, Validators.required],
-      premiumWaiver: [this.formValues.premiumWaiver, Validators.required]
+      premiumWaiver: [false],
+      ciCoverageAmount: [this.formValues.ciCoverageAmount],
+      isEarlyCI: [this.formValues.isEarlyCI],
     });
 
     if (this.formValues.duration !== undefined) {
@@ -78,6 +93,9 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     }
     if (this.formValues.coverageAmt !== undefined) {
       this.selectCoverageAmt(this.formValues.coverageAmt);
+    }
+    if (this.formValues.ciCoverageAmount !== undefined) {
+      this.selectCICoverageAmt(this.formValues.ciCoverageAmount);
     }
 
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
@@ -114,6 +132,33 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.categorySub.unsubscribe();
     this.userInfoSubscription.unsubscribe();
+  }
+
+  selectCICoverageAmt(in_coverage_amt) {
+    this.ci_coverage_amt = in_coverage_amt;
+    this.lifeProtectionForm.controls.ciCoverageAmount.setValue(this.ci_coverage_amt);
+    const isEarlyCIControl = this.lifeProtectionForm.controls.isEarlyCI;
+    if (this.ci_coverage_amt === '') {
+      this.durationValues = ['5 Years', '10 Years', 'Till Age 55',
+        'Till Age 60', 'Till Age 65', 'Till Age 70',
+        'Whole Life', 'Whole life w/Multiplier'];
+      this.isEarlyDisabled = true;
+      isEarlyCIControl.setValue('');
+      isEarlyCIControl.setValidators([]);
+      isEarlyCIControl.updateValueAndValidity();
+    } else {
+      this.durationValues = ['5 Years', '10 Years', 'Till Age 55',
+        'Till Age 60', 'Till Age 65', 'Till Age 70'];
+      this.isEarlyDisabled = false;
+      if (this.duration === 'Whole Life' || this.duration === 'Whole life w/Multiplier') {
+        this.duration = ''
+        this.lifeProtectionForm.controls.duration.setValue(this.duration);
+      }
+      this.isEarlyDisabled = false;
+      isEarlyCIControl.setValidators([Validators.required]);
+      isEarlyCIControl.updateValueAndValidity();
+    }
+
   }
 
   selectCoverageAmt(in_coverage_amt) {
@@ -158,11 +203,20 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
       return false;
     }
     form.value.coverageAmt = this.coverage_amt;
+    form.value.ciCoverageAmount = this.ci_coverage_amt;
     form.value.duration = this.duration;
     const values = form.value;
-    values.premiumWaiver = (values.premiumWaiver === true || values.premiumWaiver === 'yes') ? true : false;
+    values.premiumWaiver = false;
+    if (values.isEarlyCI) {
+      values.isEarlyCI = (values.isEarlyCI === true || values.isEarlyCI === 'yes') ? true : false;
+    }
     this.directService.setLifeProtectionForm(values);
     return true;
   }
-
+  showToolTip(title, desc) {
+    this.directService.showToolTipModal(
+      this.translate.instant('TOOL_TIP.' + title),
+      this.translate.instant('TOOL_TIP.' + desc)
+    );
+  }
 }
