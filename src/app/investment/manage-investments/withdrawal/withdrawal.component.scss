@@ -125,7 +125,9 @@ app-withdrawal {
   }
 
   .form-control {
-    &.disabled ,&:disabled{
+
+    &.disabled,
+    &:disabled {
       background: $form-control-disabled-bg-color2;
       color: $form-control-disabled-txt-color;
       border: 1px solid $form-control-disabled-border-color;
