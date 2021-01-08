@@ -172,8 +172,6 @@ describe('DashboardComponent', () => {
     location = TestBed.get(Location);
     http = TestBed.get(HttpTestingController);
     formBuilder = TestBed.get(FormBuilder);
-
-    appService = TestBed.get(AppService);
     apiService = TestBed.get(ApiService);
     authService = TestBed.get(AuthenticationService);
     navbarService = TestBed.get(NavbarService);
@@ -192,7 +190,7 @@ describe('DashboardComponent', () => {
     fixture.detectChanges();
   });
 
-
+  
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -200,10 +198,9 @@ describe('DashboardComponent', () => {
 
 
 
-
   afterEach(() => {
     TestBed.resetTestingModule();
-   // appService.clearPromoCode();
+    spyOn(appService, 'clearPromoCode');
     component.comprehensivePlanning=4;
 
     spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);

@@ -48,7 +48,7 @@ import { AboutAge } from './../../shared/utils/about-age.util';
 import { RoutingService } from './../../shared/Services/routing.service';
 
 import { ResultComponent } from './result.component';
-import { SignUpService } from 'src/app/sign-up/sign-up.service';
+import { SignUpService } from './../../sign-up/sign-up.service';
 
 export class TestComponent {
 }
