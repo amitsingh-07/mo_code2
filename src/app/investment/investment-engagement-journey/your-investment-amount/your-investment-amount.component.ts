@@ -140,7 +140,7 @@ export class YourInvestmentAmountComponent implements OnInit {
       this.investmentAmountForm.controls.monthlyInvestment.setValue(0);
     } else {
       this.investmentAmountForm.controls.monthlyInvestment.disable();
-      this.investmentAmountForm.controls.monthlyInvestment.setValue('');
+      this.investmentAmountForm.controls.monthlyInvestment.setValue(0);
     }
   }
   firstChkBoxChange() {
@@ -149,7 +149,7 @@ export class YourInvestmentAmountComponent implements OnInit {
       this.investmentAmountForm.controls.initialInvestment.setValue(0);
     } else {
       this.investmentAmountForm.controls.initialInvestment.disable();
-      this.investmentAmountForm.controls.initialInvestment.setValue('');
+      this.investmentAmountForm.controls.initialInvestment.setValue(0);
     }
   }
   goToNext(form) {
