@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { MailchimpApiService } from 'src/app/shared/Services/mailchimp.api.service';
-import { FormError } from 'src/app/shared/Services/mailChimpError';
+import { MailchimpApiService } from './../../shared/Services/mailchimp.api.service';
+import { FormError } from './../../shared/Services/mailChimpError';
 import { WillDisclaimerComponent } from '../../shared/components/will-disclaimer/will-disclaimer.component';
 import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';

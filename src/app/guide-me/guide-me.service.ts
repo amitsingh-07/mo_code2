@@ -619,7 +619,7 @@ export class GuideMeService {
           eduSupportCountry: dependentData.dependentProtectionNeeds.countryOfEducation,
           eduSupportCourse: dependentData.dependentProtectionNeeds.educationCourse,
           eduSupportNationality: dependentData.dependentProtectionNeeds.nationality,
-          educationSupport: dependentData,
+          educationSupport: (dependentData.dependentProtectionNeeds.countryOfEducation && dependentData.dependentProtectionNeeds.educationCourse && dependentData.dependentProtectionNeeds.nationality ) ? dependentData : false,
           gender: dependentData.gender,
           relationship: dependentData.relationship,
           supportAmount: dependentData.dependentProtectionNeeds.monthlySupportAmount,

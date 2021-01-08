@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { ApiService } from './../shared/http/api.service';
 import { IBundleEnquiry } from './promotion.interface';
-import { padNumber } from '../shared/utils/common.util';
+import { Util } from './../shared/utils/util';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +36,7 @@ export class PromotionApiService {
       lastName: payload.lastName,
       emailAddress: payload.emailAddress,
       contactNumber: payload.contactNumber,
-      dateOfBirth: payload.dateOfBirth['year'] + '-' + padNumber(payload.dateOfBirth['month']) + '-' + padNumber(payload.dateOfBirth['day']),
+      dateOfBirth: payload.dateOfBirth['year'] + '-' + Util.padNumber(payload.dateOfBirth['month']) + '-' + Util.padNumber(payload.dateOfBirth['day']),
       gender: payload.gender,
       enquiryType: payload.enquiryType,
       receiveMarketingEmails: payload.receiveMarketingEmails

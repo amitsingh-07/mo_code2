@@ -30,4 +30,5 @@ export class RecommendationsState {
 
     innerWidth: any;
     currentSlide = 0;
+    ciCoverageAmount = '';
 }

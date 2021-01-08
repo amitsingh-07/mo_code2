@@ -12,7 +12,8 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
 import { MobileModalComponent } from '../mobile-modal/mobile-modal.component';
-import { LongTermCare } from './ltc-assessment';
+import { LongTermCare, LONG_TERM_CARE_SHIELD } from './ltc-assessment';
+import { AboutAge } from '../../shared/utils/about-age.util';
 
 const assetImgPath = './assets/images/';
 
@@ -39,7 +40,7 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
     private formBuilder: FormBuilder, private router: Router,
     private translate: TranslateService, private guideMeService: GuideMeService,
     public modal: NgbModal, public navbarService: NavbarService,
-    private guideMeApiService: GuideMeApiService
+    private guideMeApiService: GuideMeApiService, private aboutAge: AboutAge
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -59,15 +60,28 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
     if (this.longTermCareFormValues.careGiverTypeId) {
       this.isFormValid = true;
     }
-    this.guideMeApiService.getLongTermCareList().subscribe((data) => {
-      this.longTermCareList = data.objectList; // Getting the information from the API
+    const userInfo = this.guideMeService.getUserInfo();
+    const today: Date = new Date();
+    const getAge = this.aboutAge.calculateAge(userInfo.customDob, today);
+    const careShield = (getAge >= LONG_TERM_CARE_SHIELD.AGE && userInfo.dob.year >= LONG_TERM_CARE_SHIELD.MIN_YEAR && userInfo.dob.year <= LONG_TERM_CARE_SHIELD.MAX_YEAR);
+    this.guideMeApiService.getLongTermCareList().subscribe((data) => {      
+      if (careShield) {
+        this.longTermCareList = [];
+        data.objectList.forEach((careList) => {
+          if(careList.careGiverType && careList.careGiverType.toLowerCase() !== LONG_TERM_CARE_SHIELD.TYPE) {
+            this.longTermCareList.push(careList);
+          }
+        });
+      } else {
+        this.longTermCareList = data.objectList; // Getting the information from the API
+      }
     });
 
     this.subscription = this.navbarService.currentMobileModalEvent.subscribe((event) => {
       if (event === this.pageTitle) {
         this.showMobilePopUp();
       }
-    });
+    });    
   }
 
   ngOnDestroy() {

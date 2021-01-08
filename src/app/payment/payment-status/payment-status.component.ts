@@ -2,12 +2,12 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { ComprehensiveApiService } from 'src/app/comprehensive/comprehensive-api.service';
-import { COMPREHENSIVE_CONST } from 'src/app/comprehensive/comprehensive-config.constants';
-import { COMPREHENSIVE_ROUTE_PATHS } from 'src/app/comprehensive/comprehensive-routes.constants';
-import { ComprehensiveService } from 'src/app/comprehensive/comprehensive.service';
-import { LoaderService } from 'src/app/shared/components/loader/loader.service';
-import { SignUpService } from 'src/app/sign-up/sign-up.service';
+import { ComprehensiveApiService } from './../../comprehensive/comprehensive-api.service';
+import { COMPREHENSIVE_CONST } from './../../comprehensive/comprehensive-config.constants';
+import { COMPREHENSIVE_ROUTE_PATHS } from './../../comprehensive/comprehensive-routes.constants';
+import { ComprehensiveService } from './../../comprehensive/comprehensive.service';
+import { LoaderService } from './../../shared/components/loader/loader.service';
+import { SignUpService } from './../../sign-up/sign-up.service';
 import { PaymentService } from '../payment.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';

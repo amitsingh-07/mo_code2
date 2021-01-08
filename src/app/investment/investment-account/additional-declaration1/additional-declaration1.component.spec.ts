@@ -8,7 +8,7 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { FooterService } from 'src/app/shared/footer/footer.service';
+import { FooterService } from './../../../shared/footer/footer.service';
 import { MockInvestmentAccountService } from './../../../../assets/mocks/service/shared-service';
 import { NavbarService } from './../../../shared/navbar/navbar.service';
 import { InvestmentAccountService } from './../investment-account-service';

@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { toInteger } from './../shared/utils/common.util';
 
 
 import { Observable } from 'rxjs';
@@ -896,7 +895,7 @@ export class ComprehensiveService {
    */
   getPreviousUrl(currentUrl: string): string {
     const urlList = (!this.getComprehensiveVersion()) ? this.getComprehensiveUrlList(COMPREHENSIVE_LITE_ROUTER_CONFIG) : this.getComprehensiveUrlList(COMPREHENSIVE_FULL_ROUTER_CONFIG);
-    const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, currentUrl));
+    const currentUrlIndex = Util.toInteger(Util.getKeyByValue(urlList, currentUrl));
     if (currentUrlIndex > 0) {
       const previousUrl = urlList[currentUrlIndex - 1];
       if (
@@ -933,7 +932,7 @@ export class ComprehensiveService {
 
     this.generateProgressTrackerData();
 
-    const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, url));
+    const currentUrlIndex = Util.toInteger(Util.getKeyByValue(urlList, url));
     let accessibleUrl = '';
 
     const profileData = this.getMyProfile();
@@ -1166,7 +1165,7 @@ export class ComprehensiveService {
   getAccessibleLiteJourney(urlList: any, url: any) {
     this.generateProgressTrackerData();
 
-    const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, url));
+    const currentUrlIndex = Util.toInteger(Util.getKeyByValue(urlList, url));
     let accessibleUrl = '';
 
     const profileData = this.getMyProfile();
@@ -1721,13 +1720,17 @@ export class ComprehensiveService {
       }
 
 
-      if ((!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield) && cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1) || cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHIELD || cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.ELDER_SHIELD) {
-        longTermCareValue = this.transformAsCurrency(
-          cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount
-        ) + ' /mth';
-        otherLongTermCareValue = this.transformAsCurrency(
-          cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount
-        ) + ' /mth';
+      if ((!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield) && cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1) || cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHIELD || (!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield) && cmpSummary.comprehensiveInsurancePlanning.haveLongTermElderShield === 1 && cmpSummary.comprehensiveInsurancePlanning.shieldType === COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.ELDER_SHIELD)) {
+          if(!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount)) {
+            longTermCareValue = this.transformAsCurrency(
+              cmpSummary.comprehensiveInsurancePlanning.longTermElderShieldAmount
+            ) + ' /mth';
+          }
+          if(!Util.isEmptyOrNull(cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount)) {            
+            otherLongTermCareValue = this.transformAsCurrency(
+              cmpSummary.comprehensiveInsurancePlanning.otherLongTermCareInsuranceAmount
+            ) + ' /mth';
+          }
         longTermCareList.push({
           title: 'Other coverage amount',
           value: otherLongTermCareValue,
@@ -2294,7 +2297,7 @@ export class ComprehensiveService {
    */
   getValidAmount(thisValue) {
     if (thisValue && thisValue !== null && !isNaN(thisValue)) {
-      return toInteger(thisValue);
+      return Util.toInteger(thisValue);
     } else {
       return 0;
     }

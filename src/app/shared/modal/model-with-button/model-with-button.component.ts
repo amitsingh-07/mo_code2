@@ -1,16 +1,12 @@
 import { filter } from 'rxjs/operators';
-
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { ANIMATION_DATA } from '../../../../assets/animation/animationData';
 
-import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
-} from '../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
-import {
-    RecommendationComponent
-} from '../../../investment/investment-engagement-journey/recommendation/recommendation.component';
+declare var require: any;
+const bodymovin = require("../../../../assets/scripts/lottie_svg.min.js");
 
 @Component({
   selector: 'app-model-with-button',
@@ -18,6 +14,7 @@ import {
   styleUrls: ['./model-with-button.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
+
 export class ModelWithButtonComponent implements OnInit {
   @Input() imgType = 1;
   @Input() errorTitle: any;
@@ -32,11 +29,14 @@ export class ModelWithButtonComponent implements OnInit {
   @Input() secondaryActionDim: boolean;
   @Input() isInlineButton: boolean;
   @Input() closeBtn = true;
-  @Input() investmentPeriodImg :any;
+  @Input() investmentPeriodImg: any;
+  @Input() spinner: any;
+  @Input() myInfo: any;
   @Output() primaryAction = new EventEmitter<any>();
   @Output() secondaryAction = new EventEmitter<any>();
   @Output() yesClickAction = new EventEmitter<any>();
   @Output() noClickAction = new EventEmitter<any>();
+  @Output() closeAction = new EventEmitter<any>();
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -49,11 +49,12 @@ export class ModelWithButtonComponent implements OnInit {
 
   ngOnInit() {
     this.router.events
-            .pipe(filter((event) => event instanceof NavigationEnd))
-            .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
-                // dismiss all bootstrap modal dialog
-                this.activeModal.dismiss();
-            });
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
+        // dismiss all bootstrap modal dialog
+        this.activeModal.dismiss();
+      });
+    this.createAnimation();
   }
 
   primaryActionSelected() {
@@ -74,6 +75,23 @@ export class ModelWithButtonComponent implements OnInit {
   noButtonClick() {
     this.noClickAction.emit();
     this.activeModal.close();
+  }
+
+  closeIconAction() {
+    this.closeAction.emit();
+    this.activeModal.dismiss('Cross click');    
+  }
+
+  createAnimation() {
+    const animationData = ANIMATION_DATA.MO_SPINNER;
+    bodymovin.loadAnimation({
+      container: document.getElementById('mo_spinner'), // Required
+      path: '/app/assets/animation/mo_spinner.json', // Required
+      renderer: 'canvas', // Required
+      loop: true, // Optional
+      autoplay: true, // Optional
+      animationData: animationData
+    })
   }
 
 }
