@@ -8,7 +8,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { Injector, NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { RouterModule, Router, Routes, ActivatedRoute } from '@angular/router';
+import { RouterModule, Router, Routes, ActivatedRoute, convertToParamMap } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 import { NgbActiveModal, NgbModal, NgbModalRef, NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -73,7 +73,7 @@ describe('ComprehensiveStepsComponent', () => {
   let loader: LoaderService;
   let comprehensiveAPiService: ComprehensiveApiService;
   let router: Router;
-  const route = ({ routeConfig: { component: { name: 'ComprehensiveStepsComponent'} } } as any) as ActivatedRoute;
+  const route = ({ routeConfig: { component: { name: 'ComprehensiveStepsComponent' } } } as any) as ActivatedRoute;
   let httpClientSpy;
   let currencyPipe: CurrencyPipe;
   const mockAppService = {
@@ -109,7 +109,7 @@ describe('ComprehensiveStepsComponent', () => {
         }),
         HttpClientTestingModule,
         RouterTestingModule.withRoutes(routes),
-       // RouterTestingModule.withRoutes([]),
+        // RouterTestingModule.withRoutes([]),
         RouterModule.forRoot(routes)
       ],
       schemas: [NO_ERRORS_SCHEMA],
@@ -125,6 +125,14 @@ describe('ComprehensiveStepsComponent', () => {
         { provide: CurrencyPipe, useValue: mockCurrencyPipe },
         { provide: AppService, useValue: mockAppService },
         FooterService,
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              paramMap: convertToParamMap({ stepNo: 1 })
+            }
+          }
+        },
         NavbarService,
         HeaderService,
         LoaderService,
@@ -134,16 +142,15 @@ describe('ComprehensiveStepsComponent', () => {
         AboutAge,
         RoutingService,
         JwtHelperService,
-        ProgressTrackerService,
-       // { provide: APP_BASE_HREF, useValue: '/' },
-       // { provide: Router, useClass: RouterStub },
+        ProgressTrackerService
+        // { provide: APP_BASE_HREF, useValue: '/' },
+        // { provide: Router, useClass: RouterStub },
 
-       {provide: ActivatedRoute, useValue: route}
       ]
     })
       .overrideModule(BrowserDynamicTestingModule, { set: { entryComponents: [ErrorModalComponent, StepIndicatorComponent] } })
       .compileComponents();
-    router = TestBed.get(Router);	
+    router = TestBed.get(Router);
     //router.initialNavigation();
     //spyOn(router, 'navigateByUrl');
   }));
@@ -166,16 +173,16 @@ describe('ComprehensiveStepsComponent', () => {
     navbarService = TestBed.get(NavbarService);
     footerService = TestBed.get(FooterService);
     translateService = injector.get(TranslateService);
-	//translateService.use('en');
+    //translateService.use('en');
     comprehensiveService = TestBed.get(ComprehensiveService);
     //comprehensiveAPiService = TestBed.get(comprehensiveAPiService);
     progressTrackerService = TestBed.get(ProgressTrackerService);
     //router = new RouterStub();
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
-    
-	
+
+
     translateService.setTranslation('en', translations);
-	translateService.use('en');
+    translateService.use('en');
     fixture.detectChanges();
   });
 
@@ -185,9 +192,9 @@ describe('ComprehensiveStepsComponent', () => {
   });
   afterEach(() => {
     TestBed.resetTestingModule();
-    component.step =1;
-    component.reportStatus ="NEW";
-  
+    component.step = 1;
+    component.reportStatus = "NEW";
+
   });
   it('should execute ngOnInit', () => {
     const setNavbarModeSpy = spyOn(navbarService, 'setNavbarComprehensive');
@@ -197,7 +204,7 @@ describe('ComprehensiveStepsComponent', () => {
   });
   it('ngOnDestroy', () => {
     component.ngOnDestroy();
-  
+
   });
   it('should call go next', () => {
     spyOn(router, 'navigate');

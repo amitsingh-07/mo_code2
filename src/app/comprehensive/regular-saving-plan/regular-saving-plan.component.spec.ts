@@ -244,83 +244,23 @@ describe('RegularSavingPlanComponent', () => {
     //component.save();
   });
 
-  it('Trigger Tooltip', () => {
-	const showModal = component.showToolTipModal('RSP_TITLE', 'RSP_MESSAGE');
-  });
   
-  it('should redirect to Bad mood', () => {
-    const navigateSpy = spyOn(router, 'navigate');
-    expect(navigateSpy).toHaveBeenCalledWith(['../comprehensive/bad-mood-fund']);
+  it('should trigger OnChange', () => {
+    component.rspSelection();
   });
 
-  
   it('should trigger OnChange', () => {
     component.onChange();
   });
-
   it('should trigger ngOnInit', () => {
     component.ngOnInit();
   });
-
+  it('should trigger ngOnInit', () => {
+    component.ngOnInit();
+  });
   it('should trigger ngOnDestroy', () => {
     component.ngOnDestroy();
   });
     
-  it('should trigger goToNext true', () => {
-    component.viewMode = true;
-    component.goToNext(component.RSPForm);
-  });
-  
-  it('should trigger goToNext false', () => {
-    component.viewMode = false;
-    component.goToNext(component.RSPForm);
-  });
-  
-  
-  it('should trigger addRSP() ', () => {
-    component.addRSP() ;
-  });
-  
-  it('should trigger buildRSPForm() Empty form ', () => {
-	component.regularSavingsArray  = null;
-    component.buildRSPForm();
-  });
-  
-  it('should trigger buildRSPForm() Add RSP form ', () => {
-	component.regularSavingsArray  = [{regularUnitTrust: "10", regularPaidByCash:"20", regularPaidByCPF : "30",enquiryId:131297}, {regularUnitTrust: "10", regularPaidByCash:"20", regularPaidByCPF : "30",enquiryId:131297}];
-    component.buildRSPForm();
-  });
-  
-  it('should trigger buildEmptyRSPForm ', () => {
-    component.buildEmptyRSPForm();
-  });
-  
-  it('should trigger validateRegularSavings', () => {
-    component.validateRegularSavings(component.RSPForm);
-  });  
-  
-  it('should trigger investTypeValidation ', () => {
-    component.investTypeValidation();
-  });  
-  
-  it('should trigger removeRSP ', () => {
-    component.removeRSP(1);
-  }); 
-  
-  it('should trigger selectInvest ', () => {
-    component.selectInvest('', 1);
-  });
-  
-  it('should trigger rspSelection ', () => {
-    component.rspSelection();
-  }); 
-  
-  it('should trigger buildRSPDetailsForm - empty call ', () => {
-    component.buildRSPDetailsForm({});
-  });  
-  
-  it('should trigger buildRSPDetailsForm - object call ', () => {
-    component.buildRSPDetailsForm({regularUnitTrust: 10, regularPaidByCash:20, regularPaidByCPF : 30});
-  });
- 
+
 });
