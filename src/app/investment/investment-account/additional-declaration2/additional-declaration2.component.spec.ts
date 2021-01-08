@@ -7,7 +7,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { NgbActiveModal, NgbModal, NgbModalRef, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
-import { FooterService } from 'src/app/shared/footer/footer.service';
+import { FooterService } from '../../../shared/footer/footer.service';
 import { MockInvestmentAccountService } from './../../../../assets/mocks/service/shared-service';
 import { NavbarService } from './../../../shared/navbar/navbar.service';
 import { InvestmentAccountService } from './../investment-account-service';
@@ -22,8 +22,8 @@ import { DatePipe } from '@angular/common';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import { concat, Observable, of, throwError } from 'rxjs';
 import { Injector } from '@angular/core';
-import { LoaderService } from 'src/app/shared/components/loader/loader.service';
-import { ErrorModalComponent } from 'src/app/shared/modal/error-modal/error-modal.component';
+import { LoaderService } from '../../../shared/components/loader/loader.service';
+import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 
 describe('AdditionalDeclaration2Component', () => {
@@ -83,7 +83,7 @@ describe('AdditionalDeclaration2Component', () => {
     investmentCommonService = TestBed.get(InvestmentCommonService);
     translateService.setTranslation('en', translations);
     translateService.use('en');
-    fixture.detectChanges();
+   
   });
 
   afterEach(() => {

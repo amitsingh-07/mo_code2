@@ -14,6 +14,7 @@ import { NavbarService } from './../../../shared/navbar/navbar.service';
 import { InvestmentAccountService } from './../investment-account-service';
 import { AdditionalDeclaration1Component } from './additional-declaration1.component';
 
+
 describe('AdditionalDeclaration1Component', () => {
   let component: AdditionalDeclaration1Component;
   let fixture: ComponentFixture<AdditionalDeclaration1Component>;
@@ -51,6 +52,7 @@ describe('AdditionalDeclaration1Component', () => {
   });
 
   it('should create AdditionalDeclaration1Component', () => {
+    console.log(component);
     expect(component).toBeTruthy();
   });
 

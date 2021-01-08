@@ -24,9 +24,8 @@ import { InvestmentCommonService } from '../../investment-common/investment-comm
 import { mockInvestmentEngagementJourneyService } from './../../../../assets/mocks/service/shared-service';
 import { concat, Observable, of, throwError } from 'rxjs';
 
-import { LoaderService } from 'src/app/shared/components/loader/loader.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
-import { ErrorModalComponent } from 'src/app/shared/modal/error-modal/error-modal.component';
+import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import {
@@ -46,6 +45,7 @@ import { AppService } from './../../../app.service';
 
 import { ProfileIcons } from './profileIcons';
 import { RiskProfile } from './riskprofile';
+import { LoaderService } from '../../../shared/components/loader/loader.service';
 
 
 describe('RecommendationComponent', () => {

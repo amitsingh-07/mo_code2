@@ -27,7 +27,7 @@ import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagemen
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { QuestionIcons } from './questionicon';
 import { HttpClientModule } from '@angular/common/http';
-import { SignUpService } from 'src/app/sign-up/sign-up.service';
+import { SignUpService } from '../../../sign-up/sign-up.service';
 import { DatePipe } from '@angular/common';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 

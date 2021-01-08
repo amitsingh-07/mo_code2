@@ -7,7 +7,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { NgbActiveModal, NgbModal, NgbModalRef, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
-import { FooterService } from 'src/app/shared/footer/footer.service';
+import { FooterService } from '../../../shared/footer/footer.service';
 import { MockInvestmentAccountService } from './../../../../assets/mocks/service/shared-service';
 import { NavbarService } from './../../../shared/navbar/navbar.service';
 import { InvestmentAccountService } from './../investment-account-service';
@@ -21,13 +21,13 @@ import { DatePipe } from '@angular/common';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import { concat, Observable, of, throwError } from 'rxjs';
 import { Injector } from '@angular/core';
-import { LoaderService } from 'src/app/shared/components/loader/loader.service';
-import { ErrorModalComponent } from 'src/app/shared/modal/error-modal/error-modal.component';
+import { LoaderService } from '../../../shared/components/loader/loader.service';
+import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
-import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
-import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
+import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
+import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { PersonalDeclarationComponent } from './personal-declaration.component';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ERoadmapStatus } from '../../../shared/components/roadmap/roadmap.interface';
@@ -77,10 +77,11 @@ describe('PersonalDeclarationComponent', () => {
           //     provide: AMBIENT_CART,
           //     useValue: undefined
           // }
-        {
-          provide: InvestmentAccountService,
-          useClass: MockInvestmentAccountService 
-        }],
+        // {
+        //   provide: InvestmentAccountService,
+        //   useClass: MockInvestmentAccountService 
+        // }
+      ],
         
     })
       .overrideModule(BrowserDynamicTestingModule, { set: { entryComponents: [] } })
