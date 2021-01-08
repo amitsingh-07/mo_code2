@@ -47,7 +47,7 @@ import { COMPREHENSIVE_ROUTES } from './../comprehensive-routes.constants';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { RoutingService } from './../../shared/Services/routing.service';
 
-import { SignUpService } from 'src/app/sign-up/sign-up.service';
+import { SignUpService } from './../../sign-up/sign-up.service';
 
 export class TestComponent {
 }
