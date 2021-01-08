@@ -244,20 +244,24 @@ describe('RegularSavingPlanComponent', () => {
     //component.save();
   });
 
+  it('Trigger Tooltip', () => {
+	const showModal = component.showToolTipModal('RSP_TITLE', 'RSP_MESSAGE');
+  });
   
-  it('should trigger OnChange', () => {
-    component.rspSelection();
+  it('should redirect to Bad mood', () => {
+    const navigateSpy = spyOn(router, 'navigate');
+    expect(navigateSpy).toHaveBeenCalledWith(['../comprehensive/bad-mood-fund']);
   });
 
+  
   it('should trigger OnChange', () => {
     component.onChange();
   });
+
   it('should trigger ngOnInit', () => {
     component.ngOnInit();
   });
-  it('should trigger ngOnInit', () => {
-    component.ngOnInit();
-  });
+
   it('should trigger ngOnDestroy', () => {
     component.ngOnDestroy();
   });
