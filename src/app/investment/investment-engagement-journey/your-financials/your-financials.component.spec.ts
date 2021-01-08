@@ -22,7 +22,7 @@ import { SignUpService } from '../../../sign-up/sign-up.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { DatePipe } from '@angular/common';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
-import { mockInvestmentEngagementJourneyService } from './../../../../assets/mocks/service/shared-service';
+//mport { mockInvestmentEngagementJourneyService } from './../../../../assets/mocks/service/shared-service';
 
 import { Injector, NO_ERRORS_SCHEMA } from '@angular/core';
 import { concat, Observable, of, throwError } from 'rxjs';
@@ -57,7 +57,7 @@ describe('YourFinancialsComponent', () => {
   let translateService: TranslateService;
   let investmentAccountService: InvestmentAccountService;
   let investmentCommonService: InvestmentCommonService;
-  let investAccountService: mockInvestmentEngagementJourneyService;
+  //let investAccountService: mockInvestmentEngagementJourneyService;
   let loader: LoaderService;
   let injector: Injector;
   let ngbModalService: NgbModal;

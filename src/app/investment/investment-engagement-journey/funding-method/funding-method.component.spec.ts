@@ -23,7 +23,7 @@ import { SignUpService } from '../../../sign-up/sign-up.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { DatePipe } from '@angular/common';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
-import { mockInvestmentEngagementJourneyService } from './../../../../assets/mocks/service/shared-service';
+//import { mockInvestmentEngagementJourneyService } from './../../../../assets/mocks/service/shared-service';
 //import mockData from '../../../../assets/mocks/data/funding-method';
 import { concat, Observable, of, throwError } from 'rxjs';
 import { Injector } from '@angular/core';
@@ -45,7 +45,7 @@ describe('FundingMethodComponent', () => {
   let translateService: TranslateService;
   let investmentAccountService: InvestmentAccountService;
   let investmentCommonService: InvestmentCommonService;
-  let investAccountService: mockInvestmentEngagementJourneyService;
+ // let investAccountService: mockInvestmentEngagementJourneyService;
   let loader: LoaderService;
   let injector: Injector;
   let ngbModalService: NgbModal;
@@ -62,7 +62,7 @@ describe('FundingMethodComponent', () => {
         providers: [NgbActiveModal, AuthenticationService, DatePipe, TranslateService,
           InvestmentAccountService,
           LoaderService,
-          { provide: InvestmentAccountService, useClass: mockInvestmentEngagementJourneyService }],
+          { provide: InvestmentAccountService }],
       })
       .overrideModule(BrowserDynamicTestingModule, { set: { entryComponents: [SrsTooltipComponent] } })
       .compileComponents();
