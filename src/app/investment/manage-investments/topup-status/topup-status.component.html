@@ -9,10 +9,11 @@
   </div>
 </div>
 
-<div class="content">
-  <div [ngClass]="status === 'success' ? 'sufficient-container' : 'insufficient-container'">
-    <img id="" [ngClass]="status === 'success' ? 'success-img' : 'insufficient-success-img'"
-      src="assets/images/investment-account/owl-success-tick.svg" alt="" />
+
+  <div class="container-fluid max-width--1024" [ngClass]="status === 'success' ? 'sufficient-container' : 'insufficient-container'">
+    <div class="content">
+    <div class="text-center"><img id="" [ngClass]="status === 'success' ? 'success-img' : 'insufficient-success-img'"
+      src="assets/images/investment-account/owl-success-tick.svg" alt="" /></div>
     <div class="buy-request-submitted">{{ 'TOPUP_REQUEST.BUY_REQUEST_SUBMITTED' | translate}}</div>
     <div *ngIf="status === 'success'" class="buy-request-msg">{{oneTimeMonthlyMsg}}</div>
    
@@ -66,8 +67,8 @@
         <!-- PayNow Transfer Instruction End -->
       </div>
     </div>
-    <button (click)="goToNext()" id="" type="button" class="btn btn__footer--fixed btn-primary width100">
-      {{ 'TOPUP_REQUEST.OK_GOT_IT' | translate}}
-    </button>
   </div>
+  <div class="text-center"><button (click)="goToNext()" id="" type="button" class="btn btn__footer--fixed btn-primary width100">
+    {{ 'TOPUP_REQUEST.OK_GOT_IT' | translate}}
+  </button></div>
 </div>

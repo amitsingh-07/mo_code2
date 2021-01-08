@@ -212,16 +212,20 @@ app-edit-profile{
     text-align: center;
     color:$teal-color;
     margin-bottom: 21px;
-    &[disabled] {
-      color: #c1eaea;
-      border: solid 1px #bfe9e9;
-      cursor: not-allowed;
-    }
     .lock{
       display:inline-block;
       margin-left: 10px;
       margin-top: 2px;
     }
+    &[disabled] {
+      color: #c1eaea;
+      border: solid 1px #bfe9e9;
+      cursor: not-allowed;
+      .lock{
+        opacity:0.30;
+      }
+    }
+    
   }
   .bank-account{
     font-family: $muli-regular;

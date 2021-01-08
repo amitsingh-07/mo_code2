@@ -1,15 +1,13 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { investmentApiConstants } from '../investment/investment.api.constants';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { BaseService } from '../shared/http/base.service';
 import { IServerResponse } from '../shared/http/interfaces/server-response.interface';
-import { DirectFormData } from './../direct/direct-form-data';
+import { environment } from './../../environments/environment';
 
 const newLocal = 'EnquiryId';
 @Injectable({
@@ -186,10 +184,22 @@ export class InvestmentApiService {
   }
 
   createInvestmentAccount(params) {
-    return this.http.post(investmentApiConstants.endpoint.investmentAccount.createInvestmentAccount, params)
+    let url = investmentApiConstants.endpoint.investmentAccount.createInvestmentAccount;
+    if (environment.mockInvestAccount && this.getMockAccountStatus()) {
+      url = investmentApiConstants.endpoint.investmentAccount.createInvestmentAccount + '&mock=true';
+    }
+    return this.http.post(url, params)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
+  }
+
+  getMockAccountStatus() {
+    let mockApiStatus = false;
+    if (window.sessionStorage && sessionStorage.getItem('mock-ifast-api')) {
+      mockApiStatus = JSON.parse(sessionStorage.getItem('mock-ifast-api'));
+    }
+    return mockApiStatus;
   }
 
   verifyAML() {

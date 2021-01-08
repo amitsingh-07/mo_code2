@@ -138,13 +138,18 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   }
   initiateReport() {
     const enquiryId = { enquiryId: this.comprehensiveService.getEnquiryId() };
+    if (this.comprehensiveJourneyMode) {
+      const cashPayload = { enquiryId: this.comprehensiveService.getEnquiryId(), liquidCashAmount: this.comprehensiveService.getLiquidCash(),
+        annualCashAmount : this.comprehensiveService.getComputeSpareCash() };
+      this.comprehensiveApiService.generateComprehensiveCashflow(cashPayload).subscribe((cashData) => {
+        });
+    }
     this.comprehensiveApiService.generateComprehensiveReport(enquiryId).subscribe((data) => {
       let reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.READY;
       let viewMode = false;
       if (this.comprehensiveJourneyMode) {
         reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED;
         viewMode = true;
-
       }
       this.comprehensiveService.setReportStatus(reportStatus);
       this.comprehensiveService.setLocked(true);
@@ -167,8 +172,9 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   buildTcForm() {
     const reportStatus = this.comprehensiveService.getReportStatus();
     const comprehensiveData = this.comprehensiveService.getComprehensiveEnquiry();
-    this.tandcEnableFlag = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || comprehensiveData.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING || comprehensiveData.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING);
-    this.enableTc = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW  || comprehensiveData.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING || comprehensiveData.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING);
+    const paymentStatus = (comprehensiveData.paymentStatus) ? comprehensiveData.paymentStatus.toLowerCase() : '';
+    this.tandcEnableFlag = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || paymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING || paymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING);
+    this.enableTc = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW  || paymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING || paymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING);
     this.tandcForm = this.formBuilder.group({
       tandc: [this.enableTc]
     });

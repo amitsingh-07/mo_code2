@@ -7,7 +7,7 @@ import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { InvestmentCommonService } from './../../investment/investment-common/investment-common.service';
 
-import { CustomErrorHandlerService } from 'src/app/shared/http/custom-error-handler.service';
+import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
@@ -22,7 +22,7 @@ import { environment } from './../../../environments/environment';
 import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
-import { SessionsService } from 'src/app/shared/Services/sessions/sessions.service';
+import { SessionsService } from './../../shared/Services/sessions/sessions.service';
 
 
 @Component({

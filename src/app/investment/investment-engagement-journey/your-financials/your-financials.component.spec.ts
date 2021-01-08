@@ -27,9 +27,9 @@ import { InvestmentCommonService } from '../../investment-common/investment-comm
 import { Injector, NO_ERRORS_SCHEMA } from '@angular/core';
 import { concat, Observable, of, throwError } from 'rxjs';
 
-import { LoaderService } from 'src/app/shared/components/loader/loader.service';
+import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
-import { ErrorModalComponent } from 'src/app/shared/modal/error-modal/error-modal.component';
+import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { SrsTooltipComponent } from '../srs-tooltip/srs-tooltip.component';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';

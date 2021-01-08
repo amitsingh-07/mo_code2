@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { toInteger } from '../utils/common.util';
-import { Agent } from 'https';
-
+import { Util } from './util';
 @Injectable()
 export class AboutAge {
 	getAboutAge(valueString: number, ageConstant: number): number {
@@ -29,7 +27,7 @@ export class AboutAge {
 			const ageDay = calculateDay - birthDay;
 
 			if (ageMonth < 0 || (ageMonth === 0 && ageDay < 0)) {
-				age = toInteger(age) - 1;
+				age = Util.toInteger(age) - 1;
 			}
 			return age;
 		}

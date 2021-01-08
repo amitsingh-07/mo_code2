@@ -262,5 +262,61 @@ describe('RegularSavingPlanComponent', () => {
     component.ngOnDestroy();
   });
     
-
+  it('should trigger goToNext true', () => {
+    component.viewMode = true;
+    component.goToNext(component.RSPForm);
+  });
+  
+  it('should trigger goToNext false', () => {
+    component.viewMode = false;
+    component.goToNext(component.RSPForm);
+  });
+  
+  
+  it('should trigger addRSP() ', () => {
+    component.addRSP() ;
+  });
+  
+  it('should trigger buildRSPForm() Empty form ', () => {
+	component.regularSavingsArray  = null;
+    component.buildRSPForm();
+  });
+  
+  it('should trigger buildRSPForm() Add RSP form ', () => {
+	component.regularSavingsArray  = [{enquiryId:131297, regularUnitTrust: '10', regularPaidByCash:'20', regularPaidByCPF : '30'}, {enquiryId:131297, regularUnitTrust: '10', regularPaidByCash:'20', regularPaidByCPF : '30'}];
+    component.buildRSPForm();
+  });
+  
+  it('should trigger buildEmptyRSPForm ', () => {
+    component.buildEmptyRSPForm();
+  });
+  
+  it('should trigger validateRegularSavings', () => {
+    component.validateRegularSavings(component.RSPForm);
+  });  
+  
+  it('should trigger investTypeValidation ', () => {
+    component.investTypeValidation();
+  });  
+  
+  it('should trigger removeRSP ', () => {
+    component.removeRSP(1);
+  }); 
+  
+  it('should trigger selectInvest ', () => {
+    component.selectInvest('', 1);
+  });
+  
+  it('should trigger rspSelection ', () => {
+    component.rspSelection();
+  }); 
+  
+  it('should trigger buildRSPDetailsForm - empty call ', () => {
+    component.buildRSPDetailsForm({});
+  });  
+  
+  it('should trigger buildRSPDetailsForm - object call ', () => {
+    component.buildRSPDetailsForm({regularUnitTrust: 10, regularPaidByCash:20, regularPaidByCPF : 30});
+  });
+ 
 });

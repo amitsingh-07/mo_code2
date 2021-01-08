@@ -7,6 +7,7 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { SignUpApiService } from './../sign-up.api.service';
+import { appConstants } from './../../app.constants';
 
 @Component({
   selector: 'app-email-verification',
@@ -18,6 +19,7 @@ export class EmailVerificationComponent implements OnInit {
   showLoader: boolean = true;
   statusMessages: any = {};
   message: string;
+  userType = appConstants.USERTYPE.NORMAL;
 
   constructor(
     private signUpApiService: SignUpApiService,
@@ -58,6 +60,9 @@ export class EmailVerificationComponent implements OnInit {
    */
   verifyEmail(verifyCode) {
     this.signUpApiService.verifyEmail(verifyCode).subscribe((data) => {
+      if( data.objectList[0] &&  data.objectList[0].userType){
+        this.userType = data.objectList[0].userType;
+      }
       if (data.responseMessage.responseCode === 6000) {
         this.email = data.objectList[0].email;
         this.message = this.statusMessages['verified'];
@@ -78,6 +83,11 @@ export class EmailVerificationComponent implements OnInit {
    * redirect to login page.
    */
   redirectToLogin() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    if (this.userType.toLowerCase() === appConstants.USERTYPE.FINLIT.toLowerCase()) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
+    } else {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    }
+
   }
 }
