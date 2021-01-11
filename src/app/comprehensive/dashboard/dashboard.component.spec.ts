@@ -172,6 +172,7 @@ describe('DashboardComponent', () => {
     location = TestBed.get(Location);
     http = TestBed.get(HttpTestingController);
     formBuilder = TestBed.get(FormBuilder);
+    appService = TestBed.get(AppService);
     apiService = TestBed.get(ApiService);
     authService = TestBed.get(AuthenticationService);
     navbarService = TestBed.get(NavbarService);
