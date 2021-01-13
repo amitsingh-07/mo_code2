@@ -172,6 +172,10 @@ describe('ComparePlansComponent', () => {
   });
 
   it('should trigger ngOnInit', () => {
+    component.cashValueTooltipData = {
+      "TITLE": "Cash Value",
+      "DESCRIPTION" : "When this plan matures, you will receive a cash payout!"
+    };
     component.ngOnInit();
   });
 
@@ -179,15 +183,19 @@ describe('ComparePlansComponent', () => {
     component.setPageTitle('Compare Plan');
   });
 
-  it('should trigger showCashValueTooltip', () => { 
-    component.cashValueTooltipData = this.cashValueTooltipData;
-    //component.cashValueTooltipData['TITLE'] = 'TITLE';
-    //component.cashValueTooltipData['DESCRIPTION'] = 'DESCRIPTION';
+  it('should trigger showCashValueTooltip', () => {     
+    component.cashValueTooltipData = {
+      "TITLE": "Cash Value",
+      "DESCRIPTION" : "When this plan matures, you will receive a cash payout!"
+    };
     component.showCashValueTooltip();
   });
 
   it('should trigger showUnderwritingTooltip()', () => {
-    console.log(this.cashValueTooltipData);
+    component.underwritingTooltipData = {
+      "TITLE": "Requires Underwriting",
+      "DESCRIPTION" : "Before you can be insured under this plan, the insurer will first evaluate you."
+    }
     component.showUnderwritingTooltip();
   });
 

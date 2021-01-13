@@ -20,6 +20,12 @@ export const mockAuthService = {
     },
     getEnquiryId() {
         return '123';
+    },
+    isSignedUserWithRole() {
+        return false;
+    },
+    isSignedUser() {
+        return true;
     }
 };
 
