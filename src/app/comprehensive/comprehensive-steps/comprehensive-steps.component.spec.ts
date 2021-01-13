@@ -73,7 +73,9 @@ describe('ComprehensiveStepsComponent', () => {
   let loader: LoaderService;
   let comprehensiveAPiService: ComprehensiveApiService;
   let router: Router;
-  const route = ({ routeConfig: { component: { name: 'ComprehensiveStepsComponent' } } } as any) as ActivatedRoute;
+  const route = ({ routeConfig: { component: { name: 'ComprehensiveStepsComponent' } }, snapshot: {
+    paramMap: convertToParamMap({ stepNo: 1 })
+  } } as any) as ActivatedRoute;
   let httpClientSpy;
   let currencyPipe: CurrencyPipe;
   const mockAppService = {
@@ -125,14 +127,7 @@ describe('ComprehensiveStepsComponent', () => {
         { provide: CurrencyPipe, useValue: mockCurrencyPipe },
         { provide: AppService, useValue: mockAppService },
         FooterService,
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            snapshot: {
-              paramMap: convertToParamMap({ stepNo: 1 })
-            }
-          }
-        },
+        { provide: ActivatedRoute, useValue: route },
         NavbarService,
         HeaderService,
         LoaderService,
@@ -194,7 +189,14 @@ describe('ComprehensiveStepsComponent', () => {
     TestBed.resetTestingModule();
     component.step = 1;
     component.reportStatus = "NEW";
-
+    component.viewMode =true;
+   comprehensiveService.setMySteps(2, 0);
+       const summaryData: any = {comprehensiveEnquiry:{ enquiryId:131297,sessionTrackerId:55877,type:'Comprehensive-Lite',hasComprehensive:true,hasDependents:false,hasEndowments:'0',hasRegularSavingsPlans:false,generatedTokenForReportNotification:null,stepCompleted:4,subStepCompleted:0,reportStatus:'edit',isValidatedPromoCode:false,homeLoanUpdatedByLiabilities:null,isLocked:false,isDobUpdated:true,dobPopUpEnable:false,isDobChangedInvestment:null,isConfirmationEmailSent:null,paymentStatus:null,reportSubmittedTimeStamp:'2020-05-06T21:31:35.000+0000'},baseProfile:{firstName:'rini',lastName:'test',dateOfBirth:'06/10/1988',dateOfBirthInvestment:'06/10/1988',nation:null,gender:'male',genderInvestment:'male',email:'mo2uatapr2_1@yopmail.com',mobileNumber:'8998110734',nationalityStatus:'Singapore PR',dobUpdateable:false,journeyType:'Investment',smoker:false},"dependentsSummaryList":{"dependentsList":[],"noOfHouseholdMembers":2,"houseHoldIncome":"Below $2,000","noOfYears":0},"dependentEducationPreferencesList":[],comprehensiveIncome:{enquiryId:131297,employmentType:'Employed',monthlySalary:70000.0,monthlyRentalIncome:0.0,otherMonthlyWorkIncome:0.0,otherMonthlyIncome:0.0,annualBonus:null,annualDividends:0.0,otherAnnualIncome:0.0},comprehensiveSpending:{enquiryId:131297,monthlyLivingExpenses:60000.0,adHocExpenses:null,homeLoanPayOffUntil:null,mortgagePaymentUsingCPF:0.0,mortgagePaymentUsingCash:0.0,mortgageTypeOfHome:'',mortgagePayOffUntil:null,carLoanPayment:0.0,carLoanPayoffUntil:null,otherLoanPayment:null,otherLoanPayoffUntil:null,HLMortgagePaymentUsingCPF:null,HLMortgagePaymentUsingCash:null,HLtypeOfHome:''},comprehensiveRegularSavingsList:[],comprehensiveDownOnLuck:{enquiryId:131297,badMoodMonthlyAmount:300.0,hospitalPlanId:2,hospitalPlanName:'Government Hospital Ward A'},comprehensiveAssets:{enquiryId:131297,cashInBank:7000.0,savingsBonds:8000.0,cpfOrdinaryAccount:null,cpfSpecialAccount:null,cpfMediSaveAccount:null,cpfRetirementAccount:null,schemeType:null,estimatedPayout:null,topupAmount:null,withdrawalAmount:null,retirementSum:null,homeMarketValue:0.0,investmentPropertiesValue:0.0,assetsInvestmentSet:[{assetId:628,typeOfInvestment:'MoneyOwl - Equity',investmentAmount:null}],otherAssetsValue:0.0,source:'MANUAL'},comprehensiveLiabilities:{enquiryId:131297,homeLoanOutstandingAmount:null,otherPropertyLoanOutstandingAmount:0.0,otherLoanOutstandingAmount:null,carLoansAmount:0.0},comprehensiveInsurancePlanning:null,comprehensiveRetirementPlanning:{enquiryId:131297,retirementAge:'45',haveOtherSourceRetirementIncome:null,retirementIncomeSet:[],lumpSumBenefitSet:[]}};
+    comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
+    comprehensiveService.setComprehensiveSummary(summaryData);
+    spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
+    spyOn(comprehensiveService, 'getMyDependant').and.returnValue([])
+  
   });
   it('should execute ngOnInit', () => {
     const setNavbarModeSpy = spyOn(navbarService, 'setNavbarComprehensive');

@@ -222,27 +222,71 @@ describe('InsurancePlanComponent', () => {
         endowmentMaturityYears: 2021
       }], comprehensiveIncome: { enquiryId: 131297, employmentType: 'Employed', monthlySalary: 70000.0, monthlyRentalIncome: 0.0, otherMonthlyWorkIncome: 0.0, otherMonthlyIncome: 0.0, annualBonus: null, annualDividends: 0.0, otherAnnualIncome: 0.0 }, comprehensiveSpending: { enquiryId: 131297, monthlyLivingExpenses: 60000.0, adHocExpenses: null, homeLoanPayOffUntil: null, mortgagePaymentUsingCPF: 0.0, mortgagePaymentUsingCash: 0.0, mortgageTypeOfHome: '', mortgagePayOffUntil: null, carLoanPayment: 0.0, carLoanPayoffUntil: null, otherLoanPayment: null, otherLoanPayoffUntil: null, HLMortgagePaymentUsingCPF: null, HLMortgagePaymentUsingCash: null, HLtypeOfHome: '' }, comprehensiveRegularSavingsList: [], comprehensiveDownOnLuck: { enquiryId: 131297, badMoodMonthlyAmount: 300.0, hospitalPlanId: 2, hospitalPlanName: 'Government Hospital Ward A' }, comprehensiveAssets: { enquiryId: 131297, cashInBank: 7000.0, savingsBonds: 8000.0, cpfOrdinaryAccount: null, cpfSpecialAccount: null, cpfMediSaveAccount: null, cpfRetirementAccount: null, schemeType: null, estimatedPayout: null, topupAmount: null, withdrawalAmount: null, retirementSum: null, homeMarketValue: 0.0, investmentPropertiesValue: 0.0, assetsInvestmentSet: [{ assetId: 628, typeOfInvestment: 'MoneyOwl - Equity', investmentAmount: null }], otherAssetsValue: 0.0, source: 'MANUAL' }, comprehensiveLiabilities: { enquiryId: 131297, homeLoanOutstandingAmount: null, otherPropertyLoanOutstandingAmount: 0.0, otherLoanOutstandingAmount: null, carLoansAmount: 0.0 }, comprehensiveInsurancePlanning: null, comprehensiveRetirementPlanning: { enquiryId: 131297, retirementAge: '45', haveOtherSourceRetirementIncome: null, retirementIncomeSet: [], lumpSumBenefitSet: [] }
     };
-    comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
+    comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
     comprehensiveService.setComprehensiveSummary(summaryData);
 
     spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
     spyOn(comprehensiveService, 'getMyDependant').and.returnValue([]);
-    //spyOn(comprehensiveService, 'comprehensiveFormData').and.returnValue([]);
     spyOn(comprehensiveService, 'getMyProfile').and.returnValue([]);
-   // component.comprehensiveJourneyMode = true;
-   // const transformAsCurrencySpy = spyOn(comprehensiveService, 'transformAsCurrency');
+
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('form invalid when empty', () => {
+    expect(component.insurancePlanForm.valid).toBeFalsy();
+  });
 
-  /*it('title', async(() => {
-    const fixture1 = TestBed.createComponent(RegularSavingPlanComponent);
-    const app = fixture1.debugElement.componentInstance;
-    const heading = fixture1.debugElement.query(By.css('.comprehensive__page-sub-heading'));
-    expect(heading).toEqual('What You Owe');
-  }));*/
+  it('should trigger ngOnInit', () => {	
+    const setNavbarModeSpy = spyOn(navbarService, 'setNavbarComprehensive');
+    component.ngOnInit();
+      progressTrackerService.setProgressTrackerData(comprehensiveService.generateProgressTrackerData());
+    progressTrackerService.setReadOnly(true);
+    navbarService.setNavbarComprehensive(true);
+
+    expect(setNavbarModeSpy).toHaveBeenCalledWith(true);
+  });
+
+
+  it('should buildInsuranceForm', () => {
+    component.buildInsuranceForm();
+  });
+  it('should buildInsuranceForm', () => {
+    component.resetHDBScheme();
+  });
+  it('should resetLifeProtectionAmount', () => {
+    component.resetLifeProtectionAmount();
+  });
+  it('should resetLongTermShieldAmount', () => {
+    component.resetLongTermShieldAmount();
+  });
+  it('should showSummaryModal', () => {
+    component.showSummaryModal();
+  });
+  it('should buildInsuranceForm', () => {
+    component.showToolTipModal('CPF_TITLE','CPF_MESSAGE');
+  });
+  it('should trigger goToNext true', () => {
+    component.viewMode = true;
+    component.goToNext(component.insurancePlanForm);
+  });
+  
+  it('should trigger goToNext false', () => {
+    component.viewMode = false;
+    component.goToNext(component.insurancePlanForm);
+  });
+
+  it('should trigger ngOnDestroy', () => {
+    component.ngOnDestroy();
+  });
+    
+  it('should set page title', () => {
+    const setPageTitleSpy = spyOn(navbarService, 'setPageTitleWithIcon');
+    component.setPageTitle('CMP.COMPREHENSIVE_STEPS.STEP_3_TITLE');
+    expect(setPageTitleSpy).toHaveBeenCalledWith('CMP.COMPREHENSIVE_STEPS.STEP_3_TITLE', { id:  'InsurancePlanComponent', iconClass: 'navbar__menuItem--journey-map' });
+  });
+  
   
 
  
