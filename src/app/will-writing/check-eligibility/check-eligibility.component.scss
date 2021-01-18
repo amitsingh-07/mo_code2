@@ -299,7 +299,7 @@ app-check-eligibility {
     line-height: normal;
         
 }
-.btn-ftr-get-started:disabled {
+.btn-ftr-get-started.btn:disabled {
     background-color: #bff1f1 !important;
     color: $white-color;
 }
