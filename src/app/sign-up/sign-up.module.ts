@@ -45,6 +45,7 @@ import { AddUpdateSrsComponent } from './add-update-srs/add-update-srs.component
 import { TextMaskModule } from 'angular2-text-mask';
 import { SrsSuccessModalComponent } from './add-update-srs/srs-success-modal/srs-success-modal.component';
 import { TwoFactorAuthGuardService } from './two-factor-auth-guard.service';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -95,7 +96,8 @@ export function createTranslateLoader(http: HttpClient) {
     AccountUpdatedComponent,
     AddUpdateBankComponent,
     AddUpdateSrsComponent,
-    SrsSuccessModalComponent
+    SrsSuccessModalComponent,
+    VerifyEmailComponent
   ],
   providers: [SignUpAccessGuard, AuthGuardService, TwoFactorAuthGuardService],
   entryComponents: [EditMobileNumberComponent, SrsSuccessModalComponent]

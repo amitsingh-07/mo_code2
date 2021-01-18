@@ -260,6 +260,12 @@ line-height: lineHeightRem($size);
 		@content;
 	}
 }
+/*Pixel 2 XL*/
+@mixin pixel2XL {
+	@media only screen and (min-width: 411px) and (max-width: 823px) and (orientation: portrait) {
+		@content;
+	}
+}
 /* IE 11 mixin */
 
 @mixin ieSpecific {

@@ -59,6 +59,7 @@ export class EmploymentDetailsComponent implements OnInit {
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
+
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
@@ -69,10 +70,7 @@ export class EmploymentDetailsComponent implements OnInit {
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.countries = this.investmentAccountService.getCountriesFormDataByFilter();
-    // Set employment status in MyInfo
-    if (this.formValues.isMyInfoEnabled) {
-      this.setEmploymentStatus();
-    }
+    
     this.isEditProfile =
       this.route.snapshot.queryParams && this.route.snapshot.queryParams.enableEditProfile
         ? true
@@ -97,13 +95,7 @@ export class EmploymentDetailsComponent implements OnInit {
     });
   }
 
-  setEmploymentStatus() {
-    if (this.formValues.companyName) {
-      this.formValues.employmentStatus = INVESTMENT_ACCOUNT_CONSTANTS.EMPLOYEMENT_DETAILS.EMPLOYED;
-    } else {
-      this.formValues.employmentStatus = INVESTMENT_ACCOUNT_CONSTANTS.EMPLOYEMENT_DETAILS.UNEMPLOYED;
-    }
-  }
+
 
   addOrRemoveAdditionalControls(empStatus) {
     if (
@@ -445,7 +437,7 @@ export class EmploymentDetailsComponent implements OnInit {
   }
 
   onKeyPressEvent(event: any, content: any) {
-    this.investmentAccountService.onKeyPressEvent(event , content);
+    this.investmentAccountService.onKeyPressEvent(event, content);
   }
 
   @HostListener('input', ['$event'])
