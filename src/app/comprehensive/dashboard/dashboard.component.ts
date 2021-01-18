@@ -316,6 +316,7 @@ constructor(
     this.advisorStatus = false;
     this.getComprehensiveSummaryDashboard = '';
     this.currentStep = -1;
+    this.paymentInstructions = false;
     this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe( (dashboardData: any) => {
       if (dashboardData && dashboardData.objectList[0]) {
         this.getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', this.getCurrentVersionType);
