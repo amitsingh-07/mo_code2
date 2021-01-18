@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,7 +16,8 @@ import { InvestmentAccountService } from './../../investment/investment-account/
 @Component({
   selector: 'app-check-eligibility',
   templateUrl: './check-eligibility.component.html',
-  styleUrls: ['./check-eligibility.component.scss']
+  styleUrls: ['./check-eligibility.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CheckEligibilityComponent implements OnInit, OnDestroy {
   pageTitle: string;
