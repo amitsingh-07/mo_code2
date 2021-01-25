@@ -21,7 +21,7 @@ import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
-import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { Subject } from 'rxjs';
 
 @Component({
