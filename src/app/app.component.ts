@@ -22,6 +22,7 @@ import { NavbarService } from './shared/navbar/navbar.service';
 import { RoutingService } from './shared/Services/routing.service';
 import { SignUpService } from './sign-up/sign-up.service';
 import { SessionsService } from './shared/Services/sessions/sessions.service';
+import { HubspotService } from './shared/analytics/hubspot.service';
 
 
 declare global {
@@ -48,7 +49,8 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
   constructor(
     private log: LoggerService, private translate: TranslateService, private appService: AppService,
     private signUpService: SignUpService, private navbarService: NavbarService, private _location: Location,
-    private facebookPixelService: FBPixelService, private googleAnalyticsService: GoogleAnalyticsService,
+    private facebookPixelService: FBPixelService, private googleAnalyticsService: GoogleAnalyticsService, 
+    private hubspotService: HubspotService,
     private modal: NgbModal, public route: Router, public routingService: RoutingService, private location: Location,
     private configService: ConfigService, private authService: AuthenticationService, private sessionsService: SessionsService) {
     this.translate.setDefaultLang('en');
