@@ -1,0 +1,61 @@
+<div class="promo-bg pb30">
+  <form id="formGrp" name="formGrp" [formGroup]="formGrp">
+    <div class="flex-row">
+      <div class="flex-row gray-bg">
+        <span class="add-promo">Add Promotion</span>
+        <div class="form-group-floating-label input-container" [ngClass]="{'inline-error': showError}">
+          <input type="text" id="promoInpt" formControlName="promoCode" (keyup)="onKeyupEvent($event, 'promoCode')" autocomplete="off" class="form-control" required>
+          <label class="form-control-placeholder" for="promoCode">Enter a Promo Code</label>
+          <img id="cross-btn" *ngIf="showClearBtn && !promoCodeValidated" (click)="clearPromoCode($event)" src="assets/images/button-clear-txt.svg" />
+          <div *ngIf="!promoCodeValidated && !showSpinner" class="spinner-container" (click)="applyPromoCode($event)" [ngStyle]="{'background-color': showClearBtn? '#ff872f' : '#00a7a7'}">
+            <span>Apply</span>
+          </div>
+          <app-spinner [showSpinner]="showSpinner"></app-spinner>
+        </div>
+        <div *ngIf="showError" class="promo-code-error mt10">
+          <img src="assets/images/alert.svg" />
+          <span >Sorry, this promo code is invalid!</span>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div *ngIf="promoArray.length !== 0; else noPromo" class="active-promo-display mt20">
+    <span>Active Promotions</span>
+    <div style="display:flex; flex-wrap: wrap; justify-content: space-between;">
+      <div *ngFor="let promo of promoArray" class="promo-card mt15"
+      [ngStyle]="{opacity: promo.status === 'Active' ? '1': '0.4'}">
+      <img class="owl-logo" src="assets/images/promo-code/owl-colorful.svg" alt="" />
+      <div class="col-div">
+        <div class="flex-div">
+          <div class="promo-details">
+            <div class="promo-name">{{promo.name}}</div>
+            <div class="valid-period">Valid until {{promo.validity}}</div>
+          </div>
+          <img style="position: relative; align-self: baseline;" src="assets/images/promo-code/next-arrow.svg" (click)="showDetails()" alt="" />
+        </div>
+        <div class="inactive-promo" [ngClass]="{'use-promo': promo.status === 'Active'}" >
+          <ng-container *ngIf="promo.status === 'Active'; else inactive">
+            Use Promo
+          </ng-container>
+          <ng-template #inactive>
+            {{promo.status}}
+          </ng-template>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="tnc mt30">
+      All claimed rate will be reflected in your <a target="_blank"
+      href="/faq-investment/#investment|5">fees</a> table. All claimed vouchers will be sent to you via email. 
+      For more information, please go to <a target="_blank"
+      href="/faq-investment/">Frequently Asked Questions</a> on our website. 
+    </div>
+  </div>
+  <ng-template #noPromo>
+    <div class="no-promo-display mt40">
+      <img src="assets/images/owl-faded.svg" />
+      <div class="mt10">No promotions added yet</div>
+      <div class="mt10">Add available promo codes in the input box above</div>
+    </div>
+  </ng-template>
+</div>

@@ -127,6 +127,9 @@
                 </div>
               </div>
             </div>
+            <div *ngIf="topForm.get('portfolio').value" class="promo-code-container">
+              <app-promo-code-select></app-promo-code-select>
+            </div>
           </div>
         </form>
         <button type="button" [disabled]="!topForm.valid" (click)="goToNext(topForm)"

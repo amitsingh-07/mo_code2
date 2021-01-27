@@ -1,0 +1,103 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+app-promo-code-modal {
+  .modal-body {
+    padding: 0px !important;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    @include minPhabletmaxTablet {
+      width: 500px;
+    }
+
+    @include minMobilemaxPhablet {
+      position: fixed;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      border-radius: 0px;
+    }
+
+    .modal-body-message {
+      display: flex;
+      flex-direction:column;
+      justify-content: space-between;
+      height: calc(100% - 53.4px);
+      padding: 0 20px;
+      overflow-y: auto;
+    }
+
+    // CSS for promo-code-list
+    .gray-bg {
+      @include desktop {
+        padding: 14px 20px;
+        width: 450px;
+        justify-content: space-between;
+
+        .add-promo {
+          margin-right: 0px;
+        }
+
+        .input-container {
+          max-width: 275px;
+        }
+      }
+    }
+    .active-promo-display {
+      @include desktop {
+        padding: 0 25px;
+
+        .promo-card {
+            max-width: 450px;
+        }
+      }
+    }
+    // End CSS for promo-code-list
+  }
+
+  .promo-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 25px;
+
+    @include allmobiles {
+      padding: 15px 20px;
+    }
+
+    span {
+      font-family: $muli-semi-bold;
+      font-size: 22px;
+      line-height: normal;
+      letter-spacing: -0.23px;
+      color: $persian-green-color;
+
+      @include allmobiles {
+        font-family: $muli-bold;
+        font-size: 18px;
+        letter-spacing: -0.19px;
+        color: $teal-color;
+      }
+    }
+
+    img:nth-of-type(1) {
+      width: 16px;
+      cursor: pointer;
+
+      @include desktop {
+        display: none;
+      }
+    }
+
+    img:nth-of-type(2) {
+      width: 18px;
+      cursor: pointer;
+      @include allmobiles {
+        visibility: hidden;
+      }
+    }
+  }
+}

@@ -121,6 +121,10 @@
           (click)="checkCurrentRouteAndNavigate('/promotions')">
           <a class="nav-link">Promotions</a>
         </li>
+        <li *ngIf="showMenu" class="nav-item"
+          (click)="checkCurrentRouteAndNavigate('/promo-code/promo-code')">
+          <a class="nav-link">Investment Promo Codes</a>
+        </li>
         <li *ngIf="showMenu && showContactUs" class="nav-item"
         (click)="checkCurrentRouteAndNavigate('/about-us/contact-us')">
           <a class="nav-link">Contact Us</a>
@@ -231,6 +235,9 @@
             </button>
             <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/accounts/edit-profile')">
               <a class="navbar--text" href="javascript: void(0);">Profile</a>
+            </button>
+            <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/promo-code/promo-code')">
+              <a class="navbar--text" href="javascript: void(0);">Promo Code</a>
             </button>
             <button class="dropdown-item" (click)="logout()">
               <a class="navbar--text" href="javascript: void(0);">Logout</a>

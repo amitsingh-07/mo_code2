@@ -31,6 +31,7 @@ export function createTranslateLoader(http: HttpClient) {
     { prefix: './assets/i18n/investment-common/', suffix: '.json' }
   ]);
 }
+import { PromoCodeModule } from './../../promo-code/promo-code.module';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     SharedModule,
-    RouterModule
+    RouterModule,
+    PromoCodeModule
   ],
   declarations: [
     ConfirmPortfolioComponent,

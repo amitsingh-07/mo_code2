@@ -105,13 +105,16 @@
               </div>
               <!-- SRS bLOCK -->
             </div>
-            <div
-              *ngIf="isCashAccount(fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods)"
-              class="note-info">
-              <span class="note-icon"><img src="assets/images/investment-account/note-icon-white.svg" /></span>
-              <span>{{
-                'CONFIRM_ACCOUNT_DETAILS.CASH_DESC' | translate}}</span>
-            </div>
+            <ng-container *ngIf="isCashAccount(fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods)">
+              <div class="note-info pb30">
+                <span class="note-icon"><img src="assets/images/investment-account/note-icon-white.svg" /></span>
+                <span>{{
+                  'CONFIRM_ACCOUNT_DETAILS.CASH_DESC' | translate}}</span>
+              </div>
+              <div class="pb30">
+                <app-promo-code-select></app-promo-code-select>
+              </div>
+            </ng-container>
             <div class="text-center">
               <button type="button" id="personalInforNextBtn" (click)="goToNext(fundingAccountDetailsForm)"
                 class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"

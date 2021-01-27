@@ -1,0 +1,22 @@
+<div class="modal-body white-bg">
+  <div class="promo-details-title">
+    <img src="assets/images/back-mobile-btn.svg" (click)="close()" alt="" />
+    <span>Promotion Details</span>
+    <div></div>
+  </div>
+  <div class="modal-body-message">
+    <div>
+      <div class="promo-title">Safra Member 20% Off</div>
+      <div class="validity-txt mt5">Valid until DD MTH YYYY</div>
+      <div class="content-div mt20">
+        <div class="mb30" *ngFor="let promo of details.promoDesc">
+          <p [innerHTML]="promo.header" class="sub-header"></p>
+          <p [innerHTML]="promo.content"></p>
+        </div>
+      </div>
+    </div>
+    <div class="use-promo-btn">
+      <button (click)="usePromo()" type="button" class="btn btn-orange">Use Promo</button>
+    </div>
+  </div>
+</div>

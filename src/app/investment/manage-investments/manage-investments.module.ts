@@ -41,6 +41,7 @@ import { YourPortfolioComponent } from './your-portfolio/your-portfolio.componen
 import { TransferComponent } from './transfer/transfer.component';
 import { TransferStatusComponent } from './transfer-status/transfer-status.component';
 import { TransferModalComponent } from './transfer/transfer-modal/transfer-modal.component';
+import { PromoCodeModule } from './../../promo-code/promo-code.module';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
@@ -66,7 +67,8 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     SharedModule,
-    RouterModule
+    RouterModule,
+    PromoCodeModule
   ],
   declarations: [
     TopUpComponent,

@@ -1,0 +1,16 @@
+<div class="input-box">
+  <ng-container *ngIf="showPromoCode; else showPlaceholder">
+    <div>
+      <img id="green-tick" src="assets/images/icon-form-tick.svg" />
+      <span class="promo-display" (click)="openPromoDetails($event)">Safra Member (MOSAF20)</span>
+    </div>
+    <div class="remove-btn" (click)="removePromoCode($event)">Remove</div>
+  </ng-container>
+  <ng-template #showPlaceholder>
+    <span class="promo-placeholder" (click)="openPromoList($event)">Have a Promo Code?</span>
+  </ng-template>
+</div>
+<div *ngIf="showError" class="promo-error">
+  <img src="assets/images/alert.svg" />
+  <span>Sorry, we could not apply the promo code as the portfolio selected is not included in the promotion.</span>
+</div>
