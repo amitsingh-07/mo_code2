@@ -12,6 +12,7 @@ import { IServerResponse } from '../shared/http/interfaces/server-response.inter
 import { DirectFormData } from './../direct/direct-form-data';
 
 const newLocal = 'EnquiryId';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -435,5 +436,13 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+// FEE DETAILS
+getFeeDetails() {
+  const url = 'assets/mock-data/fees.json';
+  return this.http.getMock(url)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
 
+}
 }

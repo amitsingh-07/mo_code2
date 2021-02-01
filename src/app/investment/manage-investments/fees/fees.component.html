@@ -1,0 +1,64 @@
+<section class="invest-section">
+    <div class="invest-section-items">
+        <div class="invest-section-content">
+            <div class="invest-bg">
+                <div class="invest-bg-media">
+                    <div class="invest-bg-image"></div>
+                    <div class="invest-bg-color"></div>
+                </div>
+                <div class="invest-bg-content">
+                    <div class="flex-row user_content flex-col-12">
+                        <div class="user_summary" id="your_portfolio_summary">
+                            <div class="user_portfolio flex-col">
+                                <div class="user_portfolio_lbl">{{this.pageTitle}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="app-asset-allocation">
+    <div class="container-fluid max-width--1024">
+        <div class="portfolio-allocation-details">
+            <div class="flex-col-12">
+                <div class="title-dec">Your prevailing MoneyOwl advisory annual fees are as follows:</div>
+                <div class="annual-fee-desc">
+                    <div *ngFor="let fee of feeDetails; let i = index">
+                        <div class="fund-title" [ngClass]="{'wise-saver-annual-fee': portfolioTypeFlag}">
+                            <span>{{fee.fundType}}</span>
+                            <div *ngIf="fee.wrapFee" class="fee_value">{{fee.wrapFee}}%
+                            </div>
+                        </div>
+                        <div class="flex-col-12" *ngIf="fee.promotions[0]">
+                            <span>
+                                <img src="assets\images\manage-investments\form-icon-alert.svg" />
+                                <label>
+                                    <div> {{fee.promotions[0].promoName}}
+                                        <img alt="" class="arrow"
+                                            [class.active]="promoCode.style.display === 'block' || promoCode.style.display === ''"
+                                            (click)=showHide(promoCode)>
+                                    </div>
+                                    <div class="promo-code" id="promoCode" #promoCode>
+                                        {{fee.promotions[0].promoDescription}} (Valid till
+                                        {{fee.promotions[0].promoEndDate}})</div>
+                                </label>
+                            </span>
+                            <div>
+                                Processing/Applied
+                            </div>
+
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="faq_dec">*This is your prevailing advisory rate. Please refer here and FAQs on how this
+                        is calculated. Promotional rates (if any) are factored into the calculation of your prevailing
+                        advisory rate.
+                        <div style="margin-top: 10px;"></div>For more information relating to fees, please go to <span
+                            class="faq-link">Frequently Asked Questions</span> on our website.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

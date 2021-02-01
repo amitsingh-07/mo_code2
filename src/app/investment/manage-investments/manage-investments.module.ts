@@ -42,6 +42,8 @@ import { TransferComponent } from './transfer/transfer.component';
 import { TransferStatusComponent } from './transfer-status/transfer-status.component';
 import { TransferModalComponent } from './transfer/transfer-modal/transfer-modal.component';
 
+import { FeesComponent } from './fees/fees.component';
+
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
     { prefix: './assets/i18n/app/', suffix: '.json' },
@@ -85,7 +87,8 @@ export function createTranslateLoader(http: HttpClient) {
     RenameInvestmentModalComponent,
     TransferComponent,
     TransferStatusComponent,
-    TransferModalComponent
+    TransferModalComponent,
+    FeesComponent
   ],
   entryComponents: [ConfirmWithdrawalModalComponent, AddBankModalComponent, ForwardPricingModalComponent,
     RenameInvestmentModalComponent, TransferModalComponent],

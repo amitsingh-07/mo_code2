@@ -697,4 +697,8 @@ export class ManageInvestmentsService {
       this.manageInvestmentsFormData.TransferAll =null;
      this.commit();
   }
+  //
+  getFeeDetails() {
+    return this.investmentApiService.getFeeDetails();
+  }
 }

@@ -14,7 +14,8 @@ export const MANAGE_INVESTMENTS_ROUTES = {
   FUND_DETAILS: 'fund-details',
   FAQ_ROOT_PATH: '/faq#srs-joint-account',
   TRANSFER :'portfolio/transfer',
-  TRANSFER_SUCCESS:'portfolio/transfer/status'
+  TRANSFER_SUCCESS:'portfolio/transfer/status',
+  FEES:'fee'
 
 };
 export const MANAGE_INVESTMENTS_ROUTE_PATHS = {
