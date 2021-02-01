@@ -1,0 +1,63 @@
+{
+  "exception": null,
+  "objectList": [
+    {
+      "fundType": "MoneyOwl Cash & SRS Portfolios",
+      "wrapFee": 0.25,
+      "promotions": [
+        {
+          "promoName": "Safra Member",
+          "promoDescription": "20% off usual fee",
+          "promoCode": "MOSAF20",
+          "promoEndDate": "30 june 2020",
+          "status": "applied"
+        }
+      ]
+    },
+    {
+      "fundType": "WiseSaver",
+      "wrapFee": 0,
+      "promotions": [
+        {
+          "promoName": "Fairprice Member Special",
+          "promoDescription": "30% off usual fee",
+          "promoCode": "MOSPL20",
+          "promoEndDate": "30 Aug 2020",
+          "status": "applied"
+        }
+      ]
+    },
+    {
+      "fundType": "CPFIS Portfolio",
+      "wrapFee": 0.25,
+      "promotions": [
+        {
+          "promoName": "Fairprice Member Special",
+          "promoCode": "MOSPL20",
+          "promoDescription": "60% off usual fee",
+          "promoEndDate": "30 Sept 2020",
+          "status": "applied"
+        }
+      ]
+    },
+    {
+      "fundType": "WiseSaver Plus",
+      "wrapFee": 0.55,
+      "promotions": []
+    },
+    {
+      "fundType": "WiseSaver Portfolios",
+      "wrapFee": 0.55,
+      "promotions": []
+    },
+    {
+      "fundType": "Platform Fee",
+      "wrapFee": "0%",
+      "promotions": []
+    }
+  ],
+  "responseMessage": {
+    "responseCode": 6000,
+    "responseDescription": "Successful response"
+  }
+}
