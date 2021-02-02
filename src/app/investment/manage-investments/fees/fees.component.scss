@@ -92,6 +92,10 @@ app-fees {
         line-height: 1.38;
         letter-spacing: -0.12px;
         color: #000000;
+        &.hidden-lg {
+          padding-left: 10px;
+          text-align: right;
+      }
       }
       .faq_dec {
         margin: 30px 0 0;
@@ -114,7 +118,11 @@ app-fees {
         width: 16px;
         height: 13px;
         display: inline-flex;
+        
       }
+    }
+    span.arrow.active{
+      background-image: url("/assets/images/manage-investments/up-arrow.svg");
     }
     hr {
       margin: 10px 0;

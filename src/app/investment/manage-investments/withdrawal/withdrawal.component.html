@@ -33,7 +33,8 @@
                         <span *ngIf="!withdrawForm.controls.withdrawPortfolio.value">{{ 'WITHDRAW.SELECT_PORTFOLIO' |
                               translate}}</span>
                         <span class="capital-letter"
-                          *ngIf="withdrawForm.controls.withdrawPortfolio.value">{{withdrawForm.controls.withdrawPortfolio.value.portfolioName + ' - ' + withdrawForm.controls.withdrawPortfolio.value.refNo}}</span>
+                          *ngIf="withdrawForm.controls.withdrawPortfolio.value">
+                          <img *ngIf="entitlements.processMonthly" class ="joint-account-img" src="assets/images/manage-investments/ja-icon.svg" />{{withdrawForm.controls.withdrawPortfolio.value.portfolioName + ' - ' + withdrawForm.controls.withdrawPortfolio.value.refNo}}</span>
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <button class="dropdown-item capital-letter"
@@ -62,15 +63,17 @@
                         <span
                           *ngIf="!withdrawForm.controls.withdrawType.value">{{ 'WITHDRAW.SELECT_TYPE' | translate}}</span>
                         <span
-                          *ngIf="withdrawForm.controls.withdrawType.value">{{withdrawForm.controls.withdrawType.value.name}}</span>
+                          *ngIf="withdrawForm.controls.withdrawType.value">
+                          {{withdrawForm.controls.withdrawType.value.name}}</span>
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <ng-container *ngFor="let type of withdrawalTypes; let i = index">
                           <button class="dropdown-item"
-                            [class.hide]="(type.value === 'PORTFOLIO_TO_BANK_ACCOUNT' && !entitlements.showWithdrawPvToBa)
-                                          || (type.value === 'PORTFOLIO_TO_CASH_ACCOUNT' && !entitlements.showWithdrawPvToCa)
-                                          || (type.value === 'CASH_TO_BANK_ACCOUNT' && !entitlements.showWithdrawCaToBa)
-                                          || type.value === 'PORTFOLIO_TO_SRS_ACCOUNT' && !entitlements.showWithdrawPvToSRS"
+                          [disabled]="(type.value === 'CASH_TO_BANK_ACCOUNT' || type.value === 'PORTFOLIO_TO_BANK_ACCOUNT') && entitlements.processMonthly"
+                          [class.hide]="(type.value === 'PORTFOLIO_TO_BANK_ACCOUNT' && (!entitlements.showWithdrawPvToBa || false))
+                                          || (type.value === 'PORTFOLIO_TO_CASH_ACCOUNT' && (!entitlements.showWithdrawPvToCa || false))
+                                          || (type.value === 'CASH_TO_BANK_ACCOUNT' && (!entitlements.showWithdrawCaToBa|| false))
+                                          || type.value === 'PORTFOLIO_TO_SRS_ACCOUNT' && (!entitlements.showWithdrawPvToSRS  || false)" 
                             (click)="setDropDownValue('withdrawType',type, i)" id="withdraw-type-option-{{i}}">
                             {{type.name}}
                           </button>

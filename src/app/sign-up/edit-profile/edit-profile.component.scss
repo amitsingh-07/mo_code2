@@ -312,6 +312,17 @@ app-edit-profile{
   letter-spacing: -0.3px;
   text-align: center;
   color: $no-bank-account-color;
-  margin: 50px 30px 30px 30px;
+  margin: 50px 30px 10px 30px;
+}
+.joint-account-desc{
+  font-family: $muli-italic;
+  font-size: 14px;
+  letter-spacing: -0.26px;
+  color: #5e5e5e;
+  padding: 16px 10px 20px;
+  span{
+   font-family: $muli-bold-italic;
+   color: #ff872f;
+  }
 }
 }

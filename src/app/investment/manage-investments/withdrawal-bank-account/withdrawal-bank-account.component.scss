@@ -113,6 +113,17 @@ app-withdrawal-bank-account {
       .user_name {
         color: $black-color;
       }
+      .joint-account-desc{
+        font-family: $muli-italic;
+        font-size: 14px;
+        letter-spacing: -0.26px;
+        color: #5e5e5e;
+        padding: 16px 24px 0px;
+        span{
+         font-family: $muli-bold-italic;
+         color: #ff872f;
+        }
+      }
     }
     .bank-icon {
       width: 71px;

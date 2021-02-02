@@ -701,4 +701,14 @@ export class ManageInvestmentsService {
   getFeeDetails() {
     return this.investmentApiService.getFeeDetails();
   }
+  // User both person Investment and Joint Account
+  isInvestAndJointAccount() {
+    const investAndJointAccountList = [];
+    this.manageInvestmentsFormData.userPortfolios.forEach(portfolio => {
+      if (portfolio.entitlements && portfolio.entitlements.processMonthly) {
+        investAndJointAccountList.push(portfolio);
+      }
+    });
+    return investAndJointAccountList;
+  }
 }

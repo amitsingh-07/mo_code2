@@ -31,31 +31,33 @@
                             <div *ngIf="fee.wrapFee" class="fee_value">{{fee.wrapFee}}%
                             </div>
                         </div>
-                        <div class="flex-col-12 flex space-between mt20" *ngIf="fee.promotions[0]">
-                            <div class="flex">
+                        <div class="flex-col-12 flex space-btwn mt20" *ngIf="fee.promotions[0]">
+                            <div class="flex" *ngFor="let promotion of fee.promotions; let i = index">
                                <span class="form-alert-wrap"><img src="assets\images\manage-investments\form-icon-alert.svg" /></span>
                                 <label>
-                                    <div class="promo-code-header"> {{fee.promotions[0].promoName}}
+                                    <div class="promo-code-header"> {{promotion.promoName}} ({{promotion.promoCode}})
                                         <span alt="" class="arrow"
-                                            [class.active]="promoCode.style.display === 'block' || promoCode.style.display === ''"
+                                            [class.active]="promoCode.style.display === ''  || promoCode.style.display === 'block'"
                                             (click)=showHide(promoCode)></span>
                                     </div>
-                                    <div class="promo-code" id="promoCode" #promoCode>
-                                        {{fee.promotions[0].promoDescription}} (Valid till
-                                        {{fee.promotions[0].promoEndDate}})</div>
+                                    <div class="promo-code" id="promoCode" #promoCode style="display: none;">
+                                       {{promotion.promoDescription}} (Valid till
+                                        {{promotion.promoEndDate}})</div>
                                 </label>
                             </div>
-                            <div class="fee_value-status">
-                                Processing/Applied
+                            <div class="fee_value-status hidden-sm-md">
+                                (Processing/Applied)
                             </div>
-
+                            <div class="fee_value-status hidden-lg">
+                                (Processing/<br>Applied)
+                            </div>
                         </div>
                         <hr>
                     </div>
                     <div class="faq_dec">*This is your prevailing advisory rate. Please refer here and FAQs on how this
                         is calculated. Promotional rates (if any) are factored into the calculation of your prevailing
                         advisory rate.
-                        <div class="mt20 flex">For more information relating to fees, please go to&nbsp;<span
+                        <div class="mt20">For more information relating to fees, please go to&nbsp;<span
                             class="faq-link">Frequently Asked Questions</span>&nbsp;on our website.</div>
                     </div>
                 </div>

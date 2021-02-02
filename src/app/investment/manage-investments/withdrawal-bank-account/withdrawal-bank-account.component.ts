@@ -44,6 +44,7 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
   activeRef: any;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
   private subscription: Subscription;
+  isPersonAndJoint;
 
   constructor(
     public readonly translate: TranslateService,
@@ -72,7 +73,7 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.userInfo = this.signUpService.getUserProfileInfo();
     this.fullName = this.userInfo.fullName ? this.userInfo.fullName : this.userInfo.firstName + ' ' + this.userInfo.lastName;
-
+    this.isPersonAndJoint = this.manageInvestmentsService.isInvestAndJointAccount();
     this.signUpService.getEditProfileInfo()
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((data) => {

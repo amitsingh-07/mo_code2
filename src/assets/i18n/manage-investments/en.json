@@ -313,7 +313,8 @@
       "BANK_NAME": "Bank Name",
       "ACCOUNT_NO": "Account No.",
       "APPLY_CHANGE": "Apply Changes"
-    }
+    },
+    "JOINT_ACCOUNT_DESC":"While we upgrade our systems, please email <span>inv_ops@moneyowl.com.sg</span> if you would like to update your bank details."
   },
   "TRANSACTIONS": {
     "TITLE": "Transactions",
@@ -325,6 +326,7 @@
     "UNITS": "Units:",
     "TRANSACTION_ID": "Transaction ID:",
     "CASH_ACCOUNT_TRANSFER": "Cash Account Transfer",
+    
     "MODAL": {
       "TRANSACTION_FETCH_LOADER": {
         "TITLE": "Loading transaction history",

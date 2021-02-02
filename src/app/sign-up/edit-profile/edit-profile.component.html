@@ -446,7 +446,7 @@
                       </div>
                   </div>
                   <div class="dots" #showHideBank>
-                      <div *ngIf="bankDetails">
+                      <div *ngIf="false">
                           <div class="flex-row">
                               <div class="flex-col-4">
                                   <div class="bank-account">
@@ -471,24 +471,26 @@
                                   </div>
                               </div>
                           </div>
-                          <button type="button" class="edit-button" id="editEmployeButton" (click)="editBankDetails()"
+                          <button  *ngIf="false" type="button" class="edit-button" id="editEmployeButton" (click)="editBankDetails()"
                               [disabled]="disableBankSrsEdit">
                               {{'EDIT_PROFILE.EDIT' | translate}}
                               <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock.svg" />
                           </button>
+                          <div class="joint-account-desc" *ngIf="true" innerHTML="{{'EDIT_PROFILE.JOINT_ACCOUNT_DESC' | translate}}"></div>
                       </div>
-                      <div class="no-details" *ngIf="!bankDetails">
+                      <div class="no-details" *ngIf="true">
                           <div class="flex-row">
                               <div class="flex-col-12">
                                   <div class="no-bank-account">
                                       {{'EDIT_PROFILE.NO_BANK' | translate}}
                                   </div>
                               </div>
-                              <button type="button" class="edit-button" id="editEmployeButton"
+                              <button *ngIf="true" type="button" class="edit-button" id="editEmployeButton"
                                   (click)="addBankDetails()" [disabled]="disableBankSrsEdit">
                                   {{'EDIT_PROFILE.ADD_BANK' | translate}}
-                                  <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock.svg" />
+                                  <img *ngIf="true" class="lock" src="assets/images/accounts/lock.svg" />
                               </button>
+                              <div class="joint-account-desc" *ngIf="false" innerHTML="{{'EDIT_PROFILE.JOINT_ACCOUNT_DESC' | translate}}"></div>
                           </div>
                       </div>
                   </div>

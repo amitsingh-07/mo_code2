@@ -431,7 +431,8 @@
     "NEW_PASSWORD": "New Password",
     "CONFIRM_PASSWORD": "Confirm Password",
     "FORGET_PASSWORD": "Forgot your password?",
-    "APPLY_CHANGES": "Apply Changes"
+    "APPLY_CHANGES": "Apply Changes",
+    "JOINT_ACCOUNT_DESC":"While we upgrade our systems, please email <span>inv_ops@moneyowl.com.sg</span> if you would like to update your bank details."
   },
   "ADD_BANK": {
     "ACCOUNT_NAME": "Account Holders Name",
