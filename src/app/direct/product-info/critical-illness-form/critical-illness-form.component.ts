@@ -9,6 +9,7 @@ import { ErrorModalComponent } from './../../../shared/modal/error-modal/error-m
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from './../../direct.service';
 import { Subscription } from 'rxjs';
+import { Util } from './../../../shared/utils/util';
 
 @Component({
   selector: 'app-critical-illness-form',
@@ -53,7 +54,10 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     /* Building the form */
-    this.coverageAmtValuesTemp.forEach((element, index) => {
+    const ciAdditionalValue = [50000, 150000, 250000];
+    const ciCoverageAmtValuesTemp = ciAdditionalValue.concat(this.coverageAmtValuesTemp);
+    const ciCoverageAmtOrder = Util.sortAscending(ciCoverageAmtValuesTemp);
+    ciCoverageAmtOrder.forEach((element, index) => {
       this.coverageAmtValues[index] = this.directService.convertToCurrency(element);
     });
     this.formValues = JSON.parse(JSON.stringify(this.directService.getCriticalIllnessForm()));
