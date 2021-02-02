@@ -475,7 +475,7 @@ h6 {
         width: 100%;
         align-items: center;
         min-height: 50px;
-        border-bottom: 1px solid #e1e1e1;
+        border-bottom: 1px solid $border-grey-color-profile;
 
         &:hover {
           a {
@@ -491,10 +491,10 @@ h6 {
       }
 
       a {
-        font-family: $muli-semi-bold;
-        color: $text-color-secondary;
+        font-family: $muli-regular;
+        color: $black-color;
         white-space: nowrap;
-
+        font-size: 16px;
         @include minMobilemaxPhablet {
           display: flex;
           width: 100%;
@@ -705,7 +705,7 @@ h6 {
           .sub-text {
             font-family: $muli-regular;
             color: $white-color;
-            font-size: 13px;
+            font-size: 11px;
           }
         }
 
@@ -781,7 +781,7 @@ h6 {
             position: relative;
             display: block;
             padding: 16px 25px 16px 25px;
-            border-bottom: 1px solid $border-grey-color;
+            border-bottom: 1px solid $border-grey-color-profile;
 
             .name {
               color: $teal-color;
@@ -794,7 +794,7 @@ h6 {
               color: $black-color;
               font-size: 11px;
               &:hover {
-                color: #ff872f;
+                color: $crusta-orange-color;
               }
             }
           }
@@ -812,9 +812,7 @@ h6 {
 
       @include minMobilemaxPhablet {
         &:hover {
-          color: #ff872f;
-          //background-color: $white-color;
-          //border-bottom: 1px solid $border-grey-color;
+          color: $crusta-orange-color;
         }
       }
 
@@ -949,7 +947,6 @@ h6 {
           flex-direction: column;
           justify-content: center;
           align-items: flex-start;
-          margin-left: 10px;
           min-width: 170px;
           &:last-child {
             display: block;
@@ -960,6 +957,8 @@ h6 {
           width: 16px;
           height: 16px;
           display: inline-block;
+          position: relative;
+          top: 2px;
         }
         .navbar--sub--text {
           font-family: $muli-regular;
@@ -991,12 +990,12 @@ h6 {
           border-bottom: none;
         }
         a:hover {
-          color: #ff872f;
+          color: $crusta-orange-color;
           text-decoration: none;
         }
         &:active {
           background-color: $white-color;
-          color: #ff872f;
+          color: $crusta-orange-color;
           outline: none;
         }
 
@@ -1798,7 +1797,7 @@ a.link-white {
 }
 
 .selected-count {
-  background-color: #ff872f;
+  background-color: $crusta-orange-color;
   padding: 0 13px 0 13px;
   border-radius: 13px;
   font-family: $muli-bold;
