@@ -48,7 +48,9 @@ export class NavbarService {
   private pageSuperTitle = new BehaviorSubject('');
   private menuItem = new BehaviorSubject({} as IHeaderMenuItem);
   private $menuItemClick = new BehaviorSubject('');
+  private menuItemInvstUser = new BehaviorSubject(false);
 
+  menuItemInvstUserEvent = this.menuItemInvstUser.asObservable();
   currentPageTitle = this.pageTitle.asObservable();
   currentPageSubTitle = this.pageSubTitle.asObservable();
   currentPageHelpIcon = this.pageHelpIcon.asObservable();
@@ -226,5 +228,9 @@ export class NavbarService {
 
   clearSessionData() {
     this.logoutSubject.next('CLEAR_SESSION_DATA');
+  }
+
+  setMenuItemInvstUser(isVisible: boolean) {
+    this.menuItemInvstUser.next(isVisible);
   }
 }

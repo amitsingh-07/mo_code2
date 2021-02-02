@@ -714,9 +714,11 @@ h6 {
           padding-right: 20px;
           color: $white-color;
 
-          i {
-            padding-left: 10px;
-            color: $white-color;
+          .logout-white {
+            background: url('assets/images/nav/logout-white.svg') 0 0;
+            width: 16px;
+            height: 16px;
+            display: inline-block;
           }
         }
 
@@ -791,6 +793,9 @@ h6 {
               font-family: $muli-regular;
               color: $black-color;
               font-size: 11px;
+              &:hover {
+                color: #ff872f;
+              }
             }
           }
 
@@ -807,9 +812,9 @@ h6 {
 
       @include minMobilemaxPhablet {
         &:hover {
-          color: $teal-color;
-          background-color: $white-color;
-          border-bottom: 1px solid $border-grey-color;
+          color: #ff872f;
+          //background-color: $white-color;
+          //border-bottom: 1px solid $border-grey-color;
         }
       }
 
@@ -930,7 +935,7 @@ h6 {
         flex-direction: row;
         align-items: flex-start;
         margin-bottom: 5px;
-        padding: 10px 1.5rem;
+        padding: 5px 1.5rem;
         z-index: 5;
 
         img {
@@ -946,8 +951,16 @@ h6 {
           align-items: flex-start;
           margin-left: 10px;
           min-width: 170px;
+          &:last-child {
+            display: block;
+          }
         }
-
+        .logout-black {
+          background: url('assets/images/nav/logout-black.svg') 0 0;
+          width: 16px;
+          height: 16px;
+          display: inline-block;
+        }
         .navbar--sub--text {
           font-family: $muli-regular;
           font-size: 11px;
@@ -972,14 +985,18 @@ h6 {
         }
 
         &:hover,
-        :focus {
-          background-color: #f9f9f9f9;
+        &:focus,  {
+          background-color: $white-color;
           outline: none;
+          border-bottom: none;
         }
-
+        a:hover {
+          color: #ff872f;
+          text-decoration: none;
+        }
         &:active {
-          background-color: #f9f9f9;
-          color: $teal-color;
+          background-color: $white-color;
+          color: #ff872f;
           outline: none;
         }
 
@@ -1085,7 +1102,7 @@ h6 {
   cursor: pointer;
 
   .navbar__menu-icon {
-    background-image: url("/assets/images/menu-icon.svg");
+    background-image: url("/assets/images/nav/hamburger-menu-blue.svg");
     display: block;
     width: 24px;
     height: 24px;

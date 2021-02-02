@@ -73,12 +73,18 @@
             <div class="sub-text">My Dashboard</div>
           </div>
           <a class="nav-link logout-btn" (click)="logout()" href="javascript: void(0);">Logout
-            <i class="fa fa-sign-out"></i>
+            <i class="logout-white ml10"></i>
           </a>
         </li>
-        <li *ngIf="isLoggedIn" class="nav-item hidden-lg profile-btn"
+        <li *ngIf="isLoggedIn" class="nav-item hidden-lg"
           (click)="checkCurrentRouteAndNavigate('/accounts/edit-profile')">
           <a class="navbar--text" href="javascript: void(0);">Profile</a>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item hidden-lg">
+          <a class="navbar--text" href="javascript: void(0);">Fees</a>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item hidden-lg">
+          <a class="navbar--text" href="javascript: void(0);">Add Investment Promo Code</a>
         </li>
         <li *ngIf="isLoggedIn && showMenu" class="nav-item home-btn" >
           <a class="nav-link" (click)="goToDashboard()">Dashboard</a>
@@ -86,7 +92,7 @@
         <li *ngIf="showMenu && (showWills || showInvest || showInvest || showComprehensive)" class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="openDropdown(id01);"
           (mouseleave)="closeDropdown(id01);">
           <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Services</a>
-          <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id01">
+          <div class="dropdown-menu right navbar-menu" ngbDropdownMenu aria-labelledby="id01">
             <button *ngIf="showInsure" class="dropdown-item" (click)="goToHome('insurance')" fragment="insurance">
               <img src="assets/images/nav/nav-insure-icon.svg" />
               <div class="navbar--text">
@@ -232,8 +238,14 @@
             <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/accounts/edit-profile')">
               <a class="navbar--text" href="javascript: void(0);">Profile</a>
             </button>
-            <button class="dropdown-item" (click)="logout()">
-              <a class="navbar--text" href="javascript: void(0);">Logout</a>
+            <button class="dropdown-item" *ngIf="showMenuItemInvstUser">
+              <a class="navbar--text" href="javascript: void(0);">Fees</a>
+            </button>
+            <button class="dropdown-item" *ngIf="showMenuItemInvstUser">
+              <a class="navbar--text" href="javascript: void(0);">Add Investment Promo Code</a>
+            </button>
+            <button class="dropdown-item logout-menu-item" (click)="logout()">
+              <a class="navbar--text" href="javascript: void(0);">Logout<i class="logout-black ml10"></i></a>
             </button>
           </div>
         </li>

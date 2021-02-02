@@ -325,6 +325,7 @@ export class DashboardComponent implements OnInit {
       case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_FUNDED:
       case SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_PURCHASED: {
         this.showPortfolioPurchased = true;
+        this.navbarService.setMenuItemInvstUser(true);
         this.enableInvestment();
         break;
       }
