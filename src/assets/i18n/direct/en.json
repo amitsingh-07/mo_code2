@@ -46,7 +46,7 @@
       }
     },
     "OPTIONAL": "(Optional)",
-    "IS_EARLY": "Early CI"
+    "IS_EARLY": "Early/MultiPay CI"
   },
   "EDUCATION": {
     "ABOUT_CHILD": {
@@ -81,7 +81,7 @@
       "TITLE": "Duration"
       },
     "EARLY_CI": {
-      "TITLE": "Early CI"
+      "TITLE": "Early/MultiPay CI"
       },
       "POPUP": {
         "TITLE": "Coverage Details",
@@ -195,8 +195,9 @@
         "LP_TITLE":"Recommended Life Coverage Amount",
         "LP_DESCRIPTION":"The recommended amount is based on your monthly living expenses multiplied by the number of years to provide for your dependants. If you would also like to provide for your children's education and to pay off all outstanding loans, these should be included.<br><br>If you would like a more accurate assessment, please use our \"Find out what I need\" journey",
         "CI_TITLE":"Recommended Critical Illness Coverage Amount",
-        "CI_DESCRIPTION":"The recommended amount is 4 times your annual salary including bonuses, minus your existing critical illness coverage."
-
+        "CI_DESCRIPTION":"The recommended amount is 4 times your annual salary including bonuses, minus your existing critical illness coverage.",
+        "EARLY_TITLE": "Early/MultiPay CI",
+        "EARLY_DESCRIPTION": "The product recommendations in our database are for MultiPay CI riders. If you wish to also have Early CI rider, please do not hesitate to still send a request for quotation and our advisors will follow up with you."
       }
    
 

@@ -138,7 +138,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     sum_string += this.translate.instant('CRITICAL_ILLNESS.COVERAGE_AMT.DOLLAR') + this.coverage_amt + ', ';
     sum_string += this.duration;
     if (this.criticalIllnessForm.value.earlyCI === true || this.criticalIllnessForm.value.earlyCI === 'yes') {
-      sum_string += ', Early CI';
+      sum_string += ', Early/MultiPay CI';
     }
     return sum_string;
   }
@@ -162,5 +162,11 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     form.value.duration = this.duration;
     this.directService.setCriticalIllnessForm(form.value);
     return true;
+  }
+  showToolTip(title, desc) {
+    this.directService.showToolTipModal(
+      this.translate.instant('TOOL_TIP.' + title),
+      this.translate.instant('TOOL_TIP.' + desc)
+    );
   }
 }
