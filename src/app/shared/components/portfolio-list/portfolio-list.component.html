@@ -23,7 +23,7 @@
                                 </span>
                                 </div>
                                 <div class="ref-code">{{'YOUR_INVESTMENT.REF_LABEL' | translate}} {{portfolio.refNo}}</div>
-                                <div class="ja-logo" *ngIf="portfolio.entitlements.jointAccount"><span class="ja-icon"><img src="assets/images/investment-account/ja-icon.svg" /></span><span>Joint account</span></div>
+                                <div class="ja-logo" *ngIf="portfolio.entitlements.jointAccount"><span class="ja-icon"><img src="assets/images/investment-account/ja-icon.svg" /></span><span>{{'YOUR_INVESTMENT.JOINT_ACCOUNT' | translate}}</span></div>
                                 <div class="portfolio-value">
                                     <span *ngIf="!portfolio?.portfolioValue">$0</span>
                                     <span *ngIf="portfolio?.portfolioValue">{{portfolio?.portfolioValue | formatCurrency}}</span>
@@ -59,7 +59,7 @@
                                 </span>
                                 </div>
                                 <div class="ref-code">{{'YOUR_INVESTMENT.REF_LABEL' | translate}} {{portfolio?.refNo}}</div>
-                                <div class="ja-logo" *ngIf="portfolio.entitlements.jointAccount"><span class="ja-icon"><img src="assets/images/investment-account/ja-icon.svg" /></span><span>Joint account</span></div>
+                                <div class="ja-logo" *ngIf="portfolio.entitlements.jointAccount"><span class="ja-icon"><img src="assets/images/investment-account/ja-icon.svg" /></span><span>{{'YOUR_INVESTMENT.JOINT_ACCOUNT' | translate}}</span></div>
                                 <div class="portfolio-value">
                                     <span *ngIf="!portfolio?.portfolioValue">$0</span>
                                     <span *ngIf="portfolio?.portfolioValue">{{portfolio?.portfolioValue | formatCurrency}}</span>
