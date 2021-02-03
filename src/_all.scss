@@ -713,7 +713,7 @@ h6 {
           width: auto;
           padding-right: 20px;
           color: $white-color;
-
+          font-family: $muli-bold;
           .logout-white {
             background: url('assets/images/nav/logout-white.svg') 0 0;
             width: 16px;
@@ -785,7 +785,7 @@ h6 {
 
             .name {
               color: $teal-color;
-              font-size: 18px;
+              font-size: 16px;
               font-family: $muli-bold;
             }
 
