@@ -44,6 +44,10 @@ export class Util {
         return list.sort((a, b) => b - a);
     }
 
+    public static sortAscending(list): any[] {
+        return list.sort((a, b) => a - b);
+    }
+
     public static isEmptyOrNull(obj: any): boolean {
         let isEmpty = false;
         try {

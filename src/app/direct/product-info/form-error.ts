@@ -34,7 +34,7 @@ export class FormError {
                 },
                 earlyCI: {
                         required: {
-                                errorTitle: 'Invalid Early CI',
+                                errorTitle: 'Invalid Early/MultiPay CI',
                                 errorMessage: 'Please select an option.'
                         }
                 },
@@ -133,7 +133,7 @@ export class FormError {
                 },
                 isEarlyCI: {
                         required: {
-                                errorTitle: 'Invalid Early CI',
+                                errorTitle: 'Invalid Early/MultiPay CI',
                                 errorMessage: 'Please select an option.'
                         }
                 }
