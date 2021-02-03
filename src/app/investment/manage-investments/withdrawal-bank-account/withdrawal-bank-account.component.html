@@ -9,17 +9,21 @@
             <img src="assets/images/investment-account/withdraw.svg" />
           </div>
           <div class="faq_link">
-            <a target="_blank" routerLink="/faq"
-              fragment="investment">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
+            <a target="_blank" routerLink="/faq" fragment="investment">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' |
+              translate}}</a>
           </div>
         </div>
         <div class="col-lg-6 col-md-6">
           <div class="withdraw_to_acc">{{ 'WITHDRAW_PAYMENT_METHOD.WITHDRAW_TO_ACCOUNT' | translate}}</div>
-          <div class="flex-col add_account mb20" (click)="verify2faNewBank()" *ngIf="hideAddBankAccount">
+          <div [disabled]="userBankList && userBankList.length === 0 && isPersonAndJoint.length >= 1 "
+            class="flex-col add_account mb20" (click)="verify2faNewBank()" *ngIf="hideAddBankAccount">
             <div class="bank-icon"><img src="assets/images/bank_icon.svg" /></div>
-            <div class="flex-row"><img
-                src="assets/images/plus-white.svg" /><span>{{ 'WITHDRAW_PAYMENT_METHOD.ADD_BANK_ACCOUNT' | translate}}</span>
+            <div class="flex-row" *ngIf="!(isPersonAndJoint.length >= 1)">
+              <img src="assets/images/plus-white.svg" /><span>
+                {{ 'WITHDRAW_PAYMENT_METHOD.ADD_BANK_ACCOUNT' | translate}}</span>
             </div>
+            <div *ngIf="(isPersonAndJoint.length >= 1)" class="joint-account-desc"
+              innerHTML="{{'WITHDRAW_PAYMENT_METHOD.JOINT_ACCOUNT_DESC' | translate}}"></div>
           </div>
           <div class="bank_transfer flex-col">
             <div class="flex-col available_accounts" *ngFor="let userBank of userBankList; let i = index;">
@@ -32,12 +36,14 @@
               <div class="user_bank">{{ userBank.bank && userBank.bank.name}}</div>
               <div class="user_account">{{userBank.accountNumber}}</div>
               <div class="user_name">{{userBank.accountName | titlecase}}</div>
-              <div class="joint-account-desc" *ngIf="isPersonAndJoint.length >= 1" innerHTML="{{'WITHDRAW_PAYMENT_METHOD.JOINT_ACCOUNT_DESC' | translate}}"></div>
+              <div class="joint-account-desc" *ngIf="isPersonAndJoint.length >= 1"
+                innerHTML="{{'WITHDRAW_PAYMENT_METHOD.JOINT_ACCOUNT_DESC' | translate}}"></div>
             </div>
           </div>
           <button type="button" [disabled]="userBankList && userBankList.length === 0" (click)="goToNext()"
-            class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="portfolioRecommendationNextBtn">{{
-          'LABEL.CONTINUE' | translate}}</button>
+            class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+            id="portfolioRecommendationNextBtn">{{
+            'LABEL.CONTINUE' | translate}}</button>
         </div>
       </div>
     </div>

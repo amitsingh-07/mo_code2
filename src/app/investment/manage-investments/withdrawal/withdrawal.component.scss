@@ -2,6 +2,44 @@
 @import '../../../../mixins';
 
 app-withdrawal {
+  .joint_account {
+    background-color: $white-color;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+
+    @include allmobiles {
+      width: 101vw;
+      margin-left: -20px;
+      margin-top: -20px;
+      border-radius: 0px;
+    }
+
+    img {
+      width: 19px;
+      height: 19px;
+      margin-right: 9px;
+      margin-top: 2px;
+    }
+
+    .joint_account-note {
+      font-family: $muli-italic;
+      font-size: 13px;
+      line-height: normal;
+      letter-spacing: -0.14px;
+      color: $dark-grey-color;
+      strong{
+        font-family: $muli-bold-italic;
+      }
+      span{
+        font-family: $muli-bold-italic;
+        color: $crusta-orange-color;
+      }
+      
+    }
+  }
   h2 {
     font-size: 30px !important;
     margin-bottom: 15px;

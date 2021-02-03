@@ -23,42 +23,40 @@
     <div class="container-fluid max-width--1024">
         <div class="portfolio-allocation-details">
             <div class="flex-col-12">
-                <div class="title-dec">Your prevailing MoneyOwl advisory annual fees are as follows:</div>
+                <div class="title-dec">{{'FEES.DESC' | translate}}</div>
                 <div class="annual-fee-desc">
                     <div *ngFor="let fee of feeDetails; let i = index">
                         <div class="fund-title" [ngClass]="{'wise-saver-annual-fee': portfolioTypeFlag}">
                             <div>{{fee.fundType}}</div>
                             <div *ngIf="fee.wrapFee" class="fee_value">{{fee.wrapFee}}%
+                                <span *ngIf="fee.fundType === 'Standard Portfolios'">*</span>
+                                <span *ngIf="fee.fundType === 'Platform Fee'">{{'FEES.ABSORBED_BY_MONEY_OWL' |
+                                    translate}}</span>
                             </div>
                         </div>
                         <div class="flex-col-12 flex space-btwn mt20" *ngIf="fee.promotions[0]">
                             <div class="flex" *ngFor="let promotion of fee.promotions; let i = index">
-                               <span class="form-alert-wrap"><img src="assets\images\manage-investments\form-icon-alert.svg" /></span>
+                                <span class="form-alert-wrap"><img
+                                        src="assets\images\manage-investments\form-icon-alert.svg" /></span>
                                 <label>
                                     <div class="promo-code-header"> {{promotion.promoName}} ({{promotion.promoCode}})
-                                        <span alt="" class="arrow"
-                                            [class.active]="promoCode.style.display === ''  || promoCode.style.display === 'block'"
-                                            (click)=showHide(promoCode)></span>
                                     </div>
-                                    <div class="promo-code" id="promoCode" #promoCode style="display: none;">
-                                       {{promotion.promoDescription}} (Valid till
-                                        {{promotion.promoEndDate}})</div>
+                                    <div class="promo-code" id="promoCode">
+                                        ({{'FEES.VALID_TILL' | translate}}
+                                        {{promotion.promoEndDate | date:'dd MMM yyyy'}})
+                                    </div>
                                 </label>
                             </div>
                             <div class="fee_value-status hidden-sm-md">
-                                (Processing/Applied)
+                                {{'FEES.PROCESSING_APPLIED' | translate}}
                             </div>
                             <div class="fee_value-status hidden-lg">
-                                (Processing/<br>Applied)
+                                {{'FEES.PROCESSING' | translate}}<br>{{'FEES.APPLIED' | translate}}
                             </div>
                         </div>
                         <hr>
                     </div>
-                    <div class="faq_dec">*This is your prevailing advisory rate. Please refer here and FAQs on how this
-                        is calculated. Promotional rates (if any) are factored into the calculation of your prevailing
-                        advisory rate.
-                        <div class="mt20">For more information relating to fees, please go to&nbsp;<span
-                            class="faq-link">Frequently Asked Questions</span>&nbsp;on our website.</div>
+                    <div class="faq_dec" innerHTML="{{'FEES.FAQ_DESC'|translate}}">
                     </div>
                 </div>
             </div>

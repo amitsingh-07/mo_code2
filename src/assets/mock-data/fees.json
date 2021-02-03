@@ -2,29 +2,17 @@
   "exception": null,
   "objectList": [
     {
-      "fundType": "MoneyOwl Cash & SRS Portfolios",
+      "fundType": "Standard Portfolios",
       "wrapFee": 0.25,
       "promotions": [
         {
-          "promoName": "Safra Member",
+          "promoName": "Safra Member MoneyOwl Special MoneyOwl Special special",
           "promoDescription": "20% off usual fee",
           "promoCode": "MOSAF20",
           "promoEndDate": "30 june 2020",
           "status": "applied"
         }
-      ]
-    },
-    {
-      "fundType": "WiseSaver",
-      "wrapFee": 0,
-      "promotions": [
-        {
-          "promoName": "Fairprice Member Special",
-          "promoDescription": "30% off usual fee",
-          "promoCode": "MOSPL20",
-          "promoEndDate": "30 Aug 2020",
-          "status": "applied"
-        }
+        
       ]
     },
     {
@@ -52,7 +40,7 @@
     },
     {
       "fundType": "Platform Fee",
-      "wrapFee": "0%",
+      "wrapFee": "0",
       "promotions": []
     }
   ],

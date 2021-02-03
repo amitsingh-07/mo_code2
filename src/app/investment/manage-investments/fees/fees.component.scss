@@ -27,7 +27,7 @@ app-fees {
       padding-left: 37px;
       font-family: $muli-regular;
       letter-spacing: -0.2px;
-      color: #ffffff;
+      color: $white-color;
       padding-bottom: 50px;
 
       .user_portfolio_lbl {
@@ -51,12 +51,12 @@ app-fees {
       font-size: 14px;
       line-height: 1.5;
       letter-spacing: -0.13px;
-      color: #5e5e5e;
+      color: $silver-grey-color;
     }
     .annual-fee-desc {
       font-family: $muli-regular;
       font-size: 14px;
-      color: #000000;
+      color: $black-color;
       .fund-title {
         display: flex;
         justify-content: space-between;
@@ -68,7 +68,7 @@ app-fees {
         object-fit: contain;
       }
       .fee_value {
-        color: #5e5e5e;
+        color: $silver-grey-color;
       }
       .promo-code-header {
         font-family: $muli-bold;
@@ -76,7 +76,7 @@ app-fees {
         font-weight: bold;
         line-height: 1.38;
         letter-spacing: -0.12px;
-        color: #000000;
+        color: $black-color;
       }
       .promo-code {
         font-family: $muli-bold;
@@ -84,27 +84,27 @@ app-fees {
         font-weight: bold;
         line-height: 1.38;
         letter-spacing: -0.12px;
-        color: #000000;
+        color: $black-color;
       }
       .fee_value-status {
         font-family: $muli-regular;
         font-size: 13px;
         line-height: 1.38;
         letter-spacing: -0.12px;
-        color: #000000;
+        color: $black-color;
         &.hidden-lg {
           padding-left: 10px;
           text-align: right;
-      }
+        }
       }
       .faq_dec {
         margin: 30px 0 0;
         font-size: 14px;
         line-height: 1.5;
         letter-spacing: -0.13px;
-        color: #5e5e5e;
+        color: $silver-grey-color;
         .faq-link {
-          color: #ff7900;
+          color: $dark-orange-color;
           cursor: pointer;
         }
       }
@@ -118,18 +118,16 @@ app-fees {
         width: 16px;
         height: 13px;
         display: inline-flex;
-        
       }
     }
-    span.arrow.active{
+    span.arrow.active {
       background-image: url("/assets/images/manage-investments/up-arrow.svg");
     }
     hr {
       margin: 10px 0;
       border: 1px solid #e7e7e7;
-      hr :last-child {
-        display: none;
-        border: none;
+      hr:last-child {
+        border: none !important;
       }
     }
   }
@@ -150,8 +148,7 @@ app-fees {
       margin: 0 291px 0 0;
       font-family: $muli-regular;
       font-size: 14px;
-      color: #000000;
-      color: $white-color;
+      color: $black-color;
       border-radius: 6px;
     }
   }

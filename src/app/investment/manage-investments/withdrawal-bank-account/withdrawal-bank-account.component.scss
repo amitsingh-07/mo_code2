@@ -151,6 +151,18 @@ app-withdrawal-bank-account {
           margin-right: 10.4px;
         }
       }
+      .joint-account-desc{
+        font-family: $muli-italic;
+        font-size: 14px;
+        letter-spacing: -0.26px;
+        color: $silver-grey-color;
+        padding: 16px 24px 0px;
+        span{
+         font-family: $muli-bold-italic;
+         color: $myinfo-block-brdr-color;
+        }
+      }
+
     }
     .label {
       width: 100%;
