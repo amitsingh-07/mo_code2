@@ -67,6 +67,6 @@
       </div>
     </div>
   </form>
-  <button (click)="applyChanges(bankForm)" type="button" class="btn btn__footer--fixed btn-primary width100"
+  <button [attr.disabled]="((bankForm.valid && bankForm.dirty) == true && isEdit) ? null : true" (click)="applyChanges(bankForm)" type="button" class="btn btn__footer--fixed btn-primary width100"
     id="forgotPasswordButton">{{buttonTitle}}</button>
 </div>
