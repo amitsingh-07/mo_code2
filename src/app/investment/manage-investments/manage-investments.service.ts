@@ -698,11 +698,11 @@ export class ManageInvestmentsService {
      this.commit();
   }
   //
-  getFeeDetails(customerId) {
+  getWrapFeeDetails(customerId) {
     const payload = {
       customer_id: customerId,
    };
-    return this.investmentApiService.getFeeDetails(payload);
+    return this.investmentApiService.getWrapFeeDetails(payload);
   }
   // User both person Investment and Joint Account
   isInvestAndJointAccount() {

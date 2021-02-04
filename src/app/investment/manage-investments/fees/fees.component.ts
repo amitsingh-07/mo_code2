@@ -59,14 +59,14 @@ export class FeesComponent implements OnInit {
     }
     this.footerService.setFooterVisibility(false);
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
-    this.getFeeDetails(this.userProfileInfo.id);
+    this.getWrapFeeDetails(this.userProfileInfo.id);
   }
 
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
-  getFeeDetails(customerId) {
-    this.manageInvestmentsService.getFeeDetails(customerId).subscribe((data) => {
+  getWrapFeeDetails(customerId) {
+    this.manageInvestmentsService.getWrapFeeDetails(customerId).subscribe((data) => {
       this.feeDetails = data.objectList;
     });
   }
