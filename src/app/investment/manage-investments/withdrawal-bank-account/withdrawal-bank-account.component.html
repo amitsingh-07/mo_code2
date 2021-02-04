@@ -15,8 +15,11 @@
         </div>
         <div class="col-lg-6 col-md-6">
           <div class="withdraw_to_acc">{{ 'WITHDRAW_PAYMENT_METHOD.WITHDRAW_TO_ACCOUNT' | translate}}</div>
-          <div [disabled]="userBankList && userBankList.length === 0 && isPersonAndJoint.length >= 1 "
-            class="flex-col add_account mb20" (click)="verify2faNewBank()" *ngIf="hideAddBankAccount">
+          <div 
+            class="flex-col add_account mb20" 
+            [ngClass]="{'person-joint-account': (isPersonAndJoint.length >= 1)}"
+            (click)="verify2faNewBank(isPersonAndJoint.length >= 1)" 
+            *ngIf="hideAddBankAccount">
             <div class="bank-icon"><img src="assets/images/bank_icon.svg" /></div>
             <div class="flex-row" *ngIf="!(isPersonAndJoint.length >= 1)">
               <img src="assets/images/plus-white.svg" /><span>

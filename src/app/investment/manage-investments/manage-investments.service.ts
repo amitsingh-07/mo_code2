@@ -698,8 +698,11 @@ export class ManageInvestmentsService {
      this.commit();
   }
   //
-  getFeeDetails() {
-    return this.investmentApiService.getFeeDetails();
+  getFeeDetails(customerId) {
+    const payload = {
+      customer_id: customerId,
+   };
+    return this.investmentApiService.getFeeDetails(payload);
   }
   // User both person Investment and Joint Account
   isInvestAndJointAccount() {

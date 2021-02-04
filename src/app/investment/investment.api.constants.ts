@@ -59,6 +59,9 @@ export let investmentApiConstants = {
             monthlyInvestmentInfo: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/CustomerInvestmentObjective',
             getFirstInvAccountCreationStatus: INVESTMENT_API_BASE_URL + '/customer/investmentAccount/actions',
             featurePromotions: INVESTMENT_API_BASE_URL + '/featurePromotions?handleError=true',
+            wrapFrees: INVESTMENT_API_BASE_URL + '/wrapfees/getCustomerWrapFees'
+            
+
         }
     }
 };

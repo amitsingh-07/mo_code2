@@ -227,13 +227,17 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
     }
   }
 
-  verify2faNewBank() {
-    if (this.authService.is2FAVerified()) {
-      this.showNewBankFormModal();
+  verify2faNewBank(isPersonalInvestment) {
+    if (!isPersonalInvestment) {
+      if (this.authService.is2FAVerified()) {
+        this.showNewBankFormModal();
+      } else {
+        this.signUpService.setRedirectUrl(MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL_PAYMENT_METHOD);
+        this.authService.set2faVerifyAllowed(true);
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_2FA], { skipLocationChange: true });
+      }
     } else {
-      this.signUpService.setRedirectUrl(MANAGE_INVESTMENTS_ROUTE_PATHS.WITHDRAWAL_PAYMENT_METHOD);
-      this.authService.set2faVerifyAllowed(true);
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_2FA], { skipLocationChange: true });
+      return false;
     }
   }
 

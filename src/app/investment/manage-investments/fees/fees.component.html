@@ -27,14 +27,13 @@
                 <div class="annual-fee-desc">
                     <div *ngFor="let fee of feeDetails; let i = index">
                         <div class="fund-title" [ngClass]="{'wise-saver-annual-fee': portfolioTypeFlag}">
-                            <div>{{fee.fundType}}</div>
-                            <div *ngIf="fee.wrapFee" class="fee_value">{{fee.wrapFee}}%
-                                <span *ngIf="fee.fundType === 'Standard Portfolios'">*</span>
-                                <span *ngIf="fee.fundType === 'Platform Fee'">{{'FEES.ABSORBED_BY_MONEY_OWL' |
-                                    translate}}</span>
+                            <div>{{fee.fundName}}</div>
+                            <div  class="fee_value">{{fee.wrapFee ? fee.wrapFee :0 }}%
+                                <span *ngIf="fee.fundName === 'Standard Portfolios'">*</span>
+                                <span *ngIf="fee.fundName === 'Platform Fee'">({{fee.wfRemarks}})</span>
                             </div>
                         </div>
-                        <div class="flex-col-12 flex space-btwn mt20" *ngIf="fee.promotions[0]">
+                        <div class="flex-col-12 flex space-btwn mt20" *ngIf="fee.promotions && fee.promotions[0]">
                             <div class="flex" *ngFor="let promotion of fee.promotions; let i = index">
                                 <span class="form-alert-wrap"><img
                                         src="assets\images\manage-investments\form-icon-alert.svg" /></span>

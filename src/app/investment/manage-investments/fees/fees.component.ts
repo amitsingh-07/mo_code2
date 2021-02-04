@@ -24,7 +24,8 @@ export class FeesComponent implements OnInit {
 
   pageTitle: string;
   subTitle: string;
-  feeDetails;
+  feeDetails :any;
+  userProfileInfo:any;
 
   constructor(
     private appService: AppService,
@@ -57,14 +58,15 @@ export class FeesComponent implements OnInit {
       this.navbarService.setNavbarMode(103);
     }
     this.footerService.setFooterVisibility(false);
-    this.getFeeDetails();
+    this.userProfileInfo = this.signUpService.getUserProfileInfo();
+    this.getFeeDetails(this.userProfileInfo.id);
   }
 
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
-  getFeeDetails() {
-    this.manageInvestmentsService.getFeeDetails().subscribe((data) => {
+  getFeeDetails(customerId) {
+    this.manageInvestmentsService.getFeeDetails(customerId).subscribe((data) => {
       this.feeDetails = data.objectList;
     });
   }
