@@ -60,7 +60,6 @@ export class StartJourneyComponent implements OnInit {
   }
   goNext() {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
-    this.authService.saveEnquiryId(null);
     this.redirectToNextScreen();
   }
   redirectToNextScreen(){
