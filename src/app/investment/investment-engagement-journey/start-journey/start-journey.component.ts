@@ -60,9 +60,6 @@ export class StartJourneyComponent implements OnInit {
   }
   goNext() {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
-    this.redirectToNextScreen();
-  }
-  redirectToNextScreen(){
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
   }
 }
