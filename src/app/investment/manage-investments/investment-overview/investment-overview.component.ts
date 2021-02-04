@@ -273,17 +273,16 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   }
 
   gotoTopUp(portfolio?) {
-    this.router.navigate(["../investment/manage/fee"]);
     // Added check if got portfolio, set it as selected one else set null for the main top up button
-    // if (portfolio) {
-    //   this.manageInvestmentsService.setSelectedCustomerPortfolioId(portfolio['customerPortfolioId']);
-    //   this.manageInvestmentsService.setSelectedCustomerPortfolio(portfolio);
-    // } else {
-    //   this.manageInvestmentsService.setSelectedCustomerPortfolioId(null);
-    //   this.manageInvestmentsService.setSelectedCustomerPortfolio(null);
-    // }
-    // // GO TO TOP-UP
-    // this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
+    if (portfolio) {
+      this.manageInvestmentsService.setSelectedCustomerPortfolioId(portfolio['customerPortfolioId']);
+      this.manageInvestmentsService.setSelectedCustomerPortfolio(portfolio);
+    } else {
+      this.manageInvestmentsService.setSelectedCustomerPortfolioId(null);
+      this.manageInvestmentsService.setSelectedCustomerPortfolio(null);
+    }
+    // GO TO TOP-UP
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
   }
 
   getUserProfileInfo() {
