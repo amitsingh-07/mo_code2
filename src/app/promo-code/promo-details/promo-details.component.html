@@ -1,7 +1,7 @@
 <div class="modal-body white-bg">
   <div class="promo-details-title">
     <img src="assets/images/back-mobile-btn.svg" (click)="close()" alt="" />
-    <span>Promotion Details</span>
+    <span>{{'PROMO_CODE_DETAILS.PROMO_DETAILS' | translate}}</span>
     <div></div>
   </div>
   <div class="modal-body-message">
@@ -18,12 +18,12 @@
     <ng-container *ngIf="selectedPromo?.customerPromoStatus === promoCodeStatus.NOT_IN_USE; else inactive">
       <ng-container *ngIf="usedPromo && usedPromo.value === selectedPromo; else usePromoBtn">
         <div class="use-promo-btn">
-          <button (click)="removePromoCode($event)" type="button" class="btn btn-orange">Remove Promo</button>
+          <button (click)="removePromoCode($event)" type="button" class="btn btn-orange">{{'PROMO_CODE_DETAILS.REMOVE_PROMO' | translate}}</button>
         </div>
       </ng-container>
       <ng-template #usePromoBtn>
         <div class="use-promo-btn">
-          <button (click)="usePromo($event)" type="button" class="btn btn-orange">Use Promo</button>
+          <button (click)="usePromo($event)" type="button" class="btn btn-orange">{{'PROMO_CODE_DETAILS.USE_PROMO' | translate}}</button>
         </div>
       </ng-template>
     </ng-container>

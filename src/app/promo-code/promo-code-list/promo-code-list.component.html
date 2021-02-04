@@ -2,27 +2,27 @@
   <form id="formGrp" name="formGrp" [formGroup]="formGrp">
     <div class="flex-row">
       <div class="flex-row gray-bg">
-        <span class="add-promo">Add Promotion</span>
+        <span class="add-promo">{{'PROMO_CODE_LIST.ADD_PROMO' | translate}}</span>
         <div class="form-group-floating-label input-container" [ngClass]="{'inline-error': showError}">
           <input type="text" id="promoInpt" formControlName="promoCode" (keyup)="onKeyupEvent($event, 'promoCode')" autocomplete="off" class="form-control" required>
-          <label class="form-control-placeholder" for="promoCode">Enter a Promo Code</label>
+          <label class="form-control-placeholder" for="promoCode">{{'PROMO_CODE_LIST.ENTER_PROMO' | translate}}</label>
           <img id="cross-btn" *ngIf="showClearBtn && !promoCodeValidated" (click)="clearPromoCode($event)" src="assets/images/button-clear-txt.svg" />
           <div *ngIf="!promoCodeValidated && !showSpinner" class="spinner-container" (click)="applyPromoCode($event)" [ngStyle]="{'background-color': showClearBtn? '#ff872f' : '#00a7a7'}">
-            <span>Apply</span>
+            <span>{{'PROMO_CODE_LIST.APPLY_BTN' | translate}}</span>
           </div>
           <app-spinner [showSpinner]="showSpinner"></app-spinner>
         </div>
         <div *ngIf="showError" class="promo-code-error mt10">
           <img src="assets/images/alert.svg" />
-          <span *ngIf="formGrp.controls.promoCode.errors?.invalidPromoCode">Sorry, this promo code is invalid!</span>
-          <span *ngIf="formGrp.controls.promoCode.errors?.promoCodeAlreadyApplied">Promo code has already been applied</span>
-          <span *ngIf="formGrp.controls.promoCode.errors?.existingPromoCode">You have an existing promo code applied</span>
+          <span *ngIf="formGrp.controls.promoCode.errors?.invalidPromoCode">{{'PROMO_CODE_LIST.INVALID_PROMO' | translate}}</span>
+          <span *ngIf="formGrp.controls.promoCode.errors?.promoCodeAlreadyApplied">{{'PROMO_CODE_LIST.ALREADY_APPLIED' | translate}}</span>
+          <span *ngIf="formGrp.controls.promoCode.errors?.existingPromoCode">{{'PROMO_CODE_LIST.EXISTING_PROMO' | translate}}</span>
         </div>
       </div>
     </div>
   </form>
   <div *ngIf="promoArray.length !== 0; else noPromo" class="active-promo-display mt20">
-    <span>Active Promotions</span>
+    <span>{{'PROMO_CODE_LIST.ACTIVE_PROMO' | translate}}</span>
     <div class="flex-wrap-div">
       <div *ngFor="let promo of promoArray" class="promo-card mt15" (click)="showDetails(promo, $event)"
       [ngStyle]="{opacity: promo.customerPromoStatus === promoCodeStatus.NOT_IN_USE ? '1': '0.4'}">
@@ -33,10 +33,10 @@
             <div class="promo-name">{{promo?.shortDescription}}</div>
             <div *ngIf="promo?.customerPromoStatus !== promoCodeStatus.PROCESSING" class="valid-period">
               <ng-container *ngIf="promo?.customerPromoStatus === promoCodeStatus.NOT_IN_USE; else applied">
-                Valid until {{promo?.promoCodeEndDate | date:'dd MMM y'}}
+                {{'PROMO_CODE_LIST.VAlID_UNTIL' | translate}}{{promo?.promoCodeEndDate | date:'dd MMM y'}}
               </ng-container>
               <ng-template #applied>
-                Applied on {{promo?.appliedDate | date:'dd MMM y'}}
+                {{'PROMO_CODE_LIST.APPLIED_ON' | translate}}{{promo?.appliedDate | date:'dd MMM y'}}
               </ng-template>
             </div>
           </div>
@@ -45,28 +45,23 @@
         <div class="inactive-promo" [ngClass]="{'use-promo': promo?.customerPromoStatus === promoCodeStatus.NOT_IN_USE}" >
           <ng-container *ngIf="promo?.customerPromoStatus === promoCodeStatus.NOT_IN_USE; else inactive">
             <div>
-              Use Promo
+              {{'PROMO_CODE_LIST.USE_PROMO' | translate}}
             </div>
           </ng-container>
           <ng-template #inactive>
-            {{promo.status | titlecase}}
+            {{promo?.customerPromoStatus | titlecase}}
           </ng-template>
         </div>
       </div>
     </div>
     </div>
-    <div class="tnc mt30">
-      All claimed rate will be reflected in your <a target="_blank"
-      href="/faq-investment/#investment|5">fees</a> table. All claimed vouchers will be sent to you via email. 
-      For more information, please go to <a target="_blank"
-      href="/faq-investment/">Frequently Asked Questions</a> on our website. 
-    </div>
+    <div class="tnc mt30" innerHTML="{{'PROMO_CODE_LIST.TNC' | translate}}"></div>
   </div>
   <ng-template #noPromo>
     <div class="no-promo-display mt40">
       <img src="assets/images/owl-faded.svg" />
-      <div class="mt10">No promotions added yet</div>
-      <div class="mt10">Add available promo codes in the input box above</div>
+      <div class="mt10">{{'PROMO_CODE_LIST.NO_PROMO' | translate}}</div>
+      <div class="mt10">{{'PROMO_CODE_LIST.ADD_PROMO_ABOVE' | translate}}</div>
     </div>
   </ng-template>
 </div>

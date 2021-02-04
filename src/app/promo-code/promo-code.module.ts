@@ -12,8 +12,6 @@ import { PromoCodeListComponent } from './promo-code-list/promo-code-list.compon
 import { PromoDetailsComponent } from './promo-details/promo-details.component';
 import { PromoCodeSelectComponent } from './promo-code-select/promo-code-select.component';
 import { PromoCodeModalComponent } from './promo-code-modal/promo-code-modal.component';
-
-// import { PaymentModalComponent } from './payment-modal/payment-modal.component';
 import { PromoCodeRoutingModule } from './promo-code-routing.module';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -21,7 +19,7 @@ export function createTranslateLoader(http: HttpClient) {
         http,
         [
             { prefix: './assets/i18n/app/', suffix: '.json' },
-            { prefix: './assets/i18n/payment/', suffix: '.json' }
+            { prefix: './assets/i18n/promo-code/', suffix: '.json' }
         ]);
 }
 

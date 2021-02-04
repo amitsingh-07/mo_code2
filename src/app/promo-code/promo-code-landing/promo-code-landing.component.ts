@@ -16,7 +16,7 @@ export class PromoCodeLandingComponent implements OnInit {
     public navbarService: NavbarService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.setNavbarServices('Investment Promo Codes');
+      this.setNavbarServices(this.translate.instant('PROMO_CODE.TITLE'));
     });
   }
 

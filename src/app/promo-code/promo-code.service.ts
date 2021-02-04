@@ -8,7 +8,7 @@ import { ApiService } from '../shared/http/api.service';
 import { NavbarService } from 'src/app/shared/navbar/navbar.service';
 import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
 import { appConstants } from './../app.constants';
-import { PROMO_ROUTE, PROMO_CODE_STATUS, PROMO_JSON_URL } from './promo-code.constants';
+import { PROMO_ROUTE, PROMO_CODE_STATUS, PROMO_JSON_URL, PROMO_MOCK_JSON } from './promo-code.constants';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './../investment/manage-investments/manage-investments-routes.constants';
 import { ManageInvestmentsService } from '../investment/manage-investments/manage-investments.service';
 
@@ -18,10 +18,8 @@ import { ManageInvestmentsService } from '../investment/manage-investments/manag
 export class PromoCodeService {
 
   private selectedPromo: any;
-  // public usedPromo: any;
   public promoCodeWalletList: any;
   public promoJsonList: any;
-
   public usedPromo = new BehaviorSubject({});
   usedPromoObservable = this.usedPromo.asObservable();
 
@@ -205,10 +203,10 @@ export class PromoCodeService {
       ref.close();
     });
   }
-
+  // Fetch promo list json
   fetchPromoListJSON() {
     if (this.promoJsonList) {
-      console.log('USING STORED PROMO LIST JSON')
+      console.log('USING STORED PROMO LIST JSON', this.promoJsonList)
       return this.promoJsonList;
     } else {
       console.log('FETCHING PROMO LIST JSON')
@@ -219,9 +217,16 @@ export class PromoCodeService {
         return this.promoJsonList; 
       })
       .catch((error) => {
-        console.log(`Failed because: ${error}`);
-        return {};
+        console.log('Fail to fetch JSON from S3, error is ', error);
+        this.getMockPromoListJson();
       });
     }
+  }
+  // Fetch app backup copy incase of failure to fetch from S3
+  getMockPromoListJson() {
+    fetch(PROMO_MOCK_JSON).then((data)=>{
+      this.promoJsonList = data.json();
+      return this.promoJsonList; 
+    });
   }
 }
