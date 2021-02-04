@@ -466,6 +466,6 @@
     "PROCESSING": " (Processing/",
     "APPLIED": " Applied)",
     "VALID_TILL": "Valid till",
-    "FAQ_DESC":"*This is your prevailing advisory rate. Please refer to  <a class='faq-link'  target='_blank' href='/faq-investment/#investment|1'>Pricing </a> and <a class='faq-link' target='_blank' href='/faq-investment/#investment|1'>FAQ</a> on how this is calculated. Promotional rates (if any) are factored into the calculation of your prevailing advisory rate."
+    "FAQ_DESC":"*This is your prevailing advisory rate. Please refer to  <a class='faq-link'  target='_blank' href='/pricing/'>Pricing </a> and <a class='faq-link' target='_blank' href='/faq-investment/#investment|1'>FAQ</a> on how this is calculated. Promotional rates (if any) are factored into the calculation of your prevailing advisory rate."
   }
 }

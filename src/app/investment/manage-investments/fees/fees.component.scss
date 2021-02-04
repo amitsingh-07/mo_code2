@@ -77,6 +77,23 @@ app-fees {
         line-height: 1.38;
         letter-spacing: -0.12px;
         color: $black-color;
+        @include allmobiles {
+          display: flex;
+          align-items: flex-end;
+        }
+        .ellipse{
+          @include allmobiles {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            /* autoprefixer: off */
+            -webkit-box-orient: vertical;
+            max-width: 300px;
+            word-break: break-word;
+            letter-spacing: -0.16px;
+          }
+        }
       }
       .promo-code {
         font-family: $muli-bold;

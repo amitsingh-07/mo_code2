@@ -2,7 +2,7 @@
   "exception": null,
   "objectList": [
     {
-      "fundType": "Standard Portfolios",
+      "fundName": "Standard Portfolios",
       "wrapFee": 0.25,
       "promotions": [
         {
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "fundType": "CPFIS Portfolio",
+      "fundName": "CPFIS Portfolio",
       "wrapFee": 0.25,
       "promotions": [
         {
@@ -29,17 +29,17 @@
       ]
     },
     {
-      "fundType": "WiseSaver Plus",
+      "fundName": "WiseSaver Plus",
       "wrapFee": 0.55,
       "promotions": []
     },
     {
-      "fundType": "WiseSaver Portfolios",
+      "fundName": "WiseSaver Portfolios",
       "wrapFee": 0.55,
       "promotions": []
     },
     {
-      "fundType": "Platform Fee",
+      "fundName": "Platform Fee",
       "wrapFee": "0",
       "promotions": []
     }
