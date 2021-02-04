@@ -83,10 +83,10 @@ export class EmailVerificationComponent implements OnInit {
    * redirect to login page.
    */
   redirectToLogin() {
-    if (this.userType.toLowerCase() === appConstants.USERTYPE.NORMAL.toLowerCase()) {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
-    } else {
+    if (this.userType.toLowerCase() === appConstants.USERTYPE.FINLIT.toLowerCase()) {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
+    } else {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     }
 
   }
