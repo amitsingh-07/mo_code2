@@ -98,7 +98,7 @@
                   <div class="txt-italic">{{
                     'CONFIRM_ACCOUNT_DETAILS.CORRECT_SRS_ACCOUNT_DETAILS_DESC' | translate}}</div>
                 </div>
-                <div class="note-info mt20"><span class="note-icon"><img
+                <div class="note-info mt20 pb30"><span class="note-icon"><img
                       src="assets/images/investment-account/note-icon-white.svg" /></span>
                   <span [innerHTML]="'CONFIRM_ACCOUNT_DETAILS.SRS_DESC' | translate"></span>
                 </div>
@@ -111,10 +111,10 @@
                 <span>{{
                   'CONFIRM_ACCOUNT_DETAILS.CASH_DESC' | translate}}</span>
               </div>
-              <div class="pb30">
-                <app-promo-code-select></app-promo-code-select>
-              </div>
             </ng-container>
+            <div>
+              <app-promo-code-select></app-promo-code-select>
+            </div>
             <div class="text-center">
               <button type="button" id="personalInforNextBtn" (click)="goToNext(fundingAccountDetailsForm)"
                 class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"

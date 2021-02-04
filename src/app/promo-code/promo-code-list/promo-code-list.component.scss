@@ -79,6 +79,12 @@ app-promo-code-list {
     }
   }
 
+  .flex-wrap-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
   #cross-btn {
     padding-right: 20px;
     cursor: pointer;
@@ -191,6 +197,7 @@ app-promo-code-list {
       background-position-y: top;
       display: flex;
       padding: 15px 17px 19px 19px;
+      cursor: pointer;
     }
 
     .owl-logo {
@@ -202,6 +209,11 @@ app-promo-code-list {
       display: flex;
       width: 100%;
       justify-content:space-between;
+
+      img {
+        position: relative;
+        align-self: baseline;
+      }
     }
 
     .col-div {
@@ -230,6 +242,10 @@ app-promo-code-list {
       line-height: normal;
       align-self: flex-end;
       white-space: nowrap;
+
+      div {
+        cursor: pointer;
+      }
     }
 
     span {

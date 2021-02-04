@@ -121,6 +121,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   showContactUs = true;
   showFAQs = true;
 
+  showPromoApplied: boolean = false;
+
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
   constructor(
@@ -223,6 +225,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.isBackPressSubscribed = subscribed;
     });
     this.navbarService.currentPageSuperTitle.subscribe((superTitle) => this.pageSuperTitle = superTitle);
+    this.navbarService.promoAppliedCardObservable.subscribe((promoCard) => this.showPromoApplied = promoCard);
 
     this.navbarService.currentMenuItem.subscribe((menuItem) => {
       if (menuItem && typeof menuItem.iconClass !== 'undefined') {

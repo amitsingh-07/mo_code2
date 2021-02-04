@@ -1,8 +1,5 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { NavbarService } from './../../shared/navbar/navbar.service';
 
@@ -14,21 +11,9 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 })
 export class PromoCodeLandingComponent implements OnInit {
 
-  formGrp: FormGroup;
-
-  showClearBtn: boolean = false;
-  showSpinner: boolean = false;
-  promoCodeValidated: boolean = false;
-
-  showError: boolean = false;
-
-  promoArray = [];
-
   constructor(
-    private formBuilder: FormBuilder,
-    public activeModal: NgbActiveModal, public translate: TranslateService,
-    public navbarService: NavbarService,
-    private router: Router) {
+    public translate: TranslateService,
+    public navbarService: NavbarService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.setNavbarServices('Investment Promo Codes');
@@ -42,13 +27,6 @@ export class PromoCodeLandingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.formGrp = this.formBuilder.group({
-      promoCode: ['', [Validators.required]]
-    });
-
-    this.promoArray.push({name: 'Safra Member (MOSAF20)', validity: 'DD MTH YYYY', status: 'Active'},
-    {name: 'FairPrice Special (MOFP5V)', validity: 'DD MTH YYYY', status: 'Applied'},
-    {name: 'NTUC Income (MOINC20)', validity: 'DD MTH YYYY', status: 'Inactive'});
   }
 
 }

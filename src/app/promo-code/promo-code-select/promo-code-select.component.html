@@ -1,8 +1,8 @@
 <div class="input-box">
-  <ng-container *ngIf="showPromoCode; else showPlaceholder">
+  <ng-container *ngIf="usedPromo && usedPromo?.shortDescription; else showPlaceholder">
     <div>
       <img id="green-tick" src="assets/images/icon-form-tick.svg" />
-      <span class="promo-display" (click)="openPromoDetails($event)">Safra Member (MOSAF20)</span>
+      <span class="promo-display" (click)="openPromoDetails($event)">{{usedPromo?.shortDescription}}</span>
     </div>
     <div class="remove-btn" (click)="removePromoCode($event)">Remove</div>
   </ng-container>

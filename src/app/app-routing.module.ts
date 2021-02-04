@@ -87,8 +87,8 @@ const routes: Routes = [
       {
         path: 'promo-code',
         loadChildren: () => import('./promo-code/promo-code.module').then(m => m.PromoCodeModule),
-        canActivate: [],
-        canActivateChild: []
+        canActivate: [InvestmentEnableGuard],
+        canActivateChild: [InvestmentChildEnableGuard]
       },
       // Legacy Routes
       { path: 'email-enquiry/success', component: EmailEnquirySuccessComponent },

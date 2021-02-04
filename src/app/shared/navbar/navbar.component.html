@@ -30,7 +30,7 @@
       </div>
       <div class="navbar-btn-group hidden-lg">
         <!-- Notifications -->
-        <div *ngIf="isLoggedIn && isNotificationEnabled && showNotifications" class="notification-icon"
+        <div  class="notification-icon"
           (click)="toggleRecentNotification()">
           <span class="notification-number" *ngIf="notificationCount && notificationCount > 0">
             <span *ngIf="notificationCount <= notificationLimit">{{ notificationCount }}</span>
@@ -122,7 +122,7 @@
           <a class="nav-link">Promotions</a>
         </li>
         <li *ngIf="showMenu" class="nav-item"
-          (click)="checkCurrentRouteAndNavigate('/promo-code/promo-code')">
+          (click)="checkCurrentRouteAndNavigate('/promo-code')">
           <a class="nav-link">Investment Promo Codes</a>
         </li>
         <li *ngIf="showMenu && showContactUs" class="nav-item"
@@ -236,8 +236,8 @@
             <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/accounts/edit-profile')">
               <a class="navbar--text" href="javascript: void(0);">Profile</a>
             </button>
-            <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/promo-code/promo-code')">
-              <a class="navbar--text" href="javascript: void(0);">Promo Code</a>
+            <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/promo-code')">
+              <a class="navbar--text" href="javascript: void(0);">Investment Promo Codes</a>
             </button>
             <button class="dropdown-item" (click)="logout()">
               <a class="navbar--text" href="javascript: void(0);">Logout</a>
@@ -271,6 +271,10 @@
     </div>
   </div>
 </nav>
+<div *ngIf="showPromoApplied" class="promo-applied-toast">
+  <img src="assets/images/icon-form-tick.svg" />
+  Promo Code is applied
+</div>
 
 <!-- Height Placeholder -->
 <nav class="navbar--sub" [ngClass]="{'headerMode': (navbarMode == 2 || navbarMode == 6)}"></nav>

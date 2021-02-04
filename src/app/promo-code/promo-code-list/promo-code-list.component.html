@@ -14,31 +14,42 @@
         </div>
         <div *ngIf="showError" class="promo-code-error mt10">
           <img src="assets/images/alert.svg" />
-          <span >Sorry, this promo code is invalid!</span>
+          <span *ngIf="formGrp.controls.promoCode.errors?.invalidPromoCode">Sorry, this promo code is invalid!</span>
+          <span *ngIf="formGrp.controls.promoCode.errors?.promoCodeAlreadyApplied">Promo code has already been applied</span>
+          <span *ngIf="formGrp.controls.promoCode.errors?.existingPromoCode">You have an existing promo code applied</span>
         </div>
       </div>
     </div>
   </form>
   <div *ngIf="promoArray.length !== 0; else noPromo" class="active-promo-display mt20">
     <span>Active Promotions</span>
-    <div style="display:flex; flex-wrap: wrap; justify-content: space-between;">
-      <div *ngFor="let promo of promoArray" class="promo-card mt15"
-      [ngStyle]="{opacity: promo.status === 'Active' ? '1': '0.4'}">
-      <img class="owl-logo" src="assets/images/promo-code/owl-colorful.svg" alt="" />
+    <div class="flex-wrap-div">
+      <div *ngFor="let promo of promoArray" class="promo-card mt15" (click)="showDetails(promo, $event)"
+      [ngStyle]="{opacity: promo.customerPromoStatus === promoCodeStatus.NOT_IN_USE ? '1': '0.4'}">
+      <img class="owl-logo" [ngStyle]="{filter: promo.status === promoCodeStatus.NOT_IN_USE ? 'none': 'grayscale(100%)'}" src="assets/images/promo-code/owl-colorful.svg" alt="" />
       <div class="col-div">
         <div class="flex-div">
           <div class="promo-details">
-            <div class="promo-name">{{promo.name}}</div>
-            <div class="valid-period">Valid until {{promo.validity}}</div>
+            <div class="promo-name">{{promo?.shortDescription}}</div>
+            <div *ngIf="promo?.customerPromoStatus !== promoCodeStatus.PROCESSING" class="valid-period">
+              <ng-container *ngIf="promo?.customerPromoStatus === promoCodeStatus.NOT_IN_USE; else applied">
+                Valid until {{promo?.promoCodeEndDate | date:'dd MMM y'}}
+              </ng-container>
+              <ng-template #applied>
+                Applied on {{promo?.appliedDate | date:'dd MMM y'}}
+              </ng-template>
+            </div>
           </div>
-          <img style="position: relative; align-self: baseline;" src="assets/images/promo-code/next-arrow.svg" (click)="showDetails()" alt="" />
+          <img src="assets/images/promo-code/next-arrow.svg" alt="" />
         </div>
-        <div class="inactive-promo" [ngClass]="{'use-promo': promo.status === 'Active'}" >
-          <ng-container *ngIf="promo.status === 'Active'; else inactive">
-            Use Promo
+        <div class="inactive-promo" [ngClass]="{'use-promo': promo?.customerPromoStatus === promoCodeStatus.NOT_IN_USE}" >
+          <ng-container *ngIf="promo?.customerPromoStatus === promoCodeStatus.NOT_IN_USE; else inactive">
+            <div>
+              Use Promo
+            </div>
           </ng-container>
           <ng-template #inactive>
-            {{promo.status}}
+            {{promo.status | titlecase}}
           </ng-template>
         </div>
       </div>

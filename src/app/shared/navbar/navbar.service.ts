@@ -21,6 +21,7 @@ export class NavbarService {
   private navbarMobileVisibility = new BehaviorSubject(true);
   private navbarShadowVisibility = new BehaviorSubject(true);
   private backListener = new BehaviorSubject('');
+  private promoAppliedCardVisibility = new BehaviorSubject(false);
 
   existingNavbar = this.navbar.asObservable();
   getNavbarEvent = this.getNavEvent.asObservable();
@@ -66,6 +67,7 @@ export class NavbarService {
   investmentPageTitle = this.investPageTitle.asObservable();
   investmentPageSuperTitle = this.investPageSuperTitle.asObservable();
 
+  promoAppliedCardObservable = this.promoAppliedCardVisibility.asObservable();
   // logout
   private logoutSubject = new Subject();
   logoutObservable$ = this.logoutSubject.asObservable();
@@ -226,5 +228,13 @@ export class NavbarService {
 
   clearSessionData() {
     this.logoutSubject.next('CLEAR_SESSION_DATA');
+  }
+
+  showPromoAppliedToast() {
+    this.promoAppliedCardVisibility.next(true);
+    // Set timeout to show card for how long
+    setTimeout(()=> {
+      this.promoAppliedCardVisibility.next(false);
+    }, 3000);
   }
 }
