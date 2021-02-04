@@ -244,7 +244,8 @@ export class SignUpService {
    */
   constructResetEmailInfo(data, captchaValue, oldLoginEmail) {
     return {
-      oldEmail: oldLoginEmail,
+      oldEmail: (oldLoginEmail && this.authService.isUserNameEmail(oldLoginEmail)) ? oldLoginEmail : '',
+      mobileNo: (oldLoginEmail && !this.authService.isUserNameEmail(oldLoginEmail)) ? oldLoginEmail : '',      
       updatedEmail: data,
       captcha: captchaValue,
       sessionId: this.authService.getSessionId(),

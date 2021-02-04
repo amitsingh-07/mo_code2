@@ -120,6 +120,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   showCareers = true;
   showContactUs = true;
   showFAQs = true;
+  showMenuItemInvestUser = false;
 
   showPromoApplied: boolean = false;
 
@@ -246,6 +247,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         }
       }
     });
+
+    this.navbarService.menuItemInvestUserEvent.subscribe((showMenuItemInvestUser) => this.showMenuItemInvestUser = showMenuItemInvestUser);
   }
 
   ngAfterViewInit() {
@@ -316,6 +319,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.showNotifications = config.showNotifications;
     this.showHeaderNavbar = config.showHeaderNavbar;
     this.showNotificationClear = false;
+    this.showMenuItemInvestUser =false;
     this.showLabel = config.showLabel ? config.showLabel : false;
   }
 

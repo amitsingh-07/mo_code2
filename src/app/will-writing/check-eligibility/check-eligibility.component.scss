@@ -1,6 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
-
+app-check-eligibility {
 .label{
     color:#2d8289;
 }
@@ -60,6 +60,22 @@
     @include allmobiles {
         background-color: #f7f7f7;
         padding-top: 18px;
+        padding-bottom: 18px;
+        margin-top:0;
+        padding-left: 23px;
+    }
+    @include iphoneX {
+        min-height: 460px; 
+        padding-top: 18px;
+        background-color: #f7f7f7;
+        padding-bottom: 18px;
+        margin-top:0;
+        padding-left: 23px;
+    }
+    @include pixel2XL {
+        min-height: 470px; 
+        padding-top: 18px;
+        background-color: #f7f7f7;
         padding-bottom: 18px;
         margin-top:0;
         padding-left: 23px;
@@ -265,6 +281,12 @@
 .direct-form-grp {
     .btn-group--toggle {
         justify-content: space-between;
+        @include max360 {
+            margin-left: 10px;
+        }
+        @media (min-width: 320px) and (max-width: 359px) {
+            margin-left: 22px;
+        }
         .direct-form-btn--radio {
             @include allmobiles {
                 max-width:96px;
@@ -277,8 +299,18 @@
     line-height: normal;
         
 }
-.btn-ftr-get-started:disabled {
+.btn-ftr-get-started.btn:disabled {
     background-color: #bff1f1 !important;
     color: $white-color;
-    opacity: 0.65 !important;
+}
+.direct-form-btn--radio {
+    @include max360 {
+        max-width: 90px !important;
+        min-width: 90px !important;
+    }
+    @media (min-width: 320px) and (max-width: 359px) {
+        max-width: 77px !important;
+        min-width: 77px !important;
+    }
+}
 }
