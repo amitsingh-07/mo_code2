@@ -707,11 +707,13 @@ export class ManageInvestmentsService {
   // User both person Investment and Joint Account
   isInvestAndJointAccount() {
     const investAndJointAccountList = [];
+    let isInvestAndJointAccountHolder = false;
     this.manageInvestmentsFormData.userPortfolios.forEach(portfolio => {
-      if (portfolio.entitlements && portfolio.entitlements.processMonthly) {
+      if (portfolio.entitlements && portfolio.entitlements.jointAccount) {
         investAndJointAccountList.push(portfolio);
+        isInvestAndJointAccountHolder = investAndJointAccountList.length > 0 ? true : false;
       }
     });
-    return investAndJointAccountList;
+    return isInvestAndJointAccountHolder;
   }
 }

@@ -437,16 +437,11 @@ export class InvestmentApiService {
       );
   }
 // FEE DETAILS
-getWrapFeeDetails(payload) {
-    const url = 'assets/mock-data/fees.json';
-    return this.http.getMock(url)
+  getWrapFeeDetails(payload) {
+    return this.http.post(investmentApiConstants.endpoint.investment.wrapFrees, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
-    // return this.http.post(investmentApiConstants.endpoint.investment.wrapFrees, payload)
-    //   .pipe(
-    //     catchError((error: HttpErrorResponse) => this.handleError(error))
-    //   );
   }
 }
 

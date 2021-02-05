@@ -117,11 +117,11 @@ app-withdrawal-bank-account {
         font-family: $muli-italic;
         font-size: 14px;
         letter-spacing: -0.26px;
-        color: #5e5e5e;
+        color: $silver-grey-color;
         padding: 16px 24px 0px;
-        span {
+        a {
           font-family: $muli-bold-italic;
-          color: #ff872f;
+          color: $crusta-orange-color;
         }
       }
     }

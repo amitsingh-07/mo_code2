@@ -24,8 +24,8 @@ export class FeesComponent implements OnInit {
 
   pageTitle: string;
   subTitle: string;
-  feeDetails :any;
-  userProfileInfo:any;
+  feeDetails: any;
+  userProfileInfo: any;
 
   constructor(
     private appService: AppService,
@@ -53,13 +53,13 @@ export class FeesComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     if (environment.hideHomepage) {
-      this.navbarService.setNavbarMode(105);
+      this.navbarService.setNavbarMode(104);
     } else {
-      this.navbarService.setNavbarMode(103);
+      this.navbarService.setNavbarMode(102);
     }
     this.footerService.setFooterVisibility(false);
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
-    this.getWrapFeeDetails(this.userProfileInfo);
+    this.getWrapFeeDetails(this.userProfileInfo.id);
   }
 
   setPageTitle(title: string) {

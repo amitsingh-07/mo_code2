@@ -1,6 +1,5 @@
 @import '../../../../variables';
 @import '../../../../mixins';
-
 app-withdrawal {
   .joint_account {
     background-color: $white-color;
@@ -30,14 +29,13 @@ app-withdrawal {
       line-height: normal;
       letter-spacing: -0.14px;
       color: $dark-grey-color;
-      strong{
+      strong {
         font-family: $muli-bold-italic;
       }
-      span{
+      a {
         font-family: $muli-bold-italic;
         color: $crusta-orange-color;
       }
-      
     }
   }
   h2 {
@@ -74,7 +72,7 @@ app-withdrawal {
 
     .dropdown-item {
       white-space: normal;
-      &.disable{
+      &.disable {
         font-size: 16px;
         letter-spacing: -0.16px;
         color: #9b9b9b;
@@ -143,7 +141,7 @@ app-withdrawal {
 
   .capital-letter {
     text-transform: capitalize;
-    .joint-account-img{
+    .joint-account-img {
       width: 20px;
       height: 16px;
       margin: 2px 8px 5px 0;
@@ -162,15 +160,14 @@ app-withdrawal {
   }
 
   .checkbox-button {
-    input[type='checkbox'] {
-
+    input[type="checkbox"] {
       &:disabled,
-      &:disabled+label {
+      &:disabled + label {
         cursor: not-allowed;
       }
     }
 
-    input[type='checkbox']+label {
+    input[type="checkbox"] + label {
       background-size: 20px;
       padding-left: 30px;
     }

@@ -25,10 +25,10 @@
             <div class="flex-col-12">
                 <div class="title-dec">{{'FEES.DESC' | translate}}</div>
                 <div class="annual-fee-desc">
-                    <div *ngFor="let fee of feeDetails; let i = index">
+                    <div class="fund-block" *ngFor="let fee of feeDetails; let i = index">
                         <div class="fund-title" [ngClass]="{'wise-saver-annual-fee': portfolioTypeFlag}">
                             <div>{{fee.fundName}}</div>
-                            <div  class="fee_value">{{fee.wrapFee ? fee.wrapFee :0 }}%
+                            <div class="fee_value">{{fee.wrapFee ? fee.wrapFee :0 }}%
                                 <span *ngIf="fee.fundName === 'Standard Portfolios'">*</span>
                                 <span *ngIf="fee.fundName === 'Platform Fee'">({{fee.wfRemarks}})</span>
                             </div>
@@ -38,8 +38,9 @@
                                 <span class="form-alert-wrap"><img
                                         src="assets\images\manage-investments\form-icon-alert.svg" /></span>
                                 <label>
-                                    <div class="promo-code-header"><span class="ellipse">{{promotion.promoName}}</span>
-                                        <span>({{promotion.promoCode}})</span>
+                                    <div class="promo-code-header">
+                                        <span>{{promotion.promoName}} </span>
+                                        ({{promotion.promoCode}})
                                     </div>
                                     <div class="promo-code" id="promoCode">
                                         ({{'FEES.VALID_TILL' | translate}}

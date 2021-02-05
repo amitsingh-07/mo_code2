@@ -20,6 +20,10 @@
             <img src="assets/images/alert-black.svg" />
             <div class="joint_account-note" innerHTML="{{'WITHDRAW.JOINT_ACCOUNT_DESC' | translate}}"></div>
           </div>
+          <div *ngIf="isInvestAndJointAccountHolder && !isBankDetailsAvailable" class="joint_account">
+            <img src="assets/images/alert-black.svg" />
+            <div class="joint_account-note" innerHTML="{{'WITHDRAW.PERSONAL_JOINT_ACCOUNT_DESC' | translate}}"></div>
+          </div>
           <form id="withdraw_form" name="withdrawForm" [formGroup]="withdrawForm">
             <!-- PORTFOLIO -->
             <div class="form-group" *ngIf="withdrawForm.get('withdrawPortfolio')">
@@ -74,11 +78,13 @@
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <ng-container *ngFor="let type of withdrawalTypes; let i = index">
                           <button class="dropdown-item"
-                            [disabled]="(type.value === 'CASH_TO_BANK_ACCOUNT' || type.value === 'PORTFOLIO_TO_BANK_ACCOUNT') && entitlements.jointAccount"
-                            [class.hide]="(type.value === 'PORTFOLIO_TO_BANK_ACCOUNT' && (!entitlements.showWithdrawPvToBa && !entitlements.jointAccount))
-                                          || (type.value === 'PORTFOLIO_TO_CASH_ACCOUNT' && !entitlements.showWithdrawPvToCa)
-                                          || (type.value === 'CASH_TO_BANK_ACCOUNT' && (!entitlements.showWithdrawCaToBa && !entitlements.jointAccount))
-                                          || type.value === 'PORTFOLIO_TO_SRS_ACCOUNT' && (!entitlements.showWithdrawPvToSRS)"
+                            [disabled]="(type.value === 'CASH_TO_BANK_ACCOUNT' || type.value === 'PORTFOLIO_TO_BANK_ACCOUNT') && (entitlements.jointAccount || (isInvestAndJointAccountHolder && !isBankDetailsAvailable))"
+                            [class.hide]="(type.value === 'PORTFOLIO_TO_BANK_ACCOUNT' && 
+                            (!entitlements.showWithdrawPvToBa && !entitlements.jointAccount  && 
+                            !(isInvestAndJointAccountHolder && !isBankDetailsAvailable)))||
+                             (type.value === 'PORTFOLIO_TO_CASH_ACCOUNT' && !entitlements.showWithdrawPvToCa)
+                                        || (type.value === 'CASH_TO_BANK_ACCOUNT' && (!entitlements.showWithdrawCaToBa && !entitlements.jointAccount && !(isInvestAndJointAccountHolder && !isBankDetailsAvailable)))
+                                        || type.value === 'PORTFOLIO_TO_SRS_ACCOUNT' && (!entitlements.showWithdrawPvToSRS)"
                             (click)="setDropDownValue('withdrawType',type, i)" id="withdraw-type-option-{{i}}">
                             {{type.name}}
                           </button>

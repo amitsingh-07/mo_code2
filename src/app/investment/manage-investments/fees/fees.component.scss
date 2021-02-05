@@ -57,6 +57,13 @@ app-fees {
       font-family: $muli-regular;
       font-size: 14px;
       color: $black-color;
+      .fund-block {
+        &:nth-last-child(2) {
+          hr {
+            display: none;
+          }
+        }
+      }
       .fund-title {
         display: flex;
         justify-content: space-between;
@@ -78,10 +85,10 @@ app-fees {
         letter-spacing: -0.12px;
         color: $black-color;
         @include allmobiles {
-          display: flex;
-          align-items: flex-end;
+          // display: flex;
+          // align-items: flex-end;
         }
-        .ellipse{
+        .ellipse {
           @include allmobiles {
             overflow: hidden;
             text-overflow: ellipsis;

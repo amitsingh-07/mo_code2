@@ -282,7 +282,8 @@
     "AFTER_WITHDRAWAL": "After Withdrawal:",
     "WITHDRAWAL_ERROR_CASH": "Withdrawal amount should not be more than the Cash Account Balance",
     "WITHDRAWAL_ERROR_PORTFOLIO": "Withdrawal amount should not be more than the Portfolio Balance",
-    "JOINT_ACCOUNT_DESC": "Please note that withdrawals to bank account for <strong>Joint Investment Portfolios</strong> are currently handled offline. Email <span>inv_ops@moneyowl.com.sg</span> before 11am to process your request on the same business day."
+    "JOINT_ACCOUNT_DESC": "Please note that withdrawals to bank account for <strong>Joint Investment Portfolios</strong> are currently handled offline. Email <a href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> before 11am to process your request on the same business day.",
+    "PERSONAL_JOINT_ACCOUNT_DESC": "Please note that withdrawals to bank account for <strong>Personal Investment Portfolios</strong> are currently handled offline. Email <a href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> before 11am to process your request on the same business day."
   },
   "WITHDRAW_SUCCESS": {
     "TITLE": "Withdrawal Request Submitted",
@@ -316,7 +317,7 @@
       "ACCOUNT_NO": "Account No.",
       "APPLY_CHANGE": "Apply Changes"
     },
-    "JOINT_ACCOUNT_DESC": "While we upgrade our systems, please email <span>inv_ops@moneyowl.com.sg</span> if you would like to update your bank details."
+    "JOINT_ACCOUNT_DESC": "While we upgrade our systems, please email <a href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a>if you would like to update your bank details."
   },
   "TRANSACTIONS": {
     "TITLE": "Transactions",
@@ -467,6 +468,6 @@
     "PROCESSING": " (Processing/",
     "APPLIED": " Applied)",
     "VALID_TILL": "Valid till",
-    "FAQ_DESC":"*This is your prevailing advisory rate. Please refer to  <a class='faq-link'  target='_blank' href='/pricing/'>Pricing </a> and <a class='faq-link' target='_blank' href='/faq-investment/#investment|1'>FAQ</a> on how this is calculated. Promotional rates (if any) are factored into the calculation of your prevailing advisory rate."
+    "FAQ_DESC": "*This is your prevailing advisory rate. Please refer to  <a class='faq-link'  target='_blank' href='/pricing/'>Pricing </a> and <a class='faq-link' target='_blank' href='/faq-investment/#investment|1'>FAQ</a> on how this is calculated. Promotional rates (if any) are factored into the calculation of your prevailing advisory rate."
   }
 }
