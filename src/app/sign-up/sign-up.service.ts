@@ -64,8 +64,9 @@ export class SignUpService {
    */
   commit() {
     if (window.sessionStorage) {
-      sessionStorage.setItem(SIGNUP_SESSION_STORAGE_KEY, JSON.stringify(this.signUpFormData));
-      this.hubspotService.registerEmail(this.signUpFormData.email);
+      sessionStorage.setItem(SIGNUP_SESSION_STORAGE_KEY, JSON.stringify(this.signUpFormData));    
+      this.hubspotService.registerEmail(this.signUpFormData.userProfileInfo.emailAddress);
+      this.hubspotService.registerPhone(this.signUpFormData.userProfileInfo.mobileNumber);
     }
   }
 
@@ -296,7 +297,9 @@ export class SignUpService {
 
   setUserProfileInfo(userInfo) {
     this.userSubject.next(userInfo);
+    console.log(userInfo);
     this.signUpFormData.userProfileInfo = userInfo;
+    console.log(this.signUpFormData.userProfileInfo);
     this.commit();
   }
 
