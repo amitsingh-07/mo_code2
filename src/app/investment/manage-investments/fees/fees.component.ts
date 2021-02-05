@@ -53,9 +53,9 @@ export class FeesComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     if (environment.hideHomepage) {
-      this.navbarService.setNavbarMode(104);
+      this.navbarService.setNavbarMode(105);
     } else {
-      this.navbarService.setNavbarMode(102);
+      this.navbarService.setNavbarMode(103);
     }
     this.footerService.setFooterVisibility(false);
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
@@ -74,8 +74,11 @@ export class FeesComponent implements OnInit {
   ngOnDestroy() {
     this.renderer.removeClass(document.body, 'portfolioname-bg');
   }
+  getPromoCode(Value) {
+    let maxLength = 35;
+    return Value.length > maxLength ? Value.substr(0, maxLength) + '...' : Value;
+  }
 }
-
 
 
 
