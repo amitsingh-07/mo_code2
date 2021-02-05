@@ -1,12 +1,10 @@
 @import '../../../../_variables.scss';
 @import '../../../../_mixins.scss';
-
 app-investment-overview {
-
     .invest-section {
-      @include allmobiles {
-        top: 0px;
-      }
+        @include allmobiles {
+            top: 0px;
+        }
     }
     .cursor_pointer {
         cursor: pointer;
@@ -33,7 +31,7 @@ app-investment-overview {
             display: flex;
             margin-bottom: 0px;
         }
-        label > div {
+        label>div {
             padding: 0 10px;
             background-color: #00a7a7;
             height: 28px;
@@ -41,7 +39,7 @@ app-investment-overview {
             border-radius: 17px;
             cursor: pointer;
         }
-        label > div > span {
+        label>div>span {
             font-family: $muli-bold;
             font-size: 13px;
             letter-spacing: -0.12px;
@@ -50,14 +48,14 @@ app-investment-overview {
             display: inline-block;
             vertical-align: middle;
         }
-        label > div > img {
+        label>div>img {
             display: none;
             margin-right: 5px;
         }
-        input[type="radio"]:checked ~ * {
+        input[type="radio"]:checked~* {
             background-color: $pine-green-color;
         }
-        input[type="radio"]:checked ~ div > img {
+        input[type="radio"]:checked~div>img {
             margin-top: 1px;
             display: inline-block;
         }
@@ -134,12 +132,13 @@ app-investment-overview {
                     border: 1px solid #f1f1f1;
                     display: flex;
                     justify-content: center;
-                    &:active, &:focus {
+                    &:active,
+                    &:focus {
                         outline: none;
                         background-color: $white-color;
                     }
-                    &.disabled{
-                      cursor: not-allowed;
+                    &.disabled {
+                        cursor: not-allowed;
                     }
                     .topup-btn-img {
                         height: 25px;
@@ -211,7 +210,6 @@ app-investment-overview {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-
                 @include allmobiles {
                     padding: 10px 15px;
                 }
@@ -294,6 +292,18 @@ app-investment-overview {
                                     font-size: 14px;
                                     letter-spacing: -0.26px;
                                 }
+                                .ja-logo {
+                                    font-size: 13px;
+                                    letter-spacing: -0.24px;
+                                    color: $dusty-grey-color;
+                                    display: flex;
+                                    .ja-icon {
+                                        width: 16px;
+                                        height: 16px;
+                                        display: flex;
+                                        margin-right: 5px;
+                                    }
+                                }
                                 .portfolio-value {
                                     font-family: $muli-bold;
                                     font-size: 18px;
@@ -350,8 +360,8 @@ app-investment-overview {
                                         display: flex;
                                     }
                                 }
-                                .reblancing-lbl{
-                                    width: 105px;
+                                .reblancing-lbl {
+                                    width: 175px;
                                     padding: 5px;
                                     border-radius: 3px;
                                     border: 1px solid #cae4df;
@@ -361,7 +371,7 @@ app-investment-overview {
                                     letter-spacing: normal;
                                     color: #00a7a7;
                                     align-items: center;
-                                    .rebalance-logo{
+                                    .rebalance-logo {
                                         width: 18px;
                                         height: 18px;
                                         object-fit: contain;
@@ -535,25 +545,22 @@ app-investment-overview {
     }
     .back-dashboard {
         display: none;
-
         @include allmobiles {
-          display: flex;
-          align-items: center;
-          margin-top: -20px;
-          margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            margin-top: -20px;
+            margin-bottom: 10px;
         }
-
         img {
             margin-right: 6px;
             margin-left: -4px;
         }
-
         span {
-          font-family: $muli-semi-bold;
-          font-size: 13px;
-          letter-spacing: -0.12px;
-          line-height: normal;
-          color: $white-color;
+            font-family: $muli-semi-bold;
+            font-size: 13px;
+            letter-spacing: -0.12px;
+            line-height: normal;
+            color: $white-color;
         }
     }
     .mp-animation {
@@ -586,18 +593,19 @@ app-investment-overview {
     }
 }
 
-.rebalancing-modal-msg{
-  .txt-bold {
-    font-family: $muli-bold;
-  }
-  .contact-details {
-    font-family: $muli-bold;
-    color: #5e5e5e;
-    &.mail {
-        color: #ff872f;
+.rebalancing-modal-msg {
+    .txt-bold {
+        font-family: $muli-bold;
     }
-    &:focus, &:hover {
-      text-decoration: none;
+    .contact-details {
+        font-family: $muli-bold;
+        color: #5e5e5e;
+        &.mail {
+            color: #ff872f;
+        }
+        &:focus,
+        &:hover {
+            text-decoration: none;
+        }
     }
-  }
 }

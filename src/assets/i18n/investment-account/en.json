@@ -15,7 +15,7 @@
     "PROCEED": "Proceed with",
     "PROCEED_WITHOUT": "Proceed without SingPass",
     "APPLY_USING_MYINFO": "Apply Using MyInfo",
-    "AUTOFILL_QUICKLY": "<b class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only.</b><br> Autofill your information quickly. Supporting documents are not required.",
+    "AUTOFILL_QUICKLY": "<b class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only.</b><br> Autofill your information quickly. <br>Supporting documents are not required.",
     "APPLY_WITHOUT_MYINFO": "Apply Without MyInfo",
     "FILL_MANUALLY": "<b class=\"text-bold\">Applicable to foreigners and all.</b> Fill in your information manually. Supporting documents are required. Takes at least 1 working day to get your account approved. ",
     "MANUALLY": "Fill Form Manually",
@@ -303,7 +303,7 @@
     "MYINFO_CONFIRM": {
       "TITLE": "Login via MyInfo",
       "DESCRIPTION": "<strong class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>You will now proceed to login via MyInfo and retrieve your following details.<div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br>Would you like to proceed?",
-      "BTN-TEXT": "Let's go"
+      "BTN-TEXT": "Let's go!"
     },
     "ERROR_MODAL_DATA": {
       "TITLE": "Oops, Error!",
@@ -312,6 +312,14 @@
     "FETCH_MODAL_DATA": {
       "TITLE": "Fetching Data...",
       "DESCRIPTION": "Please be patient while we fetch your required data from MyInfo."
+    },
+    "LOADER2": {
+      "message": "Sorry that this is taking longer than usual. Please be patient while we fetch your required data from MyInfo."
+    },
+    "LOADER3": {
+      "message": "We are still trying to fetch your required data from MyInfo. You may choose to fill in your information manually or try again later.",
+      "primaryActionLabel": "Try Again Later",
+      "secondaryActionLabel": "Create Account Manually"
     },
     "SING_PASS_CONFIRM": {
       "TITLE": "Following details will be auto filled Via Myinfo:",

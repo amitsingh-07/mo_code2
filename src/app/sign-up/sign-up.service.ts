@@ -1,7 +1,6 @@
 import { Subject, BehaviorSubject } from 'rxjs';
 
 import { DatePipe } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -18,7 +17,6 @@ import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
-import { IVerifyRequestOTP } from './signup-types';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -30,6 +28,8 @@ const CAPTCHA_SESSION_ID = 'captcha_session_id';
 const USER_MOBILE = 'user_mobile';
 const FROM_LOGIN_PAGE = 'from_login_page';
 const CAPTACHA_COUNT = 'captcha_count';
+const EMAIL = 'email'
+const FINLITENABLED = 'finlitenabled';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +44,6 @@ export class SignUpService {
   private mobileOptimized = new BehaviorSubject(false);
   mobileOptimizedObservable$ = this.mobileOptimized.asObservable();
   constructor(
-    private http: HttpClient,
     private apiService: ApiService,
     public authService: AuthenticationService,
     public configService: ConfigService,
@@ -189,10 +188,10 @@ export class SignUpService {
       }
     }
 
-    if(Object.keys(errors.errorMessages).length <= 0) {
+    if (Object.keys(errors.errorMessages).length <= 0) {
       console.log('Error Key:', Object.keys(form.errors)[0]);
-      if(form.invalid && this.createAccountFormError.formErrors[Object.keys(form.errors)[0]]) {
-        if(this.createAccountFormError.formErrors[Object.keys(form.errors)[0]].errorTitle) {
+      if (form.invalid && this.createAccountFormError.formErrors[Object.keys(form.errors)[0]]) {
+        if (this.createAccountFormError.formErrors[Object.keys(form.errors)[0]].errorTitle) {
           errors.title = this.createAccountFormError.formErrors[Object.keys(form.errors)[0]].errorTitle;
         }
         errors.errorMessages.push(this.createAccountFormError.formErrors[Object.keys(form.errors)[0]].errorMessage);
@@ -233,9 +232,9 @@ export class SignUpService {
       redirectUrl: window.location.origin + this.resetPasswordUrl + '?key='
     };
   }
-  setRestEmailInfo(email, captcha) {
+  setRestEmailInfo(email, captcha, oldEmail) {
     // API Call here
-    const data = this.constructResetEmailInfo(email, captcha);
+    const data = this.constructResetEmailInfo(email, captcha, oldEmail);
     return this.apiService.resetEmail(data);
   }
 
@@ -243,15 +242,17 @@ export class SignUpService {
    * construct the json for forgot password.
    * @param data - email and redirect uri.
    */
-  constructResetEmailInfo(data, captchaValue) {
+  constructResetEmailInfo(data, captchaValue, oldLoginEmail) {
     return {
-      email: data,
+      oldEmail: (oldLoginEmail && this.authService.isUserNameEmail(oldLoginEmail)) ? oldLoginEmail : '',
+      mobileNo: (oldLoginEmail && !this.authService.isUserNameEmail(oldLoginEmail)) ? oldLoginEmail : '',      
+      updatedEmail: data,
       captcha: captchaValue,
       sessionId: this.authService.getSessionId(),
-      callbackUrl: window.location.origin + "email-verification" + '?key='
+      callbackUrl: window.location.origin + "/app/accounts/email-verification"
     };
   }
-  
+
   /**
    * get login info.
    * @param data - user account details.
@@ -304,6 +305,28 @@ export class SignUpService {
     if (window.sessionStorage) {
       sessionStorage.setItem(REDIRECT_URL_KEY, url);
     }
+  }
+  setEmail(data) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(EMAIL, data);
+    }
+  }
+  getUserType() {
+    return sessionStorage.getItem(FINLITENABLED);
+  }
+  setUserType(data) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(FINLITENABLED, data);
+    }
+  }
+  getEmail() {
+    return sessionStorage.getItem(EMAIL);
+  }
+  getEmailandFinlit() {
+    return {
+      email: this.signUpFormData.email,
+      userType: this.signUpFormData.userType
+    };
   }
 
   setEditContact(editContact, mobileUpdate, emailUpdate) {
@@ -373,7 +396,7 @@ export class SignUpService {
     const data = this.constructUpdateBankPayload(bank, fullName, accountNum, id);
     return this.apiService.saveNewBankProfile(data);
   }
-  
+
   // tslint:disable-next-line:no-identical-functions
   constructUpdateBankPayload(bank, fullName, accountNum, id) {
     const request = {};
@@ -664,9 +687,9 @@ export class SignUpService {
 
   validateReferralCode(referralCode) {
     // API Call here
-    const data = {"referralCode": referralCode};
+    const data = { "referralCode": referralCode };
     return this.apiService.validateReferralCode(data);
   }
 
-  
+
 }

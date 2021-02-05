@@ -9,6 +9,7 @@ import { ErrorModalComponent } from './../../../shared/modal/error-modal/error-m
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from './../../direct.service';
 import { Subscription } from 'rxjs';
+import { Util } from './../../../shared/utils/util';
 
 @Component({
   selector: 'app-critical-illness-form',
@@ -53,7 +54,10 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     /* Building the form */
-    this.coverageAmtValuesTemp.forEach((element, index) => {
+    const ciAdditionalValue = [50000, 150000, 250000];
+    const ciCoverageAmtValuesTemp = ciAdditionalValue.concat(this.coverageAmtValuesTemp);
+    const ciCoverageAmtOrder = Util.sortAscending(ciCoverageAmtValuesTemp);
+    ciCoverageAmtOrder.forEach((element, index) => {
       this.coverageAmtValues[index] = this.directService.convertToCurrency(element);
     });
     this.formValues = JSON.parse(JSON.stringify(this.directService.getCriticalIllnessForm()));
@@ -134,7 +138,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     sum_string += this.translate.instant('CRITICAL_ILLNESS.COVERAGE_AMT.DOLLAR') + this.coverage_amt + ', ';
     sum_string += this.duration;
     if (this.criticalIllnessForm.value.earlyCI === true || this.criticalIllnessForm.value.earlyCI === 'yes') {
-      sum_string += ', Early CI';
+      sum_string += ', Early/MultiPay CI';
     }
     return sum_string;
   }
@@ -158,5 +162,11 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     form.value.duration = this.duration;
     this.directService.setCriticalIllnessForm(form.value);
     return true;
+  }
+  showToolTip(title, desc) {
+    this.directService.showToolTipModal(
+      this.translate.instant('TOOL_TIP.' + title),
+      this.translate.instant('TOOL_TIP.' + desc)
+    );
   }
 }

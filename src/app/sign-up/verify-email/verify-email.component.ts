@@ -1,13 +1,12 @@
 import { Location } from '@angular/common';
 import {
-    AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
+    AfterViewInit, ChangeDetectorRef, Component, OnInit
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { environment } from '../../../environments/environment';
 import { ConfigService, IConfig } from '../../config/config.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -28,8 +27,6 @@ import { SignUpService } from '../sign-up.service';
 export class VerifyEmailComponent implements OnInit, AfterViewInit {
 
   private distribution: any;
-  private pageTitle: string;
-  private description: string;
   emailNotFoundTitle: any;
   emailNotFoundDesc: any;
   forgotPasswordForm: FormGroup;
@@ -116,7 +113,7 @@ export class VerifyEmailComponent implements OnInit, AfterViewInit {
       ref.componentInstance.errorMessage = error.errorMessage;
       return false;
     } else {
-      this.signUpService.setRestEmailInfo(form.value.email, form.value.captcha).subscribe((data) => {
+      this.signUpService.setRestEmailInfo(form.value.email, form.value.captcha,this.signUpService.getEmail()).subscribe((data) => {
         // tslint:disable-next-line:triple-equals
         if (data.responseMessage.responseCode == 6004) {
           const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
@@ -128,7 +125,7 @@ export class VerifyEmailComponent implements OnInit, AfterViewInit {
           if (this.authService.isSignedUser()) {
             this.navbarService.logoutUser();
           }
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.FORGOT_PASSWORD_RESULT]);
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_EMAIL_RESULT]);
         } else if (data.responseMessage.responseCode === 5012) {
           this.signUpApiService.resendEmailVerification(form.value.email, true).subscribe((data) => {
             if (data.responseMessage.responseCode === 6007) {

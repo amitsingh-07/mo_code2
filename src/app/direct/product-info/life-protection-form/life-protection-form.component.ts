@@ -213,7 +213,10 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     this.directService.setLifeProtectionForm(values);
     return true;
   }
-  showToolTip() {
-
+  showToolTip(title, desc) {
+    this.directService.showToolTipModal(
+      this.translate.instant('TOOL_TIP.' + title),
+      this.translate.instant('TOOL_TIP.' + desc)
+    );
   }
 }
