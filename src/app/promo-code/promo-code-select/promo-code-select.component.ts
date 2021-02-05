@@ -1,9 +1,9 @@
-import { PromoCodeModalComponent } from './../promo-code-modal/promo-code-modal.component';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { PromoCodeService } from './../promo-code.service';
+import { PromoCodeModalComponent } from './../promo-code-modal/promo-code-modal.component';
 import { PromoDetailsComponent } from './../promo-details/promo-details.component';
 
 @Component({
@@ -18,13 +18,16 @@ export class PromoCodeSelectComponent implements OnInit {
   usedPromo: any;
   showError: boolean = false;
 
-  constructor(public activeModal: NgbActiveModal, private translate: TranslateService,
-    private promoSvc: PromoCodeService, private modal: NgbModal) {
-        this.translate.use('en');
-        }
+  constructor(
+    public activeModal: NgbActiveModal,
+    private translate: TranslateService,
+    private promoSvc: PromoCodeService,
+    private modal: NgbModal) {
+    this.translate.use('en');
+  }
 
   ngOnInit() {
-    this.promoSvc.usedPromo.subscribe((data)=>{
+    this.promoSvc.usedPromo.subscribe((data) => {
       console.log('data = ', data)
       this.usedPromo = data;
     });
@@ -56,5 +59,5 @@ export class PromoCodeSelectComponent implements OnInit {
     e.stopPropagation();
     console.log('REMOVE APPLIED PROMO CODE')
     this.promoSvc.removeAppliedPromo();
-   }
+  }
 }

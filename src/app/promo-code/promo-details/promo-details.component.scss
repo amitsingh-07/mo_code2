@@ -70,7 +70,7 @@ app-promo-details {
   }
 
   .sub-header {
-    font-family: $muli-bold;
+    font-family: $muli-bold !important;
     font-size: 16px;
     color: $black-color;
     letter-spacing: -0.15px;

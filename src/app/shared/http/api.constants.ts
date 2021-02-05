@@ -113,6 +113,11 @@ export let apiConstants = {
             cancelPayment: PAYMENT_API_BASE_URL + 'cancelPayment',
             getLastSuccessfulSubmittedTs: PAYMENT_API_BASE_URL + 'getLastSuccessfulSubmittedTs',
             getCustPromoCodeByCategory: ACCOUNT_API_BASE_URL + '/promocode/getCustPromoCodeByCategory'
+        },
+        promoCode: {
+            getCustomerInvestmentPromoCode: ACCOUNT_API_BASE_URL + '/promocode/getCustomerInvestmentPromoCode',
+            validateInvestPromoCode: ACCOUNT_API_BASE_URL + '/promocode/validateInvestmentPromoCode?handleError=true',
+            savePromoCode: ACCOUNT_API_BASE_URL + '/promocode/savePromoCode',
         }
     }
 };

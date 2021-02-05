@@ -15,22 +15,29 @@
         </div>
       </div>
     </div>
-    <ng-container *ngIf="selectedPromo?.customerPromoStatus === promoCodeStatus.NOT_IN_USE; else inactive">
-      <ng-container *ngIf="usedPromo && usedPromo.value === selectedPromo; else usePromoBtn">
-        <div class="use-promo-btn">
-          <button (click)="removePromoCode($event)" type="button" class="btn btn-orange">{{'PROMO_CODE_DETAILS.REMOVE_PROMO' | translate}}</button>
-        </div>
+    <ng-container *ngIf="usedPromo && usedPromo.value === selectedPromo; else notSelected">
+      <div class="use-promo-btn">
+        <button (click)="removePromoCode($event)" type="button" class="btn btn-orange">{{'PROMO_CODE_DETAILS.REMOVE_PROMO' | translate}}</button>
+      </div>
+    </ng-container>
+    <ng-template #notSelected>
+      <ng-container *ngIf="selectedPromo?.customerPromoStatus && selectedPromo?.customerPromoStatus !== promoCodeStatus.NOT_IN_USE; else usePromoBtn">
+        <ng-container *ngIf="usedPromo && usedPromo.value === selectedPromo; else inactive">
+          <div class="use-promo-btn">
+            <button (click)="removePromoCode($event)" type="button" class="btn btn-orange">{{'PROMO_CODE_DETAILS.REMOVE_PROMO' | translate}}</button>
+          </div>
+        </ng-container>
+        <ng-template #inactive>
+          <div class="disabled-btn">
+            {{selectedPromo?.customerPromoStatus | titlecase}}
+          </div>
+        </ng-template>
       </ng-container>
       <ng-template #usePromoBtn>
         <div class="use-promo-btn">
           <button (click)="usePromo($event)" type="button" class="btn btn-orange">{{'PROMO_CODE_DETAILS.USE_PROMO' | translate}}</button>
         </div>
       </ng-template>
-    </ng-container>
-    <ng-template #inactive>
-      <div class="disabled-btn">
-        {{selectedPromo?.customerPromoStatus | titlecase}}
-      </div>
     </ng-template>
   </div>
 </div>

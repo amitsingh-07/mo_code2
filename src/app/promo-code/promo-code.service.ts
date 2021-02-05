@@ -4,10 +4,10 @@ import { BehaviorSubject } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 
+import { appConstants } from './../app.constants';
 import { ApiService } from '../shared/http/api.service';
 import { NavbarService } from 'src/app/shared/navbar/navbar.service';
 import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
-import { appConstants } from './../app.constants';
 import { PROMO_ROUTE, PROMO_CODE_STATUS, PROMO_JSON_URL, PROMO_MOCK_JSON } from './promo-code.constants';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './../investment/manage-investments/manage-investments-routes.constants';
 import { ManageInvestmentsService } from '../investment/manage-investments/manage-investments.service';
@@ -55,74 +55,23 @@ export class PromoCodeService {
 
   // API to get the list of promo codes for the user
   getPromoWallet() {
-    // API = CustomerPromoWalletByCategory
-    console.log('FIRST API CALL: CustomerPromoWalletByCategory')
-    let list = [
-      // {
-      //   "promoCodeId": 107,
-      //   "appliedDate": "2020-11-30",
-      //   "campaignId": null,
-      //   "campaignStartDate": null,
-      //   "campaignEndDate": null,
-      //   "promoCode": "MOSAF20",
-      //   "category": "INVEST",
-      //   "subCategory": null,
-      //   "shortDescription": "Safra Member (MOSAF20)",
-      //   "description": "Top-up your WiseSaver account (min. S$10) and get S$5 into your investment account",
-      //   "promoCodeStatus": "I",
-      //   "promoCodeStartDate": "2020-11-17",
-      //   "promoCodeEndDate": "2020-11-30",
-      //   "profileType": "PUBLIC",
-      //   "isWrapFeeRelated": "Y",
-      //   "wrapFeeDiscount": null,
-      //   "topupReq": null,
-      //   "createdTs": "2021-01-24T07:24:40.000+0000",
-      //   "lastUpdatedTs": "2021-01-24T07:24:40.000+0000",
-      //   "customerPromoStatus": "applied"
-      // },
-      {
-        "promoCodeId": 107,
-        "appliedDate": "2020-11-30",
-        "campaignId": null,
-        "campaignStartDate": null,
-        "campaignEndDate": null,
-        "promoCode": "MOFP5V",
-        "category": "INVEST",
-        "subCategory": null,
-        "shortDescription": "FairPrice Special (MOFP5V)",
-        "description": "Top-up your WiseSaver account (min. S$10) and get S$5 into your investment account",
-        "promoCodeStatus": "I",
-        "promoCodeStartDate": "2020-11-17",
-        "promoCodeEndDate": "2020-11-30",
-        "profileType": "PUBLIC",
-        "isWrapFeeRelated": "Y",
-        "wrapFeeDiscount": null,
-        "topupReq": null,
-        "createdTs": "2021-01-24T07:24:40.000+0000",
-        "lastUpdatedTs": "2021-01-24T07:24:40.000+0000",
-        "customerPromoStatus": "applied"
-      }
-    ]
-    // list = [];
-    this.promoCodeWalletList = list;
-    this.commit("promo_wallet_list", list);
-    return list;
-    return []
+    console.log('FIRST API CALL: getCustomerInvestmentPromoCode')
+    const payload = {
+      customerPromoCodeStatus: PROMO_CODE_STATUS.NOT_IN_USE.concat(',',PROMO_CODE_STATUS.PROCESSING).concat(',',PROMO_CODE_STATUS.APPLIED),
+      promoCodeCategory: appConstants.INVESTMENT_PROMO_CODE_TYPE
+    };
+    return this.apiService.getCustomerInvestmentPromoCode(payload);
   }
 
-  // API for check if promo code is valid and available in master table
+    // API will check if promo is valid or invalid and return object if valid
   validatePromoCode(promoCode) {
-    // Call validatePromoCode
-    // API will check if promo is valid or invalid
-    // API will return flag top_up_require or not, for navigating to buy request page
-    // API will return is wrap fee related
-    console.log('SECOND API CALL: validatePromoCode')
+    console.log('SECOND API CALL: validateInvestPromoCode')
     const payload = {
       promoCode: promoCode,
-      // sessionId: this.authService.getSessionId(),
-      promoCodeCat: appConstants.INVESTMENT_PROMO_CODE_TYPE
+      promoCodeCategory: appConstants.INVESTMENT_PROMO_CODE_TYPE,
+      profileType: 'public'
     };
-    return this.apiService.verifyPromoCode(payload);
+    return this.apiService.validateInvestPromoCode(payload);
   }
 
   // Use the selected promo code
@@ -144,17 +93,17 @@ export class PromoCodeService {
             this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP]);
           }
         });
-        this.addPromoToWallet(promo);
+        // this.addPromoToWallet(promo);
       } else {
         // Add promo to wallet and show applied toast
-        this.addPromoToWallet(promo);
+        // this.addPromoToWallet(promo);
         this.navbarService.showPromoAppliedToast();
       }
     } else {
       // Top up not required, is wrap fee related
-      if (this.selectedPromo['isWrapFeeRelated']) {
+      if (this.selectedPromo['isWrapFeeRelated'] === 'Y') {
         const existingWrapFeePromo = this.promoCodeWalletList.find((elem) => {
-          if (elem['isWrapFeeRelated'] === 'Y' && elem['status'] === PROMO_CODE_STATUS.APPLIED) {
+          if (elem['isWrapFeeRelated'] === 'Y' && elem['customerPromoStatus'] === PROMO_CODE_STATUS.APPLIED) {
             return elem;
           }
         });
@@ -165,7 +114,7 @@ export class PromoCodeService {
         }
       } else {
         // After successful applied, call wallet list api again to get latest list
-        this.navbarService.showPromoAppliedToast();
+        this.savePromoCode(promo);
       }
     }
   }
@@ -180,14 +129,24 @@ export class PromoCodeService {
   // API to update and overwrite existing wrap fee promo code
   // Change the status to applied
   savePromoCode(promo) {
+    console.log('CALLING SAVE PROMO CODE!!!!', promo)
+    const payload = {
+      promoCodeId: promo.promoCodeId
+    };
     this.navbarService.showPromoAppliedToast();
-    // Call api to pull latest wallet list
-    this.getPromoWallet();
+    // this.apiService.savePromoCode(payload).subscribe((data)=>{
+    //   // Success
+    //   if(data.responseMessage.responseCode > 6000) {
+    //     this.navbarService.showPromoAppliedToast();
+    //     // Call api to pull latest wallet list
+    //     this.getPromoWallet().subscribe();
+    //   }
+    // })
   }
 
   openOverwriteModal(existingPromo, newPromo) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    const transformDate = this.datePipe.transform(existingPromo['promoCodeEndDate'],'dd MMM y');
+    const transformDate = this.datePipe.transform(existingPromo['promoCodeEndDate'], 'dd MMM y');
     ref.componentInstance.errorTitle = '<p>You have an existing promo code applied with ' + existingPromo['wrapFeeDiscount'] * 100 + '% off Advisory Fee till ' + transformDate + '</p>Would you like to proceed?';
     ref.componentInstance.yesOrNoButton = 'Yes';
     ref.componentInstance.isInlineButton = true;
@@ -212,21 +171,21 @@ export class PromoCodeService {
       console.log('FETCHING PROMO LIST JSON')
       let url = PROMO_JSON_URL;
       return fetch(url)
-      .then((response) => {
-        this.promoJsonList = response.json();
-        return this.promoJsonList; 
-      })
-      .catch((error) => {
-        console.log('Fail to fetch JSON from S3, error is ', error);
-        this.getMockPromoListJson();
-      });
+        .then((response) => {
+          this.promoJsonList = response.json();
+          return this.promoJsonList;
+        })
+        .catch((error) => {
+          console.log('Fail to fetch JSON from S3, error is ', error);
+          this.getMockPromoListJson();
+        });
     }
   }
   // Fetch app backup copy incase of failure to fetch from S3
   getMockPromoListJson() {
-    fetch(PROMO_MOCK_JSON).then((data)=>{
+    fetch(PROMO_MOCK_JSON).then((data) => {
       this.promoJsonList = data.json();
-      return this.promoJsonList; 
+      return this.promoJsonList;
     });
   }
 }

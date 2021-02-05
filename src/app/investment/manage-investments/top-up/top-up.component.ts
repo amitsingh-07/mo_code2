@@ -25,6 +25,7 @@ import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.con
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../manage-investments.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
 import { environment } from './../../../../environments/environment';
+import { PromoCodeService } from './../../../promo-code/promo-code.service';
 
 @Component({
   selector: 'app-top-up',
@@ -68,7 +69,8 @@ export class TopUpComponent implements OnInit, OnDestroy {
     private investmentAccountService: InvestmentAccountService,
     private formatCurrencyPipe: FormatCurrencyPipe,
     private loaderService: LoaderService,
-    private investmentCommonService: InvestmentCommonService
+    private investmentCommonService: InvestmentCommonService,
+    private promoCodeService: PromoCodeService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -124,6 +126,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+    this.promoCodeService.removeAppliedPromo();
   }
   //  #get the SRS Details
   getSrsAccountDetails() {

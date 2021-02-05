@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 
@@ -20,10 +20,14 @@ export class PromoDetailsComponent implements OnInit {
   usedPromo: any;
   promoCodeStatus: any;
 
-  constructor(public activeModal: NgbActiveModal, private translate: TranslateService, private router: Router,
+  constructor(
+    public activeModal: NgbActiveModal,
+    public allModal: NgbModal,
+    private translate: TranslateService,
+    private router: Router,
     private promoSvc: PromoCodeService) {
-        this.translate.use('en');
-        }
+    this.translate.use('en');
+  }
 
   ngOnInit() {
     this.promoCodeStatus = PROMO_CODE_STATUS;
@@ -33,66 +37,16 @@ export class PromoDetailsComponent implements OnInit {
     console.log('USED = ', this.usedPromo)
 
     this.promoSvc.fetchPromoListJSON().then((data) => {
-      this.details = data.promoList.find(element => element['promoCode'] === this.selectedPromo['promoCode']);
-    } );
-    // let promoJSON = {
-    //   "promoList": [{
-    //       "promoCode": "MOSAF20",
-    //       "header": "Safra Member 20% Off",
-    //       "validity": "Valid until DD MTH YYYY",
-    //       "promoDesc": [{
-    //           "title": "Promotion",
-    //           "content": "Get 20% off Advisory Fee (usual 0.60%) when you top up $10,000 to any SRS portfolio."
-    //         },
-    //         {
-    //           "title": "How to redeem",
-    //           "content": "- Top up a minimum amount of $10,000<br>- Only applicable to Cash and SRS funded portfolios<br>- Not applicable to WiseSaver portfolio<br>- Applying on an existing promo will overwrite fees and changes are non-reversible."
-    //         },
-    //         {
-    //           "title": "How to receive",
-    //           "content": "Promotion fees will be reflected in your fees once the processing has been completed."
-    //         }
-    //       ]
-    //     },
-    //     {
-    //       "promoCode": "MOFP5V",
-    //       "header": "FairPrice Special 5% Off",
-    //       "validity": "Valid until DD MTH YYYY",
-    //       "promoDesc": [{
-    //           "title": "Promotion",
-    //           "content": "Get 20% off Advisory Fee (usual 0.60%) when you top up $10,000 to any SRS portfolio."
-    //         },
-    //         {
-    //           "title": "How to redeem",
-    //           "content": "- Top up a minimum amount of $10,000<br>- Only applicable to Cash and SRS funded portfolios<br>- Not applicable to WiseSaver portfolio<br>- Applying on an existing promo will overwrite fees and changes are non-reversible."
-    //         },
-    //         {
-    //           "title": "How to receive",
-    //           "content": "Promotion fees will be reflected in your fees once the processing has been completed."
-    //         }
-    //       ]
-    //     },
-    //     {
-    //       "promoCode": "MOINC20",
-    //       "header": "NTUC Income 20% Off",
-    //       "validity": "Valid until DD MTH YYYY",
-    //       "promoDesc": [{
-    //           "title": "Promotion",
-    //           "content": "Get 20% off Advisory Fee (usual 0.60%) when you top up $10,000 to any SRS portfolio."
-    //         },
-    //         {
-    //           "title": "How to redeem",
-    //           "content": "- Top up a minimum amount of $10,000<br>- Only applicable to Cash and SRS funded portfolios<br>- Not applicable to WiseSaver portfolio<br>- Applying on an existing promo will overwrite fees and changes are non-reversible."
-    //         },
-    //         {
-    //           "title": "How to receive",
-    //           "content": "Promotion fees will be reflected in your fees once the processing has been completed."
-    //         }
-    //       ]
-    //     }
-    //   ]
-    // };
-    // this.details = promoJSON.promoList.find(element => element.promoCode === this.selectedPromo.code);
+      this.details = data.promoList.find(element => {
+        if (this.selectedPromo['promoCode']) {
+          console.log('INSIDE IF')
+          return element['promoCode'] === this.selectedPromo['promoCode'];
+        } else {
+          console.log('INSIDE ELSE')
+          return element['promoCode'] === this.selectedPromo['code'];
+        }
+      });
+    });
   }
 
   close() {
@@ -104,7 +58,7 @@ export class PromoDetailsComponent implements OnInit {
     this.promoSvc.useSelectedPromo(this.selectedPromo, this.router.url);
     console.log('USING PROMO, ', this.selectedPromo)
     console.log('USING PROMO, ', this.router.url)
-    this.activeModal.dismiss();
+    this.allModal.dismissAll();
     e.preventDefault();
     e.stopPropagation();
   }
@@ -116,5 +70,5 @@ export class PromoDetailsComponent implements OnInit {
     this.activeModal.dismiss();
     e.preventDefault();
     e.stopPropagation();
-   }
+  }
 }
