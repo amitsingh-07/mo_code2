@@ -711,8 +711,8 @@ export class ManageInvestmentsService {
     this.manageInvestmentsFormData.userPortfolios.forEach(portfolio => {
       if (portfolio.entitlements && portfolio.entitlements.jointAccount) {
         investAndJointAccountList.push(portfolio);
-        isInvestAndJointAccountHolder = investAndJointAccountList.length > 0 ? true : false;
       }
+      isInvestAndJointAccountHolder = investAndJointAccountList.length > 0 ? true : false;
     });
     return isInvestAndJointAccountHolder;
   }

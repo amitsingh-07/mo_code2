@@ -16,13 +16,13 @@
         <div class="max-width col-lg-6 col-md-6">
           <!-- HOLIDAY AND OTHER IMPORTANT NOTE -->
           <app-notes category="withdraw" [noteInSession]="formValues?.investmentNote"></app-notes>
-          <div *ngIf="entitlements.jointAccount" class="joint_account">
+          <div *ngIf="entitlements.jointAccount || (isInvestAndJointAccountHolder && !isBankDetailsAvailable)"
+            class="joint_account">
             <img src="assets/images/alert-black.svg" />
-            <div class="joint_account-note" innerHTML="{{'WITHDRAW.JOINT_ACCOUNT_DESC' | translate}}"></div>
-          </div>
-          <div *ngIf="isInvestAndJointAccountHolder && !isBankDetailsAvailable" class="joint_account">
-            <img src="assets/images/alert-black.svg" />
-            <div class="joint_account-note" innerHTML="{{'WITHDRAW.PERSONAL_JOINT_ACCOUNT_DESC' | translate}}"></div>
+            <div *ngIf="entitlements.jointAccount" class="joint_account-note"
+              innerHTML="{{'WITHDRAW.JOINT_ACCOUNT_DESC' | translate}}"></div>
+            <div *ngIf="isInvestAndJointAccountHolder && !isBankDetailsAvailable" class="joint_account-note"
+              innerHTML="{{'WITHDRAW.PERSONAL_JOINT_ACCOUNT_DESC' | translate}}"></div>
           </div>
           <form id="withdraw_form" name="withdrawForm" [formGroup]="withdrawForm">
             <!-- PORTFOLIO -->

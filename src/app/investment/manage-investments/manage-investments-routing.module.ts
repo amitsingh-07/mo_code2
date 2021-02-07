@@ -90,8 +90,8 @@ const routes: Routes = [
   },
   {
     path: MANAGE_INVESTMENTS_ROUTES.FEES,
-    component: FeesComponent
-   // canActivate: [ManageInvestmentsGuard]
+    component: FeesComponent,
+    canActivate: [ManageInvestmentsGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }
 ];
