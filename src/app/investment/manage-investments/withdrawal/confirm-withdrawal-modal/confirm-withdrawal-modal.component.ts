@@ -35,11 +35,4 @@ export class ConfirmWithdrawalModalComponent implements OnInit {
   learnMore() {
     this.showLearnMore.emit();
   }
-  showNewMessageForRebalance(riskType) {
-    if (MANAGE_INVESTMENTS_CONSTANTS.REBALANCE_ADDITIONAL_MESSAGE.includes(riskType.toUpperCase())) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 }
