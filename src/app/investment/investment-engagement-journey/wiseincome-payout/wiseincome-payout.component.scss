@@ -1,0 +1,51 @@
+@import "../../../../_variables.scss";
+@import "../../../../_mixins.scss";
+
+app-wiseincome-payout {
+    .page-desc {
+        font-size: 18px;
+        line-height: 22px;
+        letter-spacing: -0.18px;
+        max-width: 340px;
+        @include allmobiles{
+            font-family: $muli-bold;
+            font-size: 24px;
+            letter-spacing: -0.25px;
+            text-align: center;
+            margin: 0 auto;
+        }
+    }
+    .fund-question {
+        font-family: $muli-bold;
+        font-size: 18px;
+        margin-bottom: 16px;
+        text-align: center;
+    }
+
+    .note-info {
+        font-size: 14px;
+        line-height: normal;
+        letter-spacing: -0.13px;
+        .note-icon {
+            width: 33px;
+            height: 32px;
+            display: flex;
+        }
+    }
+    .checkbox-button {
+        padding: 0;
+        .payout-icon {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+        label {
+            padding: 0.9rem 0.8rem;
+        }
+        input[type="radio"] + label {
+            padding: 0;
+            background-position-x: right;
+            display: flex;
+        }
+    }
+}
