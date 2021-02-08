@@ -35,10 +35,10 @@ export class HubspotService {
     }]);
     console.log("Phone Registered in Hubspot" + mobile);
   }
-  
+
   // Submitting Form Methods
   submitLogin(data: any) {
-    let url = environment.hsUrl.login 
+    let url = environment.hsUrl.login
     this.submitHSForm(url, data).subscribe((response) => {
       console.log(response);
       console.log("Login on HS sucessful");
@@ -46,11 +46,15 @@ export class HubspotService {
   }
 
   submitRegistration(data: any) {
-    let url = environment.hsUrl.registration 
-    this.submitHSForm(url, data).subscribe((response) => {
-      console.log(response);
-      console.log("Registration on HS sucessful");
-    });
+    try {
+      let url = environment.hsUrl.registration
+      this.submitHSForm(url, data).subscribe((response) => {
+        console.log(response);
+        console.log("Registration on HS sucessful");
+      });
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   //Submitting Hubspot Form Core Method

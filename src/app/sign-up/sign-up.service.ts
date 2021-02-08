@@ -52,7 +52,8 @@ export class SignUpService {
     private datePipe: DatePipe,
     public modal: NgbModal,
     public hubspotService: HubspotService,
-    private translate: TranslateService) {
+    private translate: TranslateService,
+    ) {
     this.getAccountInfo();
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.resetPasswordUrl = config.resetPasswordUrl;
