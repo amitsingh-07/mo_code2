@@ -297,9 +297,7 @@ export class SignUpService {
 
   setUserProfileInfo(userInfo) {
     this.userSubject.next(userInfo);
-    console.log(userInfo);
     this.signUpFormData.userProfileInfo = userInfo;
-    console.log(this.signUpFormData.userProfileInfo);
     this.commit();
   }
 
