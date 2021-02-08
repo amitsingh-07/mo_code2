@@ -39,6 +39,8 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
   queryParams: any;
   buttonTitle;
   updateId: any;
+  isEdit = true;
+
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
@@ -167,7 +169,8 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorTitle = error.title;
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
-    } else {
+    } else if(this.isEdit) {
+      this.isEdit = false;
       // tslint:disable-next-line:no-all-duplicated-branches
       if (this.addBank === 'true') {
         // Add Bank API Here
@@ -177,6 +180,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
         });
         this.manageInvestmentsService.saveProfileNewBank(form.getRawValue()).subscribe((response) => {
           this.loaderService.hideLoader();
+          this.isEdit = true;
           if (response.responseMessage.responseCode < 6000) {
             if (
               response.objectList &&
@@ -198,6 +202,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
           }
         },
           (err) => {
+            this.isEdit = true;
             this.loaderService.hideLoader();
             this.investmentAccountService.showGenericErrorModal();
           });
@@ -211,6 +216,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
         this.signUpService.updateBankInfoProfile(form.value.bank,
           form.value.accountHolderName, accountNum, this.updateId).subscribe((data) => {
             this.loaderService.hideLoader();
+            this.isEdit = true;
             // tslint:disable-next-line:triple-equals
             if (data.responseMessage.responseCode < 6000) {
               if (
@@ -233,6 +239,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
             }
           },
             (err) => {
+              this.isEdit = true;
               this.loaderService.hideLoader();
               this.investmentAccountService.showGenericErrorModal();
             });
