@@ -72,7 +72,7 @@
           </div>
         </div>
       </div>
-      <button type="button" [attr.disabled]="(addBankForm.valid == true) ? null : true" *ngIf="!bankDetails" (click)="save(addBankForm)" class="btn btn-primary-dark width100 mt5"
+      <button type="button" [attr.disabled]="((addBankForm.valid && addBankForm.dirty) == true) ? null : true" *ngIf="!bankDetails" (click)="save(addBankForm)" class="btn btn-primary-dark width100 mt5"
         id="incomeBtn">{{
         'LABEL.SAVE' | translate}}</button>
 
