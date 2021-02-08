@@ -45,6 +45,7 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
   private subscription: Subscription;
   isInvestAndJointAccountHolder;
+  isEdit = true;
 
   constructor(
     public readonly translate: TranslateService,
@@ -246,30 +247,35 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
     this.activeRef.componentInstance.fullName = this.fullName;
     this.activeRef.componentInstance.saved.subscribe((data) => {
       this.activeRef.close();
-      this.manageInvestmentsService.saveProfileNewBank(data).subscribe((response) => {
-        if (response.responseMessage.responseCode >= 6000) {
-          this.getUserBankList(); // refresh updated bank list
-        } else if (
-          response.objectList &&
-          response.objectList.serverStatus &&
-          response.objectList.serverStatus.errors &&
-          response.objectList.serverStatus.errors.length
-        ) {
-          this.showCustomErrorModal(
-            'Error!',
-            response.objectList.serverStatus.errors[0].msg + '('
-            + response.objectList.serverStatus.errors[0].code + ')'
-          );
-        } else if (response.responseMessage && response.responseMessage.responseDescription) {
-          const errorResponse = response.responseMessage.responseDescription;
-          this.showCustomErrorModal('Error!', errorResponse);
-        } else {
-          this.investmentAccountService.showGenericErrorModal();
-        }
-      },
-        (err) => {
-          this.investmentAccountService.showGenericErrorModal();
-        });
+      if (this.isEdit) {
+        this.isEdit = false;
+        this.manageInvestmentsService.saveProfileNewBank(data).subscribe((response) => {
+          this.isEdit = true;
+          if (response.responseMessage.responseCode >= 6000) {
+            this.getUserBankList(); // refresh updated bank list
+          } else if (
+            response.objectList &&
+            response.objectList.serverStatus &&
+            response.objectList.serverStatus.errors &&
+            response.objectList.serverStatus.errors.length
+          ) {
+            this.showCustomErrorModal(
+              'Error!',
+              response.objectList.serverStatus.errors[0].msg + '('
+              + response.objectList.serverStatus.errors[0].code + ')'
+            );
+          } else if (response.responseMessage && response.responseMessage.responseDescription) {
+            const errorResponse = response.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
+          } else {
+            this.investmentAccountService.showGenericErrorModal();
+          }
+        },
+          (err) => {
+            this.isEdit = true;
+            this.investmentAccountService.showGenericErrorModal();
+          });
+      }
     });
     this.dismissPopup(this.activeRef);
   }

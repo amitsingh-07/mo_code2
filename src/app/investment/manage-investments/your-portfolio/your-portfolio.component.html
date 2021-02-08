@@ -378,22 +378,21 @@
                           </div>
                         </div>
                         <div *ngIf="portfolio?.portfolioStatus === 'REBALANCING' && portfolioWithdrawRequests.length"
-                        class="rebalancing-info">
-                        <div class="mr15 info-icon"><img src="assets/images/investment-account/rebalance-info.svg" />
-                        </div>
-                        <div>
-                          <div>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.TITLE' | translate}}</div>
-                          <div class="txt-grey mt5">
-                            <span>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC' | translate}}</span>
-                            {{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC_ONE' | translate}}
-                          <div class="rebalance-message txt-orange" *ngIf="showNewMessageForRebalance(portfolio.riskProfile.type)"
-                          innerHTML="{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC_TWO' | translate}}"></div></div>
-                          <div class="txt-orange mt5"><a target="_blank"
-                              href="/faq-investment/#investment|1">{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.FAQ_LINK' | translate}}</a>
+                          class="rebalancing-info">
+                          <div class="mr15 info-icon"><img src="assets/images/investment-account/rebalance-info.svg" />
+                          </div>
+                          <div>
+                            <div>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.TITLE' | translate}}</div>
+                            <div class="txt-grey mt5">
+                              <span>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC' | translate}}</span>
+                              {{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC_ONE' | translate}}
+                           </div>
+                            <div class="txt-orange mt5"><a target="_blank"
+                                href="/app/faq#investment">{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.FAQ_LINK' | translate}}</a>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
                     </ng-template>
                   </ngb-panel>
                 </ngb-accordion>
