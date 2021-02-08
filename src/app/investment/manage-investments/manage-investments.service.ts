@@ -697,4 +697,23 @@ export class ManageInvestmentsService {
       this.manageInvestmentsFormData.TransferAll =null;
      this.commit();
   }
+  //
+  getWrapFeeDetails(customerId) {
+    const payload = {
+      customer_id: customerId,
+   };
+    return this.investmentApiService.getWrapFeeDetails(payload);
+  }
+  // User both person Investment and Joint Account
+  isInvestAndJointAccount() {
+    const investAndJointAccountList = [];
+    let isInvestAndJointAccountHolder = false;
+    this.manageInvestmentsFormData.userPortfolios.forEach(portfolio => {
+      if (portfolio.entitlements && portfolio.entitlements.jointAccount) {
+        investAndJointAccountList.push(portfolio);
+      }
+      isInvestAndJointAccountHolder = investAndJointAccountList.length > 0 ;
+    });
+    return isInvestAndJointAccountHolder;
+  }
 }

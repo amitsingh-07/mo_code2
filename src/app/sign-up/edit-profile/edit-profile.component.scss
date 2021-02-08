@@ -1,84 +1,84 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
-app-edit-profile{
- .container-fluid{
-  padding-top: 0px !important;
-  @include allmobiles {
-   padding-top: 60px !important;
-   padding-left: 0 !important;
-   padding-right: 0 !important;
+app-edit-profile {
+  .container-fluid {
+    padding-top: 0px !important;
+    @include allmobiles {
+      padding-top: 60px !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+    @include phablet {
+      padding-top: 60px !important;
+    }
   }
-  @include phablet{
-    padding-top: 60px !important;
-   }
- }
- .grass_bg_container{
-   width: 600px;
-   margin: 0 auto;
-   @include allmobiles{
-     width: 100%;
-   }
-   @include phablet{
-    width: 100%;
-   }
- }
-.grass_bg {
+  .grass_bg_container {
+    width: 600px;
+    margin: 0 auto;
+    @include allmobiles {
+      width: 100%;
+    }
+    @include phablet {
+      width: 100%;
+    }
+  }
+  .grass_bg {
     width: 100%;
     height: 100%;
     object-fit: contain;
   }
-  .user-profile-bg{
-    background:$white-color;
+  .user-profile-bg {
+    background: $white-color;
     border-radius: 8px;
     padding: 26px 23px;
     margin: 23px 16px;
     position: relative;
     box-shadow: 0 12px 14px 2px $btn-proceed-shadow-color;
-    @include max360{
+    @include max360 {
       padding: 26px 16px;
     }
-}
-.overlap-grass{
-  margin-top: -100px;
-  .seperator{
-    border-right: 0.5px solid $dark-teal-color;
-    height: 28px;
-    width: 2px;
-    margin: 10px 30px;
-    @include allmobiles{
-      margin: 10px 5px 0;
-    }
-    @include phablet{
-      margin: 10px 5px 0;
+  }
+  .overlap-grass {
+    margin-top: -100px;
+    .seperator {
+      border-right: 0.5px solid $dark-teal-color;
+      height: 28px;
+      width: 2px;
+      margin: 10px 30px;
+      @include allmobiles {
+        margin: 10px 5px 0;
+      }
+      @include phablet {
+        margin: 10px 5px 0;
+      }
     }
   }
-}
-  .edit-profile-section-bg{
-      background: $white-color;
-      border-radius: 8px;
-      margin: 23px 19px;
-      .flex-row{
-        padding: 20px 17px;
-        .flex-col-1{
-          display: flex;
-          justify-content: flex-end;
-        }
-        &.cursor_pointer {
-          cursor: pointer;
-        }
+  .edit-profile-section-bg {
+    background: $white-color;
+    border-radius: 8px;
+    margin: 23px 19px;
+    .flex-row {
+      padding: 20px 17px;
+      .flex-col-1 {
+        display: flex;
+        justify-content: flex-end;
       }
-      .dots{
-        background-color: $edit-card-bg; 
-        padding: 0 10px;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-        margin: 0;
-        .flex-row{
-          padding: 0;
-        }
+      &.cursor_pointer {
+        cursor: pointer;
       }
+    }
+    .dots {
+      background-color: $edit-card-bg;
+      padding: 0 10px;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      margin: 0;
+      .flex-row {
+        padding: 0;
+      }
+    }
   }
-  .heading{
+  .heading {
     font-family: $muli-bold;
     font-size: 22px;
     line-height: 1.36;
@@ -88,29 +88,29 @@ app-edit-profile{
     margin-top: 9px;
     word-wrap: break-word;
   }
-  .grid-wrapper-block{
+  .grid-wrapper-block {
     justify-content: center;
-    @include allmobiles{
+    @include allmobiles {
       justify-content: space-between;
     }
-    @include phablet{
+    @include phablet {
       justify-content: space-between;
     }
-    .grid-wrapper{
+    .grid-wrapper {
       @extend .flex;
       flex-direction: column;
       align-items: flex-start;
-      @include allmobiles{
+      @include allmobiles {
         flex-direction: column;
         align-items: flex-start;
       }
-      @include phablet{
+      @include phablet {
         flex-direction: column;
         align-items: flex-start;
       }
     }
   }
-  .content-text{
+  .content-text {
     opacity: 0.95;
     font-family: $muli-light;
     font-size: 14px;
@@ -119,11 +119,11 @@ app-edit-profile{
     letter-spacing: -0.3px;
     color: $post-login-widget-title;
     padding-right: 5px;
-    @include allmobiles{
+    @include allmobiles {
       padding-right: 0;
     }
   }
-  .nric-text{
+  .nric-text {
     opacity: 0.95;
     font-family: $muli-light;
     font-size: 14px;
@@ -134,14 +134,14 @@ app-edit-profile{
     color: $post-login-widget-title;
     padding-bottom: 14px;
   }
-  .grid-content-text{
+  .grid-content-text {
     font-family: $muli-semi-bold;
     font-size: 18px;
     font-weight: 600;
     line-height: 1.33;
     letter-spacing: -0.2px;
     color: $dark-teal-color;
-    @include iphone6{
+    @include iphone6 {
       font-size: 16px;
     }
   }
@@ -157,16 +157,16 @@ app-edit-profile{
     height: 10px;
     border: none;
   }
-  .update-contact-title{
-      opacity: 0.95;
-      font-family: $muli-regular;
-      font-size: 16px;
-      line-height: 1.5;
-      letter-spacing: -0.3px;
-      color: $review-block-bg;
+  .update-contact-title {
+    opacity: 0.95;
+    font-family: $muli-regular;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.3px;
+    color: $review-block-bg;
   }
-  .update-contact-value{
-    font-family:  $muli-semi-bold;
+  .update-contact-value {
+    font-family: $muli-semi-bold;
     font-size: 18px;
     font-weight: 600;
     line-height: 24px;
@@ -174,21 +174,21 @@ app-edit-profile{
     color: $dark-teal-color;
     word-wrap: break-word;
   }
-  .section-margin{
-   padding: 13px 10px 0;
+  .section-margin {
+    padding: 13px 10px 0;
   }
-  .mailing-address{
+  .mailing-address {
     height: 66px;
     border-radius: 6px;
     background-color: $btn-primary-backgrnd-color;
     margin: 20px 0px 10px;
-    .flex-col{
+    .flex-col {
       justify-content: center;
       font-weight: normal;
       line-height: normal;
       letter-spacing: -0.3px;
       font-size: 16px;
-      div:first-child{
+      div:first-child {
         font-family: $muli-semi-bold;
         font-size: 18px;
         font-weight: 600;
@@ -196,24 +196,24 @@ app-edit-profile{
     }
   }
   .edit-button {
-    display:inline-flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 57px;
     border-radius: 6px;
     box-shadow: 0 6px 7px 0 $btn-shadow-color;
-    background-color:$white-color;
+    background-color: $white-color;
     border: 1px solid $teal-color;
     margin-top: 15px;
     font-family: $muli-bold;
     font-size: 22px;
     letter-spacing: -0.3px;
     text-align: center;
-    color:$teal-color;
+    color: $teal-color;
     margin-bottom: 21px;
-    .lock{
-      display:inline-block;
+    .lock {
+      display: inline-block;
       margin-left: 10px;
       margin-top: 2px;
     }
@@ -221,40 +221,40 @@ app-edit-profile{
       color: #c1eaea;
       border: solid 1px #bfe9e9;
       cursor: not-allowed;
-      .lock{
-        opacity:0.30;
+      .lock {
+        opacity: 0.3;
       }
     }
-    
   }
-  .bank-account{
+  .bank-account {
     font-family: $muli-regular;
     font-size: 16px;
     font-weight: 300;
     letter-spacing: -0.3px;
     color: $dark-teal-color;
   }
-  .bank-account-num{
-    font-family:$muli-semi-bold;
+  .bank-account-num {
+    font-family: $muli-semi-bold;
     font-size: 16px;
     font-weight: 600;
     letter-spacing: -0.3px;
     text-align: right;
     color: $teal-color;
   }
-  .bank_details, .srs_details{
-    .dots{
-      .flex-row{
+  .bank_details,
+  .srs_details {
+    .dots {
+      .flex-row {
         padding: 16px 10px 0;
       }
-      .no-details{
-        .flex-row{
+      .no-details {
+        .flex-row {
           padding: 0;
         }
       }
     }
   }
-  .circle{
+  .circle {
     height: 86px;
     width: 86px;
     background-color: $teal-color;
@@ -263,18 +263,18 @@ app-edit-profile{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin:0px auto;
+    margin: 0px auto;
     margin-top: -60px;
     font-size: 24px;
     font-family: $muli-bold;
     font-weight: 600;
     letter-spacing: -0.25px;
   }
-  .chk-box-img{
+  .chk-box-img {
     margin: 18px 15px;
   }
   .mailing-address-text {
-    font-family:  $muli-bold;
+    font-family: $muli-bold;
     font-size: 18px;
     letter-spacing: -0.3px;
     color: $mailing-address-text-color;
@@ -283,9 +283,9 @@ app-edit-profile{
     margin-bottom: 10px;
   }
   .arrow {
-    display:block;
+    display: block;
     border-style: solid;
-    border-color:$teal-color;
+    border-color: $teal-color;
     border-width: 0 0 2px 2px;
     width: 10px;
     height: 10px;
@@ -295,23 +295,35 @@ app-edit-profile{
     -ms-transform: rotate(-45deg);
     -o-transform: rotate(-45deg);
     transform: rotate(-45deg);
-    float:right;
-    margin-top:6px;
-}
-.arrow.active {
-  -webkit-transform: rotate(135deg);
-  -ms-transform: rotate(135deg);
-  -o-transform: rotate(135deg);
-  transform: rotate(135deg);
-  margin-top:10px;
-}
-.no-bank-account, .no-srs-account{
-  font-family: $muli-italic;
-  font-size: 16px;
-  font-style: italic;
-  letter-spacing: -0.3px;
-  text-align: center;
-  color: $no-bank-account-color;
-  margin: 50px 30px 30px 30px;
-}
+    float: right;
+    margin-top: 6px;
+  }
+  .arrow.active {
+    -webkit-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);
+    margin-top: 10px;
+  }
+  .no-bank-account,
+  .no-srs-account {
+    font-family: $muli-italic;
+    font-size: 16px;
+    font-style: italic;
+    letter-spacing: -0.3px;
+    text-align: center;
+    color: $no-bank-account-color;
+    margin: 50px 30px 10px 30px;
+  }
+  .joint-account-desc {
+    font-family: $muli-italic;
+    font-size: 14px;
+    letter-spacing: -0.26px;
+    color: $silver-grey-color;
+    padding: 16px 10px 20px;
+    a {
+      font-family: $muli-bold-italic;
+      color: $crusta-orange-color;
+    }
+  }
 }

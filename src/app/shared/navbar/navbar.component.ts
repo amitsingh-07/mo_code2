@@ -31,6 +31,7 @@ import { INavbarConfig } from './config/navbar.config.interface';
 import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
 import { SessionsService } from '../Services/sessions/sessions.service';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
 
 @Component({
   selector: 'app-navbar',
@@ -535,4 +536,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.showContactUs = MenuConfig.aboutUs.showContactUs;
     this.showFAQs = MenuConfig.aboutUs.showFAQs;
   }
+
+  goToWrapFeeDetails() {
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.FEES]);
+  }
+
 }
