@@ -42,7 +42,7 @@
                   <div class="user_portfolio_ref_code">{{'YOUR_INVESTMENT.REF_CODE' | translate}}
                     {{portfolio.referenceCode}}</div>
                   <div class="user_portfolio_lbl">{{portfolio.portfolioName}}</div>
-                  <div class="joint-account" [ngClass]="{'text-overflow': isExpand}" (click)="isExpandToggle()" *ngIf="portfolio.entitlements.jointAccount"><span *ngIf="portfolio.isPrimaryHolder">Primary holder</span><span *ngIf="!portfolio.isPrimaryHolder">Secondary holder</span> | <img src="assets/images/investment-account/joint-account.svg" />Joint<br> Account with <span *ngIf="portfolio.isPrimaryHolder">{{portfolio.secondaryHolderName}}</span><span *ngIf="!portfolio.isPrimaryHolder">{{portfolio.primaryHolderName}}</span></div>
+                  <div class="joint-account" [ngClass]="{'text-overflow': isExpand}" (click)="isExpandToggle()" *ngIf="portfolio.entitlements.jointAccount"><span *ngIf="portfolio.isPrimaryHolder"> {{'YOUR_PORTFOLIO.JOINT_ACCOUNT.PRIMARY_HOLDER' | translate}}</span><span *ngIf="!portfolio.isPrimaryHolder">{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.SECONDARY_HOLDER' | translate}}</span> | <img src="assets/images/investment-account/joint-account.svg" class="ja-icon" />{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.JOINT' | translate}} <br class="hidden-lg"> {{'YOUR_PORTFOLIO.JOINT_ACCOUNT.ACCOUNT_WITH' | translate}} <span *ngIf="portfolio.isPrimaryHolder">{{portfolio.secondaryHolderName | titlecase}}</span><span *ngIf="!portfolio.isPrimaryHolder">{{portfolio.primaryHolderName | titlecase}}</span></div>
                   <div class="flex-row space-between">
                     <div class="portfolio-type flex align-center">
                       <span *ngIf="portfolio?.fundingTypeValue === 'SRS'"

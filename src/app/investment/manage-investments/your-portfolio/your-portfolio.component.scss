@@ -956,6 +956,11 @@ app-your-portfolio {
     @include allmobiles {
       max-width: 200px;
     }
+    .ja-icon {
+      position: relative;
+      top: -2px;
+      padding-right: 2px;
+    }
   }
   .text-overflow {
     @include allmobiles {

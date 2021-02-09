@@ -217,7 +217,14 @@
     "PORTFOLIO_TO_BANK_ACCOUNT": "Portfolio to Bank Account",
     "PORTFOLIO_TO_CASH_ACCOUNT": "Portfolio to Cash Account",
     "PORTFOLIO_TO_SRS_ACCOUNT": "Portfolio to SRS Account",
-    "CASH_ACCOUNT_TO_BANK_ACCOUNT": "Cash Account to Bank Account"
+    "CASH_ACCOUNT_TO_BANK_ACCOUNT": "Cash Account to Bank Account",
+    "JOINT_ACCOUNT": {
+      "PRIMARY_HOLDER": "Primary holder",
+      "SECONDADRY_HOLDER": "Secondary holder",
+      "JOINT": "Joint",
+      "ACCOUNT_WITH" : "Account with"
+    }
+
   },
   "WITHDRAW": {
     "TITLE": "Withdrawal",
