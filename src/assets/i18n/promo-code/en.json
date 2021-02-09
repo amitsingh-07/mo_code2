@@ -33,5 +33,9 @@
     "OVERWRITE_TXT_1": "<p>You have an existing promo code applied with ",
     "OVERWRITE_TXT_2": "% off Advisory Fee till ",
     "OVERWRITE_TXT_3": "</p>Would you like to proceed?"
+  },
+  "PROMO_CODE_ERROR": {
+    "ERR_TITLE": "Error",
+    "ERR_MSG": "Error Applying Promo Code"
   }
 }

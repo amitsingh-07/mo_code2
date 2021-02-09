@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 
 import { appConstants } from '../app.constants';
 import { ApiService } from '../shared/http/api.service';
@@ -26,7 +27,8 @@ export class PromoCodeService {
     private apiService: ApiService,
     private navbarService: NavbarService,
     private modal: NgbModal,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    public translate: TranslateService
   ) { }
 
   setAppliedPromo(promo) {
@@ -45,7 +47,7 @@ export class PromoCodeService {
   // API to get the list of promo codes for the user
   getPromoWallet() {
     const payload = {
-      customerPromoCodeStatus: PROMO_CODE_STATUS.NOT_IN_USE.concat(',',PROMO_CODE_STATUS.PROCESSING).concat(',',PROMO_CODE_STATUS.APPLIED),
+      customerPromoCodeStatus: PROMO_CODE_STATUS.NOT_IN_USE.concat(',',PROMO_CODE_STATUS.PROCESSING).concat(',',PROMO_CODE_STATUS.APPLIED).concat(',',PROMO_CODE_STATUS.EXPIRED),
       promoCodeCategory: appConstants.INVESTMENT_PROMO_CODE_TYPE
     };
     return this.apiService.getCustomerInvestmentPromoCode(payload);
@@ -99,7 +101,9 @@ export class PromoCodeService {
   openOverwriteModal(existingPromo, newPromo) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     const transformDate = this.datePipe.transform(existingPromo['promoCodeEndDate'], 'dd MMM y');
-    ref.componentInstance.errorTitle = '<p>You have an existing promo code applied with ' + existingPromo['wrapFeeDiscount'] * 100 + '% off Advisory Fee till ' + transformDate + '</p>Would you like to proceed?';
+    ref.componentInstance.errorTitle = this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_1') 
+    + existingPromo['wrapFeeDiscount'] * 100 + this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_2') 
+    + transformDate +  this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_3');
     ref.componentInstance.yesOrNoButton = 'Yes';
     ref.componentInstance.isInlineButton = true;
     ref.componentInstance.yesClickAction.subscribe(() => {
@@ -114,8 +118,8 @@ export class PromoCodeService {
 
   openErrorModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = 'Error';
-    ref.componentInstance.errorMessage = 'Error Applying Promo Code';
+    ref.componentInstance.errorTitle = this.translate.instant('PROMO_CODE_ERROR.ERR_TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('PROMO_CODE_ERROR.ERR_MSG');
   }
 
   // Fetch promo list json
