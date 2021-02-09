@@ -949,6 +949,32 @@ app-your-portfolio {
       padding-top: 15px;
     }
   }
+  .joint-account {
+    color: #e7e7e7;
+    font-size: 12px;
+    font-family: $muli-regular;
+    @include allmobiles {
+      max-width: 200px;
+    }
+    .ja-icon {
+      position: relative;
+      top: -2px;
+      padding-right: 2px;
+    }
+    .ja-web {
+      display: inline-block;
+    }
+  }
+  .text-overflow {
+    @include allmobiles {
+      display:inline-block;
+      width:157px;
+      white-space: nowrap;
+      overflow:hidden !important;
+      text-overflow: ellipsis;
+    }
+  }
+
 }
 .modal-body {
   width: 500px;
