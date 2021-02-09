@@ -231,6 +231,6 @@ export class NavbarService {
   }
 
   setMenuItemInvestUser(isVisible: boolean) {
-   this.menuItemInvestUser.next(isVisible);
+    this.menuItemInvestUser.next(isVisible);
   }
 }

@@ -318,8 +318,7 @@ export class SignUpService {
     if (window.sessionStorage) {
       sessionStorage.setItem(FINLITENABLED, data);
     }
-  } 
-
+  }
   getEmail() {
     return sessionStorage.getItem(EMAIL);
   }

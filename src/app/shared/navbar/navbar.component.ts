@@ -154,8 +154,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.isComprehensiveEnabled = moduleConfig.comprehensiveEnabled;
       this.isRetirementPlanningEnabled = moduleConfig.retirementPlanningEnabled;
       this.isComprehensiveLiveEnabled = moduleConfig.comprehensiveLiveEnabled;
-    });
-   
+    });   
 
     // User Information Check Authentication
     this.userInfo = this.signUpService.getUserProfileInfo();
