@@ -15,6 +15,7 @@ import { WithdrawalComponent } from './withdrawal/withdrawal.component';
 import { YourPortfolioComponent } from './your-portfolio/your-portfolio.component';
 import { TransferComponent } from './transfer/transfer.component';
 import { TransferStatusComponent } from './transfer-status/transfer-status.component';
+import { FeesComponent } from './fees/fees.component';
 
 const routes: Routes = [
   {
@@ -85,6 +86,11 @@ const routes: Routes = [
   {
     path: MANAGE_INVESTMENTS_ROUTES.TRANSFER_SUCCESS,
     component: TransferStatusComponent,
+    canActivate: [ManageInvestmentsGuard]
+  },
+  {
+    path: MANAGE_INVESTMENTS_ROUTES.FEES,
+    component: FeesComponent,
     canActivate: [ManageInvestmentsGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }

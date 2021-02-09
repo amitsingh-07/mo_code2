@@ -44,6 +44,7 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
   activeRef: any;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
   private subscription: Subscription;
+  isInvestAndJointAccountHolder;
   isEdit = true;
 
   constructor(
@@ -73,7 +74,7 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.userInfo = this.signUpService.getUserProfileInfo();
     this.fullName = this.userInfo.fullName ? this.userInfo.fullName : this.userInfo.firstName + ' ' + this.userInfo.lastName;
-
+    this.isInvestAndJointAccountHolder = this.manageInvestmentsService.isInvestAndJointAccount();
     this.signUpService.getEditProfileInfo()
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((data) => {
@@ -235,6 +236,7 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
       this.authService.set2faVerifyAllowed(true);
       this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_2FA], { skipLocationChange: true });
     }
+
   }
 
   showNewBankFormModal() {
