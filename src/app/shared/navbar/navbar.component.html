@@ -81,7 +81,7 @@
           <a class="navbar--text" href="javascript: void(0);">Profile</a>
         </li>
         <li  *ngIf="isLoggedIn && showMenuItemInvestUser" class="nav-item hidden-lg" (click)="goToWrapFeeDetails()">
-          <a class="navbar--text" href="javascript: void(0);">Fees {{showMenuItemInvestUser}}</a>
+          <a class="navbar--text" href="javascript: void(0);">Fees</a>
         </li>
         <li *ngIf="isLoggedIn && showMenuItemInvestUser" class="nav-item hidden-lg">
           <a class="navbar--text" href="javascript: void(0);">Add Investment Promo Code</a>
@@ -239,7 +239,7 @@
               <a class="navbar--text" href="javascript: void(0);">Profile</a>
             </button>
             <button  *ngIf="showMenuItemInvestUser" class="dropdown-item"  (click)="goToWrapFeeDetails()">
-              <a class="navbar--text" href="javascript: void(0);">Fees {{showMenuItemInvestUser}}</a>
+              <a class="navbar--text" href="javascript: void(0);">Fees</a>
             </button>
             <button class="dropdown-item" *ngIf="showMenuItemInvestUser">
               <a class="navbar--text" href="javascript: void(0);">Add Investment Promo Code</a>

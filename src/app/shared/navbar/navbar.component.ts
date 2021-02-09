@@ -202,9 +202,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    if(this.signUpService.getIsInvestmentFee()){
-      this.showMenuItemInvestUser = true;
-    }
     this.hideMenu();
     this.notificationLimit = SIGN_UP_CONFIG.NOTIFICATION_MAX_LIMIT;
     this.innerWidth = window.innerWidth;
@@ -251,8 +248,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
 
     this.navbarService.menuItemInvestUserEvent.subscribe((investUser) => {
-     this.showMenuItemInvestUser = investUser});
-    
+     this.showMenuItemInvestUser = investUser;
+    });
     
   }
 
@@ -465,6 +462,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   clearLoginDetails(isRedirect: boolean = true) {
     this.signUpService.setUserProfileInfo(null);
     this.isLoggedIn = false;
+    this.showMenuItemInvestUser = false;
     this.sessionsService.destroyInstance();
     this.authService.clearAuthDetails();
     this.authService.clearSession();
