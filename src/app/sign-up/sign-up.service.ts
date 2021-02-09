@@ -30,6 +30,7 @@ const FROM_LOGIN_PAGE = 'from_login_page';
 const CAPTACHA_COUNT = 'captcha_count';
 const EMAIL = 'email'
 const FINLITENABLED = 'finlitenabled';
+const INVESTMENT_FEE = 'is_investment_fee'
 
 @Injectable({
   providedIn: 'root'
@@ -318,7 +319,19 @@ export class SignUpService {
     if (window.sessionStorage) {
       sessionStorage.setItem(FINLITENABLED, data);
     }
+  } 
+
+  // INVESTMENT FEE DETAILS
+  getIsInvestmentFee() {
+    return sessionStorage.getItem(INVESTMENT_FEE);
   }
+  setIsInvestmentFee(data) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(INVESTMENT_FEE, data);
+    }
+    this.commit();
+   }
+
   getEmail() {
     return sessionStorage.getItem(EMAIL);
   }

@@ -155,6 +155,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.isRetirementPlanningEnabled = moduleConfig.retirementPlanningEnabled;
       this.isComprehensiveLiveEnabled = moduleConfig.comprehensiveLiveEnabled;
     });
+   
 
     // User Information Check Authentication
     this.userInfo = this.signUpService.getUserProfileInfo();
@@ -201,6 +202,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    if(this.signUpService.getIsInvestmentFee()){
+      this.showMenuItemInvestUser = true;
+    }
     this.hideMenu();
     this.notificationLimit = SIGN_UP_CONFIG.NOTIFICATION_MAX_LIMIT;
     this.innerWidth = window.innerWidth;
@@ -246,7 +250,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       }
     });
 
-    this.navbarService.menuItemInvestUserEvent.subscribe((showMenuItemInvestUser) => this.showMenuItemInvestUser = showMenuItemInvestUser);
+    this.navbarService.menuItemInvestUserEvent.subscribe((investUser) => {
+     this.showMenuItemInvestUser = investUser});
+    
+    
   }
 
   ngAfterViewInit() {
@@ -317,7 +324,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.showNotifications = config.showNotifications;
     this.showHeaderNavbar = config.showHeaderNavbar;
     this.showNotificationClear = false;
-    this.showMenuItemInvestUser =false;
     this.showLabel = config.showLabel ? config.showLabel : false;
   }
 
