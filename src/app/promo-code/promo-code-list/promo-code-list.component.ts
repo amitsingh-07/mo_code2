@@ -21,9 +21,7 @@ export class PromoCodeListComponent implements OnInit {
   showClearBtn: boolean = false;
   showSpinner: boolean = false;
   promoCodeValidated: boolean = false;
-
   showError: boolean = false;
-
   promoArray = [];
   promoCodeStatus: any;
 
@@ -44,12 +42,16 @@ export class PromoCodeListComponent implements OnInit {
     this.promoSvc.getPromoWallet().subscribe((response)=> {
       if (response && response['objectList']) {
         this.promoArray = response['objectList'];
-        this.promoSvc.promoCodeWalletList = response['objectList'];
+        this.promoSvc.promoCodeWalletList.next(response['objectList']);
       } 
       // Error
     });
     // Fetch the promo list json
     this.promoSvc.fetchPromoListJSON();
+    // Set the new promo list when any changes to the promo wallet
+    this.promoSvc.promoWalletObservable.subscribe((data)=>{
+      this.promoArray = data;
+    });
   }
 
   onKeyupEvent(event) {
@@ -65,7 +67,7 @@ export class PromoCodeListComponent implements OnInit {
   }
 
   applyPromoCode(event) {
-    if (this.formGrp.controls['promoCode'].value) {
+    if (this.formGrp.controls['promoCode'].value.length > 5) {
       // Show the spinner
       this.formGrp.controls['promoCode'].setErrors(null);
       this.showClearBtn = false;

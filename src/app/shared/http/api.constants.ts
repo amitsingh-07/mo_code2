@@ -117,7 +117,7 @@ export let apiConstants = {
         promoCode: {
             getCustomerInvestmentPromoCode: ACCOUNT_API_BASE_URL + '/promocode/getCustomerInvestmentPromoCode',
             validateInvestPromoCode: ACCOUNT_API_BASE_URL + '/promocode/validateInvestmentPromoCode?handleError=true',
-            savePromoCode: ACCOUNT_API_BASE_URL + '/promocode/savePromoCode',
+            saveCustomerPromoCode: ACCOUNT_API_BASE_URL + '/promocode/saveCustomerPromoCode',
         }
     }
 };

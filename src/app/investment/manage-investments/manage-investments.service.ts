@@ -30,6 +30,7 @@ import { ManageInvestmentsFormError } from './manage-investments-form-error';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './manage-investments-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from './manage-investments.constants';
 import { TopUPFormError } from './top-up/top-up-form-error';
+import { PromoCodeService } from '../../promo-code/promo-code.service';
 
 const SESSION_STORAGE_KEY = 'app_withdraw-session';
 
@@ -62,7 +63,8 @@ export class ManageInvestmentsService {
     private investmentAccountService: InvestmentAccountService,
     private router: Router,
     private modal: NgbModal,
-    private signUpService: SignUpService
+    private signUpService: SignUpService,
+    private promoCodeService: PromoCodeService
   ) {
     this.getAllDropDownList();
     this.getTopUpFormData();
@@ -346,7 +348,8 @@ export class ManageInvestmentsService {
     let oneTimeInvestment: number;
     oneTimeInvestment = data.oneTimeInvestment;
     return {
-      investmentAmount: Number(oneTimeInvestment) // todo
+      investmentAmount: Number(oneTimeInvestment), // todo
+      promoCodeId: this.promoCodeService.usedPromo.getValue()['id']
     };
   }
 
@@ -360,7 +363,8 @@ export class ManageInvestmentsService {
     let monthlyInvestmentAmount: number;
     monthlyInvestmentAmount = data.monthlyInvestment;
     return {
-      monthlyInvestmentAmount: Number(monthlyInvestmentAmount)
+      monthlyInvestmentAmount: Number(monthlyInvestmentAmount),
+      promoCodeId: this.promoCodeService.usedPromo.getValue()['id']
     };
   }
   getTransactionHistory(id) { 

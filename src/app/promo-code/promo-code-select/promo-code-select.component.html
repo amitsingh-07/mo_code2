@@ -1,13 +1,13 @@
-<div class="input-box">
+<div class="input-box" (click)="openPromoListOrDetails($event)">
   <ng-container *ngIf="usedPromo && usedPromo?.shortDescription; else showPlaceholder">
     <div>
       <img id="green-tick" src="assets/images/icon-form-tick.svg" />
-      <span class="promo-display" (click)="openPromoDetails($event)">{{usedPromo?.shortDescription}}</span>
+      <span class="promo-display">{{usedPromo?.shortDescription}}</span>
     </div>
     <div class="remove-btn" (click)="removePromoCode($event)">{{'PROMO_CODE_SELECT.REMOVE_BTN' | translate}}</div>
   </ng-container>
   <ng-template #showPlaceholder>
-    <span class="promo-placeholder" (click)="openPromoList($event)">{{'PROMO_CODE_SELECT.HAVE_PROMO' | translate}}</span>
+    <span class="promo-placeholder">{{'PROMO_CODE_SELECT.HAVE_PROMO' | translate}}</span>
   </ng-template>
 </div>
 <div *ngIf="showError" class="promo-error">

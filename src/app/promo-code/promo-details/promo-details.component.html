@@ -7,7 +7,7 @@
   <div class="modal-body-message">
     <div>
       <div class="promo-title">{{details?.header}}</div>
-      <div class="validity-txt mt5">{{details?.validity}}</div>
+      <div class="validity-txt mt5">{{'PROMO_CODE_DETAILS.VAlID_UNTIL' | translate}}{{selectedPromo?.promoCodeEndDate || selectedPromo?.endDate | date:'dd MMM y'}}</div>
       <div *ngFor="let promo of details?.promoDesc" class="content-div mt20">
         <div class="mb30">
           <p [innerHTML]="promo.title" class="sub-header"></p>

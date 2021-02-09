@@ -13,6 +13,7 @@ app-promo-code-select {
     justify-content: space-between;
     align-items: center;
     background-color: $white-color;
+    cursor: pointer;
 
     .promo-placeholder {
       font-family: $muli-regular;
@@ -20,7 +21,6 @@ app-promo-code-select {
       line-height: 1.25;
       letter-spacing: -0.16px;
       color: $dusty-grey-color;
-      cursor: pointer;
     }
 
     .promo-display {
@@ -29,7 +29,6 @@ app-promo-code-select {
       line-height: normal;
       letter-spacing: -0.3px;
       color: $teal-color;
-      cursor: pointer;
     }
 
     img {

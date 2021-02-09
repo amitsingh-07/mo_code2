@@ -672,8 +672,8 @@ export class ApiService {
       );
   }
 
-  savePromoCode(payload) {
-    return this.http.post(apiConstants.endpoint.promoCode.savePromoCode, payload)
+  saveCustomerPromoCode(payload) {
+    return this.http.post(apiConstants.endpoint.promoCode.saveCustomerPromoCode, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

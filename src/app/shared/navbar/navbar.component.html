@@ -127,7 +127,7 @@
           (click)="checkCurrentRouteAndNavigate('/promotions')">
           <a class="nav-link">Promotions</a>
         </li>
-        <li *ngIf="showMenu" class="nav-item"
+        <li *ngIf="showMenu && showMenuItemInvestUser" class="nav-item"
           (click)="checkCurrentRouteAndNavigate('/promo-code')">
           <a class="nav-link">Investment Promo Codes</a>
         </li>
@@ -245,7 +245,7 @@
             <button class="dropdown-item" *ngIf="showMenuItemInvestUser">
               <a class="navbar--text" href="javascript: void(0);">Fees</a>
             </button>
-            <button class="dropdown-item" *ngIf="showMenuItemInvestUser" (click)="checkCurrentRouteAndNavigate('/promo-code')">
+            <button class="dropdown-item"  (click)="checkCurrentRouteAndNavigate('/promo-code')">
               <a class="navbar--text" href="javascript: void(0);">Add Investment Promo Code</a>
             </button>
             <button class="dropdown-item logout-menu-item" (click)="logout()">

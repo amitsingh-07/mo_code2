@@ -24,7 +24,14 @@
   },
   "PROMO_CODE_DETAILS": {
     "PROMO_DETAILS": "Promotion Details",
+    "VAlID_UNTIL": "Valid until ",
+    "APPLIED_ON": "Applied on ",
     "REMOVE_PROMO": "Remove Promo",
     "USE_PROMO": "Use Promo"
+  },
+  "PROMO_CODE_OVERWRITE": {
+    "OVERWRITE_TXT_1": "<p>You have an existing promo code applied with ",
+    "OVERWRITE_TXT_2": "% off Advisory Fee till ",
+    "OVERWRITE_TXT_3": "</p>Would you like to proceed?"
   }
 }

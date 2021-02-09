@@ -4,10 +4,10 @@
       <div class="flex-row gray-bg">
         <span class="add-promo">{{'PROMO_CODE_LIST.ADD_PROMO' | translate}}</span>
         <div class="form-group-floating-label input-container" [ngClass]="{'inline-error': showError}">
-          <input type="text" id="promoInpt" formControlName="promoCode" (keyup)="onKeyupEvent($event)" autocomplete="off" class="form-control" required>
+          <input type="text" id="promoInpt" formControlName="promoCode" (keyup)="onKeyupEvent($event)" autocomplete="off" class="form-control" required [readonly]="showSpinner">
           <label class="form-control-placeholder" for="promoCode">{{'PROMO_CODE_LIST.ENTER_PROMO' | translate}}</label>
           <img id="cross-btn" *ngIf="showClearBtn && !promoCodeValidated" (click)="clearPromoCode($event)" src="assets/images/button-clear-txt.svg" />
-          <div *ngIf="!promoCodeValidated && !showSpinner" class="apply-container" (click)="applyPromoCode($event)" [ngStyle]="{'background-color': showClearBtn? '#ff872f' : '#00a7a7'}">
+          <div *ngIf="!promoCodeValidated && !showSpinner" class="apply-container" (click)="applyPromoCode($event)" [ngStyle]="{'background-color': (formGrp.controls['promoCode'].value.length > 5)? '#ff872f' : '#00a7a7'}">
             <span>{{'PROMO_CODE_LIST.APPLY_BTN' | translate}}</span>
           </div>
           <app-spinner [showSpinner]="showSpinner"></app-spinner>
@@ -43,14 +43,11 @@
           <img src="assets/images/promo-code/next-arrow.svg" alt="" />
         </div>
         <div class="inactive-promo" [ngClass]="{'use-promo': promo?.customerPromoStatus === promoCodeStatus.NOT_IN_USE}" >
-          <ng-container *ngIf="promo?.customerPromoStatus === promoCodeStatus.NOT_IN_USE; else inactive">
+          <ng-container *ngIf="promo?.customerPromoStatus !== promoCodeStatus.NOT_IN_USE">
             <div>
-              {{'PROMO_CODE_LIST.USE_PROMO' | translate}}
+              {{promo?.customerPromoStatus | titlecase}}
             </div>
           </ng-container>
-          <ng-template #inactive>
-            {{promo?.customerPromoStatus | titlecase}}
-          </ng-template>
         </div>
       </div>
     </div>

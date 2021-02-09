@@ -28,7 +28,6 @@ export class PromoCodeSelectComponent implements OnInit {
 
   ngOnInit() {
     this.promoSvc.usedPromo.subscribe((data) => {
-      console.log('data = ', data)
       this.usedPromo = data;
     });
   }
@@ -37,27 +36,21 @@ export class PromoCodeSelectComponent implements OnInit {
     this.activeModal.dismiss();
   }
 
-  openPromoList(e) {
-    // Open promo list
+  // Open promo list or promo details
+  openPromoListOrDetails(e) {
+    if (this.usedPromo && this.usedPromo?.shortDescription) {
+      this.modal.open(PromoDetailsComponent, { centered: true });
+    } else {
+      this.modal.open(PromoCodeModalComponent, { centered: true });
+    }
     e.preventDefault();
     e.stopPropagation();
-    console.log('OPEN PROMO LIST')
-    this.modal.open(PromoCodeModalComponent, { centered: true });
   }
 
-  openPromoDetails(e) {
-    // Open promo list
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('OPEN PROMO DETAILS')
-    this.modal.open(PromoDetailsComponent, { centered: true });
-  }
-
+  // On remove btn press remove applied promo code
   removePromoCode(e) {
-    // Remove applied promo code
+    this.promoSvc.removeAppliedPromo();
     e.preventDefault();
     e.stopPropagation();
-    console.log('REMOVE APPLIED PROMO CODE')
-    this.promoSvc.removeAppliedPromo();
   }
 }
