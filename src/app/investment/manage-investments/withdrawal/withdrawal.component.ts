@@ -119,7 +119,6 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
           } else {
             this.isBankDetailsAvailable = false;
           }
-
         }
       },
         (err) => {

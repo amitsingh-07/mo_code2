@@ -21,8 +21,8 @@
             <img src="assets/images/alert-black.svg" />
             <div *ngIf="entitlements.jointAccount" class="joint_account-note"
               innerHTML="{{'WITHDRAW.JOINT_ACCOUNT_DESC' | translate}}"></div>
-            <div *ngIf="isInvestAndJointAccountHolder && !isBankDetailsAvailable && !entitlements.jointAccount" class="joint_account-note"
-              innerHTML="{{'WITHDRAW.PERSONAL_JOINT_ACCOUNT_DESC' | translate}}"></div>
+            <div *ngIf="isInvestAndJointAccountHolder && !isBankDetailsAvailable && !entitlements.jointAccount"
+              class="joint_account-note" innerHTML="{{'WITHDRAW.PERSONAL_JOINT_ACCOUNT_DESC' | translate}}"></div>
           </div>
           <form id="withdraw_form" name="withdrawForm" [formGroup]="withdrawForm">
             <!-- PORTFOLIO -->
@@ -84,7 +84,7 @@
                             !(isInvestAndJointAccountHolder && !isBankDetailsAvailable)))||
                              (type.value === 'PORTFOLIO_TO_CASH_ACCOUNT' && !entitlements.showWithdrawPvToCa)
                                         || (type.value === 'CASH_TO_BANK_ACCOUNT' && (!entitlements.showWithdrawCaToBa && !entitlements.jointAccount && !(isInvestAndJointAccountHolder && !isBankDetailsAvailable)))
-                                        || type.value === 'PORTFOLIO_TO_SRS_ACCOUNT' && (!entitlements.showWithdrawPvToSRS)"
+                                        || type.value === 'PORTFOLIO_TO_SRS_ACCOUNT' && !entitlements.showWithdrawPvToSRS"
                             (click)="setDropDownValue('withdrawType',type, i)" id="withdraw-type-option-{{i}}">
                             {{type.name}}
                           </button>
