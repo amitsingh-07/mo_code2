@@ -30,7 +30,7 @@
       </div>
       <div class="navbar-btn-group hidden-lg">
         <!-- Notifications -->
-        <div  class="notification-icon"
+        <div *ngIf="isLoggedIn && isNotificationEnabled && showNotifications" class="notification-icon"
           (click)="toggleRecentNotification()">
           <span class="notification-number" *ngIf="notificationCount && notificationCount > 0">
             <span *ngIf="notificationCount <= notificationLimit">{{ notificationCount }}</span>
@@ -126,10 +126,6 @@
         <li *ngIf="isPromotionEnabled && showMenu && showPromotions" class="nav-item"
           (click)="checkCurrentRouteAndNavigate('/promotions')">
           <a class="nav-link">Promotions</a>
-        </li>
-        <li *ngIf="showMenu && showMenuItemInvestUser" class="nav-item"
-          (click)="checkCurrentRouteAndNavigate('/promo-code')">
-          <a class="nav-link">Investment Promo Codes</a>
         </li>
         <li *ngIf="showMenu && showContactUs" class="nav-item"
         (click)="checkCurrentRouteAndNavigate('/about-us/contact-us')">
@@ -245,7 +241,7 @@
             <button class="dropdown-item" *ngIf="showMenuItemInvestUser">
               <a class="navbar--text" href="javascript: void(0);">Fees</a>
             </button>
-            <button class="dropdown-item"  (click)="checkCurrentRouteAndNavigate('/promo-code')">
+            <button class="dropdown-item" *ngIf="showMenuItemInvestUser" (click)="checkCurrentRouteAndNavigate('/promo-code')">
               <a class="navbar--text" href="javascript: void(0);">Add Investment Promo Code</a>
             </button>
             <button class="dropdown-item logout-menu-item" (click)="logout()">
