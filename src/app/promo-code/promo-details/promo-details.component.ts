@@ -2,11 +2,13 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 import { PromoCodeService } from '../promo-code.service';
 import { PROMO_CODE_STATUS, PROMO_ROUTE } from '../promo-code.constants';
 import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
+import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
 
 @Component({
   selector: 'app-promo-details',
@@ -27,6 +29,7 @@ export class PromoDetailsComponent implements OnInit {
     public allModal: NgbModal,
     private translate: TranslateService,
     private router: Router,
+    private datePipe: DatePipe,
     private promoSvc: PromoCodeService,
     private manageInvestmentsService: ManageInvestmentsService) {
     this.translate.use('en');
@@ -53,36 +56,47 @@ export class PromoDetailsComponent implements OnInit {
 
   usePromo(e) {
     this.promoSvc.usedPromo.next(this.selectedPromo);
-    // Show overwrite pop if there is existing wrap fee applied
-    if (this.selectedPromo['topupReq'] === 'Y') {
-      // If required top up and user is not at top up or funding page
-      if (this.router.url === PROMO_ROUTE) {
-        // Need to retrieve investment portfolio list before navigating to top up page
-       this.navigateToTopUp();
-      } else {
-        // On top up/funding page, dismiss the other modals
-        this.allModal.dismissAll();
-      }
-    } else {
-      // Top up not required, is wrap fee related
-      if (this.selectedPromo['isWrapFeeRelated'] === 'Y') {
-        const existingWrapFeePromo = this.promoSvc.checkForExistingWrapFee();
-        if (existingWrapFeePromo) {
-          this.promoSvc.openOverwriteModal(existingWrapFeePromo, this.selectedPromo);
-        } else {
-          this.checkPath();
-        }
+    if (this.selectedPromo['isWrapFeeRelated'] === 'Y') {
+      const existingWrapFeePromo = this.promoSvc.checkForExistingWrapFee();
+      if (existingWrapFeePromo) {
+        this.openOverwriteModal(existingWrapFeePromo);
       } else {
         this.checkPath();
       }
+    } else {
+      this.checkPath();
     }
     e.preventDefault();
     e.stopPropagation();
   }
+  
+  openOverwriteModal(existingPromo) {
+    const ref = this.allModal.open(ModelWithButtonComponent, { centered: true });
+    const transformDate = this.datePipe.transform(existingPromo['promoCodeEndDate'], 'dd MMM y');
+    ref.componentInstance.errorTitle = this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_1') 
+    + existingPromo['wrapFeeDiscount'] * 100 + this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_2') 
+    + transformDate +  this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_3');
+    ref.componentInstance.yesOrNoButton = 'Yes';
+    ref.componentInstance.isInlineButton = true;
+    ref.componentInstance.yesClickAction.subscribe(() => {
+      ref.close();
+      // On yes click call API to update
+      this.checkPath();
+    });
+    ref.componentInstance.noClickAction.subscribe(() => {
+      this.promoSvc.removeAppliedPromo();
+      ref.close();
+    });
+  }
+
   // Check if detail page is from where
   checkPath() {
     if (this.router.url === PROMO_ROUTE) {
-      this.promoSvc.savePromoCode(this.selectedPromo);
+      if (this.selectedPromo['topupReq'] === 'Y') {
+        this.navigateToTopUp();
+      } else {
+        this.promoSvc.savePromoCode(this.selectedPromo);
+      }
     } else {
       // At top up/funding page, does not call API to save
       this.allModal.dismissAll();

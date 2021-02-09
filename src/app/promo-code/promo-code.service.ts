@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs';
-import { DatePipe } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 
 import { appConstants } from '../app.constants';
 import { ApiService } from '../shared/http/api.service';
 import { NavbarService } from 'src/app/shared/navbar/navbar.service';
-import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
 import { PROMO_CODE_STATUS, PROMO_PROFILE_TYPE, PROMO_JSON_URL, PROMO_MOCK_JSON } from './promo-code.constants';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 
@@ -27,7 +25,6 @@ export class PromoCodeService {
     private apiService: ApiService,
     private navbarService: NavbarService,
     private modal: NgbModal,
-    private datePipe: DatePipe,
     public translate: TranslateService
   ) { }
 
@@ -94,25 +91,6 @@ export class PromoCodeService {
       if (elem['isWrapFeeRelated'] === 'Y' && (elem['customerPromoStatus'] === PROMO_CODE_STATUS.PROCESSING || elem['customerPromoStatus'] === PROMO_CODE_STATUS.APPLIED)) {
         return elem;
       }
-    });
-  }
-
-  // Show overwrite existing wrap fee promo pop up
-  openOverwriteModal(existingPromo, newPromo) {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    const transformDate = this.datePipe.transform(existingPromo['promoCodeEndDate'], 'dd MMM y');
-    ref.componentInstance.errorTitle = this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_1') 
-    + existingPromo['wrapFeeDiscount'] * 100 + this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_2') 
-    + transformDate +  this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_3');
-    ref.componentInstance.yesOrNoButton = 'Yes';
-    ref.componentInstance.isInlineButton = true;
-    ref.componentInstance.yesClickAction.subscribe(() => {
-      ref.close();
-      // On yes click call API to update
-      this.savePromoCode(newPromo);
-    });
-    ref.componentInstance.noClickAction.subscribe(() => {
-      ref.close();
     });
   }
 
