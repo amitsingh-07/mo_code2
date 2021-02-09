@@ -72,6 +72,7 @@ export class PromoCodeListComponent implements OnInit {
       this.formGrp.controls['promoCode'].setErrors(null);
       this.showClearBtn = false;
       this.showSpinner = true;
+      this.showError = false;
       this.promoSvc.validatePromoCode(this.formGrp.controls['promoCode'].value).subscribe((response) => {
         // Success
         const responseCode = response.responseMessage['responseCode'];
@@ -102,12 +103,14 @@ export class PromoCodeListComponent implements OnInit {
     event.preventDefault();
   }
 
-  clearPromoCode(event) {
+  clearPromoCode(event?) {
     this.formGrp.controls['promoCode'].setValue('');
     this.showError = false;
     this.showClearBtn = false;
-    event.stopPropagation();
-    event.preventDefault();
+    if (event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
   }
 
   showDetails(promo, event?) {
