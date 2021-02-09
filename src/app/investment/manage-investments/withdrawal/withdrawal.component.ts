@@ -49,7 +49,9 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
   srsAccountInfo: any;
   cfmWithdrawalModal: NgbModalRef;
   private subscription: Subscription;
-
+  userBankList: any;
+  isBankDetailsAvailable;
+  isInvestAndJointAccountHolder;
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -95,12 +97,34 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
     this.buildForm();
     this.setSelectedPortfolio();
     this.getAndSetSrsDetails();
+    this.isInvestAndJointAccountHolder = this.manageInvestmentsService.isInvestAndJointAccount();
+    if (this.isInvestAndJointAccountHolder) {
+      this.getUserBankList();
+    }
   }
 
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+
+  getUserBankList() {
+    this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
+      this.manageInvestmentsService.getUserBankList().subscribe((data) => {
+        if (data.responseMessage.responseCode >= 6000) {
+          this.userBankList = data.objectList;
+          if (this.userBankList.length > 0) {
+            this.isBankDetailsAvailable = true;
+          } else {
+            this.isBankDetailsAvailable = false;
+          }
+        }
+      },
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
+    });
   }
 
   getAndSetSrsDetails() {
@@ -200,12 +224,12 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
             value: this.isRedeemAll ? roundOffValue : '',
             disabled: this.isRedeemAll
           }, [
-              Validators.required,
-              this.withdrawAmountValidator(
-                this.withdrawForm.get('withdrawPortfolio').value.currentValue,
-                'PORTFOLIO'
-              )
-            ])
+            Validators.required,
+            this.withdrawAmountValidator(
+              this.withdrawForm.get('withdrawPortfolio').value.currentValue,
+              'PORTFOLIO'
+            )
+          ])
         );
         this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
           amtValue = amtValue.replace(/[,]+/g, '').trim();
@@ -236,12 +260,12 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
             value: this.isRedeemAll ? roundOffValue : '',
             disabled: this.isRedeemAll
           }, [
-              Validators.required,
-              this.withdrawAmountValidator(
-                this.withdrawForm.get('withdrawPortfolio').value.currentValue,
-                'PORTFOLIO'
-              )
-            ])
+            Validators.required,
+            this.withdrawAmountValidator(
+              this.withdrawForm.get('withdrawPortfolio').value.currentValue,
+              'PORTFOLIO'
+            )
+          ])
         )
         this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
           amtValue = amtValue.replace(/[,]+/g, '').trim();
@@ -268,12 +292,12 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
           value: this.isRedeemAll ? roundOffValue : '',
           disabled: this.isRedeemAll
         }, [
-            Validators.required,
-            this.withdrawAmountValidator(
-              this.withdrawForm.get('withdrawPortfolio').value.portfolioValue,
-              'PORTFOLIO'
-            )
-          ])
+          Validators.required,
+          this.withdrawAmountValidator(
+            this.withdrawForm.get('withdrawPortfolio').value.portfolioValue,
+            'PORTFOLIO'
+          )
+        ])
       );
     this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
       amtValue = amtValue.replace(/[,]+/g, '').trim();
@@ -289,9 +313,9 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
         value: this.isRedeemAll ? this.cashBalance : '',
         disabled: this.isRedeemAll
       }, [
-          Validators.required,
-          this.withdrawAmountValidator(this.cashBalance, 'CASH_ACCOUNT')
-        ])
+        Validators.required,
+        this.withdrawAmountValidator(this.cashBalance, 'CASH_ACCOUNT')
+      ])
     );
     this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
       amtValue = amtValue.replace(/[,]+/g, '').trim();

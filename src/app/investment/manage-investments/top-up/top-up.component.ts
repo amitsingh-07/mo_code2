@@ -187,9 +187,11 @@ export class TopUpComponent implements OnInit, OnDestroy {
   }
   
   selectedInvestment(investmentType, amount) {
-    const minAmount = investmentType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.ONE_TIME.VALUE ? amount.oneTimeInvestmentMinimum
-      : amount.monthlyInvestmentMinimum;
-    this.manageInvestmentsService.setInvestmentValue(minAmount);
+    if (amount) {
+      const minAmount = investmentType === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.ONE_TIME.VALUE ? amount.oneTimeInvestmentMinimum
+        : amount.monthlyInvestmentMinimum;
+      this.manageInvestmentsService.setInvestmentValue(minAmount);
+    }
     this.formValues.Investment = investmentType;
     this.isAmountExceedBalance = false;
     this.topupAmount = 0;
