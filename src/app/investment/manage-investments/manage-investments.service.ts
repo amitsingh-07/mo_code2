@@ -697,7 +697,7 @@ export class ManageInvestmentsService {
     this.manageInvestmentsFormData.TransferAll = null;
     this.commit();
   }
-  //
+  
   getWrapFeeDetails(customerId) {
     const payload = {
       customer_id: customerId,
