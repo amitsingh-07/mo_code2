@@ -1,0 +1,38 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+app-promo-code-landing {
+    .promo-land-bg {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: $white-color;
+      height: 100vh;
+
+      @include allmobiles {
+        margin-top: 60px;
+      }
+    }
+
+    .promo-header {
+      height: 139px;
+      width: 100%;
+      background-color: $pelorous-blue-color;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 70px;
+
+      @include allmobiles {
+        display: none;
+      }
+
+      span {
+        font-family: $muli-regular;
+        font-size: 36px;
+        line-height: 1.11;
+        letter-spacing: -0.41px;
+        width: 840px;
+      }
+    }
+}
