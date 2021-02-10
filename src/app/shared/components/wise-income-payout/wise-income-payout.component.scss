@@ -1,0 +1,110 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+app-wise-income-payout {
+    .payout_container {
+        border-radius: 6px;
+        box-shadow: 0 10px 14px 0 $btn-shadow-color;
+        background-color: $lagoon-blue-color;
+        color: $white-color;
+        .payout_sub_container {
+            padding: 30px 20px 0px 20px;
+        }
+        .payout_heading {            
+            font-family: $muli-regular;
+            font-size: 16px;
+            font-weight: normal;
+            letter-spacing: -0.18px;
+        }
+        .payout_title {            
+            font-family: $muli-bold;
+            font-size: 21px;
+            font-weight: normal;
+            letter-spacing: -0.24px;
+        }
+        .payout_desc {
+            border-radius: 6px;
+            background-color: $black-squeeze-grey-color;
+            padding: 30px;
+        }
+        .payout-message {       
+            font-family: $muli-regular;
+            font-size: 14px;
+            font-weight: normal;
+            letter-spacing: -0.13px;
+            color: $black-color;
+        }
+        .payout-hint {       
+            font-family: $muli-regular;
+            font-size: 13px;
+            font-weight: normal;
+            letter-spacing: -0.12px;
+            color: $silver-grey-color;
+        }
+        .mb-30 {
+            margin-bottom: 30px;
+        }
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+        .mb-10 {
+            margin-bottom: 10px;
+        }
+        .payout_content {
+            font-family: $muli-regular;
+            font-size: 16px;
+            font-weight: normal;
+            letter-spacing: -0.15px;
+            color: $jungle-mist-blue-color;
+        }
+        .payout_note_text {
+            font-family: $muli-regular;
+            font-size: 14px;
+            font-weight: normal;
+            letter-spacing: -0.13px;
+            color: $white-color;
+            margin-left: 40px;
+        }
+        .payout_note {
+            position: relative;
+        }
+        .payout_note_icon {      
+            background: url("/assets/images/investment-account/icon-time-past-by.svg") no-repeat;
+            width: 40px;
+            height: 32px;
+            background-repeat: no-repeat;
+            position: absolute;
+        } 
+        .btn-payout {
+            color: $jungle-mist-blue-color;
+            font-family: $muli-semi-bold;
+            font-size: 18px;
+            font-weight: normal;
+            letter-spacing: -0.19px;
+        }
+        .payout-bt{
+            border-top: 1px solid $persian-green-color;
+            position: relative;
+        } 
+        .btn-payout_icon {      
+            background: url("/assets/images/investment-account/wiseincome-edit.svg") no-repeat;
+            width: 18px;
+            height: 18px;
+            background-repeat: no-repeat;
+            position: absolute;
+            margin: 5px 5px 5px 9px;
+        } 
+        .payout-type {
+            width: 175px;
+            height: 40px;
+            margin: 5px auto;
+            padding: 9px 50px 8px 51px;
+            border-radius: 6px;
+            background-color: $wisesaver-value-bg-color;
+            color: $black-color;
+            font-family: $muli-bold;
+            font-size: 16px;
+            font-weight: normal;
+            letter-spacing: -0.15px;
+        }
+    }
+}
