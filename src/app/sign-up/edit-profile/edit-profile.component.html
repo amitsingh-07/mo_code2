@@ -501,11 +501,13 @@
                         <div class="no-details" *ngIf="!bankDetails">
                             <div class="flex-row">
                                 <div class="flex-col-12">
-                                    <div class="no-bank-account">
+                                    <div *ngIf="!entireUserData.jointAccount" class="no-bank-account">
                                         {{'EDIT_PROFILE.NO_BANK' | translate}}
                                     </div>
+                                    <div *ngIf="entireUserData.jointAccount" class="no-bank-account no-bank-details">
+                                        {{'EDIT_PROFILE.NO_BANK_DETAILS' | translate}}
+                                    </div>
                                 </div>
-
                                 <button *ngIf="!entireUserData.jointAccount" type="button" class="edit-button"
                                     id="editEmployeButton" (click)="addBankDetails()" [disabled]="disableBankSrsEdit">
                                     {{'EDIT_PROFILE.ADD_BANK' | translate}}

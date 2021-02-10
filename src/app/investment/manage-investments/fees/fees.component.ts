@@ -1,17 +1,12 @@
 import { Component, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { AppService } from '../../../app.service';
+
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
-import { AuthenticationService } from '../../../shared/http/auth/authentication.service'
-
+import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
-
-import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
-
 import { ManageInvestmentsService } from '../manage-investments.service';
 import { environment } from './../../../../environments/environment';
 @Component({
@@ -21,15 +16,12 @@ import { environment } from './../../../../environments/environment';
   encapsulation: ViewEncapsulation.None
 })
 export class FeesComponent implements OnInit {
-
   pageTitle: string;
   subTitle: string;
   feeDetails: any;
   userProfileInfo: any;
 
   constructor(
-    private appService: AppService,
-    private router: Router,
     public headerService: HeaderService,
     public navbarService: NavbarService,
     private translate: TranslateService,
@@ -38,8 +30,7 @@ export class FeesComponent implements OnInit {
     public modal: NgbModal,
     private renderer: Renderer2,
     public manageInvestmentsService: ManageInvestmentsService,
-    private signUpService: SignUpService,
-    private investmentEngagementJourneyService: InvestmentEngagementJourneyService
+    private signUpService: SignUpService
   ) {
     this.translate.use('en');
     const self = this;

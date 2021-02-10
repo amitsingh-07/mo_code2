@@ -106,7 +106,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
     this.signUpService.getEditProfileInfo()
     .pipe(takeUntil(this.ngUnsubscribe))
     .subscribe((data) => {
-      if (data.objectList.customerBankDetail) {
+      if (data.objectList.customerBankDetail && data.objectList.customerBankDetail.length > 0) {
         const bankDetails = data.objectList.customerBankDetail[0];
         this.investmentAccountService.setEditProfileBankDetail(bankDetails.accountName, bankDetails.bank, bankDetails.accountNumber, bankDetails.id, false);
         this.bankForm.patchValue({

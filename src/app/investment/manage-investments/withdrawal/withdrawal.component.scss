@@ -35,6 +35,7 @@ app-withdrawal {
       a {
         font-family: $muli-bold-italic;
         color: $crusta-orange-color;
+        text-decoration: none;
       }
     }
   }
@@ -72,13 +73,12 @@ app-withdrawal {
 
     .dropdown-item {
       white-space: normal;
-      &.disable {
-        font-size: 16px;
-        letter-spacing: -0.16px;
-        color: #9b9b9b;
-        cursor: pointer;
-        border: red;
-      }
+      &:disabled {
+          font-size: 16px;
+          letter-spacing: -0.16px;
+          color: $dusty-grey-color;
+          cursor: not-allowed !important;
+        }
       &.hide {
         display: none;
       }
@@ -144,10 +144,8 @@ app-withdrawal {
     .joint-account-img {
       width: 20px;
       height: 16px;
-      margin: 2px 8px 5px 0;
+      margin: 2px 8px 6px 0;
       text-align: center;
-      margin-bottom: 6px;
-      margin-right: 6px;
     }
   }
 
