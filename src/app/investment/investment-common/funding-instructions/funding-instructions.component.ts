@@ -23,6 +23,7 @@ import {
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import { InvestmentCommonService } from '../investment-common.service';
 import { environment } from './../../../../environments/environment';
+import { PromoCodeService } from '../../../promo-code/promo-code.service';
 
 @Component({
   selector: 'app-funding-instructions',
@@ -62,7 +63,8 @@ export class FundingInstructionsComponent implements OnInit {
     public investmentAccountService: InvestmentAccountService,
     public investmentCommonService: InvestmentCommonService,
     private loaderService: LoaderService,
-    private formatCurrencyPipe: FormatCurrencyPipe
+    private formatCurrencyPipe: FormatCurrencyPipe,
+    private promoCodeService: PromoCodeService
   ) {
     this.translate.use('en');
     this.fundDetails = this.manageInvestmentsService.getFundingDetails();
@@ -266,6 +268,8 @@ export class FundingInstructionsComponent implements OnInit {
                 MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP_STATUS + '/pending'
               ]);
             }
+            // On success remove the applied promo code
+            this.promoCodeService.removeAppliedPromo();
           }
         },
         (err) => {
@@ -316,6 +320,8 @@ export class FundingInstructionsComponent implements OnInit {
                 MANAGE_INVESTMENTS_ROUTE_PATHS.TOPUP_STATUS + '/pending'
               ]);
             }
+            // On success remove the applied promo code
+            this.promoCodeService.removeAppliedPromo();
           }
         },
         (err) => {
