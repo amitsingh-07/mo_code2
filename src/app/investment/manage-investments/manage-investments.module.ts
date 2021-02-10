@@ -41,6 +41,7 @@ import { YourPortfolioComponent } from './your-portfolio/your-portfolio.componen
 import { TransferComponent } from './transfer/transfer.component';
 import { TransferStatusComponent } from './transfer-status/transfer-status.component';
 import { TransferModalComponent } from './transfer/transfer-modal/transfer-modal.component';
+import { PromoCodeModule } from './../../promo-code/promo-code.module';
 
 import { FeesComponent } from './fees/fees.component';
 
@@ -48,7 +49,8 @@ export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
     { prefix: './assets/i18n/app/', suffix: '.json' },
     { prefix: './assets/i18n/manage-investments/', suffix: '.json' },
-    { prefix: './assets/i18n/error/', suffix: '.json' }
+    { prefix: './assets/i18n/error/', suffix: '.json' },
+    { prefix: './assets/i18n/promo-code/', suffix: '.json' }
   ]);
 }
 
@@ -68,7 +70,8 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     SharedModule,
-    RouterModule
+    RouterModule,
+    PromoCodeModule
   ],
   declarations: [
     TopUpComponent,
