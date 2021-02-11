@@ -39,6 +39,8 @@
                         <div ngbDropdown>
                           <button class="btn btn-dropdown capital-letter" id="topup_portfolio_dropdwon_value"
                             ngbDropdownToggle>
+                            <img *ngIf="topForm?.controls?.portfolio?.value?.entitlements?.jointAccount"
+                              class="joint-account-img" src="assets/images/manage-investments/ja-icon.svg" />
                             {{topForm.controls.portfolio.value ? (topForm.controls.portfolio.value.portfolioName + ' - ' + 
                                  (topForm.controls.portfolio.value.refNo? topForm.controls.portfolio.value.refNo : formValues.selectedCustomerPortfolio.referenceCode)) :'Select
                                 Portfolio'}}
