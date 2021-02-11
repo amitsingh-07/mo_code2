@@ -314,6 +314,9 @@ app-edit-profile {
     text-align: center;
     color: $no-bank-account-color;
     margin: 50px 30px 10px 30px;
+    &.no-bank-details{
+      margin-bottom: 4px;
+    }
   }
   .joint-account-desc {
     font-family: $muli-italic;
@@ -321,6 +324,7 @@ app-edit-profile {
     letter-spacing: -0.26px;
     color: $silver-grey-color;
     padding: 16px 10px 20px;
+    text-decoration: none;
     a {
       font-family: $muli-bold-italic;
       color: $crusta-orange-color;

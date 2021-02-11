@@ -83,7 +83,7 @@
         <li *ngIf="isLoggedIn && showMenuItemInvestUser" class="nav-item hidden-lg" (click)="goToWrapFeeDetails()">
           <a class="navbar--text" href="javascript: void(0);">Fees</a>
         </li>
-        <li *ngIf="isLoggedIn && showMenuItemInvestUser" class="nav-item hidden-lg">
+        <li *ngIf="isLoggedIn && showMenuItemInvestUser" class="nav-item hidden-lg" (click)="checkCurrentRouteAndNavigate('/promo-code')">
           <a class="navbar--text" href="javascript: void(0);">Add Investment Promo Code</a>
         </li>
         <li *ngIf="isLoggedIn && showMenu" class="nav-item home-btn" >
@@ -238,10 +238,10 @@
             <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/accounts/edit-profile')">
               <a class="navbar--text" href="javascript: void(0);">Profile</a>
             </button>
-            <button class="dropdown-item" *ngIf="showMenuItemInvestUser" (click)="goToWrapFeeDetails()">
+            <button *ngIf="showMenuItemInvestUser" class="dropdown-item" (click)="goToWrapFeeDetails()">
               <a class="navbar--text" href="javascript: void(0);">Fees</a>
             </button>
-            <button class="dropdown-item" *ngIf="showMenuItemInvestUser">
+            <button class="dropdown-item" *ngIf="showMenuItemInvestUser" (click)="checkCurrentRouteAndNavigate('/promo-code')">
               <a class="navbar--text" href="javascript: void(0);">Add Investment Promo Code</a>
             </button>
             <button class="dropdown-item logout-menu-item" (click)="logout()">
@@ -276,6 +276,10 @@
     </div>
   </div>
 </nav>
+<div *ngIf="showPromoApplied" class="promo-applied-toast">
+  <img src="assets/images/icon-form-tick.svg" />
+  Promo Code is applied
+</div>
 
 <!-- Height Placeholder -->
 <nav class="navbar--sub" [ngClass]="{'headerMode': (navbarMode == 2 || navbarMode == 6)}"></nav>

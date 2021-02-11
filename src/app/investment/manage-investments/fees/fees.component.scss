@@ -116,6 +116,11 @@ app-fees {
         line-height: 1.38;
         letter-spacing: -0.12px;
         color: $black-color;
+        @include allmobiles {
+          max-width: 73px;
+          word-break: break-all;
+          text-align: end;
+        }
         &.hidden-lg {
           padding-left: 10px;
           text-align: right;
