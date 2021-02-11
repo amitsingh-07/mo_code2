@@ -8,6 +8,7 @@ import { AuthenticationService } from '../../../shared/http/auth/authentication.
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { ManageInvestmentsService } from '../manage-investments.service';
+import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { environment } from './../../../../environments/environment';
 @Component({
   selector: 'app-fees',
@@ -30,7 +31,8 @@ export class FeesComponent implements OnInit {
     public modal: NgbModal,
     private renderer: Renderer2,
     public manageInvestmentsService: ManageInvestmentsService,
-    private signUpService: SignUpService
+    private signUpService: SignUpService,
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
     const self = this;
@@ -57,7 +59,13 @@ export class FeesComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
   getWrapFeeDetails(customerId) {
+    this.loaderService.showLoader({
+      title: this.translate.instant('FEES.LOADING_TITLE'),
+      desc: this.translate.instant('FEES.LOADING_DESC'),
+      autoHide: false
+    });
     this.manageInvestmentsService.getWrapFeeDetails(customerId).subscribe((data) => {
+      this.loaderService.hideLoaderForced();
       this.feeDetails = data.objectList;
     });
   }
