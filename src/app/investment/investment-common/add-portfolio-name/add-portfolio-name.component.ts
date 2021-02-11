@@ -284,6 +284,8 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
                 this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.STATUS]);
               }
               this.investmentCommonService.clearJourneyData();
+              // On success remove the applied promo code
+              this.promoCodeService.removeAppliedPromo();
             } else {
               this.investmentAccountService.showGenericErrorModal();
             }

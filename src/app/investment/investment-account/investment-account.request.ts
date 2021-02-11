@@ -11,6 +11,7 @@ export interface ISaveAccountCreationRequest {
   nationalityList: INationality;
   taxDetails: ITax[];
   personalDeclarations: IPersonalDeclaration;
+  promoCodeId: number;
 }
 
 export interface IPersonalInfo {

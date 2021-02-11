@@ -97,6 +97,7 @@ app-promo-details {
     button {
       height: 100%;
       width: 100%;
+      font-size: 18px !important;
     }
   }
 
@@ -116,7 +117,11 @@ app-promo-details {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 26px;
+    border: none;
   }
 
+  .action-button  {
+    height: 60px !important;
+  }
 
 }

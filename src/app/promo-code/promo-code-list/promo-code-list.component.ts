@@ -2,11 +2,14 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { PromoDetailsComponent } from './../promo-details/promo-details.component';
 import { PromoCodeService } from './../promo-code.service';
 import { PROMO_CODE_STATUS } from './../promo-code.constants';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './../../investment/manage-investments/manage-investments-routes.constants';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-promo-code-list',
@@ -30,6 +33,7 @@ export class PromoCodeListComponent implements OnInit {
     public translate: TranslateService,
     public navbarService: NavbarService,
     private promoSvc: PromoCodeService,
+    private router: Router,
     private modal: NgbModal) {
     this.translate.use('en');
   }
@@ -52,6 +56,10 @@ export class PromoCodeListComponent implements OnInit {
     this.promoSvc.promoWalletObservable.subscribe((data)=>{
       this.promoArray = data;
     });
+
+    this.promoSvc.clearInput.subscribe((data)=>{
+      this.clearPromoCode();
+    })
   }
 
   onKeyupEvent(event) {
@@ -67,7 +75,7 @@ export class PromoCodeListComponent implements OnInit {
   }
 
   applyPromoCode(event) {
-    if (this.formGrp.controls['promoCode'].value.length > 5) {
+    if (this.formGrp.controls['promoCode'].value.length === 6) {
       // Show the spinner
       this.formGrp.controls['promoCode'].setErrors(null);
       this.showClearBtn = false;
@@ -120,6 +128,12 @@ export class PromoCodeListComponent implements OnInit {
       event.stopPropagation();
       event.preventDefault();
     }
-  }  
+  }
+  
+  navigateToWrapFees(event) {
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.FEES]);
+    event.stopPropagation();
+    event.preventDefault();
+  }
 
 }
