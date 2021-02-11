@@ -97,6 +97,7 @@ app-promo-details {
     button {
       height: 100%;
       width: 100%;
+      font-size: 18px !important;
     }
   }
 
@@ -119,5 +120,8 @@ app-promo-details {
     border: none;
   }
 
+  .action-button  {
+    height: 60px !important;
+  }
 
 }

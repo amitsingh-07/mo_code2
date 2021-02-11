@@ -55,7 +55,6 @@ export class PromoDetailsComponent implements OnInit {
   }
 
   usePromo(e) {
-    this.promoSvc.usedPromo.next(this.selectedPromo);
     if (this.selectedPromo['isWrapFeeRelated'] === 'Y') {
       const existingWrapFeePromo = this.promoSvc.checkForExistingWrapFee();
       if (existingWrapFeePromo) {
@@ -71,7 +70,7 @@ export class PromoDetailsComponent implements OnInit {
   }
   
   openOverwriteModal(existingPromo) {
-    const ref = this.allModal.open(ModelWithButtonComponent, { centered: true });
+    const ref = this.allModal.open(ModelWithButtonComponent, { centered: true, windowClass: 'cfm-overwrite-modal', backdrop: 'static' });
     const transformDate = this.datePipe.transform(existingPromo['promoCodeEndDate'], 'dd MMM y');
     ref.componentInstance.errorTitle = this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_1') 
     + existingPromo['wrapFeeDiscount'] * 100 + this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_2') 
@@ -91,6 +90,7 @@ export class PromoDetailsComponent implements OnInit {
 
   // Check if detail page is from where
   checkPath() {
+    this.promoSvc.usedPromo.next(this.selectedPromo);
     if (this.router.url === PROMO_ROUTE) {
       if (this.selectedPromo['topupReq'] === 'Y') {
         this.navigateToTopUp();
