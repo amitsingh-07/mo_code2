@@ -9,14 +9,14 @@
     </div>
     <div class='flex-row fund_sub_container_value'>
         <div class="flex-col-6 fund_value">
-            $100,000.00
+            {{investmentInput.onetime}}
         </div>
         <div class="flex-col-6 fund_value">
-            $100.00
+            {{investmentInput.monthly}}
         </div> 
     </div>
     <div class='fund-bt'>
-        <button type="button" class="btn btn-fund width100">{{
+        <button type="button" class="btn btn-fund width100" (click) = "goReviewInputs()">{{
         'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.REVIEW_MY_INPUTS' | translate}}
             <span class='btn-fund_icon'></span>
         </button>

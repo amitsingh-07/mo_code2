@@ -1,4 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+
+import {
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
+} from './../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 
 @Component({
   selector: 'app-wise-income-fund',
@@ -8,9 +13,15 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class WiseIncomeFundComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
+  @Input('investmentInput') investmentInput;
 
   ngOnInit(): void {
+    console.log(this.investmentInput);
+  }
+
+  goReviewInputs() {
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
   }
 
 }
