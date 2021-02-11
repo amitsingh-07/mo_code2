@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-wise-income-payout',
@@ -8,7 +9,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class WiseIncomePayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private translate: TranslateService,
+  ) {
+    this.translate.use('en');
+   }
 
   ngOnInit(): void {
   }

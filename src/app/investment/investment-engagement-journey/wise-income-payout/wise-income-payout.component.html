@@ -16,7 +16,7 @@
                         <div class="checkbox-button one-label">
                             <input type="radio" class="field radio">
                             <label>
-                                <div>
+                                <div class="payout-type">
                                     <span class="payout-icon">
                                         <img src="assets/images/investment-account/wisesaver-family-1.svg" />
                                     </span>
@@ -27,7 +27,7 @@
                         <div class="checkbox-button one-label">
                             <input type="radio" class="field radio">
                             <label>
-                                <div>
+                                <div class="payout-type">
                                     <span class="payout-icon">
                                         <img src="assets/images/investment-account/wisesaver-family-2.svg" />
                                     </span>
@@ -38,7 +38,7 @@
                         <div class="checkbox-button one-label">
                             <input type="radio" class="field radio">
                             <label>
-                                <div>
+                                <div class="payout-type">
                                     <span class="payout-icon">
                                         <img src="assets/images/investment-account/wisesaver-family-3.svg" />
                                     </span>
@@ -355,21 +355,33 @@
                             </div>
                         </ng-template>
                         <ng-template ngbPanelContent>
-
+                            <div>
+                                <div class="pannel-tab-content asset-allocation">
+                                    <app-allocation></app-allocation>
+                                </div>
+                            </div>
                         </ng-template>
                     </ngb-panel>
                 </ngb-accordion>
             </div>
             <div class="learn-more-option-item">
-                <div class="flex space-between">
-                    <div><a>FAQ</a></div>
-                    <div><i class='arrow'></i></div>
+                <div>
+                    <a target="_blank" routerLink="/faq" fragment="investment">
+                        <div class="flex space-between">
+                            <span>FAQ</span>
+                            <span><i class='arrow'></i></span>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="learn-more-option-item mt15">
-                <div class="flex space-between">
-                    <div><a>More About WiseIncome</a></div>
-                    <div><i class='arrow'></i></div>
+                <div>
+                    <a target="_blank" routerLink="/wiseincome">
+                        <div class="flex space-between">
+                            <span>More About WiseIncome</span>
+                            <span><i class='arrow'></i></span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

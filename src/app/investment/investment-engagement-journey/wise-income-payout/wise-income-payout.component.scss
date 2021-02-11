@@ -41,16 +41,17 @@ app-wise-income-payout {
     .checkbox-button {
         &.one-label {
             background-color: #e0f3f3;
+            .payout-type{
+                display: flex;
+                align-items: center;
+            }
             .payout-icon {
                 width: 50px;
                 height: 50px;
                 margin-right: 10px;
             }
-            label {
-                padding: 0.9rem 0.8rem;
-            }
             input[type="radio"] + label {
-                padding: 0;
+                padding:0 35px 0 0;
                 background-position-x: right;
                 display: flex;
             }
@@ -181,6 +182,7 @@ app-wise-income-payout {
                     margin-bottom: 15px;
                     border-radius: 6px !important;
                     background-color: #ffffff;
+                    border: none;
                     .card-header {
                         padding: 20px;
                         background-color: #ffffff;
@@ -214,11 +216,17 @@ app-wise-income-payout {
                         }
                     }
                     .card-body {
-                        background-color: #f4fafb;
-                        padding: 30px 20px;
-                        line-height: 1.44;
-                        letter-spacing: -0.15px;
-                        color: #000000;
+                        padding: 0;
+                        .pannel-tab-content{
+                            background-color: #f4fafb;
+                            padding: 30px 20px;
+                            line-height: 1.44;
+                            letter-spacing: -0.15px;
+                            color: #000000;
+                            &.asset-allocation{
+                                padding: 0;
+                            }
+                        }
                         .tab-content-preference {
                             padding-top: 0;
                         }
@@ -228,24 +236,28 @@ app-wise-income-payout {
                     }
                 }
             }
-           .learn-more-option-item{
-               padding: 20px;
-               border-radius: 6px;
-               background-color: #ffffff;
-               font-family: $muli-bold;
-               line-height: normal;
-               letter-spacing: -0.3px;
-               color: #000000;
-               .arrow {
-                border: solid #00a7a7;
-                border-width: 0 2px 2px 0;
-                display: inline-block;
-                padding: 4px;
-                float: right;
-                transform: rotate(-45deg);
-                -webkit-transform: rotate(-45deg);
+            .learn-more-option-item {
+                padding: 20px;
+                border-radius: 6px;
+                background-color: #ffffff;
+                a {
+                    font-family: $muli-bold;
+                    line-height: normal;
+                    letter-spacing: -0.3px;
+                    color: #000000;
+                    text-decoration: none;
+                    width: 100%;
+                }
+                .arrow {
+                    border: solid #00a7a7;
+                    border-width: 0 2px 2px 0;
+                    display: inline-block;
+                    padding: 4px;
+                    float: right;
+                    transform: rotate(-45deg);
+                    -webkit-transform: rotate(-45deg);
+                }
             }
-           } 
         }
     }
 }

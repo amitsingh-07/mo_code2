@@ -1,44 +1,127 @@
 <div class="bond_container">
   <div class="bonds_equity_block">
     <div class="bond_progress_container">
-      <div class="flex-row equity_bar" *ngFor="let asset of assets; let i = index" [ngClass]="{'wise-saver-bar': !allocationDetails}" >
+      <div class="flex-row equity_bar" *ngFor="let asset of assets; let i = index"
+        [ngClass]="{'wise-saver-bar': !allocationDetails}">
         <div class="flex-row flex-col-6 bar-container">
-          <span [ngStyle]="{'background-color': colors[i], 'width': asset.allocationPercentage + '%'  }" class="bar"></span>
+          <span [ngStyle]="{'background-color': colors[i], 'width': asset.allocationPercentage + '%'  }"
+            class="bar"></span>
         </div>
         <div class="flex-col">{{asset.allocationPercentage}}% {{asset.type.type}}</div>
       </div>
     </div>
     <div *ngIf='allocationDetails'>
-    <div class="bonds_equity" *ngFor="let asset of assets; let i = index">
-      <div class="bonds_equity_title" id="panel-button-{{i}}" (click)="showHidePanel(acc, 'panel-' + i, $event)">{{asset.type.type}}<i
-          class='arrow'></i></div>
-      <ngb-accordion #acc="ngbAccordion">
-        <ngb-panel id="panel-{{i}}" title="Second">
-          <ng-template ngbPanelContent>
-            <div class="bond_desc" *ngIf="asset.type.holdingsCount">
-              <div class="flex-row flex-col-12">
-                <div class="rating_type border-right-none">Number of Holdings</div>
-                <div class="rating">
-                  <div class="flex-row"><span class="rating_value">{{asset.holdingsCount}}</span></div>
-                </div>
-              </div>
-            </div>
-            <div class="bond_desc" *ngFor="let allocation of asset.groupedAllocationDetails;">
-              <div class="flex-row flex-col-12">
-                <div class="flex-col-5 rating_type">{{allocation.name}}</div>
-                <div class="flex-col-7 rating">
-                  <div class="flex-row" *ngFor="let detail of allocation.value;">
-                    <span class="flex-col-8">{{detail.sectorRegion}}</span>
-                    <span class="rating_value flex-col-4">{{detail.percentage | number : '1.1-1'}}%</span>
+      <div class="bonds_equity" *ngFor="let asset of assets; let i = index">
+        <div class="bonds_equity_title" id="panel-button-{{i}}" (click)="showHidePanel(acc, 'panel-' + i, $event)">
+          {{asset.type.type}}<i class='arrow'></i></div>
+        <ngb-accordion #acc="ngbAccordion">
+          <ngb-panel id="panel-{{i}}" title="Second">
+            <ng-template ngbPanelContent>
+              <div class="bond_desc" *ngIf="asset.type.holdingsCount">
+                <div class="flex-row flex-col-12">
+                  <div class="rating_type border-right-none">Number of Holdings</div>
+                  <div class="rating">
+                    <div class="flex-row"><span class="rating_value">{{asset.holdingsCount}}</span></div>
                   </div>
                 </div>
               </div>
+              <div class="bond_desc" *ngFor="let allocation of asset.groupedAllocationDetails;">
+                <div class="flex-row flex-col-12">
+                  <div class="flex-col-5 rating_type">{{allocation.name}}</div>
+                  <div class="flex-col-7 rating">
+                    <div class="flex-row" *ngFor="let detail of allocation.value;">
+                      <span class="flex-col-8">{{detail.sectorRegion}}</span>
+                      <span class="rating_value flex-col-4">{{detail.percentage | number : '1.1-1'}}%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </div>
+    </div>
+  </div>
+  <!-- wise-income -->
+  <div class="wise-income-allocation-block">
+    <div>The fund invest in the following asset classes in this proportions.</div>
+    <div class="allocation-graph">
+      <img src="assets/images/investment-account/wise-income-graph-donut.svg" />
+    </div>
+    <div class="wise-income-accordian-block">
+      <div class="title-lbl">Asset Class & Holdings</div>
+      <ngb-accordion #acc="ngbAccordion">
+        <ngb-panel>
+          <ng-template ngbPanelTitle>
+            <div class="flex space-between">
+              <div class="flex align-center">
+                <span class="circle">
+                  <img src="assets/images/investment-account/circle-1.svg" />
+                </span>
+                <span>Equities</span>
+              </div>
+              <div><i class='arrow'></i></div>
             </div>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <div class="tab-content">The equities component of the portfolio will seek to give investors exposure to
+              companies and ETFs that
+              are listed on recognised stock exchanges globally. The passive investing strategy adopted, coupled with
+              broad diversification of the underlying ETFs allows investors to reap market-based returns without having
+              to rely on guesswork.</div>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel>
+          <ng-template ngbPanelTitle>
+            <div class="flex space-between">
+              <div class="flex align-center"> <span class="circle"><img
+                    src="assets/images/investment-account/circle-2.svg" /></span><span>S-REITs</span></div>
+              <div><i class='arrow'></i></div>
+            </div>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <div class="tab-content">The portfolio invest in Singapore REITs that are underpinned by dividend
+              sustainability coupled with
+              potential growth. The fund manager will consider a myriad of factors such as underlying asset quality,
+              governance, strength of management team to determine the sustainability of the dividend. From the growth
+              aspect, the fund manager will consider the REIT’s potential for accretive acquisitions as well as
+              underlying sector or asset trends . The REITs invested would typically be about SGD$1bn market cap or
+              larger with daily trading value of SGD1mill or more.</div>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel>
+          <ng-template ngbPanelTitle>
+            <div class="flex space-between">
+              <div class="flex align-center"> <span class="circle"><img
+                    src="assets/images/investment-account/circle-3.svg" /></span><span>Fixed
+                  Income</span>
+              </div>
+              <div><i class='arrow'></i></div>
+            </div>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <div class="tab-content">The fixed income securities may be investment grade, non-investment grade and/or
+              unrated securities
+              primarily issued by companies, governments, quasi-governments, government agencies or supranationals, with
+              primary focus in Asian companies. Foreign currency denominated fixed income securities will generally be
+              hedged to SGD to reduce the exposure of the securities to the movement of foreign currencies and the
+              overall credit rating of the fixed income portfolio will be BBB- (S&P) and above.</div>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel [disabled]="true">
+          <ng-template ngbPanelTitle>
+            <div class="flex space-between">
+              <div class="flex align-center"> <span class="circle"><img
+                    src="assets/images/investment-account/circle-4.svg" /></span><span>Cash</span></div>
+              <div><i class='arrow'></i></div>
+            </div>
+          </ng-template>
+          <ng-template ngbPanelContent>
           </ng-template>
         </ngb-panel>
       </ngb-accordion>
+      <div class="disclaimer">Click on link below for factsheet and product highlights sheet.</div>
     </div>
-  </div>
   </div>
   <button type="button" class="btn btn-view width100" (click)="showFundDetails()">{{
     'PORTFOLIO_RECOMMENDATION.VIEW_FUND_DETAILS' | translate}}</button>
