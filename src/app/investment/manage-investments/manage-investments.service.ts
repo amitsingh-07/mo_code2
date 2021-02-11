@@ -1,7 +1,7 @@
 
-import {of as observableOf,  Observable, Subject } from 'rxjs';
+import { of as observableOf, Observable, Subject } from 'rxjs';
 
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { conformToMask } from 'text-mask-core';
 
 import { HttpClient } from '@angular/common/http';
@@ -126,7 +126,7 @@ export class ManageInvestmentsService {
       // tslint:disable-next-line:max-line-length
     } else if (
       Number(form.value.MonthlyInvestmentAmount) < this.manageInvestmentsFormData.minimumBalanceOfTopup
-      && form.value.Investment ===  MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.MONTHLY.VALUE
+      && form.value.Investment === MANAGE_INVESTMENTS_CONSTANTS.TOPUP.TOPUP_TYPES.MONTHLY.VALUE
       && ((Number(form.value.MonthlyInvestmentAmount) === 0 && !allowMonthlyZero) || (Number(form.value.MonthlyInvestmentAmount) !== 0))
     ) {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['more']);
@@ -197,7 +197,7 @@ export class ManageInvestmentsService {
   }
   // GET CCASH PORTFOLIO LIST//
 
-   getCashPortfolioList() { 
+  getCashPortfolioList() {
     const CashPortfolioList = [];
     this.manageInvestmentsFormData.userPortfolios.forEach(portfolio => {
       if (portfolio.portfolioType === 'Cash' && portfolio.cashAccountBalance) {
@@ -208,7 +208,7 @@ export class ManageInvestmentsService {
       }
     });
     return CashPortfolioList;
-   }
+  }
 
   getUserPortfolioList() {
     // Sort portfolio by ascending alphabetical order order
@@ -279,7 +279,7 @@ export class ManageInvestmentsService {
     this.manageInvestmentsFormData.isRedeemAll = isRedeemAll;
     this.commit();
   }
-  
+
   clearWithdrawalTypeFormData() {
     this.manageInvestmentsFormData.withdrawType = null;
     this.manageInvestmentsFormData.withdrawAmount = null;
@@ -327,7 +327,7 @@ export class ManageInvestmentsService {
     const payload = this.constructSellPortfolioRequestParams(data);
     return this.investmentApiService.sellPortfolio(data.withdrawPortfolio.customerPortfolioId, payload);
   }
- 
+
   constructSellPortfolioRequestParams(data) {
     const request = {};
     request['withdrawType'] = data.withdrawType ? data.withdrawType.value : null;
@@ -367,7 +367,7 @@ export class ManageInvestmentsService {
       promoCodeId: this.promoCodeService.usedPromo.getValue()['id']
     };
   }
-  getTransactionHistory(id) { 
+  getTransactionHistory(id) {
     return this.investmentApiService.getTransactionHistory(id);
   }
 
@@ -680,25 +680,42 @@ export class ManageInvestmentsService {
     const request = {};
     request['sourceRefNo'] = data.transferFrom.refno;
     request['destinationRefNo'] = data.transferTo.refno;
-    request['amount'] = parseFloat(data.transferAmount) ;
+    request['amount'] = parseFloat(data.transferAmount);
     request['transferAll'] = data.TransferAll === true ? 'Y' : 'N';
     return request;
-   }
-  setTransferFormData(data ,TransferAll) {
-    if(data &&data.transferFrom && data.transferTo){
+  }
+  setTransferFormData(data, TransferAll) {
+    if (data && data.transferFrom && data.transferTo) {
       this.manageInvestmentsFormData.transferFrom = data.transferFrom;
       this.manageInvestmentsFormData.transferTo = data.transferTo;
       this.manageInvestmentsFormData.transferAmount = data.transferAmount;
-      this.manageInvestmentsFormData.TransferAll =TransferAll;
+      this.manageInvestmentsFormData.TransferAll = TransferAll;
       this.commit();
     }
-   
+
   }
   clearSetTransferData() {
     this.manageInvestmentsFormData.transferFrom = null;
-      this.manageInvestmentsFormData.transferTo = null;
-      this.manageInvestmentsFormData.transferAmount = null;
-      this.manageInvestmentsFormData.TransferAll =null;
-     this.commit();
+    this.manageInvestmentsFormData.transferTo = null;
+    this.manageInvestmentsFormData.transferAmount = null;
+    this.manageInvestmentsFormData.TransferAll = null;
+    this.commit();
+  }
+  
+  getWrapFeeDetails(customerId) {
+    const payload = {
+      customer_id: customerId,
+    };
+    return this.investmentApiService.getWrapFeeDetails(payload);
+  }
+
+  isInvestAndJointAccount() {
+    let isInvestAndJointAccountHolder = false;
+    this.manageInvestmentsFormData.userPortfolios.forEach(portfolio => {
+      if (portfolio.entitlements && portfolio.entitlements.jointAccount) {
+        isInvestAndJointAccountHolder = true;
+      }
+    });
+    return isInvestAndJointAccountHolder;
   }
 }

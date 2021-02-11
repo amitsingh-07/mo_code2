@@ -60,6 +60,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   simpleReturnsValue: any; // Simple returns
   showTimeWeightedReturns = false;
   investmentAmount: any; // Net Deposits
+  isExpand:boolean= false;
   private subscription: Subscription;
 
   showFixedToastMessage: boolean;
@@ -539,5 +540,8 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
       desc: this.translate.instant('TRANSFER_INSTRUCTION.COPIED')
     };
     this.showCopyToast(toasterMsg);
+  }
+  fullName() {
+    this.isExpand = true;
   }
 }
