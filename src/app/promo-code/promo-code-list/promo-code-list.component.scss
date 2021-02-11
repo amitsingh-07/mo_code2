@@ -44,17 +44,26 @@ app-promo-code-list {
     }
   }
 
-  .input-container {
-    display: flex;
-    justify-content: space-between;
-    border: solid 1px $form-control-disabled-border-color;
-    padding: 6px 6px 6px 0;
+  .div-container {
     width: 100%;
     max-width: 500px;
     min-width: 275px;
     @include allmobiles {
       width: 100%;
     }
+  }
+
+  .input-container {
+    display: flex;
+    justify-content: space-between;
+    border: solid 1px $form-control-disabled-border-color;
+    padding: 6px 6px 6px 0;
+    width: 100%;
+    // max-width: 500px;
+    // min-width: 275px;
+    // @include allmobiles {
+    //   width: 100%;
+    // }
   }
 
   .apply-container {
@@ -269,6 +278,11 @@ app-promo-code-list {
       a {
         color: $dark-orange-color;
         text-decoration: none;
+        cursor: pointer;
+      }
+
+      span {
+        display: contents;
       }
     }
   }
