@@ -8,12 +8,12 @@
     <div>
       <div class="promo-title">{{details?.header}}</div>
       <div class="validity-txt mt5">{{'PROMO_CODE_DETAILS.VAlID_UNTIL' | translate}}{{selectedPromo?.promoCodeEndDate || selectedPromo?.endDate | date:'dd MMM y'}}</div>
-      <div *ngFor="let promo of details?.promoDesc" class="content-div mt20">
-        <div class="mb30">
+      <ng-container *ngFor="let promo of details?.promoDesc">
+        <div class="mt20 mb30">
           <p [innerHTML]="promo.title" class="sub-header"></p>
-          <p [innerHTML]="promo.content"></p>
+          <p [innerHTML]="promo.content" class="content-div"></p>
         </div>
-      </div>
+      </ng-container>
     </div>
     <div class="use-promo-btn">
       <ng-container *ngIf="usedPromo && usedPromo.value === selectedPromo; else notSelected">

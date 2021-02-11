@@ -23,7 +23,7 @@ app-promo-code-list {
     @include desktop {
       width: 100vw;
       max-width: 840px;
-      padding: 14px 86px;
+      justify-content: center;
     }
 
     @include allmobiles {
@@ -33,7 +33,7 @@ app-promo-code-list {
 
     .add-promo {
       font-family: $muli-regular;
-      font-size: 16px;
+      font-size: 18px;
       line-height: normal;
       letter-spacing: -0.15px;
       color: $black-color;
@@ -95,6 +95,7 @@ app-promo-code-list {
   }
 
   input#promoInpt.form-control:invalid+.form-control-placeholder {
+    top: 16px;
     color: $dusty-grey-color;
   }
 

@@ -40,6 +40,7 @@ app-promo-code-modal {
         width: 100vw;
       }
       .add-promo {
+        font-size: 16px;
         @include allmobiles {
           display: none;
         }

@@ -67,7 +67,7 @@ export class PromoCodeListComponent implements OnInit {
   }
 
   applyPromoCode(event) {
-    if (this.formGrp.controls['promoCode'].value.length > 5) {
+    if (this.formGrp.controls['promoCode'].value.length === 6) {
       // Show the spinner
       this.formGrp.controls['promoCode'].setErrors(null);
       this.showClearBtn = false;

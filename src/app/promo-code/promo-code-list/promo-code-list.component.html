@@ -3,16 +3,16 @@
     <div class="flex-row">
       <div class="flex-row gray-bg">
         <span class="add-promo">{{'PROMO_CODE_LIST.ADD_PROMO' | translate}}</span>
-        <div class="form-group-floating-label input-container" [ngClass]="{'inline-error': showError}">
+        <div class="form-group-floating-label input-container" [ngClass]="{'inline-error': (formGrp.controls.promoCode.errors?.invalidPromoCode || formGrp.controls.promoCode.errors?.promoCodeAlreadyApplied || formGrp.controls.promoCode.errors?.existingPromoCode)}">
           <input type="text" id="promoInpt" formControlName="promoCode" (keyup)="onKeyupEvent($event)" autocomplete="off" class="form-control" required [readonly]="showSpinner">
           <label class="form-control-placeholder" for="promoCode">{{'PROMO_CODE_LIST.ENTER_PROMO' | translate}}</label>
           <img id="cross-btn" *ngIf="showClearBtn && !promoCodeValidated" (click)="clearPromoCode($event)" src="assets/images/button-clear-txt.svg" />
-          <div *ngIf="!promoCodeValidated && !showSpinner" class="apply-container" (click)="applyPromoCode($event)" [ngStyle]="{'background-color': (formGrp.controls['promoCode'].value.length > 5)? '#ff872f' : '#00a7a7'}">
+          <div *ngIf="!promoCodeValidated && !showSpinner" class="apply-container" (click)="applyPromoCode($event)" [ngStyle]="{'background-color': (formGrp.controls['promoCode'].value.length === 6)? '#ff872f' : '#00a7a7'}">
             <span>{{'PROMO_CODE_LIST.APPLY_BTN' | translate}}</span>
           </div>
           <app-spinner [showSpinner]="showSpinner"></app-spinner>
         </div>
-        <div *ngIf="showError" class="promo-code-error mt10">
+        <div *ngIf="formGrp.controls.promoCode.errors?.invalidPromoCode || formGrp.controls.promoCode.errors?.promoCodeAlreadyApplied || formGrp.controls.promoCode.errors?.existingPromoCode" class="promo-code-error mt10">
           <img src="assets/images/alert.svg" />
           <span *ngIf="formGrp.controls.promoCode.errors?.invalidPromoCode">{{'PROMO_CODE_LIST.INVALID_PROMO' | translate}}</span>
           <span *ngIf="formGrp.controls.promoCode.errors?.promoCodeAlreadyApplied">{{'PROMO_CODE_LIST.ALREADY_APPLIED' | translate}}</span>
