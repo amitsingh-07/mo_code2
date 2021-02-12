@@ -40,9 +40,9 @@ export class FeesComponent implements OnInit {
     const self = this;
     this.translate.get('COMMON').subscribe((result: string) => {
       self.pageTitle = this.translate.instant('FEES.TITLE');
-      this.loaderTitle = this.translate.instant('FEES.LOADING_TITLE'),
-        this.loaderDesc = this.translate.instant('FEES.LOADING_DESC'),
-        this.setPageTitle(this.pageTitle);
+      this.loaderTitle = this.translate.instant('FEES.LOADING_TITLE');
+      this.loaderDesc = this.translate.instant('FEES.LOADING_DESC');
+      this.setPageTitle(this.pageTitle);
       this.renderer.addClass(document.body, 'portfolioname-bg');
     });
   }
