@@ -21,6 +21,8 @@ export class FeesComponent implements OnInit {
   subTitle: string;
   feeDetails: any;
   userProfileInfo: any;
+  loaderTitle: string;
+  loaderDesc: string;
 
   constructor(
     public headerService: HeaderService,
@@ -38,6 +40,8 @@ export class FeesComponent implements OnInit {
     const self = this;
     this.translate.get('COMMON').subscribe((result: string) => {
       self.pageTitle = this.translate.instant('FEES.TITLE');
+      this.loaderTitle = this.translate.instant('FEES.LOADING_TITLE');
+      this.loaderDesc = this.translate.instant('FEES.LOADING_DESC');
       this.setPageTitle(this.pageTitle);
       this.renderer.addClass(document.body, 'portfolioname-bg');
     });
@@ -60,8 +64,8 @@ export class FeesComponent implements OnInit {
   }
   getWrapFeeDetails(customerId) {
     this.loaderService.showLoader({
-      title: this.translate.instant('FEES.LOADING_TITLE'),
-      desc: this.translate.instant('FEES.LOADING_DESC'),
+      title: this.loaderTitle,
+      desc: this.loaderDesc,
       autoHide: false
     });
     this.manageInvestmentsService.getWrapFeeDetails(customerId).subscribe((data) => {
