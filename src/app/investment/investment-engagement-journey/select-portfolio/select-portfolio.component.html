@@ -1,5 +1,6 @@
 <div class="container-fluid max-width--1024 select-portfolio full-height">
     <div class="portfolio-page-title hidden-sm">{{'PORTFOLIO.TITLE' | translate}}</div>
+    <div class="portfolio-subheading">{{'PORTFOLIO.SUB_HEADING' | translate}}</div>
     <!-- Investment Portfolio -->
     <form name="selectPortfolioForm" [formGroup]="selectPortfolioForm" id="selectPortfolioForm">
         <div class="investment-portfolio" formControlName="selectPortfolioType" id="selectPortfolioType" name="selectPortfolioForm" value="investPortfolio" ngDefaultControl (click)="setSelectPortfolioType('investPortfolio')">

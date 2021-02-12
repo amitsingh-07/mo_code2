@@ -21,6 +21,7 @@
     },
     "PORTFOLIO": {
         "TITLE": "Select Portfolio",
+        "SUB_HEADING": "What is your investment goal?",
         "INVESTMENT": {
             "TITLE": "Grow your wealth",
             "DESC": "Invest in our globally diversified portfolios to grow your wealth faster",
