@@ -44,6 +44,8 @@ export class YourInvestmentAmountComponent implements OnInit {
   investmentCriteria: IInvestmentCriteria;
   selectedPortfolioType;
 
+  portfolioType
+
   constructor(
     private router: Router,
     private modal: NgbModal,
@@ -101,11 +103,23 @@ export class YourInvestmentAmountComponent implements OnInit {
   }
 
   getInvestmentCriteria(selectedPortfolioValue) {
-    const portfolioType = selectedPortfolioValue === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO
-      ? INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER : INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT;
-    this.investmentCommonService.getInvestmentCriteria(portfolioType).subscribe((data) => {
+   this.toDecidedPortfolioType(selectedPortfolioValue);
+    this.investmentCommonService.getInvestmentCriteria(this.portfolioType).subscribe((data) => {
       this.investmentCriteria = data;
     });
+  }
+
+  toDecidedPortfolioType(selectedPortfolioValue) {
+    if (selectedPortfolioValue ===
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO) {
+      return this.portfolioType = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO
+    } else if (selectedPortfolioValue ===
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT) {
+      return this.portfolioType = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT
+    } else {
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISE_INCOME
+      return this.portfolioType = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISE_INCOME
+    }
   }
 
   buildInvestAmountForm() {
@@ -181,7 +195,6 @@ export class YourInvestmentAmountComponent implements OnInit {
             if (data) {
               this.authService.saveEnquiryId(data.objectList.enquiryId);
               this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.RISK_ACKNOWLEDGEMENT]);
-
             }
           },
             (err) => {
