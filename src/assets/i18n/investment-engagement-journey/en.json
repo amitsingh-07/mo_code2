@@ -22,10 +22,10 @@
     "PORTFOLIO": {
         "TITLE": "Select Portfolio",
         "INVESTMENT": {
-            "TITLE": "Investment Portfolio",
-            "DESC": "Better returns with a longer time horizon",
+            "TITLE": "Grow your wealth",
+            "DESC": "Invest in our globally diversified portfolios to grow your wealth faster",
             "MORE_INFO": "More info",
-            "FOOTER_BTN_TXT": "Choose Investment Portfolio",
+            "FOOTER_BTN_TXT": "Continue",
             "SLIDES": {
                 "P1": "Our Investment Portfolios give you the best probability of a successful investment experience by helping you to achieve your financial goals.",
                 "P2": "Let us choose the right asset allocation for you so that you can stay invested for the long haul with as little guesswork and as little stress as possible.",
@@ -38,10 +38,10 @@
             }
         },
         "WISESAVER": {
-            "TITLE": "WiseSaver Portfolio",
-            "DESC": "Great for shorter savings period",
+            "TITLE": "Park spare cash",
+            "DESC": "Get higher interest than your savings account with WiseSaver",
             "MORE_INFO": "More info",
-            "FOOTER_BTN_TXT": "Choose WiseSaver Portfolio",
+            "FOOTER_BTN_TXT": "Continue",
             "SLIDES": {
                 "P1": "This is a cash management portfolio that gives you safe and stable returns that are comparable to SGD fixed deposits regardless of how much or how long you are saving.",
                 "P2": "You can park your emergency funds or spare cash here with the confidence that you can easily access them whenever you need them.",
@@ -51,6 +51,23 @@
                 "LIST_ITEM_3": "No lock-in period",
                 "LIST_ITEM_4": "No Advisory or Platform Fee",
                 "LIST_ITEM_5": "Save from as low as $50/month"
+            }
+        },
+        "WISEINCOME": {
+            "TITLE": "Receive passive income",
+            "DESC": "Get regular payouts for your retirement or other needs with WiseIncome",
+            "MORE_INFO": "More info",
+            "FOOTER_BTN_TXT": "Continue",
+            "SLIDES": {
+                "P1": "Invest in a portfolio of global indexed equities, Asian bonds, Singapore/US Government bonds and Singapore REITS designed to provide a stream of passive income for the long term.",
+                "P2": "This is suitable for those who want to build passive income through their investments and can take moderate levels of risk.",
+                "HEADING": "What's great?",
+                "LIST_ITEM_1": "Passive income of 4.5% p.a. or higher (up to 4.8% p.a.)",
+                "LIST_ITEM_2": "Potential for capital appreciation",
+                "LIST_ITEM_3": "Portfolio of global equities, Asian bonds, S-REITS and govt bonds",
+                "LIST_ITEM_4": "Flexible quarterly payout options",
+                "LIST_ITEM_5": "No lock-in period",
+                "LIST_ITEM_6": "Exclusive to MoneyOwl"
             }
         }
     },
