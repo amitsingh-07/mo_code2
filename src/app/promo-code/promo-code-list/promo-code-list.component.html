@@ -36,10 +36,10 @@
             <div class="promo-name">{{promo?.shortDescription}}</div>
             <div *ngIf="promo?.customerPromoStatus !== promoCodeStatus.PROCESSING" class="valid-period">
               <ng-container *ngIf="promo?.customerPromoStatus === promoCodeStatus.NOT_IN_USE; else applied">
-                {{'PROMO_CODE_LIST.VAlID_UNTIL' | translate}}{{promo?.promoCodeEndDate | date:'dd MMM y'}}
+                {{'PROMO_CODE_LIST.VAlID_UNTIL' | translate}}{{dateFormatter(promo?.promoCodeEndDate) | date:'dd MMM y'}}
               </ng-container>
               <ng-template #applied>
-                {{'PROMO_CODE_LIST.APPLIED_ON' | translate}}{{promo?.appliedDate | date:'dd MMM y'}}
+                {{'PROMO_CODE_LIST.APPLIED_ON' | translate}}{{dateFormatter(promo?.appliedDate) | date:'dd MMM y'}}
               </ng-template>
             </div>
           </div>

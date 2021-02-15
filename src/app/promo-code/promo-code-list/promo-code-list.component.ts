@@ -9,7 +9,6 @@ import { PromoDetailsComponent } from './../promo-details/promo-details.componen
 import { PromoCodeService } from './../promo-code.service';
 import { PROMO_CODE_STATUS } from './../promo-code.constants';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './../../investment/manage-investments/manage-investments-routes.constants';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-promo-code-list',
@@ -134,6 +133,15 @@ export class PromoCodeListComponent implements OnInit {
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.FEES]);
     event.stopPropagation();
     event.preventDefault();
+  }
+
+  dateFormatter(dateStr) {
+    if (dateStr) {
+      const dateParts = dateStr.split("/");
+      return new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+    } else {
+      return null;
+    }
   }
 
 }
