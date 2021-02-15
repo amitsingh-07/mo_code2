@@ -167,15 +167,13 @@
         "MESSAGE": "Please wait."
       },
       "RBL_MODAL": {
-        "TITLE": "Rebalancing In Progress",
-        "MESSAGE_ONE": "<div class='rebalancing-modal-msg'><div class='mb15'>Please note that your portfolio is being rebalanced.</div><div class='mb15'>As your portfolio is currently undergoing rebalancing, you may notice a lower portfolio value reflected on your dashboard. This is due to funds currently in transit.</div><div class='mb15'>Please be assured that your portfolio value will be updated to reflect its correct holdings once the rebalancing is completed in 6 to 7 working days.</div><div class='mb15'>Please note that requests for redemptions from portfolio during rebalancing will only be submitted for processing after rebalancing is completed.</div><div>For more information relating to portfolio rebalancing, please go to <a class='contact-details mail' target='_blank' href='/faq-investment/#investment|1'>Frequently Asked Questions</a> on our website.</div></div>",
-        "MESSAGE_TWO": "<div class='rebalancing-modal-msg'><div class='mb15'>Please note that your portfolio is being rebalanced.</div><div class='mb15'>Together with this rebalancing exercise, we will also be revising your asset allocation to include a new fixed income fund (<a  class='contact-details mail' target='_blank' href='the-right-building-blocks'>Dimensional Global Core Fixed Income Fund</a>) into your portfolio. This was a considered move by the Investment Committee to improve our portfolios' resilience against market volatility.</div><div class='mb15'>As your portfolio is currently undergoing rebalancing, you may notice a lower portfolio value reflected on your dashboard. This is due to funds currently in transit.</div><div class='mb15'>Please be assured that your portfolio value will be updated to reflect its correct holdings once the rebalancing is completed in 6 to 7 working days.</div><div class='mb15'>Please note that requests for redemptions from portfolio during rebalancing will only be submitted for processing after rebalancing is completed.</div><div class='mb15'>For more information relating to portfolio rebalancing, please go to <a class='contact-details mail' target='_blank' href='/faq-investment/#investment|1'>Frequently Asked Questions</a> on our website.</div>"
+        "TITLE": "Quarterly Rebalancing In-progress",
+        "MESSAGE": "<div class='rebalancing-modal-msg'><div class='mb15'>Please note that your portfolio is being rebalanced. This process will be completed in 6 to 7 working days. <span class='txt-bold'>Requests for redemptions from portfolio(s) will only be submitted for processing after rebalancing is completed.</span></div><div><a class='contact-details mail' target='_blank' href='/app/faq#investment'>For more information, visit our FAQs.</a></div></div>" 
       },
       "RE_BALANCE": {
         "TITLE": "Rebalancing In Progress",
         "DESC": "Please note that this portfolio is being rebalanced. This process will be completed in 6 to 7 working days.",
         "DESC_ONE": "Requests for redemptions will only be submitted for processing after rebalancing is completed. ",
-        "DESC_TWO": "Together with our rebalancing exercise, we will also be revising your asset allocation to include a new fixed income fund (<a  class='txt-orange mt5' target='_blank' href='the-right-building-blocks'>Dimensional Global Core Fixed Income Fund</a>) into your portfolio. This was a considered move  to potentially improve your portfolios’ expected returns and resilience against market volatility. ",
         "FAQ_LINK": "For more information, visit our FAQs."
       },
       "CALCULATE": {
@@ -218,7 +216,14 @@
     "PORTFOLIO_TO_BANK_ACCOUNT": "Portfolio to Bank Account",
     "PORTFOLIO_TO_CASH_ACCOUNT": "Portfolio to Cash Account",
     "PORTFOLIO_TO_SRS_ACCOUNT": "Portfolio to SRS Account",
-    "CASH_ACCOUNT_TO_BANK_ACCOUNT": "Cash Account to Bank Account"
+    "CASH_ACCOUNT_TO_BANK_ACCOUNT": "Cash Account to Bank Account",
+    "JOINT_ACCOUNT": {
+      "PRIMARY_HOLDER": "Primary holder",
+      "SECONDARY_HOLDER": "Secondary holder",
+      "JOINT": "Joint",
+      "ACCOUNT_WITH" : "Account with"
+    }
+
   },
   "WITHDRAW": {
     "TITLE": "Withdrawal",
@@ -268,7 +273,6 @@
           "TITLE": "Rebalancing In Progress",
           "DESC": "Please note that this portfolio is being rebalanced. This process will be completed in 6 to 7 working days.",
           "DESC_ONE": "Requests for redemptions will only be submitted for processing after rebalancing is completed. ",
-          "DESC_TWO": "Together with our rebalancing exercise, we will also be revising your asset allocation to include a new fixed income fund (<a class='contact-details mail' target='_blank' href='the-right-building-blocks'>Dimensional Global Core Fixed Income Fund</a>) into your portfolio. This was a considered move  to potentially improve your portfolios’ expected returns and resilience against market volatility. ",
           "FAQ_LINK": "For more information, visit our FAQs."
         }
       }
@@ -281,7 +285,9 @@
     "REDEEM_ALL_INFO": "Please note that minimum portfolio amount is ${{MIN_BALANCE_AMOUNT}}. If you wish to maintain your portfolio, you are to maintain a minimum portfolio value of ${{MIN_BALANCE_AMOUNT}} or continue to redeem all.",
     "AFTER_WITHDRAWAL": "After Withdrawal:",
     "WITHDRAWAL_ERROR_CASH": "Withdrawal amount should not be more than the Cash Account Balance",
-    "WITHDRAWAL_ERROR_PORTFOLIO": "Withdrawal amount should not be more than the Portfolio Balance"
+    "WITHDRAWAL_ERROR_PORTFOLIO": "Withdrawal amount should not be more than the Portfolio Balance",
+    "JOINT_ACCOUNT_DESC": "Please note that withdrawals to bank account for <strong>Joint Investment Portfolios</strong> are currently handled offline. Email <a target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> before 11am to process your request on the same business day.",
+    "PERSONAL_JOINT_ACCOUNT_DESC": "Please note that withdrawals to bank account for <strong>Personal Investment Portfolios</strong> are currently handled offline. Email <a target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> before 11am to process your request on the same business day."
   },
   "WITHDRAW_SUCCESS": {
     "TITLE": "Withdrawal Request Submitted",
@@ -314,7 +320,8 @@
       "BANK_NAME": "Bank Name",
       "ACCOUNT_NO": "Account No.",
       "APPLY_CHANGE": "Apply Changes"
-    }
+    },
+    "JOINT_ACCOUNT_DESC": "While we upgrade our systems, please email <a target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a>if you would like to update your bank details."
   },
   "TRANSACTIONS": {
     "TITLE": "Transactions",
@@ -456,5 +463,16 @@
     "BACK_TO_PORTFOLIO": "Back to My Portfolio",
     "BACK_TO_TRANSFER": "Make Another Transfer",
     "BACK_TO_TRANSACTION_HISTORY": "View Transaction History"
+  },
+  "FEES": {
+    "TITLE": "Fees",
+    "DESC": "Your prevailing MoneyOwl advisory annual fees are as follows:",
+    "PROCESSING_APPLIED": "{Processing/Applied}",
+    "ABSORBED_BY_MONEY_OWL": "(Absorbed by MoneyOwl)",
+    "PROCESSING": " (Processing/",
+    "APPLIED": " Applied)",
+    "VALID_TILL": "Valid till",
+    "DIMENSIONAL_PORTFOLIO":"Dimensional Portfolios",
+    "FAQ_DESC": "*This is your prevailing advisory rate. Please refer to  <a class='faq-link'  target='_blank' href='/pricing/'>Pricing </a> and <a class='faq-link' target='_blank' href='/faq-investment/#investment|1'>FAQ</a> on how this is calculated. Promotional rates (if any) are factored into the calculation of your prevailing advisory rate."
   }
 }

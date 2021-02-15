@@ -1,0 +1,41 @@
+{
+  "PROMO_CODE": {
+    "TITLE": "Investment Promo Codes"
+  },
+  "PROMO_CODE_LIST": {
+    "ADD_PROMO" : "Add Promotion",
+    "ENTER_PROMO" : "Enter a Promo Code",
+    "APPLY_BTN": "Apply",
+    "INVALID_PROMO": "Sorry, this promo code is invalid!",
+    "ALREADY_APPLIED": "Promo code has already been applied",
+    "EXISTING_PROMO": "You have an existing promo code applied",
+    "ACTIVE_PROMO": "Active Promotions",
+    "VAlID_UNTIL": "Valid until ",
+    "APPLIED_ON": "Applied on ",
+    "USE_PROMO": "Use Promo",
+    "TNC": "All claimed rate will be reflected in your <a target='_blank' href='/faq-investment/#investment|5'>fees</a> table. All claimed vouchers will be sent to you via email. For more information, please go to <a target='_blank' href='/faq-investment/'>Frequently Asked Questions</a> on our website.",
+    "NO_PROMO": "No promotions added yet",
+    "ADD_PROMO_ABOVE": "Add available promo codes in the input box above"
+  },
+  "PROMO_CODE_SELECT": {
+    "REMOVE_BTN": "Remove",
+    "HAVE_PROMO": "Have a Promo Code?",
+    "PORTFOLIO_NOT_INClUDED": "Sorry, we could not apply the promo code as the portfolio selected is not included in the promotion."
+  },
+  "PROMO_CODE_DETAILS": {
+    "PROMO_DETAILS": "Promotion Details",
+    "VAlID_UNTIL": "Valid until ",
+    "APPLIED_ON": "Applied on ",
+    "REMOVE_PROMO": "Remove Promo",
+    "USE_PROMO": "Use Promo"
+  },
+  "PROMO_CODE_OVERWRITE": {
+    "OVERWRITE_TXT_1": "<p>You have an existing promo code applied with ",
+    "OVERWRITE_TXT_2": "% off Advisory Fee till ",
+    "OVERWRITE_TXT_3": "</p>Would you like to proceed?"
+  },
+  "PROMO_CODE_ERROR": {
+    "ERR_TITLE": "Error",
+    "ERR_MSG": "Error Applying Promo Code"
+  }
+}

@@ -658,4 +658,25 @@ export class ApiService {
       );
   }
 
+  getCustomerInvestmentPromoCode(payload) {
+    return this.http.post(apiConstants.endpoint.promoCode.getCustomerInvestmentPromoCode, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  validateInvestPromoCode(payload) {
+    return this.http.post(apiConstants.endpoint.promoCode.validateInvestPromoCode, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  saveCustomerPromoCode(payload) {
+    return this.http.post(apiConstants.endpoint.promoCode.saveCustomerPromoCode, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
 }

@@ -1,0 +1,41 @@
+<div class="modal-body white-bg">
+  <div class="promo-details-title">
+    <img src="assets/images/back-mobile-btn.svg" (click)="close()" alt="" />
+    <span>{{'PROMO_CODE_DETAILS.PROMO_DETAILS' | translate}}</span>
+    <div></div>
+  </div>
+  <div class="modal-body-message">
+    <div>
+      <div class="promo-title">{{details?.header}}</div>
+      <div class="validity-txt mt5">{{'PROMO_CODE_DETAILS.VAlID_UNTIL' | translate}}{{selectedPromo?.promoCodeEndDate || selectedPromo?.endDate | date:'dd MMM y'}}</div>
+      <div *ngFor="let promo of details?.promoDesc" class="content-div mt20">
+        <div class="mb30">
+          <p [innerHTML]="promo.title" class="sub-header"></p>
+          <p [innerHTML]="promo.content"></p>
+        </div>
+      </div>
+    </div>
+    <div class="use-promo-btn">
+      <ng-container *ngIf="usedPromo && usedPromo.value === selectedPromo; else notSelected">
+        <button (click)="removePromoCode($event)" type="button" class="btn btn-orange">{{'PROMO_CODE_DETAILS.REMOVE_PROMO' |
+          translate}}</button>
+      </ng-container>
+      <ng-template #notSelected>
+        <ng-container
+          *ngIf="selectedPromo?.customerPromoStatus && selectedPromo?.customerPromoStatus !== promoCodeStatus.NOT_IN_USE; else usePromoBtn">
+          <ng-container *ngIf="usedPromo && usedPromo.value === selectedPromo; else inactive">
+            <button (click)="removePromoCode($event)" type="button"
+              class="btn btn-orange">{{'PROMO_CODE_DETAILS.REMOVE_PROMO' | translate}}</button>
+          </ng-container>
+          <ng-template #inactive>
+            <button type="button" class="disabled-btn" disabled>{{selectedPromo?.customerPromoStatus | titlecase}}</button>
+          </ng-template>
+        </ng-container>
+        <ng-template #usePromoBtn>
+          <button (click)="usePromo($event)" type="button" class="btn btn-orange">{{'PROMO_CODE_DETAILS.USE_PROMO' |
+            translate}}</button>
+        </ng-template>
+      </ng-template>
+    </div>
+  </div>
+</div>

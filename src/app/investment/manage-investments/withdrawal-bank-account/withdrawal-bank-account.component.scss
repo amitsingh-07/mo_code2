@@ -1,10 +1,10 @@
-@import '../../../../variables';
-@import '../../../../mixins';
+@import "../../../../variables";
+@import "../../../../mixins";
 app-withdrawal-bank-account {
-  h2{
-    font-size:30px !important;
+  h2 {
+    font-size: 30px !important;
     margin-bottom: 15px;
-    @include allmobiles{
+    @include allmobiles {
       font-size: 21px;
     }
   }
@@ -17,7 +17,7 @@ app-withdrawal-bank-account {
     padding: 21px 0 105px;
     a {
       color: #a7f3f1;
-     }
+    }
   }
   .withdraw {
     .withdraw_to_acc {
@@ -113,12 +113,23 @@ app-withdrawal-bank-account {
       .user_name {
         color: $black-color;
       }
+      .joint-account-desc {
+        font-family: $muli-italic;
+        font-size: 14px;
+        letter-spacing: -0.26px;
+        color: $silver-grey-color;
+        padding: 16px 24px 0px;
+        a {
+          font-family: $muli-bold-italic;
+          color: $crusta-orange-color;
+        }
+      }
     }
     .bank-icon {
       width: 71px;
       height: 49px;
       margin-bottom: 19px;
-      .edit-bank{
+      .edit-bank {
         position: absolute;
         top: 24px;
         right: 23px;
@@ -135,9 +146,24 @@ app-withdrawal-bank-account {
       color: $white-color;
       padding: 55px 0;
       cursor: pointer;
+      &.person-joint-account {
+        cursor: not-allowed;
+      }
       .flex-row {
         img {
           margin-right: 10.4px;
+        }
+      }
+      .joint-account-desc {
+        font-family: $muli-italic;
+        font-size: 14px;
+        letter-spacing: -0.26px;
+        color: $silver-grey-color;
+        padding: 16px 24px 0px;
+        color: $white-color;
+        span {
+          font-family: $muli-bold-italic;
+          color: $myinfo-block-brdr-color;
         }
       }
     }

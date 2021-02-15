@@ -87,7 +87,7 @@ export class TransferComponent implements OnInit, OnDestroy {
   sourceCashPortfolio(cashPortfolioList) {
     this.sourceCashPortfolioList = [];
     cashPortfolioList.forEach(element => {
-      if (element.cashAccountBalance > 0) {
+      if (element.cashAccountBalance > 0 && !(element.jointAccount)) {
         return this.sourceCashPortfolioList.push(element);
       }
     });
@@ -99,7 +99,7 @@ export class TransferComponent implements OnInit, OnDestroy {
     if (this.transferForm.get('transferFrom').value) {
       this.initialCashPortfolio = (this.transferForm.get('transferFrom').value && this.transferForm.get('transferFrom').value.portfolioName) ? this.transferForm.get('transferFrom').value.portfolioName : this.formValues.selectedCustomerPortfolio.portfolioName;
       cashPortfolioList.forEach(element => {
-        if (this.initialCashPortfolio !== element.portfolioName) {
+        if (this.initialCashPortfolio !== element.portfolioName && !(element.jointAccount)) {
           return this.destinationCashPortfolioList.push(element);
         }
 

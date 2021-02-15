@@ -140,7 +140,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     const enquiryId = { enquiryId: this.comprehensiveService.getEnquiryId() };
     if (this.comprehensiveJourneyMode) {
       const cashPayload = { enquiryId: this.comprehensiveService.getEnquiryId(), liquidCashAmount: this.comprehensiveService.getLiquidCash(),
-        annualCashAmount : this.comprehensiveService.getComputeSpareCash() };
+        spareCashAmount : this.comprehensiveService.getComputeSpareCash() };
       this.comprehensiveApiService.generateComprehensiveCashflow(cashPayload).subscribe((cashData) => {
         });
     }
