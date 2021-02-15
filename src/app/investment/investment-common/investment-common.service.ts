@@ -302,4 +302,18 @@ export class InvestmentCommonService {
   getWiseSaverDetails(){
     return this.investmentApiService.getWiseSaverDetails();
   }
+  //WISE INCOME PAYOUT METHOD
+ setWiseIncomePayOut(WiseIncomePayout) {
+  this.investmentCommonFormData.WiseIncomePayout = WiseIncomePayout;
+  this.commit();
+}
+  getWiseIncomePayOut() {
+    return {
+      WiseIncomePayout: this.investmentCommonFormData.WiseIncomePayout
+    };
+  }
+
+  getWiseIncomePayOutDetails(){
+    return this.investmentApiService.getWiseIncomePayOut();
+ }
  }

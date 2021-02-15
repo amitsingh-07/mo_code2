@@ -19,7 +19,7 @@
             <ng-template ngbPanelContent>
               <div class="bond_desc" *ngIf="asset.type.holdingsCount">
                 <div class="flex-row flex-col-12">
-                  <div class="rating_type border-right-none">Number of Holdings</div>
+                  <div class="rating_type border-right-none">{{'PORTFOLIO_RECOMMENDATION.NUMBER_HOLDINGS_LBL' | translate}}</div>
                   <div class="rating">
                     <div class="flex-row"><span class="rating_value">{{asset.holdingsCount}}</span></div>
                   </div>
@@ -44,12 +44,12 @@
   </div>
   <!-- wise-income -->
   <div class="wise-income-allocation-block">
-    <div>The fund invest in the following asset classes in this proportions.</div>
+    <div>{{'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.DESC_LBL' | translate}}</div>
     <div class="allocation-graph">
       <img src="assets/images/investment-account/wise-income-graph-donut.svg" />
     </div>
     <div class="wise-income-accordian-block">
-      <div class="title-lbl">Asset Class & Holdings</div>
+      <div class="title-lbl">{{'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.ASSET_HOLDINGS_LBL' | translate}}</div>
       <ngb-accordion #acc="ngbAccordion">
         <ngb-panel>
           <ng-template ngbPanelTitle>
@@ -58,61 +58,45 @@
                 <span class="circle">
                   <img src="assets/images/investment-account/circle-1.svg" />
                 </span>
-                <span>Equities</span>
+                <span>{{'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.EQUITIES_LBL' | translate}}</span>
               </div>
               <div><i class='arrow'></i></div>
             </div>
           </ng-template>
           <ng-template ngbPanelContent>
-            <div class="tab-content">The equities component of the portfolio will seek to give investors exposure to
-              companies and ETFs that
-              are listed on recognised stock exchanges globally. The passive investing strategy adopted, coupled with
-              broad diversification of the underlying ETFs allows investors to reap market-based returns without having
-              to rely on guesswork.</div>
+            <div class="tab-content">{{'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.EQUITIES_DESC' | translate}}</div>
           </ng-template>
         </ngb-panel>
         <ngb-panel>
           <ng-template ngbPanelTitle>
             <div class="flex space-between">
               <div class="flex align-center"> <span class="circle"><img
-                    src="assets/images/investment-account/circle-2.svg" /></span><span>S-REITs</span></div>
+                    src="assets/images/investment-account/circle-2.svg" /></span><span>{{'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.SREITS_LBL' | translate}}</span></div>
               <div><i class='arrow'></i></div>
             </div>
           </ng-template>
           <ng-template ngbPanelContent>
-            <div class="tab-content">The portfolio invest in Singapore REITs that are underpinned by dividend
-              sustainability coupled with
-              potential growth. The fund manager will consider a myriad of factors such as underlying asset quality,
-              governance, strength of management team to determine the sustainability of the dividend. From the growth
-              aspect, the fund manager will consider the REIT’s potential for accretive acquisitions as well as
-              underlying sector or asset trends . The REITs invested would typically be about SGD$1bn market cap or
-              larger with daily trading value of SGD1mill or more.</div>
+            <div class="tab-content">{{'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.SREITS_DESC' | translate}}</div>
           </ng-template>
         </ngb-panel>
         <ngb-panel>
           <ng-template ngbPanelTitle>
             <div class="flex space-between">
               <div class="flex align-center"> <span class="circle"><img
-                    src="assets/images/investment-account/circle-3.svg" /></span><span>Fixed
-                  Income</span>
+                    src="assets/images/investment-account/circle-3.svg" /></span><span>{{'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.FIXED_INCOME_LBL' | translate}}</span>
               </div>
               <div><i class='arrow'></i></div>
             </div>
           </ng-template>
           <ng-template ngbPanelContent>
-            <div class="tab-content">The fixed income securities may be investment grade, non-investment grade and/or
-              unrated securities
-              primarily issued by companies, governments, quasi-governments, government agencies or supranationals, with
-              primary focus in Asian companies. Foreign currency denominated fixed income securities will generally be
-              hedged to SGD to reduce the exposure of the securities to the movement of foreign currencies and the
-              overall credit rating of the fixed income portfolio will be BBB- (S&P) and above.</div>
+            <div class="tab-content">{{'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.FIXED_INCOME_DESC' | translate}}</div>
           </ng-template>
         </ngb-panel>
         <ngb-panel [disabled]="true">
           <ng-template ngbPanelTitle>
             <div class="flex space-between">
               <div class="flex align-center"> <span class="circle"><img
-                    src="assets/images/investment-account/circle-4.svg" /></span><span>Cash</span></div>
+                    src="assets/images/investment-account/circle-4.svg" /></span><span>{{'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.CASH_LBL' | translate}}</span></div>
               <div><i class='arrow'></i></div>
             </div>
           </ng-template>
@@ -120,7 +104,7 @@
           </ng-template>
         </ngb-panel>
       </ngb-accordion>
-      <div class="disclaimer">Click on link below for factsheet and product highlights sheet.</div>
+      <div class="disclaimer">{{'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.DISCLAIMER_LBL' | translate}}</div>
     </div>
   </div>
   <button type="button" class="btn btn-view width100" (click)="showFundDetails()">{{
