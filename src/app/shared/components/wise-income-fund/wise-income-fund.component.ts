@@ -17,7 +17,6 @@ export class WiseIncomeFundComponent implements OnInit {
   @Input('investmentInput') investmentInput;
 
   ngOnInit(): void {
-    console.log(this.investmentInput);
   }
 
   goReviewInputs() {
