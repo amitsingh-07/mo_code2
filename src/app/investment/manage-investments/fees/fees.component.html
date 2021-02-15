@@ -27,11 +27,10 @@
                 <div class="annual-fee-desc">
                     <div class="fund-block" *ngFor="let fee of feeDetails; let i = index">
                         <div class="fund-title" [ngClass]="{'wise-saver-annual-fee': portfolioTypeFlag}">
-                            <div *ngIf="fee.fundName !== 'Investment'">{{fee.fundName}}</div>
-                            <div *ngIf="fee.fundName === 'Investment'"> {{'FEES.DIMENSIONAL_PORTFOLIO' | translate}}
-                            </div>
+                            <div>{{fee.fundName}}</div>
+                           
                             <div class="fee_value">{{(fee.wrapFee|currency:' ':'symbol':'1.2-2') || 0 }}%
-                                <span *ngIf="fee.fundName === 'Investment'">*</span>
+                                <span *ngIf="fee.fundName === 'Dimensional Portfolios'">*</span>
                                 <span *ngIf="fee.fundName === 'Platform Fee'">({{fee.wfRemarks}})</span>
                             </div>
                         </div>
