@@ -19,7 +19,7 @@
         </div>
     </div>
 </section>
-<div class="app-asset-allocation">
+<div class="app-asset-allocation" *ngIf="feeDetails">
     <div class="container-fluid max-width--1024">
         <div class="portfolio-allocation-details">
             <div class="flex-col-12">
@@ -30,8 +30,7 @@
                             <div *ngIf="fee.fundName !== 'Investment'">{{fee.fundName}}</div>
                             <div *ngIf="fee.fundName === 'Investment'"> {{'FEES.DIMENSIONAL_PORTFOLIO' | translate}}
                             </div>
-
-                            <div class="fee_value">{{fee.wrapFee ? fee.wrapFee :0 }}%
+                            <div class="fee_value">{{(fee.wrapFee || 0 ) | formatCurrency }}%
                                 <span *ngIf="fee.fundName === 'Investment'">*</span>
                                 <span *ngIf="fee.fundName === 'Platform Fee'">({{fee.wfRemarks}})</span>
                             </div>
@@ -50,7 +49,7 @@
                                         </div>
                                         <div class="promo-code" id="promoCode">
                                             ({{'FEES.VALID_TILL' | translate}}
-                                            {{promotion.promoCodeStartDate | date:'dd MMM yyyy'}})
+                                            {{promotion.promoCodeEndDate | date:'dd MMM yyyy'}})
                                         </div>
                                     </label>
                                 </div>

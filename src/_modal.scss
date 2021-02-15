@@ -1268,3 +1268,17 @@ body.modal-open::-webkit-scrollbar {
     }
   }
 }
+
+.cfm-overwrite-modal {
+  .modal-dialog {
+    max-width: 375px;
+
+    @include allmobiles {
+      max-width: 100vw;
+    }
+
+    #errorModeButton {
+      height: 60px;
+    }
+  }
+}

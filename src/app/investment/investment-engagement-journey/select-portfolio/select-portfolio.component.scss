@@ -19,7 +19,15 @@ app-select-portfolio {
     font-size: 30px;
     margin-bottom: 15px;
   }
-
+  .portfolio-subheading {
+    margin: 30px 0 20px 0;
+    @include allmobiles {
+      margin: 10px 0 20px 0;
+    }
+    font-size: 18px;
+    font-family: $muli-bold;
+    text-align: center;
+  }
   .portfolio-cards {
     border-radius: 6px;
     padding: 30px;

@@ -20,6 +20,7 @@ export class PromoCodeService {
   public promoJsonList: any;
   public usedPromo = new BehaviorSubject({});
   usedPromoObservable = this.usedPromo.asObservable();
+  public clearInput = new BehaviorSubject(false);
 
   constructor(
     private apiService: ApiService,
@@ -38,6 +39,7 @@ export class PromoCodeService {
 
   removeAppliedPromo() {
     this.usedPromo.next({});
+    this.clearInput.next(true);
   }
 
   // API CALLS FOR PROMO CODE

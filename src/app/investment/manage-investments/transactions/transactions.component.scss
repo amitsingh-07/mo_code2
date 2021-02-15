@@ -251,7 +251,7 @@ app-transactions {
       padding-top: 10%;
       display: flex;
       flex-direction: column;
-
+      align-items: center;
       @include allmobiles {
         min-height: calc(100vh - 154px);
         padding-top: 65px;

@@ -967,14 +967,12 @@ app-your-portfolio {
   }
   .text-overflow {
     @include allmobiles {
-      display:inline-block;
       width:157px;
       white-space: nowrap;
       overflow:hidden !important;
       text-overflow: ellipsis;
     }
   }
-
 }
 .modal-body {
   width: 500px;
