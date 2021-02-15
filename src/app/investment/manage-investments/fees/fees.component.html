@@ -30,7 +30,7 @@
                             <div *ngIf="fee.fundName !== 'Investment'">{{fee.fundName}}</div>
                             <div *ngIf="fee.fundName === 'Investment'"> {{'FEES.DIMENSIONAL_PORTFOLIO' | translate}}
                             </div>
-                            <div class="fee_value">{{(fee.wrapFee || 0 ) | formatCurrency }}%
+                            <div class="fee_value">{{(fee.wrapFee|currency:' ':'symbol':'1.2-2') || 0 }}%
                                 <span *ngIf="fee.fundName === 'Investment'">*</span>
                                 <span *ngIf="fee.fundName === 'Platform Fee'">({{fee.wfRemarks}})</span>
                             </div>
