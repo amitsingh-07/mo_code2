@@ -36,12 +36,10 @@ export class WiseIncomePayoutComponent implements OnInit {
   formBuilder: any;
   wiseIncomePayOuts;
   formValues;
-  wiseIncomePayOutsMethodOne;
-  wiseIncomePayOutsMethodTwo;
-  wiseIncomePayOutsMethodThree;
   loaderTitle: string;
   loaderDesc: string;
   wiseIncomePayOutType;
+  portfolioType;
   constructor(
     public readonly translate: TranslateService,
     public activeModal: NgbActiveModal,
@@ -69,6 +67,7 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
+    this.portfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
     this.formValues = this.investmentCommonService.getWiseIncomePayOut();
     this.wiseIncomePayOutForm = new FormGroup({
       WiseIncomePayout: new FormControl(
