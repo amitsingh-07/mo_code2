@@ -171,7 +171,8 @@ app-promo-code-list {
       color: $black-color;
       letter-spacing: -0.13px;
       line-height: normal;
-      white-space: nowrap;
+      word-break: break-word;
+      white-space: pre-wrap;
     }
 
     .valid-period {
@@ -198,9 +199,9 @@ app-promo-code-list {
 
     .promo-card {
       background-image: url('/assets/images/promo-code/combined-shape.svg');
-      height: 113px;
+      min-height: 113px;
+      height: 100%;
       width: 100%;
-      // min-width: 345px;
       max-width: 390px;
       background-repeat: no-repeat;
       background-size: 100%;
@@ -221,6 +222,7 @@ app-promo-code-list {
       justify-content:space-between;
 
       img {
+        padding-left: 5px;
         position: relative;
         align-self: baseline;
       }
