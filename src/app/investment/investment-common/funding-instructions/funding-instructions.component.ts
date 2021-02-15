@@ -12,7 +12,7 @@ import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-mod
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { FormatCurrencyPipe } from '../../../shared/Pipes/format-currency.pipe';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
 import {
   MANAGE_INVESTMENTS_ROUTE_PATHS
@@ -24,6 +24,7 @@ import { ManageInvestmentsService } from '../../manage-investments/manage-invest
 import { InvestmentCommonService } from '../investment-common.service';
 import { environment } from './../../../../environments/environment';
 import { PromoCodeService } from '../../../promo-code/promo-code.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account.service';
 
 @Component({
   selector: 'app-funding-instructions',
