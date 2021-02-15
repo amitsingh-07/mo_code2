@@ -71,8 +71,7 @@ export class PromoDetailsComponent implements OnInit {
   
   openOverwriteModal(existingPromo) {
     const ref = this.allModal.open(ModelWithButtonComponent, { centered: true, windowClass: 'cfm-overwrite-modal', backdrop: 'static' });
-    const dateObject = this.dateFormatter(existingPromo['promoCodeEndDate']);
-    const transformDate = this.datePipe.transform(dateObject, 'dd MMM y');
+    const transformDate = this.datePipe.transform(existingPromo['promoCodeEndDate'], 'dd MMM y');
     ref.componentInstance.errorTitle = this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_1') 
     + existingPromo['wrapFeeDiscount'] * 100 + this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_2') 
     + transformDate +  this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_3');
@@ -123,15 +122,6 @@ export class PromoDetailsComponent implements OnInit {
     this.activeModal.dismiss();
     e.preventDefault();
     e.stopPropagation();
-  }
-
-  dateFormatter(dateStr) {
-    if (dateStr) {
-      const dateParts = dateStr.split("/");
-      return new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
-    } else {
-      return null;
-    }
   }
     
 }
