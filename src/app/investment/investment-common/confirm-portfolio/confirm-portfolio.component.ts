@@ -261,4 +261,29 @@ export class ConfirmPortfolioComponent implements OnInit {
       });
     }
   }
+
+  showPayoutModal() {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.imgType = 1;
+    ref.componentInstance.closeBtn = false;
+    ref.componentInstance.errorTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.8PERCENT_TITLE');;
+    ref.componentInstance.errorMessageHTML = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.8PERCENT_DESC');
+    ref.componentInstance.primaryActionLabel = this.translate.instant(
+      'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.UNDERSTAND_PROCEED'
+    );
+    ref.componentInstance.secondaryActionLabel = this.translate.instant(
+      'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.CANCEL'
+    );
+    ref.componentInstance.secondaryActionDim = true;
+    ref.componentInstance.primaryAction.subscribe(() => {
+      // Login
+      //this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT);
+      this.confirmPortfolio();
+    });
+    ref.componentInstance.secondaryAction.subscribe(() => {
+      // Sign up
+      //this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.START);
+      //this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
+    });
+  }
 }
