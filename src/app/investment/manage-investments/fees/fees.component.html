@@ -29,7 +29,8 @@
                         <div class="fund-title" [ngClass]="{'wise-saver-annual-fee': portfolioTypeFlag}">
                             <div>{{fee.fundName}}</div>
 
-                            <div class="fee_value">{{(fee.wrapFee | currency:' ':'symbol':'1.2-2') || 0 }}%
+                            <div class="fee_value">{{ ((fee.wrapFee && fee.wrapFee>0)?(fee.wrapFee | number : '1.2-2'):0
+                                ) }}%
                                 <span *ngIf="fee.fundName === 'Dimensional Portfolios'">*</span>
                                 <span *ngIf="fee.fundName === 'Platform Fee'">({{fee.wfRemarks}})</span>
                             </div>
