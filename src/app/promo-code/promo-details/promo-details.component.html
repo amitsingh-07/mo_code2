@@ -10,8 +10,8 @@
       <div class="validity-txt mt5">{{'PROMO_CODE_DETAILS.VAlID_UNTIL' | translate}}{{selectedPromo?.promoCodeEndDate || selectedPromo?.endDate | date:'dd MMM y'}}</div>
       <ng-container *ngFor="let promo of details?.promoDesc">
         <div class="mt20 mb30">
-          <p [innerHTML]="promo.title" class="sub-header"></p>
-          <p [innerHTML]="promo.content" class="content-div"></p>
+          <div [innerHTML]="promo.title" class="sub-header"></div>
+          <div [innerHTML]="promo.content" class="content-div"></div>
         </div>
       </ng-container>
     </div>

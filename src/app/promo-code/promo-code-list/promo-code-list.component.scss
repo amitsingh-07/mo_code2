@@ -57,7 +57,7 @@ app-promo-code-list {
     display: flex;
     justify-content: space-between;
     border: solid 1px $form-control-disabled-border-color;
-    padding: 6px 6px 6px 0;
+    padding: 6px 6px 0 0;
     width: 100%;
   }
 
@@ -71,6 +71,7 @@ app-promo-code-list {
     padding: 0 25.5px;
     border-radius: 6px;
     margin-top: 2.5px;
+    top: -4px;
     background-color: $crusta-orange-color;
     cursor: pointer;
 
@@ -99,7 +100,6 @@ app-promo-code-list {
   }
 
   input#promoInpt.form-control:invalid+.form-control-placeholder {
-    top: 14px;
     color: $dusty-grey-color;
   }
 
