@@ -228,6 +228,7 @@
         "INFO": "Oops! Is this correct?",
         "TRY_AGAIN": "Try Again",
         "MY_FINANCIALS_LBL": "My Finances",
+        "MY_FINANCIALS_LBL_DESC": "In accordance with MAS Guidelines, help us understand your financial situation better to ensure that the recommended investment is suitable for you.",
         "MY_FINANCIAL_LBL": "How much do you own and owe?",
         "RESPONSE_LOADER": {
             "TITLE": "loading...",
