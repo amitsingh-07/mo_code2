@@ -454,13 +454,6 @@ export class InvestmentApiService {
       );
   }
 
-  // wise-income
-  getWiseIncomePayOut() {
-    const url = 'assets/mock-data/wiseIncome.json';
-    return this.http.getMock(url)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
+
 }
 

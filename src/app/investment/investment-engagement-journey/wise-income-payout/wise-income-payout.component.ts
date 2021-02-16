@@ -80,7 +80,7 @@ export class WiseIncomePayoutComponent implements OnInit {
       title: this.loaderTitle,
       desc: this.loaderDesc
     });
-    this.investmentCommonService.getWiseIncomePayOutDetails().subscribe((data) => {
+    this.investmentAccountService.getSpecificDropList('wiseIncomePayoutType').subscribe((data) => {
       this.loaderService.hideLoader();
       this.wiseIncomePayOuts = data.objectList.wiseIncomePayoutType;
      console.log(this.wiseIncomePayOuts);
@@ -95,7 +95,11 @@ export class WiseIncomePayoutComponent implements OnInit {
   }
   goToNext(form){
     this.investmentCommonService.setWiseIncomePayOut(form.value);
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
+    if (form.value.WiseIncomePayout.name === 'Grow & invest payout') {
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
+    } else{
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
+    }
   }
 }
  

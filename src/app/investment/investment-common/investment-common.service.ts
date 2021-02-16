@@ -313,7 +313,4 @@ export class InvestmentCommonService {
     };
   }
 
-  getWiseIncomePayOutDetails(){
-    return this.investmentApiService.getWiseIncomePayOut();
- }
  }
