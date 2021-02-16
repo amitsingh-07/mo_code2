@@ -18,6 +18,7 @@ app-promo-code-select {
     .flex-div {
       display: flex;
       flex-direction: row;
+      width: calc(100% - 90px);
     }
 
     .promo-placeholder {
@@ -34,8 +35,8 @@ app-promo-code-select {
       line-height: normal;
       letter-spacing: -0.3px;
       color: $teal-color;
-      white-space: pre-wrap;
-      word-break: break-word;
+      white-space: nowrap;
+      overflow: hidden;
     }
 
     img {
@@ -56,7 +57,7 @@ app-promo-code-select {
       height: 40px;
       border-radius: 6px;
       background-color: $crusta-orange-color;
-      margin-left: 10px;
+      margin-left: 15px;
       cursor: pointer;
     }
   }

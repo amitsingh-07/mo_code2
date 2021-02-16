@@ -59,11 +59,6 @@ app-promo-code-list {
     border: solid 1px $form-control-disabled-border-color;
     padding: 6px 6px 6px 0;
     width: 100%;
-    // max-width: 500px;
-    // min-width: 275px;
-    // @include allmobiles {
-    //   width: 100%;
-    // }
   }
 
   .apply-container {
@@ -104,7 +99,7 @@ app-promo-code-list {
   }
 
   input#promoInpt.form-control:invalid+.form-control-placeholder {
-    top: 16px;
+    top: 14px;
     color: $dusty-grey-color;
   }
 
@@ -295,7 +290,7 @@ app-promo-code-list {
     font-size: 10px;
     transform: translate3d(0, -50%, 0);
     opacity: 1;
-    color: #5e5e5e;
+    color: $silver-grey-color;
     z-index: 999;
   }
 }
