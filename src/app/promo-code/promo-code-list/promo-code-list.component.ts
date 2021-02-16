@@ -130,6 +130,7 @@ export class PromoCodeListComponent implements OnInit {
   }
   
   navigateToWrapFees(event) {
+    this.modal.dismissAll();
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.FEES]);
     event.stopPropagation();
     event.preventDefault();

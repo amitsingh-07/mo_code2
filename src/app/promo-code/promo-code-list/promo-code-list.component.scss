@@ -57,13 +57,8 @@ app-promo-code-list {
     display: flex;
     justify-content: space-between;
     border: solid 1px $form-control-disabled-border-color;
-    padding: 6px 6px 6px 0;
+    padding: 6px 6px 0 0;
     width: 100%;
-    // max-width: 500px;
-    // min-width: 275px;
-    // @include allmobiles {
-    //   width: 100%;
-    // }
   }
 
   .apply-container {
@@ -76,6 +71,7 @@ app-promo-code-list {
     padding: 0 25.5px;
     border-radius: 6px;
     margin-top: 2.5px;
+    top: -4px;
     background-color: $crusta-orange-color;
     cursor: pointer;
 
@@ -104,7 +100,6 @@ app-promo-code-list {
   }
 
   input#promoInpt.form-control:invalid+.form-control-placeholder {
-    top: 16px;
     color: $dusty-grey-color;
   }
 
@@ -295,7 +290,7 @@ app-promo-code-list {
     font-size: 10px;
     transform: translate3d(0, -50%, 0);
     opacity: 1;
-    color: #5e5e5e;
+    color: $silver-grey-color;
     z-index: 999;
   }
 }
