@@ -40,13 +40,14 @@ app-promo-code-modal {
         width: 100vw;
       }
       .add-promo {
+        font-size: 16px;
         @include allmobiles {
           display: none;
         }
         margin-right: 0px;
       }
 
-      .input-container {
+      .div-container {
         max-width: 275px;
         @include allmobiles {
           width: 100%;

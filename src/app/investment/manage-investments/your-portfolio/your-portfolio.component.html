@@ -42,7 +42,7 @@
                   <div class="user_portfolio_ref_code">{{'YOUR_INVESTMENT.REF_CODE' | translate}}
                     {{portfolio.referenceCode}}</div>
                   <div class="user_portfolio_lbl">{{portfolio.portfolioName}}</div>
-                  <div class="joint-account" *ngIf="portfolio.entitlements.jointAccount"><span *ngIf="portfolio.isPrimaryHolder"> {{'YOUR_PORTFOLIO.JOINT_ACCOUNT.PRIMARY_HOLDER' | translate}}</span><span *ngIf="!portfolio.isPrimaryHolder">{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.SECONDARY_HOLDER' | translate}}</span> | <img src="assets/images/investment-account/joint-account.svg" class="ja-icon" />{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.JOINT' | translate}} <br class="hidden-lg"> <div [ngClass]="{'text-overflow': !isExpand}" (click)="fullName()" class="hidden-lg">{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.ACCOUNT_WITH' | translate}} <span *ngIf="portfolio.isPrimaryHolder">{{portfolio.secondaryHolderName | titlecase}}</span><span *ngIf="!portfolio.isPrimaryHolder">{{portfolio.primaryHolderName | titlecase}}</span></div><div class="ja-web hidden-sm">{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.ACCOUNT_WITH' | translate}} <span *ngIf="portfolio.isPrimaryHolder">{{portfolio.secondaryHolderName | titlecase}}</span><span *ngIf="!portfolio.isPrimaryHolder">{{portfolio.primaryHolderName | titlecase}}</span></div></div>
+                  <div class="joint-account" *ngIf="portfolio.entitlements.jointAccount"><span *ngIf="portfolio.isPrimaryHolder"> {{'YOUR_PORTFOLIO.JOINT_ACCOUNT.PRIMARY_HOLDER' | translate}}</span><span *ngIf="!portfolio.isPrimaryHolder">{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.SECONDARY_HOLDER' | translate}}</span> | <img src="assets/images/investment-account/joint-account.svg" class="ja-icon" />{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.JOINT' | translate}} <br class="hidden-lg"> <div [ngClass]="{'text-overflow' : (((portfolio.isPrimaryHolder && portfolio.secondaryHolderName && portfolio.secondaryHolderName.length > 10) || (!portfolio.isPrimaryHolder && portfolio.primaryHolderName && portfolio.primaryHolderName.length > 10)) && !isExpand)}" (click)="fullName()" class="hidden-lg">{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.ACCOUNT_WITH' | translate}} <span *ngIf="portfolio.isPrimaryHolder">{{portfolio.secondaryHolderName | titlecase}}</span><span *ngIf="!portfolio.isPrimaryHolder">{{portfolio.primaryHolderName | titlecase}}</span></div><div class="ja-web hidden-sm">{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.ACCOUNT_WITH' | translate}} <span *ngIf="portfolio.isPrimaryHolder">{{portfolio.secondaryHolderName | titlecase}}</span><span *ngIf="!portfolio.isPrimaryHolder">{{portfolio.primaryHolderName | titlecase}}</span></div></div>
                   <div class="flex-row space-between">
                     <div class="portfolio-type flex align-center">
                       <span *ngIf="portfolio?.fundingTypeValue === 'SRS'"
@@ -379,17 +379,18 @@
                           </div>
                         </div>
                         <div *ngIf="portfolio?.portfolioStatus === 'REBALANCING' && portfolioWithdrawRequests.length"
-                          class="rebalancing-info">
-                          <div class="mr15 info-icon"><img src="assets/images/investment-account/rebalance-info.svg" />
-                          </div>
-                          <div>
-                            <div>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.TITLE' | translate}}</div>
-                            <div class="txt-grey mt5">
-                              <span>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC' | translate}}</span>
-                              {{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC_ONE' | translate}}
-                           </div>
-                            <div class="txt-orange mt5"><a target="_blank"
-                                href="/app/faq#investment">{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.FAQ_LINK' | translate}}</a>
+                        class="rebalancing-info">
+                        <div class="mr15 info-icon"><img src="assets/images/investment-account/rebalance-info.svg" />
+                        </div>
+                        <div>
+                          <div>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.TITLE' | translate}}</div>
+                          <div class="txt-grey mt5">
+                            <span>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC' | translate}}</span>
+                            {{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC_ONE' | translate}}
+                          <div class="rebalance-message txt-orange" *ngIf="showNewMessageForRebalance(portfolio.riskProfile.type)"
+                          innerHTML="{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC_TWO' | translate}}"></div></div>
+                          <div class="txt-orange mt5"><a target="_blank"
+                              href="/faq-investment/#investment|1">{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.FAQ_LINK' | translate}}</a>
                             </div>
                           </div>
                         </div>

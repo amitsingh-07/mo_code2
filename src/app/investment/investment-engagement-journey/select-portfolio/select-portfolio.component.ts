@@ -32,8 +32,10 @@ export class SelectPortfolioComponent implements OnInit {
   errorMsg: string;
   investmentEnabled: boolean = false;
   wiseSaverEnabled: boolean = false;
+  wiseIncomeEnabled: boolean = false;
   investmentMoreInfoShow: boolean = false;
   wiseSaverMoreInfoShow: boolean = false;
+  wiseIncomeMoreInfoShow: boolean = false;
   @ViewChild('carousel') carousel: SlickCarouselComponent;
 
   selectPortfolioForm: FormGroup;
@@ -104,8 +106,18 @@ export class SelectPortfolioComponent implements OnInit {
   investPortfolio(event) {
     this.investmentEnabled = !this.investmentEnabled;
     this.wiseSaverEnabled = false;
+    this.wiseIncomeEnabled = false;
   }
-
+  wiseSaverPortfolio(event) {
+    this.wiseSaverEnabled = !this.wiseSaverEnabled;
+    this.investmentEnabled = false;
+    this.wiseIncomeEnabled = false;
+  }
+  wiseIncomePortfolio(event) {
+    this.wiseIncomeEnabled = !this.wiseIncomeEnabled;
+    this.investmentEnabled = false;
+    this.wiseSaverEnabled = false;
+  }
   investmentMoreInfo(event) {
     this.investmentMoreInfoShow = !this.investmentMoreInfoShow;
     event.stopPropagation();
@@ -114,15 +126,27 @@ export class SelectPortfolioComponent implements OnInit {
     this.wiseSaverMoreInfoShow = !this.wiseSaverMoreInfoShow;
     event.stopPropagation();
   }
+  wiseIncomeMoreInfo(event) {
+    this.wiseIncomeMoreInfoShow = !this.wiseIncomeMoreInfoShow;
+    event.stopPropagation();
+  }
   setSelectPortfolioType(value) {
     this.selectPortfolioForm.controls.selectPortfolioType.setValue(value);
     if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
       this.investmentEnabled = !this.investmentEnabled;
       this.wiseSaverEnabled = false;
-    } else {
+      this.wiseIncomeEnabled = false;
+    } 
+    if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO) {
       this.wiseSaverEnabled = !this.wiseSaverEnabled;
       this.investmentEnabled = false;
+      this.wiseIncomeEnabled = false;
     }
+    if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) {
+      this.wiseIncomeEnabled = !this.wiseIncomeEnabled;
+      this.investmentEnabled = false;
+      this.wiseSaverEnabled = false;
+    }  
   }
   // Go to next slide
   nextSlide() {

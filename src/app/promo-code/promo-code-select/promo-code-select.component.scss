@@ -6,13 +6,19 @@ app-promo-code-select {
     display: flex;
     border: solid 1px $form-control-disabled-border-color;
     border-radius: 6px;
-    height: 52px;
+    min-height: 52px;
+    height: 100%;
     width: 100%;
-    padding: 0 6px 0 15px;
+    padding: 8px 6px 8px 15px;
     justify-content: space-between;
     align-items: center;
     background-color: $white-color;
     cursor: pointer;
+
+    .flex-div {
+      display: flex;
+      flex-direction: row;
+    }
 
     .promo-placeholder {
       font-family: $muli-regular;
@@ -28,6 +34,8 @@ app-promo-code-select {
       line-height: normal;
       letter-spacing: -0.3px;
       color: $teal-color;
+      white-space: pre-wrap;
+      word-break: break-word;
     }
 
     img {
@@ -44,10 +52,11 @@ app-promo-code-select {
       align-self: center;
       align-items: center;
       justify-content: center;
-      width: 75px;
+      min-width: 75px;
       height: 40px;
       border-radius: 6px;
-      background-color: #ff872f;
+      background-color: $crusta-orange-color;
+      margin-left: 10px;
       cursor: pointer;
     }
   }
