@@ -1,0 +1,111 @@
+{
+    "promoList": [{
+        "promoCode": "MOSAF5",
+        "header": "Safra Member 5% Off",
+        "validity": "Valid until 31 Dec 2021",
+        "promoDesc": [{
+            "title": "Promotion",
+            "content": "Get 5% off Advisory Fee (usual 0.60%) when you top up $10,000 to any SRS portfolio."
+          },
+          {
+            "title": "How to redeem",
+            "content": "- Top up a minimum amount of $10,000<br>- Only applicable to Cash and SRS funded portfolios<br>- Not applicable to WiseSaver portfolio<br>- Applying on an existing promo will overwrite fees and changes are non-reversible."
+          },
+          {
+            "title": "How to receive",
+            "content": "Promotion fees will be reflected in your fees once the processing has been completed."
+          }
+        ]
+      },
+      {
+        "promoCode": "NOTINWALLET",
+        "header": "FairPrice Special 5% Off",
+        "validity": "Valid until DD MTH YYYY",
+        "promoDesc": [{
+            "title": "Promotion",
+            "content": "Promo Validation for code not in wallet"
+          },
+          {
+            "title": "How to redeem",
+            "content": "- Top up a minimum amount of $10,000<br>- Only applicable to Cash and SRS funded portfolios<br>- Not applicable to WiseSaver portfolio<br>- Applying on an existing promo will overwrite fees and changes are non-reversible."
+          },
+          {
+            "title": "How to receive",
+            "content": "Promotion fees will be reflected in your fees once the processing has been completed."
+          }
+        ]
+      },
+      {
+        "promoCode": "NTUALU",
+        "header": "NTU Alumni: Additional 5% off public rate advisory fee as compared to public via promo code",
+        "validity": "Valid until DD MTH YYYY",
+        "promoDesc": [{
+            "title": "Promotion",
+            "content": "NTU Alumni: Additional 5% off public rate advisory fee as compared to public via promo code"
+          },
+          {
+            "title": "How to redeem",
+            "content": "- Top up a minimum amount of $10,000<br>- Only applicable to Cash and SRS funded portfolios<br>- Not applicable to WiseSaver portfolio<br>- Applying on an existing promo will overwrite fees and changes are non-reversible."
+          },
+          {
+            "title": "How to receive",
+            "content": "Promotion fees will be reflected in your fees once the processing has been completed."
+          }
+        ]
+      },
+      {
+        "promoCode": "NTUC60",
+        "header": "NTUC 60th Anniversary: Additional 10% off public rate advisory fee",
+        "validity": "Valid until DD MTH YYYY",
+        "promoDesc": [{
+            "title": "Promotion",
+            "content": "NTUC 60th Anniversary: Additional 10% off public rate advisory fee"
+          },
+          {
+            "title": "How to redeem",
+            "content": "- Top up a minimum amount of $10,000<br>- Only applicable to Cash and SRS funded portfolios<br>- Not applicable to WiseSaver portfolio<br>- Applying on an existing promo will overwrite fees and changes are non-reversible."
+          },
+          {
+            "title": "How to receive",
+            "content": "Promotion fees will be reflected in your fees once the processing has been completed."
+          }
+        ]
+      },
+      {
+        "promoCode": "TESTMAIL",
+        "header": "Mailinator Validation",
+        "validity": "Valid until DD MTH YYYY",
+        "promoDesc": [{
+            "title": "Promotion",
+            "content": "Test email validation for malinator"
+          },
+          {
+            "title": "How to redeem",
+            "content": "- Top up a minimum amount of $10,000<br>- Only applicable to Cash and SRS funded portfolios<br>- Not applicable to WiseSaver portfolio<br>- Applying on an existing promo will overwrite fees and changes are non-reversible."
+          },
+          {
+            "title": "How to receive",
+            "content": "Promotion fees will be reflected in your fees once the processing has been completed."
+          }
+        ]
+      },
+      {
+        "promoCode": "TESTNONWRAP",
+        "header": "Non Wrap Fee Promo Validation",
+        "validity": "Valid until DD MTH YYYY",
+        "promoDesc": [{
+            "title": "Promotion",
+            "content": "Non Wrap Fee Promo Validation"
+          },
+          {
+            "title": "How to redeem",
+            "content": "- Top up a minimum amount of $10,000<br>- Only applicable to Cash and SRS funded portfolios<br>- Not applicable to WiseSaver portfolio<br>- Applying on an existing promo will overwrite fees and changes are non-reversible."
+          },
+          {
+            "title": "How to receive",
+            "content": "Promotion fees will be reflected in your fees once the processing has been completed."
+          }
+        ]
+      }
+    ]
+  }

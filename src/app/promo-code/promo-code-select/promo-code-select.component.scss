@@ -1,0 +1,80 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+app-promo-code-select {
+  .input-box {
+    display: flex;
+    border: solid 1px $form-control-disabled-border-color;
+    border-radius: 6px;
+    min-height: 52px;
+    height: 100%;
+    width: 100%;
+    padding: 8px 6px 8px 15px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $white-color;
+    cursor: pointer;
+
+    .flex-div {
+      display: flex;
+      flex-direction: row;
+      width: calc(100% - 90px);
+    }
+
+    .promo-placeholder {
+      font-family: $muli-regular;
+      font-size: 16px;
+      line-height: 1.25;
+      letter-spacing: -0.16px;
+      color: $dusty-grey-color;
+    }
+
+    .promo-display {
+      font-family: $muli-regular;
+      font-size: 16px;
+      line-height: normal;
+      letter-spacing: -0.3px;
+      color: $teal-color;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    img {
+      margin-right: 10px;
+    }
+
+    .remove-btn {
+      font-family: $muli-semi-bold;
+      font-size: 14px;
+      line-height: normal;
+      letter-spacing: -0.26px;
+      display: flex;
+      text-align: center;
+      align-self: center;
+      align-items: center;
+      justify-content: center;
+      min-width: 75px;
+      height: 40px;
+      border-radius: 6px;
+      background-color: $crusta-orange-color;
+      margin-left: 15px;
+      cursor: pointer;
+    }
+  }
+
+  .promo-error {
+    margin-top: 14px;
+
+    img {
+      margin-right: 10px;
+    }
+
+    span {
+      font-family: $muli-italic;
+      font-size: 14px;
+      line-height: normal;
+      letter-spacing: -0.26px;
+      color: $white-color;
+    }
+  }
+}
