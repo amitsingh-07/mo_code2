@@ -175,7 +175,7 @@ export class PortfolioDetailsComponent implements OnInit {
       // Commented the MO2MP-2503 fix
       // this.investmentCommonService.clearAccountCreationActions();
       this.portfolio = data.objectList;
-      this.wiseIncomeEnabled = (this.portfolio.portfolioType == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME);
+      this.wiseIncomeEnabled = (this.portfolio.portfolioType.toLowerCase() == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase());
       this.getInvestmentCriteria(this.portfolio);
       this.userInputSubtext = {
         onetime: this.formatCurrencyPipe.transform(

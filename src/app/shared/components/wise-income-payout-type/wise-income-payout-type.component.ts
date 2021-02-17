@@ -6,18 +6,21 @@ import {
 } from './../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../../investment/investment-common/investment-common.constants';
 @Component({
-  selector: 'app-wise-income-payout',
-  templateUrl: './wise-income-payout.component.html',
-  styleUrls: ['./wise-income-payout.component.scss'],
+  selector: 'app-wise-income-payout-type',
+  templateUrl: './wise-income-payout-type.component.html',
+  styleUrls: ['./wise-income-payout-type.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class WiseIncomePayoutComponent implements OnInit {
+export class WiseIncomePayoutTypeComponent implements OnInit {
 
   @Input('payoutType') payoutType;
   payoutConst : any;
 
   constructor(private router: Router) { 
     this.payoutConst = INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT;
+    console.log(this.payoutConst);
+    console.log(this.payoutType);
+
   }
 
   ngOnInit(): void {
