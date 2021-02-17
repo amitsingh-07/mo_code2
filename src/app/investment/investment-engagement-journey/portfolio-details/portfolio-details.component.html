@@ -1,6 +1,6 @@
 <div class="container-fluid max-width--1024" *ngIf="portfolio">
   <div class="portfolio-allocation-details">
-    <div class="flex-col-12 portfolio-allocation-details__container">
+    <div class="flex-col-12 portfolio-allocation-details__container" *ngIf="!wiseIncomeEnabled">
       <div class="portfolio-allocation-details__content white-bg">
         <div class="flex-col-12 portfolio-allocation-details__content__desc">
           <div class="portfolio_img hidden-sm"><img src={{iconImage}} id="riskProfileImg" /></div>
@@ -19,6 +19,18 @@
         </div>
       </div>
     </div>
+    
+    <div class="flex-col-12 wise-income-payout" *ngIf="wiseIncomeEnabled && portfolio.payoutType">
+      <!-- payout -->
+      <app-wise-income-payout-type [payoutType]="portfolio.payoutType"></app-wise-income-payout-type>
+    </div>
+    
+    <div class="flex-col-12 wise-income-fund" *ngIf="wiseIncomeEnabled">
+      <div class="wise-income-title">{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.FUNDING' | translate}}</div>
+      <!-- Fund -->
+      <app-wise-income-fund [investmentInput]="userInputSubtext"></app-wise-income-fund>
+    </div>
+
     <div class="flex-col-12 asset-allocation">
       <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
       <!-- bonds -->

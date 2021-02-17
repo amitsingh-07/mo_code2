@@ -32,14 +32,16 @@ import { LoaderService } from '../../../shared/components/loader/loader.service'
 })
 export class WiseIncomePayoutComponent implements OnInit {
   pageTitle: string;
-  wiseIncomePayOutForm: FormGroup;
+  wiseIncomePayOutTypeForm: FormGroup;
   formBuilder: any;
-  wiseIncomePayOuts;
+  wiseIncomePayOutTypes;
   formValues;
   loaderTitle: string;
   loaderDesc: string;
   wiseIncomePayOutType;
   portfolioType;
+  selectedPortfolioType;
+  initialWiseIncomePayoutTypeId;
   constructor(
     public readonly translate: TranslateService,
     public activeModal: NgbActiveModal,
@@ -67,13 +69,14 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.portfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
+    this.getWiseIncomePayOutDetails();
+    this.formValues = this.investmentCommonService.getInitialFundingMethod();
+    this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
     this.formValues = this.investmentCommonService.getWiseIncomePayOut();
-    this.wiseIncomePayOutForm = new FormGroup({
-      WiseIncomePayout: new FormControl(
-        this.formValues.WiseIncomePayout, Validators.required)
+    this.wiseIncomePayOutTypeForm = new FormGroup({
+      initialWiseIncomePayoutTypeId: new FormControl(
+        this.formValues.initialWiseIncomePayoutTypeId, Validators.required)
       });
-      this.getWiseIncomePayOutDetails();
   }
   getWiseIncomePayOutDetails() {
     this.loaderService.showLoader({
@@ -82,8 +85,9 @@ export class WiseIncomePayoutComponent implements OnInit {
     });
     this.investmentAccountService.getSpecificDropList('wiseIncomePayoutType').subscribe((data) => {
       this.loaderService.hideLoader();
-      this.wiseIncomePayOuts = data.objectList.wiseIncomePayoutType;
-     console.log(this.wiseIncomePayOuts);
+      this.wiseIncomePayOutTypes = data.objectList.wiseIncomePayoutType;
+      this.investmentEngagementJourneyService.sortByProperty(this.wiseIncomePayOutTypes, 'name', 'asc');
+     console.log(this.wiseIncomePayOutTypes);
     },
       (err) => {
         this.loaderService.hideLoader();
@@ -93,9 +97,19 @@ export class WiseIncomePayoutComponent implements OnInit {
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
+  getWiseIcomePayoutTypeNameById(wiseIncomePayoutTypeId, payoutOptions) {
+    if (wiseIncomePayoutTypeId && payoutOptions) {
+      const wiseIncomePayoutType = payoutOptions.filter(
+        (prop) => prop.id === wiseIncomePayoutTypeId
+      );
+      return wiseIncomePayoutType[0].name;
+    } else {
+      return '';
+    }
+  }
   goToNext(form){
     this.investmentCommonService.setWiseIncomePayOut(form.value);
-    if (form.value.WiseIncomePayout.name === 'Grow & invest payout') {
+    if (form.value.initialWiseIncomePayoutTypeId === 410) {
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
     } else{
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);

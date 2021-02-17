@@ -50,6 +50,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   confirmPortfolioValue;
   investmentCriteria: IInvestmentCriteria;
   wiseSaverDetails :any;
+  wiseIncomeEnabled: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -91,13 +92,16 @@ export class ConfirmPortfolioComponent implements OnInit {
           this.authService.saveEnquiryId(data.objectList.enquiryId);
         }
         this.portfolio = data.objectList;
+        this.wiseIncomeEnabled = (this.portfolio.portfolioType.toLowerCase() == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase());
         this.getInvestmentCriteria(this.portfolio);
         if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT) {
           this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO });
           this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
-        } else {
+        } else if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER){
           this.getWiseSaverDetails();
           this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO });
+        } else {
+          this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO });
         }
         const fundingParams = this.constructFundingParams(data.objectList);
         this.manageInvestmentsService.setFundingDetails(fundingParams);
@@ -260,5 +264,30 @@ export class ConfirmPortfolioComponent implements OnInit {
         this.investmentCriteria = data;
       });
     }
+  }
+
+  showPayoutModal() {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.imgType = 1;
+    ref.componentInstance.closeBtn = false;
+    ref.componentInstance.errorTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.8PERCENT_TITLE');;
+    ref.componentInstance.errorMessageHTML = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.8PERCENT_DESC');
+    ref.componentInstance.primaryActionLabel = this.translate.instant(
+      'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.UNDERSTAND_PROCEED'
+    );
+    ref.componentInstance.secondaryActionLabel = this.translate.instant(
+      'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.CANCEL'
+    );
+    ref.componentInstance.secondaryActionDim = true;
+    ref.componentInstance.primaryAction.subscribe(() => {
+      // Login
+      //this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT);
+      this.confirmPortfolio();
+    });
+    ref.componentInstance.secondaryAction.subscribe(() => {
+      // Sign up
+      //this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.START);
+      //this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
+    });
   }
 }

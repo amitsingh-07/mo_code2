@@ -8,15 +8,15 @@
             </div>
         </div>
         <div class="col-lg-5 col-md-6">
-            <form name="wiseIncomePayOutForm" [formGroup]="wiseIncomePayOutForm" id="wiseIncomePayOutForm">
+            <form name="wiseIncomePayOutTypeForm" [formGroup]="wiseIncomePayOutTypeForm" id="wiseIncomePayOutTypeForm">
                 <div class="form-group-single-column flex-col">
                     <div class="fund-question hidden-lg mt20">{{'WISE_INCOME_PAYOUT.CAPTION' | translate}}</div>
                     <div class="row">
                         <div class="col-12">
                             <div class="checkbox-button one-label"
-                                *ngFor="let wiseIncomePayOut of wiseIncomePayOuts; let i = index">
+                                *ngFor="let wiseIncomePayOut of wiseIncomePayOutTypes; let i = index">
                                 <input id="wise-income-payout_option{{i+1}}_radio" type="radio" class="field radio"
-                                    formControlName="WiseIncomePayout" [value]=wiseIncomePayOut tabindex="{{i+1}}">
+                                name="initialWiseIncomePayoutTypeId" formControlName="initialWiseIncomePayoutTypeId" [value]=wiseIncomePayOut.id tabindex="{{i+1}}">
                                 <label for="wise-income-payout_option{{i+1}}_radio">
                                     <div class="payout-type">
                                         <span class="payout-icon">
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <button type="button" class="btn btn-primary btn__footer--fixed width100"
-                        (click)="goToNext(wiseIncomePayOutForm)">{{'WISE_INCOME_PAYOUT.CONTINUE' | translate}}</button>
+                        (click)="goToNext(wiseIncomePayOutTypeForm)">{{'WISE_INCOME_PAYOUT.CONTINUE' | translate}}</button>
                 </div>
             </form>
         </div>
@@ -292,7 +292,7 @@
                         <ng-template ngbPanelContent>
                             <div>
                                 <div class="pannel-tab-content asset-allocation">
-                                    <app-allocation [portfolioType]="portfolioType"></app-allocation>
+                                    <app-allocation [portfolioType]="selectedPortfolioType"></app-allocation>
                                 </div>
                             </div>
                         </ng-template>

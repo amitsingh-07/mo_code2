@@ -67,7 +67,7 @@ export class AllocationComponent implements OnInit, OnChanges {
       centered: true,
       windowClass: 'custom-full-height'
     });
-    ref.componentInstance.portfolioType = this.allocationDetails;
+    ref.componentInstance.portfolioType = this.portfolioType;
     return false;
   }
 
