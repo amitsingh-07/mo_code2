@@ -90,7 +90,7 @@ export class PromoCodeService {
   // Check for any existing wrap fee promo applied
   checkForExistingWrapFee() {
     return this.promoCodeWalletList.getValue().find((elem) => {
-      if (elem['isWrapFeeRelated'] === 'Y' && (elem['customerPromoStatus'] === PROMO_CODE_STATUS.PROCESSING || elem['customerPromoStatus'] === PROMO_CODE_STATUS.APPLIED)) {
+      if (elem['isWrapFeeRelated'] === 'Y' && (elem['customerPromoStatusDisp'].toUpperCase() === PROMO_CODE_STATUS.PROCESSING || elem['customerPromoStatusDisp'].toUpperCase() === PROMO_CODE_STATUS.APPLIED)) {
         return elem;
       }
     });
