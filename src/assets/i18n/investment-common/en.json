@@ -60,6 +60,7 @@
         "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period. The median projected return (net of all fees) is {{investedPercentage}}. All projections are net of all fees (based on standard rate of 0.6% p.a). You may be enjoying a lower advisory fee, which means projected values would be higher than shown.",
         "MEDIAN_PROJECTED_RETURN": "The median projected return (net of all fees) is {{investedPercentage}}.",
         "VIEW_FUND_DETAILS": "View Fund Details",
+        "NUMBER_HOLDINGS_LBL": "Number of Holdings",
         "TITLE": "Confirm Portfolio",
         "PORTFOLIO": "Portfolio",
         "WISE_SAVER_PORTOFOLIO": {
@@ -103,7 +104,17 @@
             "TITLE": "Creating portfolio.",
             "DESCRIPTION": "Please wait while we set things up for you."
         },
-        "WISE_INCOME_PORTFOLIO": {
+        "WISE_INCOME_PORTFOLIO": {            
+            "DESC_LBL": "The fund invest in the following asset classes in this proportions.",
+            "ASSET_HOLDINGS_LBL": "Asset Class & Holdings",
+            "EQUITIES_LBL": "Equities",
+            "EQUITIES_DESC": "The equities component of the portfolio will seek to give investors exposure to companies and ETFs that are listed on recognised stock exchanges globally. The passive investing strategy adopted, coupled with broad diversification of the underlying ETFs allows investors to reap market-based returns without having to rely on guesswork.",
+            "SREITS_LBL": "S-REITs",
+            "SREITS_DESC": "The portfolio invest in Singapore REITs that are underpinned by dividend sustainability coupled with potential growth. The fund manager will consider a myriad of factors such as underlying asset quality, governance, strength of management team to determine the sustainability of the dividend. From the growth aspect, the fund manager will consider the REIT’s potential for accretive acquisitions as well as underlying sector or asset trends . The REITs invested would typically be about SGD$1bn market cap or larger with daily trading value of SGD1mill or more.",
+            "FIXED_INCOME_LBL": "Fixed Income",
+            "FIXED_INCOME_DESC": "The fixed income securities may be investment grade, non-investment grade and/or unrated securities primarily issued by companies, governments, quasi-governments, government agencies or supranationals, with primary focus in Asian companies. Foreign currency denominated fixed income securities will generally be hedged to SGD to reduce the exposure of the securities to the movement of foreign currencies and the overall credit rating of the fixed income portfolio will be BBB- (S&P) and above.",
+            "CASH_LBL": "Cash",
+            "DISCLAIMER_LBL": "Click on link below for factsheet and product highlights sheet.",
             "INVESTING_IN": "You are investing in",
             "INVESTING_IN_WISE_INCOME": "Fullerton MoneyOwl WiseIncome",
             "GROW_AND_FUND_PAYOUT": "I prefer to invest my income payout",

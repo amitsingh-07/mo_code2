@@ -12,9 +12,10 @@ import {
   encapsulation: ViewEncapsulation.None
 })
 export class WiseIncomeFundComponent implements OnInit {
+  
+  @Input('investmentInput') investmentInput;
 
   constructor(private router: Router) { }
-  @Input('investmentInput') investmentInput;
 
   ngOnInit(): void {
   }

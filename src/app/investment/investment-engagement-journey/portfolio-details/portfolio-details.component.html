@@ -22,7 +22,7 @@
     
     <div class="flex-col-12 wise-income-payout" *ngIf="wiseIncomeEnabled">
       <!-- payout -->
-      <app-wise-income-payout></app-wise-income-payout>
+      <app-wise-income-payout [payoutType]="portfolio.payoutType" ></app-wise-income-payout>
     </div>
     
     <div class="flex-col-12 wise-income-fund" *ngIf="wiseIncomeEnabled">

@@ -7,7 +7,7 @@
             {{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.INVESTING_IN_WISE_INCOME' | translate}}
         </div> 
         <!-- Grow & Fund -->
-        <div class="flex-col-12 payout_desc text-center mb-30" *ngIf='false'> 
+        <div class="flex-col-12 payout_desc text-center mb-30" *ngIf='payoutConst.GROW === payoutType'> 
             <div class='payout-icon mb-10'><img class="small" src="assets/images/investment-account/wiseincome-conservative-icon.svg" /></div>
             <div class='payout-message mb-10'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.GROW_AND_FUND_PAYOUT' | translate}}</div>
             <div class='payout-hint'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.GROW_AND_FUND_PAYOUT_DESC' | translate}}</div>            
@@ -15,7 +15,7 @@
         </div>
         
         <!-- 4% -->
-        <div class="flex-col-12 payout_desc text-center mb-30" *ngIf='false'>   
+        <div class="flex-col-12 payout_desc text-center mb-30" *ngIf='payoutConst.FOUR_PERCENT === payoutType'>   
             <div class='payout-icon mb-10'><img class="small" src="assets/images/investment-account/wiseincome-conservative-icon-4.svg" /></div>
             <div class='payout-message mb-10'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.4_PERCENT_PAYOUT' | translate}}</div>
             <div class='payout-type'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.4_PERCENT_PAYOUT_VALUE' | translate}}</div>
@@ -23,7 +23,7 @@
             <div class='payout-hint'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.4_PERCENT_PAYOUT_DESC_2' | translate}}</div>                                   
         </div>
         <!-- 8% -->
-        <div class="flex-col-12 payout_desc text-center mb-30">
+        <div class="flex-col-12 payout_desc text-center mb-30" *ngIf='payoutConst.EIGHT_PERCENT === payoutType'>
             <div class='payout-icon mb-10'><img class="small" src="assets/images/investment-account/wiseincome-conservative-icon-8.svg" /></div>
             <div class='payout-message mb-10'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.8_PERCENT_PAYOUT' | translate}}</div>
             <div class='payout-type'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.8_PERCENT_PAYOUT_VALUE' | translate}}</div>
@@ -33,13 +33,13 @@
 
         <div class="flex-col-12 mb-30">
             <!-- Grow & Fund -->
-            <div class='payout_content mb-30' *ngIf='false'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.GROW_AND_FUND_PAYOUT_1' | translate}}</div>
-            <div class='payout_content' *ngIf='false'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.GROW_AND_FUND_PAYOUT_2' | translate}}</div>
+            <div class='payout_content mb-30' *ngIf='payoutConst.GROW === payoutType'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.GROW_AND_FUND_PAYOUT_1' | translate}}</div>
+            <div class='payout_content' *ngIf='payoutConst.GROW === payoutType'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.GROW_AND_FUND_PAYOUT_2' | translate}}</div>
             <!-- 4.5% -->
-            <div class='payout_content'  *ngIf='false'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.4_PERCENT_PAYOUT_1' | translate}}</div><!-- 4.5% -->
+            <div class='payout_content'  *ngIf='payoutConst.FOUR_PERCENT === payoutType'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.4_PERCENT_PAYOUT_1' | translate}}</div><!-- 4.5% -->
             <!-- 8% -->
-            <div class='payout_content mb-30'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.8_PERCENT_PAYOUT_1' | translate}}</div>
-            <div class='payout_content'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.8_PERCENT_PAYOUT_2' | translate}}</div>
+            <div class='payout_content mb-30' *ngIf='payoutConst.EIGHT_PERCENT === payoutType'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.8_PERCENT_PAYOUT_1' | translate}}</div>
+            <div class='payout_content' *ngIf='payoutConst.EIGHT_PERCENT === payoutType'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.8_PERCENT_PAYOUT_2' | translate}}</div>
         </div>
         <div class='flex-col-12 payout_note mb-30'>            
             <span class='payout_note_icon'></span>           
