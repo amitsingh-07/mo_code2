@@ -27,18 +27,17 @@
                 <div class="annual-fee-desc">
                     <div class="fund-block" *ngFor="let fee of feeDetails; let i = index">
                         <div class="fund-title" [ngClass]="{'wise-saver-annual-fee': portfolioTypeFlag}">
-                            <div *ngIf="fee.fundName !== 'Investment'">{{fee.fundName}}</div>
-                            <div *ngIf="fee.fundName === 'Investment'"> {{'FEES.DIMENSIONAL_PORTFOLIO' | translate}}
-                            </div>
-
-                            <div class="fee_value">{{fee.wrapFee ? fee.wrapFee :0 }}%
-                                <span *ngIf="fee.fundName === 'Investment'">*</span>
+                            <div>{{fee.fundName}}</div>
+                            <div class="fee_value">{{ (fee.wrapFee && (fee.wrapFee | number : '1.2-2') > 0 ) ?
+                                (fee.wrapFee | number : '1.2-2') : 0
+                                }}%
+                                <span *ngIf="fee.fundName === 'Dimensional Portfolios'">*</span>
                                 <span *ngIf="fee.fundName === 'Platform Fee'">({{fee.wfRemarks}})</span>
                             </div>
                         </div>
-                        <div class="flex-col-12 flex space-btwn mt20" *ngIf="fee.promotions && fee.promotions[0]">
-                            <div class=" flex-col-12 flex space-btwn"
-                                *ngFor="let promotion of fee.promotions; let i = index">
+                        <div class="flex-col-12 flex space-btwn mt20"
+                            *ngFor="let promotion of fee.promotions; let i = index">
+                            <div class=" flex-col-12 flex space-btwn">
                                 <div class="flex ">
                                     <span class="form-alert-wrap"><img
                                             src="assets\images\manage-investments\form-icon-alert.svg" /></span>
@@ -54,9 +53,7 @@
                                         </div>
                                     </label>
                                 </div>
-                                <div class="fee_value-status">
-                                    ({{promotion.customerPromoStatusDisp | titlecase }})
-                                </div>
+                                <div class="fee_value-status">{{promotion.customerPromoStatusDisp | titlecase }}</div>
                             </div>
                         </div>
                         <hr>
