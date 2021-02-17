@@ -10,7 +10,7 @@
         <div class="flex-col">{{asset.allocationPercentage}}% {{asset.type.type}}</div>
       </div>
     </div>
-    <div *ngIf='allocationDetails'>
+    <div *ngIf="portfolioType === 'Investment'">
       <div class="bonds_equity" *ngFor="let asset of assets; let i = index">
         <div class="bonds_equity_title" id="panel-button-{{i}}" (click)="showHidePanel(acc, 'panel-' + i, $event)">
           {{asset.type.type}}<i class='arrow'></i></div>
