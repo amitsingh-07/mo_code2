@@ -18,6 +18,6 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
     WISEINCOME_PORTFOLIO:'wiseIncomePortfolio',
     INVESTMENT:'Investment',
     WISESAVER:'Wisesaver',
-    WISEINCOME:'Wiseincome'
+    WISEINCOME:'WiseIncome'
   }
 };

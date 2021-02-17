@@ -43,6 +43,7 @@ import {
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { ProfileIcons } from '../recommendation/profileIcons';
 import { RiskProfile } from '../recommendation/riskprofile';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 
 @Component({
   selector: 'app-portfolio-details',
@@ -65,6 +66,7 @@ export class PortfolioDetailsComponent implements OnInit {
   iconImage;
   userInputSubtext;
   investmentCriteria: IInvestmentCriteria;
+  wiseIncomeEnabled: boolean;
 
   constructor(
     private signUpApiService: SignUpApiService,
@@ -173,6 +175,7 @@ export class PortfolioDetailsComponent implements OnInit {
       // Commented the MO2MP-2503 fix
       // this.investmentCommonService.clearAccountCreationActions();
       this.portfolio = data.objectList;
+      this.wiseIncomeEnabled = (this.portfolio.portfolioType == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME);
       this.getInvestmentCriteria(this.portfolio);
       this.userInputSubtext = {
         onetime: this.formatCurrencyPipe.transform(
