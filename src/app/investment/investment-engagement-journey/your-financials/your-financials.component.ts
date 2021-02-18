@@ -15,6 +15,7 @@ import {
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
@@ -40,6 +41,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   translator: any;
   loaderTitle: string;
   loaderDesc: string;
+  selectedPortfolioType: any;
   constructor(
     private router: Router,
     private modal: NgbModal,
@@ -159,6 +161,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   }
 
   saveAndProceed(form: any) {
+    this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
     const invCommonFormValues = this.investmentCommonService.getInvestmentCommonFormData();
     let portfolioTypeArray = this.investmentCommonService.getPortfolioType();
     let portfolioType = this.investmentEngagementJourneyService.filterDataByInput(portfolioTypeArray.portfolioType, 'name', 'Investment');
@@ -167,8 +170,14 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     this.investmentEngagementJourneyService.savePersonalInfo(invCommonFormValues).subscribe((data) => {
       this.investmentCommonService.clearAccountCreationActions();
       if (data) {
-        this.authService.saveEnquiryId(data.objectList.enquiryId);
-        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP2]);
+        if (this.authService.isSignedUser()) {
+          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+        } else if (this.selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) {
+          this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
+        } else {
+          this.authService.saveEnquiryId(data.objectList.enquiryId);
+          this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP2]);
+        }
       }
     },
       (err) => {
