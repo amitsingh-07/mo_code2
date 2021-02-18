@@ -126,8 +126,12 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     this.investAgainSelected.emit(portfolio);
   }
 
-  getImg(i: number) {
-    return (ProfileIcons[i - 1] && ProfileIcons[i - 1]['icon']) ? ProfileIcons[i - 1]['icon'] : '';
+  getImg(i: number, category?: string) {
+    if (category && category.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME.toUpperCase()) {
+      return (ProfileIcons[7] && ProfileIcons[7]['icon']) ? ProfileIcons[7]['icon'] : '';
+    } else {
+      return (ProfileIcons[i - 1] && ProfileIcons[i - 1]['icon']) ? ProfileIcons[i - 1]['icon'] : '';
+    }
   }
 
   showRebalanceMessage(riskProfileType) {
@@ -155,6 +159,8 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   filterPortfolios() {
     if (this.portfolioCategory === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT) {
       this.filterAndCalculate(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT);
+    } else if (this.portfolioCategory === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME) {
+      this.filterAndCalculate(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME);
     } else if (this.portfolioCategory === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER) {
       this.filterAndCalculate(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER);
     } else {
@@ -178,6 +184,8 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   setBorderClass(portfolio) {
     if (portfolio['portfolioCategory'].toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER.toUpperCase()) {
       return 'ws-border';
+    } else if (portfolio['portfolioCategory'].toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME.toUpperCase()) {
+      return 'wi-border';
     } else {
       return '';
     }
