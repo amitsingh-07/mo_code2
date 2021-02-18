@@ -24,7 +24,7 @@ import { ManageInvestmentsService } from '../../manage-investments/manage-invest
 import { InvestmentCommonService } from '../investment-common.service';
 import { environment } from './../../../../environments/environment';
 import { PromoCodeService } from '../../../promo-code/promo-code.service';
-import { InvestmentAccountService } from '../../investment-account/investment-account.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 
 @Component({
   selector: 'app-funding-instructions',
