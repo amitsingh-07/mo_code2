@@ -77,10 +77,7 @@ export class FeesComponent implements OnInit {
   ngOnDestroy() {
     this.renderer.removeClass(document.body, 'portfolioname-bg');
   }
-  getPromoCode(Value) {
-    let maxLength = 35;
-    return Value.length > maxLength ? Value.substr(0, maxLength) + '...' : Value;
-  }
+
 }
 
 
