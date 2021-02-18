@@ -54,7 +54,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   employerNationality: any;
   pageTitle: any;
   investmentStatus: string;
-  showAddbank = false;
+  showBankInfo = false;
   dobFormat: any;
   private subscription: Subscription;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
@@ -151,12 +151,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.navbarService.setPageTitle(title);
   }
 
-  showAddBankDetails(investmentStatus) {
-    if (SIGN_UP_CONFIG.SHOW_BANK_DETAILS.indexOf(investmentStatus) >= 0) {
-      this.showAddbank = true;
-    }
-  }
-
   showHide(el) {
     if (el.style.display === '' || el.style.display === 'block') {
       el.style.display = 'none';
@@ -186,7 +180,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           if (data.objectList.customerBankDetail) {
             this.bankDetails = data.objectList.customerBankDetail[0];
           }
-          this.showAddBankDetails(this.investmentStatus);
+          this.showBankInfo = data.objectList.cashPortfolioAvailable ? data.objectList.cashPortfolioAvailable : false;
           
           // Hidden the mailing address for future use
           // if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
