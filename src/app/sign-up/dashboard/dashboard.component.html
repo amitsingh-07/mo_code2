@@ -69,7 +69,7 @@
                     <div class="col-md-6">
                       <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.INVESTMENT)">
                         <span class='dashboard-invest-portfolio'></span>
-                        <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.INVESTMENT_PORTFOLIOS' | translate}}
+                        <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.DIMENSIONAL_PORTFOLIOS' | translate}}
                         </p>
                         <p class='portfolio-type-box-value'>
                           {{(investmentsSummary && investmentsSummary.portfolioSummary.investmentPortfolio && investmentsSummary.portfolioSummary.investmentPortfolio.totalPortfolioValue ? investmentsSummary.portfolioSummary.investmentPortfolio.totalPortfolioValue : 0) | formatCurrency}}
@@ -80,6 +80,19 @@
                       </div>
                     </div>
                     <div class="col-md-6 widget-portfolio-type-right">
+                      <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.WISEINCOME)">
+                        <span class='dashboard-wise-income-portfolio'></span>
+                        <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.WISE_INCOME_PORTFOLIOS' | translate}}
+                        </p>
+                        <p class='portfolio-type-box-value'>
+                          {{(investmentsSummary && investmentsSummary.portfolioSummary.wiseIncomePortfolio && investmentsSummary.portfolioSummary.wiseIncomePortfolio.totalPortfolioValue ? investmentsSummary.portfolioSummary.wiseIncomePortfolio.totalPortfolioValue : 0) | formatCurrency}}
+                        </p>
+                        <p class="portfolio-type-cash-balance">{{'DASHBOARD.INVESTMENT.CASH_BALANCE' | translate}}:
+                          {{(investmentsSummary && investmentsSummary.portfolioSummary.wiseIncomePortfolio && investmentsSummary.portfolioSummary.wiseIncomePortfolio.totalCashAccountBalance ? investmentsSummary.portfolioSummary.wiseIncomePortfolio.totalCashAccountBalance : 0) | formatCurrency}}
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
                       <div class='portfolio-type-box' (click)="goToInvOverview(portfolioCategory.WISESAVER)">
                         <span class='dashboard-wise-portfolio'></span>
                         <p class='portfolio-type-box-title'>{{'DASHBOARD.INVESTMENT.WISE_SAVER_PORTFOLIOS' | translate}}

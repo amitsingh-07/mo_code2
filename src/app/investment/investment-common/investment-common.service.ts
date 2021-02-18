@@ -303,13 +303,15 @@ export class InvestmentCommonService {
     return this.investmentApiService.getWiseSaverDetails();
   }
   //WISE INCOME PAYOUT METHOD
- setWiseIncomePayOut(data) {
+ setWiseIncomePayOut(data, activeTabId) {
   this.investmentCommonFormData.initialWiseIncomePayoutTypeId = data.initialWiseIncomePayoutTypeId;
+  this.investmentCommonFormData.wiseIncomeActiveTabId = activeTabId;
   this.commit();
 }
   getWiseIncomePayOut() {
     return {
-      initialWiseIncomePayoutTypeId: this.investmentCommonFormData.initialWiseIncomePayoutTypeId
-    };
+      initialWiseIncomePayoutTypeId: this.investmentCommonFormData.initialWiseIncomePayoutTypeId,
+      activeTabId: this.investmentCommonFormData.wiseIncomeActiveTabId
   }
  }
+}

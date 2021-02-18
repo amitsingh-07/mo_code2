@@ -42,6 +42,7 @@ export class WiseIncomePayoutComponent implements OnInit {
   portfolioType;
   selectedPortfolioType;
   initialWiseIncomePayoutTypeId;
+  activeTabId = 1;
   constructor(
     public readonly translate: TranslateService,
     public activeModal: NgbActiveModal,
@@ -70,9 +71,9 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.getWiseIncomePayOutDetails();
-    this.formValues = this.investmentCommonService.getInitialFundingMethod();
     this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
     this.formValues = this.investmentCommonService.getWiseIncomePayOut();
+    this.activeTabId = this.formValues.activeTabId ? this.formValues.activeTabId : 1;
     this.wiseIncomePayOutTypeForm = new FormGroup({
       initialWiseIncomePayoutTypeId: new FormControl(
         this.formValues.initialWiseIncomePayoutTypeId, Validators.required)
@@ -86,8 +87,6 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.investmentAccountService.getSpecificDropList('wiseIncomePayoutType').subscribe((data) => {
       this.loaderService.hideLoader();
       this.wiseIncomePayOutTypes = data.objectList.wiseIncomePayoutType;
-      this.investmentEngagementJourneyService.sortByProperty(this.wiseIncomePayOutTypes, 'name', 'asc');
-     console.log(this.wiseIncomePayOutTypes);
     },
       (err) => {
         this.loaderService.hideLoader();
@@ -108,7 +107,7 @@ export class WiseIncomePayoutComponent implements OnInit {
     }
   }
   goToNext(form){
-    this.investmentCommonService.setWiseIncomePayOut(form.value);
+    this.investmentCommonService.setWiseIncomePayOut(form.value, this.activeTabId);
     if (form.value.initialWiseIncomePayoutTypeId === 410) {
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
     } else{

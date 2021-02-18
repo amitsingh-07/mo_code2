@@ -15,6 +15,7 @@ export class InvestmentCommonFormData {
     portfolioType:any;
     WiseIncomePayout :any;
     initialWiseIncomePayoutTypeId: number;
+    wiseIncomeActiveTabId: number;
 }
 
 export interface IAccountCreationActions {

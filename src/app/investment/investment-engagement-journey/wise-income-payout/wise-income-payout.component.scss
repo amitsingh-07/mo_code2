@@ -27,15 +27,6 @@ app-wise-income-payout {
         margin-bottom: 16px;
         text-align: center;
     }
-.wise-income-payout{
-    display: flex;
-    flex-direction: column;
-    & div{
-        &:last-child{
-            order: -1;
-        }
-    }
-}
     .note-info {
         font-size: 14px;
         line-height: normal;

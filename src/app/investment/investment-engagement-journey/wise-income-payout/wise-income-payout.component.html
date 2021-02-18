@@ -12,9 +12,9 @@
                 <div class="form-group-single-column flex-col">
                     <div class="fund-question hidden-lg mt20">{{'WISE_INCOME_PAYOUT.CAPTION' | translate}}</div>
                     <div class="row">
-                        <div class="col-12 wise-income-payout">
+                        <div class="col-12">
                             <div class="checkbox-button one-label order{{i+1}}"
-                                *ngFor="let wiseIncomePayOut of wiseIncomePayOutTypes; let i = index">
+                                *ngFor="let wiseIncomePayOut of wiseIncomePayOutTypes; let i = index" (click)="nav.select(i+1)">
                                 <input id="wise-income-payout_option{{i+1}}_radio" type="radio" class="field radio"
                                 name="initialWiseIncomePayoutTypeId" formControlName="initialWiseIncomePayoutTypeId" [value]=wiseIncomePayOut.id tabindex="{{i+1}}">
                                 <label for="wise-income-payout_option{{i+1}}_radio">
@@ -44,8 +44,8 @@
     <div class="payout-pannel-block">
         <div class="payout-pannel-desc">{{'WISE_INCOME_PAYOUT.PANEL_TITLE' | translate}}</div>
         <div class="payout-pannel-tabs">
-            <nav ngbNav #nav="ngbNav" class="nav-tabs">
-                <ng-container ngbNavItem>
+            <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTabId">
+                <ng-container [ngbNavItem]="1">
                     <a class="flex-col-4" ngbNavLink>{{'WISE_INCOME_PAYOUT.TAB_TITLE_LBL_1' | translate}}</a>
                     <ng-template ngbNavContent>
                         <div class="pannel-tab-content">
@@ -98,7 +98,7 @@
                         </div>
                     </ng-template>
                 </ng-container>
-                <ng-container ngbNavItem>
+                <ng-container  [ngbNavItem]="2">
                     <a class="flex-col-4" ngbNavLink>{{'WISE_INCOME_PAYOUT.TAB_TITLE_LBL_2' | translate}} </a>
                     <ng-template ngbNavContent>
                         <div class="pannel-tab-content">
@@ -146,7 +146,7 @@
                         </div>
                     </ng-template>
                 </ng-container>
-                <ng-container ngbNavItem>
+                <ng-container  [ngbNavItem]="3">
                     <a class="flex-col-4" ngbNavLink>{{'WISE_INCOME_PAYOUT.TAB_TITLE_LBL_3' | translate}}</a>
                     <ng-template ngbNavContent>
                         <div class="pannel-tab-content">
