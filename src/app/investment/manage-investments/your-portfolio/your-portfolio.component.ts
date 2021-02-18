@@ -338,6 +338,10 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         break;
       }
       case 6: {
+        window.open(MANAGE_INVESTMENTS_CONSTANTS.TOPUP_INSTRUCTION_URL, '_blank');
+        break;
+      }
+      case 7: {
         if (this.portfolio.entitlements.showDelete) {
           this.showDeletePortfolioModal();
         }
@@ -550,5 +554,10 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   }
   fullName() {
     this.isExpand = true;
+  }
+
+  goDividendPayout(event) {
+    event.stopPropagation();
+    event.preventDefault();
   }
 }
