@@ -407,6 +407,12 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
         this.totalValue = this.investmentoverviewlist['totalValue']
           ? this.investmentoverviewlist['totalValue'] : 0;
         break;
+      case INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME:
+        this.cashAccountBalance = this.investmentoverviewlist['wiseIncomeTotalCashAccountBalance']
+          ? this.investmentoverviewlist['wiseIncomeTotalCashAccountBalance'] : 0;
+        this.totalValue = this.investmentoverviewlist['wiseIncomeTotalValue']
+          ? this.investmentoverviewlist['wiseIncomeTotalValue'] : 0;
+        break;
       case INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER:
         this.cashAccountBalance = this.investmentoverviewlist['wisesaverTotalCashAccountBalance']
           ? this.investmentoverviewlist['wisesaverTotalCashAccountBalance'] : 0;
