@@ -296,15 +296,30 @@ export class InvestmentEngagementJourneyService {
         totalLiabilities: formData.totalLiabilities,
         enquiryId: enquiryIdValue,
         fundingTypeId: invCommonFormValues.initialFundingMethodId,
-        portfolioTypeId: formData.portfolioTypeId
+        portfolioTypeId: formData.portfolioTypeId,
+        
       };
-    } else {
+    } else if (selectedPortfolioType === 'wiseSaverPortfolio') {
       return {
         enquiryId: enquiryIdValue,
         initialInvestment: formData.initialInvestment,
         monthlyInvestment: formData.monthlyInvestment,
         fundingTypeId: invCommonFormValues.initialFundingMethodId,
         portfolioTypeId: formData.portfolioTypeId
+      };
+    } else  {
+      return {
+        investmentPeriod: formData.investmentPeriod,
+        monthlyIncome: formData.monthlyIncome,
+        initialInvestment: formData.initialInvestment,
+        monthlyInvestment: formData.monthlyInvestment,
+        percentageOfSaving: formData.percentageOfSaving,
+        totalAssets: formData.totalAssets,
+        totalLiabilities: formData.totalLiabilities,
+        enquiryId: enquiryIdValue,
+        fundingTypeId: invCommonFormValues.initialFundingMethodId,
+        portfolioTypeId: formData.portfolioTypeId,
+        payoutTypeId: invCommonFormValues.initialWiseIncomePayoutTypeId
       };
     }
   }

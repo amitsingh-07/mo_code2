@@ -93,8 +93,15 @@ export class FundDetailsComponent implements OnInit {
     if (iOS) {
       newWindow = window.open();
     }
-    let prospectusFileName = (this.portfolioType) ? 'prospectus_investment.pdf' : 'prospectus_wise_saver.pdf';
-     
+    //let prospectusFileName = (this.portfolioType) ? 'prospectus_investment.pdf' : 'prospectus_wise_saver.pdf';
+    let prospectusFileName;
+    if(this.portfolioType === 'Investment'){
+      prospectusFileName = 'prospectus_investment.pdf';
+    } else if(this.portfolioType === 'WiseSaver'){
+      prospectusFileName = 'prospectus_wise_saver.pdf';
+    } else if(this.portfolioType === 'wiseIncomePortfolio'){
+      prospectusFileName = 'prospectus_wise_saver.pdf';
+    }
     const pdfUrl = document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + prospectusFileName;
     if (iOS) {
       if (newWindow.document.readyState === 'complete') {

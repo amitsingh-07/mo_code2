@@ -14,6 +14,8 @@ export class InvestmentCommonFormData {
     srsAccountNumber: string;
     portfolioType:any;
     WiseIncomePayout :any;
+    initialWiseIncomePayoutTypeId: number;
+    wiseIncomeActiveTabId: number;
 }
 
 export interface IAccountCreationActions {
