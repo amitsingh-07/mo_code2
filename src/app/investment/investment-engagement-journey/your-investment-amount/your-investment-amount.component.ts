@@ -44,6 +44,8 @@ export class YourInvestmentAmountComponent implements OnInit {
   investmentCriteria: IInvestmentCriteria;
   selectedPortfolioType;
 
+  portfolioType
+
   constructor(
     private router: Router,
     private modal: NgbModal,
@@ -101,11 +103,22 @@ export class YourInvestmentAmountComponent implements OnInit {
   }
 
   getInvestmentCriteria(selectedPortfolioValue) {
-    const portfolioType = selectedPortfolioValue === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO
-      ? INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER : INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT;
-    this.investmentCommonService.getInvestmentCriteria(portfolioType).subscribe((data) => {
+    this.portfolioType = this.toDecidedPortfolioType(selectedPortfolioValue);
+   this.portfolioType = this.investmentCommonService.getInvestmentCriteria(this.portfolioType).subscribe((data) => {
       this.investmentCriteria = data;
     });
+  }
+
+  toDecidedPortfolioType(selectedPortfolioValue) {
+    if (selectedPortfolioValue ===
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO) {
+      return  INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER
+    } else if (selectedPortfolioValue ===
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
+      return  INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT
+    } else {
+     return  INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME
+    }
   }
 
   buildInvestAmountForm() {
@@ -181,7 +194,6 @@ export class YourInvestmentAmountComponent implements OnInit {
             if (data) {
               this.authService.saveEnquiryId(data.objectList.enquiryId);
               this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.RISK_ACKNOWLEDGEMENT]);
-
             }
           },
             (err) => {
