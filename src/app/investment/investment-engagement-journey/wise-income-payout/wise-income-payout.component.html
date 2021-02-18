@@ -12,8 +12,8 @@
                 <div class="form-group-single-column flex-col">
                     <div class="fund-question hidden-lg mt20">{{'WISE_INCOME_PAYOUT.CAPTION' | translate}}</div>
                     <div class="row">
-                        <div class="col-12">
-                            <div class="checkbox-button one-label"
+                        <div class="col-12 wise-income-payout">
+                            <div class="checkbox-button one-label order{{i+1}}"
                                 *ngFor="let wiseIncomePayOut of wiseIncomePayOutTypes; let i = index">
                                 <input id="wise-income-payout_option{{i+1}}_radio" type="radio" class="field radio"
                                 name="initialWiseIncomePayoutTypeId" formControlName="initialWiseIncomePayoutTypeId" [value]=wiseIncomePayOut.id tabindex="{{i+1}}">
