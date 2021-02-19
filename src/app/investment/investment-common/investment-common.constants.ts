@@ -29,6 +29,7 @@ export let INVESTMENT_COMMON_CONSTANTS = {
     PORTFOLIO_CATEGORY: {
         ALL: 'All',
         INVESTMENT: 'Investment',
+        WISEINCOME: 'WiseIncome',
         WISESAVER: 'WiseSaver'
     },
     PORTFOLIO_CATEGORY_TYPE:{
