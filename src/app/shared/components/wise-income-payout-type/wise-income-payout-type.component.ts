@@ -18,9 +18,6 @@ export class WiseIncomePayoutTypeComponent implements OnInit {
 
   constructor(private router: Router) { 
     this.payoutConst = INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT;
-    console.log(this.payoutConst);
-    console.log(this.payoutType);
-
   }
 
   ngOnInit(): void {
