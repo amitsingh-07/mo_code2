@@ -1,5 +1,5 @@
 <div class="bond_container">
-  <div class="bonds_equity_block" [ngClass]="{'wise-income-bar': portfolioType === 'wiseIncomePortfolio'}">
+  <div class="bonds_equity_block" [ngClass]="{'wise-income-bar': portfolioType === 'wiseIncomePortfolio' || portfolioType === 'WiseIncome'}">
     <div class="bond_progress_container">
       <div class="flex-row equity_bar" *ngFor="let asset of assets; let i = index"
         [ngClass]="{'wise-saver-bar': !allocationDetails}">
@@ -10,7 +10,7 @@
         <div class="flex-col">{{asset.allocationPercentage}}% {{asset.type.type}}</div>
       </div>
     </div>
-    <div *ngIf="portfolioType === 'Investment'">
+    <div *ngIf="portfolioType === 'investPortfolio' || portfolioType === 'Investment'">
       <div class="bonds_equity" *ngFor="let asset of assets; let i = index">
         <div class="bonds_equity_title" id="panel-button-{{i}}" (click)="showHidePanel(acc, 'panel-' + i, $event)">
           {{asset.type.type}}<i class='arrow'></i></div>
@@ -43,7 +43,7 @@
     </div>
   </div>
   <!-- wise-income -->
-  <div class="wise-income-allocation-block" *ngIf="portfolioType === 'wiseIncomePortfolio'">
+  <div class="wise-income-allocation-block" *ngIf="portfolioType === 'wiseIncomePortfolio' || portfolioType === 'WiseIncome'">
     <div>{{'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.DESC_LBL' | translate}}</div>
     <div class="allocation-graph">
       <img src="assets/images/investment-account/wise-income-graph-donut.svg" />
