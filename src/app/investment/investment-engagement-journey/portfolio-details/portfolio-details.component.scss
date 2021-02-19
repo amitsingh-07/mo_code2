@@ -127,7 +127,7 @@ app-portfolio-details {
     }
   }
 
-  .btn__footer--fixed {
+  .btn-proceed {
     margin-top: 0 !important;
     font-family: $muli-bold !important;
     font-size: 24px;
@@ -179,5 +179,19 @@ app-portfolio-details {
   }
   .wise-income-payout {
     margin-top:27px;
+  }
+  
+  .btn-continue {
+    margin-top: 0 !important;
+    font-family: $muli-bold !important;
+    font-size: 22px;
+    width: 340px;
+    letter-spacing: -0.17px;
+    @include allmobiles {
+        width: 100%;
+    }
+  }
+  .wiseIncomeFaqCard {
+    padding: 20px 0 45px!important;
   }
 }
