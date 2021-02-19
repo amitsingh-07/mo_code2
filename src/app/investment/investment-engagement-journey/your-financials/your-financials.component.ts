@@ -41,7 +41,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   translator: any;
   loaderTitle: string;
   loaderDesc: string;
-  selectedPortfolioType: any;
+  selectedPortfolioType;
   constructor(
     private router: Router,
     private modal: NgbModal,
@@ -161,28 +161,40 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   }
 
   saveAndProceed(form: any) {
-    this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
     const invCommonFormValues = this.investmentCommonService.getInvestmentCommonFormData();
-    let portfolioTypeArray = this.investmentCommonService.getPortfolioType();
-    let portfolioType = this.investmentEngagementJourneyService.filterDataByInput(portfolioTypeArray.portfolioType, 'name', 'Investment');
-    form.value.portfolioTypeId = portfolioType.id;
-    this.investmentEngagementJourneyService.setYourFinancial(form.value);
-    this.investmentEngagementJourneyService.savePersonalInfo(invCommonFormValues).subscribe((data) => {
-      this.investmentCommonService.clearAccountCreationActions();
-      if (data) {
-        if (this.authService.isSignedUser()) {
-          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
-        } else if (this.selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) {
+    this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
+    if(this.selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO){
+      let portfolioTypeArray = this.investmentCommonService.getPortfolioType();
+      let portfolioType = this.investmentEngagementJourneyService.filterDataByInput(portfolioTypeArray.portfolioType, 'name', 'WiseIncome');
+      form.value.portfolioTypeId = portfolioType.id;
+      this.investmentEngagementJourneyService.setYourFinancial(form.value);
+      this.investmentEngagementJourneyService.savePersonalInfo(invCommonFormValues).subscribe((data) => {
+        this.investmentCommonService.clearAccountCreationActions();
+        if (data) {
+          this.authService.saveEnquiryId(data.objectList.enquiryId);
           this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
-        } else {
+        }
+      },
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
+    } else if(this.selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO){
+      let portfolioTypeArray = this.investmentCommonService.getPortfolioType();
+      let portfolioType = this.investmentEngagementJourneyService.filterDataByInput(portfolioTypeArray.portfolioType, 'name', 'Investment');
+      form.value.portfolioTypeId = portfolioType.id;
+      this.investmentEngagementJourneyService.setYourFinancial(form.value);
+      this.investmentEngagementJourneyService.savePersonalInfo(invCommonFormValues).subscribe((data) => {
+        this.investmentCommonService.clearAccountCreationActions();
+        if (data) {
           this.authService.saveEnquiryId(data.objectList.enquiryId);
           this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP2]);
         }
-      }
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+      },
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
+    }
+    
   }
 
   goBack(form) {
