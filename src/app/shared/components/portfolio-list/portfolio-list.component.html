@@ -14,7 +14,7 @@
                     <div class="multiple-portfolio-type-title">{{'YOUR_INVESTMENT.NOT_YET_INVESTED' | translate}}</div>
                     <div class="portfolio-list" *ngFor="let portfolio of filteredNotInvestedList; let i = index;">
                         <div (click)="detail(portfolio)" class="portfolio" *ngIf="(i <= 4) || showAllForNotInvested">
-                            <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img [src]="getImg(portfolio?.riskProfileId)" /></div>
+                            <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>

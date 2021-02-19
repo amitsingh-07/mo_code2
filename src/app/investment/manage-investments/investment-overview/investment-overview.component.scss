@@ -19,6 +19,9 @@ app-investment-overview {
         padding: 17px 0 20px;
         display: flex;
         align-items: center;
+        overflow-x: auto;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
         .all-category {
             font-family: $muli-regular;
             margin-right: 8px;
@@ -33,11 +36,17 @@ app-investment-overview {
         }
         label>div {
             padding: 0 10px;
-            background-color: #00a7a7;
+            background-color: $teal-color;
             height: 28px;
             margin-right: 8px;
             border-radius: 17px;
             cursor: pointer;
+            display: table;
+
+            .table-cell{
+                display: table-cell;
+                vertical-align: middle;
+            }
         }
         label>div>span {
             font-family: $muli-bold;
@@ -45,20 +54,22 @@ app-investment-overview {
             letter-spacing: -0.12px;
             line-height: normal;
             color: $white-color;
-            display: inline-block;
             vertical-align: middle;
         }
-        label>div>img {
+        label>div>span>img {
             display: none;
             margin-right: 5px;
         }
         input[type="radio"]:checked~* {
             background-color: $pine-green-color;
         }
-        input[type="radio"]:checked~div>img {
-            margin-top: 1px;
-            display: inline-block;
+        input[type="radio"]:checked~div>span>img {
+            display: table-cell;
+            vertical-align: middle;
         }
+    }
+    .category-filter::-webkit-scrollbar {
+        display: none;
     }
     .form-group-with-bg {
         box-shadow: 0 10px 14px 0 $btn-proceed-shadow-color;
@@ -129,7 +140,7 @@ app-investment-overview {
                     line-height: 23px;
                     background-color: $white-color;
                     color: $secondary-action-color;
-                    border: 1px solid #f1f1f1;
+                    border: 1px solid $border-light;
                     display: flex;
                     justify-content: center;
                     &:active,
@@ -206,7 +217,7 @@ app-investment-overview {
                 text-align: right;
                 color: $white-color;
                 padding: 10px 20px;
-                background-color: #3bbfbf;
+                background-color: $pelorous-blue-color;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -231,7 +242,7 @@ app-investment-overview {
                     .multiple-portfolio-type-title {
                         font-size: 14px;
                         letter-spacing: -0.15px;
-                        color: #007d7d;
+                        color: $darker-teal-color;
                         background-color: #e4f1f1;
                         padding: 5px 30px;
                         line-height: normal;
@@ -240,13 +251,13 @@ app-investment-overview {
                         }
                     }
                     .portfolio-list {
-                        background-color: #f7f7f7;
+                        background-color: $white-smoke-color;
                         &.invested {
-                            background-color: #ffffff;
+                            background-color: $white-color;
                         }
                         .portfolio {
                             font-family: $muli-regular;
-                            color: #000000;
+                            color: $black-color;
                             border-bottom: 1px solid #e5e5e5;
                             padding: 30px 25px;
                             display: flex;
@@ -269,6 +280,9 @@ app-investment-overview {
                             }
                             .ws-border {
                                 border: solid 3px #49a5c9 !important;
+                            }
+                            .wi-border {
+                                border: solid 3px $chetwode-blue-color !important;
                             }
                             .portfolio-details {
                                 display: flex;
@@ -324,12 +338,12 @@ app-investment-overview {
                                     font-size: 16px;
                                     letter-spacing: -0.3px;
                                     .top-up-btn {
-                                        color: #ff872f;
+                                        color: $crusta-orange-color;
                                     }
                                     .total-returns {
-                                        color: #11b600;
+                                        color: $light-green-color;
                                         &.negativeValue {
-                                            color: #d0021b;
+                                            color: $red-color;
                                         }
                                     }
                                     .cash-account-value {
@@ -337,7 +351,7 @@ app-investment-overview {
                                         font-size: 14px;
                                         letter-spacing: -0.26px;
                                         float: right;
-                                        color: #9b9b9b;
+                                        color: $dusty-grey-color;
                                         margin-top: 3px;
                                     }
                                 }
@@ -346,13 +360,13 @@ app-investment-overview {
                                     font-size: 12px;
                                     line-height: normal;
                                     letter-spacing: -0.13px;
-                                    color: #9b9b9b;
+                                    color: $dusty-grey-color;
                                     padding-top: 22px;
                                     @include allmobiles {
                                         padding-top: 13px;
                                     }
                                     span {
-                                        color: #ff872f;
+                                        color: $crusta-orange-color;
                                     }
                                     .srs-note-icon {
                                         width: 16px;
@@ -369,7 +383,7 @@ app-investment-overview {
                                     font-size: 12px;
                                     line-height: normal;
                                     letter-spacing: normal;
-                                    color: #00a7a7;
+                                    color: $teal-color;
                                     align-items: center;
                                     .rebalance-logo {
                                         width: 18px;
@@ -386,10 +400,10 @@ app-investment-overview {
                         font-family: $muli-regular;
                         font-size: 14px;
                         letter-spacing: -0.15px;
-                        color: #9b9b9b;
+                        color: $dusty-grey-color;
                         border: 1px solid #e5e5e5;
                         border-top: none;
-                        background-color: #ffffff;
+                        background-color: $white-color;
                         padding: 16px;
                         display: flex;
                         justify-content: center;
