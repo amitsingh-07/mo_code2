@@ -1,5 +1,5 @@
 export interface IPage {
     hutk: string;
-    pageUrl: string;
+    pageUri: string;
     pageName: string;
 }

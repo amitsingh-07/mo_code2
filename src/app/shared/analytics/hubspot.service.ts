@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { IPage } from './page.interface';
-import { environment } from './../../../../environments/environment';
+import { environment } from './../../../environments/environment';
+import {PlatformLocation } from '@angular/common';
 
 declare global {
   interface Window { _hsq: any; }
@@ -16,7 +17,9 @@ export class HubspotService {
 
   constructor(
     public router: Router,
-    public httpClient: HttpClient) {
+    public httpClient: HttpClient,
+    public platformLocation: PlatformLocation
+    ) {
   }
 
   // Registering Identifier to the hukt code
@@ -25,7 +28,7 @@ export class HubspotService {
     _hsq.push(["identify", {
       email: email
     }]);
-    console.log("Email Registered in Hubspot" + email);
+    console.log("Email Registered in Hubspot: " + email);
   }
 
   registerPhone(mobile: string) {
@@ -33,12 +36,12 @@ export class HubspotService {
     _hsq.push(["identify", {
       mobile: mobile
     }]);
-    console.log("Phone Registered in Hubspot" + mobile);
+    console.log("Phone Registered in Hubspot: " + mobile);
   }
 
   // Submitting Form Methods
   submitLogin(data: any) {
-    let url = environment.hsUrl.login
+    let url = environment.hsUrlLogin
     this.submitHSForm(url, data).subscribe((response) => {
       console.log(response);
       console.log("Login on HS sucessful");
@@ -47,7 +50,9 @@ export class HubspotService {
 
   submitRegistration(data: any) {
     try {
-      let url = environment.hsUrl.registration
+      console.log("Submitting Registration");
+      let url = environment.hsUrlRegister
+      console.log("Registration Url: " + url);
       this.submitHSForm(url, data).subscribe((response) => {
         console.log(response);
         console.log("Registration on HS sucessful");
@@ -75,7 +80,7 @@ export class HubspotService {
   getPageInfo() {
     var context = {} as IPage;
     context.hutk = document.cookie.replace(/(?:(?:^|.*;\s*)hubspotutk\s*\=\s*([^;]*).*$)|^.*$/, '$1');
-    context.pageUrl = this.router.url;
+    context.pageUri = location.href;
     context.pageName = document.title;
     return context;
   }

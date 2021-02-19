@@ -145,10 +145,23 @@ export class SignUpApiService {
     const payload = this.createAccountBodyRequest(captcha, pwd);
     this.hubspotService.registerEmail(payload.customer.emailAddress);
     this.hubspotService.registerPhone(payload.customer.mobileNumber);
-    const hsPayload = {
-      email: payload.customer.emailAddress,
-      mobile: payload.customer.mobileNumber
-    };
+    const hsPayload = [
+      {
+        name: "email",
+        value: payload.customer.emailAddress
+      }, 
+      {
+        name: "phone",
+        value: payload.customer.mobileNumber
+      },
+      {
+        name: "firstname",
+        value: payload.customer.firstName
+      },
+      {
+        name: "lastname",
+        value: payload.customer.lastName
+      }];
     this.hubspotService.submitRegistration(hsPayload);
     return this.apiService.createAccount(payload);
   }
