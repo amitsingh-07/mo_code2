@@ -78,9 +78,13 @@ app-your-portfolio {
             font-size: 18px;
             line-height: 30px;
             letter-spacing: -0.24px;
+            display: flex;
+
             @include allmobiles{
               font-size: 15px;
+              line-height: 19px;
               letter-spacing: -0.2px;
+              display: inline-block;
             }
           }
           .more-menu {

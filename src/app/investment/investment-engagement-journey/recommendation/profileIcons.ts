@@ -6,5 +6,5 @@ export const ProfileIcons = [
   { id: 5, icon: 'assets/images/equity.svg' },
   { id: 6, icon: 'assets/images/nosutable.svg' },
   { id: 7, icon: 'assets/images/investment-account/wise-saver-icon.svg'},
-  { id: 8, icon: 'assets/images/investment-account/wiseincome-icon.svg'}
+  { id: 8, icon: 'assets/images/investment-account/wise-income-icon.svg'}
 ];
