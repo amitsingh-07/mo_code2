@@ -30,9 +30,8 @@
                             <div>{{fee.fundName}}</div>
                             <div class="fee_value">{{ (fee.wrapFee && (fee.wrapFee | number : '1.2-2') > 0 ) ?
                                 (fee.wrapFee | number : '1.2-2') : 0
-                                }}%
-                                <span *ngIf="fee.fundName === 'Dimensional Portfolios'">*</span>
-                                <span *ngIf="fee.fundName === 'Platform Fee'">({{fee.wfRemarks}})</span>
+                                }}%<span *ngIf="fee.fundName.toUpperCase() === 'DIMENSIONAL PORTFOLIOS'">*</span>
+                                <span *ngIf="fee.fundName.toUpperCase() === 'PLATFORM FEE'">({{fee.wfRemarks}})</span>
                             </div>
                         </div>
                         <div class="flex-col-12 flex space-btwn mt20"
@@ -43,9 +42,7 @@
                                             src="assets\images\manage-investments\form-icon-alert.svg" /></span>
                                     <label>
                                         <div class="promo-code-header">
-                                            <span class="hidden-lg">{{getPromoCode(promotion.shortDescription)}}</span>
-                                            <span class="hidden-sm-md">{{promotion.shortDescription}}</span>
-                                            ({{promotion.promoCode}})
+                                            <span>{{promotion.shortDescription}}</span>
                                         </div>
                                         <div class="promo-code" id="promoCode">
                                             ({{'FEES.VALID_TILL' | translate}}
