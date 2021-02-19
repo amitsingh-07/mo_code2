@@ -43,6 +43,7 @@ export class WiseIncomePayoutComponent implements OnInit {
   selectedPortfolioType;
   initialWiseIncomePayoutTypeId;
   activeTabId = 1;
+  funds: any;
   constructor(
     public readonly translate: TranslateService,
     public activeModal: NgbActiveModal,
@@ -65,6 +66,7 @@ export class WiseIncomePayoutComponent implements OnInit {
       this.pageTitle = this.translate.instant('WISE_INCOME_PAYOUT.TITLE');
       this.setPageTitle(this.pageTitle);
     });
+    this.funds = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.FUND_DETAILS;
   }
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);

@@ -99,8 +99,8 @@ export class FundDetailsComponent implements OnInit {
       prospectusFileName = 'prospectus_investment.pdf';
     } else if(this.portfolioType === 'WiseSaver'){
       prospectusFileName = 'prospectus_wise_saver.pdf';
-    } else if(this.portfolioType === 'wiseIncomePortfolio'){
-      prospectusFileName = 'prospectus_wise_saver.pdf';
+    } else if(this.portfolioType === 'wiseIncomePortfolio' || this.portfolioType === 'WiseIncome'){
+      prospectusFileName = 'prospectus_wise_income.pdf';
     }
     const pdfUrl = document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + prospectusFileName;
     if (iOS) {
