@@ -51,6 +51,7 @@ export class FundingInstructionsComponent implements OnInit {
   PortfolioName: any;
   showFixedToastMessage: boolean;
   toastMsg: any;
+  portfolioArray: { portfolioType: any; };
 
   constructor(
     public readonly translate: TranslateService,
@@ -69,6 +70,7 @@ export class FundingInstructionsComponent implements OnInit {
   ) {
     this.translate.use('en');
     this.fundDetails = this.manageInvestmentsService.getFundingDetails();
+    this.portfolioArray = this.investmentCommonService.getPortfolioType();
     this.translate.get('COMMON').subscribe((result: string) => {
       this.fundAccountContent = this.translate.instant(
         'FUNDING_INSTRUCTIONS.LOGIN_TO_NETBANKING_BANK'

@@ -314,4 +314,12 @@ export class InvestmentCommonService {
       activeTabId: this.investmentCommonFormData.wiseIncomeActiveTabId
   }
  }
+ setPortfolioDetails(portfolioDetails){
+ this.investmentCommonFormData.portfolioDetails =portfolioDetails;
+ }
+ getPortfolioDetails(){
+   return{
+    portfolioDetails : this.investmentCommonFormData.portfolioDetails
+   }
+ }
 }
