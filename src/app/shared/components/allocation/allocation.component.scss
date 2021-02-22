@@ -8,9 +8,6 @@ app-allocation {
         .bonds_equity_block {
             padding: 15px;
             border-bottom: 1px solid $bonds-equity-block-border-color;
-            &.wise-income-bar{
-                display: none;
-            }
             .bond_progress_container {
                 font-family: $muli-semi-bold;
                 font-size: 16px;
