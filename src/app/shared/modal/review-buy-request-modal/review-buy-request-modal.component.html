@@ -19,11 +19,11 @@
     <div class="right-arrow-div">
       <img class="right-arrow" alt="" src="assets/images/investment-account/arrow-right.png">
     </div>
+    <!-- *ngIf="isValid; then thenTemplateName else elseTemplateName" -->
     <div class="from-account">
-      <img *ngIf="riskProfileImg; else defaultImg" class="portfolio-type" alt="" src="{{riskProfileImg}}">
-      <ng-template #defaultImg>
-        <img class="portfolio-type" src="assets/images/investment-account/growth_icon.svg" alt="" />
-      </ng-template>
+      <img *ngIf="fundDetails.portfolio?.portfolioCategory.toUpperCase() === 'WISESAVER' || 
+      fundDetails.portfolio?.portfolioCategory.toUpperCase() === 'INVESTMENT'" class="portfolio-type" alt="" src="{{riskProfileImg}}">
+      <img class="portfolio-type" *ngIf="fundDetails.portfolio.portfolioCategory.toUpperCase() === 'WISEINCOME'" src="assets/images/investment-account/wiseIncome_payout.svg"/>
       <div class="white-text multiline-ellipsis">{{fundDetails['portfolio']['portfolioName']}} -
         {{fundDetails['portfolio']['refNo']}}</div>
     </div>

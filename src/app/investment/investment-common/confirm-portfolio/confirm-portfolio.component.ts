@@ -92,6 +92,8 @@ export class ConfirmPortfolioComponent implements OnInit {
           this.authService.saveEnquiryId(data.objectList.enquiryId);
         }
         this.portfolio = data.objectList;
+        this.investmentCommonService.setPortfolioType(this.portfolio.portfolioType)
+        this.investmentCommonService.setPortfolioDetails(this.portfolio);
         this.wiseIncomeEnabled = (this.portfolio.portfolioType.toLowerCase() == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase());
         this.getInvestmentCriteria(this.portfolio);
         if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT) {
@@ -245,7 +247,7 @@ export class ConfirmPortfolioComponent implements OnInit {
         const namingFormData = {
           defaultPortfolioName: data.objectList.portfolioName,
           recommendedCustomerPortfolioId: this.portfolio.customerPortfolioId,
-          recommendedRiskProfileId: this.portfolio.portfolioType === 'Investment' ? this.portfolio.riskProfile.id : 7
+          recommendedRiskProfileId: this.portfolio.portfolioType === 'Investment' ? this.portfolio.riskProfile.id : this.portfolio.portfolioType === 'WiseSaver' ? 7 :9
         };
         this.investmentAccountService.setPortfolioNamingFormData(namingFormData);
         this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_ACCOUNT_DETAILS]);
