@@ -22,10 +22,10 @@
   .notification-number {
     position: absolute;
     top: -7px;
-    border: 2px solid #FFF;
+    border: 2px solid $white-color;
     background: #ff872f;
     //height: 23px;
-    color: #FFF;
+    color: $white-color;
     font-size: 10px;
     padding: 3px 5px;
     line-height: 100%;
@@ -256,5 +256,31 @@
         right: 0;
       }
     }
+  }
+}
+
+.promo-applied-toast {
+  height: 60px;
+  width: 280px;
+  position: fixed;
+  top: 93px;
+  right: 20px;
+  background-color: $light-green-color;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  z-index: 9999;
+  padding: 0 15px;
+
+  img {
+    width: 32px;
+    margin-right: 7px;
+  }
+
+  @include allmobiles {
+    height: 50px;
+    width: 100vw;
+    top: 0px;
+    left: 0px;
   }
 }

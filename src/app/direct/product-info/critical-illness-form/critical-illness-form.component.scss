@@ -1,0 +1,26 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+app-critical-illness-form {
+  .help-icon {
+    width: 45px;
+    position: relative;
+    left: 5px;
+  }
+
+  .ci-label {
+    .help-icon {
+      display: inline-block;
+      left: 82px;
+      bottom: 38px;
+    }
+  }
+
+  .early-label {
+    .help-icon {
+      display: inline-block;
+      left: 82px;
+      bottom: 24px;
+    }
+  }
+}

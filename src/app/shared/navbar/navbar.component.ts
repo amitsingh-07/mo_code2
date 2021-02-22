@@ -31,6 +31,7 @@ import { INavbarConfig } from './config/navbar.config.interface';
 import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
 import { SessionsService } from '../Services/sessions/sessions.service';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
 
 @Component({
   selector: 'app-navbar',
@@ -120,6 +121,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   showCareers = true;
   showContactUs = true;
   showFAQs = true;
+  showMenuItemInvestUser = false;
+
+  showPromoApplied: boolean = false;
 
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
@@ -152,7 +156,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.isComprehensiveEnabled = moduleConfig.comprehensiveEnabled;
       this.isRetirementPlanningEnabled = moduleConfig.retirementPlanningEnabled;
       this.isComprehensiveLiveEnabled = moduleConfig.comprehensiveLiveEnabled;
-    });
+    });   
 
     // User Information Check Authentication
     this.userInfo = this.signUpService.getUserProfileInfo();
@@ -223,6 +227,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.isBackPressSubscribed = subscribed;
     });
     this.navbarService.currentPageSuperTitle.subscribe((superTitle) => this.pageSuperTitle = superTitle);
+    this.navbarService.promoAppliedCardObservable.subscribe((promoCard) => this.showPromoApplied = promoCard);
 
     this.navbarService.currentMenuItem.subscribe((menuItem) => {
       if (menuItem && typeof menuItem.iconClass !== 'undefined') {
@@ -243,6 +248,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         }
       }
     });
+
+    this.navbarService.menuItemInvestUserEvent.subscribe((investUser) => {
+     this.showMenuItemInvestUser = investUser;
+    });
+    
   }
 
   ngAfterViewInit() {
@@ -454,6 +464,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   clearLoginDetails(isRedirect: boolean = true) {
     this.signUpService.setUserProfileInfo(null);
     this.isLoggedIn = false;
+    this.showMenuItemInvestUser = false;
     this.sessionsService.destroyInstance();
     this.authService.clearAuthDetails();
     this.authService.clearSession();
@@ -531,4 +542,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.showContactUs = MenuConfig.aboutUs.showContactUs;
     this.showFAQs = MenuConfig.aboutUs.showFAQs;
   }
+
+  goToWrapFeeDetails() {
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.FEES]);
+  }
+
 }
