@@ -24,7 +24,7 @@ export class WiseIncomePayoutTypeComponent implements OnInit {
   }
   
   goReviewInputs() {
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.WISE_INCOME_PAYOUT]);
   }
 
 }
