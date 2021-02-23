@@ -15,16 +15,11 @@ app-promo-code-list {
   .gray-bg {
     background-color: $white-smoke-color;
     padding: 14px 20px;
-    width: 100%;
-    max-width: 450px;
     display: flex;
     align-items: center;
-
-    @include desktop {
-      width: 100vw;
-      max-width: 840px;
-      justify-content: center;
-    }
+    width: 100vw;
+    max-width: 840px;
+    justify-content: center;
 
     @include allmobiles {
       padding: 14px 20px;
