@@ -324,7 +324,7 @@
       "ACCOUNT_NO": "Account No.",
       "APPLY_CHANGE": "Apply Changes"
     },
-    "JOINT_ACCOUNT_DESC": "While we upgrade our systems, please email <a target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a>if you would like to update your bank details."
+    "JOINT_ACCOUNT_DESC": "While we upgrade our systems, please email <a target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> if you would like to update your bank details."
   },
   "TRANSACTIONS": {
     "TITLE": "Transactions",
