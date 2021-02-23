@@ -1,6 +1,8 @@
 @import '../../../variables';
 @import '../../../mixins';
-
+.portfolioname-bg {
+  background-color: $white-color !important;
+}
 app-promo-code-landing {
   .invest-section {
     @include allmobiles {
