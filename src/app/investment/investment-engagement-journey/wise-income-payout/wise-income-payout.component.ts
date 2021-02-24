@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
- 
+
 
 import { appConstants } from '../../../app.constants';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -21,8 +21,9 @@ import { InvestmentCommonService } from './../../investment-common/investment-co
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
+import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
 
- 
+
 
 @Component({
   selector: 'app-wise-income-payout',
@@ -59,7 +60,7 @@ export class WiseIncomePayoutComponent implements OnInit {
     private modal: NgbModal,
     private cd: ChangeDetectorRef,
     private renderer: Renderer2,
-    private loaderService:LoaderService,
+    private loaderService: LoaderService,
     private investmentAccountService: InvestmentAccountService
   ) {
     this.translate.use('en');
@@ -81,7 +82,7 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.wiseIncomePayOutTypeForm = new FormGroup({
       initialWiseIncomePayoutTypeId: new FormControl(
         this.formValues.initialWiseIncomePayoutTypeId, Validators.required)
-      });
+    });
   }
   getWiseIncomePayOutDetails() {
     this.loaderService.showLoader({
@@ -126,7 +127,7 @@ export class WiseIncomePayoutComponent implements OnInit {
         this.investmentAccountService.showGenericErrorModal();
       });
   }
-  getFundingMethodNameById(fundingMethodName, fundingOptions) {
+  getFundingMethodNameByName(fundingMethodName, fundingOptions) {
     if (fundingMethodName && fundingOptions) {
       const fundingMethod = fundingOptions.filter(
         (prop) => prop.name.toUpperCase() === fundingMethodName.toUpperCase()
@@ -136,15 +137,25 @@ export class WiseIncomePayoutComponent implements OnInit {
       return '';
     }
   }
-  goToNext(form){
-    this.investmentCommonService.setWiseIncomePayOut(form.value, this.activeTabId);
-    if (form.value.initialWiseIncomePayoutTypeId === 410) {
-     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
+  getPayoutMethodNameById(fundingMethodId, wiseIncomePayOutOptions) {
+    if (fundingMethodId && wiseIncomePayOutOptions) {
+      const fundingMethod = wiseIncomePayOutOptions.filter(
+        (prop) => prop.id === fundingMethodId
+      );
+      return fundingMethod[0].key
     } else {
-      const fundingMethod = this.getFundingMethodNameById('CASH', this.fundingMethods);
-      this.investmentCommonService.setInitialFundingMethod({initialFundingMethodId:fundingMethod});
+      return '';
+    }
+  }
+  goToNext(form) {
+    this.investmentCommonService.setWiseIncomePayOut(form.value, this.activeTabId);
+    const payoutKey = this.getPayoutMethodNameById(form.value.initialWiseIncomePayoutTypeId, this.wiseIncomePayOutTypes);
+    if (payoutKey === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.GROW) {
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
+    } else {
+      const fundingMethod = this.getFundingMethodNameByName(INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CASH, this.fundingMethods);
+      this.investmentCommonService.setInitialFundingMethod({ initialFundingMethodId: fundingMethod });
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
     }
   }
 }
- 

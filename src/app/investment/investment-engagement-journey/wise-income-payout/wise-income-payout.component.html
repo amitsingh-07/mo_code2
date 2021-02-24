@@ -36,7 +36,8 @@
                         </div>
                     </div>
                     <button type="button" class="btn btn-primary btn__footer--fixed width100"
-                        (click)="goToNext(wiseIncomePayOutTypeForm)">{{'WISE_INCOME_PAYOUT.CONTINUE' | translate}}</button>
+                    [disabled]="(!wiseIncomePayOutTypeForm.controls.initialWiseIncomePayoutTypeId.value)"
+                    (click)="goToNext(wiseIncomePayOutTypeForm)">{{'WISE_INCOME_PAYOUT.CONTINUE' | translate}}</button>
                 </div>
             </form>
         </div>
