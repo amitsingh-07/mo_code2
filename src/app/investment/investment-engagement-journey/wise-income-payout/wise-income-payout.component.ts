@@ -44,6 +44,7 @@ export class WiseIncomePayoutComponent implements OnInit {
   initialWiseIncomePayoutTypeId;
   activeTabId = 1;
   funds: any;
+  fundingMethods: any;
   constructor(
     public readonly translate: TranslateService,
     public activeModal: NgbActiveModal,
@@ -73,6 +74,7 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.getWiseIncomePayOutDetails();
+    this.getOptionListCollection();
     this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
     this.formValues = this.investmentCommonService.getWiseIncomePayOut();
     this.activeTabId = this.formValues.activeTabId ? this.formValues.activeTabId : 1;
@@ -108,11 +110,39 @@ export class WiseIncomePayoutComponent implements OnInit {
       return '';
     }
   }
+  getOptionListCollection() {
+    this.loaderService.showLoader({
+      title: this.loaderTitle,
+      desc: this.loaderDesc
+    });
+    this.investmentAccountService.getSpecificDropList('portfolioFundingMethod').subscribe((data) => {
+      this.loaderService.hideLoader();
+      this.fundingMethods = data.objectList.portfolioFundingMethod;
+      this.investmentEngagementJourneyService.sortByProperty(this.fundingMethods, 'name', 'asc');
+
+    },
+      (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  }
+  getFundingMethodNameById(fundingMethodName, fundingOptions) {
+    if (fundingMethodName && fundingOptions) {
+      const fundingMethod = fundingOptions.filter(
+        (prop) => prop.name.toUpperCase() === fundingMethodName.toUpperCase()
+      );
+      return fundingMethod[0].id;
+    } else {
+      return '';
+    }
+  }
   goToNext(form){
     this.investmentCommonService.setWiseIncomePayOut(form.value, this.activeTabId);
     if (form.value.initialWiseIncomePayoutTypeId === 410) {
-      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
-    } else{
+     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
+    } else {
+      const fundingMethod = this.getFundingMethodNameById('CASH', this.fundingMethods);
+      this.investmentCommonService.setInitialFundingMethod({initialFundingMethodId:fundingMethod});
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
     }
   }
