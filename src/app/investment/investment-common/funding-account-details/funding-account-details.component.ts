@@ -78,12 +78,9 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.formValues = this.investmentCommonService.getInvestmentCommonFormData();
     this.investmentAccountFormValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.portfolio = this.investmentCommonService.getPortfolioDetails();
-    this.disableFundingMethod = this.portfolio && this.portfolio.portfolioDetails.payoutType && 
+    this.disableFundingMethod = this.portfolio && this.portfolio.portfolioDetails && this.portfolio.portfolioDetails.payoutType && 
     (this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.FOUR_PERCENT  
      ||this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.EIGHT_PERCENT);
-     if(this.disableFundingMethod){
-
-     }
     this.getSrsAccDetailsAndOptionListCol();
   }
 
