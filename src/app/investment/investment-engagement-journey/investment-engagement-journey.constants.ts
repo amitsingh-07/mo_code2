@@ -30,5 +30,10 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
                   prospectusLink: null,
                   sectorName: "Fixed Income",
                   type: "UT"
-                }] 
+                }], 
+  PROSPECTUS_FILE:{
+    INVESTMENT: 'prospectus_investment.pdf',
+    WISESAVER: 'prospectus_wise_saver.pdf',
+    WISEINCOME: 'prospectus_wise_income.pdf'      
+                }
 };

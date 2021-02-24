@@ -90,7 +90,7 @@
         "0NE_TIME_LBL": "One-time Amount",
         "0NE_TIME_VALUE": "Min $1,000",
         "MONTHLY_LBL" : "Monthly Amount",
-        "MONTHLY_VALUE": "Min $1,00",
+        "MONTHLY_VALUE": "Min $100",
         "FREQUENCY_LBL": "Payout Frequency",
         "FUNDING_LBL": "Funding Method",
         "REINVESTED_LBL": "Reinvested",
