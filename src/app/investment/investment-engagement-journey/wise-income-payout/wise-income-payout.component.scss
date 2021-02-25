@@ -98,12 +98,12 @@ app-wise-income-payout {
                     align-items: center;
                     display: flex;
                     padding: 17px 34px;
+                    font-family: $muli-bold;
                     @include allmobiles {
                         padding: 0px 8px 7px;
                         line-height: normal;
                     }
-                    &.active {
-                        font-family: $muli-bold;
+                    &.active { 
                         border-bottom: 6px solid $payout-tab-color;
                         color:$payout-tab-color;
                     }
