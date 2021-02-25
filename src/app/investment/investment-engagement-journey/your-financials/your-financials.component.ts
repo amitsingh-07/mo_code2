@@ -163,38 +163,25 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   saveAndProceed(form: any) {
     const invCommonFormValues = this.investmentCommonService.getInvestmentCommonFormData();
     this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
-    if(this.selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO){
-      let portfolioTypeArray = this.investmentCommonService.getPortfolioType();
-      let portfolioType = this.investmentEngagementJourneyService.filterDataByInput(portfolioTypeArray.portfolioType, 'name', 'WiseIncome');
-      form.value.portfolioTypeId = portfolioType.id;
-      this.investmentEngagementJourneyService.setYourFinancial(form.value);
-      this.investmentEngagementJourneyService.savePersonalInfo(invCommonFormValues).subscribe((data) => {
-        this.investmentCommonService.clearAccountCreationActions();
-        if (data) {
-          this.authService.saveEnquiryId(data.objectList.enquiryId);
+    const selectedPortfolioType = (this.selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) ? INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME : INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT;
+    let portfolioTypeArray = this.investmentCommonService.getPortfolioType();
+    let portfolioType = this.investmentEngagementJourneyService.filterDataByInput(portfolioTypeArray.portfolioType, 'name', selectedPortfolioType);
+    form.value.portfolioTypeId = portfolioType.id;
+    this.investmentEngagementJourneyService.setYourFinancial(form.value);
+    this.investmentEngagementJourneyService.savePersonalInfo(invCommonFormValues).subscribe((data) => {
+      this.investmentCommonService.clearAccountCreationActions();
+      if (data) {
+        this.authService.saveEnquiryId(data.objectList.enquiryId);
+        if (selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME) {
           this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
-        }
-      },
-        (err) => {
-          this.investmentAccountService.showGenericErrorModal();
-        });
-    } else if(this.selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO){
-      let portfolioTypeArray = this.investmentCommonService.getPortfolioType();
-      let portfolioType = this.investmentEngagementJourneyService.filterDataByInput(portfolioTypeArray.portfolioType, 'name', 'Investment');
-      form.value.portfolioTypeId = portfolioType.id;
-      this.investmentEngagementJourneyService.setYourFinancial(form.value);
-      this.investmentEngagementJourneyService.savePersonalInfo(invCommonFormValues).subscribe((data) => {
-        this.investmentCommonService.clearAccountCreationActions();
-        if (data) {
-          this.authService.saveEnquiryId(data.objectList.enquiryId);
+        } else {
           this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP2]);
         }
-      },
-        (err) => {
-          this.investmentAccountService.showGenericErrorModal();
-        });
-    }
-    
+      }
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   goBack(form) {

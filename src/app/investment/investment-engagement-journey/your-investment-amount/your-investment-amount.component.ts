@@ -104,7 +104,7 @@ export class YourInvestmentAmountComponent implements OnInit {
 
   getInvestmentCriteria(selectedPortfolioValue) {
     this.portfolioType = this.toDecidedPortfolioType(selectedPortfolioValue);
-   this.portfolioType = this.investmentCommonService.getInvestmentCriteria(this.portfolioType).subscribe((data) => {
+    this.portfolioType = this.investmentCommonService.getInvestmentCriteria(this.portfolioType).subscribe((data) => {
       this.investmentCriteria = data;
     });
   }
@@ -112,12 +112,12 @@ export class YourInvestmentAmountComponent implements OnInit {
   toDecidedPortfolioType(selectedPortfolioValue) {
     if (selectedPortfolioValue ===
       INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO) {
-      return  INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER
     } else if (selectedPortfolioValue ===
       INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
-      return  INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT
     } else {
-     return  INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME
     }
   }
 

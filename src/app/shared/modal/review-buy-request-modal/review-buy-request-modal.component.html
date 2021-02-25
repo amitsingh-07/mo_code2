@@ -21,9 +21,9 @@
     </div>
     <!-- *ngIf="isValid; then thenTemplateName else elseTemplateName" -->
     <div class="from-account">
-      <img *ngIf="fundDetails.portfolio?.portfolioCategory.toUpperCase() === 'WISESAVER' || 
-      fundDetails.portfolio?.portfolioCategory.toUpperCase() === 'INVESTMENT'" class="portfolio-type" alt="" src="{{riskProfileImg}}">
-      <img class="portfolio-type" *ngIf="fundDetails.portfolio.portfolioCategory.toUpperCase() === 'WISEINCOME'" src="assets/images/investment-account/wiseIncome_payout.svg"/>
+      <img *ngIf="fundDetails.portfolio?.portfolioCategory.toUpperCase() === portfolioCatagories.WISESAVER.toUpperCase() || 
+      fundDetails.portfolio?.portfolioCategory.toUpperCase() === portfolioCatagories.INVESTMENT.toUpperCase()" class="portfolio-type" alt="" src="{{riskProfileImg}}">
+      <img class="portfolio-type" *ngIf="fundDetails.portfolio.portfolioCategory.toUpperCase() === portfolioCatagories.WISEINCOME.toUpperCase()" src="assets/images/investment-account/wiseIncome_payout.svg"/>
       <div class="white-text multiline-ellipsis">{{fundDetails['portfolio']['portfolioName']}} -
         {{fundDetails['portfolio']['refNo']}}</div>
     </div>

@@ -25,6 +25,7 @@ import { InvestmentCommonService } from '../investment-common.service';
 import { environment } from './../../../../environments/environment';
 import { PromoCodeService } from '../../../promo-code/promo-code.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
 
 @Component({
   selector: 'app-funding-instructions',
@@ -51,7 +52,8 @@ export class FundingInstructionsComponent implements OnInit {
   PortfolioName: any;
   showFixedToastMessage: boolean;
   toastMsg: any;
-  portfolioArray: { portfolioType: any; };
+  portfolioArray: any;
+  portfolioCatagories;
 
   constructor(
     public readonly translate: TranslateService,
@@ -90,7 +92,7 @@ export class FundingInstructionsComponent implements OnInit {
       this.navbarService.setNavbarMode(105);
     } else {
       this.navbarService.setNavbarMode(103);
-    }
+    } 
     this.footerService.setFooterVisibility(false);
     this.getBankDetailsList();
     this.getTransferDetails();
@@ -99,6 +101,7 @@ export class FundingInstructionsComponent implements OnInit {
         ProfileIcons[this.fundDetails.portfolio.riskProfile.id - 1]['icon'];
     }
     this.PortfolioName = this.investmentCommonService.getConfirmPortfolioName();
+    this.portfolioCatagories = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
   }
 
   setPageTitle(title: string) {

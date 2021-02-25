@@ -13,7 +13,6 @@ export class InvestmentCommonFormData {
     srsOperatorBank: any;
     srsAccountNumber: string;
     portfolioType:any;
-    WiseIncomePayout :any;
     initialWiseIncomePayoutTypeId: number;
     wiseIncomeActiveTabId: number;
     portfolioDetails :any;
