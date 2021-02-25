@@ -46,6 +46,7 @@ export class WiseIncomePayoutComponent implements OnInit {
   activeTabId = 1;
   funds: any;
   fundingMethods: any;
+  fundingListmethod: any; 
   constructor(
     public readonly translate: TranslateService,
     public activeModal: NgbActiveModal,
@@ -76,12 +77,24 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.getWiseIncomePayOutDetails();
     this.getOptionListCollection();
-    this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
+     this.investmentAccountService.getSpecificDropList('portfolioType').subscribe((data) => {
+      this.investmentCommonService.setPortfolioType(data.objectList.portfolioType);
+      this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType()
+      let portfolioTypeArray = this.investmentCommonService.getPortfolioType();
+      let portfolioType = this.investmentEngagementJourneyService.filterDataByInput(portfolioTypeArray.portfolioType, 'name', INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME);
+      this.getFundListMethod(portfolioType.id);
+    });
+    this.getFundListMethod(this.selectedPortfolioType);
     this.formValues = this.investmentCommonService.getWiseIncomePayOut();
     this.activeTabId = this.formValues.activeTabId ? this.formValues.activeTabId : 1;
     this.wiseIncomePayOutTypeForm = new FormGroup({
       initialWiseIncomePayoutTypeId: new FormControl(
         this.formValues.initialWiseIncomePayoutTypeId, Validators.required)
+    });
+  }
+  getFundListMethod(portfolioTypeId){
+    this.investmentEngagementJourneyService.getFundListMethod(portfolioTypeId).subscribe((data) =>{
+    this.fundingListmethod = data.objectList;
     });
   }
   getWiseIncomePayOutDetails() {

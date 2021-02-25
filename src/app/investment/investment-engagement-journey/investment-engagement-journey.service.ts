@@ -444,5 +444,8 @@ export class InvestmentEngagementJourneyService {
         return '';
       }
     }
+  }// wiseincome fundlist
+  getFundListMethod(portfolioTypeId) {
+    return this.investmentApiService.getFundListMethod(portfolioTypeId);
   }
 }
