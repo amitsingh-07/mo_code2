@@ -242,6 +242,10 @@ app-wise-income-payout {
                         }
                         .tab-content-preference {
                             padding-top: 0;
+                            font-family: $muli-regular;
+                            .preference-payout-block{
+                                font-family: $muli-bold;
+                            }
                         }
                         p {
                             margin: 20px 0 0;
