@@ -101,7 +101,11 @@ export class SelectPortfolioComponent implements OnInit {
     this.redirectToNextScreen();
   }
   redirectToNextScreen() {
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
+    if (this.selectPortfolioForm.controls.selectPortfolioType && this.selectPortfolioForm.controls.selectPortfolioType.value === 'wiseIncomePortfolio') {
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.WISE_INCOME_PAYOUT]);
+    } else {
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
+    }
   }
   investPortfolio(event) {
     this.investmentEnabled = !this.investmentEnabled;
@@ -136,7 +140,7 @@ export class SelectPortfolioComponent implements OnInit {
       this.investmentEnabled = !this.investmentEnabled;
       this.wiseSaverEnabled = false;
       this.wiseIncomeEnabled = false;
-    } 
+    }
     if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO) {
       this.wiseSaverEnabled = !this.wiseSaverEnabled;
       this.investmentEnabled = false;
@@ -146,7 +150,7 @@ export class SelectPortfolioComponent implements OnInit {
       this.wiseIncomeEnabled = !this.wiseIncomeEnabled;
       this.investmentEnabled = false;
       this.wiseSaverEnabled = false;
-    }  
+    }
   }
   // Go to next slide
   nextSlide() {

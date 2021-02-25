@@ -57,5 +57,10 @@ export let INVESTMENT_COMMON_CONSTANTS = {
     ALLOCATION_DETAILS : {
       MATURITY: 'maturity',
       CREDIT_RATING: 'credit rating'
+    },
+    WISE_INCOME_PAYOUT : {
+      GROW: '0%',
+      FOUR_PERCENT: '4.5% p.a.',
+      EIGHT_PERCENT: '8% p.a.'
     }
 };
