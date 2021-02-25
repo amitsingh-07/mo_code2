@@ -282,14 +282,9 @@ export class ConfirmPortfolioComponent implements OnInit {
     );
     ref.componentInstance.secondaryActionDim = true;
     ref.componentInstance.primaryAction.subscribe(() => {
-      // Login
-      //this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT);
       this.confirmPortfolio();
     });
     ref.componentInstance.secondaryAction.subscribe(() => {
-      // Sign up
-      //this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.START);
-      //this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
     });
   }
 }
