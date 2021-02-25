@@ -285,7 +285,7 @@ export class InvestmentEngagementJourneyService {
     const selectedPortfolioType = this.getSelectPortfolioType();
     const formData = this.getPortfolioFormData();
     const enquiryIdValue = Number(this.authService.getEnquiryId());
-    if (selectedPortfolioType === 'investPortfolio') {
+    if (selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
       return {
         investmentPeriod: formData.investmentPeriod,
         monthlyIncome: formData.monthlyIncome,
@@ -299,7 +299,7 @@ export class InvestmentEngagementJourneyService {
         portfolioTypeId: formData.portfolioTypeId,
         
       };
-    } else if (selectedPortfolioType === 'wiseSaverPortfolio') {
+    } else if (selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO) {
       return {
         enquiryId: enquiryIdValue,
         initialInvestment: formData.initialInvestment,
@@ -446,4 +446,3 @@ export class InvestmentEngagementJourneyService {
     }
   }
 }
-
