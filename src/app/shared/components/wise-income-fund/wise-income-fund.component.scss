@@ -6,10 +6,20 @@ app-wise-income-fund {
         box-shadow: 0 10px 14px 0 $btn-shadow-color;
         background-color: $lagoon-blue-color;
         .fund_sub_container_heading {
-            padding: 25px 20px 10px 20px;
+            padding: 25px 20px;
+            margin-right: 45px;
+            @include allmobiles{
+                max-width: 50%;
+                margin-right: 0;
+                padding-right: 5px;
+            }
         }
         .fund_sub_container_value {
-            padding: 0px 20px 25px 20px;
+            padding: 25px 20px;
+            @include allmobiles{
+                max-width: 50%;
+                padding-left: 5px;
+            }
         }
         .fund_heading {            
             font-family: $muli-regular;
@@ -17,6 +27,8 @@ app-wise-income-fund {
             font-weight: normal;
             letter-spacing: -0.15px;
             color: $jungle-mist-blue-color;
+            max-width: 160px;
+            padding-bottom: 10px;
         }
         .fund_value {            
             font-family: $muli-bold;
@@ -24,6 +36,7 @@ app-wise-income-fund {
             font-weight: normal;
             letter-spacing: -0.15px;
             color: $jungle-mist-blue-color;
+            max-width: 160px;
         }
         
         .mb-30 {
