@@ -269,22 +269,32 @@ export class ConfirmPortfolioComponent implements OnInit {
   }
 
   showPayoutModal() {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.imgType = 1;
-    ref.componentInstance.closeBtn = false;
-    ref.componentInstance.errorTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.8PERCENT_TITLE');;
-    ref.componentInstance.errorMessageHTML = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.8PERCENT_DESC');
-    ref.componentInstance.primaryActionLabel = this.translate.instant(
-      'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.UNDERSTAND_PROCEED'
-    );
-    ref.componentInstance.secondaryActionLabel = this.translate.instant(
-      'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.CANCEL'
-    );
-    ref.componentInstance.secondaryActionDim = true;
-    ref.componentInstance.primaryAction.subscribe(() => {
+    if(this.wiseIncomeEnabled) {
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+      ref.componentInstance.imgType = 1;
+      ref.componentInstance.closeBtn = false;
+      if( INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.GROW === this.portfolio.payoutType || INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.FOUR_PERCENT === this.portfolio.payoutType){
+        ref.componentInstance.errorTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.GROW_4PERCENT_TITLE');;
+        ref.componentInstance.errorMessageHTML = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.GROW_4PERCENT_DESC');
+      } else {
+        ref.componentInstance.errorTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.8PERCENT_TITLE');;
+        ref.componentInstance.errorMessageHTML = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.8PERCENT_DESC');
+      }
+     
+      ref.componentInstance.primaryActionLabel = this.translate.instant(
+        'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.UNDERSTAND_PROCEED'
+      );
+      ref.componentInstance.secondaryActionLabel = this.translate.instant(
+        'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.CANCEL'
+      );
+      ref.componentInstance.secondaryActionDim = true;
+      ref.componentInstance.primaryAction.subscribe(() => {
+        this.confirmPortfolio();
+      });
+      ref.componentInstance.secondaryAction.subscribe(() => {
+      });
+    } else {
       this.confirmPortfolio();
-    });
-    ref.componentInstance.secondaryAction.subscribe(() => {
-    });
+    }    
   }
 }
