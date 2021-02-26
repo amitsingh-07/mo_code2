@@ -453,4 +453,12 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  // wise-income fundlist
+  getFundListMethod(portfolioTypeId) {
+    const url =investmentApiConstants.endpoint.portfolio.getFundListMethod.replace('$PORTFOLIO_TYPE_ID$', portfolioTypeId )
+    return this.http.get(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }
