@@ -46,7 +46,8 @@ export class WiseIncomePayoutComponent implements OnInit {
   activeTabId = 1;
   funds: any;
   fundingMethods: any;
-  fundingListmethod: any; 
+  fundingListMethod: any; 
+  payoutFundList: any;
   constructor(
     public readonly translate: TranslateService,
     public activeModal: NgbActiveModal,
@@ -84,7 +85,6 @@ export class WiseIncomePayoutComponent implements OnInit {
       let portfolioType = this.investmentEngagementJourneyService.filterDataByInput(portfolioTypeArray.portfolioType, 'name', INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME);
       this.getFundListMethod(portfolioType.id);
     });
-    this.getFundListMethod(this.selectedPortfolioType);
     this.formValues = this.investmentCommonService.getWiseIncomePayOut();
     this.activeTabId = this.formValues.activeTabId ? this.formValues.activeTabId : 1;
     this.wiseIncomePayOutTypeForm = new FormGroup({
@@ -94,7 +94,11 @@ export class WiseIncomePayoutComponent implements OnInit {
   }
   getFundListMethod(portfolioTypeId){
     this.investmentEngagementJourneyService.getFundListMethod(portfolioTypeId).subscribe((data) =>{
-    this.fundingListmethod = data.objectList;
+      this.fundingListMethod = data.objectList;
+      this.payoutFundList = { 'GROW': data.objectList['Grow & invest payout_Cash'],
+                              'FOUR_PERCENT': data.objectList['4.5% p.a. income payout_Cash'],
+                              'EIGHT_PERCENT': data.objectList['8% p.a. income payout_Cash']
+                            };
     });
   }
   getWiseIncomePayOutDetails() {
