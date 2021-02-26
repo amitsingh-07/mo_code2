@@ -292,8 +292,14 @@
                         </ng-template>
                         <ng-template ngbPanelContent>
                             <div>
-                                <div class="pannel-tab-content asset-allocation">
-                                    <app-allocation [portfolioType]="selectedPortfolioType" [funds]="funds"></app-allocation>
+                                <div class="pannel-tab-content asset-allocation" *ngIf='activeTabId == 1' > 
+                                    <app-allocation [portfolioType]="selectedPortfolioType" [funds]="payoutFundList.GROW"></app-allocation>
+                                </div>
+                                <div class="pannel-tab-content asset-allocation" *ngIf='activeTabId == 2'> 
+                                    <app-allocation [portfolioType]="selectedPortfolioType" [funds]="payoutFundList.FOUR_PERCENT"></app-allocation>
+                                </div>
+                                <div class="pannel-tab-content asset-allocation" *ngIf='activeTabId == 3'>
+                                    <app-allocation [portfolioType]="selectedPortfolioType" [funds]="payoutFundList.EIGHT_PERCENT"></app-allocation>
                                 </div>
                             </div>
                         </ng-template>
