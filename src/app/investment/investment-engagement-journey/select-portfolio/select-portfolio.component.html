@@ -103,6 +103,7 @@
                             <li>{{'PORTFOLIO.WISESAVER.SLIDES.LIST_ITEM_3' | translate}}</li>
                             <li>{{'PORTFOLIO.WISESAVER.SLIDES.LIST_ITEM_4' | translate}}</li>
                             <li>{{'PORTFOLIO.WISESAVER.SLIDES.LIST_ITEM_5' | translate}}</li>
+                            <li>{{'PORTFOLIO.WISESAVER.SLIDES.LIST_ITEM_6' | translate}}</li>
                         </ul>
                     </div>
                 </div>
@@ -120,7 +121,7 @@
         <div class="footer-btn-wrapper"><button type="button" class="btn btn__footer--fixed btn-primary width100" (click)="goNext(selectPortfolioForm)" [disabled]="!selectPortfolioForm.controls.selectPortfolioType.value">
       <span
         *ngIf="!selectPortfolioForm.controls.selectPortfolioType.value">{{'PORTFOLIO.TITLE' | translate}}</span>
-      <span>{{'PORTFOLIO.WISESAVER.FOOTER_BTN_TXT' | translate}}</span>
+      <span *ngIf="selectPortfolioForm.controls.selectPortfolioType.value">{{'PORTFOLIO.WISESAVER.FOOTER_BTN_TXT' | translate}}</span>
     </button></div>
     </form>
 </div>
