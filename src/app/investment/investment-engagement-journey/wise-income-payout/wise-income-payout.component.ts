@@ -44,9 +44,7 @@ export class WiseIncomePayoutComponent implements OnInit {
   selectedPortfolioType;
   initialWiseIncomePayoutTypeId;
   activeTabId = 1;
-  funds: any;
   fundingMethods: any;
-  fundingListMethod: any; 
   payoutFundList: any;
   constructor(
     public readonly translate: TranslateService,
@@ -70,7 +68,6 @@ export class WiseIncomePayoutComponent implements OnInit {
       this.pageTitle = this.translate.instant('WISE_INCOME_PAYOUT.TITLE');
       this.setPageTitle(this.pageTitle);
     });
-    this.funds = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.FUND_DETAILS;
   }
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
@@ -94,10 +91,9 @@ export class WiseIncomePayoutComponent implements OnInit {
   }
   getFundListMethod(portfolioTypeId){
     this.investmentEngagementJourneyService.getFundListMethod(portfolioTypeId).subscribe((data) =>{
-      this.fundingListMethod = data.objectList;
-      this.payoutFundList = { 'GROW': data.objectList['Grow & invest payout_Cash'],
-                              'FOUR_PERCENT': data.objectList['4.5% p.a. income payout_Cash'],
-                              'EIGHT_PERCENT': data.objectList['8% p.a. income payout_Cash']
+      this.payoutFundList = { 'GROW': data.objectList[INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PAYOUT_FUNDLIST.GROW] ,
+                              'FOUR_PERCENT': data.objectList[INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PAYOUT_FUNDLIST.FOUR_PERCENT],
+                              'EIGHT_PERCENT': data.objectList[INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PAYOUT_FUNDLIST.EIGHT_PERCENT]
                             };
     });
   }
