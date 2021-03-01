@@ -17,5 +17,6 @@ export const environment: IEnvironment = {
   mockInvestAccount: false,
   expire2faTime: 298,
   expire2faPollRate: 2,
-  expire2faMaxCheck: 5
+  expire2faMaxCheck: 5,
+  promoCodeJsonUrl: 'https://mo-static-assets.s3-ap-southeast-1.amazonaws.com/promo/prod/promo-details.json'
 };
