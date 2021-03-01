@@ -25,6 +25,7 @@ import { ManageInvestmentsService } from '../manage-investments.service';
 import { environment } from './../../../../environments/environment';
 import { SignUpService } from './../../../sign-up/sign-up.service';
 import { RenameInvestmentModalComponent } from './rename-investment-modal/rename-investment-modal.component';
+import { INVESTMENT_COMMON_CONSTANTS } from './../../investment-common/investment-common.constants';
 
 @Component({
   selector: 'app-your-portfolio',
@@ -64,6 +65,9 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   showFixedToastMessage: boolean;
+  portfolioType: any;
+  isWiseIncomePortfolio: boolean = false;
+  showDividend: boolean = false;
 
   constructor(
     public readonly translate: TranslateService,
@@ -90,6 +94,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
       this.showAnnualizedReturns = config.showAnnualizedReturns;
       this.showPortfolioInfo = config['showPortfolioInfo'];
     });
+    this.portfolioType = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY_TYPE;
   }
 
   setPageTitle(title: string) {
@@ -153,10 +158,13 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         ? this.portfolio.dPMSPortfolio['investmentAmount']
         : 0;
       this.getTransferDetails(this.portfolio.customerPortfolioId);
-      if (this.portfolio['riskProfile']) {
-        this.riskProfileImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
-      } else {
+      if (this.portfolio['portfolioType'].toUpperCase() === this.portfolioType.WISESAVER) {
         this.riskProfileImage = ProfileIcons[6]['icon'];
+      } else if (this.portfolio['portfolioType'].toUpperCase() === this.portfolioType.WISEINCOME) {
+        this.riskProfileImage = ProfileIcons[7]['icon'];
+        this.isWiseIncomePortfolio = true;
+      } else {
+        this.riskProfileImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
       }
       if (this.portfolio.pendingRequestDTO && this.portfolio.pendingRequestDTO.transactionDetailsDTO) { /* Pending Transactions ? */
         this.investmentEngagementJourneyService.sortByProperty(
@@ -186,6 +194,13 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
       });
   }
   
+  showNewMessageForRebalance(riskType) {
+    if (MANAGE_INVESTMENTS_CONSTANTS.REBALANCE_ADDITIONAL_MESSAGE.includes(riskType.toUpperCase())) {
+      return true;
+    } else {
+      return false;
+    }
+  }
    getPortfolioWithdrawalRequests(sellRequests) {
     return sellRequests.filter(
       (req) => PORTFOLIO_WITHDRAWAL_KEYS.indexOf(req.paymentMode) >= 0
@@ -331,6 +346,10 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         break;
       }
       case 6: {
+        window.open(MANAGE_INVESTMENTS_CONSTANTS.TOPUP_INSTRUCTION_URL, '_blank');
+        break;
+      }
+      case 7: {
         if (this.portfolio.entitlements.showDelete) {
           this.showDeletePortfolioModal();
         }
@@ -515,7 +534,9 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   }
 
   toggleReturns() {
-    this.showTimeWeightedReturns = !this.showTimeWeightedReturns;
+    if (!this.isWiseIncomePortfolio) {
+      this.showTimeWeightedReturns = !this.showTimeWeightedReturns;
+    }
   }
 
   showCalculationTooltip() {
@@ -543,5 +564,11 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   }
   fullName() {
     this.isExpand = true;
+  }
+
+  goDividendPayout(event) {
+    // Navigate to dividend payout
+    event.stopPropagation();
+    event.preventDefault();
   }
 }

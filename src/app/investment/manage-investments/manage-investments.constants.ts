@@ -66,7 +66,8 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
       { id: 3, name: 'Transactions / Statements', value: 'TRANSACTIONS_STATEMENTS' },
       { id: 4, name: 'Rename Portfolio', value: 'RENAME_PORTFOLIO' },
       { id: 5, name: 'Withdrawal', value: 'WITHDRAWAL' },
-      { id: 6, name: 'Delete Portfolio', value: 'DELETE_PORTFOLIO' }
+      { id: 6, name: 'Change Payout Option', value: 'CHANGE_PAYOUT_OPTION' },
+      { id: 7, name: 'Delete Portfolio', value: 'DELETE_PORTFOLIO' }
 
     ],
     TRANSACTIONS: 'Transactions',
@@ -81,7 +82,12 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
     PORTFOLIO_TO_BANK_ACCOUNT: 'PORTFOLIO_TO_BANK_ACCOUNT',
     CASH_TO_BANK_ACCOUNT: 'CASH_TO_BANK_ACCOUNT',
     PORTFOLIO_TO_SRS_ACCOUNT: 'PORTFOLIO_TO_SRS_ACCOUNT'
-  }
+  },
+  REBALANCE_ADDITIONAL_MESSAGE: [
+     'MODERATE',
+     'BALANCED',
+     'GROWTH'
+  ]
 };
 
 export let PORTFOLIO_WITHDRAWAL_KEYS = [

@@ -5,13 +5,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import {
-    InvestmentAccountService
+  InvestmentAccountService
 } from '../../../investment/investment-account/investment-account-service';
 import {
-    InvestmentEngagementJourneyService
+  InvestmentEngagementJourneyService
 } from '../../../investment/investment-engagement-journey/investment-engagement-journey.service';
 import {
-    ProfileIcons
+  ProfileIcons
 } from '../../../investment/investment-engagement-journey/recommendation/profileIcons';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { AuthenticationService } from '../../http/auth/authentication.service';
@@ -20,7 +20,7 @@ import { INVESTMENT_COMMON_CONSTANTS } from './../../../investment/investment-co
 import { InvestmentCommonService } from './../../../investment/investment-common/investment-common.service';
 import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
- } from './../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+} from './../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../../../investment/manage-investments/manage-investments.constants';
 
 @Component({
@@ -73,7 +73,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
   }
 
-  ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+  ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
     this.portfoioSpliter();
     this.filterPortfolios();
   }
@@ -126,14 +126,25 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     this.investAgainSelected.emit(portfolio);
   }
 
-  getImg(i: number) {
-    return (ProfileIcons[i - 1] && ProfileIcons[i - 1]['icon']) ? ProfileIcons[i - 1]['icon'] : '';
+  getImg(i: number, category?: string) {
+    if (category && category.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME.toUpperCase()) {
+      return (ProfileIcons[7] && ProfileIcons[7]['icon']) ? ProfileIcons[7]['icon'] : '';
+    } else {
+      return (ProfileIcons[i - 1] && ProfileIcons[i - 1]['icon']) ? ProfileIcons[i - 1]['icon'] : '';
+    }
   }
 
   showRebalanceMessage(riskProfileType) {
-   const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    if (MANAGE_INVESTMENTS_CONSTANTS.REBALANCE_ADDITIONAL_MESSAGE.includes(riskProfileType.toUpperCase())) {
+      this.newMessageForRebalance = true;
+    } else {
+      this.newMessageForRebalance = false;
+    }
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.TITLE');
-    ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.MESSAGE');
+    ref.componentInstance.errorMessage = this.newMessageForRebalance ?
+      this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.MESSAGE_TWO') :
+      this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.MESSAGE_ONE');
     this.topClickedFlag = true;
   }
 
@@ -148,6 +159,8 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   filterPortfolios() {
     if (this.portfolioCategory === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT) {
       this.filterAndCalculate(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT);
+    } else if (this.portfolioCategory === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME) {
+      this.filterAndCalculate(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME);
     } else if (this.portfolioCategory === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER) {
       this.filterAndCalculate(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER);
     } else {
@@ -171,6 +184,8 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   setBorderClass(portfolio) {
     if (portfolio['portfolioCategory'].toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER.toUpperCase()) {
       return 'ws-border';
+    } else if (portfolio['portfolioCategory'].toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME.toUpperCase()) {
+      return 'wi-border';
     } else {
       return '';
     }

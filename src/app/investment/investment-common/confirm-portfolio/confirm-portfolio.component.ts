@@ -50,6 +50,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   confirmPortfolioValue;
   investmentCriteria: IInvestmentCriteria;
   wiseSaverDetails :any;
+  wiseIncomeEnabled: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -91,13 +92,18 @@ export class ConfirmPortfolioComponent implements OnInit {
           this.authService.saveEnquiryId(data.objectList.enquiryId);
         }
         this.portfolio = data.objectList;
+        this.investmentCommonService.setPortfolioType(this.portfolio.portfolioType)
+        this.investmentCommonService.setPortfolioDetails(this.portfolio);
+        this.wiseIncomeEnabled = (this.portfolio.portfolioType.toLowerCase() == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase());
         this.getInvestmentCriteria(this.portfolio);
         if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT) {
           this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO });
           this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
-        } else {
+        } else if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER){
           this.getWiseSaverDetails();
           this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO });
+        } else {
+          this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO });
         }
         const fundingParams = this.constructFundingParams(data.objectList);
         this.manageInvestmentsService.setFundingDetails(fundingParams);
@@ -241,7 +247,7 @@ export class ConfirmPortfolioComponent implements OnInit {
         const namingFormData = {
           defaultPortfolioName: data.objectList.portfolioName,
           recommendedCustomerPortfolioId: this.portfolio.customerPortfolioId,
-          recommendedRiskProfileId: this.portfolio.portfolioType === 'Investment' ? this.portfolio.riskProfile.id : 7
+          recommendedRiskProfileId: this.portfolio.portfolioType === 'Investment' ? this.portfolio.riskProfile.id : this.portfolio.portfolioType === 'WiseSaver' ? 7 :9
         };
         this.investmentAccountService.setPortfolioNamingFormData(namingFormData);
         this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_ACCOUNT_DETAILS]);
@@ -260,5 +266,35 @@ export class ConfirmPortfolioComponent implements OnInit {
         this.investmentCriteria = data;
       });
     }
+  }
+
+  showPayoutModal() {
+    if(this.wiseIncomeEnabled) {
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+      ref.componentInstance.imgType = 1;
+      ref.componentInstance.closeBtn = false;
+      if( INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.GROW === this.portfolio.payoutType || INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.FOUR_PERCENT === this.portfolio.payoutType){
+        ref.componentInstance.errorTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.GROW_4PERCENT_TITLE');;
+        ref.componentInstance.errorMessageHTML = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.GROW_4PERCENT_DESC');
+      } else {
+        ref.componentInstance.errorTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.8PERCENT_TITLE');;
+        ref.componentInstance.errorMessageHTML = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.8PERCENT_DESC');
+      }
+     
+      ref.componentInstance.primaryActionLabel = this.translate.instant(
+        'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.UNDERSTAND_PROCEED'
+      );
+      ref.componentInstance.secondaryActionLabel = this.translate.instant(
+        'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.CANCEL'
+      );
+      ref.componentInstance.secondaryActionDim = true;
+      ref.componentInstance.primaryAction.subscribe(() => {
+        this.confirmPortfolio();
+      });
+      ref.componentInstance.secondaryAction.subscribe(() => {
+      });
+    } else {
+      this.confirmPortfolio();
+    }    
   }
 }

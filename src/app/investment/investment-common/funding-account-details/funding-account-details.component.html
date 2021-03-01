@@ -29,13 +29,14 @@
                         class="btn btn-dropdown mb15" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
                         {{ 'CONFIRM_ACCOUNT_DETAILS.SELECT' | translate}}
                       </button>
-                      <button  *ngIf="this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value"
+                      <button  [disabled]="disableFundingMethod" *ngIf="this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value"
                        class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
                         {{getFundingMethodNameById(this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods) }}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let fundingMethod of fundingMethods; let i = index;"
-                          (click)="selectFundingMethod('confirmedFundingMethodId', fundingMethod.id)"
+                        [disabled]="disableFundingMethod"
+                        (click)="selectFundingMethod('confirmedFundingMethodId', fundingMethod.id)"
                           id="additional_declaration_sourse-drpdown-option-{{i}}">{{fundingMethod.name}}</button>
                       </div>
                     </div>

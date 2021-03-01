@@ -1,38 +1,47 @@
 @import '../../../variables';
 @import '../../../mixins';
-
+.portfolioname-bg {
+  background-color: $white-color !important;
+}
 app-promo-code-landing {
-    .promo-land-bg {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: $white-color;
-      height: 100vh;
+  .invest-section {
+    @include allmobiles {
+      display: none;
+    }
+  }
+
+  .invest-bg-content {
+    .user_content {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 0 75px;
 
       @include allmobiles {
-        margin-top: 60px;
+        padding-left: 20px;
       }
     }
 
-    .promo-header {
-      height: 139px;
-      width: 100%;
-      background-color: $pelorous-blue-color;
+    .user_summary {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 70px;
+      font-family: $muli-regular;
+      letter-spacing: -0.2px;
+      color: $white-color;
+      padding-top: 59px;
+      padding-bottom: 40px;
 
-      @include allmobiles {
-        display: none;
-      }
-
-      span {
-        font-family: $muli-regular;
+      .user_portfolio_lbl {
         font-size: 36px;
-        line-height: 1.11;
+        line-height: 40px;
         letter-spacing: -0.41px;
-        width: 840px;
       }
     }
+  }
+
+  .promo-list-container {
+    padding-top: 70px;
+    background-color: $white-color;
+    @include allmobiles {
+      padding-top: 60px;
+    }
+  }
 }

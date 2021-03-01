@@ -12,7 +12,8 @@ export let investmentApiConstants = {
             updateRiskAssessment: INVESTMENT_API_BASE_URL + '/RiskAssessment',
             getFinancialDetails: INVESTMENT_API_BASE_URL + '/customer/getFinancialDetailsForInvestment',
             getAllocationDetails: INVESTMENT_API_BASE_URL + '/enquiries/$ENQUIRY_ID$/portfolios/recommend',
-            getWiseSaverValues : INVESTMENT_API_BASE_URL + '/bfaConfigurationListByKey'
+            getWiseSaverValues : INVESTMENT_API_BASE_URL + '/bfaConfigurationListByKey',
+            getFundListMethod : INVESTMENT_API_BASE_URL + '/portfolio/$PORTFOLIO_TYPE_ID$/getFundList'
         },
         investmentAccount: {
             nationalityCountrylist: INVESTMENT_API_BASE_URL + '/groupedCountryList',

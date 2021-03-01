@@ -1,15 +1,15 @@
 {
     "promoList": [{
         "promoCode": "MOSAF5",
-        "header": "Safra Member 5% Off",
+        "header": "Safra Member 5% Off (MOSAF5)",
         "validity": "Valid until 31 Dec 2021",
         "promoDesc": [{
             "title": "Promotion",
-            "content": "Get 5% off Advisory Fee (usual 0.60%) when you top up $10,000 to any SRS portfolio."
+            "content": "Get 5% off Advisory Fee (usual 0.60%)."
           },
           {
             "title": "How to redeem",
-            "content": "- Top up a minimum amount of $10,000<br>- Only applicable to Cash and SRS funded portfolios<br>- Not applicable to WiseSaver portfolio<br>- Applying on an existing promo will overwrite fees and changes are non-reversible."
+            "content": "- Only applicable to Cash and SRS funded portfolios.<br>- Not applicable to WiseSaver portfolio.<br>- Applying on existing promo will overwrite fees and changes are non-reversible."
           },
           {
             "title": "How to receive",
@@ -37,33 +37,15 @@
       },
       {
         "promoCode": "NTUALU",
-        "header": "NTU Alumni: Additional 5% off public rate advisory fee as compared to public via promo code",
-        "validity": "Valid until DD MTH YYYY",
+        "header": "NTU Alumni 5% Off (NTUALU)",
+        "validity": "Valid until 30 Apr 2021",
         "promoDesc": [{
             "title": "Promotion",
-            "content": "NTU Alumni: Additional 5% off public rate advisory fee as compared to public via promo code"
+            "content": "Get 5% off Advisory Fee (usual 0.60%)."
           },
           {
             "title": "How to redeem",
-            "content": "- Top up a minimum amount of $10,000<br>- Only applicable to Cash and SRS funded portfolios<br>- Not applicable to WiseSaver portfolio<br>- Applying on an existing promo will overwrite fees and changes are non-reversible."
-          },
-          {
-            "title": "How to receive",
-            "content": "Promotion fees will be reflected in your fees once the processing has been completed."
-          }
-        ]
-      },
-      {
-        "promoCode": "NTUC60",
-        "header": "NTUC 60th Anniversary: Additional 10% off public rate advisory fee",
-        "validity": "Valid until DD MTH YYYY",
-        "promoDesc": [{
-            "title": "Promotion",
-            "content": "NTUC 60th Anniversary: Additional 10% off public rate advisory fee"
-          },
-          {
-            "title": "How to redeem",
-            "content": "- Top up a minimum amount of $10,000<br>- Only applicable to Cash and SRS funded portfolios<br>- Not applicable to WiseSaver portfolio<br>- Applying on an existing promo will overwrite fees and changes are non-reversible."
+            "content": "- Only applicable to Cash and SRS funded portfolios.<br>- Not applicable to WiseSaver portfolio.<br>- Applying on existing promo will overwrite fees and changes are non-reversible."
           },
           {
             "title": "How to receive",
@@ -96,6 +78,114 @@
         "promoDesc": [{
             "title": "Promotion",
             "content": "Non Wrap Fee Promo Validation"
+          },
+          {
+            "title": "How to redeem",
+            "content": "- Top up a minimum amount of $10,000<br>- Only applicable to Cash and SRS funded portfolios<br>- Not applicable to WiseSaver portfolio<br>- Applying on an existing promo will overwrite fees and changes are non-reversible."
+          },
+          {
+            "title": "How to receive",
+            "content": "Promotion fees will be reflected in your fees once the processing has been completed."
+          }
+        ]
+      },
+      {
+        "promoCode": "NTUC60",
+        "header": "NTUC 60th Anniversary 10% Off (NTUC60)",
+        "validity": "Valid until 31 Dec 2021",
+        "promoDesc": [{
+            "title": "Promotion",
+            "content": "Get 10% off Advisory Fee (usual 0.60%)."
+          },
+          {
+            "title": "How to redeem",
+            "content": "- Only applicable to Cash and SRS funded portfolios.<br>- Not applicable to WiseSaver portfolio.<br>- Applying on existing promo will overwrite fees and changes are non-reversible."
+          },
+          {
+            "title": "How to receive",
+            "content": "Promotion fees will be reflected in your fees once the processing has been completed."
+          }
+        ]
+      },
+      {
+        "promoCode": "OHMEGY",
+        "header": "Ohm Energy 5% Offf (OHMEGY)",
+        "validity": "Valid until 30 Apr 2021",
+        "promoDesc": [{
+            "title": "Promotion",
+            "content": "Get 5% off Advisory Fee (usual 0.60%)."
+          },
+          {
+            "title": "How to redeem",
+            "content": "- Only applicable to Cash and SRS funded portfolios.<br>- Not applicable to WiseSaver portfolio.<br>- Applying on existing promo will overwrite fees and changes are non-reversible."
+          },
+          {
+            "title": "How to receive",
+            "content": "Promotion fees will be reflected in your fees once the processing has been completed."
+          }
+        ]
+      },
+      {
+        "promoCode": "TSNW01",
+        "header": "TSNW01 TEST NON-WRAP FEE PROMO",
+        "validity": "Valid until DD MTH YYYY",
+        "promoDesc": [{
+            "title": "Promotion",
+            "content": "TEST Campaign: Non wrap fee 01"
+          },
+          {
+            "title": "How to redeem",
+            "content": "- Top up a minimum amount of $10,000<br>- Only applicable to Cash and SRS funded portfolios<br>- Not applicable to WiseSaver portfolio<br>- Applying on an existing promo will overwrite fees and changes are non-reversible."
+          },
+          {
+            "title": "How to receive",
+            "content": "Promotion fees will be reflected in your fees once the processing has been completed."
+          }
+        ]
+      },
+      {
+        "promoCode": "TSNW02",
+        "header": "TSNW02 TEST NON-WRAP FEE PROMO",
+        "validity": "Valid until DD MTH YYYY",
+        "promoDesc": [{
+            "title": "Promotion",
+            "content": "TEST Campaign: Non wrap fee 02"
+          },
+          {
+            "title": "How to redeem",
+            "content": "- Top up a minimum amount of $10,000<br>- Only applicable to Cash and SRS funded portfolios<br>- Not applicable to WiseSaver portfolio<br>- Applying on an existing promo will overwrite fees and changes are non-reversible."
+          },
+          {
+            "title": "How to receive",
+            "content": "Promotion fees will be reflected in your fees once the processing has been completed."
+          }
+        ]
+      },
+      {
+        "promoCode": "TSWF08",
+        "header": "TSWF08 TEST WRAP FEE 8%",
+        "validity": "Valid until DD MTH YYYY",
+        "promoDesc": [{
+            "title": "Promotion",
+            "content": "TEST Campaign: Additional 8% public rate advisory fee as compared to public via promo code"
+          },
+          {
+            "title": "How to redeem",
+            "content": "- Top up a minimum amount of $10,000<br>- Only applicable to Cash and SRS funded portfolios<br>- Not applicable to WiseSaver portfolio<br>- Applying on an existing promo will overwrite fees and changes are non-reversible."
+          },
+          {
+            "title": "How to receive",
+            "content": "Promotion fees will be reflected in your fees once the processing has been completed."
+          }
+        ]
+      },
+      {
+        "promoCode": "TSWF12",
+        "header": "TSWF12 TEST WRAP FEE 12%",
+        "validity": "Valid until DD MTH YYYY",
+        "promoDesc": [{
+            "title": "Promotion",
+            "content": "TEST Campaign: Additional 12% public rate advisory fee as compared to public via promo code"
           },
           {
             "title": "How to redeem",

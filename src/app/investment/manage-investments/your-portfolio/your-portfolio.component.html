@@ -42,16 +42,24 @@
                   <div class="user_portfolio_ref_code">{{'YOUR_INVESTMENT.REF_CODE' | translate}}
                     {{portfolio.referenceCode}}</div>
                   <div class="user_portfolio_lbl">{{portfolio.portfolioName}}</div>
-                  <div class="joint-account" *ngIf="portfolio.entitlements.jointAccount"><span *ngIf="portfolio.isPrimaryHolder"> {{'YOUR_PORTFOLIO.JOINT_ACCOUNT.PRIMARY_HOLDER' | translate}}</span><span *ngIf="!portfolio.isPrimaryHolder">{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.SECONDARY_HOLDER' | translate}}</span> | <img src="assets/images/investment-account/joint-account.svg" class="ja-icon" />{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.JOINT' | translate}} <br class="hidden-lg"> <div [ngClass]="{'text-overflow': !isExpand}" (click)="fullName()" class="hidden-lg">{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.ACCOUNT_WITH' | translate}} <span *ngIf="portfolio.isPrimaryHolder">{{portfolio.secondaryHolderName | titlecase}}</span><span *ngIf="!portfolio.isPrimaryHolder">{{portfolio.primaryHolderName | titlecase}}</span></div><div class="ja-web hidden-sm">{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.ACCOUNT_WITH' | translate}} <span *ngIf="portfolio.isPrimaryHolder">{{portfolio.secondaryHolderName | titlecase}}</span><span *ngIf="!portfolio.isPrimaryHolder">{{portfolio.primaryHolderName | titlecase}}</span></div></div>
+                  <div class="joint-account" *ngIf="portfolio.entitlements.jointAccount"><span *ngIf="portfolio.isPrimaryHolder"> {{'YOUR_PORTFOLIO.JOINT_ACCOUNT.PRIMARY_HOLDER' | translate}}</span><span *ngIf="!portfolio.isPrimaryHolder">{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.SECONDARY_HOLDER' | translate}}</span> | <img src="assets/images/investment-account/joint-account.svg" class="ja-icon" />{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.JOINT' | translate}} <br class="hidden-lg"> <div [ngClass]="{'text-overflow' : (((portfolio.isPrimaryHolder && portfolio.secondaryHolderName && portfolio.secondaryHolderName.length > 10) || (!portfolio.isPrimaryHolder && portfolio.primaryHolderName && portfolio.primaryHolderName.length > 10)) && !isExpand)}" (click)="fullName()" class="hidden-lg">{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.ACCOUNT_WITH' | translate}} <span *ngIf="portfolio.isPrimaryHolder">{{portfolio.secondaryHolderName | titlecase}}</span><span *ngIf="!portfolio.isPrimaryHolder">{{portfolio.primaryHolderName | titlecase}}</span></div><div class="ja-web hidden-sm">{{'YOUR_PORTFOLIO.JOINT_ACCOUNT.ACCOUNT_WITH' | translate}} <span *ngIf="portfolio.isPrimaryHolder">{{portfolio.secondaryHolderName | titlecase}}</span><span *ngIf="!portfolio.isPrimaryHolder">{{portfolio.primaryHolderName | titlecase}}</span></div></div>
                   <div class="flex-row space-between">
-                    <div class="portfolio-type flex align-center">
-                      <span *ngIf="portfolio?.fundingTypeValue === 'SRS'"
-                        class="portfolio-fund-type mr10">{{'YOUR_INVESTMENT.SRS' | translate}}</span>
-                      <ng-container *ngIf="portfolio?.riskProfile; else wisesaverportfolio">
-                        {{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type}
-                        }}</ng-container>
-                      <ng-template #wisesaverportfolio>{{'YOUR_PORTFOLIO.WISESAVER_PORTFOLIO' | translate}}
-                      </ng-template>
+                    <div class="portfolio-type align-center">
+                      <div class="flex align-center">
+                        <span *ngIf="portfolio?.fundingTypeValue === 'SRS'" class="portfolio-fund-type mr5">{{'YOUR_INVESTMENT.SRS' |
+                          translate}}</span>
+                        <ng-container *ngIf="portfolio?.riskProfile; else nonInvestPortfolio">
+                          {{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName: portfolio.riskProfile.type}
+                          }}</ng-container>
+                        <ng-template #nonInvestPortfolio>
+                          <div>
+                            {{'YOUR_PORTFOLIO.RISK_PROFILE_NAME' | translate: {riskProfileName:
+                            portfolio.portfolioType}
+                            }}&nbsp;
+                          </div>
+                        </ng-template>
+                      </div>
+                      <div *ngIf="portfolio?.payoutType">{{portfolio?.payoutType}}</div>
                     </div>
                     <div class="more-menu">
                       <div class="dropdown-control">
@@ -60,6 +68,7 @@
                             {{'YOUR_PORTFOLIO.MORE' | translate}}</button>
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                             <button class="dropdown-item"
+                              [hidden]="option.value === 'CHANGE_PAYOUT_OPTION' && !isWiseIncomePortfolio"
                               [class.disabled]="(option.value === 'TOPUP' && !portfolio.entitlements.showTopup) ||(option.value === 'TRANSFER' && !portfolio.entitlements.showTransfer)|| (option.value === 'DELETE_PORTFOLIO' && !portfolio.entitlements.showDelete) ||
                               (option.value === 'WITHDRAWAL' && (!portfolio.entitlements.showWithdrawPvToBa && !portfolio.entitlements.showWithdrawPvToCa && !portfolio.entitlements.showWithdrawCaToBa && !portfolio.entitlements.showWithdrawPvToSRS))"
                               *ngFor="let option of moreList; let i = index;" (click)="selectMoreOption(option)"
@@ -141,7 +150,9 @@
                         <ng-template #display_zero>$0</ng-template>
                       </div>
                       <div id="portdolio_value_lab" class="total_values_label">
-                        {{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}</div>
+                        {{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}
+                        <span *ngIf="portfolio?.portfolioStartDate">{{'YOUR_PORTFOLIO.PORTFOLIO_START_DATE' | translate: { startDate: portfolio?.portfolioStartDate | date : "dd MMM yyyy"} }}</span>
+                      </div>
                     </div>
                     <!--Form Content-->
                     <div class="form-group-with-bg--content" *ngIf="portfolio.showTotalReturn">
@@ -170,7 +181,7 @@
                           </div>
                           <div id="your_portfolio_totalreturn_lb" class="portfolio_info_label right-col next-row"
                             for="total return">
-                            <div class="return_label" [class.margin-right]="!showTimeWeightedReturns"
+                            <div [ngStyle]="{cursor: isWiseIncomePortfolio ? 'none': 'pointer'}" class="return_label" [class.margin-right]="!showTimeWeightedReturns"
                               (click)="toggleReturns()">
                               <ng-container *ngIf="showTimeWeightedReturns; else simpleReturns">
                                 {{'YOUR_PORTFOLIO.TIME_WEIGHTED_RETURN' | translate}}
@@ -178,7 +189,7 @@
                               <ng-template #simpleReturns>
                                 {{'YOUR_PORTFOLIO.SIMPLE_RETURN' | translate}}
                               </ng-template>
-                              <img src="assets/images/icon-chevron-up.svg" alt="" class="arrow-img"
+                              <img *ngIf="!isWiseIncomePortfolio" src="assets/images/icon-chevron-up.svg" alt="" class="arrow-img"
                                 [class.upward]="!showTimeWeightedReturns" />
                             </div>
                             <div *ngIf="showTimeWeightedReturns; else simpleReturnsPercent"
@@ -209,6 +220,19 @@
                           </div>
                         </ng-template>
                       </div>
+                      <div *ngIf="isWiseIncomePortfolio && showDividend" class="mt20 dividend-display">
+                        <div class="portfolio_info_label ">
+                          {{'YOUR_PORTFOLIO.TOTAL_DIVIDENDS' | translate}}
+                          <div class="currency_value">$500.00</div>
+                        </div>
+                        <div class="portfolio_info_label right-col flex-div">
+                          <div>
+                            {{'YOUR_PORTFOLIO.NEXT_PAYOUT' | translate}}
+                            <div class="currency_value">Jul 2021</div>
+                          </div>
+                          <img (click)="goDividendPayout($event)" src="assets/images/investment-account/forward_portfolio.svg" alt="">
+                        </div>
+                      </div>
                       <div *ngIf="showPortfolioInfo" class="calculate_tooltip" (click)="showCalculationTooltip()">
                         {{'YOUR_PORTFOLIO.CALCULATE_TOOLTIP' | translate}}
                       </div>
@@ -236,7 +260,9 @@
                     <div class="form-group-with-bg--header your_total_value">
                       <div id="your_portfolio_total_lb" class="total_values">$0</div>
                       <div id="your_portfolio_total_value" class="total_values_label">
-                        {{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}</div>
+                        {{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}
+                        <span *ngIf="portfolio?.portfolioStartDate">{{'YOUR_PORTFOLIO.PORTFOLIO_START_DATE' | translate: { startDate: portfolio?.portfolioStartDate | date : "dd MMM yyyy"} }}</span>
+                      </div>
                     </div>
                     <div class="form-group-with-bg--content" *ngIf="portfolio.showTotalReturn">
                       <div class="flex-row">
@@ -264,7 +290,7 @@
                           </div>
                           <div id="your_portfolio_totalreturn_lb" class="portfolio_info_label right-col next-row"
                             for="total return">
-                            <div class="return_label" [class.margin-right]="!showTimeWeightedReturns"
+                            <div [ngStyle]="{cursor: isWiseIncomePortfolio ? 'auto': 'pointer'}"  class="return_label" [class.margin-right]="!showTimeWeightedReturns"
                               (click)="toggleReturns()">
                               <ng-container *ngIf="showTimeWeightedReturns; else simpleReturns">
                                 {{'YOUR_PORTFOLIO.TIME_WEIGHTED_RETURN' | translate}}
@@ -272,7 +298,7 @@
                               <ng-template #simpleReturns>
                                 {{'YOUR_PORTFOLIO.SIMPLE_RETURN' | translate}}
                               </ng-template>
-                              <img src="assets/images/icon-chevron-up.svg" alt="" class="arrow-img"
+                              <img *ngIf="!isWiseIncomePortfolio" src="assets/images/icon-chevron-up.svg" alt="" class="arrow-img"
                                 [class.upward]="!showTimeWeightedReturns" />
                             </div>
                             <div *ngIf="showTimeWeightedReturns; else simpleReturnsPercent"
@@ -300,6 +326,19 @@
                             </div>
                           </div>
                         </ng-template>
+                      </div>
+                      <div *ngIf="isWiseIncomePortfolio && showDividend" class="mt20 dividend-display">
+                        <div class="portfolio_info_label ">
+                          {{'YOUR_PORTFOLIO.TOTAL_DIVIDENDS' | translate}}
+                          <div class="currency_value">$500.00</div>
+                        </div>
+                        <div class="portfolio_info_label right-col flex-div">
+                          <div>
+                            {{'YOUR_PORTFOLIO.NEXT_PAYOUT' | translate}}
+                            <div class="currency_value">Jul 2021</div>
+                          </div>
+                          <img (click)="goDividendPayout($event)" src="assets/images/investment-account/forward_portfolio.svg" alt="">
+                        </div>
                       </div>
                       <div *ngIf="showPortfolioInfo" class="calculate_tooltip" (click)="showCalculationTooltip()">
                         {{'YOUR_PORTFOLIO.CALCULATE_TOOLTIP' | translate}}
@@ -379,17 +418,18 @@
                           </div>
                         </div>
                         <div *ngIf="portfolio?.portfolioStatus === 'REBALANCING' && portfolioWithdrawRequests.length"
-                          class="rebalancing-info">
-                          <div class="mr15 info-icon"><img src="assets/images/investment-account/rebalance-info.svg" />
-                          </div>
-                          <div>
-                            <div>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.TITLE' | translate}}</div>
-                            <div class="txt-grey mt5">
-                              <span>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC' | translate}}</span>
-                              {{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC_ONE' | translate}}
-                           </div>
-                            <div class="txt-orange mt5"><a target="_blank"
-                                href="/app/faq#investment">{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.FAQ_LINK' | translate}}</a>
+                        class="rebalancing-info">
+                        <div class="mr15 info-icon"><img src="assets/images/investment-account/rebalance-info.svg" />
+                        </div>
+                        <div>
+                          <div>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.TITLE' | translate}}</div>
+                          <div class="txt-grey mt5">
+                            <span>{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC' | translate}}</span>
+                            {{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC_ONE' | translate}}
+                          <div class="rebalance-message txt-orange" *ngIf="showNewMessageForRebalance(portfolio.riskProfile.type)"
+                          innerHTML="{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.DESC_TWO' | translate}}"></div></div>
+                          <div class="txt-orange mt5"><a target="_blank"
+                              href="/faq-investment/#investment|1">{{'YOUR_PORTFOLIO.MODAL.RE_BALANCE.FAQ_LINK' | translate}}</a>
                             </div>
                           </div>
                         </div>
