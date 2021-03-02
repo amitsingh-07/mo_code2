@@ -191,9 +191,9 @@ app-allocation {
                             .arrow {
                                 border: solid $white-color;
                                 border-width: 0 2px 2px 0;
+                                border-color: $white-color !important;
                                 display: inline-block;
                                 padding: 4px;
-                                float: right;
                                 transform: rotate(-135deg);
                                 -webkit-transform: rotate(-135deg);
                             }
@@ -201,6 +201,9 @@ app-allocation {
                                 .arrow {
                                     transform: rotate(45deg);
                                     -webkit-transform: rotate(45deg);
+                                    position: absolute;
+                                    top: 20px;
+                                    right: 20px;
                                 }
                             }
                             &:hover,
@@ -222,6 +225,7 @@ app-allocation {
                         }
                     }
                     .card-body {
+                        padding: 0px;
                         .tab-content {
                             padding: 15px;
                             background-color: $bonds-equity-card-bg-color;
