@@ -57,6 +57,7 @@ import {
   ProgressTrackerModalComponent
 } from './modal/progress-tracker/progress-tracker-modal.component';
 import { ProgressTrackerComponent } from './modal/progress-tracker/progress-tracker.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ProgressTrackerService } from './modal/progress-tracker/progress-tracker.service';
 import {
   RecommendationsModalComponent
@@ -133,10 +134,11 @@ export function createTranslateLoader(http: HttpClient) {
     StartsWithPipe,
     RoadmapComponent,
     SecurePipe, PortfolioListComponent, InstructionStepsComponent, FormatCurrencyPipe, NotesComponent,
-    CopyClipboardDirective],
+    CopyClipboardDirective,
+    SpinnerComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
-    LoaderComponent, ConfirmationModalComponent,
+    LoaderComponent, ConfirmationModalComponent, SpinnerComponent,
     PrivacyPolicyComponent,
     FairDealingComponent,
     DisclosuresComponent,

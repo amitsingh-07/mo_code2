@@ -16,7 +16,8 @@ export const environment: IEnvironment = {
   hideHomepage: true,
   expire2faTime: 298,
   expire2faPollRate: 2,
-  expire2faMaxCheck: 5
+  expire2faMaxCheck: 5,
+  promoCodeJsonUrl: 'https://mo-static-assets.s3-ap-southeast-1.amazonaws.com/promo/prod/promo-details.json'
 };
 /*
  * In development mode, to ignore zone related error stack frames such as

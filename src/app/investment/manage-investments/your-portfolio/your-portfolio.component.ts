@@ -60,6 +60,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   simpleReturnsValue: any; // Simple returns
   showTimeWeightedReturns = false;
   investmentAmount: any; // Net Deposits
+  isExpand:boolean= false;
   private subscription: Subscription;
 
   showFixedToastMessage: boolean;
@@ -184,6 +185,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         this.investmentAccountService.showGenericErrorModal();
       });
   }
+  
   showNewMessageForRebalance(riskType) {
     if (MANAGE_INVESTMENTS_CONSTANTS.REBALANCE_ADDITIONAL_MESSAGE.includes(riskType.toUpperCase())) {
       return true;
@@ -191,8 +193,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
       return false;
     }
   }
-
-  getPortfolioWithdrawalRequests(sellRequests) {
+   getPortfolioWithdrawalRequests(sellRequests) {
     return sellRequests.filter(
       (req) => PORTFOLIO_WITHDRAWAL_KEYS.indexOf(req.paymentMode) >= 0
     );
@@ -546,5 +547,8 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
       desc: this.translate.instant('TRANSFER_INSTRUCTION.COPIED')
     };
     this.showCopyToast(toasterMsg);
+  }
+  fullName() {
+    this.isExpand = true;
   }
 }

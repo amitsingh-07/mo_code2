@@ -21,6 +21,11 @@ app-withdrawal-status {
   .flex-div {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    img{
+      width: 207px;
+      height: 214px;
+    }
   }
 
   .custom-modal--icon {

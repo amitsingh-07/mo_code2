@@ -1,0 +1,179 @@
+@import "../../../../variables";
+@import "../../../../mixins";
+.portfolioname-bg {
+  background-color: $white-color !important;
+}
+app-fees {
+  .invest-section {
+    @include allmobiles {
+      display: none;
+    }
+  }
+
+  .invest-bg-content {
+    .user_content {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 0 75px;
+
+      @include allmobiles {
+        padding-left: 20px;
+      }
+    }
+
+    .user_summary {
+      display: flex;
+      padding-top: 45px;
+      font-family: $muli-regular;
+      letter-spacing: -0.2px;
+      color: $white-color;
+      padding-bottom: 50px;
+
+      .user_portfolio_lbl {
+        font-size: 36px;
+        line-height: 40px;
+        letter-spacing: -0.41px;
+      }
+    }
+  }
+
+  .app-asset-allocation {
+    position: relative;
+    top: 38px;
+
+    @include allmobiles {
+      top: 0;
+    }
+    .title-dec {
+      margin: 0 0 30px;
+      font-family: $muli-regular;
+      font-size: 14px;
+      line-height: 1.5;
+      letter-spacing: -0.13px;
+      color: $silver-grey-color;
+    }
+    .annual-fee-desc {
+      font-family: $muli-regular;
+      font-size: 14px;
+      color: $black-color;
+      .fund-block {
+        &:nth-last-child(2) {
+          hr {
+            display: none;
+          }
+        }
+      }
+      .fund-title {
+        display: flex;
+        justify-content: space-between;
+      }
+      .form-alert-wrap {
+        width: 16px;
+        height: 16px;
+        margin-right: 10px;
+        object-fit: contain;
+      }
+      .fee_value {
+        color: $silver-grey-color;
+      }
+      .promo-code-header {
+        font-family: $muli-bold;
+        font-size: 13px;
+        font-weight: bold;
+        line-height: 1.38;
+        letter-spacing: -0.12px;
+        color: $black-color;
+        @include allmobiles {
+          // display: flex;
+          // align-items: flex-end;
+        }
+        .ellipse {
+          @include allmobiles {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            /* autoprefixer: off */
+            -webkit-box-orient: vertical;
+            max-width: 300px;
+            word-break: break-word;
+            letter-spacing: -0.16px;
+          }
+        }
+      }
+      .promo-code {
+        font-family: $muli-bold;
+        font-size: 13px;
+        font-weight: bold;
+        line-height: 1.38;
+        letter-spacing: -0.12px;
+        color: $black-color;
+      }
+      .fee_value-status {
+        font-family: $muli-regular;
+        font-size: 13px;
+        line-height: 1.38;
+        letter-spacing: -0.12px;
+        color: $black-color;
+        padding-left: 15px;
+        &.hidden-lg {
+          padding-left: 10px;
+          text-align: right;
+        }
+      }
+      .faq_dec {
+        margin: 30px 0 0;
+        font-size: 14px;
+        line-height: 1.5;
+        letter-spacing: -0.13px;
+        color: $silver-grey-color;
+        .faq-link {
+          color: $dark-orange-color;
+          cursor: pointer;
+        }
+      }
+      .arrow {
+        background-image: url("/assets/images/manage-investments/down-arrow.svg");
+        background-repeat: no-repeat;
+        border: none;
+        margin-left: 5px;
+        transform: translateY(-35%);
+        transform: rotate(0deg);
+        width: 16px;
+        height: 13px;
+        display: inline-flex;
+      }
+    }
+    span.arrow.active {
+      background-image: url("/assets/images/manage-investments/up-arrow.svg");
+    }
+    hr {
+      margin: 10px 0;
+      border: 1px solid #e7e7e7;
+      hr:last-child {
+        border: none !important;
+      }
+    }
+  }
+
+  .container-fluid {
+    &.max-width--1024 {
+      padding-top: 0;
+
+      @include allmobiles {
+        padding-top: 80px;
+        padding-bottom: 60px;
+      }
+    }
+  }
+
+  .portfolio-allocation-details {
+    .portfolio-allocation-details__container {
+      margin: 0 291px 0 0;
+      font-family: $muli-regular;
+      font-size: 14px;
+      color: $black-color;
+      border-radius: 6px;
+    }
+  }
+}

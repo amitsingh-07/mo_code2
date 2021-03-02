@@ -99,7 +99,7 @@
   </div>
   <div class="form-group direct-form second-form">
     <div class="flex-row m-0">
-      <div class="flex-col-4 ci-label">
+      <div class="flex-col-4 ci-label mb-25">
         <label for="name" id="getStrLbl6">{{ 'DIRECT_LIFE_PROTECTION.COVERAGE_AMT.CI_TITLE' | translate}}<p
             class='ci-optional m-0'>{{ 'DIRECT_LIFE_PROTECTION.OPTIONAL' | translate}}</p></label>
         <span class="help-icon" (click)="showToolTip('CI_TITLE','CI_DESCRIPTION')"></span>
@@ -146,9 +146,10 @@
       </div>
     </div>
     <div class="flex-row">
-      <div class="flex-col-3">
+      <div class="flex-col-4 early-label">
         <label for="name" id="getStrLbl6">{{ 'DIRECT_LIFE_PROTECTION.IS_EARLY' | translate}}<p class='ci-optional'>{{
             'DIRECT_LIFE_PROTECTION.OPTIONAL' | translate}}</p></label>
+            <span class="help-icon" (click)="showToolTip('EARLY_TITLE','EARLY_DESCRIPTION')"></span>
       </div>
       <div class="flex-col-8 direct-form-grp">
         <div class="btn-group--toggle" ngbRadioGroup name="radioIsEarlyCI" formControlName="isEarlyCI">

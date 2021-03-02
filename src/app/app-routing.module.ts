@@ -84,6 +84,12 @@ const routes: Routes = [
         canActivate: [PaymentEnableGuard],
         canActivateChild: [PaymentChildEnableGuard]
       },
+      {
+        path: 'promo-code',
+        loadChildren: () => import('./promo-code/promo-code.module').then(m => m.PromoCodeModule),
+        canActivate: [InvestmentEnableGuard],
+        canActivateChild: [InvestmentChildEnableGuard]
+      },
       // Legacy Routes
       { path: 'email-enquiry/success', component: EmailEnquirySuccessComponent },
       { path: 'page-not-found', component: NotFoundComponent },

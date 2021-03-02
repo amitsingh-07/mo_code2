@@ -27,6 +27,7 @@ import {
 import { IAccountCreationActions } from '../investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
+import { PromoCodeService } from './../../../promo-code/promo-code.service';
 
 @Component({
   selector: 'app-add-portfolio-name',
@@ -59,7 +60,8 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
     private loaderService: LoaderService,
     private renderer: Renderer2,
     public footerService: FooterService,
-    private navbarService: NavbarService, ) {
+    private navbarService: NavbarService, 
+    private promoCodeService: PromoCodeService) {
       this.translate.use('en');
       this.translate.get('COMMON').subscribe((result: string) => {
         this.pageTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.TITLE');
@@ -282,6 +284,8 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
                 this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.STATUS]);
               }
               this.investmentCommonService.clearJourneyData();
+              // On success remove the applied promo code
+              this.promoCodeService.removeAppliedPromo();
             } else {
               this.investmentAccountService.showGenericErrorModal();
             }
@@ -329,7 +333,8 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
   constructCreateInvAccountParams(cddFailedStatus) {
     return {
       isCDDFailed: cddFailedStatus,
-      customerPortfolioId: this.formValues.recommendedCustomerPortfolioId
+      customerPortfolioId: this.formValues.recommendedCustomerPortfolioId,
+      promoCodeId: this.promoCodeService.usedPromo.getValue()['id']
     };
   }
 
