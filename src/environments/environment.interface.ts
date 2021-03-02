@@ -17,4 +17,5 @@ export interface IEnvironment {
     expire2faTime?: number; // time before 2fa timeout
     expire2faPollRate?: number; // interval for checks
     expire2faMaxCheck?: number; // max number of checks
+    promoCodeJsonUrl?: string; // Promo Code Json
 }
