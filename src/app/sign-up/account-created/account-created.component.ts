@@ -8,7 +8,7 @@ import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
-import { AppService } from 'src/app/app.service';
+import { AppService } from './../../app.service';
 
 @Component({
   selector: 'app-account-created',

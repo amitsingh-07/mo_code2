@@ -7,7 +7,7 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { SignUpApiService } from './../sign-up.api.service';
-import { appConstants } from 'src/app/app.constants';
+import { appConstants } from './../../app.constants';
 
 @Component({
   selector: 'app-email-verification',

@@ -17,7 +17,10 @@
                   <div class="flex-row">
                     <div class="flex-col-12">
                       <div class="form-group-with-bg--header-label" id="myFinancialLbl">
-                        {{ 'MY_FINANCIALS.MY_FINANCIALS_LBL' | translate}}
+                        <div>{{ 'MY_FINANCIALS.MY_FINANCIALS_LBL' | translate}}</div>
+                        <div class="form-group-with-bg--header-desc">{{ 'MY_FINANCIALS.MY_FINANCIALS_LBL_DESC' |
+                          translate}}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -26,8 +29,8 @@
                   <div class="flex-row">
                     <div class="flex-col-6">
                       <div class="form-group-with-bg--content-label" for="name" id="myFinancialMonthlyIncomeParentLbl">
-                        <span
-                          id="myFinancialMonthlyIncomeLbl1">{{ 'MY_FINANCIALS.MONTHLY_INCOME_LBL' | translate}}</span>
+                        <span id="myFinancialMonthlyIncomeLbl1">{{ 'MY_FINANCIALS.MONTHLY_INCOME_LBL' |
+                          translate}}</span>
                         <div class="form-group-with-bg--content-sub-label" id="myFinancialMonthlyIncomeLbl">
                           {{ 'MY_FINANCIALS.MONTHLY_INCOME_SUB_LBL' | translate}}
                         </div>
@@ -53,7 +56,7 @@
                       <div class="form-control form-control-right">
                         <div name="percentageOfSaving">
                           <input class="input-control" id="myFinancialSavedIncomeInput" type="text" appPercentageInput
-                            maxLength="3"  #percentageOfSaving formControlName="percentageOfSaving" value="0">
+                            maxLength="3" #percentageOfSaving formControlName="percentageOfSaving" value="0">
                           <i id="myFinancialPersentage" class="right">%</i>
                         </div>
                       </div>
@@ -131,8 +134,8 @@
                 </div>
               </div>
               <button type="button" (click)="goToNext(myFinancialForm)"
-                class="btn btn__footer--fixed btn-primary width100"
-                id="myFinancialGoNextBtn">{{ 'LABEL.CONTINUE' | translate}}
+                class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn">{{ 'LABEL.CONTINUE' |
+                translate}}
               </button>
             </div>
           </div>

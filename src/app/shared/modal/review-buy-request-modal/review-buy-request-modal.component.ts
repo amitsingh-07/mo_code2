@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { INVESTMENT_COMMON_CONSTANTS } from '../../../investment/investment-common/investment-common.constants';
 
 import {
     InvestmentAccountService
@@ -33,6 +34,7 @@ export class ReviewBuyRequestModalComponent implements OnInit {
   oneTimeMonthlyInfo: string;
   @Output() submitRequest: EventEmitter<any> = new EventEmitter();
   @Input() srsDetails;
+  portfolioCatagories: any;
 
   constructor(public activeModal: NgbActiveModal,
               public readonly translate: TranslateService,
@@ -52,6 +54,7 @@ export class ReviewBuyRequestModalComponent implements OnInit {
       this.riskProfileImg =
         ProfileIcons[this.fundDetails.portfolio.riskProfileId - 1]['icon'];
     }
+    this.portfolioCatagories = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
   }
 
   oneTimeBuyRequestInfo() {

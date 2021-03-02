@@ -21,6 +21,7 @@ import {
 } from './investment-account.request';
 import { PersonalInfo } from './personal-info/personal-info';
 import { InvestmentApiService } from '../investment-api.service';
+import { RegexConstants } from './../../shared/utils/api.regex.constants';
 import { PromoCodeService } from '../../promo-code/promo-code.service';
 
 const SESSION_STORAGE_KEY = 'app_inv_account_session';
@@ -414,7 +415,7 @@ export class InvestmentAccountService {
   setPersonalInfo(data: PersonalInfo) {
     this.clearPersonalInfo();
     if (data.fullName) {
-      this.investmentAccountFormData.fullName = data.fullName.toUpperCase();
+      this.investmentAccountFormData.fullName = data.fullName.trim().replace(RegexConstants.trimSpace, ' ').toUpperCase();
     }
     if (data.nricNumber) {
       this.investmentAccountFormData.nricNumber = data.nricNumber.toUpperCase();

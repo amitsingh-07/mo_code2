@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
-
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from  './../../../investment/investment-engagement-journey/investment-engagement-journey.constants';
 @Component({
   selector: 'app-fund-details',
   templateUrl: './fund-details.component.html',
@@ -28,6 +28,9 @@ export class FundDetailsComponent implements OnInit {
   fund;
   fundDetail: any;
   prospectusFile: any;
+  investmentEnabled: boolean;
+  wiseSaverEnabled : boolean;
+  wiseIncomeEnabled: boolean;
   
   @Input('portfolioType') portfolioType;
 
@@ -46,6 +49,21 @@ export class FundDetailsComponent implements OnInit {
   }
   ngOnInit() {
     this.fundDetails = this.investmentEngagementJourneyService.getFundDetails();
+    if((this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO.toLowerCase() )){
+      this.investmentEnabled = true;
+      this.wiseSaverEnabled = false;
+      this.wiseIncomeEnabled = false;
+    }
+    if( (this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO.toLowerCase() )){
+      this.investmentEnabled = false;
+      this.wiseSaverEnabled = false;
+      this.wiseIncomeEnabled = true;
+    }
+    if((this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO.toLowerCase() )){
+      this.investmentEnabled = false;
+      this.wiseSaverEnabled = true;
+      this.wiseIncomeEnabled = false;
+    }
   }
 
   showHide(el) {
@@ -65,13 +83,68 @@ export class FundDetailsComponent implements OnInit {
 
   getHighlightSheetLink(fund) {
     let highlightSheetFileName;
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    let newWindow;
+    if (iOS) {
+      newWindow = window.open();
+    }
     if (fund.factSheetLink) {
       highlightSheetFileName = fund.factSheetLink.split('|')[1];
     }
-    return document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + highlightSheetFileName;
+    const pdfUrl = document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + highlightSheetFileName;
+    if (iOS) {
+      if (newWindow.document.readyState === 'complete') {
+        newWindow.location.assign(pdfUrl);
+      } else {
+        newWindow.onload = () => {
+          newWindow.location.assign(pdfUrl);
+        };
+      }
+    } else {        
+      this.downloadFile(highlightSheetFileName);
+    }
+    
   }
   getProspectusLink() {
-    let prospectusFileName = (this.portfolioType) ? 'prospectus_investment.pdf' : 'prospectus_wise_saver.pdf';
-    return document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + prospectusFileName;
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    let newWindow;
+    if (iOS) {
+      newWindow = window.open();
+    }
+    let prospectusFileName;
+    if(this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO.toLowerCase()){
+      prospectusFileName = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PROSPECTUS_FILE.INVESTMENT;
+    } else if(this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO.toLowerCase()){
+      prospectusFileName = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PROSPECTUS_FILE.WISESAVER;
+    } else if(this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO.toLowerCase()){
+      prospectusFileName = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PROSPECTUS_FILE.WISEINCOME;
+    }
+    const pdfUrl = document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + prospectusFileName;
+    if (iOS) {
+      if (newWindow.document.readyState === 'complete') {
+        newWindow.location.assign(pdfUrl);
+      } else {
+        newWindow.onload = () => {
+          newWindow.location.assign(pdfUrl);
+        };
+      }
+    } else {        
+      this.downloadFile(prospectusFileName);
+    }
+  }
+  
+  downloadFile(fileName) {
+    const url = document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + fileName;
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.setAttribute('style', 'display: none');
+    a.href = url;
+    a.download = fileName;
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, 1000);
+
   }
 }

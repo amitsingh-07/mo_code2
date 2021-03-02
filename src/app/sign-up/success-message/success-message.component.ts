@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { appConstants } from 'src/app/app.constants';
+import { appConstants } from './../../app.constants';
 
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
