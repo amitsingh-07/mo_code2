@@ -31,6 +31,7 @@ app-wise-income-payout {
         font-size: 14px;
         line-height: normal;
         letter-spacing: -0.13px;
+        max-width: 330px;
         .note-icon {
             width: 33px;
             height: 32px;
@@ -76,8 +77,10 @@ app-wise-income-payout {
     }
     .payout-pannel-block {
         margin-top: 50px;
+        padding: 0 47px;
         @include allmobiles {
             margin-top: 30px;
+            padding: 0;
         }
         .payout-pannel-tabs {
             background: $white-color;
@@ -192,6 +195,10 @@ app-wise-income-payout {
     }
 
     .learn-more-block {
+        padding: 0 47px;
+        @include allmobiles{
+            padding: 0;
+        }
         .learn-more-options {
             .learn-more-accordian {
                 .card {
@@ -200,10 +207,10 @@ app-wise-income-payout {
                     background-color: $white-color;
                     border: none;
                     .card-header {
-                        padding: 20px;
+                        padding: 0px;
                         background-color: $white-color;
                         .btn-link {
-                            padding: 0;
+                            padding: 20px;
                             width: 100%;
                             font-size: 16px;
                             font-family: $muli-bold;
@@ -257,7 +264,6 @@ app-wise-income-payout {
                 }
             }
             .learn-more-option-item {
-                padding: 20px;
                 border-radius: 6px;
                 background-color: $white-color;
                 a {
@@ -267,6 +273,9 @@ app-wise-income-payout {
                     color: $black-color;
                     text-decoration: none;
                     width: 100%;
+                    div{
+                        padding: 20px;
+                    }
                 }
                 .arrow {
                     border: solid$teal-color;
