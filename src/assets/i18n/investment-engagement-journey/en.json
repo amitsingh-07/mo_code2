@@ -250,6 +250,7 @@
         "USER_INPUT_SUB_TEXT": "Almost there, here’s your projected portfolio value for<strong> {{ onetime }} one-time amount </strong> &amp; <strong> {{ monthly }} monthly amount </strong> for {{ period }} years.",
         "REVIEW_INPUTS": "Review My Inputs",
         "ASSET_ALLOCATION": "Asset Allocation",
+        "FUND_ASSET_ALLOCATION_LBL": "Fund Details & Asset Allocation",
         "ANNUAL_FEES": "Annual Fees",
         "FAQ_DESC_TEXT": "For more information, visit our FAQs.",
         "REVIEW_SUB_TEXT": "Review your inputs or proceed to start investing in this portfolio.",

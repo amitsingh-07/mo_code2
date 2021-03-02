@@ -270,7 +270,10 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   showPayoutModal() {
     if(this.wiseIncomeEnabled) {
-      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+      const ref = this.modal.open(ModelWithButtonComponent, { 
+        centered: true,
+        windowClass: 'custom-payout-modal' 
+      });
       ref.componentInstance.imgType = 1;
       ref.componentInstance.closeBtn = false;
       if( INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.GROW === this.portfolio.payoutType || INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.FOUR_PERCENT === this.portfolio.payoutType){
