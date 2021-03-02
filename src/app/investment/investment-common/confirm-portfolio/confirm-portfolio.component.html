@@ -40,7 +40,8 @@
         
 
             <div class="flex-col-12 asset-allocation">
-                <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
+                <div class="title" *ngIf="!wiseIncomeEnabled">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
+                <div class="title" *ngIf="wiseIncomeEnabled">{{ 'PORTFOLIO_RECOMMENDATION.FUND_ASSET_ALLOCATION_LBL' | translate}}</div>
                 <!-- bonds -->
                 <app-allocation [portfolioType]="portfolio.portfolioType" [assets]="portfolio.sectorAllocations" [funds]="portfolio.funds" [colors]="colors"></app-allocation>
             </div>
