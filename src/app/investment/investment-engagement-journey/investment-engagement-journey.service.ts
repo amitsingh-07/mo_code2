@@ -285,7 +285,7 @@ export class InvestmentEngagementJourneyService {
     const selectedPortfolioType = this.getSelectPortfolioType();
     const formData = this.getPortfolioFormData();
     const enquiryIdValue = Number(this.authService.getEnquiryId());
-    if (selectedPortfolioType === 'investPortfolio') {
+    if (selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
       return {
         investmentPeriod: formData.investmentPeriod,
         monthlyIncome: formData.monthlyIncome,
@@ -296,15 +296,30 @@ export class InvestmentEngagementJourneyService {
         totalLiabilities: formData.totalLiabilities,
         enquiryId: enquiryIdValue,
         fundingTypeId: invCommonFormValues.initialFundingMethodId,
-        portfolioTypeId: formData.portfolioTypeId
+        portfolioTypeId: formData.portfolioTypeId,
+        
       };
-    } else {
+    } else if (selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO) {
       return {
         enquiryId: enquiryIdValue,
         initialInvestment: formData.initialInvestment,
         monthlyInvestment: formData.monthlyInvestment,
         fundingTypeId: invCommonFormValues.initialFundingMethodId,
         portfolioTypeId: formData.portfolioTypeId
+      };
+    } else  {
+      return {
+        investmentPeriod: formData.investmentPeriod,
+        monthlyIncome: formData.monthlyIncome,
+        initialInvestment: formData.initialInvestment,
+        monthlyInvestment: formData.monthlyInvestment,
+        percentageOfSaving: formData.percentageOfSaving,
+        totalAssets: formData.totalAssets,
+        totalLiabilities: formData.totalLiabilities,
+        enquiryId: enquiryIdValue,
+        fundingTypeId: invCommonFormValues.initialFundingMethodId,
+        portfolioTypeId: formData.portfolioTypeId,
+        payoutTypeId: invCommonFormValues.initialWiseIncomePayoutTypeId
       };
     }
   }
@@ -429,6 +444,8 @@ export class InvestmentEngagementJourneyService {
         return '';
       }
     }
+  }// wiseincome fundlist
+  getFundListMethod(portfolioTypeId) {
+    return this.investmentApiService.getFundListMethod(portfolioTypeId);
   }
 }
-

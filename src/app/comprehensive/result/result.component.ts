@@ -21,7 +21,7 @@ export class ResultComponent implements OnInit, OnDestroy {
   pageTitle: string;
   menuClickSubscription: Subscription;
   subscription: Subscription;
-  emailID: string;
+  emailID: any;
   alertTitle: string;
   alertMessage: string;
   comprehensiveJourneyMode: boolean;
@@ -45,7 +45,7 @@ export class ResultComponent implements OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
       });
     });
-    this.emailID = this.signUpService.getUserProfileInfo().emailAddress;
+    this.emailID = this.signUpService.getUserProfileInfo();
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
       if (event && event !== '') {
         this.showToolTipModal();
