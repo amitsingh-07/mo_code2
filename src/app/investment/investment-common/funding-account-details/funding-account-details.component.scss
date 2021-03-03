@@ -1,5 +1,5 @@
-@import "../../../../_variables.scss";
-@import "../../../../_mixins.scss";
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
 
 app-funding-account-details {
   .funding-account-details {
@@ -67,32 +67,32 @@ app-funding-account-details {
             padding-right: 8px;
             font-family: $muli-italic;
             font-size: 15px;
-            color: #74c1c1;
+            color: $portfolio-name-length-color;
           }
           .txt-italic {
             font-family: $muli-italic;
             font-size: 14px;
             line-height: normal;
             letter-spacing: -0.15px;
-            color: #5e5e5e;
+            color: $silver-grey-color;
             margin-top: 15px;
           }
           .form-control {
             color: #00a7a7;
             font-family: $muli-regular;
             &:disabled {
-              background-color: #d9f2f2 !important;
-              border-color: #94cccc !important;
+              background-color: $iceberg-blue-color !important;
+              border-color: $form-control-disabled-border-color !important;
               cursor: not-allowed;
             }
             &:focus {
-              border-color: #94cccc !important;
+              border-color: $form-control-disabled-border-color !important;
             }
           }
           .btn-dropdown {
             &:disabled {
-              background-color: #d9f2f2 !important;
-              border-color: #94cccc !important;
+              background-color: $iceberg-blue-color !important;
+              border-color: $form-control-disabled-border-color !important;
             }
           }
         }
