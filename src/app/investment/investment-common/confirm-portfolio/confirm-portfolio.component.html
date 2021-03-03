@@ -40,7 +40,8 @@
         
 
             <div class="flex-col-12 asset-allocation">
-                <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
+                <div class="title" *ngIf="!wiseIncomeEnabled">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
+                <div class="title" *ngIf="wiseIncomeEnabled">{{ 'PORTFOLIO_RECOMMENDATION.FUND_ASSET_ALLOCATION_LBL' | translate}}</div>
                 <!-- bonds -->
                 <app-allocation [portfolioType]="portfolio.portfolioType" [assets]="portfolio.sectorAllocations" [funds]="portfolio.funds" [colors]="colors"></app-allocation>
             </div>
@@ -52,7 +53,7 @@
         'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a></div>
         </div>
         <div class="text-center">
-            <button type="button" (click)="confirmPortfolio()" class="btn btn__footer--fixed btn-primary width100">{{
+            <button type="button" (click)="showPayoutModal()" class="btn btn__footer--fixed btn-primary width100">{{
     'PORTFOLIO_RECOMMENDATION.CONTINUE' | translate}}</button>
         </div>
     </div>

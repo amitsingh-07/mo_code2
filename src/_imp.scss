@@ -339,6 +339,9 @@
   padding: 15px !important;
 }
 
+.mb-25 {
+  margin-bottom: -25px !important;
+}
 //Base Styles for mobile only
 @include min568max767 {
   .pab-mb15 {

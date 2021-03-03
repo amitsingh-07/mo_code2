@@ -1,19 +1,21 @@
 <div class='fund_container'>
-    <div class='flex-row fund_sub_container_heading'>
-        <div class="flex-col-6 fund_heading">
-            {{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.ONE_TIME_INVESTMENT' | translate}}
+    <div class="flex-row">
+        <div class="fund_sub_container_heading">
+            <div class="fund_heading">
+                {{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.ONE_TIME_INVESTMENT' | translate}}
+            </div>
+            <div class="fund_value">
+                {{investmentInput.onetime}}
+            </div>
         </div>
-        <div class="flex-col-6 fund_heading">
-            {{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.MONTHLY_INVESTMENT' | translate}}
-        </div> 
-    </div>
-    <div class='flex-row fund_sub_container_value'>
-        <div class="flex-col-6 fund_value">
-            {{investmentInput.onetime}}
+        <div class="fund_sub_container_value">    
+            <div class="fund_heading">
+                {{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.MONTHLY_INVESTMENT' | translate}}
+            </div> 
+            <div class="fund_value">
+                {{investmentInput.monthly}}
+            </div> 
         </div>
-        <div class="flex-col-6 fund_value">
-            {{investmentInput.monthly}}
-        </div> 
     </div>
     <div class='fund-bt'>
         <button type="button" class="btn btn-fund width100" (click) = "goReviewInputs()">{{

@@ -28,14 +28,14 @@
     <span>{{'PROMO_CODE_LIST.ACTIVE_PROMO' | translate}}</span>
     <div class="flex-wrap-div">
       <div *ngFor="let promo of promoArray" class="promo-card mt15" (click)="showDetails(promo, $event)"
-      [ngStyle]="{opacity: promo.customerPromoStatus === promoCodeStatus.NOT_IN_USE ? '1': '0.4'}">
+      [ngStyle]="{opacity: promo.customerPromoStatusDisp.toUpperCase() === promoCodeStatus.NOT_IN_USE ? '1': '0.4'}">
       <img class="owl-logo" [ngStyle]="{filter: promo.status === promoCodeStatus.NOT_IN_USE ? 'none': 'grayscale(100%)'}" src="assets/images/promo-code/owl-colorful.svg" alt="" />
       <div class="col-div">
         <div class="flex-div">
           <div class="promo-details">
             <div class="promo-name">{{promo?.shortDescription}}</div>
-            <div *ngIf="promo?.customerPromoStatus !== promoCodeStatus.PROCESSING" class="valid-period">
-              <ng-container *ngIf="promo?.customerPromoStatus === promoCodeStatus.NOT_IN_USE; else applied">
+            <div *ngIf="promo?.customerPromoStatusDisp.toUpperCase() !== promoCodeStatus.PROCESSING" class="valid-period">
+              <ng-container *ngIf="promo?.customerPromoStatusDisp.toUpperCase() === promoCodeStatus.NOT_IN_USE; else applied">
                 {{'PROMO_CODE_LIST.VAlID_UNTIL' | translate}}{{promo?.promoCodeEndDate | date:'dd MMM y'}}
               </ng-container>
               <ng-template #applied>
@@ -45,10 +45,10 @@
           </div>
           <img src="assets/images/promo-code/next-arrow.svg" alt="" />
         </div>
-        <div class="inactive-promo" [ngClass]="{'use-promo': promo?.customerPromoStatus === promoCodeStatus.NOT_IN_USE}" >
-          <ng-container *ngIf="promo?.customerPromoStatus !== promoCodeStatus.NOT_IN_USE">
+        <div class="inactive-promo" [ngClass]="{'use-promo': promo?.customerPromoStatusDisp.toUpperCase() === promoCodeStatus.NOT_IN_USE}" >
+          <ng-container *ngIf="promo?.customerPromoStatusDisp.toUpperCase() !== promoCodeStatus.NOT_IN_USE">
             <div>
-              {{promo?.customerPromoStatus | titlecase}}
+              {{promo?.customerPromoStatusDisp | titlecase}}
             </div>
           </ng-container>
         </div>

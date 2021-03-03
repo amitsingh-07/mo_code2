@@ -99,7 +99,16 @@ app-funding-account-details {
       }
     }
 
-    .note-info {
+
+  .note-info{
+    @extend .flex;
+    font-size: 13px;
+    letter-spacing: -0.11px;
+    align-items: center;
+    u{
+      font-family: $muli-bold;
+    }
+    .note-icon{
       @extend .flex;
       font-size: 13px;
       letter-spacing: -0.11px;
@@ -133,4 +142,5 @@ app-funding-account-details {
       }
     }
   }
+}
 }

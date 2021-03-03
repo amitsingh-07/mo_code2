@@ -10,8 +10,8 @@
       <div class="validity-txt mt5">{{'PROMO_CODE_DETAILS.VAlID_UNTIL' | translate}}{{selectedPromo?.promoCodeEndDate || selectedPromo?.endDate | date:'dd MMM y'}}</div>
       <ng-container *ngFor="let promo of details?.promoDesc">
         <div class="mt20 mb30">
-          <p [innerHTML]="promo.title" class="sub-header"></p>
-          <p [innerHTML]="promo.content" class="content-div"></p>
+          <div [innerHTML]="promo.title" class="sub-header"></div>
+          <div [innerHTML]="promo.content" class="content-div"></div>
         </div>
       </ng-container>
     </div>
@@ -22,13 +22,13 @@
       </ng-container>
       <ng-template #notSelected>
         <ng-container
-          *ngIf="selectedPromo?.customerPromoStatus && selectedPromo?.customerPromoStatus !== promoCodeStatus.NOT_IN_USE; else usePromoBtn">
+          *ngIf="selectedPromo?.customerPromoStatusDisp && selectedPromo?.customerPromoStatusDisp.toUpperCase() !== promoCodeStatus.NOT_IN_USE; else usePromoBtn">
           <ng-container *ngIf="usedPromo && usedPromo.value === selectedPromo; else inactive">
             <button (click)="removePromoCode($event)" type="button"
               class="btn btn-orange">{{'PROMO_CODE_DETAILS.REMOVE_PROMO' | translate}}</button>
           </ng-container>
           <ng-template #inactive>
-            <button type="button" class="disabled-btn" disabled>{{selectedPromo?.customerPromoStatus | titlecase}}</button>
+            <button type="button" class="disabled-btn" disabled>{{selectedPromo?.customerPromoStatusDisp | titlecase}}</button>
           </ng-template>
         </ng-container>
         <ng-template #usePromoBtn>

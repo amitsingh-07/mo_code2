@@ -24,7 +24,6 @@ app-fees {
     .user_summary {
       display: flex;
       padding-top: 45px;
-      padding-left: 37px;
       font-family: $muli-regular;
       letter-spacing: -0.2px;
       color: $white-color;
@@ -116,11 +115,7 @@ app-fees {
         line-height: 1.38;
         letter-spacing: -0.12px;
         color: $black-color;
-        @include allmobiles {
-          max-width: 73px;
-          word-break: break-all;
-          text-align: end;
-        }
+        padding-left: 15px;
         &.hidden-lg {
           padding-left: 10px;
           text-align: right;

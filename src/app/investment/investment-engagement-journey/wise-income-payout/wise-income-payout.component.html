@@ -52,7 +52,7 @@
                         <div class="pannel-tab-content">
                             <div class="tab-content-preference">
                                 <div class="preference-lbl">{{'WISE_INCOME_PAYOUT.PREFERENCE_LBL' | translate}}</div>
-                                <div class="mt20">
+                                <div class="mt20 txt-semi-bold">
                                     <div class="flex align-center">
                                         <span class="preference-tick-icon"><img
                                                 src="assets/images/investment-account/icon-tick.svg" /></span>
@@ -105,7 +105,7 @@
                         <div class="pannel-tab-content">
                             <div class="tab-content-preference">
                                 <div class="preference-lbl">{{'WISE_INCOME_PAYOUT.PREFERENCE_LBL' | translate}}</div>
-                                <div class="mt20">
+                                <div class="mt20 txt-semi-bold">
                                     <div class="flex align-center">
                                         <span class="preference-tick-icon"><img
                                                 src="assets/images/investment-account/icon-tick.svg" /></span>
@@ -153,7 +153,7 @@
                         <div class="pannel-tab-content">
                             <div class="tab-content-preference">
                                 <div class="preference-lbl">{{'WISE_INCOME_PAYOUT.PREFERENCE_LBL' | translate}}</div>
-                                <div class="mt20">
+                                <div class="mt20 txt-semi-bold">
                                     <div class="flex align-center">
                                         <span class="preference-tick-icon"><img
                                                 src="assets/images/investment-account/icon-tick.svg" /></span>
@@ -189,7 +189,7 @@
                                         <img class="hidden-lg"
                                             src="assets/images/investment-account/wise-income-graph-3-mobile.svg" />
                                     </div>
-                                    <div [innerHTML]="'WISE_INCOME_PAYOUT.TAB_3_DESC_3' | translate"></div>
+                                    <div [innerHTML]="'WISE_INCOME_PAYOUT.TAB_3_DESC_2' | translate"></div>
                                 </div>
                             </div>
                         </div>
@@ -292,8 +292,14 @@
                         </ng-template>
                         <ng-template ngbPanelContent>
                             <div>
-                                <div class="pannel-tab-content asset-allocation">
-                                    <app-allocation [portfolioType]="selectedPortfolioType" [funds]="funds"></app-allocation>
+                                <div class="pannel-tab-content asset-allocation" *ngIf='activeTabId == 1' > 
+                                    <app-allocation [portfolioType]="selectedPortfolioType" [funds]="payoutFundList.GROW"></app-allocation>
+                                </div>
+                                <div class="pannel-tab-content asset-allocation" *ngIf='activeTabId == 2'> 
+                                    <app-allocation [portfolioType]="selectedPortfolioType" [funds]="payoutFundList.FOUR_PERCENT"></app-allocation>
+                                </div>
+                                <div class="pannel-tab-content asset-allocation" *ngIf='activeTabId == 3'>
+                                    <app-allocation [portfolioType]="selectedPortfolioType" [funds]="payoutFundList.EIGHT_PERCENT"></app-allocation>
                                 </div>
                             </div>
                         </ng-template>

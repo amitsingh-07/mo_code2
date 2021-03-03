@@ -30,7 +30,7 @@ app-select-portfolio {
   }
   .portfolio-cards {
     border-radius: 6px;
-    padding: 30px;
+    padding: 30px 17px 30px 23px;
     @include desktop {
       padding: 35px 30px;
     }
@@ -70,7 +70,7 @@ app-select-portfolio {
         font-size: 18px;
 
         @include max360 {
-          font-size: 17px;
+          font-size: 16px;
         }
 
         font-family: $muli-bold;
@@ -81,7 +81,12 @@ app-select-portfolio {
       &__desc {
         font-size: 13px;
         font-family: $muli-regular;
-        margin-bottom: 15px;
+        @include desktop {
+          margin-bottom: 20px;
+        }
+        @include iphone6 {
+          padding-right: 20px;
+        }
       }
 
       &__more {
@@ -101,16 +106,12 @@ app-select-portfolio {
     z-index: 997;
     background-color: $white-color;
     color: $silver-grey-color;
-    padding: 35px 25px;
+    padding: 35px 28px;
     line-height: 22px;
     font-family: $muli-regular;
     font-size: 16px;
     border-radius: 6px;
     top: -20px;
-
-    @include desktop {
-      width: 445px;
-    }
 
     &__slide-item {
       font-size: 16px;
