@@ -111,18 +111,15 @@ app-funding-account-details {
     .note-icon{
       @extend .flex;
       font-size: 13px;
+      width: 24px;
+      height: 24px;
+      margin-right: 15px;
       letter-spacing: -0.11px;
       u {
         font-family: $muli-bold;
       }
-      .note-icon {
-        @extend .flex;
-        width: 24px;
-        height: 24px;
-        margin-right: 15px;
-      }
     }
-
+  }
     .dropdown-control .btn-dropdown {
       padding-right: 28px;
     }
@@ -134,13 +131,12 @@ app-funding-account-details {
         max-width: 100%;
       }
     }
-
-    .input-control {
-      &#funding_method_cash {
-        text-align: left !important;
-        font-family: $muli-regular;
-      }
+  }
+  .input-control {
+    &#funding_method_cash {
+      text-align: left !important;
+      font-family: $muli-regular;
     }
   }
-}
+
 }
