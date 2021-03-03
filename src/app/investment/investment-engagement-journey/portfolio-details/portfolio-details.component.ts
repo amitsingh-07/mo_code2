@@ -54,7 +54,6 @@ import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagemen
 export class PortfolioDetailsComponent implements OnInit {
   pageTitle: string;
   portfolio;
-  selectedRiskProfile: any;
   breakdownSelectionindex: number = null;
   isAllocationOpen = false;
   colors: string[] = ['#ec681c', '#76328e', '#76328e'];
@@ -175,8 +174,7 @@ export class PortfolioDetailsComponent implements OnInit {
       this.portfolio = data.objectList;
       this.wiseIncomeEnabled = (this.portfolio.portfolioType.toLowerCase() == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase());
       if(!this.wiseIncomeEnabled) {        
-        this.selectedRiskProfile = this.portfolio.riskProfile.id;
-        this.iconImage = ProfileIcons[this.selectedRiskProfile - 1]['icon'];
+        this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
       }
       this.getInvestmentCriteria(this.portfolio);
       this.userInputSubtext = {
