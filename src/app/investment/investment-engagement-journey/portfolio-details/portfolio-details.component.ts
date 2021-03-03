@@ -102,8 +102,6 @@ export class PortfolioDetailsComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.getPortfolioAllocationDetails();
-    this.selectedRiskProfile = this.investmentEngagementJourneyService.getSelectedRiskProfileId();
-    this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
   }
 
   setPageTitle(title: string) {
@@ -176,6 +174,10 @@ export class PortfolioDetailsComponent implements OnInit {
       // this.investmentCommonService.clearAccountCreationActions();
       this.portfolio = data.objectList;
       this.wiseIncomeEnabled = (this.portfolio.portfolioType.toLowerCase() == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase());
+      if(!this.wiseIncomeEnabled) {        
+        this.selectedRiskProfile = this.portfolio.riskProfile.id;
+        this.iconImage = ProfileIcons[this.selectedRiskProfile - 1]['icon'];
+      }
       this.getInvestmentCriteria(this.portfolio);
       this.userInputSubtext = {
         onetime: this.formatCurrencyPipe.transform(
