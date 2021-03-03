@@ -106,16 +106,12 @@ app-select-portfolio {
     z-index: 997;
     background-color: $white-color;
     color: $silver-grey-color;
-    padding: 35px 25px;
+    padding: 35px 28px;
     line-height: 22px;
     font-family: $muli-regular;
     font-size: 16px;
     border-radius: 6px;
     top: -20px;
-
-    @include desktop {
-      width: 445px;
-    }
 
     &__slide-item {
       font-size: 16px;
