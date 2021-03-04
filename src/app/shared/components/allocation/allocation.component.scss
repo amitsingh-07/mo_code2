@@ -1,5 +1,5 @@
-@import '../../../../variables';
-@import '../../../../mixins';
+@import "../../../../variables";
+@import "../../../../mixins";
 app-allocation {
     .bond_container {
         border-radius: 6px;
@@ -42,11 +42,11 @@ app-allocation {
                         width: 50%;
                         flex-basis: 50%;
                     }
-                    @media(min-width:$col-md) {
+                    @media (min-width: $col-md) {
                         width: 70%;
                         flex-basis: 70%;
                     }
-                    @media(min-width:$col-lg) {
+                    @media (min-width: $col-lg) {
                         width: 80%;
                         flex-basis: 80%;
                     }
@@ -154,6 +154,102 @@ app-allocation {
             border-top-left-radius: 0;
             border-top-right-radius: 0;
             background-color: $bonds-btn-bg-color;
+        }
+        .wise-income-allocation-block {
+            padding: 30px 20px;
+            border-bottom: 1px solid $bonds-equity-block-border-color;
+            color: $black-color;
+            .allocation-graph {
+                width: 240px;
+                height: 210px;
+                margin: 20px auto;
+                display: flex;
+            }
+            .wise-income-accordian-block {
+                .title-lbl {
+                    font-family: $muli-bold;
+                    margin-bottom: 15px;
+                    color: $bonds-progress-txt-color;
+                }
+                .card {
+                    margin-bottom: 10px;
+                    border-radius: 6px !important;
+                    border: solid 1px $bonds-equity-title-border-color;
+                    background-color: $bonds-equity-card-bg-color;
+                    .card-header {
+                        padding: 11px 20px !important;
+                        border: solid 1px $bonds-equity-title-border-color;
+                        background-color: $bonds-equity-bg-color !important;
+                        .btn-link {
+                            padding: 0 !important;
+                            width: 100%;
+                            font-size: 18px;
+                            font-family: $muli-bold;
+                            line-height: normal;
+                            letter-spacing: -0.3px;
+                            color: $white-color !important;
+                            .arrow {
+                                border: solid $white-color;
+                                border-width: 0 2px 2px 0;
+                                border-color: $white-color !important;
+                                display: inline-block;
+                                padding: 4px;
+                                float: none !important;
+                                transform: rotate(-135deg);
+                                -webkit-transform: rotate(-135deg);
+                                position: absolute;
+                                top: 24px;
+                                right: 20px;
+                            }
+                            &.collapsed {
+                                .arrow {
+                                    transform: rotate(45deg);
+                                    -webkit-transform: rotate(45deg);
+                                    position: absolute;
+                                    top: 19px;
+                                    right: 20px;
+                                }
+                            }
+                            &:hover,
+                            &:focus {
+                                text-decoration: none;
+                            }
+                            &:disabled{
+                                .arrow {
+                                    display: none;
+                                }
+                            }
+                            .circle{
+                                display: flex;
+                                width: 12px;
+                                height: 12px;
+                                margin-top: 4px;
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                    .card-body {
+                        padding: 0px;
+                        .tab-content {
+                            padding: 15px;
+                            background-color: $bonds-equity-card-bg-color;
+                            font-family: $muli-regular;
+                            font-size: 14px;
+                            line-height: 1.64;
+                            letter-spacing: -0.13px;
+                            color: $black-color;
+                        }
+                    }
+                }
+                .disclaimer {
+                    font-size: 16px;
+                    line-height: 1.44;
+                    letter-spacing: -0.16px;
+                    color: $silver-grey-color;
+                    margin-top: 20px;
+                    padding-top: 0;
+                }
+            }
         }
     }
 }

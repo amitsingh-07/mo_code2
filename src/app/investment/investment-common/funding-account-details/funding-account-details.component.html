@@ -23,7 +23,7 @@
               </div>
               <div class="flex-row mt15">
                 <div class="flex-col-12">
-                  <div class="dropdown-control">
+                  <div class="dropdown-control" *ngIf="!disableFundingMethod">
                     <div ngbDropdown>
                       <button *ngIf="!this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value"
                         class="btn btn-dropdown mb15" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
@@ -35,10 +35,15 @@
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let fundingMethod of fundingMethods; let i = index;"
-                          (click)="selectFundingMethod('confirmedFundingMethodId', fundingMethod.id)"
+                        
+                        (click)="selectFundingMethod('confirmedFundingMethodId', fundingMethod.id)"
                           id="additional_declaration_sourse-drpdown-option-{{i}}">{{fundingMethod.name}}</button>
                       </div>
                     </div>
+                  </div>
+                  <div class="form-control" *ngIf="disableFundingMethod">
+                    <input class="input-control" type="text" id="funding_method_cash"
+                      [value]="getFundingMethodNameById(this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods)" disabled>
                   </div>
                 </div>
               </div>
@@ -115,7 +120,7 @@
             <div>
               <app-promo-code-select></app-promo-code-select>
             </div>
-            <div class="text-center">
+            <div class="text-center mt15">
               <button type="button" id="personalInforNextBtn" (click)="goToNext(fundingAccountDetailsForm)"
                 class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
                 [disabled]="!fundingAccountDetailsForm.valid" id="getStrdBtn3">{{

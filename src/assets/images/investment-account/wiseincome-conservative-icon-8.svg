@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" viewBox="0 0 40 40">
+    <defs>
+        <ellipse id="ggav373nqc" cx="3.336" cy="2.171" rx="3.336" ry="2.171"/>
+        <ellipse id="rjet0wnlue" cx="3.315" cy="2.162" rx="3.315" ry="2.162"/>
+        <ellipse id="5zug4i09fg" cx="3.3" cy="2.116" rx="3.3" ry="2.116"/>
+        <ellipse id="xzoqsivt3i" cx="3.3" cy="2.116" rx="3.3" ry="2.116"/>
+        <ellipse id="1ee3vdu9qk" cx="3.336" cy="2.171" rx="3.336" ry="2.171"/>
+        <ellipse id="6ulrxrdowm" cx="3.3" cy="2.116" rx="3.3" ry="2.116"/>
+        <ellipse id="9ky39e574o" cx="3.336" cy="2.171" rx="3.336" ry="2.171"/>
+        <filter id="5sze61midq">
+            <feColorMatrix in="SourceGraphic" values="0 0 0 0 1.000000 0 0 0 0 0.474510 0 0 0 0 0.000000 0 0 0 1.000000 0"/>
+        </filter>
+        <filter id="6j8dvcc9tr" width="303%" height="186.2%" x="-101%" y="-42.6%" filterUnits="objectBoundingBox">
+            <feOffset dy="4" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feColorMatrix in="shadowOffsetOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <filter id="zazq8qqlls">
+            <feColorMatrix in="SourceGraphic" values="0 0 0 0 1.000000 0 0 0 0 0.474510 0 0 0 0 0.000000 0 0 0 1.000000 0"/>
+        </filter>
+        <filter id="6af3cwpytt" width="303%" height="186.2%" x="-101%" y="-42.6%" filterUnits="objectBoundingBox">
+            <feOffset dy="4" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feColorMatrix in="shadowOffsetOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <path id="hj9m7gomqa" d="M39.806 20c0 11.046-8.866 20-19.802 20S.202 31.046.202 20 9.068 0 20.004 0s19.802 8.954 19.802 20z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <g>
+                <g>
+                    <g>
+                        <g>
+                            <g>
+                                <g>
+                                    <g transform="translate(-168 -353) translate(0 196) translate(15) translate(0 30) translate(15 102) translate(69 25) translate(69)">
+                                        <mask id="jwltf7cjcb" fill="#fff">
+                                            <use xlink:href="#hj9m7gomqa"/>
+                                        </mask>
+                                        <use fill="#3F8EC3" xlink:href="#hj9m7gomqa"/>
+                                        <path fill="#2A6BA0" fill-rule="nonzero" d="M3.566 32.4h5.556c.438 0 .793-.716.793-1.6 0-.884-.355-1.6-.793-1.6H3.566c-.438 0-.794.716-.794 1.6 0 .884.356 1.6.794 1.6zm9.664 0h5.556c.438 0 .794-.716.794-1.6 0-.884-.356-1.6-.794-1.6H13.23c-.438 0-.793.716-.793 1.6 0 .884.355 1.6.793 1.6zm8.824 0h5.556c.438 0 .794-.716.794-1.6 0-.884-.356-1.6-.794-1.6h-5.556c-.438 0-.793.716-.793 1.6 0 .884.355 1.6.793 1.6zm8.824 0h5.556c.438 0 .794-.716.794-1.6 0-.884-.356-1.6-.794-1.6h-5.556c-.438 0-.793.716-.793 1.6 0 .884.355 1.6.793 1.6z" mask="url(#jwltf7cjcb)"/>
+                                        <g mask="url(#jwltf7cjcb)">
+                                            <g>
+                                                <g transform="translate(4.752 30.4) rotate(15 -10.234 73.506)">
+                                                    <path fill="#F19F07" d="M4.139 6.756c2.3 0 3.838-1.074 4.127-2.99.04-.269.02-.93 0-1.073C8.01.967 6.263 0 4.139 0 2.024 0 .277 1.084.01 2.8c-.023.15 0 .733 0 .888 0 1.932 1.83 3.068 4.129 3.068z"/>
+                                                    <ellipse cx="4.246" cy="2.654" fill="#FEE34B" rx="4.044" ry="2.654"/>
+                                                    <ellipse cx="4.246" cy="2.413" fill="#F19F07" rx="3.437" ry="2.413"/>
+                                                    <g transform="translate(.809)">
+                                                        <mask id="yn22vdl23d" fill="#fff">
+                                                            <use xlink:href="#ggav373nqc"/>
+                                                        </mask>
+                                                        <use fill="#FEE34B" xlink:href="#ggav373nqc"/>
+                                                        <path fill="#FFFBB6" d="M1.07.179L1.719 4.661 4.02 4.584 2.307.179zM.152.451L.627 3.86.924 3.86.538.451zM3.032 0L4.375 4.152 5.248 3.929 3.307 0z" mask="url(#yn22vdl23d)"/>
+                                                    </g>
+                                                </g>
+                                                <g transform="translate(4.752 30.4) translate(11.09 6.8)">
+                                                    <path fill="#F19F07" d="M4.113 6.726c2.286 0 3.815-1.069 4.102-2.977.04-.267.02-.926 0-1.068C7.96.962 6.224 0 4.113 0 2.011 0 .275 1.079.01 2.787c-.023.15 0 .73 0 .884 0 1.924 1.818 3.055 4.103 3.055z"/>
+                                                    <ellipse cx="4.22" cy="2.642" fill="#FEE34B" rx="4.019" ry="2.642"/>
+                                                    <ellipse cx="4.22" cy="2.402" fill="#F19F07" rx="3.416" ry="2.402"/>
+                                                    <g transform="translate(.804)">
+                                                        <mask id="zinj795vjf" fill="#fff">
+                                                            <use xlink:href="#rjet0wnlue"/>
+                                                        </mask>
+                                                        <use fill="#FEE34B" xlink:href="#rjet0wnlue"/>
+                                                        <path fill="#FFFBB6" d="M1.063.178L1.709 4.64 3.995 4.564 2.293.178zM.151.449L.623 3.843.918 3.843.535.449zM3.013 0L4.348 4.134 5.215 3.912 3.287 0z" mask="url(#zinj795vjf)"/>
+                                                    </g>
+                                                </g>
+                                                <g transform="translate(4.752 30.4) rotate(-14 30.679 -11.267)">
+                                                    <path fill="#F19F07" d="M4.094 6.582c2.275 0 3.796-1.045 4.082-2.913.04-.261.021-.906 0-1.045C7.924.942 6.195 0 4.094 0 2.002 0 .274 1.056.01 2.728c-.023.146 0 .714 0 .865 0 1.883 1.81 2.99 4.084 2.99z"/>
+                                                    <ellipse cx="4.2" cy="2.586" fill="#FEE34B" rx="4" ry="2.586"/>
+                                                    <ellipse cx="4.2" cy="2.351" fill="#F19F07" rx="3.4" ry="2.351"/>
+                                                    <g transform="translate(.8)">
+                                                        <mask id="mx9h02pwch" fill="#fff">
+                                                            <use xlink:href="#5zug4i09fg"/>
+                                                        </mask>
+                                                        <use fill="#FEE34B" xlink:href="#5zug4i09fg"/>
+                                                        <path fill="#FFFBB6" d="M1.058.174L1.701 4.542 3.976 4.467 2.282.174zM.15.439L.62 3.761.914 3.761.532.439zM2.999 0L4.327 4.046 5.191 3.829 3.271 0z" mask="url(#mx9h02pwch)"/>
+                                                    </g>
+                                                </g>
+                                                <g transform="translate(4.752 30.4) rotate(-14 21.383 -29.104)">
+                                                    <path fill="#F19F07" d="M4.094 6.582c2.275 0 3.796-1.045 4.082-2.913.04-.261.021-.906 0-1.045C7.924.942 6.195 0 4.094 0 2.002 0 .274 1.056.01 2.728c-.023.146 0 .714 0 .865 0 1.883 1.81 2.99 4.084 2.99z"/>
+                                                    <ellipse cx="4.2" cy="2.586" fill="#FEE34B" rx="4" ry="2.586"/>
+                                                    <ellipse cx="4.2" cy="2.351" fill="#F19F07" rx="3.4" ry="2.351"/>
+                                                    <g transform="translate(.8)">
+                                                        <mask id="wo4vxqen9j" fill="#fff">
+                                                            <use xlink:href="#xzoqsivt3i"/>
+                                                        </mask>
+                                                        <use fill="#FEE34B" xlink:href="#xzoqsivt3i"/>
+                                                        <path fill="#FFFBB6" d="M1.058.174L1.701 4.542 3.976 4.467 2.282.174zM.15.439L.62 3.761.914 3.761.532.439zM2.999 0L4.327 4.046 5.191 3.829 3.271 0z" mask="url(#wo4vxqen9j)"/>
+                                                    </g>
+                                                </g>
+                                                <g transform="translate(4.752 30.4) rotate(27 5.435 32.583)">
+                                                    <path fill="#F19F07" d="M4.139 6.756c2.3 0 3.838-1.074 4.127-2.99.04-.269.02-.93 0-1.073C8.01.967 6.263 0 4.139 0 2.024 0 .277 1.084.01 2.8c-.023.15 0 .733 0 .888 0 1.932 1.83 3.068 4.129 3.068z"/>
+                                                    <ellipse cx="4.246" cy="2.654" fill="#FEE34B" rx="4.044" ry="2.654"/>
+                                                    <ellipse cx="4.246" cy="2.413" fill="#F19F07" rx="3.437" ry="2.413"/>
+                                                    <g transform="translate(.809)">
+                                                        <mask id="fl49pqpzcl" fill="#fff">
+                                                            <use xlink:href="#1ee3vdu9qk"/>
+                                                        </mask>
+                                                        <use fill="#FEE34B" xlink:href="#1ee3vdu9qk"/>
+                                                        <path fill="#FFFBB6" d="M1.07.179L1.719 4.661 4.02 4.584 2.307.179zM.152.451L.627 3.86.924 3.86.538.451zM3.032 0L4.375 4.152 5.248 3.929 3.307 0z" mask="url(#fl49pqpzcl)"/>
+                                                    </g>
+                                                </g>
+                                                <g transform="translate(4.752 30.4) rotate(-14 13.145 .135)">
+                                                    <path fill="#F19F07" d="M4.094 6.582c2.275 0 3.796-1.045 4.082-2.913.04-.261.021-.906 0-1.045C7.924.942 6.195 0 4.094 0 2.002 0 .274 1.056.01 2.728c-.023.146 0 .714 0 .865 0 1.883 1.81 2.99 4.084 2.99z"/>
+                                                    <ellipse cx="4.2" cy="2.586" fill="#FEE34B" rx="4" ry="2.586"/>
+                                                    <ellipse cx="4.2" cy="2.351" fill="#F19F07" rx="3.4" ry="2.351"/>
+                                                    <g transform="translate(.8)">
+                                                        <mask id="9747tsjnvn" fill="#fff">
+                                                            <use xlink:href="#6ulrxrdowm"/>
+                                                        </mask>
+                                                        <use fill="#FEE34B" xlink:href="#6ulrxrdowm"/>
+                                                        <path fill="#FFFBB6" d="M1.058.174L1.701 4.542 3.976 4.467 2.282.174zM.15.439L.62 3.761.914 3.761.532.439zM2.999 0L4.327 4.046 5.191 3.829 3.271 0z" mask="url(#9747tsjnvn)"/>
+                                                    </g>
+                                                </g>
+                                                <g transform="translate(4.752 30.4) rotate(27 11.273 48.757)">
+                                                    <path fill="#F19F07" d="M4.139 6.756c2.3 0 3.838-1.074 4.127-2.99.04-.269.02-.93 0-1.073C8.01.967 6.263 0 4.139 0 2.024 0 .277 1.084.01 2.8c-.023.15 0 .733 0 .888 0 1.932 1.83 3.068 4.129 3.068z"/>
+                                                    <ellipse cx="4.246" cy="2.654" fill="#FEE34B" rx="4.044" ry="2.654"/>
+                                                    <ellipse cx="4.246" cy="2.413" fill="#F19F07" rx="3.437" ry="2.413"/>
+                                                    <g transform="translate(.809)">
+                                                        <mask id="3l6qnq7nip" fill="#fff">
+                                                            <use xlink:href="#9ky39e574o"/>
+                                                        </mask>
+                                                        <use fill="#FEE34B" xlink:href="#9ky39e574o"/>
+                                                        <path fill="#FFFBB6" d="M1.07.179L1.719 4.661 4.02 4.584 2.307.179zM.152.451L.627 3.86.924 3.86.538.451zM3.032 0L4.375 4.152 5.248 3.929 3.307 0z" mask="url(#3l6qnq7nip)"/>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g filter="url(#5sze61midq)" transform="translate(-168 -353) translate(0 196) translate(15) translate(0 30) translate(15 102) translate(69 25) translate(69) translate(11.881 6.4)">
+                                            <g filter="url(#6j8dvcc9tr)">
+                                                <path fill="#FF7900" d="M4.552.793c.085.062.16.136.22.221L7.922 5.35H5.45c.06.167.094.348.094.536v11.26c0 .876-.71 1.585-1.585 1.585s-1.584-.71-1.584-1.584V5.885c0-.187.033-.367.093-.534L0 5.352l3.155-4.338c.325-.447.95-.546 1.397-.22z"/>
+                                            </g>
+                                        </g>
+                                        <g filter="url(#zazq8qqlls)" transform="translate(-168 -353) translate(0 196) translate(15) translate(0 30) translate(15 102) translate(69 25) translate(69) translate(11.881 6.4) matrix(1 0 0 -1 8.713 18.8)">
+                                            <g filter="url(#6af3cwpytt)">
+                                                <path fill="#FF7900" d="M4.552.793c.085.062.16.136.22.221L7.922 5.35H5.45c.06.167.094.348.094.536v11.26c0 .876-.71 1.585-1.585 1.585s-1.584-.71-1.584-1.584V5.885c0-.187.033-.367.093-.534L0 5.352l3.155-4.338c.325-.447.95-.546 1.397-.22z"/>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

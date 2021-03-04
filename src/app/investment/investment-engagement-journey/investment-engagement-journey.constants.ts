@@ -18,6 +18,16 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
     WISEINCOME_PORTFOLIO:'wiseIncomePortfolio',
     INVESTMENT:'Investment',
     WISESAVER:'Wisesaver',
-    WISEINCOME:'Wiseincome'
+    WISEINCOME:'WiseIncome'
+  },
+  PROSPECTUS_FILE:{
+    INVESTMENT: 'prospectus_investment.pdf',
+    WISESAVER: 'prospectus_wise_saver.pdf',
+    WISEINCOME: 'prospectus_wise_income.pdf'      
+                },
+  PAYOUT_FUNDLIST: {
+    GROW: 'Grow & invest payout_Cash',
+    FOUR_PERCENT: '4.5% p.a. income payout_Cash',
+    EIGHT_PERCENT: '8% p.a. income payout_Cash',
   }
 };
