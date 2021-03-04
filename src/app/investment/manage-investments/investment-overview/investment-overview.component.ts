@@ -429,7 +429,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   scrollFilterIntoView(filter) {
     const ele = document.querySelector('label[for="'+filter+'"]');
     if (ele) {
-      ele.scrollIntoView({behavior: "smooth", block: "end"});
+      ele.scrollIntoView({behavior: "smooth", block: "end", inline : "center"});
     }
   }
 }
