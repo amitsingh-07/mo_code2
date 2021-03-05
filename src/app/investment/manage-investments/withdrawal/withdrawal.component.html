@@ -16,7 +16,7 @@
         <div class="max-width col-lg-6 col-md-6">
           <!-- HOLIDAY AND OTHER IMPORTANT NOTE -->
           <app-notes category="withdraw" [noteInSession]="formValues?.investmentNote"></app-notes>
-          <div *ngIf="entitlements.jointAccount || (isInvestAndJointAccountHolder && !isBankDetailsAvailable)"
+          <div *ngIf="entitlements.jointAccount || (isInvestAndJointAccountHolder && !isBankDetailsAvailable && withdrawForm.controls.withdrawPortfolio?.value.portfolioType !== 'SRS')"
             class="joint_account">
             <img src="assets/images/alert-black.svg" />
             <div *ngIf="entitlements.jointAccount" class="joint_account-note"

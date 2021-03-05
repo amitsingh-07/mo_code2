@@ -113,9 +113,6 @@ app-select-portfolio {
     border-radius: 6px;
     top: -20px;
 
-    @include desktop {
-      width: 445px;
-    }
 
     &__slide-item {
       font-size: 16px;
@@ -138,6 +135,14 @@ app-select-portfolio {
       font-family: $muli-bold;
       margin-bottom: 15px;
     }
+    @include desktop {
+      .slick-track {
+        width: 800px !important;
+      }
+      .slick-slide {
+        width: 400px !important;
+      }
+    }
   }
 
   .btn:disabled {
@@ -159,7 +164,6 @@ app-select-portfolio {
       color: $robins-egg-blue-color;
     }
   }
-
   .more-info-shadow {
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.5);
   }
