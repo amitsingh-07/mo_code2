@@ -24,6 +24,7 @@ import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { SessionsService } from './../../shared/Services/sessions/sessions.service';
 
+import { ActivateSingpassModalComponent } from './activate-singpass-modal/activate-singpass-modal.component';
 
 @Component({
   selector: 'app-edit-profile',
@@ -384,5 +385,14 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     const first = firstName.charAt(0);
     const second = LastName.charAt(0);
     return first.toUpperCase() + second.toUpperCase();
+  }
+  linkSingpass() {
+    const ref = this.modal.open(ActivateSingpassModalComponent, { centered: true, windowClass: 'activate-singpass-modal-dialog' });
+    // ref.componentInstance.errorTitle = this.translate.instant('Activate SingPass Login'
+    // // ref.componentInstance.errorTitle = "Activate SingPass Login"
+    // );
+    // ref.componentInstance.errorMessage = this.translate.instant(
+    //   'FUNDING_METHOD.HELP_MODAL.DESC1'
+    // );
   }
 }

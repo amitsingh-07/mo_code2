@@ -1,0 +1,39 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+// .activate-singpass-modal-dialog {
+    .singpass-login-modal-block{
+        max-width: 375px !important;
+        margin: 0 auto;
+    }
+    .header-modal-image{
+        background-image: url("../../../../assets/images/graphic-login-activate-singpass.svg");
+        height: 180px;
+        width: 375px;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+    .help-modal-body {
+      h4 {
+        color: $modal-body-title-color !important;
+        text-transform: capitalize;
+        margin-bottom: 25px;
+        font-size: 22px;
+        font-family: $muli-semi-bold;
+      }
+    }
+    // button.close {
+    //   width: 25px !important;
+    //   height: 25px !important;
+    //   background: url("../../../assets/images/close-button-dark.svg") !important;
+    //   position: absolute !important;
+    //   right: 15px !important;
+    //   top: 25px !important;
+    //   background-repeat: no-repeat !important;
+    // }
+    // .modal .close {
+    //   opacity: 1;
+    // }
+    
+//   }
