@@ -40,6 +40,7 @@ export class WiseIncomePayoutComponent implements OnInit {
   activeTabId = 1;
   fundingMethods: any;
   payoutFundList: any;
+  defaultPayoutypeEnabled: boolean;
   constructor(
     public readonly translate: TranslateService,
     public activeModal: NgbActiveModal,
@@ -86,6 +87,13 @@ export class WiseIncomePayoutComponent implements OnInit {
         this.formValues.initialWiseIncomePayoutTypeId ?this.formValues.initialWiseIncomePayoutTypeId :
         this.getdefaultWiseIcomePayoutTypeNameById(INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.DEFAULT_PAYOUT.GROW, this.wiseIncomePayOutTypes), Validators.required)
     });
+    if(
+      this.defaultPayoutypeEnabled = this.getdefaultWiseIcomePayoutTypeNameById(INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.DEFAULT_PAYOUT.GROW, this.wiseIncomePayOutTypes)){
+        this.defaultPayoutypeEnabled = true;
+    }
+    else{
+      this.defaultPayoutypeEnabled = false;
+    }
     }
   getFundListMethod(portfolioTypeId){
     this.investmentEngagementJourneyService.getFundListMethod(portfolioTypeId).subscribe((data) =>{
