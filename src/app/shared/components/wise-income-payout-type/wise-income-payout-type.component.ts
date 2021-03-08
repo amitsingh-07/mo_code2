@@ -5,6 +5,7 @@ import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from './../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../../investment/investment-common/investment-common.constants';
+import { InvestmentAccountService } from 'src/app/investment/investment-account/investment-account-service';
 @Component({
   selector: 'app-wise-income-payout-type',
   templateUrl: './wise-income-payout-type.component.html',
@@ -16,7 +17,8 @@ export class WiseIncomePayoutTypeComponent implements OnInit {
   @Input('payoutType') payoutType;
   payoutConst : any;
 
-  constructor(private router: Router) { 
+  constructor(private router: Router,
+    public investmentAccountService: InvestmentAccountService,) { 
     this.payoutConst = INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT;
   }
 
@@ -24,6 +26,7 @@ export class WiseIncomePayoutTypeComponent implements OnInit {
   }
   
   goReviewInputs() {
+    this.investmentAccountService.activateReassess();
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.WISE_INCOME_PAYOUT]);
   }
 
