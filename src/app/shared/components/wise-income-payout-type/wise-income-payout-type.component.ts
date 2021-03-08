@@ -5,8 +5,9 @@ import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from './../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../../investment/investment-common/investment-common.constants';
-import { InvestmentAccountService } from 'src/app/investment/investment-account/investment-account-service';
-import { InvestmentCommonService } from 'src/app/investment/investment-common/investment-common.service';
+import { InvestmentAccountService } from '../../../investment/investment-account/investment-account-service';
+import { InvestmentCommonService } from '../../../investment/investment-common/investment-common.service';
+
 @Component({
   selector: 'app-wise-income-payout-type',
   templateUrl: './wise-income-payout-type.component.html',
