@@ -36,10 +36,6 @@ app-product-info {
     }
     .dropdown-menu {
       height: auto !important;
-      max-height: 300px !important;
-      @include desktop {
-        max-height: 400px !important;
-      }
       overflow: auto;
     }
   }
