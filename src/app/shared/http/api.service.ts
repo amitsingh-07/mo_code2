@@ -296,7 +296,7 @@ export class ApiService {
       apiConstants.endpoint.resendOTP + '?isEditProfile=true' :
       apiConstants.endpoint.resendOTP;
     return this.http.post(resendOTPEditOrSignUpFlow, payload)
-     .pipe(
+      .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
@@ -400,6 +400,12 @@ export class ApiService {
   // tslint:disable-next-line:no-identical-functions
   requestForgotPasswordLink(data) {
     return this.http.post(apiConstants.endpoint.forgotPassword, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  resetEmail(data) {
+    return this.http.post(apiConstants.endpoint.resetEmail, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -576,7 +582,7 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  
+
   saveNewBankProfile(data) {
     return this.http.post(investmentApiConstants.endpoint.investment.addProfileNewBank, data)
       .pipe(
@@ -647,6 +653,27 @@ export class ApiService {
 
   validateReferralCode(payload) {
     return this.http.post(apiConstants.endpoint.validateReferralCode, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getCustomerInvestmentPromoCode(payload) {
+    return this.http.post(apiConstants.endpoint.promoCode.getCustomerInvestmentPromoCode, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  validateInvestPromoCode(payload) {
+    return this.http.post(apiConstants.endpoint.promoCode.validateInvestPromoCode, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  saveCustomerPromoCode(payload) {
+    return this.http.post(apiConstants.endpoint.promoCode.saveCustomerPromoCode, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

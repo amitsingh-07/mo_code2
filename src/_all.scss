@@ -475,7 +475,7 @@ h6 {
         width: 100%;
         align-items: center;
         min-height: 50px;
-        border-bottom: 1px solid #e1e1e1;
+        border-bottom: 1px solid $border-grey-color-profile;
 
         &:hover {
           a {
@@ -491,10 +491,10 @@ h6 {
       }
 
       a {
-        font-family: $muli-semi-bold;
-        color: $text-color-secondary;
+        font-family: $muli-regular;
+        color: $black-color;
         white-space: nowrap;
-
+        font-size: 16px;
         @include minMobilemaxPhablet {
           display: flex;
           width: 100%;
@@ -705,7 +705,7 @@ h6 {
           .sub-text {
             font-family: $muli-regular;
             color: $white-color;
-            font-size: 13px;
+            font-size: 11px;
           }
         }
 
@@ -713,10 +713,14 @@ h6 {
           width: auto;
           padding-right: 20px;
           color: $white-color;
-
-          i {
-            padding-left: 10px;
-            color: $white-color;
+          font-family: $muli-bold;
+          .logout-white {
+            background: url('assets/images/nav/logout-white.svg') 0 0;
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            position: relative;
+            top: 2px;
           }
         }
 
@@ -779,11 +783,11 @@ h6 {
             position: relative;
             display: block;
             padding: 16px 25px 16px 25px;
-            border-bottom: 1px solid $border-grey-color;
+            border-bottom: 1px solid $border-grey-color-profile;
 
             .name {
               color: $teal-color;
-              font-size: 18px;
+              font-size: 16px;
               font-family: $muli-bold;
             }
 
@@ -791,6 +795,9 @@ h6 {
               font-family: $muli-regular;
               color: $black-color;
               font-size: 11px;
+              &:hover {
+                color: $crusta-orange-color;
+              }
             }
           }
 
@@ -807,9 +814,7 @@ h6 {
 
       @include minMobilemaxPhablet {
         &:hover {
-          color: $teal-color;
-          background-color: $white-color;
-          border-bottom: 1px solid $border-grey-color;
+          color: $crusta-orange-color;
         }
       }
 
@@ -930,7 +935,7 @@ h6 {
         flex-direction: row;
         align-items: flex-start;
         margin-bottom: 5px;
-        padding: 10px 1.5rem;
+        padding: 5px 1.5rem;
         z-index: 5;
 
         img {
@@ -944,10 +949,19 @@ h6 {
           flex-direction: column;
           justify-content: center;
           align-items: flex-start;
-          margin-left: 10px;
           min-width: 170px;
+          &:last-child {
+            display: block;
+          }
         }
-
+        .logout-black {
+          background: url('assets/images/nav/logout-black.svg') 0 0;
+          width: 16px;
+          height: 16px;
+          display: inline-block;
+          position: relative;
+          top: 2px;
+        }
         .navbar--sub--text {
           font-family: $muli-regular;
           font-size: 11px;
@@ -972,14 +986,18 @@ h6 {
         }
 
         &:hover,
-        :focus {
-          background-color: #f9f9f9f9;
+        &:focus,  {
+          background-color: $white-color;
           outline: none;
+          border-bottom: none;
         }
-
+        a:hover {
+          color: $crusta-orange-color;
+          text-decoration: none;
+        }
         &:active {
-          background-color: #f9f9f9;
-          color: $teal-color;
+          background-color: $white-color;
+          color: $crusta-orange-color;
           outline: none;
         }
 
@@ -1085,7 +1103,7 @@ h6 {
   cursor: pointer;
 
   .navbar__menu-icon {
-    background-image: url("/assets/images/menu-icon.svg");
+    background-image: url("/assets/images/nav/hamburger-menu-blue.svg");
     display: block;
     width: 24px;
     height: 24px;
@@ -1781,7 +1799,7 @@ a.link-white {
 }
 
 .selected-count {
-  background-color: #ff872f;
+  background-color: $crusta-orange-color;
   padding: 0 13px 0 13px;
   border-radius: 13px;
   font-family: $muli-bold;
@@ -1854,6 +1872,7 @@ a.link-white {
 
   @include allmobiles {
     text-align: center;
+    padding: 0 10px;
   }
 }
 
@@ -2394,3 +2413,10 @@ select:-webkit-autofill:focus {
   font-family: $muli-semi-bold;
   color:$silver-grey-color;
 }
+//wiseincome payout custom modal
+.custom-payout-modal{
+  .modal-body-title{
+    margin-bottom: 20px;
+    margin-right: 0px;
+  }
+} 

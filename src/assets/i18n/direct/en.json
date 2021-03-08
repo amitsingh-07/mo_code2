@@ -31,6 +31,8 @@
   "DIRECT_LIFE_PROTECTION": {
     "COVERAGE_AMT": {
       "TITLE": "Coverage Amount",
+      "LP_TITLE": "Life Coverage Amount",
+      "CI_TITLE": "CI Coverage Amount",      
       "DOLLAR": "$"
     },
     "DURATION": {
@@ -42,7 +44,9 @@
           "TITLE": "Premium Waiver Rider",
           "MESSAGE": "In the event that you are diagnosed with Critical Illness, your remaining premiums will be waived without affecting the payout benefit to you."
       }
-    }
+    },
+    "OPTIONAL": "(Optional)",
+    "IS_EARLY": "Early/MultiPay CI"
   },
   "EDUCATION": {
     "ABOUT_CHILD": {
@@ -77,7 +81,7 @@
       "TITLE": "Duration"
       },
     "EARLY_CI": {
-      "TITLE": "Early CI"
+      "TITLE": "Early/MultiPay CI"
       },
       "POPUP": {
         "TITLE": "Coverage Details",
@@ -168,7 +172,10 @@
         "COMPARE_PLANS": "Compare Plans",
         "PLAN_FOUND": " Plan Found",
         "PLANS_FOUND": " Plans Found",
-        "COMPARE": "Compare"
+        "COMPARE": "Compare",
+        "NO_RESULTS_MSG": "We’re unable to find a recommendation in our database now but our friendly advisers are here to help!",
+        "NO_RESULTS_BTN_MSG": "Click on the button below to get advice on suitable plans.",
+        "NO_RESULTS_BTN_TXT": "Send me recommendations"
       },
       "RESULTS": {
         "TITLE": "Plans"
@@ -183,7 +190,17 @@
             "DESCRIPTION": "<p><strong>Standard:</strong> To be eligible for a payout, you will have to be unable to perform 3 out of 6 Activities of Daily Living (ADLs).</p><p><strong>Lenient:</strong> To be eligible for a payout, you will have to be unable to perform 2 out of 6 Activities of Daily Living (ADLs).</p>",
             "LOGO_DESCRIPTION": "<div class=\"modal__icon-container\"><div  class=\"modal__icons\"><img src=\"assets/images/washing.png\"/></div>\n<div class=\"modal__icons\"><img src=\"assets/images/feeding.png\"/></div>\n<div class=\"modal__icons\"><img src=\"assets/images/dressing.png\"/></div>\n<div class=\"modal__icons\"><img src=\"assets/images/toileting.png\"/></div>\n<div class=\"modal__icons\"><img src=\"assets/images/mobility.png\"/></div>\n<div class=\"modal__icons\"><img src=\"assets/images/transferring.png\"/></div>\n</div>"
         }
+      },
+      "TOOL_TIP":{
+        "LP_TITLE":"Recommended Life Coverage Amount",
+        "LP_DESCRIPTION":"The recommended amount is based on your monthly living expenses multiplied by the number of years to provide for your dependants. If you would also like to provide for your children's education and to pay off all outstanding loans, these should be included.<br><br>If you would like a more accurate assessment, please use our \"Find out what I need\" journey",
+        "CI_TITLE":"Recommended Critical Illness Coverage Amount",
+        "CI_DESCRIPTION":"The recommended amount is 4 times your annual salary including bonuses, minus your existing critical illness coverage.",
+        "EARLY_TITLE": "Early/MultiPay CI",
+        "EARLY_DESCRIPTION": "The product recommendations in our database are for MultiPay CI riders. If you wish to also have Early CI rider, please do not hesitate to still send a request for quotation and our advisors will follow up with you."
       }
+   
+
   }
 
 

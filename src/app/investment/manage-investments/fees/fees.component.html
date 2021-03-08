@@ -1,0 +1,63 @@
+<section class="invest-section">
+    <div class="invest-section-items">
+        <div class="invest-section-content">
+            <div class="invest-bg">
+                <div class="invest-bg-media">
+                    <div class="invest-bg-image"></div>
+                    <div class="invest-bg-color"></div>
+                </div>
+                <div class="invest-bg-content">
+                    <div class="flex-row user_content flex-col-12">
+                        <div class="user_summary" id="your_portfolio_summary">
+                            <div class="user_portfolio flex-col">
+                                <div class="user_portfolio_lbl">{{this.pageTitle}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="app-asset-allocation" *ngIf="feeDetails">
+    <div class="container-fluid max-width--1024">
+        <div class="portfolio-allocation-details">
+            <div class="flex-col-12">
+                <div class="title-dec">{{'FEES.DESC' | translate}}</div>
+                <div class="annual-fee-desc">
+                    <div class="fund-block" *ngFor="let fee of feeDetails; let i = index">
+                        <div class="fund-title" [ngClass]="{'wise-saver-annual-fee': portfolioTypeFlag}">
+                            <div>{{fee.fundName}}</div>
+                            <div class="fee_value">{{ (fee.wrapFee && (fee.wrapFee | number : '1.2-2') > 0 ) ?
+                                (fee.wrapFee | number : '1.2-2') : 0
+                                }}%<span *ngIf="fee.fundName.toUpperCase() === 'DIMENSIONAL PORTFOLIOS'">*</span>
+                                <span *ngIf="fee.fundName.toUpperCase() === 'PLATFORM FEE'"> ({{fee.wfRemarks}})</span>
+                            </div>
+                        </div>
+                        <div class="flex-col-12 flex space-btwn mt20"
+                            *ngFor="let promotion of fee.promotions; let i = index">
+                            <div class=" flex-col-12 flex space-btwn">
+                                <div class="flex ">
+                                    <span class="form-alert-wrap"><img
+                                            src="assets\images\manage-investments\form-icon-alert.svg" /></span>
+                                    <label>
+                                        <div class="promo-code-header">
+                                            <span>{{promotion.shortDescription}}</span>
+                                        </div>
+                                        <div class="promo-code" id="promoCode">
+                                            ({{'FEES.VALID_TILL' | translate}}
+                                            {{promotion.promoCodeEndDate | date:'dd MMM yyyy'}})
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="fee_value-status">{{promotion.customerPromoStatusDisp | titlecase }}</div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="faq_dec" innerHTML="{{'FEES.FAQ_DESC'|translate}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

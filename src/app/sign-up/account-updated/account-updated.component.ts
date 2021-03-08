@@ -4,7 +4,7 @@ import { Router } from '../../../../node_modules/@angular/router';
 
 import { SignUpService } from '../sign-up.service';
 import { SIGN_UP_ROUTE_PATHS } from './../sign-up.routes.constants';
-import { NavbarService } from 'src/app/shared/navbar/navbar.service';
+import { NavbarService } from './../../shared/navbar/navbar.service';
 
 @Component({
   selector: 'app-account-updated',

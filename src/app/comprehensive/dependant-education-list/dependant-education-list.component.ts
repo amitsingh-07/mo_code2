@@ -1,7 +1,7 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { toInteger } from './../../shared/utils/common.util';
+import { Util } from './../../shared/utils/util';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
@@ -179,7 +179,7 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
             this.payOffYearValid(preferenceDetails.age)]);
             otherPropertyControl['endowmentMaturityAmount'].updateValueAndValidity();
             otherPropertyControl['endowmentMaturityYears'].updateValueAndValidity();
-            this.endowmentArrayPlan[index].endowmentMaturityAmount = toInteger(preferenceDetails.endowmentMaturityAmount);
+            this.endowmentArrayPlan[index].endowmentMaturityAmount = Util.toInteger(preferenceDetails.endowmentMaturityAmount);
             this.endowmentArrayPlan[index].endowmentMaturityYears = preferenceDetails.endowmentMaturityYears;
             dependantArray.push({
               userName: preferenceDetails.name,
@@ -202,7 +202,7 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
           this.endowmentDetail.forEach((details: any) => {
             educationPreferenceList.push({
               dependentId: details.dependentId, id: details.id, location: details.location, educationCourse: details.educationCourse,
-              educationSpendingShare: details.educationSpendingShare, endowmentMaturityAmount: toInteger(details.endowmentMaturityAmount),
+              educationSpendingShare: details.educationSpendingShare, endowmentMaturityAmount: Util.toInteger(details.endowmentMaturityAmount),
               endowmentMaturityYears: details.endowmentMaturityYears, enquiryId: details.enquiryId, nation: details.nation
             }
             );

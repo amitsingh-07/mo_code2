@@ -21,7 +21,7 @@ import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
-import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -39,6 +39,8 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
   queryParams: any;
   buttonTitle;
   updateId: any;
+  isEdit = true;
+
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
@@ -104,7 +106,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
     this.signUpService.getEditProfileInfo()
     .pipe(takeUntil(this.ngUnsubscribe))
     .subscribe((data) => {
-      if (data.objectList.customerBankDetail) {
+      if (data.objectList.customerBankDetail && data.objectList.customerBankDetail.length > 0) {
         const bankDetails = data.objectList.customerBankDetail[0];
         this.investmentAccountService.setEditProfileBankDetail(bankDetails.accountName, bankDetails.bank, bankDetails.accountNumber, bankDetails.id, false);
         this.bankForm.patchValue({
@@ -167,7 +169,8 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorTitle = error.title;
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
-    } else {
+    } else if(this.isEdit) {
+      this.isEdit = false;
       // tslint:disable-next-line:no-all-duplicated-branches
       if (this.addBank === 'true') {
         // Add Bank API Here
@@ -177,6 +180,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
         });
         this.manageInvestmentsService.saveProfileNewBank(form.getRawValue()).subscribe((response) => {
           this.loaderService.hideLoader();
+          this.isEdit = true;
           if (response.responseMessage.responseCode < 6000) {
             if (
               response.objectList &&
@@ -198,6 +202,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
           }
         },
           (err) => {
+            this.isEdit = true;
             this.loaderService.hideLoader();
             this.investmentAccountService.showGenericErrorModal();
           });
@@ -211,6 +216,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
         this.signUpService.updateBankInfoProfile(form.value.bank,
           form.value.accountHolderName, accountNum, this.updateId).subscribe((data) => {
             this.loaderService.hideLoader();
+            this.isEdit = true;
             // tslint:disable-next-line:triple-equals
             if (data.responseMessage.responseCode < 6000) {
               if (
@@ -233,6 +239,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
             }
           },
             (err) => {
+              this.isEdit = true;
               this.loaderService.hideLoader();
               this.investmentAccountService.showGenericErrorModal();
             });

@@ -9,16 +9,17 @@
             <img src="assets/images/investment-account/withdraw.svg" />
           </div>
           <div class="faq_link">
-            <a target="_blank" routerLink="/faq"
-              fragment="investment">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' | translate}}</a>
+            <a target="_blank" routerLink="/faq" fragment="investment">{{ 'ASSET_ALLOCATION.FAQ_DESC_TEXT' |
+              translate}}</a>
           </div>
         </div>
         <div class="col-lg-6 col-md-6">
           <div class="withdraw_to_acc">{{ 'WITHDRAW_PAYMENT_METHOD.WITHDRAW_TO_ACCOUNT' | translate}}</div>
           <div class="flex-col add_account mb20" (click)="verify2faNewBank()" *ngIf="hideAddBankAccount">
             <div class="bank-icon"><img src="assets/images/bank_icon.svg" /></div>
-            <div class="flex-row"><img
-                src="assets/images/plus-white.svg" /><span>{{ 'WITHDRAW_PAYMENT_METHOD.ADD_BANK_ACCOUNT' | translate}}</span>
+            <div class="flex-row">
+              <img src="assets/images/plus-white.svg" /><span>
+                {{ 'WITHDRAW_PAYMENT_METHOD.ADD_BANK_ACCOUNT' | translate}}</span>
             </div>
           </div>
           <div class="bank_transfer flex-col">
@@ -26,17 +27,20 @@
               <div class="selected_logo"><img src="assets/images/topupwithdraw/check_orange.svg" /></div>
               <div class="bank-icon">
                 <img class="bank_img" src="assets/images/bank_icon.svg" />
-                <div class="edit-bank" (click)="verify2faEditBank(i)"><img
+                <div *ngIf="!isInvestAndJointAccountHolder" class="edit-bank" (click)="verify2faEditBank(i)"><img
                     src="assets/images/investment-account/edit-dark.svg" /></div>
               </div>
               <div class="user_bank">{{ userBank.bank && userBank.bank.name}}</div>
               <div class="user_account">{{userBank.accountNumber}}</div>
               <div class="user_name">{{userBank.accountName | titlecase}}</div>
+              <div *ngIf="isInvestAndJointAccountHolder" class="joint-account-desc"
+                innerHTML="{{'WITHDRAW_PAYMENT_METHOD.JOINT_ACCOUNT_DESC' | translate}}"></div>
             </div>
           </div>
           <button type="button" [disabled]="userBankList && userBankList.length === 0" (click)="goToNext()"
-            class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="portfolioRecommendationNextBtn">{{
-          'LABEL.CONTINUE' | translate}}</button>
+            class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+            id="portfolioRecommendationNextBtn">{{
+            'LABEL.CONTINUE' | translate}}</button>
         </div>
       </div>
     </div>

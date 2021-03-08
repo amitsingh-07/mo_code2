@@ -127,7 +127,6 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
     this.state.currentSlide = e.currentSlide;
     this.state.activeRecommendationList = this.state.recommendationPlans[this.state.currentSlide];
     this.state.activeRecommendationType = this.state.activeRecommendationList.protectionType;
-
     this.updateCoverageDetails();
     switch (e.slick.currentDirection) {
       // Left
@@ -169,7 +168,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   moveCarouselNext() {
     const container = this.elRef.nativeElement.querySelector('#mobileHeaderMenu');
     const containerBound = container.getBoundingClientRect();
-    const boundElement = container.querySelector('.' + this.state.activeRecommendationType.replace(' ', '-'));
+    const boundElement = container.querySelector('.' + this.state.activeRecommendationType.split(' ').join('-'));
     if (boundElement) {
       const bound = boundElement.getBoundingClientRect();
       if (bound.right > containerBound.right) {
@@ -185,7 +184,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   moveCarouselPrev() {
     const container = this.elRef.nativeElement.querySelector('#mobileHeaderMenu');
     const containerBound = container.getBoundingClientRect();
-    const boundElement = container.querySelector('.' + this.state.activeRecommendationType.replace(' ', '-'));
+    const boundElement = container.querySelector('.' + this.state.activeRecommendationType.split(' ').join('-'));
     if (boundElement) {
       const bound = boundElement.getBoundingClientRect();
       if (bound.left < containerBound.left) {
@@ -203,7 +202,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
       this.state.prevActiveSlide = event.prev;
     } else {
       this.state.nextActiveSlide = event.prev;
-    }
+    }    
     this.state.activeRecommendationType = event.current;
     this.state.activeRecommendationList = this.getCurrentRecommendationList();
     this.updateCoverageDetails();
@@ -224,10 +223,13 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
     if (this.state.activeRecommendationList.productList[0]) {
       const data = this.state.activeRecommendationList.productList[0];
       this.state.premiumFrom = data.premium.premiumAmount;
-
+      this.state.ciCoverageAmount = '';
       this.state.premiumFrequency = this.state.perMonth;
 
       switch (this.state.activeRecommendationType) {
+        case this.state.protectionNeedTypes.LP_CI:
+          this.state.ciCoverageAmount = data.premium.ciSumAssured;          
+          break;
         case this.state.protectionNeedTypes.LIFE_PROTECTION:
           //this.coverageAmount = this.calculateService.getLifeProtectionData().coverageAmount + '';
           break;
@@ -253,6 +255,8 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
     } else {
       this.state.coverageAmount = '';
       this.state.premiumFrom = '';
+      this.state.ciCoverageAmount = '';
+      this.state.premiumFrequency = '';
     }
   }
 
@@ -284,7 +288,8 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   }
 
   proceed() {
-    this.selectedPlansService.setSelectedPlan(this.state.selectedPlans, this.state.enquiryId);
+    const enquiryProtectionTypeData = [];
+    this.selectedPlansService.setSelectedPlan(this.state.selectedPlans, this.state.enquiryId, enquiryProtectionTypeData);
     this.fbPixelService.track('ProceedEnquiry');
     if (this.authService.isSignedUser()) {
       this.selectedPlansService.updateInsuranceEnquiry().subscribe((data) => {

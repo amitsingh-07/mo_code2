@@ -14,7 +14,7 @@
                     <div class="multiple-portfolio-type-title">{{'YOUR_INVESTMENT.NOT_YET_INVESTED' | translate}}</div>
                     <div class="portfolio-list" *ngFor="let portfolio of filteredNotInvestedList; let i = index;">
                         <div (click)="detail(portfolio)" class="portfolio" *ngIf="(i <= 4) || showAllForNotInvested">
-                            <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img [src]="getImg(portfolio?.riskProfileId)" /></div>
+                            <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
@@ -23,6 +23,7 @@
                                 </span>
                                 </div>
                                 <div class="ref-code">{{'YOUR_INVESTMENT.REF_LABEL' | translate}} {{portfolio.refNo}}</div>
+                                <div class="ja-logo" *ngIf="portfolio?.entitlements?.jointAccount"><span class="ja-icon"><img src="assets/images/investment-account/ja-icon.svg" /></span><span>{{'YOUR_INVESTMENT.JOINT_ACCOUNT' | translate}}</span></div>
                                 <div class="portfolio-value">
                                     <span *ngIf="!portfolio?.portfolioValue">$0</span>
                                     <span *ngIf="portfolio?.portfolioValue">{{portfolio?.portfolioValue | formatCurrency}}</span>
@@ -49,7 +50,7 @@
                     <div class="multiple-portfolio-type-title">{{'YOUR_INVESTMENT.INVESTED' | translate}}</div>
                     <div (click)="detail(portfolio)" class="portfolio-list invested" *ngFor="let portfolio of filteredInvestedList; let i = index;">
                         <div *ngIf="(i <= 4) || showAllForInvested" class="portfolio">
-                            <div class="portfolio-icon" [ngClass]="portfolio?.riskProfileId == 7 ? 'ws-border' : ''"><img [src]="getImg(portfolio?.riskProfileId)" /></div>
+                            <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
                                     <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
@@ -58,6 +59,7 @@
                                 </span>
                                 </div>
                                 <div class="ref-code">{{'YOUR_INVESTMENT.REF_LABEL' | translate}} {{portfolio?.refNo}}</div>
+                                <div class="ja-logo" *ngIf="portfolio?.entitlements?.jointAccount"><span class="ja-icon"><img src="assets/images/investment-account/ja-icon.svg" /></span><span>{{'YOUR_INVESTMENT.JOINT_ACCOUNT' | translate}}</span></div>
                                 <div class="portfolio-value">
                                     <span *ngIf="!portfolio?.portfolioValue">$0</span>
                                     <span *ngIf="portfolio?.portfolioValue">{{portfolio?.portfolioValue | formatCurrency}}</span>
@@ -92,8 +94,7 @@
     <div class="container-fluid max-width--1024 no-portfolio-container">
         <div class="form-group-with-bg no-portfolio">
             <div class="flex-col align-center">
-                <div class="msg"> {{'YOUR_INVESTMENT.NO_PORTFOLIOS_YET' | translate}} <br>
-                    {{'YOUR_INVESTMENT.ADD_PORTFOLIO_START_INVEST' | translate}} </div>
+                <div class="msg"> {{'YOUR_INVESTMENT.NO_PORTFOLIOS_YET' | translate}} <br> {{'YOUR_INVESTMENT.ADD_PORTFOLIO_START_INVEST' | translate}} </div>
                 <div class="add-portfolio-icon"><img src="assets/images/add-portfolio-icon.svg" alt="" /></div>
                 <button type="button" class="btn btn-primary" id="add_portfolio" (click)="addPortfolio()">
                     {{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}} </button>

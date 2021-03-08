@@ -109,9 +109,25 @@ constructor(
     });
   }
   downloadComprehensiveReport() {
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    let newWindow;
+    if (iOS) {
+      newWindow = window.open();
+    }
     const payload = { reportId: this.getComprehensiveSummaryDashboard.reportId , enquiryId:this.enquiryId};
-    this.comprehensiveApiService.downloadComprehensiveReport(payload).subscribe((data: any) => {
-      this.downloadfile.saveAs(data.body, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
+    this.comprehensiveApiService.downloadComprehensiveReport(payload).subscribe((data: any) => {      
+      const pdfUrl = window.URL.createObjectURL(data.body);
+      if (iOS) {
+        if (newWindow.document.readyState === 'complete') {
+          newWindow.location.assign(pdfUrl);
+        } else {
+          newWindow.onload = () => {
+            newWindow.location.assign(pdfUrl);
+          };
+        }
+      } else {
+        this.downloadfile.saveAs(data.body, COMPREHENSIVE_CONST.REPORT_PDF_NAME);
+      }
     });
 
   }
@@ -300,6 +316,7 @@ constructor(
     this.advisorStatus = false;
     this.getComprehensiveSummaryDashboard = '';
     this.currentStep = -1;
+    this.paymentInstructions = false;
     this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe( (dashboardData: any) => {
       if (dashboardData && dashboardData.objectList[0]) {
         this.getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', this.getCurrentVersionType);

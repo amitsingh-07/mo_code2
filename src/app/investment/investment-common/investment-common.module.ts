@@ -28,9 +28,11 @@ import { InvestmentCommonRoutingModule } from './investment-common-routing.modul
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
     { prefix: './assets/i18n/app/', suffix: '.json' },
-    { prefix: './assets/i18n/investment-common/', suffix: '.json' }
+    { prefix: './assets/i18n/investment-common/', suffix: '.json' },
+    { prefix: './assets/i18n/promo-code/', suffix: '.json' }
   ]);
 }
+import { PromoCodeModule } from './../../promo-code/promo-code.module';
 
 @NgModule({
   imports: [
@@ -48,7 +50,8 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     SharedModule,
-    RouterModule
+    RouterModule,
+    PromoCodeModule
   ],
   declarations: [
     ConfirmPortfolioComponent,

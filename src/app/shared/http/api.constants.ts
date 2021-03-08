@@ -37,6 +37,7 @@ export let apiConstants = {
         verifyEmail: ACCOUNT_API_BASE_URL + '/verifyEmail',
         resetPassword: ACCOUNT_API_BASE_URL + '/resetPassword',
         forgotPassword: ACCOUNT_API_BASE_URL + '/forgotPassword?handleError=true',
+        resetEmail: ACCOUNT_API_BASE_URL + '/resetEmail',
         userProfileInfo: ACCOUNT_API_BASE_URL + '/getCustomerProfileDetails?handleError=true',
         editContactDeatails: ACCOUNT_API_BASE_URL + '/updateAddress',
         editPassword: ACCOUNT_API_BASE_URL + '/editPassword',
@@ -105,13 +106,19 @@ export let apiConstants = {
             getComprehensiveSummaryDashboard: COMPREHENSIVE_API_BASE_URL + 'fetchComprehensiveStatus',
             getProductAmount: ACCOUNT_API_BASE_URL + '/productPricing',
             updateComprehensiveStatus: COMPREHENSIVE_API_BASE_URL +'updateComprehensiveReportStatus',
-            insuranceData: 'assets/comprehensive/insurancePlan.json'
+            insuranceData: 'assets/comprehensive/insurancePlan.json',
+            generateComprehensiveCashflow: FINANCE_API_BASE_URL + 'generateComprehensiveCashflow',
         },
         payment: {
             getRequestSignature: PAYMENT_API_BASE_URL + 'getRequestSignature',
             cancelPayment: PAYMENT_API_BASE_URL + 'cancelPayment',
             getLastSuccessfulSubmittedTs: PAYMENT_API_BASE_URL + 'getLastSuccessfulSubmittedTs',
             getCustPromoCodeByCategory: ACCOUNT_API_BASE_URL + '/promocode/getCustPromoCodeByCategory'
+        },
+        promoCode: {
+            getCustomerInvestmentPromoCode: ACCOUNT_API_BASE_URL + '/promocode/getCustomerInvestmentPromoCode',
+            validateInvestPromoCode: ACCOUNT_API_BASE_URL + '/promocode/validateInvestmentPromoCode?handleError=true',
+            saveCustomerPromoCode: ACCOUNT_API_BASE_URL + '/promocode/saveCustomerPromoCode',
         }
     }
 };

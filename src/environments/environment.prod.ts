@@ -14,7 +14,9 @@ export const environment: IEnvironment = {
   adRollPropertyId: 'IJWYLBK7MZGF7JMIJ2CP3K',
   adRollAdvId: 'J4Q6YE7JGFEZRKPTQGHN6D',
   hideHomepage: true,
+  mockInvestAccount: false,
   expire2faTime: 298,
   expire2faPollRate: 2,
-  expire2faMaxCheck: 5
+  expire2faMaxCheck: 5,
+  promoCodeJsonUrl: 'https://mo-static-assets.s3-ap-southeast-1.amazonaws.com/promo/prod/promo-details.json'
 };

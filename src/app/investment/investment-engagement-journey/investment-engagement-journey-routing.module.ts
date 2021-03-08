@@ -21,6 +21,7 @@ import {
     YourInvestmentAmountComponent
 } from './your-investment-amount/your-investment-amount.component';
 import { RiskAcknowledgementComponent } from './risk-acknowledgement/risk-acknowledgement.component';
+import { WiseIncomePayoutComponent } from './wise-income-payout/wise-income-payout.component';
 
 const routes: Routes = [
   {
@@ -94,6 +95,11 @@ const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.RISK_ACKNOWLEDGEMENT,
     component: RiskAcknowledgementComponent,
+    canActivate: [InvestmentEngagementJourneyGuard]
+  },
+  {
+    path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.WISE_INCOME_PAYOUT,
+    component: WiseIncomePayoutComponent,
     canActivate: [InvestmentEngagementJourneyGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }

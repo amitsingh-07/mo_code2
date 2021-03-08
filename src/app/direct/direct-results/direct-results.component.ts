@@ -69,7 +69,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     this.componentName = DirectResultsComponent.name;
 
     this.routeSubscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart && !this.authService.isSignedUser()) {
+      if (event instanceof NavigationStart) {
         this.state.filteredResult = this.filteredResult;
         this.stateStoreService.saveState(this.componentName, this.state);
       } else if (event instanceof NavigationEnd) {
@@ -187,6 +187,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   // tslint:disable-next-line:cognitive-complexity
   handleResponse(data) {
     if (data.responseMessage.responseCode === 6004) {
+      this.state.enquiryId = data.objectList[0].enquiryId;
       this.state.resultsEmptyMessage = data.responseMessage.responseDescription;
       return;
     }
@@ -485,7 +486,14 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   proceedSelection() {
-    this.selectedPlansService.setSelectedPlan(this.state.selectedPlans, this.state.enquiryId);
+    let enquiryProtectionTypeData;
+    if (this.state.selectedPlans.length > 0) {
+      enquiryProtectionTypeData = [];
+    } else {
+      const getDirectFormData = this.directService.getDirectFormData();
+      enquiryProtectionTypeData = [{protectionTypeId: getDirectFormData.prodCategory.id, protectionType:  getDirectFormData.prodCategory.prodCatName}];
+    }
+    this.selectedPlansService.setSelectedPlan(this.state.selectedPlans, this.state.enquiryId, enquiryProtectionTypeData);
     this.fbPixelService.track('ProceedEnquiry');
     if (this.authService.isSignedUser()) {
       this.selectedPlansService.updateInsuranceEnquiry().subscribe((data) => {
