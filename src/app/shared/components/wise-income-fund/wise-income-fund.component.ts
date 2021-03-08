@@ -1,11 +1,11 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { InvestmentAccountService } from 'src/app/investment/investment-account/investment-account-service';
-import { InvestmentCommonService } from 'src/app/investment/investment-common/investment-common.service';
 
 import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from './../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+import { InvestmentAccountService } from '../../../investment/investment-account/investment-account-service';
+import { InvestmentCommonService } from '../../../investment/investment-common/investment-common.service';
 
 @Component({
   selector: 'app-wise-income-fund',

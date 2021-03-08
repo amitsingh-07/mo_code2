@@ -178,6 +178,8 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
             this.investmentCommonService.getAccountCreationActions().subscribe((data) => {
               if (this.investmentCommonService.isUserNotAllowed(data)) {
                 this.investmentCommonService.goToDashboard();
+              }  else if (this.investmentCommonService.isUsersFirstPortfolio(data)) {
+                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
               } else {
                 this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
               }
