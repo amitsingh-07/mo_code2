@@ -549,7 +549,10 @@
         "SET_RETIREMENT_SUM_TITLE": "Retirement Sum",
         "SET_RETIREMENT_SUM_MESSAGE": "This is the amount of retirement savings which you have chosen to set aside in your Retirement Account to receive monthly payouts from your payout eligibility age, which is currently at age 65.<br/><br/>Your retirement sum can be used to join CPF LIFE which provides you with life-long monthly payout or the Retirement Sum Scheme which provides you with a monthly payout until your Retirement Account balance is depleted.<br/><br/>Based on your Date of Birth, these are the default amounts that you would have set aside based on whether you have pledged a property or not:<br/><br/>BRS (with property) – $BRS_VAL <br><br/>FRS (without property) - $FRS_VAL"
       },
-      "OPTIONAL_VALIDATION_FLAG": false
+      "OPTIONAL_VALIDATION_FLAG": false,
+      "MYINFO_RETRIEVE": "Retrieve via MyInfo",
+      "MYINFO_CPF_MESSAGE": "<div class='bold-txt'>Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</div><br> You will now proceed to login via MyInfo and retrieve your following details. <span class='bold-txt'>Please use your own account only.</span><div class='mt15 mb15 teal-txt'>CPF Account Balance</div>Would you like to proceed?",
+      "LETS_GO": "Let’s go!"
     },
     "LOCATION_LIST": [
       "Singapore",

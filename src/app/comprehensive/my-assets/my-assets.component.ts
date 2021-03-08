@@ -21,6 +21,7 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 import { Util } from './../../shared/utils/util';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
+import { ModelWithButtonComponent } from './../../shared/modal/model-with-button/model-with-button.component';
 
 @Component({
   selector: 'app-my-assets',
@@ -172,10 +173,12 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
 
   openModal() {
     if (!this.viewMode) {
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.translate.instant('MYINFO.OPEN_MODAL_DATA.TITLE');
-      ref.componentInstance.errorMessage = this.translate.instant('MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
-      ref.componentInstance.isButtonEnabled = true;
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'retrieve-myinfo-modal'});
+      ref.componentInstance.lockIcon = true;
+      ref.componentInstance.errorTitle = this.translate.instant('CMP.MY_ASSETS.MYINFO_RETRIEVE');
+      ref.componentInstance.errorMessageHTML = this.translate.instant('CMP.MY_ASSETS.MYINFO_CPF_MESSAGE');
+      ref.componentInstance.primaryActionLabel = this.translate.instant('CMP.MY_ASSETS.LETS_GO');
+      ref.componentInstance.myInfo = true;
       ref.result.then(() => {
         this.myInfoService.setMyInfoAttributes('cpfbalances');
         this.myInfoService.goToMyInfo();
