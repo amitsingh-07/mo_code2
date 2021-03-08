@@ -336,7 +336,9 @@ export class InvestmentCommonService {
         activeTabId = 3;
         break;
     }
-    this.setWiseIncomePayOut(formData.payoutTypeId, activeTabId);
+    if (formData && formData.payoutTypeId) {
+      this.setWiseIncomePayOut(formData.payoutTypeId, activeTabId);
+    }
     const investmentFormData = this.setYourInvestmentAmount(formData);
     this.investmentEngagementJourneyService.setYourInvestmentAmount(investmentFormData);
     this.setInitialFundingMethod({ initialFundingMethodId: formData.fundingTypeId });
