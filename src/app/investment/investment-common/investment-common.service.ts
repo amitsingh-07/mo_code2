@@ -336,10 +336,14 @@ export class InvestmentCommonService {
         activeTabId = 3;
         break;
     }
-    this.setWiseIncomePayOut(formData.payoutTypeId, activeTabId);
+    if (formData && formData.payoutTypeId) {
+      this.setWiseIncomePayOut(formData.payoutTypeId, activeTabId);
+    }
     const investmentFormData = this.setYourInvestmentAmount(formData);
     this.investmentEngagementJourneyService.setYourInvestmentAmount(investmentFormData);
     this.setInitialFundingMethod({ initialFundingMethodId: formData.fundingTypeId });
+    const portfolioType = this.toDecidedPortfolioType(formData.portfolioType);
+    this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: portfolioType })
     this.commit();
 
   }
@@ -363,6 +367,17 @@ export class InvestmentCommonService {
         firstChkBox: false,
         secondChkBox: true
       }
+    }
+  }
+  toDecidedPortfolioType(selectedPortfolioValue) {
+    if (selectedPortfolioValue ===
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER) {
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO
+    } else if (selectedPortfolioValue ===
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT) {
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO
+    } else {
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO
     }
   }
 }
