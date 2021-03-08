@@ -2420,3 +2420,13 @@ select:-webkit-autofill:focus {
     margin-right: 0px;
   }
 } 
+
+.activate-singpass-modal-dialog {
+  .modal-content{
+    max-width: 375px;
+    margin: 0 auto;
+    @include allmobiles{
+      max-width: 100%;
+    }
+  }
+}

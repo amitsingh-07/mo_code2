@@ -113,7 +113,7 @@ app-edit-profile {
         &:disabled,
         &.disabled{
           background-color: #e7e7e7;
-          cursor: none;
+          cursor: not-allowed;
         }
       }
       .txt-green {

@@ -1,10 +1,15 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+app-activate-singpass-modal{
 // .activate-singpass-modal-dialog {
     .singpass-login-modal-block{
-        max-width: 375px !important;
-        margin: 0 auto;
-    }
+        // max-width: 375px !important;
+        // margin: 0 auto;
+        background: $white-color;
+        border-radius: 6px;
+        @include allmobiles{
+          border-radius: 0;
+        }
     .header-modal-image{
         background-image: url("../../../../assets/images/graphic-login-activate-singpass.svg");
         height: 180px;
@@ -13,27 +18,78 @@
         border-top-right-radius: 6px;
         background-size: cover !important;
         background-position: center !important;
+        @include allmobiles{
+          border-radius: 0;
+        }
+        &.completed{
+          background-image: url("../../../../assets/images/login-activate-singpass-completed@3x.png");
+        }
     }
-    .help-modal-body {
+    .modal-body {
+      color: $black-color;
       h4 {
         color: $modal-body-title-color !important;
         text-transform: capitalize;
-        margin-bottom: 25px;
+        margin-bottom: 10px;
         font-size: 22px;
         font-family: $muli-semi-bold;
       }
+      .more-info{
+        margin-top: 20px;
+        a{
+          font-family: $muli-bold;
+          color: #ff7900;
+        }
+      }
+      .retrieved-details{
+        font-size: 14px;
+        font-family: $muli-regular;
+        line-height: 21px;
+        .retrieved-details-title{
+          font-family: $muli-bold;
+          color: #5e5e5e;
+          margin-bottom: 15px;
+        }
+        div{
+          color: #00a7a7;
+        }
+        label{
+          margin-bottom: 0;
+        }
+      }
     }
-    // button.close {
-    //   width: 25px !important;
-    //   height: 25px !important;
-    //   background: url("../../../assets/images/close-button-dark.svg") !important;
-    //   position: absolute !important;
-    //   right: 15px !important;
-    //   top: 25px !important;
-    //   background-repeat: no-repeat !important;
-    // }
-    // .modal .close {
-    //   opacity: 1;
-    // }
-    
+    button.close {
+      // background: url("../../../assets/images/close-button-dark.svg") !important;
+      right: 20px !important;
+      top: 30px !important;
+    }
+    .action-button {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 6px 7px 0 $btn-shadow-color !important;
+      background-color: $teal-color;
+      border: 1px solid $teal-color;
+      margin-bottom: 20px;
+      font-family: $muli-bold;
+      font-size: 22px;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.3px;
+      text-align: center;
+      color: $white-color;
+      padding: 10px;
+      cursor: pointer; 
+      &:hover {
+        background-color: $robins-egg-blue-color;
+        border-color: $action-btn-hover-brdr-color;
+        color: $white-color !important;
+      }
+      &:active {
+        background-color: $action-btn-active-bg;
+        color: $white-color;
+      }
+    }
+  }
 //   }
+}
