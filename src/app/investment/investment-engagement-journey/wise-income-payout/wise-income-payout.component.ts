@@ -4,9 +4,6 @@ import {
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-
-
-
 import { appConstants } from '../../../app.constants';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
@@ -22,9 +19,6 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
-
-
-
 @Component({
   selector: 'app-wise-income-payout',
   templateUrl: './wise-income-payout.component.html',
@@ -46,6 +40,7 @@ export class WiseIncomePayoutComponent implements OnInit {
   activeTabId = 1;
   fundingMethods: any;
   payoutFundList: any;
+  defaultPayoutypeEnabled: boolean;
   constructor(
     public readonly translate: TranslateService,
     public activeModal: NgbActiveModal,
@@ -84,11 +79,22 @@ export class WiseIncomePayoutComponent implements OnInit {
     });
     this.formValues = this.investmentCommonService.getWiseIncomePayOut();
     this.activeTabId = this.formValues.activeTabId ? this.formValues.activeTabId : 1;
+  }
+  buildForm(){
+    this.activeTabId = this.formValues.activeTabId ? this.formValues.activeTabId : 1;
     this.wiseIncomePayOutTypeForm = new FormGroup({
       initialWiseIncomePayoutTypeId: new FormControl(
-        this.formValues.initialWiseIncomePayoutTypeId, Validators.required)
+        this.formValues.initialWiseIncomePayoutTypeId ?this.formValues.initialWiseIncomePayoutTypeId :
+        this.getdefaultWiseIcomePayoutTypeNameById(INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.DEFAULT_PAYOUT.GROW, this.wiseIncomePayOutTypes), Validators.required)
     });
-  }
+    if(
+      this.defaultPayoutypeEnabled = this.getdefaultWiseIcomePayoutTypeNameById(INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.DEFAULT_PAYOUT.GROW, this.wiseIncomePayOutTypes)){
+        this.defaultPayoutypeEnabled = true;
+    }
+    else{
+      this.defaultPayoutypeEnabled = false;
+    }
+    }
   getFundListMethod(portfolioTypeId){
     this.investmentEngagementJourneyService.getFundListMethod(portfolioTypeId).subscribe((data) =>{
       this.payoutFundList = { 'GROW': data.objectList[INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PAYOUT_FUNDLIST.GROW] ,
@@ -105,6 +111,7 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.investmentAccountService.getSpecificDropList('wiseIncomePayoutType').subscribe((data) => {
       this.loaderService.hideLoader();
       this.wiseIncomePayOutTypes = data.objectList.wiseIncomePayoutType;
+      this.buildForm();
     },
       (err) => {
         this.loaderService.hideLoader();
@@ -159,6 +166,14 @@ export class WiseIncomePayoutComponent implements OnInit {
     } else {
       return '';
     }
+  }
+  getdefaultWiseIcomePayoutTypeNameById(wiseIncomePayoutTypeId, payoutOptions) {
+    if (wiseIncomePayoutTypeId && payoutOptions) {
+      const wiseIncomePayoutType = payoutOptions.filter(
+        (prop) => prop.key === wiseIncomePayoutTypeId
+      );
+      return wiseIncomePayoutType[0].id;
+    } 
   }
   goToNext(form) {
     this.investmentCommonService.setWiseIncomePayOut(form.value, this.activeTabId);

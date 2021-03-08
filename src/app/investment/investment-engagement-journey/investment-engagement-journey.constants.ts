@@ -29,5 +29,8 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
     GROW: 'Grow & invest payout_Cash',
     FOUR_PERCENT: '4.5% p.a. income payout_Cash',
     EIGHT_PERCENT: '8% p.a. income payout_Cash',
+  },
+  DEFAULT_PAYOUT: {
+    GROW : '0%'
   }
 };
