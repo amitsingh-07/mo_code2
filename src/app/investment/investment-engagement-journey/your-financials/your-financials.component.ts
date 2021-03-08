@@ -14,6 +14,7 @@ import {
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
@@ -170,10 +171,22 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     this.investmentEngagementJourneyService.setYourFinancial(form.value);
     this.investmentEngagementJourneyService.savePersonalInfo(invCommonFormValues).subscribe((data) => {
       this.investmentCommonService.clearAccountCreationActions();
-      if (data) {
+      if (data){
         this.authService.saveEnquiryId(data.objectList.enquiryId);
         if (selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME) {
-          this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
+          if (this.authService.isSignedUser()) {
+            this.investmentCommonService.getAccountCreationActions().subscribe((data) => {
+              if (this.investmentCommonService.isUserNotAllowed(data)) {
+                this.investmentCommonService.goToDashboard();
+              } else if (this.investmentCommonService.isUsersFirstPortfolio(data)) {
+                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
+              } else {
+                this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+              }
+            });
+          } else{
+            this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
+          }
         } else {
           this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP2]);
         }

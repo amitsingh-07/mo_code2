@@ -172,6 +172,7 @@ export class PortfolioDetailsComponent implements OnInit {
       // Commented the MO2MP-2503 fix
       // this.investmentCommonService.clearAccountCreationActions();
       this.portfolio = data.objectList;
+      this.investmentCommonService.saveUpdateSessionData(this.portfolio);
       this.wiseIncomeEnabled = (this.portfolio.portfolioType.toLowerCase() == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase());
       if(!this.wiseIncomeEnabled) {        
         this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
