@@ -29,18 +29,19 @@
     
             <div class="flex-col-12 wise-income-payout" *ngIf="wiseIncomeEnabled && portfolio.payoutType">
               <!-- payout -->
-              <app-wise-income-payout-type [payoutType]="portfolio.payoutType"></app-wise-income-payout-type>
+              <app-wise-income-payout-type [portfolio]="portfolio" [payoutType]="portfolio.payoutType" ></app-wise-income-payout-type>
             </div>
             
             <div class="flex-col-12 wise-income-fund" *ngIf="wiseIncomeEnabled">
               <div class="wise-income-title">{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.FUNDING' | translate}}</div>
               <!-- Fund -->
-              <app-wise-income-fund [investmentInput]="userInputSubtext"></app-wise-income-fund>
+              <app-wise-income-fund  [portfolio]="portfolio" [investmentInput]="userInputSubtext" ></app-wise-income-fund>
             </div>
         
 
             <div class="flex-col-12 asset-allocation">
-                <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
+                <div class="title" *ngIf="!wiseIncomeEnabled">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
+                <div class="title" *ngIf="wiseIncomeEnabled">{{ 'PORTFOLIO_RECOMMENDATION.FUND_ASSET_ALLOCATION_LBL' | translate}}</div>
                 <!-- bonds -->
                 <app-allocation [portfolioType]="portfolio.portfolioType" [assets]="portfolio.sectorAllocations" [funds]="portfolio.funds" [colors]="colors"></app-allocation>
             </div>

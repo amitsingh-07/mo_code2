@@ -177,30 +177,37 @@ app-allocation {
                     border: solid 1px $bonds-equity-title-border-color;
                     background-color: $bonds-equity-card-bg-color;
                     .card-header {
-                        padding: 11px 20px;
+                        padding: 11px 20px !important;
                         border: solid 1px $bonds-equity-title-border-color;
                         background-color: $bonds-equity-bg-color !important;
                         .btn-link {
-                            padding: 0;
+                            padding: 0 !important;
                             width: 100%;
                             font-size: 18px;
                             font-family: $muli-bold;
                             line-height: normal;
                             letter-spacing: -0.3px;
-                            color: $white-color;
+                            color: $white-color !important;
                             .arrow {
                                 border: solid $white-color;
                                 border-width: 0 2px 2px 0;
+                                border-color: $white-color !important;
                                 display: inline-block;
                                 padding: 4px;
-                                float: right;
+                                float: none !important;
                                 transform: rotate(-135deg);
                                 -webkit-transform: rotate(-135deg);
+                                position: absolute;
+                                top: 24px;
+                                right: 20px;
                             }
                             &.collapsed {
                                 .arrow {
                                     transform: rotate(45deg);
                                     -webkit-transform: rotate(45deg);
+                                    position: absolute;
+                                    top: 19px;
+                                    right: 20px;
                                 }
                             }
                             &:hover,
@@ -222,6 +229,7 @@ app-allocation {
                         }
                     }
                     .card-body {
+                        padding: 0px;
                         .tab-content {
                             padding: 15px;
                             background-color: $bonds-equity-card-bg-color;

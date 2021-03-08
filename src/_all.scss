@@ -2413,3 +2413,10 @@ select:-webkit-autofill:focus {
   font-family: $muli-semi-bold;
   color:$silver-grey-color;
 }
+//wiseincome payout custom modal
+.custom-payout-modal{
+  .modal-body-title{
+    margin-bottom: 20px;
+    margin-right: 0px;
+  }
+} 
