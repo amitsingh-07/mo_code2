@@ -57,6 +57,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   showNotifications = false; // Show Notifications Feature
   showHeaderNavbar = false; // Navbar Show on Mobile
   showHelpIcon = false; // Help Icon for Mobile (Direct/ Guide Me)
+  showDropDownIcon = false; //Dropdown Icon for WiseIncome Payout 
   showSettingsIcon = false; // Settings Icon for Mobile (Direct)
   showNotificationClear = false; // Notification Clear all Button
   closeIcon = false;
@@ -216,6 +217,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
     this.navbarService.currentPageHelpIcon.subscribe((showHelpIcon) => {
       this.showHelpIcon = showHelpIcon;
+    });
+    this.navbarService.currentPageDropDownIcon.subscribe((showDropDownIcon) => {
+      this.showDropDownIcon = showDropDownIcon;
     });
     this.navbarService.currentPageProdInfoIcon.subscribe((closeIcon) => this.closeIcon = closeIcon);
     this.navbarService.currentPageClearNotify.subscribe((showClearNotify) => {

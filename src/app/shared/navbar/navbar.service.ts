@@ -37,6 +37,7 @@ export class NavbarService {
   private pageHelpIcon = new BehaviorSubject(false);
   private pageProdInfoIcon = new BehaviorSubject(false);
   private pageClearNotify = new BehaviorSubject(false);
+  private pageDropDownIcon = new BehaviorSubject(false);
 
   private investPageTitle = new BehaviorSubject('');
   private investPageSuperTitle = new BehaviorSubject('');
@@ -55,6 +56,7 @@ export class NavbarService {
   currentPageTitle = this.pageTitle.asObservable();
   currentPageSubTitle = this.pageSubTitle.asObservable();
   currentPageHelpIcon = this.pageHelpIcon.asObservable();
+  currentPageDropDownIcon = this.pageDropDownIcon.asObservable();
   currentPageProdInfoIcon = this.pageProdInfoIcon.asObservable();
   currentMobileModalEvent = this.mobileModal.asObservable();
   currentPageClearNotify = this.pageClearNotify.asObservable();
@@ -138,6 +140,7 @@ export class NavbarService {
     this.pageTitle.next(title);
     this.menuItem.next(menuItem);
     this.pageHelpIcon.next(false);
+    this.pageDropDownIcon.next(false);
     this.pageSettingsIcon.next(false);
     this.pageFilterIcon.next(false);
     this.pageSuperTitle.next('');
@@ -154,7 +157,7 @@ export class NavbarService {
 
   /* Header Functions*/
   // Setting Page Title
-  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean, filterIcon?: boolean, superTitle?: string) {
+  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, dropDownIcon?: boolean, settingsIcon?: boolean, filterIcon?: boolean, superTitle?: string) {
     this.setInvestPageTitle(title, superTitle ? superTitle : '');
     this.pageTitle.next(title);
     if (subTitle) {
@@ -166,6 +169,11 @@ export class NavbarService {
       this.pageHelpIcon.next(true);
     } else {
       this.pageHelpIcon.next(false);
+    } 
+    if (dropDownIcon) {
+      this.pageDropDownIcon.next(true);
+    } else {
+      this.pageDropDownIcon.next(false);
     }
     if (settingsIcon) {
       this.pageSettingsIcon.next(true);
