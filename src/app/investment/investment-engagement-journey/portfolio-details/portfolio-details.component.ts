@@ -168,28 +168,33 @@ export class PortfolioDetailsComponent implements OnInit {
 
   getPortfolioAllocationDetails() {
     const params = this.constructgetAllocationParams();
-    this.investmentEngagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
-      // Commented the MO2MP-2503 fix
-      // this.investmentCommonService.clearAccountCreationActions();
-      this.portfolio = data.objectList;
-      this.wiseIncomeEnabled = (this.portfolio.portfolioType.toLowerCase() == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase());
-      if(!this.wiseIncomeEnabled) {        
-        this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
-      }
-      this.getInvestmentCriteria(this.portfolio);
-      this.userInputSubtext = {
-        onetime: this.formatCurrencyPipe.transform(
-          this.portfolio.initialInvestment
-        ),
-        monthly: this.formatCurrencyPipe.transform(
-          this.portfolio.monthlyInvestment
-        ),
-        period: this.portfolio.investmentPeriod
-      };
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+    if (params && params.enquiryId) {
+      this.investmentEngagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
+        // Commented the MO2MP-2503 fix
+        // this.investmentCommonService.clearAccountCreationActions();
+        this.portfolio = data.objectList;
+        this.investmentCommonService.saveUpdateSessionData(this.portfolio);
+        this.wiseIncomeEnabled = (this.portfolio.portfolioType.toLowerCase() == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase());
+        if (!this.wiseIncomeEnabled) {
+          this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
+        }
+        this.getInvestmentCriteria(this.portfolio);
+        this.userInputSubtext = {
+          onetime: this.formatCurrencyPipe.transform(
+            this.portfolio.initialInvestment
+          ),
+          monthly: this.formatCurrencyPipe.transform(
+            this.portfolio.monthlyInvestment
+          ),
+          period: this.portfolio.investmentPeriod
+        };
+      },
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
+    } else {
+      this.navbarService.logoutUser();
+    }
   }
 
   constructgetAllocationParams() {
