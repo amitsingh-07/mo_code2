@@ -43,7 +43,6 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   loaderTitle: string;
   loaderDesc: string;
   selectedPortfolioType;
-  portfolio: any;
   loaderDescTwo: string;
 
   constructor(
@@ -215,7 +214,6 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     if (params && params.enquiryId) {
       this.investmentEngagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
         this.loaderService.hideLoader();
-        this.portfolio = data.objectList;
         this.redirectToNextPage();
       },
         (err) => {
