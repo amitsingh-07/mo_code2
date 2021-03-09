@@ -55,29 +55,20 @@ export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
     ) {
       this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.modelTitle = this.translate.instant(
-        'INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.TITLE'
-      );
-      this.modelMessge = this.translate.instant(
-        'INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.DESCRIPTION'
-      );
-      this.modelBtnText = this.translate.instant(
-        'INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.BTN-TEXT'
-      );
       this.modelTitle1 = this.translate.instant(
-        'INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.TITLE'
+        'LINK_ACCOUNT_MYINFO.MYINFO_CONFIRM.TITLE'
       );
       this.modelMessge1 = this.translate.instant(
-        'INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.DESCRIPTION'
+        'LINK_ACCOUNT_MYINFO.MYINFO_CONFIRM.DESCRIPTION'
       );
       this.modelBtnText1 = this.translate.instant(
-        'INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.BTN-TEXT'
+        'LINK_ACCOUNT_MYINFO.MYINFO_CONFIRM.BTN-TEXT'
       );
       this.loader2Modal = this.translate.instant(
-        'INVESTMENT_ACCOUNT_MYINFO.LOADER2'
+        'LINK_ACCOUNT_MYINFO.LOADER2'
       );
       this.loader3Modal = this.translate.instant(
-        'INVESTMENT_ACCOUNT_MYINFO.LOADER3'
+        'LINK_ACCOUNT_MYINFO.LOADER3'
       );
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
@@ -126,19 +117,11 @@ export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
 
   openModal() {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    if (this.investmentData.nationality) {
-      ref.componentInstance.errorTitle = this.modelTitle;
-      ref.componentInstance.errorMessageHTML = this.modelMessge;
-      ref.componentInstance.primaryActionLabel = this.modelBtnText;
-      ref.componentInstance.lockIcon = true;
-      ref.componentInstance.myInfo = true;
-    } else {
       ref.componentInstance.errorTitle = this.modelTitle1;
       ref.componentInstance.errorMessageHTML = this.modelMessge1;
       ref.componentInstance.primaryActionLabel = this.modelBtnText1;
       ref.componentInstance.lockIcon = true;
       ref.componentInstance.myInfo = true;
-    }
     ref.result
       .then(() => {
         this.getMyInfo();
@@ -197,7 +180,7 @@ export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
     this.myInfoService.setMyInfoAttributes(
       this.investmentAccountService.myInfoAttributes
     );
-    this.myInfoService.goToMyInfo();
+    this.myInfoService.goToMyInfo(true);
   }
 
   // ******** SECOND POP UP ********//

@@ -48,7 +48,7 @@ export class MyInfoService {
     return window.sessionStorage.getItem(MYINFO_ATTRIBUTE_KEY);
   }
 
-  goToMyInfo() {
+  goToMyInfo(linkAccount?) {
     let currentUrl = window.location.toString();
     let endPoint = currentUrl.split(currentUrl.split('/')[2])[currentUrl.split(currentUrl.split('/')[2]).length - 1].substr(1);
     window.sessionStorage.setItem('currentUrl', endPoint);
@@ -58,7 +58,7 @@ export class MyInfoService {
       '&purpose=' + this.purpose +
       '&state=' + this.state +
       '&redirect_uri=' + this.redirectUrl;
-    this.newWindow(authoriseUrl);
+    this.newWindow(authoriseUrl, linkAccount);
   }
 
   goToUAT1MyInfo() {
@@ -67,9 +67,9 @@ export class MyInfoService {
     this.newWindow(authoriseUrl);
   }
 
-  newWindow(authoriseUrl): void {
+  newWindow(authoriseUrl, linkAccount?): void {
     const self = this;
-    this.openFetchPopup();
+    this.openFetchPopup(linkAccount);
     this.isMyInfoEnabled = true;
     const screenWidth = screen.width;
     const screenHeight = screen.height;
@@ -150,7 +150,7 @@ export class MyInfoService {
     }
   }
 
-  openFetchPopup() {
+  openFetchPopup(linkAccount?) {
     const ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',
       keyboard: false,
@@ -159,8 +159,13 @@ export class MyInfoService {
     this.loadingModalRef = this.modal.open(ModelWithButtonComponent, ngbModalOptions);
     this.loadingModalRef.componentInstance.spinner = true;
     this.loadingModalRef.componentInstance.closeBtn = true;
-    this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
-    this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from MyInfo.';
+    if (linkAccount) {
+      this.loadingModalRef.componentInstance.errorTitle = 'Linking Account…';
+      this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we are linking up your MoneyOwl account.';
+    }else{
+      this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
+      this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from MyInfo.';
+    }
     this.loadingModalRef.componentInstance.primaryActionLabel = 'Cancel';
     this.loadingModalRef.componentInstance.closeAction.subscribe(() => {
       this.changeListener.next(this.getMyinfoReturnMessage(CANCELLED));
