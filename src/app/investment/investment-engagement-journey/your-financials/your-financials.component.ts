@@ -43,6 +43,8 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   loaderTitle: string;
   loaderDesc: string;
   selectedPortfolioType;
+  loaderDescTwo: string;
+
   constructor(
     private router: Router,
     private modal: NgbModal,
@@ -67,6 +69,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
       self.translator = this.translate.instant('MY_FINANCIALS');
       self.loaderTitle = this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.TITLE');
       self.loaderDesc = this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.DESC');
+      self.loaderDescTwo = this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.DESC_TWO');
       this.setPageTitle(self.pageTitle);
     });
   }
@@ -171,20 +174,12 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     this.investmentEngagementJourneyService.setYourFinancial(form.value);
     this.investmentEngagementJourneyService.savePersonalInfo(invCommonFormValues).subscribe((data) => {
       this.investmentCommonService.clearAccountCreationActions();
-      if (data){
+      if (data) {
         this.authService.saveEnquiryId(data.objectList.enquiryId);
         if (selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME) {
           if (this.authService.isSignedUser()) {
-            this.investmentCommonService.getAccountCreationActions().subscribe((data) => {
-              if (this.investmentCommonService.isUserNotAllowed(data)) {
-                this.investmentCommonService.goToDashboard();
-              }  else if (this.investmentCommonService.isUsersFirstPortfolio(data)) {
-                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
-              } else {
-                this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
-              }
-            });
-          } else{
+            this.getPortfolioAllocationDetails();
+          } else {
             this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
           }
         } else {
@@ -195,6 +190,45 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
+  }
+
+  redirectToNextPage() {
+    this.investmentCommonService.getAccountCreationActions().subscribe((data) => {
+      if (this.investmentCommonService.isUserNotAllowed(data)) {
+        this.investmentCommonService.goToDashboard();
+      } else if (this.investmentCommonService.isUsersFirstPortfolio(data)) {
+
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
+      } else {
+        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+      }
+    });
+  }
+
+  getPortfolioAllocationDetails() {
+    this.loaderService.showLoader({
+      title: this.loaderTitle,
+      desc: this.loaderDescTwo
+    });
+    const params = this.constructGetAllocationParams();
+    if (params && params.enquiryId) {
+      this.investmentEngagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
+        this.loaderService.hideLoader();
+        this.redirectToNextPage();
+      },
+        (err) => {
+          this.loaderService.hideLoader();
+          this.investmentAccountService.showGenericErrorModal();
+        });
+    } else {
+      this.navbarService.logoutUser();
+    }
+  }
+
+  constructGetAllocationParams() {
+    return {
+      enquiryId: this.authService.getEnquiryId()
+    };
   }
 
   goBack(form) {
