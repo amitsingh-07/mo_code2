@@ -90,7 +90,7 @@ export class FundDetailsComponent implements OnInit {
     
     const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     if (iOS) {
-      window.open(pdfUrl, '_blank','noopener noreferrer');
+      window.open(pdfUrl, '_blank');
     } else {        
       this.downloadFile(highlightSheetFileName);
     }
@@ -108,7 +108,7 @@ export class FundDetailsComponent implements OnInit {
     }
     const pdfUrl = document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + prospectusFileName;
     if (iOS) {
-      window.open(pdfUrl, '_blank','noopener noreferrer');
+      window.open(pdfUrl, '_blank');
     } else {        
       this.downloadFile(prospectusFileName);
     }
