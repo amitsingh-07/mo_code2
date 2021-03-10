@@ -230,6 +230,10 @@ body.modal-open::-webkit-scrollbar {
     line-height: 23px;
     letter-spacing: -0.15px;
   }
+
+  .anchor-txt {
+    color: $dark-orange-color;
+  }
 }
 
 .modal-header-icon img {
@@ -1297,5 +1301,11 @@ body.modal-open::-webkit-scrollbar {
 .retrieve-myinfo-modal {
   .modal-body-message {
     margin-bottom: 5px;
+  }
+}
+
+.nric-used-modal {
+  .modal-body-message {
+    margin-bottom: 0px;
   }
 }

@@ -2688,4 +2688,11 @@ export class ComprehensiveService {
       return '';
     }
   }
+
+  validateUin(uin) {
+    const payload = {
+      uin: uin
+    };
+    return this.apiService.validateUin(payload);
+  }
 }

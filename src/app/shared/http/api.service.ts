@@ -679,4 +679,11 @@ export class ApiService {
       );
   }
 
+  validateUin(payload) {
+    return this.http.post(apiConstants.endpoint.customer.validateUIN, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
 }
