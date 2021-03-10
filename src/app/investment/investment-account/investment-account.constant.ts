@@ -7,6 +7,9 @@ export let INVESTMENT_ACCOUNT_CONSTANTS = {
     'sex',
     'regadd'    
   ],
+  MY_INFO_LINK_ATTRIBUTES:[
+    'name'
+  ],
   INVESTMENT_ACCOUNT_GUARD_STATUS: [
     'BLOCKED_NATIONALITY',
     'PORTFOLIO_PURCHASED',

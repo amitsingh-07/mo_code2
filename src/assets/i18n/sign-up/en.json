@@ -477,6 +477,10 @@
     "NOTE": "No account added",
     "ADD_ACCOUNT": "Add Account"
   },
+  "ACTIVE_SINGPASS_MODAL":{
+    "ACTIVE_SINGPASS_MODAL_MESSAGE": "<h4>Activate SingPass Login</h4><br><div>Use MyInfo to activate your MoneyOwl SingPass Mobile App login. No more remembering of password. This feature is available to all SingPass Registered users.</div><div class=\"more-info\"><a target=\"_blank\" href='https://www.singpass.gov.sg/myinfo/intro'>Learn more about MyInfo</a></div>",
+    "ACTIVE_SINGPASS_BTN_TXT" : "Activate Now"
+  },
   "LINK_ACCOUNT_MYINFO": {
     
     "MYINFO_CONFIRM": {
@@ -489,11 +493,16 @@
       "DESCRIPTION": "Please be patient while we are linking up your MoneyOwl account."
     },
     "LOADER3": {
-      "message": "Sorry that this is taking longer than usual. Please be patient while we fetch your required data from MyInfo."
+      "message": "Sorry that this is taking longer than usual. Please be patient while we fetch your required data from MyInfo.",
+      "primaryActionLabel": "Try Again Later"
     },
     "LOADER2": {
-      "message": "Sorry that it is taking longer than expected. We are still trying to link up your MoneyOwl account. ",
-      "primaryActionLabel": "Try Again Later"
+      "message": "Sorry that it is taking longer than expected. We are still trying to link up your MoneyOwl account. "
+    },
+    "ERROR_MODAL":{
+      "TITLE": "Oops, Unable to Connect",
+      "MESSAGE": "We are unable to connect to MyInfo temporary. Please try again later.",
+      "BTN-TEXT": "Try Again Later"
     }
   }
 }

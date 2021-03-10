@@ -5,37 +5,23 @@
       <span aria-hidden="true" id="errorModelCloseIcon"></span>
     </button>
   </div>
+  <div class="modal-body" id="modalDesc" [innerHTML]="errorMessage"></div>
   <div class="modal-body" id="modalDesc">
-    <!-- [innerHTML]="description" -->
-    <div>
-      <h4>Activate SingPass Login</h4>
-      <div>Use MyInfo to activate your MoneyOwl SingPass Mobile App login. No more remembering of password. This feature
-        is available to all SingPass Registered users.</div>
-
-      <div class="more-info"><a target="_blank"
-        href="https://www.singpass.gov.sg/myinfo/intro">Learn more about MyInfo</a></div>
-    </div>
-    <div>
-      <h4>SingPass Account Link Completed!</h4>
-      <div>You may use SingPass Mobile App the next time you log in to MoneyOwl. </div>
-      <div class="retrieved-details">
-        <div class="retrieved-details-title">Fields retrieved:</div>
-        <label>Name</label>
-        <div>Kelvin Goh</div>
-        <label>NRIC/FIN</label>
-        <div>S1234567F</div>
-      </div>
+    <h4>SingPass Account Link Completed!</h4>
+    <div>You may use SingPass Mobile App the next time you log in to MoneyOwl. </div>
+    <div class="retrieved-details">
+      <div class="retrieved-details-title">Fields retrieved:</div>
+      <label>Name</label>
+      <div>Kelvin Goh</div>
+      <label>NRIC/FIN</label>
+      <div>S1234567F</div>
     </div>
   </div>
   <div class="plr20">
     <button type="button" class="action-button" id="errorModeButton"  (click)="openModal()">
-      <!-- (click)="primaryActionSelected()" -->
-      <!-- {{primaryActionLabel}} -->
-      Activate Now
+      {{primaryActionLabel}}
     </button>
     <button type="button" class="action-button" id="errorModeButton" (click)="activeModal.dismiss('Cross click')">
-      <!-- (click)="primaryActionSelected()" -->
-      <!-- {{primaryActionLabel}} -->
       Got It!
     </button>
   </div>

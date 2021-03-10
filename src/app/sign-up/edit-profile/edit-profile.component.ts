@@ -388,11 +388,11 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
   linkSingpass() {
     const ref = this.modal.open(ActivateSingpassModalComponent, { centered: true, windowClass: 'activate-singpass-modal-dialog' });
-    // ref.componentInstance.errorTitle = this.translate.instant('Activate SingPass Login'
-    // // ref.componentInstance.errorTitle = "Activate SingPass Login"
-    // );
-    // ref.componentInstance.errorMessage = this.translate.instant(
-    //   'FUNDING_METHOD.HELP_MODAL.DESC1'
-    // );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'ACTIVE_SINGPASS_MODAL.ACTIVE_SINGPASS_MODAL_MESSAGE'
+    );
+    ref.componentInstance.primaryActionLabel = this.translate.instant(
+      'ACTIVE_SINGPASS_MODAL.ACTIVE_SINGPASS_BTN_TXT'
+    );
   }
 }

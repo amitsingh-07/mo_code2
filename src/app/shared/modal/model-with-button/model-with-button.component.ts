@@ -32,6 +32,7 @@ export class ModelWithButtonComponent implements OnInit {
   @Input() investmentPeriodImg: any;
   @Input() spinner: any;
   @Input() myInfo: any;
+  @Input() isError: boolean;
   @Output() primaryAction = new EventEmitter<any>();
   @Output() secondaryAction = new EventEmitter<any>();
   @Output() yesClickAction = new EventEmitter<any>();

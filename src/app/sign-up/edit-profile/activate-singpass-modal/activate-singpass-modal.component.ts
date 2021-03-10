@@ -1,6 +1,6 @@
 import { Component, Input, NgZone, OnDestroy, OnInit, ViewEncapsulation  } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -24,6 +24,9 @@ import { InvestmentAccountService } from '../../../investment/investment-account
 export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
   @Input('label') label;
   @Input('position') position;
+  @Input() errorMessage: any;
+  @Input() errorMessageHTML: any;
+  @Input() primaryActionLabel: any;
   modelTitle: string;
   modelMessge: string;
   modelBtnText: string;
@@ -42,7 +45,10 @@ export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
   loader3StartTime: any;
   loader2Modal: any;
   loader3Modal: any;
-
+  loadingModalRef: NgbModalRef;
+  errorModalTitle: string;
+  errorModalMessage: string;
+  errorModalBtnText: string;
   constructor(
     public activeModal: NgbActiveModal,
     private configService: ConfigService,
@@ -69,6 +75,15 @@ export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
       );
       this.loader3Modal = this.translate.instant(
         'LINK_ACCOUNT_MYINFO.LOADER3'
+      );
+      this.errorModalTitle = this.translate.instant(
+        'LINK_ACCOUNT_MYINFO.ERROR_MODAL.TITLE'
+      );
+      this.errorModalMessage = this.translate.instant(
+        'LINK_ACCOUNT_MYINFO.ERROR_MODAL.MESSAGE'
+      );
+      this.errorModalBtnText = this.translate.instant(
+        'LINK_ACCOUNT_MYINFO.ERROR_MODAL.BTN-TEXT'
       );
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
@@ -116,6 +131,7 @@ export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
   }
 
   openModal() {
+    this.activeModal.close();
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
       ref.componentInstance.errorTitle = this.modelTitle1;
       ref.componentInstance.errorMessageHTML = this.modelMessge1;
@@ -169,16 +185,27 @@ export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
   }
 
   closeMyInfoPopup(error: boolean) {
-    this.myInfoService.closeMyInfoPopup(error);
+    const ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false,
+      centered: true,
+    };
+    this.loadingModalRef = this.modal.open(ModelWithButtonComponent, ngbModalOptions);
+    this.loadingModalRef.componentInstance.errorTitle = this.errorModalTitle;
+    this.loadingModalRef.componentInstance.errorMessage = this.errorModalMessage;
+    this.loadingModalRef.componentInstance.primaryActionLabel = this.errorModalBtnText;
+    this.loadingModalRef.componentInstance.isError = true;
+    //this.myInfoService.closeMyInfoPopup(error);
     clearTimeout(this.secondTimer);
     clearTimeout(this.thirdTimer);
+    // to call link custom modal
   }
 
   getMyInfo() {
     this.showConfirmation = false;
     this.investmentAccountService.setCallBackInvestmentAccount();
     this.myInfoService.setMyInfoAttributes(
-      this.investmentAccountService.myInfoAttributes
+      this.investmentAccountService.myInfoLinkAttributes
     );
     this.myInfoService.goToMyInfo(true);
   }
