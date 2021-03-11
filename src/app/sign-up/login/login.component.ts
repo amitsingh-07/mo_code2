@@ -9,7 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { flatMap } from 'rxjs/operators';
 
-import { SessionsService } from 'src/app/shared/Services/sessions/sessions.service';
+import { SessionsService } from './../../shared/Services/sessions/sessions.service';
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import { ConfigService, IConfig } from '../../config/config.service';

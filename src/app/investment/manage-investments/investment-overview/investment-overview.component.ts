@@ -400,19 +400,36 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
           ? this.investmentoverviewlist['overallCashAccountBalance'] : 0;
         this.totalValue = this.investmentoverviewlist['overallPortfolioValue']
           ? this.investmentoverviewlist['overallPortfolioValue'] : 0;
+          this.scrollFilterIntoView(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.ALL);
         break;
       case INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT:
         this.cashAccountBalance = this.investmentoverviewlist['totalCashAccountBalance']
           ? this.investmentoverviewlist['totalCashAccountBalance'] : 0;
         this.totalValue = this.investmentoverviewlist['totalValue']
           ? this.investmentoverviewlist['totalValue'] : 0;
+          this.scrollFilterIntoView(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT);
+        break;
+      case INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME:
+        this.cashAccountBalance = this.investmentoverviewlist['wiseIncomeTotalCashAccountBalance']
+          ? this.investmentoverviewlist['wiseIncomeTotalCashAccountBalance'] : 0;
+        this.totalValue = this.investmentoverviewlist['wiseIncomeTotalValue']
+          ? this.investmentoverviewlist['wiseIncomeTotalValue'] : 0;
+          this.scrollFilterIntoView(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME);
         break;
       case INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER:
         this.cashAccountBalance = this.investmentoverviewlist['wisesaverTotalCashAccountBalance']
           ? this.investmentoverviewlist['wisesaverTotalCashAccountBalance'] : 0;
         this.totalValue = this.investmentoverviewlist['wisesaverTotalValue']
           ? this.investmentoverviewlist['wisesaverTotalValue'] : 0;
+          this.scrollFilterIntoView(INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER);
         break;
+    }
+  }
+  // Auto scroll the category filter into view
+  scrollFilterIntoView(filter) {
+    const ele = document.querySelector('label[for="'+filter+'"]');
+    if (ele) {
+      ele.scrollIntoView({behavior: "smooth", block: "end", inline : "center"});
     }
   }
 }

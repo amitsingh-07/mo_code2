@@ -19,10 +19,18 @@ app-select-portfolio {
     font-size: 30px;
     margin-bottom: 15px;
   }
-
+  .portfolio-subheading {
+    margin: 30px 0 20px 0;
+    @include allmobiles {
+      margin: 10px 0 20px 0;
+    }
+    font-size: 18px;
+    font-family: $muli-bold;
+    text-align: center;
+  }
   .portfolio-cards {
     border-radius: 6px;
-    padding: 30px;
+    padding: 30px 17px 30px 23px;
     @include desktop {
       padding: 35px 30px;
     }
@@ -62,7 +70,7 @@ app-select-portfolio {
         font-size: 18px;
 
         @include max360 {
-          font-size: 17px;
+          font-size: 16px;
         }
 
         font-family: $muli-bold;
@@ -73,7 +81,12 @@ app-select-portfolio {
       &__desc {
         font-size: 13px;
         font-family: $muli-regular;
-        margin-bottom: 15px;
+        @include desktop {
+          margin-bottom: 20px;
+        }
+        @include iphone6 {
+          padding-right: 20px;
+        }
       }
 
       &__more {
@@ -100,9 +113,6 @@ app-select-portfolio {
     border-radius: 6px;
     top: -20px;
 
-    @include desktop {
-      width: 445px;
-    }
 
     &__slide-item {
       font-size: 16px;
@@ -125,6 +135,14 @@ app-select-portfolio {
       font-family: $muli-bold;
       margin-bottom: 15px;
     }
+    @include desktop {
+      .slick-track {
+        width: 800px !important;
+      }
+      .slick-slide {
+        width: 400px !important;
+      }
+    }
   }
 
   .btn:disabled {
@@ -146,7 +164,6 @@ app-select-portfolio {
       color: $robins-egg-blue-color;
     }
   }
-
   .more-info-shadow {
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.5);
   }

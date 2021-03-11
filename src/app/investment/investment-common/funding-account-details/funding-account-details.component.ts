@@ -1,5 +1,5 @@
 
-import {forkJoin as observableForkJoin,  Observable } from 'rxjs';
+import { forkJoin as observableForkJoin, Observable } from 'rxjs';
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -46,7 +46,8 @@ export class FundingAccountDetailsComponent implements OnInit {
   selectedFundingMethod;
   isSrsAccountAvailable = false;
   srsAccountDetails;
-
+  portfolio: any;
+  disableFundingMethod :boolean;
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -76,6 +77,10 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.formValues = this.investmentCommonService.getInvestmentCommonFormData();
     this.investmentAccountFormValues = this.investmentAccountService.getInvestmentAccountFormData();
+    this.portfolio = this.investmentCommonService.getPortfolioDetails();
+    this.disableFundingMethod = this.portfolio && this.portfolio.portfolioDetails && this.portfolio.portfolioDetails.payoutType && 
+    (this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.FOUR_PERCENT  
+     ||this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.EIGHT_PERCENT);
     this.getSrsAccDetailsAndOptionListCol();
   }
 
@@ -113,7 +118,9 @@ export class FundingAccountDetailsComponent implements OnInit {
   buildForm() {
     this.fundingAccountDetailsForm = this.formBuilder.group({
       // tslint:disable-next-line:max-line-length
-      confirmedFundingMethodId: [this.formValues.confirmedFundingMethodId ? this.formValues.confirmedFundingMethodId : this.formValues.initialFundingMethodId, Validators.required]
+      confirmedFundingMethodId: [this.formValues.confirmedFundingMethodId ? 
+        this.formValues.confirmedFundingMethodId : this.formValues.initialFundingMethodId, 
+        Validators.required]
     });
   }
 
@@ -165,7 +172,9 @@ export class FundingAccountDetailsComponent implements OnInit {
           userGivenPortfolioName: this.investmentAccountFormValues.defaultPortfolioName,
           userFundingMethod: this.getFundingMethodNameById(value, this.fundingMethods)
         };
+        if(this.portfolio.portfolioDetails.portfolioType.toUpperCase() !== INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME.toUpperCase()){
         this.showReassessRiskModal(key, value);
+        }
       }
     }
   }
@@ -211,6 +220,7 @@ export class FundingAccountDetailsComponent implements OnInit {
       return '';
     }
   }
+ 
   getOperatorIdByName(operatorId, OperatorOptions) {
     if (operatorId && OperatorOptions) {
       const OperatorBank = OperatorOptions.filter(

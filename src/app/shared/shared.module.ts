@@ -84,6 +84,8 @@ import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widg
 import { NotesComponent } from './components/notes/notes.component';
 import { CapsLockInputDirective } from './directives/caps-lock-input.directive';
 import { CopyClipboardDirective } from './directives/copy-clipboard.directive';
+import { WiseIncomePayoutTypeComponent } from './components/wise-income-payout-type/wise-income-payout-type.component';
+import { WiseIncomeFundComponent } from './components/wise-income-fund/wise-income-fund.component';
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
@@ -135,7 +137,9 @@ export function createTranslateLoader(http: HttpClient) {
     RoadmapComponent,
     SecurePipe, PortfolioListComponent, InstructionStepsComponent, FormatCurrencyPipe, NotesComponent,
     CopyClipboardDirective,
-    SpinnerComponent],
+    SpinnerComponent,
+    WiseIncomePayoutTypeComponent, 
+    WiseIncomeFundComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent, SpinnerComponent,
@@ -177,7 +181,9 @@ export function createTranslateLoader(http: HttpClient) {
     FormatCurrencyPipe,
     NotesComponent,
     CapsLockInputDirective,
-    CopyClipboardDirective
+    CopyClipboardDirective,
+    WiseIncomePayoutTypeComponent,
+    WiseIncomeFundComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,
