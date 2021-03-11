@@ -264,9 +264,16 @@
         <div class="tooltip-icon"></div>
       </div>
       <!--For WiseIncome Payout-->
-      <div *ngIf="showDropDownIcon">
-        <div>Arrow</div>
+      <div class="wiseincome-dropdown" *ngIf="showDropDownIcon" (click)="wiseIncomeDropDown($event)"><i class="material-icons" *ngIf="!wiseIncomeDropDownShow">keyboard_arrow_down</i><i class="material-icons" *ngIf="wiseIncomeDropDownShow">keyboard_arrow_up</i></div>
+      <div class="wiseincome-dropdown-item" *ngIf="wiseIncomeDropDownShow">
+        <div class="scroll-to">Scrolls to:</div>
+        <ul>
+          <li (click)="onClickScroll('featureBenefits')" [ngClass]="{'active': tab==='tab1'}">Features & benefits</li>
+          <li (click)="onClickScroll('fundAssets')" [ngClass]="{'active': tab==='tab2'}">Fund details & asset allocation</li>
+          <li (click)="onClickScroll('backToTop')" [ngClass]="{'active': tab==='tab3'}">Back to top</li>
+        </ul>
       </div>
+ 
       <div class="navbar__helpIcon--mobile navbar__helpIcon--mobile-settings" *ngIf="showSettingsIcon"
         (click)="showMobilePopUp()">
         <div class="tooltip-icon"></div>

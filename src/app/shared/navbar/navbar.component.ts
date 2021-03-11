@@ -32,6 +32,8 @@ import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
 import { SessionsService } from '../Services/sessions/sessions.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -126,6 +128,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   showPromoApplied: boolean = false;
 
+  //wiseIncome Portfolio Dropdown
+  wiseIncomeDropDownShow: boolean = false;
+  wiseIncomeDropDownItem: any;
+  tab : any;
+  tab1 : any;
+  tab2 : any;
+  tab3 : any;
+
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
   constructor(
@@ -141,7 +151,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private errorHandler: CustomErrorHandlerService,
     private selectedPlansService: SelectedPlansService,
     private progressTrackerService: ProgressTrackerService,
-    private comprehensiveService: ComprehensiveService) {
+    private comprehensiveService: ComprehensiveService,
+    private viewportScroller: ViewportScroller) {
     this.browserCheck();
     this.matrixResolver();
     config.autoClose = true;
@@ -549,6 +560,23 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   goToWrapFeeDetails() {
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.FEES]);
+  }
+
+  //wiseIncome Dropdown
+  wiseIncomeDropDown(event) {
+    this.wiseIncomeDropDownShow = !this.wiseIncomeDropDownShow;
+    //event.stopPropagation();
+  }
+  //wiseIncome Dropdown Scroll
+  onClickScroll(elementId: string): void {
+    this.viewportScroller.scrollToAnchor(elementId);
+    if(elementId=='featureBenefits'){
+      this.tab = 'tab1';
+    }else if(elementId=='fundAssets'){
+      this.tab = 'tab2';
+    }else if(elementId=='backToTop'){
+      this.tab = 'tab3';
+    }    
   }
 
 }
