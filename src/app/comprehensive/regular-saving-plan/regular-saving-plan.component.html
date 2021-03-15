@@ -48,14 +48,14 @@
                 </div>
                 <div class="flex-col-7">
                   <div class="dropdown-control"
-                    [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularUnitTrust.invalid}">
+                    [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].portfolioType.invalid}">
                     <div ngbDropdown id="relationshipDropDown">
                       <button type="button" class="btn btn-dropdown" id="dropdownInvestment" ngbDropdownToggle
                         appComprehensiveViewMode="{{viewMode}}" mode=1>
                         <span class="grey-text"
-                          *ngIf="comprehensiveRegularSavingsList.get('regularUnitTrust'). value ==='' || comprehensiveRegularSavingsList.get('regularUnitTrust'). value === null">{{'COMMON.LBL_SELECT' | translate}}</span>
+                          *ngIf="comprehensiveRegularSavingsList.get('portfolioType'). value ==='' || comprehensiveRegularSavingsList.get('portfolioType'). value === null">{{'COMMON.LBL_SELECT' | translate}}</span>
                         <span
-                          *ngIf="comprehensiveRegularSavingsList.get('regularUnitTrust'). value !=='' && comprehensiveRegularSavingsList.get('regularUnitTrust'). value !==null">{{comprehensiveRegularSavingsList.get('regularUnitTrust').value}}</span>
+                          *ngIf="comprehensiveRegularSavingsList.get('portfolioType'). value !=='' && comprehensiveRegularSavingsList.get('portfolioType'). value !==null">{{comprehensiveRegularSavingsList.get('portfolioType').value}}</span>
                       </button>
                       <div ngbDropdownMenu aria-labelledby="dropdownRelation">
                         <button class="dropdown-item" (click)="selectInvest('',i)">{{'CMP.SELECT'|translate}}</button>

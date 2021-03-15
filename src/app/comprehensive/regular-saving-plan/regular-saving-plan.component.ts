@@ -131,7 +131,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   buildRSPDetailsForm(value) {
     const fundTypeValue = (!this.comprehensiveJourneyMode)?this.fundTypeLite:value.fundType;
     return this.formBuilder.group({
-      regularUnitTrust: [value.regularUnitTrust],
+      portfolioType: [value.portfolioType],
       fundType: [fundTypeValue],
       amount: [value.amount],
       enquiryId: this.enquiryId
@@ -141,7 +141,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   buildEmptyRSPForm() {
     const fundTypeValue = (!this.comprehensiveJourneyMode)?this.fundTypeLite:'';
     return this.formBuilder.group({
-      regularUnitTrust: [''],
+      portfolioType: [''],
       fundType: [fundTypeValue],
       amount: [''],
       enquiryId: this.enquiryId
@@ -159,7 +159,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   }
   selectInvest(status, i) {
     const investment = status ? status : '';
-    this.RSPForm.controls['comprehensiveRegularSavingsList']['controls'][i].controls.regularUnitTrust.setValue(investment);
+    this.RSPForm.controls['comprehensiveRegularSavingsList']['controls'][i].controls.portfolioType.setValue(investment);
     this.RSPForm.get('comprehensiveRegularSavingsList').markAsDirty();
   }  
   selectFundType(status, i) {
@@ -175,7 +175,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
           if (!form.pristine || this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
             if(!form.value.hasRegularSavings) {
               form.value.comprehensiveRegularSavingsList = [{
-                regularUnitTrust: '',
+                portfolioType: '',
                 fundType: '',
                 amount: '',
                 enquiryId: this.enquiryId          
@@ -244,13 +244,13 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
       this.RSPForm.controls['comprehensiveRegularSavingsList']['controls'].forEach((otherInvest, i) => {
         const otherInvestmentControl = this.RSPForm.controls['comprehensiveRegularSavingsList']['controls'][i].controls;
         if (otherInvestmentControl['amount'].value > 0 ) {
-          otherInvestmentControl['regularUnitTrust'].setValidators([Validators.required]);
-          otherInvestmentControl['regularUnitTrust'].updateValueAndValidity();
+          otherInvestmentControl['portfolioType'].setValidators([Validators.required]);
+          otherInvestmentControl['portfolioType'].updateValueAndValidity();
           otherInvestmentControl['fundType'].setValidators([Validators.required]);
           otherInvestmentControl['fundType'].updateValueAndValidity();
         } else {
-          otherInvestmentControl['regularUnitTrust'].setValidators([]);
-          otherInvestmentControl['regularUnitTrust'].updateValueAndValidity();
+          otherInvestmentControl['portfolioType'].setValidators([]);
+          otherInvestmentControl['portfolioType'].updateValueAndValidity();
           otherInvestmentControl['fundType'].setValidators([]);
           otherInvestmentControl['fundType'].updateValueAndValidity();
         }

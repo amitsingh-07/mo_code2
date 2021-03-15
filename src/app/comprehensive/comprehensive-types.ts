@@ -210,7 +210,7 @@ export interface IOtherProperties {
     fundType: string
 }
 export interface IRegularSavings {
-    regularUnitTrust: string;
+    portfolioType: string;
     amount: number;
     fundType: string;
     enquiryId: number;

@@ -345,7 +345,7 @@ export class ComprehensiveFormError {
     RSPForm: object = {
         formFieldErrors: {
             errorTitle: 'Oops! Please enter the Regular Savings Plan  details:',
-            regularUnitTrust: {
+            portfolioType: {
                 required: {
                     errorTitle: 'Invalid Unit Trust Type',
                     errorMessage: 'Unit Trust Type'
