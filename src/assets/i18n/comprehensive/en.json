@@ -390,12 +390,15 @@
         "CHILD_EDUCATION_EXPENSES_MESSAGE": "Your share of child’s education expenses excludes the portion that may be paid by your spouse or other relatives."
       }
     },
+    "SELECT": "Select",
     "RSP": {
       "TITLE": "Do you have any Regular Unit Trust Saving Plans (RSP)?",
       "HEADER": "Regular Saving Plan",
       "OTHER": "Other ",
       "ADD_RSP": "Add Other Regular Saving Plan",
-      "UNIT_TRUST_TYPE": "Type of <br>Unit Trust",
+      "UNIT_TRUST_TYPE": "Type of <br>Portfolio",
+      "FUND_TYPE": "Funding Type",
+      "FUND_TYPE_LITE": "Cash",
       "PAID_BY_CASH": "Paid By Cash",
       "PAID_BY_CPF": "Paid By CPF",
       "MONTH": "mth",
@@ -405,8 +408,23 @@
         "OTHER_RSP_TITLE": "Other Regular Saving Plan",
         "OTHER_RSP_MESSAGE": "This refers to any fixed amount that you have committed regularly into buying an investment such as shares, bonds, unit trusts, etc."
       },
-      "OPTIONAL_VALIDATION_FLAG": false
+      "OPTIONAL_VALIDATION_FLAG": false,
+      "LITE_RSP_ERROR": "Select type of portfolio"
     },
+    "FUND_TYPE_LIST": [
+      {
+        "text": "Cash",
+        "value": "Cash"
+      },
+      {
+        "text": "CPF",
+        "value": "CPF"
+      },
+      {
+        "text": "SRS",
+        "value": "SRS"
+      } 
+    ],
     "INVESTMENT_TYPE_LIST": [
       {
         "text": "MoneyOwl - Equity",
@@ -427,6 +445,22 @@
       {
         "text": "MoneyOwl - Moderate",
         "value": "MoneyOwl - Moderate"
+      },
+      {
+        "text": "MoneyOwl - WiseIncome Grow & Invest",
+        "value": "MoneyOwl - WiseIncome Grow & Invest"
+      },
+      {
+        "text": "MoneyOwl - WiseIncome 4.5% p.a. payout",
+        "value": "MoneyOwl - WiseIncome 4.5% p.a. payout"
+      },
+      {
+        "text": "MoneyOwl - WiseIncome 8% p.a. payout",
+        "value": "MoneyOwl - WiseIncome 8% p.a. payout"
+      },
+      {
+        "text": "MoneyOwl - WiseSaver",
+        "value": "MoneyOwl - WiseSaver"
       },
       {
         "text": "Equities",
@@ -484,12 +518,15 @@
       "ADD_INVESTMENT_PROPERTIES": "Add Investment Properties",
       "INVESTMENT_PROPERTIES": "Investment Properties",
       "INVESTMENTS": "Investments",
-      "INVESTMENT_TYPE": "Type of Investment",
+      "INVESTMENT_TYPE": "Type of Portfolio",
       "OTHERS": "Others",
       "OTHER_INVESTMENT": "Other Investments",
       "ADD_INVESTMENT": "Add Other Investment",
       "OTHER_ASSETS": "Other Assets",
-      "OTHER_ASSETS_HINT": "e.g. Jewellery",
+      "OTHER_ASSETS_HINT": "e.g. Jewellery",      
+      "FUND_TYPE": "Funding Type",
+      "LITE_RSP_ERROR": "Select type of portfolio",
+      "FUND_TYPE_LITE": "Cash",
       "INVESTMENT_TYPE_LIST": [
         {
           "text": "MoneyOwl - Equity",
@@ -510,6 +547,22 @@
         {
           "text": "MoneyOwl - Moderate",
           "value": "MoneyOwl - Moderate"
+        },
+        {
+          "text": "MoneyOwl - WiseIncome Grow & Invest",
+          "value": "MoneyOwl - WiseIncome Grow & Invest"
+        },
+        {
+          "text": "MoneyOwl - WiseIncome 4.5% p.a. payout",
+          "value": "MoneyOwl - WiseIncome 4.5% p.a. payout"
+        },
+        {
+          "text": "MoneyOwl - WiseIncome 8% p.a. payout",
+          "value": "MoneyOwl - WiseIncome 8% p.a. payout"
+        },
+        {
+          "text": "MoneyOwl - WiseSaver",
+          "value": "MoneyOwl - WiseSaver"
         },
         {
           "text": "Equities",
