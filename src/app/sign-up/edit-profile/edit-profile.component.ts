@@ -64,6 +64,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   is2faAuthorized: boolean;
 
   disableBankSrsEdit = false;
+  linkCatagories;
 
   constructor(
     private modal: NgbModal,
@@ -140,6 +141,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         });
     });
 
+    this.linkCatagories = SIGN_UP_CONFIG.SINGPASSLINKSTATUS;
   }
 
   ngOnDestroy() {

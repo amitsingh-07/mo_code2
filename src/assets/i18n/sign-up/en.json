@@ -435,7 +435,14 @@
     "CONFIRM_PASSWORD": "Confirm Password",
     "FORGET_PASSWORD": "Forgot your password?",
     "APPLY_CHANGES": "Apply Changes",
-    "JOINT_ACCOUNT_DESC":"While we upgrade our systems, please email <a  target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> if you would like to update your bank details."
+    "JOINT_ACCOUNT_DESC":"While we upgrade our systems, please email <a  target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> if you would like to update your bank details.",
+    "SINGPASS":{
+      "TITLE": "Log In using Singpass Mobile",
+      "ACTIVATE": "Link to activate your account",
+      "PENDING": "Pending investment account application to complete",
+      "LINK_LBL": "Link",
+      "LINKED_LBL": "Linked"
+    }
   },
   "ADD_BANK": {
     "ACCOUNT_NAME": "Account Holders Name",

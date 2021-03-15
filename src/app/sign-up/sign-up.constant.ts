@@ -50,5 +50,10 @@ export let SIGN_UP_CONFIG = {
     },
       SIGN_UP : {
       EMAIL:"email"
+    },
+    SINGPASSLINKSTATUS:{
+        LINKED: "LINKED",
+        NOTLINKED: "NOT_LINKED", 
+        DISABLED: "DISABLED"
     }
 };
