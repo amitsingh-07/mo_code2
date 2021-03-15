@@ -207,11 +207,12 @@ export interface IOtherProperties {
     enquiryId: number;
     typeOfInvestment: string;
     investmentAmount: number;
+    fundType: string
 }
 export interface IRegularSavings {
     regularUnitTrust: string;
-    regularPaidByCash: string;
-    regularPaidByCPF: string;
+    amount: number;
+    fundType: string;
     enquiryId: number;
 }
 export interface IInsurancePlan {

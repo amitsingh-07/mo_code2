@@ -351,22 +351,16 @@ export class ComprehensiveFormError {
                     errorMessage: 'Unit Trust Type'
                 }
             },
-            regularPaidByCash: {
+            fundType: {
                 required: {
-                    errorTitle: 'Invalid Paid By Cash',
-                    errorMessage: 'Paid By Cash'
-                }
-            },
-            regularPaidByCPF: {
-                required: {
-                    errorTitle: 'Invalid Payment using CPF',
-                    errorMessage: 'Regular Paid By CPF'
+                    errorTitle: 'Invalid Funding Type',
+                    errorMessage: 'Funding Type'
                 }
             },
             comprehensiveRegularSavingsList: {
                 required: {
                     errorTitle: this.invalidName,
-                    errorMessage: 'Select type of unit trust'
+                    errorMessage: 'Select type of portfolio and funding type'
                 },
             }
         }
@@ -387,7 +381,13 @@ export class ComprehensiveFormError {
             typeOfInvestment: {
                 required: {
                     errorTitle: this.invalidName,
-                    errorMessage: 'Select Investment Type'
+                    errorMessage: 'Select Type of Portfolio'
+                },
+            },
+            fundType: {
+                required: {
+                    errorTitle: this.invalidName,
+                    errorMessage: 'Select Funding Type'
                 },
             },
             investmentAmount: {
@@ -403,7 +403,7 @@ export class ComprehensiveFormError {
             assetsInvestmentSet: {
                 required: {
                     errorTitle: this.invalidName,
-                    errorMessage: 'Select type of investment'
+                    errorMessage: 'Select type of Portfolio and funding type'
                 },
             }
         }
