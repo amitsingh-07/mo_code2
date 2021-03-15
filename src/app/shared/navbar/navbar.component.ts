@@ -268,6 +268,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
      this.showMenuItemInvestUser = investUser;
     });
     
+    this.navbarService.wiseIncomeDropDownShow.subscribe((subscribed) => {
+      this.wiseIncomeDropDownShow = subscribed;
+    });
   }
 
   ngAfterViewInit() {

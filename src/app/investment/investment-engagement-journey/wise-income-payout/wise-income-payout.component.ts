@@ -111,9 +111,6 @@ export class WiseIncomePayoutComponent implements OnInit {
         this.investmentAccountService.showGenericErrorModal();
       });
   }
-  // setPageTitle(title: string) {
-  //   this.navbarService.setPageTitle(title);
-  // }
   setPageTitle(title: string, subTitle?: string, dropDownIcon?: boolean) {
     this.navbarService.setPageTitle(title, null, null, dropDownIcon);
   }
@@ -173,5 +170,8 @@ export class WiseIncomePayoutComponent implements OnInit {
       this.investmentCommonService.setInitialFundingMethod({ initialFundingMethodId: fundingMethod });
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
     }
+  }
+  ngOnDestroy() {
+    this.navbarService.unsubscribeDropDownIcon();
   }
 }

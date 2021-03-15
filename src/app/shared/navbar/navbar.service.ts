@@ -75,6 +75,7 @@ export class NavbarService {
   // logout
   private logoutSubject = new Subject();
   logoutObservable$ = this.logoutSubject.asObservable();
+  wiseIncomeDropDownShow = new BehaviorSubject(false);
 
   constructor(private router: Router, private _location: Location) {
     this.router.events.pipe(
@@ -230,6 +231,14 @@ export class NavbarService {
   unsubscribeMenuItemClick() {
     this.menuItem.next(null);
     this.$menuItemClick.next('');
+  }
+
+  subscribeDropDownIcon() {
+    this.wiseIncomeDropDownShow.next(true);
+  }
+
+  unsubscribeDropDownIcon() {
+    this.wiseIncomeDropDownShow.next(false);
   }
 
   logoutUser() {
