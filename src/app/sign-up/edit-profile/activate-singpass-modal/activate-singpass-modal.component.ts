@@ -1,4 +1,4 @@
-import { Component, Input, NgZone, OnDestroy, OnInit, ViewEncapsulation  } from '@angular/core';
+import { Component, Input, NgZone, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -27,6 +27,8 @@ export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
   @Input() errorMessage: any;
   @Input() errorMessageHTML: any;
   @Input() primaryActionLabel: any;
+  @Input() secondaryActionLabel: any;
+  @Input() isLinked: boolean;
   modelTitle: string;
   modelMessge: string;
   modelBtnText: string;
@@ -49,6 +51,7 @@ export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
   errorModalTitle: string;
   errorModalMessage: string;
   errorModalBtnText: string;
+  isMyInfoEnabled = false;
   constructor(
     public activeModal: NgbActiveModal,
     private configService: ConfigService,
@@ -58,8 +61,8 @@ export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
     public readonly translate: TranslateService,
     private investmentAccountService: InvestmentAccountService,
     private ngZone: NgZone
-    ) {
-      this.translate.use('en');
+  ) {
+    this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.modelTitle1 = this.translate.instant(
         'LINK_ACCOUNT_MYINFO.MYINFO_CONFIRM.TITLE'
@@ -76,22 +79,22 @@ export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
       this.loader3Modal = this.translate.instant(
         'LINK_ACCOUNT_MYINFO.LOADER3'
       );
-      this.errorModalTitle = this.translate.instant(
-        'LINK_ACCOUNT_MYINFO.ERROR_MODAL.TITLE'
-      );
-      this.errorModalMessage = this.translate.instant(
-        'LINK_ACCOUNT_MYINFO.ERROR_MODAL.MESSAGE'
-      );
-      this.errorModalBtnText = this.translate.instant(
-        'LINK_ACCOUNT_MYINFO.ERROR_MODAL.BTN-TEXT'
-      );
+      // this.errorModalTitle = this.translate.instant(
+      //   'LINK_ACCOUNT_MYINFO.ERROR_MODAL.TITLE'
+      // );
+      // this.errorModalMessage = this.translate.instant(
+      //   'LINK_ACCOUNT_MYINFO.ERROR_MODAL.MESSAGE'
+      // );
+      // this.errorModalBtnText = this.translate.instant(
+      //   'LINK_ACCOUNT_MYINFO.ERROR_MODAL.BTN-TEXT'
+      // );
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.isInvestmentMyInfoEnabled = config.investmentMyInfoEnabled;
       this.loader2StartTime = config.investment.myInfoLoader2StartTime * 1000;
       this.loader3StartTime = config.investment.myInfoLoader3StartTime * 1000;
     });
-     }
+  }
 
   ngOnInit() {
     this.showConfirmation = false;
@@ -133,21 +136,22 @@ export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
   openModal() {
     this.activeModal.close();
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.modelTitle1;
-      ref.componentInstance.errorMessageHTML = this.modelMessge1;
-      ref.componentInstance.primaryActionLabel = this.modelBtnText1;
-      ref.componentInstance.lockIcon = true;
-      ref.componentInstance.myInfo = true;
+    ref.componentInstance.errorTitle = this.modelTitle1;
+    ref.componentInstance.errorMessageHTML = this.modelMessge1;
+    ref.componentInstance.primaryActionLabel = this.modelBtnText1;
+    ref.componentInstance.lockIcon = true;
+    ref.componentInstance.myInfo = true;
     ref.result
       .then(() => {
         this.getMyInfo();
       })
       .catch((e) => { });
-  } 
-  
+  }
+
   getMyInfoData() {
     this.showFetchPopUp();
-    this.myInfoSubscription = this.myInfoService.getMyInfoData().subscribe((data) => {
+    this.myInfoSubscription = this.myInfoService.getSingpassAccountData().subscribe((data) => {
+      // new api
       if (data && data.objectList[0]) {
         this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
         this.myInfoService.isMyInfoEnabled = false;
@@ -155,18 +159,66 @@ export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
         const currentUrl = window.location.toString();
         const rootPoint = currentUrl.split(currentUrl.split('/')[4])[0].substr(0, currentUrl.split(currentUrl.split('/')[4])[0].length - 1);
         const redirectObjective = rootPoint + MY_INFO_START_PATH;
-        if (window.location.href === redirectObjective) {
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
-        } else {
-          this.ngZone.run(() => {
-            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
-          });
+        // if (window.location.href === redirectObjective) {
+        //   this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
+        // } else {
+        //   this.ngZone.run(() => {
+        //     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
+        //   });
+        // }
+        if(data.responseMessage.responseCode === 6000){
+          const ref = this.modal.open(ActivateSingpassModalComponent, { centered: true , windowClass: 'linked-singpass-modal' });
+          ref.componentInstance.errorMessage = this.translate.instant(
+            'SUCCESS_SINGPASS_MODAL.MESSAGE'
+          );
+          ref.componentInstance.secondaryActionLabel = this.translate.instant(
+            'SUCCESS_SINGPASS_MODAL.BTN_TXT'
+          );
+          ref.componentInstance.isLinked = true;
+        }
+        else if (data.responseMessage.responseCode === 6014) {
+          const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.translate.instant(
+            'LINK_ACCOUNT_MYINFO.ALREADY_EXISTING.TITLE'
+          );
+          ref.componentInstance.errorMessage = this.translate.instant(
+            'LINK_ACCOUNT_MYINFO.ALREADY_EXISTING.DESC'
+          );
+          ref.componentInstance.primaryActionLabel = this.translate.instant(
+            'LINK_ACCOUNT_MYINFO.ALREADY_EXISTING.BTN-TEXT'
+          );
+        }
+        else if(data.responseMessage.responseCode === 6015){
+          const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.translate.instant(
+            'LINK_ACCOUNT_MYINFO.DIFFERENT_USER.TITLE'
+          );
+          ref.componentInstance.errorMessage = this.translate.instant(
+            'LINK_ACCOUNT_MYINFO.DIFFERENT_USER.DESC'
+          );
+          ref.componentInstance.primaryActionLabel = this.translate.instant(
+            'LINK_ACCOUNT_MYINFO.DIFFERENT_USER.BTN-TEXT'
+          );
+        }
+        else if(data.responseMessage.responseCode === 5129){
+          const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.translate.instant(
+            'LINK_ACCOUNT_MYINFO.ERROR_MODAL.TITLE'
+          );
+          ref.componentInstance.errorMessage = this.translate.instant(
+            'LINK_ACCOUNT_MYINFO.ERROR_MODAL.MESSAGE'
+          );
+          ref.componentInstance.primaryActionLabel = this.translate.instant(
+            'LINK_ACCOUNT_MYINFO.ERROR_MODAL.BTN-TEXT'
+          );
         }
       } else {
         this.closeMyInfoPopup(true);
+        // new error modal
       }
     }, (error) => {
       this.closeMyInfoPopup(true);
+      // new error modal
     });
   }
 
@@ -184,21 +236,32 @@ export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
     }, this.loader3StartTime);
   }
 
+  closeFetchPopup() {
+    if (this.loadingModalRef) {
+      this.loadingModalRef.close();
+    }
+  }
+
   closeMyInfoPopup(error: boolean) {
-    const ngbModalOptions: NgbModalOptions = {
-      backdrop: 'static',
-      keyboard: false,
-      centered: true,
-    };
-    this.loadingModalRef = this.modal.open(ModelWithButtonComponent, ngbModalOptions);
-    this.loadingModalRef.componentInstance.errorTitle = this.errorModalTitle;
-    this.loadingModalRef.componentInstance.errorMessage = this.errorModalMessage;
-    this.loadingModalRef.componentInstance.primaryActionLabel = this.errorModalBtnText;
-    this.loadingModalRef.componentInstance.isError = true;
-    //this.myInfoService.closeMyInfoPopup(error);
-    clearTimeout(this.secondTimer);
-    clearTimeout(this.thirdTimer);
-    // to call link custom modal
+    // this.isMyInfoEnabled = false;
+    // this.closeFetchPopup();
+    // if (error) {
+    //   const ngbModalOptions: NgbModalOptions = {
+    //     backdrop: 'static',
+    //     keyboard: false,
+    //     centered: true,
+    //   };
+    //   this.loadingModalRef = this.modal.open(ModelWithButtonComponent, ngbModalOptions);
+    //   this.loadingModalRef.componentInstance.errorTitle = this.errorModalTitle;
+    //   this.loadingModalRef.componentInstance.errorMessage = this.errorModalMessage;
+    //   this.loadingModalRef.componentInstance.primaryActionLabel = this.errorModalBtnText;
+    //   this.loadingModalRef.componentInstance.isError = true;
+      this.myInfoService.closeMyInfoPopup(error);
+      // need to check whether to remove the above line or needed
+      clearTimeout(this.secondTimer);
+      clearTimeout(this.thirdTimer);
+      // to call link custom modal
+    // }
   }
 
   getMyInfo() {

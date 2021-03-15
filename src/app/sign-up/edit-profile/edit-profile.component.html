@@ -19,17 +19,18 @@
             <div class="edit-profile-section-bg singpass-login-block">
                 <div class="flex space-between">
                     <div class="flex-col-9">
-                        <div class="singpass-login-title">Log In using SingPass Mobile</div>
+                        <div class="singpass-login-title">Log In using Singpass Mobile</div>
                         <div class="pt5">
-                            <div>Link to activate your account</div>
-                            <div>Pending investment account application to complete</div>
+                            <div *ngIf="entireUserData.singpassLinkStatus === 'NOT_LINKED'">Link to activate your account</div>
+                            <div *ngIf="entireUserData.singpassLinkStatus === 'DISABLED'">Pending investment account application to complete</div>
                         </div>
                     </div>
                     <div class="flex-col">
-                        <button type="button" class="link-btn" (click)="linkSingpass()">Link</button>
-                        <div class="flex space-between">
+                        <button type="button" class="link-btn" (click)="linkSingpass()" *ngIf="entireUserData.singpassLinkStatus === 'NOT_LINKED'" >Link</button>
+                        <button type="button" class="link-btn" *ngIf="entireUserData.singpassLinkStatus === 'DISABLED'" [ngClass]="{'disabled': entireUserData.singpassLinkStatus === 'DISABLED' }">Link</button>
+                        <div class="flex space-between" *ngIf="entireUserData.singpassLinkStatus === 'LINKED'" >
                             <span><img src="assets/images/green-tick-icon.svg" /></span>
-                            <span class="txt-green ml10">Linked</span>
+                            <span  class="txt-green ml10">Linked</span>
                         </div>
                     </div>
                 </div>

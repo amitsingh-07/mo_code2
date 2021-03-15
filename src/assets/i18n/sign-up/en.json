@@ -477,15 +477,19 @@
     "NOTE": "No account added",
     "ADD_ACCOUNT": "Add Account"
   },
-  "ACTIVE_SINGPASS_MODAL":{
-    "ACTIVE_SINGPASS_MODAL_MESSAGE": "<h4>Activate SingPass Login</h4><br><div>Use MyInfo to activate your MoneyOwl SingPass Mobile App login. No more remembering of password. This feature is available to all SingPass Registered users.</div><div class=\"more-info\"><a target=\"_blank\" href='https://www.singpass.gov.sg/myinfo/intro'>Learn more about MyInfo</a></div>",
-    "ACTIVE_SINGPASS_BTN_TXT" : "Activate Now"
+  "ACTIVATE_SINGPASS_MODAL":{
+    "MESSAGE": "<h4>Activate Singpass Login</h4><br><div>Use Myinfo to activate your MoneyOwl Singpass Mobile App login. No more remembering of password. This feature is available to all Singpass Registered users.</div><div class=\"more-info\"><a target=\"_blank\" href='https://www.singpass.gov.sg/myinfo/intro'>Learn more about Myinfo</a></div>",
+    "BTN_TXT" : "Activate Now"
+  },
+  "SUCCESS_SINGPASS_MODAL":{
+    "MESSAGE": "<h4>Singpass Account Link Completed!</h4><br><div>You may use Singpass Mobile App the next time you log in to MoneyOwl. </div><div class=\"retrieved-details\"><div class=\"retrieved-details-title\">Fields retrieved:</div><label>Name</label><div>Kelvin Goh</div><label>NRIC/FIN</label><div>S1234567F</div></div>",
+    "BTN_TXT" : "Got It!"
   },
   "LINK_ACCOUNT_MYINFO": {
     
     "MYINFO_CONFIRM": {
-      "TITLE": "Activate via MyInfo",
-      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to all SingPass Registered users.</strong><br><br>You will now proceed to login via MyInfo and retrieve your following details.<strong class=\"text-bold\">Please use your own account only.</strong><div class=\"my_info_details\">Name<br>NRIC/FIN</div><br>Would you like to proceed?",
+      "TITLE": "Activate via Myinfo",
+      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to all Singpass Registered users.</strong><br><br>You will now proceed to login via Myinfo and retrieve your following details.<strong class=\"text-bold\">Please use your own account only.</strong><div class=\"my_info_details\">Name<br>NRIC/FIN</div><br>Would you like to proceed?",
       "BTN-TEXT": "Let’s go!"
     },
     "FETCH_MODAL_DATA": {
@@ -493,16 +497,26 @@
       "DESCRIPTION": "Please be patient while we are linking up your MoneyOwl account."
     },
     "LOADER3": {
-      "message": "Sorry that this is taking longer than usual. Please be patient while we fetch your required data from MyInfo.",
+      "message": "Sorry that it is taking longer than expected. We are still trying to link up your MoneyOwl account.",
       "primaryActionLabel": "Try Again Later"
     },
     "LOADER2": {
-      "message": "Sorry that it is taking longer than expected. We are still trying to link up your MoneyOwl account. "
+      "message": "Sorry that it is taking longer than expected. We are still trying to link up your MoneyOwl account."
     },
     "ERROR_MODAL":{
       "TITLE": "Oops, Unable to Connect",
-      "MESSAGE": "We are unable to connect to MyInfo temporary. Please try again later.",
+      "MESSAGE": "We are unable to connect to Myinfo temporary. Please try again later.",
       "BTN-TEXT": "Try Again Later"
+    },
+    "ALREADY_EXISTING":{
+      "TITLE": "Unable to proceed with the NRIC/FIN",
+      "DESC": "We have detected that the NRIC/FIN used is different from your account. <strong>Please use your own account only.</strong><br><br>Contact us at <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> if you require any assistance.",
+      "BTN-TEXT": "Okay, Got It!"
+    },
+    "DIFFERENT_USER":{
+      "TITLE": "Unable to proceed with the NRIC/FIN",
+      "DESC": "We have detected that the NRIC/FIN is already in use by another account. <strong>Please use your own account only.</strong><br><br>Contact us at <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> if you require any assistance.",
+      "BTN-TEXT": "Okay, Got It!"
     }
   }
 }

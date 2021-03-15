@@ -21,9 +21,9 @@ app-activate-singpass-modal{
         @include allmobiles{
           border-radius: 0;
         }
-        &.completed{
-          background-image: url("../../../../assets/images/login-activate-singpass-completed@3x.png");
-        }
+        // &.completed{
+        //   background-image: url("../../../../assets/images/login-activate-singpass-completed@3x.png");
+        // }
     }
     .modal-body {
       color: $black-color;
@@ -59,9 +59,10 @@ app-activate-singpass-modal{
       }
     }
     button.close {
-      // background: url("../../../assets/images/close-button-dark.svg") !important;
+      background: url("/assets/images/close-button-white.svg") !important;
       right: 20px !important;
       top: 30px !important;
+      background-repeat: no-repeat !important;
     }
     .action-button {
       width: 100%;

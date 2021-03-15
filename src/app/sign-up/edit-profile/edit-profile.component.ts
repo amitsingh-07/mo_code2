@@ -139,6 +139,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           }
         });
     });
+
   }
 
   ngOnDestroy() {
@@ -182,7 +183,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
             this.bankDetails = data.objectList.customerBankDetail[0];
           }
           this.showBankInfo = data.objectList.cashPortfolioAvailable ? data.objectList.cashPortfolioAvailable : false;
-          
+
           // Hidden the mailing address for future use
           // if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
           //   this.mailingAddress = data.objectList.contactDetails.mailingAddress;
@@ -387,12 +388,12 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     return first.toUpperCase() + second.toUpperCase();
   }
   linkSingpass() {
-    const ref = this.modal.open(ActivateSingpassModalComponent, { centered: true, windowClass: 'activate-singpass-modal-dialog' });
+    const ref = this.modal.open(ActivateSingpassModalComponent, { centered: true, windowClass: 'activate-singpass-modal' });
     ref.componentInstance.errorMessage = this.translate.instant(
-      'ACTIVE_SINGPASS_MODAL.ACTIVE_SINGPASS_MODAL_MESSAGE'
+      'ACTIVATE_SINGPASS_MODAL.MESSAGE'
     );
     ref.componentInstance.primaryActionLabel = this.translate.instant(
-      'ACTIVE_SINGPASS_MODAL.ACTIVE_SINGPASS_BTN_TXT'
+      'ACTIVATE_SINGPASS_MODAL.BTN_TXT'
     );
   }
 }

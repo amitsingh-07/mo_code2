@@ -217,6 +217,14 @@ export class MyInfoService {
     };
     return this.apiService.getMyInfoData(code);
   }
+// singpass account link
+  getSingpassAccountData() {
+    const code = {
+      authorizationCode: this.myInfoValue,
+      personAttributes: this.getMyInfoAttributes()
+    };
+    return this.apiService.getSingpassAccountData(code);
+  }
 
   // Check if the source page matches with the session stored one
   checkMyInfoSourcePage() {

@@ -2420,13 +2420,28 @@ select:-webkit-autofill:focus {
     margin-right: 0px;
   }
 } 
-
-.activate-singpass-modal-dialog {
+//activate & linked singpass modal 
+.activate-singpass-modal{
   .modal-content{
     max-width: 375px;
     margin: 0 auto;
     @include allmobiles{
       max-width: 100%;
     }
+  }
+}
+.linked-singpass-modal{
+  .modal-content{
+    max-width: 375px;
+    margin: 0 auto;
+    @include allmobiles{
+      max-width: 100%;
+    }
+  }
+  .header-modal-image{
+    background-image: url("./assets/images/login-activate-singpass-completed.svg") !important;
+  }
+  .close{
+    display: none;
   }
 }
