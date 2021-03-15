@@ -177,11 +177,11 @@ app-allocation {
                     border: solid 1px $bonds-equity-title-border-color;
                     background-color: $bonds-equity-card-bg-color;
                     .card-header {
-                        padding: 11px 20px !important;
+                        padding: 0 !important;
                         border: solid 1px $bonds-equity-title-border-color;
                         background-color: $bonds-equity-bg-color !important;
                         .btn-link {
-                            padding: 0 !important;
+                            padding: 11px 20px !important;
                             width: 100%;
                             font-size: 18px;
                             font-family: $muli-bold;
