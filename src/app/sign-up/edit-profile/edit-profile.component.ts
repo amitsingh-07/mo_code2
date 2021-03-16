@@ -62,7 +62,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   srsDetails;
   formatedAccountNumber;
   is2faAuthorized: boolean;
-
   disableBankSrsEdit = false;
   linkCatagories;
 
@@ -117,7 +116,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.getEditProfileData();
       this.getSrsDetails();
     });
-
     this.isMailingAddressSame = true;
 
     // Check if iFast is in maintenance
