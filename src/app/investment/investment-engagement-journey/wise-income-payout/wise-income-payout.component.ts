@@ -1,7 +1,7 @@
 import {
   AfterViewInit, ChangeDetectorRef, Component, OnInit, Renderer2, ViewEncapsulation
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { appConstants } from '../../../app.constants';
@@ -41,10 +41,13 @@ export class WiseIncomePayoutComponent implements OnInit {
   fundingMethods: any;
   payoutFundList: any;
   defaultPayoutypeEnabled: boolean;
+  queryParams;
+
   constructor(
     public readonly translate: TranslateService,
     public activeModal: NgbActiveModal,
     private router: Router,
+    private route: ActivatedRoute,
     public headerService: HeaderService,
     public authService: AuthenticationService,
     private investmentCommonService: InvestmentCommonService,
@@ -70,6 +73,11 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.getWiseIncomePayOutDetails();
     this.getOptionListCollection();
+    this.queryParams = this.route.snapshot.queryParams;
+    if (this.queryParams && this.queryParams.key && this.queryParams.key === 'wise-income') {
+      this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
+      this.investmentEngagementJourneyService.setSelectPortfolioType({selectPortfolioType: 'wiseIncomePortfolio'});
+    }
     this.investmentAccountService.getSpecificDropList('portfolioType').subscribe((data) => {
       this.investmentCommonService.setPortfolioType(data.objectList.portfolioType);
       this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType()
