@@ -1,12 +1,9 @@
 import {
   AfterViewInit, ChangeDetectorRef, Component, OnInit, Renderer2, ViewEncapsulation
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-
-
-
 import { appConstants } from '../../../app.constants';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
@@ -22,9 +19,6 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
-
-
-
 @Component({
   selector: 'app-wise-income-payout',
   templateUrl: './wise-income-payout.component.html',
@@ -46,10 +40,14 @@ export class WiseIncomePayoutComponent implements OnInit {
   activeTabId = 1;
   fundingMethods: any;
   payoutFundList: any;
+  defaultPayoutypeEnabled: boolean;
+  queryParams;
+
   constructor(
     public readonly translate: TranslateService,
     public activeModal: NgbActiveModal,
     private router: Router,
+    private route: ActivatedRoute,
     public headerService: HeaderService,
     public authService: AuthenticationService,
     private investmentCommonService: InvestmentCommonService,
@@ -75,7 +73,12 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.getWiseIncomePayOutDetails();
     this.getOptionListCollection();
-     this.investmentAccountService.getSpecificDropList('portfolioType').subscribe((data) => {
+    this.queryParams = this.route.snapshot.queryParams;
+    if (this.queryParams && this.queryParams.key && this.queryParams.key === 'wise-income') {
+      this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
+      this.investmentEngagementJourneyService.setSelectPortfolioType({selectPortfolioType: 'wiseIncomePortfolio'});
+    }
+    this.investmentAccountService.getSpecificDropList('portfolioType').subscribe((data) => {
       this.investmentCommonService.setPortfolioType(data.objectList.portfolioType);
       this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType()
       let portfolioTypeArray = this.investmentCommonService.getPortfolioType();
@@ -84,17 +87,31 @@ export class WiseIncomePayoutComponent implements OnInit {
     });
     this.formValues = this.investmentCommonService.getWiseIncomePayOut();
     this.activeTabId = this.formValues.activeTabId ? this.formValues.activeTabId : 1;
+  }
+
+  buildForm() {
+    this.activeTabId = this.formValues.activeTabId ? this.formValues.activeTabId : 1;
     this.wiseIncomePayOutTypeForm = new FormGroup({
       initialWiseIncomePayoutTypeId: new FormControl(
-        this.formValues.initialWiseIncomePayoutTypeId, Validators.required)
+        this.formValues.initialWiseIncomePayoutTypeId ? this.formValues.initialWiseIncomePayoutTypeId :
+          this.getdefaultWiseIcomePayoutTypeNameById(INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.DEFAULT_PAYOUT.GROW, this.wiseIncomePayOutTypes), Validators.required)
     });
+    if (
+      this.defaultPayoutypeEnabled = this.getdefaultWiseIcomePayoutTypeNameById(INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.DEFAULT_PAYOUT.GROW, this.wiseIncomePayOutTypes)) {
+      this.defaultPayoutypeEnabled = true;
+    }
+    else {
+      this.defaultPayoutypeEnabled = false;
+    }
   }
-  getFundListMethod(portfolioTypeId){
-    this.investmentEngagementJourneyService.getFundListMethod(portfolioTypeId).subscribe((data) =>{
-      this.payoutFundList = { 'GROW': data.objectList[INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PAYOUT_FUNDLIST.GROW] ,
-                              'FOUR_PERCENT': data.objectList[INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PAYOUT_FUNDLIST.FOUR_PERCENT],
-                              'EIGHT_PERCENT': data.objectList[INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PAYOUT_FUNDLIST.EIGHT_PERCENT]
-                            };
+  
+  getFundListMethod(portfolioTypeId) {
+    this.investmentEngagementJourneyService.getFundListMethod(portfolioTypeId).subscribe((data) => {
+      this.payoutFundList = {
+        'GROW': data.objectList[INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PAYOUT_FUNDLIST.GROW],
+        'FOUR_PERCENT': data.objectList[INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PAYOUT_FUNDLIST.FOUR_PERCENT],
+        'EIGHT_PERCENT': data.objectList[INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PAYOUT_FUNDLIST.EIGHT_PERCENT]
+      };
     });
   }
   getWiseIncomePayOutDetails() {
@@ -105,6 +122,7 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.investmentAccountService.getSpecificDropList('wiseIncomePayoutType').subscribe((data) => {
       this.loaderService.hideLoader();
       this.wiseIncomePayOutTypes = data.objectList.wiseIncomePayoutType;
+      this.buildForm();
     },
       (err) => {
         this.loaderService.hideLoader();
@@ -158,6 +176,14 @@ export class WiseIncomePayoutComponent implements OnInit {
       return fundingMethod[0].key
     } else {
       return '';
+    }
+  }
+  getdefaultWiseIcomePayoutTypeNameById(wiseIncomePayoutTypeId, payoutOptions) {
+    if (wiseIncomePayoutTypeId && payoutOptions) {
+      const wiseIncomePayoutType = payoutOptions.filter(
+        (prop) => prop.key === wiseIncomePayoutTypeId
+      );
+      return wiseIncomePayoutType[0].id;
     }
   }
   goToNext(form) {
