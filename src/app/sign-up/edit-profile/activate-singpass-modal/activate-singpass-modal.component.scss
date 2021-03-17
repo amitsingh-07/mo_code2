@@ -32,7 +32,7 @@ app-activate-singpass-modal{
         margin-top: 20px;
         a{
           font-family: $muli-bold;
-          color: #ff7900;
+          color: $dark-orange-color;
           text-decoration: none;
         }
       }
@@ -42,11 +42,11 @@ app-activate-singpass-modal{
         line-height: 21px;
         .retrieved-details-title{
           font-family: $muli-bold;
-          color: #5e5e5e;
+          color: $text-color-secondary;
           margin-bottom: 15px;
         }
         div{
-          color: #00a7a7;
+          color: $teal-color;
         }
         label{
           margin-bottom: 0;

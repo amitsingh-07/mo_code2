@@ -80,16 +80,16 @@ app-edit-profile {
     &.singpass-login-block {
       font-family: $muli-regular;
       font-size: 14px;
-      color: #9b9b9b;
+      color: $dusty-grey-color;
       padding: 20px;
       border-radius: 6px;
-      background-color: #f6f6f6;
+      background-color: $edit-card-bg;
       .singpass-login-title {
         font-family: $muli-semi-bold;
         font-size: 16px;
         line-height: 1.25;
         letter-spacing: -0.3px;
-        color: #313644;
+        color: $tuna-color;
         @include allmobiles {
           max-width: 210px;
         }
@@ -103,21 +103,21 @@ app-edit-profile {
         display: flex;
         justify-content: center;
         border-radius: 6px;
-        background-color: #ff7900;
-        border: #ff7900;
+        background-color: $dark-orange-color;
+        border: $dark-orange-color;
         font-family: $muli-bold;
         font-size: 16px;
         line-height: normal;
         letter-spacing: -0.12px;
-        color: #ffffff;
+        color: $btn-orange-txt-color;
         &:disabled,
         &.disabled{
-          background-color: #e7e7e7;
+          background-color: $mercury-smoke-color;
           cursor: not-allowed;
         }
       }
       .txt-green {
-        color: #11b600;
+        color: $light-green-color;
       }
     }
   }
