@@ -1,10 +1,7 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 app-activate-singpass-modal{
-// .activate-singpass-modal-dialog {
     .singpass-login-modal-block{
-        // max-width: 375px !important;
-        // margin: 0 auto;
         background: $white-color;
         border-radius: 6px;
         @include allmobiles{
@@ -21,9 +18,6 @@ app-activate-singpass-modal{
         @include allmobiles{
           border-radius: 0;
         }
-        // &.completed{
-        //   background-image: url("../../../../assets/images/login-activate-singpass-completed@3x.png");
-        // }
     }
     .modal-body {
       color: $black-color;
@@ -39,6 +33,7 @@ app-activate-singpass-modal{
         a{
           font-family: $muli-bold;
           color: #ff7900;
+          text-decoration: none;
         }
       }
       .retrieved-details{
@@ -60,7 +55,7 @@ app-activate-singpass-modal{
     }
     button.close {
       background: url("/assets/images/close-button-white.svg") !important;
-      right: 20px !important;
+      right: 27px !important;
       top: 30px !important;
       background-repeat: no-repeat !important;
     }
@@ -92,5 +87,4 @@ app-activate-singpass-modal{
       }
     }
   }
-//   }
 }
