@@ -135,6 +135,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   tab1 : any;
   tab2 : any;
   tab3 : any;
+  tab4 : any;
 
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
@@ -573,12 +574,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   //wiseIncome Dropdown Scroll
   onClickScroll(elementId: string): void {
     this.viewportScroller.scrollToAnchor(elementId);
-    if(elementId=='featureBenefits'){
+    if(elementId=='pyoutOption'){
       this.tab = 'tab1';
-    }else if(elementId=='fundAssets'){
+    } else if(elementId=='featureBenefits'){
       this.tab = 'tab2';
-    }else if(elementId=='backToTop'){
+    } else if(elementId=='fundAssets'){
       this.tab = 'tab3';
+    } else if(elementId=='backToTop'){
+      this.tab = 'tab4';
     }    
   }
 

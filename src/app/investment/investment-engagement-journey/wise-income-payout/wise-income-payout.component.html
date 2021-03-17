@@ -43,7 +43,7 @@
         </div>
     </div>
     <div class="payout-pannel-block">
-        <div class="payout-pannel-desc">{{'WISE_INCOME_PAYOUT.PANEL_TITLE' | translate}}</div>
+        <div class="payout-pannel-desc" #pyoutOption id="pyoutOption">{{'WISE_INCOME_PAYOUT.PANEL_TITLE' | translate}}</div>
         <div class="payout-pannel-tabs">
             <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTabId">
                 <ng-container [ngbNavItem]="1">
@@ -285,7 +285,7 @@
                     </ngb-panel>
                     <ngb-panel>
                         <ng-template ngbPanelTitle>
-                            <div class="flex space-between" #fundAssets id="fundAssets">
+                            <div class="flex space-between"  #fundAssets id="fundAssets">
                                 <div>{{'WISE_INCOME_PAYOUT.FUND_ASSET_ALLOCATION_LBL' | translate}}</div>
                                 <div><i class='arrow'></i></div>
                             </div>
