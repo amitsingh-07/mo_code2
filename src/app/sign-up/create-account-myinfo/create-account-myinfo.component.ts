@@ -38,6 +38,8 @@ export class CreateAccountMyinfoComponent implements OnInit {
   loader2Modal: any;
   loader3Modal: any;
   isMyInfoEnabled: boolean;
+  loader1Modal: any;
+
   constructor(
     private configService: ConfigService,
     private modal: NgbModal,
@@ -59,6 +61,9 @@ export class CreateAccountMyinfoComponent implements OnInit {
       );
       this.modelBtnText = this.translate.instant(
         'CREATE_ACCOUNT_MY_INFO.MODAL_BTN-TEXT'
+      );
+      this.loader1Modal = this.translate.instant(
+        'CREATE_ACCOUNT_MY_INFO.LOADER1'
       );
       this.loader2Modal = this.translate.instant(
         'CREATE_ACCOUNT_MY_INFO.LOADER2'
@@ -114,6 +119,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
         const currentUrl = window.location.toString();
         const rootPoint = currentUrl.split(currentUrl.split('/')[4])[0].substr(0, currentUrl.split(currentUrl.split('/')[4])[0].length - 1);
         const redirectObjective = rootPoint + '/accounts/sign-up';
+
         if (window.location.href === redirectObjective) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO]);
         } else {
@@ -121,7 +127,18 @@ export class CreateAccountMyinfoComponent implements OnInit {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
           });
         }
-      } else {
+      } else if (data.responseMessage.responseCode === 6014) {
+        const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+        ref.componentInstance.errorTitle = this.loader1Modal.title;
+        ref.componentInstance.errorMessageHTML = this.loader1Modal.message;
+        ref.componentInstance.primaryActionLabel = this.loader1Modal.btn;
+        this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
+          this.closeMyInfoPopup(false);
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO]);
+        }
+        )
+      }
+      else {
         this.closeMyInfoPopup(true);
       }
     }, (error) => {

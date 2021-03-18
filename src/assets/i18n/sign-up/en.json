@@ -506,6 +506,11 @@
       "TITLE": "Fetching Data...",
       "DESCRIPTION": "Please be patient while we fetch your required data from MyInfo."
     },
+    "LOADER1": {
+      "title": "Unable to proceed with the NRIC/FIN",
+      "message": "We have detected that the NRIC/FIN is already in use by another account. Please use your own account only.Contact us at enquiries@moneyowl.com.sg  if you require any assistance.",
+      "btn": "Okay, Got It!"
+    },
     "LOADER2": {
       "message": "Sorry that this is taking longer than usual. Please be patient while we fetch your required data from MyInfo."
     },

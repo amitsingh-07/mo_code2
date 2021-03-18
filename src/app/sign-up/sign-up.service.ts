@@ -712,6 +712,18 @@ export class SignUpService {
     }
     this.commit();
   }
+  isDisabled(fieldName): boolean {
+    let disable: boolean;
+    if (
+      this.signUpFormData.isMyInfoEnabled &&
+      this.signUpFormData.disableAttributes.indexOf(fieldName) >= 0
+    ) {
+      disable = true;
+    } else {
+      disable = false;
+    }
+    return disable;
+  }
 
   setCallBackSignUp() {
     this.signUpFormData.callBackInvestmentAccount = true;

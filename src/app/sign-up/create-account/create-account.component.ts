@@ -64,7 +64,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   showSingPassDetails = false;
   showNormalFlowDetails = false;
   isMyInfo;
-  formValue: import("c:/abgular-9/bfa-frontend/src/app/sign-up/sign-up-form-data").SignUpFormData;
+  formValue: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -190,8 +190,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.showSingPassDetails =true;
     this.showNormalFlowDetails = false;
     if (true) {
-      this.createAccountForm.addControl('fullName', new FormControl('', Validators.required));
-      this.createAccountForm.addControl('nricNumber', new FormControl('', Validators.required));
+      this.createAccountForm.addControl('fullName', new FormControl( {
+        value: this.formValue.fullName,
+        disabled: this.signUpService.isDisabled('fullName')
+      }, Validators.required));
+      this.createAccountForm.addControl('nricNumber', new FormControl( {
+        value: this.formValue.nricNumber,
+        disabled: this.signUpService.isDisabled('nricNumber')
+      }, Validators.required));
       this.createAccountForm.removeControl('firstName');
       this.createAccountForm.removeControl('lastName');
     }
