@@ -172,7 +172,7 @@
     "EDIT_PROFILE": "Back to Edit Profile"
   },
   "LOGIN": {
-    "WELCOME_LBL": "Welcome to MoneyOwl!",
+    "LOGIN_TO_MO": "Log In to MoneyOwl",
     "DESCRIPTION": "Please fill in your details so that our advisers can contact you.",
     "FORM": {
       "USERNAME": "Mobile No. / Email Address",
@@ -181,11 +181,13 @@
       "MARKETING_ACCEPTANCE": "I consent receive marketing materials from MoneyOwl and partners of MoneyOwl."
     },
     "FORGOT_PASSWORD": "Forgot your password?",
+    "GET_STARTED": "Don’t have an account? Get started!",
     "CLICK_HERE": "Click Here",
     "ERRORS": {
       "TITLE": "Oops, verify your email to login!",
       "VERIFY_EMAIL_MESSAGE": "You are almost there! An email verification is sent. We need you to verify your email to complete your account creation!"
-    }
+    },
+    "CLIENT_ASSISTANCE": "If you require any assistance, please contact us at <b class='text-bold'><a href='mailto:clientsupport@moneyowl.com.sg' target='_blank'>clientsupport@moneyowl.com.sg</a></b> or <b class='text-bold'><a href='tel:63299188' target='_blank' class='text-bold'>6329 9188.</a></b> Our operating hours are Monday - Friday, 9am - 6pm."
   },
   "FORGOTPASSWORD": {
     "SUBMIT": "Submit",

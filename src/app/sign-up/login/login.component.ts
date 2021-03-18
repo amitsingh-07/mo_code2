@@ -148,6 +148,21 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       }
 
     }
+    var OIDCParams = {
+      nonce: ('' + Math.random() * 1000000000000000 + '').slice(0, 15),
+      state: ('' + Math.random() * 1000000000000000 + '').slice(0, 15),
+      clientId: 'MONEYOWL-BFA',
+      redirectUri: 'https://newmouat1.ntucbfa.com/app/singpass/callback',
+      scope: 'openid',
+      responseType: 'code'
+    }
+    window['SPCPQR'].init(
+      'qr_wrapper',
+      OIDCParams,
+      function () {
+        window['SPCPQR'].refresh({ nonce: OIDCParams.nonce, state: OIDCParams.state });
+      }
+    );
   }
 
   ngAfterViewInit() {
@@ -496,5 +511,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       const emailValue = event.target.value.replace(/\s/g, '');
       this.loginForm.controls.loginUsername.setValue(emailValue);
     }
+  }
+
+  openModal(event) {
+    event.stopPropagtion();
+    event.preventDefault();
   }
 }

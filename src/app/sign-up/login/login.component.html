@@ -15,21 +15,21 @@
   <div class="back-btn hidden-lg" (click)="goBack()"></div>
   <div class="content">
     <div class="row">
-      <div class="col-lg-7 col-md-6">
-        <div class="signup-wrapper">
-          <h2 class="signup-wrapper__title order1 sm-order2 ml10 mb20" #welcomeTitle id="login_welcometxt_lbl">
-            {{ 'LOGIN.WELCOME_LBL' | translate}}</h2>
-          <!--
-          <div class="signup-wrapper__description order2">
-              <p>{{ 'LOGIN.DESCRIPTION' | translate}}</p>
-            </div>
-            -->
-          <img class="signup-wrapper__header-icon order3 sm-order1" src="assets/images/createAccount-icon.svg" />
-        </div>
-      </div>
       <div class="col-lg-5 col-md-6">
+        <div class="signup-wrapper">
+          <div style="display: flex;
+          justify-content: space-between;
+          font-size: 16px;
+          width: 100%; padding-bottom: 20px;">
+            <div>PASSWORD LOGIN</div>
+            <div>SINGPASS MOBILE</div>
+          </div>
+          <h2 class="login-title order1 mb40" #welcomeTitle id="login_welcometxt_lbl">
+            {{ 'LOGIN.LOGIN_TO_MO' | translate}}</h2>
+          <img class="signup-wrapper__header-icon order3" src="assets/images/createAccount-icon.svg" />
+        </div>
         <form id="loginForm" name="loginForm" [formGroup]="loginForm" (keyup.enter)="doLogin(loginForm)">
-          <div class="flex-row mb15">
+          <div class="flex-row mb15 mt30">
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label"
                 [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.loginUsername)}">
@@ -42,7 +42,7 @@
 
           </div>
 
-          <div class="flex-row mb20">
+          <div class="flex-row mb15">
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label"
                 [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.loginPassword)}"
@@ -76,13 +76,9 @@
             </div>
           </div>
 
-          <div class="flex-row mb10" *ngIf="showCaptcha">
+          <div class="flex-row mb30" *ngIf="showCaptcha">
             <span class="mb10">{{ 'COMMON.CAPTCHA_TITLE' | translate}}</span>
-            <div class="flex-col-6 stretch">
-              <div class="form-group-captcha-wrapper">
-                <img [src]="(captchaSrc | secure | async) || ''" class="captcha-img" />
-              </div>
-            </div>
+            <img [src]="(captchaSrc | secure | async) || ''" class="captcha-img"/>
             <div class="flex-col-6 stretch">
               <div class="form-group-floating-label">
                 <input type="text" id="crtAccInpt6" class="form-control" #captchaValue formControlName="captchaValue"
@@ -91,30 +87,34 @@
               </div>
               <div>
                 <span (click)="refreshCaptcha()" class="link-white">{{ 'COMMON.TRY_ANOTHER_TEXT' | translate}} <i
-                    class="fa fa-refresh" style="color: white; margin-left: 10px;"></i></span>
+                    class="fa fa-refresh ml10" style="color: white;"></i></span>
               </div>
             </div>
           </div>
-
-
-          <!-- FORGOT -->
-          <div class="forgot-link" *ngIf="!hideForgotPassword">
-            <a id="login_forgotpwd_link"
-              [routerLink]="'/accounts/forgot-password'">{{ 'LOGIN.FORGOT_PASSWORD' | translate}}
-              <!-- <span id="login_clickhere_lbl" class="mobile-only">{{
-                'LOGIN.CLICK_HERE' | translate}}</span>--></a>
-          </div>
-          <div class="start-link"><a id="login_signup_link"   [routerLink]="finlitEnabled ? '/accounts/finlit/sign-up':'/accounts/sign-up'  ">Don’t have an account?
-              Get started!</a></div>
           <button id="login_submit_btn" (click)="doLogin(loginForm)" type="button"
-            class="btn btn__footer--fixed btn-primary width100 ">{{
+            class="btn btn-primary width100 ">{{
             'COMMON.LOGIN' | translate }}</button>
+          <!-- FORGOT -->
+          <div class="forgot-link mt30" *ngIf="!hideForgotPassword">
+            <a id="login_forgotpwd_link"
+              [routerLink]="'/accounts/forgot-password'">{{ 'LOGIN.FORGOT_PASSWORD' | translate}}</a>
+          </div>
+          <div class="start-link"><a id="login_signup_link"   [routerLink]="finlitEnabled ? '/accounts/finlit/sign-up':'/accounts/sign-up'  ">{{'LOGIN.GET_STARTED' | translate}}</a></div>
         </form>
-        <div class="mt60">If you require any assistance, please contact us at <b class="text-bold"><a
-              href="mailto:clientsupport@moneyowl.com.sg">clientsupport@moneyowl.com.sg</a></b> or <b
-            class="text-bold">6329 9188.</b> Our operating hours are Monday - Friday, 9am - 6pm.</div>
       </div>
-
+      <div class="separator-container">
+        <img src="assets/images/singpass/asset-separator.svg" />
+      </div>
+      <div class="singpass-container">
+        <div class="title-container">
+          <img src="assets/images/singpass/icon-new.svg"/>
+          <div>You can now log in to MoneyOwl using Singpass Mobile App! <a (click)="openModal($event)">How to activate?</a></div>
+        </div>
+        <div id="qr_wrapper"></div>
+        <div class="footer-container">Don’t have Singpass Mobile? <a href="https://app.singpass.gov.sg/" target="_blank">Download now!</a></div>
+      </div>
     </div>
+    <div class="client-assist" innerHTML="{{'LOGIN.CLIENT_ASSISTANCE' | translate}}"></div>
+
   </div>
 </div>
