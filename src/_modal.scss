@@ -1302,10 +1302,16 @@ body.modal-open::-webkit-scrollbar {
   .modal-body-message {
     margin-bottom: 5px;
   }
+  .action-button:focus {
+    outline: none;
+  }
 }
 
 .nric-used-modal {
   .modal-body-message {
     margin-bottom: 0px;
+  }
+  .action-button:focus {
+    outline: none;
   }
 }
