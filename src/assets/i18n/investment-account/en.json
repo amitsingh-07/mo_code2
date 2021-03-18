@@ -296,13 +296,13 @@
       "LABEL_NEW": "For Singaporeans and PRs only"
     },
     "OPEN_MODAL_DATA": {
-      "TITLE": "Login via MyInfo",
-      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>By signing in to MyInfo, the following information that you have previously entered will be overwritten.<div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br/>Would you like to proceed and overwrite?",
+      "TITLE": "Apply Investment Account via MyInfo",
+      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>By signing in to MyInfo, the following information that you have previously entered will be overwritten.<strong class=\"text-bold\">Please use your own account only.</strong><div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br/>Would you like to proceed and overwrite?",
       "BTN-TEXT": "Yes, Proceed"
     },
     "MYINFO_CONFIRM": {
-      "TITLE": "Login via MyInfo",
-      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>You will now proceed to login via MyInfo and retrieve your following details.<div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br>Would you like to proceed?",
+      "TITLE": "Apply Investment Account via MyInfo",
+      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>You will now proceed to login via MyInfo and retrieve your following details.<strong class=\"text-bold\">Please use your own account only.</strong><div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br>Would you like to proceed?",
       "BTN-TEXT": "Let's go!"
     },
     "ERROR_MODAL_DATA": {

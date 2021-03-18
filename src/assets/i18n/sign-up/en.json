@@ -34,6 +34,20 @@
     "TITLE": "Create Your Account",
     "DESCRIPTION": "Please fill in your details below.",
     "FORM": {
+      "FULLNAME": {
+        "LABEL": "Name",
+        "ERROR": {
+          "REQUIRED": "Enter a Name",
+          "INVALID": "Enter a valid Name"
+        }
+      },
+      "NRIC/FIN": {
+        "LABEL": "NRIC / FIN",
+        "ERROR": {
+          "REQUIRED": "Enter a NRIC or FIN",
+          "INVALID": "Enter a valid NRIC or FIN"
+        }
+      },
       "MOBILE_NUMBER": {
         "LABEL": "Mobile Number",
         "ERROR": {
@@ -476,5 +490,29 @@
     "SRS_ACCOUNT_NUMBER": "SRS Account Number",
     "NOTE": "No account added",
     "ADD_ACCOUNT": "Add Account"
+  },
+  "CREATE_ACCOUNT_MY_INFO": {
+    "TITLE": "Create Your Account",
+    "DESCRIPTION": "Create your MoneyOwl account fast and hassle free with MyInfo, or skip to create account manually.",
+    "DESCRIPTION_TWO":"Available to all SingPass Registered users. <a target='_blank' href ='https://www.singpass.gov.sg/myinfo/intro'>Learn more about MyInfo.",
+    "DESCRIPTION_THREE":"Please fill in your details below.",
+    "BACK_TO_LOG_ON":"Back To Log In",
+    "SKIP_MY_INFO":" Skip MyInfo",
+    "PROCEED_TO_MY_INFO":"Proceed",
+    "MODAL_TITLE": "Create Account via Myinfo",
+    "MODAL_DESCRIPTION": "<strong class=\"text-bold\">Applicable to all Singpass Registered users.</strong><br><br>You will now proceed to login via MyInfo and retrieve your following details.<strong class=\"text-bold\">Please use your own account only.</strong><div class=\"my_info_details\">Name<br>NRIC/FIN<br>Mobile Number<br>Email Address</div><br>Would you like to proceed?",
+    "MODAL_BTN-TEXT": "Let's go!",
+    "FETCH_MODAL_DATA": {
+      "TITLE": "Fetching Data...",
+      "DESCRIPTION": "Please be patient while we fetch your required data from MyInfo."
+    },
+    "LOADER2": {
+      "message": "Sorry that this is taking longer than usual. Please be patient while we fetch your required data from MyInfo."
+    },
+    "LOADER3": {
+      "message": "We are still trying to fetch your required data from MyInfo. You may choose to fill in your information manually or try again later.",
+      "primaryActionLabel": "Try Again Later",
+      "secondaryActionLabel": "Create Account Manually"
+    }
   }
 }

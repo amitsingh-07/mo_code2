@@ -28,7 +28,9 @@ export let appConstants = {
     },
     USERTYPE: {
         NORMAL: "normal",
-        FINLIT: "finlit"
+        FINLIT: "finlit",
+        MANUAL: "MANUAL",
+        SINGPASS: "SINGPASS"
     },
     INSURANCE_JOURNEY_TYPE: {
         DIRECT: 'insurance-direct',
