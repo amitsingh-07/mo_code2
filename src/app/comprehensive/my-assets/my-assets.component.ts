@@ -62,6 +62,10 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   getAge: number;
   frsConfig = '';
   brsConfig = '';
+  fundTypeList: any;
+  fundTypeLite: any;
+  errorMessageLite: any;
+  fundType = [];
 
   // tslint:disable-next-line:cognitive-complexity
   constructor(
@@ -83,7 +87,10 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
         this.validationFlag = this.translate.instant('CMP.MY_ASSETS.OPTIONAL_VALIDATION_FLAG');
         this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
-        this.schemeTypeList = this.translate.instant('CMP.MY_ASSETS.SCHEME_TYPE_LIST');
+        this.schemeTypeList = this.translate.instant('CMP.MY_ASSETS.SCHEME_TYPE_LIST');        
+        this.fundTypeList = this.translate.instant('CMP.FUND_TYPE_LIST');  
+        this.fundTypeLite = this.translate.instant('CMP.RSP.FUND_TYPE_LITE');        
+        this.errorMessageLite = this.translate.instant('CMP.RSP.LITE_RSP_ERROR');
       });
     });
     const today: Date = new Date();
@@ -242,6 +249,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       this.assetDetails.assetsInvestmentSet.forEach((otherInvest, i) => {
         otherInvestFormArray.push(this.buildInvestmentForm(otherInvest, i));
         this.investType[inc] = otherInvest.typeOfInvestment;
+        this.fundType[inc] = (!this.comprehensiveJourneyMode ) ? this.fundTypeLite : otherInvest.fundType;        
         inc++;
       });
     } else {
@@ -308,9 +316,11 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     this.onTotalAssetsBucket();
   }
   buildInvestmentForm(inputParams, totalLength) {
+    const fundTypeValue = (!this.comprehensiveJourneyMode ) ? this.fundTypeLite : inputParams.fundType; 
     if (totalLength > 0) {
       return this.formBuilder.group({
         typeOfInvestment: [{ value: inputParams.typeOfInvestment, disabled: this.viewMode }, []],
+        fundType: [{ value: fundTypeValue, disabled: this.viewMode }, []],
         investmentAmount: [{
           value: (inputParams && inputParams.investmentAmount) ? inputParams.investmentAmount : '',
           disabled: this.viewMode
@@ -320,6 +330,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     } else {
       return this.formBuilder.group({
         typeOfInvestment: [{ value: inputParams.typeOfInvestment, disabled: this.viewMode }, []],
+        fundType: [{ value: fundTypeValue, disabled: this.viewMode }, []],
         investmentAmount: [{
           value: (inputParams && inputParams.investmentAmount) ? inputParams.investmentAmount : '',
           disabled: this.viewMode
@@ -330,6 +341,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   removeInvestment(i) {
     const investments = this.myAssetsForm.get('assetsInvestmentSet') as FormArray;
     this.investType[i] = '';
+    this.fundType[i] = '';
     investments.markAsDirty();
     investments.removeAt(i);
     this.setInvestValidation(investments.length);
@@ -339,6 +351,12 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     investType = investType ? investType : { text: '', value: '' };
     this.investType[i] = investType.text;
     this.myAssetsForm.controls['assetsInvestmentSet']['controls'][i].controls.typeOfInvestment.setValue(investType.text);
+    this.myAssetsForm.markAsDirty();
+  }
+  selectFundType(fundType, i) {
+    fundType = fundType ? fundType : { text: '', value: '' };
+    this.fundType[i] = fundType.text;
+    this.myAssetsForm.controls['assetsInvestmentSet']['controls'][i].controls.fundType.setValue(fundType.text);
     this.myAssetsForm.markAsDirty();
   }
   selectSchemeType(schemeType) {
@@ -351,17 +369,13 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   }
   setInvestValidation(totalLength) {
     const otherInvestmentControl = this.myAssetsForm.controls['assetsInvestmentSet']['controls'][0].controls;
-    //if (totalLength === 1) {
+    
     otherInvestmentControl['typeOfInvestment'].setValidators([]);
     otherInvestmentControl['typeOfInvestment'].updateValueAndValidity();
+    otherInvestmentControl['fundType'].setValidators([]);
+    otherInvestmentControl['fundType'].updateValueAndValidity();
     otherInvestmentControl['investmentAmount'].setValidators([]);
     otherInvestmentControl['investmentAmount'].updateValueAndValidity();
-    /*} else {
-      otherInvestmentControl['typeOfInvestment'].setValidators([Validators.required]);
-      otherInvestmentControl['typeOfInvestment'].updateValueAndValidity();
-      otherInvestmentControl['investmentAmount'].setValidators([Validators.required, Validators.pattern(this.patternValidator)]);
-      otherInvestmentControl['investmentAmount'].updateValueAndValidity();
-    }*/
   }
   get addAssetsValid() { return this.myAssetsForm.controls; }
   validateAssets(form: FormGroup) {
@@ -376,6 +390,9 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         form.get(key).markAsDirty();
       });
       const error = this.comprehensiveService.getFormError(form, COMPREHENSIVE_FORM_CONSTANTS.MY_ASSETS);
+      if(error.errorMessages && !this.comprehensiveJourneyMode){
+        error.errorMessages = [this.errorMessageLite];
+      }
       this.comprehensiveService.openErrorModal(error.title, error.errorMessages, false,
         this.translate.instant('CMP.ERROR_MODAL_TITLE.MY_ASSETS'));
       return false;
@@ -464,9 +481,13 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         if (otherInvestmentControl['investmentAmount'].value > 0) {
           otherInvestmentControl['typeOfInvestment'].setValidators([Validators.required]);
           otherInvestmentControl['typeOfInvestment'].updateValueAndValidity();
+          otherInvestmentControl['fundType'].setValidators([Validators.required]);
+          otherInvestmentControl['fundType'].updateValueAndValidity();
         } else {
           otherInvestmentControl['typeOfInvestment'].setValidators([]);
           otherInvestmentControl['typeOfInvestment'].updateValueAndValidity();
+          otherInvestmentControl['fundType'].setValidators([]);
+          otherInvestmentControl['fundType'].updateValueAndValidity();
         }
       });
       this.myAssetsForm.markAsDirty();

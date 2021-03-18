@@ -9,7 +9,6 @@
     <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget" [ngClass]="{'rt-round': i == plansData.length - 1, 'hidden-sm-md': i > 1}">
       <img class="best-value-icon" *ngIf="plan.bestValue" src="assets/images/best_value.svg" />
       <div class="bg-white flex insurance-plan-widget__container flex__box--vert">
-        <img class="info-icon" (click)="viewDetails(plan)" src="assets/images/tooltip-info.svg" />
         <div class="mt20 insurer-logo">
           <img src="assets/images/{{plan.insurer.logoName}}" />
         </div>
@@ -30,6 +29,13 @@
               <br />
               <span class="text-small">{{ 'COMMON.LBL_PROJECTED_RETURN' | translate}}</span>
             </h2>
+          </div>
+        </div>
+                  
+        <div class="flex-row">
+          <div class="col-md-12 col-md-push-3 details-main">
+            <button type="button" (click)="viewDetails(plan)" class="btn btn-secondary details-btn">{{ 'BUTTON.DETAILS' | translate
+              }}</button>
           </div>
         </div>
       </div>
