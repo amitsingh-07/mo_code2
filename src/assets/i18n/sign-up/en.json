@@ -517,12 +517,12 @@
     },
     "ALREADY_EXISTING":{
       "TITLE": "Unable to proceed with the NRIC/FIN",
-      "DESC": "We have detected that the NRIC/FIN used is different from your account. <strong>Please use your own account only.</strong><br><br>Contact us at <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> if you require any assistance.",
+      "DESC": "We have detected that the NRIC/FIN is already in use by another account. <strong>Please use your own account only.</strong><br><br>Contact us at <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> if you require any assistance.",
       "BTN-TEXT": "Okay, Got It!"
     },
     "DIFFERENT_USER":{
       "TITLE": "Unable to proceed with the NRIC/FIN",
-      "DESC": "We have detected that the NRIC/FIN is already in use by another account. <strong>Please use your own account only.</strong><br><br>Contact us at <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> if you require any assistance.",
+      "DESC": "We have detected that the NRIC/FIN used is different from your account. <strong>Please use your own account only.</strong><br><br>Contact us at <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> if you require any assistance.",
       "BTN-TEXT": "Okay, Got It!"
     }
   }
