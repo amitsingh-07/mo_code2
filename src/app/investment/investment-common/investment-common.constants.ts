@@ -62,5 +62,6 @@ export let INVESTMENT_COMMON_CONSTANTS = {
       GROW: '0%',
       FOUR_PERCENT: '4.5% p.a.',
       EIGHT_PERCENT: '8% p.a.'
-    }
+    },
+    PORTFOLIO_PURCHASED:"PORTFOLIO_PURCHASED"
 };
