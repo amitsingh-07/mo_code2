@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, NgZone, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -15,7 +15,11 @@ import { InvestmentAccountCommon } from '../investment-account-common';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
-
+import { InvestmentApiService } from './../../investment-api.service';
+import {
+  ModelWithButtonComponent
+} from '../../../shared/modal/model-with-button/model-with-button.component';
+import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 @Component({
   selector: 'app-inv-personal-info',
   templateUrl: './personal-info.component.html',
@@ -44,6 +48,7 @@ export class PersonalInfoComponent implements OnInit {
   minDate: any;
   maxDate: any;
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
+  source: any;
   constructor(
     private cdr: ChangeDetectorRef,
     private router: Router,
@@ -55,7 +60,10 @@ export class PersonalInfoComponent implements OnInit {
     private signUpService: SignUpService,
     private investmentAccountService: InvestmentAccountService,
     public readonly translate: TranslateService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private investmentApiService: InvestmentApiService,
+    private investmentCommonService: InvestmentCommonService,
+    private ngZone: NgZone
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -274,9 +282,46 @@ export class PersonalInfoComponent implements OnInit {
       ref.componentInstance.errorTitle = error.title;
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
-    } else {
+    } 
+    else {
       this.investmentAccountService.setPersonalInfo(form.getRawValue());
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.RESIDENTIAL_ADDRESS]);
+      this.source = this.formValues.isMyInfoEnabled ? INVESTMENT_ACCOUNT_CONSTANTS.VALIDATE_SOURCE.MYINFO : INVESTMENT_ACCOUNT_CONSTANTS.VALIDATE_SOURCE.MANUAL;
+      if (this.source = INVESTMENT_ACCOUNT_CONSTANTS.VALIDATE_SOURCE.MANUAL){    
+        this.investmentCommonService.getUserNricValidation(form.getRawValue().nricNumber, this.source).subscribe((data) => {
+          if(data.responseMessage.responseCode === 6013){
+            // this.ngZone.run(() => {
+              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.RESIDENTIAL_ADDRESS]);
+            // });
+          }
+          else if(data.responseMessage.responseCode === 6014){
+            const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+            ref.componentInstance.errorTitle = this.translate.instant(
+              'PERSONAL_INFO.ERROR.TITLE'
+            );
+            ref.componentInstance.errorMessage = this.translate.instant(
+              'PERSONAL_INFO.ERROR.MESSAGE1'
+            );
+            ref.componentInstance.primaryActionLabel = this.translate.instant(
+              'PERSONAL_INFO.ERROR.BTN-TEXT'
+            );
+          }
+          else if(data.responseMessage.responseCode === 6015){
+            const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+            ref.componentInstance.errorTitle = this.translate.instant(
+              'PERSONAL_INFO.ERROR.TITLE'
+            );
+            ref.componentInstance.errorMessage = this.translate.instant(
+              'PERSONAL_INFO.ERROR.MESSAGE2'
+            );
+            ref.componentInstance.primaryActionLabel = this.translate.instant(
+              'PERSONAL_INFO.ERROR.BTN-TEXT'
+            );
+          }
+        });
+      }
+      else{
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.RESIDENTIAL_ADDRESS]);
+      }
     }
   }
 

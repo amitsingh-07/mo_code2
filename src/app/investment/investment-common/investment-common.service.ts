@@ -322,4 +322,15 @@ export class InvestmentCommonService {
     portfolioDetails : this.investmentCommonFormData.portfolioDetails
    }
  }
+//  nric validation
+constructValidationInfo(data, source) {
+  return {
+    uin: data,
+    source: source,
+  };
+}
+getUserNricValidation(data, source) {
+  const payload = this.constructValidationInfo(data, source);
+  return this.investmentApiService.getUserNricValidationInfo(payload);
+}
 }

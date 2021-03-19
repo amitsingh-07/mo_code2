@@ -77,5 +77,9 @@ export let INVESTMENT_ACCOUNT_CONSTANTS = {
     EMPLOYED: 'Employed',
     UNEMPLOYED: 'Unemployed'
   },
-  DISABLE_FIELDS_FOR_NON_SG: ['companyName',  'employmentStatus', 'occupation', 'otherOccupation']
+  DISABLE_FIELDS_FOR_NON_SG: ['companyName',  'employmentStatus', 'occupation', 'otherOccupation'],
+  VALIDATE_SOURCE:{
+    MANUAL: "Manual",
+    MYINFO: "MyInfo"
+  }
 };
