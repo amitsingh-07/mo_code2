@@ -53,7 +53,7 @@ export let SIGN_UP_CONFIG = {
     },
     SINGPASSLINKSTATUS:{
         LINKED: "LINKED",
-        NOTLINKED: "NOT_LINKED", 
+        NOT_LINKED: "NOT_LINKED", 
         DISABLED: "DISABLED"
     }
 };

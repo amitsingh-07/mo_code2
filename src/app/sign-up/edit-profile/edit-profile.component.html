@@ -21,12 +21,12 @@
                     <div class="flex-col-9">
                         <div class="singpass-login-title">{{'EDIT_PROFILE.SINGPASS.TITLE' | translate}}</div>
                         <div class="pt5">
-                            <div *ngIf="entireUserData.singpassLinkStatus.toUpperCase() === linkCatagories.NOTLINKED.toUpperCase()">{{'EDIT_PROFILE.SINGPASS.ACTIVATE' | translate}}</div>
+                            <div *ngIf="entireUserData.singpassLinkStatus.toUpperCase() === linkCatagories.NOT_LINKED.toUpperCase()">{{'EDIT_PROFILE.SINGPASS.ACTIVATE' | translate}}</div>
                             <div *ngIf="entireUserData.singpassLinkStatus.toUpperCase() === linkCatagories.DISABLED.toUpperCase()">{{'EDIT_PROFILE.SINGPASS.PENDING' | translate}}</div>
                         </div>
                     </div>
                     <div class="flex-col">
-                        <button type="button" class="link-btn" (click)="linkSingpass()" *ngIf="entireUserData.singpassLinkStatus.toUpperCase() === linkCatagories.NOTLINKED.toUpperCase()">{{'EDIT_PROFILE.SINGPASS.LINK_LBL' | translate}}</button>
+                        <button type="button" class="link-btn" (click)="linkSingpass()" *ngIf="entireUserData.singpassLinkStatus.toUpperCase() === linkCatagories.NOT_LINKED.toUpperCase()">{{'EDIT_PROFILE.SINGPASS.LINK_LBL' | translate}}</button>
                         <button type="button" class="link-btn" *ngIf="entireUserData.singpassLinkStatus.toUpperCase() === linkCatagories.DISABLED.toUpperCase()" [ngClass]="{'disabled': entireUserData.singpassLinkStatus.toUpperCase() === linkCatagories.DISABLED.toUpperCase() }">{{'EDIT_PROFILE.SINGPASS.LINK_LBL' | translate}}</button>
                         <div class="flex space-between" *ngIf="entireUserData.singpassLinkStatus.toUpperCase() === linkCatagories.LINKED.toUpperCase()" >
                             <span><img src="assets/images/green-tick-icon.svg" /></span>
