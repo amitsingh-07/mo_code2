@@ -11,6 +11,7 @@ export class SignUpFormData {
   callBackInvestmentAccount :boolean;
   disableAttributes :any;
   isMyInfoEnabled :boolean;
+  
   // Login
   loginUsername: string;
   loginPassword: string;

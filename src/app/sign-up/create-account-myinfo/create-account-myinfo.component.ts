@@ -95,7 +95,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
   ngOnInit(): void {
     this.showConfirmation = false;
     this.createAccountData = this.signUpService.getUserProfileInfo();
-    this.showSingPass = this.isMyInfoEnabled ? false : true;
+    this.showSingPass = this.createAccountData.isMyInfoEnabled ? false : true;
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '' &&
         this.myInfoService.getMyInfoAttributes() === this.signUpService.myInfoAttributes.join()) {
@@ -119,10 +119,9 @@ export class CreateAccountMyinfoComponent implements OnInit {
         const currentUrl = window.location.toString();
         const rootPoint = currentUrl.split(currentUrl.split('/')[4])[0].substr(0, currentUrl.split(currentUrl.split('/')[4])[0].length - 1);
         const redirectObjective = rootPoint + '/accounts/sign-up';
-
         if (window.location.href === redirectObjective) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO]);
-        } else {
+        } else if (data.responseMessage.responseCode === 6000) {
           this.ngZone.run(() => {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
           });
@@ -137,6 +136,9 @@ export class CreateAccountMyinfoComponent implements OnInit {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO]);
         }
         )
+      }
+      else if (data.responseMessage.responseCode === 5129) {
+        this.closeMyInfoPopup(true);
       }
       else {
         this.closeMyInfoPopup(true);

@@ -65,6 +65,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   showNormalFlowDetails = false;
   isMyInfo;
   formValue: any;
+  createAccountData: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -149,28 +150,28 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
   get account() { return this.createAccountForm.controls; }
 
-  
+
   buildAccountInfoForm() {
-    if (this.distribution && this.distribution.login ) {
-        this.createAccountForm = this.formBuilder.group({
-          countryCode: ['', [Validators.required]],
-          mobileNumber: ['', [Validators.required]],
-          email: ['', [Validators.required, Validators.pattern(this.distribution.login.regex)]],
-          confirmEmail: [''],
-          password: ['', [Validators.required, ValidatePassword]],
-          confirmPassword: [''],
-          termsOfConditions: [true],
-          marketingAcceptance: [false],
-          captcha: ['', [Validators.required]],
-          referralCode: ['']
-        }, { validator: this.validateMatchPasswordEmail() })
-        this.buildFormSingPass();;
-        return false;
+    if (this.distribution && this.distribution.login) {
+      this.createAccountForm = this.formBuilder.group({
+        countryCode: ['', [Validators.required]],
+        mobileNumber: ['', [Validators.required]],
+        email: ['', [Validators.required, Validators.pattern(this.distribution.login.regex)]],
+        confirmEmail: [''],
+        password: ['', [Validators.required, ValidatePassword]],
+        confirmPassword: [''],
+        termsOfConditions: [true],
+        marketingAcceptance: [false],
+        captcha: ['', [Validators.required]],
+        referralCode: ['']
+      }, { validator: this.validateMatchPasswordEmail() })
+      this.buildFormSingPass();;
+      return false;
     }
 
     this.createAccountForm = this.formBuilder.group({
       countryCode: ['', [Validators.required]],
-      mobileNumber: ['', [Validators.required]],      
+      mobileNumber: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       confirmEmail: [''],
       password: ['', [Validators.required, ValidatePassword]],
@@ -180,21 +181,21 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       captcha: ['', [Validators.required]],
       referralCode: ['']
     }, { validator: this.validateMatchPasswordEmail() })
-     this.buildFormSingPass();
+    this.buildFormSingPass();
     return true;
   }
   /**
    * build account form.
    */
   buildFormSingPass() {
-    this.showSingPassDetails =true;
+    this.showSingPassDetails = true;
     this.showNormalFlowDetails = false;
-    if (true) {
-      this.createAccountForm.addControl('fullName', new FormControl( {
+    if (this.createAccountData.isMyInfoEnabled) {
+      this.createAccountForm.addControl('fullName', new FormControl({
         value: this.formValue.fullName,
         disabled: this.signUpService.isDisabled('fullName')
       }, Validators.required));
-      this.createAccountForm.addControl('nricNumber', new FormControl( {
+      this.createAccountForm.addControl('nricNumber', new FormControl({
         value: this.formValue.nricNumber,
         disabled: this.signUpService.isDisabled('nricNumber')
       }, Validators.required));
@@ -206,15 +207,15 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.showNormalFlowDetails = true;
       this.createAccountForm.removeControl('fullName');
       this.createAccountForm.removeControl('nricNumber');
-      this.createAccountForm.addControl('firstName', new FormControl('', 
-      [Validators.required, Validators.minLength(2), 
-      Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]));
-      this.createAccountForm.addControl('lastName', new FormControl('', 
-      [Validators.required, Validators.minLength(2), 
-      Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]));
+      this.createAccountForm.addControl('firstName', new FormControl('',
+        [Validators.required, Validators.minLength(2),
+        Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]));
+      this.createAccountForm.addControl('lastName', new FormControl('',
+        [Validators.required, Validators.minLength(2),
+        Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]));
     }
-  } 
-  
+  }
+
 
   /**
    * validate createAccountForm.
@@ -223,9 +224,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   save(form: any) {
     this.submitted = true;
     this.validateReferralCode();
+    this.createAccountData = this.signUpService.getUserProfileInfo();
     if (form.valid) {
       form.value.userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : appConstants.USERTYPE.NORMAL;
-      form.value.accountCreationType  = this.isMyInfo ? appConstants.USERTYPE.SINGPASS : appConstants.USERTYPE.MANUAL;
+      form.value.accountCreationType = this.createAccountData.isMyInfoEnabled ? appConstants.USERTYPE.SINGPASS : appConstants.USERTYPE.MANUAL;
       this.signUpService.setAccountInfo(form.value);
       this.openTermsOfConditions();
     }
