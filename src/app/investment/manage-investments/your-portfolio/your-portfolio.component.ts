@@ -567,7 +567,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   }
 
   goDividendPayout(event) {
-    // Navigate to dividend payout
+    this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.DIVIDEND]);
     event.stopPropagation();
     event.preventDefault();
   }

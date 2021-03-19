@@ -500,5 +500,8 @@
     "LOADING_TITLE": "Loading",
     "LOADING_DESC": "Please wait while we load the data",
     "PROMO_RATE": "(Promo Rate)"
+  },
+  "DIVIDEND": {
+    "TITLE": "Dividend Payout"
   }
 }
