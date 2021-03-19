@@ -130,7 +130,8 @@ app-portfolio-details {
   .btn-proceed {
     margin-top: 0 !important;
     font-family: $muli-bold !important;
-    font-size: 24px;
+    font-size: 22px;
+    color: $white-color;
   }
 
   hr {
@@ -158,6 +159,7 @@ app-portfolio-details {
       .btn-primary {
         font-size: 22px;
         padding: 10px 20px;
+        color: $white-color;
       }
     }
 
