@@ -331,6 +331,12 @@
       "TITLE": "Following details will be auto filled Via Myinfo:",
       "DESCRIPTION": "Nationality<br>Personal Details<br>Residential Details<br>Employment Details<br>Financial Details",
       "BTN-TEXT": "OK"
+    },
+    "NRIC_VALIDATION_ERROR": {
+      "TITLE": "Unable to proceed with the NRIC/FIN",
+      "MESSAGE1": "We have detected that the NRIC/FIN is already in use by another account. <strong>Please use your own account only.</strong><br><br>Contact us at <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> if you require any assistance.",
+      "MESSAGE2": "We have detected that the NRIC/FIN used is different from your account. <strong>Please use your own account only.</strong><br><br>Contact us at <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> if you require any assistance.",
+      "BTN-TEXT":"Okay, Got It!"
     }
   },
   "INVESTMENT_ACCOUNT_COMMON": {
