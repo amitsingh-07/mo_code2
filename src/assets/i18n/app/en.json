@@ -482,8 +482,7 @@
                     }
                 }
             },
-            "INCL_GST":" (incl. GST)",
-            "DOLLAR_SYMBOL" :"$"
+            "INCL_GST":" (incl. GST)"
         }
     },
     "TRANSFER_INSTRUCTION": {

@@ -25,7 +25,6 @@ export class CreateAccountMyinfoComponent implements OnInit {
   modelTitle1: string;
   modelMessge1: string;
   modelBtnText1: string;
-  showConfirmation: boolean;
   showSingPass: boolean;
   createAccountData: any;
   myInfoSubscription: any;
@@ -37,7 +36,6 @@ export class CreateAccountMyinfoComponent implements OnInit {
   loader3StartTime: any;
   loader2Modal: any;
   loader3Modal: any;
-  isMyInfoEnabled: boolean;
   loader1Modal: any;
 
   constructor(
@@ -78,6 +76,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
       this.loader3StartTime = config.investment.myInfoLoader3StartTime * 1000;
     });
   }
+
   showFetchPopUp() {
     this.secondTimer = setTimeout(() => {
       if (this.myInfoService.loadingModalRef) {
@@ -93,9 +92,8 @@ export class CreateAccountMyinfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.showConfirmation = false;
     this.createAccountData = this.signUpService.getUserProfileInfo();
-    this.showSingPass = this.createAccountData.isMyInfoEnabled ? false : true;
+    this.createAccountData.isMyInfoEnabled = false;
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '' &&
         this.myInfoService.getMyInfoAttributes() === this.signUpService.myInfoAttributes.join()) {
@@ -112,20 +110,11 @@ export class CreateAccountMyinfoComponent implements OnInit {
   getMyInfoAccountCreateData() {
     this.showFetchPopUp();
     this.myInfoSubscription = this.myInfoService.getMyInfoAccountCreateData().subscribe((data) => {
-      if (data && data.objectList[0]) {
+      if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
         this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0])
         this.myInfoService.isMyInfoEnabled = false;
         this.closeMyInfoPopup(false);
-        const currentUrl = window.location.toString();
-        const rootPoint = currentUrl.split(currentUrl.split('/')[4])[0].substr(0, currentUrl.split(currentUrl.split('/')[4])[0].length - 1);
-        const redirectObjective = rootPoint + '/accounts/sign-up';
-        if (window.location.href === redirectObjective) {
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO]);
-        } else if (data.responseMessage.responseCode === 6000) {
-          this.ngZone.run(() => {
-            this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
-          });
-        }
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
       } else if (data.responseMessage.responseCode === 6014) {
         const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
         ref.componentInstance.errorTitle = this.loader1Modal.title;
@@ -134,11 +123,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
         this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
           this.closeMyInfoPopup(false);
           this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO]);
-        }
-        )
-      }
-      else if (data.responseMessage.responseCode === 5129) {
-        this.closeMyInfoPopup(true);
+        })
       }
       else {
         this.closeMyInfoPopup(true);
@@ -160,6 +145,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
     if (this.myInfoSubscription) {
       this.myInfoSubscription.unsubscribe();
     }
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
   }
 
   closeMyInfoPopup(error: boolean) {
@@ -169,19 +155,21 @@ export class CreateAccountMyinfoComponent implements OnInit {
   }
 
   getMyInfo() {
-    this.showConfirmation = false;
     this.signUpService.setCallBackSignUp();
     this.myInfoService.setMyInfoAttributes(
       this.signUpService.myInfoAttributes
     );
     this.myInfoService.goToMyInfo();
   }
+
   goBack() {
     this._location.back();
   }
+
   backToLogin() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
   }
+
   skipMyInfo() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
   }
@@ -207,7 +195,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
     });
   }
 
-  // ******** THIRD POP UP ********//
+
   openThirdPopup() {
     this.myInfoService.loadingModalRef.componentInstance.errorMessage = this.loader3Modal.message;
     this.myInfoService.loadingModalRef.componentInstance.primaryActionLabel = this.loader3Modal.primaryActionLabel;
@@ -216,11 +204,10 @@ export class CreateAccountMyinfoComponent implements OnInit {
     this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
       this.closeMyInfoPopup(false);
       this.proceedToMyInfo();
-
     });
     this.myInfoService.loadingModalRef.componentInstance.secondaryAction.subscribe(() => {
       this.closeMyInfoPopup(false);
-      this.investmentAccountService.setMyInfoStatus(false);
+      this.createAccountData.isMyInfoEnabled = false;
       this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
     });
   }

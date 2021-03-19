@@ -694,7 +694,6 @@ export class SignUpService {
   }
 
 // create account my_info details
-
   setCreateAccountMyInfoFormData(data) {
     if (data.name && data.name.value) {
       this.signUpFormData.fullName = data.name.value;
@@ -710,11 +709,12 @@ export class SignUpService {
     if (data.mobileno && data.mobileno.nbr) {
       this.signUpFormData.mobileNumber = data.mobileno.nbr;
     }
+    this.signUpFormData.isMyInfoEnabled = true;
     this.commit();
   }
   isDisabled(fieldName): boolean {
     let disable: boolean;
-    if (
+    if (this.signUpFormData &&
       this.signUpFormData.isMyInfoEnabled &&
       this.signUpFormData.disableAttributes.indexOf(fieldName) >= 0
     ) {
@@ -733,4 +733,5 @@ export class SignUpService {
   getCallBackSignUp() {
     return this.signUpFormData.callBackInvestmentAccount;
   }
+  
 }

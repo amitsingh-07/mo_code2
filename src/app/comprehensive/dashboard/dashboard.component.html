@@ -115,7 +115,7 @@
          *ngIf="getComprehensiveSummaryDashboard && getComprehensiveSummaryDashboard.showPaymentDashBoard">
           <div class="flex-col-12">
             <div class="limited_value"><img src='assets/images/comprehensive/limited-offer.svg' >
-             {{ 'COMPREHENSIVE.DASHBOARD.DOLLAR_SYMBOL' | translate}}{{ getComprehensiveSummaryDashboard.paymentAmount}}{{ 'COMPREHENSIVE.DASHBOARD.INCL_GST' | translate}}</div>
+             {{ getComprehensiveSummaryDashboard.paymentAmount | currency:'USD':'symbol-narrow':'1.0-2'}}{{ 'COMPREHENSIVE.DASHBOARD.INCL_GST' | translate}}</div>
           </div>
         </div>
          <!-- LIMITED OFFER -->

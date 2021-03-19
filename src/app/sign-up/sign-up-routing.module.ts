@@ -177,7 +177,6 @@ const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.CREATE_ACCOUNT_MY_INFO,
     component: CreateAccountMyinfoComponent
-    
   },
 
   { path: '**', redirectTo: '/page-not-found' }

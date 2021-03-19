@@ -122,6 +122,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       }
     });
     this.createAnimation();
+    this.createAccountData = this.signUpService.getUserProfileInfo();
   }
 
   ngAfterViewInit() {
@@ -190,7 +191,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   buildFormSingPass() {
     this.showSingPassDetails = true;
     this.showNormalFlowDetails = false;
-    if (this.createAccountData.isMyInfoEnabled) {
+    if (this.createAccountData && this.createAccountData.isMyInfoEnabled) {
       this.createAccountForm.addControl('fullName', new FormControl({
         value: this.formValue.fullName,
         disabled: this.signUpService.isDisabled('fullName')
@@ -215,8 +216,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]));
     }
   }
-
-
+  
   /**
    * validate createAccountForm.
    * @param form - user account form detail.
@@ -224,10 +224,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   save(form: any) {
     this.submitted = true;
     this.validateReferralCode();
-    this.createAccountData = this.signUpService.getUserProfileInfo();
     if (form.valid) {
       form.value.userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : appConstants.USERTYPE.NORMAL;
-      form.value.accountCreationType = this.createAccountData.isMyInfoEnabled ? appConstants.USERTYPE.SINGPASS : appConstants.USERTYPE.MANUAL;
+      form.value.accountCreationType = (this.createAccountData && this.createAccountData.isMyInfoEnabled) ? appConstants.USERTYPE.SINGPASS : appConstants.USERTYPE.MANUAL;
       this.signUpService.setAccountInfo(form.value);
       this.openTermsOfConditions();
     }
@@ -504,7 +503,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.capslockFocus = true;
   }
   onBlur() {
-    this.capslockFocus = false;;
+    this.capslockFocus = false;
   }
   onPaste(event: ClipboardEvent, key) {
     const pastedEmailText = event.clipboardData.getData('text').replace(/\s/g, '');
