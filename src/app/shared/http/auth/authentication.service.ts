@@ -169,8 +169,9 @@ export class AuthenticationService {
     return apiBaseUrl + '/' + apiConstants.endpoint.getCaptcha + '?code=' + this.getSessionId() + '&time=' + time;
   }
 
-  public logout() {
-    return this.http.get(apiConstants.endpoint.logout)
+  public logout(browserClose?) {
+   const logoutParam = (browserClose === appConstants.BROWSER_CLOSE) ? appConstants.BROWSER_CLOSE : appConstants.LOGOUT_BUTTON
+    return this.http.get(apiConstants.endpoint.logout.replace('$LOGOUT_BUTTON$', logoutParam))
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {

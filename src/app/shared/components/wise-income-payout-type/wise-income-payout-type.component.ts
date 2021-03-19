@@ -14,17 +14,26 @@ import { INVESTMENT_COMMON_CONSTANTS } from '../../../investment/investment-comm
 export class WiseIncomePayoutTypeComponent implements OnInit {
 
   @Input('payoutType') payoutType;
+  @Input('nextPayout') nextPayout;  
   payoutConst : any;
+  nextPayoutLabel: any;
 
   constructor(private router: Router) { 
     this.payoutConst = INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT;
   }
 
   ngOnInit(): void {
+  this.PayoutLabel();
   }
   
   goReviewInputs() {
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.WISE_INCOME_PAYOUT]);
   }
 
+  PayoutLabel() {
+    this.nextPayoutLabel = {
+      nextPayout: this.nextPayout
+    };
+  }
+  
 }

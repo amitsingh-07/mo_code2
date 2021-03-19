@@ -35,5 +35,7 @@ export let appConstants = {
     INSURANCE_JOURNEY_TYPE: {
         DIRECT: 'insurance-direct',
         GUIDED: 'insurance-guided'
-    }
+    },
+   BROWSER_CLOSE :'BROWSER_CLOSE' ,
+   LOGOUT_BUTTON :'LOGOUT_BUTTON'
 };
