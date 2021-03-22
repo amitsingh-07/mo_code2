@@ -22,9 +22,9 @@
 <div class="container-fluid max-width--1024 full-height white-bg">
     <div class="dividend-received-table hidden-lg">
         <div class="flex-row heading">
-            <div class="flex-col-4 padall10">Payout Date</div>
-            <div class="flex-col-4 padall10">Dividend Rate Per Unit</div>
-            <div class="flex-col-4 padall10">Dividends Received</div>
+            <div class="flex-col-4 padall10">{{'DIVIDEND.PAYOUT_DATE' | translate}}</div>
+            <div class="flex-col-4 padall10">{{'DIVIDEND.DIVIDEND_RATE' | translate}}</div>
+            <div class="flex-col-4 padall10">{{'DIVIDEND.DIVIDEND_RECEIVED' | translate}}</div>
         </div>
         <div class="flex-row" *ngFor="let divident of dividentList; let i = index;">
             <div class="flex-col-4 padall10">{{divident.payoutDate}}</div>
@@ -34,9 +34,9 @@
     </div>
     <div class="dividend-received-table hidden-sm">
         <div class="flex-row heading">
-            <div class="flex-col-3 padall10">Payout Date</div>
-            <div class="flex-col-6 padall10">Dividend Rate Per Unit</div>
-            <div class="flex-col-3 padall10">Dividends Received</div>
+            <div class="flex-col-3 padall10">{{'DIVIDEND.PAYOUT_DATE' | translate}}</div>
+            <div class="flex-col-6 padall10">{{'DIVIDEND.DIVIDEND_RATE' | translate}}</div>
+            <div class="flex-col-3 padall10">{{'DIVIDEND.DIVIDEND_RECEIVED' | translate}}</div>
         </div>
         <div class="flex-row" *ngFor="let divident of dividentList; let i = index;">
             <div class="flex-col-3 padall10">{{divident.payoutDate}}</div>
