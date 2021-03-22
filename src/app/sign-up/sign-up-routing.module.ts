@@ -35,6 +35,7 @@ import {
 import { AddUpdateSrsComponent } from './add-update-srs/add-update-srs.component';
 import { TwoFactorAuthGuardService, TwoFactorScreenGuardService } from './two-factor-auth-guard.service';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { CreateAccountMyinfoComponent } from './create-account-myinfo/create-account-myinfo.component';
 
 const routes: Routes = [
   {
@@ -172,6 +173,10 @@ const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.VERIFY_EMAIL,
     component: VerifyEmailComponent
+  },
+  {
+    path: SIGN_UP_ROUTES.CREATE_ACCOUNT_MY_INFO,
+    component: CreateAccountMyinfoComponent
   },
 
   { path: '**', redirectTo: '/page-not-found' }
