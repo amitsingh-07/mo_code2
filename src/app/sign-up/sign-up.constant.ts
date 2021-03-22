@@ -56,6 +56,11 @@ export let SIGN_UP_CONFIG = {
       SIGN_UP : {
       EMAIL:"email"
     },
+    SINGPASSLINKSTATUS:{
+        LINKED: "LINKED",
+        NOT_LINKED: "NOT_LINKED", 
+        DISABLED: "DISABLED"
+    },
     CREATE_ACCOUNT_STATIC :{
       SUCCESS :"SUCCESS",
       CANCELLED:"CANCELLED"

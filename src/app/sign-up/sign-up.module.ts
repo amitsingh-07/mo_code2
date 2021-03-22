@@ -46,6 +46,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { SrsSuccessModalComponent } from './add-update-srs/srs-success-modal/srs-success-modal.component';
 import { TwoFactorAuthGuardService } from './two-factor-auth-guard.service';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { ActivateSingpassModalComponent } from './edit-profile/activate-singpass-modal/activate-singpass-modal.component';
 import { CreateAccountMyinfoComponent } from './create-account-myinfo/create-account-myinfo.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -99,6 +100,7 @@ export function createTranslateLoader(http: HttpClient) {
     AddUpdateSrsComponent,
     SrsSuccessModalComponent,
     VerifyEmailComponent,
+    ActivateSingpassModalComponent,
     CreateAccountMyinfoComponent
   ],
   providers: [SignUpAccessGuard, AuthGuardService, TwoFactorAuthGuardService],

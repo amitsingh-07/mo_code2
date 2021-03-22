@@ -57,6 +57,7 @@ export let apiConstants = {
         sendWelcomeMail: ACCOUNT_API_BASE_URL + '/sendWelcomeMail',
         financialWellness: ACCOUNT_API_BASE_URL + '/corp/updateLeadGen',
         validateReferralCode: ACCOUNT_API_BASE_URL + '/referralcode/validateReferralCode?handleError=true',
+        getSingpassAccount: ACCOUNT_API_BASE_URL + '/activate/singpass',
         article: {
             getRecentArticles: ARTICLE_API_BASE_URL + '/getTop8Articles',
             getArticleCategory: ARTICLE_API_BASE_URL + '/getCountForAllTags',

@@ -231,8 +231,16 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-   /* create account  */
-   getCreateAccountMyInfoData(data) {
+  // activate link new api
+  getSingpassAccountData(data) {
+    return this.http.post(apiConstants.endpoint.getSingpassAccount, data, true)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  /* create account  */
+  getCreateAccountMyInfoData(data) {
     return this.http.post(apiConstants.endpoint.getCreateAccountMyInfoValue, data, true)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
