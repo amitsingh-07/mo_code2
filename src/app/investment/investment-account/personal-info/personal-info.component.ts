@@ -1,7 +1,7 @@
-import { ChangeDetectorRef, Component, NgZone, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
@@ -10,12 +10,10 @@ import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-mod
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
-import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountCommon } from '../investment-account-common';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
-import { InvestmentApiService } from './../../investment-api.service';
 import {
   ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
@@ -50,20 +48,15 @@ export class PersonalInfoComponent implements OnInit {
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   source: any;
   constructor(
-    private cdr: ChangeDetectorRef,
     private router: Router,
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    private config: NgbDatepickerConfig,
     private modal: NgbModal,
-    private signUpService: SignUpService,
     private investmentAccountService: InvestmentAccountService,
     public readonly translate: TranslateService,
     private loaderService: LoaderService,
-    private investmentApiService: InvestmentApiService,
-    private investmentCommonService: InvestmentCommonService,
-    private ngZone: NgZone
+    private investmentCommonService: InvestmentCommonService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -289,9 +282,7 @@ export class PersonalInfoComponent implements OnInit {
       if (this.source = INVESTMENT_ACCOUNT_CONSTANTS.VALIDATE_SOURCE.MANUAL){    
         this.investmentCommonService.getUserNricValidation(form.getRawValue().nricNumber, this.source).subscribe((data) => {
           if(data.responseMessage.responseCode === 6013){
-            // this.ngZone.run(() => {
-              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.RESIDENTIAL_ADDRESS]);
-            // });
+            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.RESIDENTIAL_ADDRESS]);
           }
           else if(data.responseMessage.responseCode === 6014){
             const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
