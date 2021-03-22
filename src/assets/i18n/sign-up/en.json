@@ -381,6 +381,16 @@
         {
           "TITLE": "New Updates",
           "TITLE_IMG": "srs-joint-account/speaker.svg",
+          "IMAGE": "srs-joint-account/wise-income.svg",
+          "IMG_TITLE": "Want passive income?<br>Start with WiseIncome!",
+          "TEXT": "Kick off your passive income journey with WiseIncome at $1 per unit! Deposits will be invested on 31st March.",
+          "APP_URL": "/investment/engagement/wise-income-payout",
+          "QUERY_PARAMS": "wise-income",
+          "URL_TEXT": "Start now"
+        },        
+        {
+          "TITLE": "New Updates",
+          "TITLE_IMG": "srs-joint-account/speaker.svg",
           "IMAGE": "srs-joint-account/srs.svg",
           "IMG_TITLE": "You can now open your SRS Investment Account online!",
           "TEXT": "Invest your Supplementary Retirement Scheme (SRS) savings to get potentially higher returns while enjoying tax savings."

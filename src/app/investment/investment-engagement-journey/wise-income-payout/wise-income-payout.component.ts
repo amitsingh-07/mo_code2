@@ -1,7 +1,7 @@
 import {
   AfterViewInit, ChangeDetectorRef, Component, OnInit, Renderer2, ViewEncapsulation
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { appConstants } from '../../../app.constants';
@@ -41,10 +41,13 @@ export class WiseIncomePayoutComponent implements OnInit {
   fundingMethods: any;
   payoutFundList: any;
   defaultPayoutypeEnabled: boolean;
+  queryParams;
+
   constructor(
     public readonly translate: TranslateService,
     public activeModal: NgbActiveModal,
     private router: Router,
+    private route: ActivatedRoute,
     public headerService: HeaderService,
     public authService: AuthenticationService,
     private investmentCommonService: InvestmentCommonService,
@@ -61,7 +64,7 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('WISE_INCOME_PAYOUT.TITLE');
-      this.setPageTitle(this.pageTitle);
+      this.setPageTitle(this.pageTitle, null, null, false, false, null, true);
     });
   }
   ngOnInit() {
@@ -70,6 +73,11 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.getWiseIncomePayOutDetails();
     this.getOptionListCollection();
+    this.queryParams = this.route.snapshot.queryParams;
+    if (this.queryParams && this.queryParams.key && this.queryParams.key === 'wise-income') {
+      this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
+      this.investmentEngagementJourneyService.setSelectPortfolioType({selectPortfolioType: 'wiseIncomePortfolio'});
+    }
     this.investmentAccountService.getSpecificDropList('portfolioType').subscribe((data) => {
       this.investmentCommonService.setPortfolioType(data.objectList.portfolioType);
       this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType()
@@ -121,8 +129,8 @@ export class WiseIncomePayoutComponent implements OnInit {
         this.investmentAccountService.showGenericErrorModal();
       });
   }
-  setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
+  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean, filterIcon?: boolean, superTitle?: string, dropDownIcon?: boolean) {
+    this.navbarService.setPageTitle(title, null, null, false, false, null, dropDownIcon);
   }
   getWiseIcomePayoutTypeNameById(wiseIncomePayoutTypeId, payoutOptions) {
     if (wiseIncomePayoutTypeId && payoutOptions) {
@@ -188,5 +196,8 @@ export class WiseIncomePayoutComponent implements OnInit {
       this.investmentCommonService.setInitialFundingMethod({ initialFundingMethodId: fundingMethod });
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
     }
+  }
+  ngOnDestroy() {
+    this.navbarService.unsubscribeDropDownIcon();
   }
 }
