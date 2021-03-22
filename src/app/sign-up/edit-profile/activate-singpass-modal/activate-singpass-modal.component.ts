@@ -51,6 +51,8 @@ export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
   errorModalTitle: string;
   errorModalMessage: string;
   errorModalBtnText: string;
+  myInfoStatus1: string;
+  myInfoStatus2: string;
   isMyInfoEnabled = false;
   
   constructor(
@@ -90,6 +92,12 @@ export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
       this.errorModalBtnText = this.translate.instant(
         'LINK_ACCOUNT_MYINFO.ERROR_MODAL.BTN-TEXT'
       );
+      this.myInfoStatus1 = this.translate.instant(
+        'LINK_ACCOUNT_MYINFO.MYINFO_STATUS.SUCCESS'
+      );
+      this.myInfoStatus2 = this.translate.instant(
+        'LINK_ACCOUNT_MYINFO.MYINFO_STATUS.CANCELLED'
+      );
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.isInvestmentMyInfoEnabled = config.investmentMyInfoEnabled;
@@ -105,9 +113,9 @@ export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '' &&
         this.myInfoService.getMyInfoAttributes() === this.investmentAccountService.myInfoAttributes.join()) {
-        if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
+        if (myinfoObj.status && myinfoObj.status === this.myInfoStatus1 && this.myInfoService.isMyInfoEnabled) {
           this.getMyInfoData();
-        } else if (myinfoObj.status && myinfoObj.status === 'CANCELLED') {
+        } else if (myinfoObj.status && myinfoObj.status === this.myInfoStatus2) {
           this.cancelMyInfo();
         } else {
           this.closeMyInfoPopup(false);
