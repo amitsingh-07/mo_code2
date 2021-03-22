@@ -225,12 +225,12 @@
                           {{'YOUR_PORTFOLIO.TOTAL_DIVIDENDS' | translate}}
                           <div class="currency_value">{{portfolio.totalDividends}}</div>
                         </div>
-                        <div class="portfolio_info_label right-col flex-div">
+                        <div class="portfolio_info_label right-col flex-div hand-cursor" (click)="goDividendPayout($event)" >
                           <div>
                             {{'YOUR_PORTFOLIO.NEXT_PAYOUT' | translate}}
                             <div class="currency_value">{{portfolio.nextPayout}}</div>
                           </div>
-                          <img (click)="goDividendPayout($event)" src="assets/images/investment-account/forward_portfolio.svg" alt="">
+                          <img src="assets/images/investment-account/forward_portfolio.svg" alt="">
                         </div>
                       </div>
                       <div *ngIf="showPortfolioInfo" class="calculate_tooltip" (click)="showCalculationTooltip()">
@@ -327,17 +327,17 @@
                           </div>
                         </ng-template>
                       </div>
-                      <div *ngIf="isWiseIncomePortfolio && showDividend" class="mt20 dividend-display">
+                      <div *ngIf="portfolio.payoutType === '4.5% p.a. income payout' || portfolio.payoutType === '8% p.a. income payout'" class="mt20 dividend-display">
                         <div class="portfolio_info_label ">
                           {{'YOUR_PORTFOLIO.TOTAL_DIVIDENDS' | translate}}
-                          <div class="currency_value">$500.00</div>
+                          <div class="currency_value">{{portfolio.totalDividends}}</div>
                         </div>
-                        <div class="portfolio_info_label right-col flex-div">
+                        <div class="portfolio_info_label right-col flex-div hand-cursor" (click)="goDividendPayout($event)">
                           <div>
                             {{'YOUR_PORTFOLIO.NEXT_PAYOUT' | translate}}
-                            <div class="currency_value">Jul 2021</div>
+                            <div class="currency_value">{{portfolio.nextPayout}}</div>
                           </div>
-                          <img (click)="goDividendPayout($event)" src="assets/images/investment-account/forward_portfolio.svg" alt="">
+                          <img src="assets/images/investment-account/forward_portfolio.svg" alt="">
                         </div>
                       </div>
                       <div *ngIf="showPortfolioInfo" class="calculate_tooltip" (click)="showCalculationTooltip()">
