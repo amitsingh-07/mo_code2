@@ -574,7 +574,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   //wiseIncome Dropdown Scroll
   onClickScroll(elementId: string): void {
     this.viewportScroller.scrollToAnchor(elementId);
-    if(elementId=='pyoutOption'){
+    if(elementId=='payoutOption'){
       this.tab = 'tab1';
     } else if(elementId=='featureBenefits'){
       this.tab = 'tab2';

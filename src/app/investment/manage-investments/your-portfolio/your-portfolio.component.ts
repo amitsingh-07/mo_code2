@@ -68,6 +68,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   portfolioType: any;
   isWiseIncomePortfolio: boolean = false;
   showDividend: boolean = false;
+  wiseIncomePayoutType: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -125,6 +126,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         this.showCopyToast(data);
       }
     });
+    this.wiseIncomePayoutType=MANAGE_INVESTMENTS_CONSTANTS.WISEINCOME_PAYOUT_TYPE;
   }
 
   ngOnDestroy() {

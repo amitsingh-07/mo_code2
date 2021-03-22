@@ -141,11 +141,11 @@ export class NavbarService {
     this.pageTitle.next(title);
     this.menuItem.next(menuItem);
     this.pageHelpIcon.next(false);
-    this.pageDropDownIcon.next(false);
     this.pageSettingsIcon.next(false);
     this.pageFilterIcon.next(false);
     this.pageSuperTitle.next('');
     this.pageSubTitle.next('');
+    this.pageDropDownIcon.next(false);
   }
   setClearAllNotify(isVisible: boolean) {
     this.pageClearNotify.next(isVisible);
@@ -158,7 +158,7 @@ export class NavbarService {
 
   /* Header Functions*/
   // Setting Page Title
-  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, dropDownIcon?: boolean, settingsIcon?: boolean, filterIcon?: boolean, superTitle?: string) {
+  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean, filterIcon?: boolean, superTitle?: string, dropDownIcon?: boolean) {
     this.setInvestPageTitle(title, superTitle ? superTitle : '');
     this.pageTitle.next(title);
     if (subTitle) {
@@ -171,11 +171,6 @@ export class NavbarService {
     } else {
       this.pageHelpIcon.next(false);
     } 
-    if (dropDownIcon) {
-      this.pageDropDownIcon.next(true);
-    } else {
-      this.pageDropDownIcon.next(false);
-    }
     if (settingsIcon) {
       this.pageSettingsIcon.next(true);
     } else {
@@ -191,7 +186,11 @@ export class NavbarService {
     } else {
       this.pageSuperTitle.next('');
     }
-
+    if (dropDownIcon) {
+      this.pageDropDownIcon.next(true);
+    } else {
+      this.pageDropDownIcon.next(false);
+    }
     // Reset/Hide menuItem
     this.menuItem.next({} as IHeaderMenuItem);
   }
