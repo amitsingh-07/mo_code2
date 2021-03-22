@@ -55,5 +55,9 @@ export let SIGN_UP_CONFIG = {
     },
       SIGN_UP : {
       EMAIL:"email"
+    },
+    CREATE_ACCOUNT_STATIC :{
+      SUCCESS :"SUCCESS",
+      CANCELLED:"CANCELLED"
     }
 };

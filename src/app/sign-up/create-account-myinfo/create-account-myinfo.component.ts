@@ -10,6 +10,7 @@ import { MyInfoService } from 'src/app/shared/Services/my-info.service';
 import { InvestmentAccountService } from 'src/app/investment/investment-account/investment-account.service';
 import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
 import { SignUpService } from '../sign-up.service';
+import { SIGN_UP_CONFIG } from '../sign-up.constant';
 @Component({
   selector: 'app-create-account-myinfo',
   templateUrl: './create-account-myinfo.component.html',
@@ -97,9 +98,9 @@ export class CreateAccountMyinfoComponent implements OnInit {
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '' &&
         this.myInfoService.getMyInfoAttributes() === this.signUpService.myInfoAttributes.join()) {
-        if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
+        if (myinfoObj.status && myinfoObj.status === SIGN_UP_CONFIG.CREATE_ACCOUNT_STATIC.SUCCESS && this.myInfoService.isMyInfoEnabled) {
           this.getMyInfoAccountCreateData();
-        } else if (myinfoObj.status && myinfoObj.status === 'CANCELLED') {
+        } else if (myinfoObj.status && myinfoObj.status === SIGN_UP_CONFIG.CREATE_ACCOUNT_STATIC.CANCELLED) {
           this.cancelMyInfo();
         } else {
           this.closeMyInfoPopup(false);
