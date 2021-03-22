@@ -240,7 +240,6 @@ export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
       this.loadingModalRef.componentInstance.errorTitle = this.errorModalTitle;
       this.loadingModalRef.componentInstance.errorMessage = this.errorModalMessage;
       this.loadingModalRef.componentInstance.primaryActionLabel = this.errorModalBtnText;
-      this.loadingModalRef.componentInstance.isError = true;
       this.myInfoService.closeMyInfoPopup(error);
       clearTimeout(this.secondTimer);
       clearTimeout(this.thirdTimer);
