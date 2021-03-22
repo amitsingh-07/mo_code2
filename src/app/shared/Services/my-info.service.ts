@@ -212,6 +212,15 @@ export class MyInfoService {
     };
     return this.apiService.getMyInfoData(code);
   }
+// CREATE ACCOUNT
+  getMyInfoAccountCreateData(){
+    const code = {
+      authorizationCode: this.myInfoValue,
+      personAttributes: this.getMyInfoAttributes()
+    };
+    return this.apiService.getCreateAccountMyInfoData(code);
+  }
+  
 
   // Check if the source page matches with the session stored one
   checkMyInfoSourcePage() {

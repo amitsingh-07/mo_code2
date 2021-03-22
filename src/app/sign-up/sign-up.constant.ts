@@ -1,4 +1,9 @@
 export let SIGN_UP_CONFIG = {
+    MY_INFO_ATTRIBUTES: [
+        'name',
+        'email',
+        'mobileno'   
+      ],
     SHOW_BANK_DETAILS: [
         'PORTFOLIO_PURCHASED',
         'ACCOUNT_CREATED',
@@ -50,5 +55,9 @@ export let SIGN_UP_CONFIG = {
     },
       SIGN_UP : {
       EMAIL:"email"
+    },
+    CREATE_ACCOUNT_STATIC :{
+      SUCCESS :"SUCCESS",
+      CANCELLED:"CANCELLED"
     }
 };
