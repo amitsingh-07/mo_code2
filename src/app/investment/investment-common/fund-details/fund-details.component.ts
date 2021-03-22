@@ -83,23 +83,14 @@ export class FundDetailsComponent implements OnInit {
 
   getHighlightSheetLink(fund) {
     let highlightSheetFileName;
-    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    let newWindow;
-    if (iOS) {
-      newWindow = window.open();
-    }
     if (fund.factSheetLink) {
       highlightSheetFileName = fund.factSheetLink.split('|')[1];
     }
     const pdfUrl = document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + highlightSheetFileName;
+    
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     if (iOS) {
-      if (newWindow.document.readyState === 'complete') {
-        newWindow.location.assign(pdfUrl);
-      } else {
-        newWindow.onload = () => {
-          newWindow.location.assign(pdfUrl);
-        };
-      }
+      window.open(pdfUrl, '_blank');
     } else {        
       this.downloadFile(highlightSheetFileName);
     }
@@ -107,10 +98,6 @@ export class FundDetailsComponent implements OnInit {
   }
   getProspectusLink() {
     const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    let newWindow;
-    if (iOS) {
-      newWindow = window.open();
-    }
     let prospectusFileName;
     if(this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO.toLowerCase()){
       prospectusFileName = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PROSPECTUS_FILE.INVESTMENT;
@@ -121,13 +108,7 @@ export class FundDetailsComponent implements OnInit {
     }
     const pdfUrl = document.getElementsByTagName('base')[0].href + 'assets/docs/portfolio/fund/' + prospectusFileName;
     if (iOS) {
-      if (newWindow.document.readyState === 'complete') {
-        newWindow.location.assign(pdfUrl);
-      } else {
-        newWindow.onload = () => {
-          newWindow.location.assign(pdfUrl);
-        };
-      }
+      window.open(pdfUrl, '_blank');
     } else {        
       this.downloadFile(prospectusFileName);
     }

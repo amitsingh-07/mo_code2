@@ -232,7 +232,8 @@
         "MY_FINANCIAL_LBL": "How much do you own and owe?",
         "RESPONSE_LOADER": {
             "TITLE": "loading...",
-            "DESC": "Please wait loading financial details."
+            "DESC": "Please wait loading financial details.",
+            "DESC_TWO": "Please wait while we load the data."
         },
         "modalData": {
             "modalTitle": "Insufficient Emergency Fund",

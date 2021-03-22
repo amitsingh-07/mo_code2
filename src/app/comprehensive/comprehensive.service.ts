@@ -2202,15 +2202,13 @@ export class ComprehensiveService {
   getRegularSaving(mode: any, annualFlag: boolean) {
     const rspDetails = this.getRegularSavingsList();
     if (rspDetails && rspDetails !== null) {
-      const inputParams = { rsp: rspDetails };
-      const removeParams = ['enquiryId'];
-      if (mode === 'cash') {
-        removeParams.push('regularPaidByCPF');
-      } else if (mode === 'cpf') {
-        removeParams.push('regularPaidByCash');
-      }
-      const filterInput = this.unSetObjectByKey(inputParams, removeParams);
-      const monthlySumCal = this.additionOfCurrency(filterInput);
+      const calculateRSP = [];
+      rspDetails.forEach((investDetails: any, index) => {
+        if(investDetails.fundType && investDetails.fundType.toLowerCase() === mode) {
+          calculateRSP.push(investDetails.amount);
+        }
+      });        
+      const monthlySumCal = this.additionOfCurrency(calculateRSP);  
       if (annualFlag) {
         return monthlySumCal * 12;
       } else {

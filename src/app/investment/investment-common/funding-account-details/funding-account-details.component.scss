@@ -61,6 +61,9 @@ app-funding-account-details {
             align-items: center;
             line-height: normal;
             margin-bottom: 6px;
+            @include desktop {
+              margin-bottom: 15px;
+            }
           }
           .characters {
             text-align: right;
