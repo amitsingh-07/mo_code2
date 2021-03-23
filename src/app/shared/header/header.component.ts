@@ -23,6 +23,7 @@ export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
   showHeaderDropshadow = true;
   closeIcon = false;
   settingsIcon = false;
+  dropDownIcon = false;
 
   constructor(public navbarService: NavbarService, public headerService: HeaderService,
               private _location: Location , private router: Router) {  }
@@ -31,6 +32,7 @@ export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
     this.headerService.currentPageTitle.subscribe((title) => this.pageTitle = title);
     this.headerService.currentPageSubTitle.subscribe((subTitle) => this.subTitle = subTitle);
     this.headerService.currentPageHelpIcon.subscribe((helpIcon) => this.helpIcon = helpIcon);
+    this.headerService.currentPageDropDownIcon.subscribe((dropDownIcon) => this.dropDownIcon = dropDownIcon);
     this.headerService.currentPageProdInfoIcon.subscribe((closeIcon) => this.closeIcon = closeIcon);
     this.headerService.currentPageSettingsIcon.subscribe((settingsIcon) => this.settingsIcon = settingsIcon);
   }
@@ -43,8 +45,8 @@ export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
     });
   }
 
-  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean) {
-    this.headerService.setPageTitle(title, this.subTitle, this.helpIcon, this.settingsIcon);
+  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean, dropDownIcon?: boolean) {
+    this.headerService.setPageTitle(title, this.subTitle, this.helpIcon, this.settingsIcon, this.dropDownIcon);
   }
 
   hideHeader() {

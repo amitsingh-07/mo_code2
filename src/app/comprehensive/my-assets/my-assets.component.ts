@@ -65,6 +65,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   fundTypeLite: any;
   errorMessageLite: any;
   fundType = [];
+  showEditIcon:boolean = false;
 
   // tslint:disable-next-line:cognitive-complexity
   constructor(
@@ -101,6 +102,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       this.brsConfig = (retirementSumConfigValue && retirementSumConfigValue['BRS']) ? retirementSumConfigValue['BRS'] : '';
       this.frsConfig = (retirementSumConfigValue && retirementSumConfigValue['FRS']) ? retirementSumConfigValue['FRS'] : '';
     }
+    
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '') {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled
@@ -144,8 +146,10 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       this.assetDetails.otherAssetsValue = 0;
       this.assetDetails.investmentPropertiesValue = 0;
     }
-    if (this.assetDetails && this.assetDetails.source === 'MyInfo') {
+    
+    if (this.assetDetails && this.assetDetails.source === COMPREHENSIVE_CONST.CPF_SOURCE.MY_INFO) {
       this.cpfFromMyInfo = true;
+      this.showEditIcon = true;
     }
     if (this.assetDetails && this.assetDetails.schemeType) {
       this.schemeType = this.assetDetails.schemeType;
@@ -399,7 +403,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         const assetsData = this.comprehensiveService.getComprehensiveSummary().comprehensiveAssets;
         if (!form.pristine || Util.isEmptyOrNull(assetsData)) {
           this.assetDetails = form.value;
-          this.cpfFromMyInfo ? this.assetDetails.source = 'MyInfo' : this.assetDetails.source = 'MANUAL';
+          this.cpfFromMyInfo ? this.assetDetails.source = COMPREHENSIVE_CONST.CPF_SOURCE.MY_INFO : this.assetDetails.source = COMPREHENSIVE_CONST.CPF_SOURCE.MANUAL;
           this.assetDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.API_TOTAL_BUCKET_KEY] = this.totalAssets;
           this.assetDetails.enquiryId = this.comprehensiveService.getEnquiryId();
           this.assetDetails.assetsInvestmentSet.forEach((investDetails: any, index) => {
@@ -481,6 +485,13 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         }
       });
       this.myAssetsForm.markAsDirty();
+    }
+  }
+  editCPFFields(){
+    if(this.cpfFromMyInfo){
+      this.cpfFromMyInfo = false;
+      this.showEditIcon = false;
+      this.assetDetails.source = COMPREHENSIVE_CONST.CPF_SOURCE.MANUAL;
     }
   }
 }
