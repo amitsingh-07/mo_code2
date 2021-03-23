@@ -11,6 +11,7 @@ import { InvestmentAccountService } from '../../investment/investment-account/in
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { SignUpService } from '../sign-up.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
+
 @Component({
   selector: 'app-create-account-myinfo',
   templateUrl: './create-account-myinfo.component.html',
