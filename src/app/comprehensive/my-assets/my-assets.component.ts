@@ -147,7 +147,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       this.assetDetails.investmentPropertiesValue = 0;
     }
     
-    if (this.assetDetails && this.assetDetails.source === 'MyInfo') {
+    if (this.assetDetails && this.assetDetails.source === COMPREHENSIVE_CONST.CPF_SOURCE.MY_INFO) {
       this.cpfFromMyInfo = true;
       this.showEditIcon = true;
     }
