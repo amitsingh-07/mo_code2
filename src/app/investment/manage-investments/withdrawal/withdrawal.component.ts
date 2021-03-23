@@ -101,6 +101,12 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
     if (this.isInvestAndJointAccountHolder) {
       this.getUserBankList();
     }
+
+    this.withdrawForm.get('withdrawRedeem').valueChanges.subscribe((value) => {
+      if(value && !this.withdrawForm.controls['withdrawAmount'].disabled) {
+        this.withdrawForm.get('withdrawAmount').disable();
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -299,9 +305,13 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
           )
         ])
       );
+
     this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
       amtValue = amtValue.replace(/[,]+/g, '').trim();
       this.isRedeemAll = ((amtValue == roundOffValue) && roundOffValue > 0);
+      if (this.isRedeemAll) {
+        this.enableRedeem();
+      }
     });
   }
 
@@ -426,7 +436,13 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
           this.isRequestSubmitted = false;
           this.loaderService.hideLoader();
           if (response.responseMessage.responseCode < 6000) {
-            if (
+            if(response.responseMessage.responseCode == 5129) {
+              // Insufficient balance Error due to pending withdrawal request in progress
+              this.showCustomErrorModal(
+                'Error!',
+                this.translate.instant('WITHDRAW.PENDING_WITHDRAWAL_ERROR')
+              );
+            } else if (
               response.objectList &&
               response.objectList.length &&
               response.objectList[response.objectList.length - 1].serverStatus &&
@@ -556,6 +572,11 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
         this.isRedeemAllChecked = false;
       }
     }
+  }
+
+  enableRedeem() {
+    this.withdrawForm.controls.withdrawRedeem.setValue(true);
+    this.isRedeemAllChecked = true;
   }
 }
 
