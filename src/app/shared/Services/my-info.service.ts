@@ -159,20 +159,15 @@ export class MyInfoService {
     };
     this.loadingModalRef = this.modal.open(ModelWithButtonComponent, ngbModalOptions);
     this.loadingModalRef.componentInstance.spinner = true;
-<<<<<<< HEAD
-    this.loadingModalRef.componentInstance.closeBtn = false;
-    this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
-    this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from MyInfo.';
-=======
-    this.loadingModalRef.componentInstance.closeBtn = true;
     if (linkAccount) {
+      this.loadingModalRef.componentInstance.closeBtn = true;
       this.loadingModalRef.componentInstance.errorTitle = 'Linking Account…';
       this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we are linking up your MoneyOwl account.';
-    }else{
+    } else {
+      this.loadingModalRef.componentInstance.closeBtn = false;
       this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
       this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from MyInfo.';
     }
->>>>>>> 4302cfc0b6b1594a62079f6d83d459c94dbd9dab
     this.loadingModalRef.componentInstance.primaryActionLabel = 'Cancel';
     this.loadingModalRef.componentInstance.closeAction.subscribe(() => {
       this.changeListener.next(this.getMyinfoReturnMessage(CANCELLED));
