@@ -5,10 +5,11 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { appConstants } from '../app.constants';
 import { ApiService } from '../shared/http/api.service';
-import { NavbarService } from 'src/app/shared/navbar/navbar.service';
+import { NavbarService } from '../shared/navbar/navbar.service';
 import { PROMO_CODE_STATUS, PROMO_PROFILE_TYPE, PROMO_MOCK_JSON } from './promo-code.constants';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { environment } from './../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
