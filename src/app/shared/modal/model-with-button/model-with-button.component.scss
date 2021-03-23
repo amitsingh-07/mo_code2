@@ -149,3 +149,11 @@
   font-weight: bold;
   color: $dark-orange-color;
 }
+.email_txt{
+  a{
+    color: $dark-orange-color;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: $muli-regular;
+  }
+}

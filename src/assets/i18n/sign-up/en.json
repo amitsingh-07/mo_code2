@@ -571,7 +571,7 @@
     },
     "LOADER1": {
       "title": "Unable to proceed with the NRIC/FIN",
-      "message": "We have detected that the NRIC/FIN is already in use by another account. Please use your own account only.Contact us at enquiries@moneyowl.com.sg  if you require any assistance.",
+      "message": "We have detected that the NRIC/FIN is already in use by another account.<strong class=\"text-bold\">Please use your own account only.</strong><br></br>Contact us at <span class=\"email_txt\"><a target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a>.</span> if you require any assistance.",
       "btn": "Okay, Got It!"
     },
     "LOADER2": {

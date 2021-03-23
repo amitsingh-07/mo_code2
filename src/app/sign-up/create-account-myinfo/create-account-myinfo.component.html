@@ -22,15 +22,15 @@
           <div class="sing-pass-info" [innerHtml]="'CREATE_ACCOUNT_MY_INFO.DESCRIPTION_TWO' | translate">
           </div>
         </div>
-        <div class="flex order3 sm-order1">
+        <button id="nextDependentBtn" type="button" class="btn  btn__footer--fixed btn-proceed width100"
+        (click)="proceedToMyInfo()">
+        {{ 'CREATE_ACCOUNT_MY_INFO.PROCEED_TO_MY_INFO' | translate}}</button>
+        <div class="flex space-between mt20">
           <button type="button" class="btn btn-login" (click)="backToLogin()">
             {{ 'CREATE_ACCOUNT_MY_INFO.BACK_TO_LOG_ON' | translate}}</button>
           <button type="button" class="btn btn-myinfo" (click)="skipMyInfo()">
             {{ 'CREATE_ACCOUNT_MY_INFO.SKIP_MY_INFO' | translate}}</button>
         </div>
-        <button id="nextDependentBtn" type="button" class="btn btn__footer--fixed btn-primary width100 mt20 order1"
-          (click)="proceedToMyInfo()">
-          {{ 'CREATE_ACCOUNT_MY_INFO.PROCEED_TO_MY_INFO' | translate}}</button>
       </div>
     </div>
   </div>
