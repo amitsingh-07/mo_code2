@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { ConfigService, IConfig } from '../../config/config.service';
 import { MyInfoService } from '../../shared/Services/my-info.service';
-import { InvestmentAccountService } from 'src/app/investment/investment-account/investment-account.service';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account.service';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { SignUpService } from '../sign-up.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
