@@ -490,7 +490,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     if(this.cpfFromMyInfo){
       this.cpfFromMyInfo = false;
       this.showEditIcon = false;
-      this.assetDetails.source = 'MANUAL';
+      this.assetDetails.source = COMPREHENSIVE_CONST.CPF_SOURCE.MANUAL;
     }
   }
 }
