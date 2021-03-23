@@ -402,7 +402,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         const assetsData = this.comprehensiveService.getComprehensiveSummary().comprehensiveAssets;
         if (!form.pristine || Util.isEmptyOrNull(assetsData)) {
           this.assetDetails = form.value;
-          this.cpfFromMyInfo ? this.assetDetails.source = 'MyInfo' : this.assetDetails.source = 'MANUAL';
+          this.cpfFromMyInfo ? this.assetDetails.source = COMPREHENSIVE_CONST.CPF_SOURCE.MY_INFO : this.assetDetails.source = COMPREHENSIVE_CONST.CPF_SOURCE.MANUAL;
           this.assetDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.API_TOTAL_BUCKET_KEY] = this.totalAssets;
           this.assetDetails.enquiryId = this.comprehensiveService.getEnquiryId();
           this.assetDetails.assetsInvestmentSet.forEach((investDetails: any, index) => {
