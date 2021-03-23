@@ -165,10 +165,11 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     this.myInfoService.changeListener.next('');
     if (this.myInfoService.isMyInfoEnabled) {
       this.myInfoService.isMyInfoEnabled = false;
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = 'Oops, Error!';
-      ref.componentInstance.errorMessage = 'We weren\'t able to fetch your data from MyInfo.';
-      ref.componentInstance.isError = true;
+      const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'my-info' });
+      ref.componentInstance.errorTitle = 'Oops, Unable to Connect';
+      ref.componentInstance.errorMessage = 'We are unable to connect to MyInfo temporary. You may choose to fill in your information manually or try again later.';
+      ref.componentInstance.isMyinfoError = true;
+      ref.componentInstance.closeBtn = false;
       this.cpfFromMyInfo = false;
       ref.result.then(() => {
         this.myInfoService.goToMyInfo();

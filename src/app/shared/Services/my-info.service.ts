@@ -155,10 +155,11 @@ export class MyInfoService {
       backdrop: 'static',
       keyboard: false,
       centered: true,
+      windowClass: 'my-info'
     };
     this.loadingModalRef = this.modal.open(ModelWithButtonComponent, ngbModalOptions);
     this.loadingModalRef.componentInstance.spinner = true;
-    this.loadingModalRef.componentInstance.closeBtn = true;
+    this.loadingModalRef.componentInstance.closeBtn = false;
     this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
     this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from MyInfo.';
     this.loadingModalRef.componentInstance.primaryActionLabel = 'Cancel';
@@ -190,10 +191,11 @@ export class MyInfoService {
     this.isMyInfoEnabled = false;
     this.closeFetchPopup();
     if (error) {
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = 'Oops, Error!';
-      ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
-      ref.componentInstance.isError = true;
+      const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'my-info'});
+      ref.componentInstance.errorTitle = 'Oops, Unable to Connect';
+      ref.componentInstance.errorMessage = 'We are unable to connect to MyInfo temporary. You may choose to fill in your information manually or try again later.';
+      ref.componentInstance.isMyinfoError = true;
+      ref.componentInstance.closeBtn = false;
       ref.result.then(() => {
         this.goToMyInfo();
       }).catch((e) => {
