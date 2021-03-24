@@ -80,6 +80,7 @@
             <div class="form-group-with-bg--header-label">{{ 'CMP.MY_ASSETS.YOUR_CPF' | translate}}<div
                 class="form-group-with-bg--header-sub-label"></div>
             </div>
+            <span (click)="editCPFFields()" *ngIf="showEditIcon" class="edit-icon"><img src="assets/images/comprehensive/edit-icon-pencil.svg" /></span>
           </div>
         </div>
       </div>
@@ -145,7 +146,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="!viewMode" (click)="openModal()" class="auto-fill-cpf" appComprehensiveViewMode="{{viewMode}}"
+        <div *ngIf="!viewMode" (click)="openNricErrorModal()" class="auto-fill-cpf" appComprehensiveViewMode="{{viewMode}}"
           mode=1>
           {{'CMP.MY_ASSETS.AUTO_FILL'| translate}}
           <img class="auto-fill-logo" src="assets/images/comprehensive/myinfo-logo.svg">

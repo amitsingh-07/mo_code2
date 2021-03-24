@@ -87,7 +87,12 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
      'MODERATE',
      'BALANCED',
      'GROWTH'
-  ]
+  ],
+  WISEINCOME_PAYOUT_TYPE: {
+    FOUR_FIVE_PAYOUT: '4.5% p.a. income payout',
+    EIGHT_PAYOUT: '8% p.a. income payout'
+  }
+  
 };
 
 export let PORTFOLIO_WITHDRAWAL_KEYS = [

@@ -500,5 +500,11 @@
     "LOADING_TITLE": "Loading",
     "LOADING_DESC": "Please wait while we load the data",
     "PROMO_RATE": "(Promo Rate)"
+  },
+  "DIVIDEND": {
+    "TITLE": "Dividend Payout",
+    "PAYOUT_DATE": "Payout Date",
+    "DIVIDEND_RATE": "Dividend Rate Per Unit",
+    "DIVIDEND_RECEIVED": "Dividends Received"
   }
 }

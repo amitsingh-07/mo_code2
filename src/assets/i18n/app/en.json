@@ -491,7 +491,8 @@
                         }
                     }
                 }
-            }
+            },
+            "INCL_GST":" (incl. GST)"
         }
     },
     "TRANSFER_INSTRUCTION": {

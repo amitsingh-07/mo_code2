@@ -446,7 +446,7 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-// FEE DETAILS
+  // FEE DETAILS
   getWrapFeeDetails(payload) {
     return this.http.post(investmentApiConstants.endpoint.investment.wrapFrees, payload)
       .pipe(
@@ -455,8 +455,15 @@ export class InvestmentApiService {
   }
   // wise-income fundlist
   getFundListMethod(portfolioTypeId) {
-    const url =investmentApiConstants.endpoint.portfolio.getFundListMethod.replace('$PORTFOLIO_TYPE_ID$', portfolioTypeId )
+    const url = investmentApiConstants.endpoint.portfolio.getFundListMethod.replace('$PORTFOLIO_TYPE_ID$', portfolioTypeId)
     return this.http.get(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  // nric validation
+  getUserNricValidationInfo(data) {
+    return this.http.post(investmentApiConstants.endpoint.investmentAccount.getUserNricValidation, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

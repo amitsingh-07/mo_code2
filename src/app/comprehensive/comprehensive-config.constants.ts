@@ -289,5 +289,9 @@ export const COMPREHENSIVE_CONST = {
         CARE_SHIELD: "careShield",
         ELDER_SHIELD: "elderShield",
         NO_SHIELD: "noShield"
+    },
+    CPF_SOURCE: {
+        MY_INFO: "MyInfo",
+        MANUAL: "MANUAL",
     }
 };
