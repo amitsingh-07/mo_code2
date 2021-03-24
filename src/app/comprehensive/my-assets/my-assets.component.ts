@@ -176,7 +176,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       ref.componentInstance.closeBtn = false;
       this.cpfFromMyInfo = false;
       ref.result.then(() => {
-        this.myInfoService.goToMyInfo();
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
       }).catch((e) => {
       });
     }

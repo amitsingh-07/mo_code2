@@ -16,6 +16,7 @@ import { GuideMeService } from '../guide-me.service';
 import { APP_ROUTES } from './../../app-routes.constants';
 import { ConfigService, IConfig } from './../../config/config.service';
 import { IMyAssets } from './my-assets.interface';
+import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
 
 @Component({
   selector: 'app-my-assets',
@@ -116,7 +117,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
       ref.componentInstance.isMyinfoError = true;
       ref.componentInstance.closeBtn = false;
       ref.result.then(() => {
-        this.myInfoService.goToMyInfo();
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
       }).catch((e) => {
       });
     }
