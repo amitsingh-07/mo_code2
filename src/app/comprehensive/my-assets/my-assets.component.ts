@@ -21,6 +21,7 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 import { Util } from './../../shared/utils/util';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
+import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
 
 @Component({
   selector: 'app-my-assets',
