@@ -1,0 +1,71 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+app-wise-income-fund {
+    .fund_container {
+        border-radius: 6px;
+        box-shadow: 0 10px 14px 0 $btn-shadow-color;
+        background-color: $lagoon-blue-color;
+        .fund_sub_container_heading {
+            padding: 25px 20px;
+            margin-right: 45px;
+            @include allmobiles{
+                max-width: 50%;
+                margin-right: 0;
+                padding-right: 5px;
+            }
+        }
+        .fund_sub_container_value {
+            padding: 25px 20px;
+            @include allmobiles{
+                max-width: 50%;
+                padding-left: 5px;
+            }
+        }
+        .fund_heading {            
+            font-family: $muli-regular;
+            font-size: 16px;
+            font-weight: normal;
+            letter-spacing: -0.15px;
+            color: $jungle-mist-blue-color;
+            max-width: 160px;
+            padding-bottom: 10px;
+        }
+        .fund_value {            
+            font-family: $muli-bold;
+            font-size: 16px;
+            font-weight: normal;
+            letter-spacing: -0.15px;
+            color: $jungle-mist-blue-color;
+            max-width: 160px;
+        }
+        
+        .mb-30 {
+            margin-bottom: 30px;
+        }
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+        .mb-10 {
+            margin-bottom: 10px;
+        }       
+        .btn-fund {
+            color: $jungle-mist-blue-color;
+            font-family: $muli-semi-bold;
+            font-size: 18px;
+            font-weight: normal;
+            letter-spacing: -0.19px;
+        }
+        .fund-bt{
+            border-top: 1px solid $persian-green-color;
+            position: relative;
+        } 
+        .btn-fund_icon {      
+            background: url("/assets/images/investment-account/wiseincome-edit.svg") no-repeat;
+            width: 18px;
+            height: 18px;
+            background-repeat: no-repeat;
+            position: absolute;
+            margin: 5px 5px 5px 9px;
+        } 
+    }
+}

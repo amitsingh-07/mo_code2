@@ -45,6 +45,7 @@ import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -387,36 +388,37 @@ export class DashboardComponent implements OnInit {
     }
   }
   downloadWill() {
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    let newWindow;
+    if (iOS) {
+      newWindow = window.open();
+    }
     this.willWritingApiService.downloadWill().subscribe((data: any) => {
-      this.saveAs(data);
+      const pdfUrl = window.URL.createObjectURL(data);
+      if (iOS) {
+        if (newWindow.document.readyState === 'complete') {
+          newWindow.location.assign(pdfUrl);
+        } else {
+          newWindow.onload = () => {
+            newWindow.location.assign(pdfUrl);
+          };
+        }
+      } else {
+        this.downloadFile(pdfUrl);
+      }
     }, (error) => console.log(error));
   }
 
-  saveAs(data) {
-    const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
-    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    const otherBrowsers = /Android|Windows/.test(navigator.userAgent);
-
-    const blob = new Blob([data], { type: 'application/pdf' });
-    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
-    } else {
-      this.downloadFile(data);
-    }
-  }
-
-  downloadFile(data: any) {
-    const blob = new Blob([data], { type: 'application/pdf' });
-    const url = window.URL.createObjectURL(blob);
+  downloadFile(pdfUrl) {
     const a = document.createElement('a');
-    document.body.appendChild(a);
     a.setAttribute('style', 'display: none');
-    a.href = url;
+    a.href = pdfUrl;
     a.download = 'MoneyOwl Will Writing.pdf';
+    document.body.appendChild(a);
     a.click();
     setTimeout(() => {
       document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
+      window.URL.revokeObjectURL(pdfUrl);
     }, 1000);
   }
 
@@ -437,13 +439,13 @@ export class DashboardComponent implements OnInit {
   // Check if user is first time seeing SRS popup
   checkSRSPopStatus(customerId) {
     if (customerId) {
-      this.signUpApiService.getPopupStatus(customerId, 'SRS_POP').subscribe((status) => {
+      this.signUpApiService.getPopupStatus(customerId, 'WI_POP').subscribe((status) => {
         // Check if track_status is available or false
         if (!status.objectList || !status.objectList['trackStatus']) {
           setTimeout(() => {
             this.openSRSJointAccPopup();
           });
-          this.signUpApiService.setPopupStatus(customerId, 'SRS_POP').subscribe((result) => {
+          this.signUpApiService.setPopupStatus(customerId, 'WI_POP').subscribe((result) => {
           }, (error) => console.log('ERROR: ', error));
         }
       }, (error) => console.log('ERROR: ', error));

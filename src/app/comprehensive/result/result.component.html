@@ -9,7 +9,7 @@
   <div class="text-center about mb30">
     <div *ngIf="comprehensiveJourneyMode">
 
-      <span *ngIf="!isPayment"> {{'CMP.RESULT.ABOUT' | translate }}<span class="email"> {{emailID}}</span></span>
+      <span *ngIf="!isPayment"> {{'CMP.RESULT.ABOUT' | translate }}<span *ngIf="emailID" class="email"> {{emailID.emailAddress}}</span></span>
       <span *ngIf="isPayment"> {{'CMP.RESULT.ABOUT_PAY' | translate }}</span>
     </div>
     <div *ngIf="!comprehensiveJourneyMode">{{'CMP.RESULT.ABOUT_LITE' | translate }}</div>

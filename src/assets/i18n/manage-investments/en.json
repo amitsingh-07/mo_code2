@@ -46,6 +46,8 @@
     "CATEGORIES": "Categories",
     "ALL": "All",
     "INVESTMENT": "Investment",
+    "DIMENSIONAL": "Dimensional",
+    "WISEINCOME": "WiseIncome",
     "WISESAVER": "WiseSaver",
     "TOTAL_PORTFOLIO_VALUE": "Total Portfolio Value",
     "PORTFOLIO_VALUE": "Portfolio Value",
@@ -130,12 +132,15 @@
     "PORTFOLIO": "Portfolio",
     "TOP_UP": "Top Up",
     "TOTAL_VALUE": "Portfolio Value",
+    "PORTFOLIO_START_DATE": "(started on {{startDate}})",
     "TOTAL_RETURNS": "Total Returns",
     "COST_OF_INVESTMENT": "Cost of Investment",
     "UNREALISED_GAIN_LOSS": "Unrealised Gain/Loss",
     "TIME_WEIGHTED_RETURN": "Time-weighted Return",
     "SIMPLE_RETURN": "Simple Return",
     "NET_DEPOSITS": "Net Deposits",
+    "TOTAL_DIVIDENDS": "Total Dividends",
+    "NEXT_PAYOUT": "Next Payout",
     "CALCULATE_TOOLTIP": "How do we calculate?",
     "FROM_START_OF_INVESTMENT": "From start of investment",
     "YEARLY_RETURNS": "Yearly Returns",
@@ -336,6 +341,7 @@
     "UNITS": "Units:",
     "TRANSACTION_ID": "Transaction ID:",
     "CASH_ACCOUNT_TRANSFER": "Cash Account Transfer",
+    "DIVIDEND_PAYOUT": "Dividend Payout",
     "MODAL": {
       "TRANSACTION_FETCH_LOADER": {
         "TITLE": "Loading transaction history",
@@ -356,9 +362,23 @@
   },
   "PORTFOLIO_RECOMMENDATION": {
     "VIEW_FUND_DETAILS": "View Fund Details",
+    "NUMBER_HOLDINGS_LBL": "Number of Holdings",
     "EXPENSIVE_RATIO": " Enjoy 0% fees for the 1st $10,000 until end of 2021. Fees include fund level fee of {{expensiveRatio}} p.a. which is incorporated into the NAV.<span> <a target='_blank' href=\"/investment/\">View our fees table.</a></span>",
+    "EXPENSIVE_RATIO_WISE_INCOME": " This excludes fund level fees (such as annual management fees of {{expensiveRatio}} p.a.) which are factored into the price of the fund.<span> <a target='_blank' href=\"/investment/\">View our fees table.</a></span>",
     "FUND_EXPENSIVE_RATIO": "Fund Expense Ratio",
-    "TOTAL_FEE": "Total Fee"
+    "TOTAL_FEE": "Total Fee",
+    "WISE_INCOME_PORTFOLIO": {
+      "DESC_LBL": "The fund invest in the following asset classes in this proportions.",
+      "ASSET_HOLDINGS_LBL": "Asset Class & Holdings",
+      "EQUITIES_LBL": "Equities",
+      "EQUITIES_DESC": "The equities component of the portfolio will seek to give investors exposure to companies and ETFs that are listed on recognised stock exchanges globally. The passive investing strategy adopted, coupled with broad diversification of the underlying ETFs allows investors to reap market-based returns without having to rely on guesswork.",
+      "SREITS_LBL": "S-REITs",
+      "SREITS_DESC": "The portfolio invest in Singapore REITs that are underpinned by dividend sustainability coupled with potential growth. The fund manager will consider a myriad of factors such as underlying asset quality, governance, strength of management team to determine the sustainability of the dividend. From the growth aspect, the fund manager will consider the REIT’s potential for accretive acquisitions as well as underlying sector or asset trends . The REITs invested would typically be about SGD$1bn market cap or larger with daily trading value of SGD1mill or more.",
+      "FIXED_INCOME_LBL": "Fixed Income",
+      "FIXED_INCOME_DESC": "The fixed income securities may be investment grade, non-investment grade and/or unrated securities primarily issued by companies, governments, quasi-governments, government agencies or supranationals, with primary focus in Asian companies. Foreign currency denominated fixed income securities will generally be hedged to SGD to reduce the exposure of the securities to the movement of foreign currencies and the overall credit rating of the fixed income portfolio will be BBB- (S&P) and above.",
+      "CASH_LBL": "Cash",
+      "DISCLAIMER_LBL": "Click on link below for factsheet and product highlights sheet."
+  }
   },
   "FUND_DETAILS": {
     "TITLE": "Fund Details",
@@ -478,6 +498,7 @@
     "DIMENSIONAL_PORTFOLIO":"Dimensional Portfolios",
     "FAQ_DESC": "*This is your prevailing advisory rate. Please refer to  <a class='faq-link'  target='_blank' href='/pricing/'>Pricing </a> and <a class='faq-link' target='_blank' href='/faq-investment/#investment|1'>FAQ</a> on how this is calculated. Promotional rates (if any) are factored into the calculation of your prevailing advisory rate.",
     "LOADING_TITLE": "Loading",
-    "LOADING_DESC": "Please wait while we load the data"
+    "LOADING_DESC": "Please wait while we load the data",
+    "PROMO_RATE": "(Promo Rate)"
   }
 }

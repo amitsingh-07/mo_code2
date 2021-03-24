@@ -26,6 +26,7 @@ import {
 } from './investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from './investment-common-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from './investment-common.constants';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 
 const SESSION_STORAGE_KEY = 'app_inv_common_session';
 @Injectable({
@@ -40,7 +41,8 @@ export class InvestmentCommonService {
     private translate: TranslateService,
     private router: Router,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    public navbarService: NavbarService
   ) {
     this.getInvestmentCommonFormData();
   }
@@ -83,6 +85,7 @@ export class InvestmentCommonService {
     this.investmentCommonFormData.fundingType = null;
     this.investmentCommonFormData.srsOperatorBank = null;
     this.investmentCommonFormData.srsAccountNumber = null;
+    this.investmentCommonFormData.initialWiseIncomePayoutTypeId = null;
     this.commit();
   }
 
@@ -156,6 +159,9 @@ export class InvestmentCommonService {
   }
 
   goToAdditionalAccountCreation(data) {
+    if( data.accountCreationState ===  INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_PURCHASED){
+      this.navbarService.setMenuItemInvestUser(true);
+    }
     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
   }
 
@@ -302,4 +308,81 @@ export class InvestmentCommonService {
   getWiseSaverDetails(){
     return this.investmentApiService.getWiseSaverDetails();
   }
+  //WISE INCOME PAYOUT METHOD
+ setWiseIncomePayOut(data, activeTabId) {
+  this.investmentCommonFormData.initialWiseIncomePayoutTypeId = data.initialWiseIncomePayoutTypeId;
+  this.investmentCommonFormData.wiseIncomeActiveTabId = activeTabId;
+  this.commit();
+}
+  getWiseIncomePayOut() {
+    return {
+      initialWiseIncomePayoutTypeId: this.investmentCommonFormData.initialWiseIncomePayoutTypeId,
+      activeTabId: this.investmentCommonFormData.wiseIncomeActiveTabId
+  }
  }
+ setPortfolioDetails(portfolioDetails){
+ this.investmentCommonFormData.portfolioDetails =portfolioDetails;
+ }
+ getPortfolioDetails(){
+   return{
+    portfolioDetails : this.investmentCommonFormData.portfolioDetails
+   }
+ }
+  saveUpdateSessionData(formData) {
+    let activeTabId;
+    switch (formData.payoutType) {
+      case INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.GROW:
+        activeTabId = 1;
+        break;
+      case INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.FOUR_PERCENT:
+        activeTabId = 2;
+        break;
+      case INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.EIGHT_PERCENT:
+        activeTabId = 3;
+        break;
+    }
+    if (formData && formData.payoutTypeId) {
+      this.setWiseIncomePayOut({initialWiseIncomePayoutTypeId :formData.payoutTypeId}, activeTabId);
+    }
+    const investmentFormData = this.setYourInvestmentAmount(formData);
+    this.investmentEngagementJourneyService.setYourInvestmentAmount(investmentFormData);
+    this.setInitialFundingMethod({ initialFundingMethodId: formData.fundingTypeId });
+    const portfolioType = this.toDecidedPortfolioType(formData.portfolioType);
+    this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: portfolioType })
+    this.commit();
+
+  }
+  setYourInvestmentAmount(formData) {
+    if (formData && formData.initialInvestment && formData.monthlyInvestment) {
+      return {
+        initialInvestment: formData.initialInvestment,
+        monthlyInvestment: formData.monthlyInvestment,
+        firstChkBox: true,
+        secondChkBox: true
+      }
+    } else if (formData && formData.initialInvestment) {
+      return {
+        initialInvestment: formData.initialInvestment,
+        firstChkBox: true,
+        secondChkBox: false
+      }
+    } else {
+      return {
+        monthlyInvestment: formData.monthlyInvestment,
+        firstChkBox: false,
+        secondChkBox: true
+      }
+    }
+  }
+  toDecidedPortfolioType(selectedPortfolioValue) {
+    if (selectedPortfolioValue ===
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER) {
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO
+    } else if (selectedPortfolioValue ===
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT) {
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO
+    } else {
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO
+    }
+  }
+}

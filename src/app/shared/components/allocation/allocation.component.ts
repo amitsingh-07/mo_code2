@@ -5,7 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FundDetailsComponent } from '../../../investment/investment-common/fund-details/fund-details.component';
 import { InvestmentEngagementJourneyService } from '../../../investment/investment-engagement-journey/investment-engagement-journey.service';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../../investment/investment-common/investment-common.constants';
-
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from  './../../../investment/investment-engagement-journey/investment-engagement-journey.constants';
 @Component({
   selector: 'app-allocation',
   templateUrl: './allocation.component.html',
@@ -21,16 +21,32 @@ export class AllocationComponent implements OnInit, OnChanges {
   event1 = true;
   event2 = true;
   allocationDetails: boolean;
-
+  investmentEnabled: boolean;
+  wiseSaverEnabled : boolean;
+  wiseIncomeEnabled: boolean;
   constructor(
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private router: Router,
     public modal: NgbModal
-  ) {}
+  ) { }
 
   ngOnInit() {
+    if(this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO.toLowerCase()){
+      this.investmentEnabled = true;
+      this.wiseSaverEnabled = false;
+      this.wiseIncomeEnabled = false;
+    }
+    if(this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO.toLowerCase()){
+      this.investmentEnabled = false;
+      this.wiseSaverEnabled = false;
+      this.wiseIncomeEnabled = true;
+    }
+    if(this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER.toLowerCase() || this.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO.toLowerCase()){
+      this.investmentEnabled = false;
+      this.wiseSaverEnabled = true;
+      this.wiseIncomeEnabled = false;
+    }
   }
-
   ngOnChanges() {
     if (this.portfolioType.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.WISESAVER_ASSET_ALLOCATION.TYPE) {
       this.assets = INVESTMENT_COMMON_CONSTANTS.WISESAVER_ASSET_ALLOCATION.ASSETS;
@@ -47,11 +63,11 @@ export class AllocationComponent implements OnInit, OnChanges {
     const assetKeys = Object.keys(targetObj);
     const groupObjects = [];
     for (const prop of assetKeys) {
-      if(prop.toLowerCase() === INVESTMENT_COMMON_CONSTANTS.ALLOCATION_DETAILS.MATURITY || prop.toLowerCase() === INVESTMENT_COMMON_CONSTANTS.ALLOCATION_DETAILS.CREDIT_RATING) {
+      if (prop.toLowerCase() === INVESTMENT_COMMON_CONSTANTS.ALLOCATION_DETAILS.MATURITY || prop.toLowerCase() === INVESTMENT_COMMON_CONSTANTS.ALLOCATION_DETAILS.CREDIT_RATING) {
         this.investmentEngagementJourneyService.sortByProperty(targetObj[prop], 'listingOrder', 'asc');
       } else {
         this.investmentEngagementJourneyService.sortByProperty(targetObj[prop], 'percentage', 'desc');
-      }    
+      }
       const classObj = {
         name: prop,
         value: targetObj[prop]
@@ -67,7 +83,7 @@ export class AllocationComponent implements OnInit, OnChanges {
       centered: true,
       windowClass: 'custom-full-height'
     });
-    ref.componentInstance.portfolioType = this.allocationDetails;
+    ref.componentInstance.portfolioType = this.portfolioType;
     return false;
   }
 

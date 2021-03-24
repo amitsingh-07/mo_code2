@@ -466,6 +466,18 @@ app-dashboard {
                 top: 0;
                 left: 0;
               }
+              .dashboard-wise-income-portfolio{   
+                background: url("/assets/images/dashboard-wise-income-portfolio.svg") no-repeat;
+                width: 55px;
+                @include desktop {
+                    width: 71px;
+                }
+                height: 6px;
+                background-repeat: no-repeat;
+                position: absolute;
+                top: 0;
+                left: 0;
+              } 
               .dashboard-wise-portfolio{   
                 background: url("/assets/images/dashboard-wise-portfolio.svg") no-repeat;
                 width: 55px;
