@@ -19,6 +19,7 @@ export class ErrorModalComponent implements OnInit {
   @Input() errorDescription: any;
   @Input() isButtonEnabled: boolean;
   @Input() isError: boolean;
+  @Input() isMyinfoError: boolean;
   @Input() navToHome: boolean;
   @Input() unSaved: boolean;
   @Input() promoSuccess: boolean;

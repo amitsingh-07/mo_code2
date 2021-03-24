@@ -16,6 +16,7 @@ import { GuideMeService } from '../guide-me.service';
 import { APP_ROUTES } from './../../app-routes.constants';
 import { ConfigService, IConfig } from './../../config/config.service';
 import { IMyAssets } from './my-assets.interface';
+import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
 
 @Component({
   selector: 'app-my-assets',
@@ -110,12 +111,13 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
     this.myInfoService.changeListener.next('');
     if (this.myInfoService.isMyInfoEnabled) {
       this.myInfoService.isMyInfoEnabled = false;
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = 'Oops, Error!';
-      ref.componentInstance.errorMessage = 'We weren\'t able to fetch your data from MyInfo.';
-      ref.componentInstance.isError = true;
+      const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'my-info' });
+      ref.componentInstance.errorTitle = this.translate.instant('MYINFO.ERROR_MODAL_DATA.TITLE');
+      ref.componentInstance.errorMessage = this.translate.instant('MYINFO.ERROR_MODAL_DATA.DESCRIPTION');
+      ref.componentInstance.isMyinfoError = true;
+      ref.componentInstance.closeBtn = false;
       ref.result.then(() => {
-        this.myInfoService.goToMyInfo();
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
       }).catch((e) => {
       });
     }

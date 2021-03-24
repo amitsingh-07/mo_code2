@@ -312,8 +312,8 @@
       "BTN-TEXT": "Let's go!"
     },
     "ERROR_MODAL_DATA": {
-      "TITLE": "Oops, Error!",
-      "DESCRIPTION": "We weren’t able to fetch your data from MyInfo."
+      "TITLE": "Oops, Unable to Connect",
+      "DESCRIPTION": "We are unable to connect to MyInfo temporary. You may choose to fill in your information manually or try again later."
     },
     "FETCH_MODAL_DATA": {
       "TITLE": "Fetching Data...",
@@ -325,7 +325,7 @@
     "LOADER3": {
       "message": "We are still trying to fetch your required data from MyInfo. You may choose to fill in your information manually or try again later.",
       "primaryActionLabel": "Try Again Later",
-      "secondaryActionLabel": "Create Account Manually"
+      "secondaryActionLabel": "Fill Form Manually"
     },
     "SING_PASS_CONFIRM": {
       "TITLE": "Following details will be auto filled Via Myinfo:",
