@@ -58,6 +58,9 @@ export let apiConstants = {
         financialWellness: ACCOUNT_API_BASE_URL + '/corp/updateLeadGen',
         validateReferralCode: ACCOUNT_API_BASE_URL + '/referralcode/validateReferralCode?handleError=true',
         getSingpassAccount: ACCOUNT_API_BASE_URL + '/activate/singpass',
+        customer: {
+            validateUIN: ACCOUNT_API_BASE_URL + '/customer/validateUin',
+        },
         article: {
             getRecentArticles: ARTICLE_API_BASE_URL + '/getTop8Articles',
             getArticleCategory: ARTICLE_API_BASE_URL + '/getCountForAllTags',

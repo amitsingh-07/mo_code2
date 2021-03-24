@@ -293,5 +293,6 @@ export const COMPREHENSIVE_CONST = {
     CPF_SOURCE: {
         MY_INFO: "MyInfo",
         MANUAL: "MANUAL",
-    }
+    },
+    API_SOURCE: "Robo3"
 };

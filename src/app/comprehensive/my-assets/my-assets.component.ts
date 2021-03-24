@@ -11,9 +11,8 @@ import { MyInfoService } from '../../shared/Services/my-info.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
-import { COMPREHENSIVE_ROUTE_PATHS, COMPREHENSIVE_ROUTES } from '../comprehensive-routes.constants';
+import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyAssets } from '../comprehensive-types';
-import { APP_ROUTES } from './../../app-routes.constants';
 import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
@@ -22,6 +21,7 @@ import { Util } from './../../shared/utils/util';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
+import { ModelWithButtonComponent } from './../../shared/modal/model-with-button/model-with-button.component';
 
 @Component({
   selector: 'app-my-assets',
@@ -109,24 +109,32 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled
           && this.myInfoService.checkMyInfoSourcePage()) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
-            if (data && data['objectList']) {
-              const cpfValues = data.objectList[0].cpfbalances;
-              const oaFormControl = this.myAssetsForm.controls['cpfOrdinaryAccount'];
-              const saFormControl = this.myAssetsForm.controls['cpfSpecialAccount'];
-              const maFormControl = this.myAssetsForm.controls['cpfMediSaveAccount'];
-              const raFormControl = this.myAssetsForm.controls['cpfRetirementAccount'];
-              oaFormControl.setValue(cpfValues.oa);
-              saFormControl.setValue(cpfValues.sa);
-              maFormControl.setValue(cpfValues.ma);
-              const retirementAccount = this.showRetirementAccount ? cpfValues.ra : null;
-              raFormControl.setValue(retirementAccount);
-              saFormControl.markAsDirty();
-              maFormControl.markAsDirty();
-              raFormControl.markAsDirty();
-              this.onTotalAssetsBucket();
-              this.cpfFromMyInfo = true;
-              this.myInfoService.isMyInfoEnabled = false;
-              this.closeMyInfoPopup();
+            if (data && data['objectList'] && data['objectList']['uin']) {
+              this.comprehensiveService.validateUin(data['objectList']['uin']).subscribe((response)=>{
+                if (response['responseCode'] === '6013') {
+                  const cpfValues = data.objectList[0].cpfbalances;
+                  const oaFormControl = this.myAssetsForm.controls['cpfOrdinaryAccount'];
+                  const saFormControl = this.myAssetsForm.controls['cpfSpecialAccount'];
+                  const maFormControl = this.myAssetsForm.controls['cpfMediSaveAccount'];
+                  const raFormControl = this.myAssetsForm.controls['cpfRetirementAccount'];
+                  oaFormControl.setValue(cpfValues.oa);
+                  saFormControl.setValue(cpfValues.sa);
+                  maFormControl.setValue(cpfValues.ma);
+                  const retirementAccount = this.showRetirementAccount ? cpfValues.ra : null;
+                  raFormControl.setValue(retirementAccount);
+                  saFormControl.markAsDirty();
+                  maFormControl.markAsDirty();
+                  raFormControl.markAsDirty();
+                  this.onTotalAssetsBucket();
+                  this.cpfFromMyInfo = true;
+                  this.myInfoService.isMyInfoEnabled = false;
+                  this.closeMyInfoPopup();
+                } else {
+                  this.openNricErrorModal();
+                }
+              }, (error) => {
+                this.openNricErrorModal();
+              });
             } else {
               this.closeMyInfoPopup();
             }
@@ -185,10 +193,12 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
 
   openModal() {
     if (!this.viewMode) {
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.translate.instant('MYINFO.OPEN_MODAL_DATA.TITLE');
-      ref.componentInstance.errorMessage = this.translate.instant('MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
-      ref.componentInstance.isButtonEnabled = true;
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'retrieve-myinfo-modal'});
+      ref.componentInstance.lockIcon = true;
+      ref.componentInstance.errorTitle = this.translate.instant('MYINFO.RETRIEVE_CPF_DATA.TITLE');
+      ref.componentInstance.errorMessageHTML = this.translate.instant('MYINFO.RETRIEVE_CPF_DATA.DESCRIPTION');
+      ref.componentInstance.primaryActionLabel = this.translate.instant('MYINFO.RETRIEVE_CPF_DATA.BTN-TEXT');
+      ref.componentInstance.myInfo = true;
       ref.result.then(() => {
         this.myInfoService.setMyInfoAttributes('cpfbalances');
         this.myInfoService.goToMyInfo();
@@ -488,6 +498,20 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       this.myAssetsForm.markAsDirty();
     }
   }
+  // NRIC used error modal
+  openNricErrorModal() {
+    if (!this.viewMode) {
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'nric-used-modal'});
+      ref.componentInstance.errorTitle = this.translate.instant('MYINFO.NRIC_USED_ERROR.TITLE');
+      ref.componentInstance.errorMessageHTML = this.translate.instant('MYINFO.NRIC_USED_ERROR.DESCRIPTION');
+      ref.componentInstance.primaryActionLabel = this.translate.instant('MYINFO.NRIC_USED_ERROR.BTN-TEXT');
+      ref.result.then((data) => {
+        ref.close();
+      }).catch((e) => {
+      });
+    }
+  }
+
   editCPFFields(){
     if(this.cpfFromMyInfo){
       this.cpfFromMyInfo = false;

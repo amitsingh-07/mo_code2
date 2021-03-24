@@ -1,5 +1,6 @@
-@import "../../../variables";
-@import "../../../mixins";
+@import '../../../variables';
+@import '../../../mixins';
+
 app-create-account-myinfo {
     .container-fluid.max-width--1024 {
         @include allmobiles {
@@ -27,43 +28,41 @@ app-create-account-myinfo {
         text-align: left;
         @include allmobiles {
             font-size: 24px;
-            margin: 0 38px 10px 46px;
+            margin-bottom: 10px;
             text-align: center;
         }
     }
 
     .my-info-icon {
         background-image: url("../../../assets/images/singpass-logo-white.png");
-        width: 79px;
-        height: 30px;
+        width: 80px;
+        height: 14px;
         position: absolute;
         top: 10%;
-        right: 20px;
+        right: 40px;
         background-repeat: no-repeat;
+        @include iphone5 {
+            right: 15px;
+        }
     }
 
     .create_account__header-icon {
-        width: 300px !important;
-        height: 267px !important;
+        width: 260px !important;
+        height: 232px !important;
         margin-top: 30px;
 
         @include allmobiles {
             width: 170px !important;
             height: 155px !important;
             margin-bottom: 36px;
-            max-width: 170px !important;
-            max-height: 155px !important;
-            height: auto;
         }
     }
-    desc {
-        margin: 6px 78px 30px 90px;
-        font-family: $muli-regular;
+    .desc {
         font-size: 18px;
         line-height: 1.22;
         letter-spacing: -0.18px;
-        margin-bottom: 30px !important;
     }
+
     .signup-wrapper__description {
         font-family: $muli-bold;
         font-size: 24px;
@@ -75,52 +74,66 @@ app-create-account-myinfo {
             font-family: $muli-regular;
             font-size: 16px;
             line-height: 1.5;
-            text-align: center;
+            text-align: left;
             margin-bottom: 20px;
+            @include allmobiles {
+                text-align: center;
+            }
         }
         div {
             font-family: $muli-regular;
             font-size: 16px;
             line-height: 1.5;
-            text-align: center;
-            padding-bottom: 26px;
+            text-align: left;
+            padding-bottom: 16px;
+            @include allmobiles {
+                text-align: center;
+                padding-bottom: 6px;
+            }
             a {
                 font-family: $muli-bold;
                 font-size: 16px;
                 line-height: 1.5;
-                text-align: center;
+                text-align: left;
                 color: $white-color;
                 text-decoration: none;
-            }
-            div {
-                font-family: $muli-bold;
+                @include allmobiles {
+                    text-align: center;
+                }
             }
         }
     }
-    img {
-        .sign-pass-icon {
-            padding: 30px 84px 30px 84px;
-        }
+    .sign-pass-icon {
+        margin: 20px auto 30px;
     }
     .btn {
+        font-size: 18px;
+        font-family: $muli-bold;
+        padding: 16px;
+        margin: 0;
+        @include iphone5 {
+            padding: 16px 7px;
+        }
         &.btn-login {
-            font-size: 18px;
             line-height: 1.33;
             letter-spacing: normal;
             text-align: center;
-            color: #ffffff;
+            color: $white-color;
         }
         &.btn-myinfo {
-            color: #ffffff;
-            margin: 0 0 0 15px;
-            padding: 7px 16px;
+            color: $white-color;
+            margin-right: 0px;
             border-radius: 6px;
-            border: solid 1px #ffffff;
+            border: 1px solid $white-color;
+            @include allmobiles {
+                margin-right: 10px;
+            }
         }
 
-        &.btn-primary {
-            background-color: $white-color;
-            color: #00a7a7;
+        &.btn-proceed {
+            background-color: $white-color !important;
+            color: $teal-color !important;
         }
     }
+ 
 }
