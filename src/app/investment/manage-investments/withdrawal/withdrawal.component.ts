@@ -439,7 +439,7 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
             if(response.responseMessage.responseCode == 5129) {
               // Insufficient balance Error due to pending withdrawal request in progress
               this.showCustomErrorModal(
-                'Error!',
+                this.translate.instant('ERROR.ERROR_TEXT'),
                 this.translate.instant('WITHDRAW.PENDING_WITHDRAWAL_ERROR')
               );
             } else if (
@@ -450,12 +450,12 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
               response.objectList[response.objectList.length - 1].serverStatus.errors.length
             ) {
               this.showCustomErrorModal(
-                'Error!',
+                this.translate.instant('ERROR.ERROR_TEXT'),
                 response.objectList[response.objectList.length - 1].serverStatus.errors[0].msg
               );
             } else if (response.responseMessage && response.responseMessage.responseDescription) {
               const errorResponse = response.responseMessage.responseDescription;
-              this.showCustomErrorModal('Error!', errorResponse);
+              this.showCustomErrorModal(this.translate.instant('ERROR.ERROR_TEXT'), errorResponse);
             } else {
               this.investmentAccountService.showGenericErrorModal();
             }
