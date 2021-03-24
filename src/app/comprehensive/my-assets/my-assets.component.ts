@@ -21,7 +21,6 @@ import { Util } from './../../shared/utils/util';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 import { ModelWithButtonComponent } from './../../shared/modal/model-with-button/model-with-button.component';
-import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-my-assets',
