@@ -20,6 +20,7 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 import { Util } from './../../shared/utils/util';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
+import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
 import { ModelWithButtonComponent } from './../../shared/modal/model-with-button/model-with-button.component';
 
 @Component({
@@ -177,13 +178,14 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     this.myInfoService.changeListener.next('');
     if (this.myInfoService.isMyInfoEnabled) {
       this.myInfoService.isMyInfoEnabled = false;
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = 'Oops, Error!';
-      ref.componentInstance.errorMessage = 'We weren\'t able to fetch your data from MyInfo.';
-      ref.componentInstance.isError = true;
+      const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'my-info' });
+      ref.componentInstance.errorTitle = this.translate.instant('MYINFO.ERROR_MODAL_DATA.TITLE');
+      ref.componentInstance.errorMessage = this.translate.instant('MYINFO.ERROR_MODAL_DATA.DESCRIPTION');
+      ref.componentInstance.isMyinfoError = true;
+      ref.componentInstance.closeBtn = false;
       this.cpfFromMyInfo = false;
       ref.result.then(() => {
-        this.myInfoService.goToMyInfo();
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
       }).catch((e) => {
       });
     }
