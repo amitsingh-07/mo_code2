@@ -95,7 +95,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.createAccountData = this.signUpService.getUserProfileInfo();
-    this.createAccountData.isMyInfoEnabled = false;
+    (this.createAccountData && this.createAccountData.isMyInfoEnabled) ? false : true;
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '' &&
         this.myInfoService.getMyInfoAttributes() === this.signUpService.myInfoAttributes.join()) {
