@@ -210,8 +210,8 @@
       "DESCRIPTION": "You will now proceed to login via MyInfo and retrieve your details."
     },
     "ERROR_MODAL_DATA": {
-      "TITLE": "Oops, Error!",
-      "DESCRIPTION": "We weren't able to fetch your data from MyInfo."
+      "TITLE": "Oops, Unable to Connect",
+      "DESCRIPTION": "We are unable to connect to MyInfo temporary. You may choose to fill in your information manually or try again later."
     },
     "FETCH_MODAL_DATA": {
       "TITLE": "Fetching Data...",

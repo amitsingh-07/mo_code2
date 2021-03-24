@@ -111,8 +111,8 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
     if (this.myInfoService.isMyInfoEnabled) {
       this.myInfoService.isMyInfoEnabled = false;
       const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'my-info' });
-      ref.componentInstance.errorTitle = 'Oops, Unable to Connect';
-      ref.componentInstance.errorMessage = 'We are unable to connect to MyInfo temporary. You may choose to fill in your information manually or try again later.';
+      ref.componentInstance.errorTitle = this.translate.instant('MYINFO.ERROR_MODAL_DATA.TITLE');
+      ref.componentInstance.errorMessage = this.translate.instant('MYINFO.ERROR_MODAL_DATA.DESCRIPTION');
       ref.componentInstance.isMyinfoError = true;
       ref.componentInstance.closeBtn = false;
       ref.result.then(() => {
