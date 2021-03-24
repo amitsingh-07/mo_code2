@@ -8,7 +8,7 @@ export const SIGN_UP_ROUTES = {
   ACCOUNT_CREATED: 'success',
   ACCOUNT_UPDATED: 'account-updated',
   CREATE_ACCOUNT: 'sign-up',
-  CREATE_ACCOUNT_MY_INFO: 'sign-up-static',
+  CREATE_ACCOUNT_MY_INFO: 'sign-up-account',
   EMAIL_VERIFIED: 'email-verification',
   VERIFY_MOBILE: 'verify-mobile',
   TWOFA_MOBILE: '2fa-mobile',
