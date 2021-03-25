@@ -60,7 +60,7 @@
     "INVESTMENTS_HINT": "(E.g. Stocks, Unit Trusts, ETF)",
     "OTHERS": "Others",
     "OTHERS_HINT": "(E.g. Car, Jewelry, Trust fund)",
-    "FILL_VIA_SINGPASS":"Fill via MyInfo"
+    "FILL_VIA_SINGPASS":"Fill via Myinfo"
   },
   "MY_LIABILITIES": {
     "TITLE": "My Liabilities",
@@ -206,16 +206,16 @@
   },
   "MYINFO": {
     "OPEN_MODAL_DATA": {
-      "TITLE": "Login via MyInfo",
-      "DESCRIPTION": "You will now proceed to login via MyInfo and retrieve your details."
+      "TITLE": "Login via Myinfo",
+      "DESCRIPTION": "You will now proceed to login via Myinfo and retrieve your details."
     },
     "ERROR_MODAL_DATA": {
       "TITLE": "Oops, Unable to Connect",
-      "DESCRIPTION": "We are unable to connect to MyInfo temporary. You may choose to fill in your information manually or try again later."
+      "DESCRIPTION": "We are unable to connect to Myinfo temporary. You may choose to fill in your information manually or try again later."
     },
     "FETCH_MODAL_DATA": {
       "TITLE": "Fetching Data...",
-      "DESCRIPTION": "Please be patient while we fetch your required data from MyInfo."
+      "DESCRIPTION": "Please be patient while we fetch your required data from Myinfo."
     }
   },
   "INSURANCE_RESULTS": {

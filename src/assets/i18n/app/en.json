@@ -1,7 +1,7 @@
 {
     "COMMON": {
         "PRE_TITLE": "MoneyOwl | ",
-        "LBL_FILL_VIA_MY_INFO": "Auto fill forms via SingPass",
+        "LBL_FILL_VIA_MY_INFO": "Auto fill forms via Singpass",
         "LBL_MY_INFO_HELP_DESC": "Tap here to fetch data",
         "LBL_PLAN_SELECTED": "Plan Selected",
         "LBL_PLANS_SELECTED": "Plans Selected",
@@ -359,16 +359,16 @@
     },
     "MYINFO": {
         "OPEN_MODAL_DATA": {
-            "TITLE": "Login via MyInfo",
-            "DESCRIPTION": "You will now proceed to login via MyInfo and retrieve your details."
+            "TITLE": "Login via Myinfo",
+            "DESCRIPTION": "You will now proceed to login via Myinfo and retrieve your details."
         },
         "ERROR_MODAL_DATA": {
             "TITLE": "Oops, Unable to Connect",
-            "DESCRIPTION": "We are unable to connect to MyInfo temporary. You may choose to fill in your information manually or try again later."
+            "DESCRIPTION": "We are unable to connect to Myinfo temporary. You may choose to fill in your information manually or try again later."
         },
         "FETCH_MODAL_DATA": {
             "TITLE": "Fetching Data...",
-            "DESCRIPTION": "Please be patient while we fetch your required data from MyInfo."
+            "DESCRIPTION": "Please be patient while we fetch your required data from Myinfo."
         },
         "RETRIEVE_CPF_DATA": {
             "TITLE": "Retrieve via Myinfo",
