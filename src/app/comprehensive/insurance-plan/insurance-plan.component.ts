@@ -273,7 +273,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
 
         this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
           if (form.value.haveCPFDependentsProtectionScheme !== 1) {
-            form.value.lifeProtectionAmount = COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT;
+            form.value.lifeProtectionAmount = this.userAgeCriteria;
           }
           this.comprehensiveService.setInsurancePlanningList(form.value);
           if (this.insurancePlanFormValues && this.insurancePlanFormValues.haveLongTermPopup) {
