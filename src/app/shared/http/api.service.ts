@@ -231,6 +231,21 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  // activate link new api
+  getSingpassAccountData(data) {
+    return this.http.post(apiConstants.endpoint.getSingpassAccount, data, true)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  /* create account  */
+  getCreateAccountMyInfoData(data) {
+    return this.http.post(apiConstants.endpoint.getCreateAccountMyInfoValue, data, true)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 
   getProtectionNeedsList(userInfoForm) {
     return this.http.post(apiConstants.endpoint.getProtectionTypesList, userInfoForm)
@@ -674,6 +689,13 @@ export class ApiService {
 
   saveCustomerPromoCode(payload) {
     return this.http.post(apiConstants.endpoint.promoCode.saveCustomerPromoCode, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  validateUin(payload) {
+    return this.http.post(apiConstants.endpoint.customer.validateUIN, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

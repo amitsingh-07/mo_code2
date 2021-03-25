@@ -1,0 +1,52 @@
+<section class="invest-section">
+    <div class="invest-section-items">
+        <div class="invest-section-content">
+            <div class="invest-bg">
+                <div class="invest-bg-media">
+                    <div class="invest-bg-image"></div>
+                    <div class="invest-bg-color"></div>
+                </div>
+                <div class="invest-bg-content">
+                    <div class="flex-row user_content flex-col-12">
+                        <div class="user_summary" id="your_portfolio_summary">
+                            <div class="user_portfolio flex-col">
+                                <div>{{this.portfolioName}}</div>
+                                <div class="user_portfolio_lbl">{{this.pageTitle}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container-fluid max-width--1024 full-height white-bg">
+    <div class="no-history" *ngIf="dividentList.length == 0">
+        <p><img src="assets/images/noNotificationIcon.svg"></p>
+        <p>{{'DIVIDEND.NO_HISTORY' | translate}}</p>
+    </div>
+    <div class="dividend-received-table hidden-lg" *ngIf="dividentList.length > 0">
+        <div class="flex-row heading">
+            <div class="flex-col-4 padall10">{{'DIVIDEND.PAYOUT_DATE' | translate}}</div>
+            <div class="flex-col-4 padall10">{{'DIVIDEND.DIVIDEND_RATE' | translate}}</div>
+            <div class="flex-col-4 padall10">{{'DIVIDEND.DIVIDEND_RECEIVED' | translate}}</div>
+        </div>
+        <div class="flex-row" *ngFor="let divident of dividentList; let i = index;">
+            <div class="flex-col-4 padall10">{{divident.payoutDate}}</div>
+            <div class="flex-col-4 padall10">{{divident.dividendUnitPrice}}</div>
+            <div class="flex-col-4 padall10">{{divident.dividentRecievedOrReinvestedAmt}}</div>
+        </div>
+    </div>
+    <div class="dividend-received-table hidden-sm" *ngIf="dividentList.length > 0">
+        <div class="flex-row heading">
+            <div class="flex-col-3 padall10">{{'DIVIDEND.PAYOUT_DATE' | translate}}</div>
+            <div class="flex-col-6 padall10">{{'DIVIDEND.DIVIDEND_RATE' | translate}}</div>
+            <div class="flex-col-3 padall10">{{'DIVIDEND.DIVIDEND_RECEIVED' | translate}}</div>
+        </div>
+        <div class="flex-row" *ngFor="let divident of dividentList; let i = index;">
+            <div class="flex-col-3 padall10">{{divident.payoutDate}}</div>
+            <div class="flex-col-6 padall10">{{divident.dividendUnitPrice}}</div>
+            <div class="flex-col-3 padall10">{{divident.dividentRecievedOrReinvestedAmt}}</div>
+        </div>
+    </div>
+</div>

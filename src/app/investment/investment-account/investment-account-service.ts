@@ -33,6 +33,7 @@ const ACCOUNT_SUCCESS_COUNTER_KEY = 'investment_account_success_counter';
 export class InvestmentAccountService {
   disableAttributes = [];
   myInfoAttributes = INVESTMENT_ACCOUNT_CONSTANTS.MY_INFO_ATTRIBUTES;
+  myInfoLinkAttributes = INVESTMENT_ACCOUNT_CONSTANTS.MY_INFO_LINK_ATTRIBUTES;
 
   private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
   private investmentAccountFormError: any = new InvestmentAccountFormError();

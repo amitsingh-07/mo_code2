@@ -116,6 +116,14 @@ $btn-primary-shadow-color: $shadow-teal-color;
 $btn-primary-txt-color: $white-color;
 // secondary btn colors
 $btn-secondary-backgrnd-color: #00a7a7;
+// action btn primary colors
+$btn-action-backgrnd-color: $teal-color;
+$btn-action-border-color: $teal-color;
+$btn-action-txt-color:  $white-color;
+$btn-action-hover-bg-color: $robins-egg-blue-color;
+$btn-action-hover-border-color: $robins-egg-blue-color;
+$btn-action-active-bg-color: $bright-turquiose-color;
+$btn-action-sec-border-color: rgba(0, 167, 167, 0.4);
 // btn orange colors
 $btn-orange-bg-color: $crusta-orange-color;
 $btn-orange-txt-color: $white-color;
@@ -474,3 +482,4 @@ $send-quote-bgcolor: #F1F4F4;
 $checkbox-bg-color:#e0f3f3;
 $checkbox-active-bg-color: #00717e;
 $payout-tab-color:  #00717e;
+$recommend-details-button: rgba(0, 167, 167, 0.4);

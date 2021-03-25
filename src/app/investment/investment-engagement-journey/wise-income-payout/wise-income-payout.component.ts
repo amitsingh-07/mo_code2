@@ -64,7 +64,7 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('WISE_INCOME_PAYOUT.TITLE');
-      this.setPageTitle(this.pageTitle);
+      this.setPageTitle(this.pageTitle, null, null, false, false, null, true);
     });
   }
   ngOnInit() {
@@ -129,8 +129,8 @@ export class WiseIncomePayoutComponent implements OnInit {
         this.investmentAccountService.showGenericErrorModal();
       });
   }
-  setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
+  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean, filterIcon?: boolean, superTitle?: string, dropDownIcon?: boolean) {
+    this.navbarService.setPageTitle(title, null, null, false, false, null, dropDownIcon);
   }
   getWiseIcomePayoutTypeNameById(wiseIncomePayoutTypeId, payoutOptions) {
     if (wiseIncomePayoutTypeId && payoutOptions) {
@@ -196,5 +196,8 @@ export class WiseIncomePayoutComponent implements OnInit {
       this.investmentCommonService.setInitialFundingMethod({ initialFundingMethodId: fundingMethod });
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
     }
+  }
+  ngOnDestroy() {
+    this.navbarService.unsubscribeDropDownIcon();
   }
 }

@@ -18,6 +18,7 @@ export class WiseIncomePayoutTypeComponent implements OnInit {
   @Input('portfolio') portfolio;
   @Input('payoutType') payoutType;
   payoutConst : any;
+  nextPayoutLabel: any;
 
   constructor(private router: Router,
     private investmentAccountService: InvestmentAccountService,
@@ -26,6 +27,7 @@ export class WiseIncomePayoutTypeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  this.PayoutLabel();
   }
   
   goReviewInputs() {
@@ -34,4 +36,10 @@ export class WiseIncomePayoutTypeComponent implements OnInit {
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.WISE_INCOME_PAYOUT]);
   }
 
+  PayoutLabel() {
+    this.nextPayoutLabel = {
+      nextPayout: this.portfolio.nextPayout
+    };
+  }
+  
 }

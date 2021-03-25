@@ -290,12 +290,13 @@
       "DESC": "Please wait while we submit the withdraw request"
     },
     "MIN_WITHDRAWAL_INFO": "Please note that minimum withdrawal amount is ${{MIN_WITHDRAW_AMOUNT}}.",
-    "REDEEM_ALL_INFO": "Please note that minimum portfolio amount is ${{MIN_BALANCE_AMOUNT}}. If you wish to maintain your portfolio, you are to maintain a minimum portfolio value of ${{MIN_BALANCE_AMOUNT}} or continue to redeem all.",
+    "REDEEM_ALL_INFO": "Please note that minimum portfolio amount is ${{MIN_BALANCE_AMOUNT}}. If you wish to maintain your portfolio, you are to maintain a minimum portfolio value of ${{MIN_BALANCE_AMOUNT}} or continue to redeem all. Final amount executed in RedeemAll is after all other pending withdrawal request is completed.",
     "AFTER_WITHDRAWAL": "After Withdrawal:",
     "WITHDRAWAL_ERROR_CASH": "Withdrawal amount should not be more than the Cash Account Balance",
     "WITHDRAWAL_ERROR_PORTFOLIO": "Withdrawal amount should not be more than the Portfolio Balance",
     "JOINT_ACCOUNT_DESC": "Please note that withdrawals to bank account for <strong>Joint Investment Portfolios</strong> are currently handled offline. Email <a target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> before 11am to process your request on the same business day.",
-    "PERSONAL_JOINT_ACCOUNT_DESC": "Please note that withdrawals to bank account for <strong>Personal Investment Portfolios</strong> are currently handled offline. Email <a target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> before 11am to process your request on the same business day."
+    "PERSONAL_JOINT_ACCOUNT_DESC": "Please note that withdrawals to bank account for <strong>Personal Investment Portfolios</strong> are currently handled offline. Email <a target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> before 11am to process your request on the same business day.",
+    "PENDING_WITHDRAWAL_ERROR": "Oops, your available portfolio balance is insufficient due to another withdrawal request that is in progress."
   },
   "WITHDRAW_SUCCESS": {
     "TITLE": "Withdrawal Request Submitted",
@@ -500,5 +501,12 @@
     "LOADING_TITLE": "Loading",
     "LOADING_DESC": "Please wait while we load the data",
     "PROMO_RATE": "(Promo Rate)"
+  },
+  "DIVIDEND": {
+    "TITLE": "Dividend Payout",
+    "PAYOUT_DATE": "Payout Date",
+    "DIVIDEND_RATE": "Dividend Rate Per Unit",
+    "DIVIDEND_RECEIVED": "Dividends Received",
+    "NO_HISTORY": "No Dividend History!"
   }
 }

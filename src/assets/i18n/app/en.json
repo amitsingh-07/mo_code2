@@ -1,7 +1,7 @@
 {
     "COMMON": {
         "PRE_TITLE": "MoneyOwl | ",
-        "LBL_FILL_VIA_MY_INFO": "Auto fill forms via SingPass",
+        "LBL_FILL_VIA_MY_INFO": "Auto fill forms via Singpass",
         "LBL_MY_INFO_HELP_DESC": "Tap here to fetch data",
         "LBL_PLAN_SELECTED": "Plan Selected",
         "LBL_PLANS_SELECTED": "Plans Selected",
@@ -359,16 +359,26 @@
     },
     "MYINFO": {
         "OPEN_MODAL_DATA": {
-            "TITLE": "Login via MyInfo",
-            "DESCRIPTION": "You will now proceed to login via MyInfo and retrieve your details."
+            "TITLE": "Login via Myinfo",
+            "DESCRIPTION": "You will now proceed to login via Myinfo and retrieve your details."
         },
         "ERROR_MODAL_DATA": {
-            "TITLE": "Oops, Error!",
-            "DESCRIPTION": "We weren't able to fetch your data from MyInfo."
+            "TITLE": "Oops, Unable to Connect",
+            "DESCRIPTION": "We are unable to connect to Myinfo temporary. You may choose to fill in your information manually or try again later."
         },
         "FETCH_MODAL_DATA": {
             "TITLE": "Fetching Data...",
-            "DESCRIPTION": "Please be patient while we fetch your required data from MyInfo."
+            "DESCRIPTION": "Please be patient while we fetch your required data from Myinfo."
+        },
+        "RETRIEVE_CPF_DATA": {
+            "TITLE": "Retrieve via Myinfo",
+            "DESCRIPTION": "<div class='bold-txt'>Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</div><br> You will now proceed to login via Myinfo and retrieve your following details. <span class='bold-txt'>Please use your own account only.</span><div class='mt15 mb15 teal-txt'>CPF Account Balance<br>NRIC/FIN</div>Would you like to proceed?",
+            "BTN-TEXT": "Let’s go!"
+        },
+        "NRIC_USED_ERROR": {
+            "TITLE": "Unable to proceed with the NRIC/FIN",
+            "DESCRIPTION": "We have detected that the NRIC/FIN is already in use by another account. <span class='bold-txt'>Please use your own account only.</span><br><br>Contact us at <a class='anchor-txt' href='mailto:enquiries@moneyowl.com.sg' target='_blank' rel='noopener noreferrer'>enquiries@moneyowl.com.sg</a> if you require any assistance.",
+            "BTN-TEXT": "Okay, Got It!"
         }
     },
     "COMPREHENSIVE": {
@@ -481,7 +491,8 @@
                         }
                     }
                 }
-            }
+            },
+            "INCL_GST":" (incl. GST)"
         }
     },
     "TRANSFER_INSTRUCTION": {
