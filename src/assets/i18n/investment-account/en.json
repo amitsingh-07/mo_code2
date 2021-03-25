@@ -144,17 +144,17 @@
     },
     "blockedCountry": {
       "blockedCountryTitle": "Oops, Unable To Proceed",
-      "blockedCountryMessage": "We are unable to open your investment account as your country of residency is listed under the restricted country list. If information is incorrect, please update your MyInfo and try again. Alternatively, you can choose to open your investment account manually (non-myinfo).",
+      "blockedCountryMessage": "We are unable to open your investment account as your country of residency is listed under the restricted country list. If information is incorrect, please update your Myinfo and try again. Alternatively, you can choose to open your investment account manually (non-myinfo).",
       "blockedCountryButtonTitle": "Back To Dashboard"
     },
     "FOREIGNER": {
-      "title": "Unable to apply via MyInfo",
-      "message": "Sorry, we are unable to proceed your application via MyInfo as this feature is applicable to Singapore Citizens and Singapore Permanent Residents (PRs) only.<br><br>Please continue with the application by filling up the form manually.<br><br>Supporting documents are required. Takes at least 1 working day to get your account approved.",
+      "title": "Unable to apply via Myinfo",
+      "message": "Sorry, we are unable to proceed your application via Myinfo as this feature is applicable to Singapore Citizens and Singapore Permanent Residents (PRs) only.<br><br>Please continue with the application by filling up the form manually.<br><br>Supporting documents are required. Takes at least 1 working day to get your account approved.",
       "btnText": "Continue to Form"
     },
     "FOREIGNER_CONFIRMATION": {
-      "title": "Unable to proceed via MyInfo",
-      "message": "Sorry, we are unable to proceed your application via MyInfo as you have selected \"No\" to the permanent resident status.<br><br>Please continue with the application by filling up the form manually.<br><br>Supporting documents are required. Takes at least 1 working day to get your account approved.",
+      "title": "Unable to proceed via Myinfo",
+      "message": "Sorry, we are unable to proceed your application via Myinfo as you have selected \"No\" to the permanent resident status.<br><br>Please continue with the application by filling up the form manually.<br><br>Supporting documents are required. Takes at least 1 working day to get your account approved.",
       "btnText": "Continue to Form"
     }
   },
@@ -308,17 +308,17 @@
     },
     "ERROR_MODAL_DATA": {
       "TITLE": "Oops, Unable to Connect",
-      "DESCRIPTION": "We are unable to connect to MyInfo temporary. You may choose to fill in your information manually or try again later."
+      "DESCRIPTION": "We are unable to connect to Myinfo temporary. You may choose to fill in your information manually or try again later."
     },
     "FETCH_MODAL_DATA": {
       "TITLE": "Fetching Data...",
-      "DESCRIPTION": "Please be patient while we fetch your required data from MyInfo."
+      "DESCRIPTION": "Please be patient while we fetch your required data from Myinfo."
     },
     "LOADER2": {
-      "message": "Sorry that this is taking longer than usual. Please be patient while we fetch your required data from MyInfo."
+      "message": "Sorry that this is taking longer than usual. Please be patient while we fetch your required data from Myinfo."
     },
     "LOADER3": {
-      "message": "We are still trying to fetch your required data from MyInfo. You may choose to fill in your information manually or try again later.",
+      "message": "We are still trying to fetch your required data from Myinfo. You may choose to fill in your information manually or try again later.",
       "primaryActionLabel": "Try Again Later",
       "secondaryActionLabel": "Fill Form Manually"
     },

@@ -167,7 +167,7 @@ export class MyInfoService {
     } else {
       this.loadingModalRef.componentInstance.closeBtn = false;
       this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
-      this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from MyInfo.';
+      this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from Myinfo.';
     }
     this.loadingModalRef.componentInstance.primaryActionLabel = 'Cancel';
     this.loadingModalRef.componentInstance.closeAction.subscribe(() => {
@@ -200,7 +200,7 @@ export class MyInfoService {
     if (error) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'my-info'});
       ref.componentInstance.errorTitle = 'Oops, Unable to Connect';
-      ref.componentInstance.errorMessage = 'We are unable to connect to MyInfo temporary. You may choose to fill in your information manually or try again later.';
+      ref.componentInstance.errorMessage = 'We are unable to connect to Myinfo temporary. You may choose to fill in your information manually or try again later.';
       ref.componentInstance.isMyinfoError = true;
       ref.componentInstance.closeBtn = false;
       ref.result.then(() => {
