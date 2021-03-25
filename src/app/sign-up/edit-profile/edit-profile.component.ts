@@ -24,6 +24,7 @@ import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { SessionsService } from './../../shared/Services/sessions/sessions.service';
 
+import { ActivateSingpassModalComponent } from './activate-singpass-modal/activate-singpass-modal.component';
 
 @Component({
   selector: 'app-edit-profile',
@@ -61,8 +62,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   srsDetails;
   formatedAccountNumber;
   is2faAuthorized: boolean;
-
   disableBankSrsEdit = false;
+  linkCatagories;
 
   constructor(
     private modal: NgbModal,
@@ -115,7 +116,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.getEditProfileData();
       this.getSrsDetails();
     });
-
     this.isMailingAddressSame = true;
 
     // Check if iFast is in maintenance
@@ -138,6 +138,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           }
         });
     });
+
+    this.linkCatagories = SIGN_UP_CONFIG.SINGPASSLINKSTATUS;
   }
 
   ngOnDestroy() {
@@ -181,7 +183,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
             this.bankDetails = data.objectList.customerBankDetail[0];
           }
           this.showBankInfo = data.objectList.cashPortfolioAvailable ? data.objectList.cashPortfolioAvailable : false;
-          
+
           // Hidden the mailing address for future use
           // if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
           //   this.mailingAddress = data.objectList.contactDetails.mailingAddress;
@@ -384,5 +386,14 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     const first = firstName.charAt(0);
     const second = LastName.charAt(0);
     return first.toUpperCase() + second.toUpperCase();
+  }
+  linkSingpass() {
+    const ref = this.modal.open(ActivateSingpassModalComponent, { centered: true, windowClass: 'activate-singpass-modal' });
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'ACTIVATE_SINGPASS_MODAL.MESSAGE'
+    );
+    ref.componentInstance.primaryActionLabel = this.translate.instant(
+      'ACTIVATE_SINGPASS_MODAL.BTN_TXT'
+    );
   }
 }

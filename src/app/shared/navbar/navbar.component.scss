@@ -284,3 +284,38 @@
     left: 0px;
   }
 }
+
+//wiseIncome Dropdown
+.wiseincome-dropdown {
+  position: absolute;
+  right: 10px;
+  top: 19px;
+}
+.wiseincome-dropdown-item {
+  position: absolute;
+  width: 100%;
+  top: 60px;
+  padding: 25px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  background-color: $white-color;
+  .scroll-to {
+    color: $app-backgrnd-color;
+    font-family: $muli-regular;
+    font-size: 14px;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      list-style-type: none;
+      color: $black-color;
+      font-family: $muli-regular;
+      font-size: 16px;
+      line-height: 50px;
+      &.active {
+        color: $dark-orange-color;
+        font-family: $muli-bold;
+      }
+    }
+  }
+}
