@@ -348,7 +348,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         break;
       }
       case 6: {
-        window.open(MANAGE_INVESTMENTS_CONSTANTS.TOPUP_INSTRUCTION_URL, '_blank');
+        window.open('https://www.moneyowl.com.sg/faq-investment/#investment|8', '_blank');
         break;
       }
       case 7: {
