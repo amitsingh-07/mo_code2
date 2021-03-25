@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -138,10 +139,10 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy, Aft
   }
 
   openModal() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('MYINFO.OPEN_MODAL_DATA.TITLE');
     ref.componentInstance.errorMessage = this.translate.instant('MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
-    ref.componentInstance.isButtonEnabled = true;
+    ref.componentInstance.primaryActionLabel = this.translate.instant('MYINFO.OPEN_MODAL_DATA.BTN-TEXT');
     ref.result.then(() => {
       this.myInfoService.setMyInfoAttributes('cpfbalances');
       this.myInfoService.goToMyInfo();
