@@ -42,6 +42,7 @@
      <!-- WiseIncome Portfolio -->
         <div class="wiseIncome-portfolio" formControlName="selectPortfolioType" id="selectPortfolioType" name="selectPortfolioForm" value="wiseIncomePortfolio" ngDefaultControl (click)="setSelectPortfolioType('wiseIncomePortfolio')">
             <div class="portfolio-cards" [ngClass]="{'active': wiseIncomeEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='wiseIncomePortfolio', 'more-info-shadow': wiseIncomeMoreInfoShow}">
+                <div class="portfolio-new"><img src="assets/images/wiseincome/portfolio-new.svg"></div>
                 <div class="portfolio-cards__select" *ngIf="wiseIncomeEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='wiseIncomePortfolio'">
                     <img src="assets/images/wisesaver/circle-tick.svg"></div>
                 <div class="portfolio-cards__img"><img src="assets/images/wiseincome/investment-guy.svg"></div>
