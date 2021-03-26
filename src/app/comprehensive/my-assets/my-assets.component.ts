@@ -505,7 +505,11 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorTitle = this.translate.instant('MYINFO.NRIC_USED_ERROR.TITLE');
       ref.componentInstance.errorMessageHTML = this.translate.instant('MYINFO.NRIC_USED_ERROR.DESCRIPTION');
       ref.componentInstance.primaryActionLabel = this.translate.instant('MYINFO.NRIC_USED_ERROR.BTN-TEXT');
+      ref.componentInstance.closeAction.subscribe(() => {
+        this.closeMyInfoPopup();
+      });
       ref.result.then((data) => {
+        this.closeMyInfoPopup();
         ref.close();
       }).catch((e) => {
       });
