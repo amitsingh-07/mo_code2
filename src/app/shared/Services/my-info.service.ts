@@ -160,12 +160,11 @@ export class MyInfoService {
     };
     this.loadingModalRef = this.modal.open(ModelWithButtonComponent, ngbModalOptions);
     this.loadingModalRef.componentInstance.spinner = true;
+    this.loadingModalRef.componentInstance.closeBtn = false;
     if (linkAccount) {
-      this.loadingModalRef.componentInstance.closeBtn = true;
       this.loadingModalRef.componentInstance.errorTitle = 'Linking Account…';
       this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we are linking up your MoneyOwl account.';
     } else {
-      this.loadingModalRef.componentInstance.closeBtn = false;
       this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
       this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from MyInfo.';
     }
@@ -200,7 +199,7 @@ export class MyInfoService {
     if (error) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'my-info'});
       ref.componentInstance.errorTitle = 'Oops, Unable to Connect';
-      ref.componentInstance.errorMessage = 'We are unable to connect to MyInfo temporary. You may choose to fill in your information manually or try again later.';
+      ref.componentInstance.errorMessage = 'We are unable to connect to Myinfo temporarily. You may choose to fill in your information manually or try again later.';
       ref.componentInstance.isMyinfoError = true;
       ref.componentInstance.closeBtn = false;
       ref.result.then(() => {
