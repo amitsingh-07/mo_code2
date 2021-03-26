@@ -364,7 +364,7 @@
         },
         "ERROR_MODAL_DATA": {
             "TITLE": "Oops, Unable to Connect",
-            "DESCRIPTION": "We are unable to connect to Myinfo temporary. You may choose to fill in your information manually or try again later."
+            "DESCRIPTION": "We are unable to connect to Myinfo temporarily. You may choose to fill in your information manually or try again later."
         },
         "FETCH_MODAL_DATA": {
             "TITLE": "Fetching Data...",
