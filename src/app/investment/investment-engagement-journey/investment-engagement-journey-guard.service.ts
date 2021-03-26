@@ -47,7 +47,7 @@ export class InvestmentEngagementJourneyGuardService implements CanActivate {
     } else {
       if (this.authService.getToken() === null && this.authService.getSessionId() === null) {
         this.authService.authenticate().subscribe((token) => {
-          if(route.queryParams.key === 'wise-income') {
+          if(route.queryParams && route.queryParams.key && route.queryParams.key === 'wise-income') {
             this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.WISE_INCOME_PAYOUT], { queryParams: route.queryParams, replaceUrl: true });
           } else {
             this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.START], { queryParams: route.queryParams });
