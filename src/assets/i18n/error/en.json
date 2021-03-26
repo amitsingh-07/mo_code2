@@ -19,6 +19,7 @@
       "TITLE": "An error has occurred. Failed to send OTP for 2FA",
       "SUB_TITLE": "",
       "BUTTON": "Okay"
-    }
+    },
+    "ERROR_TEXT" : "Error!"
   }
 }

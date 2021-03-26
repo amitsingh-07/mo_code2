@@ -2686,4 +2686,12 @@ export class ComprehensiveService {
       return '';
     }
   }
+
+  validateUin(uin) {
+    const payload = {
+      source: COMPREHENSIVE_CONST.API_SOURCE,
+      uin: uin
+    };
+    return this.apiService.validateUin(payload);
+  }
 }

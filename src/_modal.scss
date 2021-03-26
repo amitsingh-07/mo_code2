@@ -219,6 +219,21 @@ body.modal-open::-webkit-scrollbar {
     font-weight: 600;
     color: #00a7a7;
   }
+
+  .teal-txt {
+    letter-spacing: -0.16px;
+    color: $teal-color;
+  }
+
+  .bold-txt {
+    font-family: $muli-bold;
+    line-height: 23px;
+    letter-spacing: -0.15px;
+  }
+
+  .anchor-txt {
+    color: $dark-orange-color;
+  }
 }
 
 .modal-header-icon img {
@@ -685,6 +700,11 @@ body.modal-open::-webkit-scrollbar {
   }
   .modal-dialog-centered {
     align-items: center !important;
+  }
+  .srs-img {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
   }
 }
 
@@ -1280,5 +1300,23 @@ body.modal-open::-webkit-scrollbar {
     #errorModeButton {
       height: 60px;
     }
+  }
+}
+
+.retrieve-myinfo-modal {
+  .modal-body-message {
+    margin-bottom: 5px;
+  }
+  .action-button:focus {
+    outline: none;
+  }
+}
+
+.nric-used-modal {
+  .modal-body-message {
+    margin-bottom: 0px;
+  }
+  .action-button:focus {
+    outline: none;
   }
 }

@@ -56,4 +56,13 @@ app-dividend-payout {
         }
       }
     }
+    .no-history {
+      font-size: 18px;
+      font-family: $muli-bold;
+      text-align: center;
+      color: $teal-color;
+      p:first-child {
+        padding-top: 30px;
+      }
+    }
 }

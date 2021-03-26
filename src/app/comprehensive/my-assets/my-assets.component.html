@@ -80,6 +80,7 @@
             <div class="form-group-with-bg--header-label">{{ 'CMP.MY_ASSETS.YOUR_CPF' | translate}}<div
                 class="form-group-with-bg--header-sub-label"></div>
             </div>
+            <span (click)="editCPFFields()" *ngIf="showEditIcon" class="edit-icon"><img src="assets/images/comprehensive/edit-icon-pencil.svg" /></span>
           </div>
         </div>
       </div>

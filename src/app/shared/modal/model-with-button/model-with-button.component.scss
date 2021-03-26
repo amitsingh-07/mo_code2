@@ -1,6 +1,15 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 
+.my-info {
+  .modal-body {
+      @include desktop {
+          width: 375px !important;
+          margin: 0 auto !important;
+      }
+  }
+}
+
 .toggle-btn {
   flex: 1;
 }
