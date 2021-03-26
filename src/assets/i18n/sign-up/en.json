@@ -172,7 +172,14 @@
     "EDIT_PROFILE": "Back to Edit Profile"
   },
   "LOGIN": {
+    "WELCOME_LBL": "Welcome to MoneyOwl!",
     "LOGIN_TO_MO": "Log In to MoneyOwl",
+    "PASSWORD_LOGIN": "PASSWORD LOGIN",
+    "SINGPASS_MOBILE": "SINGPASS MOBILE",
+    "LOGIN_USE_SINGPASS": "You can now log in to MoneyOwl using Singpass Mobile App! ",
+    "HOW_TO_ACTIVATE": "How to activate?",
+    "DONT_HAVE_SINGPASS": "Don’t have Singpass Mobile? ",
+    "DOWNLOAD_NOW": "Download now!",
     "DESCRIPTION": "Please fill in your details so that our advisers can contact you.",
     "FORM": {
       "USERNAME": "Mobile No. / Email Address",

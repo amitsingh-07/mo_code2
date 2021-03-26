@@ -1,3 +1,4 @@
+import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
 import { Location } from '@angular/common';
 import {
   AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit,
@@ -63,10 +64,14 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   finlitEnabled = false;
   capsOn: boolean;
   capslockFocus: boolean;
+  showPasswordLogin = true;
+  showSingpassLogin = false;
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
+    this.showPasswordLogin = true;
+    this.showSingpassLogin = false;
     if (/Android|Windows/.test(navigator.userAgent)) {
       this.welcomeTitle.nativeElement.scrollIntoView(true);
     }
@@ -110,7 +115,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
-
   }
   /**
     * Initialize tasks.
@@ -146,7 +150,12 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           this.loaderService.hideLoader();
         });
       }
+    }
+  }
 
+  ngAfterViewInit() {
+    if (this.signUpService.getCaptchaShown()) {
+      this.setCaptchaValidator();
     }
     var OIDCParams = {
       nonce: ('' + Math.random() * 1000000000000000 + '').slice(0, 15),
@@ -163,12 +172,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         window['SPCPQR'].refresh({ nonce: OIDCParams.nonce, state: OIDCParams.state });
       }
     );
-  }
-
-  ngAfterViewInit() {
-    if (this.signUpService.getCaptchaShown()) {
-      this.setCaptchaValidator();
-    }
   }
 
   setCaptchaValidator() {
@@ -514,7 +517,29 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   openModal(event) {
-    event.stopPropagtion();
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = 'Log In to MoneyOwl using Singpass Mobile App';
+    ref.componentInstance.errorMessageHTML = 'If you <span class="bold-txt">do not have</span> a MoneyOwl investment account, please do a Password Login and activate Singpass Login in your Profile page.<br><br>If you <span class="bold-txt">have</span> a MoneyOwl investment account, simply scan the QR code with your Singpass Mobile App to log in!<br><br>Please note that this feature is available to all Singpass Registered Users.<br><br><a class="anchor-txt" target="_blank" href="https://www.singpass.gov.sg/singpass/common/faq">Learn more about Singpass</a>';
+    event.stopPropagation();
     event.preventDefault();
+  }
+
+  openSingpassLoginFail(event) {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = 'Log In to MoneyOwl using Singpass Mobile App';
+    ref.componentInstance.errorMessageHTML = 'If you <span class="bold-txt">do not have</span> a MoneyOwl investment account, please do a Password Login and activate Singpass Login in your Profile page.<br><br>If you <span class="bold-txt">have</span> a MoneyOwl investment account, simply scan the QR code with your Singpass Mobile App to log in!<br><br>Please note that this feature is available to all Singpass Registered Users.<br><br><a class="anchor-txt" target="_blank" href="https://www.singpass.gov.sg/singpass/common/faq">Learn more about Singpass</a>';
+    ref.componentInstance.myInfo = true;
+    event.stopPropagation();
+    event.preventDefault();
+  }
+  
+  toggleSingpass(type) {
+    if (type === 'singpass') {
+      this.showSingpassLogin = true;
+      this.showPasswordLogin = false;
+    } else {
+      this.showPasswordLogin = true;
+      this.showSingpassLogin = false;
+    }
   }
 }
