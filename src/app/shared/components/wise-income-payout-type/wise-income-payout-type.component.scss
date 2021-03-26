@@ -98,7 +98,7 @@ app-wise-income-payout-type {
             width: 175px;
             height: 40px;
             margin: 5px auto;
-            padding: 9px 50px 8px 51px;
+            padding: 9px 0px 8px 0px;
             border-radius: 6px;
             background-color: $wisesaver-value-bg-color;
             color: $black-color;
@@ -106,6 +106,7 @@ app-wise-income-payout-type {
             font-size: 16px;
             font-weight: normal;
             letter-spacing: -0.15px;
+            text-align: center;
         }
     }
 }
