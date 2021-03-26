@@ -18,6 +18,7 @@
             <span *ngIf="formGrp.controls.promoCode.errors?.invalidPromoCode">{{'PROMO_CODE_LIST.INVALID_PROMO' | translate}}</span>
             <span *ngIf="formGrp.controls.promoCode.errors?.promoCodeAlreadyApplied">{{'PROMO_CODE_LIST.ALREADY_APPLIED' | translate}}</span>
             <span *ngIf="formGrp.controls.promoCode.errors?.existingPromoCode">{{'PROMO_CODE_LIST.EXISTING_PROMO' | translate}}</span>
+            <span *ngIf="formGrp.controls.promoCode.errors?.noExistingPortfolio">{{'PROMO_CODE_LIST.NO_EXISTING_PORTFOLIO' | translate}}</span>
           </div>
         </div>
         </div>
