@@ -26,6 +26,7 @@ import {
 } from './investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from './investment-common-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from './investment-common.constants';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 
 const SESSION_STORAGE_KEY = 'app_inv_common_session';
 @Injectable({
@@ -40,7 +41,8 @@ export class InvestmentCommonService {
     private translate: TranslateService,
     private router: Router,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    public navbarService: NavbarService
   ) {
     this.getInvestmentCommonFormData();
   }
@@ -157,6 +159,9 @@ export class InvestmentCommonService {
   }
 
   goToAdditionalAccountCreation(data) {
+    if( data.accountCreationState ===  INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_PURCHASED){
+      this.navbarService.setMenuItemInvestUser(true);
+    }
     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
   }
 

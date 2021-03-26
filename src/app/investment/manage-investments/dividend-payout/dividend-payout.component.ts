@@ -18,6 +18,7 @@ export class DividendPayoutComponent implements OnInit {
   portfolio: any;
   formValues: any;
   dividentList: any;
+  portfolioName: any;
 
   constructor(
     private router: Router,
@@ -32,6 +33,7 @@ export class DividendPayoutComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('DIVIDEND.TITLE');
+      this.portfolioName = this.translate.instant(this.portfolio);
       this.setPageTitle(this.pageTitle);
     });
     this.renderer.addClass(document.body, 'portfolioname-bg');
@@ -41,7 +43,7 @@ export class DividendPayoutComponent implements OnInit {
     this.dividentList = this.formValues.selectedCustomerPortfolio.dividentPayoutOrReInvestList;
   }
   setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title, null, false, false, false, null, this.portfolio);
+    this.navbarService.setPageTitle(title, null, null, false, false, this.portfolio, false);
   }
   ngOnDestroy() {
     this.renderer.removeClass(document.body, 'portfolioname-bg');

@@ -99,6 +99,20 @@ app-select-portfolio {
         width: 85px;
       }
     }
+    .portfolio-new {
+      position: absolute;
+      top: 10px;
+      @include iphoneX {
+        top: 5px;
+      }
+      @include max360 {
+        top: 5px;
+      }
+      @include desktop {
+        top: 7px;
+      }
+      right: 0;
+    }
   }
 
   .portfolio-info {

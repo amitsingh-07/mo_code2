@@ -166,7 +166,7 @@ export class MyInfoService {
       this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we are linking up your MoneyOwl account.';
     } else {
       this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
-      this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from MyInfo.';
+      this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from Myinfo.';
     }
     this.loadingModalRef.componentInstance.primaryActionLabel = 'Cancel';
     this.loadingModalRef.componentInstance.closeAction.subscribe(() => {
