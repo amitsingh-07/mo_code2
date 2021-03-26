@@ -126,6 +126,10 @@ export const EXT_ROUTES = {
     {
         IN_APP_ROUTE: '/the-right-building-blocks',
         EXTERNAL_URL: '/the-right-building-blocks/'
+    },
+    {
+        IN_APP_ROUTE: '/wiseincome',
+        EXTERNAL_URL: '/wiseincome/'
     }
     ]
 };

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 345 113" preserveAspectRatio="none" >
+    <defs>
+        <filter id="263d93g86b" width="104.2%" height="113.3%" x="-2.1%" y="-4.8%" filterUnits="objectBoundingBox">
+            <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+        </filter>
+        <path id="lywnb68v9a" d="M331 0c3.314 0 6 2.686 6 6v93c0 3.314-2.686 6-6 6H6c-3.314 0-6-2.686-6-6v-4c2.21 0 4-1.79 4-4s-1.79-4-4-4v-5c2.21 0 4-1.79 4-4s-1.79-4-4-4v-5c2.21 0 4-1.79 4-4s-1.79-4-4-4v-5c2.21 0 4-1.79 4-4s-1.79-4-4-4v-5c2.21 0 4-1.79 4-4s-1.79-4-4-4v-5c2.21 0 4-1.79 4-4s-1.79-4-4-4v-5c2.21 0 4-1.79 4-4S2.21 9 0 9V6c0-3.314 2.686-6 6-6h325z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(4 2)">
+            <g>
+                <use fill="#000" filter="url(#263d93g86b)" xlink:href="#lywnb68v9a"/>
+                <use fill="#FFF" xlink:href="#lywnb68v9a"/>
+            </g>
+        </g>
+    </g>
+</svg>

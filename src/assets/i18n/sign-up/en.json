@@ -331,7 +331,9 @@
       "TOTAL_PORTFOLIO_VALUE": "Total Portfolio Value",
       "TOTAL_CASH_BALANCE_VALUE": "Total Cash Balance ",
       "INVESTMENT_PORTFOLIOS": "Investment Portfolios",
+      "DIMENSIONAL_PORTFOLIOS": "Dimensional Portfolios",
       "WISE_SAVER_PORTFOLIOS": "WiseSaver Portfolios",
+      "WISE_INCOME_PORTFOLIOS": "WiseIncome Portfolios",
       "CASH_BALANCE": "Cash Balance",
       "CASH_ACCOUNT_BALANCE_TITLE": "Cash Account Balance",
       "CASH_ACCOUNT_BALANCE_MESSAGE": "The cash account is where all your investment funds are held before it is transferred to a portfolio or your bank account.",
@@ -361,6 +363,16 @@
     "SRS_JOINT_ACCOUNT": {
       "FIND_OUT_MORE": "Click here to find out more on our new SRS & Joint Account updates!",
       "SRS_JOINT_ACCOUNT_SLIDES": [
+        {
+          "TITLE": "New Updates",
+          "TITLE_IMG": "srs-joint-account/speaker.svg",
+          "IMAGE": "srs-joint-account/wise-income.svg",
+          "IMG_TITLE": "Want passive income?<br>Start with WiseIncome!",
+          "TEXT": "Kick off your passive income journey with WiseIncome at $1 per unit! Deposits will be invested on 31st March.",
+          "APP_URL": "/investment/engagement/wise-income-payout",
+          "QUERY_PARAMS": "wise-income",
+          "URL_TEXT": "Start now"
+        },        
         {
           "TITLE": "New Updates",
           "TITLE_IMG": "srs-joint-account/speaker.svg",
@@ -424,6 +436,7 @@
     "BANK": "Bank Name",
     "BANK_ACC": " Bank Account",
     "NO_BANK": "No bank added",
+    "NO_BANK_DETAILS": "No bank details",
     "ADD_BANK": " Add Bank",
     "MY_PROFILE": "My Profile",
     "EDIT_PASSWORD_TITLE": "Your Password",
@@ -431,7 +444,8 @@
     "NEW_PASSWORD": "New Password",
     "CONFIRM_PASSWORD": "Confirm Password",
     "FORGET_PASSWORD": "Forgot your password?",
-    "APPLY_CHANGES": "Apply Changes"
+    "APPLY_CHANGES": "Apply Changes",
+    "JOINT_ACCOUNT_DESC":"While we upgrade our systems, please email <a  target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> if you would like to update your bank details."
   },
   "ADD_BANK": {
     "ACCOUNT_NAME": "Account Holders Name",

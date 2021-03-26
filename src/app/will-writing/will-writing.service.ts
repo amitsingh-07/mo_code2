@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { padNumber } from '../shared/utils/common.util';
+import { Util } from '../shared/utils/util';
 
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
@@ -333,8 +333,8 @@ export class WillWritingService {
 
   formatDob(value) {
     if (value) {
-      const date = padNumber(value['day'].toString());
-      const month = padNumber(value['month'].toString());
+      const date = Util.padNumber(value['day'].toString());
+      const month = Util.padNumber(value['month'].toString());
       const year = value['year'] + '';
       const returnValue = `${date}/${month}/${year}`;
       return returnValue;

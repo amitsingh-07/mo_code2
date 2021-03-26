@@ -24,8 +24,17 @@ app-your-financials {
     background: $app-backgrnd-color !important;
   }
 
+  .form-group-with-bg--header-desc{
+    font-family: $muli-regular;
+    font-size: 16px;
+    line-height: normal;
+    letter-spacing: -0.16px;
+    color: $text-color-secondary;
+    padding: 5px 0;
+  }
   .form-group-with-bg--content-label {
     line-height: 22px;
+    font-size: 18px !important;
   }
 
   .emergency-fund {

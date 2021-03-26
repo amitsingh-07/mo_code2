@@ -21,6 +21,8 @@ import {
 } from './investment-account.request';
 import { PersonalInfo } from './personal-info/personal-info';
 import { InvestmentApiService } from '../investment-api.service';
+import { RegexConstants } from './../../shared/utils/api.regex.constants';
+import { PromoCodeService } from '../../promo-code/promo-code.service';
 
 const SESSION_STORAGE_KEY = 'app_inv_account_session';
 const ACCOUNT_SUCCESS_COUNTER_KEY = 'investment_account_success_counter';
@@ -42,7 +44,8 @@ export class InvestmentAccountService {
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     public readonly translate: TranslateService,
     private modal: NgbModal,
-    private roadmapService: RoadmapService
+    private roadmapService: RoadmapService,
+    private promoCodeService: PromoCodeService
   ) {
     this.getInvestmentAccountFormData();
     this.setDefaultValueForFormData();
@@ -412,7 +415,7 @@ export class InvestmentAccountService {
   setPersonalInfo(data: PersonalInfo) {
     this.clearPersonalInfo();
     if (data.fullName) {
-      this.investmentAccountFormData.fullName = data.fullName.toUpperCase();
+      this.investmentAccountFormData.fullName = data.fullName.trim().replace(RegexConstants.trimSpace, ' ').toUpperCase();
     }
     if (data.nricNumber) {
       this.investmentAccountFormData.nricNumber = data.nricNumber.toUpperCase();
@@ -885,6 +888,11 @@ export class InvestmentAccountService {
     request.householdDetails = null;
     request.taxDetails = null;
     request.sameAsMailingAddress = null;
+    if (this.promoCodeService.usedPromo.getValue()) {
+      request.promoCodeId = this.promoCodeService.usedPromo.getValue()['id'];
+    } else {
+      request.promoCodeId = null;
+    }
     request.personalDeclarations = this.getPersonalDecReqData(payload);
     return request;
   }
@@ -901,6 +909,7 @@ export class InvestmentAccountService {
     request.employmentDetails = this.getEmploymentDetailsReqData(payload);
     request.householdDetails = this.getHouseholdDetailsReqData(payload);
     request.taxDetails = this.getTaxDetailsReqData(payload);
+    request.promoCodeId = null;
     request.personalDeclarations = this.getPersonalDecReqData(payload);
     return request;
   }

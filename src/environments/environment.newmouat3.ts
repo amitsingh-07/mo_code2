@@ -14,9 +14,11 @@ export const environment: IEnvironment = {
   gAdPropertyId: 'AW-782920447',
   gaPropertyId: 'UA-125256446-1',
   hideHomepage: true,
+  mockInvestAccount: false,
   expire2faTime: 298,
   expire2faPollRate: 2,
-  expire2faMaxCheck: 5
+  expire2faMaxCheck: 5,
+  promoCodeJsonUrl: 'https://mo-static-assets.s3-ap-southeast-1.amazonaws.com/promo/prod/promo-details.json'
 };
 /*
  * In development mode, to ignore zone related error stack frames such as
