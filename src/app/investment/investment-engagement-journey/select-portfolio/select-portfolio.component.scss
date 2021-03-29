@@ -142,6 +142,11 @@ app-select-portfolio {
         background: url(../../../../assets/images/wisesaver/icon-tick.svg) no-repeat 0 0;
         padding-left: 30px;
       }
+      .disclaimer{
+        font-size: 14px;
+        color: $silver-grey-color;
+        padding-top: 0;
+      }
     }
 
     &__heading {

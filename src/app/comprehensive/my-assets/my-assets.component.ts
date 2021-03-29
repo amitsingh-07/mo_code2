@@ -111,7 +111,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
           this.myInfoService.getMyInfoData().subscribe((data) => {
             if (data && data['objectList'] && data['objectList'][0]['uin']) {
               this.comprehensiveService.validateUin(data['objectList'][0]['uin']).subscribe((response)=>{
-                if (response['responseCode'] === '6013') {
+                if (response.responseMessage['responseCode'] === '6013') {
                   const cpfValues = data.objectList[0].cpfbalances;
                   const oaFormControl = this.myAssetsForm.controls['cpfOrdinaryAccount'];
                   const saFormControl = this.myAssetsForm.controls['cpfSpecialAccount'];
@@ -506,11 +506,10 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorMessageHTML = this.translate.instant('MYINFO.NRIC_USED_ERROR.DESCRIPTION');
       ref.componentInstance.primaryActionLabel = this.translate.instant('MYINFO.NRIC_USED_ERROR.BTN-TEXT');
       ref.componentInstance.closeAction.subscribe(() => {
-        this.closeMyInfoPopup();
+        this.modal.dismissAll();
       });
       ref.result.then((data) => {
-        this.closeMyInfoPopup();
-        ref.close();
+        this.modal.dismissAll();
       }).catch((e) => {
       });
     }
