@@ -1,6 +1,6 @@
 import { Component, Input, NgZone, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -39,6 +39,8 @@ export class CreateAccountMyinfoComponent implements OnInit {
   loader2Modal: any;
   loader3Modal: any;
   loader1Modal: any;
+  referralParams = {};
+  referralCode = '';
 
   constructor(
     private configService: ConfigService,
@@ -49,7 +51,8 @@ export class CreateAccountMyinfoComponent implements OnInit {
     public readonly translate: TranslateService,
     private investmentAccountService: InvestmentAccountService,
     private signUpService: SignUpService,
-    private ngZone: NgZone
+    private ngZone: NgZone,    
+    private route: ActivatedRoute
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -94,6 +97,12 @@ export class CreateAccountMyinfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      if (params['referral_code']) {
+        this.referralParams = { referral_code: params['referral_code'] };
+        this.referralCode = '/' + params['referral_code'];
+      }
+    });
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '' &&
         this.myInfoService.getMyInfoAttributes() === this.signUpService.myInfoAttributes.join()) {
@@ -114,7 +123,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
         this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0])
         this.myInfoService.isMyInfoEnabled = false;
         this.closeMyInfoPopup(false);
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
       } else if (data.responseMessage.responseCode === 6014) {
         const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
         ref.componentInstance.errorTitle = this.loader1Modal.title;
@@ -122,7 +131,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
         ref.componentInstance.primaryActionLabel = this.loader1Modal.btn;
         this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
           this.closeMyInfoPopup(false);
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO]);
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO], { queryParams: this.referralParams });
         })
       }
       else {
@@ -171,7 +180,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
   }
 
   skipMyInfo() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT  + this.referralCode]);
   }
 
   proceedToMyInfo() {
@@ -208,7 +217,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
     this.myInfoService.loadingModalRef.componentInstance.secondaryAction.subscribe(() => {
       this.closeMyInfoPopup(false);
       this.createAccountData.isMyInfoEnabled = false;
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT  + this.referralCode]);
     });
   }
 
