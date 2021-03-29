@@ -110,7 +110,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
           this.myInfoService.getMyInfoData().subscribe((data) => {
             if (data && data['objectList'] && data['objectList'][0]['uin']) {
               this.comprehensiveService.validateUin(data['objectList'][0]['uin']).subscribe((response)=>{
-                if (response.responseMessage['responseCode'] === '6013') {
+                if (response.responseMessage['responseCode'] === 6013) {
                   const cpfValues = data.objectList[0].cpfbalances;
                   const oaFormControl = this.myAssetsForm.controls['cpfOrdinaryAccount'];
                   const saFormControl = this.myAssetsForm.controls['cpfSpecialAccount'];
