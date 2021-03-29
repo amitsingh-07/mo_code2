@@ -110,9 +110,9 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled
           && this.myInfoService.checkMyInfoSourcePage()) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
-            if (data && data['objectList'] && data['objectList']['uin']) {
-              this.comprehensiveService.validateUin(data['objectList']['uin']).subscribe((response)=>{
-                if (response['responseCode'] === '6013') {
+            if (data && data['objectList'] && data['objectList'][0]['uin']) {
+              this.comprehensiveService.validateUin(data['objectList'][0]['uin']).subscribe((response)=>{
+                if (response.responseMessage['responseCode'] === '6013') {
                   const cpfValues = data.objectList[0].cpfbalances;
                   const oaFormControl = this.myAssetsForm.controls['cpfOrdinaryAccount'];
                   const saFormControl = this.myAssetsForm.controls['cpfSpecialAccount'];
@@ -506,8 +506,11 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorTitle = this.translate.instant('MYINFO.NRIC_USED_ERROR.TITLE');
       ref.componentInstance.errorMessageHTML = this.translate.instant('MYINFO.NRIC_USED_ERROR.DESCRIPTION');
       ref.componentInstance.primaryActionLabel = this.translate.instant('MYINFO.NRIC_USED_ERROR.BTN-TEXT');
+      ref.componentInstance.closeAction.subscribe(() => {
+        this.modal.dismissAll();
+      });
       ref.result.then((data) => {
-        ref.close();
+        this.modal.dismissAll();
       }).catch((e) => {
       });
     }
