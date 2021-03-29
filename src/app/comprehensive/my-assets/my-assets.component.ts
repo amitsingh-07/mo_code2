@@ -20,8 +20,9 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 import { Util } from './../../shared/utils/util';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
-import { ModelWithButtonComponent } from './../../shared/modal/model-with-button/model-with-button.component';
+
 
 @Component({
   selector: 'app-my-assets',
