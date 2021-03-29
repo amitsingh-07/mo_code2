@@ -104,8 +104,11 @@ app-wise-income-payout {
                     padding: 17px 34px;
                     font-family: $muli-bold;
                     @include allmobiles {
-                        padding: 0px 8px 7px;
+                        padding: 0px 6px 7px;
                         line-height: normal;
+                    }
+                    @include max360{
+                        font-size: 17px;
                     }
                     &.active { 
                         border-bottom: 6px solid $payout-tab-color;
