@@ -122,7 +122,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.buildAccountInfoForm();
     this.getCountryCode();
     //Referral Code snapshot param
-    if (this.route.snapshot.paramMap.get('referralCode') !== '' && this.createAccountForm.controls['referralCode']) {      
+    if (this.route.snapshot.paramMap.get('referralCode') != '' && this.createAccountForm.controls['referralCode']) {      
       this.createAccountForm.controls['referralCode'].setValue(this.route.snapshot.paramMap.get('referralCode'));
       this.showClearBtn = true;
     }
