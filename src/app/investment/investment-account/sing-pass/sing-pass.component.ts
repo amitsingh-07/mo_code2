@@ -190,6 +190,8 @@ export class SingPassComponent implements OnInit, OnDestroy {
             ref.componentInstance.primaryActionLabel = this.translate.instant(
               'INVESTMENT_ACCOUNT_MYINFO.NRIC_VALIDATION_ERROR.BTN-TEXT'
             );
+          } else {
+            this.closeMyInfoPopup(true);
           }
         });
       } else {
