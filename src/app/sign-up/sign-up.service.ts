@@ -733,5 +733,4 @@ export class SignUpService {
   getCallBackSignUp() {
     return this.signUpFormData.callBackInvestmentAccount;
   }
-  
 }

@@ -96,6 +96,13 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
+    
+    // Set referral code base on the query param
+    this.route.queryParams.subscribe((params) => {
+      if (params['referral_code']) {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO], { queryParams: {referral_code: params['referral_code']} });
+      }
+    });
   }
 
   /**
@@ -114,13 +121,11 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.formValue = this.signUpService.getAccountInfo();
     this.buildAccountInfoForm();
     this.getCountryCode();
-    // Set referral code base on the query param
-    this.route.queryParams.subscribe((params) => {
-      if (params['referral_code'] && this.createAccountForm.controls['referralCode']) {
-        this.createAccountForm.controls['referralCode'].setValue(params['referral_code']);
-        this.showClearBtn = true;
-      }
-    });
+    //Referral Code snapshot param
+    if (this.route.snapshot.paramMap.get('referralCode') !== '' && this.createAccountForm.controls['referralCode']) {      
+      this.createAccountForm.controls['referralCode'].setValue(this.route.snapshot.paramMap.get('referralCode'));
+      this.showClearBtn = true;
+    }
     this.createAnimation();
     this.createAccountData = this.signUpService.getUserProfileInfo();
   }
