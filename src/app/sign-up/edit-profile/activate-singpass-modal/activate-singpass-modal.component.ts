@@ -112,7 +112,7 @@ export class ActivateSingpassModalComponent implements OnInit, OnDestroy {
     this.showSingPass = this.investmentData.isMyInfoEnabled ? false : true;
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '' &&
-        this.myInfoService.getMyInfoAttributes() === this.investmentAccountService.myInfoAttributes.join()) {
+        this.myInfoService.getMyInfoAttributes() === this.investmentAccountService.myInfoLinkAttributes.join()) {
         if (myinfoObj.status && myinfoObj.status === this.myInfoStatus1 && this.myInfoService.isMyInfoEnabled) {
           this.getMyInfoData();
         } else if (myinfoObj.status && myinfoObj.status === this.myInfoStatus2) {
