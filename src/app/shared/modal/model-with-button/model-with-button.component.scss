@@ -3,10 +3,20 @@
 
 .my-info {
   .modal-body {
-      @include desktop {
-          width: 375px !important;
-          margin: 0 auto !important;
+    @include desktop {
+        width: 375px !important;
+        margin: 0 auto !important;
+    }
+
+    .modal-body-title {
+        font-family: $muli-bold;
+    }
+
+    .spinner-container {
+      #mo_spinner {
+        margin: 6px 10px 0px 0px;
       }
+    }
   }
 }
 
