@@ -76,7 +76,7 @@ export class SignUpApiService {
         customer: {
           countryCode: getAccountInfo.countryCode,
           mobileNumber: getAccountInfo.mobileNumber.toString(),
-          nricNumber: getAccountInfo.nricNumber,
+          uin: getAccountInfo.nricNumber,
           fullName: getAccountInfo.fullName,
           emailAddress: getAccountInfo.email,
           password: this.cryptoService.encrypt(pwd),
@@ -87,9 +87,10 @@ export class SignUpApiService {
         journeyType,
         enquiryId,
         referralCode: getAccountInfo.referralCode,
-        userType: getAccountInfo.userType
+        userType: getAccountInfo.userType,
+        accountCreationType: getAccountInfo.accountCreationType
       };
-    }else{
+    } else {
       return {
         customer: {
           countryCode: getAccountInfo.countryCode,
@@ -105,7 +106,8 @@ export class SignUpApiService {
         journeyType,
         enquiryId,
         referralCode: getAccountInfo.referralCode,
-        userType: getAccountInfo.userType
+        userType: getAccountInfo.userType,
+        accountCreationType: getAccountInfo.accountCreationType
       };
     }
     // 

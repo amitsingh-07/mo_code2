@@ -6,6 +6,7 @@ export interface ISignUp {
     enquiryId: number;
     referralCode: string;
     userType: string;
+    accountCreationType:string;
 }
 
 export interface IEnquiryUpdate {
@@ -36,8 +37,9 @@ export interface ICustomer {
     emailAddress: string;
     password: string;
     acceptMarketingNotifications: boolean;
-    nricNumber?:string;
+    uin?:string;
     fullName?:string;
+  
 }
 
 export interface IVerifyRequestOTP {
