@@ -127,6 +127,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
                   raFormControl.markAsDirty();
                   this.onTotalAssetsBucket();
                   this.cpfFromMyInfo = true;
+                  this.showEditIcon = true;
                   this.myInfoService.isMyInfoEnabled = false;
                   this.closeMyInfoPopup();
                 } else {
