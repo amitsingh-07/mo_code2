@@ -117,21 +117,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.pageTitle = this.translate.instant('EDIT_PROFILE.MY_PROFILE');
       this.setPageTitle(this.pageTitle);
       this.showSRSSuccessModel();
-    });
-
-    // Hidden Country list for future use
-    // this.getNationalityCountryList();
-
-    this.authService.get2faAuthEvent.subscribe((token) => {
-      if (token) {
-        this.is2faAuthorized = true;
-      } else {
-        this.is2faAuthorized = false;
-      }
-    });
-    // singpass
-    this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {
+      // singpass
       this.modelTitle1 = this.translate.instant(
         'LINK_ACCOUNT_MYINFO.MYINFO_CONFIRM.TITLE'
       );
@@ -162,6 +148,17 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.myInfoStatus2 = this.translate.instant(
         'LINK_ACCOUNT_MYINFO.MYINFO_STATUS.CANCELLED'
       );
+    });
+
+    // Hidden Country list for future use
+    // this.getNationalityCountryList();
+
+    this.authService.get2faAuthEvent.subscribe((token) => {
+      if (token) {
+        this.is2faAuthorized = true;
+      } else {
+        this.is2faAuthorized = false;
+      }
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.loader2StartTime = config.investment.myInfoLoader2StartTime * 1000;
