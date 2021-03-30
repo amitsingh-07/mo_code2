@@ -74,9 +74,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   modelTitle1: string;
   modelMessge1: string;
   modelBtnText1: string;
-  showConfirmation: boolean;
   myInfoSubscription: any;
-  isInvestmentMyInfoEnabled = false;
   myinfoChangeListener: Subscription;
   secondTimer: any;
   thirdTimer: any;
@@ -166,7 +164,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       );
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
-      this.isInvestmentMyInfoEnabled = config.investmentMyInfoEnabled;
       this.loader2StartTime = config.investment.myInfoLoader2StartTime * 1000;
       this.loader3StartTime = config.investment.myInfoLoader3StartTime * 1000;
     });
@@ -475,6 +472,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     const second = LastName.charAt(0);
     return first.toUpperCase() + second.toUpperCase();
   }
+
   linkSingpass() {
     const ref = this.modal.open(ActivateSingpassModalComponent, { centered: true, windowClass: 'activate-singpass-modal' });
     ref.componentInstance.errorMessage = this.translate.instant(
@@ -484,7 +482,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       'ACTIVATE_SINGPASS_MODAL.BTN_TXT'
     );
     ref.componentInstance.primaryAction.subscribe(() => {
-      this. openModal();
+      this.openModal();
     });
   }
   // singpass
@@ -603,7 +601,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   getMyInfo() {
-    this.showConfirmation = false;
     this.myInfoService.setMyInfoAttributes(
       this.investmentAccountService.myInfoLinkAttributes
     );
