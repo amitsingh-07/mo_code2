@@ -70,8 +70,7 @@ export class SignUpApiService {
     }
 
     journeyType = journeyType.toLowerCase();
-    // 
-    if(getAccountInfo.isMyInfoEnabled) {
+    if (getAccountInfo.isMyInfoEnabled) {
       return {
         customer: {
           countryCode: getAccountInfo.countryCode,
@@ -110,8 +109,6 @@ export class SignUpApiService {
         accountCreationType: getAccountInfo.accountCreationType
       };
     }
-    // 
-   
   }
 
   /**
