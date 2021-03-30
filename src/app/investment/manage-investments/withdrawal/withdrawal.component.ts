@@ -4,7 +4,8 @@ import { AbstractControl, FormBuilder, FormControl, ValidatorFn, Validators } fr
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -52,6 +53,9 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
   userBankList: any;
   isBankDetailsAvailable;
   isInvestAndJointAccountHolder;
+
+  private destroySubscription$ = new Subject();
+
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -113,6 +117,9 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+
+    this.destroySubscription$.next();
+    this.destroySubscription$.complete();
   }
 
   getUserBankList() {
@@ -237,7 +244,9 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
             )
           ])
         );
-        this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
+        this.withdrawForm.get('withdrawAmount').valueChanges
+        .pipe(takeUntil(this.destroySubscription$))
+        .subscribe((amtValue) => {
           amtValue = amtValue.replace(/[,]+/g, '').trim();
           this.isRedeemAll = ((amtValue == roundOffValue) && roundOffValue > 0);
         });

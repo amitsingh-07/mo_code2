@@ -124,10 +124,13 @@ export class CreateAccountMyinfoComponent implements OnInit {
       if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
         console.log(data + "success2");
         console.log(data.responseMessage.responseCode + ' ' + data.objectList[0] + "  " + data);
-        this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0])
-        this.myInfoService.isMyInfoEnabled = false;
-        this.closeMyInfoPopup(false);
+        console.log( data.objectList[0].uin + " " + data.objectList[0].name.value);
+        // this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0])
+        // this.myInfoService.isMyInfoEnabled = false;
+        // this.closeMyInfoPopup(false);
+
         this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
+        console.log(this.referralCode);
       } else if (data.responseMessage.responseCode === 6014) {
         this.closeMyInfoPopup(false);
         const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
