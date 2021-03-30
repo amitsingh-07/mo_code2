@@ -1,7 +1,7 @@
 import { Component, Input, NgZone, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { SIGN_UP_ROUTE_PATHS, MY_INFO_START_PATH } from '../sign-up.routes.constants';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -51,7 +51,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
     public readonly translate: TranslateService,
     private investmentAccountService: InvestmentAccountService,
     private signUpService: SignUpService,
-    private ngZone: NgZone,    
+    private ngZone: NgZone,
     private route: ActivatedRoute
   ) {
     this.translate.use('en');
@@ -123,15 +123,24 @@ export class CreateAccountMyinfoComponent implements OnInit {
         this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0])
         this.myInfoService.isMyInfoEnabled = false;
         this.closeMyInfoPopup(false);
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
+        const currentUrl = window.location.toString();
+        const rootPoint = currentUrl.split(currentUrl.split('/')[4])[0].substr(0, currentUrl.split(currentUrl.split('/')[4])[0].length - 1);
+        const redirectObjective = rootPoint + MY_INFO_START_PATH;
+        if (window.location.href === redirectObjective) {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO], { queryParams: this.referralParams });
+        } else {
+          this.ngZone.run(() => {
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
+          });
+        }
       } else if (data.responseMessage.responseCode === 6014) {
+        this.closeMyInfoPopup(false);
         const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
         ref.componentInstance.errorTitle = this.loader1Modal.title;
         ref.componentInstance.errorMessageHTML = this.loader1Modal.message;
         ref.componentInstance.primaryActionLabel = this.loader1Modal.btn;
         this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
-          this.closeMyInfoPopup(false);
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO], { queryParams: this.referralParams });
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO], { queryParams: this.referralParams });
         })
       }
       else {
@@ -180,7 +189,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
   }
 
   skipMyInfo() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT  + this.referralCode]);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
   }
 
   proceedToMyInfo() {
@@ -216,8 +225,8 @@ export class CreateAccountMyinfoComponent implements OnInit {
     });
     this.myInfoService.loadingModalRef.componentInstance.secondaryAction.subscribe(() => {
       this.closeMyInfoPopup(false);
-      this.createAccountData.isMyInfoEnabled = false;
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT  + this.referralCode]);
+     this.signUpService.setMyInfoStatus(false);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
     });
   }
 

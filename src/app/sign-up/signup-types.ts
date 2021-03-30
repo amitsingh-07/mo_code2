@@ -31,11 +31,13 @@ export interface IPremium {
 export interface ICustomer {
     countryCode: string;
     mobileNumber: string;
-    firstName: string;
-    lastName: string;
+    firstName?: string;
+    lastName?: string;
     emailAddress: string;
     password: string;
     acceptMarketingNotifications: boolean;
+    nricNumber?:string;
+    fullName?:string;
 }
 
 export interface IVerifyRequestOTP {
