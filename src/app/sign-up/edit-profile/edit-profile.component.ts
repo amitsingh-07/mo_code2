@@ -77,11 +77,11 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   myInfoSubscription: any;
   myinfoChangeListener: Subscription;
   secondTimer: any;
-  thirdTimer: any;
+  // thirdTimer: any;
   loader2StartTime: any;
-  loader3StartTime: any;
+  // loader3StartTime: any;
   loader2Modal: any;
-  loader3Modal: any;
+  // loader3Modal: any;
   loadingModalRef: NgbModalRef;
   errorModalTitle: string;
   errorModalMessage: string;
@@ -130,9 +130,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.loader2Modal = this.translate.instant(
         'LINK_ACCOUNT_MYINFO.LOADER2'
       );
-      this.loader3Modal = this.translate.instant(
-        'LINK_ACCOUNT_MYINFO.LOADER3'
-      );
+      // this.loader3Modal = this.translate.instant(
+      //   'LINK_ACCOUNT_MYINFO.LOADER3'
+      // );
       this.errorModalTitle = this.translate.instant(
         'LINK_ACCOUNT_MYINFO.ERROR_MODAL.TITLE'
       );
@@ -161,8 +161,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       }
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
-      this.loader2StartTime = config.investment.myInfoLoader2StartTime * 1000;
-      this.loader3StartTime = config.investment.myInfoLoader3StartTime * 1000;
+      this.loader2StartTime = config.account.linkAccountLoaderStartTime * 1000;
+      // this.loader3StartTime = config.investment.myInfoLoader3StartTime * 1000;
     });
   }
 
@@ -506,9 +506,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
   getMyInfoData() {
     this.showFetchPopUp();
-    this.myInfoSubscription = this.myInfoService.getSingpassAccountData().subscribe((data) => {
-        this.closeMyInfoPopup(false);
+    this.myInfoSubscription = this.myInfoService.getSingpassAccountData().subscribe((data) => {  
         if(data && data.objectList[0] && data.responseMessage.responseCode === 6000 ){
+          this.closeMyInfoPopup(false);
           this.ngZone.run(() => {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
           });
@@ -523,6 +523,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           ref.componentInstance.isLinked = true;
         }
         else if (data.responseMessage.responseCode === 6014) {
+          this.closeMyInfoPopup(false);
           const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
           ref.componentInstance.errorTitle = this.translate.instant(
             'LINK_ACCOUNT_MYINFO.ALREADY_EXISTING.TITLE'
@@ -535,6 +536,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           );
         }
         else if(data.responseMessage.responseCode === 6015){
+          this.closeMyInfoPopup(false);
           const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
           ref.componentInstance.errorTitle = this.translate.instant(
             'LINK_ACCOUNT_MYINFO.DIFFERENT_USER.TITLE'
@@ -547,10 +549,10 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           );
         }
         else{
-          this.closeMyInfoPopup(false);
+          this.closeMyInfoPopup(true);
         }
     }, (error) => {
-      this.closeMyInfoPopup(false);
+      this.closeMyInfoPopup(true);
     });
   }
 
@@ -561,22 +563,18 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       }
     }, this.loader2StartTime);
 
-    this.thirdTimer = setTimeout(() => {
-      if (this.myInfoService.loadingModalRef) {
-        this.openThirdPopup();
-      }
-    }, this.loader3StartTime);
-  }
-
-  closeFetchPopup() {
-    if (this.loadingModalRef) {
-      this.loadingModalRef.close();
-    }
+    // this.thirdTimer = setTimeout(() => {
+    //   if (this.myInfoService.loadingModalRef) {
+    //     this.openThirdPopup();
+    //   }
+    // }, this.loader3StartTime);
   }
 
   closeMyInfoPopup(error: boolean) {
     this.isMyInfoEnabled = false;
-    this.closeFetchPopup();
+    this.myInfoService.closeMyInfoPopup(false);
+    clearTimeout(this.secondTimer);
+    // clearTimeout(this.thirdTimer);
     if (error) {
       const ngbModalOptions: NgbModalOptions = {
         backdrop: 'static',
@@ -587,9 +585,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.loadingModalRef.componentInstance.errorTitle = this.errorModalTitle;
       this.loadingModalRef.componentInstance.errorMessage = this.errorModalMessage;
       this.loadingModalRef.componentInstance.primaryActionLabel = this.errorModalBtnText;
-      this.myInfoService.closeMyInfoPopup(error);
-      clearTimeout(this.secondTimer);
-      clearTimeout(this.thirdTimer);
     }
   }
 
@@ -603,25 +598,21 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   // ******** SECOND POP UP ********//
   openSecondPopup() {
     this.myInfoService.loadingModalRef.componentInstance.errorMessage = this.loader2Modal.message;
+    this.myInfoService.loadingModalRef.componentInstance.primaryActionLabel = this.loader2Modal.primaryActionLabel;
+    // 
     this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
       this.closeMyInfoPopup(false);
     });
   }
 
   // ******** THIRD POP UP ********//
-  openThirdPopup() {
-    this.myInfoService.loadingModalRef.componentInstance.errorMessage = this.loader3Modal.message;
-    this.myInfoService.loadingModalRef.componentInstance.primaryActionLabel = this.loader3Modal.primaryActionLabel;
-    this.myInfoService.loadingModalRef.componentInstance.secondaryActionLabel = this.loader3Modal.secondaryActionLabel;
-    this.myInfoService.loadingModalRef.componentInstance.secondaryActionDim = true;
-    this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
-      this.closeMyInfoPopup(false);
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-    });
-    this.myInfoService.loadingModalRef.componentInstance.secondaryAction.subscribe(() => {
-      this.closeMyInfoPopup(false);
-      this.investmentAccountService.setMyInfoStatus(false);
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
-    });
-  }
+  // openThirdPopup() {
+  //   this.myInfoService.loadingModalRef.componentInstance.errorMessage = this.loader3Modal.message;
+  //   this.myInfoService.loadingModalRef.componentInstance.primaryActionLabel = this.loader3Modal.primaryActionLabel;
+  //   this.myInfoService.loadingModalRef.componentInstance.secondaryActionLabel = this.loader3Modal.secondaryActionLabel;
+  //   this.myInfoService.loadingModalRef.componentInstance.secondaryActionDim = true;
+  //   this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
+  //     this.closeMyInfoPopup(false);
+  //   });
+  // }
 }

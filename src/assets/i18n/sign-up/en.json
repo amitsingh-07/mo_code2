@@ -532,9 +532,6 @@
       "DESCRIPTION": "Please be patient while we are linking up your MoneyOwl account."
     },
     "LOADER2": {
-      "message": "Sorry that it is taking longer than expected. We are still trying to link up your MoneyOwl account."
-    },
-    "LOADER3": {
       "message": "Sorry that it is taking longer than expected. We are still trying to link up your MoneyOwl account.",
       "primaryActionLabel": "Try Again Later"
     },
