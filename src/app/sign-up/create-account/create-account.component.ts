@@ -29,6 +29,7 @@ import { IEnquiryUpdate } from '../signup-types';
 import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
 import { ANIMATION_DATA } from '../../../assets/animation/animationData';
+import { Util } from '../../shared/utils/util';
 
 declare var require: any;
 const bodymovin = require("../../../assets/scripts/lottie_svg.min.js");
@@ -99,7 +100,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     
     // Set referral code base on the query param
     this.route.queryParams.subscribe((params) => {
-      if (params['referral_code']) {
+      if (params['referral_code'] && !Util.isEmptyOrNull(params['referral_code'])) {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO], { queryParams: {referral_code: params['referral_code']} });
       }
     });
@@ -122,7 +123,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.buildAccountInfoForm();
     this.getCountryCode();
     //Referral Code snapshot param
-    if (this.route.snapshot.paramMap.get('referralCode') !== '' && this.createAccountForm.controls['referralCode']) {      
+    if (this.route.snapshot.paramMap.get('referralCode') !== '' && !Util.isEmptyOrNull(this.route.snapshot.paramMap.get('referralCode')) && this.createAccountForm.controls['referralCode']) {      
       this.createAccountForm.controls['referralCode'].setValue(this.route.snapshot.paramMap.get('referralCode'));
       this.showClearBtn = true;
     }
