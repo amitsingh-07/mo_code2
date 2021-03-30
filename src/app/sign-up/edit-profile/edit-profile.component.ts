@@ -507,9 +507,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   getMyInfoData() {
     this.showFetchPopUp();
     this.myInfoSubscription = this.myInfoService.getSingpassAccountData().subscribe((data) => {
-      if (data && data.objectList[0]) {
         this.closeMyInfoPopup(false);
-        if(data.responseMessage.responseCode === 6000){
+        if(data && data.objectList[0] && data.responseMessage.responseCode === 6000 ){
           this.ngZone.run(() => {
             this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
           });
@@ -550,9 +549,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         else{
           this.closeMyInfoPopup(false);
         }
-      } else {
-        this.closeMyInfoPopup(false);
-      }
     }, (error) => {
       this.closeMyInfoPopup(false);
     });
