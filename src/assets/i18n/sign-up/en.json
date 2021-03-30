@@ -550,7 +550,7 @@
     "BTN_TXT": "Activate Now"
   },
   "SUCCESS_SINGPASS_MODAL": {
-    "MESSAGE": "<h4>Singpass Account Link Completed!</h4><br><div>You may use Singpass Mobile App the next time you log in to MoneyOwl. </div><div class=\"retrieved-details\"><div class=\"retrieved-details-title\">Fields retrieved:</div><label>Name</label><div>\"{{name}}\"</div><label>NRIC/FIN</label><div>\"{{nric}}\"</div></div>",
+    "MESSAGE": "<h4>Singpass Account Link Completed!</h4><br><div>You may use Singpass Mobile App the next time you log in to MoneyOwl. </div><div class=\"retrieved-details\"><div class=\"retrieved-details-title\">Fields retrieved:</div><label>Name</label><div>{{name}}</div><label>NRIC/FIN</label><div>{{nric}}</div></div>",
     "BTN_TXT": "Got It!"
   },
   "LINK_ACCOUNT_MYINFO": {
@@ -568,9 +568,6 @@
       "DESCRIPTION": "Please be patient while we are linking up your MoneyOwl account."
     },
     "LOADER2": {
-      "message": "Sorry that it is taking longer than expected. We are still trying to link up your MoneyOwl account."
-    },
-    "LOADER3": {
       "message": "Sorry that it is taking longer than expected. We are still trying to link up your MoneyOwl account.",
       "primaryActionLabel": "Try Again Later"
     },
