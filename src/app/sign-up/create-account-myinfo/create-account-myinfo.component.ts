@@ -1,7 +1,7 @@
 import { Component, Input, NgZone, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { SIGN_UP_ROUTE_PATHS, MY_INFO_START_PATH } from '../sign-up.routes.constants';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -52,7 +52,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
     public readonly translate: TranslateService,
     private investmentAccountService: InvestmentAccountService,
     private signUpService: SignUpService,
-    private ngZone: NgZone,    
+    private ngZone: NgZone,
     private route: ActivatedRoute
   ) {
     this.translate.use('en');
@@ -120,23 +120,27 @@ export class CreateAccountMyinfoComponent implements OnInit {
   getMyInfoAccountCreateData() {
     this.showFetchPopUp();
     this.myInfoSubscription = this.myInfoService.getMyInfoAccountCreateData().subscribe((data) => {
+      console.log(data + "success1");
       if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
+        console.log(data + "success2");
+        console.log(data.responseMessage.responseCode + ' ' + data.objectList[0] + "  " + data);
         this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0])
         this.myInfoService.isMyInfoEnabled = false;
         this.closeMyInfoPopup(false);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
       } else if (data.responseMessage.responseCode === 6014) {
+        this.closeMyInfoPopup(false);
         const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
         ref.componentInstance.errorTitle = this.loader1Modal.title;
         ref.componentInstance.errorMessageHTML = this.loader1Modal.message;
         ref.componentInstance.primaryActionLabel = this.loader1Modal.btn;
         this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
-          this.closeMyInfoPopup(false);
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO], { queryParams: this.referralParams });
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO], { queryParams: this.referralParams });
         })
       }
       else {
         this.closeMyInfoPopup(true);
+        console.log(data + "success3");
       }
     }, (error) => {
       this.closeMyInfoPopup(true);
@@ -181,7 +185,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
   }
 
   skipMyInfo() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT  + this.referralCode]);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
   }
 
   proceedToMyInfo() {
@@ -217,8 +221,8 @@ export class CreateAccountMyinfoComponent implements OnInit {
     });
     this.myInfoService.loadingModalRef.componentInstance.secondaryAction.subscribe(() => {
       this.closeMyInfoPopup(false);
-      this.createAccountData.isMyInfoEnabled = false;
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT  + this.referralCode]);
+     this.signUpService.setMyInfoStatus(false);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
     });
   }
 
