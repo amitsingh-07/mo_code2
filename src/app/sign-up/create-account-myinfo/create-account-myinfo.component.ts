@@ -119,20 +119,14 @@ export class CreateAccountMyinfoComponent implements OnInit {
   getMyInfoAccountCreateData() {
     this.showFetchPopUp();
     this.myInfoSubscription = this.myInfoService.getMyInfoAccountCreateData().subscribe((data) => {
+      console.log(data + "success1");
       if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
+        console.log(data + "success2");
+        console.log(data.responseMessage.responseCode + ' ' + data.objectList[0] + "  " + data);
         this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0])
         this.myInfoService.isMyInfoEnabled = false;
         this.closeMyInfoPopup(false);
-        const currentUrl = window.location.toString();
-        const rootPoint = currentUrl.split(currentUrl.split('/')[4])[0].substr(0, currentUrl.split(currentUrl.split('/')[4])[0].length - 1);
-        const redirectObjective = rootPoint + MY_INFO_START_PATH;
-        if (window.location.href === redirectObjective) {
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO], { queryParams: this.referralParams });
-        } else {
-          this.ngZone.run(() => {
-            this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
-          });
-        }
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
       } else if (data.responseMessage.responseCode === 6014) {
         this.closeMyInfoPopup(false);
         const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
@@ -145,6 +139,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
       }
       else {
         this.closeMyInfoPopup(true);
+        console.log(data + "success3");
       }
     }, (error) => {
       this.closeMyInfoPopup(true);
