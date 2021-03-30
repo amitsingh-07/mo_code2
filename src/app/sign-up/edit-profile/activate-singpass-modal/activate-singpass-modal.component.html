@@ -6,7 +6,7 @@
   </div>
   <div class="modal-body" id="modalDesc" [innerHTML]="errorMessage"></div>
   <div class="plr20">
-    <button *ngIf="!isLinked" type="button" class="action-button" id="errorModeButton"  (click)="openModal()">
+    <button *ngIf="!isLinked" type="button" class="action-button" id="errorModeButton"  (click)="primaryActionSelected()">
       {{primaryActionLabel}}
     </button>
     <button *ngIf="isLinked" type="button" class="action-button" id="errorModeButton" (click)="activeModal.dismiss('Cross click')">
