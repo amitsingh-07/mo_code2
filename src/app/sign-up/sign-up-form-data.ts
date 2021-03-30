@@ -46,4 +46,5 @@ export class SignUpFormData {
   // referral code
   referralCode: string;
   userType: string;
+  accountCreationType:string;
 }
