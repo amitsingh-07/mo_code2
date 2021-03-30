@@ -11,6 +11,7 @@ import { InvestmentAccountService } from '../../investment/investment-account/in
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { SignUpService } from '../sign-up.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
+import { Util } from '../../shared/utils/util';
 
 @Component({
   selector: 'app-create-account-myinfo',
@@ -98,7 +99,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      if (params['referral_code']) {
+      if (params['referral_code'] && !Util.isEmptyOrNull(params['referral_code'])) {
         this.referralParams = { referral_code: params['referral_code'] };
         this.referralCode = '/' + params['referral_code'];
       }
