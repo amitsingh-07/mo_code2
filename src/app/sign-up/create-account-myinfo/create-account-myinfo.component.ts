@@ -2,7 +2,7 @@ import { Component, Input, NgZone, OnDestroy, OnInit, ViewEncapsulation } from '
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { ConfigService, IConfig } from '../../config/config.service';
@@ -25,9 +25,6 @@ export class CreateAccountMyinfoComponent implements OnInit {
   modelTitle: string;
   modelMessge: string;
   modelBtnText: string;
-  modelTitle1: string;
-  modelMessge1: string;
-  modelBtnText1: string;
   showSingPass: boolean;
   myInfoSubscription: any;
   isInvestmentMyInfoEnabled = false;
@@ -35,12 +32,13 @@ export class CreateAccountMyinfoComponent implements OnInit {
   secondTimer: any;
   thirdTimer: any;
   loader2StartTime: any;
-  loader3StartTime: any;
   loader2Modal: any;
   loader3Modal: any;
   loader1Modal: any;
   referralParams = {};
   referralCode = '';
+  formValue: any;
+  loadingModalRef: NgbModalRef;
 
   constructor(
     private configService: ConfigService,
@@ -108,6 +106,10 @@ export class CreateAccountMyinfoComponent implements OnInit {
         }
       }
     });
+    this.formValue = this.signUpService.getAccountInfo();
+    if (this.formValue && this.formValue.isMyInfoEnabled) {
+      this.signUpService.setMyInfoStatus(false);
+    }
   }
   getMyInfoAccountCreateData() {
     this.showFetchPopUp();
@@ -115,7 +117,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
       if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
         this.closeMyInfoPopup(false);
         this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0]);
-        if(this.myinfoChangeListener){
+        if (this.myinfoChangeListener) {
           this.myinfoChangeListener.unsubscribe();
         }
         this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
@@ -151,6 +153,28 @@ export class CreateAccountMyinfoComponent implements OnInit {
   closeMyInfoPopup(error: boolean) {
     this.myInfoService.closeMyInfoPopup(error);
     clearTimeout(this.secondTimer);
+    if (error) {
+      const ngbModalOptions: NgbModalOptions = {
+        backdrop: 'static',
+        keyboard: false,
+        centered: true,
+      };
+      this.loadingModalRef = this.modal.open(ModelWithButtonComponent, ngbModalOptions);
+      this.loadingModalRef.componentInstance.errorTitle = this.loader3Modal.title;
+      this.loadingModalRef.componentInstance.errorMessage = this.loader3Modal.message;
+      this.loadingModalRef.componentInstance.primaryActionLabel = this.loader3Modal.primaryActionLabel;
+      this.myInfoService.loadingModalRef.componentInstance.secondaryActionLabel = this.loader3Modal.secondaryActionLabel;
+      this.myInfoService.loadingModalRef.componentInstance.secondaryActionDim = true;
+      this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
+        this.closeMyInfoPopup(false);
+        this.proceedToMyInfo();
+      });
+      this.myInfoService.loadingModalRef.componentInstance.secondaryAction.subscribe(() => {
+        this.closeMyInfoPopup(false);
+        this.signUpService.setMyInfoStatus(false);
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
+      });
+    }
   }
 
   getMyInfo() {
@@ -178,7 +202,6 @@ export class CreateAccountMyinfoComponent implements OnInit {
     ref.componentInstance.errorTitle = this.modelTitle;
     ref.componentInstance.errorMessageHTML = this.modelMessge;
     ref.componentInstance.primaryActionLabel = this.modelBtnText;
-    ref.componentInstance.lockIcon = true;
     ref.componentInstance.myInfo = true;
     ref.result
       .then(() => {
