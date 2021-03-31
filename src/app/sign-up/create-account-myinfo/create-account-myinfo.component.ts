@@ -79,7 +79,6 @@ export class CreateAccountMyinfoComponent implements OnInit {
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.isInvestmentMyInfoEnabled = config.investmentMyInfoEnabled;
       this.loader2StartTime = config.investment.myInfoLoader2StartTime * 1000;
-      this.loader3StartTime = config.investment.myInfoLoader3StartTime * 1000;
     });
   }
 
@@ -89,12 +88,6 @@ export class CreateAccountMyinfoComponent implements OnInit {
         this.openSecondPopup();
       }
     }, this.loader2StartTime);
-
-    this.thirdTimer = setTimeout(() => {
-      if (this.myInfoService.loadingModalRef) {
-        this.openThirdPopup();
-      }
-    }, this.loader3StartTime);
   }
 
   ngOnInit(): void {
@@ -120,24 +113,19 @@ export class CreateAccountMyinfoComponent implements OnInit {
   getMyInfoAccountCreateData() {
     this.showFetchPopUp();
     this.myInfoSubscription = this.myInfoService.getMyInfoAccountCreateData().subscribe((data) => {
-      console.log(data + "success1");
       if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
         this.closeMyInfoPopup(false);
         this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0])
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode] , { skipLocationChange: true });
       } else if (data.responseMessage.responseCode === 6014) {
-        this.closeMyInfoPopup(false);
+        //this.closeMyInfoPopup(false);
         const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
         ref.componentInstance.errorTitle = this.loader1Modal.title;
         ref.componentInstance.errorMessageHTML = this.loader1Modal.message;
         ref.componentInstance.primaryActionLabel = this.loader1Modal.btn;
-        this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO], { queryParams: this.referralParams });
-        })
       }
       else {
         this.closeMyInfoPopup(true);
-        console.log(data + "success3");
       }
     }, (error) => {
       this.closeMyInfoPopup(true);
@@ -162,7 +150,6 @@ export class CreateAccountMyinfoComponent implements OnInit {
   closeMyInfoPopup(error: boolean) {
     this.myInfoService.closeMyInfoPopup(error);
     clearTimeout(this.secondTimer);
-    clearTimeout(this.thirdTimer);
   }
 
   getMyInfo() {
@@ -205,22 +192,4 @@ export class CreateAccountMyinfoComponent implements OnInit {
       this.closeMyInfoPopup(false);
     });
   }
-
-
-  openThirdPopup() {
-    this.myInfoService.loadingModalRef.componentInstance.errorMessage = this.loader3Modal.message;
-    this.myInfoService.loadingModalRef.componentInstance.primaryActionLabel = this.loader3Modal.primaryActionLabel;
-    this.myInfoService.loadingModalRef.componentInstance.secondaryActionLabel = this.loader3Modal.secondaryActionLabel;
-    this.myInfoService.loadingModalRef.componentInstance.secondaryActionDim = true;
-    this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
-      this.closeMyInfoPopup(false);
-      this.proceedToMyInfo();
-    });
-    this.myInfoService.loadingModalRef.componentInstance.secondaryAction.subscribe(() => {
-      this.closeMyInfoPopup(false);
-     this.signUpService.setMyInfoStatus(false);
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
-    });
-  }
-
 }
