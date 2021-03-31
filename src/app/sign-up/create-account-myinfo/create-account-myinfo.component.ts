@@ -5,6 +5,8 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { FooterService } from '../../shared/footer/footer.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ConfigService, IConfig } from '../../config/config.service';
 import { MyInfoService } from '../../shared/Services/my-info.service';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
@@ -50,7 +52,9 @@ export class CreateAccountMyinfoComponent implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     private signUpService: SignUpService,
     private ngZone: NgZone,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,    
+    public navbarService: NavbarService,
+    public footerService: FooterService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -88,6 +92,9 @@ export class CreateAccountMyinfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.navbarService.setNavbarVisibility(true);
+    this.navbarService.setNavbarMode(101);
+    this.footerService.setFooterVisibility(false);
     this.route.queryParams.subscribe((params) => {
       if (params['referral_code'] && !Util.isEmptyOrNull(params['referral_code'])) {
         this.referralParams = { referral_code: params['referral_code'] };
