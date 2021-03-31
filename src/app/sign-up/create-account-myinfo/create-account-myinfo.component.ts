@@ -171,7 +171,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
       });
       this.myInfoService.loadingModalRef.componentInstance.secondaryAction.subscribe(() => {
         this.closeMyInfoPopup(false);
-        this.investmentAccountService.setMyInfoStatus(false);
+        this.signUpService.setMyInfoStatus(false);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
       });
     }

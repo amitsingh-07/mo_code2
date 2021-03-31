@@ -157,11 +157,13 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
 
   buildAccountInfoForm() {
+    const myInfoEmail =  (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.email) ? this.formValue.email: '';
+    const myInfoMobile =  (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.mobileNumber) ? this.formValue.mobileNumber: '';
     if (this.distribution && this.distribution.login) {
       this.createAccountForm = this.formBuilder.group({
         countryCode: ['', [Validators.required]],
-        mobileNumber: ['', [Validators.required]],
-        email: ['', [Validators.required, Validators.pattern(this.distribution.login.regex)]],
+        mobileNumber: [myInfoMobile, [Validators.required]],
+        email: [myInfoEmail, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
         confirmEmail: [''],
         password: ['', [Validators.required, ValidatePassword]],
         confirmPassword: [''],
@@ -176,8 +178,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
     this.createAccountForm = this.formBuilder.group({
       countryCode: ['', [Validators.required]],
-      mobileNumber: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
+      mobileNumber: [myInfoMobile, [Validators.required]],
+      email: [myInfoEmail, [Validators.required, Validators.email]],
       confirmEmail: [''],
       password: ['', [Validators.required, ValidatePassword]],
       confirmPassword: [''],
@@ -225,10 +227,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     if (form.valid) {
       form.value.userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : appConstants.USERTYPE.NORMAL;
       form.value.accountCreationType = (this.formValue && this.formValue.isMyInfoEnabled) ? appConstants.USERTYPE.SINGPASS : appConstants.USERTYPE.MANUAL;
+      form.value.isMyInfoEnabled = (this.formValue && this.formValue.isMyInfoEnabled);
       this.signUpService.setAccountInfo(form.value);
-      if (this.formValue && this.formValue.isMyInfoEnabled) {
-        this.signUpService.setMyInfoStatus(false);
-      }
       this.openTermsOfConditions();
     }
   }
