@@ -70,7 +70,7 @@ export class SignUpApiService {
     }
 
     journeyType = journeyType.toLowerCase();
-    if (getAccountInfo.isMyInfoEnabled) {
+    if (getAccountInfo.accountCreationType === 'SINGPASS') {
       return {
         customer: {
           countryCode: getAccountInfo.countryCode,
