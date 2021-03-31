@@ -29,7 +29,6 @@ export class CreateAccountMyinfoComponent implements OnInit {
   modelMessge1: string;
   modelBtnText1: string;
   showSingPass: boolean;
-  createAccountData: any;
   myInfoSubscription: any;
   isInvestmentMyInfoEnabled = false;
   myinfoChangeListener: Subscription;
