@@ -377,43 +377,7 @@
     },
     "SRS_JOINT_ACCOUNT": {
       "FIND_OUT_MORE": "Click here to check out more on our new WiseIncome Portfolio!",
-      "SRS_JOINT_ACCOUNT_SLIDES_1": [
-        {
-          "TITLE": "New Updates",
-          "TITLE_IMG": "srs-joint-account/speaker.svg",
-          "IMAGE": "srs-joint-account/wise-income.svg",
-          "IMG_TITLE": "Want passive income?<br>Start with WiseIncome!",
-          "TEXT": "Kick off your passive income journey with WiseIncome at $1 per unit! Deposits will be invested on 31st March.",
-          "APP_URL": "/investment/engagement/wise-income-payout",
-          "QUERY_PARAMS": "wise-income",
-          "URL_TEXT": "Start now"
-        },        
-        {
-          "TITLE": "New Updates",
-          "TITLE_IMG": "srs-joint-account/speaker.svg",
-          "IMAGE": "srs-joint-account/srs.svg",
-          "IMG_TITLE": "You can now open your SRS Investment Account online!",
-          "TEXT": "Invest your Supplementary Retirement Scheme (SRS) savings to get potentially higher returns while enjoying tax savings."
-        },
-        {
-          "TITLE": "New Updates",
-          "TITLE_IMG": "srs-joint-account/speaker.svg",
-          "IMAGE": "srs-joint-account/joint-account.svg",
-          "IMG_TITLE": "Apply For A Joint Account!",
-          "TEXT": "Apply for a Joint Investment Account with your loved ones today and enjoy all the good things that come in pairs.",
-          "URL": "/faq",
-          "URL_FRAGMENT": "srs-joint-account",
-          "URL_TEXT": "Learn More About Joint Account"
-        },
-        {
-          "TITLE": "Apply Now!",
-          "TEXT": "Please note that Joint Investment Accounts are currently handled offline.",
-          "CONTACT": "Contact us to apply:",
-          "TEL": "(65) 6329 9188",
-          "EMAIL": "enquiries@moneyowl.com.sg"
-        }
-      ],
-      "SRS_JOINT_ACCOUNT_SLIDES_2": [
+      "SRS_JOINT_ACCOUNT_SLIDES": [
         {
           "TITLE": "New Updates",
           "TITLE_IMG": "srs-joint-account/speaker.svg",
