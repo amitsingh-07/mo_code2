@@ -127,13 +127,11 @@ export class SingPassComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorTitle = this.modelTitle;
       ref.componentInstance.errorMessageHTML = this.modelMessge;
       ref.componentInstance.primaryActionLabel = this.modelBtnText;
-      ref.componentInstance.lockIcon = true;
       ref.componentInstance.myInfo = true;
     } else {
       ref.componentInstance.errorTitle = this.modelTitle1;
       ref.componentInstance.errorMessageHTML = this.modelMessge1;
       ref.componentInstance.primaryActionLabel = this.modelBtnText1;
-      ref.componentInstance.lockIcon = true;
       ref.componentInstance.myInfo = true;
     }
     ref.result

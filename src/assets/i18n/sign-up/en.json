@@ -510,8 +510,7 @@
     "ADD_ACCOUNT": "Add Account"
   },
   "ACTIVATE_SINGPASS_MODAL": {
-    "MESSAGE": "<h4>Activate Singpass Login</h4><br><div>Use Myinfo to activate your MoneyOwl Singpass Mobile App login. No more remembering of password. This feature is available to all Singpass Registered users.</div><div class=\"more-info\"><a target=\"_blank\" href='https://www.singpass.gov.sg/myinfo/intro'>Learn more about Myinfo</a></div>",
-    "BTN_TXT": "Activate Now"
+    "MESSAGE": "<h4>Activate Singpass Login</h4><br><div>Use Myinfo to activate your MoneyOwl Singpass Mobile App login. No more remembering of password. This feature is available to all Singpass Registered users.</div><div class=\"more-info\"><a target=\"_blank\" href='https://www.singpass.gov.sg/myinfo/intro'>Learn more about Myinfo</a></div>"
   },
   "SUCCESS_SINGPASS_MODAL": {
     "MESSAGE": "<h4>Singpass Account Link Completed!</h4><br><div>You may use Singpass Mobile App the next time you log in to MoneyOwl. </div><div class=\"retrieved-details\"><div class=\"retrieved-details-title\">Fields retrieved:</div><label>Name</label><div>{{name}}</div><label>NRIC/FIN</label><div>{{nric}}</div></div>",
@@ -524,7 +523,7 @@
     },
     "MYINFO_CONFIRM": {
       "TITLE": "Activate via Myinfo",
-      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to all Singpass Registered users.</strong><br><br>You will now proceed to login via Myinfo and retrieve your following details.<strong class=\"text-bold\">Please use your own account only.</strong><div class=\"my_info_details\">Name<br>NRIC/FIN</div><br>Would you like to proceed?",
+      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to all Singpass Registered users.</strong><br><br>You will now proceed to login via Myinfo and retrieve your following details.<strong class=\"text-bold\"> Please use your own account only.</strong><div class=\"my_info_details\">Name<br>NRIC/FIN</div><br>Would you like to proceed?",
       "BTN-TEXT": "Let’s go!"
     },
     "FETCH_MODAL_DATA": {
