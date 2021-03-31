@@ -138,4 +138,14 @@ export class PromoCodeListComponent implements OnInit {
     event.preventDefault();
   }
 
+  checkError() {
+    const formError = this.formGrp.controls['promoCode']['errors'];
+    if (formError && (formError['invalidPromoCode'] || formError['promoCodeAlreadyApplied'] || 
+    formError['existingPromoCode'] || formError['noExistingPortfolio'])) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }
