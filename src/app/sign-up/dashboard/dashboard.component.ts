@@ -432,8 +432,7 @@ export class DashboardComponent implements OnInit {
   openSRSJointAccPopup() {
     const ref = this.modal.open(CarouselModalComponent, { centered: true, windowClass: 'srs-dashboard-modal' });
     const announcementDate = new Date(SIGN_UP_CONFIG.INVESTMENT.ANNOUNCEMENT_DATE);
-    const currentDate = new Date();
-    if(currentDate >= announcementDate ) {
+    if(Date.now() >= announcementDate.valueOf()) {
       ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES_2');
     } else {
       ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES_1');
