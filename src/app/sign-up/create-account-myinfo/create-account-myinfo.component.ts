@@ -115,7 +115,10 @@ export class CreateAccountMyinfoComponent implements OnInit {
     this.myInfoSubscription = this.myInfoService.getMyInfoAccountCreateData().subscribe((data) => {
       if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
         this.closeMyInfoPopup(false);
-        this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0])
+        this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0]);
+        if(this.myinfoChangeListener){
+          this.myinfoChangeListener.unsubscribe();
+        }
         this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode] , { skipLocationChange: true });
       } else if (data.responseMessage.responseCode === 6014) {
         this.closeMyInfoPopup(false);
