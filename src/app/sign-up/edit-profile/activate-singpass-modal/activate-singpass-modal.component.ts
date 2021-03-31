@@ -12,7 +12,6 @@ export class ActivateSingpassModalComponent{
   @Input('position') position;
   @Input() errorMessage: any;
   @Input() errorMessageHTML: any;
-  @Input() primaryActionLabel: any;
   @Input() secondaryActionLabel: any;
   @Input() isLinked: boolean;
   @Output() primaryAction = new EventEmitter<any>();

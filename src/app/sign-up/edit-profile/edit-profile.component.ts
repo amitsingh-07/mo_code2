@@ -77,11 +77,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   myInfoSubscription: any;
   myinfoChangeListener: Subscription;
   secondTimer: any;
-  // thirdTimer: any;
   loader2StartTime: any;
-  // loader3StartTime: any;
   loader2Modal: any;
-  // loader3Modal: any;
   loadingModalRef: NgbModalRef;
   errorModalTitle: string;
   errorModalMessage: string;
@@ -130,9 +127,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.loader2Modal = this.translate.instant(
         'LINK_ACCOUNT_MYINFO.LOADER2'
       );
-      // this.loader3Modal = this.translate.instant(
-      //   'LINK_ACCOUNT_MYINFO.LOADER3'
-      // );
       this.errorModalTitle = this.translate.instant(
         'LINK_ACCOUNT_MYINFO.ERROR_MODAL.TITLE'
       );
@@ -475,9 +469,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     ref.componentInstance.errorMessage = this.translate.instant(
       'ACTIVATE_SINGPASS_MODAL.MESSAGE'
     );
-    ref.componentInstance.primaryActionLabel = this.translate.instant(
-      'ACTIVATE_SINGPASS_MODAL.BTN_TXT'
-    );
     ref.componentInstance.primaryAction.subscribe(() => {
       this.openModal();
     });
@@ -562,19 +553,12 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         this.openSecondPopup();
       }
     }, this.loader2StartTime);
-
-    // this.thirdTimer = setTimeout(() => {
-    //   if (this.myInfoService.loadingModalRef) {
-    //     this.openThirdPopup();
-    //   }
-    // }, this.loader3StartTime);
   }
 
   closeMyInfoPopup(error: boolean) {
     this.isMyInfoEnabled = false;
     this.myInfoService.closeMyInfoPopup(false);
     clearTimeout(this.secondTimer);
-    // clearTimeout(this.thirdTimer);
     if (error) {
       const ngbModalOptions: NgbModalOptions = {
         backdrop: 'static',
@@ -604,15 +588,4 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.closeMyInfoPopup(false);
     });
   }
-
-  // ******** THIRD POP UP ********//
-  // openThirdPopup() {
-  //   this.myInfoService.loadingModalRef.componentInstance.errorMessage = this.loader3Modal.message;
-  //   this.myInfoService.loadingModalRef.componentInstance.primaryActionLabel = this.loader3Modal.primaryActionLabel;
-  //   this.myInfoService.loadingModalRef.componentInstance.secondaryActionLabel = this.loader3Modal.secondaryActionLabel;
-  //   this.myInfoService.loadingModalRef.componentInstance.secondaryActionDim = true;
-  //   this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
-  //     this.closeMyInfoPopup(false);
-  //   });
-  // }
 }
