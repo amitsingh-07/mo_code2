@@ -128,7 +128,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.showClearBtn = true;
     }
     this.createAnimation();
-    this.createAccountData = this.signUpService.getUserProfileInfo();
   }
 
   ngAfterViewInit() {
@@ -197,7 +196,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   buildFormSingPass() {
     this.showSingPassDetails = true;
     this.showNormalFlowDetails = false;
-    if (this.createAccountData && this.createAccountData.isMyInfoEnabled) {
+    if (this.formValue && this.formValue.isMyInfoEnabled) {
       this.createAccountForm.addControl('fullName', new FormControl({
         value: this.formValue.fullName,
         disabled: this.signUpService.isDisabled('fullName')
@@ -232,7 +231,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.validateReferralCode();
     if (form.valid) {
       form.value.userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : appConstants.USERTYPE.NORMAL;
-      form.value.accountCreationType = (this.createAccountData && this.createAccountData.isMyInfoEnabled) ? appConstants.USERTYPE.SINGPASS : appConstants.USERTYPE.MANUAL;
+      form.value.accountCreationType = (this.formValue && this.formValue.isMyInfoEnabled) ? appConstants.USERTYPE.SINGPASS : appConstants.USERTYPE.MANUAL;
       this.signUpService.setAccountInfo(form.value);
       this.openTermsOfConditions();
     }
