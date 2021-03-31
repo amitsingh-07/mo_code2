@@ -1,7 +1,7 @@
 import { Component, Input, NgZone, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SIGN_UP_ROUTE_PATHS, MY_INFO_START_PATH } from '../sign-up.routes.constants';
+import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
