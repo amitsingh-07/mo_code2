@@ -580,7 +580,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   openSecondPopup() {
     this.myInfoService.loadingModalRef.componentInstance.errorMessage = this.loader2Modal.message;
     this.myInfoService.loadingModalRef.componentInstance.primaryActionLabel = this.loader2Modal.primaryActionLabel;
-    // 
     this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
       this.closeMyInfoPopup(false);
     });
