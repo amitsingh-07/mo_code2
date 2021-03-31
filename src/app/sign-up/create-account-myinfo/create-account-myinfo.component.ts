@@ -119,7 +119,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
         if(this.myinfoChangeListener){
           this.myinfoChangeListener.unsubscribe();
         }
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode] , { skipLocationChange: true });
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
       } else if (data.responseMessage.responseCode === 6014) {
         this.closeMyInfoPopup(false);
         const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
