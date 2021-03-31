@@ -239,7 +239,7 @@ export class PortfolioDetailsComponent implements OnInit {
     ref.componentInstance.secondaryAction.subscribe(() => {
       // Sign up
       this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.START);
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO]);
     });
   }
 
