@@ -1,7 +1,7 @@
 
-import {of as observableOf,  Observable } from 'rxjs';
+import { of as observableOf, Observable } from 'rxjs';
 
-import {catchError, map} from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 
 import { Injectable } from '@angular/core';
@@ -26,6 +26,7 @@ import {
 } from './investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from './investment-common-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from './investment-common.constants';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 
 const SESSION_STORAGE_KEY = 'app_inv_common_session';
 @Injectable({
@@ -40,7 +41,8 @@ export class InvestmentCommonService {
     private translate: TranslateService,
     private router: Router,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    public navbarService: NavbarService
   ) {
     this.getInvestmentCommonFormData();
   }
@@ -84,6 +86,7 @@ export class InvestmentCommonService {
     this.investmentCommonFormData.srsOperatorBank = null;
     this.investmentCommonFormData.srsAccountNumber = null;
     this.investmentCommonFormData.initialWiseIncomePayoutTypeId = null;
+    this.investmentCommonFormData.wiseIncomeActiveTabId = null;
     this.commit();
   }
 
@@ -157,6 +160,9 @@ export class InvestmentCommonService {
   }
 
   goToAdditionalAccountCreation(data) {
+    if( data.accountCreationState ===  INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_PURCHASED){
+      this.navbarService.setMenuItemInvestUser(true);
+    }
     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
   }
 
@@ -283,13 +289,13 @@ export class InvestmentCommonService {
     return this.getInvestmentCriteriaFromApi(selectPortfolioType).pipe(map((data: any) => {
       this.loaderService.hideLoader();
       return data.objectList;
-    }),catchError(
+    }), catchError(
       (error) => {
         this.loaderService.hideLoader();
         // getDefault placeholder
         return observableOf(null);
       }
-    ),);
+    ));
   }
   setPortfolioType(portfolioType) {
     this.investmentCommonFormData.portfolioType = portfolioType;
@@ -300,29 +306,40 @@ export class InvestmentCommonService {
       portfolioType: this.investmentCommonFormData.portfolioType
     };
   }
-  getWiseSaverDetails(){
+  getWiseSaverDetails() {
     return this.investmentApiService.getWiseSaverDetails();
   }
   //WISE INCOME PAYOUT METHOD
- setWiseIncomePayOut(data, activeTabId) {
-  this.investmentCommonFormData.initialWiseIncomePayoutTypeId = data.initialWiseIncomePayoutTypeId;
-  this.investmentCommonFormData.wiseIncomeActiveTabId = activeTabId;
-  this.commit();
-}
+  setWiseIncomePayOut(data, activeTabId) {
+    this.investmentCommonFormData.initialWiseIncomePayoutTypeId = data.initialWiseIncomePayoutTypeId;
+    this.investmentCommonFormData.wiseIncomeActiveTabId = activeTabId;
+    this.commit();
+  }
   getWiseIncomePayOut() {
     return {
       initialWiseIncomePayoutTypeId: this.investmentCommonFormData.initialWiseIncomePayoutTypeId,
       activeTabId: this.investmentCommonFormData.wiseIncomeActiveTabId
+    }
   }
- }
- setPortfolioDetails(portfolioDetails){
- this.investmentCommonFormData.portfolioDetails =portfolioDetails;
- }
- getPortfolioDetails(){
-   return{
-    portfolioDetails : this.investmentCommonFormData.portfolioDetails
-   }
- }
+  setPortfolioDetails(portfolioDetails) {
+    this.investmentCommonFormData.portfolioDetails = portfolioDetails;
+  }
+  getPortfolioDetails() {
+    return {
+      portfolioDetails: this.investmentCommonFormData.portfolioDetails
+    }
+  }
+  //  nric validation
+  constructValidationInfo(data, source) {
+    return {
+      uin: data,
+      source: source,
+    };
+  }
+  getUserNricValidation(data, source) {
+    const payload = this.constructValidationInfo(data, source);
+    return this.investmentApiService.getUserNricValidationInfo(payload);
+  }
   saveUpdateSessionData(formData) {
     let activeTabId;
     switch (formData.payoutType) {
@@ -337,7 +354,7 @@ export class InvestmentCommonService {
         break;
     }
     if (formData && formData.payoutTypeId) {
-      this.setWiseIncomePayOut({initialWiseIncomePayoutTypeId :formData.payoutTypeId}, activeTabId);
+      this.setWiseIncomePayOut({ initialWiseIncomePayoutTypeId: formData.payoutTypeId }, activeTabId);
     }
     const investmentFormData = this.setYourInvestmentAmount(formData);
     this.investmentEngagementJourneyService.setYourInvestmentAmount(investmentFormData);

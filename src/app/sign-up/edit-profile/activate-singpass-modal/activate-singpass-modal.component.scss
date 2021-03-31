@@ -1,0 +1,91 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+app-activate-singpass-modal {
+  .singpass-login-modal-block {
+    background: $white-color;
+    border-radius: 6px;
+    @include allmobiles {
+      border-radius: 0;
+    }
+    .header-modal-image {
+      background-image: url("../../../../assets/images/graphic-login-activate-singpass.svg");
+      height: 180px;
+      width: 375px;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      background-size: cover !important;
+      background-position: center !important;
+      @include allmobiles {
+        border-radius: 0;
+        width: 100%;
+      }
+    }
+    .modal-body {
+      color: $black-color;
+      h4 {
+        color: $modal-body-title-color !important;
+        text-transform: capitalize;
+        margin-bottom: 10px;
+        font-size: 22px;
+        font-family: $muli-semi-bold;
+      }
+      .more-info {
+        margin-top: 20px;
+        a {
+          font-family: $muli-bold;
+          color: $dark-orange-color;
+          text-decoration: none;
+        }
+      }
+      .retrieved-details {
+        font-size: 14px;
+        font-family: $muli-regular;
+        line-height: 21px;
+        .retrieved-details-title {
+          font-family: $muli-bold;
+          color: $text-color-secondary;
+          margin-bottom: 15px;
+        }
+        div {
+          color: $teal-color;
+        }
+        label {
+          margin-bottom: 0;
+        }
+      }
+    }
+    button.close {
+      background: url("/assets/images/close-button-white.svg") !important;
+      right: 27px !important;
+      top: 30px !important;
+      background-repeat: no-repeat !important;
+    }
+    .action-button {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 6px 7px 0 $btn-shadow-color !important;
+      background-color: $teal-color;
+      border: 1px solid $teal-color;
+      margin-bottom: 20px;
+      font-family: $muli-bold;
+      font-size: 22px;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.3px;
+      text-align: center;
+      color: $white-color;
+      padding: 10px;
+      cursor: pointer;
+      &:hover {
+        background-color: $robins-egg-blue-color;
+        border-color: $action-btn-hover-brdr-color;
+        color: $white-color !important;
+      }
+      &:active {
+        background-color: $action-btn-active-bg;
+        color: $white-color;
+      }
+    }
+  }
+}

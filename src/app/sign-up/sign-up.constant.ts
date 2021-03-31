@@ -1,4 +1,9 @@
 export let SIGN_UP_CONFIG = {
+    MY_INFO_ATTRIBUTES: [
+        'name',
+        'email',
+        'mobileno'   
+      ],
     SHOW_BANK_DETAILS: [
         'PORTFOLIO_PURCHASED',
         'ACCOUNT_CREATED',
@@ -29,7 +34,8 @@ export let SIGN_UP_CONFIG = {
         DOCUMENTS_UPLOADED: 'DOCUMENTS_UPLOADED',
         EDD_CHECK_CLEARED: 'EDD_CHECK_CLEARED',
         ACCOUNT_FUNDED: 'ACCOUNT_FUNDED',
-        PORTFOLIO_CONFIRMED: 'PORTFOLIO_CONFIRMED'
+        PORTFOLIO_CONFIRMED: 'PORTFOLIO_CONFIRMED',
+        ANNOUNCEMENT_DATE: '2021-03-31 00:00:00'
     },
     BANK_KEYS: { /* ACCOUNT NUMBER LENGTH FOR LIST OF BANK CODES */
         BANK_OF_CHINA: 'Bank of China',
@@ -50,5 +56,14 @@ export let SIGN_UP_CONFIG = {
     },
       SIGN_UP : {
       EMAIL:"email"
+    },
+    SINGPASSLINKSTATUS:{
+        LINKED: "LINKED",
+        NOT_LINKED: "NOT_LINKED", 
+        DISABLED: "DISABLED"
+    },
+    CREATE_ACCOUNT_STATIC :{
+      SUCCESS :"SUCCESS",
+      CANCELLED:"CANCELLED"
     }
 };

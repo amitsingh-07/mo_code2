@@ -1,6 +1,19 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 
+.my-info {
+    .modal-body {
+        @include desktop {
+            width: 375px !important;
+            margin: 0 auto !important;
+        }
+
+        .modal-body-title {
+            font-family: $muli-bold;
+        }
+    }
+}
+
 .label {
     color: #2d8289;
     font-size: 17px;

@@ -2,12 +2,15 @@ export const SIGN_UP_BASE_ROUTE = '../accounts/';
 export const DASHBOARD_PATH = '/accounts/dashboard';
 export const EDIT_PROFILE_PATH = '/accounts/edit-profile';
 export const INVESTMENT_MANAGEMENT_PATH = 'investment/manage/';
+export const MY_INFO_START_PATH = '/accounts/sign-up';
+
 
 export const SIGN_UP_ROUTES = {
   ROOT: '',
   ACCOUNT_CREATED: 'success',
   ACCOUNT_UPDATED: 'account-updated',
   CREATE_ACCOUNT: 'sign-up',
+  CREATE_ACCOUNT_MY_INFO: 'sign-up-account',
   EMAIL_VERIFIED: 'email-verification',
   VERIFY_MOBILE: 'verify-mobile',
   TWOFA_MOBILE: '2fa-mobile',
@@ -62,5 +65,6 @@ export const SIGN_UP_ROUTE_PATHS = {
   UPDATE_BANK: SIGN_UP_BASE_ROUTE + SIGN_UP_ROUTES.UPDATE_BANK,
   UPDATE_SRS: SIGN_UP_BASE_ROUTE + SIGN_UP_ROUTES.UPDATE_SRS,
   TOPUP: INVESTMENT_MANAGEMENT_PATH + SIGN_UP_ROUTES.TOPUP,
-  VERIFY_EMAIL_RESULT:SIGN_UP_BASE_ROUTE + SIGN_UP_ROUTES.VERIFY_EMAIL_RESULT
+  VERIFY_EMAIL_RESULT:SIGN_UP_BASE_ROUTE + SIGN_UP_ROUTES.VERIFY_EMAIL_RESULT,
+  CREATE_ACCOUNT_MY_INFO:SIGN_UP_BASE_ROUTE + SIGN_UP_ROUTES.CREATE_ACCOUNT_MY_INFO
 };

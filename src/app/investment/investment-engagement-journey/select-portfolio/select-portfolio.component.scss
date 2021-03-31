@@ -99,6 +99,20 @@ app-select-portfolio {
         width: 85px;
       }
     }
+    .portfolio-new {
+      position: absolute;
+      top: 10px;
+      @include iphoneX {
+        top: 5px;
+      }
+      @include max360 {
+        top: 5px;
+      }
+      @include desktop {
+        top: 7px;
+      }
+      right: 0;
+    }
   }
 
   .portfolio-info {
@@ -127,6 +141,11 @@ app-select-portfolio {
         margin-bottom: 15px;
         background: url(../../../../assets/images/wisesaver/icon-tick.svg) no-repeat 0 0;
         padding-left: 30px;
+      }
+      .disclaimer{
+        font-size: 14px;
+        color: $silver-grey-color;
+        padding-top: 0;
       }
     }
 

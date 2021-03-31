@@ -431,7 +431,14 @@ export class DashboardComponent implements OnInit {
   // Show SRS Joint Account Popup
   openSRSJointAccPopup() {
     const ref = this.modal.open(CarouselModalComponent, { centered: true, windowClass: 'srs-dashboard-modal' });
-    ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES');
+    const announcementDate = new Date(SIGN_UP_CONFIG.INVESTMENT.ANNOUNCEMENT_DATE);
+    const currentDate = new Date();
+    if(currentDate >= announcementDate ) {
+      ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES_2');
+    } else {
+      ref.componentInstance.slides = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.SRS_JOINT_ACCOUNT_SLIDES_1');
+    }
+    
     ref.componentInstance.startBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.START_BTN');
     ref.componentInstance.endBtnTxt = this.translate.instant('DASHBOARD.SRS_JOINT_ACCOUNT.END_BTN');
   }
@@ -439,13 +446,13 @@ export class DashboardComponent implements OnInit {
   // Check if user is first time seeing SRS popup
   checkSRSPopStatus(customerId) {
     if (customerId) {
-      this.signUpApiService.getPopupStatus(customerId, 'SRS_POP').subscribe((status) => {
+      this.signUpApiService.getPopupStatus(customerId, 'WI_POP').subscribe((status) => {
         // Check if track_status is available or false
         if (!status.objectList || !status.objectList['trackStatus']) {
           setTimeout(() => {
             this.openSRSJointAccPopup();
           });
-          this.signUpApiService.setPopupStatus(customerId, 'SRS_POP').subscribe((result) => {
+          this.signUpApiService.setPopupStatus(customerId, 'WI_POP').subscribe((result) => {
           }, (error) => console.log('ERROR: ', error));
         }
       }, (error) => console.log('ERROR: ', error));

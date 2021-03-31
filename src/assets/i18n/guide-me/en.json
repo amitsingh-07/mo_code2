@@ -60,7 +60,7 @@
     "INVESTMENTS_HINT": "(E.g. Stocks, Unit Trusts, ETF)",
     "OTHERS": "Others",
     "OTHERS_HINT": "(E.g. Car, Jewelry, Trust fund)",
-    "FILL_VIA_SINGPASS":"Fill via MyInfo"
+    "FILL_VIA_SINGPASS":"Fill via Myinfo"
   },
   "MY_LIABILITIES": {
     "TITLE": "My Liabilities",
@@ -206,16 +206,17 @@
   },
   "MYINFO": {
     "OPEN_MODAL_DATA": {
-      "TITLE": "Login via MyInfo",
-      "DESCRIPTION": "You will now proceed to login via MyInfo and retrieve your details."
+      "TITLE": "Retrieve Myinfo with Singpass",
+      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>You will now proceed to login via Myinfo and retrieve your following details.<strong class=\"text-bold\">Please use your own account only.</strong><div class=\"my_info_details\">CPF Account Balance<br>NRIC/FIN</div><br>Would you like to proceed?",
+      "BTN-TEXT": "Let's go!"
     },
     "ERROR_MODAL_DATA": {
-      "TITLE": "Oops, Error!",
-      "DESCRIPTION": "We weren't able to fetch your data from MyInfo."
+      "TITLE": "Oops, Unable to Connect",
+      "DESCRIPTION": "We are unable to connect to Myinfo temporarily. You may choose to fill in your information manually or try again later."
     },
     "FETCH_MODAL_DATA": {
       "TITLE": "Fetching Data...",
-      "DESCRIPTION": "Please be patient while we fetch your required data from MyInfo."
+      "DESCRIPTION": "Please be patient while we fetch your required data from Myinfo."
     }
   },
   "INSURANCE_RESULTS": {

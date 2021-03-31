@@ -9,6 +9,7 @@ export class HeaderService {
     private pageSubTitle = new BehaviorSubject('');
     private pageHelpIcon = new BehaviorSubject(true);
     private pageProdInfoIcon = new BehaviorSubject(false);
+    private pageDropDownIcon = new BehaviorSubject(false);
 
     private mobileModal = new BehaviorSubject('');
     private closeProdInfo = new BehaviorSubject('');
@@ -26,10 +27,11 @@ export class HeaderService {
     currentHeaderVisibility = this.headerVisibility.asObservable();
     currentHeaderDropshadow = this.headerDropshadow.asObservable();
     currentPageSettingsIcon = this.pageSettingsIcon.asObservable();
+    currentPageDropDownIcon = this.pageDropDownIcon.asObservable();
 
     constructor() { }
 
-    setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean) {
+    setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean, dropDownIcon?: boolean) {
         this.pageTitle.next(title);
         if (subTitle) {
             this.pageSubTitle.next(subTitle);
@@ -46,6 +48,12 @@ export class HeaderService {
             this.pageSettingsIcon.next(true);
         } else {
             this.pageSettingsIcon.next(false);
+        }
+
+        if (dropDownIcon) {
+            this.pageDropDownIcon.next(true);
+        } else {
+            this.pageDropDownIcon.next(false);
         }
 
         this.headerVisibility.next(true);

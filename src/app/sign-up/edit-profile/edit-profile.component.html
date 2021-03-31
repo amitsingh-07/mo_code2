@@ -16,6 +16,25 @@
 
                 </div>
             </div>
+            <div class="edit-profile-section-bg singpass-login-block">
+                <div class="flex space-between">
+                    <div class="flex-col-9">
+                        <div class="singpass-login-title">{{'EDIT_PROFILE.SINGPASS.TITLE' | translate}}</div>
+                        <div class="pt5">
+                            <div *ngIf="entireUserData.singpassLinkStatus.toUpperCase() === linkCatagories.NOT_LINKED.toUpperCase()">{{'EDIT_PROFILE.SINGPASS.ACTIVATE' | translate}}</div>
+                            <div *ngIf="entireUserData.singpassLinkStatus.toUpperCase() === linkCatagories.DISABLED.toUpperCase()">{{'EDIT_PROFILE.SINGPASS.PENDING' | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="flex-col">
+                        <button type="button" class="link-btn" (click)="linkSingpass()" *ngIf="entireUserData.singpassLinkStatus.toUpperCase() === linkCatagories.NOT_LINKED.toUpperCase()">{{'EDIT_PROFILE.SINGPASS.LINK_LBL' | translate}}</button>
+                        <button type="button" class="link-btn" *ngIf="entireUserData.singpassLinkStatus.toUpperCase() === linkCatagories.DISABLED.toUpperCase()" [ngClass]="{'disabled': entireUserData.singpassLinkStatus.toUpperCase() === linkCatagories.DISABLED.toUpperCase() }">{{'EDIT_PROFILE.SINGPASS.LINK_LBL' | translate}}</button>
+                        <div class="flex space-between" *ngIf="entireUserData.singpassLinkStatus.toUpperCase() === linkCatagories.LINKED.toUpperCase()" >
+                            <span><img src="assets/images/green-tick-icon.svg" /></span>
+                            <span  class="txt-green ml10">{{'EDIT_PROFILE.SINGPASS.LINKED_LBL' | translate}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Update user id section -->
             <div class="edit-profile-section-bg">
                 <div class="flex-row cursor_pointer" (click)=showHide(showHideUser)>

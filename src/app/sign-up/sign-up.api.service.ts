@@ -70,23 +70,45 @@ export class SignUpApiService {
     }
 
     journeyType = journeyType.toLowerCase();
-    return {
-      customer: {
-        countryCode: getAccountInfo.countryCode,
-        mobileNumber: getAccountInfo.mobileNumber.toString(),
-        firstName: getAccountInfo.firstName,
-        lastName: getAccountInfo.lastName,
-        emailAddress: getAccountInfo.email,
-        password: this.cryptoService.encrypt(pwd),
-        acceptMarketingNotifications: getAccountInfo.marketingAcceptance
-      },
-      sessionId: this.authService.getSessionId(),
-      captcha,
-      journeyType,
-      enquiryId,
-      referralCode: getAccountInfo.referralCode,
-      userType: getAccountInfo.userType
-    };
+    if (getAccountInfo.isMyInfoEnabled) {
+      return {
+        customer: {
+          countryCode: getAccountInfo.countryCode,
+          mobileNumber: getAccountInfo.mobileNumber.toString(),
+          uin: getAccountInfo.nricNumber,
+          fullName: getAccountInfo.fullName,
+          emailAddress: getAccountInfo.email,
+          password: this.cryptoService.encrypt(pwd),
+          acceptMarketingNotifications: getAccountInfo.marketingAcceptance
+        },
+        sessionId: this.authService.getSessionId(),
+        captcha,
+        journeyType,
+        enquiryId,
+        referralCode: getAccountInfo.referralCode,
+        userType: getAccountInfo.userType,
+        accountCreationType: getAccountInfo.accountCreationType
+      };
+    } else {
+      return {
+        customer: {
+          countryCode: getAccountInfo.countryCode,
+          mobileNumber: getAccountInfo.mobileNumber.toString(),
+          firstName: getAccountInfo.firstName,
+          lastName: getAccountInfo.lastName,
+          emailAddress: getAccountInfo.email,
+          password: this.cryptoService.encrypt(pwd),
+          acceptMarketingNotifications: getAccountInfo.marketingAcceptance
+        },
+        sessionId: this.authService.getSessionId(),
+        captcha,
+        journeyType,
+        enquiryId,
+        referralCode: getAccountInfo.referralCode,
+        userType: getAccountInfo.userType,
+        accountCreationType: getAccountInfo.accountCreationType
+      };
+    }
   }
 
   /**

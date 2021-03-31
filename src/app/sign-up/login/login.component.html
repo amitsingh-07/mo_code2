@@ -28,7 +28,7 @@
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label"
                 [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.loginUsername)}">
-                <input type="text" appInputFocus id="login_username_txt" class="form-control" #loginUsername
+                <input type="text" appInputFocus id="login_username_txt" class="form-control" #loginUsernameGET_STARTEDGET_STARTED
                 formControlName="loginUsername" (paste)="onPaste($event)" (keyup)="onKeyupEvent($event)" required>
                 <label class="form-control-placeholder" for="login_username_txt"
                   id="login_username_lbl">{{ 'LOGIN.FORM.USERNAME' | translate}}</label>
@@ -92,7 +92,7 @@
               [routerLink]="'/accounts/forgot-password'">{{ 'LOGIN.FORGOT_PASSWORD' | translate}}</a>
           </div>
           <div class="start-link"><a id="login_signup_link" [routerLink]="finlitEnabled ? '/accounts/finlit/sign-up':'/accounts/sign-up'  ">
-            {{ 'LOGIN.GET_STARTED' | translate}}</a></div>
+            {{ 'LOGIN.DON_T_HAVE_AN_ACCOUNT' | translate}}</a></div>
           <button id="login_submit_btn" (click)="doLogin(loginForm)" type="button"
             class="btn btn__footer--fixed btn-primary width100 ">{{
             'COMMON.LOGIN' | translate }}</button>

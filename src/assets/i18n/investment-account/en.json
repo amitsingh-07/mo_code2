@@ -13,10 +13,10 @@
   "POSTLOGIN": {
     "TITLE": "Next, set up a MoneyOwl investment account!",
     "PROCEED": "Proceed with",
-    "PROCEED_WITHOUT": "Proceed without SingPass",
-    "APPLY_USING_MYINFO": "Apply Using MyInfo",
+    "PROCEED_WITHOUT": "Proceed without Singpass",
+    "APPLY_USING_MYINFO": "Apply Using Myinfo",
     "AUTOFILL_QUICKLY": "<b class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only.</b><br> Autofill your information quickly. <br>Supporting documents are not required.",
-    "APPLY_WITHOUT_MYINFO": "Apply Without MyInfo",
+    "APPLY_WITHOUT_MYINFO": "Apply Without Myinfo",
     "FILL_MANUALLY": "<b class=\"text-bold\">Applicable to foreigners and all.</b> Fill in your information manually. Supporting documents are required. Takes at least 1 working day to get your account approved. ",
     "MANUALLY": "Fill Form Manually",
     "ESTIMATE_TIME": "Estimate about 10 mins",
@@ -41,7 +41,13 @@
     "SELECT_SALUTATION": "Select Salutation",
     "SELECT_BIRTH_COUNTRY": "Select Country",
     "SELECT_PASSPORT_ISSUED_COUNTRY": "Select Country",
-    "SELECT_RACE": "Select Race"
+    "SELECT_RACE": "Select Race",
+    "ERROR":{
+      "TITLE": "Unable to proceed with the NRIC/FIN",
+      "MESSAGE1": "We have detected that the NRIC/FIN is already in use by another account. <strong>Please use your own account only.</strong><br><br>Contact us at <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> if you require any assistance.",
+      "MESSAGE2": "We have detected that the NRIC/FIN used is different from your account. <strong>Please use your own account only.</strong><br><br>Contact us at <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> if you require any assistance.",
+      "BTN-TEXT":"Back to Form"
+    }
   },
   "RESIDENTIAL_ADDRESS": {
     "TITLE": "Residential Address",
@@ -138,17 +144,17 @@
     },
     "blockedCountry": {
       "blockedCountryTitle": "Oops, Unable To Proceed",
-      "blockedCountryMessage": "We are unable to open your investment account as your country of residency is listed under the restricted country list. If information is incorrect, please update your MyInfo and try again. Alternatively, you can choose to open your investment account manually (non-myinfo).",
+      "blockedCountryMessage": "We are unable to open your investment account as your country of residency is listed under the restricted country list. If information is incorrect, please update your Myinfo and try again. Alternatively, you can choose to open your investment account manually (non-myinfo).",
       "blockedCountryButtonTitle": "Back To Dashboard"
     },
     "FOREIGNER": {
-      "title": "Unable to apply via MyInfo",
-      "message": "Sorry, we are unable to proceed your application via MyInfo as this feature is applicable to Singapore Citizens and Singapore Permanent Residents (PRs) only.<br><br>Please continue with the application by filling up the form manually.<br><br>Supporting documents are required. Takes at least 1 working day to get your account approved.",
+      "title": "Unable to apply via Myinfo",
+      "message": "Sorry, we are unable to proceed your application via Myinfo as this feature is applicable to Singapore Citizens and Singapore Permanent Residents (PRs) only.<br><br>Please continue with the application by filling up the form manually.<br><br>Supporting documents are required. Takes at least 1 working day to get your account approved.",
       "btnText": "Continue to Form"
     },
     "FOREIGNER_CONFIRMATION": {
-      "title": "Unable to proceed via MyInfo",
-      "message": "Sorry, we are unable to proceed your application via MyInfo as you have selected \"No\" to the permanent resident status.<br><br>Please continue with the application by filling up the form manually.<br><br>Supporting documents are required. Takes at least 1 working day to get your account approved.",
+      "title": "Unable to proceed via Myinfo",
+      "message": "Sorry, we are unable to proceed your application via Myinfo as you have selected \"No\" to the permanent resident status.<br><br>Please continue with the application by filling up the form manually.<br><br>Supporting documents are required. Takes at least 1 working day to get your account approved.",
       "btnText": "Continue to Form"
     }
   },
@@ -290,41 +296,42 @@
     "BACK": "Back To Dashboard"
   },
   "INVESTMENT_ACCOUNT_MYINFO": {
-    "TAB_BUTTON": {
-      "LABEL": "Autofill Forms Via",
-      "TIME": "Estimate about 5 mins",
-      "LABEL_NEW": "For Singaporeans and PRs only"
-    },
     "OPEN_MODAL_DATA": {
-      "TITLE": "Login via MyInfo",
-      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>By signing in to MyInfo, the following information that you have previously entered will be overwritten.<div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br/>Would you like to proceed and overwrite?",
+      "TITLE": "Retrieve Myinfo with Singpass",
+      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>By signing in to Myinfo, the following information that you have previously entered will be overwritten.<strong class=\"text-bold\">Please use your own account only.</strong><div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br/>Would you like to proceed and overwrite?",
       "BTN-TEXT": "Yes, Proceed"
     },
     "MYINFO_CONFIRM": {
-      "TITLE": "Login via MyInfo",
-      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>You will now proceed to login via MyInfo and retrieve your following details.<div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br>Would you like to proceed?",
+      "TITLE": "Retrieve Myinfo with Singpass",
+      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>You will now proceed to login via Myinfo and retrieve your following details.<strong class=\"text-bold\">Please use your own account only.</strong><div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br>Would you like to proceed?",
       "BTN-TEXT": "Let's go!"
     },
     "ERROR_MODAL_DATA": {
-      "TITLE": "Oops, Error!",
-      "DESCRIPTION": "We weren’t able to fetch your data from MyInfo."
+      "TITLE": "Oops, Unable to Connect",
+      "DESCRIPTION": "We are unable to connect to Myinfo temporarily. You may choose to fill in your information manually or try again later."
     },
     "FETCH_MODAL_DATA": {
       "TITLE": "Fetching Data...",
-      "DESCRIPTION": "Please be patient while we fetch your required data from MyInfo."
+      "DESCRIPTION": "Please be patient while we fetch your required data from Myinfo."
     },
     "LOADER2": {
-      "message": "Sorry that this is taking longer than usual. Please be patient while we fetch your required data from MyInfo."
+      "message": "Sorry that this is taking longer than usual. Please be patient while we fetch your required data from Myinfo."
     },
     "LOADER3": {
-      "message": "We are still trying to fetch your required data from MyInfo. You may choose to fill in your information manually or try again later.",
+      "message": "We are still trying to fetch your required data from Myinfo. You may choose to fill in your information manually or try again later.",
       "primaryActionLabel": "Try Again Later",
-      "secondaryActionLabel": "Create Account Manually"
+      "secondaryActionLabel": "Fill Form Manually"
     },
     "SING_PASS_CONFIRM": {
       "TITLE": "Following details will be auto filled Via Myinfo:",
       "DESCRIPTION": "Nationality<br>Personal Details<br>Residential Details<br>Employment Details<br>Financial Details",
       "BTN-TEXT": "OK"
+    },
+    "NRIC_VALIDATION_ERROR": {
+      "TITLE": "Unable to proceed with the NRIC/FIN",
+      "MESSAGE1": "We have detected that the NRIC/FIN is already in use by another account. <strong>Please use your own account only.</strong><br><br>Contact us at <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> if you require any assistance.",
+      "MESSAGE2": "We have detected that the NRIC/FIN used is different from your account. <strong>Please use your own account only.</strong><br><br>Contact us at <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a> if you require any assistance.",
+      "BTN-TEXT":"Okay, Got It!"
     }
   },
   "INVESTMENT_ACCOUNT_COMMON": {

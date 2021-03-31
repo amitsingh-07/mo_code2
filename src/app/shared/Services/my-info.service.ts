@@ -8,6 +8,7 @@ import { environment } from '../../../environments/environment';
 import { ApiService } from '../http/api.service';
 import { ErrorModalComponent } from '../modal/error-modal/error-modal.component';
 import { ModelWithButtonComponent } from '../modal/model-with-button/model-with-button.component';
+import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
 
 const MYINFO_ATTRIBUTE_KEY = 'myinfo_person_attributes';
 declare var window: Window;
@@ -48,7 +49,7 @@ export class MyInfoService {
     return window.sessionStorage.getItem(MYINFO_ATTRIBUTE_KEY);
   }
 
-  goToMyInfo() {
+  goToMyInfo(linkAccount?) {
     let currentUrl = window.location.toString();
     let endPoint = currentUrl.split(currentUrl.split('/')[2])[currentUrl.split(currentUrl.split('/')[2]).length - 1].substr(1);
     window.sessionStorage.setItem('currentUrl', endPoint);
@@ -58,7 +59,7 @@ export class MyInfoService {
       '&purpose=' + this.purpose +
       '&state=' + this.state +
       '&redirect_uri=' + this.redirectUrl;
-    this.newWindow(authoriseUrl);
+    this.newWindow(authoriseUrl, linkAccount);
   }
 
   goToUAT1MyInfo() {
@@ -67,9 +68,9 @@ export class MyInfoService {
     this.newWindow(authoriseUrl);
   }
 
-  newWindow(authoriseUrl): void {
+  newWindow(authoriseUrl, linkAccount?): void {
     const self = this;
-    this.openFetchPopup();
+    this.openFetchPopup(linkAccount);
     this.isMyInfoEnabled = true;
     const screenWidth = screen.width;
     const screenHeight = screen.height;
@@ -150,17 +151,23 @@ export class MyInfoService {
     }
   }
 
-  openFetchPopup() {
+  openFetchPopup(linkAccount?) {
     const ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',
       keyboard: false,
       centered: true,
+      windowClass: 'my-info'
     };
     this.loadingModalRef = this.modal.open(ModelWithButtonComponent, ngbModalOptions);
     this.loadingModalRef.componentInstance.spinner = true;
-    this.loadingModalRef.componentInstance.closeBtn = true;
-    this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
-    this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from MyInfo.';
+    this.loadingModalRef.componentInstance.closeBtn = false;
+    if (linkAccount) {
+      this.loadingModalRef.componentInstance.errorTitle = 'Linking Account…';
+      this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we are linking up your MoneyOwl account.';
+    } else {
+      this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
+      this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from Myinfo.';
+    }
     this.loadingModalRef.componentInstance.primaryActionLabel = 'Cancel';
     this.loadingModalRef.componentInstance.closeAction.subscribe(() => {
       this.changeListener.next(this.getMyinfoReturnMessage(CANCELLED));
@@ -190,12 +197,13 @@ export class MyInfoService {
     this.isMyInfoEnabled = false;
     this.closeFetchPopup();
     if (error) {
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = 'Oops, Error!';
-      ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
-      ref.componentInstance.isError = true;
+      const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'my-info'});
+      ref.componentInstance.errorTitle = 'Oops, Unable to Connect';
+      ref.componentInstance.errorMessage = 'We are unable to connect to Myinfo temporarily. You may choose to fill in your information manually or try again later.';
+      ref.componentInstance.isMyinfoError = true;
+      ref.componentInstance.closeBtn = false;
       ref.result.then(() => {
-        this.goToMyInfo();
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
       }).catch((e) => {
       });
     }
@@ -211,6 +219,24 @@ export class MyInfoService {
       personAttributes: this.getMyInfoAttributes()
     };
     return this.apiService.getMyInfoData(code);
+  }
+
+  // singpass account link
+  getSingpassAccountData() {
+    const code = {
+      authorizationCode: this.myInfoValue,
+      personAttributes: this.getMyInfoAttributes()
+    };
+    return this.apiService.getSingpassAccountData(code);
+  }
+
+  // CREATE ACCOUNT
+  getMyInfoAccountCreateData(){
+    const code = {
+      authorizationCode: this.myInfoValue,
+      personAttributes: this.getMyInfoAttributes()
+    };
+    return this.apiService.getCreateAccountMyInfoData(code);
   }
 
   // Check if the source page matches with the session stored one
