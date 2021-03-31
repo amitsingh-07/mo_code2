@@ -17,9 +17,8 @@
           <div class="flex-row mb10" *ngIf="showSingPassDetails">
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label" [ngClass]="{'inline-error': submitted && account.email.errors}">
-                <input type="text" id="fullName" class="form-control" #fullName formControlName="fullName"  required>
-                <label class="form-control-placeholder"
-                  for="lastName">{{ 'CREATE_ACCOUNT.FORM.FULLNAME.LABEL' | translate}}</label>
+                <input type="text" id="fullName" class="form-control" #fullName formControlName="fullName" disabled  required>
+               
               </div>
             </div>
             <div class="alert-msg" *ngIf="submitted && account.email.errors">
@@ -33,11 +32,10 @@
             <div class="flex-col-12 stretch">
               <div
                 class="form-group-floating-label">
-                <input type="text" id="crtAccInpt5" 
+                <input type="text" id="nricNumber" 
                    class="form-control" #nricNumber
-                  formControlName="nricNumber"   required>
-                <label class="form-control-placeholder"
-                  for="lastName">{{ 'CREATE_ACCOUNT.FORM.NRIC/FIN.LABEL' | translate}}</label>
+                  formControlName="nricNumber"   disabled required>
+               
               </div>
             </div>
             <div class="alert-msg" *ngIf="account.confirmEmail.errors">
