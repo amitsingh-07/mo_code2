@@ -226,7 +226,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       form.value.userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : appConstants.USERTYPE.NORMAL;
       form.value.accountCreationType = (this.formValue && this.formValue.isMyInfoEnabled) ? appConstants.USERTYPE.SINGPASS : appConstants.USERTYPE.MANUAL;
       this.signUpService.setAccountInfo(form.value);
-      console.log(form.value);
+      if (this.formValue && this.formValue.isMyInfoEnabled) {
+        this.signUpService.setMyInfoStatus(false);
+      }
       this.openTermsOfConditions();
     }
   }
