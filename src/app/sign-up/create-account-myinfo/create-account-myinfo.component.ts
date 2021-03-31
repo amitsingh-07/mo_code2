@@ -115,10 +115,13 @@ export class CreateAccountMyinfoComponent implements OnInit {
     this.myInfoSubscription = this.myInfoService.getMyInfoAccountCreateData().subscribe((data) => {
       if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
         this.closeMyInfoPopup(false);
-        this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0])
+        this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0]);
+        if(this.myinfoChangeListener){
+          this.myinfoChangeListener.unsubscribe();
+        }
         this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode] , { skipLocationChange: true });
       } else if (data.responseMessage.responseCode === 6014) {
-        //this.closeMyInfoPopup(false);
+        this.closeMyInfoPopup(false);
         const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
         ref.componentInstance.errorTitle = this.loader1Modal.title;
         ref.componentInstance.errorMessageHTML = this.loader1Modal.message;
@@ -144,7 +147,6 @@ export class CreateAccountMyinfoComponent implements OnInit {
     if (this.myInfoSubscription) {
       this.myInfoSubscription.unsubscribe();
     }
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
   }
 
   closeMyInfoPopup(error: boolean) {
