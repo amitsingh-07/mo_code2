@@ -523,7 +523,7 @@
     },
     "MYINFO_CONFIRM": {
       "TITLE": "Activate via Myinfo",
-      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to all Singpass Registered users.</strong><br><br>You will now proceed to login via Myinfo and retrieve your following details.<strong class=\"text-bold\">Please use your own account only.</strong><div class=\"my_info_details\">Name<br>NRIC/FIN</div><br>Would you like to proceed?",
+      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to all Singpass Registered users.</strong><br><br>You will now proceed to login via Myinfo and retrieve your following details.<strong class=\"text-bold\"> Please use your own account only.</strong><div class=\"my_info_details\">Name<br>NRIC/FIN</div><br>Would you like to proceed?",
       "BTN-TEXT": "Let’s go!"
     },
     "FETCH_MODAL_DATA": {
