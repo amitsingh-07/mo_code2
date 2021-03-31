@@ -500,9 +500,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.myInfoSubscription = this.myInfoService.getSingpassAccountData().subscribe((data) => {  
         if(data.responseMessage.responseCode === 6000 && data && data.objectList[0]){
           this.closeMyInfoPopup(false);
-          this.ngZone.run(() => {
-            this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
-          });
+          this.getEditProfileData();
           const ref = this.modal.open(ActivateSingpassModalComponent, { centered: true , windowClass: 'linked-singpass-modal' });
           ref.componentInstance.errorMessage = this.translate.instant(
             'SUCCESS_SINGPASS_MODAL.MESSAGE', 

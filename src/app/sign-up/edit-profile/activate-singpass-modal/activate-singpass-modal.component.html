@@ -9,7 +9,7 @@
     <div *ngIf="!isLinked" type="button" class="autofill-logo" id="errorModeButton" (click)="primaryActionSelected()">
       <img src="assets/images/retrieve-singpass-logo.svg" />
     </div>
-    <button *ngIf="isLinked" type="button" class="action-button" id="errorModeButton" (click)="activeModal.dismiss('Cross click')">
+    <button *ngIf="isLinked" type="button" class="action-button" id="errorModeButton" (click)="secondaryActionSelected()">
       {{secondaryActionLabel}}
     </button>
   </div>

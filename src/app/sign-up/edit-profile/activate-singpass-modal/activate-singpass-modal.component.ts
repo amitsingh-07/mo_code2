@@ -15,6 +15,7 @@ export class ActivateSingpassModalComponent{
   @Input() secondaryActionLabel: any;
   @Input() isLinked: boolean;
   @Output() primaryAction = new EventEmitter<any>();
+  @Output() secondaryAction = new EventEmitter<any>();
   
   constructor(
     public activeModal: NgbActiveModal,
@@ -23,6 +24,11 @@ export class ActivateSingpassModalComponent{
 
   primaryActionSelected() {
     this.primaryAction.emit();
+    this.activeModal.close();
+  }
+
+  secondaryActionSelected() {
+    this.secondaryAction.emit();
     this.activeModal.close();
   }
 
