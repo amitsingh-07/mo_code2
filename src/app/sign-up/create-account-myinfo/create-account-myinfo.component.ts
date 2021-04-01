@@ -182,7 +182,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
     );
     this.myInfoService.goToMyInfo();
   }
-
+  
   goBack() {
     this._location.back();
   }
