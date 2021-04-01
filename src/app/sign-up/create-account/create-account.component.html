@@ -33,14 +33,14 @@
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label disabled">
                 <input type="text" id="nricNumber" class="form-control" #nricNumber formControlName="nricNumber" disabled required>
-                <label class="form-control-placeholder" for="nricNumber">{{ 'CREATE_ACCOUNT.FORM.NRIC/FIN.LABEL' |
+                <label class="form-control-placeholder" for="nricNumber">{{ 'CREATE_ACCOUNT.FORM.NRIC_FIN.LABEL' |
                   translate}}</label>
               </div>
             </div>
             <div class="alert-msg" *ngIf="account.nricNumber.errors">
               <div *ngIf="submitted && account.nricNumber.errors?.required">
                 <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.NRIC/FIN.ERROR.REQUIRED' | translate}}</span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.NRIC_FIN.ERROR.REQUIRED' | translate}}</span>
               </div>
             </div>
           </div>
