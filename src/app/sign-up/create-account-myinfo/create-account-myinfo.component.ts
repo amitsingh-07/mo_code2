@@ -14,6 +14,7 @@ import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/m
 import { SignUpService } from '../sign-up.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { Util } from '../../shared/utils/util';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-create-account-myinfo',
@@ -54,7 +55,8 @@ export class CreateAccountMyinfoComponent implements OnInit {
     private ngZone: NgZone,
     private route: ActivatedRoute,    
     public navbarService: NavbarService,
-    public footerService: FooterService
+    public footerService: FooterService,    
+    private authService: AuthenticationService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -91,7 +93,11 @@ export class CreateAccountMyinfoComponent implements OnInit {
     }, this.loader2StartTime);
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
+    if (!this.authService.isAuthenticated()) {
+      this.authService.authenticate().subscribe((token) => {
+      });
+    }
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(101);
     this.footerService.setFooterVisibility(false);

@@ -41,7 +41,7 @@ const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.ROOT,
     pathMatch: 'full',
-    redirectTo: SIGN_UP_ROUTES.CREATE_ACCOUNT
+    redirectTo: SIGN_UP_ROUTES.CREATE_ACCOUNT_MY_INFO
   },
   {
     path: SIGN_UP_ROUTES.PRELOGIN,
