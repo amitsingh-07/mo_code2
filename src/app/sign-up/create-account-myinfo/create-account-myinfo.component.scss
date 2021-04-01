@@ -8,7 +8,7 @@ app-create-account-myinfo {
             padding-right: 20px !important;
             position: relative;
             height: 100%;
-            padding: 30px 0 80px;
+            padding: 0 30px 0 80px;
         }
     }
     .back-btn {
@@ -20,6 +20,7 @@ app-create-account-myinfo {
         top: 10%;
         left: 20px;
         background-repeat: no-repeat;
+        z-index: 9999;
     }
     .signup-wrapper__title {
         font-family: $muli-bold;
