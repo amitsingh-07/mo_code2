@@ -168,9 +168,9 @@ export class CreateAccountMyinfoComponent implements OnInit {
       this.loadingModalRef.componentInstance.errorTitle = this.loader3Modal.title;
       this.loadingModalRef.componentInstance.errorMessage = this.loader3Modal.message;
       this.loadingModalRef.componentInstance.primaryActionLabel = this.loader3Modal.primaryActionLabel;
-      this.myInfoService.loadingModalRef.componentInstance.secondaryActionLabel = this.loader3Modal.secondaryActionLabel;
-      this.myInfoService.loadingModalRef.componentInstance.secondaryActionDim = true;
-      this.myInfoService.loadingModalRef.componentInstance.secondaryAction.subscribe(() => {
+      this.loadingModalRef.componentInstance.secondaryActionLabel = this.loader3Modal.secondaryActionLabel;
+      this.loadingModalRef.componentInstance.secondaryActionDim = true;
+      this.loadingModalRef.componentInstance.secondaryAction.subscribe(() => {
         this.skipMyInfo();
       });
     }
@@ -182,7 +182,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
     );
     this.myInfoService.goToMyInfo();
   }
-  
+
   goBack() {
     this._location.back();
   }
