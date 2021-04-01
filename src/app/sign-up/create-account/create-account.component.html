@@ -16,7 +16,7 @@
           <!-- myinfo data -->
           <div class="flex-row mb10" *ngIf="showSingPassDetails">
             <div class="flex-col-12 stretch">
-              <div class="form-group-floating-label disabled" [ngClass]="{'inline-error': submitted && account.email.errors}">
+              <div class="form-group-floating-label disabled">
                 <input type="text" id="fullName" class="form-control" #fullName formControlName="fullName" disabled  required>
                 <label class="form-control-placeholder"
                   for="fullName">{{ 'CREATE_ACCOUNT.FORM.FULLNAME.LABEL' | translate}}</label>
