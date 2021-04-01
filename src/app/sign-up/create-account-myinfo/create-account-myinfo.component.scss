@@ -38,8 +38,8 @@ app-create-account-myinfo {
         width: 80px;
         height: 14px;
         position: absolute;
-        top: 10%;
-        right: 40px;
+        top: 11%;
+        right: 38px;
         background-repeat: no-repeat;
         @include iphone5 {
             right: 15px;
@@ -133,6 +133,12 @@ app-create-account-myinfo {
         &.btn-proceed {
             background-color: $white-color !important;
             color: $teal-color !important;
+            @include allmobiles{
+            font-size: 22px;
+            }
+            @include iphone5{
+            font-size: 18px; 
+            }
         }
     }
  

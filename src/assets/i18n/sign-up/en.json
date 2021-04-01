@@ -553,7 +553,7 @@
   "CREATE_ACCOUNT_MY_INFO": {
     "TITLE": "Create Your Account",
     "DESCRIPTION": "Create your MoneyOwl account fast and hassle free with Myinfo, or skip to create account manually.",
-    "DESCRIPTION_TWO": "Available to all Singpass Registered users. <a target='_blank' href ='https://www.singpass.gov.sg/myinfo/intro'>Learn more about Myinfo.",
+    "DESCRIPTION_TWO": "Available to all Singpass Registered users. <div><a target='_blank' href ='https://www.singpass.gov.sg/myinfo/intro'>Learn more about Myinfo.</div>",
     "DESCRIPTION_THREE": "Please fill in your details below.",
     "BACK_TO_LOG_ON": "Back To Log In",
     "SKIP_MY_INFO": " Skip Myinfo",
