@@ -63,8 +63,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   createAccBtnDisabled = true;
   finlitEnabled = false;
   showSingPassDetails = false;
-  showNormalFlowDetails = false;
-  isMyInfo;
   formValue: any;
 
   constructor(
@@ -194,18 +192,15 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   /**
    * build account form.
    */
-  buildFormSingPass() {
-    this.showSingPassDetails = true;
-    this.showNormalFlowDetails = false;
+  buildFormSingPass() {   
     if (this.formValue && this.formValue.isMyInfoEnabled) {
+      this.showSingPassDetails = true;
       this.createAccountForm.addControl('fullName', new FormControl(this.formValue.fullName,Validators.required));
       this.createAccountForm.addControl('nricNumber', new FormControl(this.formValue.nricNumber, Validators.required));
       this.createAccountForm.removeControl('firstName');
       this.createAccountForm.removeControl('lastName');
-    }
-    else {
+    } else {
       this.showSingPassDetails = false;
-      this.showNormalFlowDetails = true;
       this.createAccountForm.removeControl('fullName');
       this.createAccountForm.removeControl('nricNumber');
       this.createAccountForm.addControl('firstName', new FormControl('',

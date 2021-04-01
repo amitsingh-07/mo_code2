@@ -1,4 +1,4 @@
-import { Component, Input, NgZone, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
@@ -9,7 +9,6 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ConfigService, IConfig } from '../../config/config.service';
 import { MyInfoService } from '../../shared/Services/my-info.service';
-import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { SignUpService } from '../sign-up.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
@@ -30,7 +29,6 @@ export class CreateAccountMyinfoComponent implements OnInit {
   modelBtnText: string;
   showSingPass: boolean;
   myInfoSubscription: any;
-  isInvestmentMyInfoEnabled = false;
   myinfoChangeListener: Subscription;
   secondTimer: any;
   thirdTimer: any;
@@ -50,9 +48,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
     private _location: Location,
     private myInfoService: MyInfoService,
     public readonly translate: TranslateService,
-    private investmentAccountService: InvestmentAccountService,
     private signUpService: SignUpService,
-    private ngZone: NgZone,
     private route: ActivatedRoute,    
     public navbarService: NavbarService,
     public footerService: FooterService,    
@@ -80,8 +76,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
       );
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
-      this.isInvestmentMyInfoEnabled = config.investmentMyInfoEnabled;
-      this.loader2StartTime = config.investment.myInfoLoader2StartTime * 1000;
+      this.loader2StartTime = config.account.loaderStartTime * 1000;
     });
   }
 
@@ -130,9 +125,6 @@ export class CreateAccountMyinfoComponent implements OnInit {
       if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
         this.closeMyInfoPopup(false);
         this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0]);
-        if (this.myinfoChangeListener) {
-          this.myinfoChangeListener.unsubscribe();
-        }
         this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
       } else if (data.responseMessage.responseCode === 6014) {
         this.closeMyInfoPopup(false);
@@ -164,7 +156,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
   }
 
   closeMyInfoPopup(error: boolean) {
-    this.myInfoService.closeMyInfoPopup(error);
+    this.myInfoService.closeMyInfoPopup(false);
     clearTimeout(this.secondTimer);
     if (error) {
       const ngbModalOptions: NgbModalOptions = {
@@ -178,20 +170,13 @@ export class CreateAccountMyinfoComponent implements OnInit {
       this.loadingModalRef.componentInstance.primaryActionLabel = this.loader3Modal.primaryActionLabel;
       this.myInfoService.loadingModalRef.componentInstance.secondaryActionLabel = this.loader3Modal.secondaryActionLabel;
       this.myInfoService.loadingModalRef.componentInstance.secondaryActionDim = true;
-      this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
-        this.closeMyInfoPopup(false);
-        this.proceedToMyInfo();
-      });
       this.myInfoService.loadingModalRef.componentInstance.secondaryAction.subscribe(() => {
-        this.closeMyInfoPopup(false);
-        this.signUpService.setMyInfoStatus(false);
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
+        this.skipMyInfo();
       });
     }
   }
 
   getMyInfo() {
-    this.signUpService.setCallBackSignUp();
     this.myInfoService.setMyInfoAttributes(
       this.signUpService.myInfoAttributes
     );
@@ -207,6 +192,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
   }
 
   skipMyInfo() {
+    this.signUpService.setMyInfoStatus(false);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
   }
 
@@ -225,8 +211,5 @@ export class CreateAccountMyinfoComponent implements OnInit {
 
   openSecondPopup() {
     this.myInfoService.loadingModalRef.componentInstance.errorMessage = this.loader2Modal.message;
-    this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
-      this.closeMyInfoPopup(false);
-    });
   }
 }

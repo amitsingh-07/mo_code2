@@ -155,7 +155,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       }
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
-      this.loader2StartTime = config.account.linkAccountLoaderStartTime * 1000;
+      this.loader2StartTime = config.account.loaderStartTime * 1000;
     });
   }
 
