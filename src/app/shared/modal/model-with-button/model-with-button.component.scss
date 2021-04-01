@@ -4,12 +4,12 @@
 .my-info {
   .modal-body {
     @include desktop {
-        width: 375px !important;
-        margin: 0 auto !important;
+      width: 375px !important;
+      margin: 0 auto !important;
     }
 
     .modal-body-title {
-        font-family: $muli-bold;
+      font-family: $muli-bold;
     }
 
     .spinner-container {
@@ -164,12 +164,13 @@
     display: flex;
   }
 }
-.hyperlink_color{
-  font-weight: bold;
+.hyperlink_color {
   color: $dark-orange-color;
+  text-decoration: none;
+  cursor: pointer;
 }
-.email_txt{
-  a{
+.email_txt {
+  a {
     color: $dark-orange-color;
     text-decoration: none;
     cursor: pointer;
