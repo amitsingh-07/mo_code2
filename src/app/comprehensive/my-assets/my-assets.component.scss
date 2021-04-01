@@ -25,7 +25,7 @@ $grey-color-notes: #9f9f9f;
     background-repeat: no-repeat;
     position: absolute;
     right: 0;
-    top: 0;    
+    top: 0;
     width: 20px;
   }
 }
@@ -149,10 +149,13 @@ $grey-color-notes: #9f9f9f;
 
 .auto-fill-cpf {
   text-align: center;
-   width: 100%;
-   display: flex;
-    height: 100px;
-    height: auto;
+  width: 100%;
+  display: flex;
+  height: 100px;
+  height: auto;
+  @include allmobiles {
+    margin: 35px 0 30px;
+  }
 }
 
 .auto-fill-logo {

@@ -41,7 +41,7 @@
           "INVALID": "Enter a valid Name"
         }
       },
-      "NRIC/FIN": {
+      "NRIC_FIN": {
         "LABEL": "NRIC / FIN",
         "ERROR": {
           "REQUIRED": "Enter a NRIC or FIN",
