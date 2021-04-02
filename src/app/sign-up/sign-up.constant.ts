@@ -64,5 +64,6 @@ export let SIGN_UP_CONFIG = {
     CREATE_ACCOUNT_STATIC :{
       SUCCESS :"SUCCESS",
       CANCELLED:"CANCELLED"
-    }
+    },
+    SINGPASS :"SINGPASS"
 };

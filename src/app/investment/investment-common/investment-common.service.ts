@@ -86,6 +86,7 @@ export class InvestmentCommonService {
     this.investmentCommonFormData.srsOperatorBank = null;
     this.investmentCommonFormData.srsAccountNumber = null;
     this.investmentCommonFormData.initialWiseIncomePayoutTypeId = null;
+    this.investmentCommonFormData.wiseIncomeActiveTabId = null;
     this.commit();
   }
 
