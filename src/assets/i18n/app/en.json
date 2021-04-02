@@ -372,7 +372,7 @@
             "DESCRIPTION": "Please be patient while we fetch your required data from Myinfo."
         },
         "RETRIEVE_CPF_DATA": {
-            "TITLE": "Retrieve via Myinfo",
+            "TITLE": "Retrieve Myinfo with Singpass <span class=\"lock\"><img src=\"assets/images/lock.svg\"></span>",
             "DESCRIPTION": "<div class='bold-txt'>Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</div><br> You will now proceed to login via Myinfo and retrieve your following details. <span class='bold-txt'>Please use your own account only.</span><div class='mt15 mb15 teal-txt'>CPF Account Balance<br>NRIC/FIN</div>Would you like to proceed?",
             "BTN-TEXT": "Let’s go!"
         },

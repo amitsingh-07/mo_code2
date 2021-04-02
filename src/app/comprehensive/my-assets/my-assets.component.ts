@@ -196,7 +196,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   openModal() {
     if (!this.viewMode) {
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'retrieve-myinfo-modal'});
-      ref.componentInstance.lockIcon = true;
       ref.componentInstance.errorTitle = this.translate.instant('MYINFO.RETRIEVE_CPF_DATA.TITLE');
       ref.componentInstance.errorMessageHTML = this.translate.instant('MYINFO.RETRIEVE_CPF_DATA.DESCRIPTION');
       ref.componentInstance.primaryActionLabel = this.translate.instant('MYINFO.RETRIEVE_CPF_DATA.BTN-TEXT');
