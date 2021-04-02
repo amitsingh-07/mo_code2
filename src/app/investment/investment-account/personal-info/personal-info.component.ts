@@ -279,7 +279,7 @@ export class PersonalInfoComponent implements OnInit {
     else {
       this.investmentAccountService.setPersonalInfo(form.getRawValue());
       this.source = this.formValues.isMyInfoEnabled ? INVESTMENT_ACCOUNT_CONSTANTS.VALIDATE_SOURCE.MYINFO : INVESTMENT_ACCOUNT_CONSTANTS.VALIDATE_SOURCE.MANUAL;
-      if (this.source = INVESTMENT_ACCOUNT_CONSTANTS.VALIDATE_SOURCE.MANUAL){    
+      if (this.source == INVESTMENT_ACCOUNT_CONSTANTS.VALIDATE_SOURCE.MANUAL && this.showNric ){    
         this.investmentCommonService.getUserNricValidation(form.getRawValue().nricNumber, this.source).subscribe((data) => {
           if(data.responseMessage.responseCode === 6013){
             this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.RESIDENTIAL_ADDRESS]);
