@@ -510,7 +510,7 @@
     "ADD_ACCOUNT": "Add Account"
   },
   "ACTIVATE_SINGPASS_MODAL": {
-    "MESSAGE": "<h4>Activate Singpass Login</h4><br><div>Use Myinfo to activate your MoneyOwl Singpass Mobile App login. No more remembering of password. This feature is available to all Singpass Registered users.</div><div class=\"more-info\"><a target=\"_blank\" href='https://www.singpass.gov.sg/myinfo/intro'>Learn more about Myinfo</a></div>"
+    "MESSAGE": "<h4>Activate Singpass Login</h4><div>Use Myinfo to activate your MoneyOwl Singpass Mobile App login. No more remembering of password. This feature is available to all Singpass Registered users.</div><div class=\"more-info\"><a target=\"_blank\" href='https://www.singpass.gov.sg/myinfo/intro'>Learn more about Myinfo</a></div>"
   },
   "SUCCESS_SINGPASS_MODAL": {
     "MESSAGE": "<h4>Singpass Account Link Completed!</h4><br><div>You may use Singpass Mobile App the next time you log in to MoneyOwl. </div><div class=\"retrieved-details\"><div class=\"retrieved-details-title\">Fields retrieved:</div><label>Name</label><div>{{name}}</div><label>NRIC/FIN</label><div>{{nric}}</div></div>",
