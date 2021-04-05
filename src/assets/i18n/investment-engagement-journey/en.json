@@ -23,6 +23,7 @@
         "TITLE": "Select Portfolio",
         "SUB_HEADING": "What is your investment goal?",
         "INVESTMENT": {
+            "PORTFOLIO_TYPE": "Dimensional",
             "TITLE": "Grow your wealth",
             "DESC": "Invest in our globally diversified portfolios to grow your wealth faster",
             "MORE_INFO": "More info",
@@ -39,8 +40,9 @@
             }
         },
         "WISESAVER": {
+            "PORTFOLIO_TYPE": "WiseSaver",
             "TITLE": "Park spare cash",
-            "DESC": "Get higher interest than your savings account with WiseSaver",
+            "DESC": "Get higher interest than your savings account",
             "MORE_INFO": "More info",
             "FOOTER_BTN_TXT": "Continue",
             "SLIDES": {
@@ -55,8 +57,9 @@
             }
         },
         "WISEINCOME": {
+            "PORTFOLIO_TYPE": "WiseIncome",
             "TITLE": "Receive passive income",
-            "DESC": "Get regular payouts for your retirement or other needs with WiseIncome",
+            "DESC": "Get regular payouts for your retirement or other needs",
             "MORE_INFO": "More info",
             "FOOTER_BTN_TXT": "Continue",
             "SLIDES": {
