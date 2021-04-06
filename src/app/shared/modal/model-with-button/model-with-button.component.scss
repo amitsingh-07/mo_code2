@@ -145,3 +145,32 @@
     display: flex;
   }
 }
+.bold-text {
+  font-family: $muli-bold;
+}
+
+  .checkbox-button {
+    background: none;
+
+    .input-label-black {
+      letter-spacing: -0.3px;
+      color: $dark-teal-color;
+    }
+
+    .input-label-normal {
+      font-family: $muli-italic;
+      font-size: 14px;
+      font-style: italic;
+      letter-spacing: -0.1px;
+      color: $text-color-secondary;
+    }
+  }
+  .check-box{
+    &[disabled] {
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15) !important;
+    background-color: #7fe2e2;
+    cursor: not-allowed;
+    border: 1px solid #7fe2e2;
+}
+  
+}
