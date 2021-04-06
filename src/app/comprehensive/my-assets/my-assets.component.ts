@@ -20,8 +20,9 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 import { Util } from './../../shared/utils/util';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
-import { ModelWithButtonComponent } from './../../shared/modal/model-with-button/model-with-button.component';
+
 
 @Component({
   selector: 'app-my-assets',
@@ -109,9 +110,9 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled
           && this.myInfoService.checkMyInfoSourcePage()) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
-            if (data && data['objectList'] && data['objectList']['uin']) {
-              this.comprehensiveService.validateUin(data['objectList']['uin']).subscribe((response)=>{
-                if (response['responseCode'] === '6013') {
+            if (data && data['objectList'] && data['objectList'][0]['uin']) {
+              this.comprehensiveService.validateUin(data['objectList'][0]['uin']).subscribe((response)=>{
+                if (response.responseMessage['responseCode'] === 6013) {
                   const cpfValues = data.objectList[0].cpfbalances;
                   const oaFormControl = this.myAssetsForm.controls['cpfOrdinaryAccount'];
                   const saFormControl = this.myAssetsForm.controls['cpfSpecialAccount'];
@@ -127,6 +128,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
                   raFormControl.markAsDirty();
                   this.onTotalAssetsBucket();
                   this.cpfFromMyInfo = true;
+                  this.showEditIcon = true;
                   this.myInfoService.isMyInfoEnabled = false;
                   this.closeMyInfoPopup();
                 } else {
@@ -194,7 +196,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   openModal() {
     if (!this.viewMode) {
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'retrieve-myinfo-modal'});
-      ref.componentInstance.lockIcon = true;
       ref.componentInstance.errorTitle = this.translate.instant('MYINFO.RETRIEVE_CPF_DATA.TITLE');
       ref.componentInstance.errorMessageHTML = this.translate.instant('MYINFO.RETRIEVE_CPF_DATA.DESCRIPTION');
       ref.componentInstance.primaryActionLabel = this.translate.instant('MYINFO.RETRIEVE_CPF_DATA.BTN-TEXT');
@@ -505,8 +506,11 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorTitle = this.translate.instant('MYINFO.NRIC_USED_ERROR.TITLE');
       ref.componentInstance.errorMessageHTML = this.translate.instant('MYINFO.NRIC_USED_ERROR.DESCRIPTION');
       ref.componentInstance.primaryActionLabel = this.translate.instant('MYINFO.NRIC_USED_ERROR.BTN-TEXT');
+      ref.componentInstance.closeAction.subscribe(() => {
+        this.modal.dismissAll();
+      });
       ref.result.then((data) => {
-        ref.close();
+        this.modal.dismissAll();
       }).catch((e) => {
       });
     }

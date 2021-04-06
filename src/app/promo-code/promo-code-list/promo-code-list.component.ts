@@ -99,6 +99,8 @@ export class PromoCodeListComponent implements OnInit {
               this.formGrp.controls['promoCode'].setErrors({ promoCodeAlreadyApplied: true });
             } else if (responseCode === 5026) {
               this.formGrp.controls['promoCode'].setErrors({ existingPromoCode: true });
+            } else if (responseCode === 5029) {
+              this.formGrp.controls['promoCode'].setErrors({ noExistingPortfolio: true });
             } else {
               this.formGrp.controls['promoCode'].setErrors({ invalidPromoCode: true });
             }
@@ -134,6 +136,16 @@ export class PromoCodeListComponent implements OnInit {
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.FEES]);
     event.stopPropagation();
     event.preventDefault();
+  }
+
+  checkError() {
+    const formError = this.formGrp.controls['promoCode']['errors'];
+    if (formError && (formError['invalidPromoCode'] || formError['promoCodeAlreadyApplied'] || 
+    formError['existingPromoCode'] || formError['noExistingPortfolio'])) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

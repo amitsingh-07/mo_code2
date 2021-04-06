@@ -8,7 +8,7 @@ app-create-account-myinfo {
             padding-right: 20px !important;
             position: relative;
             height: 100%;
-            padding: 30px 0 80px;
+            padding: 0 30px 0 80px;
         }
     }
     .back-btn {
@@ -20,6 +20,7 @@ app-create-account-myinfo {
         top: 10%;
         left: 20px;
         background-repeat: no-repeat;
+        z-index: 999;
     }
     .signup-wrapper__title {
         font-family: $muli-bold;
@@ -38,8 +39,8 @@ app-create-account-myinfo {
         width: 80px;
         height: 14px;
         position: absolute;
-        top: 10%;
-        right: 40px;
+        top: 11%;
+        right: 38px;
         background-repeat: no-repeat;
         @include iphone5 {
             right: 15px;
@@ -133,6 +134,12 @@ app-create-account-myinfo {
         &.btn-proceed {
             background-color: $white-color !important;
             color: $teal-color !important;
+            @include allmobiles{
+            font-size: 22px;
+            }
+            @include iphone5{
+            font-size: 18px; 
+            }
         }
     }
  

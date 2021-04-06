@@ -8,7 +8,6 @@ export class SignUpFormData {
   password: string;
   fullName:string;
   nricNumber:any;
-  callBackInvestmentAccount :boolean;
   disableAttributes :any;
   isMyInfoEnabled :boolean;
   
@@ -46,4 +45,5 @@ export class SignUpFormData {
   // referral code
   referralCode: string;
   userType: string;
+  accountCreationType:string;
 }

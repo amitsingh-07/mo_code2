@@ -127,13 +127,11 @@ export class SingPassComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorTitle = this.modelTitle;
       ref.componentInstance.errorMessageHTML = this.modelMessge;
       ref.componentInstance.primaryActionLabel = this.modelBtnText;
-      ref.componentInstance.lockIcon = true;
       ref.componentInstance.myInfo = true;
     } else {
       ref.componentInstance.errorTitle = this.modelTitle1;
       ref.componentInstance.errorMessageHTML = this.modelMessge1;
       ref.componentInstance.primaryActionLabel = this.modelBtnText1;
-      ref.componentInstance.lockIcon = true;
       ref.componentInstance.myInfo = true;
     }
     ref.result
@@ -147,8 +145,8 @@ export class SingPassComponent implements OnInit, OnDestroy {
     this.showFetchPopUp();
     this.myInfoSubscription = this.myInfoService.getMyInfoData().subscribe((data) => {
       if (data && data.objectList[0]) { 
-        this.investmentCommonService.getUserNricValidation(data.objectList[0].uin , INVESTMENT_ACCOUNT_CONSTANTS.VALIDATE_SOURCE.MYINFO).subscribe((data) => {
-          if(data.responseMessage.responseCode === 6013){
+        this.investmentCommonService.getUserNricValidation(data.objectList[0].uin , INVESTMENT_ACCOUNT_CONSTANTS.VALIDATE_SOURCE.MYINFO).subscribe((response) => {
+          if(response.responseMessage.responseCode === 6013){
             this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
             this.myInfoService.isMyInfoEnabled = false;
             this.closeMyInfoPopup(false);
@@ -163,7 +161,7 @@ export class SingPassComponent implements OnInit, OnDestroy {
               });
             }
           }
-          else if(data.responseMessage.responseCode === 6014){
+          else if(response.responseMessage.responseCode === 6014){
             this.closeMyInfoPopup(false);
             this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
             const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
@@ -177,7 +175,7 @@ export class SingPassComponent implements OnInit, OnDestroy {
               'INVESTMENT_ACCOUNT_MYINFO.NRIC_VALIDATION_ERROR.BTN-TEXT'
             );
           }
-          else if(data.responseMessage.responseCode === 6015){
+          else if(response.responseMessage.responseCode === 6015){
             this.closeMyInfoPopup(false);
             this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
             const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
@@ -190,6 +188,8 @@ export class SingPassComponent implements OnInit, OnDestroy {
             ref.componentInstance.primaryActionLabel = this.translate.instant(
               'INVESTMENT_ACCOUNT_MYINFO.NRIC_VALIDATION_ERROR.BTN-TEXT'
             );
+          } else {
+            this.closeMyInfoPopup(true);
           }
         });
       } else {

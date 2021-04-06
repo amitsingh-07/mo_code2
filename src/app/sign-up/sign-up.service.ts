@@ -725,13 +725,8 @@ export class SignUpService {
     return disable;
   }
 
-  setCallBackSignUp() {
-    this.signUpFormData.callBackInvestmentAccount = true;
+  setMyInfoStatus(status) {
+    this.signUpFormData.isMyInfoEnabled = status;
     this.commit();
   }
-
-  getCallBackSignUp() {
-    return this.signUpFormData.callBackInvestmentAccount;
-  }
-  
 }
