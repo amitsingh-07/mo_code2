@@ -101,6 +101,10 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    const initialMessage = this.investmentAccountService.getInitialMessageToShowDashboard();
+    if (initialMessage && initialMessage.dashboardInitMessageShow) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD], {replaceUrl: true});
+    }
     if (environment.hideHomepage) {
       this.navbarService.setNavbarMode(104);
     } else {

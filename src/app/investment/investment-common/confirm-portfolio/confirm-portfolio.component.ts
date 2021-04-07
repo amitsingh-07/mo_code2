@@ -276,12 +276,14 @@ export class ConfirmPortfolioComponent implements OnInit {
       });
       ref.componentInstance.imgType = 1;
       ref.componentInstance.closeBtn = false;
-      if( INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.GROW === this.portfolio.payoutType || INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.FOUR_PERCENT === this.portfolio.payoutType){
-        ref.componentInstance.errorTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.GROW_4PERCENT_TITLE');;
-        ref.componentInstance.errorMessageHTML = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.GROW_4PERCENT_DESC');
+      if( INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.GROW === this.portfolio.payoutType ||INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.FOUR_PERCENT === this.portfolio.payoutType ) {
+        ref.componentInstance.errorTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.PAYOUT_TITLE');;
+        ref.componentInstance.errorMessageHTML = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.PAYOUT_DESC');
       } else {
-        ref.componentInstance.errorTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.8PERCENT_TITLE');;
-        ref.componentInstance.errorMessageHTML = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.8PERCENT_DESC');
+        ref.componentInstance.disablePrimaryBtn = true;
+        ref.componentInstance.errorTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.PAYOUT_TITLE');
+        ref.componentInstance.checkBoxMessage = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.8PERCENT_DESC2');        
+        ref.componentInstance.errorMessageHTML = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.PAYOUT_DESC');
       }
      
       ref.componentInstance.primaryActionLabel = this.translate.instant(

@@ -144,13 +144,10 @@
             "MONTHLY_INVESTMENT": "Monthly Investment",
             "REVIEW_MY_INPUTS": "Review My Inputs",
             "POPUP": {
-                "GROW_4PERCENT_TITLE": "Please read before you proceed",
-                "GROW_4PERCENT_DESC": "By proceeding, I agree that I am willing to accept temporary losses in the short term to achieve investment gains in the long term and that this portfolio aligns with my willingness and ability to take risk.",
-                "8PERCENT_TITLE": "Please read before you proceed",
-                "8PERCENT_DESC": "By proceeding, I agree that I am willing to accept temporary losses in the short term to achieve investment gains in the long term and that this portfolio aligns with my willingness and ability to take risk.<br/><br/>I understand that choosing a 8% p.a. payout would reduce my portfolio value over time as distributions would be made up of both income and drawdown from my invested amount.",
-                "8PERCENT_DESC1": "By proceeding, I agree that I am willing to accept temporary losses in the short term to achieve investment gains in the long term and that this portfolio aligns with my willingness and ability to take risk.",
-                "8PERCENT_DESC2": "I understand that choosing a 8% p.a. payout would reduce my portfolio value over time as distributions would be made up of both income and drawdown from my invested amount.",
-                "UNDERSTAND_PROCEED": "Understand & Proceed",
+                "PAYOUT_TITLE": "Please read before you proceed",               
+                "PAYOUT_DESC":"By proceeding, I agree that <span class=\"text-bold\">I am willing to accept temporary losses in the short term</span> to achieve investment gains in the long term and that <span class=\"text-bold\">this portfolio aligns with my willingness and ability to take risk.</span>",              
+                "8PERCENT_DESC2": "I understand that choosing a <span class=\"text-bold\">8% p.a. payout</span> would reduce my portfolio value over time as <span class=\"text-bold\">distributions would be made up of both income and return of capital.</span>",
+                "UNDERSTAND_PROCEED": "Proceed",
                 "CANCEL": "Cancel"
             }
         }

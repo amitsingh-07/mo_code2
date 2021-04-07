@@ -76,6 +76,10 @@
 }
 .modal-body-message {
   margin-bottom: 15px;
+  &.check-box-message{
+  margin-top: -6px;
+  margin-bottom: 20px;
+  }
 }
 .modal-body {
   padding: 20px;
@@ -145,3 +149,6 @@
     display: flex;
   }
 }
+
+
+  
