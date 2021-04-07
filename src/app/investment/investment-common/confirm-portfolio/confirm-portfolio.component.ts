@@ -280,6 +280,7 @@ export class ConfirmPortfolioComponent implements OnInit {
         ref.componentInstance.errorTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.PAYOUT_TITLE');;
         ref.componentInstance.errorMessageHTML = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.PAYOUT_DESC');
       } else {
+        ref.componentInstance.disablePrimaryBtn = true;
         ref.componentInstance.errorTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.PAYOUT_TITLE');
         ref.componentInstance.checkBoxMessage = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.8PERCENT_DESC2');        
         ref.componentInstance.errorMessageHTML = this.translate.instant('PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.POPUP.PAYOUT_DESC');

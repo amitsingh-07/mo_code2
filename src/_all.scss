@@ -2429,13 +2429,12 @@ select:-webkit-autofill:focus {
     cursor: pointer;
     background: url("/assets/images/check-box-normal.svg") left top no-repeat;
   }
-  .check-box{
+  .modal-btn-disabled{
     &[disabled] {
-    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15) !important;
-    background-color: $aquamarine-color;
-    cursor: not-allowed;
-    border: 1px solid $aquamarine-color;
-}
-  
-}
+      box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15) !important;
+      background-color: $aquamarine-color;
+      cursor: not-allowed;
+      border: 1px solid $aquamarine-color;
+    }  
+  }
 } 
