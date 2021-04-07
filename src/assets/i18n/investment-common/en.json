@@ -145,8 +145,8 @@
             "REVIEW_MY_INPUTS": "Review My Inputs",
             "POPUP": {
                 "PAYOUT_TITLE": "Please read before you proceed",               
-                "PAYOUT_DESC":"By proceeding, I agree that <span class=\"bold-text\">I am willing to accept temporary losses in the short term</span> to achieve investment gains in the long term and that <span class=\"bold-text\">this portfolio aligns with my willingness and ability to take risk.</span>",              
-                "8PERCENT_DESC2": "I understand that choosing a <span class=\"bold-text\">8% p.a. payout</span> would reduce my portfolio value over time as <span class=\"bold-text\">distributions would be made up of both income and return of capital.</span>",
+                "PAYOUT_DESC":"By proceeding, I agree that <span class=\"text-bold\">I am willing to accept temporary losses in the short term</span> to achieve investment gains in the long term and that <span class=\"text-bold\">this portfolio aligns with my willingness and ability to take risk.</span>",              
+                "8PERCENT_DESC2": "I understand that choosing a <span class=\"text-bold\">8% p.a. payout</span> would reduce my portfolio value over time as <span class=\"text-bold\">distributions would be made up of both income and return of capital.</span>",
                 "UNDERSTAND_PROCEED": "Proceed",
                 "CANCEL": "Cancel"
             }
