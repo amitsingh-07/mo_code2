@@ -2421,19 +2421,6 @@ select:-webkit-autofill:focus {
   }
   .checkbox-button {
     background: none;
-
-    .input-label-black {
-      letter-spacing: -0.3px;
-      color: $dark-teal-color;
-    }
-
-    .input-label-normal {
-      font-family: $muli-italic;
-      font-size: 14px;
-      font-style: italic;
-      letter-spacing: -0.1px;
-      color: $text-color-secondary;
-    }
   }
   input[type='checkbox']+label {
     margin: 0;
