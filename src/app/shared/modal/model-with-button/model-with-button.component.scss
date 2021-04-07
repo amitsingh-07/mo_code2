@@ -76,6 +76,10 @@
 }
 .modal-body-message {
   margin-bottom: 15px;
+  &.checkBoxMessage{
+  margin-top: -6px;
+  margin-bottom: 20px;
+  }
 }
 .modal-body {
   padding: 20px;
@@ -164,6 +168,13 @@
       letter-spacing: -0.1px;
       color: $text-color-secondary;
     }
+  }
+  input[type='checkbox']+label {
+    margin: 0;
+    clear: none;
+    padding: 0px 0 0px 40px;
+    cursor: pointer;
+    background: url("/assets/images/check-box-normal.svg") left top no-repeat;
   }
   .check-box{
     &[disabled] {
