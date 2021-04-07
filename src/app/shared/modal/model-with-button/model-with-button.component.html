@@ -23,8 +23,8 @@
     <img class="img-fluid" src="assets/images/portfolio/existportfolio.svg" />
   </div>
   <div class="checkbox-button two-label flex-col-12 pl0 pr0 mb0" *ngIf="checkBoxMessage">
-    <input id="1" type="checkbox" class="field checkbox" name="firstChkBox" (change)="firstChkBoxChange()">
-    <label for="1" id="c1">
+    <input id="checkbox-button" type="checkbox" class="field checkbox" name="ChkBox" (change)="checkBox()">
+    <label for="checkbox-button" id="c1">
       <div class="modal-body-message checkBoxMessage" *ngIf="checkBoxMessage" [innerHTML]="checkBoxMessage"></div>
     </label>
   </div>

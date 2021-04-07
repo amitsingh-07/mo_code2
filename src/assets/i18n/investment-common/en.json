@@ -144,12 +144,9 @@
             "MONTHLY_INVESTMENT": "Monthly Investment",
             "REVIEW_MY_INPUTS": "Review My Inputs",
             "POPUP": {
-                "GROW_4PERCENT_TITLE": "Please read before you proceed",
-                "GROW_4PERCENT_DESC": "By proceeding, I agree that I am willing to accept temporary losses in the short term to achieve investment gains in the long term and that this portfolio aligns with my willingness and ability to take risk.",
-                "8PERCENT_TITLE": "Please read before you proceed",
-                "4PERCENT_DESC":"By proceeding, I agree that <span class=\"bold-text\">I am willing to accept temporary losses in the short term</span> to achieve investment gains in the long term and that <span class=\"bold-text\">this portfolio aligns with my willingness and ability to take risk.</span>",
-                "8PERCENT_DESC": "By proceeding, I agree that I am willing to accept temporary losses in the short term to achieve investment gains in the long term and that this portfolio aligns with my willingness and ability to take risk.",               
-                "8PERCENT_DESC2": "I understand that choosing a <span class=\"bold-text\">8% p.a. payout</span> would reduce my portfolio value over time as <span class=\"bold-text\">distributions would be made up of both income and drawdown from my invested amount.</span>",
+                "PAYOUT_TITLE": "Please read before you proceed",               
+                "PAYOUT_DESC":"By proceeding, I agree that <span class=\"bold-text\">I am willing to accept temporary losses in the short term</span> to achieve investment gains in the long term and that <span class=\"bold-text\">this portfolio aligns with my willingness and ability to take risk.</span>",              
+                "8PERCENT_DESC2": "I understand that choosing a <span class=\"bold-text\">8% p.a. payout</span> would reduce my portfolio value over time as <span class=\"bold-text\">distributions would be made up of both income and return of capital.</span>",
                 "UNDERSTAND_PROCEED": "Proceed",
                 "CANCEL": "Cancel"
             }

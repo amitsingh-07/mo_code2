@@ -153,35 +153,4 @@
   font-family: $muli-bold;
 }
 
-  .checkbox-button {
-    background: none;
-
-    .input-label-black {
-      letter-spacing: -0.3px;
-      color: $dark-teal-color;
-    }
-
-    .input-label-normal {
-      font-family: $muli-italic;
-      font-size: 14px;
-      font-style: italic;
-      letter-spacing: -0.1px;
-      color: $text-color-secondary;
-    }
-  }
-  input[type='checkbox']+label {
-    margin: 0;
-    clear: none;
-    padding: 0px 0 0px 40px;
-    cursor: pointer;
-    background: url("/assets/images/check-box-normal.svg") left top no-repeat;
-  }
-  .check-box{
-    &[disabled] {
-    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15) !important;
-    background-color: $aquamarine-color;
-    cursor: not-allowed;
-    border: 1px solid $aquamarine-color;
-}
   
-}

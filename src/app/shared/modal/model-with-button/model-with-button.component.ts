@@ -33,13 +33,12 @@ export class ModelWithButtonComponent implements OnInit {
   @Input() spinner: any;
   @Input() myInfo: any;
   @Input() checkBoxMessage: any;
-  @Input() checkBox: any;
   @Output() primaryAction = new EventEmitter<any>();
   @Output() secondaryAction = new EventEmitter<any>();
   @Output() yesClickAction = new EventEmitter<any>();
   @Output() noClickAction = new EventEmitter<any>();
   @Output() closeAction = new EventEmitter<any>();
-   enableBtn=true;
+  enableBtn=true;
   constructor(
     public activeModal: NgbActiveModal,
     private router: Router,
@@ -95,7 +94,7 @@ export class ModelWithButtonComponent implements OnInit {
       animationData: animationData
     })
   }
-  firstChkBoxChange(){
+  checkBox(){
     this.enableBtn = !this.enableBtn
   }
 }
