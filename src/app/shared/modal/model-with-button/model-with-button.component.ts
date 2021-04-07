@@ -57,7 +57,6 @@ export class ModelWithButtonComponent implements OnInit {
         this.activeModal.dismiss();
       });
     this.createAnimation();
-    console.log(this.disablePrimaryBtn +"disablePrimaryBtn");
   }
 
   primaryActionSelected() {
