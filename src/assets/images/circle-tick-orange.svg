@@ -1,19 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
-    <defs>
-        <filter id="bqr6i37f9a" width="111.9%" height="125%" x="-6%" y="-12.5%" filterUnits="objectBoundingBox">
-            <feOffset dy="4" in="SourceAlpha" result="shadowOffsetOuter1"/>
-            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="3"/>
-            <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
-            <feMerge>
-                <feMergeNode in="shadowMatrixOuter1"/>
-                <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-        </filter>
-    </defs>
     <g fill="none" fill-rule="evenodd">
         <g>
-            <g filter="url(#bqr6i37f9a)" transform="translate(-40 -437) translate(20 417)">
-                <g transform="translate(20 20)">
+            <g>
+                <g transform="translate(-40 -437) translate(20 417) translate(20 20)">
                     <circle cx="15" cy="15" r="15" fill="#FF872F"/>
                     <g fill="#FFF">
                         <g>
