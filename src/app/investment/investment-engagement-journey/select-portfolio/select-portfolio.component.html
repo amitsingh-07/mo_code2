@@ -6,10 +6,12 @@
         <div class="investment-portfolio" formControlName="selectPortfolioType" id="selectPortfolioType" name="selectPortfolioForm" value="investPortfolio" ngDefaultControl (click)="setSelectPortfolioType('investPortfolio')">
             <div class="portfolio-cards" [ngClass]="{'active': investmentEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='investPortfolio', 'more-info-shadow': investmentMoreInfoShow}">
                 <div class="portfolio-cards__select" *ngIf="investmentEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='investPortfolio'">
-                    <img src="assets/images/wisesaver/circle-tick-orange.svg"></div>
+                    <img src="assets/images/circle-tick-orange.svg"></div>
                 <div class="portfolio-cards__img"><img src="assets/images/wisesaver/investment-guy.svg"></div>
                 <div class="portfolio-cards__details">
-                    <div class="portfolio-cards__details__portfolio-type">{{'PORTFOLIO.INVESTMENT.PORTFOLIO_TYPE' | translate}}</div>
+                    <div class="portfolio-cards__details__portfolio-type">
+                        <img src="assets/images/dimensional-logo.svg"/>
+                    </div>
                     <div class="portfolio-cards__details__title">{{'PORTFOLIO.INVESTMENT.TITLE' | translate}}</div>
                     <div class="portfolio-cards__details__desc" [innerHTML]="'PORTFOLIO.INVESTMENT.DESC' | translate"></div>
                     <div class="portfolio-cards__details__more" (click)="investmentMoreInfo($event)">
@@ -45,10 +47,12 @@
             <div class="portfolio-cards" [ngClass]="{'active': wiseIncomeEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='wiseIncomePortfolio', 'more-info-shadow': wiseIncomeMoreInfoShow}">
                 <div class="portfolio-new"><img src="assets/images/wiseincome/portfolio-new.svg"></div>
                 <div class="portfolio-cards__select" *ngIf="wiseIncomeEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='wiseIncomePortfolio'">
-                    <img src="assets/images/wisesaver/circle-tick-orange.svg"></div>
+                    <img src="assets/images/circle-tick-orange.svg"></div>
                 <div class="portfolio-cards__img"><img src="assets/images/wiseincome/investment-guy.svg"></div>
                 <div class="portfolio-cards__details">
-                    <div class="portfolio-cards__details__portfolio-type">{{'PORTFOLIO.WISEINCOME.PORTFOLIO_TYPE' | translate}}</div>
+                    <div class="portfolio-cards__details__portfolio-type">
+                        <img src="assets/images/wise-income-logo.svg"/>
+                    </div>
                     <div class="portfolio-cards__details__title">{{'PORTFOLIO.WISEINCOME.TITLE' | translate}}</div>
                     <div class="portfolio-cards__details__desc" [innerHTML]="'PORTFOLIO.WISEINCOME.DESC' | translate"></div>
                     <div class="portfolio-cards__details__more" (click)="wiseIncomeMoreInfo($event)">
@@ -86,10 +90,12 @@
         selectPortfolioForm.controls.selectPortfolioType.value ==='wiseSaverPortfolio',
         'more-info-shadow': wiseSaverMoreInfoShow }">
                 <div class="portfolio-cards__select" *ngIf="wiseSaverEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='wiseSaverPortfolio'">
-                    <img src="assets/images/wisesaver/circle-tick-orange.svg"></div>
+                    <img src="assets/images/circle-tick-orange.svg"></div>
                 <div class="portfolio-cards__img"><img src="assets/images/wisesaver/wisesaver-family.svg"></div>
                 <div class="portfolio-cards__details">
-                    <div class="portfolio-cards__details__portfolio-type">{{'PORTFOLIO.WISESAVER.PORTFOLIO_TYPE' | translate}}</div>
+                    <div class="portfolio-cards__details__portfolio-type">
+                        <img src="assets/images/wise-saver-logo.svg"/>
+                    </div>
                     <div class="portfolio-cards__details__title">{{'PORTFOLIO.WISESAVER.TITLE' | translate}}</div>
                     <div class="portfolio-cards__details__desc" [innerHTML]="'PORTFOLIO.WISESAVER.DESC' | translate"></div>
                     <div class="portfolio-cards__details__more" (click)="wiseSaverMoreInfo($event)">
