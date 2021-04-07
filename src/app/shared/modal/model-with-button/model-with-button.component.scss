@@ -179,9 +179,9 @@
   .check-box{
     &[disabled] {
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15) !important;
-    background-color: #7fe2e2;
+    background-color: $aquamarine-color;
     cursor: not-allowed;
-    border: 1px solid #7fe2e2;
+    border: 1px solid $aquamarine-color;
 }
   
 }
