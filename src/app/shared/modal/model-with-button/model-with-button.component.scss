@@ -7,16 +7,6 @@
       width: 375px !important;
       margin: 0 auto !important;
     }
-
-    .modal-body-title {
-      font-family: $muli-bold;
-    }
-
-    .spinner-container {
-      #mo_spinner {
-        margin: 6px 10px 0px 0px;
-      }
-    }
   }
 }
 
@@ -168,6 +158,10 @@
   color: $dark-orange-color;
   text-decoration: none;
   cursor: pointer;
+  &:hover {
+    color: $dark-orange-color;
+    text-decoration: none;
+  }
 }
 .email_txt {
   a {
