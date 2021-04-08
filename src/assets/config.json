@@ -22,8 +22,8 @@
   "maintenanceEndTime": "2020-12-13T00:10:00.000+08:00",
   "showPortfolioInfo": true,
   "investment": {
-    "myInfoLoader2StartTime": 10,
-    "myInfoLoader3StartTime": 20
+    "myInfoLoader2StartTime": 60,
+    "myInfoLoader3StartTime": 90
   },
   "account": {
     "loaderStartTime" : 90
