@@ -536,7 +536,7 @@
     },
     "ERROR_MODAL": {
       "TITLE": "Oops, Unable to Connect",
-      "MESSAGE": "We are unable to connect to Myinfo temporary. Please try again later.",
+      "MESSAGE": "We are unable to connect to Myinfo temporarily. Please try again later.",
       "BTN-TEXT": "Try Again Later"
     },
     "ALREADY_EXISTING": {
@@ -575,7 +575,7 @@
     },
     "LOADER3": {
       "title": "Oops, Unable to Connect",
-      "message": "We are unable to connect to Myinfo temporary. Please try again later.",
+      "message": "We are unable to connect to Myinfo temporarily. Please try again later.",
       "primaryActionLabel": "Try Again Later",
       "secondaryActionLabel": "Create Account Manually"
     }
