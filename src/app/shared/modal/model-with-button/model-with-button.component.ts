@@ -32,12 +32,14 @@ export class ModelWithButtonComponent implements OnInit {
   @Input() investmentPeriodImg: any;
   @Input() spinner: any;
   @Input() myInfo: any;
+  @Input() checkBoxMessage: any;
+  @Input() disablePrimaryBtn = false;
   @Output() primaryAction = new EventEmitter<any>();
   @Output() secondaryAction = new EventEmitter<any>();
   @Output() yesClickAction = new EventEmitter<any>();
   @Output() noClickAction = new EventEmitter<any>();
   @Output() closeAction = new EventEmitter<any>();
-
+ 
   constructor(
     public activeModal: NgbActiveModal,
     private router: Router,
@@ -93,5 +95,7 @@ export class ModelWithButtonComponent implements OnInit {
       animationData: animationData
     })
   }
-
+  enableCheckBox(){
+    this.disablePrimaryBtn = !this.disablePrimaryBtn
+  }
 }
