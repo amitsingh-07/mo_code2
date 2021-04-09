@@ -40,6 +40,7 @@ import { HelperService } from './../../shared/http/helper.service';
 import { IError } from './../../shared/http/interfaces/error.interface';
 import { StateStoreService } from './../../shared/Services/state-store.service';
 import { LoginFormError } from './login-form-error';
+import { SIGN_UP_CONFIG } from './../sign-up.constant';
 
 @Component({
   selector: 'app-login',
@@ -526,23 +527,23 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   openModal(event) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = 'Log In to MoneyOwl using Singpass Mobile App';
-    ref.componentInstance.errorMessageHTML = 'If you <span class="bold-txt">do not have</span> a MoneyOwl investment account, please do a Password Login and activate Singpass Login in your Profile page.<br><br>If you <span class="bold-txt">have</span> a MoneyOwl investment account, simply scan the QR code with your Singpass Mobile App to log in!<br><br>Please note that this feature is available to all Singpass Registered Users.<br><br><a class="anchor-txt" target="_blank" href="https://www.singpass.gov.sg/singpass/common/faq">Learn more about Singpass</a>';
+    ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.TITLE');
+    ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.MESSAGE');
     event.stopPropagation();
     event.preventDefault();
   }
 
   openSingpassLoginFail(event) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = 'Log In to MoneyOwl using Singpass Mobile App';
-    ref.componentInstance.errorMessageHTML = 'If you <span class="bold-txt">do not have</span> a MoneyOwl investment account, please do a Password Login and activate Singpass Login in your Profile page.<br><br>If you <span class="bold-txt">have</span> a MoneyOwl investment account, simply scan the QR code with your Singpass Mobile App to log in!<br><br>Please note that this feature is available to all Singpass Registered Users.<br><br><a class="anchor-txt" target="_blank" href="https://www.singpass.gov.sg/singpass/common/faq">Learn more about Singpass</a>';
+    ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.TITLE');
+    ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.TITLE');
     ref.componentInstance.myInfo = true;
     event.stopPropagation();
     event.preventDefault();
   }
   
   toggleSingpass(type) {
-    if (type === 'singpass') {
+    if (type === SIGN_UP_CONFIG.SINGPASS) {
       this.showSingpassLogin = true;
       this.showPasswordLogin = false;
     } else {

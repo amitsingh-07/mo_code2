@@ -19,12 +19,12 @@
         <div class="signup-wrapper">
           <div class="password-qr-toggle">
             <div class="toggle-container">
-              <div [ngClass]="{'white-txt': showPasswordLogin}" class="toggle-btn" (click)="toggleSingpass('password')">{{
+              <div [ngClass]="{'white-txt': showPasswordLogin}" class="toggle-btn" (click)="toggleSingpass('PASSWORD')">{{
                 'LOGIN.PASSWORD_LOGIN' | translate}}</div>
               <div [hidden]="showSingpassLogin" class=" underline"></div>
             </div>
             <div class="toggle-container">
-              <div [ngClass]="{'white-txt': showSingpassLogin}" class="toggle-btn" (click)="toggleSingpass('singpass')">
+              <div [ngClass]="{'white-txt': showSingpassLogin}" class="toggle-btn" (click)="toggleSingpass('SINGPASS')">
                 <img [hidden]="showSingpassLogin" src="assets/images/singpass/icon-scan-qr.svg">
                 <img [hidden]="showPasswordLogin" src="assets/images/singpass/icon-scan-qr-white.svg">
                 <div>{{ 'LOGIN.SINGPASS_MOBILE' | translate}}</div>

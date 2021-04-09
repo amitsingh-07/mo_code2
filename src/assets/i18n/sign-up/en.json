@@ -208,7 +208,15 @@
       "TITLE": "Oops, verify your email to login!",
       "VERIFY_EMAIL_MESSAGE": "You are almost there! An email verification is sent. We need you to verify your email to complete your account creation!"
     },
-    "CLIENT_ASSISTANCE": "If you require any assistance, please contact us at <b class='text-bold'><a href='mailto:clientsupport@moneyowl.com.sg' target='_blank'>clientsupport@moneyowl.com.sg</a></b> or <b class='text-bold'><a href='tel:63299188' target='_blank' class='text-bold'>6329 9188.</a></b> Our operating hours are Monday - Friday, 9am - 6pm."
+    "CLIENT_ASSISTANCE": "If you require any assistance, please contact us at <b class='text-bold'><a href='mailto:clientsupport@moneyowl.com.sg' target='_blank'>clientsupport@moneyowl.com.sg</a></b> or <b class='text-bold'><a href='tel:63299188' target='_blank' class='text-bold'>6329 9188.</a></b> Our operating hours are Monday - Friday, 9am - 6pm.",
+    "SINGPASS_ACTIVATE_MODAL": {
+      "TITLE": "Log In to MoneyOwl using Singpass Mobile App",
+      "MESSAGE": "If you <span class='bold-txt'>do not have</span> a MoneyOwl investment account, please do a Password Login and activate Singpass Login in your Profile page.<br><br>If you <span class='bold-txt'>have</span> a MoneyOwl investment account, simply scan the QR code with your Singpass Mobile App to log in!<br><br>Please note that this feature is available to all Singpass Registered Users.<br><br><a class='anchor-txt' target='_blank' href='https://www.singpass.gov.sg/singpass/common/faq'>Learn more about Singpass</a>"
+    },
+    "SINGPASS_LOGIN_FAIL_MODAL": {
+      "TITLE": "Singpass login unsuccessful",
+      "MESSAGE": "If you <span class='bold-txt'>have</span> a MoneyOwl account, please do a Password Login and activate Singpass Login in your Profile page.<br><br>If you <span class='bold-txt'>do not have</span> a MoneyOwl account, click here to create an account."
+    }
   },
   "FORGOTPASSWORD": {
     "SUBMIT": "Submit",
