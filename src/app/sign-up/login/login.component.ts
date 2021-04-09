@@ -159,6 +159,12 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.signUpService.getCaptchaShown()) {
       this.setCaptchaValidator();
     }
+    if (this.singpassEnabled) {
+      this.initSingpassQR();
+    }
+  }
+
+  initSingpassQR() {
     var OIDCParams = {
       nonce: ('' + Math.random() * 1000000000000000 + '').slice(0, 15),
       state: ('' + Math.random() * 1000000000000000 + '').slice(0, 15),
