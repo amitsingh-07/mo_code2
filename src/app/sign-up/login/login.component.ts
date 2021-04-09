@@ -1,3 +1,4 @@
+import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
 import { Location } from '@angular/common';
 import {
   AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit,
@@ -39,6 +40,7 @@ import { HelperService } from './../../shared/http/helper.service';
 import { IError } from './../../shared/http/interfaces/error.interface';
 import { StateStoreService } from './../../shared/Services/state-store.service';
 import { LoginFormError } from './login-form-error';
+import { SIGN_UP_CONFIG } from './../sign-up.constant';
 
 @Component({
   selector: 'app-login',
@@ -63,10 +65,15 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   finlitEnabled = false;
   capsOn: boolean;
   capslockFocus: boolean;
+  showPasswordLogin = true;
+  showSingpassLogin = false;
+  singpassEnabled = false;
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
+    this.showPasswordLogin = true;
+    this.showSingpassLogin = false;
     if (/Android|Windows/.test(navigator.userAgent)) {
       this.welcomeTitle.nativeElement.scrollIntoView(true);
     }
@@ -107,10 +114,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     if (route.snapshot.data[0]) {
       this.finlitEnabled = route.snapshot.data[0]['finlitEnabled'];
+      this.singpassEnabled = route.snapshot.data[0]['singpassEnabled'];
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
-
   }
   /**
     * Initialize tasks.
@@ -146,7 +153,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           this.loaderService.hideLoader();
         });
       }
-
     }
   }
 
@@ -154,6 +160,27 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.signUpService.getCaptchaShown()) {
       this.setCaptchaValidator();
     }
+    if (this.singpassEnabled) {
+      this.initSingpassQR();
+    }
+  }
+
+  initSingpassQR() {
+    var OIDCParams = {
+      nonce: ('' + Math.random() * 1000000000000000 + '').slice(0, 15),
+      state: ('' + Math.random() * 1000000000000000 + '').slice(0, 15),
+      clientId: 'MONEYOWL-BFA',
+      redirectUri: 'https://newmouat1.ntucbfa.com/app/singpass/callback',
+      scope: 'openid',
+      responseType: 'code'
+    }
+    window['SPCPQR'].init(
+      'qr_wrapper',
+      OIDCParams,
+      function () {
+        window['SPCPQR'].refresh({ nonce: OIDCParams.nonce, state: OIDCParams.state });
+      }
+    );
   }
 
   setCaptchaValidator() {
@@ -495,6 +522,33 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     if (event.target.value) {
       const emailValue = event.target.value.replace(/\s/g, '');
       this.loginForm.controls.loginUsername.setValue(emailValue);
+    }
+  }
+
+  openModal(event) {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.TITLE');
+    ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_ACTIVATE_MODAL.MESSAGE');
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
+  openSingpassLoginFail(event) {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.TITLE');
+    ref.componentInstance.errorMessageHTML = this.translate.instant('LOGIN.SINGPASS_LOGIN_FAIL_MODAL.TITLE');
+    ref.componentInstance.myInfo = true;
+    event.stopPropagation();
+    event.preventDefault();
+  }
+  
+  toggleSingpass(type) {
+    if (type === SIGN_UP_CONFIG.SINGPASS) {
+      this.showSingpassLogin = true;
+      this.showPasswordLogin = false;
+    } else {
+      this.showPasswordLogin = true;
+      this.showSingpassLogin = false;
     }
   }
 }
