@@ -8,7 +8,10 @@
           <div class="signup-wrapper__description order2">
             <p>{{ 'CREATE_ACCOUNT.DESCRIPTION' | translate}}</p>
           </div>
-          <img class="signup-wrapper__header-icon order3 sm-order1" src="assets/images/sign-up.svg" />
+          <img *ngIf="!showSingPassDetails" class="signup-wrapper__header-icon order3 sm-order1"
+            src="assets/images/sign-up.svg" />
+          <img *ngIf="showSingPassDetails" class="signup-wrapper__header-icon order3 sm-order1"
+            src="assets/images/sign-up-myinfo.svg">
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
@@ -16,14 +19,14 @@
           <!-- myinfo data -->
           <div class="flex-row mb10" *ngIf="showSingPassDetails">
             <div class="flex-col-12 stretch">
-              <div class="form-group-floating-label" [ngClass]="{'inline-error': submitted && account.email.errors}">
-                <input type="text" id="fullName" class="form-control" #fullName formControlName="fullName"  required>
+              <div class="form-group-floating-label disabled">
+                <input type="text" id="fullName" class="form-control" #fullName formControlName="fullName" disabled  required>
                 <label class="form-control-placeholder"
-                  for="lastName">{{ 'CREATE_ACCOUNT.FORM.FULLNAME.LABEL' | translate}}</label>
+                  for="fullName">{{ 'CREATE_ACCOUNT.FORM.FULLNAME.LABEL' | translate}}</label>
               </div>
             </div>
-            <div class="alert-msg" *ngIf="submitted && account.email.errors">
-              <div *ngIf="account.email.errors?.required">
+            <div class="alert-msg" *ngIf="submitted && account.fullName.errors">
+              <div *ngIf="account.fullName.errors?.required">
                 <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                 <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.FULLNAME.ERROR.REQUIRED' | translate}}</span>
               </div>
@@ -31,23 +34,16 @@
           </div>
           <div class="flex-row mb10" *ngIf="showSingPassDetails">
             <div class="flex-col-12 stretch">
-              <div
-                class="form-group-floating-label">
-                <input type="text" id="crtAccInpt5" 
-                   class="form-control" #nricNumber
-                  formControlName="nricNumber"   required>
-                <label class="form-control-placeholder"
-                  for="lastName">{{ 'CREATE_ACCOUNT.FORM.NRIC/FIN.LABEL' | translate}}</label>
+              <div class="form-group-floating-label disabled">
+                <input type="text" id="nricNumber" class="form-control" #nricNumber formControlName="nricNumber" disabled required>
+                <label class="form-control-placeholder" for="nricNumber">{{ 'CREATE_ACCOUNT.FORM.NRIC_FIN.LABEL' |
+                  translate}}</label>
               </div>
             </div>
-            <div class="alert-msg" *ngIf="account.confirmEmail.errors">
-              <div *ngIf="submitted && account.confirmEmail.errors?.required">
+            <div class="alert-msg" *ngIf="account.nricNumber.errors">
+              <div *ngIf="submitted && account.nricNumber.errors?.required">
                 <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.CONFIRM_EMAIL.ERROR.REQUIRED' | translate}}</span>
-              </div>
-              <div *ngIf="!confirmEmailFocus && !account.email.errors && account.confirmEmail.errors?.notEquivalent">
-                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.CONFIRM_EMAIL.ERROR.MATCH' | translate}}</span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.NRIC_FIN.ERROR.REQUIRED' | translate}}</span>
               </div>
             </div>
           </div>
@@ -87,7 +83,7 @@
               </div>
             </div>
           </div>
-          <div class="flex-row mb10" *ngIf="showNormalFlowDetails">
+          <div class="flex-row mb10" *ngIf="!showSingPassDetails">
             <div class="flex-col-5 stretch mr15">
               <div class="form-group-floating-label"
                 [ngClass]="{'inline-error': submitted && account.firstName.errors}">
@@ -95,6 +91,7 @@
                   required>
                 <label class="form-control-placeholder" for="firstName">{{ 'CREATE_ACCOUNT.FORM.FIRST_NAME.LABEL' |
                   translate}}</label>
+                
               </div>
             </div>
             <div class="flex-col-5 stretch">

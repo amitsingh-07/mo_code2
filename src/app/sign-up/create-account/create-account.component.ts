@@ -63,10 +63,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   createAccBtnDisabled = true;
   finlitEnabled = false;
   showSingPassDetails = false;
-  showNormalFlowDetails = false;
-  isMyInfo;
   formValue: any;
-  createAccountData: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -128,7 +125,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.showClearBtn = true;
     }
     this.createAnimation();
-    this.createAccountData = this.signUpService.getUserProfileInfo();
   }
 
   ngAfterViewInit() {
@@ -159,11 +155,13 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
 
   buildAccountInfoForm() {
+    const myInfoEmail =  (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.email) ? this.formValue.email: '';
+    const myInfoMobile =  (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.mobileNumber) ? this.formValue.mobileNumber: '';
     if (this.distribution && this.distribution.login) {
       this.createAccountForm = this.formBuilder.group({
         countryCode: ['', [Validators.required]],
-        mobileNumber: ['', [Validators.required]],
-        email: ['', [Validators.required, Validators.pattern(this.distribution.login.regex)]],
+        mobileNumber: [myInfoMobile, [Validators.required]],
+        email: [myInfoEmail, [Validators.required, Validators.pattern(this.distribution.login.regex)]],
         confirmEmail: [''],
         password: ['', [Validators.required, ValidatePassword]],
         confirmPassword: [''],
@@ -178,8 +176,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
     this.createAccountForm = this.formBuilder.group({
       countryCode: ['', [Validators.required]],
-      mobileNumber: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
+      mobileNumber: [myInfoMobile, [Validators.required]],
+      email: [myInfoEmail, [Validators.required, Validators.email]],
       confirmEmail: [''],
       password: ['', [Validators.required, ValidatePassword]],
       confirmPassword: [''],
@@ -194,24 +192,15 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   /**
    * build account form.
    */
-  buildFormSingPass() {
-    this.showSingPassDetails = true;
-    this.showNormalFlowDetails = false;
-    if (this.createAccountData && this.createAccountData.isMyInfoEnabled) {
-      this.createAccountForm.addControl('fullName', new FormControl({
-        value: this.formValue.fullName,
-        disabled: this.signUpService.isDisabled('fullName')
-      }, Validators.required));
-      this.createAccountForm.addControl('nricNumber', new FormControl({
-        value: this.formValue.nricNumber,
-        disabled: this.signUpService.isDisabled('nricNumber')
-      }, Validators.required));
+  buildFormSingPass() {   
+    if (this.formValue && this.formValue.isMyInfoEnabled) {
+      this.showSingPassDetails = true;
+      this.createAccountForm.addControl('fullName', new FormControl(this.formValue.fullName,Validators.required));
+      this.createAccountForm.addControl('nricNumber', new FormControl(this.formValue.nricNumber, Validators.required));
       this.createAccountForm.removeControl('firstName');
       this.createAccountForm.removeControl('lastName');
-    }
-    else {
+    } else {
       this.showSingPassDetails = false;
-      this.showNormalFlowDetails = true;
       this.createAccountForm.removeControl('fullName');
       this.createAccountForm.removeControl('nricNumber');
       this.createAccountForm.addControl('firstName', new FormControl('',
@@ -232,7 +221,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.validateReferralCode();
     if (form.valid) {
       form.value.userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : appConstants.USERTYPE.NORMAL;
-      form.value.accountCreationType = (this.createAccountData && this.createAccountData.isMyInfoEnabled) ? appConstants.USERTYPE.SINGPASS : appConstants.USERTYPE.MANUAL;
+      form.value.accountCreationType = (this.formValue && this.formValue.isMyInfoEnabled) ? appConstants.USERTYPE.SINGPASS : appConstants.USERTYPE.MANUAL;
+      form.value.isMyInfoEnabled = (this.formValue && this.formValue.isMyInfoEnabled);
       this.signUpService.setAccountInfo(form.value);
       this.openTermsOfConditions();
     }

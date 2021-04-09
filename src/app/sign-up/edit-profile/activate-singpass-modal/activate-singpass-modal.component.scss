@@ -21,7 +21,7 @@ app-activate-singpass-modal {
       }
     }
     .modal-body {
-      color: $black-color;
+      color: $dark-grey-color;
       h4 {
         color: $modal-body-title-color !important;
         text-transform: capitalize;
@@ -66,7 +66,7 @@ app-activate-singpass-modal {
       box-shadow: 0 6px 7px 0 $btn-shadow-color !important;
       background-color: $teal-color;
       border: 1px solid $teal-color;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       font-family: $muli-bold;
       font-size: 22px;
       font-style: normal;
@@ -85,6 +85,13 @@ app-activate-singpass-modal {
       &:active {
         background-color: $action-btn-active-bg;
         color: $white-color;
+      }
+    }
+    .autofill-logo {
+      padding-bottom: 30px;
+      img {
+        width: 100%;
+        height: auto;
       }
     }
   }

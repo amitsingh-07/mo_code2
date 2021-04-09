@@ -13,7 +13,7 @@ export class SignUpAccessGuard implements CanActivate {
   }
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean>|Promise<boolean>|boolean {
    if (!this.signUpService.getCustomerRef()) {
-        this.myRoute.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
+        this.myRoute.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO]);
         return false;
     }
     return true;

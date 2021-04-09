@@ -202,6 +202,9 @@ body.modal-open::-webkit-scrollbar {
   margin-right: 30px;
   word-break: break-word;
   //padding: 0 15px 0 0;
+  @include iphone12{
+    padding-right: 10px;
+  }
 }
 
 .modal-body-message {
@@ -683,7 +686,7 @@ body.modal-open::-webkit-scrollbar {
 
   app-carousel-modal div.modal-body.white-bg {
     max-width: 420px;
-    height: 535px;
+    height: 555px;
     padding: 36px 60px 36px;
   }
 

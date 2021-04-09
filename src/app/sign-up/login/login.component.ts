@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   capslockFocus: boolean;
   showPasswordLogin = true;
   showSingpassLogin = false;
+  singpassEnabled = false;
   @ViewChild('welcomeTitle') welcomeTitle: ElementRef;
 
   @HostListener('window:resize', ['$event'])
@@ -112,6 +113,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     if (route.snapshot.data[0]) {
       this.finlitEnabled = route.snapshot.data[0]['finlitEnabled'];
+      this.singpassEnabled = route.snapshot.data[0]['singpassEnabled'];
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
