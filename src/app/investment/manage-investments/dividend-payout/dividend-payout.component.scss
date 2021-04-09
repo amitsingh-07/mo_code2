@@ -28,10 +28,18 @@ app-dividend-payout {
           color: $white-color;
           padding-bottom: 50px;
     
-          .user_portfolio_lbl {
+          .user_portfolio_title {
             font-size: 36px;
             line-height: 40px;
             letter-spacing: -0.41px;
+          }
+          .user_portfolio_name {
+            font-size: 18px;
+            max-width: 500px;
+            line-height: normal;
+            white-space: normal;
+            word-wrap: break-word;
+            padding-bottom: 4px;
           }
         }
       }
@@ -65,4 +73,5 @@ app-dividend-payout {
         padding-top: 30px;
       }
     }
+   
 }
