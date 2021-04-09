@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -39,7 +39,7 @@ export class ErrorModalComponent implements OnInit {
 
   public closeBtnToggle = true;
 
-  constructor(public activeModal: NgbActiveModal, private router: Router) { }
+  constructor(private modal: NgbModal, public activeModal: NgbActiveModal, private router: Router) { }
 
   ngOnInit() {
     this.router.events
@@ -73,5 +73,9 @@ export class ErrorModalComponent implements OnInit {
 
   resendEmailVerification() {
     this.resendEmail.emit();
+  }
+
+  fillManual() {
+    this.modal.dismissAll();
   }
 }

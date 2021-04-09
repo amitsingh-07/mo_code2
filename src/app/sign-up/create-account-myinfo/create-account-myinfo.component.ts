@@ -170,7 +170,12 @@ export class CreateAccountMyinfoComponent implements OnInit {
       this.loadingModalRef.componentInstance.primaryActionLabel = this.loader3Modal.primaryActionLabel;
       this.loadingModalRef.componentInstance.secondaryActionLabel = this.loader3Modal.secondaryActionLabel;
       this.loadingModalRef.componentInstance.secondaryActionDim = true;
+      this.loadingModalRef.componentInstance.closeBtn = false;
+      this.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
+        this.modal.dismissAll();
+      });
       this.loadingModalRef.componentInstance.secondaryAction.subscribe(() => {
+        this.modal.dismissAll();
         this.skipMyInfo();
       });
     }
