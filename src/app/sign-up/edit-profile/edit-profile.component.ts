@@ -566,9 +566,13 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         centered: true,
       };
       this.loadingModalRef = this.modal.open(ModelWithButtonComponent, ngbModalOptions);
+      this.loadingModalRef.componentInstance.closeBtn = false;
       this.loadingModalRef.componentInstance.errorTitle = this.errorModalTitle;
       this.loadingModalRef.componentInstance.errorMessage = this.errorModalMessage;
       this.loadingModalRef.componentInstance.primaryActionLabel = this.errorModalBtnText;
+      this.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
+        this.modal.dismissAll();
+      });
     }
   }
 
