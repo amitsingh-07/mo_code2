@@ -69,6 +69,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   isWiseIncomePortfolio: boolean = false;
   showDividend: boolean = false;
   wiseIncomePayoutType: any;
+  nextPayoutLabel = '';
 
   constructor(
     public readonly translate: TranslateService,
@@ -138,6 +139,12 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   getCustomerPortfolioDetailsById(customerPortfolioId) {
     this.manageInvestmentsService.getCustomerPortfolioDetailsById(customerPortfolioId).subscribe((data) => {
       this.portfolio = data.objectList;
+      const startDateTime = new Date(INVESTMENT_COMMON_CONSTANTS.NEXT_PAYOUT_START_TIME);
+      if (Date.now() >= startDateTime.valueOf()) {      
+        this.nextPayoutLabel = (this.portfolio && this.portfolio.nextPayout) ? this.portfolio.nextPayout : '';
+      } else {      
+        this.nextPayoutLabel = INVESTMENT_COMMON_CONSTANTS.NEXT_PAYOUT;
+      }
      this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
       this.holdingValues = this.portfolio.dPMSPortfolio ? this.portfolio.dPMSPortfolio.dpmsDetailsDisplay : null;
       this.constructFundingParams(this.portfolio);
