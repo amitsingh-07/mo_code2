@@ -47,6 +47,7 @@
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <button class="dropdown-item capital-letter"
+                        [class.hide]="portfolio.portfolioType === 'SRS' && !entitlements.showWithdrawPvToSRS"
                           *ngFor="let portfolio of portfolioList; let i = index;"
                           (click)="setDropDownValue('withdrawPortfolio',portfolio)"
                           id="withdraw-portfolio-option-{{i}}">{{portfolio.portfolioName + ' - ' +
