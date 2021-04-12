@@ -53,6 +53,7 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
   userBankList: any;
   isBankDetailsAvailable;
   isInvestAndJointAccountHolder;
+  fundingMethods: any;
 
   private destroySubscription$ = new Subject();
 
@@ -111,6 +112,7 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
         this.withdrawForm.get('withdrawAmount').disable();
       }
     });
+    this.fundingMethods = MANAGE_INVESTMENTS_CONSTANTS.TOPUP.FUNDING_METHODS;
   }
 
   ngOnDestroy() {
