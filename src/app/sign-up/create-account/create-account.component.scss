@@ -78,6 +78,13 @@ app-create-account {
     height: auto;
    }
   }
+
+  .signup-wrapper__description {
+      @include allmobiles {
+        font-family: $muli-regular !important;
+      }
+  }
+
   .inline-error {
     .show-password{
       background: url("../../../assets/images/show-password.svg") !important;
