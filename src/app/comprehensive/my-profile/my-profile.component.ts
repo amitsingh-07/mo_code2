@@ -1,5 +1,5 @@
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -55,6 +55,11 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     getComprehensiveData: any;
     saveData: string;
     getCurrentVersionType: any;
+
+    @HostListener('window:popstate', ['$event'])
+    onPopState(event) {
+      this.redirectToDashboard();
+    }
 
     public onCloseClick(): void {
         this.comprehensiveService.setProgressToolTipShown(true);
@@ -139,16 +144,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
         this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
             if (event && event !== '') {
-                const previousUrl = this.comprehensiveService.getPreviousUrl(this.router.url);
-                if (previousUrl !== null) {
-                    if ( this.getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.FULL) { 
-                        this.router.navigate([previousUrl]);
-                    } else {
-                        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
-                    }
-                } else {
-                    this.navbarService.goBack();
-                }
+                this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
             }
         });
 
@@ -298,5 +294,8 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
             return false;
         }
         return true;
+    }
+    redirectToDashboard() {
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
     }
 }
