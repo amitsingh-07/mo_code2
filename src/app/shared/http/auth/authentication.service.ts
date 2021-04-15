@@ -163,6 +163,12 @@ export class AuthenticationService {
     return sessionStorage.getItem(appConstants.APP_ENQUIRY_ID);
   }
 
+  removeEnquiryId() {
+    if (sessionStorage) {
+      sessionStorage.removeItem(appConstants.APP_ENQUIRY_ID);
+    }
+  }
+
   public getCaptchaUrl(): string {
     const time = new Date().getMilliseconds();
     const apiBaseUrl = Util.getApiBaseUrl();
