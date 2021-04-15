@@ -488,7 +488,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
             this.investmentAccountService.showGenericErrorModal();
           }
         } else {
-          this.authService.saveEnquiryId(null);
+          this.authService.removeEnquiryId();
           this.goToInvOverview();
         }
       },
