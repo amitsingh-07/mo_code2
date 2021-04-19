@@ -155,11 +155,15 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       }
     });
     this.configService.getConfig().subscribe((config: IConfig) => {
-      this.loader2StartTime = config.account.linkAccountLoaderStartTime * 1000;
+      this.loader2StartTime = config.account.loaderStartTime * 1000;
     });
   }
 
   ngOnInit() {
+    const initialMessage = this.investmentAccountService.getInitialMessageToShowDashboard();
+    if (initialMessage && initialMessage.dashboardInitMessageShow) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD], {replaceUrl: true});
+    }
     if (environment.hideHomepage) {
       this.navbarService.setNavbarMode(104);
     } else {
@@ -486,7 +490,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     ref.componentInstance.errorTitle = this.modelTitle1;
     ref.componentInstance.errorMessageHTML = this.modelMessge1;
     ref.componentInstance.primaryActionLabel = this.modelBtnText1;
-    ref.componentInstance.lockIcon = true;
     ref.componentInstance.myInfo = true;
     ref.result
       .then(() => {
@@ -563,9 +566,13 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         centered: true,
       };
       this.loadingModalRef = this.modal.open(ModelWithButtonComponent, ngbModalOptions);
+      this.loadingModalRef.componentInstance.closeBtn = false;
       this.loadingModalRef.componentInstance.errorTitle = this.errorModalTitle;
       this.loadingModalRef.componentInstance.errorMessage = this.errorModalMessage;
       this.loadingModalRef.componentInstance.primaryActionLabel = this.errorModalBtnText;
+      this.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
+        this.modal.dismissAll();
+      });
     }
   }
 

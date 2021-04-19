@@ -21,7 +21,7 @@ app-activate-singpass-modal {
       }
     }
     .modal-body {
-      color: $black-color;
+      color: $dark-grey-color;
       h4 {
         color: $modal-body-title-color !important;
         text-transform: capitalize;
@@ -44,13 +44,14 @@ app-activate-singpass-modal {
         .retrieved-details-title {
           font-family: $muli-bold;
           color: $text-color-secondary;
-          margin-bottom: 15px;
+          margin: 15px 0;
         }
         div {
           color: $teal-color;
         }
         label {
           margin-bottom: 0;
+          color: $text-color-secondary;
         }
       }
     }
@@ -89,6 +90,7 @@ app-activate-singpass-modal {
     }
     .autofill-logo {
       padding-bottom: 30px;
+      cursor: pointer;
       img {
         width: 100%;
         height: auto;

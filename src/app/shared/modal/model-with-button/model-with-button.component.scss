@@ -4,18 +4,8 @@
 .my-info {
   .modal-body {
     @include desktop {
-        width: 375px !important;
-        margin: 0 auto !important;
-    }
-
-    .modal-body-title {
-        font-family: $muli-bold;
-    }
-
-    .spinner-container {
-      #mo_spinner {
-        margin: 6px 10px 0px 0px;
-      }
+      width: 375px !important;
+      margin: 0 auto !important;
     }
   }
 }
@@ -95,6 +85,10 @@
 }
 .modal-body-message {
   margin-bottom: 15px;
+  &.check-box-message{
+  margin-top: -6px;
+  margin-bottom: 20px;
+  }
 }
 .modal-body {
   padding: 20px;
@@ -164,12 +158,17 @@
     display: flex;
   }
 }
-.hyperlink_color{
-  font-weight: bold;
+.hyperlink_color {
   color: $dark-orange-color;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    color: $dark-orange-color;
+    text-decoration: none;
+  }
 }
-.email_txt{
-  a{
+.email_txt {
+  a {
     color: $dark-orange-color;
     text-decoration: none;
     cursor: pointer;

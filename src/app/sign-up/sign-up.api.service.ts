@@ -16,6 +16,7 @@ import { DirectService } from './../direct/direct.service';
 import { SignUpFormData } from './sign-up-form-data';
 import { SignUpService } from './sign-up.service';
 import { Util } from '../shared/utils/util';
+import { SIGN_UP_CONFIG } from './sign-up.constant';
 
 @Injectable({
   providedIn: 'root'
@@ -70,7 +71,7 @@ export class SignUpApiService {
     }
 
     journeyType = journeyType.toLowerCase();
-    if (getAccountInfo.accountCreationType === 'SINGPASS') {
+    if (getAccountInfo.accountCreationType === SIGN_UP_CONFIG.SINGPASS) {
       return {
         customer: {
           countryCode: getAccountInfo.countryCode,

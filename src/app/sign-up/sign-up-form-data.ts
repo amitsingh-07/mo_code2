@@ -8,7 +8,6 @@ export class SignUpFormData {
   password: string;
   fullName:string;
   nricNumber:any;
-  callBackInvestmentAccount :boolean;
   disableAttributes :any;
   isMyInfoEnabled :boolean;
   

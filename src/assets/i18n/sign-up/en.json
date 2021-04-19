@@ -41,7 +41,7 @@
           "INVALID": "Enter a valid Name"
         }
       },
-      "NRIC/FIN": {
+      "NRIC_FIN": {
         "LABEL": "NRIC / FIN",
         "ERROR": {
           "REQUIRED": "Enter a NRIC or FIN",
@@ -187,6 +187,13 @@
   },
   "LOGIN": {
     "WELCOME_LBL": "Welcome to MoneyOwl!",
+    "LOGIN_TO_MO": "Log In to MoneyOwl",
+    "PASSWORD_LOGIN": "PASSWORD LOGIN",
+    "SINGPASS_MOBILE": "SINGPASS MOBILE",
+    "LOGIN_USE_SINGPASS": "You can now log in to MoneyOwl using Singpass Mobile App! ",
+    "HOW_TO_ACTIVATE": "How to activate?",
+    "DONT_HAVE_SINGPASS": "Don’t have Singpass Mobile? ",
+    "DOWNLOAD_NOW": "Download now!",
     "DESCRIPTION": "Please fill in your details so that our advisers can contact you.",
     "FORM": {
       "USERNAME": "Mobile No. / Email Address",
@@ -200,6 +207,15 @@
     "ERRORS": {
       "TITLE": "Oops, verify your email to login!",
       "VERIFY_EMAIL_MESSAGE": "You are almost there! An email verification is sent. We need you to verify your email to complete your account creation!"
+    },
+    "CLIENT_ASSISTANCE": "If you require any assistance, please contact us at <b class='text-bold'><a href='mailto:clientsupport@moneyowl.com.sg' target='_blank'>clientsupport@moneyowl.com.sg</a></b> or <b class='text-bold'><a href='tel:63299188' target='_blank' class='text-bold'>6329 9188.</a></b> Our operating hours are Monday - Friday, 9am - 6pm.",
+    "SINGPASS_ACTIVATE_MODAL": {
+      "TITLE": "Log In to MoneyOwl using Singpass Mobile App",
+      "MESSAGE": "If you <span class='bold-txt'>do not have</span> a MoneyOwl investment account, please do a Password Login and activate Singpass Login in your Profile page.<br><br>If you <span class='bold-txt'>have</span> a MoneyOwl investment account, simply scan the QR code with your Singpass Mobile App to log in!<br><br>Please note that this feature is available to all Singpass Registered Users.<br><br><a class='anchor-txt' target='_blank' href='https://www.singpass.gov.sg/singpass/common/faq'>Learn more about Singpass</a>"
+    },
+    "SINGPASS_LOGIN_FAIL_MODAL": {
+      "TITLE": "Singpass login unsuccessful",
+      "MESSAGE": "If you <span class='bold-txt'>have</span> a MoneyOwl account, please do a Password Login and activate Singpass Login in your Profile page.<br><br>If you <span class='bold-txt'>do not have</span> a MoneyOwl account, click here to create an account."
     }
   },
   "FORGOTPASSWORD": {
@@ -510,10 +526,10 @@
     "ADD_ACCOUNT": "Add Account"
   },
   "ACTIVATE_SINGPASS_MODAL": {
-    "MESSAGE": "<h4>Activate Singpass Login</h4><br><div>Use Myinfo to activate your MoneyOwl Singpass Mobile App login. No more remembering of password. This feature is available to all Singpass Registered users.</div><div class=\"more-info\"><a target=\"_blank\" href='https://www.singpass.gov.sg/myinfo/intro'>Learn more about Myinfo</a></div>"
+    "MESSAGE": "<h4>Activate Singpass Login</h4><div>Use Myinfo to activate your MoneyOwl Singpass Mobile App login. No more remembering of password. This feature is available to all Singpass Registered users.</div><div class=\"more-info\"><a target=\"_blank\" href='https://www.singpass.gov.sg/myinfo/intro'>Learn more about Myinfo</a></div>"
   },
   "SUCCESS_SINGPASS_MODAL": {
-    "MESSAGE": "<h4>Singpass Account Link Completed!</h4><br><div>You may use Singpass Mobile App the next time you log in to MoneyOwl. </div><div class=\"retrieved-details\"><div class=\"retrieved-details-title\">Fields retrieved:</div><label>Name</label><div>{{name}}</div><label>NRIC/FIN</label><div>{{nric}}</div></div>",
+    "MESSAGE": "<h4>Singpass Account Link Completed!</h4><div>You may use Singpass Mobile App the next time you log in to MoneyOwl. </div><div class=\"retrieved-details\"><div class=\"retrieved-details-title\">Fields retrieved:</div><label>Name</label><div>{{name}}</div><label>NRIC/FIN</label><div>{{nric}}</div></div>",
     "BTN_TXT": "Got It!"
   },
   "LINK_ACCOUNT_MYINFO": {
@@ -522,7 +538,7 @@
       "CANCELLED": "CANCELLED"
     },
     "MYINFO_CONFIRM": {
-      "TITLE": "Activate via Myinfo",
+      "TITLE": "Retrieve Myinfo with Singpass<span class=\"lock\"><img src=\"assets/images/lock.svg\"></span>",
       "DESCRIPTION": "<strong class=\"text-bold\">Applicable to all Singpass Registered users.</strong><br><br>You will now proceed to login via Myinfo and retrieve your following details.<strong class=\"text-bold\"> Please use your own account only.</strong><div class=\"my_info_details\">Name<br>NRIC/FIN</div><br>Would you like to proceed?",
       "BTN-TEXT": "Let’s go!"
     },
@@ -536,7 +552,7 @@
     },
     "ERROR_MODAL": {
       "TITLE": "Oops, Unable to Connect",
-      "MESSAGE": "We are unable to connect to Myinfo temporary. Please try again later.",
+      "MESSAGE": "We are unable to connect to Myinfo temporarily. Please try again later.",
       "BTN-TEXT": "Try Again Later"
     },
     "ALREADY_EXISTING": {
@@ -553,13 +569,13 @@
   "CREATE_ACCOUNT_MY_INFO": {
     "TITLE": "Create Your Account",
     "DESCRIPTION": "Create your MoneyOwl account fast and hassle free with Myinfo, or skip to create account manually.",
-    "DESCRIPTION_TWO": "Available to all Singpass Registered users. <a target='_blank' href ='https://www.singpass.gov.sg/myinfo/intro'>Learn more about Myinfo.",
+    "DESCRIPTION_TWO": "Available to all Singpass Registered users. <br><a target='_blank' href ='https://www.singpass.gov.sg/myinfo/intro'>Learn more about Myinfo.",
     "DESCRIPTION_THREE": "Please fill in your details below.",
     "BACK_TO_LOG_ON": "Back To Log In",
     "SKIP_MY_INFO": " Skip Myinfo",
-    "PROCEED_TO_MY_INFO": "Proceed",
-    "MODAL_TITLE": "Create Account via Myinfo",
-    "MODAL_DESCRIPTION": "<strong class=\"text-bold\">Applicable to all Singpass Registered users.</strong><br><br>You will now proceed to login via Myinfo and retrieve your following details.<strong class=\"text-bold\">Please use your own account only.</strong><div class=\"my_info_details\">Name<br>NRIC/FIN<br>Mobile Number<br>Email Address</div><br>Would you like to proceed?",
+    "PROCEED_TO_MY_INFO": "Retrieve Myinfo with Singpass",    
+    "MODAL_TITLE": "Retrieve Myinfo with Singpass<span class=\"lock\"><img src=\"assets/images/lock.svg\"></span>",
+    "MODAL_DESCRIPTION": "<strong class=\"text-bold\">Applicable to all Singpass Registered users.</strong><br><br>You will now proceed to login via Myinfo and retrieve your following details.<strong class=\"text-bold\"> Please use your own account only.</strong><div class=\"my_info_details\">Name<br>NRIC/FIN<br>Mobile Number<br>Email Address</div><br>Would you like to proceed?",
     "MODAL_BTN-TEXT": "Let's go!",
     "FETCH_MODAL_DATA": {
       "TITLE": "Fetching Data...",
@@ -567,14 +583,15 @@
     },
     "LOADER1": {
       "title": "Unable to proceed with the NRIC/FIN",
-      "message": "We have detected that the NRIC/FIN is already in use by another account.<strong class=\"text-bold\">Please use your own account only.</strong><br></br>Contact us at <span class=\"email_txt\"><a target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a>.</span> if you require any assistance.",
+      "message": "We have detected that the NRIC/FIN is already in use by another account.<strong class=\"text-bold\"> Please use your own account only.</strong><br></br>Contact us at <span class=\"email_txt\"><a target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a></span> if you require any assistance.",
       "btn": "Okay, Got It!"
     },
     "LOADER2": {
       "message": "Sorry that this is taking longer than usual. Please be patient while we fetch your required data from Myinfo."
     },
     "LOADER3": {
-      "message": "We are still trying to fetch your required data from Myinfo. You may choose to fill in your information manually or try again later.",
+      "title": "Oops, Unable to Connect",
+      "message": "We are unable to connect to Myinfo temporarily. Please try again later.",
       "primaryActionLabel": "Try Again Later",
       "secondaryActionLabel": "Create Account Manually"
     }

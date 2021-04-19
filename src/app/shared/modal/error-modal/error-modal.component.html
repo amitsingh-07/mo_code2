@@ -35,7 +35,7 @@
     
   <button *ngIf="isMyinfoError" id="error_try_again" type="button" class="btn action-button width100 mt10"
   (click)="tryAgain()">Try Again Later</button>
-  <button *ngIf="isMyinfoError" type="button" id="error_enter_manually" (click)="activeModal.dismiss('Close click')"
+  <button *ngIf="isMyinfoError" type="button" id="error_enter_manually" (click)="fillManual()"
   class="btn action-button secondary-button width100 mt10">Fill Form Manually</button>
 
   <button *ngIf="navToHome" type="button" id="error_back_to_home" class="btn btn-primary width100 mt10"

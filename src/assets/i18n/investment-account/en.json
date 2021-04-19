@@ -297,12 +297,12 @@
   },
   "INVESTMENT_ACCOUNT_MYINFO": {
     "OPEN_MODAL_DATA": {
-      "TITLE": "Retrieve Myinfo with Singpass <span class=\"lock\"><img src=\"assets/images/lock.svg\"></span>",
-      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>By signing in to Myinfo, the following information that you have previously entered will be overwritten.<strong class=\"text-bold\">Please use your own account only.</strong><div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br/>Would you like to proceed and overwrite?",
+      "TITLE": "Retrieve Myinfo with Singpass<span class=\"lock\"><img src=\"assets/images/lock.svg\"></span>",
+      "DESCRIPTION": "<strong class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>By signing in to Myinfo, the following information that you have previously entered will be overwritten.<strong class=\"text-bold\"> Please use your own account only.</strong><div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br/>Would you like to proceed and overwrite?",
       "BTN-TEXT": "Yes, Proceed"
     },
     "MYINFO_CONFIRM": {
-      "TITLE": "Retrieve Myinfo with Singpass <span class=\"lock\"><img src=\"assets/images/lock.svg\"></span>",
+      "TITLE": "Retrieve Myinfo with Singpass<span class=\"lock\"><img src=\"assets/images/lock.svg\"></span>",
       "DESCRIPTION": "<strong class=\"text-bold\">Applicable to Singapore Citizens and Singapore Permanent Citizens (PRs) only. Otherwise, please return to fill form manually.</strong><br><br>You will now proceed to login via Myinfo and retrieve your following details.<strong class=\"text-bold\"> Please use your own account only.</strong><div class=\"my_info_details\">Nationality<br>Personal Details<br>Residential Details</div><br>Would you like to proceed?",
       "BTN-TEXT": "Let's go!"
     },

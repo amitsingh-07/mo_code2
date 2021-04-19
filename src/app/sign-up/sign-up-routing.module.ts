@@ -165,6 +165,11 @@ const routes: Routes = [
     data: [{ finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN }]
   },
   {
+    path: SIGN_UP_ROUTES.SINGPASS_LOGIN,
+    component: LoginComponent,
+    data: [{ singpassEnabled: true }]
+  },
+  {
     path: SIGN_UP_ROUTES.FINLIT_CREATE_ACCOUNT,
     component: CreateAccountComponent,
     canActivate: [FinlitLoggedUserGuard],

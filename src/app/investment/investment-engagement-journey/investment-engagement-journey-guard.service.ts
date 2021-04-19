@@ -5,7 +5,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
+import { SIGN_UP_ROUTE_PATHS, DASHBOARD_PATH } from '../../sign-up/sign-up.routes.constants';
 import { InvestmentAccountService } from '../investment-account/investment-account-service';
 import { InvestmentCommonService } from '../investment-common/investment-common.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from './investment-engagement-journey-routes.constants';
@@ -40,7 +40,14 @@ export class InvestmentEngagementJourneyGuardService implements CanActivate {
                   : this.translate.instant('INVESTMENT_ADD_PORTFOLIO_ERROR.ACCOUNT_CREATION_PENDING_ERROR')
           };
           this.investmentAccountService.setDashboardInitialMessage(dashboardMessage);
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+          const currentUrl = window.location.toString();
+          const rootPoint = currentUrl.split(currentUrl.split('/')[4])[0].substr(0, currentUrl.split(currentUrl.split('/')[4])[0].length - 1);
+          const redirectObjective = rootPoint + DASHBOARD_PATH;
+          if (window.location.href === redirectObjective) {
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE], {replaceUrl: true});
+          } else {
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+          }
           return false;
         }
       }));

@@ -32,8 +32,9 @@ export const SIGN_UP_ROUTES = {
   FINLIT_LOGIN: 'finlit/login',
   FINLIT_CREATE_ACCOUNT: 'finlit/sign-up-account',
   ACCOUNT_CREATED_FINLIT: 'finlit/success',
-  FINLIT_VERIFY_MOBILE: 'finlit/verify-mobile',  
-  FINLIT_CREATE_ACCOUNT_MY_INFO: 'finlit/sign-up',
+  FINLIT_VERIFY_MOBILE: 'finlit/verify-mobile',
+  SINGPASS_LOGIN: 'singpass-test/login',
+  FINLIT_CREATE_ACCOUNT_MY_INFO: 'finlit/sign-up'
 };
 
 export const SIGN_UP_ROUTE_PATHS = {
