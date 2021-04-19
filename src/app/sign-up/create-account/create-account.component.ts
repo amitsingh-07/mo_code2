@@ -100,7 +100,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     // Set referral code base on the query param
     this.route.queryParams.subscribe((params) => {
       if (params['referral_code'] && !Util.isEmptyOrNull(params['referral_code'])) {
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO], { queryParams: {referral_code: params['referral_code']} });
+        if(this.finlitEnabled) {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_CREATE_ACCOUNT_MY_INFO], { queryParams: {referral_code: params['referral_code']} });
+        } else {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO], { queryParams: {referral_code: params['referral_code']} });
+        }
+        
       }
     });
   }
