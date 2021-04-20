@@ -37,9 +37,16 @@ export class WiseIncomePayoutTypeComponent implements OnInit {
   }
 
   PayoutLabel() {
-    this.nextPayoutLabel = {
-      nextPayout: this.portfolio.nextPayout
-    };
+    const startDateTime = new Date(INVESTMENT_COMMON_CONSTANTS.NEXT_PAYOUT_START_TIME);
+    if (Date.now() >= startDateTime.valueOf()) {      
+      this.nextPayoutLabel = {
+        nextPayout: (this.portfolio && this.portfolio.nextPayout) ? this.portfolio.nextPayout : ''
+      };
+    } else {      
+      this.nextPayoutLabel = {
+        nextPayout: INVESTMENT_COMMON_CONSTANTS.NEXT_PAYOUT
+      };
+    }
   }
   
 }

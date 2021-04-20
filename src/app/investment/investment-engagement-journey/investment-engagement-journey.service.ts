@@ -382,7 +382,7 @@ export class InvestmentEngagementJourneyService {
   }
 
   clearData() {
-    this.authService.saveEnquiryId(null);
+    this.authService.removeEnquiryId();
     this.clearFormData();
     if (window.sessionStorage) {
       sessionStorage.removeItem(SESSION_STORAGE_KEY);
