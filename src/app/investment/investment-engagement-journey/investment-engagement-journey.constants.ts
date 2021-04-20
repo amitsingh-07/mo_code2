@@ -18,7 +18,8 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
     WISEINCOME_PORTFOLIO:'wiseIncomePortfolio',
     INVESTMENT:'Investment',
     WISESAVER:'Wisesaver',
-    WISEINCOME:'WiseIncome'
+    WISEINCOME:'WiseIncome',
+    WISE_SAVER:'WiseSaver',
   },
   PROSPECTUS_FILE:{
     INVESTMENT: 'prospectus_investment.pdf',
