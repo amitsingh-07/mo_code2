@@ -35,12 +35,13 @@ import {
 import { AddUpdateSrsComponent } from './add-update-srs/add-update-srs.component';
 import { TwoFactorAuthGuardService, TwoFactorScreenGuardService } from './two-factor-auth-guard.service';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { CreateAccountMyinfoComponent } from './create-account-myinfo/create-account-myinfo.component';
 
 const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.ROOT,
     pathMatch: 'full',
-    redirectTo: SIGN_UP_ROUTES.CREATE_ACCOUNT
+    redirectTo: SIGN_UP_ROUTES.CREATE_ACCOUNT_MY_INFO
   },
   {
     path: SIGN_UP_ROUTES.PRELOGIN,
@@ -173,6 +174,15 @@ const routes: Routes = [
     path: SIGN_UP_ROUTES.VERIFY_EMAIL,
     component: VerifyEmailComponent
   },
+  {
+    path: SIGN_UP_ROUTES.CREATE_ACCOUNT_MY_INFO,
+    component: CreateAccountMyinfoComponent
+  },
+  {
+    path: SIGN_UP_ROUTES.CREATE_ACCOUNT + '/:referralCode',
+    component: CreateAccountComponent,
+    canActivate: [LoggedUserGuard]
+  }, 
 
   { path: '**', redirectTo: '/page-not-found' }
 ];

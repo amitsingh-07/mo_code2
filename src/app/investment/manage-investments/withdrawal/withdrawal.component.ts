@@ -4,7 +4,8 @@ import { AbstractControl, FormBuilder, FormControl, ValidatorFn, Validators } fr
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -52,6 +53,9 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
   userBankList: any;
   isBankDetailsAvailable;
   isInvestAndJointAccountHolder;
+
+  private destroySubscription$ = new Subject();
+
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -101,12 +105,21 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
     if (this.isInvestAndJointAccountHolder) {
       this.getUserBankList();
     }
+
+    this.withdrawForm.get('withdrawRedeem').valueChanges.subscribe((value) => {
+      if(value && !this.withdrawForm.controls['withdrawAmount'].disabled) {
+        this.withdrawForm.get('withdrawAmount').disable();
+      }
+    });
   }
 
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+
+    this.destroySubscription$.next();
+    this.destroySubscription$.complete();
   }
 
   getUserBankList() {
@@ -231,7 +244,9 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
             )
           ])
         );
-        this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
+        this.withdrawForm.get('withdrawAmount').valueChanges
+        .pipe(takeUntil(this.destroySubscription$))
+        .subscribe((amtValue) => {
           amtValue = amtValue.replace(/[,]+/g, '').trim();
           this.isRedeemAll = ((amtValue == roundOffValue) && roundOffValue > 0);
         });
@@ -299,9 +314,13 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
           )
         ])
       );
+
     this.withdrawForm.get('withdrawAmount').valueChanges.subscribe((amtValue) => {
       amtValue = amtValue.replace(/[,]+/g, '').trim();
       this.isRedeemAll = ((amtValue == roundOffValue) && roundOffValue > 0);
+      if (this.isRedeemAll) {
+        this.enableRedeem();
+      }
     });
   }
 
@@ -426,7 +445,13 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
           this.isRequestSubmitted = false;
           this.loaderService.hideLoader();
           if (response.responseMessage.responseCode < 6000) {
-            if (
+            if(response.responseMessage.responseCode == 5129) {
+              // Insufficient balance Error due to pending withdrawal request in progress
+              this.showCustomErrorModal(
+                this.translate.instant('ERROR.ERROR_TEXT'),
+                this.translate.instant('WITHDRAW.PENDING_WITHDRAWAL_ERROR')
+              );
+            } else if (
               response.objectList &&
               response.objectList.length &&
               response.objectList[response.objectList.length - 1].serverStatus &&
@@ -434,12 +459,12 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
               response.objectList[response.objectList.length - 1].serverStatus.errors.length
             ) {
               this.showCustomErrorModal(
-                'Error!',
+                this.translate.instant('ERROR.ERROR_TEXT'),
                 response.objectList[response.objectList.length - 1].serverStatus.errors[0].msg
               );
             } else if (response.responseMessage && response.responseMessage.responseDescription) {
               const errorResponse = response.responseMessage.responseDescription;
-              this.showCustomErrorModal('Error!', errorResponse);
+              this.showCustomErrorModal(this.translate.instant('ERROR.ERROR_TEXT'), errorResponse);
             } else {
               this.investmentAccountService.showGenericErrorModal();
             }
@@ -556,6 +581,11 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
         this.isRedeemAllChecked = false;
       }
     }
+  }
+
+  enableRedeem() {
+    this.withdrawForm.controls.withdrawRedeem.setValue(true);
+    this.isRedeemAllChecked = true;
   }
 }
 

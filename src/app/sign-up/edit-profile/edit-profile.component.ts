@@ -1,13 +1,13 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { InvestmentCommonService } from './../../investment/investment-common/investment-common.service';
 
-import { CustomErrorHandlerService } from 'src/app/shared/http/custom-error-handler.service';
+import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
@@ -19,11 +19,18 @@ import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
-import { ConfigService } from './../../config/config.service';
+import { ConfigService, IConfig } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { FooterService } from './../../shared/footer/footer.service';
-import { SessionsService } from 'src/app/shared/Services/sessions/sessions.service';
+import { SessionsService } from './../../shared/Services/sessions/sessions.service';
 
+import { ActivateSingpassModalComponent } from './activate-singpass-modal/activate-singpass-modal.component';
+import { MyInfoService } from '../../shared/Services/my-info.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+  ModelWithButtonComponent
+} from '../../shared/modal/model-with-button/model-with-button.component';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-edit-profile',
@@ -61,8 +68,24 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   srsDetails;
   formatedAccountNumber;
   is2faAuthorized: boolean;
-
   disableBankSrsEdit = false;
+  linkCatagories;
+  // singpass
+  modelTitle1: string;
+  modelMessge1: string;
+  modelBtnText1: string;
+  myInfoSubscription: any;
+  myinfoChangeListener: Subscription;
+  secondTimer: any;
+  loader2StartTime: any;
+  loader2Modal: any;
+  loadingModalRef: NgbModalRef;
+  errorModalTitle: string;
+  errorModalMessage: string;
+  errorModalBtnText: string;
+  myInfoStatus1: string;
+  myInfoStatus2: string;
+  isMyInfoEnabled = false;
 
   constructor(
     private modal: NgbModal,
@@ -79,13 +102,46 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     private loaderService: LoaderService,
     private configService: ConfigService,
     private customErrorHandler: CustomErrorHandlerService,
-    private sessionsService: SessionsService
+    private sessionsService: SessionsService,
+    // singpass
+    private myInfoService: MyInfoService,
+    public activeModal: NgbActiveModal,
+    private titleCasePipe: TitleCasePipe,
+    private ngZone: NgZone
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
       this.pageTitle = this.translate.instant('EDIT_PROFILE.MY_PROFILE');
       this.setPageTitle(this.pageTitle);
       this.showSRSSuccessModel();
+      // singpass
+      this.modelTitle1 = this.translate.instant(
+        'LINK_ACCOUNT_MYINFO.MYINFO_CONFIRM.TITLE'
+      );
+      this.modelMessge1 = this.translate.instant(
+        'LINK_ACCOUNT_MYINFO.MYINFO_CONFIRM.DESCRIPTION'
+      );
+      this.modelBtnText1 = this.translate.instant(
+        'LINK_ACCOUNT_MYINFO.MYINFO_CONFIRM.BTN-TEXT'
+      );
+      this.loader2Modal = this.translate.instant(
+        'LINK_ACCOUNT_MYINFO.LOADER2'
+      );
+      this.errorModalTitle = this.translate.instant(
+        'LINK_ACCOUNT_MYINFO.ERROR_MODAL.TITLE'
+      );
+      this.errorModalMessage = this.translate.instant(
+        'LINK_ACCOUNT_MYINFO.ERROR_MODAL.MESSAGE'
+      );
+      this.errorModalBtnText = this.translate.instant(
+        'LINK_ACCOUNT_MYINFO.ERROR_MODAL.BTN-TEXT'
+      );
+      this.myInfoStatus1 = this.translate.instant(
+        'LINK_ACCOUNT_MYINFO.MYINFO_STATUS.SUCCESS'
+      );
+      this.myInfoStatus2 = this.translate.instant(
+        'LINK_ACCOUNT_MYINFO.MYINFO_STATUS.CANCELLED'
+      );
     });
 
     // Hidden Country list for future use
@@ -97,6 +153,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       } else {
         this.is2faAuthorized = false;
       }
+    });
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.loader2StartTime = config.account.loaderStartTime * 1000;
     });
   }
 
@@ -115,7 +174,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.getEditProfileData();
       this.getSrsDetails();
     });
-
     this.isMailingAddressSame = true;
 
     // Check if iFast is in maintenance
@@ -138,6 +196,21 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           }
         });
     });
+
+    this.linkCatagories = SIGN_UP_CONFIG.SINGPASSLINKSTATUS;
+    // singpass
+    this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
+      if (myinfoObj && myinfoObj !== '' &&
+        this.myInfoService.getMyInfoAttributes() === this.investmentAccountService.myInfoLinkAttributes.join()) {
+        if (myinfoObj.status && myinfoObj.status === this.myInfoStatus1 && this.myInfoService.isMyInfoEnabled) {
+          this.getMyInfoData();
+        } else if (myinfoObj.status && myinfoObj.status === this.myInfoStatus2) {
+          this.cancelMyInfo();
+        } else {
+          this.closeMyInfoPopup(false);
+        }
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -145,6 +218,10 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
     this.navbarService.unsubscribeBackPress();
+    // singpass
+     if (this.myinfoChangeListener) {
+      this.myinfoChangeListener.unsubscribe();
+    }
   }
 
   setPageTitle(title: string) {
@@ -181,7 +258,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
             this.bankDetails = data.objectList.customerBankDetail[0];
           }
           this.showBankInfo = data.objectList.cashPortfolioAvailable ? data.objectList.cashPortfolioAvailable : false;
-          
+
           // Hidden the mailing address for future use
           // if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
           //   this.mailingAddress = data.objectList.contactDetails.mailingAddress;
@@ -384,5 +461,127 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     const first = firstName.charAt(0);
     const second = LastName.charAt(0);
     return first.toUpperCase() + second.toUpperCase();
+  }
+
+  linkSingpass() {
+    const ref = this.modal.open(ActivateSingpassModalComponent, { centered: true, windowClass: 'activate-singpass-modal' });
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'ACTIVATE_SINGPASS_MODAL.MESSAGE'
+    );
+    ref.componentInstance.primaryAction.subscribe(() => {
+      this.openModal();
+    });
+  }
+  // singpass
+  cancelMyInfo() {
+    this.myInfoService.isMyInfoEnabled = false;
+    this.closeMyInfoPopup(false);
+    if (this.myInfoSubscription) {
+      this.myInfoSubscription.unsubscribe();
+    }
+  }
+  openModal() {
+    this.activeModal.close();
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.modelTitle1;
+    ref.componentInstance.errorMessageHTML = this.modelMessge1;
+    ref.componentInstance.primaryActionLabel = this.modelBtnText1;
+    ref.componentInstance.lockIcon = true;
+    ref.componentInstance.myInfo = true;
+    ref.result
+      .then(() => {
+        this.getMyInfo();
+      })
+      .catch((e) => { });
+  }
+  getMyInfoData() {
+    this.showFetchPopUp();
+    this.myInfoSubscription = this.myInfoService.getSingpassAccountData().subscribe((data) => {  
+        if(data.responseMessage.responseCode === 6000 && data && data.objectList[0]){
+          this.closeMyInfoPopup(false);
+          this.getEditProfileData();
+          const ref = this.modal.open(ActivateSingpassModalComponent, { centered: true , windowClass: 'linked-singpass-modal' });
+          ref.componentInstance.errorMessage = this.translate.instant(
+            'SUCCESS_SINGPASS_MODAL.MESSAGE', 
+            { name: this.titleCasePipe.transform(data.objectList[0].name.value), nric: data.objectList[0].uin.toUpperCase() }
+          );
+          ref.componentInstance.secondaryActionLabel = this.translate.instant(
+            'SUCCESS_SINGPASS_MODAL.BTN_TXT'
+          );
+          ref.componentInstance.isLinked = true;
+        }
+        else if (data.responseMessage.responseCode === 6014) {
+          this.closeMyInfoPopup(false);
+          const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.translate.instant(
+            'LINK_ACCOUNT_MYINFO.ALREADY_EXISTING.TITLE'
+          );
+          ref.componentInstance.errorMessage = this.translate.instant(
+            'LINK_ACCOUNT_MYINFO.ALREADY_EXISTING.DESC'
+          );
+          ref.componentInstance.primaryActionLabel = this.translate.instant(
+            'LINK_ACCOUNT_MYINFO.ALREADY_EXISTING.BTN-TEXT'
+          );
+        }
+        else if(data.responseMessage.responseCode === 6015){
+          this.closeMyInfoPopup(false);
+          const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.translate.instant(
+            'LINK_ACCOUNT_MYINFO.DIFFERENT_USER.TITLE'
+          );
+          ref.componentInstance.errorMessage = this.translate.instant(
+            'LINK_ACCOUNT_MYINFO.DIFFERENT_USER.DESC'
+          );
+          ref.componentInstance.primaryActionLabel = this.translate.instant(
+            'LINK_ACCOUNT_MYINFO.DIFFERENT_USER.BTN-TEXT'
+          );
+        }
+        else{
+          this.closeMyInfoPopup(true);
+        }
+    }, (error) => {
+      this.closeMyInfoPopup(true);
+    });
+  }
+
+  showFetchPopUp() {
+    this.secondTimer = setTimeout(() => {
+      if (this.myInfoService.loadingModalRef) {
+        this.openSecondPopup();
+      }
+    }, this.loader2StartTime);
+  }
+
+  closeMyInfoPopup(error: boolean) {
+    this.isMyInfoEnabled = false;
+    this.myInfoService.closeMyInfoPopup(false);
+    clearTimeout(this.secondTimer);
+    if (error) {
+      const ngbModalOptions: NgbModalOptions = {
+        backdrop: 'static',
+        keyboard: false,
+        centered: true,
+      };
+      this.loadingModalRef = this.modal.open(ModelWithButtonComponent, ngbModalOptions);
+      this.loadingModalRef.componentInstance.errorTitle = this.errorModalTitle;
+      this.loadingModalRef.componentInstance.errorMessage = this.errorModalMessage;
+      this.loadingModalRef.componentInstance.primaryActionLabel = this.errorModalBtnText;
+    }
+  }
+
+  getMyInfo() {
+    this.myInfoService.setMyInfoAttributes(
+      this.investmentAccountService.myInfoLinkAttributes
+    );
+    this.myInfoService.goToMyInfo(true);
+  }
+
+  // ******** SECOND POP UP ********//
+  openSecondPopup() {
+    this.myInfoService.loadingModalRef.componentInstance.errorMessage = this.loader2Modal.message;
+    this.myInfoService.loadingModalRef.componentInstance.primaryActionLabel = this.loader2Modal.primaryActionLabel;
+    this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
+      this.closeMyInfoPopup(false);
+    });
   }
 }

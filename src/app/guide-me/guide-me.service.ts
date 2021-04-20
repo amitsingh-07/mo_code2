@@ -515,7 +515,7 @@ export class GuideMeService {
   openFetchPopup() {
     this.loadingModalRef = this.modal.open(ErrorModalComponent, { centered: true });
     this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
-    this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from MyInfo.';
+    this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from Myinfo.';
   }
 
   closeFetchPopup() {

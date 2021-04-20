@@ -1,0 +1,68 @@
+@import "../../../../variables";
+@import "../../../../mixins";
+.portfolioname-bg {
+    background-color: $white-color !important;
+  }
+app-dividend-payout {
+    .invest-section {
+      @include allmobiles {
+        display: none;
+      }
+    }
+    .invest-bg-content {
+        .user_content {
+          max-width: 1024px;
+          margin: 0 auto;
+          padding: 0 75px;
+    
+          @include allmobiles {
+            padding-left: 20px;
+          }
+        }
+    
+        .user_summary {
+          display: flex;
+          padding-top: 45px;
+          font-family: $muli-regular;
+          letter-spacing: -0.2px;
+          color: $white-color;
+          padding-bottom: 50px;
+    
+          .user_portfolio_lbl {
+            font-size: 36px;
+            line-height: 40px;
+            letter-spacing: -0.41px;
+          }
+        }
+      }
+    
+    .container-fluid {
+        &.full-height {
+            min-height: calc(100vh - 45px);
+        }
+    }
+    .dividend-received-table {
+      color: $black-color;
+      font-size: 14px;
+      font-family: $muli-regular;
+      .flex-row {
+        border-bottom: 1px solid $mercury-smoke-color;
+      }
+      .flex-row {
+        &.heading {
+          font-family: $muli-semi-bold;
+          background-color: $white-smoke-color;
+          border-bottom: 3px solid $teal-color;
+        }
+      }
+    }
+    .no-history {
+      font-size: 18px;
+      font-family: $muli-bold;
+      text-align: center;
+      color: $teal-color;
+      p:first-child {
+        padding-top: 30px;
+      }
+    }
+}

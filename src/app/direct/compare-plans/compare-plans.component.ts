@@ -3,7 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { NavbarService } from 'src/app/shared/navbar/navbar.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ProductDetailComponent } from '../../shared/components/product-detail/product-detail.component';
 import { HeaderService } from '../../shared/header/header.service';
 import { DirectService } from './../direct.service';

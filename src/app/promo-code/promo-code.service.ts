@@ -5,9 +5,11 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { appConstants } from '../app.constants';
 import { ApiService } from '../shared/http/api.service';
-import { NavbarService } from 'src/app/shared/navbar/navbar.service';
-import { PROMO_CODE_STATUS, PROMO_PROFILE_TYPE, PROMO_JSON_URL, PROMO_MOCK_JSON } from './promo-code.constants';
+import { NavbarService } from '../shared/navbar/navbar.service';
+import { PROMO_CODE_STATUS, PROMO_PROFILE_TYPE, PROMO_MOCK_JSON } from './promo-code.constants';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
+import { environment } from './../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -107,7 +109,7 @@ export class PromoCodeService {
     if (this.promoJsonList) {
       return this.promoJsonList;
     } else {
-      let url = PROMO_JSON_URL;
+      let url = environment.promoCodeJsonUrl;
       return fetch(url)
         .then((response) => {
           this.promoJsonList = response.json();

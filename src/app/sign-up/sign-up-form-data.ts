@@ -6,7 +6,11 @@ export class SignUpFormData {
   email: string;
   marketingAcceptance: boolean;
   password: string;
-
+  fullName:string;
+  nricNumber:any;
+  disableAttributes :any;
+  isMyInfoEnabled :boolean;
+  
   // Login
   loginUsername: string;
   loginPassword: string;
@@ -41,4 +45,5 @@ export class SignUpFormData {
   // referral code
   referralCode: string;
   userType: string;
+  accountCreationType:string;
 }

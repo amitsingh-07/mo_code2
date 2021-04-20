@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { toInteger } from './../shared/utils/common.util';
 
 
 import { Observable } from 'rxjs';
@@ -896,7 +895,7 @@ export class ComprehensiveService {
    */
   getPreviousUrl(currentUrl: string): string {
     const urlList = (!this.getComprehensiveVersion()) ? this.getComprehensiveUrlList(COMPREHENSIVE_LITE_ROUTER_CONFIG) : this.getComprehensiveUrlList(COMPREHENSIVE_FULL_ROUTER_CONFIG);
-    const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, currentUrl));
+    const currentUrlIndex = Util.toInteger(Util.getKeyByValue(urlList, currentUrl));
     if (currentUrlIndex > 0) {
       const previousUrl = urlList[currentUrlIndex - 1];
       if (
@@ -933,7 +932,7 @@ export class ComprehensiveService {
 
     this.generateProgressTrackerData();
 
-    const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, url));
+    const currentUrlIndex = Util.toInteger(Util.getKeyByValue(urlList, url));
     let accessibleUrl = '';
 
     const profileData = this.getMyProfile();
@@ -1166,7 +1165,7 @@ export class ComprehensiveService {
   getAccessibleLiteJourney(urlList: any, url: any) {
     this.generateProgressTrackerData();
 
-    const currentUrlIndex = toInteger(Util.getKeyByValue(urlList, url));
+    const currentUrlIndex = Util.toInteger(Util.getKeyByValue(urlList, url));
     let accessibleUrl = '';
 
     const profileData = this.getMyProfile();
@@ -2203,15 +2202,13 @@ export class ComprehensiveService {
   getRegularSaving(mode: any, annualFlag: boolean) {
     const rspDetails = this.getRegularSavingsList();
     if (rspDetails && rspDetails !== null) {
-      const inputParams = { rsp: rspDetails };
-      const removeParams = ['enquiryId'];
-      if (mode === 'cash') {
-        removeParams.push('regularPaidByCPF');
-      } else if (mode === 'cpf') {
-        removeParams.push('regularPaidByCash');
-      }
-      const filterInput = this.unSetObjectByKey(inputParams, removeParams);
-      const monthlySumCal = this.additionOfCurrency(filterInput);
+      const calculateRSP = [];
+      rspDetails.forEach((investDetails: any, index) => {
+        if(investDetails.fundType && investDetails.fundType.toLowerCase() === mode) {
+          calculateRSP.push(investDetails.amount);
+        }
+      });        
+      const monthlySumCal = this.additionOfCurrency(calculateRSP);  
       if (annualFlag) {
         return monthlySumCal * 12;
       } else {
@@ -2298,7 +2295,7 @@ export class ComprehensiveService {
    */
   getValidAmount(thisValue) {
     if (thisValue && thisValue !== null && !isNaN(thisValue)) {
-      return toInteger(thisValue);
+      return Util.toInteger(thisValue);
     } else {
       return 0;
     }
@@ -2688,5 +2685,13 @@ export class ComprehensiveService {
     } else {
       return '';
     }
+  }
+
+  validateUin(uin) {
+    const payload = {
+      source: COMPREHENSIVE_CONST.API_SOURCE,
+      uin: uin
+    };
+    return this.apiService.validateUin(payload);
   }
 }

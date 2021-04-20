@@ -1,7 +1,7 @@
 <div class="annual-fee-desc">
   <div *ngFor="let fee of feeDetailsValues; let i = index">
     <div class="flex-row">
-      <div class="flex-col-8" [ngClass]="{'wise-saver-annual-fee': portfolioTypeFlag}">
+      <div class="flex-col" [ngClass]="{'wise-saver-annual-fee': portfolioTypeFlag}">
         <span>{{fee.feeName}}</span>
         <div class="text-lyt" *ngIf="fee.comments">({{fee.comments}})</div>
       </div>
@@ -9,7 +9,10 @@
         <span *ngIf="false">*</span></div>
     </div>
   </div>
-  <div class="fee_des flex-col-12" *ngIf="fundExpensiveTranslater"
+  <div class="fee_des flex-col-12" *ngIf="fundExpensiveTranslater && !wiseIncomeEnabled"
     innerHTML="{{'PORTFOLIO_RECOMMENDATION.EXPENSIVE_RATIO' | translate : fundExpensiveTranslater}}">
+  </div>
+  <div class="fee_des flex-col-12" *ngIf="fundExpensiveTranslater && wiseIncomeEnabled"
+    innerHTML="{{'PORTFOLIO_RECOMMENDATION.EXPENSIVE_RATIO_WISE_INCOME' | translate : fundExpensiveTranslater}}">
   </div>
 </div>

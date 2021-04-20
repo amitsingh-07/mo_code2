@@ -1,6 +1,6 @@
 <div class="container-fluid max-width--1024" *ngIf="portfolio">
   <div class="portfolio-allocation-details">
-    <div class="flex-col-12 portfolio-allocation-details__container">
+    <div class="flex-col-12 portfolio-allocation-details__container" *ngIf="!wiseIncomeEnabled">
       <div class="portfolio-allocation-details__content white-bg">
         <div class="flex-col-12 portfolio-allocation-details__content__desc">
           <div class="portfolio_img hidden-sm"><img src={{iconImage}} id="riskProfileImg" /></div>
@@ -19,8 +19,21 @@
         </div>
       </div>
     </div>
+    
+    <div class="flex-col-12 wise-income-payout" *ngIf="wiseIncomeEnabled && portfolio.payoutType">
+      <!-- payout -->
+      <app-wise-income-payout-type [portfolio]="portfolio"  [payoutType]="portfolio.payoutType" ></app-wise-income-payout-type>
+    </div>
+    
+    <div class="flex-col-12 wise-income-fund" *ngIf="wiseIncomeEnabled">
+      <div class="wise-income-title">{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.FUNDING' | translate}}</div>
+      <!-- Fund -->
+      <app-wise-income-fund  [portfolio]="portfolio"  [investmentInput]="userInputSubtext"></app-wise-income-fund>
+    </div>
+
     <div class="flex-col-12 asset-allocation">
-      <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
+      <div class="title" *ngIf="!wiseIncomeEnabled">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
+      <div class="title" *ngIf="wiseIncomeEnabled">{{ 'PORTFOLIO_RECOMMENDATION.FUND_ASSET_ALLOCATION_LBL' | translate}}</div>
       <!-- bonds -->
       <app-allocation [portfolioType]="portfolio.portfolioType" [assets]="portfolio.sectorAllocations" [funds]="portfolio.funds" [colors]="colors">
       </app-allocation>
@@ -29,26 +42,37 @@
       <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ANNUAL_FEES' | translate}}</div>
       <app-annual-fees [portfolioType]="portfolio.portfolioType" [feeDetails]="portfolio.feeDetails"></app-annual-fees>
     </div>
-    <div class="faq_link"><a target="_blank" routerLink="/faq"
-        fragment="investment">{{ 'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a></div>
+    <div *ngIf="!wiseIncomeEnabled" class="faq_link" [ngClass]="{'wiseIncomeFaqCard': wiseIncomeEnabled}">
+      <a target="_blank" routerLink="/faq" fragment="investment">
+        {{ 'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a>
+    </div>
+    <div *ngIf="wiseIncomeEnabled" class="faq_link" [ngClass]="{'wiseIncomeFaqCard': wiseIncomeEnabled}">
+      <a target="_blank" routerLink="/faq-investment-wiseincome">
+        {{ 'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a>
+    </div>
   </div>
-  <div class="row hidden-lg">
+  
+  <div class="text-center" *ngIf="wiseIncomeEnabled">
+    <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-continue btn-primary width100">{{
+'PORTFOLIO_RECOMMENDATION.CONTINUE' | translate}}</button>
+  </div>
+  <div class="row hidden-lg"  *ngIf="!wiseIncomeEnabled">
     <div class="flex-col-12 review-block">
       <div>{{ 'PORTFOLIO_RECOMMENDATION.REVIEW_SUB_TEXT' | translate}}</div>
     </div>
   </div>
 
-  <button type="button" (click)="goToNext()"
-    class="btn btn__footer--fixed btn-primary hidden-lg  width100">{{ 'PORTFOLIO_RECOMMENDATION.PROCEED' | translate}}</button>
+  <button  *ngIf="!wiseIncomeEnabled" type="button" (click)="goToNext()"
+    class="btn btn__footer--fixed btn-proceed btn-primary hidden-lg  width100">{{ 'PORTFOLIO_RECOMMENDATION.PROCEED' | translate}}</button>
 </div>
-<div class="recommend-footer hidden-sm-md cont" *ngIf="portfolio">
+<div class="recommend-footer hidden-sm-md cont" *ngIf="portfolio && !wiseIncomeEnabled">
   <div class="footer-content container-fluid max-width--1024">
     <div>
       <div class="text-one">{{ 'PORTFOLIO_RECOMMENDATION.REVIEW_SUB_TEXT' | translate}}</div>
     </div>
     <div>
       <button type="button" (click)="goToNext()"
-        class="btn btn__footer--fixed btn-primary width100">{{ 'PORTFOLIO_RECOMMENDATION.PROCEED' | translate}}</button>
+        class="btn btn__footer--fixed btn-proceed btn-primary width100">{{ 'PORTFOLIO_RECOMMENDATION.PROCEED' | translate}}</button>
     </div>
   </div>
 </div>

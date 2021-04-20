@@ -3,12 +3,7 @@
 
 app-sing-pass {
   .autofill-link {
-    border: 1px solid $sing-pass-border-color;
-    padding: 15px 20px;
-    background-color: $sing-pass-bg-color;
-    border-radius: 6px;
     cursor: pointer;
-    box-shadow: 0px 9px 19px 2px $sing-pass-box-shadow-color;
     margin-bottom: 20px;
 
     .flex-row {
@@ -18,65 +13,9 @@ app-sing-pass {
     }
 
     .autofill-logo {
-      width: 92px;
-      height: 35px;
-
       img {
         width: 100%;
         height: auto;
-      }
-    }
-
-    .autofill-text {
-      display: flex;
-      align-items: center;
-      font-family: $muli-bold;
-      font-size: 16px;
-      color: $inline-error-border-color;
-      padding-right: 15px;
-    }
-
-    .autofill-text-new {
-      display: block;
-      width: 100%;
-      font-family: $muli-bold;
-      font-size: 14px;
-      color: $dark-grey-color;
-      text-align: center;
-    }
-    .autofill-estimation {
-      display: none;
-    }
-
-    &.postlogin {
-      box-shadow: 0 8px 12px 0 $post-login-shadow;
-      margin-bottom: 0px;
-
-      @include max360 {
-        padding: 10px 14px;
-      }
-
-      .autofill-text {
-        font-size: 21px;
-        justify-content: flex-start;
-        padding-right: 10px;
-        padding-bottom: 7px;
-      }
-
-      .autofill-logo {
-        width: 107px;
-        height: 40px;
-      }
-
-      .autofill-estimation {
-        display: flex;
-        font-family: $muli-semi-bold;
-        font-size: 14px;
-        line-height: 1.5;
-        letter-spacing: -0.1px;
-        text-align: center;
-        color: $autofill-time-color;
-        justify-content: center;
       }
     }
   }

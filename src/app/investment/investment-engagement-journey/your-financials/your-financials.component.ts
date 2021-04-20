@@ -14,7 +14,9 @@ import {
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
@@ -40,6 +42,9 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   translator: any;
   loaderTitle: string;
   loaderDesc: string;
+  selectedPortfolioType;
+  loaderDescTwo: string;
+
   constructor(
     private router: Router,
     private modal: NgbModal,
@@ -64,6 +69,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
       self.translator = this.translate.instant('MY_FINANCIALS');
       self.loaderTitle = this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.TITLE');
       self.loaderDesc = this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.DESC');
+      self.loaderDescTwo = this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.DESC_TWO');
       this.setPageTitle(self.pageTitle);
     });
   }
@@ -160,20 +166,69 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
 
   saveAndProceed(form: any) {
     const invCommonFormValues = this.investmentCommonService.getInvestmentCommonFormData();
+    this.selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
+    const selectedPortfolioType = (this.selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) ? INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME : INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT;
     let portfolioTypeArray = this.investmentCommonService.getPortfolioType();
-    let portfolioType = this.investmentEngagementJourneyService.filterDataByInput(portfolioTypeArray.portfolioType, 'name', 'Investment');
+    let portfolioType = this.investmentEngagementJourneyService.filterDataByInput(portfolioTypeArray.portfolioType, 'name', selectedPortfolioType);
     form.value.portfolioTypeId = portfolioType.id;
     this.investmentEngagementJourneyService.setYourFinancial(form.value);
     this.investmentEngagementJourneyService.savePersonalInfo(invCommonFormValues).subscribe((data) => {
       this.investmentCommonService.clearAccountCreationActions();
       if (data) {
         this.authService.saveEnquiryId(data.objectList.enquiryId);
-        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP2]);
+        if (selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME) {
+          if (this.authService.isSignedUser()) {
+            this.getPortfolioAllocationDetails();
+          } else {
+            this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
+          }
+        } else {
+          this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP2]);
+        }
       }
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
+  }
+
+  redirectToNextPage() {
+    this.investmentCommonService.getAccountCreationActions().subscribe((data) => {
+      if (this.investmentCommonService.isUserNotAllowed(data)) {
+        this.investmentCommonService.goToDashboard();
+      } else if (this.investmentCommonService.isUsersFirstPortfolio(data)) {
+
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
+      } else {
+        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+      }
+    });
+  }
+
+  getPortfolioAllocationDetails() {
+    this.loaderService.showLoader({
+      title: this.loaderTitle,
+      desc: this.loaderDescTwo
+    });
+    const params = this.constructGetAllocationParams();
+    if (params && params.enquiryId) {
+      this.investmentEngagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
+        this.loaderService.hideLoader();
+        this.redirectToNextPage();
+      },
+        (err) => {
+          this.loaderService.hideLoader();
+          this.investmentAccountService.showGenericErrorModal();
+        });
+    } else {
+      this.navbarService.logoutUser();
+    }
+  }
+
+  constructGetAllocationParams() {
+    return {
+      enquiryId: this.authService.getEnquiryId()
+    };
   }
 
   goBack(form) {

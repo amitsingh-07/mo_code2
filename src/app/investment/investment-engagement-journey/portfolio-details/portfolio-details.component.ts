@@ -43,6 +43,7 @@ import {
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { ProfileIcons } from '../recommendation/profileIcons';
 import { RiskProfile } from '../recommendation/riskprofile';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 
 @Component({
   selector: 'app-portfolio-details',
@@ -53,7 +54,6 @@ import { RiskProfile } from '../recommendation/riskprofile';
 export class PortfolioDetailsComponent implements OnInit {
   pageTitle: string;
   portfolio;
-  selectedRiskProfile: any;
   breakdownSelectionindex: number = null;
   isAllocationOpen = false;
   colors: string[] = ['#ec681c', '#76328e', '#76328e'];
@@ -65,6 +65,7 @@ export class PortfolioDetailsComponent implements OnInit {
   iconImage;
   userInputSubtext;
   investmentCriteria: IInvestmentCriteria;
+  wiseIncomeEnabled: boolean;
 
   constructor(
     private signUpApiService: SignUpApiService,
@@ -100,8 +101,6 @@ export class PortfolioDetailsComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.getPortfolioAllocationDetails();
-    this.selectedRiskProfile = this.investmentEngagementJourneyService.getSelectedRiskProfileId();
-    this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
   }
 
   setPageTitle(title: string) {
@@ -169,24 +168,33 @@ export class PortfolioDetailsComponent implements OnInit {
 
   getPortfolioAllocationDetails() {
     const params = this.constructgetAllocationParams();
-    this.investmentEngagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
-      // Commented the MO2MP-2503 fix
-      // this.investmentCommonService.clearAccountCreationActions();
-      this.portfolio = data.objectList;
-      this.getInvestmentCriteria(this.portfolio);
-      this.userInputSubtext = {
-        onetime: this.formatCurrencyPipe.transform(
-          this.portfolio.initialInvestment
-        ),
-        monthly: this.formatCurrencyPipe.transform(
-          this.portfolio.monthlyInvestment
-        ),
-        period: this.portfolio.investmentPeriod
-      };
-    },
-      (err) => {
-        this.investmentAccountService.showGenericErrorModal();
-      });
+    if (params && params.enquiryId) {
+      this.investmentEngagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
+        // Commented the MO2MP-2503 fix
+        // this.investmentCommonService.clearAccountCreationActions();
+        this.portfolio = data.objectList;
+        this.investmentCommonService.saveUpdateSessionData(this.portfolio);
+        this.wiseIncomeEnabled = (this.portfolio.portfolioType.toLowerCase() == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase());
+        if (!this.wiseIncomeEnabled) {
+          this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
+        }
+        this.getInvestmentCriteria(this.portfolio);
+        this.userInputSubtext = {
+          onetime: this.formatCurrencyPipe.transform(
+            this.portfolio.initialInvestment
+          ),
+          monthly: this.formatCurrencyPipe.transform(
+            this.portfolio.monthlyInvestment
+          ),
+          period: this.portfolio.investmentPeriod
+        };
+      },
+        (err) => {
+          this.investmentAccountService.showGenericErrorModal();
+        });
+    } else {
+      this.navbarService.logoutUser();
+    }
   }
 
   constructgetAllocationParams() {
@@ -231,7 +239,7 @@ export class PortfolioDetailsComponent implements OnInit {
     ref.componentInstance.secondaryAction.subscribe(() => {
       // Sign up
       this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.START);
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO]);
     });
   }
 

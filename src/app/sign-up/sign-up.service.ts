@@ -36,6 +36,7 @@ const FINLITENABLED = 'finlitenabled';
 })
 
 export class SignUpService {
+  disableAttributes = [];
   private userSubject = new Subject();
   userObservable$ = this.userSubject.asObservable();
   private signUpFormData: SignUpFormData = new SignUpFormData();
@@ -43,6 +44,7 @@ export class SignUpService {
   private resetPasswordUrl: string;
   private mobileOptimized = new BehaviorSubject(false);
   mobileOptimizedObservable$ = this.mobileOptimized.asObservable();
+  myInfoAttributes = SIGN_UP_CONFIG.MY_INFO_ATTRIBUTES;
   constructor(
     private apiService: ApiService,
     public authService: AuthenticationService,
@@ -692,5 +694,40 @@ export class SignUpService {
     return this.apiService.validateReferralCode(data);
   }
 
+// create account my_info details
+  setCreateAccountMyInfoFormData(data) {
+    if (data.name && data.name.value) {
+      this.signUpFormData.fullName = data.name.value;
+      this.disableAttributes.push('fullName');
+    }
+    if (data.uin) {
+      this.signUpFormData.nricNumber = data.uin;
+      this.disableAttributes.push('nricNumber');
+    }
+    if (data.email && data.email.value) {
+      this.signUpFormData.email = data.email.value;
+    }
+    if (data.mobileno && data.mobileno.nbr) {
+      this.signUpFormData.mobileNumber = data.mobileno.nbr;
+    }
+    this.signUpFormData.isMyInfoEnabled = true;
+    this.commit();
+  }
+  isDisabled(fieldName): boolean {
+    let disable: boolean;
+    if (this.signUpFormData &&
+      this.signUpFormData.isMyInfoEnabled &&
+      this.signUpFormData.disableAttributes.indexOf(fieldName) >= 0
+    ) {
+      disable = true;
+    } else {
+      disable = false;
+    }
+    return disable;
+  }
 
+  setMyInfoStatus(status) {
+    this.signUpFormData.isMyInfoEnabled = status;
+    this.commit();
+  }
 }

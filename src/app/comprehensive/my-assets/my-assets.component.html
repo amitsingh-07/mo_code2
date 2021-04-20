@@ -80,6 +80,7 @@
             <div class="form-group-with-bg--header-label">{{ 'CMP.MY_ASSETS.YOUR_CPF' | translate}}<div
                 class="form-group-with-bg--header-sub-label"></div>
             </div>
+            <span (click)="editCPFFields()" *ngIf="!viewMode && showEditIcon" class="edit-icon"><img src="assets/images/comprehensive/edit-icon-pencil.svg" /></span>
           </div>
         </div>
       </div>
@@ -147,8 +148,7 @@
         </div>
         <div *ngIf="!viewMode" (click)="openModal()" class="auto-fill-cpf" appComprehensiveViewMode="{{viewMode}}"
           mode=1>
-          {{'CMP.MY_ASSETS.AUTO_FILL'| translate}}
-          <img class="auto-fill-logo" src="assets/images/comprehensive/myinfo-logo.svg">
+          <img class="auto-fill-logo" src="assets/images/retrieve-singpass-logo.svg">
         </div>
 
 
@@ -370,6 +370,32 @@
                       <button type="button" class="dropdown-item" *ngFor="let investType of investmentTypeList;"
                         (click)="selectInvestType(investType, i)">
                         {{investType.text}}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex-row" *ngIf="comprehensiveJourneyMode">
+              <div class="flex-col-5">
+                <div class="form-group-with-bg--content-label" for="name">{{'CMP.MY_ASSETS.FUND_TYPE'|translate}}
+                  <div class="form-group-with-bg--content-sub-label"></div>
+                </div>
+              </div>
+              <div class="flex-col-7">
+                <div class="dropdown-control"
+                  [ngClass]="{'inline-error': submitted && otherInvestment['controls'].fundType.invalid}">
+                  <div ngbDropdown id="fundTypeDropDown">
+                    <button type="button" class="btn btn-dropdown" id="dropdownsfundType" ngbDropdownToggle
+                      appComprehensiveViewMode="{{viewMode}}" mode=1>
+                      <span *ngIf="!fundType[i] || fundType[i] === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                      <span *ngIf=" fundType[i] !==''">{{fundType[i]}}</span>
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownsFundType">
+                      <button class="dropdown-item" (click)="selectFundType('',i)">Select</button>
+                      <button type="button" class="dropdown-item" *ngFor="let fundType of fundTypeList;"
+                        (click)="selectFundType(fundType, i)">
+                        {{fundType.text}}
                       </button>
                     </div>
                   </div>

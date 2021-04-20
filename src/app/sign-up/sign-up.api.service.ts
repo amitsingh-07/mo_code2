@@ -17,6 +17,7 @@ import { SignUpFormData } from './sign-up-form-data';
 import { SignUpService } from './sign-up.service';
 import { Util } from '../shared/utils/util';
 import { HubspotService } from '../shared/analytics/hubspot.service';
+import { SIGN_UP_CONFIG } from './sign-up.constant';
 
 @Injectable({
   providedIn: 'root'
@@ -71,23 +72,45 @@ export class SignUpApiService {
     }
 
     journeyType = journeyType.toLowerCase();
-    return {
-      customer: {
-        countryCode: getAccountInfo.countryCode,
-        mobileNumber: getAccountInfo.mobileNumber.toString(),
-        firstName: getAccountInfo.firstName,
-        lastName: getAccountInfo.lastName,
-        emailAddress: getAccountInfo.email,
-        password: this.cryptoService.encrypt(pwd),
-        acceptMarketingNotifications: getAccountInfo.marketingAcceptance
-      },
-      sessionId: this.authService.getSessionId(),
-      captcha,
-      journeyType,
-      enquiryId,
-      referralCode: getAccountInfo.referralCode,
-      userType: getAccountInfo.userType
-    };
+    if (getAccountInfo.accountCreationType === SIGN_UP_CONFIG.SINGPASS) {
+      return {
+        customer: {
+          countryCode: getAccountInfo.countryCode,
+          mobileNumber: getAccountInfo.mobileNumber.toString(),
+          uin: getAccountInfo.nricNumber,
+          fullName: getAccountInfo.fullName,
+          emailAddress: getAccountInfo.email,
+          password: this.cryptoService.encrypt(pwd),
+          acceptMarketingNotifications: getAccountInfo.marketingAcceptance
+        },
+        sessionId: this.authService.getSessionId(),
+        captcha,
+        journeyType,
+        enquiryId,
+        referralCode: getAccountInfo.referralCode,
+        userType: getAccountInfo.userType,
+        accountCreationType: getAccountInfo.accountCreationType
+      };
+    } else {
+      return {
+        customer: {
+          countryCode: getAccountInfo.countryCode,
+          mobileNumber: getAccountInfo.mobileNumber.toString(),
+          firstName: getAccountInfo.firstName,
+          lastName: getAccountInfo.lastName,
+          emailAddress: getAccountInfo.email,
+          password: this.cryptoService.encrypt(pwd),
+          acceptMarketingNotifications: getAccountInfo.marketingAcceptance
+        },
+        sessionId: this.authService.getSessionId(),
+        captcha,
+        journeyType,
+        enquiryId,
+        referralCode: getAccountInfo.referralCode,
+        userType: getAccountInfo.userType,
+        accountCreationType: getAccountInfo.accountCreationType
+      };
+    }
   }
 
   /**

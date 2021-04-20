@@ -23,6 +23,7 @@ import { RoutingService } from './shared/Services/routing.service';
 import { SignUpService } from './sign-up/sign-up.service';
 import { SessionsService } from './shared/Services/sessions/sessions.service';
 import { HubspotService } from './shared/analytics/hubspot.service';
+import { appConstants } from './app.constants';
 
 
 declare global {
@@ -182,10 +183,14 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
   doUnload() {
     // Logged user out of the app
     if (this.authService.isSignedUser()) {
+      const browserClose = appConstants.BROWSER_CLOSE;
+      this.authService.logout(browserClose).subscribe((data) => {
+      });
       this.navbarService.logoutUser();
     }
     this.sessionsService.destroyInstance();
   }
+
 
   // @HostListener('window:beforeunload', ['$event'])
   // unloadNotification($event: any) {

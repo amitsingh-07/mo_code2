@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { NavbarService } from './../../shared/navbar/navbar.service';
@@ -13,11 +13,13 @@ export class PromoCodeLandingComponent implements OnInit {
 
   constructor(
     public translate: TranslateService,
-    public navbarService: NavbarService) {
+    public navbarService: NavbarService,
+    private renderer: Renderer2) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.setNavbarServices(this.translate.instant('PROMO_CODE.TITLE'));
     });
+    this.renderer.addClass(document.body, 'portfolioname-bg');
   }
 
   setNavbarServices(title: string) {
@@ -29,4 +31,7 @@ export class PromoCodeLandingComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnDestroy() {
+    this.renderer.removeClass(document.body, 'portfolioname-bg');
+  }
 }

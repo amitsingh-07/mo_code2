@@ -1,0 +1,331 @@
+<div class="container-fluid max-width--1024 investment" *ngIf="defaultPayoutypeEnabled && wiseIncomePayOutTypes"  #backToTop id="backToTop">
+    <div class="row">
+        <div class="col-lg-7 col-md-6">
+            <h2 class="hidden-sm">{{'WISE_INCOME_PAYOUT.CAPTION' | translate}}</h2>
+            <div class="page-desc">{{'WISE_INCOME_PAYOUT.DESCRIPTION' | translate}}</div>
+            <div class="banner-image hidden-sm">
+                <img src="assets/images/investment-account/wiseincome-payout.svg" />
+            </div>
+        </div>
+        <div class="col-lg-5 col-md-6">
+            <form name="wiseIncomePayOutTypeForm" [formGroup]="wiseIncomePayOutTypeForm" id="wiseIncomePayOutTypeForm">
+                <div class="form-group-single-column flex-col">
+                    <div class="fund-question hidden-lg mt20">{{'WISE_INCOME_PAYOUT.CAPTION' | translate}}</div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="checkbox-button one-label order{{i+1}}"
+                                *ngFor="let wiseIncomePayOut of wiseIncomePayOutTypes; let i = index" (click)="nav.select(i+1)">
+                                <input id="wise-income-payout_option{{i+1}}_radio" type="radio" class="field radio"
+                                name="initialWiseIncomePayoutTypeId" formControlName="initialWiseIncomePayoutTypeId" [value]=wiseIncomePayOut.id tabindex="{{i+1}}">
+                                <label for="wise-income-payout_option{{i+1}}_radio">
+                                    <div class="payout-type">
+                                        <span class="payout-icon">
+                                            <img src="assets/images/investment-account/wisesaver-family-{{i+1}}.svg" />
+                                        </span>
+                                        <span class="input-label-black">{{wiseIncomePayOut.name}}</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="note-info flex">
+                                <span class="note-icon mr10"><img
+                                        src="assets/images/investment-account/time-past-by.svg" /></span>
+                                <span>{{'WISE_INCOME_PAYOUT.NOTE_LBL' | translate}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary btn__footer--fixed width100"
+                    [disabled]="(!wiseIncomePayOutTypeForm.controls.initialWiseIncomePayoutTypeId.value)"
+                    (click)="goToNext(wiseIncomePayOutTypeForm)">{{'WISE_INCOME_PAYOUT.CONTINUE' | translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="payout-pannel-block">
+        <div class="payout-pannel-desc" #payoutOption id="payoutOption">{{'WISE_INCOME_PAYOUT.PANEL_TITLE' | translate}}</div>
+        <div class="payout-pannel-tabs">
+            <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTabId">
+                <ng-container [ngbNavItem]="1">
+                    <a class="flex-col-4" ngbNavLink>{{'WISE_INCOME_PAYOUT.TAB_TITLE_LBL_1' | translate}}</a>
+                    <ng-template ngbNavContent>
+                        <div class="pannel-tab-content">
+                            <div class="tab-content-preference">
+                                <div class="preference-lbl">{{'WISE_INCOME_PAYOUT.PREFERENCE_LBL' | translate}}</div>
+                                <div class="mt20 txt-semi-bold">
+                                    <div class="flex align-center">
+                                        <span class="preference-tick-icon"><img
+                                                src="assets/images/investment-account/icon-tick.svg" /></span>
+                                        <span>{{'WISE_INCOME_PAYOUT.BUILD_LBL' | translate}}</span>
+                                    </div>
+                                    <div class="flex align-center mt10">
+                                        <span class="preference-tick-icon"><img
+                                                src="assets/images/investment-account/icon-tick.svg" /></span>
+                                        <span>{{'WISE_INCOME_PAYOUT.START_LBL' | translate}}</span>
+                                    </div>
+                                </div>
+                                <div [innerHTML]="'WISE_INCOME_PAYOUT.TAB_1_DESC_1' | translate"></div>
+                                <div class="flex-row preference-payout-block">
+                                    <div class="preference-payout-block-item">
+                                        <label>{{'WISE_INCOME_PAYOUT.0NE_TIME_LBL' | translate}}</label>
+                                        <div>{{'WISE_INCOME_PAYOUT.0NE_TIME_VALUE' | translate}}</div>
+                                    </div>
+                                    <div class="preference-payout-block-item">
+                                        <label>{{'WISE_INCOME_PAYOUT.MONTHLY_LBL' | translate}}</label>
+                                        <div>{{'WISE_INCOME_PAYOUT.MONTHLY_VALUE' | translate}}</div>
+                                    </div>
+                                </div>
+                                <div class="flex-row preference-payout-block">
+                                    <div class="preference-payout-block-item">
+                                        <label>{{'WISE_INCOME_PAYOUT.FREQUENCY_LBL' | translate}}</label>
+                                        <div>{{'WISE_INCOME_PAYOUT.REINVESTED_LBL' | translate}}</div>
+                                    </div>
+                                    <div class="preference-payout-block-item">
+                                        <label>{{'WISE_INCOME_PAYOUT.FUNDING_LBL' | translate}}</label>
+                                        <div>{{'WISE_INCOME_PAYOUT.CASH_SRS_LBL' | translate}}</div>
+                                    </div>
+                                </div>
+                                <div class="graph-block">
+                                    <div class="mb20">{{'WISE_INCOME_PAYOUT.GRAPH_TITLE_LBL' | translate}}</div>
+                                    <div class="graph">
+                                        <img class="hidden-sm-md"
+                                            src="assets/images/investment-account/wise-income-graph-1.svg" />
+                                        <img class="hidden-lg"
+                                            src="assets/images/investment-account/wise-income-graph-1-mobile.svg" />
+                                    </div>
+                                    <div [innerHTML]="'WISE_INCOME_PAYOUT.TAB_1_DESC_2' | translate"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ng-container>
+                <ng-container  [ngbNavItem]="2">
+                    <a class="flex-col-4" ngbNavLink>{{'WISE_INCOME_PAYOUT.TAB_TITLE_LBL_2' | translate}} </a>
+                    <ng-template ngbNavContent>
+                        <div class="pannel-tab-content">
+                            <div class="tab-content-preference">
+                                <div class="preference-lbl">{{'WISE_INCOME_PAYOUT.PREFERENCE_LBL' | translate}}</div>
+                                <div class="mt20 txt-semi-bold">
+                                    <div class="flex align-center">
+                                        <span class="preference-tick-icon"><img
+                                                src="assets/images/investment-account/icon-tick.svg" /></span>
+                                        <span>{{'WISE_INCOME_PAYOUT.BALANCE_LBL' | translate}}</span>
+                                    </div>
+                                </div>
+                                <div [innerHTML]="'WISE_INCOME_PAYOUT.TAB_2_DESC_1' | translate"></div>
+                                <div class="flex-row preference-payout-block">
+                                    <div class="preference-payout-block-item">
+                                        <label>{{'WISE_INCOME_PAYOUT.0NE_TIME_LBL' | translate}}</label>
+                                        <div>{{'WISE_INCOME_PAYOUT.0NE_TIME_VALUE' | translate}}</div>
+                                    </div>
+                                    <div class="preference-payout-block-item">
+                                        <label>{{'WISE_INCOME_PAYOUT.MONTHLY_LBL' | translate}}</label>
+                                        <div>{{'WISE_INCOME_PAYOUT.MONTHLY_VALUE' | translate}}</div>
+                                    </div>
+                                </div>
+                                <div class="flex-row preference-payout-block">
+                                    <div class="preference-payout-block-item">
+                                        <label>{{'WISE_INCOME_PAYOUT.FREQUENCY_LBL' | translate}}</label>
+                                        <div>{{'WISE_INCOME_PAYOUT.QUATERLY_LBL' | translate}}</div>
+                                    </div>
+                                    <div class="preference-payout-block-item">
+                                        <label>{{'WISE_INCOME_PAYOUT.FUNDING_LBL' | translate}}</label>
+                                        <div>{{'WISE_INCOME_PAYOUT.CASH_LBL' | translate}}</div>
+                                    </div>
+                                </div>
+                                <div class="graph-block">
+                                    <div class="mb20">{{'WISE_INCOME_PAYOUT.GRAPH_TITLE_LBL' | translate}}</div>
+                                    <div class="graph">
+                                        <img class="hidden-sm-md"
+                                            src="assets/images/investment-account/wise-income-graph-2.svg" />
+                                        <img class="hidden-lg"
+                                            src="assets/images/investment-account/wise-income-graph-2-mobile.svg" />
+                                    </div>
+                                    <div [innerHTML]="'WISE_INCOME_PAYOUT.TAB_2_DESC_2' | translate"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ng-container>
+                <ng-container  [ngbNavItem]="3">
+                    <a class="flex-col-4" ngbNavLink>{{'WISE_INCOME_PAYOUT.TAB_TITLE_LBL_3' | translate}}</a>
+                    <ng-template ngbNavContent>
+                        <div class="pannel-tab-content">
+                            <div class="tab-content-preference">
+                                <div class="preference-lbl">{{'WISE_INCOME_PAYOUT.PREFERENCE_LBL' | translate}}</div>
+                                <div class="mt20 txt-semi-bold">
+                                    <div class="flex align-center">
+                                        <span class="preference-tick-icon"><img
+                                                src="assets/images/investment-account/icon-tick.svg" /></span>
+                                        <span>{{'WISE_INCOME_PAYOUT.MAXIMISE_LBL' | translate}}</span>
+                                    </div>
+                                </div>
+                                <div [innerHTML]="'WISE_INCOME_PAYOUT.TAB_3_DESC_1' | translate"></div>
+                                <div class="flex-row preference-payout-block">
+                                    <div class="preference-payout-block-item">
+                                        <label>{{'WISE_INCOME_PAYOUT.0NE_TIME_LBL' | translate}}</label>
+                                        <div>{{'WISE_INCOME_PAYOUT.0NE_TIME_VALUE' | translate}}</div>
+                                    </div>
+                                    <div class="preference-payout-block-item">
+                                        <label>{{'WISE_INCOME_PAYOUT.MONTHLY_LBL' | translate}}</label>
+                                        <div>{{'WISE_INCOME_PAYOUT.MONTHLY_VALUE' | translate}}</div>
+                                    </div>
+                                </div>
+                                <div class="flex-row preference-payout-block">
+                                    <div class="preference-payout-block-item">
+                                        <label>{{'WISE_INCOME_PAYOUT.FREQUENCY_LBL' | translate}}</label>
+                                        <div>{{'WISE_INCOME_PAYOUT.QUATERLY_LBL' | translate}}</div>
+                                    </div>
+                                    <div class="preference-payout-block-item">
+                                        <label>{{'WISE_INCOME_PAYOUT.FUNDING_LBL' | translate}}</label>
+                                        <div>{{'WISE_INCOME_PAYOUT.CASH_LBL' | translate}}</div>
+                                    </div>
+                                </div>
+                                <div class="graph-block">
+                                    <div class="mb20">{{'WISE_INCOME_PAYOUT.GRAPH_TITLE_LBL' | translate}}</div>
+                                    <div class="graph">
+                                        <img class="hidden-sm-md"
+                                            src="assets/images/investment-account/wise-income-graph-3.svg" />
+                                        <img class="hidden-lg"
+                                            src="assets/images/investment-account/wise-income-graph-3-mobile.svg" />
+                                    </div>
+                                    <div [innerHTML]="'WISE_INCOME_PAYOUT.TAB_3_DESC_2' | translate"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ng-container>
+            </nav>
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </div>
+    </div>
+
+    <div class="learn-more-block mt30">
+        <div class="payout-pannel-desc">{{'WISE_INCOME_PAYOUT.LEARN_MORE_LBL' | translate}}</div>
+        <div class="learn-more-options">
+            <div class="learn-more-accordian">
+                <ngb-accordion #acc="ngbAccordion">
+                    <ngb-panel>
+                        <ng-template ngbPanelTitle>
+                            <div class="flex space-between" #featureBenefits id="featureBenefits">
+                                <div>{{'WISE_INCOME_PAYOUT.FEATURE_BENEFITS_LBL' | translate}}</div>
+                                <div><i class='arrow'></i></div>
+                            </div>
+                        </ng-template>
+                        <ng-template ngbPanelContent>
+                            <div>
+                                <div class="pannel-tab-content">
+                                    <div class="tab-content-preference">
+                                        <div [innerHTML]="'WISE_INCOME_PAYOUT.FEATURE_BENEFITS_DESC_1' | translate">
+                                        </div>
+                                        <div class="preference-lbl mt30">{{'WISE_INCOME_PAYOUT.WHATS_GREAT_LBL' |
+                                            translate}}</div>
+                                        <div class="mt20">
+                                            <div class="flex align-center">
+                                                <span class="preference-tick-icon"><img
+                                                        src="assets/images/investment-account/icon-tick.svg" /></span>
+                                                <span>{{'WISE_INCOME_PAYOUT.WHATS_GREAT_PREFERENCE_LBL_1' |
+                                                    translate}}</span>
+                                            </div>
+                                            <div class="flex align-center mt10">
+                                                <span class="preference-tick-icon"><img
+                                                        src="assets/images/investment-account/icon-tick.svg" /></span>
+                                                <span>{{'WISE_INCOME_PAYOUT.WHATS_GREAT_PREFERENCE_LBL_2' |
+                                                    translate}}</span>
+                                            </div>
+                                            <div class="flex align-center mt10">
+                                                <span class="preference-tick-icon"><img
+                                                        src="assets/images/investment-account/icon-tick.svg" /></span>
+                                                <span>{{'WISE_INCOME_PAYOUT.WHATS_GREAT_PREFERENCE_LBL_3' |
+                                                    translate}}</span>
+                                            </div>
+                                            <div class="flex align-center mt10">
+                                                <span class="preference-tick-icon"><img
+                                                        src="assets/images/investment-account/icon-tick.svg" /></span>
+                                                <span>{{'WISE_INCOME_PAYOUT.WHATS_GREAT_PREFERENCE_LBL_4' |
+                                                    translate}}</span>
+                                            </div>
+                                            <div class="flex align-center mt10">
+                                                <span class="preference-tick-icon"><img
+                                                        src="assets/images/investment-account/icon-tick.svg" /></span>
+                                                <span>{{'WISE_INCOME_PAYOUT.WHATS_GREAT_PREFERENCE_LBL_5' |
+                                                    translate}}</span>
+                                            </div>
+                                            <div class="flex align-center mt10">
+                                                <span class="preference-tick-icon"><img
+                                                        src="assets/images/investment-account/icon-tick.svg" /></span>
+                                                <span>{{'WISE_INCOME_PAYOUT.WHATS_GREAT_PREFERENCE_LBL_6' |
+                                                    translate}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex-row preference-payout-block">
+                                            <div class="preference-payout-block-item">
+                                                <label>{{'WISE_INCOME_PAYOUT.RISK_LBL' | translate}}</label>
+                                                <div>{{'WISE_INCOME_PAYOUT.RISK_VALUE' | translate}}</div>
+                                            </div>
+                                            <div class="preference-payout-block-item">
+                                                <label>{{'WISE_INCOME_PAYOUT.RETURNS-LBL' | translate}}</label>
+                                                <div>{{'WISE_INCOME_PAYOUT.RETURNS_VALUE' | translate}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="flex-row preference-payout-block">
+                                            <div class="preference-payout-block-item">
+                                                <label>{{'WISE_INCOME_PAYOUT.DEVIATION_LBL' | translate}}</label>
+                                                <div>{{'WISE_INCOME_PAYOUT.DEVIATION_VALUE' | translate}}</div>
+                                            </div>
+                                            <div class="preference-payout-block-item">
+                                                <label>{{'WISE_INCOME_PAYOUT.DIVIDEND_LBL' | translate}}</label>
+                                                <div>{{'WISE_INCOME_PAYOUT.DIVIDEND_VALUE' | translate}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel>
+                        <ng-template ngbPanelTitle>
+                            <div class="flex space-between"  #fundAssets id="fundAssets">
+                                <div>{{'WISE_INCOME_PAYOUT.FUND_ASSET_ALLOCATION_LBL' | translate}}</div>
+                                <div><i class='arrow'></i></div>
+                            </div>
+                        </ng-template>
+                        <ng-template ngbPanelContent>
+                            <div>
+                                <div class="pannel-tab-content asset-allocation" *ngIf='activeTabId == 1' > 
+                                    <app-allocation [portfolioType]="selectedPortfolioType" [funds]="payoutFundList.GROW"></app-allocation>
+                                </div>
+                                <div class="pannel-tab-content asset-allocation" *ngIf='activeTabId == 2'> 
+                                    <app-allocation [portfolioType]="selectedPortfolioType" [funds]="payoutFundList.FOUR_PERCENT"></app-allocation>
+                                </div>
+                                <div class="pannel-tab-content asset-allocation" *ngIf='activeTabId == 3'>
+                                    <app-allocation [portfolioType]="selectedPortfolioType" [funds]="payoutFundList.EIGHT_PERCENT"></app-allocation>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+            </div>
+            <div class="learn-more-option-item">
+                <div>
+                    <a target="_blank" href="https://www.moneyowl.com.sg/faq-investment/#investment|8">
+                        <div class="flex space-between">
+                            <span>{{'WISE_INCOME_PAYOUT.FAQ_LBL' | translate}}</span>
+                            <span><i class='arrow'></i></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="learn-more-option-item mt15">
+                <div>
+                    <a target="_blank" routerLink="/wiseincome">
+                        <div class="flex space-between">
+                            <span>{{'WISE_INCOME_PAYOUT.ABOUT_WISEINCOME_LBL' | translate}}</span>
+                            <span><i class='arrow'></i></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

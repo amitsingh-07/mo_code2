@@ -3,7 +3,8 @@ export const EXT_ROUTE_CONST = {
     UAT_DOMAIN: 'https://newmouat1.ntucbfa.com'
 };
 export const EXT_ROUTES = {
-    ROUTE_URL: [{
+    ROUTE_URL: 
+    [{
         IN_APP_ROUTE: '/works',
         EXTERNAL_URL: '/works/'
     },
@@ -126,6 +127,18 @@ export const EXT_ROUTES = {
     {
         IN_APP_ROUTE: '/the-right-building-blocks',
         EXTERNAL_URL: '/the-right-building-blocks/'
+    },
+    {
+        IN_APP_ROUTE: '/wiseincome',
+        EXTERNAL_URL: '/wiseincome/'
+    },
+    {
+        IN_APP_ROUTE: '/faq-investment-wiseincome',
+        EXTERNAL_URL: '/faq-investment/#investment|8'
+    },
+    {
+        IN_APP_ROUTE: '/faq-fee-details',
+        EXTERNAL_URL: '/faq-investment/#investment|5'
     }
     ]
 };

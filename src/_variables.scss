@@ -85,6 +85,8 @@ $dark-cyan-color: #008787;
 $bright-grey-color: #333846;
 $iceberg-blue-color: #d9f2f2;
 $white-smoke-color: #f7f7f7;
+$mercury-smoke-color:#e7e7e7;
+$chetwode-blue-color: #848de2;
 // common color
 $login-shadow-color: rgba(0, 0, 0, 0.2);
 $btn-shadow-color: rgba(0, 0, 0, 0.14);
@@ -114,6 +116,14 @@ $btn-primary-shadow-color: $shadow-teal-color;
 $btn-primary-txt-color: $white-color;
 // secondary btn colors
 $btn-secondary-backgrnd-color: #00a7a7;
+// action btn primary colors
+$btn-action-backgrnd-color: $teal-color;
+$btn-action-border-color: $teal-color;
+$btn-action-txt-color:  $white-color;
+$btn-action-hover-bg-color: $robins-egg-blue-color;
+$btn-action-hover-border-color: $robins-egg-blue-color;
+$btn-action-active-bg-color: $bright-turquiose-color;
+$btn-action-sec-border-color: rgba(0, 167, 167, 0.4);
 // btn orange colors
 $btn-orange-bg-color: $crusta-orange-color;
 $btn-orange-txt-color: $white-color;
@@ -468,3 +478,8 @@ $wisesaver-value-bg-color: #b1dfe1;
 $border-light: #f1f1f1;
 $termsandcond-link: #1a6e6c;
 $send-quote-bgcolor: #F1F4F4;
+//wise-income portfolio colors
+$checkbox-bg-color:#e0f3f3;
+$checkbox-active-bg-color: #00717e;
+$payout-tab-color:  #00717e;
+$recommend-details-button: rgba(0, 167, 167, 0.4);
