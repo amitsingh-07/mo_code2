@@ -40,19 +40,15 @@ export class HubspotService {
   // Submitting Form Methods
   submitLogin(data: any) {
     let url = "https://api.hsforms.com/submissions/v3/integration/submit/" + environment.hsPortalId + "/" + environment.hsUrlTrack;
-    if (url != null) {
+    if (environment.hsPortalId != null && environment.hsUrlTrack != null) {
       this.submitHSForm(url, data);
     }
   }
 
   submitRegistration(data: any) {
-    try {
-      console.log("Submitting Registration");
-      let url = "https://api.hsforms.com/submissions/v3/integration/submit/" + environment.hsPortalId + "/" + environment.hsUrlTrack;
-      console.log("Registration Url: " + url);
+    let url = "https://api.hsforms.com/submissions/v3/integration/submit/" + environment.hsPortalId + "/" + environment.hsUrlTrack;
+    if (environment.hsPortalId != null && environment.hsUrlTrack != null) {
       this.submitHSForm(url, data);
-    } catch (e) {
-      console.error(e);
     }
   }
 
