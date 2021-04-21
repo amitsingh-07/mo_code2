@@ -44,8 +44,10 @@ export class EmailEnquirySuccessComponent implements OnInit {
   }
 
   checkHideHomePageFlag() {
-    if (environment.hideHomepage) {
-      window.open('/', '_self')
+    if (environment.hideHomepage && !this.isSignedUser) {
+      window.open('/', '_self');
+    } else if(this.isSignedUser){
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     } else {
       this.router.navigate([APP_ROUTES.HOME]);
     }
