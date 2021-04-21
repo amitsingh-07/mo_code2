@@ -144,7 +144,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
         this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
             if (event && event !== '') {
-                this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
+                this.redirectToDashboard();
             }
         });
 
