@@ -60,6 +60,7 @@ export class AccountStatusComponent implements OnInit {
     this.investmentCommonService.clearJourneyData();
     this.investmentCommonService.clearFundingDetails();
     this.investmentAccountService.restrictBackNavigation();
+    this.investmentAccountService.deactivateReassess();
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       if (this.status.toUpperCase() === INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_confirmed.toUpperCase()) {
