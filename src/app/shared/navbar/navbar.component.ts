@@ -131,11 +131,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   //wiseIncome Portfolio Dropdown
   wiseIncomeDropDownShow: boolean = false;
   wiseIncomeDropDownItem: any;
-  tab : any;
-  tab1 : any;
-  tab2 : any;
-  tab3 : any;
-  tab4 : any;
+  tab;
 
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
@@ -237,7 +233,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentPageClearNotify.subscribe((showClearNotify) => {
       this.showNotificationClear = showClearNotify;
     });
-    this.navbarService.currentPageSettingsIcon.subscribe((showSettingsIcon) => this.showSettingsIcon = showSettingsIcon);
+    this.navbarService.currentPageSettingsIcon.subscribe((showSettingsIcon) => this.showSettingsIcon = showSettingsIcon);  
     this.navbarService.currentPageFilterIcon.subscribe((filterIcon) => this.filterIcon = filterIcon);
     this.navbarService.isBackPressSubscribed.subscribe((subscribed) => {
       this.isBackPressSubscribed = subscribed;
@@ -271,6 +267,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     
     this.navbarService.wiseIncomeDropDownShow.subscribe((subscribed) => {
       this.wiseIncomeDropDownShow = subscribed;
+      if(!subscribed){
+        this.tab ='tab';
+      }
     });
   }
 

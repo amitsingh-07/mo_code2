@@ -8,7 +8,10 @@
           <div class="signup-wrapper__description order2">
             <p>{{ 'CREATE_ACCOUNT.DESCRIPTION' | translate}}</p>
           </div>
-          <img class="signup-wrapper__header-icon order3 sm-order1" src="assets/images/sign-up.svg" />
+          <img *ngIf="!showSingPassDetails" class="signup-wrapper__header-icon order3 sm-order1"
+            src="assets/images/sign-up.svg" />
+          <img *ngIf="showSingPassDetails" class="signup-wrapper__header-icon order3 sm-order1"
+            src="assets/images/sign-up-myinfo.svg">
         </div>
       </div>
       <div class="col-lg-5 col-md-6">

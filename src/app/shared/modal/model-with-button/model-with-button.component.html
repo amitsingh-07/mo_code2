@@ -22,14 +22,20 @@
   <div class="journey-wrapper" *ngIf="portfolioExist">
     <img class="img-fluid" src="assets/images/portfolio/existportfolio.svg" />
   </div>
-  <div class="modal-body-message" *ngIf="errorMessage" id="errorModelMessage" [innerHTML]="errorMessage"></div>
+  <div class="checkbox-button two-label flex-col-12 pl0 pr0 mb0" *ngIf="checkBoxMessage">
+    <input id="checkbox-button" type="checkbox"  name="checkbox-button" (change)="enableCheckBox()">
+    <label for="checkbox-button" id="c1">
+      <div class="modal-body-message check-box-message" *ngIf="checkBoxMessage" [innerHTML]="checkBoxMessage"></div>
+    </label>
+  </div>
+  <div class="modal-body-message " *ngIf="errorMessage" id="errorModelMessage" [innerHTML]="errorMessage"></div>
   <div class="modal-body-message " *ngIf="errorMessageHTML" id="errorModelMessage" [innerHTML]="errorMessageHTML"></div>
   <div *ngIf="investmentPeriodImg" class="investment-img" id="investment-img">
     <img src="assets/images/investment-account/investment_personal.svg">
   </div>
   <div class="row">
     <div class="col-12" [ngClass]="{'col-12': !isInlineButton, 'col-6': isInlineButton}" *ngIf="primaryActionLabel">
-      <button type="button" class="action-button " (click)="primaryActionSelected()" id="errorModeButton">
+      <button type="button" class="action-button modal-btn-disabled" (click)="primaryActionSelected()" id="errorModeButton" [disabled]="disablePrimaryBtn" >
         {{primaryActionLabel}}
       </button>
     </div>

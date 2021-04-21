@@ -248,6 +248,13 @@ line-height: lineHeightRem($size);
   }
 }
 
+/* iPhone12 */
+@mixin iphone12 {
+	@media only screen and (device-width: 390px) and (device-height: 844px) {
+		@content;
+	}
+}
+
 /* iPhone11 */
 @mixin iphone11 {
   @media only screen and (min-device-width: 414px) and (max-device-width: 896px) and (-webkit-min-device-pixel-ratio: 2)  and (orientation: portrait)  {
