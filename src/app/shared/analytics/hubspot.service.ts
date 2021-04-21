@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { IPage } from './page.interface';
 import { environment } from './../../../environments/environment';
-import {PlatformLocation } from '@angular/common';
+import { PlatformLocation } from '@angular/common';
 
 declare global {
   interface Window { _hsq: any; }
@@ -19,7 +19,7 @@ export class HubspotService {
     public router: Router,
     public httpClient: HttpClient,
     public platformLocation: PlatformLocation
-    ) {
+  ) {
   }
 
   // Registering Identifier to the hukt code
@@ -28,7 +28,6 @@ export class HubspotService {
     _hsq.push(["identify", {
       email: email
     }]);
-    console.log("Email Registered in Hubspot: " + email);
   }
 
   registerPhone(mobile: string) {
@@ -36,27 +35,22 @@ export class HubspotService {
     _hsq.push(["identify", {
       mobile: mobile
     }]);
-    console.log("Phone Registered in Hubspot: " + mobile);
   }
 
   // Submitting Form Methods
   submitLogin(data: any) {
-    let url = environment.hsUrlLogin
-    this.submitHSForm(url, data).subscribe((response) => {
-      console.log(response);
-      console.log("Login on HS sucessful");
-    });
+    let url = "https://api.hsforms.com/submissions/v3/integration/submit/" + environment.hsPortalId + "/" + environment.hsUrlTrack;
+    if (url != null) {
+      this.submitHSForm(url, data);
+    }
   }
 
   submitRegistration(data: any) {
     try {
       console.log("Submitting Registration");
-      let url = environment.hsUrlRegister
+      let url = "https://api.hsforms.com/submissions/v3/integration/submit/" + environment.hsPortalId + "/" + environment.hsUrlTrack;
       console.log("Registration Url: " + url);
-      this.submitHSForm(url, data).subscribe((response) => {
-        console.log(response);
-        console.log("Registration on HS sucessful");
-      });
+      this.submitHSForm(url, data);
     } catch (e) {
       console.error(e);
     }
@@ -72,7 +66,6 @@ export class HubspotService {
     return this.httpClient.post(hsUrl, formBody)
       .pipe(map((response) => {
         // login successful if there's a jwt token in the response
-        console.log(response);
         return response;
       }));
   }
