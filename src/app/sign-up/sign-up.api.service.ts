@@ -16,6 +16,7 @@ import { DirectService } from './../direct/direct.service';
 import { SignUpFormData } from './sign-up-form-data';
 import { SignUpService } from './sign-up.service';
 import { Util } from '../shared/utils/util';
+import { HubspotService } from '../shared/analytics/hubspot.service';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
 
 @Injectable({
@@ -26,7 +27,7 @@ export class SignUpApiService {
   private emailVerifyUrl: String;
 
   constructor(
-    private http: HttpClient, private configService: ConfigService,
+    private http: HttpClient, private configService: ConfigService, private hubspotService: HubspotService,
     private apiService: ApiService, private authService: AuthenticationService,
     private signUpService: SignUpService, private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService, public cryptoService: CryptoService,
@@ -165,6 +166,26 @@ export class SignUpApiService {
    */
   createAccount(captcha: string, pwd: string) {
     const payload = this.createAccountBodyRequest(captcha, pwd);
+    this.hubspotService.registerEmail(payload.customer.emailAddress);
+    this.hubspotService.registerPhone(payload.customer.mobileNumber);
+    const hsPayload = [
+      {
+        name: "email",
+        value: payload.customer.emailAddress
+      }, 
+      {
+        name: "phone",
+        value: payload.customer.mobileNumber
+      },
+      {
+        name: "firstname",
+        value: payload.customer.firstName
+      },
+      {
+        name: "lastname",
+        value: payload.customer.lastName
+      }];
+    this.hubspotService.submitRegistration(hsPayload);
     return this.apiService.createAccount(payload);
   }
 
