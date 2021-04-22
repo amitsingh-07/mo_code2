@@ -101,3 +101,9 @@
 #relationshipDropDown .dropdown-menu.show {
   transform:translate(0,0) !important;
 }
+
+.btn-dropdown {
+  @include allmobiles {
+      max-width: 200px;
+  }
+}
