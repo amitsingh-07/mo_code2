@@ -7,6 +7,9 @@ export let INVESTMENT_ACCOUNT_CONSTANTS = {
     'sex',
     'regadd'    
   ],
+  MY_INFO_LINK_ATTRIBUTES:[
+    'name'
+  ],
   INVESTMENT_ACCOUNT_GUARD_STATUS: [
     'BLOCKED_NATIONALITY',
     'PORTFOLIO_PURCHASED',
@@ -74,5 +77,9 @@ export let INVESTMENT_ACCOUNT_CONSTANTS = {
     EMPLOYED: 'Employed',
     UNEMPLOYED: 'Unemployed'
   },
-  DISABLE_FIELDS_FOR_NON_SG: ['companyName',  'employmentStatus', 'occupation', 'otherOccupation']
+  DISABLE_FIELDS_FOR_NON_SG: ['companyName',  'employmentStatus', 'occupation', 'otherOccupation'],
+  VALIDATE_SOURCE:{
+    MANUAL: "Manual",
+    MYINFO: "MyInfo"
+  }
 };

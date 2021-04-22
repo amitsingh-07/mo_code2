@@ -14,6 +14,8 @@ import {
   INVESTMENT_ACCOUNT_ROUTE_PATHS, MY_INFO_START_PATH
 } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
+import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account.constant';
+import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 
 @Component({
   selector: 'app-sing-pass',
@@ -50,6 +52,7 @@ export class SingPassComponent implements OnInit, OnDestroy {
     private myInfoService: MyInfoService,
     public readonly translate: TranslateService,
     private investmentAccountService: InvestmentAccountService,
+    private investmentCommonService: InvestmentCommonService,
     private ngZone: NgZone
   ) {
     this.translate.use('en');
@@ -124,13 +127,11 @@ export class SingPassComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorTitle = this.modelTitle;
       ref.componentInstance.errorMessageHTML = this.modelMessge;
       ref.componentInstance.primaryActionLabel = this.modelBtnText;
-      ref.componentInstance.lockIcon = true;
       ref.componentInstance.myInfo = true;
     } else {
       ref.componentInstance.errorTitle = this.modelTitle1;
       ref.componentInstance.errorMessageHTML = this.modelMessge1;
       ref.componentInstance.primaryActionLabel = this.modelBtnText1;
-      ref.componentInstance.lockIcon = true;
       ref.componentInstance.myInfo = true;
     }
     ref.result
@@ -143,20 +144,54 @@ export class SingPassComponent implements OnInit, OnDestroy {
   getMyInfoData() {
     this.showFetchPopUp();
     this.myInfoSubscription = this.myInfoService.getMyInfoData().subscribe((data) => {
-      if (data && data.objectList[0]) {
-        this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
-        this.myInfoService.isMyInfoEnabled = false;
-        this.closeMyInfoPopup(false);
-        const currentUrl = window.location.toString();
-        const rootPoint = currentUrl.split(currentUrl.split('/')[4])[0].substr(0, currentUrl.split(currentUrl.split('/')[4])[0].length - 1);
-        const redirectObjective = rootPoint + MY_INFO_START_PATH;
-        if (window.location.href === redirectObjective) {
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
-        } else {
-          this.ngZone.run(() => {
-            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
-          });
-        }
+      if (data && data.objectList[0]) { 
+        this.investmentCommonService.getUserNricValidation(data.objectList[0].uin , INVESTMENT_ACCOUNT_CONSTANTS.VALIDATE_SOURCE.MYINFO).subscribe((response) => {
+          if(response.responseMessage.responseCode === 6013){
+            this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
+            this.myInfoService.isMyInfoEnabled = false;
+            this.closeMyInfoPopup(false);
+            const currentUrl = window.location.toString();
+            const rootPoint = currentUrl.split(currentUrl.split('/')[4])[0].substr(0, currentUrl.split(currentUrl.split('/')[4])[0].length - 1);
+            const redirectObjective = rootPoint + MY_INFO_START_PATH;
+            if (window.location.href === redirectObjective) {
+              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
+            } else {
+              this.ngZone.run(() => {
+                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
+              });
+            }
+          }
+          else if(response.responseMessage.responseCode === 6014){
+            this.closeMyInfoPopup(false);
+            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
+            const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+            ref.componentInstance.errorTitle = this.translate.instant(
+              'INVESTMENT_ACCOUNT_MYINFO.NRIC_VALIDATION_ERROR.TITLE'
+            );
+            ref.componentInstance.errorMessage = this.translate.instant(
+              'INVESTMENT_ACCOUNT_MYINFO.NRIC_VALIDATION_ERROR.MESSAGE1'
+            );
+            ref.componentInstance.primaryActionLabel = this.translate.instant(
+              'INVESTMENT_ACCOUNT_MYINFO.NRIC_VALIDATION_ERROR.BTN-TEXT'
+            );
+          }
+          else if(response.responseMessage.responseCode === 6015){
+            this.closeMyInfoPopup(false);
+            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
+            const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+            ref.componentInstance.errorTitle = this.translate.instant(
+              'INVESTMENT_ACCOUNT_MYINFO.NRIC_VALIDATION_ERROR.TITLE'
+            );
+            ref.componentInstance.errorMessage = this.translate.instant(
+              'INVESTMENT_ACCOUNT_MYINFO.NRIC_VALIDATION_ERROR.MESSAGE2'
+            );
+            ref.componentInstance.primaryActionLabel = this.translate.instant(
+              'INVESTMENT_ACCOUNT_MYINFO.NRIC_VALIDATION_ERROR.BTN-TEXT'
+            );
+          } else {
+            this.closeMyInfoPopup(true);
+          }
+        });
       } else {
         this.closeMyInfoPopup(true);
       }

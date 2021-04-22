@@ -1,15 +1,17 @@
-@import '../../../variables';
-@import '../../../mixins';
+@import "../../../variables";
+@import "../../../mixins";
 .sing-pass-link {
-                color: #e57300;
-                font-family: $muli-bold;
-                font-size: 14px;
-                @extend .flex;
-                cursor: pointer;
-                .sing-pass-icon {
-                                background: url("../../../assets/images/singpass-icon.svg");
-                                background-repeat: no-repeat;
-                                width: 24px;
-                                margin-left: 5px;
-                }
+    cursor: pointer; 
+        display: flex;
+        img {
+            width: 100%;
+            height: auto;        
+    }
+}
+.flex-row {
+    &.myinfo-btn {
+        @include allmobiles {
+         margin-bottom: 15px !important;
+        }
+    }
 }

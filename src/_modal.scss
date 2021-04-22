@@ -202,6 +202,9 @@ body.modal-open::-webkit-scrollbar {
   margin-right: 30px;
   word-break: break-word;
   //padding: 0 15px 0 0;
+  @include iphone12{
+    padding-right: 10px;
+  }
 }
 
 .modal-body-message {
@@ -218,6 +221,21 @@ body.modal-open::-webkit-scrollbar {
   .modal-text-secondary {
     font-weight: 600;
     color: #00a7a7;
+  }
+
+  .teal-txt {
+    letter-spacing: -0.16px;
+    color: $teal-color;
+  }
+
+  .bold-txt {
+    font-family: $muli-bold;
+    line-height: 23px;
+    letter-spacing: -0.15px;
+  }
+
+  .anchor-txt {
+    color: $dark-orange-color;
   }
 }
 
@@ -1285,5 +1303,23 @@ body.modal-open::-webkit-scrollbar {
     #errorModeButton {
       height: 60px;
     }
+  }
+}
+
+.retrieve-myinfo-modal {
+  .modal-body-message {
+    margin-bottom: 5px;
+  }
+  .action-button:focus {
+    outline: none;
+  }
+}
+
+.nric-used-modal {
+  .modal-body-message {
+    margin-bottom: 0px;
+  }
+  .action-button:focus {
+    outline: none;
   }
 }

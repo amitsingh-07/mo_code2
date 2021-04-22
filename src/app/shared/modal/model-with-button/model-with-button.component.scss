@@ -1,6 +1,15 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 
+.my-info {
+  .modal-body {
+    @include desktop {
+      width: 375px !important;
+      margin: 0 auto !important;
+    }
+  }
+}
+
 .toggle-btn {
   flex: 1;
 }
@@ -149,6 +158,20 @@
     display: flex;
   }
 }
-
-
-  
+.hyperlink_color {
+  color: $dark-orange-color;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    color: $dark-orange-color;
+    text-decoration: none;
+  }
+}
+.email_txt {
+  a {
+    color: $dark-orange-color;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: $muli-regular;
+  }
+}

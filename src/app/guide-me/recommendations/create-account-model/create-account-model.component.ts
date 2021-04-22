@@ -66,7 +66,7 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
     this.activeModal.close();
     if (page === 'signup') {
       this.signUpService.clearData();
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO]);
     }
     if (page === 'login') {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);

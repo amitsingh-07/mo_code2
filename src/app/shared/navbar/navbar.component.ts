@@ -32,6 +32,8 @@ import { NavbarConfig } from './config/presets';
 import { NavbarService } from './navbar.service';
 import { SessionsService } from '../Services/sessions/sessions.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -57,6 +59,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   showNotifications = false; // Show Notifications Feature
   showHeaderNavbar = false; // Navbar Show on Mobile
   showHelpIcon = false; // Help Icon for Mobile (Direct/ Guide Me)
+  showDropDownIcon = false; //Dropdown Icon for WiseIncome Payout 
   showSettingsIcon = false; // Settings Icon for Mobile (Direct)
   showNotificationClear = false; // Notification Clear all Button
   closeIcon = false;
@@ -125,6 +128,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   showPromoApplied: boolean = false;
 
+  //wiseIncome Portfolio Dropdown
+  wiseIncomeDropDownShow: boolean = false;
+  wiseIncomeDropDownItem: any;
+  tab;
+
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
   constructor(
@@ -140,7 +148,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private errorHandler: CustomErrorHandlerService,
     private selectedPlansService: SelectedPlansService,
     private progressTrackerService: ProgressTrackerService,
-    private comprehensiveService: ComprehensiveService) {
+    private comprehensiveService: ComprehensiveService,
+    private viewportScroller: ViewportScroller) {
     this.browserCheck();
     this.matrixResolver();
     config.autoClose = true;
@@ -217,11 +226,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentPageHelpIcon.subscribe((showHelpIcon) => {
       this.showHelpIcon = showHelpIcon;
     });
+    this.navbarService.currentPageDropDownIcon.subscribe((showDropDownIcon) => {
+      this.showDropDownIcon = showDropDownIcon;
+    });
     this.navbarService.currentPageProdInfoIcon.subscribe((closeIcon) => this.closeIcon = closeIcon);
     this.navbarService.currentPageClearNotify.subscribe((showClearNotify) => {
       this.showNotificationClear = showClearNotify;
     });
-    this.navbarService.currentPageSettingsIcon.subscribe((showSettingsIcon) => this.showSettingsIcon = showSettingsIcon);
+    this.navbarService.currentPageSettingsIcon.subscribe((showSettingsIcon) => this.showSettingsIcon = showSettingsIcon);  
     this.navbarService.currentPageFilterIcon.subscribe((filterIcon) => this.filterIcon = filterIcon);
     this.navbarService.isBackPressSubscribed.subscribe((subscribed) => {
       this.isBackPressSubscribed = subscribed;
@@ -253,6 +265,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
      this.showMenuItemInvestUser = investUser;
     });
     
+    this.navbarService.wiseIncomeDropDownShow.subscribe((subscribed) => {
+      this.wiseIncomeDropDownShow = subscribed;
+      if(!subscribed){
+        this.tab ='tab';
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -545,6 +563,26 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   goToWrapFeeDetails() {
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.FEES]);
+  }
+
+  //wiseIncome Dropdown
+  wiseIncomeDropDown(event) {
+    this.wiseIncomeDropDownShow = !this.wiseIncomeDropDownShow;
+    //event.stopPropagation();
+  }
+  //wiseIncome Dropdown Scroll
+  onClickScroll(elementId: string): void {
+    this.wiseIncomeDropDownShow = !this.wiseIncomeDropDownShow;
+    this.viewportScroller.scrollToAnchor(elementId);
+    if(elementId=='payoutOption'){
+      this.tab = 'tab1';
+    } else if(elementId=='featureBenefits'){
+      this.tab = 'tab2';
+    } else if(elementId=='fundAssets'){
+      this.tab = 'tab3';
+    } else if(elementId=='backToTop'){
+      this.tab = 'tab4';
+    }    
   }
 
 }

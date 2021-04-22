@@ -145,7 +145,7 @@
         </div>
       </div>
     </div>
-    <div class="flex-row">
+    <div class="flex-row" *ngIf='!isEarlyDisabled'>
       <div class="flex-col-4 early-label">
         <label for="name" id="getStrLbl6">{{ 'DIRECT_LIFE_PROTECTION.IS_EARLY' | translate}}<p class='ci-optional'>{{
             'DIRECT_LIFE_PROTECTION.OPTIONAL' | translate}}</p></label>

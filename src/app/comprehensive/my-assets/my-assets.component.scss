@@ -25,7 +25,7 @@ $grey-color-notes: #9f9f9f;
     background-repeat: no-repeat;
     position: absolute;
     right: 0;
-    top: 0;    
+    top: 0;
     width: 20px;
   }
 }
@@ -148,25 +148,25 @@ $grey-color-notes: #9f9f9f;
 }
 
 .auto-fill-cpf {
-  border-radius: 8px;
-  border: solid 1px $crusta-orange-color;
-  background-color: $white-color;
-  font-size: 16px;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: -0.1px;
-  color: $mango-tango-color;
-  height: 70px;
-  line-height: 70px;
   text-align: center;
+  display: flex;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  @include allmobiles {
+    margin: 35px 0 30px;
+    height: auto;
+    width: 100%;
+  }
 }
 
 .auto-fill-logo {
-  width: 92px;
-  height: 35px;
+  height: auto;
   object-fit: contain;
+  cursor: pointer;
+  @include allmobiles {
+   width: 100%;
+  }
 }
 .retirement-sum {
   position: relative;
@@ -175,4 +175,7 @@ $grey-color-notes: #9f9f9f;
     position: absolute;
     margin-left: 5px;
   }
+}
+.edit-icon {
+  cursor: pointer;
 }

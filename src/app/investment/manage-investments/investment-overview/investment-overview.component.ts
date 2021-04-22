@@ -175,6 +175,12 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     this.setSelectedCategory(this.manageInvestmentsService.selectedPortfolioCategory);
     this.portfolioList = (this.investmentoverviewlist.portfolios) ? this.investmentoverviewlist.portfolios : [];
     this.totalPortfolio = this.portfolioList.length;
+     // Toggle show/hide promo code/wrap fee link in menu
+    if (this.totalPortfolio !== 0) {
+      this.navbarService.setMenuItemInvestUser(true);
+    } else {
+      this.navbarService.setMenuItemInvestUser(false);
+    }
     this.welcomeInfo = {
       name: this.userProfileInfo.firstName,
       total: this.totalPortfolio

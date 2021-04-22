@@ -1,3 +1,4 @@
+
 @import 'variables';
 @import 'mixins';
 @import 'all';
@@ -18,3 +19,6 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
 @import "~nouislider/distribute/nouislider.min.css";
+html {
+    scroll-behavior: smooth;
+  }

@@ -135,6 +135,10 @@ export const EXT_ROUTES = {
     {
         IN_APP_ROUTE: '/faq-investment-wiseincome',
         EXTERNAL_URL: '/faq-investment/#investment|8'
+    },
+    {
+        IN_APP_ROUTE: '/faq-fee-details',
+        EXTERNAL_URL: '/faq-investment/#investment|5'
     }
     ]
 };

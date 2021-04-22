@@ -2413,6 +2413,7 @@ select:-webkit-autofill:focus {
   font-family: $muli-semi-bold;
   color:$silver-grey-color;
 }
+
 //wiseincome payout custom modal
 .custom-payout-modal{
   .modal-body-title{
@@ -2437,4 +2438,30 @@ select:-webkit-autofill:focus {
       border: 1px solid $aquamarine-color;
     }  
   }
-} 
+}
+
+//activate & linked singpass modal 
+.activate-singpass-modal{
+  .modal-content{
+    max-width: 375px;
+    margin: 0 auto;
+    @include allmobiles{
+      max-width: 100%;
+    }
+  }
+}
+.linked-singpass-modal{
+  .modal-content{
+    max-width: 375px;
+    margin: 0 auto;
+    @include allmobiles{
+      max-width: 100%;
+    }
+  }
+  .header-modal-image{
+    background-image: url("./assets/images/login-activate-singpass-completed.svg") !important;
+  }
+  .close{
+    display: none;
+  }
+}

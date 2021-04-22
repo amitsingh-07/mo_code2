@@ -9,6 +9,7 @@
     "INVALID_PROMO": "Sorry, this promo code is invalid!",
     "ALREADY_APPLIED": "Promo code has already been applied",
     "EXISTING_PROMO": "You have an existing promo code applied",
+    "NO_EXISTING_PORTFOLIO": "You have no existing portfolios",
     "ACTIVE_PROMO": "Active Promotions",
     "VAlID_UNTIL": "Valid until ",
     "APPLIED_ON": "Applied on ",

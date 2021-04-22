@@ -1,0 +1,16 @@
+<div class="singpass-login-modal-block">
+  <div class="modal-header header-modal-image">
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true" id="errorModelCloseIcon"></span>
+    </button>
+  </div>
+  <div class="modal-body" id="modalDesc" [innerHTML]="errorMessage"></div>
+  <div class="plr20">
+    <div *ngIf="!isLinked" class="autofill-logo" id="errorModeButton" (click)="primaryActionSelected()">
+      <img src="assets/images/retrieve-singpass-logo.svg" />
+    </div>
+    <button *ngIf="isLinked" type="button" class="action-button" id="errorModeButton" (click)="secondaryActionSelected()">
+      {{secondaryActionLabel}}
+    </button>
+  </div>
+</div>
