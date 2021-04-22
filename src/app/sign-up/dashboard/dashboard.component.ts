@@ -201,6 +201,7 @@ export class DashboardComponent implements OnInit {
       }
     });
     this.getInvestmentsSummary();
+    this.investmentAccountService.deactivateReassess();
   }
 
   loadOptionListCollection() {
