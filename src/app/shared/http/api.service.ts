@@ -331,7 +331,7 @@ export class ApiService {
   }
 
   requestEmailOTP(payload) {
-    return this.http.post(apiConstants.endpoint.send2FAOTPEmail, payload)
+    return this.http.post(apiConstants.endpoint.sendOTPEmail, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {

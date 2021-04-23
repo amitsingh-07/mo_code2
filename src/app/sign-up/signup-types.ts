@@ -49,7 +49,6 @@ export interface IVerifyRequestOTP {
 }
 export interface IEmailRequestOTP {
     emailAddress: string;
-    sessionId: string;    
     actionType: string;
 }
 
