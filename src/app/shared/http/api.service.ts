@@ -330,6 +330,22 @@ export class ApiService {
       );
   }
 
+  requestEmailOTP(payload) {
+    return this.http.post(apiConstants.endpoint.send2FAOTPEmail, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.error instanceof ErrorEvent) {
+            console.error(this.errorTag, error.error.message);
+          } else {
+            console.error(
+              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+            );
+          }
+          return throwError(this.errorTryAgain);
+        })
+      );
+  }
+
   verifyOTP(payload: IVerifyRequestOTP) {
     return this.http.post(apiConstants.endpoint.verifyOTP + this.handleErrorFlag, payload)
       .pipe(

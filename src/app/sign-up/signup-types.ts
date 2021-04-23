@@ -47,6 +47,11 @@ export interface IVerifyRequestOTP {
     otp?: number;
     editProfile?: boolean;
 }
+export interface IEmailRequestOTP {
+    emailAddress: string;
+    sessionId: string;    
+    actionType: string;
+}
 
 export interface IVerifyCode {
     code: string;
