@@ -8,7 +8,7 @@ import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SelectedPlansService } from '../shared/Services/selected-plans.service';
 import { CryptoService } from '../shared/utils/crypto';
-import { IResendEmail, ISignUp, IUpdateMobileNumber, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
+import { IEmailRequestOTP, IResendEmail, ISignUp, IUpdateMobileNumber, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
 import { WillWritingService } from '../will-writing/will-writing.service';
 import { appConstants } from './../app.constants';
 import { AppService } from './../app.service';
@@ -137,7 +137,16 @@ export class SignUpApiService {
       editProfile: editProf
     };
   }
-
+   /**
+   * request a new OTP though Email. 
+     */
+ requestEmailOTPBodyRequest(journuyType, getAccountInfo): IEmailRequestOTP {   
+  return  {      
+        emailAddress:  (getAccountInfo && getAccountInfo.userProfileInfo)? getAccountInfo.userProfileInfo.emailAddress  : getAccountInfo.email,      
+        sessionId: this.authService.getSessionId(),        
+        actionType: journuyType   
+    };
+  }
   /**
    * form verify OTP request.
    */
@@ -184,7 +193,13 @@ export class SignUpApiService {
     const payload = this.requestNewOTPBodyRequest(editProfile);
     return this.apiService.requestNewOTP(payload);
   }
-
+    /**
+     * request a new OTP though Email. 
+     */
+ requestEmailOTP(journuyType, getAccountInfo) {
+    const payload = this.requestEmailOTPBodyRequest(journuyType, getAccountInfo);
+    return this.apiService.requestEmailOTP(payload);
+  }
   /**
    * verify one time password.
    * @param otp - one time password.

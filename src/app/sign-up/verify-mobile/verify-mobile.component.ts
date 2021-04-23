@@ -225,6 +225,20 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     }
   }
 
+    /**
+   * request a new OTP though Email. 
+     */
+ requestEmailOTP(){
+  const getAccountInfo = this.signUpService.getAccountInfo();  
+  const journuyType = this.authService.get2faVerifyAllowed() ? '2FA' : getAccountInfo.editContact ? 'Update Contact' : 'Signup';
+  this.signUpApiService.requestEmailOTP(journuyType,getAccountInfo ).subscribe((data) => {
+    console.log(data);
+    this.verifyMobileForm.reset();
+    this.progressModal = false;
+    this.showCodeSentText = true;
+  });
+ }
+ 
   requestNewVerifyOTP() {
     this.signUpApiService.requestNewOTP(this.editProfile).subscribe((data) => {
       this.verifyMobileForm.reset();
