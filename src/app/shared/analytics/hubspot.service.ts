@@ -41,14 +41,14 @@ export class HubspotService {
   submitLogin(data: any) {
     let url = "https://api.hsforms.com/submissions/v3/integration/submit/" + environment.hsPortalId + "/" + environment.hsUrlTrack;
     if (environment.hsPortalId != null && environment.hsUrlTrack != null) {
-      this.submitHSForm(url, data);
+      this.submitHSForm(url, data).subscribe((response) => {});
     }
   }
 
   submitRegistration(data: any) {
     let url = "https://api.hsforms.com/submissions/v3/integration/submit/" + environment.hsPortalId + "/" + environment.hsUrlTrack;
     if (environment.hsPortalId != null && environment.hsUrlTrack != null) {
-      this.submitHSForm(url, data);
+      this.submitHSForm(url, data).subscribe((response) => {});
     }
   }
 
@@ -58,7 +58,7 @@ export class HubspotService {
     formBody.submittedAt = Date.now();
     formBody.fields = data;
     formBody.context = this.getPageInfo();
-
+    
     return this.httpClient.post(hsUrl, formBody)
       .pipe(map((response) => {
         // login successful if there's a jwt token in the response
