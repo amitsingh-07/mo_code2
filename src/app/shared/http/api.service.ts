@@ -330,29 +330,20 @@ export class ApiService {
       );
   }
 
-  requestEmailOTP(payload){
-    console.log(payload);
-  //   const resendOTPEditOrSignUpFlow = payload.editProfile === true ?
-  //   apiConstants.endpoint.resendOTP + '?isEditProfile=true' :
-  //   apiConstants.endpoint.resendOTP;
-   return this.http.post(apiConstants.endpoint.send2FAOTPEmail, payload)
-  //   .pipe(
-  //     // tslint:disable-next-line:no-identical-functions
-  //     catchError((error: HttpErrorResponse) => {
-  //       if (error.error instanceof ErrorEvent) {
-  //         // A client-side or network error occurred. Handle it accordingly.
-  //         console.error(this.errorTag, error.error.message);
-  //       } else {
-  //         // The backend returned an unsuccessful response code.
-  //         // The response body may contain clues as to what went wrong,
-  //         console.error(
-  //           `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-  //         );
-  //       }
-  //       // return an observable with a user-facing error message
-  //       return throwError(this.errorTryAgain);
-  //     })
-  //   );
+  requestEmailOTP(payload) {
+    return this.http.post(apiConstants.endpoint.send2FAOTPEmail, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.error instanceof ErrorEvent) {
+            console.error(this.errorTag, error.error.message);
+          } else {
+            console.error(
+              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+            );
+          }
+          return throwError(this.errorTryAgain);
+        })
+      );
   }
 
   verifyOTP(payload: IVerifyRequestOTP) {

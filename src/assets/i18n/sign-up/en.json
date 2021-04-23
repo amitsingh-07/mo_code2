@@ -131,7 +131,8 @@
       "SEND_TO_MAIL": "Send to Email",
       "CODE_SENT": "Code sent!",
       "RETRY_IN": "Retry in",
-      "SECONDS_SUFFIX": "s"
+      "SECONDS_SUFFIX": "s",
+       "OR": " or "
     },
     "ERROR_MODAL": {
       "ERROR_TITLE": "Incorrect OTP Code",

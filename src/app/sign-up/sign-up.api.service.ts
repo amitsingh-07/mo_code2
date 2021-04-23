@@ -140,11 +140,11 @@ export class SignUpApiService {
    /**
    * request a new OTP though Email. 
      */
- requestEmailOTPBodyRequest(journuyType, getAccountInfo): IEmailRequestOTP {   
+ requestEmailOTPBodyRequest(journeyType, getAccountInfo): IEmailRequestOTP {   
   return  {      
         emailAddress:  (getAccountInfo && getAccountInfo.userProfileInfo)? getAccountInfo.userProfileInfo.emailAddress  : getAccountInfo.email,      
         sessionId: this.authService.getSessionId(),        
-        actionType: journuyType   
+        actionType: journeyType   
     };
   }
   /**
@@ -196,8 +196,8 @@ export class SignUpApiService {
     /**
      * request a new OTP though Email. 
      */
- requestEmailOTP(journuyType, getAccountInfo) {
-    const payload = this.requestEmailOTPBodyRequest(journuyType, getAccountInfo);
+ requestEmailOTP(journeyType, getAccountInfo) {
+    const payload = this.requestEmailOTPBodyRequest(journeyType, getAccountInfo);
     return this.apiService.requestEmailOTP(payload);
   }
   /**
