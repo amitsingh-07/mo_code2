@@ -142,8 +142,7 @@ export class SignUpApiService {
      */
  requestEmailOTPBodyRequest(journeyType, getAccountInfo): IEmailRequestOTP {   
   return  {      
-        emailAddress:  (getAccountInfo && getAccountInfo.userProfileInfo)? getAccountInfo.userProfileInfo.emailAddress  : getAccountInfo.email,      
-        sessionId: this.authService.getSessionId(),        
+        emailAddress:  (getAccountInfo && getAccountInfo.userProfileInfo)? getAccountInfo.userProfileInfo.emailAddress  : getAccountInfo.email,
         actionType: journeyType   
     };
   }

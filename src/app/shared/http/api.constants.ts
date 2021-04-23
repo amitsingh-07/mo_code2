@@ -20,7 +20,7 @@ export let apiConstants = {
         login: 'login',
         logout: ACCOUNT_API_BASE_URL + '/logout?source=$LOGOUT_BUTTON$',
         send2faOTP: ACCOUNT_API_BASE_URL + '/send2FAOTP',
-        send2FAOTPEmail :ACCOUNT_API_BASE_URL + '/send2FAOTPEmail',
+        sendOTPEmail :ACCOUNT_API_BASE_URL + '/sendOTPEmail',
         authenticate2faOTP: ACCOUNT_API_BASE_URL + '/validate2FA',
         verify2faOTP: ACCOUNT_API_BASE_URL + '/is2FAuthenticated',
         getProfileList: ACCOUNT_API_BASE_URL + '/getProfileTypeList',
