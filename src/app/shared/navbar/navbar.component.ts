@@ -1,6 +1,8 @@
 import {
   AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2,
-  ViewChild
+  ViewChild,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -135,6 +137,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
+  
+  @ViewChild('featureBenefits') featureBenefits: ElementRef;
+
+  @Output() divComponent = new EventEmitter();
+
   constructor(
     private navbarService: NavbarService,
     private config: NgbDropdownConfig, private renderer: Renderer2,
@@ -572,11 +579,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
   //wiseIncome Dropdown Scroll
   onClickScroll(elementId: string): void {
+    this.navbarService.setScrollTo(elementId);
     this.wiseIncomeDropDownShow = !this.wiseIncomeDropDownShow;
-    this.viewportScroller.scrollToAnchor(elementId);
     if(elementId=='payoutOption'){
       this.tab = 'tab1';
     } else if(elementId=='featureBenefits'){
+      this.divComponent.emit(this.featureBenefits);
       this.tab = 'tab2';
     } else if(elementId=='fundAssets'){
       this.tab = 'tab3';
