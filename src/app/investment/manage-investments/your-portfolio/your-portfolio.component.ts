@@ -143,7 +143,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
       if (Date.now() >= startDateTime.valueOf()) {      
         this.nextPayoutLabel = (this.portfolio && this.portfolio.nextPayout) ? this.portfolio.nextPayout : '';
       } else {      
-        this.nextPayoutLabel = INVESTMENT_COMMON_CONSTANTS.NEXT_PAYOUT;
+        this.nextPayoutLabel = INVESTMENT_COMMON_CONSTANTS.NEXT_PAYOUT_WITH_YEAR;
       }
      this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
       this.holdingValues = this.portfolio.dPMSPortfolio ? this.portfolio.dPMSPortfolio.dpmsDetailsDisplay : null;
@@ -488,7 +488,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
             this.investmentAccountService.showGenericErrorModal();
           }
         } else {
-          this.authService.saveEnquiryId(null);
+          this.authService.removeEnquiryId();
           this.goToInvOverview();
         }
       },

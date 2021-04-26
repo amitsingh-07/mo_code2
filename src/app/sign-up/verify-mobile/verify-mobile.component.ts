@@ -26,6 +26,7 @@ import { appConstants } from './../../../app/app.constants';
 import { AppService } from './../../../app/app.service';
 import { DirectService } from './../../direct/direct.service';
 import { GuideMeService } from './../../guide-me/guide-me.service';
+import { SIGN_UP_CONFIG } from '../sign-up.constant';
 
 
 @Component({
@@ -225,6 +226,20 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     }
   }
 
+    /**
+   * request a new OTP though Email. 
+     */
+    
+  requestEmailOTP() {
+    const getAccountInfo = this.signUpService.getAccountInfo();
+    const journeyType = this.authService.get2faVerifyAllowed() ? SIGN_UP_CONFIG.VERIFY_MOBILE.TWO_FA : getAccountInfo.editContact ? SIGN_UP_CONFIG.VERIFY_MOBILE.UPDATE_CONTACT : SIGN_UP_CONFIG.VERIFY_MOBILE.SIGN_UP;
+    this.signUpApiService.requestEmailOTP(journeyType, getAccountInfo).subscribe((data) => {
+      this.verifyMobileForm.reset();
+      this.progressModal = false;
+      this.showCodeSentText = true;
+    });
+  }
+ 
   requestNewVerifyOTP() {
     this.signUpApiService.requestNewOTP(this.editProfile).subscribe((data) => {
       this.verifyMobileForm.reset();

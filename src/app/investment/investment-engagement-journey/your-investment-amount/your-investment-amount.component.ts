@@ -24,6 +24,7 @@ import {
 } from '../investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 
 @Component({
   selector: 'app-your-investment-amount',
@@ -43,6 +44,8 @@ export class YourInvestmentAmountComponent implements OnInit {
   monthlyInvestmentChkBoxVal: boolean;
   investmentCriteria: IInvestmentCriteria;
   selectedPortfolioType;
+  loaderTitle: string; 
+  loaderDescTwo: string;
 
   portfolioType
 
@@ -65,6 +68,8 @@ export class YourInvestmentAmountComponent implements OnInit {
       self.pageTitle = this.translate.instant('INVESTMENT_AMOUNT.TITLE');
       self.translator = this.translate.instant('MY_FINANCIALS');
       this.setPageTitle(self.pageTitle);
+      this.loaderTitle = this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.TITLE');
+      this.loaderDescTwo = this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.DESC_TWO');
     });
   }
 
@@ -166,7 +171,6 @@ export class YourInvestmentAmountComponent implements OnInit {
     }
   }
   goToNext(form) {
-
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
@@ -193,8 +197,12 @@ export class YourInvestmentAmountComponent implements OnInit {
             this.investmentCommonService.clearAccountCreationActions();
             if (data) {
               this.authService.saveEnquiryId(data.objectList.enquiryId);
+              if (this.investmentAccountService.isReassessActive()){
+                this.getPortfolioAllocationDetails();
+              }else{              
               this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.RISK_ACKNOWLEDGEMENT]);
             }
+           }
           },
             (err) => {
               this.loaderService.hideLoader();
@@ -211,5 +219,29 @@ export class YourInvestmentAmountComponent implements OnInit {
         });
     }
   }
-
+  getPortfolioAllocationDetails() {
+    this.loaderService.showLoader({
+      title: this.loaderTitle,
+      desc: this.loaderDescTwo
+    });
+    const params = this.constructGetAllocationParams();
+    if (params && params.enquiryId) {
+      this.investmentEngagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
+        this.loaderService.hideLoader(); 
+        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);      
+      },
+        (err) => {
+          this.loaderService.hideLoader();
+          this.investmentAccountService.showGenericErrorModal();
+        });
+    } else {
+      this.navbarService.logoutUser();
+    }
+  }
+  constructGetAllocationParams() {
+    return {
+      enquiryId: this.authService.getEnquiryId()
+    };
+  }
+ 
 }

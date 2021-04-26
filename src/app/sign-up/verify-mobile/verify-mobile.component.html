@@ -69,7 +69,8 @@
           </div>
           <div class="verify-mobile-block__otp__not-received text-center mt20">
             {{ 'VERIFY_MOBILE.FORM.DIDNT_RECIEVE' | translate }}<br>
-            <div class="link-white" (click)="requestNewCode()">{{ 'VERIFY_MOBILE.FORM.REQUEST_NEW_CODE' | translate }}</div>
+            <span class="link-white" (click)="requestNewCode()">{{ 'VERIFY_MOBILE.FORM.REQUEST_NEW_CODE' | translate }}</span>{{ 'VERIFY_MOBILE.FORM.OR' | translate }}
+            <span class="link-white" (click)="requestEmailOTP()">{{ 'VERIFY_MOBILE.FORM.SEND_TO_MAIL' | translate }}</span>
           </div>
           <div class="verify-mobile-block__otp__not-received text-center mt20" *ngIf="showCodeSentText">
             {{ 'VERIFY_MOBILE.FORM.CODE_SENT' | translate }}

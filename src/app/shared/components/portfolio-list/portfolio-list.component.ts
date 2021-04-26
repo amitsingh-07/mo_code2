@@ -22,6 +22,7 @@ import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from './../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../../../investment/manage-investments/manage-investments.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from 'src/app/investment/investment-engagement-journey/investment-engagement-journey.constants';
 
 @Component({
   selector: 'app-portfolio-list',
@@ -149,10 +150,27 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   }
 
   addPortfolio() {
-    this.authService.saveEnquiryId(null);
+    this.authService.removeEnquiryId();
     this.investmentCommonService.clearFundingDetails();  // #MO2-2446
     this.investmentCommonService.clearJourneyData();
+    const portfolioType = this.toDecidedPortfolioType(this.portfolioCategory);
+    this.investmentEngagementService.setSelectPortfolioType({selectPortfolioType : portfolioType});
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+  }
+
+  toDecidedPortfolioType(selectedPortfolioValue) {
+    if (selectedPortfolioValue.toUpperCase() ===
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT.toUpperCase()) {
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO
+    } else if (selectedPortfolioValue.toUpperCase() ===
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toUpperCase()) {
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO
+    } else if (selectedPortfolioValue.toUpperCase() === 
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER.toUpperCase()) {  
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO
+    } else {
+      return false;
+    }
   }
 
   // Method to filter portfolios base on the category

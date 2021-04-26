@@ -40,6 +40,7 @@ export class CreateAccountMyinfoComponent implements OnInit {
   referralCode = '';
   formValue: any;
   loadingModalRef: NgbModalRef;
+  finlitEnabled = false;
 
   constructor(
     private configService: ConfigService,
@@ -78,6 +79,10 @@ export class CreateAccountMyinfoComponent implements OnInit {
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.loader2StartTime = config.account.loaderStartTime * 1000;
     });
+
+    if (this.route.snapshot.data[0]) {
+      this.finlitEnabled = this.route.snapshot.data[0]['finlitEnabled'];
+    }
   }
 
   showFetchPopUp() {
@@ -125,7 +130,11 @@ export class CreateAccountMyinfoComponent implements OnInit {
       if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
         this.closeMyInfoPopup(false);
         this.signUpService.setCreateAccountMyInfoFormData(data.objectList[0]);
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
+        if(this.finlitEnabled) {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_CREATE_ACCOUNT + this.referralCode]);
+        } else {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
+        }
       } else if (data.responseMessage.responseCode === 6014) {
         this.closeMyInfoPopup(false);
         const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
@@ -193,12 +202,20 @@ export class CreateAccountMyinfoComponent implements OnInit {
   }
 
   backToLogin() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    if(this.finlitEnabled) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
+    } else {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    }
   }
 
   skipMyInfo() {
-    this.signUpService.setMyInfoStatus(false);
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
+    this.signUpService.setMyInfoStatus(false);    
+    if(this.finlitEnabled) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_CREATE_ACCOUNT + this.referralCode]);
+    } else {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT + this.referralCode]);
+    }
   }
 
   proceedToMyInfo() {
