@@ -1,4 +1,4 @@
-<div class="container-fluid max-width--1024 investment" *ngIf="defaultPayoutypeEnabled && wiseIncomePayOutTypes"  #backToTop id="backToTop">
+<div class="container-fluid max-width--1024 investment" *ngIf="defaultPayoutypeEnabled && wiseIncomePayOutTypes" id="backToTop">
     <div class="row">
         <div class="col-lg-7 col-md-6">
             <h2 class="hidden-sm">{{'WISE_INCOME_PAYOUT.CAPTION' | translate}}</h2>
@@ -9,7 +9,7 @@
         </div>
         <div class="col-lg-5 col-md-6">
             <form name="wiseIncomePayOutTypeForm" [formGroup]="wiseIncomePayOutTypeForm" id="wiseIncomePayOutTypeForm">
-                <div class="form-group-single-column flex-col">
+                <div class="form-group-single-column flex-col" #backToTop >
                     <div class="fund-question hidden-lg mt20">{{'WISE_INCOME_PAYOUT.CAPTION' | translate}}</div>
                     <div class="row">
                         <div class="col-12">
