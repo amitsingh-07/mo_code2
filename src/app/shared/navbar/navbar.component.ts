@@ -137,10 +137,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
-  
-  @ViewChild('featureBenefits') featureBenefits: ElementRef;
-
-  @Output() divComponent = new EventEmitter();
 
   constructor(
     private navbarService: NavbarService,
@@ -584,7 +580,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if(elementId=='payoutOption'){
       this.tab = 'tab1';
     } else if(elementId=='featureBenefits'){
-      this.divComponent.emit(this.featureBenefits);
       this.tab = 'tab2';
     } else if(elementId=='fundAssets'){
       this.tab = 'tab3';
