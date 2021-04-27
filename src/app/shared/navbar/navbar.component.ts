@@ -1,7 +1,6 @@
 import {
   AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2,
-  ViewChild,
-  EventEmitter
+  ViewChild
 } from '@angular/core';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -49,7 +48,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   // Navbar Configuration (New)
   navbarConfig: any;
   constants: any;
-
   showNavBackBtn = false; // Show Navbar1 Backbtn
   showHeaderBackBtn = true; // Show Navbar2 Backbtn
   showMenu = true;  // Show Menu Feature
