@@ -1,7 +1,6 @@
 import {
   AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2,
   ViewChild,
-  Output,
   EventEmitter
 } from '@angular/core';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
