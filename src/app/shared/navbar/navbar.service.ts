@@ -263,7 +263,7 @@ export class NavbarService {
     this.menuItemInvestUser.next(isVisible);
   }
   
-  /* Navbar Generic Element Details*/
+  /*WiseIncome Dropdown Scroll*/
   setScrollTo(elementName) {
     this.scrollTo.next(elementName);
   }

@@ -44,12 +44,8 @@ export class WiseIncomePayoutComponent implements OnInit {
   queryParams;
 
   @ViewChild('payoutOption') payoutOptionElement: ElementRef;
-
   @ViewChild('featureBenefits') featureBenefitsElement: ElementRef;
-
   @ViewChild('fundAssets') fundAssetsElement: ElementRef;
-
-  public mobileThreshold = 567;
 
   constructor(
     public readonly translate: TranslateService,
