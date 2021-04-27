@@ -42,8 +42,7 @@
             </form>
         </div>
     </div>
-    <div #payoutOption id="payoutOption"></div>
-    <div class="payout-pannel-block">
+    <div class="payout-pannel-block" #payoutOption id="payoutOption">
         <div class="payout-pannel-desc">{{'WISE_INCOME_PAYOUT.PANEL_TITLE' | translate}}</div>
         <div class="payout-pannel-tabs">
             <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTabId">
@@ -200,8 +199,7 @@
             <div [ngbNavOutlet]="nav" class="mt-2"></div>
         </div>
     </div>
-    <div  #featureBenefits id="featureBenefits"></div>
-    <div class="learn-more-block mt30">
+    <div class="learn-more-block mt30" #featureBenefits id="featureBenefits">
         <div class="payout-pannel-desc">{{'WISE_INCOME_PAYOUT.LEARN_MORE_LBL' | translate}}</div>
         <div class="learn-more-options">
             <div class="learn-more-accordian">
