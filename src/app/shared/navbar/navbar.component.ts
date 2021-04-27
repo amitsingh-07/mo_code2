@@ -48,7 +48,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   // Navbar Configuration (New)
   navbarConfig: any;
   constants: any;
-
   showNavBackBtn = false; // Show Navbar1 Backbtn
   showHeaderBackBtn = true; // Show Navbar2 Backbtn
   showMenu = true;  // Show Menu Feature
@@ -135,6 +134,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
+
   constructor(
     private navbarService: NavbarService,
     private config: NgbDropdownConfig, private renderer: Renderer2,
@@ -572,8 +572,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
   //wiseIncome Dropdown Scroll
   onClickScroll(elementId: string): void {
+    this.navbarService.setScrollTo(elementId);
     this.wiseIncomeDropDownShow = !this.wiseIncomeDropDownShow;
-    this.viewportScroller.scrollToAnchor(elementId);
     if(elementId=='payoutOption'){
       this.tab = 'tab1';
     } else if(elementId=='featureBenefits'){
