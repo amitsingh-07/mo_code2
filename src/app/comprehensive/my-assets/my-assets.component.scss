@@ -152,7 +152,7 @@ $grey-color-notes: #9f9f9f;
   display: flex;
   height: 48px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   @include allmobiles {
     margin: 35px 0 30px;
     height: auto;
