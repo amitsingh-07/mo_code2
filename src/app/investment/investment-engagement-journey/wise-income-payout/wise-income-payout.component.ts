@@ -19,6 +19,9 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
+import {
+  ModelWithButtonComponent
+} from '../../../shared/modal/model-with-button/model-with-button.component';
 @Component({
   selector: 'app-wise-income-payout',
   templateUrl: './wise-income-payout.component.html',
@@ -199,5 +202,22 @@ export class WiseIncomePayoutComponent implements OnInit {
   }
   ngOnDestroy() {
     this.navbarService.unsubscribeDropDownIcon();
+  }
+
+  // 8% imp note
+  openImpNoteModal(){
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'imp-note-modal'});
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'WISE_INCOME_PAYOUT.IMPNOTEMODAL.TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'WISE_INCOME_PAYOUT.IMPNOTEMODAL.DESC'
+    );
+    ref.componentInstance.primaryActionLabel = this.translate.instant(
+      'WISE_INCOME_PAYOUT.IMPNOTEMODAL.BTN-TEXT'
+    );
+    ref.componentInstance.disclaimerMessage = this.translate.instant(
+      'WISE_INCOME_PAYOUT.IMPNOTEMODAL.DISCLAIMER'
+    );
   }
 }

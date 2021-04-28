@@ -126,7 +126,13 @@
         "FUND_ASSET_ALLOCATION_LBL": "Fund Details & Asset Allocation",
         "FAQ_LBL": "FAQ",
         "ABOUT_WISEINCOME_LBL": "More About WiseIncome",
-        "DISCLAIMER": "*While the fund intends to distribute 4.5% p.a. payout, the fund manager has the discretion to deviate from this including reducing the payout rate to achieve sustainability of the fund in the interest of unitholders, or alternatively, paying a higher rate of up to 4.8% p.a. in good years."
+        "DISCLAIMER": "*While the fund intends to distribute 4.5% p.a. payout, the fund manager has the discretion to deviate from this including reducing the payout rate to achieve sustainability of the fund in the interest of unitholders, or alternatively, paying a higher rate of up to 4.8% p.a. in good years.",
+        "IMPNOTEMODAL":{
+            "TITLE": "Important Note",
+            "DESC": "<div><div class='flex center'><span><img src='assets/images/investment-account/important-note-modal/icon-layers.svg'/></span><span class='pl20'>WiseIncome 8% p.a. income payout comes from <span class='txt-bold'>income (dividends & coupons),</span> investment returns, and your <span class='txt-bold'>invested amount.</span></span></div><div class='flex center mt30'><span><img src='assets/images/investment-account/important-note-modal/icon-drop.svg'/></span><span class='pl20'>The 8% p.a. payout amount is <span class='txt-bold'>not level</span> and is expected to <span class='txt-bold'>drop over time</span> as your portfolio value decreases.</span></div></div>",
+            "BTN-TEXT": "Okay, Got It!",
+            "DISCLAIMER": "<div><span class='txt-bold txt-teal'>Need advice?</span> If you require further explanation, please contact us at <span class='txt-bold'>6329 9188</span> from Monday – Friday, 9am – 6pm, or read more below.</div>"
+        }
     },
     "FUNDING_METHOD": {
         "TITLE": "Select Funding Method",

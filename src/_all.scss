@@ -2465,3 +2465,17 @@ select:-webkit-autofill:focus {
     display: none;
   }
 }
+
+// important note modal
+.imp-note-modal {
+  .popup-header-icon {
+    @include allmobiles {
+      display: none;
+    }
+  }
+  .modal-body {
+    @include allmobiles {
+      padding: 20px 25px 10px !important;
+    }
+  }
+}
