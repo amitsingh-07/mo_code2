@@ -92,14 +92,14 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.formValues = this.investmentCommonService.getWiseIncomePayOut();
     this.activeTabId = this.formValues.activeTabId ? this.formValues.activeTabId : 1;
 
-    this.navbarService.scrollToObserv.subscribe((elementName: any) => {
-      if (elementName == 'payoutOption') {
-        this.goToSection(this.payoutOptionElement.nativeElement);
-      } else if (elementName == 'featureBenefits') {
-        this.goToSection(this.featureBenefitsElement.nativeElement);
-      } else if (elementName == 'fundAssets') {
-        this.goToSection(this.fundAssetsElement.nativeElement);
-      } else if (elementName == 'backToTop') {
+    this.navbarService.scrollToObserv.subscribe((scrollOption: any) => {
+      if (scrollOption.elementName == 'payoutOption') {
+        this.goToSection(this.payoutOptionElement.nativeElement, scrollOption.menuHeight, 0);
+      } else if (scrollOption.elementName == 'featureBenefits') {
+        this.goToSection(this.featureBenefitsElement.nativeElement, scrollOption.menuHeight, 0);
+      } else if (scrollOption.elementName == 'fundAssets') {
+        this.goToSection(this.fundAssetsElement.nativeElement, scrollOption.menuHeight, 40);
+      } else if (scrollOption.elementName == 'backToTop') {
         window.scrollTo(0, 0);
       }
     });
@@ -217,7 +217,11 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.navbarService.unsubscribeDropDownIcon();
   }
 
-  goToSection(elementName) {
-    elementName.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'smooth' });
+  goToSection(elementName, navbarHeight, additionalHt) {
+    const CurrentOffsetTop = elementName.getBoundingClientRect().top + window.pageYOffset - navbarHeight - additionalHt;
+    window.scrollTo({
+      top: CurrentOffsetTop, 
+      behavior: 'smooth'
+    })
   }
 }
