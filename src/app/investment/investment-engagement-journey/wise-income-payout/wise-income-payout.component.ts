@@ -43,7 +43,6 @@ export class WiseIncomePayoutComponent implements OnInit {
   activeTabId = 1;
   fundingMethods: any;
   payoutFundList: any;
-  defaultPayoutypeEnabled: boolean;
   queryParams;
 
   constructor(
@@ -96,16 +95,8 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.activeTabId = this.formValues.activeTabId ? this.formValues.activeTabId : 1;
     this.wiseIncomePayOutTypeForm = new FormGroup({
       initialWiseIncomePayoutTypeId: new FormControl(
-        this.formValues.initialWiseIncomePayoutTypeId ? this.formValues.initialWiseIncomePayoutTypeId :
-          this.getdefaultWiseIcomePayoutTypeNameById(INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.DEFAULT_PAYOUT.GROW, this.wiseIncomePayOutTypes), Validators.required)
+        this.formValues.initialWiseIncomePayoutTypeId, Validators.required)
     });
-    if (
-      this.defaultPayoutypeEnabled = this.getdefaultWiseIcomePayoutTypeNameById(INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.DEFAULT_PAYOUT.GROW, this.wiseIncomePayOutTypes)) {
-      this.defaultPayoutypeEnabled = true;
-    }
-    else {
-      this.defaultPayoutypeEnabled = false;
-    }
   }
   
   getFundListMethod(portfolioTypeId) {
@@ -204,8 +195,9 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.navbarService.unsubscribeDropDownIcon();
   }
 
-  // 8% imp note
-  openImpNoteModal(){
+  // 8% imp note modal
+  openImpNoteModal(wiseIncomePayOutType){
+    if(wiseIncomePayOutType.key == INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.EIGHT_PERCENT){
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'imp-note-modal'});
     ref.componentInstance.errorTitle = this.translate.instant(
       'WISE_INCOME_PAYOUT.IMPNOTEMODAL.TITLE'
@@ -219,5 +211,6 @@ export class WiseIncomePayoutComponent implements OnInit {
     ref.componentInstance.disclaimerMessage = this.translate.instant(
       'WISE_INCOME_PAYOUT.IMPNOTEMODAL.DISCLAIMER'
     );
+    }
   }
 }
