@@ -43,6 +43,7 @@ export class WiseIncomePayoutComponent implements OnInit {
   defaultPayoutypeEnabled: boolean;
   queryParams;
 
+  @ViewChild('backToTop') backToTopElement: ElementRef;
   @ViewChild('payoutOption') payoutOptionElement: ElementRef;
   @ViewChild('featureBenefits') featureBenefitsElement: ElementRef;
   @ViewChild('fundAssets') fundAssetsElement: ElementRef;
@@ -100,7 +101,7 @@ export class WiseIncomePayoutComponent implements OnInit {
       } else if (scrollOption.elementName == 'fundAssets') {
         this.goToSection(this.fundAssetsElement.nativeElement, scrollOption.menuHeight, 40);
       } else if (scrollOption.elementName == 'backToTop') {
-        window.scrollTo(0, 0);
+        this.goToSection(this.backToTopElement.nativeElement, scrollOption.menuHeight, 0);
       }
     });
   }
