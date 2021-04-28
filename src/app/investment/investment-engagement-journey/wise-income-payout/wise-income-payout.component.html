@@ -1,5 +1,5 @@
 <div class="container-fluid max-width--1024 investment" *ngIf="defaultPayoutypeEnabled && wiseIncomePayOutTypes" id="backToTop">
-    <div class="row">
+    <div class="row" #backToTop id="backToTop">
         <div class="col-lg-7 col-md-6">
             <h2 class="hidden-sm">{{'WISE_INCOME_PAYOUT.CAPTION' | translate}}</h2>
             <div class="page-desc">{{'WISE_INCOME_PAYOUT.DESCRIPTION' | translate}}</div>
