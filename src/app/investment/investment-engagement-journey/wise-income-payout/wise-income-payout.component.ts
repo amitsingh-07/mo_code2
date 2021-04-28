@@ -222,6 +222,6 @@ export class WiseIncomePayoutComponent implements OnInit {
   }
 
   goToSection(elementName) {
-    elementName.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
+    elementName.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'smooth' });
   }
 }
