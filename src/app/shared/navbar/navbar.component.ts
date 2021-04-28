@@ -572,7 +572,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
   //wiseIncome Dropdown Scroll
   onClickScroll(elementId: string): void {
-    this.navbarService.setScrollTo(elementId);
+    this.navbarService.setScrollTo(elementId, this.NavBar.nativeElement.getBoundingClientRect().height);
     this.wiseIncomeDropDownShow = !this.wiseIncomeDropDownShow;
     if(elementId=='payoutOption'){
       this.tab = 'tab1';
