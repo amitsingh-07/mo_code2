@@ -264,7 +264,11 @@ export class NavbarService {
   }
   
   /*WiseIncome Dropdown Scroll*/
-  setScrollTo(elementName) {
-    this.scrollTo.next(elementName);
+  setScrollTo(elementName, navBarHeight) {
+    let scrollOption = {
+      elementName: elementName,
+      menuHeight: navBarHeight
+    }
+    this.scrollTo.next(scrollOption);
   }
 }
