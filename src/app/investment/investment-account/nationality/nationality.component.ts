@@ -167,6 +167,7 @@ export class NationalityComponent implements OnInit {
 
   goToNext(form) {
     if (form.valid) {
+      this.investmentCommonService.clearAccountCreationActions();
       this.saveNationality(form);
       if (form.controls.nationality.value.name === 'AMERICAN') {
         this.showErrorMessage(
@@ -208,7 +209,6 @@ export class NationalityComponent implements OnInit {
   saveNationality(form) {
     this.investmentAccountService.saveNationality(form.controls.nationality.value).subscribe(
       (data) => {
-        this.investmentCommonService.clearAccountCreationActions();
         this.investmentAccountService.setAccountCreationStatus(
           INVESTMENT_ACCOUNT_CONSTANTS.status.nationality_selected
         );
