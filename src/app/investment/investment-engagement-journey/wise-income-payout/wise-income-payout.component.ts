@@ -1,5 +1,5 @@
 import {
-  AfterViewInit, ChangeDetectorRef, Component, OnInit, Renderer2, ViewEncapsulation
+  AfterViewInit, ChangeDetectorRef, Component, OnInit, Renderer2, ViewEncapsulation, ViewChild, ElementRef
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -45,6 +45,11 @@ export class WiseIncomePayoutComponent implements OnInit {
   payoutFundList: any;
   queryParams;
 
+  @ViewChild('backToTop') backToTopElement: ElementRef;
+  @ViewChild('payoutOption') payoutOptionElement: ElementRef;
+  @ViewChild('featureBenefits') featureBenefitsElement: ElementRef;
+  @ViewChild('fundAssets') fundAssetsElement: ElementRef;
+
   constructor(
     public readonly translate: TranslateService,
     public activeModal: NgbActiveModal,
@@ -78,7 +83,7 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.queryParams = this.route.snapshot.queryParams;
     if (this.queryParams && this.queryParams.key && this.queryParams.key === 'wise-income') {
       this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
-      this.investmentEngagementJourneyService.setSelectPortfolioType({selectPortfolioType: 'wiseIncomePortfolio'});
+      this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: 'wiseIncomePortfolio' });
     }
     this.investmentAccountService.getSpecificDropList('portfolioType').subscribe((data) => {
       this.investmentCommonService.setPortfolioType(data.objectList.portfolioType);
@@ -89,6 +94,18 @@ export class WiseIncomePayoutComponent implements OnInit {
     });
     this.formValues = this.investmentCommonService.getWiseIncomePayOut();
     this.activeTabId = this.formValues.activeTabId ? this.formValues.activeTabId : 1;
+
+    this.navbarService.scrollToObserv.subscribe((scrollOption: any) => {
+      if (scrollOption.elementName == 'payoutOption') {
+        this.goToSection(this.payoutOptionElement.nativeElement, scrollOption.menuHeight, 0);
+      } else if (scrollOption.elementName == 'featureBenefits') {
+        this.goToSection(this.featureBenefitsElement.nativeElement, scrollOption.menuHeight, 0);
+      } else if (scrollOption.elementName == 'fundAssets') {
+        this.goToSection(this.fundAssetsElement.nativeElement, scrollOption.menuHeight, 40);
+      } else if (scrollOption.elementName == 'backToTop') {
+        this.goToSection(this.backToTopElement.nativeElement, scrollOption.menuHeight, 0);
+      }
+    });
   }
 
   buildForm() {
@@ -98,7 +115,7 @@ export class WiseIncomePayoutComponent implements OnInit {
         this.formValues.initialWiseIncomePayoutTypeId, Validators.required)
     });
   }
-  
+
   getFundListMethod(portfolioTypeId) {
     this.investmentEngagementJourneyService.getFundListMethod(portfolioTypeId).subscribe((data) => {
       this.payoutFundList = {
@@ -197,20 +214,28 @@ export class WiseIncomePayoutComponent implements OnInit {
 
   // 8% imp note modal
   openImpNoteModal(wiseIncomePayOutType){
-    if(wiseIncomePayOutType.key == INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.EIGHT_PERCENT){
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true , windowClass: 'imp-note-modal'});
-    ref.componentInstance.errorTitle = this.translate.instant(
-      'WISE_INCOME_PAYOUT.IMPNOTEMODAL.TITLE'
-    );
-    ref.componentInstance.errorMessage = this.translate.instant(
-      'WISE_INCOME_PAYOUT.IMPNOTEMODAL.DESC'
-    );
-    ref.componentInstance.primaryActionLabel = this.translate.instant(
-      'WISE_INCOME_PAYOUT.IMPNOTEMODAL.BTN-TEXT'
-    );
-    ref.componentInstance.disclaimerMessage = this.translate.instant(
-      'WISE_INCOME_PAYOUT.IMPNOTEMODAL.DISCLAIMER'
-    );
+    if (wiseIncomePayOutType.key == INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.EIGHT_PERCENT) {
+        const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'imp-note-modal' });
+        ref.componentInstance.errorTitle = this.translate.instant(
+            'WISE_INCOME_PAYOUT.IMPNOTEMODAL.TITLE'
+        );
+        ref.componentInstance.errorMessage = this.translate.instant(
+            'WISE_INCOME_PAYOUT.IMPNOTEMODAL.DESC'
+        );
+        ref.componentInstance.primaryActionLabel = this.translate.instant(
+            'WISE_INCOME_PAYOUT.IMPNOTEMODAL.BTN-TEXT'
+        );
+        ref.componentInstance.disclaimerMessage = this.translate.instant(
+            'WISE_INCOME_PAYOUT.IMPNOTEMODAL.DISCLAIMER'
+        );
     }
+  }
+
+  goToSection(elementName, navbarHeight, additionalHt) {
+    const CurrentOffsetTop = elementName.getBoundingClientRect().top + window.pageYOffset - navbarHeight - additionalHt;
+    window.scrollTo({
+      top: CurrentOffsetTop, 
+      behavior: 'smooth'
+    })
   }
 }
