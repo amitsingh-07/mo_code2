@@ -22,6 +22,8 @@ export class NavbarService {
   private navbarShadowVisibility = new BehaviorSubject(true);
   private backListener = new BehaviorSubject('');
   private promoAppliedCardVisibility = new BehaviorSubject(false);
+  private scrollTo = new Subject();
+
 
   existingNavbar = this.navbar.asObservable();
   getNavbarEvent = this.getNavEvent.asObservable();
@@ -30,6 +32,7 @@ export class NavbarService {
   currentNavbarMobileVisibility = this.navbarMobileVisibility.asObservable();
   currentNavbarShadowVisibility = this.navbarShadowVisibility.asObservable();
   currentBackListener = this.backListener.asObservable();
+  scrollToObserv = this.scrollTo.asObservable();
 
   /* Header Params */
   private pageTitle = new BehaviorSubject('');
@@ -37,6 +40,7 @@ export class NavbarService {
   private pageHelpIcon = new BehaviorSubject(false);
   private pageProdInfoIcon = new BehaviorSubject(false);
   private pageClearNotify = new BehaviorSubject(false);
+  private pageDropDownIcon = new BehaviorSubject(false);
 
   private investPageTitle = new BehaviorSubject('');
   private investPageSuperTitle = new BehaviorSubject('');
@@ -55,6 +59,7 @@ export class NavbarService {
   currentPageTitle = this.pageTitle.asObservable();
   currentPageSubTitle = this.pageSubTitle.asObservable();
   currentPageHelpIcon = this.pageHelpIcon.asObservable();
+  currentPageDropDownIcon = this.pageDropDownIcon.asObservable();
   currentPageProdInfoIcon = this.pageProdInfoIcon.asObservable();
   currentMobileModalEvent = this.mobileModal.asObservable();
   currentPageClearNotify = this.pageClearNotify.asObservable();
@@ -73,6 +78,7 @@ export class NavbarService {
   // logout
   private logoutSubject = new Subject();
   logoutObservable$ = this.logoutSubject.asObservable();
+  wiseIncomeDropDownShow = new BehaviorSubject(false);
 
   constructor(private router: Router, private _location: Location) {
     this.router.events.pipe(
@@ -142,6 +148,7 @@ export class NavbarService {
     this.pageFilterIcon.next(false);
     this.pageSuperTitle.next('');
     this.pageSubTitle.next('');
+    this.pageDropDownIcon.next(false);
   }
   setClearAllNotify(isVisible: boolean) {
     this.pageClearNotify.next(isVisible);
@@ -154,7 +161,7 @@ export class NavbarService {
 
   /* Header Functions*/
   // Setting Page Title
-  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean, filterIcon?: boolean, superTitle?: string) {
+  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean, filterIcon?: boolean, superTitle?: string, dropDownIcon?: boolean) {
     this.setInvestPageTitle(title, superTitle ? superTitle : '');
     this.pageTitle.next(title);
     if (subTitle) {
@@ -166,7 +173,7 @@ export class NavbarService {
       this.pageHelpIcon.next(true);
     } else {
       this.pageHelpIcon.next(false);
-    }
+    } 
     if (settingsIcon) {
       this.pageSettingsIcon.next(true);
     } else {
@@ -182,7 +189,11 @@ export class NavbarService {
     } else {
       this.pageSuperTitle.next('');
     }
-
+    if (dropDownIcon) {
+      this.pageDropDownIcon.next(true);
+    } else {
+      this.pageDropDownIcon.next(false);
+    }
     // Reset/Hide menuItem
     this.menuItem.next({} as IHeaderMenuItem);
   }
@@ -224,6 +235,14 @@ export class NavbarService {
     this.$menuItemClick.next('');
   }
 
+  subscribeDropDownIcon() {
+    this.wiseIncomeDropDownShow.next(true);
+  }
+
+  unsubscribeDropDownIcon() {
+    this.wiseIncomeDropDownShow.next(false);
+  }
+
   logoutUser() {
     this.logoutSubject.next('LOGGED_OUT');
   }
@@ -242,5 +261,14 @@ export class NavbarService {
   
   setMenuItemInvestUser(isVisible: boolean) {
     this.menuItemInvestUser.next(isVisible);
+  }
+  
+  /*WiseIncome Dropdown Scroll*/
+  setScrollTo(elementName, navBarHeight) {
+    let scrollOption = {
+      elementName: elementName,
+      menuHeight: navBarHeight
+    }
+    this.scrollTo.next(scrollOption);
   }
 }

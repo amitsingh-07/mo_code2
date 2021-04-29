@@ -193,6 +193,62 @@ button:active:focus {
       color: $btn-orange-active-txt-color !important;
     }
   }
+
+  &.action-button {
+    width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 6px 7px 0 $btn-shadow-color !important;
+    background-color: $btn-action-backgrnd-color;
+    border: 1px solid $btn-action-border-color;
+    margin-top: 15px;
+    font-family: $muli-bold;
+    font-size: 22px;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    text-align: center;
+    color: $btn-action-txt-color;
+    padding: 10px;
+    cursor: pointer;
+
+    &.secondary-button {
+      background-color: $white-color;
+      color: $teal-color;
+      -webkit-text-fill-color: $teal-color;
+      box-shadow: none !important;
+      outline: none !important;
+      border: 1px solid rgba(0, 167, 167, 0.4);
+  
+      &:hover {
+        background-color: $white-color;
+        border-color: $teal-color;
+        color: $teal-color !important;
+        -webkit-text-fill-color: $teal-color;
+
+        @include allmobiles {
+          background-color: $white-color !important;
+          color: $teal-color !important;
+          -webkit-text-fill-color: $teal-color !important;
+        }
+        @include tablet {
+          background-color: $white-color !important;
+          color: $teal-color !important;
+          -webkit-text-fill-color: $teal-color !important;
+        }
+      }
+    }
+  
+    &:hover {
+      background-color: $btn-action-hover-bg-color;
+      border-color: $btn-action-hover-border-color;
+      color: $btn-action-txt-color !important;
+    }
+    &:active {
+      background-color: $btn-action-active-bg-color;
+      color: $btn-action-txt-color;
+    }
+  }
 }
 
 .btn.active.focus,

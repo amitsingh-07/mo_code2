@@ -44,6 +44,7 @@ import { TransferModalComponent } from './transfer/transfer-modal/transfer-modal
 import { PromoCodeModule } from './../../promo-code/promo-code.module';
 
 import { FeesComponent } from './fees/fees.component';
+import { DividendPayoutComponent } from './dividend-payout/dividend-payout.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
@@ -91,7 +92,8 @@ export function createTranslateLoader(http: HttpClient) {
     TransferComponent,
     TransferStatusComponent,
     TransferModalComponent,
-    FeesComponent
+    FeesComponent,
+    DividendPayoutComponent
   ],
   entryComponents: [ConfirmWithdrawalModalComponent, AddBankModalComponent, ForwardPricingModalComponent,
     RenameInvestmentModalComponent, TransferModalComponent],

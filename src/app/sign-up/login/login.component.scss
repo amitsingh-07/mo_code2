@@ -12,14 +12,6 @@ app-login {
     min-height: 85vh;
   }
 
-  /* 
-input::-webkit-textfield-decoration-container {
-  display: none; 
-}
-input::-webkit-caps-lock-indicator {
-}
-*/
-
   input::-webkit-credentials-auto-fill-button {
     visibility: hidden;
     display: none !important;
@@ -265,5 +257,151 @@ input::-webkit-caps-lock-indicator {
       }
     }
   }
-  
+  // New login page CSS
+  .sp-pw-container{
+    display: flex;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    .pw-login-container {
+      display: flex;
+      flex-direction: column;
+      width: 390px;
+      @include allmobiles {
+        width: 100%;
+        margin-top: -50px;
+      }
+    }
+    .password-qr-toggle {
+      display: none;
+      @include allmobiles {
+        display: flex;
+      }
+      justify-content: space-between;
+      font-family: $muli-bold;
+      font-size: 3.865vmin;
+      line-height: normal;
+      letter-spacing: -0.16px;
+      width: 100%;
+      padding-bottom: 20px;
+      color: #dddddd;
+      .toggle-container {
+        display: flex;
+        flex-direction: column;
+        white-space: nowrap;
+        .toggle-btn {
+          display: flex;
+          cursor: pointer;
+          &.white-txt {
+            color: $white-color;
+          }
+        }
+      }
+      img {
+        width: 4.35vmin;
+        margin-right: 10px;
+        height: 24px;
+      }
+      .underline {
+        width: 50px;
+        height: 3px;
+        border-radius: 2.5px;
+        background-color: $dark-orange-color;
+        margin-top: 11px;
+        align-self: center;
+      }
+    }
+    .login-title {
+      font-size: 32px;
+      margin-bottom: 40px;
+      @include allmobiles {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+    }
+    .img-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+      @include allmobiles {
+        margin-bottom: 20px;
+      }
+      .login-header-icon {
+        width: 100px;
+        @include allmobiles {
+          width: 90px;
+        }
+      }
+    }
+    .separator-container {
+      display: flex;
+      flex-direction: column-reverse;
+      margin-left: 80px;
+      margin-right: 80px;
+      @include allmobiles {
+        display: none;
+      }
+    }
+    .singpass-container {
+      align-self: flex-end;
+      font-size: 14px;
+      color: $black-color;
+      height: 470px;
+      width: 350px;
+      background-color: $mercury-smoke-color;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.5);
+      line-height: 21px;
+      letter-spacing: -0.13px;
+      @include allmobiles {
+        display: none;
+        font-size: 3.382vmin;
+        width: 100%;
+        margin: 0px 10px;
+      }
+      a {
+        font-family: $muli-bold;
+        color: $dark-orange-color !important;
+        cursor: pointer;
+      }
+      .title-container {
+        padding: 18px 0 0 20px;
+        height: 70px;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        display: flex;
+        align-items: flex-start;
+        @include allmobiles {
+          padding: 4.348vmin 0 0 4.831vmin;
+        }
+        img {
+          margin-right: 10px;
+        }
+      }
+      #qr_wrapper {
+        background-color: $white-color;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        height: 344px;
+      }
+      .footer-container {
+        padding: 12px 0 14px 20px;
+      }
+    }
+    .show-element {
+      display: block !important;
+    }
+  }
+  .client-assist {
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: -0.13px;
+    max-width: 749px;
+    margin: auto;
+    padding: 20px 19.9px 20px 20.1px;
+    border-radius: 6px;
+    background-color: $strong-cyan-color;
+    @include allmobiles {
+      margin: auto 10px;
+    }
+  }
 }

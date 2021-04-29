@@ -1,5 +1,4 @@
 <div class="carousel-content insurance-plan-widget" [ngClass]="{'plan-selected-wrapper': data.selected}">
-  <img class="info-icon hidden-lg" (click)="viewDetails()" src="assets/images/tooltip-info.svg" />
   <div class="insurance-plan-widget__container flex__box--vert">
 
     <div class="col-md-3 col-md-pull-9 hidden-lg mt20 insurer-logo">
@@ -108,6 +107,12 @@
           <span class="text-bold grey">{{highlight.description}}</span>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="flex row hidden-lg">
+    <div class="col-md-12 details-main" *ngIf="!isComparePlanEnabled">
+      <button type="button" (click)="viewDetails()" class="btn btn-secondary width100 details-btn">{{ 'BUTTON.DETAILS' | translate
+        }}</button>
     </div>
   </div>
   <div class="flex row-btn-bottom">

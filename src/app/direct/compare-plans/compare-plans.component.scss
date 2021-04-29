@@ -297,5 +297,24 @@ app-compare-plans {
         top: 20px !important;
         border: none;
         line-height: 65px;
+    }    
+    
+    .details-btn {
+        height: 40px!important;
+        padding: 0.5rem!important;
+        border-radius: 6px!important;
+        border: solid 1px $recommend-details-button!important;
+        font-size: 16px!important;
+        font-family: $muli-regular!important;
+        width: 139px!important;
+        letter-spacing: -0.12px;
+        @include allmobiles {
+            width: 100%!important;
+        }
+    }
+    .details-main{
+        @include allmobiles {
+            margin: 0px 0px 20px 0px!important;
+        }
     }
 }

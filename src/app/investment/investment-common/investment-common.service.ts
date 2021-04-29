@@ -1,7 +1,7 @@
 
-import {of as observableOf,  Observable } from 'rxjs';
+import { of as observableOf, Observable } from 'rxjs';
 
-import {catchError, map} from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 
 import { Injectable } from '@angular/core';
@@ -289,13 +289,13 @@ export class InvestmentCommonService {
     return this.getInvestmentCriteriaFromApi(selectPortfolioType).pipe(map((data: any) => {
       this.loaderService.hideLoader();
       return data.objectList;
-    }),catchError(
+    }), catchError(
       (error) => {
         this.loaderService.hideLoader();
         // getDefault placeholder
         return observableOf(null);
       }
-    ),);
+    ));
   }
   setPortfolioType(portfolioType) {
     this.investmentCommonFormData.portfolioType = portfolioType;
@@ -306,29 +306,40 @@ export class InvestmentCommonService {
       portfolioType: this.investmentCommonFormData.portfolioType
     };
   }
-  getWiseSaverDetails(){
+  getWiseSaverDetails() {
     return this.investmentApiService.getWiseSaverDetails();
   }
   //WISE INCOME PAYOUT METHOD
- setWiseIncomePayOut(data, activeTabId) {
-  this.investmentCommonFormData.initialWiseIncomePayoutTypeId = data.initialWiseIncomePayoutTypeId;
-  this.investmentCommonFormData.wiseIncomeActiveTabId = activeTabId;
-  this.commit();
-}
+  setWiseIncomePayOut(data, activeTabId) {
+    this.investmentCommonFormData.initialWiseIncomePayoutTypeId = data.initialWiseIncomePayoutTypeId;
+    this.investmentCommonFormData.wiseIncomeActiveTabId = activeTabId;
+    this.commit();
+  }
   getWiseIncomePayOut() {
     return {
       initialWiseIncomePayoutTypeId: this.investmentCommonFormData.initialWiseIncomePayoutTypeId,
       activeTabId: this.investmentCommonFormData.wiseIncomeActiveTabId
+    }
   }
- }
- setPortfolioDetails(portfolioDetails){
- this.investmentCommonFormData.portfolioDetails =portfolioDetails;
- }
- getPortfolioDetails(){
-   return{
-    portfolioDetails : this.investmentCommonFormData.portfolioDetails
-   }
- }
+  setPortfolioDetails(portfolioDetails) {
+    this.investmentCommonFormData.portfolioDetails = portfolioDetails;
+  }
+  getPortfolioDetails() {
+    return {
+      portfolioDetails: this.investmentCommonFormData.portfolioDetails
+    }
+  }
+  //  nric validation
+  constructValidationInfo(data, source) {
+    return {
+      uin: data,
+      source: source,
+    };
+  }
+  getUserNricValidation(data, source) {
+    const payload = this.constructValidationInfo(data, source);
+    return this.investmentApiService.getUserNricValidationInfo(payload);
+  }
   saveUpdateSessionData(formData) {
     let activeTabId;
     switch (formData.payoutType) {
@@ -343,7 +354,7 @@ export class InvestmentCommonService {
         break;
     }
     if (formData && formData.payoutTypeId) {
-      this.setWiseIncomePayOut({initialWiseIncomePayoutTypeId :formData.payoutTypeId}, activeTabId);
+      this.setWiseIncomePayOut({ initialWiseIncomePayoutTypeId: formData.payoutTypeId }, activeTabId);
     }
     const investmentFormData = this.setYourInvestmentAmount(formData);
     this.investmentEngagementJourneyService.setYourInvestmentAmount(investmentFormData);

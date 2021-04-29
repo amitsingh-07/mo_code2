@@ -188,6 +188,11 @@ app-withdrawal {
         -webkit-text-fill-color: $form-control-disabled-txt-color !important;
         background: $form-control-disabled-bg-color2 !important;
         cursor: not-allowed;
+
+        &:-internal-autofill-selected {
+          box-shadow: inset 0 0 0px 9999px $form-control-disabled-bg-color2 !important;
+          -webkit-box-shadow: inset 0 0 0px 9999px $form-control-disabled-bg-color2 !important;
+        }
       }
     }
 

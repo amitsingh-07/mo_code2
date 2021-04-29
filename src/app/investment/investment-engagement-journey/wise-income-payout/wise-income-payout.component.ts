@@ -1,5 +1,5 @@
 import {
-  AfterViewInit, ChangeDetectorRef, Component, OnInit, Renderer2, ViewEncapsulation
+  AfterViewInit, ChangeDetectorRef, Component, OnInit, Renderer2, ViewEncapsulation, ViewChild, ElementRef
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -43,6 +43,11 @@ export class WiseIncomePayoutComponent implements OnInit {
   defaultPayoutypeEnabled: boolean;
   queryParams;
 
+  @ViewChild('backToTop') backToTopElement: ElementRef;
+  @ViewChild('payoutOption') payoutOptionElement: ElementRef;
+  @ViewChild('featureBenefits') featureBenefitsElement: ElementRef;
+  @ViewChild('fundAssets') fundAssetsElement: ElementRef;
+
   constructor(
     public readonly translate: TranslateService,
     public activeModal: NgbActiveModal,
@@ -64,7 +69,7 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('WISE_INCOME_PAYOUT.TITLE');
-      this.setPageTitle(this.pageTitle);
+      this.setPageTitle(this.pageTitle, null, null, false, false, null, true);
     });
   }
   ngOnInit() {
@@ -76,7 +81,7 @@ export class WiseIncomePayoutComponent implements OnInit {
     this.queryParams = this.route.snapshot.queryParams;
     if (this.queryParams && this.queryParams.key && this.queryParams.key === 'wise-income') {
       this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
-      this.investmentEngagementJourneyService.setSelectPortfolioType({selectPortfolioType: 'wiseIncomePortfolio'});
+      this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: 'wiseIncomePortfolio' });
     }
     this.investmentAccountService.getSpecificDropList('portfolioType').subscribe((data) => {
       this.investmentCommonService.setPortfolioType(data.objectList.portfolioType);
@@ -87,6 +92,18 @@ export class WiseIncomePayoutComponent implements OnInit {
     });
     this.formValues = this.investmentCommonService.getWiseIncomePayOut();
     this.activeTabId = this.formValues.activeTabId ? this.formValues.activeTabId : 1;
+
+    this.navbarService.scrollToObserv.subscribe((scrollOption: any) => {
+      if (scrollOption.elementName == 'payoutOption') {
+        this.goToSection(this.payoutOptionElement.nativeElement, scrollOption.menuHeight, 0);
+      } else if (scrollOption.elementName == 'featureBenefits') {
+        this.goToSection(this.featureBenefitsElement.nativeElement, scrollOption.menuHeight, 0);
+      } else if (scrollOption.elementName == 'fundAssets') {
+        this.goToSection(this.fundAssetsElement.nativeElement, scrollOption.menuHeight, 40);
+      } else if (scrollOption.elementName == 'backToTop') {
+        this.goToSection(this.backToTopElement.nativeElement, scrollOption.menuHeight, 0);
+      }
+    });
   }
 
   buildForm() {
@@ -104,7 +121,7 @@ export class WiseIncomePayoutComponent implements OnInit {
       this.defaultPayoutypeEnabled = false;
     }
   }
-  
+
   getFundListMethod(portfolioTypeId) {
     this.investmentEngagementJourneyService.getFundListMethod(portfolioTypeId).subscribe((data) => {
       this.payoutFundList = {
@@ -129,8 +146,8 @@ export class WiseIncomePayoutComponent implements OnInit {
         this.investmentAccountService.showGenericErrorModal();
       });
   }
-  setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
+  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean, filterIcon?: boolean, superTitle?: string, dropDownIcon?: boolean) {
+    this.navbarService.setPageTitle(title, null, null, false, false, null, dropDownIcon);
   }
   getWiseIcomePayoutTypeNameById(wiseIncomePayoutTypeId, payoutOptions) {
     if (wiseIncomePayoutTypeId && payoutOptions) {
@@ -196,5 +213,16 @@ export class WiseIncomePayoutComponent implements OnInit {
       this.investmentCommonService.setInitialFundingMethod({ initialFundingMethodId: fundingMethod });
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
     }
+  }
+  ngOnDestroy() {
+    this.navbarService.unsubscribeDropDownIcon();
+  }
+
+  goToSection(elementName, navbarHeight, additionalHt) {
+    const CurrentOffsetTop = elementName.getBoundingClientRect().top + window.pageYOffset - navbarHeight - additionalHt;
+    window.scrollTo({
+      top: CurrentOffsetTop, 
+      behavior: 'smooth'
+    })
   }
 }

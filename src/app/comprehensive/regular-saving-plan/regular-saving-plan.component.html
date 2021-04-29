@@ -17,7 +17,7 @@
   <!--Page form-->
   <form name="RSPForm" [formGroup]="RSPForm">
     <div class="form-group-single-column  flex-col">
-      <div class="checkbox-button one-label">
+      <div class="checkbox-button one-label flex-col-12">
         <input id="RSPInpt1" name="hasRegularSavings" formControlName="hasRegularSavings" type="radio" [value]='true'
           class="field radio" appComprehensiveViewMode="{{viewMode}}" mode=1>
         <label for="RSPInpt1">
@@ -48,17 +48,17 @@
                 </div>
                 <div class="flex-col-7">
                   <div class="dropdown-control"
-                    [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularUnitTrust.invalid}">
+                    [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].portfolioType.invalid}">
                     <div ngbDropdown id="relationshipDropDown">
                       <button type="button" class="btn btn-dropdown" id="dropdownInvestment" ngbDropdownToggle
                         appComprehensiveViewMode="{{viewMode}}" mode=1>
                         <span class="grey-text"
-                          *ngIf="comprehensiveRegularSavingsList.get('regularUnitTrust'). value ==='' || comprehensiveRegularSavingsList.get('regularUnitTrust'). value === null">{{'COMMON.LBL_SELECT' | translate}}</span>
+                          *ngIf="comprehensiveRegularSavingsList.get('portfolioType'). value ==='' || comprehensiveRegularSavingsList.get('portfolioType'). value === null">{{'COMMON.LBL_SELECT' | translate}}</span>
                         <span
-                          *ngIf="comprehensiveRegularSavingsList.get('regularUnitTrust'). value !=='' && comprehensiveRegularSavingsList.get('regularUnitTrust'). value !==null">{{comprehensiveRegularSavingsList.get('regularUnitTrust').value}}</span>
+                          *ngIf="comprehensiveRegularSavingsList.get('portfolioType'). value !=='' && comprehensiveRegularSavingsList.get('portfolioType'). value !==null">{{comprehensiveRegularSavingsList.get('portfolioType').value}}</span>
                       </button>
                       <div ngbDropdownMenu aria-labelledby="dropdownRelation">
-                        <button class="dropdown-item" (click)="selectInvest('',i)">Select</button>
+                        <button class="dropdown-item" (click)="selectInvest('',i)">{{'CMP.SELECT'|translate}}</button>
                         <button type="button" class="dropdown-item" *ngFor="let invest of investmentList;"
                           (click)="selectInvest(invest.text, i)">
                           {{invest.text}}
@@ -68,51 +68,56 @@
                   </div>
                 </div>
               </div>
+              <div class="flex-row" *ngIf="comprehensiveJourneyMode">
+                <div class="flex-col-5">
+                  <label for="unitTypeTrust" id="myDependantFormLb2"
+                    [innerHtml]=" 'CMP.RSP.FUND_TYPE' | translate"></label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="dropdown-control"
+                    [ngClass]="{'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].fundType.invalid}">
+                    <div ngbDropdown id="relationshipDropDown">
+                      <button type="button" class="btn btn-dropdown" id="dropdownFundType" ngbDropdownToggle
+                        appComprehensiveViewMode="{{viewMode}}" mode=1>
+                        <span class="grey-text"
+                          *ngIf="comprehensiveRegularSavingsList.get('fundType'). value ==='' || comprehensiveRegularSavingsList.get('fundType'). value === null">{{'COMMON.LBL_SELECT' | translate}}</span>
+                        <span
+                          *ngIf="comprehensiveRegularSavingsList.get('fundType'). value !=='' && comprehensiveRegularSavingsList.get('fundType'). value !==null">{{comprehensiveRegularSavingsList.get('fundType').value}}</span>
+                      </button>
+                      <div ngbDropdownMenu aria-labelledby="dropdownRelation">
+                        <button class="dropdown-item" (click)="selectFundType('',i)">{{'CMP.SELECT'|translate}}</button>
+                        <button type="button" class="dropdown-item" *ngFor="let fund of fundTypeList;"
+                          (click)="selectFundType(fund.text, i)">
+                          {{fund.text}}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="flex-row">
                 <div class="flex-col-5">
-                  <label for="name" id="myDependantFormLb1">
+                  <label for="name" id="myDependantFormLb1"  *ngIf="comprehensiveJourneyMode">
+                    <div>{{'CMP.FORM_LABEL.AMOUNT'|translate}}
+                    </div>
+                  </label>
+                  <label for="name" id="myDependantFormLb1"  *ngIf="!comprehensiveJourneyMode">
                     <div>{{'CMP.RSP.PAID_BY_CASH'|translate}}
                     </div>
                   </label>
                 </div>
                 <div class="flex-col-7">
                   <div class="form-control form-control-right"
-                    [ngClass]="{'view-mode': viewMode, 'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularPaidByCash.invalid}">
+                    [ngClass]="{'view-mode': viewMode, 'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].amount.invalid}">
                     <i>$</i>
                     <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control"
-                      appCurrencyInput maxLength="4" #regularPaidByCash formControlName="regularPaidByCash">
-                    <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
-                  </div>
-                </div>
-              </div>
-              <div *ngIf="comprehensiveJourneyMode" class="flex-row">
-                <div class="flex-col-5">
-                  <label for="name" id="myDependantFormLb1">
-                    <div>{{'CMP.RSP.PAID_BY_CPF'|translate}}
-                    </div>
-                  </label>
-                </div>
-                <div class="flex-col-7">
-                  <div class="form-control form-control-right"
-                    [ngClass]="{'view-mode': viewMode, 'inline-error': submitted &&  comprehensiveRegularSavingsList['controls'].regularPaidByCPF.invalid}">
-                    <i>$</i>
-                    <input appComprehensiveViewMode="{{viewMode}}" mode=1 type="text" class="input-control"
-                      appCurrencyInput maxLength="4" #regularPaidByCPF formControlName="regularPaidByCPF">
+                      appCurrencyInput maxLength="4" #amount formControlName="amount">
                     <i class="right">/ {{'CMP.RSP.MONTH'|translate}}</i>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- <div class="flex-row add-rsp" *ngIf="!viewMode">
-            <div class="flex-col-12">
-              <div class="with-help-icon" for="name"><u (click)="addRSP()">{{
-                    'CMP.RSP.ADD_RSP' | translate}}</u>
-
-                <span class="help-icon" (click)="showToolTipModal('OTHER_RSP_TITLE','OTHER_RSP_MESSAGE')"></span>
-              </div>
-            </div>
-          </div> -->
 
           <div class="sticky-footer add-rsp" *ngIf="!viewMode">
             <div class="with-help-icon" for="name"><u (click)="addRSP()">{{'CMP.RSP.ADD_RSP' | translate}}</u></div>

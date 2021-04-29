@@ -25,6 +25,9 @@
     "myInfoLoader2StartTime": 60,
     "myInfoLoader3StartTime": 90
   },
+  "account": {
+    "loaderStartTime" : 90
+  },
   "hospitalPlanData": [
     {
       "id": 0,

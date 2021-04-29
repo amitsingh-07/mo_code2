@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -16,6 +17,7 @@ import { YourPortfolioComponent } from './your-portfolio/your-portfolio.componen
 import { TransferComponent } from './transfer/transfer.component';
 import { TransferStatusComponent } from './transfer-status/transfer-status.component';
 import { FeesComponent } from './fees/fees.component';
+import { DividendPayoutComponent } from './dividend-payout/dividend-payout.component';
 
 const routes: Routes = [
   {
@@ -91,6 +93,11 @@ const routes: Routes = [
   {
     path: MANAGE_INVESTMENTS_ROUTES.FEES,
     component: FeesComponent,
+    canActivate: [ManageInvestmentsGuard]
+  },
+  {
+    path: MANAGE_INVESTMENTS_ROUTES.DIVIDEND,
+    component: DividendPayoutComponent,
     canActivate: [ManageInvestmentsGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }

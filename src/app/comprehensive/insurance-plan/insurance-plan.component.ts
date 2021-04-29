@@ -44,6 +44,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   liabilitiesDetails: IMyLiabilities;
   careShieldTitle: string;
   careShieldMessage: string;
+  userAgeCriteria:any;
   constructor(
     private navbarService: NavbarService, private progressService: ProgressTrackerService,
     private translate: TranslateService,
@@ -89,6 +90,15 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         this.showLongTermInsurance = false;
       }
     }
+    if (userAge < COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT_AGE_SIXTY) {
+      this.userAgeCriteria = COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT_AGE_LESS_THAN_SIXTY;
+    }
+    else if(userAge >= COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT_AGE_SIXTY && userAge <= COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT_AGE_SIXTY_FIVE) {
+      this.userAgeCriteria = COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT_AGE_SIXTY_TO_SIXTYFIVE;
+    }
+    else {
+      this.userAgeCriteria = COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT_AGE_ABOVE_SIXTY_FIVE;
+   }
     this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
     this.buildInsuranceForm();
     const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
@@ -127,7 +137,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
       }, [Validators.required]],
       lifeProtectionAmount: [{
         value: this.insurancePlanFormValues ? this.insurancePlanFormValues.lifeProtectionAmount :
-          COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT,
+          this.userAgeCriteria,
         disabled: this.viewMode
       }, [Validators.required]],
       haveHDBHomeProtectionScheme: [{
@@ -186,7 +196,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   }
 
   resetLifeProtectionAmount() {
-    this.insurancePlanForm.controls['lifeProtectionAmount'].setValue(COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT);
+    this.insurancePlanForm.controls['lifeProtectionAmount'].setValue(this.userAgeCriteria);
   }
   resetHDBScheme() {
     this.insurancePlanForm.controls['haveHDBHomeProtectionScheme'].setValue('');
@@ -263,7 +273,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
 
         this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
           if (form.value.haveCPFDependentsProtectionScheme !== 1) {
-            form.value.lifeProtectionAmount = COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT;
+            form.value.lifeProtectionAmount = this.userAgeCriteria;
           }
           this.comprehensiveService.setInsurancePlanningList(form.value);
           if (this.insurancePlanFormValues && this.insurancePlanFormValues.haveLongTermPopup) {
