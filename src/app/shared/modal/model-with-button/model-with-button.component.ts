@@ -20,6 +20,7 @@ export class ModelWithButtonComponent implements OnInit {
   @Input() errorTitle: any;
   @Input() errorMessage: any;
   @Input() errorMessageHTML: any;
+  @Input() disclaimerMessage: any;
   @Input() primaryActionLabel: any;
   @Input() secondaryActionLabel: any;
   @Input() yesOrNoButton: any;

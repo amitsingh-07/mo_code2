@@ -175,3 +175,17 @@
     font-family: $muli-regular;
   }
 }
+.modal-disclaimer{
+  margin-top: 30px;
+  font-size: 16px;
+  line-height: 1.31;
+  letter-spacing: -0.15px;
+  color: $silver-grey-color;
+  .txt-teal{
+    letter-spacing: -0.15px !important;
+    color: $teal-color;
+  }
+  .txt-bold{
+    font-family: $muli-bold;
+  }
+}
