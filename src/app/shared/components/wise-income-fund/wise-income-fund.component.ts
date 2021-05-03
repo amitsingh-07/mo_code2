@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Input, Output, OnInit, ViewEncapsulation } from '@angular/core';
-import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import { AuthenticationService } from '../../http/auth/authentication.service';
 @Component({
   selector: 'app-wise-income-fund',
   templateUrl: './wise-income-fund.component.html',
@@ -12,9 +10,7 @@ export class WiseIncomeFundComponent implements OnInit {
   @Input('investmentInput') investmentInput;
   @Output() openModal: EventEmitter<any> = new EventEmitter();
 
-  constructor(
-    public modal: NgbModal,
-    public authService: AuthenticationService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
