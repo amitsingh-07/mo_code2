@@ -52,7 +52,8 @@ export class SignUpService {
     public cryptoService: CryptoService,
     private datePipe: DatePipe,
     public modal: NgbModal,
-    private translate: TranslateService) {
+    private translate: TranslateService,
+    ) {
     this.getAccountInfo();
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.resetPasswordUrl = config.resetPasswordUrl;
@@ -64,7 +65,7 @@ export class SignUpService {
    */
   commit() {
     if (window.sessionStorage) {
-      sessionStorage.setItem(SIGNUP_SESSION_STORAGE_KEY, JSON.stringify(this.signUpFormData));
+      sessionStorage.setItem(SIGNUP_SESSION_STORAGE_KEY, JSON.stringify(this.signUpFormData));    
     }
   }
 

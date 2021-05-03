@@ -19,7 +19,9 @@ export const environment: IEnvironment = {
   expire2faTime: 178,
   expire2faPollRate: 2,
   expire2faMaxCheck: 5,
-  promoCodeJsonUrl: 'https://mo-static-assets.s3-ap-southeast-1.amazonaws.com/promo/non-prod/promo-details.json'
+  promoCodeJsonUrl: 'https://mo-static-assets.s3-ap-southeast-1.amazonaws.com/promo/non-prod/promo-details.json',
+  hsPortalId: '6411917',
+  hsUrlTrack: '9f0ad9ef-ba87-4059-9ee9-60d46880dc5f',
 };
 
 /*

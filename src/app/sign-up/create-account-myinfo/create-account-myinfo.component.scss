@@ -31,20 +31,28 @@ app-create-account-myinfo {
             text-align: center;
         }
     }
-
-    .my-info-icon {
-        background-image: url("../../../assets/images/singpass-logo-white.png");
-        width: 80px;
-        height: 14px;
-        position: absolute;
-        top: 40px;
-        right: 38px;
-        background-repeat: no-repeat;
-        @include iphone5 {
-            right: 15px;
+    .sign-up-max-width{
+        padding: 0;
+        max-width: 315px;
+        margin-left: 0;
+        @include allmobiles{
+            padding: 0 15px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        .autofill-logo{
+            display: flex;
+            height: 48px;
+            margin-top: 20px;
+            @include allmobiles{
+                height: 45px;
+            }
+            img {
+                width: 100%;
+                height: auto;
+              }
         }
     }
-
     .create_account__header-icon {
         width: 260px !important;
         height: 232px !important;
@@ -68,7 +76,6 @@ app-create-account-myinfo {
         letter-spacing: -0.18px;
         text-align: center;
         color: $white-color;
-
         p {
             font-family: $muli-regular;
             font-size: 16px;
@@ -84,10 +91,8 @@ app-create-account-myinfo {
             font-size: 16px;
             line-height: 1.5;
             text-align: left;
-            padding-bottom: 16px;
             @include allmobiles {
                 text-align: center;
-                padding-bottom: 6px;
             }
             a {
                 font-family: $muli-bold;
@@ -102,9 +107,6 @@ app-create-account-myinfo {
             }
         }
     }
-    .sign-pass-icon {
-        margin: 20px auto 30px;
-    }
     .btn {
         font-size: 18px;
         font-family: $muli-bold;
@@ -118,6 +120,12 @@ app-create-account-myinfo {
             letter-spacing: normal;
             text-align: center;
             color: $white-color;
+            @include allmobiles {
+                margin-left: 10px;
+            }
+            @include min300max325 {
+                margin-left: 0px;
+            }
         }
         &.btn-myinfo {
             color: $white-color;
@@ -127,18 +135,9 @@ app-create-account-myinfo {
             @include allmobiles {
                 margin-right: 10px;
             }
-        }
-
-        &.btn-proceed {
-            background-color: $white-color !important;
-            color: $teal-color !important;
-            @include allmobiles{
-            font-size: 22px;
-            }
-            @include iphone5{
-            font-size: 18px; 
+            @include min300max325 {
+                margin-right: 0px;
             }
         }
     }
- 
 }
