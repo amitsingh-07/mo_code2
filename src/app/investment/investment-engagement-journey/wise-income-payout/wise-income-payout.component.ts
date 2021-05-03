@@ -1,6 +1,4 @@
-import {
-  AfterViewInit, ChangeDetectorRef, Component, OnInit, Renderer2, ViewEncapsulation, ViewChild, ElementRef
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -8,7 +6,6 @@ import { appConstants } from '../../../app.constants';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
@@ -19,9 +16,7 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
-import {
-  ModelWithButtonComponent
-} from '../../../shared/modal/model-with-button/model-with-button.component';
+import {  ModelWithButtonComponent} from '../../../shared/modal/model-with-button/model-with-button.component';
 @Component({
   selector: 'app-wise-income-payout',
   templateUrl: './wise-income-payout.component.html',
@@ -63,8 +58,6 @@ export class WiseIncomePayoutComponent implements OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     private modal: NgbModal,
-    private cd: ChangeDetectorRef,
-    private renderer: Renderer2,
     private loaderService: LoaderService,
     private investmentAccountService: InvestmentAccountService
   ) {

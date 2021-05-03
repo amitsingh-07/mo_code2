@@ -22,7 +22,7 @@ import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from './../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../../../investment/manage-investments/manage-investments.constants';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from 'src/app/investment/investment-engagement-journey/investment-engagement-journey.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from './../../../investment/investment-engagement-journey/investment-engagement-journey.constants';
 
 @Component({
   selector: 'app-portfolio-list',

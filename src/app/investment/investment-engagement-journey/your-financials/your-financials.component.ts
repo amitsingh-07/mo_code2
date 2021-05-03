@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,7 +13,6 @@ import {
   ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { SignUpService } from '../../../sign-up/sign-up.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
@@ -49,15 +48,12 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     private router: Router,
     private modal: NgbModal,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    private formBuilder: FormBuilder,
     public navbarService: NavbarService,
     public footerService: FooterService,
     public authService: AuthenticationService,
     public readonly translate: TranslateService,
     private investmentAccountService: InvestmentAccountService,
     private investmentCommonService: InvestmentCommonService,
-    private cd: ChangeDetectorRef,
-    private signUpService: SignUpService,
     private loaderService: LoaderService
   ) {
     this.translate.use('en');
