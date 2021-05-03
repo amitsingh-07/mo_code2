@@ -9,9 +9,6 @@ import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import {
-    MANAGE_INVESTMENTS_ROUTE_PATHS
-} from '../../manage-investments/manage-investments-routes.constants';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 
 @Component({

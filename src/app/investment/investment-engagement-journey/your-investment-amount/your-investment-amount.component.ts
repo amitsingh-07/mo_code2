@@ -1,18 +1,15 @@
 import { ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../../../shared/footer/footer.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
-import { IPageComponent } from '../../../shared/interfaces/page-component.interface';
-import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import {
   ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { IInvestmentCriteria } from '../../investment-common/investment-common-form-data';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
