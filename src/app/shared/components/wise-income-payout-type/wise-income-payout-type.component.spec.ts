@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WiseIncomePayoutComponent } from './wise-income-payout.component';
+import { WiseIncomePayoutTypeComponent } from './wise-income-payout-type.component';
 
-describe('WiseIncomePayoutComponent', () => {
-  let component: WiseIncomePayoutComponent;
-  let fixture: ComponentFixture<WiseIncomePayoutComponent>;
+describe('WiseIncomePayoutTypeComponent', () => {
+  let component: WiseIncomePayoutTypeComponent;
+  let fixture: ComponentFixture<WiseIncomePayoutTypeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WiseIncomePayoutComponent ]
+      declarations: [ WiseIncomePayoutTypeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WiseIncomePayoutComponent);
+    fixture = TestBed.createComponent(WiseIncomePayoutTypeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

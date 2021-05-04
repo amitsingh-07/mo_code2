@@ -87,7 +87,7 @@ describe('StartJourneyComponent', () => {
 
   it('should call go next', () => {
     spyOn(router, 'navigate');
-    component.redirectToNextScreen();
+    //component.redirectToNextScreen();
     expect(router.navigate).toHaveBeenCalledWith([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PERSONAL_INFO]);
   });
 
