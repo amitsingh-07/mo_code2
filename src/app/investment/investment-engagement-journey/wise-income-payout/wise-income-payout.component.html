@@ -1,5 +1,5 @@
-<div class="container-fluid max-width--1024 investment" *ngIf="defaultPayoutypeEnabled && wiseIncomePayOutTypes" id="backToTop">
-    <div class="row">
+<div class="container-fluid max-width--1024 investment" *ngIf="wiseIncomePayOutTypes" id="backToTop">
+    <div class="row" #backToTop id="backToTop">
         <div class="col-lg-7 col-md-6">
             <h2 class="hidden-sm">{{'WISE_INCOME_PAYOUT.CAPTION' | translate}}</h2>
             <div class="page-desc">{{'WISE_INCOME_PAYOUT.DESCRIPTION' | translate}}</div>
@@ -9,14 +9,14 @@
         </div>
         <div class="col-lg-5 col-md-6">
             <form name="wiseIncomePayOutTypeForm" [formGroup]="wiseIncomePayOutTypeForm" id="wiseIncomePayOutTypeForm">
-                <div class="form-group-single-column flex-col" #backToTop >
+                <div class="form-group-single-column flex-col">
                     <div class="fund-question hidden-lg mt20">{{'WISE_INCOME_PAYOUT.CAPTION' | translate}}</div>
                     <div class="row">
                         <div class="col-12">
                             <div class="checkbox-button one-label order{{i+1}}"
                                 *ngFor="let wiseIncomePayOut of wiseIncomePayOutTypes; let i = index" (click)="nav.select(i+1)">
                                 <input id="wise-income-payout_option{{i+1}}_radio" type="radio" class="field radio"
-                                name="initialWiseIncomePayoutTypeId" formControlName="initialWiseIncomePayoutTypeId" [value]=wiseIncomePayOut.id tabindex="{{i+1}}">
+                                name="initialWiseIncomePayoutTypeId" formControlName="initialWiseIncomePayoutTypeId" [value]=wiseIncomePayOut.id tabindex="{{i+1}}" (click)="openImpNoteModal(wiseIncomePayOut)">
                                 <label for="wise-income-payout_option{{i+1}}_radio">
                                     <div class="payout-type">
                                         <span class="payout-icon">
@@ -199,6 +199,7 @@
             <div [ngbNavOutlet]="nav" class="mt-2"></div>
         </div>
     </div>
+
     <div class="learn-more-block mt30" #featureBenefits id="featureBenefits">
         <div class="payout-pannel-desc">{{'WISE_INCOME_PAYOUT.LEARN_MORE_LBL' | translate}}</div>
         <div class="learn-more-options">
@@ -267,6 +268,7 @@
                                                 <div>{{'WISE_INCOME_PAYOUT.RETURNS_VALUE' | translate}}</div>
                                             </div>
                                         </div>
+                                        
                                         <div class="flex-row preference-payout-block">
                                             <div class="preference-payout-block-item">
                                                 <label>{{'WISE_INCOME_PAYOUT.DEVIATION_LBL' | translate}}</label>
@@ -284,7 +286,7 @@
                     </ngb-panel>
                     <ngb-panel>
                         <ng-template ngbPanelTitle>
-                            <div class="flex space-between"  #fundAssets id="fundAssets">
+                            <div class="flex space-between" #fundAssets id="fundAssets">
                                 <div>{{'WISE_INCOME_PAYOUT.FUND_ASSET_ALLOCATION_LBL' | translate}}</div>
                                 <div><i class='arrow'></i></div>
                             </div>
@@ -325,6 +327,7 @@
                     </a>
                 </div>
             </div>
+            <p class='disclaimer'>{{'WISE_INCOME_PAYOUT.DISCLAIMER' | translate}}</p>
         </div>
     </div>
 </div>
