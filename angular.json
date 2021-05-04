@@ -179,6 +179,29 @@
               "vendorChunk": false,
               "buildOptimizer": false
             },
+            "newmodev2": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.newmodev2.ts"
+                }
+              ],
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            },
             "newmouat3": {
               "budgets": [
                 {
@@ -253,6 +276,9 @@
             },
             "newmodev": {
               "browserTarget": "bfa-frontend:build:newmodev"
+            },
+            "newmodev2": {
+              "browserTarget": "bfa-frontend:build:newmodev2"
             },
             "newmouat3": {
               "browserTarget": "bfa-frontend:build:newmouat3"
