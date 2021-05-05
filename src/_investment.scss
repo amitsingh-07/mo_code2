@@ -45,6 +45,10 @@
     &:disabled {
       background-color: $btn-disabled-light-bg;
       color: $btn-disabled-teal-color;
+      &:hover {
+        background-color: $btn-disabled-light-bg !important;
+        color: $btn-disabled-teal-color;
+      }
     }
   }
 
