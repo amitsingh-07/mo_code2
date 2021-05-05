@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component, OnInit, ViewEncapsulation, ViewChild, ElementRef, HostListener
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,6 +18,8 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import {  ModelWithButtonComponent} from '../../../shared/modal/model-with-button/model-with-button.component';
 @Component({
   selector: 'app-wise-income-payout',
@@ -40,10 +44,19 @@ export class WiseIncomePayoutComponent implements OnInit {
   payoutFundList: any;
   queryParams;
 
+  payoutOptionElementTop;
+  featureBenefitTop;
+  fundAssetsElementTop;
+
   @ViewChild('backToTop') backToTopElement: ElementRef;
   @ViewChild('payoutOption') payoutOptionElement: ElementRef;
   @ViewChild('featureBenefits') featureBenefitsElement: ElementRef;
   @ViewChild('fundAssets') fundAssetsElement: ElementRef;
+  currentActive: number;
+  navbarHeight: number;
+  additionalHeight: number = 20;
+
+  private ngUnsubscribe = new Subject();
 
   constructor(
     public readonly translate: TranslateService,
@@ -68,6 +81,13 @@ export class WiseIncomePayoutComponent implements OnInit {
     });
   }
   ngOnInit() {
+    this.navbarService.existingNavbar.pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((navbarDetails: ElementRef) => {
+        if (!this.navbarHeight) {
+          this.navbarHeight = navbarDetails.nativeElement.getBoundingClientRect().height;
+        }
+      });
+
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
@@ -203,6 +223,8 @@ export class WiseIncomePayoutComponent implements OnInit {
   }
   ngOnDestroy() {
     this.navbarService.unsubscribeDropDownIcon();
+    this.ngUnsubscribe.next(true);
+    this.ngUnsubscribe.unsubscribe();
   }
 
   // 8% imp note modal
@@ -227,8 +249,26 @@ export class WiseIncomePayoutComponent implements OnInit {
   goToSection(elementName, navbarHeight, additionalHt) {
     const CurrentOffsetTop = elementName.getBoundingClientRect().top + window.pageYOffset - navbarHeight - additionalHt;
     window.scrollTo({
-      top: CurrentOffsetTop, 
+      top: CurrentOffsetTop,
       behavior: 'smooth'
     })
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  @HostListener('window:resize', [])
+  checkScroll() {
+    this.payoutOptionElementTop = this.payoutOptionElement.nativeElement.getBoundingClientRect().top + window.pageYOffset - this.navbarHeight;
+    this.featureBenefitTop = this.featureBenefitsElement.nativeElement.getBoundingClientRect().top + window.pageYOffset - this.navbarHeight - this.additionalHeight;
+    this.fundAssetsElementTop = this.fundAssetsElement.nativeElement.getBoundingClientRect().top + window.pageYOffset - this.navbarHeight - this.additionalHeight;
+    if (pageYOffset < this.payoutOptionElementTop) {
+      this.currentActive = 0;
+    } else if (pageYOffset >= this.payoutOptionElementTop && pageYOffset < this.featureBenefitTop) {
+      this.currentActive = 1;
+    } else if (pageYOffset >= this.featureBenefitTop && pageYOffset < this.fundAssetsElementTop) {
+      this.currentActive = 2;
+    } else if (pageYOffset >= this.fundAssetsElementTop) {
+      this.currentActive = 3;
+    }
+    this.navbarService.setCurrentActive(this.currentActive);
   }
 }

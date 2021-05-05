@@ -34,6 +34,8 @@ import { SessionsService } from '../Services/sessions/sessions.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { ViewportScroller } from '@angular/common';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
@@ -131,9 +133,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   wiseIncomeDropDownShow: boolean = false;
   wiseIncomeDropDownItem: any;
   tab;
+  currentActive;
 
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
+
+  private ngUnsubscribe = new Subject();
 
   constructor(
     private navbarService: NavbarService,
@@ -165,7 +170,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.isComprehensiveEnabled = moduleConfig.comprehensiveEnabled;
       this.isRetirementPlanningEnabled = moduleConfig.retirementPlanningEnabled;
       this.isComprehensiveLiveEnabled = moduleConfig.comprehensiveLiveEnabled;
-    });   
+    });
 
     // User Information Check Authentication
     this.userInfo = this.signUpService.getUserProfileInfo();
@@ -233,7 +238,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentPageClearNotify.subscribe((showClearNotify) => {
       this.showNotificationClear = showClearNotify;
     });
-    this.navbarService.currentPageSettingsIcon.subscribe((showSettingsIcon) => this.showSettingsIcon = showSettingsIcon);  
+    this.navbarService.currentPageSettingsIcon.subscribe((showSettingsIcon) => this.showSettingsIcon = showSettingsIcon);
     this.navbarService.currentPageFilterIcon.subscribe((filterIcon) => this.filterIcon = filterIcon);
     this.navbarService.isBackPressSubscribed.subscribe((subscribed) => {
       this.isBackPressSubscribed = subscribed;
@@ -262,15 +267,21 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
 
     this.navbarService.menuItemInvestUserEvent.subscribe((investUser) => {
-     this.showMenuItemInvestUser = investUser;
+      this.showMenuItemInvestUser = investUser;
     });
-    
+
     this.navbarService.wiseIncomeDropDownShow.subscribe((subscribed) => {
       this.wiseIncomeDropDownShow = subscribed;
-      if(!subscribed){
-        this.tab ='tab';
+      if (!subscribed) {
+        this.tab = 'tab';
       }
     });
+
+    // sets current active scrolls to menu for wiseincome payout
+    this.navbarService.currentActiveObserv.pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((currentActive) => {
+        this.currentActive = currentActive;
+      });
   }
 
   ngAfterViewInit() {
@@ -487,7 +498,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.authService.clearAuthDetails();
     this.authService.clearSession();
     this.sessionsService.createNewActiveInstance();
-    this.authService.doClear2FASession({errorPopup: false, updateData: false});
+    this.authService.doClear2FASession({ errorPopup: false, updateData: false });
     this.appService.clearData();
     this.appService.startAppSession();
     this.selectedPlansService.clearData();
@@ -574,15 +585,20 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   onClickScroll(elementId: string): void {
     this.navbarService.setScrollTo(elementId, this.NavBar.nativeElement.getBoundingClientRect().height);
     this.wiseIncomeDropDownShow = !this.wiseIncomeDropDownShow;
-    if(elementId=='payoutOption'){
+    if (elementId == 'payoutOption') {
       this.tab = 'tab1';
-    } else if(elementId=='featureBenefits'){
+    } else if (elementId == 'featureBenefits') {
       this.tab = 'tab2';
-    } else if(elementId=='fundAssets'){
+    } else if (elementId == 'fundAssets') {
       this.tab = 'tab3';
-    } else if(elementId=='backToTop'){
+    } else if (elementId == 'backToTop') {
       this.tab = 'tab4';
-    }    
+    }
+  }
+  
+  ngOnDestroy() {
+    this.ngUnsubscribe.next(true);
+    this.ngUnsubscribe.unsubscribe();
   }
 
 }
