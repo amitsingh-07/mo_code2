@@ -23,6 +23,7 @@ export class NavbarService {
   private backListener = new BehaviorSubject('');
   private promoAppliedCardVisibility = new BehaviorSubject(false);
   private scrollTo = new Subject();
+  private currentActive = new Subject();
 
 
   existingNavbar = this.navbar.asObservable();
@@ -33,6 +34,7 @@ export class NavbarService {
   currentNavbarShadowVisibility = this.navbarShadowVisibility.asObservable();
   currentBackListener = this.backListener.asObservable();
   scrollToObserv = this.scrollTo.asObservable();
+  currentActiveObserv = this.currentActive.asObservable();
 
   /* Header Params */
   private pageTitle = new BehaviorSubject('');
@@ -271,4 +273,9 @@ export class NavbarService {
     }
     this.scrollTo.next(scrollOption);
   }
+
+  setCurrentActive(currentActive) {
+    this.currentActive.next(currentActive);
+  }
+
 }
