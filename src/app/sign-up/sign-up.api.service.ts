@@ -8,7 +8,7 @@ import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SelectedPlansService } from '../shared/Services/selected-plans.service';
 import { CryptoService } from '../shared/utils/crypto';
-import { IResendEmail, ISignUp, IUpdateMobileNumber, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
+import { IEmailRequestOTP, IResendEmail, ISignUp, IUpdateMobileNumber, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
 import { WillWritingService } from '../will-writing/will-writing.service';
 import { appConstants } from './../app.constants';
 import { AppService } from './../app.service';
@@ -16,6 +16,7 @@ import { DirectService } from './../direct/direct.service';
 import { SignUpFormData } from './sign-up-form-data';
 import { SignUpService } from './sign-up.service';
 import { Util } from '../shared/utils/util';
+import { HubspotService } from '../shared/analytics/hubspot.service';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
 
 @Injectable({
@@ -26,7 +27,7 @@ export class SignUpApiService {
   private emailVerifyUrl: String;
 
   constructor(
-    private http: HttpClient, private configService: ConfigService,
+    private http: HttpClient, private configService: ConfigService, private hubspotService: HubspotService,
     private apiService: ApiService, private authService: AuthenticationService,
     private signUpService: SignUpService, private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService, public cryptoService: CryptoService,
@@ -137,7 +138,15 @@ export class SignUpApiService {
       editProfile: editProf
     };
   }
-
+   /**
+   * request a new OTP though Email. 
+     */
+ requestEmailOTPBodyRequest(journeyType, getAccountInfo): IEmailRequestOTP {   
+  return  {      
+        emailAddress:  (getAccountInfo && getAccountInfo.userProfileInfo)? getAccountInfo.userProfileInfo.emailAddress  : getAccountInfo.email,
+        actionType: journeyType   
+    };
+  }
   /**
    * form verify OTP request.
    */
@@ -165,6 +174,26 @@ export class SignUpApiService {
    */
   createAccount(captcha: string, pwd: string) {
     const payload = this.createAccountBodyRequest(captcha, pwd);
+    this.hubspotService.registerEmail(payload.customer.emailAddress);
+    this.hubspotService.registerPhone(payload.customer.mobileNumber);
+    const hsPayload = [
+      {
+        name: "email",
+        value: payload.customer.emailAddress
+      }, 
+      {
+        name: "phone",
+        value: payload.customer.mobileNumber
+      },
+      {
+        name: "firstname",
+        value: payload.customer.firstName
+      },
+      {
+        name: "lastname",
+        value: payload.customer.lastName
+      }];
+    this.hubspotService.submitRegistration(hsPayload);
     return this.apiService.createAccount(payload);
   }
 
@@ -184,7 +213,13 @@ export class SignUpApiService {
     const payload = this.requestNewOTPBodyRequest(editProfile);
     return this.apiService.requestNewOTP(payload);
   }
-
+    /**
+     * request a new OTP though Email. 
+     */
+ requestEmailOTP(journeyType, getAccountInfo) {
+    const payload = this.requestEmailOTPBodyRequest(journeyType, getAccountInfo);
+    return this.apiService.requestEmailOTP(payload);
+  }
   /**
    * verify one time password.
    * @param otp - one time password.

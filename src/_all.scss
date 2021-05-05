@@ -2465,3 +2465,35 @@ select:-webkit-autofill:focus {
     display: none;
   }
 }
+
+// important note modal
+.imp-note-modal {
+  .popup-header-icon {
+    @include allmobiles {
+      display: none;
+    }
+  }
+  .modal-body {
+    padding: 25px;
+    @include allmobiles {
+      padding-left: 20px !important;
+    }
+    .modal-body-message{
+      padding-top: 10px;
+      @include allmobiles{
+        padding-right: 10px;
+      }
+    }
+    .txt-bold{
+      font-family: $muli-bold;
+    }
+    .action-button{
+      max-width: 325px;
+      margin: 15px 68px 0;
+      @include allmobiles{
+        max-width: 100%;
+        margin: 15px 0 0;
+      }
+    }
+  }
+}

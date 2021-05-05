@@ -139,6 +139,7 @@ describe('MyAssetsComponent', () => {
     let array: FormGroup[] = [];
     array.push(new FormGroup({
         typeOfInvestment: new FormControl(),
+        fundType: new FormControl(),
         investmentAmount: new FormControl()
     }));
     const formSetArray = new FormArray(array);
@@ -297,6 +298,7 @@ describe('MyAssetsComponent', () => {
       assetsInvestmentSet: [{
                               enquiryId: 123,
                               typeOfInvestment: 'MoneyOwl - Equity',
+                              fundType: 'Cash',
                               investmentAmount: 123
                           }],
       otherAssetsValue: 270,
@@ -346,6 +348,7 @@ describe('MyAssetsComponent', () => {
       investmentPropertiesValue: 0,
       assetsInvestmentSet: [{
                               enquiryId: 123,
+                              fundType: 'Cash',
                               typeOfInvestment: 'MoneyOwl - Equity',
                               investmentAmount: 123
                           }],
@@ -375,6 +378,7 @@ describe('MyAssetsComponent', () => {
       investmentPropertiesValue: 200,
       assetsInvestmentSet: [{
                               enquiryId: 123,
+                              fundType: 'Cash',
                               typeOfInvestment: 'MoneyOwl - Equity',
                               investmentAmount: 123
                           }],
@@ -420,6 +424,7 @@ describe('MyAssetsComponent', () => {
       investmentPropertiesValue: 200,
       assetsInvestmentSet: [{
                               enquiryId: 123,
+                              fundType: 'Cash',
                               typeOfInvestment: 'MoneyOwl - Equity',
                               investmentAmount: 123
                           }],
@@ -480,6 +485,7 @@ describe('MyAssetsComponent', () => {
       investmentPropertiesValue: 200,
       assetsInvestmentSet: [{
                               enquiryId: 123,
+                              fundType: 'Cash',
                               typeOfInvestment: 'MoneyOwl - Equity',
                               investmentAmount: 123
                           }],
@@ -565,6 +571,7 @@ describe('MyAssetsComponent', () => {
     component.buildMyAssetsForm();
     component.buildInvestmentForm({
                                       enquiryId: 123,
+                                      fundType: 'Cash',
                                       typeOfInvestment: 'MoneyOwl - Equity',
                                       investmentAmount: 123
                                   }, 0); 
@@ -578,6 +585,7 @@ describe('MyAssetsComponent', () => {
     let array: FormGroup[] = [];
     array.push(new FormGroup({ 
         typeOfInvestment: new FormControl(),
+        fundType: new FormControl(),
         investmentAmount: new FormControl()
     }));
     const formSetArray = new FormArray(array);
@@ -599,6 +607,7 @@ describe('MyAssetsComponent', () => {
     let array: FormGroup[] = [];
     array.push(new FormGroup({ 
         typeOfInvestment: new FormControl(),
+        fundType: new FormControl(),
         investmentAmount: new FormControl()
     }));
     const formSetArray = new FormArray(array);
@@ -623,6 +632,7 @@ describe('MyAssetsComponent', () => {
     let array: FormGroup[] = [];
     array.push(new FormGroup({ 
         typeOfInvestment: new FormControl('MoneyOwl - Equity'),
+        fundType: new FormControl('Cash'),
         investmentAmount: new FormControl(123)
     }));
     const formSetArray = new FormArray(array);
@@ -635,6 +645,7 @@ describe('MyAssetsComponent', () => {
     let array: FormGroup[] = [];
     array.push(new FormGroup({ 
         typeOfInvestment: new FormControl('MoneyOwl - Equity'),
+        fundType: new FormControl('Cash'),
         investmentAmount: new FormControl(0)
     }));
     const formSetArray = new FormArray(array);
@@ -668,6 +679,7 @@ describe('MyAssetsComponent', () => {
       assetsInvestmentSet: [{
                               enquiryId: 123,
                               typeOfInvestment: 'MoneyOwl - Equity',
+                              fundType: 'Cash',
                               investmentAmount: 123
                           }],
       otherAssetsValue: 270,
@@ -682,6 +694,8 @@ describe('MyAssetsComponent', () => {
     const otherInvestmentControl = component.myAssetsForm.controls['assetsInvestmentSet']['controls'][0].controls;
     otherInvestmentControl['typeOfInvestment'].setValidators([]);
     otherInvestmentControl['typeOfInvestment'].updateValueAndValidity();
+    otherInvestmentControl['fundType'].setValidators([]);
+    otherInvestmentControl['fundType'].updateValueAndValidity();
     otherInvestmentControl['investmentAmount'].setValidators([]);
     otherInvestmentControl['investmentAmount'].updateValueAndValidity();
   });
