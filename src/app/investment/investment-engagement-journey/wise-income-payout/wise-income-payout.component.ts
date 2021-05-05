@@ -54,7 +54,7 @@ export class WiseIncomePayoutComponent implements OnInit {
   @ViewChild('fundAssets') fundAssetsElement: ElementRef;
   currentActive: number;
   navbarHeight: number;
-  aditionalHeight: number = 20;
+  additionalHeight: number = 20;
 
   private ngUnsubscribe = new Subject();
 
@@ -258,8 +258,8 @@ export class WiseIncomePayoutComponent implements OnInit {
   @HostListener('window:resize', [])
   checkScroll() {
     this.payoutOptionElementTop = this.payoutOptionElement.nativeElement.getBoundingClientRect().top + window.pageYOffset - this.navbarHeight;
-    this.featureBenefitTop = this.featureBenefitsElement.nativeElement.getBoundingClientRect().top + window.pageYOffset - this.navbarHeight - this.aditionalHeight;
-    this.fundAssetsElementTop = this.fundAssetsElement.nativeElement.getBoundingClientRect().top + window.pageYOffset - this.navbarHeight - this.aditionalHeight;
+    this.featureBenefitTop = this.featureBenefitsElement.nativeElement.getBoundingClientRect().top + window.pageYOffset - this.navbarHeight - this.additionalHeight;
+    this.fundAssetsElementTop = this.fundAssetsElement.nativeElement.getBoundingClientRect().top + window.pageYOffset - this.navbarHeight - this.additionalHeight;
     if (pageYOffset < this.payoutOptionElementTop) {
       this.currentActive = 0;
     } else if (pageYOffset >= this.payoutOptionElementTop && pageYOffset < this.featureBenefitTop) {
