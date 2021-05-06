@@ -586,13 +586,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.setScrollTo(elementId, this.NavBar.nativeElement.getBoundingClientRect().height);
     this.wiseIncomeDropDownShow = !this.wiseIncomeDropDownShow;
     if (elementId == 'payoutOption') {
-      this.tab = 'tab1';
+      this.currentActive = 1;
     } else if (elementId == 'featureBenefits') {
-      this.tab = 'tab2';
+      this.currentActive = 2;
     } else if (elementId == 'fundAssets') {
-      this.tab = 'tab3';
-    } else if (elementId == 'backToTop') {
-      this.tab = 'tab4';
+      this.currentActive = 3;
+    } else {
+      this.currentActive = 0;
     }
   }
   
