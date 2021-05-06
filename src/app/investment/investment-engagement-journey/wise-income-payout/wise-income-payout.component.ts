@@ -54,7 +54,7 @@ export class WiseIncomePayoutComponent implements OnInit {
   @ViewChild('fundAssets') fundAssetsElement: ElementRef;
   currentActive: number;
   navbarHeight: number;
-  additionalHeight: number = 20;
+  additionalHeight: number = 50;
 
   private ngUnsubscribe = new Subject();
 
