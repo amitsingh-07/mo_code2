@@ -356,9 +356,14 @@ export class InvestmentCommonService {
     if (formData && formData.payoutTypeId) {
       this.setWiseIncomePayOut({ initialWiseIncomePayoutTypeId: formData.payoutTypeId }, activeTabId);
     }
+    if (formData && formData.investmentPeriod) {
+      this.investmentEngagementJourneyService.setPersonalInfo({ investmentPeriod: formData.investmentPeriod });
+    }   
     const investmentFormData = this.setYourInvestmentAmount(formData);
     this.investmentEngagementJourneyService.setYourInvestmentAmount(investmentFormData);
+    if (!this.investmentAccountService.isReassessActive()) {
     this.setInitialFundingMethod({ initialFundingMethodId: formData.fundingTypeId });
+    }
     const portfolioType = this.toDecidedPortfolioType(formData.portfolioType);
     this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: portfolioType })
     this.commit();
