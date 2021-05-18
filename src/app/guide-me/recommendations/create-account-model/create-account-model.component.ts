@@ -59,6 +59,7 @@ export class CreateAccountModelComponent implements OnInit, AfterViewInit {
     this.setValidatorMobileNumber();
     setTimeout(() => {
       this.enquiryForm.get('contactViaMobile').setValue(false);
+      this.enquiryForm.get('acceptMarketingEmails').setValue(false);
     }, 300);
   }
 
