@@ -168,21 +168,29 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   initSingpassQR() {
-    var OIDCParams = {
-      nonce: ('' + Math.random() * 1000000000000000 + '').slice(0, 15),
-      state: ('' + Math.random() * 1000000000000000 + '').slice(0, 15),
-      clientId: 'MONEYOWL-BFA',
-      redirectUri: 'https://newmouat1.ntucbfa.com/app/singpass/callback',
-      scope: 'openid',
-      responseType: 'code'
-    }
-    window['SPCPQR'].init(
+    const authParamsSupplier = async () => {
+      // Replace the below with an `await`ed call to initiate an auth session on your backend
+      // which will generate state+nonce values, e.g
+      return { state: "" + (Math.random() * 1000000000000000 + '').slice(0, 15), nonce: "" + (Math.random() * 1000000000000000 + '').slice(0, 15) };
+    };
+
+    const onError = (errorId, message) => {
+      console.log(`onError. errorId:${errorId} message:${message}`);
+    };
+
+    const initAuthSessionResponse = window['NDI'].initAuthSession(
       'qr_wrapper',
-      OIDCParams,
-      function () {
-        window['SPCPQR'].refresh({ nonce: OIDCParams.nonce, state: OIDCParams.state });
-      }
+      {
+        clientId: 'iROTlv1CU9Cz3GlYiNosMsZDGIYwWSB3', // Replace with your client ID
+        redirectUri: 'https://newmouat1.ntucbfa.com/app/singpass/callback',        // Replace with a registered redirect URI
+        scope: 'openid',
+        responseType: 'code'
+      },
+      authParamsSupplier,
+      onError
     );
+
+    console.log('initAuthSession: ', initAuthSessionResponse);
   }
 
   setCaptchaValidator() {
