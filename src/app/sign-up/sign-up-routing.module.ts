@@ -66,7 +66,8 @@ const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.TWOFA_MOBILE,
     component: VerifyMobileComponent,
-    canActivate: [TwoFactorScreenGuardService]
+    canActivate: [TwoFactorScreenGuardService],
+    data: [{ twoFactorEnabled: SIGN_UP_CONFIG.VERIFY_MOBILE.TWO_FA }]
   },
   {
     path: SIGN_UP_ROUTES.ACCOUNT_CREATED_FINLIT,

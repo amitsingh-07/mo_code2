@@ -261,7 +261,10 @@ app-login {
   .sp-pw-container{
     display: flex;
     margin-top: 20px;
-    flex-wrap: wrap;
+    justify-content: center;
+    @include allmobiles {
+      flex-wrap: wrap;
+    }
     .pw-login-container {
       display: flex;
       flex-direction: column;
@@ -335,8 +338,8 @@ app-login {
     .separator-container {
       display: flex;
       flex-direction: column-reverse;
-      margin-left: 80px;
-      margin-right: 80px;
+      margin-left: 5.556vw;
+      margin-right: 5.556vw;
       @include allmobiles {
         display: none;
       }
@@ -345,7 +348,7 @@ app-login {
       align-self: flex-end;
       font-size: 14px;
       color: $black-color;
-      height: 470px;
+      height: auto;
       width: 350px;
       background-color: $mercury-smoke-color;
       border-radius: 6px;
@@ -364,8 +367,9 @@ app-login {
         cursor: pointer;
       }
       .title-container {
-        padding: 18px 0 0 20px;
-        height: 70px;
+        padding: 18px 19px 10px 20px;
+        height: auto;
+        min-height: 70px;
         border-top-left-radius: 6px;
         border-top-right-radius: 6px;
         display: flex;
@@ -381,7 +385,7 @@ app-login {
         background-color: $white-color;
         border-top-left-radius: 6px;
         border-top-right-radius: 6px;
-        height: 344px;
+        height: auto;
       }
       .footer-container {
         padding: 12px 0 14px 20px;

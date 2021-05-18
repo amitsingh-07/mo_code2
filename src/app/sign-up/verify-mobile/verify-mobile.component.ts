@@ -51,6 +51,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   two2faAuth: boolean;
   fromLoginPage: string;
   finlitEnabled = false;
+  accountCreationPage = false;
 
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
@@ -116,10 +117,10 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     } else {
       this.mobileNumber = this.signUpService.getMobileNumber();
     }
-
     this.two2faAuth = this.authService.get2faVerifyAllowed();
     if (this.route.snapshot.data[0]) {
       this.finlitEnabled = this.route.snapshot.data[0]['finlitEnabled'];
+      this.accountCreationPage = (this.route.snapshot.data[0]['twoFactorEnabled'] === SIGN_UP_CONFIG.VERIFY_MOBILE.TWO_FA);
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }

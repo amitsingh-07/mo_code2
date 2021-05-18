@@ -126,6 +126,8 @@
     "FORM": {
       "INSTRUCTION": "Enter the 6-digit OTP code sent to:",
       "EDIT_NUMBER": "Edit Number",
+      "ACCOUNT_DIDNT_RECIEVE": "Didn’t receive it?",     
+      "ACCOUNT_REQUEST_NEW_CODE": "Resend OTP",
       "DIDNT_RECIEVE": "Didn’t receive your OTP?",     
       "REQUEST_NEW_CODE": "Resend",
       "SEND_TO_MAIL": "Send to Email",

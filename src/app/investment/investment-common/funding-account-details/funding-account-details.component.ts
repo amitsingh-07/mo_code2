@@ -198,9 +198,10 @@ export class FundingAccountDetailsComponent implements OnInit {
       this.investmentAccountService.activateReassess();
       this.investmentCommonService.setInitialFundingMethod({ initialFundingMethodId: value });
       this.investmentCommonService.clearConfirmedFundingMethod();
-      const selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
+      const selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();     
+      this.investmentCommonService.saveUpdateSessionData(this.portfolio.portfolioDetails);
       if (selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
-        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PERSONAL_INFO]);
       } else {
         this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
       }
