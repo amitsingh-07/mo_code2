@@ -37,6 +37,9 @@
           </div>
         </div>
       </form>
+      <div *ngIf="checkDate()" class='no-promo'>
+        <span [innerHTML]="this.translate.instant('CMP.COMPREHENSIVE.NTUC_PROMO')"></span>
+      </div>
       <button type="button" [disabled]="!(promoCodeForm.valid || promoCodeValidated)" class="btn btn__footer--fixed btn-primary with-white-bg width100" (click)="getStarted()"
         id="intro-continue">{{'CMP.COMPREHENSIVE.GET_STARTED' | translate}}</button>
     </div>
