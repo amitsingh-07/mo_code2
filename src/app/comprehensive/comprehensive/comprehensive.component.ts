@@ -274,8 +274,7 @@ export class ComprehensiveComponent implements OnInit {
   }
 
   checkDate() {
-    // const startDateTime = new Date("2021-06-01T00:00:00.000+08:00");
-    const startDateTime = new Date("2021-05-19T14:51:00.000+08:00");
+    const startDateTime = new Date(COMPREHENSIVE_CONST.NTUC_PROMO_DATE);
     if (Date.now() >= startDateTime.valueOf()) {
       return true;
     } else {
