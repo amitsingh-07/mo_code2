@@ -272,4 +272,14 @@ export class ComprehensiveComponent implements OnInit {
       }
     });
   }
+
+  checkDate() {
+    const startDateTime = new Date(COMPREHENSIVE_CONST.NTUC_PROMO_DATE);
+    if (Date.now() >= startDateTime.valueOf()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
 }
