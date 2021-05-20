@@ -65,5 +65,10 @@ export let SIGN_UP_CONFIG = {
       SUCCESS :"SUCCESS",
       CANCELLED:"CANCELLED"
     },
-    SINGPASS :"SINGPASS"
+    SINGPASS :"SINGPASS",
+    VERIFY_MOBILE:{
+      TWO_FA:"2FA",
+      UPDATE_CONTACT:"Update Contact",
+      SIGN_UP:"Signup"
+    }
 };

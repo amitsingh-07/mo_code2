@@ -11,20 +11,16 @@
           <img class="create_account__header-icon order3 sm-order1" src="assets/images/sign-up-myinfo.svg" />
         </div>
       </div>
-      <div class="my-info-icon hidden-lg"></div>
-      <div class="col-lg-5 col-md-6">
+      <div class="col-lg-5 col-md-6 sign-up-max-width">
         <h2 class="signup-wrapper__title hidden-lg">{{ 'CREATE_ACCOUNT_MY_INFO.TITLE' | translate}}
         </h2>
         <div class="signup-wrapper__description order2">
           <p>{{ 'CREATE_ACCOUNT_MY_INFO.DESCRIPTION' | translate}}
           </p>
-          <img class="sign-pass-icon hidden-sm" src="assets/images/singpass-img.png" />
           <div class="sing-pass-info" [innerHtml]="'CREATE_ACCOUNT_MY_INFO.DESCRIPTION_TWO' | translate">
           </div>
         </div>
-        <button id="nextDependentBtn" type="button" class="btn  btn__footer--fixed btn-proceed width100"
-        (click)="proceedToMyInfo()">
-        {{ 'CREATE_ACCOUNT_MY_INFO.PROCEED_TO_MY_INFO' | translate}}</button>
+        <div id="nextDependentBtn" class="autofill-logo" (click)="proceedToMyInfo()"><img src="assets/images/retrieve-singpass-logo.svg" /></div>
         <div class="flex space-between mt20">
           <button type="button" class="btn btn-login" (click)="backToLogin()">
             {{ 'CREATE_ACCOUNT_MY_INFO.BACK_TO_LOG_ON' | translate}}</button>
