@@ -67,15 +67,16 @@
             <button (click)="save(verifyMobileForm)" [disabled]="verifyMobileForm.invalid" type="button" class="btn btn__footer--fixed btn-primary width100">{{
               'COMMON.VERIFY' | translate }}</button>
           </div>
-          <div class="verify-mobile-block__otp__not-received text-center mt20" *ngIf="!accountCreationPage">
+          <div class="verify-mobile-block__otp__not-received text-center mt20">
             {{ 'VERIFY_MOBILE.FORM.ACCOUNT_DIDNT_RECIEVE' | translate }}<br>
             <span class="link-white" (click)="requestNewCode()">{{ 'VERIFY_MOBILE.FORM.ACCOUNT_REQUEST_NEW_CODE' | translate }}</span>            
           </div>
-          <div class="verify-mobile-block__otp__not-received text-center mt20" *ngIf="accountCreationPage">
+          <!-- BFA-2005 DUE TO SECURITY REASON WE ARE HIDING EMAIL_OTP IN FUTURE WE WILL ENABLE  -->
+           <!--<div class="verify-mobile-block__otp__not-received text-center mt20" *ngIf="accountCreationPage">
             {{ 'VERIFY_MOBILE.FORM.DIDNT_RECIEVE' | translate }}<br>
             <span class="link-white" (click)="requestNewCode()">{{ 'VERIFY_MOBILE.FORM.REQUEST_NEW_CODE' | translate }}</span>{{ 'VERIFY_MOBILE.FORM.OR' | translate }}
             <span class="link-white" (click)="requestEmailOTP()">{{ 'VERIFY_MOBILE.FORM.SEND_TO_MAIL' | translate }}</span>
-          </div>
+          </div> -->
           <div class="verify-mobile-block__otp__not-received text-center mt20" *ngIf="showCodeSentText">
             {{ 'VERIFY_MOBILE.FORM.CODE_SENT' | translate }}
          </div>
