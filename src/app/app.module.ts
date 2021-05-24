@@ -131,6 +131,7 @@ import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-e
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
 import { SessionsService } from './shared/Services/sessions/sessions.service';
 import { NotSupportedComponent } from './not-supported/not-supported.component';
+import { RefereeComponent } from './shared/modal/referee/referee.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -157,6 +158,7 @@ export function tokenGetterFn() {
     BankDetailsComponent,
     ToolTipModalComponent,
     ModelWithButtonComponent,
+    RefereeComponent,
     LifeProtectionModalComponent,
     InsuranceResultModalComponent,
     CreateAccountModelComponent,
@@ -250,8 +252,7 @@ export function tokenGetterFn() {
     DatePipe
   ],
   bootstrap: [AppComponent],
-  entryComponents: [
-    HelpModalComponent, LoaderComponent, ErrorModalComponent, BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
+  entryComponents: [RefereeComponent,HelpModalComponent, LoaderComponent, ErrorModalComponent, BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent, DiyModalComponent,
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent, TermsModalComponent,
     SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent,

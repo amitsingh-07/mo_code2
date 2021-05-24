@@ -6,9 +6,10 @@
           <div class="widget-block">
             <!--for desktop-->
             <div class="hidden-sm">
-              <div class="user-profile-bg col-12">
+              <div class="user-profile-bg col-12" >
                 <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
                 <div class="user_name">{{userProfileInfo.firstName | titlecase}}</div>
+                <div (click)="openRefereeModal()">Welcome Referee</div>
               </div>
             </div>
             <!--for mobile-->
@@ -17,6 +18,7 @@
                 <div class="user-profile-bg">
                   <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
                   <div class="user_name">{{userProfileInfo.firstName | titlecase}}</div>
+                  <div (click)="openRefereeModal()">Welcome Referee</div>
                 </div>
                 <div (click)="goToEditProfile()">
                   <img src="/app/assets/images/profile-icon.svg" />
