@@ -1,0 +1,14 @@
+<div class="modal-header">
+    <div class="modal-title popup-header-icon" >
+      <img src="assets/images/owl.svg" id="errorModelImage" />
+    </div>   
+  </div>
+  <div class="modal-body white-bg" >
+    <div class="modal-body-title">      
+      <div id="errorModeltitle" [innerHTML]="errorTitle"></div>
+      </div>
+    <button  type="button" class="close" aria-label="Close" (click)="closeIconAction()">
+      <span aria-hidden="true" id="errorModelCloseIcon"></span>
+    </button>  
+    <div class="modal-body-message "  id="errorMessage" [innerHTML]="errorMessage"></div> 
+      </div>
