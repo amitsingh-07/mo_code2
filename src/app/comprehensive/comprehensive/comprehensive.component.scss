@@ -258,12 +258,18 @@ app-comprehensive {
       line-height: 1.71;
       letter-spacing: -0.26px;
       text-align: center;
-      color: #005960;
+      color: $portfolio-card-text-color;
       margin-top: 10px;
   
       span {
           font-family: $muli-bold;
           letter-spacing: -0.25px;
+
+          a {
+            color: $portfolio-card-text-color;
+            cursor: pointer;
+            text-decoration: underline;
+          }
       }
   }
   
