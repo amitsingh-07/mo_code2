@@ -48,6 +48,7 @@ import { TwoFactorAuthGuardService } from './two-factor-auth-guard.service';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { ActivateSingpassModalComponent } from './edit-profile/activate-singpass-modal/activate-singpass-modal.component';
 import { CreateAccountMyinfoComponent } from './create-account-myinfo/create-account-myinfo.component';
+import { ReferAFriendComponent } from './refer-a-friend/refer-a-friend.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -101,7 +102,8 @@ export function createTranslateLoader(http: HttpClient) {
     SrsSuccessModalComponent,
     VerifyEmailComponent,
     ActivateSingpassModalComponent,
-    CreateAccountMyinfoComponent
+    CreateAccountMyinfoComponent,
+    ReferAFriendComponent
   ],
   providers: [SignUpAccessGuard, AuthGuardService, TwoFactorAuthGuardService],
   entryComponents: [EditMobileNumberComponent, SrsSuccessModalComponent]

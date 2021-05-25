@@ -36,6 +36,7 @@ import { AddUpdateSrsComponent } from './add-update-srs/add-update-srs.component
 import { TwoFactorAuthGuardService, TwoFactorScreenGuardService } from './two-factor-auth-guard.service';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { CreateAccountMyinfoComponent } from './create-account-myinfo/create-account-myinfo.component';
+import { ReferAFriendComponent } from './refer-a-friend/refer-a-friend.component';
 
 const routes: Routes = [
   {
@@ -200,6 +201,11 @@ const routes: Routes = [
     component: CreateAccountComponent,
     canActivate: [FinlitLoggedUserGuard],
     data: [{ finlitEnabled: SIGN_UP_CONFIG.LOGIN.FINLIT_LOGIN }]
+  },
+  {
+    path: SIGN_UP_ROUTES.REFER_FRIEND,
+    component: ReferAFriendComponent,
+    canActivate: [AuthGuard]
   },
 
   { path: '**', redirectTo: '/page-not-found' }
