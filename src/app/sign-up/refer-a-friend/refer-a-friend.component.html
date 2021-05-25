@@ -1,39 +1,43 @@
 <div class="refer-a-friend">
-<div class="container-fluid max-width--1024">
-    <div class="row">
-        <div class="col-12 bg-white">
-            <div class="content">
-                <div> This is based on $100,000 lump sum (without monthly) investment at a projected rate of return of
-                    5.3%
-                    p.a. (without payout), taking all fees into consideration.</div>
-                <div class="toggle-block">
-                    <div>
-                        <ngb-accordion #acc="ngbAccordion">
-                            <ngb-panel>
-                                <ng-template ngbPanelTitle>
-                                    <div class="flex toggle-btn-block">
-                                        <div class="flex space-between justify-center">
-                                            <div>How it works</div>
-                                            <div><i class='arrow'></i></div>
-                                        </div>
-                                        <div class="rewards-btn-block">
-                                            <span class="pl40"></span>
-                                            <span class="rewards-btn" (click)="goToRewards()">Welcome Rewards</span>
-                                        </div>
-                                    </div>
-                                </ng-template>
-                                <ng-template ngbPanelContent>
-                                    <div> This is based on $100,000 lump sum (without monthly) investment at a projected
-                                        rate of return of 5.3% p.a. (without payout), taking all fees into
-                                        consideration.
-                                    </div>
-                                </ng-template>
-                            </ngb-panel>
-                        </ngb-accordion>
+    <div class="container-fluid max-width--1024">
+        <div class="row">
+            <div class="banner-bg hidden-lg">
+                <img src="assets/images/refer-friend/reward-header-mobile.svg" />
+            </div>
+            <div class="col-12 refer-friend-block-content">
+                <div class="content">
+                    <div> You both earn when your friend sign up as new user using your referral link and use MoneyOwl
+                        services eligible for the rewards. </div>
+                    <div class="toggle-block">
+                        <div class="toggle-btn" (click)="toggleinfo($event)">
+                            How it works
+                            <span><i class='arrow' [ngClass]="{'active': isCollapsed}"></i></span>
+                            <!-- <i class="material-icons"
+                                *ngIf="!isCollapsed">keyboard_arrow_down</i><i class="material-icons"
+                                *ngIf="isCollapsed">keyboard_arrow_up</i> -->
+                        </div>
+                        <div class="rewards-btn" (click)="goToRewards()">Welcome Rewards</div>
+                    </div>
+                    <div class="toggle-btn-info" *ngIf="isCollapsed">
+                        <div class="flex work-steps"> 
+                            <div class="step-info">
+                                <div class="step-icon"><img src="assets/images/refer-friend/icon-1.svg"/></div>
+                                <div class="step-desc">You invite a friend</div>
+                            </div>
+                            <div class="connector"><img src="assets/images/refer-friend/dots.svg"/></div>
+                            <div class="step-info">
+                                <div class="step-icon"><img src="assets/images/refer-friend/icon-2.svg"/></div>
+                                <div class="step-desc">They join & use our services*</div>
+                            </div>
+                            <div class="connector"><img src="assets/images/refer-friend/dots.svg"/></div>
+                            <div class="step-info">
+                                <div class="step-icon"><img src="assets/images/refer-friend/icon-3.svg"/></div>
+                                <div class="step-desc">You both receive rewards</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
