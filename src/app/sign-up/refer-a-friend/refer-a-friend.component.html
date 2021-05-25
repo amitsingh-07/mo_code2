@@ -1,3 +1,14 @@
+<!-- Copy toaster -->
+<div class="toast-msg-fixed-block" *ngIf="showFixedToastMessage">
+    <div class="toast-msg-container">
+      <div class="flex-col-1">
+        <img src="assets/images/topupwithdraw/check_orange.svg" alt="" />
+      </div>
+      <div class="flex-col-11">
+        <div class="toast-msg">{{toastMsg?.desc}}</div>
+      </div>
+    </div>
+  </div>
 <div class="refer-a-friend">
 <div class="container-fluid max-width--1024">
     <div class="row">
@@ -18,7 +29,7 @@
                                         </div>
                                         <div class="rewards-btn-block">
                                             <span class="pl40"></span>
-                                            <span class="rewards-btn" (click)="goToRewards()">Welcome Rewards</span>
+                                            <span class="rewards-btn" (click)="openRefereeModal()">Welcome Rewards</span>
                                         </div>
                                     </div>
                                 </ng-template>
@@ -37,3 +48,14 @@
     </div>
 </div>
 </div>
+<div><a href="{{ facebookShareLink }}" target="_blank" style='color:#fff'>Facebook</a></div>
+<div><a href="{{ whatsappShareLink }}" target="_blank" style='color:#fff'>Whatsapp</a></div>
+<div><a href="{{ telegramShareLink }}" target="_blank" style='color:#fff'>Telegram</a></div>
+<div><a href="{{ mailToLink }}" target="_blank" style='color:#fff'>Mail</a></div>
+<span class="copy-txt" style='display:none' copy-clipboard [copy-clipboard]="REFERRAL_LINK"
+(copied)="notify($event)" #REFERRAL_LINK>{{ referrerLink }}</span>
+<span copy-clipboard [copy-clipboard]="REFERRAL_LINK"
+    (copied)="notify($event)" class="copy-icon">{{ referralCode }}</span>  
+<span copy-clipboard [copy-clipboard]="REFERRAL_LINK"
+    (copied)="notify($event)" class="copy-icon"><img alt="copy"
+    src="assets/images/copy-clipboard.svg" /></span>  

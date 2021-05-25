@@ -598,5 +598,11 @@
       "primaryActionLabel": "Try Again Later",
       "secondaryActionLabel": "Create Account Manually"
     }
+  },
+  "SOCIAL_LINK_MESSAGE": {
+    "SOCIAL_MESSAGE": "Hi,\n\n\nInsure, invest, or do a financial planning with MoneyOwl and get welcome GrabFood credits when you join using my referral link/code. I’m already a happy MoneyOwl client, you should check it out too!\n\n\n",
+    "SOCIAL_MAIL1": "Hi,\n\n\nInsure, invest, or do a financial planning with MoneyOwl and get welcome GrabFood credits when you join using my referral link/code.\n\n\nI’m already a happy MoneyOwl client, you should check it out too!\n\n\n",
+    "SOCIAL_MAIL2": "\n\n\nMake wise money decisions with MoneyOwl\n\n\n",
+    "COPIED": "Copied"
   }
 }
