@@ -1,14 +1,14 @@
 <!-- Copy toaster -->
 <div class="toast-msg-fixed-block" *ngIf="showFixedToastMessage">
     <div class="toast-msg-container">
-      <div class="flex-col-1">
-        <img src="assets/images/topupwithdraw/check_orange.svg" alt="" />
-      </div>
-      <div class="flex-col-11">
-        <div class="toast-msg">{{toastMsg?.desc}}</div>
-      </div>
+        <div class="flex-col-1">
+            <img src="assets/images/topupwithdraw/check_orange.svg" alt="" />
+        </div>
+        <div class="flex-col-11">
+            <div class="toast-msg">{{toastMsg?.desc}}</div>
+        </div>
     </div>
-  </div>
+</div>
 <div class="refer-a-friend">
     <div class="container-fluid max-width--1024">
         <div class="row">
@@ -30,20 +30,72 @@
                         <div class="rewards-btn" (click)="openRefereeModal()">Welcome Rewards</div>
                     </div>
                     <div class="toggle-btn-info" *ngIf="isCollapsed">
-                        <div class="flex work-steps"> 
+                        <div class="flex work-steps">
                             <div class="step-info">
-                                <div class="step-icon"><img src="assets/images/refer-friend/icon-1.svg"/></div>
+                                <div class="step-icon"><img src="assets/images/refer-friend/icon-1.svg" /></div>
                                 <div class="step-desc">You invite a friend</div>
                             </div>
-                            <div class="connector"><img src="assets/images/refer-friend/dots.svg"/></div>
+                            <div class="connector"><img src="assets/images/refer-friend/dots.svg" /></div>
                             <div class="step-info">
-                                <div class="step-icon"><img src="assets/images/refer-friend/icon-2.svg"/></div>
+                                <div class="step-icon"><img src="assets/images/refer-friend/icon-2.svg" /></div>
                                 <div class="step-desc">They join & use our services*</div>
                             </div>
-                            <div class="connector"><img src="assets/images/refer-friend/dots.svg"/></div>
+                            <div class="connector"><img src="assets/images/refer-friend/dots.svg" /></div>
                             <div class="step-info">
-                                <div class="step-icon"><img src="assets/images/refer-friend/icon-3.svg"/></div>
+                                <div class="step-icon"><img src="assets/images/refer-friend/icon-3.svg" /></div>
                                 <div class="step-desc">You both receive rewards</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="referral-details-block">
+                        <div class="existing-user">
+                            <div class="friends-details">
+                                <div class="total-friends">
+                                    <div>Total friends I have referred</div>
+                                    <div class="total-friends-value">0</div>
+                                </div>
+                                <div class="friends-list">
+                                    <div class="friends-list-header">
+                                        <span class="mr5"><img
+                                                src="assets/images/refer-friend/reward-recieved-icon.svg" /></span>
+                                        <span>You received</span>
+                                    </div>
+                                    <div class="friends-list-content">
+                                        <div class="friends-list-data">
+                                            <div class="friends-list">
+                                                <div class="list-item">
+                                                    <div class="friend-lbl">Edwin Toh</div>
+                                                    <div class="reward-value">$20</div>
+                                                </div>
+                                                <div class="list-item">
+                                                    <div class="friend-lbl">Harry Tan</div>
+                                                    <div class="reward-value">$20</div>
+                                                </div>
+                                                <div class="list-item">
+                                                    <div class="friend-lbl">Teng Wei Hao</div>
+                                                    <div class="reward-value">$20</div>
+                                                </div>
+                                                <div class="list-item">
+                                                    <div class="friend-lbl">Natalie Ho</div>
+                                                    <div class="reward-value">$20</div>
+                                                </div>
+                                                <div class="list-item">
+                                                    <div class="friend-lbl">Bruno Mars</div>
+                                                    <div class="reward-value">$20</div>
+                                                </div>
+                                            </div>
+                                            <div class="show-more-block">
+                                                <div class="range">5 of 8</div>
+                                                <div class="show-more-div text-center">
+                                                    <button type="button" class="btn btn-primary show-more-btn">Show
+                                                        More</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="no-data">Oops, pretty lonely here. Go on, help us spread the words.
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -56,10 +108,9 @@
 <div><a href="{{ whatsappShareLink }}" target="_blank" style='color:#fff'>Whatsapp</a></div>
 <div><a href="{{ telegramShareLink }}" target="_blank" style='color:#fff'>Telegram</a></div>
 <div><a href="{{ mailToLink }}" target="_blank" style='color:#fff'>Mail</a></div>
-<span class="copy-txt" style='display:none' copy-clipboard [copy-clipboard]="REFERRAL_LINK"
-(copied)="notify($event)" #REFERRAL_LINK>{{ referrerLink }}</span>
-<span copy-clipboard [copy-clipboard]="REFERRAL_LINK"
-    (copied)="notify($event)" class="copy-icon">{{ referralCode }}</span>  
-<span copy-clipboard [copy-clipboard]="REFERRAL_LINK"
-    (copied)="notify($event)" class="copy-icon"><img alt="copy"
-    src="assets/images/copy-clipboard.svg" /></span>  
+<span class="copy-txt" style='display:none' copy-clipboard [copy-clipboard]="REFERRAL_LINK" (copied)="notify($event)"
+    #REFERRAL_LINK>{{ referrerLink }}</span>
+<span copy-clipboard [copy-clipboard]="REFERRAL_LINK" (copied)="notify($event)" class="copy-icon">{{ referralCode
+    }}</span>
+<span copy-clipboard [copy-clipboard]="REFERRAL_LINK" (copied)="notify($event)" class="copy-icon"><img alt="copy"
+        src="assets/images/copy-clipboard.svg" /></span>
