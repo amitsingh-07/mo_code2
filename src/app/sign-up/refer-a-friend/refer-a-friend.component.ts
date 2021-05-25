@@ -9,6 +9,7 @@ import { SIGN_UP_ROUTE_PATHS} from '../../sign-up/sign-up.routes.constants';
 import { RefereeComponent } from '../../shared/modal/referee/referee.component';
 
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SignUpService } from '../sign-up.service';
 @Component({
   selector: 'app-refer-a-friend',
   templateUrl: './refer-a-friend.component.html',
@@ -26,12 +27,14 @@ export class ReferAFriendComponent implements OnInit {
   showFixedToastMessage: boolean;
   toastMsg: any;
   referralCode = '';
+  referrerName: any;
 
   constructor(
     private router: Router,
     public navbarService: NavbarService,
     public modal: NgbModal, 
-    private translate: TranslateService
+    private translate: TranslateService,
+    private signUpService: SignUpService
     ) {
       this.translate.use('en');
       this.translate.get('COMMON').subscribe((result: string) => {
@@ -41,10 +44,20 @@ export class ReferAFriendComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.signUpService.getEditProfileInfo().subscribe((data) => {
+      const responseMessage = data.responseMessage;
+      if (responseMessage.responseCode === 6000) {
+        if (data.objectList && data.objectList.personalInformation) {
+            const personalData = data.objectList.personalInformation;
+            this.referrerName = personalData.fullName ?
+                personalData.fullName : personalData.firstName + ' ' + personalData.lastName;            
+            this.referralCode = 'KELV-TA23';
+            this.createReferrerLink();
+        }
+      }
+    });
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
-    this.referralCode = 'KELV-TA23';
-    this.createReferrerLink();
   }
  
 
@@ -69,7 +82,7 @@ export class ReferAFriendComponent implements OnInit {
     this.facebookShareLink = SIGN_UP_CONFIG.SOCIAL_REFERRER_LINK.FACEBOOK + fbMessage;
     this.whatsappShareLink = SIGN_UP_CONFIG.SOCIAL_REFERRER_LINK.WHATSAPP + socialMessageEncoded;
     this.telegramShareLink = SIGN_UP_CONFIG.SOCIAL_REFERRER_LINK.TELEGRAM + socialMessageEncoded;
-    const socialMailEncoded = encodeURIComponent(socialMail1 + this.referrerLink + socialMail2 + 'ReferrerName');   
+    const socialMailEncoded = encodeURIComponent(socialMail1 + this.referrerLink + socialMail2 + this.referrerName);   
     this.mailToLink = SIGN_UP_CONFIG.SOCIAL_REFERRER_LINK.MAILTO + socialMailEncoded + '&subject=' + socialMailSubject;
   }
 
