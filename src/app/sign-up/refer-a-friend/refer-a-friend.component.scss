@@ -1,0 +1,86 @@
+@import "../../../_variables.scss";
+@import "../../../_mixins.scss";
+app-refer-a-friend {
+    .refer-a-friend {
+        color: #000000;
+        background-color: #ffffff;
+        min-height: calc(100vh - 84px);
+        .card {
+            margin-bottom: 15px;
+            border-radius: 6px !important;
+            background-color: $white-color;
+            border: none;
+            .card-header {
+                padding: 0px;
+                background-color: $white-color;
+                text-align: center;
+                .btn-link {
+                    padding: 0px;
+                    font-size: 16px;
+                    font-family: $muli-bold;
+                    line-height: normal;
+                    letter-spacing: -0.3px;
+                    color: $black-color;
+                    .toggle-btn-block {
+                        .rewards-btn-block {
+                            // margin-left: 40px;
+                            padding: 5px;
+                            z-index: 100;
+                            .pl40{
+                                pointer-events: none;
+                            }
+                            .rewards-btn {
+                                padding: 4px 10px;
+                                border: 1px solid #a7a7a7;
+                                border-radius: 50px;
+                            }
+                        }
+                    }
+                    .arrow {
+                        border: solid$teal-color;
+                        border-width: 0 2px 2px 0;
+                        display: inline-block;
+                        padding: 4px;
+                        float: right;
+                        transform: rotate(-135deg);
+                        -webkit-transform: rotate(-135deg);
+                        margin-left: 10px;
+                    }
+                    &.collapsed {
+                        .arrow {
+                            transform: rotate(45deg);
+                            -webkit-transform: rotate(45deg);
+                        }
+                    }
+                    &:hover,
+                    &:focus {
+                        text-decoration: none;
+                    }
+                }
+            }
+            .card-body {
+                padding: 0;
+                .pannel-tab-content {
+                    background-color: $black-squeeze-grey-color;
+                    padding: 30px 20px;
+                    line-height: 1.44;
+                    letter-spacing: -0.15px;
+                    color: $black-color;
+                    &.asset-allocation {
+                        padding: 0;
+                    }
+                }
+                .tab-content-preference {
+                    padding-top: 0;
+                    font-family: $muli-regular;
+                    .preference-payout-block {
+                        font-family: $muli-bold;
+                    }
+                }
+                p {
+                    margin: 20px 0 0;
+                }
+            }
+        }
+    }
+}
