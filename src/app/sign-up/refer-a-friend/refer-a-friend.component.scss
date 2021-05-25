@@ -5,80 +5,127 @@ app-refer-a-friend {
         color: #000000;
         background-color: #ffffff;
         min-height: calc(100vh - 84px);
-        .card {
-            margin-bottom: 15px;
-            border-radius: 6px !important;
-            background-color: $white-color;
-            border: none;
-            .card-header {
-                padding: 0px;
-                background-color: $white-color;
-                text-align: center;
-                .btn-link {
-                    padding: 0px;
-                    font-size: 16px;
-                    font-family: $muli-bold;
-                    line-height: normal;
-                    letter-spacing: -0.3px;
-                    color: $black-color;
-                    .toggle-btn-block {
-                        .rewards-btn-block {
-                            // margin-left: 40px;
-                            padding: 5px;
-                            z-index: 100;
-                            .pl40{
-                                pointer-events: none;
-                            }
-                            .rewards-btn {
-                                padding: 4px 10px;
-                                border: 1px solid #a7a7a7;
-                                border-radius: 50px;
-                            }
-                        }
-                    }
+        @include allmobiles {
+            min-height: calc(100vh - 45px);
+        }
+        .container-fluid {
+            &.max-width--1024 {
+                @include allmobiles {
+                    padding-top: 60px;
+                }
+            }
+        }
+        .banner-bg {
+            @include allmobiles {
+                margin: 0 -5px;
+            }
+            img {
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+        }
+        .refer-friend-block-content {
+            font-family: $muli-regular;
+            font-size: 16px;
+            line-height: 21px;
+            text-align: center;
+            color: #5e5e5e;
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 30px 0 0;
+            @include allmobiles {
+                padding: 20px 15px 0;
+            }
+            @include iphone5 {
+                padding: 20px 10px 0;
+            }
+            .toggle-block {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-top: 15px;
+                font-size: 16px;
+                font-family: $muli-bold;
+                @include allmobiles {
+                    justify-content: space-around;
+                }
+                .toggle-btn {
+                    color: $crusta-orange-color;
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                    letter-spacing: -0.13px;
                     .arrow {
-                        border: solid$teal-color;
-                        border-width: 0 2px 2px 0;
+                        border: solid $crusta-orange-color;
+                        border-width: 0 3px 3px 0;
                         display: inline-block;
                         padding: 4px;
                         float: right;
                         transform: rotate(-135deg);
                         -webkit-transform: rotate(-135deg);
                         margin-left: 10px;
-                    }
-                    &.collapsed {
-                        .arrow {
+                        margin-top: 8px;
+                        &.active {
                             transform: rotate(45deg);
                             -webkit-transform: rotate(45deg);
+                            margin-top: 0px;
                         }
                     }
+
                     &:hover,
                     &:focus {
                         text-decoration: none;
                     }
                 }
+                .rewards-btn {
+                    padding: 4px 10px;
+                    border: 1px solid #00a7a7;
+                    color: #00a7a7;
+                    border-radius: 22px;
+                    margin-left: 40px;
+                    cursor: pointer;
+                    @include allmobiles {
+                        margin-left: 0px;
+                    }
+                }
             }
-            .card-body {
-                padding: 0;
-                .pannel-tab-content {
-                    background-color: $black-squeeze-grey-color;
-                    padding: 30px 20px;
-                    line-height: 1.44;
-                    letter-spacing: -0.15px;
-                    color: $black-color;
-                    &.asset-allocation {
-                        padding: 0;
-                    }
-                }
-                .tab-content-preference {
-                    padding-top: 0;
+
+            .toggle-btn-info {
+                margin-top: 30px;
+                .work-steps {
+                    display: flex;
+                    justify-content: space-between;
                     font-family: $muli-regular;
-                    .preference-payout-block {
-                        font-family: $muli-bold;
+                    font-size: 14px;
+                    line-height: 16px;
+                    text-align: center;
+                    color: #5e5e5e;
+                    flex: 1;
+                    .step-info {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        max-width: 75px;
+                        flex: 1;
+                        .step-icon {
+                            img {
+                                max-width: 100%;
+                                height: auto;
+                            }
+                        }
+                        .step-desc {
+                            margin-top: 7px;
+                        }
                     }
-                }
-                p {
-                    margin: 20px 0 0;
+                    .connector {
+                        padding: 0 5px;
+                        margin-top: 30px;
+                        img {
+                            max-width: 100%;
+                            height: auto;
+                        }
+                    }
                 }
             }
         }
