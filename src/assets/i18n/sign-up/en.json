@@ -396,8 +396,18 @@
       "DIRECT_JOURNEY": "I know my needs, find my plan."
     },
     "SRS_JOINT_ACCOUNT": {
-      "FIND_OUT_MORE": "Click here to check out more on our new WiseIncome Portfolio!",
+      "FIND_OUT_MORE": "Click here for news and updates!",
       "SRS_JOINT_ACCOUNT_SLIDES": [
+        {
+          "TITLE": "New Updates",
+          "TITLE_IMG": "srs-joint-account/speaker.svg",
+          "IMAGE": "srs-joint-account/gift-box.svg",
+          "IMG_TITLE": "Refer and receive rewards",
+          "TEXT": "You will now be able to share your MoneyOwl referral link and start earning rewards. Look for it at <strong class=\"text-bold\">Dashboard > Menu > Refer a friend and start sharing!</strong>",
+          "APP_URL": "/sign-up/refer-a-friend",
+          "QUERY_PARAMS": "refer-a-friend",
+          "URL_TEXT": "Refer a friend"
+        },  
         {
           "TITLE": "New Updates",
           "TITLE_IMG": "srs-joint-account/speaker.svg",

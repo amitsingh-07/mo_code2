@@ -12,7 +12,7 @@
         </div>
         <div *ngIf="slide.IMG_TITLE" [ngClass]="imgTitleClass" innerHTML="{{slide.IMG_TITLE}}"></div>
         <div *ngIf="slide.TEXT" [ngStyle]="textStyle" [ngClass]="{'extra-margin-top-18': slide.CONTACT}"
-          class="slide-txt">{{slide.TEXT}}</div>
+          class="slide-txt" innerHTML="{{slide.TEXT}}"></div>
         <a *ngIf="slide.APP_URL" class="url-txt" href="" (click)="activeModal.dismiss()" [routerLink]="[slide.APP_URL]" [queryParams]="{key: slide.QUERY_PARAMS}">{{slide.URL_TEXT}}</a>
         <a *ngIf="slide.URL" class="url-txt" href="" target="_blank" [routerLink]="[slide.URL]"
           fragment="{{slide.URL_FRAGMENT}}">{{slide.URL_TEXT}}</a>
