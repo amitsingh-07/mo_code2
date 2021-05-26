@@ -524,4 +524,33 @@ app-dashboard {
             color: $white-color;
         }
     }
+    /*Welcome Reward Box*/
+    .welcome-reward-box {
+        display: flex;
+        justify-content: space-between;
+        background: #FFD052;
+        border-radius: 6px;
+        margin-top: 10px;
+        align-items: center;
+        position: relative;
+        padding: 20px;
+        &__left {
+            color: #005960;
+            p:nth-child(1) {
+                font-family: $muli-bold;
+                font-size: 16px;
+                margin-bottom: 5px;
+            }
+            p:nth-child(2) {
+                font-family: $muli-regular;
+                font-size: 14px;
+                margin-bottom: 0;
+            }
+        }
+        &__gift-box {
+            position: absolute;
+            right: 50px;
+            bottom: 0;
+        }
+    } 
 }

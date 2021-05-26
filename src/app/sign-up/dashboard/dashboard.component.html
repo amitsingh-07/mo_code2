@@ -25,11 +25,27 @@
                 </div>
               </div>
             </div>
+            <!--Announcement section-->
             <div class="announcement-div" (click)="openSRSJointAccPopup()">
               <img class="announcement-img" src="assets/images/srs-joint-account/speaker.svg">
               <div class="announcement-txt">{{'DASHBOARD.SRS_JOINT_ACCOUNT.FIND_OUT_MORE' | translate}}
               </div>
             </div>
+            <!--Announcement section /-->
+            <!--Refree Welcome Reward Box-->
+            <div class="welcome-reward-box">
+              <div class="welcome-reward-box__left">
+                <p>You’ve 3 welcome rewards</p>
+                <p>Valid until 1 Sep 2021</p>
+              </div>
+              <div class="welcome-reward-box__right">
+                <img src="assets/images/refer-friend/chevron-next-circle.svg">
+              </div>
+              <div class="welcome-reward-box__gift-box">
+                <img src="assets/images/refer-friend/gift-box-small.svg">
+              </div>
+            </div>
+            <!--Refree Welcome Reward Box /-->
           </div>
           <div class="widgets">
             <app-comprehensive-dashboard *ngIf='isComprehensiveEnabled'></app-comprehensive-dashboard>
