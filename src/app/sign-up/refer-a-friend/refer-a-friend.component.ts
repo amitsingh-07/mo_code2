@@ -28,6 +28,7 @@ export class ReferAFriendComponent implements OnInit {
   toastMsg: any;
   referralCode = '';
   referrerName: any;
+  isHidden: boolean = true;
 
   constructor(
     private router: Router,
@@ -110,5 +111,9 @@ export class ReferAFriendComponent implements OnInit {
 
   toggleinfo(event) {
     this.isCollapsed = !this.isCollapsed;
+  }
+
+  openSocialMedia(event){
+    this.isHidden = !this.isHidden;
   }
 }
