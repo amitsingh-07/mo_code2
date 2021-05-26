@@ -94,7 +94,7 @@
                             <div class="friends-details">
                                 <div class="total-friends">
                                     <div>Total friends I have referred</div>
-                                    <div class="total-friends-value">0</div>
+                                    <div class="total-friends-value"> {{ totalRefereeListCount }} </div>
                                 </div>
                                 <div class="friends-list">
                                     <div class="friends-list-header">
@@ -103,38 +103,22 @@
                                         <span>You received</span>
                                     </div>
                                     <div class="friends-list-content">
-                                        <div class="friends-list-data">
+                                        <div class="friends-list-data" *ngIf ="refereeList.length > 0">
                                             <div class="friends-list">
-                                                <div class="list-item">
-                                                    <div class="friend-lbl">Edwin Toh</div>
-                                                    <div class="reward-value">$20</div>
-                                                </div>
-                                                <div class="list-item">
-                                                    <div class="friend-lbl">Harry Tan</div>
-                                                    <div class="reward-value">$20</div>
-                                                </div>
-                                                <div class="list-item">
-                                                    <div class="friend-lbl">Teng Wei Hao</div>
-                                                    <div class="reward-value">$20</div>
-                                                </div>
-                                                <div class="list-item">
-                                                    <div class="friend-lbl">Natalie Ho</div>
-                                                    <div class="reward-value">$20</div>
-                                                </div>
-                                                <div class="list-item">
-                                                    <div class="friend-lbl">Bruno Mars</div>
-                                                    <div class="reward-value">$20</div>
+                                                <div class="list-item" *ngFor="let l of refereeList">
+                                                    <div class="friend-lbl">{{ l.name }}</div>
+                                                    <div class="reward-value">{{ l.rewards | currency:'USD':'symbol-narrow':'1.0-0' }}</div>
                                                 </div>
                                             </div>
                                             <div class="show-more-block">
-                                                <div class="range">5 of 8</div>
-                                                <div class="show-more-div text-center">
-                                                    <button type="button" class="btn btn-primary show-more-btn">Show
+                                                <div class="range" *ngIf="totalRefereeListCount > 5 && refereeList.length > 0">{{ refereeList.length }} of {{ totalRefereeListCount }}</div>
+                                                <div class="show-more-div text-center" *ngIf="totalRefereeListCount > 5 && totalRefereeListCount > refereeList.length &&  refereeList.length > 0">
+                                                    <button type="button" class="btn btn-primary show-more-btn" (click)="getRefereeList()">Show
                                                         More</button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="no-data">Oops, pretty lonely here. Go on, help us spread the words.
+                                        <div class="no-data"  *ngIf ="!(refereeList.length > 0)">Oops, pretty lonely here. Go on, help us spread the words.
                                         </div>
                                     </div>
                                 </div>
