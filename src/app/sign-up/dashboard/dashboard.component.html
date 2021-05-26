@@ -51,6 +51,7 @@
             <app-comprehensive-dashboard *ngIf='isComprehensiveEnabled'></app-comprehensive-dashboard>
             <!-- Investment widget Start -->
             <div class="widget">
+              <div class="reward-points grey"><img src="assets/images/refer-friend/gift-icon-grey.svg">$20</div>
               <ng-container *ngIf="isInvestmentEnabled; else loader">
                 <!-- Purchased Investment and WiseSaver Card -->
                 <ng-container *ngIf="showPortfolioPurchased">
@@ -290,6 +291,7 @@
             </div>
             <!-- Investment widget End -->
             <div class="widget will-writing" *ngIf="showWillWritingSection">
+              <div class="reward-points"><img src="assets/images/refer-friend/gift-icon.svg">$20</div>
               <div class="widget-title">
                 <span class="flex">{{'DASHBOARD.WILL_WRITING.TITLE' | translate}}
                 </span>
