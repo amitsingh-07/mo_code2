@@ -49,6 +49,48 @@
                     </div>
                     <div class="referral-details-block">
                         <div class="existing-user">
+                            <div class="referral-link-block">
+                                <div class="referral-link-details">
+                                    <div class="referral-link-lbl">Invite & share referral link</div>
+                                    <div class="referral-link">
+                                        <span class="copy-txt" style='display:none' copy-clipboard
+                                            [copy-clipboard]="REFERRAL_LINK" (copied)="notify($event)" #REFERRAL_LINK>{{
+                                            referrerLink }}</span>
+                                        <span copy-clipboard [copy-clipboard]="REFERRAL_LINK" (copied)="notify($event)"
+                                            class="copy-icon"><img alt="copy"
+                                                src="assets/images/copy-clipboard-white.svg" /></span>
+                                        <span copy-clipboard [copy-clipboard]="REFERRAL_LINK" (copied)="notify($event)"
+                                            class="pl10">{{ referralCode
+                                            }}</span>
+                                    </div>
+                                </div>
+                                <div class="share-btn-block">
+                                    <button type="button" class="btn btn-primary share-btn"  (click)="openSocialMedia($event)">
+                                        <span class="share-icon"><img alt="copy"
+                                                src="assets/images/share-icon-white.svg" /></span>
+                                        <span>Share</span>
+                                    </button>
+                                    <div class="social-media-block" [ngClass]="{'active': !isHidden}">
+                                        <div>Share your referral link</div>
+                                        <div class="social-media-list">
+                                            <div><a href="{{ facebookShareLink }}" target="_blank"
+                                                    style='color:#fff'><span class="circle facebook"><img alt="copy"
+                                                            src="assets/images/social-networks/facebook-circle-icon.svg" /></span></a></div>
+                                            <div><a href="{{ whatsappShareLink }}" target="_blank"
+                                                    style='color:#fff'><span class="circle telegram"><img alt="copy"
+                                                            src="assets/images/social-networks/telegram-circle-icon.svg" /></span></a></div>
+                                            <div><a href="{{ telegramShareLink }}" target="_blank"
+                                                    style='color:#fff'><span class="circle whatsapp"><img alt="copy"
+                                                            src="assets/images/social-networks/whatsapp-circle-icon.svg" /></span></a></div>
+                                            <div><a href="{{ mailToLink }}" target="_blank" style='color:#fff'><span
+                                                        class="circle mail"><img alt="copy"
+                                                            src="assets/images/social-networks/mail-icon.svg" /></span></a>
+                                            </div>
+                                        </div>
+                                        <div class="preview-lbl">You will see a preview message</div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="friends-details">
                                 <div class="total-friends">
                                     <div>Total friends I have referred</div>
