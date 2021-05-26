@@ -30,6 +30,7 @@ export class ReferAFriendComponent implements OnInit {
   referrerName: any;
   refereeList = [];
   totalRefereeListCount: number;
+  isHidden: boolean = true;
 
   constructor(
     private router: Router,
@@ -60,7 +61,7 @@ export class ReferAFriendComponent implements OnInit {
     });
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
-    /*this.refereeList = [
+    this.refereeList = [
       {name: 'Edwin Toh', rewards: 20},      
       {name: 'Harry Tan', rewards: 20},
       {name: 'Teng Wei Hao', rewards: 20},
@@ -68,14 +69,6 @@ export class ReferAFriendComponent implements OnInit {
       {name: 'Bruno Mars', rewards: 20}
     ];
     this.totalRefereeListCount = 10;
-    const refereeList1 = [
-      {name: 'Edwin Toh1', rewards: 20},      
-      {name: 'Harry Tan2', rewards: 20},
-      {name: 'Teng Wei Hao3', rewards: 20},
-      {name: 'Natalie Ho4', rewards: 40},
-      {name: 'Bruno Mars5', rewards: 20}
-    ];*/
-    //this.refereeList = [...this.refereeList, ...refereeList1];
   }
  
 
@@ -128,5 +121,22 @@ export class ReferAFriendComponent implements OnInit {
 
   toggleinfo(event) {
     this.isCollapsed = !this.isCollapsed;
+  }
+
+  openSocialMedia(event){
+    this.isHidden = !this.isHidden;
+  }
+
+  getRefereeList() {
+    const refereeList1 = [
+      {name: 'Edwin Toh1', rewards: 20},      
+      {name: 'Harry Tan2', rewards: 20},
+      {name: 'Teng Wei Hao3', rewards: 20},
+      {name: 'Natalie Ho4', rewards: 40},
+      {name: 'Bruno Mars5', rewards: 20}
+    ];
+    if(this.totalRefereeListCount > this.refereeList.length) {
+      this.refereeList = [...this.refereeList, ...refereeList1];
+    }
   }
 }
