@@ -28,6 +28,8 @@ export class ReferAFriendComponent implements OnInit {
   toastMsg: any;
   referralCode = '';
   referrerName: any;
+  refereeList = [];
+  totalRefereeListCount: number;
 
   constructor(
     private router: Router,
@@ -58,6 +60,22 @@ export class ReferAFriendComponent implements OnInit {
     });
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
+    /*this.refereeList = [
+      {name: 'Edwin Toh', rewards: 20},      
+      {name: 'Harry Tan', rewards: 20},
+      {name: 'Teng Wei Hao', rewards: 20},
+      {name: 'Natalie Ho', rewards: 40},
+      {name: 'Bruno Mars', rewards: 20}
+    ];
+    this.totalRefereeListCount = 10;
+    const refereeList1 = [
+      {name: 'Edwin Toh1', rewards: 20},      
+      {name: 'Harry Tan2', rewards: 20},
+      {name: 'Teng Wei Hao3', rewards: 20},
+      {name: 'Natalie Ho4', rewards: 40},
+      {name: 'Bruno Mars5', rewards: 20}
+    ];*/
+    //this.refereeList = [...this.refereeList, ...refereeList1];
   }
  
 
