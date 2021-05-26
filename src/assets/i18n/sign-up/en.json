@@ -404,7 +404,7 @@
           "IMAGE": "srs-joint-account/gift-box.svg",
           "IMG_TITLE": "Refer and receive rewards",
           "TEXT": "You will now be able to share your MoneyOwl referral link and start earning rewards. Look for it at <strong class=\"text-bold\">Dashboard > Menu > Refer a friend and start sharing!</strong>",
-          "APP_URL": "/sign-up/refer-a-friend",
+          "APP_URL": "/accounts/refer-a-friend",
           "QUERY_PARAMS": "refer-a-friend",
           "URL_TEXT": "Refer a friend"
         },  
