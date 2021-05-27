@@ -127,8 +127,8 @@
                                                 </div>
                                             </div>
                                             <div class="show-more-block">
-                                                <div class="range" *ngIf="totalRefereeListCount > 5 && refereeList.length > 0">{{ refereeList.length }} of {{ totalRefereeListCount }}</div>
-                                                <div class="show-more-div text-center" *ngIf="totalRefereeListCount > 5 && totalRefereeListCount > refereeList.length &&  refereeList.length > 0">
+                                                <div class="range" *ngIf="totalRefereeListCount > pageLimit && refereeList.length > 0">{{ refereeList.length }} of {{ totalRefereeListCount }}</div>
+                                                <div class="show-more-div text-center" *ngIf="totalRefereeListCount > pageLimit && totalRefereeListCount > refereeList.length &&  refereeList.length > 0">
                                                     <button type="button" class="btn btn-primary show-more-btn" (click)="getRefereeList()">Show
                                                         More</button>
                                                 </div>
@@ -146,13 +146,3 @@
         </div>
     </div>
 </div>
-<div><a href="{{ facebookShareLink }}" target="_blank" style='color:#fff'>Facebook</a></div>
-<div><a href="{{ whatsappShareLink }}" target="_blank" style='color:#fff'>Whatsapp</a></div>
-<div><a href="{{ telegramShareLink }}" target="_blank" style='color:#fff'>Telegram</a></div>
-<div><a href="{{ mailToLink }}" target="_blank" style='color:#fff'>Mail</a></div>
-<span class="copy-txt" style='display:none' copy-clipboard [copy-clipboard]="REFERRAL_LINK" (copied)="notify($event)"
-    #REFERRAL_LINK>{{ referrerLink }}</span>
-<span copy-clipboard [copy-clipboard]="REFERRAL_LINK" (copied)="notify($event)" class="copy-icon">{{ referralCode
-    }}</span>
-<span copy-clipboard [copy-clipboard]="REFERRAL_LINK" (copied)="notify($event)" class="copy-icon"><img alt="copy"
-        src="assets/images/copy-clipboard.svg" /></span>
