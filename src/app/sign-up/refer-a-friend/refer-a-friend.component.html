@@ -49,10 +49,52 @@
                     </div>
                     <div class="referral-details-block">
                         <div class="existing-user">
+                            <div class="referral-link-block">
+                                <div class="referral-link-details">
+                                    <div class="referral-link-lbl">Invite & share referral link</div>
+                                    <div class="referral-link">
+                                        <span class="copy-txt" style='display:none' copy-clipboard
+                                            [copy-clipboard]="REFERRAL_LINK" (copied)="notify($event)" #REFERRAL_LINK>{{
+                                            referrerLink }}</span>
+                                        <span copy-clipboard [copy-clipboard]="REFERRAL_LINK" (copied)="notify($event)"
+                                            class="copy-icon"><img alt="copy"
+                                                src="assets/images/copy-clipboard-white.svg" /></span>
+                                        <span copy-clipboard [copy-clipboard]="REFERRAL_LINK" (copied)="notify($event)"
+                                            class="pl10">{{ referralCode
+                                            }}</span>
+                                    </div>
+                                </div>
+                                <div class="share-btn-block">
+                                    <button type="button" class="btn btn-primary share-btn"  (click)="openSocialMedia($event)">
+                                        <span class="share-icon"><img alt="copy"
+                                                src="assets/images/share-icon-white.svg" /></span>
+                                        <span>Share</span>
+                                    </button>
+                                    <div class="social-media-block" [ngClass]="{'active': !isHidden}">
+                                        <div>Share your referral link</div>
+                                        <div class="social-media-list">
+                                            <div><a href="{{ facebookShareLink }}" target="_blank"
+                                                    style='color:#fff'><span class="circle facebook"><img alt="copy"
+                                                            src="assets/images/social-networks/facebook-circle-icon.svg" /></span></a></div>
+                                            <div><a href="{{ whatsappShareLink }}" target="_blank"
+                                                    style='color:#fff'><span class="circle telegram"><img alt="copy"
+                                                            src="assets/images/social-networks/telegram-circle-icon.svg" /></span></a></div>
+                                            <div><a href="{{ telegramShareLink }}" target="_blank"
+                                                    style='color:#fff'><span class="circle whatsapp"><img alt="copy"
+                                                            src="assets/images/social-networks/whatsapp-circle-icon.svg" /></span></a></div>
+                                            <div><a href="{{ mailToLink }}" target="_blank" style='color:#fff'><span
+                                                        class="circle mail"><img alt="copy"
+                                                            src="assets/images/social-networks/mail-icon.svg" /></span></a>
+                                            </div>
+                                        </div>
+                                        <div class="preview-lbl">You will see a preview message</div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="friends-details">
                                 <div class="total-friends">
                                     <div>Total friends I have referred</div>
-                                    <div class="total-friends-value">0</div>
+                                    <div class="total-friends-value"> {{ totalRefereeListCount }} </div>
                                 </div>
                                 <div class="friends-list">
                                     <div class="friends-list-header">
@@ -61,38 +103,22 @@
                                         <span>You received</span>
                                     </div>
                                     <div class="friends-list-content">
-                                        <div class="friends-list-data">
+                                        <div class="friends-list-data" *ngIf ="refereeList.length > 0">
                                             <div class="friends-list">
-                                                <div class="list-item">
-                                                    <div class="friend-lbl">Edwin Toh</div>
-                                                    <div class="reward-value">$20</div>
-                                                </div>
-                                                <div class="list-item">
-                                                    <div class="friend-lbl">Harry Tan</div>
-                                                    <div class="reward-value">$20</div>
-                                                </div>
-                                                <div class="list-item">
-                                                    <div class="friend-lbl">Teng Wei Hao</div>
-                                                    <div class="reward-value">$20</div>
-                                                </div>
-                                                <div class="list-item">
-                                                    <div class="friend-lbl">Natalie Ho</div>
-                                                    <div class="reward-value">$20</div>
-                                                </div>
-                                                <div class="list-item">
-                                                    <div class="friend-lbl">Bruno Mars</div>
-                                                    <div class="reward-value">$20</div>
+                                                <div class="list-item" *ngFor="let l of refereeList">
+                                                    <div class="friend-lbl">{{ l.name }}</div>
+                                                    <div class="reward-value">{{ l.rewards | currency:'USD':'symbol-narrow':'1.0-0' }}</div>
                                                 </div>
                                             </div>
                                             <div class="show-more-block">
-                                                <div class="range">5 of 8</div>
-                                                <div class="show-more-div text-center">
-                                                    <button type="button" class="btn btn-primary show-more-btn">Show
+                                                <div class="range" *ngIf="totalRefereeListCount > 5 && refereeList.length > 0">{{ refereeList.length }} of {{ totalRefereeListCount }}</div>
+                                                <div class="show-more-div text-center" *ngIf="totalRefereeListCount > 5 && totalRefereeListCount > refereeList.length &&  refereeList.length > 0">
+                                                    <button type="button" class="btn btn-primary show-more-btn" (click)="getRefereeList()">Show
                                                         More</button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="no-data">Oops, pretty lonely here. Go on, help us spread the words.
+                                        <div class="no-data"  *ngIf ="!(refereeList.length > 0)">Oops, pretty lonely here. Go on, help us spread the words.
                                         </div>
                                     </div>
                                 </div>
