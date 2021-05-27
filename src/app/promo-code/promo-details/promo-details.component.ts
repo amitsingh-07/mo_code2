@@ -71,10 +71,8 @@ export class PromoDetailsComponent implements OnInit {
   
   openOverwriteModal(existingPromo) {
     const ref = this.allModal.open(ModelWithButtonComponent, { centered: true, windowClass: 'cfm-overwrite-modal', backdrop: 'static' });
-    const transformDate = this.datePipe.transform(existingPromo['promoCodeEndDate'], 'dd MMM y');
     ref.componentInstance.errorTitle = this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_1') 
-    + existingPromo['wrapFeeDiscount'] * 100 + this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_2') 
-    + transformDate +  this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_3');
+    + existingPromo['wrapFeeDiscountMsg'] +  this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_3');
     ref.componentInstance.yesOrNoButton = 'Yes';
     ref.componentInstance.isInlineButton = true;
     ref.componentInstance.yesClickAction.subscribe(() => {

@@ -40,6 +40,7 @@ import { HelperService } from './../../shared/http/helper.service';
 import { IError } from './../../shared/http/interfaces/error.interface';
 import { StateStoreService } from './../../shared/Services/state-store.service';
 import { LoginFormError } from './login-form-error';
+import { HubspotService } from 'src/app/shared/analytics/hubspot.service';
 import { SIGN_UP_CONFIG } from './../sign-up.constant';
 
 @Component({
@@ -101,6 +102,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private investmentAccountService: InvestmentAccountService,
     private loaderService: LoaderService,
     private investmentCommonService: InvestmentCommonService,
+    private hubspotService: HubspotService,
     private helper: HelperService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -166,21 +168,29 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   initSingpassQR() {
-    var OIDCParams = {
-      nonce: ('' + Math.random() * 1000000000000000 + '').slice(0, 15),
-      state: ('' + Math.random() * 1000000000000000 + '').slice(0, 15),
-      clientId: 'MONEYOWL-BFA',
-      redirectUri: 'https://newmouat1.ntucbfa.com/app/singpass/callback',
-      scope: 'openid',
-      responseType: 'code'
-    }
-    window['SPCPQR'].init(
+    const authParamsSupplier = async () => {
+      // Replace the below with an `await`ed call to initiate an auth session on your backend
+      // which will generate state+nonce values, e.g
+      return { state: "" + (Math.random() * 1000000000000000 + '').slice(0, 15), nonce: "" + (Math.random() * 1000000000000000 + '').slice(0, 15) };
+    };
+
+    const onError = (errorId, message) => {
+      console.log(`onError. errorId:${errorId} message:${message}`);
+    };
+
+    const initAuthSessionResponse = window['NDI'].initAuthSession(
       'qr_wrapper',
-      OIDCParams,
-      function () {
-        window['SPCPQR'].refresh({ nonce: OIDCParams.nonce, state: OIDCParams.state });
-      }
+      {
+        clientId: 'iROTlv1CU9Cz3GlYiNosMsZDGIYwWSB3', // Replace with your client ID
+        redirectUri: 'https://newmouat1.ntucbfa.com/app/singpass/callback',        // Replace with a registered redirect URI
+        scope: 'openid',
+        responseType: 'code'
+      },
+      authParamsSupplier,
+      onError
     );
+
+    console.log('initAuthSession: ', initAuthSessionResponse);
   }
 
   setCaptchaValidator() {
@@ -248,7 +258,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       });
     }
     this.signUpService.setEmail(form.value.loginUsername);
-    const userType= this.finlitEnabled ? appConstants.USERTYPE.FINLIT: appConstants.USERTYPE.NORMAL;
+    const userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : appConstants.USERTYPE.NORMAL;
     this.signUpService.setUserType(userType);
     const accessCode = (this.finlitEnabled) ? this.loginForm.value.accessCode : '';
     if (!form.valid || ValidatePassword(form.controls['loginPassword'])) {
@@ -275,6 +285,31 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
         this.loginForm.value.captchaValue, this.finlitEnabled, accessCode).subscribe((data) => {
           if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+            // Pulling Customer information to log on Hubspot
+            this.signUpApiService.getUserProfileInfo().subscribe((data) => {
+              let userInfo = data.objectList;
+              this.hubspotService.registerEmail(userInfo.emailAddress);
+              this.hubspotService.registerPhone(userInfo.mobileNumber);
+              const hsPayload = [
+                {
+                  name: "email",
+                  value: userInfo.emailAddress
+                },
+                {
+                  name: "phone",
+                  value: userInfo.mobileNumber
+                },
+                {
+                  name: "firstname",
+                  value: userInfo.firstName
+                },
+                {
+                  name: "lastname",
+                  value: userInfo.lastName
+                }];
+              this.hubspotService.submitLogin(hsPayload);
+            });
+
             this.investmentCommonService.clearAccountCreationActions();
             try {
               if (data.objectList[0].customerId) {
@@ -348,18 +383,18 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   checkInsuranceEnquiry(insuranceEnquiry): boolean {
     return ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) && 
-      ( (insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) 
-      || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0) ));
+      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) &&
+      ((insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)
+        || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0)));
   }
 
   updateInsuranceEnquiry(insuranceEnquiry, data, errorModal: boolean) {
     const journeyType = (insuranceEnquiry.journeyType === appConstants.JOURNEY_TYPE_DIRECT) ?
-        appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
+      appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
     const payload: IEnquiryUpdate = {
       customerId: data.objectList[0].customerId || data.objectList[0].customerRef,
       enquiryId: Formatter.getIntValue(insuranceEnquiry.enquiryId),
-      selectedProducts: insuranceEnquiry.plans,      
+      selectedProducts: insuranceEnquiry.plans,
       enquiryProtectionTypeData: insuranceEnquiry.enquiryProtectionTypeData,
       journeyType: journeyType
     };

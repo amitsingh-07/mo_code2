@@ -298,5 +298,6 @@ export const COMPREHENSIVE_CONST = {
         MY_INFO: "MyInfo",
         MANUAL: "MANUAL",
     },
-    API_SOURCE: "Robo3"
+    API_SOURCE: "Robo3",
+    NTUC_PROMO_DATE: "2021-06-01T00:00:00.000+08:00"
 };

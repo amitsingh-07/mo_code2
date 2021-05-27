@@ -356,9 +356,14 @@ export class InvestmentCommonService {
     if (formData && formData.payoutTypeId) {
       this.setWiseIncomePayOut({ initialWiseIncomePayoutTypeId: formData.payoutTypeId }, activeTabId);
     }
+    if (formData && formData.investmentPeriod) {
+      this.investmentEngagementJourneyService.setPersonalInfo({ investmentPeriod: formData.investmentPeriod });
+    }   
     const investmentFormData = this.setYourInvestmentAmount(formData);
     this.investmentEngagementJourneyService.setYourInvestmentAmount(investmentFormData);
+    if (!this.investmentAccountService.isReassessActive()) {
     this.setInitialFundingMethod({ initialFundingMethodId: formData.fundingTypeId });
+    }
     const portfolioType = this.toDecidedPortfolioType(formData.portfolioType);
     this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: portfolioType })
     this.commit();
@@ -387,11 +392,11 @@ export class InvestmentCommonService {
     }
   }
   toDecidedPortfolioType(selectedPortfolioValue) {
-    if (selectedPortfolioValue ===
-      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER) {
+    if (selectedPortfolioValue.toUpperCase() ===
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER.toUpperCase()) {
       return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO
-    } else if (selectedPortfolioValue ===
-      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT) {
+    } else if (selectedPortfolioValue.toUpperCase() ===
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT.toUpperCase()) {
       return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO
     } else {
       return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO

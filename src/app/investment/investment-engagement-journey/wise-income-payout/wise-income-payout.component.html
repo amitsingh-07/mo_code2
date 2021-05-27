@@ -1,4 +1,4 @@
-<div class="container-fluid max-width--1024 investment" *ngIf="defaultPayoutypeEnabled && wiseIncomePayOutTypes" id="backToTop">
+<div class="container-fluid max-width--1024 investment" *ngIf="wiseIncomePayOutTypes" id="backToTop">
     <div class="row" #backToTop id="backToTop">
         <div class="col-lg-7 col-md-6">
             <h2 class="hidden-sm">{{'WISE_INCOME_PAYOUT.CAPTION' | translate}}</h2>
@@ -16,7 +16,7 @@
                             <div class="checkbox-button one-label order{{i+1}}"
                                 *ngFor="let wiseIncomePayOut of wiseIncomePayOutTypes; let i = index" (click)="nav.select(i+1)">
                                 <input id="wise-income-payout_option{{i+1}}_radio" type="radio" class="field radio"
-                                name="initialWiseIncomePayoutTypeId" formControlName="initialWiseIncomePayoutTypeId" [value]=wiseIncomePayOut.id tabindex="{{i+1}}">
+                                name="initialWiseIncomePayoutTypeId" formControlName="initialWiseIncomePayoutTypeId" [value]=wiseIncomePayOut.id tabindex="{{i+1}}" (click)="openImpNoteModal(wiseIncomePayOut)">
                                 <label for="wise-income-payout_option{{i+1}}_radio">
                                     <div class="payout-type">
                                         <span class="payout-icon">
@@ -200,10 +200,10 @@
         </div>
     </div>
 
-    <div class="learn-more-block mt30" #featureBenefits id="featureBenefits">
+    <div class="learn-more-block mt30">
         <div class="payout-pannel-desc">{{'WISE_INCOME_PAYOUT.LEARN_MORE_LBL' | translate}}</div>
         <div class="learn-more-options">
-            <div class="learn-more-accordian">
+            <div class="learn-more-accordian" #featureBenefits id="featureBenefits" name="section">
                 <ngb-accordion #acc="ngbAccordion">
                     <ngb-panel>
                         <ng-template ngbPanelTitle>
@@ -284,9 +284,14 @@
                             </div>
                         </ng-template>
                     </ngb-panel>
+                </ngb-accordion>
+            </div>
+
+            <div class="learn-more-accordian" #fundAssets id="fundAssets" name="section">
+                <ngb-accordion #acc1="ngbAccordion">
                     <ngb-panel>
                         <ng-template ngbPanelTitle>
-                            <div class="flex space-between" #fundAssets id="fundAssets">
+                            <div class="flex space-between">
                                 <div>{{'WISE_INCOME_PAYOUT.FUND_ASSET_ALLOCATION_LBL' | translate}}</div>
                                 <div><i class='arrow'></i></div>
                             </div>
@@ -307,6 +312,8 @@
                     </ngb-panel>
                 </ngb-accordion>
             </div>
+
+            
             <div class="learn-more-option-item">
                 <div>
                     <a target="_blank" href="https://www.moneyowl.com.sg/faq-investment/#investment|8">
@@ -327,6 +334,7 @@
                     </a>
                 </div>
             </div>
+            <p class='disclaimer'>{{'WISE_INCOME_PAYOUT.DISCLAIMER' | translate}}</p>
         </div>
     </div>
 </div>

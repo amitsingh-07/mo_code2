@@ -268,9 +268,9 @@
       <div class="wiseincome-dropdown-item" *ngIf="wiseIncomeDropDownShow">
         <div class="scroll-to">Scrolls to:</div>
         <ul>
-          <li (click)="onClickScroll('payoutOption')" [ngClass]="{'active': tab==='tab1'}">Which payout should I choose?</li>
-          <li (click)="onClickScroll('featureBenefits')" [ngClass]="{'active': tab==='tab2'}">Features & benefits</li>
-          <li (click)="onClickScroll('fundAssets')" [ngClass]="{'active':tab==='tab3'}">Fund details & asset allocation</li>
+          <li (click)="onClickScroll('payoutOption')" [ngClass]="{'active': currentActive===1}">Which payout should I choose?</li>
+          <li (click)="onClickScroll('featureBenefits')" [ngClass]="{'active': currentActive===2}">Features & benefits</li>
+          <li (click)="onClickScroll('fundAssets')" [ngClass]="{'active': currentActive===3}">Fund details & asset allocation</li>
           <li (click)="onClickScroll('backToTop')">Back to top</li>
         </ul>
       </div>

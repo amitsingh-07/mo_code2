@@ -126,11 +126,15 @@
     "FORM": {
       "INSTRUCTION": "Enter the 6-digit OTP code sent to:",
       "EDIT_NUMBER": "Edit Number",
-      "DIDNT_RECIEVE": "Didn't receive it?",
-      "REQUEST_NEW_CODE": "Resend OTP",
+      "ACCOUNT_DIDNT_RECIEVE": "Didn’t receive it?",     
+      "ACCOUNT_REQUEST_NEW_CODE": "Resend OTP",
+      "DIDNT_RECIEVE": "Didn’t receive your OTP?",     
+      "REQUEST_NEW_CODE": "Resend",
+      "SEND_TO_MAIL": "Send to Email",
       "CODE_SENT": "Code sent!",
       "RETRY_IN": "Retry in",
-      "SECONDS_SUFFIX": "s"
+      "SECONDS_SUFFIX": "s",
+       "OR": " or "
     },
     "ERROR_MODAL": {
       "ERROR_TITLE": "Incorrect OTP Code",
@@ -573,7 +577,6 @@
     "DESCRIPTION_THREE": "Please fill in your details below.",
     "BACK_TO_LOG_ON": "Back To Log In",
     "SKIP_MY_INFO": " Skip Myinfo",
-    "PROCEED_TO_MY_INFO": "Retrieve Myinfo with Singpass",    
     "MODAL_TITLE": "Retrieve Myinfo with Singpass<span class=\"lock\"><img src=\"assets/images/lock.svg\"></span>",
     "MODAL_DESCRIPTION": "<strong class=\"text-bold\">Applicable to all Singpass Registered users.</strong><br><br>You will now proceed to login via Myinfo and retrieve your following details.<strong class=\"text-bold\"> Please use your own account only.</strong><div class=\"my_info_details\">Name<br>NRIC/FIN<br>Mobile Number<br>Email Address</div><br>Would you like to proceed?",
     "MODAL_BTN-TEXT": "Let's go!",
