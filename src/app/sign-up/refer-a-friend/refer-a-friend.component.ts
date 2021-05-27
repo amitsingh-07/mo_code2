@@ -28,9 +28,11 @@ export class ReferAFriendComponent implements OnInit {
   toastMsg: any;
   referralCode = '';
   referrerName: any;
+  refereeTotalList = [];
   refereeList = [];
   totalRefereeListCount: number;
   isHidden: boolean = true;
+  pageLimit = 5;
 
   constructor(
     private router: Router,
@@ -60,15 +62,26 @@ export class ReferAFriendComponent implements OnInit {
       }
     });
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(6);
-    this.refereeList = [
+    this.navbarService.setNavbarMode(6);    
+    this.refereeTotalList = [
       {name: 'Edwin Toh', rewards: 20},      
       {name: 'Harry Tan', rewards: 20},
       {name: 'Teng Wei Hao', rewards: 20},
       {name: 'Natalie Ho', rewards: 40},
-      {name: 'Bruno Mars', rewards: 20}
+      {name: 'Bruno Mars', rewards: 20},      
+      {name: 'Edwin Toh1', rewards: 20},      
+      {name: 'Harry Tan2', rewards: 20},
+      {name: 'Teng Wei Hao3', rewards: 20},
+      {name: 'Natalie Ho4', rewards: 40},
+      {name: 'Bruno Mars5', rewards: 20},      
+      {name: 'Edwin Toh11', rewards: 20},      
+      {name: 'Harry Tan12', rewards: 20},
+      {name: 'Teng Wei Hao13', rewards: 20},
+      {name: 'Natalie Ho14', rewards: 40},
+      {name: 'Bruno Mars15', rewards: 20}
     ];
-    this.totalRefereeListCount = 10;
+    this.refereeList = this.refereeTotalList.slice(0, this.pageLimit); 
+    this.totalRefereeListCount = this.refereeTotalList.length;
   }
  
 
@@ -128,15 +141,8 @@ export class ReferAFriendComponent implements OnInit {
   }
 
   getRefereeList() {
-    const refereeList1 = [
-      {name: 'Edwin Toh1', rewards: 20},      
-      {name: 'Harry Tan2', rewards: 20},
-      {name: 'Teng Wei Hao3', rewards: 20},
-      {name: 'Natalie Ho4', rewards: 40},
-      {name: 'Bruno Mars5', rewards: 20}
-    ];
     if(this.totalRefereeListCount > this.refereeList.length) {
-      this.refereeList = [...this.refereeList, ...refereeList1];
+      this.refereeList = this.refereeTotalList.slice(0, (this.pageLimit + this.refereeList.length));
     }
   }
 }
