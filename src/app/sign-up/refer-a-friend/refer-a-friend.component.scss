@@ -129,8 +129,8 @@ app-refer-a-friend {
                     @include allmobiles {
                         margin-left: 0px;
                     }
-                    @include iphone5 {
-                        padding: 7px 10px;
+                    @include min300max350 {
+                        padding: 7px 5px;
                     }
                 }
             }
@@ -185,6 +185,9 @@ app-refer-a-friend {
                         font-family: $muli-bold;
                         .referral-link-details {
                             text-align: left;
+                            @include min300max350{
+                                padding-right: 5px;
+                            }
                             .referral-link-lbl {
                                 font-family: $muli-regular;
                                 font-size: 14px;
@@ -202,9 +205,6 @@ app-refer-a-friend {
                         }
                         .share-btn-block {
                             position: relative;
-                            // .social-media{
-                            //     display: none;
-                            // }
                             .btn-primary {
                                 &.share-btn {
                                     padding: 12px 20px 13px;
@@ -230,9 +230,6 @@ app-refer-a-friend {
                                     }
                                 }
                             }
-                            // button.btn.btn-primary.share-btn:active + div.social-media{
-                            //     display: block;
-                            // }
                             .social-media-block {
                                 display: none;
                                 position: absolute;
@@ -272,6 +269,15 @@ app-refer-a-friend {
                                     background-color: $white-color;
                                     border: 0px solid #00a7a7;
                                     z-index: 2;
+                                    @include min300max350 {
+                                        right: 49px;
+                                     }
+                                    @include min350max375 {
+                                        right: 49px;
+                                    }
+                                    @include min375max400 {
+                                        right: 49px;
+                                    }
                                 }
                                 &.active {
                                     display: block;
