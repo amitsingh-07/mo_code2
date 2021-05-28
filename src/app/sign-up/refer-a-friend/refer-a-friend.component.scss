@@ -431,9 +431,46 @@ app-refer-a-friend {
                                 }
                             }
                         }
+                    
+                    
+                    
+                    
                     }
-                }
+                    
+                }              
             }
         }
+    }
+    .btn{       
+        &.btn-primary {
+            font-size: 18px;
+            @include allmobiles {
+                width: 100%;
+            }
+            width: 50%;
+            background-color: $crusta-orange-color;
+            border-color:$crusta-orange-color;
+            box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
+        
+            @include allmobiles {
+              box-shadow: none !important;
+            }
+        
+            &:hover {
+              background-color: $crusta-orange-color !important;
+            }
+        
+            &:focus,
+            &:active {
+              outline: none !important;
+              background: $crusta-orange-color !important;
+              border-color: none !important;
+            }
+        
+            &.active {
+              outline: none !important;
+              background: $crusta-orange-color !important;
+            }
+          }
     }
 }

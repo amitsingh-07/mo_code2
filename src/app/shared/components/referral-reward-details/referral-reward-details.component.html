@@ -1,0 +1,20 @@
+<div class="referrel-reward-header" (click)="toggle($event)">
+  
+    More about referral rewards
+    <span><i class='arrow' [ngClass]="{'active': isCollapsed}"></i></span>
+   </div>
+   <div *ngIf="isCollapsed">
+  <div  class="note-list" >
+    <div class="teal-oval"></div>
+    <div class="note-point-text" >All payment must be completed to be eligible for any of the rewards.</div>
+  </div>
+  <div  class="note-list">
+    <div class="teal-oval"></div>
+    <div class="note-point-text" >All rewards are sent to your email within 2 to 4 weeks after implementation. Please refer to the email for all rewards redemption instructions.,</div>
+  </div>
+  <div  class="note-list">
+    <div class="teal-oval"></div>
+    <div class="note-point-text" >View our website for more <span class="link"><a class='faq-link'  target='_blank' href='/referral/'>rewards details</a></span> and <span class="link"><a class='faq-link'  target='_blank' href='/#referral-faq'>FAQs</a></span></div>
+  </div>
+</div>
+  <div class="terms-condition" ><a class='faq-link'  target='_blank' href='/referral/#referral-tnc'>Terms & Conditions</a></div>
