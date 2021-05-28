@@ -10,7 +10,7 @@ import { RefereeComponent } from '../../shared/modal/referee/referee.component';
 
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SignUpService } from '../sign-up.service';
-import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 @Component({
   selector: 'app-refer-a-friend',
   templateUrl: './refer-a-friend.component.html',
@@ -122,6 +122,15 @@ export class ReferAFriendComponent implements OnInit {
     const ref = this.modal.open(RefereeComponent, { centered: true });
     ref.componentInstance.errorTitle = "referee";
     ref.componentInstance.errorMessage = 'Welcome to the referee.';
+    ref.componentInstance.comprehensiveAction.subscribe(() => {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+    });
+    ref.componentInstance.investmentAction.subscribe(() => {
+    //  
+    });
+    ref.componentInstance.insuranceAction.subscribe(() => {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);  
+    });
   }
 
   notify(event) {
