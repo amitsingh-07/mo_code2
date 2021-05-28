@@ -1,5 +1,6 @@
 import { Component, Renderer2, OnInit, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { forkJoin as observableForkJoin } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -11,6 +12,11 @@ import { RefereeComponent } from '../../shared/modal/referee/referee.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SignUpService } from '../sign-up.service';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
+import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
+import { ConfigService } from '../../config/config.service';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment/investment-account/investment-account-routes.constants';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment/investment-common/investment-common-routes.constants';
 @Component({
   selector: 'app-refer-a-friend',
   templateUrl: './refer-a-friend.component.html',
@@ -36,13 +42,21 @@ export class ReferAFriendComponent implements OnInit {
   pageLimit = 5;
   @ViewChild('toggleButton') toggleButton: ElementRef;
   @ViewChild('toggleIcon') toggleIcon: ElementRef;
+  investmentsSummary: any;
+  isInvestmentEnabled: boolean;
+  isInvestmentConfigEnabled = false;
+  showStartInvesting: boolean;
+  iFastMaintenance: boolean;
   constructor(
     private router: Router,
     public navbarService: NavbarService,
     public modal: NgbModal,
     private translate: TranslateService,
     private signUpService: SignUpService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private investmentAccountService: InvestmentAccountService,
+    private investmentCommonService: InvestmentCommonService,
+    private configService: ConfigService,
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -126,10 +140,11 @@ export class ReferAFriendComponent implements OnInit {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     });
     ref.componentInstance.investmentAction.subscribe(() => {
-    //  
+    this.getInvestmentsSummary();
+
     });
     ref.componentInstance.insuranceAction.subscribe(() => {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);  
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     });
   }
 
@@ -170,6 +185,128 @@ export class ReferAFriendComponent implements OnInit {
     if (this.totalRefereeListCount > this.refereeList.length) {
       this.refereeList = this.refereeTotalList.slice(0, (this.pageLimit + this.refereeList.length));
     }
+  }
+  //  INVESTMENT RE DIRECTION  FLOW 
+  getInvestmentsSummary() {
+    this.investmentAccountService.getInvestmentsSummary().subscribe((data) => {
+      if (data && data.responseMessage && data.responseMessage.responseCode === 6000) {
+        this.investmentsSummary = data.objectList;
+        this.setInvestmentsSummary(this.investmentsSummary);
+        this.getInvestmentStatus();
+      } else {
+        this.investmentAccountService.showGenericErrorModal();
+      }
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  }
+
+  setInvestmentsSummary(investmentsSummary) {
+    this.investmentCommonService.setInvestmentsSummary(investmentsSummary);
+  }
+  getInvestmentStatus() {
+    const investmentStatus = this.investmentCommonService.getInvestmentStatus();
+    this.showInvestmentsSummary(investmentStatus);
+
+  }
+  enableInvestment() {
+    this.isInvestmentEnabled = true;
+    // Check if iFast is in maintenance
+    this.configService.getConfig().subscribe((config) => {
+      if (config.iFastMaintenance && this.configService.checkIFastStatus(config.maintenanceStartTime, config.maintenanceEndTime)) {
+        this.iFastMaintenance = true;
+        this.isInvestmentEnabled = false;
+      }
+    });
+  }
+  showInvestmentsSummary(investmentStatus) {
+    switch (investmentStatus) {
+      case SIGN_UP_CONFIG.INVESTMENT.PROPOSED:
+      case SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED:
+      case SIGN_UP_CONFIG.INVESTMENT.ACCEPTED_NATIONALITY: {
+        this.enableInvestment();
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT]);       
+        break;
+      }
+      case SIGN_UP_CONFIG.INVESTMENT.BLOCKED_NATIONALITY:
+      case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_PENDING:
+      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_CLEARED:
+      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_PENDING:
+      case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_FAILED:
+      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_SUSPENDED: {
+        this.enableInvestment();
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);       
+        break;
+      }
+      case SIGN_UP_CONFIG.INVESTMENT.INVESTMENT_ACCOUNT_DETAILS_SAVED:
+      case SIGN_UP_CONFIG.INVESTMENT.DOCUMENTS_UPLOADED:
+      case SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_CONFIRMED: {
+        this.enableInvestment();
+        this.goToDocUpload();        
+        break;
+      }
+      case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_FAILED:
+      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATION_FAILED: {
+        this.enableInvestment();
+        this.verifyCustomerDetails();        
+        break;
+      }
+      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED:
+      case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_FUNDED:
+      case SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_PURCHASED: {
+        this.enableInvestment();
+        if (this.investmentsSummary.portfolioSummary && this.investmentsSummary.portfolioSummary.numberOfPortfolios > 0) {
+          this.navbarService.setMenuItemInvestUser(true);
+        }
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+        break;
+      }
+    }
+  }
+
+  goToDocUpload() {
+    observableForkJoin(
+      this.signUpService.getDetailedCustomerInfo(),
+      this.investmentAccountService.getNationalityCountryList()
+    ).subscribe((response) => {
+      const customerData = response[0];
+      const nationalityData = response[1];
+      const nationalityList = nationalityData.objectList;
+      const countryList = this.investmentAccountService.getCountryList(nationalityData.objectList);
+      this.investmentAccountService.setNationalitiesCountries(nationalityList, countryList);
+      this.investmentAccountService.setInvestmentAccountFormData(customerData.objectList);
+      const beneficialOwner = customerData.objectList.additionalDetails
+        && customerData.objectList.additionalDetails.beneficialOwner ? customerData.objectList.additionalDetails.beneficialOwner : false;
+      const myInfoVerified = customerData.objectList.isMyInfoVerified ?
+        customerData.objectList.isMyInfoVerified : false;
+      this.investmentAccountService.setMyInfoStatus(customerData.objectList.isMyInfoVerified);
+      if (myInfoVerified) {
+        if (beneficialOwner) {
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
+        } else {
+          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+        }
+      } else {
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
+      }
+    });
+  }
+
+  //
+  verifyCustomerDetails() {
+    observableForkJoin(
+      this.signUpService.getDetailedCustomerInfo(),
+      this.investmentAccountService.getNationalityCountryList()
+    ).subscribe((response) => {
+      const customerData = response[0];
+      const nationalityData = response[1];
+      const nationalityList = nationalityData.objectList;
+      const countryList = this.investmentAccountService.getCountryList(nationalityData.objectList);
+      this.investmentAccountService.setNationalitiesCountries(nationalityList, countryList);
+      this.investmentAccountService.setInvestmentAccountFormData(customerData.objectList);
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
+    });
   }
 
 }
