@@ -1,6 +1,40 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
 app-refer-a-friend {
+    .invest-section {
+        @include allmobiles {
+            display: none;
+        }
+        .invest-section-content{
+            background: linear-gradient(269.74deg, #FCF4D7 -12.34%, #00A7A7 55.02%) !important;
+        }
+    }
+
+    .invest-bg-content {
+        .banner_content {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 0 75px;
+
+            @include desktop{
+                padding: 0 100px;
+            }
+        }
+
+        .banner_summary {
+            display: flex;
+            padding-top: 80px;
+            font-family: $muli-bold;
+            letter-spacing: -0.2px;
+            color: #ffffff;
+            font-size: 36px;
+            line-height: 45px;
+
+            .banner_summary_lbl {
+                max-width: 400px;
+            }
+        }
+    }
     .refer-a-friend {
         color: #000000;
         background-color: #ffffff;
@@ -10,6 +44,7 @@ app-refer-a-friend {
         }
         .container-fluid {
             &.max-width--1024 {
+                padding-top: 0;
                 @include allmobiles {
                     padding-top: 60px;
                 }
@@ -18,9 +53,11 @@ app-refer-a-friend {
         .banner-bg {
             margin: 0 auto;
             width: 100%;
+            display: none;
             @include allmobiles {
                 margin: 0 -5px;
                 width: auto;
+                display: block;
             }
             img {
                 max-width: 100%;
@@ -92,8 +129,8 @@ app-refer-a-friend {
                     @include allmobiles {
                         margin-left: 0px;
                     }
-                    @include iphone5 {
-                        padding: 7px 10px;
+                    @include min300max350 {
+                        padding: 7px 5px;
                     }
                 }
             }
@@ -148,6 +185,9 @@ app-refer-a-friend {
                         font-family: $muli-bold;
                         .referral-link-details {
                             text-align: left;
+                            @include min300max350{
+                                padding-right: 5px;
+                            }
                             .referral-link-lbl {
                                 font-family: $muli-regular;
                                 font-size: 14px;
@@ -165,9 +205,6 @@ app-refer-a-friend {
                         }
                         .share-btn-block {
                             position: relative;
-                            // .social-media{
-                            //     display: none;
-                            // }
                             .btn-primary {
                                 &.share-btn {
                                     padding: 12px 20px 13px;
@@ -193,9 +230,6 @@ app-refer-a-friend {
                                     }
                                 }
                             }
-                            // button.btn.btn-primary.share-btn:active + div.social-media{
-                            //     display: block;
-                            // }
                             .social-media-block {
                                 display: none;
                                 position: absolute;
@@ -217,10 +251,10 @@ app-refer-a-friend {
                                     bottom: 72px;
                                     right: -26px;
                                 }
-                                @include min350max375{
+                                @include min350max375 {
                                     right: -27px;
                                 }
-                                @include min375max400{
+                                @include min375max400 {
                                     right: -23px;
                                 }
                                 &::before {
@@ -235,8 +269,17 @@ app-refer-a-friend {
                                     background-color: $white-color;
                                     border: 0px solid #00a7a7;
                                     z-index: 2;
+                                    @include min300max350 {
+                                        right: 49px;
+                                     }
+                                    @include min350max375 {
+                                        right: 49px;
+                                    }
+                                    @include min375max400 {
+                                        right: 49px;
+                                    }
                                 }
-                                &.active{
+                                &.active {
                                     display: block;
                                 }
                                 .social-media-list {

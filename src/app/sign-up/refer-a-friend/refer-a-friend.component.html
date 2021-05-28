@@ -1,4 +1,4 @@
-<!-- Copy toaster -->
+<!-- Copy toaster-->
 <div class="toast-msg-fixed-block" *ngIf="showFixedToastMessage">
     <div class="toast-msg-container">
         <div class="flex-col-1">
@@ -9,10 +9,26 @@
         </div>
     </div>
 </div>
+<section class="invest-section">
+    <div class="invest-section-items">
+        <div class="invest-section-content">
+            <div class="invest-bg">
+                <div class="invest-bg-content">
+                    <div class="flex-row banner_content flex-col-12">
+                        <div class="banner_summary space-btwn flex-col-12">
+                            <div class="banner_summary_lbl">Share MoneyOwl with your friends</div>
+                            <div><img src="assets/images/refer-friend/reward-header-web.svg" /></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <div class="refer-a-friend">
     <div class="container-fluid max-width--1024">
         <div class="row">
-            <div class="banner-bg hidden-lg">
+            <div class="banner-bg">
                 <img src="assets/images/refer-friend/reward-header-mobile.svg" />
             </div>
             <div class="col-12 refer-friend-block-content">
@@ -23,9 +39,6 @@
                         <div class="toggle-btn" (click)="toggleinfo($event)">
                             How it works
                             <span><i class='arrow' [ngClass]="{'active': isCollapsed}"></i></span>
-                            <!-- <i class="material-icons"
-                                *ngIf="!isCollapsed">keyboard_arrow_down</i><i class="material-icons"
-                                *ngIf="isCollapsed">keyboard_arrow_up</i> -->
                         </div>
                         <div class="rewards-btn" (click)="openRefereeModal()">Welcome Rewards</div>
                     </div>
@@ -65,23 +78,26 @@
                                     </div>
                                 </div>
                                 <div class="share-btn-block">
-                                    <button type="button" class="btn btn-primary share-btn"  (click)="openSocialMedia($event)">
-                                        <span class="share-icon"><img alt="copy"
-                                                src="assets/images/share-icon-white.svg" /></span>
-                                        <span>Share</span>
+                                    <button class="btn btn-primary share-btn" #toggleButton
+                                        (click)="openSocialMedia($event)">
+                                        <img alt="copy" #toggleIcon class="share-icon" src="assets/images/share-icon-white.svg" />
+                                        Share
                                     </button>
                                     <div class="social-media-block" [ngClass]="{'active': !isHidden}">
                                         <div>Share your referral link</div>
                                         <div class="social-media-list">
                                             <div><a href="{{ facebookShareLink }}" target="_blank"
                                                     style='color:#fff'><span class="circle facebook"><img alt="copy"
-                                                            src="assets/images/social-networks/facebook-circle-icon.svg" /></span></a></div>
+                                                            src="assets/images/social-networks/facebook-circle-icon.svg" /></span></a>
+                                            </div>
                                             <div><a href="{{ whatsappShareLink }}" target="_blank"
                                                     style='color:#fff'><span class="circle telegram"><img alt="copy"
-                                                            src="assets/images/social-networks/telegram-circle-icon.svg" /></span></a></div>
+                                                            src="assets/images/social-networks/telegram-circle-icon.svg" /></span></a>
+                                            </div>
                                             <div><a href="{{ telegramShareLink }}" target="_blank"
                                                     style='color:#fff'><span class="circle whatsapp"><img alt="copy"
-                                                            src="assets/images/social-networks/whatsapp-circle-icon.svg" /></span></a></div>
+                                                            src="assets/images/social-networks/whatsapp-circle-icon.svg" /></span></a>
+                                            </div>
                                             <div><a href="{{ mailToLink }}" target="_blank" style='color:#fff'><span
                                                         class="circle mail"><img alt="copy"
                                                             src="assets/images/social-networks/mail-icon.svg" /></span></a>
@@ -103,22 +119,28 @@
                                         <span>You received</span>
                                     </div>
                                     <div class="friends-list-content">
-                                        <div class="friends-list-data" *ngIf ="refereeList.length > 0">
+                                        <div class="friends-list-data" *ngIf="refereeList.length > 0">
                                             <div class="friends-list">
                                                 <div class="list-item" *ngFor="let l of refereeList">
                                                     <div class="friend-lbl">{{ l.name }}</div>
-                                                    <div class="reward-value">{{ l.rewards | currency:'USD':'symbol-narrow':'1.0-0' }}</div>
+                                                    <div class="reward-value">{{ l.rewards |
+                                                        currency:'USD':'symbol-narrow':'1.0-0' }}</div>
                                                 </div>
                                             </div>
                                             <div class="show-more-block">
-                                                <div class="range" *ngIf="totalRefereeListCount > 5 && refereeList.length > 0">{{ refereeList.length }} of {{ totalRefereeListCount }}</div>
-                                                <div class="show-more-div text-center" *ngIf="totalRefereeListCount > 5 && totalRefereeListCount > refereeList.length &&  refereeList.length > 0">
-                                                    <button type="button" class="btn btn-primary show-more-btn" (click)="getRefereeList()">Show
+                                                <div class="range"
+                                                    *ngIf="totalRefereeListCount > pageLimit && refereeList.length > 0">
+                                                    {{ refereeList.length }} of {{ totalRefereeListCount }}</div>
+                                                <div class="show-more-div text-center"
+                                                    *ngIf="totalRefereeListCount > pageLimit && totalRefereeListCount > refereeList.length &&  refereeList.length > 0">
+                                                    <button type="button" class="btn btn-primary show-more-btn"
+                                                        (click)="getRefereeList()">Show
                                                         More</button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="no-data"  *ngIf ="!(refereeList.length > 0)">Oops, pretty lonely here. Go on, help us spread the words.
+                                        <div class="no-data" *ngIf="!(refereeList.length > 0)">Oops, pretty lonely here.
+                                            Go on, help us spread the words.
                                         </div>
                                     </div>
                                 </div>
@@ -130,13 +152,3 @@
         </div>
     </div>
 </div>
-<div><a href="{{ facebookShareLink }}" target="_blank" style='color:#fff'>Facebook</a></div>
-<div><a href="{{ whatsappShareLink }}" target="_blank" style='color:#fff'>Whatsapp</a></div>
-<div><a href="{{ telegramShareLink }}" target="_blank" style='color:#fff'>Telegram</a></div>
-<div><a href="{{ mailToLink }}" target="_blank" style='color:#fff'>Mail</a></div>
-<span class="copy-txt" style='display:none' copy-clipboard [copy-clipboard]="REFERRAL_LINK" (copied)="notify($event)"
-    #REFERRAL_LINK>{{ referrerLink }}</span>
-<span copy-clipboard [copy-clipboard]="REFERRAL_LINK" (copied)="notify($event)" class="copy-icon">{{ referralCode
-    }}</span>
-<span copy-clipboard [copy-clipboard]="REFERRAL_LINK" (copied)="notify($event)" class="copy-icon"><img alt="copy"
-        src="assets/images/copy-clipboard.svg" /></span>
