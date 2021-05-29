@@ -17,6 +17,18 @@ import { InvestmentCommonService } from '../../investment/investment-common/inve
 import { ConfigService } from '../../config/config.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment/investment-account/investment-account-routes.constants';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment/investment-common/investment-common-routes.constants';
+import { ComprehensiveApiService } from '../../comprehensive/comprehensive-api.service';
+import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
+import { COMPREHENSIVE_CONST } from 'src/app/comprehensive/comprehensive-config.constants';
+import { AppService } from 'src/app/app.service';
+import { COMPREHENSIVE_ROUTE_PATHS } from 'src/app/comprehensive/comprehensive-routes.constants';
+import { LoaderService } from 'src/app/shared/components/loader/loader.service';
+import { IMyProfile } from 'src/app/comprehensive/comprehensive-types';
+import { GuideMeApiService } from 'src/app/guide-me/guide-me.api.service';
+import { GuideMeService } from 'src/app/guide-me/guide-me.service';
+import { SelectedPlansService } from 'src/app/shared/Services/selected-plans.service';
+import { GUIDE_ME_ROUTE_PATHS } from 'src/app/guide-me/guide-me-routes.constants';
+import { DIRECT_ROUTE_PATHS } from 'src/app/direct/direct-routes.constants';
 @Component({
   selector: 'app-refer-a-friend',
   templateUrl: './refer-a-friend.component.html',
@@ -47,6 +59,38 @@ export class ReferAFriendComponent implements OnInit {
   isInvestmentConfigEnabled = false;
   showStartInvesting: boolean;
   iFastMaintenance: boolean;
+
+  // comprehensive 
+
+  userName: string;
+  comprehensivePlanning: number;
+  userDetails: IMyProfile;
+  getComprehensiveSummary: any;
+  getComprehensiveSummaryEnquiry: any;
+  reportStatus: any; // new submitted ready
+  advisorStatus: boolean;
+  reportDate: any;
+  submittedDate: any;
+  currentStep: number;
+  stepDetails = { hasDependents: 1, hasEndowments: 2 };
+  items: any;
+  isLoadComplete = false;
+  islocked: boolean;
+  isComprehensiveEnabled = false;
+  isComprehensiveLiveEnabled = false;
+  getComprehensiveDashboard: any;
+  getCurrentVersionType = '';
+  comprehensiveLiteEnabled: boolean;
+  versionTypeEnabled: boolean;
+  getComprehensiveSummaryDashboard: any;
+  promoCodeValidated = false;
+  enquiryId: any;
+  isReportGenerated = false;
+  fetchData: string;
+  paymentInstructions = false;
+  showInsuranceSection: boolean;
+  // INSURANCE 
+  insurance: any = {};
   constructor(
     private router: Router,
     public navbarService: NavbarService,
@@ -57,6 +101,13 @@ export class ReferAFriendComponent implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     private investmentCommonService: InvestmentCommonService,
     private configService: ConfigService,
+    private comprehensiveApiService: ComprehensiveApiService,
+    private appService: AppService,
+    private loaderService: LoaderService,
+    private comprehensiveService: ComprehensiveService,
+    private guideMeApiService :GuideMeApiService,
+    private guideMeService :GuideMeService,
+    private selectedPlansService: SelectedPlansService,
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -140,10 +191,11 @@ export class ReferAFriendComponent implements OnInit {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     });
     ref.componentInstance.investmentAction.subscribe(() => {
-    this.getInvestmentsSummary();
+      this.getInvestmentsSummary();
 
     });
     ref.componentInstance.insuranceAction.subscribe(() => {
+      this.getInsurance();
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     });
   }
@@ -169,7 +221,7 @@ export class ReferAFriendComponent implements OnInit {
   }
   getReferralLink() {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = "Get referral link";
+    ref.componentInstance.errorTitle = this.translate.instant('REFER_A_FRIEND.REFER_LINK_MODAL.TITLE');
     ref.componentInstance.errorMessage = 'We want you to try us out before your friends do! <br></br>Get started with any of our services (from your Dashboard), and come back here again. Your referral link will show after processing completes within 2 to 4 weeks.';
     ref.componentInstance.primaryActionLabel = 'Go to Dashboard';
     ref.componentInstance.primaryAction.subscribe(() => {
@@ -226,7 +278,7 @@ export class ReferAFriendComponent implements OnInit {
       case SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED:
       case SIGN_UP_CONFIG.INVESTMENT.ACCEPTED_NATIONALITY: {
         this.enableInvestment();
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT]);       
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT]);
         break;
       }
       case SIGN_UP_CONFIG.INVESTMENT.BLOCKED_NATIONALITY:
@@ -236,20 +288,20 @@ export class ReferAFriendComponent implements OnInit {
       case SIGN_UP_CONFIG.INVESTMENT.EDD_CHECK_FAILED:
       case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_SUSPENDED: {
         this.enableInvestment();
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);       
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
         break;
       }
       case SIGN_UP_CONFIG.INVESTMENT.INVESTMENT_ACCOUNT_DETAILS_SAVED:
       case SIGN_UP_CONFIG.INVESTMENT.DOCUMENTS_UPLOADED:
       case SIGN_UP_CONFIG.INVESTMENT.PORTFOLIO_CONFIRMED: {
         this.enableInvestment();
-        this.goToDocUpload();        
+        this.goToDocUpload();
         break;
       }
       case SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_FAILED:
       case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATION_FAILED: {
         this.enableInvestment();
-        this.verifyCustomerDetails();        
+        this.verifyCustomerDetails();
         break;
       }
       case SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATED:
@@ -309,4 +361,268 @@ export class ReferAFriendComponent implements OnInit {
     });
   }
 
+
+
+  // COMPREHENSIVE REDIRECT 
+  getComprehensive() {
+    this.isLoadComplete = false;
+    this.comprehensivePlanning = 4;
+    this.islocked = null;
+    this.reportStatus = null;
+    this.advisorStatus = false;
+    this.getComprehensiveSummaryDashboard = '';
+    this.currentStep = -1;
+    this.paymentInstructions = false;
+    const action = this.appService.getAction();
+    this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe((dashboardData: any) => {
+      if (dashboardData && dashboardData.objectList[0]) {
+        this.getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', this.getCurrentVersionType);
+        if (this.getComprehensiveSummaryDashboard !== '') {
+          this.islocked = this.getComprehensiveSummaryDashboard.isLocked;
+          this.paymentInstructions = (this.getComprehensiveSummaryDashboard.paymentStatus
+            && (this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING ||
+              this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING)
+            && this.getCurrentVersionType === this.getComprehensiveSummaryDashboard.type);
+          this.promoCodeValidated = this.getComprehensiveSummaryDashboard.isValidatedPromoCode;
+          this.reportStatus = this.getComprehensiveSummaryDashboard.reportStatus;
+          this.enquiryId = this.getComprehensiveSummaryDashboard.enquiryId;
+          if ((this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT) && (this.islocked === null || !this.islocked)) {
+            this.comprehensivePlanning = 3;
+          } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED && !this.islocked) {
+            this.comprehensivePlanning = 5;
+            if (this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp) {
+              this.submittedDate = this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp;
+            }
+          } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+            this.comprehensivePlanning = 0;
+          }
+          else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR) {
+            this.comprehensivePlanning = 1;
+            if (this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp) {
+              this.submittedDate = this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp;
+              this.isReportGenerated = this.getComprehensiveSummaryDashboard.reportStatus ===
+                COMPREHENSIVE_CONST.REPORT_STATUS.READY ? true : false;
+            }
+          }
+          this.currentStep = (this.getComprehensiveSummaryDashboard.stepCompleted !== null)
+            ? this.getComprehensiveSummaryDashboard.stepCompleted : 0;
+
+        }
+        this.isLoadComplete = true;
+        this.redirectScreen();
+      } else {
+        this.redirectScreen();
+        this.isLoadComplete = true;
+      }
+
+    });
+  }
+  // goToEditComprehensivePlan
+  goToEditComprehensivePlan(viewMode: boolean) {
+    if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+      if (!this.islocked) {
+        this.getComprehensiveCall();
+      } else if (this.getComprehensiveSummaryDashboard.dobPopUpEnable) {
+        this.setComprehensiveSummary(false, '');
+        const toolTipParams = {
+          TITLE: '',
+          DESCRIPTION: this.translate.instant('COMPREHENSIVE.DASHBOARD.WARNING_POPUP'),
+          URL: COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED
+        };
+        this.comprehensiveService.openTooltipModalWithDismiss(toolTipParams);
+      } else {
+        this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((data: any) => {
+          if (data && data.objectList[0]) {
+            this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+          }
+        });
+      }
+    } else if (this.versionTypeEnabled &&
+      (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) || (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR)) {
+      this.getComprehensiveCall();
+    } else {
+      this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((data: any) => {
+        if (data && data.objectList[0]) {
+          this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+        }
+      });
+    }
+
+  }
+
+  // getComprehensiveCall
+  getComprehensiveCall() {
+    this.loaderService.showLoader({ title: this.fetchData });
+    let reportStatusValue = COMPREHENSIVE_CONST.REPORT_STATUS.NEW;
+    if ((!this.versionTypeEnabled && this.comprehensivePlanning === 0) || this.comprehensivePlanning === 1) {
+      reportStatusValue = COMPREHENSIVE_CONST.REPORT_STATUS.EDIT;
+    }
+    const payload = { enquiryId: this.enquiryId, reportStatus: reportStatusValue };
+    this.comprehensiveApiService.updateComprehensiveReportStatus(payload).subscribe((data: any) => {
+      if (data) {
+        this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
+          if (summaryData) {
+            summaryData.objectList[0].comprehensiveEnquiry.reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.EDIT;
+            this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
+            this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.EDIT);
+            this.comprehensiveService.setViewableMode(true);
+            this.loaderService.hideLoader();
+            this.comprehensiveService.setRiskQuestions().subscribe((riskQues) => {
+              this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+            });
+          }
+        });
+      } else {
+        this.loaderService.hideLoader();
+      }
+    });
+
+  }
+  // setComprehensiveSummary
+  setComprehensiveSummary(routerEnabled: boolean, routerUrlPath: any) {
+    if (routerEnabled) {
+      this.loaderService.showLoader({ title: this.fetchData });
+    } else {
+      this.isLoadComplete = false;
+    }
+    this.comprehensivePlanning = 4;
+    this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
+      if (summaryData && summaryData.objectList[0]) {
+        this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
+        this.userDetails = this.comprehensiveService.getMyProfile();
+        this.getComprehensiveSummary = this.comprehensiveService.getComprehensiveSummary();
+        this.islocked = this.getComprehensiveSummary.comprehensiveEnquiry !== null &&
+          this.getComprehensiveSummary.comprehensiveEnquiry.isLocked;
+        this.userName = this.userDetails.firstName;
+        this.advisorStatus = false;
+        this.reportStatus = (this.getComprehensiveSummary && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus
+          && this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus !== null && this.userDetails.nationalityStatus)
+          ? this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus : null;
+        if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && (this.islocked === null || !this.islocked)) {
+          this.comprehensivePlanning = 3;
+        } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED && !this.islocked) {
+          this.comprehensivePlanning = 5;
+          if (this.getComprehensiveSummary.comprehensiveEnquiry &&
+            this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp) {
+            this.submittedDate = this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp;
+          }
+        } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+          this.comprehensivePlanning = 0;
+        }
+        else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY ||
+          this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR) {
+          this.comprehensivePlanning = 1;
+          if (this.getComprehensiveSummary.comprehensiveEnquiry &&
+            this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp) {
+            this.submittedDate = this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp;
+            this.isReportGenerated = this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus;
+          }
+        }
+        this.currentStep = (this.getComprehensiveSummary && this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted
+          && this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted !== null)
+          ? this.getComprehensiveSummary.comprehensiveEnquiry.stepCompleted : 0;
+        if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED
+          || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+          this.comprehensiveService.setViewableMode(true);
+        } else {
+          this.comprehensiveService.setViewableMode(false);
+        }
+        if (routerEnabled) {
+          this.loaderService.hideLoader();
+          this.comprehensiveService.setRiskQuestions().subscribe((riskQues) => {
+            this.router.navigate([routerUrlPath]);
+          });
+        } else {
+          this.isLoadComplete = true;
+        }
+      } else {
+        if (routerEnabled) {
+          this.loaderService.hideLoader();
+          if (!this.versionTypeEnabled) {
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
+          } else {
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+          }
+        } else {
+          this.isLoadComplete = true;
+        }
+      }
+    });
+  }
+
+  /// goToCurrentStep
+  goToCurrentStep() {
+    if (this.currentStep === 0 && this.getComprehensiveSummaryDashboard.isDobUpdated) {
+      this.goToEditProfile();
+    } else if (this.currentStep >= 0 && this.currentStep < 4) {
+      const routerURL = COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep + 1);
+      this.setComprehensiveSummary(true, routerURL);
+    } else if (this.currentStep === 4) {
+      const routerURL = COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep);
+      this.setComprehensiveSummary(true, routerURL);
+    }
+  }
+
+  // goToEditProfile
+  goToEditProfile() {
+    if (this.comprehensivePlanning === 4 && !this.versionTypeEnabled && !this.promoCodeValidated) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
+    } else {
+      this.setComprehensiveSummary(true, COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED);
+    }
+  }
+
+  // REDIRECT TO COMPREHENSIVE 
+  redirectScreen() {
+    if (this.comprehensivePlanning == 0) {
+      this.goToEditComprehensivePlan(true);
+    } else if (this.comprehensivePlanning === 5 || 
+      this.comprehensivePlanning === 1 || this.comprehensivePlanning === 2) {
+      this.goToEditComprehensivePlan(false);
+    } else if (this.comprehensivePlanning === 5 || 
+      (this.versionTypeEnabled && this.comprehensivePlanning === 1)) {
+      this.goToEditComprehensivePlan(false)
+    } else if (this.comprehensivePlanning === 3) {
+      this.goToCurrentStep();
+    } else if (this.comprehensivePlanning === 4) {
+      this.goToEditProfile();
+    }  else if((this.comprehensivePlanning === 1 || this.comprehensivePlanning === 2) || this.paymentInstructions){
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);     
+    } else  {
+      console.log("need to confirm");
+       // this.setComprehensivePlan(false);
+    }
+  }
+
+
+   // INSURANCE 
+   getInsurance(){
+    this.guideMeApiService.getCustomerInsuranceDetails().subscribe((data) => {
+      this.showInsuranceSection = true;
+      if (data.responseMessage && data.responseMessage.responseCode === 6000) {
+        this.insurance.hasInsurance = true;
+        this.insurance.isGuidedJourney = data.objectList[0].financialStatusMapping !== null;
+		const lastTransact = new Date(data.objectList[0].lastEnquiredDate.split(' ')[0]);
+		this.insurance.lastTransactionDate = lastTransact;
+        if (!this.guideMeService.checkGuidedDataLoaded() && this.insurance.isGuidedJourney) {
+          this.guideMeService.convertResponseToGuideMeFormData(data.objectList[0]);
+          this.insuranceRedirect()
+        }
+      } else if (data.responseMessage && data.responseMessage.responseCode === 5003) {
+        this.selectedPlansService.setInsuranceNewUser();
+        this.insurance.hasInsurance = false;
+      }
+    });
+   }
+
+   // redirect 
+   insuranceRedirect(){
+     if(this.insurance.isGuidedJourney){
+    this.router.navigate([GUIDE_ME_ROUTE_PATHS.ROOT]);
+     }
+    this.router.navigate([DIRECT_ROUTE_PATHS.COMPARE_PLANS]);
+   }
+   //
 }
