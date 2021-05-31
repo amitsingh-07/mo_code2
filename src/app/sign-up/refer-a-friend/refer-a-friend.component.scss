@@ -6,7 +6,7 @@ app-refer-a-friend {
             display: none;
         }
         .invest-section-content {
-            background: linear-gradient(269.74deg, #fcf4d7 -12.34%, #00a7a7 55.02%) !important;
+            background: $banner-teal-gradient-bg !important;
         }
     }
 
@@ -26,7 +26,7 @@ app-refer-a-friend {
             padding-top: 80px;
             font-family: $muli-bold;
             letter-spacing: -0.2px;
-            color: #ffffff;
+            color: $white-color;
             font-size: 36px;
             line-height: 45px;
 
@@ -36,8 +36,8 @@ app-refer-a-friend {
         }
     }
     .refer-a-friend {
-        color: #000000;
-        background-color: #ffffff;
+        color: $black-color;
+        background-color: $white-color;
         min-height: calc(100vh - 84px);
         @include allmobiles {
             min-height: calc(100vh - 45px);
@@ -71,7 +71,7 @@ app-refer-a-friend {
             font-size: 16px;
             line-height: 21px;
             text-align: center;
-            color: #5e5e5e;
+            color: $silver-grey-color;
             max-width: 650px;
             margin: 0 auto;
             padding: 30px 0 0;
@@ -88,10 +88,11 @@ app-refer-a-friend {
                 padding-top: 15px;
                 font-size: 16px;
                 font-family: $muli-bold;
+                flex: 1;
                 @include allmobiles {
                     justify-content: space-around;
                 }
-                .toggle-btn {
+                .works-btn {
                     color: $crusta-orange-color;
                     display: flex;
                     align-items: center;
@@ -121,8 +122,8 @@ app-refer-a-friend {
                 }
                 .rewards-btn {
                     padding: 7px 20px;
-                    border: 1px solid #00a7a7;
-                    color: #00a7a7;
+                    border: 1px solid $teal-color;
+                    color: $teal-color;
                     border-radius: 22px;
                     margin-left: 40px;
                     cursor: pointer;
@@ -135,7 +136,7 @@ app-refer-a-friend {
                 }
             }
 
-            .toggle-btn-info {
+            .works-btn-info {
                 margin-top: 30px;
                 .work-steps {
                     display: flex;
@@ -144,7 +145,7 @@ app-refer-a-friend {
                     font-size: 14px;
                     line-height: 16px;
                     text-align: center;
-                    color: #5e5e5e;
+                    color: $silver-grey-color;
                     flex: 1;
                     width: 400px;
                         margin: 0 auto;
@@ -205,10 +206,10 @@ app-refer-a-friend {
                     .referral-link-block {
                         display: flex;
                         justify-content: space-between;
-                        background: linear-gradient(0deg, #00c9c3, #00c9c3), #80d3d3;
+                        background: $referal-teal-gradient-bg;
                         border-radius: 6px;
                         padding: 20px;
-                        color: #ffffff;
+                        color: $white-color;
                         font-family: $muli-bold;
                         .referral-link-details {
                             text-align: left;
@@ -239,7 +240,7 @@ app-refer-a-friend {
                                     line-height: 20px;
                                     text-align: center;
                                     letter-spacing: -0.13125px;
-                                    background: #ff872f;
+                                    background: $crusta-orange-color;
                                     border-radius: 6px;
                                     display: flex;
                                     justify-content: center;
@@ -251,8 +252,8 @@ app-refer-a-friend {
                                     &:hover,
                                     &:active,
                                     &:focus {
-                                        color: #ffffff !important;
-                                        background-color: #ff872f !important;
+                                        color: $white-color !important;
+                                        background-color: $crusta-orange-color !important;
                                         box-shadow: none !important;
                                     }
                                 }
@@ -266,9 +267,9 @@ app-refer-a-friend {
                                 font-size: 18px;
                                 line-height: 23px;
                                 letter-spacing: -0.13125px;
-                                color: #5e5e5e;
-                                background: #ffffff;
-                                border: 1px solid #f7f7f7;
+                                color: $silver-grey-color;
+                                background: $white-color;
+                                border: 1px solid $white-smoke-color;
                                 box-sizing: border-box;
                                 box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
                                 border-radius: 5px;
@@ -294,7 +295,7 @@ app-refer-a-friend {
                                     right: 15px;
                                     transform: rotate(45deg);
                                     background-color: $white-color;
-                                    border: 0px solid #00a7a7;
+                                    border: 0px solid $teal-color;
                                     z-index: 2;
                                     @include min300max350 {
                                         right: 49px;
@@ -323,16 +324,16 @@ app-refer-a-friend {
                                         justify-content: center;
                                         align-items: center;
                                         &.facebook {
-                                            background: #3b5998;
+                                            background: $chambray-color;
                                         }
                                         &.telegram {
-                                            background: #0088cc;
+                                            background: $lochmara-color;
                                         }
                                         &.whatsapp {
-                                            background: #25d366;
+                                            background: $mountain-meadow-color;
                                         }
                                         &.mail {
-                                            background: #6d7683;
+                                            background: $pale-sky-color;
                                             margin-right: 0;
                                         }
                                     }
@@ -343,7 +344,7 @@ app-refer-a-friend {
                                     line-height: 18px;
                                     text-align: center;
                                     letter-spacing: -0.13125px;
-                                    color: #979797;
+                                    color: $dark-dusty-grey-color;
                                 }
                             }
                         }
@@ -351,7 +352,7 @@ app-refer-a-friend {
                     .friends-details {
                         margin-top: 30px;
                         padding: 20px;
-                        background: #ffffff;
+                        background: $white-color;
                         box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
                         border-radius: 6px;
                         .total-friends {
@@ -361,14 +362,14 @@ app-refer-a-friend {
                             font-size: 18px;
                             line-height: 23px;
                             letter-spacing: -0.13125px;
-                            color: #00a7a7;
+                            color: $teal-color;
                             .total-friends-value {
                                 font-family: $muli-regular;
                                 font-size: 24px;
                                 line-height: 30px;
                                 text-align: center;
                                 letter-spacing: -0.13125px;
-                                color: #5e5e5e;
+                                color: $silver-grey-color;
                             }
                         }
                         .friends-list {
@@ -381,10 +382,10 @@ app-refer-a-friend {
                                 font-family: $muli-regular;
                                 font-size: 14px;
                                 line-height: 18px;
-                                color: #5e5e5e;
+                                color: $silver-grey-color;
                             }
                             .friends-list-content {
-                                border-top: 1px solid #00a7a7;
+                                border-top: 1px solid $teal-color;
                                 margin: 0 15px;
                                 @include allmobiles {
                                     margin: 0;
@@ -398,14 +399,14 @@ app-refer-a-friend {
                                             font-family: $muli-regular;
                                             font-size: 14px;
                                             line-height: 18px;
-                                            color: #5e5e5e;
-                                            border-bottom: 1px solid #e7e7e7;
+                                            color: $silver-grey-color;
+                                            border-bottom: 1px solid $mercury-smoke-color;
                                             &:last-child {
                                                 border-bottom: none;
                                             }
                                         }
                                         .friend-lbl {
-                                            color: #00a7a7;
+                                            color: $teal-color;
                                         }
                                     }
                                     .show-more-block {
@@ -415,7 +416,7 @@ app-refer-a-friend {
                                             font-size: 14px;
                                             line-height: 18px;
                                             text-align: center;
-                                            color: #979797;
+                                            color: $dark-dusty-grey-color;
                                         }
                                         .show-more-div {
                                             .btn-primary {
@@ -431,11 +432,10 @@ app-refer-a-friend {
                                                     background-color: $white-color;
                                                     box-shadow: none !important;
                                                     margin-bottom: 20px !important;
-                                                    border: 1px solid #00a7a7;
+                                                    border: 1px solid $teal-color;
                                                     &:hover,
                                                     &:active,
                                                     &:focus {
-                                                        color: #3ec5c5 !important;
                                                         background-color: $white-color !important;
                                                         color: $teal-color !important;
                                                         box-shadow: none !important;
@@ -450,7 +450,7 @@ app-refer-a-friend {
                                     font-size: 14px;
                                     line-height: 18px;
                                     text-align: center;
-                                    color: #9b9b9b;
+                                    color: $dusty-grey-color;
                                     padding: 40px 0px;
                                     max-width: 295px;
                                     text-align: center;
@@ -465,7 +465,7 @@ app-refer-a-friend {
     }
     .new-user {
         padding: 20px;
-        background: #ffffff;
+        background: $white-color;
         box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
         border-radius: 6px;
         .btn {
