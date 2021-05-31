@@ -5,8 +5,8 @@ app-refer-a-friend {
         @include allmobiles {
             display: none;
         }
-        .invest-section-content{
-            background: linear-gradient(269.74deg, #FCF4D7 -12.34%, #00A7A7 55.02%) !important;
+        .invest-section-content {
+            background: linear-gradient(269.74deg, #fcf4d7 -12.34%, #00a7a7 55.02%) !important;
         }
     }
 
@@ -16,7 +16,7 @@ app-refer-a-friend {
             margin: 0 auto;
             padding: 0 75px;
 
-            @include desktop{
+            @include desktop {
                 padding: 0 100px;
             }
         }
@@ -146,12 +146,25 @@ app-refer-a-friend {
                     text-align: center;
                     color: #5e5e5e;
                     flex: 1;
+                    width: 400px;
+                        margin: 0 auto;
+                    @include allmobiles{
+                        width: 100%;
+                        margin: 0 auto;
+                        justify-content: space-evenly;
+                    }
                     .step-info {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                        max-width: 75px;
                         flex: 1;
+                        width: 110px;
+                        @include allmobiles{
+                            max-width: 75px;
+                        }
+                        @include min300max350{
+                            max-width: 70px;
+                        }
                         .step-icon {
                             img {
                                 max-width: 100%;
@@ -160,21 +173,35 @@ app-refer-a-friend {
                         }
                         .step-desc {
                             margin-top: 7px;
+                            width: 110px;
+                            @include allmobiles{
+                                width: 100px;
+                            }
+                            @include iphone6plus{
+                                width: 110px;
+                            }
+                        }
+                        &:first-child{
+                            .step-desc{
+                                margin-top: 0;
+                            }
                         }
                     }
                     .connector {
-                        padding: 0 5px;
                         margin-top: 30px;
                         img {
                             max-width: 100%;
                             height: auto;
                         }
+                        @include min300max350{
+                            max-width: 25px;
+                        }
                     }
                 }
             }
             .referral-details-block {
+                padding-top: 35px;
                 .existing-user {
-                    padding-top: 35px;
                     .referral-link-block {
                         display: flex;
                         justify-content: space-between;
@@ -185,7 +212,7 @@ app-refer-a-friend {
                         font-family: $muli-bold;
                         .referral-link-details {
                             text-align: left;
-                            @include min300max350{
+                            @include min300max350 {
                                 padding-right: 5px;
                             }
                             .referral-link-lbl {
@@ -271,7 +298,7 @@ app-refer-a-friend {
                                     z-index: 2;
                                     @include min300max350 {
                                         right: 49px;
-                                     }
+                                    }
                                     @include min350max375 {
                                         right: 49px;
                                     }
@@ -431,46 +458,42 @@ app-refer-a-friend {
                                 }
                             }
                         }
-                    
-                    
-                    
-                    
                     }
-                    
-                }              
+                }
             }
         }
     }
-    .btn{       
-        &.btn-primary {
-            font-size: 18px;
-            @include allmobiles {
-                width: 100%;
+    .new-user {
+        padding: 20px;
+        background: #ffffff;
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 6px;
+        .btn {
+            &.btn-primary {
+                font-size: 18px;
+                width: 300px;
+                background-color: $crusta-orange-color;
+                border-color: $crusta-orange-color;
+                box-shadow: none !important;
+                @include allmobiles {
+                    width: 100%;
+                }
+                &:hover {
+                    background-color: $crusta-orange-color !important;
+                }
+
+                &:focus,
+                &:active {
+                    outline: none !important;
+                    background: $crusta-orange-color !important;
+                    border-color: none !important;
+                }
+
+                &.active {
+                    outline: none !important;
+                    background: $crusta-orange-color !important;
+                }
             }
-            width: 50%;
-            background-color: $crusta-orange-color;
-            border-color:$crusta-orange-color;
-            box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
-        
-            @include allmobiles {
-              box-shadow: none !important;
-            }
-        
-            &:hover {
-              background-color: $crusta-orange-color !important;
-            }
-        
-            &:focus,
-            &:active {
-              outline: none !important;
-              background: $crusta-orange-color !important;
-              border-color: none !important;
-            }
-        
-            &.active {
-              outline: none !important;
-              background: $crusta-orange-color !important;
-            }
-          }
+        }
     }
 }
