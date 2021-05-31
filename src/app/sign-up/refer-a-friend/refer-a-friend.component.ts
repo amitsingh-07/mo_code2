@@ -47,7 +47,7 @@ export class ReferAFriendComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
     });
-    this.pageTitle = "Refer a friend";
+    this.pageTitle = this.translate.instant('REFER_FRIEND.PAGE_TITLE_LBL');
     this.setPageTitle(this.pageTitle);
     this.renderer.listen('window', 'click', (e: Event) => {
       if (e.target !== this.toggleButton.nativeElement && e.target !== this.toggleIcon.nativeElement) {
