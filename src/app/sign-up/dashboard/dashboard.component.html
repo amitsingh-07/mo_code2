@@ -9,7 +9,6 @@
               <div class="user-profile-bg col-12" >
                 <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
                 <div class="user_name">{{userProfileInfo.firstName | titlecase}}</div>
-                <div (click)="openRefereeModal()">Welcome Referee</div>
               </div>
             </div>
             <!--for mobile-->
@@ -18,7 +17,6 @@
                 <div class="user-profile-bg">
                   <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
                   <div class="user_name">{{userProfileInfo.firstName | titlecase}}</div>
-                  <div (click)="openRefereeModal()">Welcome Referee</div>
                 </div>
                 <div (click)="goToEditProfile()">
                   <img src="/app/assets/images/profile-icon.svg" />
@@ -33,7 +31,7 @@
             </div>
             <!--Announcement section /-->
             <!--Refree Welcome Reward Box-->
-            <div class="welcome-reward-box">
+            <div class="welcome-reward-box" (click)="openRefereeModal()">
               <div class="welcome-reward-box__left">
                 <p>You’ve 3 welcome rewards</p>
                 <p>Valid until 1 Sep 2021</p>

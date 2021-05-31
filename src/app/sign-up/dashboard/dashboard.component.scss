@@ -535,6 +535,7 @@ app-dashboard {
         align-items: center;
         position: relative;
         padding: 20px;
+        cursor: pointer;
         &__left {
             color: #005960;
             p:nth-child(1) {

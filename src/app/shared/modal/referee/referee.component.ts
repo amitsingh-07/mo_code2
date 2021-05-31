@@ -18,7 +18,7 @@ export class RefereeComponent implements OnInit {
   @Input() errorMessage: any;
   @Input() errorMessageHTML: any;
   @Output() closeAction = new EventEmitter<any>();
-  
+  isActive = false;
  
   constructor(
     public activeModal: NgbActiveModal,
@@ -36,16 +36,14 @@ export class RefereeComponent implements OnInit {
         // dismiss all bootstrap modal dialog
         this.activeModal.dismiss();
       });
-  
   }
 
   closeIconAction() {
     this.closeAction.emit();
     this.activeModal.dismiss('Cross click');    
   }
-
-
-
-  
+  toggleDetails() {
+    this.isActive = !this.isActive;
+  }
 }
 
