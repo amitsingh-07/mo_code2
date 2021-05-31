@@ -72,6 +72,7 @@
         margin: 0px 15px 20px;
         border-radius: 6px;
         box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25);
+        position: relative;
     }
     .comprehensive-plan-view{
         cursor: pointer;
@@ -254,5 +255,28 @@
         background-color: $white-color!important;
         color:$teal-color !important;
         box-shadow: none !important;
+    }
+    .reward-points {
+        position: absolute;
+        background-image: url('/assets/images/refer-friend/reward-point-bg.svg');
+        background-repeat: no-repeat;
+        width: 80px;
+        height: 40px;
+        right: 0;
+        z-index: 2;
+        padding: 10px 10px 0px 15px;
+        line-height: 17px;
+        font-family: $muli-bold;
+        font-size: 16px;
+        color: #005960;
+        img {
+            vertical-align: top;
+            padding-right: 4px;
+        }
+    } 
+    .reward-points.grey {
+        @extend .reward-points;
+        background-image: url('/assets/images/refer-friend/reward-point-bg-grey.svg');
+        color: #9B9B9B;
     }
 }

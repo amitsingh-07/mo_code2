@@ -9,7 +9,6 @@
               <div class="user-profile-bg col-12" >
                 <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
                 <div class="user_name">{{userProfileInfo.firstName | titlecase}}</div>
-                <div (click)="openRefereeModal()">Welcome Referee</div>
               </div>
             </div>
             <!--for mobile-->
@@ -18,23 +17,39 @@
                 <div class="user-profile-bg">
                   <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
                   <div class="user_name">{{userProfileInfo.firstName | titlecase}}</div>
-                  <div (click)="openRefereeModal()">Welcome Referee</div>
                 </div>
                 <div (click)="goToEditProfile()">
                   <img src="/app/assets/images/profile-icon.svg" />
                 </div>
               </div>
             </div>
+            <!--Announcement section-->
             <div class="announcement-div" (click)="openSRSJointAccPopup()">
               <img class="announcement-img" src="assets/images/srs-joint-account/speaker.svg">
               <div class="announcement-txt">{{'DASHBOARD.SRS_JOINT_ACCOUNT.FIND_OUT_MORE' | translate}}
               </div>
             </div>
+            <!--Announcement section /-->
+            <!--Refree Welcome Reward Box-->
+            <div class="welcome-reward-box" (click)="openRefereeModal()">
+              <div class="welcome-reward-box__left">
+                <p>You’ve 3 welcome rewards</p>
+                <p>Valid until 1 Sep 2021</p>
+              </div>
+              <div class="welcome-reward-box__right">
+                <img src="assets/images/refer-friend/chevron-next-circle.svg">
+              </div>
+              <div class="welcome-reward-box__gift-box">
+                <img src="assets/images/refer-friend/gift-box-small.svg">
+              </div>
+            </div>
+            <!--Refree Welcome Reward Box /-->
           </div>
           <div class="widgets">
             <app-comprehensive-dashboard *ngIf='isComprehensiveEnabled'></app-comprehensive-dashboard>
             <!-- Investment widget Start -->
             <div class="widget">
+              <div class="reward-points grey"><img src="assets/images/refer-friend/gift-icon-grey.svg">$20</div>
               <ng-container *ngIf="isInvestmentEnabled; else loader">
                 <!-- Purchased Investment and WiseSaver Card -->
                 <ng-container *ngIf="showPortfolioPurchased">
@@ -274,6 +289,7 @@
             </div>
             <!-- Investment widget End -->
             <div class="widget will-writing" *ngIf="showWillWritingSection">
+              <div class="reward-points"><img src="assets/images/refer-friend/gift-icon.svg">$20</div>
               <div class="widget-title">
                 <span class="flex">{{'DASHBOARD.WILL_WRITING.TITLE' | translate}}
                 </span>
