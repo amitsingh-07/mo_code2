@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-referral-reward-details',
@@ -7,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReferralRewardDetailsComponent implements OnInit { 
   isCollapsed = true;
-  constructor() { }
+  noteArray;
+  constructor(
+    public readonly translate: TranslateService
+  ) {
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => { });
+   }
 
-  ngOnInit(): void {
-  
+  ngOnInit() {
+    this.noteArray = this.translate.instant('REFERRAL_REWARD_DETAILS.NOTE');
   }
   toggle(event) {
     this.isCollapsed = !this.isCollapsed;

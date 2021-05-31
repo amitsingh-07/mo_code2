@@ -7,6 +7,11 @@
     <div class="modal-body-title">      
       <div id="errorModeltitle" [innerHTML]="errorTitle"></div>
       </div>
+      <div class="modal-body-message" >
+      <div (click)="comprehensive()">Get Started</div>
+      <div (click)="investment()">Get Started</div>
+      <div (click)="insurance()">Get Started</div>
+    </div>
     <button  type="button" class="close" aria-label="Close" (click)="closeIconAction()">
       <span aria-hidden="true" id="errorModelCloseIcon"></span>
     </button>  

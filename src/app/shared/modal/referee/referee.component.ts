@@ -18,6 +18,9 @@ export class RefereeComponent implements OnInit {
   @Input() errorMessage: any;
   @Input() errorMessageHTML: any;
   @Output() closeAction = new EventEmitter<any>();
+  @Output() comprehensiveAction = new EventEmitter<any>();
+  @Output() investmentAction = new EventEmitter<any>();
+  @Output() insuranceAction = new EventEmitter<any>();
   
  
   constructor(
@@ -42,6 +45,20 @@ export class RefereeComponent implements OnInit {
   closeIconAction() {
     this.closeAction.emit();
     this.activeModal.dismiss('Cross click');    
+  }
+
+  comprehensive(){
+    this.comprehensiveAction.emit();
+    this.activeModal.dismiss('Cross click');  
+  }
+  investment(){
+    this.investmentAction.emit();
+    this.activeModal.dismiss('Cross click');   
+
+  }
+  insurance(){
+    this.insuranceAction.emit();
+    this.activeModal.dismiss('Cross click');
   }
 
 
