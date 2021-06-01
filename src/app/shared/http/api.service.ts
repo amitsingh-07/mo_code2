@@ -717,4 +717,12 @@ export class ApiService {
       );
   }
 
+  // referral code api
+  getRefrerralCodeData() {
+    return this.http.get(apiConstants.endpoint.getReferralCode)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
 }
