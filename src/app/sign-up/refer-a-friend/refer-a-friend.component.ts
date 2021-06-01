@@ -1,7 +1,7 @@
-import { Component, Renderer2, OnInit, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { environment } from './../../../environments/environment';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
@@ -11,6 +11,7 @@ import { RefereeComponent } from '../../shared/modal/referee/referee.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SignUpService } from '../sign-up.service';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+
 @Component({
   selector: 'app-refer-a-friend',
   templateUrl: './refer-a-friend.component.html',
@@ -32,64 +33,68 @@ export class ReferAFriendComponent implements OnInit {
   refereeTotalList = [];
   refereeList = [];
   totalRefereeListCount: number;
-  isHidden: boolean = true;
   pageLimit = 5;
-  @ViewChild('toggleButton') toggleButton: ElementRef;
-  @ViewChild('toggleIcon') toggleIcon: ElementRef;
+  refereeExists = false;
+  referrerExists = false;
   constructor(
     private router: Router,
     public navbarService: NavbarService,
     public modal: NgbModal,
     private translate: TranslateService,
     private signUpService: SignUpService,
-    private renderer: Renderer2
+    config: NgbDropdownConfig
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
     });
     this.pageTitle = this.translate.instant('REFER_FRIEND.PAGE_TITLE_LBL');
     this.setPageTitle(this.pageTitle);
-    this.renderer.listen('window', 'click', (e: Event) => {
-      if (e.target !== this.toggleButton.nativeElement && e.target !== this.toggleIcon.nativeElement) {
-        this.isHidden = true;
-      }
-    });
+    config.placement = 'top-center';
+    config.autoClose = true;
   }
 
   ngOnInit(): void {
-    this.signUpService.getEditProfileInfo().subscribe((data) => {
+    this.signUpService.getRefereeList().subscribe((data) => {
       const responseMessage = data.responseMessage;
       if (responseMessage.responseCode === 6000) {
-        if (data.objectList && data.objectList.personalInformation) {
-          const personalData = data.objectList.personalInformation;
-          this.referrerName = personalData.fullName ?
-            personalData.fullName : personalData.firstName + ' ' + personalData.lastName;
-          this.referralCode = 'KELV-TA23';
-          this.createReferrerLink();
+        if (data.objectList) {
+          const referralData = data.objectList;
+          this.referrerName = referralData.referrerName ? referralData.referrerName : '';
+          this.referralCode = referralData.referralCode ? referralData.referralCode : '';
+          this.refereeExists =  referralData.refereeExists;
+          this.referrerExists = referralData.referrerExists;
+          if (this.referralCode) {
+            this.createReferrerLink();
+            this.totalRefereeListCount = (referralData.totalRefereesCount > 0) ? referralData.totalRefereesCount : 0;
+            if (this.totalRefereeListCount > 0 && referralData.refereeDetailsList) {
+              this.refereeTotalList = referralData.refereeDetailsList;
+              this.refereeList = this.refereeTotalList.slice(0, this.pageLimit);
+            }
+          }
         }
       }
     });
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
-    this.refereeTotalList = [
-      { name: 'Edwin Toh', rewards: 20 },
-      { name: 'Harry Tan', rewards: 20 },
-      { name: 'Teng Wei Hao', rewards: 20 },
-      { name: 'Natalie Ho', rewards: 40 },
-      { name: 'Bruno Mars', rewards: 20 },
-      { name: 'Edwin Toh1', rewards: 20 },
-      { name: 'Harry Tan2', rewards: 20 },
-      { name: 'Teng Wei Hao3', rewards: 20 },
-      { name: 'Natalie Ho4', rewards: 40 },
-      { name: 'Bruno Mars5', rewards: 20 },
-      { name: 'Edwin Toh11', rewards: 20 },
-      { name: 'Harry Tan12', rewards: 20 },
-      { name: 'Teng Wei Hao13', rewards: 20 },
-      { name: 'Natalie Ho14', rewards: 40 },
-      { name: 'Bruno Mars15', rewards: 20 }
-    ];
-    this.refereeList = this.refereeTotalList.slice(0, this.pageLimit);
-    this.totalRefereeListCount = this.refereeTotalList.length;
+    // this.refereeTotalList = [
+    //   { name: 'Edwin Toh', rewards: 20 },
+    //   { name: 'Harry Tan', rewards: 20 },
+    //   { name: 'Teng Wei Hao', rewards: 20 },
+    //   { name: 'Natalie Ho', rewards: 40 },
+    //   { name: 'Bruno Mars', rewards: 20 },
+    //   { name: 'Edwin Toh1', rewards: 20 },
+    //   { name: 'Harry Tan2', rewards: 20 },
+    //   { name: 'Teng Wei Hao3', rewards: 20 },
+    //   { name: 'Natalie Ho4', rewards: 40 },
+    //   { name: 'Bruno Mars5', rewards: 20 },
+    //   { name: 'Edwin Toh11', rewards: 20 },
+    //   { name: 'Harry Tan12', rewards: 20 },
+    //   { name: 'Teng Wei Hao13', rewards: 20 },
+    //   { name: 'Natalie Ho14', rewards: 40 },
+    //   { name: 'Bruno Mars15', rewards: 20 }
+    // ];
+    // this.refereeList = this.refereeTotalList.slice(0, this.pageLimit);
+    // this.totalRefereeListCount = this.refereeTotalList.length;
   }
 
 
@@ -126,10 +131,9 @@ export class ReferAFriendComponent implements OnInit {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     });
     ref.componentInstance.investmentAction.subscribe(() => {
-    //  
     });
     ref.componentInstance.insuranceAction.subscribe(() => {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);  
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     });
   }
 
@@ -160,10 +164,6 @@ export class ReferAFriendComponent implements OnInit {
     ref.componentInstance.primaryAction.subscribe(() => {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     });
-  }
-
-  openSocialMedia(event) {
-    this.isHidden = !this.isHidden;
   }
 
   getRefereeList() {
