@@ -70,26 +70,28 @@
         margin-bottom: 10px;
     }
     &__coupon-card {
-        background: url('/assets/images/refer-friend/Coupon card.svg') no-repeat 0 0;
-        padding: 20px 30px;
-           display: flex;
-           justify-content: space-between;
-           margin: 5px 0;
+        height: 110px;
+        display: flex;
+        margin: 5px 0;
     }
     &__coupon-card--grey {
-        background: url('/assets/images/refer-friend/Coupon card grey.svg') no-repeat 0 0;
+        background-color: $mercury-smoke-color;
         padding: 20px 30px;
-           display: flex;
-           justify-content: space-between;
-           color: $silver-grey-color;
-           margin: 5px 0;
+        display: flex;
+        justify-content: space-between;
+        color: $silver-grey-color;
+        margin: 5px 0;
     }
     &__coupon-card__left {
         color: $portfolio-card-text-color;
         font-size: 18px;
         font-weight: bold;
-        padding-bottom: 10px;
-        width: 184px;
+        padding: 0 20px;
+        height: 110px;
+        background-color: $couponcard-bg-blue;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         &__get-started {
             color: $crusta-orange-color;
             font-size: 14px;
@@ -99,8 +101,14 @@
     &__coupon-card__right {
         color: $black-color;
         font-size: 18px;
-        padding-bottom: 10px;
+        padding: 0 10px;
         text-align: center;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+        background-color: $couponcard-bg-blue;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
     &__separator {
         background-color: $mercury-smoke-color;
