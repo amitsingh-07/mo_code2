@@ -39,7 +39,8 @@
                             {{'REFER_FRIEND.WORKS_BTN_TXT' | translate}}
                             <span><i class='arrow' [ngClass]="{'active': isCollapsed}"></i></span>
                         </div>
-                        <div class="rewards-btn" (click)="openRefereeModal()">{{'REFER_FRIEND.REWARDS_BTN_TXT' |
+                        <div class="rewards-btn" (click)="openRefereeModal()" *ngIf='refereeExists'>
+                            {{'REFER_FRIEND.REWARDS_BTN_TXT' |
                             translate}}</div>
                     </div>
                     <div class="works-btn-info" *ngIf="isCollapsed">
@@ -61,12 +62,12 @@
                         </div>
                     </div>
                     <div class="referral-details-block">
-                        <div class="new-user">
+                        <div class="new-user" *ngIf='!referralCode'>
                             <button type="button" id="payment-instruction" class="btn btn-primary"
                                 (click)="getReferralLink()">
                                 {{'REFER_FRIEND.REFERRAL_LINK_LBL' | translate}}</button>
                         </div>
-                        <div class="existing-user">
+                        <div class="existing-user" *ngIf='referralCode'>
                             <div class="referral-link-block">
                                 <div class="referral-link-details">
                                     <div class="referral-link-lbl">{{'REFER_FRIEND.INVITE_SHARE_LINK_LBL' | translate}}
@@ -82,26 +83,25 @@
                                             class="pl10">{{ referralCode
                                             }}</span>
                                     </div>
-                                </div>
-                                <div class="share-btn-block">
-                                    <button class="btn btn-primary share-btn" #toggleButton
-                                        (click)="openSocialMedia($event)">
-                                        <img alt="copy" #toggleIcon class="share-icon"
-                                            src="assets/images/share-icon-white.svg" />
+                                </div>                           
+                                <div ngbDropdown class="share-btn-block">
+                                    <button class="btn btn-primary share-btn" id="dropdownConfig" ngbDropdownToggle>
+                                        <img alt="copy" class="share-icon" src="assets/images/share-icon-white.svg" />
                                         {{'REFER_FRIEND.SHARE_LBL' | translate}}
                                     </button>
-                                    <div class="social-media-block" [ngClass]="{'active': !isHidden}">
+                                    <div class="social-media-block" ngbDropdownMenu aria-labelledby="dropdownConfig"
+                                        >
                                         <div>{{'REFER_FRIEND.SOCIAL_MEDIA_INFO_LBL' | translate}}</div>
                                         <div class="social-media-list">
-                                            <div><a href="{{ facebookShareLink }}" target="_blank"
+                                            <div class="mr20"><a href="{{ facebookShareLink }}" target="_blank"
                                                     style='color:#fff'><span class="circle facebook"><img alt="copy"
                                                             src="assets/images/social-networks/facebook-circle-icon.svg" /></span></a>
                                             </div>
-                                            <div><a href="{{ whatsappShareLink }}" target="_blank"
+                                            <div class="mr20"><a href="{{ whatsappShareLink }}" target="_blank"
                                                     style='color:#fff'><span class="circle telegram"><img alt="copy"
                                                             src="assets/images/social-networks/telegram-circle-icon.svg" /></span></a>
                                             </div>
-                                            <div><a href="{{ telegramShareLink }}" target="_blank"
+                                            <div class="mr20"><a href="{{ telegramShareLink }}" target="_blank"
                                                     style='color:#fff'><span class="circle whatsapp"><img alt="copy"
                                                             src="assets/images/social-networks/whatsapp-circle-icon.svg" /></span></a>
                                             </div>
@@ -130,8 +130,8 @@
                                         <div class="friends-list-data" *ngIf="refereeList.length > 0">
                                             <div class="friends-list">
                                                 <div class="list-item" *ngFor="let l of refereeList">
-                                                    <div class="friend-lbl">{{ l.name }}</div>
-                                                    <div class="reward-value">{{ l.rewards |
+                                                    <div class="friend-lbl">{{ l.refereeName }}</div>
+                                                    <div class="reward-value">{{ l.referrerVoucherCreditSum |
                                                         currency:'USD':'symbol-narrow':'1.0-0' }}</div>
                                                 </div>
                                             </div>
@@ -148,7 +148,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="no-data" *ngIf="!(refereeList.length > 0)">{{'REFER_FRIEND.SPREAD_WORDS_LBL' |
+                                        <div class="no-data" *ngIf="!(refereeList.length > 0)">
+                                            {{'REFER_FRIEND.SPREAD_WORDS_LBL' |
                                             translate}}
                                         </div>
                                     </div>

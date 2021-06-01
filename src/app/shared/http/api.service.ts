@@ -717,4 +717,11 @@ export class ApiService {
       );
   }
 
+  getRefereeList(){
+    return this.http.get(apiConstants.endpoint.getRefereeList)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
+
 }
