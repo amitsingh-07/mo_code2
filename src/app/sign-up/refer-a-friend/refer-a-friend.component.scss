@@ -233,6 +233,11 @@ app-refer-a-friend {
                         }
                         .share-btn-block {
                             position: relative;
+                            .dropdown-toggle{
+                                &::after{
+                                    display: none;
+                                }
+                            }
                             .btn-primary {
                                 &.share-btn {
                                     padding: 12px 20px 13px;
@@ -259,10 +264,7 @@ app-refer-a-friend {
                                 }
                             }
                             .social-media-block {
-                                display: none;
-                                position: absolute;
-                                bottom: 54px;
-                                right: 5px;
+                                transform: translate(-225px, -165px) !important;
                                 font-family: $muli-bold;
                                 font-size: 18px;
                                 line-height: 23px;
@@ -274,41 +276,41 @@ app-refer-a-friend {
                                 box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
                                 border-radius: 5px;
                                 padding: 20px 40px;
+                                width: 340px;
+                                text-align: center;
                                 @include min300max350 {
                                     padding: 20px;
-                                    bottom: 72px;
-                                    right: -26px;
+                                    width: 300px;
+                                    transform: translate(-168px, -161px) !important;
                                 }
                                 @include min350max375 {
-                                    right: -27px;
+                                    width: 320px;
+                                    transform: translate(-199px, -161px) !important;
                                 }
                                 @include min375max400 {
-                                    right: -23px;
+                                    transform: translate(-212px, -161px) !important;
                                 }
-                                &::before {
+                                &::after {
                                     content: "";
                                     position: absolute;
                                     display: block;
-                                    width: 20px;
-                                    height: 20px;
+                                    width: 30px;
+                                    height: 30px;
                                     bottom: -10px;
-                                    right: 15px;
+                                    right: 30px;
                                     transform: rotate(45deg);
                                     background-color: $white-color;
                                     border: 0px solid $teal-color;
                                     z-index: 2;
                                     @include min300max350 {
-                                        right: 49px;
+                                        right: 46px;
                                     }
                                     @include min350max375 {
-                                        right: 49px;
+                                        right: 36px;
                                     }
                                     @include min375max400 {
-                                        right: 49px;
+                                        right: 42px;
                                     }
-                                }
-                                &.active {
-                                    display: block;
                                 }
                                 .social-media-list {
                                     display: flex;
@@ -319,7 +321,6 @@ app-refer-a-friend {
                                         width: 50px;
                                         height: 50px;
                                         border-radius: 25px;
-                                        margin-right: 20px;
                                         display: flex;
                                         justify-content: center;
                                         align-items: center;
@@ -406,6 +407,7 @@ app-refer-a-friend {
                                             }
                                         }
                                         .friend-lbl {
+                                            font-family: $muli-bold;
                                             color: $teal-color;
                                         }
                                     }
