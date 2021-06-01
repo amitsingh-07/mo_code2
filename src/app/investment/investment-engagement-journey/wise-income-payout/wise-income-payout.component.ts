@@ -21,6 +21,7 @@ import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import {  ModelWithButtonComponent} from '../../../shared/modal/model-with-button/model-with-button.component';
+import * as smoothscroll from "smoothscroll-polyfill";
 @Component({
   selector: 'app-wise-income-payout',
   templateUrl: './wise-income-payout.component.html',
@@ -79,6 +80,7 @@ export class WiseIncomePayoutComponent implements OnInit {
       this.pageTitle = this.translate.instant('WISE_INCOME_PAYOUT.TITLE');
       this.setPageTitle(this.pageTitle, null, null, false, false, null, true);
     });
+    smoothscroll.polyfill();
   }
   ngOnInit() {
     this.navbarService.existingNavbar.pipe(takeUntil(this.ngUnsubscribe))
