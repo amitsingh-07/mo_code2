@@ -41,6 +41,7 @@
     "node-sass": "^4.14.1",
     "nouislider": "^11.1.0",
     "rxjs": "^6.6.0",
+    "smoothscroll-polyfill": "^0.4.4",
     "text-mask-core": "^5.1.2",
     "tslib": "^1.10.0",
     "zone.js": "^0.10.3"
