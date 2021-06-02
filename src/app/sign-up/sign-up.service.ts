@@ -730,4 +730,12 @@ export class SignUpService {
     this.signUpFormData.isMyInfoEnabled = status;
     this.commit();
   }
+
+  getRefrerralCodeData() {
+    return this.apiService.getRefrerralCodeData();
+  }
+  getRefereeList() {
+    // API Call here
+    return this.apiService.getRefereeList();
+  }
 }

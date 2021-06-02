@@ -1,8 +1,8 @@
-import { Component, Renderer2, OnInit, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin as observableForkJoin } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { environment } from './../../../environments/environment';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
@@ -12,23 +12,6 @@ import { RefereeComponent } from '../../shared/modal/referee/referee.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SignUpService } from '../sign-up.service';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
-import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
-import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
-import { ConfigService } from '../../config/config.service';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment/investment-account/investment-account-routes.constants';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment/investment-common/investment-common-routes.constants';
-import { ComprehensiveApiService } from '../../comprehensive/comprehensive-api.service';
-import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
-import { COMPREHENSIVE_CONST } from 'src/app/comprehensive/comprehensive-config.constants';
-import { AppService } from 'src/app/app.service';
-import { COMPREHENSIVE_ROUTE_PATHS } from 'src/app/comprehensive/comprehensive-routes.constants';
-import { LoaderService } from 'src/app/shared/components/loader/loader.service';
-import { IMyProfile } from 'src/app/comprehensive/comprehensive-types';
-import { GuideMeApiService } from 'src/app/guide-me/guide-me.api.service';
-import { GuideMeService } from 'src/app/guide-me/guide-me.service';
-import { SelectedPlansService } from 'src/app/shared/Services/selected-plans.service';
-import { GUIDE_ME_ROUTE_PATHS } from 'src/app/guide-me/guide-me-routes.constants';
-import { DIRECT_ROUTE_PATHS } from 'src/app/direct/direct-routes.constants';
 @Component({
   selector: 'app-refer-a-friend',
   templateUrl: './refer-a-friend.component.html',
@@ -50,111 +33,68 @@ export class ReferAFriendComponent implements OnInit {
   refereeTotalList = [];
   refereeList = [];
   totalRefereeListCount: number;
-  isHidden: boolean = true;
   pageLimit = 5;
-  @ViewChild('toggleButton') toggleButton: ElementRef;
-  @ViewChild('toggleIcon') toggleIcon: ElementRef;
-  investmentsSummary: any;
-  isInvestmentEnabled: boolean;
-  isInvestmentConfigEnabled = false;
-  showStartInvesting: boolean;
-  iFastMaintenance: boolean;
-
-  // comprehensive 
-
-  userName: string;
-  comprehensivePlanning: number;
-  userDetails: IMyProfile;
-  getComprehensiveSummary: any;
-  getComprehensiveSummaryEnquiry: any;
-  reportStatus: any; // new submitted ready
-  advisorStatus: boolean;
-  reportDate: any;
-  submittedDate: any;
-  currentStep: number;
-  stepDetails = { hasDependents: 1, hasEndowments: 2 };
-  items: any;
-  isLoadComplete = false;
-  islocked: boolean;
-  isComprehensiveEnabled = false;
-  isComprehensiveLiveEnabled = false;
-  getComprehensiveDashboard: any;
-  getCurrentVersionType = '';
-  comprehensiveLiteEnabled: boolean;
-  versionTypeEnabled: boolean;
-  getComprehensiveSummaryDashboard: any;
-  promoCodeValidated = false;
-  enquiryId: any;
-  isReportGenerated = false;
-  fetchData: string;
-  paymentInstructions = false;
-  showInsuranceSection: boolean;
-  // INSURANCE 
-  insurance: any = {};
+  refereeExists = false;
+  referrerExists = false;
   constructor(
     private router: Router,
     public navbarService: NavbarService,
     public modal: NgbModal,
     private translate: TranslateService,
     private signUpService: SignUpService,
-    private renderer: Renderer2,
-    private investmentAccountService: InvestmentAccountService,
-    private investmentCommonService: InvestmentCommonService,
-    private configService: ConfigService,
-    private comprehensiveApiService: ComprehensiveApiService,
-    private appService: AppService,
-    private loaderService: LoaderService,
-    private comprehensiveService: ComprehensiveService,
-    private guideMeApiService: GuideMeApiService,
-    private guideMeService: GuideMeService,
-    private selectedPlansService: SelectedPlansService,
+    config: NgbDropdownConfig
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
     });
-    this.pageTitle = "Refer a friend";
+    this.pageTitle = this.translate.instant('REFER_FRIEND.PAGE_TITLE_LBL');
     this.setPageTitle(this.pageTitle);
-    this.renderer.listen('window', 'click', (e: Event) => {
-      // if (e.target !== this.toggleButton.nativeElement && e.target !== this.toggleIcon.nativeElement) {
-      //   this.isHidden = true;
-      // }
-    });
+    config.placement = 'top-center';
+    config.autoClose = true;
   }
 
   ngOnInit(): void {
-    this.signUpService.getEditProfileInfo().subscribe((data) => {
+    this.signUpService.getRefereeList().subscribe((data) => {
       const responseMessage = data.responseMessage;
       if (responseMessage.responseCode === 6000) {
-        if (data.objectList && data.objectList.personalInformation) {
-          const personalData = data.objectList.personalInformation;
-          this.referrerName = personalData.fullName ?
-            personalData.fullName : personalData.firstName + ' ' + personalData.lastName;
-          this.referralCode = 'KELV-TA23';
-          this.createReferrerLink();
+        if (data.objectList) {
+          const referralData = data.objectList;
+          this.referrerName = referralData.referrerName ? referralData.referrerName : '';
+          this.referralCode = referralData.referralCode ? referralData.referralCode : '';
+          this.refereeExists =  referralData.refereeExists;
+          this.referrerExists = referralData.referrerExists;
+          if (this.referralCode) {
+            this.createReferrerLink();
+            this.totalRefereeListCount = (referralData.totalRefereesCount > 0) ? referralData.totalRefereesCount : 0;
+            if (this.totalRefereeListCount > 0 && referralData.refereeDetailsList) {
+              this.refereeTotalList = referralData.refereeDetailsList;
+              this.refereeList = this.refereeTotalList.slice(0, this.pageLimit);
+            }
+          }
         }
       }
     });
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
-    this.refereeTotalList = [
-      { name: 'Edwin Toh', rewards: 20 },
-      { name: 'Harry Tan', rewards: 20 },
-      { name: 'Teng Wei Hao', rewards: 20 },
-      { name: 'Natalie Ho', rewards: 40 },
-      { name: 'Bruno Mars', rewards: 20 },
-      { name: 'Edwin Toh1', rewards: 20 },
-      { name: 'Harry Tan2', rewards: 20 },
-      { name: 'Teng Wei Hao3', rewards: 20 },
-      { name: 'Natalie Ho4', rewards: 40 },
-      { name: 'Bruno Mars5', rewards: 20 },
-      { name: 'Edwin Toh11', rewards: 20 },
-      { name: 'Harry Tan12', rewards: 20 },
-      { name: 'Teng Wei Hao13', rewards: 20 },
-      { name: 'Natalie Ho14', rewards: 40 },
-      { name: 'Bruno Mars15', rewards: 20 }
-    ];
-    this.refereeList = this.refereeTotalList.slice(0, this.pageLimit);
-    this.totalRefereeListCount = this.refereeTotalList.length;
+    // this.refereeTotalList = [
+    //   { name: 'Edwin Toh', rewards: 20 },
+    //   { name: 'Harry Tan', rewards: 20 },
+    //   { name: 'Teng Wei Hao', rewards: 20 },
+    //   { name: 'Natalie Ho', rewards: 40 },
+    //   { name: 'Bruno Mars', rewards: 20 },
+    //   { name: 'Edwin Toh1', rewards: 20 },
+    //   { name: 'Harry Tan2', rewards: 20 },
+    //   { name: 'Teng Wei Hao3', rewards: 20 },
+    //   { name: 'Natalie Ho4', rewards: 40 },
+    //   { name: 'Bruno Mars5', rewards: 20 },
+    //   { name: 'Edwin Toh11', rewards: 20 },
+    //   { name: 'Harry Tan12', rewards: 20 },
+    //   { name: 'Teng Wei Hao13', rewards: 20 },
+    //   { name: 'Natalie Ho14', rewards: 40 },
+    //   { name: 'Bruno Mars15', rewards: 20 }
+    // ];
+    // this.refereeList = this.refereeTotalList.slice(0, this.pageLimit);
+    // this.totalRefereeListCount = this.refereeTotalList.length;
   }
 
 
@@ -215,10 +155,6 @@ export class ReferAFriendComponent implements OnInit {
     ref.componentInstance.primaryAction.subscribe(() => {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     });
-  }
-
-  openSocialMedia(event) {
-    this.isHidden = !this.isHidden;
   }
 
   getRefereeList() {

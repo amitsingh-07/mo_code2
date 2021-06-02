@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -52,6 +52,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
   paymentInstructions = false;
   showFixedToastMessage: boolean;
   toastMsg: any;
+  @Input() getReferralInfo:string;
 constructor(
     private router: Router,
     private translate: TranslateService,

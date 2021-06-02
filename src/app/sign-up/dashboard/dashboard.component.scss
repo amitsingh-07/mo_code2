@@ -503,15 +503,32 @@ app-dashboard {
             }
         }
     }
+    .announce-reward-wrapper {
+        @include desktop {
+            padding: 25px 25px 0 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
     .announcement-div {
         display: flex;
+        flex: 1;
         align-items: center;
         margin-top: 21px;
         padding: 13px 16px 14px 16px;
+        @include desktop {
+            padding: 0 20px;
+            margin-top: 0;
+            height: 80px;
+        }
         border-radius: 6px;
         border: solid 3px #ffa32c;
         background-color: rgba(0, 89, 96, 0.3);
         cursor: pointer;
+        @include desktop {
+            margin-right: 30px;
+        }
         .announcement-img {
             width: 40px;
             height: auto;
@@ -528,10 +545,15 @@ app-dashboard {
     /*Welcome Reward Box*/
     .welcome-reward-box {
         display: flex;
+        flex: 1;
         justify-content: space-between;
         background: #FFD052;
         border-radius: 6px;
         margin-top: 10px;
+        @include desktop {
+            margin-top: 0;
+            height: 80px;
+        }
         align-items: center;
         position: relative;
         padding: 20px;
