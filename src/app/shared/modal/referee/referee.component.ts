@@ -10,7 +10,8 @@ declare var require: any;
 @Component({
   selector: 'app-referee',
   templateUrl: './referee.component.html',
-  styleUrls: ['./referee.component.scss']
+  styleUrls: ['./referee.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class RefereeComponent implements OnInit {
   @Input() imgType = 1;

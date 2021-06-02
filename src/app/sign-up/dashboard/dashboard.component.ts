@@ -90,6 +90,7 @@ export class DashboardComponent implements OnInit {
 
   // iFast Maintenance
   iFastMaintenance = false;
+  getReferralInfo: any;
 
   constructor(
     private router: Router,
@@ -203,6 +204,13 @@ export class DashboardComponent implements OnInit {
     });
     this.getInvestmentsSummary();
     this.investmentAccountService.deactivateReassess();
+    this.getRefrerralCodeData();
+  }
+
+  getRefrerralCodeData() {
+    this.signUpService.getRefrerralCodeData().subscribe((data) => {
+      this.getReferralInfo = data.objectList;
+    });
   }
 
   loadOptionListCollection() {

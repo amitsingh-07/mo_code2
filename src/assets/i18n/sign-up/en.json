@@ -616,6 +616,22 @@
     "SOCIAL_MAIL_SUBJECT": "Join me at Moneyowl using my referral link!",
     "COPIED": "Copied"
   },
+  "REFEREE-MODAL": {
+    "CLOSE_BTN": "X",
+    "VALIDITY": "Valid until 1 Sep 2021",
+    "PARA_ONE": "We are excited to share these rewards with all Owl friends who just join us through friend referral.",
+    "HEADING": "3 welcome rewards to claim!",
+    "PARA_TWO": "You and your friend both <b>earn the same amount</b> when you complete any of these!",
+    "COUPON_CARD_COMP": "Get a comprehnsive financial planning",
+    "COUPON_CARD_INS": "Get any insurance coverage",
+    "COUPON_CARD_INVEST": "Invest or save in any portfolio",
+    "GET_STARTED": "Get Started",
+    "MORE_ABOUT": "More about referral rewards",
+    "MORE_ABOUT_LIST_ONE": "All payment must be completed to be eligible for any of the rewards.",
+    "MORE_ABOUT_LIST_TWO": "All rewards are sent to your email within 2 to 4 weeks after implementation. Please refer to the email for all rewards redemption instructions.",
+    "MORE_ABOUT_LIST_THREE": "View our website for more <a target='_blank' href='https://www.moneyowl.com.sg/referral/'>rewards details</a> and <a target='_blank' href='https://www.moneyowl.com.sg/referral/#referral-faq'>FAQs</a>",
+    "TERMS_AND_COND": "<a target='_blank' href='https://www.moneyowl.com.sg/referral/#referral-tnc'>Terms & Conditions</a>"
+},
   "REFER_FRIEND":{
     "PAGE_TITLE_LBL": "Refer a friend",
     "BANNER_LBL": "Share MoneyOwl with your friends",

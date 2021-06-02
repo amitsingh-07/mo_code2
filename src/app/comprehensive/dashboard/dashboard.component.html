@@ -30,7 +30,7 @@
     </div>
     <!--/Tab-->
   <div class="widget">
-    <div class="reward-points"><img src="assets/images/refer-friend/gift-icon.svg">$20</div>
+    <div class="reward-points"  *ngIf="getReferralInfo.referralVoucherList"><img src="assets/images/refer-friend/gift-icon.svg">$20</div>
     <div class="form-group-with-bg overlay-bg">
       <div [ngClass]="{'hidden': !isLoadComplete}">
         <!--Form Header-->
