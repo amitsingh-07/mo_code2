@@ -89,12 +89,6 @@ app-dashboard {
                         margin-top: 5px;
                         margin-left: 6px;
                     }
-                    .view_all {
-                        font-family: $muli-regular;
-                        font-size: 16px;
-                        font-weight: normal;
-                        cursor: pointer;
-                    }
                 }
                 .widget-body {
                     display: flex;
@@ -277,6 +271,12 @@ app-dashboard {
                     img {
                         margin: 0 56px 6px 0;
                     }
+                }
+                .view_all {
+                    font-family: $muli-regular;
+                    font-size: 16px;
+                    font-weight: normal;
+                    cursor: pointer;
                 }
             }
             .investment-widget {
@@ -505,7 +505,6 @@ app-dashboard {
     }
     .announce-reward-wrapper {
         @include desktop {
-            padding: 25px 25px 0 25px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -526,9 +525,6 @@ app-dashboard {
         border: solid 3px #ffa32c;
         background-color: rgba(0, 89, 96, 0.3);
         cursor: pointer;
-        @include desktop {
-            margin-right: 30px;
-        }
         .announcement-img {
             width: 40px;
             height: auto;
@@ -553,6 +549,7 @@ app-dashboard {
         @include desktop {
             margin-top: 0;
             height: 80px;
+            margin-left: 20px;
         }
         align-items: center;
         position: relative;
@@ -579,7 +576,9 @@ app-dashboard {
     }
     .reward-points {
         position: absolute;
-        background-image: url('/assets/images/refer-friend/reward-point-bg.svg');
+        background: $reward-points-bg-color;
+        border-top-right-radius: 6px;
+        border-bottom-left-radius: 20px;
         background-repeat: no-repeat;
         width: 80px;
         height: 40px;
@@ -589,15 +588,26 @@ app-dashboard {
         line-height: 17px;
         font-family: $muli-bold;
         font-size: 16px;
-        color: #005960;
+        color: $portfolio-card-text-color;
         img {
             vertical-align: top;
             padding-right: 4px;
         }
     }
+    div.reward-points + div.view_all {
+        top: 40px !important;
+    }
     .reward-points.grey {
         @extend .reward-points;
-        background-image: url('/assets/images/refer-friend/reward-point-bg-grey.svg');
-        color: #9B9B9B;
+        background: $reward-points-bg-color-grey;
+        border-top-right-radius: 6px;
+        border-bottom-left-radius: 20px;
+        color: $dusty-grey-color;
+    }
+    .topup-btn {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 20px;
+        margin: -10px 0 15px 0;
     }
 }
