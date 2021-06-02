@@ -1,6 +1,8 @@
 <div class="referrel-reward-header" (click)="toggle($event)">
   More about referral rewards
-  <span *ngIf='!isCollapsed'><img src="assets/images/refer-friend/arrow-black-down.svg"></span><span *ngIf='isCollapsed'><img src="assets/images/refer-friend/arrow-black-up.svg"></span>
+  <span  class="ml10" *ngIf='!isCollapsed'>
+    <img src="assets/images/refer-friend/arrow-black-down.svg"></span>
+    <span class="ml10" *ngIf='isCollapsed'><img src="assets/images/refer-friend/arrow-black-up.svg"></span>
 </div>
 <div *ngIf="isCollapsed">
   <div *ngFor="let note of noteArray, let i = index;" class="note-list">

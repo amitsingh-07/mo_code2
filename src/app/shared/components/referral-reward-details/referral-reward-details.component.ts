@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./referral-reward-details.component.scss']
 })
 export class ReferralRewardDetailsComponent implements OnInit { 
-  isCollapsed = true;
+  isCollapsed = false;
   noteArray;
   constructor(
     public readonly translate: TranslateService
