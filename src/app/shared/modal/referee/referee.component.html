@@ -1,19 +1,63 @@
-<div class="modal-header">
-    <div class="modal-title popup-header-icon" >
-      <img src="assets/images/owl.svg" id="errorModelImage" />
-    </div>   
+  <div class="modal-body white-bg">
+    <div class="referee-modal">
+			<div class="referee-modal__bannner">
+				<button class="referee-modal__bannner__close-btn" (click)="closeIconAction()">X</button>
+				<div class="referee-modal__bannner__gift-box"><img src="assets/images/refer-friend/Giftboxes.svg" width="163" height="120"></div>
+				<div class="referee-modal__bannner__valid-box">Valid until {{rerefeinfo.rewardsValidityDate | date:'dd MMM y' }}</div>
+			</div>
+			<div class="referee-modal__inner">
+				<p class="mb30">We are excited to share these rewards with all Owl friends who just join us through friend referral.</p>
+				<div>
+					<p class="referee-modal__inner__heading">{{rerefeinfo.totalRewardsCount }} welcome rewards to claim!</p>
+					<p class="mb30">You and your friend both <b>earn the same amount</b> when you complete any of these!</p>
+				</div>
+				<div class="referee-modal__inner__coupon-card " >
+					<div class="referee-modal__inner__coupon-card__left">
+						<p>Get a comprehnsive financial planning</p>
+						<p class="referee-modal__inner__coupon-card__left__get-started" (click)="comprehensive()">Get Started</p>
+					</div>
+					<div class="referee-modal__inner__coupon-card__right">
+						<p>S$20</p>
+						<p><img src="assets/images/refer-friend/GrabFood logo.svg"></p>
+						<p>credits</p>
+					</div>
+				</div>
+
+				<div class="referee-modal__inner__coupon-card" >
+					<div class="referee-modal__inner__coupon-card__left">
+						<p>Get a comprehnsive financial planning</p>
+						<p class="referee-modal__inner__coupon-card__left__get-started" (click)="investment()">Get Started</p>
+					</div>
+					<div class="referee-modal__inner__coupon-card__right">
+						<p>S$20</p>
+						<p><img src="assets/images/refer-friend/GrabFood logo.svg"></p>
+						<p>credits</p>
+					</div>
+				</div>
+
+				<div class="referee-modal__inner__coupon-card--grey">
+					<div class="referee-modal__inner__coupon-card__left">
+						<p>Get a comprehnsive financial planning</p>
+						<p class="referee-modal__inner__coupon-card__left__get-started" (click)="insurance()">Get Started</p>
+					</div>
+					<div class="referee-modal__inner__coupon-card__right">
+						<p>S$20</p>
+						<p><img src="assets/images/refer-friend/GrabFood logo grey.svg"></p>
+						<p>credits</p>
+					</div>
+				</div>
+				<div class="referee-modal__inner__separator"></div>
+				<div class="referee-modal__inner__more-about">
+					<div class="referee-modal__inner__more-about__heading" (click)="toggleDetails()">More about referral rewards <span *ngIf='!isActive'><img src="assets/images/refer-friend/arrow-black-down.svg"></span><span *ngIf='isActive'><img src="assets/images/refer-friend/arrow-black-up.svg"></span></div>
+					<div id="moreAbtDetails" *ngIf='isActive'>
+						<ul>
+							<li>All payment must be completed to be eligible for any of the rewards.</li>
+							<li>All rewards are sent to your email within 2 to 4 weeks after implementation. Please refer to the email for all rewards redemption instructions.</li>
+							<li>View our website for more <a href="#">rewards details</a> and <a href="#">FAQs</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="terms-cond">Terms & Conditions</div>
+			</div>
+		</div>
   </div>
-  <div class="modal-body white-bg" >
-    <div class="modal-body-title">      
-      <div id="errorModeltitle" [innerHTML]="errorTitle"></div>
-      </div>
-      <div class="modal-body-message" >
-      <div (click)="comprehensive()">Get Started</div>
-      <div (click)="investment()">Get Started</div>
-      <div (click)="insurance()">Get Started</div>
-    </div>
-    <button  type="button" class="close" aria-label="Close" (click)="closeIconAction()">
-      <span aria-hidden="true" id="errorModelCloseIcon"></span>
-    </button>  
-    <div class="modal-body-message "  id="errorMessage" [innerHTML]="errorMessage"></div> 
-      </div>

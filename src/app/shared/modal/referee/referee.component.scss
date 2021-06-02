@@ -1,191 +1,140 @@
 @import '../../../../variables';
 @import '../../../../mixins';
-
-.my-info {
-  .modal-body {
-    @include desktop {
-      width: 375px !important;
-      margin: 0 auto !important;
-    }
-  }
-}
-
-.toggle-btn {
-  flex: 1;
-}
-.padding-right-10 {
-  padding-right: 10px;
-}
-.action-button {
-  width: 100%;
-  border-radius: 6px;
-  box-shadow: 0 6px 7px 0 $btn-shadow-color !important;
-  background-color: $teal-color;
-  border: 1px solid $teal-color;
-  margin-top: 15px;
-  font-family: $muli-bold;
-  font-size: 22px;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: -0.3px;
-  text-align: center;
-  color: $white-color;
-  padding: 10px;
-  cursor: pointer;
-  &.secondary-button {
-    background-color: $white-color;
-    color: $teal-color;
-    -webkit-text-fill-color: $teal-color;
-    box-shadow: none !important;
-    outline: none !important;
-    border: 1px solid rgba(0, 167, 167, 0.4);
-
-    &:hover {
-      background-color: $white-color;
-      border-color: $teal-color;
-      color: $teal-color !important;
-      -webkit-text-fill-color: $teal-color;
-      @include allmobiles {
-        background-color: $white-color !important;
-        color: $teal-color !important;
-        -webkit-text-fill-color: $teal-color !important;
-      }
-      @include tablet {
-        background-color: $white-color !important;
-        color: $teal-color !important;
-        -webkit-text-fill-color: $teal-color !important;
-      }
-    }
-  }
-
-  &:hover {
-    background-color: $robins-egg-blue-color;
-    border-color: $action-btn-hover-brdr-color;
-    color: $white-color !important;
-  }
-  &:active {
-    background-color: $action-btn-active-bg;
-    color: $white-color;
-  }
-}
-.popup-header-icon {
-  &.glass {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: -15px;
-
-    img {
-      height: 100%;
-      width: 100%;
-    }
-  }
-}
-.modal-body-message {
-  margin-bottom: 15px;
-  &.check-box-message{
-  margin-top: -6px;
-  margin-bottom: 20px;
-  }
-}
 .modal-body {
-  padding: 20px;
-  &.my-info {
     @include desktop {
-      width: 375px !important;
-      margin: 0 auto !important;
+        width: 550px;
+        padding: 0;
     }
-  }
-}
-.warning-icon {
-  width: 24px;
-  height: 24px;
-  padding-left: 7px;
-  img {
-    max-width: 100%;
-    height: auto;
-    margin: 0;
-  }
-}
-.my_info_details {
-  font-family: $muli-regular;
-  font-size: 16px;
-  line-height: 1.31;
-  letter-spacing: -0.2px;
-  color: $teal-color;
-  padding-top: 18px;
-}
-
-.modal-body-title {
-  display: flex;
-  div {
-    flex-grow: 0;
-    flex-basis: auto;
-  }
-  span.lock {
-    padding-left: 10px;
-    img {
-      vertical-align: initial !important;
-    }
-  }
-}
-.journey-wrapper {
-  text-align: center;
-  .img-fluid {
-    width: 126px;
-    height: 127px;
-    text-align: center;
-    margin: 10px 0;
     @include allmobiles {
-      width: 175px;
-      height: 165px;
-      margin: 10px auto 10px;
+        padding: 0 !important;
     }
-  }
 }
-.investment-img {
-  text-align: center;
-  padding-bottom: 18px;
+.referee-modal p {
+    margin: 0;
 }
-
-.spinner-container {
-  #mo_spinner {
-    width: 24px;
-    height: 24px;
-    margin: 3px 10px 0px 0px;
+.referee-modal__bannner {
+    padding: 0 20px 0 45px;
     display: flex;
-  }
+    position: relative;
+    justify-content: space-between;
+    align-items: flex-end;
+    background: #00a7a7;
+    @include desktop {
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+    }
+    height: 160px;
 }
-.hyperlink_color {
-  color: $dark-orange-color;
-  text-decoration: none;
-  cursor: pointer;
-  &:hover {
-    color: $dark-orange-color;
-    text-decoration: none;
-  }
+.referee-modal__bannner__valid-box {
+    color: #005960;
+    font-size: 14px;
+    background-color: white;
+    border-radius: 40px;
+    padding: 10px;
+    margin-bottom: 20px;
 }
-.email_txt {
-  a {
-    color: $dark-orange-color;
-    text-decoration: none;
+.referee-modal__bannner__gift-box img {
+    vertical-align: bottom;
+}
+.referee-modal__bannner__close-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: black;
+    border: none;
+    background: none;
+}
+.referee-modal__inner {
+    @include desktop {
+        padding: 30px 88px;
+    }
+    @include allmobiles {
+        padding: 30px 20px;
+    }
+    color: #5e5e5e;
+    font-size: 16px;
+}
+.referee-modal__inner__heading {
+    color: #00A7A7;
+    font-weight: bold;
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+.referee-modal__inner__coupon-card {
+    background: url('/assets/images/refer-friend/Coupon card.svg') no-repeat 0 0;
+    padding: 20px 30px;
+       display: flex;
+       justify-content: space-between;
+       margin: 5px 0;
+}
+.referee-modal__inner__coupon-card--grey {
+    background: url('/assets/images/refer-friend/Coupon card grey.svg') no-repeat 0 0;
+    padding: 20px 30px;
+       display: flex;
+       justify-content: space-between;
+       color: #5E5E5E;
+       margin: 5px 0;
+}
+.referee-modal__inner__coupon-card__left {
+    color: #005960;
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    width: 184px;
+}
+.referee-modal__inner__coupon-card__left__get-started {
+    color: #FF872F;
+    font-size: 14px;
+    font-weight: bold;
+}
+.referee-modal__inner__coupon-card__right {
+    color: #000000;
+    font-size: 18px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.referee-modal__inner__separator {
+    background-color: #E7E7E7;
+    height: 1px;
+    margin: 20px 0;
+}
+.referee-modal__inner__more-about__heading {
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
     cursor: pointer;
-    font-family: $muli-regular;
-  }
+    margin-bottom: 15px;
 }
-.modal-disclaimer{
-  margin-top: 30px;
-  font-size: 16px;
-  line-height: 1.31;
-  letter-spacing: -0.15px;
-  color: $silver-grey-color;
-  .txt-teal{
-    letter-spacing: -0.15px !important;
-    color: $teal-color;
-  }
-  .txt-bold{
-    font-family: $muli-bold;
-  }
+.referee-modal__inner__more-about ul {
+    padding-left: 20px;
+}
+.referee-modal__inner__more-about ul > li {
+    color: #5e5e5e;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.referee-modal__inner__more-about ul > li a {
+    color: #FF872F;
+    text-decoration: none;
+}
+.terms-cond {
+    color: #FF872F;
+    font-size: 16px;
+    cursor: pointer;
+}
+.mb30 {
+    margin-bottom: 30px !important;
+}
+/* #moreAbtDetails {
+    height: 0;
+    transition:height 0.5s ease-in;
+    overflow: hidden;
+}
+.referee-modal__inner__more-about__heading.isActive + #moreAbtDetails {
+    transition:height 0.5s ease-out;
+    height: 150px;
+} */
+.referee-modal__inner__more-about__heading.isActive span img {
+    transform: rotate(180deg);
+    transition: all 0.5s;
 }

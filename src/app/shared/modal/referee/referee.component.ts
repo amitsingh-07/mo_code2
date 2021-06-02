@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } fro
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
 
 
 declare var require: any;
@@ -12,16 +13,15 @@ declare var require: any;
   templateUrl: './referee.component.html',
   styleUrls: ['./referee.component.scss']
 })
-export class RefereeComponent implements OnInit {
-  @Input() imgType = 1;
-  @Input() errorTitle: any;
-  @Input() errorMessage: any;
-  @Input() errorMessageHTML: any;
+export class RefereeComponent implements OnInit {  
+  @Input() rerefeinfo;
   @Output() closeAction = new EventEmitter<any>();
   @Output() comprehensiveAction = new EventEmitter<any>();
   @Output() investmentAction = new EventEmitter<any>();
   @Output() insuranceAction = new EventEmitter<any>();
+ 
   
+  isActive = false;
  
   constructor(
     public activeModal: NgbActiveModal,
@@ -33,36 +33,37 @@ export class RefereeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
-        // dismiss all bootstrap modal dialog
-        this.activeModal.dismiss();
-      });
-  
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd))
+    .subscribe(({ urlAfterRedirects }: NavigationEnd) => { 
+    //this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+        this.activeModal.dismiss();   
+      
+     
+    });      
   }
-
+ 
   closeIconAction() {
     this.closeAction.emit();
-    this.activeModal.dismiss('Cross click');    
+    this.activeModal.close();       
   }
 
   comprehensive(){
     this.comprehensiveAction.emit();
-    this.activeModal.dismiss('Cross click');  
+    this.activeModal.close();
   }
+
   investment(){
     this.investmentAction.emit();
-    this.activeModal.dismiss('Cross click');   
+    this.activeModal.close()   
 
   }
   insurance(){
     this.insuranceAction.emit();
-    this.activeModal.dismiss('Cross click');
+    this.activeModal.close();
   }
 
-
-
-  
+  toggleDetails() {
+    this.isActive = !this.isActive;
+  }
 }
 

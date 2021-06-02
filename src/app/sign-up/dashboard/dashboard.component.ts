@@ -476,10 +476,11 @@ export class DashboardComponent implements OnInit {
       'DASHBOARD.INVESTMENT.CASH_ACCOUNT_BALANCE_MESSAGE'
     );
   }
-  openRefereeModal(){
-    const ref = this.modal.open(RefereeComponent, { centered: true });
-    ref.componentInstance.errorTitle = "referee";
-    ref.componentInstance.errorMessage = 'Welcome to the referee.';
+  openRefereeModal(term){
+    term = "dashboard"
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.REFER_REDIRECT+'/dashboard'],{ skipLocationChange: true });
+  
+   
   }
   
 }
