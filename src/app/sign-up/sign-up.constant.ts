@@ -77,5 +77,7 @@ export let SIGN_UP_CONFIG = {
       WHATSAPP: "https://api.whatsapp.com/send?text=",
       MAILTO: "mailto:?body=",
       SIGN_UP_URL: "/app/accounts/sign-up?referral_code="
-    }
+    },
+    AUTH_2FA_ENABLED: true,
+    ROLE_2FA: 'ROLE_2FA'
 };

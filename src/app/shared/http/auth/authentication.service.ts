@@ -48,7 +48,7 @@ export class AuthenticationService {
   }
 
   // tslint:disable-next-line: max-line-length
-  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string, enqId?: number, journeyType?: string, finlitEnabled?: boolean, accessCode?: string) {
+  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string, enqId?: number, journeyType?: string, finlitEnabled?: boolean, accessCode?: string, twoFaEnabled?: boolean) {
     const authenticateBody = {
       email: (userEmail && this.isUserNameEmail(userEmail)) ? userEmail : '',
       mobile: (userEmail && !this.isUserNameEmail(userEmail)) ? userEmail : '',
@@ -60,6 +60,7 @@ export class AuthenticationService {
     if (enqId && !finlitEnabled) { authenticateBody['enquiryId'] = enqId; }
     if (journeyType && !finlitEnabled) { authenticateBody['journeyType'] = journeyType; }
     if (finlitEnabled) { authenticateBody['accessCode'] = accessCode; }
+    if (twoFaEnabled) { authenticateBody['loginType'] = 'MANUAL'; }
     const handleError = '?handleError=true';
     return this.doAuthenticate(authenticateBody, handleError, finlitEnabled);
   }
@@ -362,4 +363,46 @@ export class AuthenticationService {
     ref.componentInstance.closeBtn = false;
   }
 
+  //2FA Implementation for Login
+  public send2faRequestLogin(handleError?: any) {
+    if (!handleError) {
+      handleError = '';
+    }
+    console.log('Sent 2fa Authentication Request');
+    const send2faOtpUrl = apiConstants.endpoint.send2faOTPLogin;
+
+    return this.httpClient.get<IServerResponse>(`${this.apiBaseUrl}/${send2faOtpUrl}${handleError}`)
+      .pipe(map((response) => {
+        // login successful if there's a jwt token in the response
+        if (response && response.objectList[0] && response.objectList[0].securityToken) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          console.log('send2faRequest Login response', response);
+          this.saveAuthDetails(response.objectList[0]);
+        }
+        return response;
+      }));
+  }
+  public doValidate2faLogin(otp: string, userEmail: any, journeyType: any, enquiryId: any, handleError?: string) {
+    if (!handleError) {
+      handleError = '?handleError=true';
+    }
+    const validate2faBody = {
+      twoFactorOtpString: otp,
+      email: (userEmail && this.isUserNameEmail(userEmail)) ? userEmail : '',
+      mobile: (userEmail && !this.isUserNameEmail(userEmail)) ? userEmail : '',
+      enquiryId: enquiryId,
+      journeyType: journeyType
+    };
+    console.log('sd');
+    const authenticateUrl = apiConstants.endpoint.authenticate2faOTPLogin;
+    return this.httpClient.post<IServerResponse>(`${this.apiBaseUrl}/${authenticateUrl}${handleError}`, validate2faBody)
+      .pipe(map((response) => {
+        // login successful if there's a jwt token in the response
+        if (response && response.objectList[0] && response.objectList[0].securityToken) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          this.saveAuthDetails(response.objectList[0]);
+        }
+        return response;
+      }));
+  }
 }

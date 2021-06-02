@@ -8,6 +8,7 @@ import { AuthenticationService } from '../shared/http/auth/authentication.servic
 import { SIGN_UP_ROUTE_PATHS } from './sign-up.routes.constants';
 import { SignUpService } from './sign-up.service';
 import { TranslateService } from '@ngx-translate/core';
+import { SIGN_UP_CONFIG } from './sign-up.constant';
 
 @Injectable({
   providedIn: 'root'
@@ -50,15 +51,32 @@ export class TwoFactorScreenGuardService implements CanActivate {
   ) {}
 
   canActivate(): boolean {
-    if (!this.authService.get2faVerifyAllowed()) {
-      this.route.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
-      return false;
-    }
-    this.authService.send2faRequest().subscribe((data) => {
-      if (data.responseMessage.responseCode !== 6000) {
-        this.authService.get2faSendError.next(true);
+    if(SIGN_UP_CONFIG.AUTH_2FA_ENABLED && this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA)) {
+      if (!this.authService.get2faVerifyAllowed()) {
+        this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+        return false;
       }
-    });
-    return true;
+      this.authService.send2faRequestLogin().subscribe((data) => {
+        if (data.responseMessage.responseCode !== 6000) {
+          this.authService.get2faSendError.next(true);
+        }
+      });
+      return true;
+    } else if(this.authService.isSignedUser()) {
+      if (!this.authService.get2faVerifyAllowed()) {
+        this.route.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+        return false;
+      }
+      this.authService.send2faRequest().subscribe((data) => {
+        if (data.responseMessage.responseCode !== 6000) {
+          this.authService.get2faSendError.next(true);
+        }
+      });
+      return true;
+    } else if (!this.authService.isSignedUser()) {
+      this.authService.set2faVerifyAllowed(false);
+      this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+      return false;
+    } 
   }
 }
