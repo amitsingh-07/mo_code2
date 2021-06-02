@@ -15,7 +15,8 @@ declare var require: any;
   encapsulation: ViewEncapsulation.None
 })
 export class RefereeComponent implements OnInit {  
-  @Input() rerefeinfo;
+  @Input() refereeInfo;
+  @Input() cardCategory;
   @Output() closeAction = new EventEmitter<any>();
   @Output() comprehensiveAction = new EventEmitter<any>();
   @Output() investmentAction = new EventEmitter<any>();
@@ -40,8 +41,12 @@ export class RefereeComponent implements OnInit {
         this.activeModal.dismiss();   
       
      
-    });      
+    });   
+    
+
+      
   }
+ 
  
   closeIconAction() {
     this.closeAction.emit();
