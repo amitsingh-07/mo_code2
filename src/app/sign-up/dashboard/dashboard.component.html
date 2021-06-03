@@ -6,7 +6,7 @@
           <div class="widget-block">
             <!--for desktop-->
             <div class="hidden-sm">
-              <div class="user-profile-bg col-12" >
+              <div class="user-profile-bg col-12 mb10" >
                 <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
                 <div class="user_name">{{userProfileInfo.firstName | titlecase}}</div>
               </div>
@@ -32,7 +32,7 @@
               </div>
               <!--Announcement section /-->
               <!--Refree Welcome Reward Box-->
-              <div class="welcome-reward-box" (click)="openRefereeModal()" *ngIf="getReferralInfo.isWelcomeRewardsValid">
+              <div class="welcome-reward-box" (click)="openRefereeModal()" *ngIf="getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists">
                 <div class="welcome-reward-box__left">
                   <p>You’ve {{getReferralInfo.totalRewardsCount}} welcome rewards</p>
                   <p>{{getReferralInfo.rewardsValidityDate}}</p>
@@ -48,22 +48,27 @@
             </div>
           </div>
           <div class="widgets">
-            <app-comprehensive-dashboard *ngIf='isComprehensiveEnabled' [getReferralInfo]="getReferralInfo"></app-comprehensive-dashboard>
+            <app-comprehensive-dashboard *ngIf='isComprehensiveEnabled' [getReferralInfo]="getReferralInfo" [Comprehensive]="cardCategory.Comprehensive[0]"></app-comprehensive-dashboard>
             <!-- Investment widget Start -->
             <div class="widget">
-              <div class="reward-points grey" *ngIf="getReferralInfo.referralVoucherList"><img src="assets/images/refer-friend/gift-icon-grey.svg">$20</div>
+              <div class="reward-points" *ngIf="getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"><img src="assets/images/refer-friend/gift-icon.svg">${{cardCategory.investment[0].creditValue}}</div>
               <ng-container *ngIf="isInvestmentEnabled; else loader">
                 <!-- Purchased Investment and WiseSaver Card -->
                 <ng-container *ngIf="showPortfolioPurchased">
                   <div class="widget-title widget-portfolio-title">
                     <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
                     </span>
-                    <button type="button" class="btn-with-icon top_up_btn" id="top-up_button" (click)="gotoTopUp()">
+                    <button type="button" class="btn-with-icon top_up_btn" id="top-up_button" (click)="gotoTopUp()" *ngIf="!getReferralInfo.isWelcomeRewardsValid && !getReferralInfo.refereeExists">
                       <span class="topup-btn-img"><img id="top-up_img" src="assets/images/dashboard-currency.svg"
                           alt="" /></span>
                       <span>{{'DASHBOARD.INVESTMENT.TOP_UP' | translate}}</span>
                     </button>
                   </div>
+                  <div class="topup-btn" *ngIf="getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"> <button type="button" class="btn-with-icon top_up_btn" id="top-up_button" (click)="gotoTopUp()">
+                    <span class="topup-btn-img"><img id="top-up_img" src="assets/images/dashboard-currency.svg"
+                        alt="" /></span>
+                    <span>{{'DASHBOARD.INVESTMENT.TOP_UP' | translate}}</span>
+                  </button></div>
                   <div class="widget-body">
                     <div class="flex-row widget-portfolio-body">
                       <div class="flex-col-6 border-portfolio-section">
@@ -291,11 +296,10 @@
             </div>
             <!-- Investment widget End -->
             <div class="widget will-writing" *ngIf="showWillWritingSection">
-              <div class="reward-points"><img src="assets/images/refer-friend/gift-icon.svg">$20</div>
               <div class="widget-title">
                 <span class="flex">{{'DASHBOARD.WILL_WRITING.TITLE' | translate}}
                 </span>
-                <span class="view_all" *ngIf="wills.completedWill" (click)="redirectTo('edit')">{{'DASHBOARD.WILL_WRITING.EDIT_WILL'
+                <span class="view_all" (click)="redirectTo('edit')">{{'DASHBOARD.WILL_WRITING.EDIT_WILL'
                   | translate}}</span>
               </div>
               <div class="widget-body">
@@ -339,6 +343,7 @@
               </div>
             </div>
             <div class="widget insurance" *ngIf="showInsuranceSection">
+              <div class="reward-points" *ngIf="getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"><img src="assets/images/refer-friend/gift-icon.svg">${{cardCategory.insurance[0].creditValue}}</div>
               <div class="widget-title">
                 <span class="flex">{{'DASHBOARD.INSURANCE.TITLE' | translate}}</span>
               </div>

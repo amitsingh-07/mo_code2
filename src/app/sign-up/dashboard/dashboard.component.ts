@@ -91,6 +91,7 @@ export class DashboardComponent implements OnInit {
   // iFast Maintenance
   iFastMaintenance = false;
   getReferralInfo: any;
+  cardCategory: { investment: any; insurance: any; Comprehensive: any; };
 
   constructor(
     private router: Router,
@@ -210,9 +211,28 @@ export class DashboardComponent implements OnInit {
   getRefrerralCodeData() {
     this.signUpService.getRefrerralCodeData().subscribe((data) => {
       this.getReferralInfo = data.objectList;
+      this.cardCategory= this.getReferInfo(this.getReferralInfo);
     });
   }
 
+  getReferInfo(rerefeinfo){
+    if (rerefeinfo && rerefeinfo.referralVoucherList) {
+      const investment = this.findCategory(this.getReferralInfo.referralVoucherList, "Investment");
+      const insurance = this.findCategory(this.getReferralInfo.referralVoucherList, "Insurance");
+      const Comprehensive = this.findCategory(this.getReferralInfo.referralVoucherList, "Comprehensive");
+      return {
+        investment: investment,
+        insurance: insurance,
+        Comprehensive: Comprehensive
+      }
+    }
+  }
+
+  findCategory(elementList, category) {   
+    return elementList.filter(
+      (element) => element.category.toUpperCase() === category.toUpperCase());
+  }
+  
   loadOptionListCollection() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.investmentAccountService.setOptionList(data.objectList);

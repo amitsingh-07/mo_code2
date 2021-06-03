@@ -53,6 +53,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
   showFixedToastMessage: boolean;
   toastMsg: any;
   @Input() getReferralInfo:string;
+  @Input() Comprehensive:string;
 constructor(
     private router: Router,
     private translate: TranslateService,

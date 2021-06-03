@@ -1,6 +1,6 @@
 @import "../../../../variables.scss";
 @import "../../../../_mixins.scss";
-
+app-referral-reward-details{
 .referrel-reward-header {
   font-family: $muli-bold;
   font-size: 16px;
@@ -68,6 +68,7 @@
     flex: 1;
     span {
       a{
+        color: #ff872f !important;
       .faq-link {
         color: #ff872f;
       }
@@ -77,4 +78,5 @@
 }
 a {
   color: #ff872f;
+}
 }

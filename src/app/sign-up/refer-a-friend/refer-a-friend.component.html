@@ -33,7 +33,7 @@
             </div>
             <div class="col-12 refer-friend-block-content">
                 <div class="content">
-                    <div>{{'REFER_FRIEND.DESC_LBL' | translate}}</div>
+                    <div class="desc-lbl">{{'REFER_FRIEND.DESC_LBL' | translate}}</div>
                     <div class="toggle-block">
                         <div class="works-btn" (click)="toggleinfo($event)">
                             {{'REFER_FRIEND.WORKS_BTN_TXT' | translate}}
@@ -130,7 +130,7 @@
                                         <div class="friends-list-data" *ngIf="refereeList.length > 0">
                                             <div class="friends-list">
                                                 <div class="list-item" *ngFor="let l of refereeList">
-                                                    <div class="friend-lbl">{{ l.refereeName }}</div>
+                                                    <div class="friend-lbl">{{ l.refereeName | titlecase }}</div>
                                                     <div class="reward-value">{{ l.referrerVoucherCreditSum |
                                                         currency:'USD':'symbol-narrow':'1.0-0' }}</div>
                                                 </div>
@@ -157,12 +157,11 @@
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <app-referral-reward-details></app-referral-reward-details>
+                    </div>
                 </div>
             </div>
         </div>
-        <div>
-            <app-referral-reward-details></app-referral-reward-details>
-        </div>
-
     </div>
 </div>
