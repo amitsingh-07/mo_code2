@@ -205,11 +205,11 @@ export class DashboardComponent implements OnInit {
     });
     this.getInvestmentsSummary();
     this.investmentAccountService.deactivateReassess();
-    this.getRefrerralCodeData();
+    this.getReferralCodeData();
   }
 
-  getRefrerralCodeData() {
-    this.signUpService.getRefrerralCodeData().subscribe((data) => {
+  getReferralCodeData() {
+    this.signUpService.getReferralCodeData().subscribe((data) => {
       this.getReferralInfo = data.objectList;
       this.cardCategory= this.getReferInfo(this.getReferralInfo);
     });
@@ -504,11 +504,8 @@ export class DashboardComponent implements OnInit {
       'DASHBOARD.INVESTMENT.CASH_ACCOUNT_BALANCE_MESSAGE'
     );
   }
-  openRefereeModal(term){
-    term = "dashboard"
+  openRefereeModal(){
     this.router.navigate([SIGN_UP_ROUTE_PATHS.REFER_REDIRECT+'/dashboard'],{ skipLocationChange: true });
-  
-   
   }
   
 }

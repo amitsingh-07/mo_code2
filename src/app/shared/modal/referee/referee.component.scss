@@ -135,7 +135,7 @@
             text-align: center;
             border-top-right-radius: 6px;
             border-bottom-right-radius: 6px;
-            background-color:  $mercury-smoke-color;
+            background-color: $mercury-smoke-color;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -146,7 +146,7 @@
         height: 1px;
         margin: 20px 0;
     }
-    &__more-about  {
+    &__more-about {
         ul {
             padding-left: 20px;
             > li {
@@ -169,12 +169,11 @@
         }
     }
 }
-.referee-bg-grey{
+.referee-bg-grey {
     background-color: $mercury-smoke-color !important;
     color: $silver-grey-color !important;
-    
 }
-.referee-bg-grey-get-started{
+.referee-bg-grey-get-started {
     color: $silver-grey-color !important;
 }
 
