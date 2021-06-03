@@ -30,7 +30,7 @@
     </div>
     <!--/Tab-->
   <div class="widget">
-    <div class="reward-points" [ngClass]="{'full-user': isComprehensiveLiveEnabled, 'grey': !cardCategory.insurance[0].isEnabled}" *ngIf="getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists && !versionTypeEnabled"><span *ngIf="!cardCategory.insurance[0].isEnabled"><img src="assets/images/refer-friend/gift-icon-grey.svg"></span><span *ngIf="cardCategory.insurance[0].isEnabled"><img src="assets/images/refer-friend/gift-icon.svg"></span>${{Comprehensive.creditValue}}</div>
+    <div class="reward-points" [ngClass]="{'full-user': isComprehensiveLiveEnabled, 'grey': !comprehensiveInfo[0].isEnabled}" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists && !versionTypeEnabled && comprehensiveInfo"><span *ngIf="!comprehensiveInfo[0].isEnabled"><img src="assets/images/refer-friend/gift-icon-grey.svg"></span><span *ngIf="comprehensiveInfo[0].isEnabled"><img src="assets/images/refer-friend/gift-icon.svg"></span>${{comprehensiveInfo[0].creditValue}}</div>
     <div class="view-edit">
       <div class="form-group-with-bg--header-label plan-view-icon text-right comprehensive-plan-view"
         [hidden]="comprehensivePlanning !== 0" (click)="goToEditComprehensivePlan(true)">

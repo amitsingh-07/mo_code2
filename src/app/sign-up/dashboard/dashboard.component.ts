@@ -91,7 +91,7 @@ export class DashboardComponent implements OnInit {
   // iFast Maintenance
   iFastMaintenance = false;
   getReferralInfo: any;
-  cardCategory: { investment: any; insurance: any; Comprehensive: any; };
+  cardCategory: { investment: any; insurance: any; comprehensiveInfo: any; };
 
   constructor(
     private router: Router,
@@ -209,10 +209,9 @@ export class DashboardComponent implements OnInit {
   }
 
   getReferralCodeData() {
-    this.signUpService.getReferralCodeData().subscribe((data) => {
+    this.signUpService.getReferralCodeData().subscribe((data) => {      
       this.getReferralInfo = data.objectList;
       this.cardCategory= this.getRefereeInfo(this.getReferralInfo);
-      //console.log(this.cardCategory);
     });
   }
 
@@ -220,17 +219,17 @@ export class DashboardComponent implements OnInit {
     if (refereeInfo && refereeInfo.referralVoucherList) {
       const investment = this.findCategory(refereeInfo.referralVoucherList, "Investment");
       const insurance = this.findCategory(refereeInfo.referralVoucherList, "Insurance");
-      const Comprehensive = this.findCategory(refereeInfo.referralVoucherList, "Comprehensive");
+      const comprehensive = this.findCategory(refereeInfo.referralVoucherList, "Comprehensive");
       return {
         investment: investment,
         insurance: insurance,
-        Comprehensive: Comprehensive
+        comprehensiveInfo: comprehensive
       }
     } else {
       return {
         investment: [],
         insurance: [],
-        Comprehensive: []
+        comprehensiveInfo: []
       };
     }
   }
