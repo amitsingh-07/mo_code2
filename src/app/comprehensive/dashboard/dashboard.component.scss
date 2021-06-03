@@ -98,6 +98,15 @@
     .form-group-with-bg--header-label {
         font-family: $muli-bold;
         font-size: 22px !important;
+        @include iphoneX  {
+            width: 75%;
+        }
+        @include iphone6 {
+            width: 75%;
+        }
+        @include max360 {
+            width: 75%;
+        }
     }
     &.container-fluid {
         padding: 0!important;
