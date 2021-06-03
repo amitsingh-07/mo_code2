@@ -39,7 +39,7 @@
                             {{'REFER_FRIEND.WORKS_BTN_TXT' | translate}}
                             <span><i class='arrow' [ngClass]="{'active': isCollapsed}"></i></span>
                         </div>
-                        <div class="rewards-btn" (click)="openRefereeModal()">
+                        <div class="rewards-btn" (click)="openRefereeModal()" *ngIf='refereeExists'>
                             {{'REFER_FRIEND.REWARDS_BTN_TXT' |
                             translate}}</div>
                     </div>
