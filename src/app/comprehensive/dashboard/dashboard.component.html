@@ -30,7 +30,7 @@
     </div>
     <!--/Tab-->
   <div class="widget">
-    <div class="reward-points" [ngClass]="{'full-user': isComprehensiveLiveEnabled}" *ngIf="getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists && !versionTypeEnabled"><img src="assets/images/refer-friend/gift-icon.svg">$20</div>
+    <div class="reward-points" [ngClass]="{'full-user': isComprehensiveLiveEnabled}" *ngIf="getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists && !versionTypeEnabled"><img src="assets/images/refer-friend/gift-icon.svg">${{Comprehensive.creditValue}}</div>
     <div class="view-edit">
       <div class="form-group-with-bg--header-label plan-view-icon text-right comprehensive-plan-view"
         [hidden]="comprehensivePlanning !== 0" (click)="goToEditComprehensivePlan(true)">
