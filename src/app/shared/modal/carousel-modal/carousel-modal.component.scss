@@ -94,6 +94,9 @@ app-carousel-modal {
     letter-spacing: normal;
     margin-top: 18px;
     text-align: center;
+    strong {
+      color: $black-color;
+    }
   }
 
   .url-txt {
