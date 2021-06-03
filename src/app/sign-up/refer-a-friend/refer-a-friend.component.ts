@@ -149,8 +149,8 @@ export class ReferAFriendComponent implements OnInit {
   getReferralLink() {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('REFER_A_FRIEND.REFER_LINK_MODAL.TITLE');
-    ref.componentInstance.errorMessage = 'We want you to try us out before your friends do! <br></br>Get started with any of our services (from your Dashboard), and come back here again. Your referral link will show after processing completes within 2 to 4 weeks.';
-    ref.componentInstance.primaryActionLabel = 'Go to Dashboard';
+    ref.componentInstance.errorMessage = this.translate.instant('REFER_A_FRIEND.REFER_LINK_MODAL.MESSAGE');
+    ref.componentInstance.primaryActionLabel = this.translate.instant('REFER_A_FRIEND.REFER_LINK_MODAL.PRIMARY_ACTION_LBL');
     ref.componentInstance.primaryAction.subscribe(() => {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     });
