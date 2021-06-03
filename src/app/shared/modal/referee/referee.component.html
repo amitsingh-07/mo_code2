@@ -4,6 +4,7 @@
 				<button class="referee-modal__bannner__close-btn" (click)="closeIconAction()">{{'REFEREE-MODAL.CLOSE_BTN' | translate}}</button>
 				<div class="referee-modal__bannner__gift-box"><img src="assets/images/refer-friend/Giftboxes.svg"></div>
 				<div class="referee-modal__bannner__valid-box">{{'REFEREE-MODAL.VALIDITY' | translate}}</div>
+				<div class="referee-modal__bannner__stamped"><img src="assets/images/refer-friend/Stamp expired.svg"></div>
 			</div>
 			<div class="referee-modal__inner">
 				<p class="mb30">{{'REFEREE-MODAL.PARA_ONE' | translate}}</p>
@@ -11,6 +12,8 @@
 					<p class="referee-modal__inner__heading">{{'REFEREE-MODAL.HEADING' | translate}}</p>
 					<p class="mb30" [innerHTML]="'REFEREE-MODAL.PARA_TWO' | translate"></p>
 				</div>
+
+				<!--Coupon card blue-->
 				<div class="referee-modal__inner__coupon-card">
 					<div><img src="assets/images/refer-friend/Slice Left Coupon Blue.svg"></div>
 					<div class="referee-modal__inner__coupon-card__left">
@@ -25,29 +28,21 @@
 					</div>
 				</div>
 
-				<!-- <div class="referee-modal__inner__coupon-card">
-					<div class="referee-modal__inner__coupon-card__left">
-						<p>{{'REFEREE-MODAL.COUPON_CARD_INS' | translate}}</p>
+				<!--Coupon card grey-->
+				<div class="referee-modal__inner__coupon-card--grey">
+					<div><img src="assets/images/refer-friend/Slice Left Coupon Grey.svg"></div>
+					<div class="referee-modal__inner__coupon-card__left--grey">
+						<p>{{'REFEREE-MODAL.COUPON_CARD_COMP' | translate}}</p>
 						<p class="referee-modal__inner__coupon-card__left__get-started">{{'REFEREE-MODAL.GET_STARTED' | translate}}</p>
 					</div>
-					<div class="referee-modal__inner__coupon-card__right">
-						<p>S$20</p>
-						<p><img src="assets/images/refer-friend/GrabFood logo.svg"></p>
-						<p>credits</p>
-					</div>
-				</div> -->
-
-				<!-- <div class="referee-modal__inner__coupon-card--grey">
-					<div class="referee-modal__inner__coupon-card__left">
-						<p>{{'REFEREE-MODAL.COUPON_CARD_INVEST' | translate}}</p>
-						<p class="referee-modal__inner__coupon-card__left__get-started">{{'REFEREE-MODAL.GET_STARTED' | translate}}</p>
-					</div>
-					<div class="referee-modal__inner__coupon-card__right">
+					<div><img src="assets/images/refer-friend/Slice Mid Coupon Grey.svg"></div>
+					<div class="referee-modal__inner__coupon-card__right--grey">
 						<p>S$20</p>
 						<p><img src="assets/images/refer-friend/GrabFood logo grey.svg"></p>
 						<p>credits</p>
 					</div>
-				</div> -->
+				</div>
+
 				<div class="referee-modal__inner__separator"></div>
 				<div class="referee-modal__inner__more-about">
 					<div class="referee-modal__inner__more-about__heading" (click)="toggleDetails()">{{'REFEREE-MODAL.MORE_ABOUT' | translate}} <span *ngIf='!isActive'><img src="assets/images/refer-friend/arrow-black-down.svg"></span><span *ngIf='isActive'><img src="assets/images/refer-friend/arrow-black-up.svg"></span></div>
