@@ -98,6 +98,8 @@
     .form-group-with-bg--header-label {
         font-family: $muli-bold;
         font-size: 22px !important;
+    }
+    div.reward-points ~ .form-group-with-bg.overlay-bg .form-group-with-bg--header {
         @include iphoneX  {
             width: 75%;
         }

@@ -391,6 +391,20 @@ app-dashboard {
                 align-items: self-start!important;
                 line-height: 1.25;
               }
+              div.reward-points + .widget-portfolio-title {
+                @include iphoneX {
+                    width: 68%;
+                }
+                @include iphone6 {
+                    width: 68%;
+                }
+				@include max360 {
+            		width: 75%;
+        		}
+              }
+              div.reward-points ~ .topup-btn {
+                margin-top: -37px !important;
+              }
               .widget-portfolio-body {
                 padding:0px 18px 11px;
               }
@@ -609,5 +623,9 @@ app-dashboard {
         justify-content: flex-end;
         padding-right: 20px;
         margin: -10px 0 15px 0;
+    }
+    strong.text-bold-black {
+        font-family: $muli-bold;
+        color: $black-color;
     }
 }
