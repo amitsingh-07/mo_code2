@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { forkJoin as observableForkJoin } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 
@@ -11,7 +12,6 @@ import { RefereeComponent } from '../../shared/modal/referee/referee.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SignUpService } from '../sign-up.service';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
-
 @Component({
   selector: 'app-refer-a-friend',
   templateUrl: './refer-a-friend.component.html',
@@ -124,17 +124,8 @@ export class ReferAFriendComponent implements OnInit {
   }
 
   openRefereeModal() {
-    const ref = this.modal.open(RefereeComponent, { centered: true });
-    ref.componentInstance.errorTitle = "referee";
-    ref.componentInstance.errorMessage = 'Welcome to the referee.';
-    ref.componentInstance.comprehensiveAction.subscribe(() => {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-    });
-    ref.componentInstance.investmentAction.subscribe(() => {
-    });
-    ref.componentInstance.insuranceAction.subscribe(() => {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-    });
+    const term ="refer-a-friend"
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.REFER_REDIRECT+'/refer-a-friend'],{ skipLocationChange: true });
   }
 
   notify(event) {
@@ -158,7 +149,7 @@ export class ReferAFriendComponent implements OnInit {
   }
   getReferralLink() {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = "Get referral link";
+    ref.componentInstance.errorTitle = this.translate.instant('REFER_A_FRIEND.REFER_LINK_MODAL.TITLE');
     ref.componentInstance.errorMessage = 'We want you to try us out before your friends do! <br></br>Get started with any of our services (from your Dashboard), and come back here again. Your referral link will show after processing completes within 2 to 4 weeks.';
     ref.componentInstance.primaryActionLabel = 'Go to Dashboard';
     ref.componentInstance.primaryAction.subscribe(() => {

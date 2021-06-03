@@ -110,6 +110,7 @@ constructor(
 
     });
   }
+
   downloadComprehensiveReport() {
     const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     let newWindow;
@@ -133,6 +134,8 @@ constructor(
     });
 
   }
+
+  
   goToEditProfile() {
     if (this.comprehensivePlanning === 4 && !this.versionTypeEnabled && !this.promoCodeValidated) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
@@ -152,6 +155,7 @@ constructor(
       this.setComprehensiveSummary(true, routerURL);
     }
   }
+
   goToEditComprehensivePlan(viewMode: boolean) {
     if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
       if (!this.islocked) {
@@ -183,6 +187,7 @@ constructor(
     }
     
   }
+
   getComprehensiveCall() {
     this.loaderService.showLoader({ title:  this.fetchData});
     let reportStatusValue =  COMPREHENSIVE_CONST.REPORT_STATUS.NEW;
@@ -210,6 +215,7 @@ constructor(
         });
 
   }
+
   getCurrentComprehensiveStep() {
     if (this.getComprehensiveSummaryEnquiry) {
       for (const i in this.stepDetails) {
@@ -360,6 +366,7 @@ constructor(
 
     });
   }
+
   showPaymentModal() {
     const ref = this.modal.open(PaymentInstructionModalComponent, { centered: true });
     ref.componentInstance.showCopyToast.subscribe((data) => {
