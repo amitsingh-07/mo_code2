@@ -48,10 +48,10 @@
             </div>
           </div>
           <div class="widgets">
-            <app-comprehensive-dashboard *ngIf='isComprehensiveEnabled' [getReferralInfo]="getReferralInfo" [Comprehensive]="cardCategory.Comprehensive[0]"></app-comprehensive-dashboard>
+            <app-comprehensive-dashboard *ngIf='isComprehensiveEnabled' [getReferralInfo]="getReferralInfo" [Comprehensive]="cardCategory.comprehensive"></app-comprehensive-dashboard>
             <!-- Investment widget Start -->
             <div class="widget">
-              <div class="reward-points" *ngIf="getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"><img src="assets/images/refer-friend/gift-icon.svg">${{cardCategory.investment[0].creditValue}}</div>
+              <div class="reward-points" [ngClass]="{'grey': !cardCategory.insurance[0].isEnabled}" *ngIf="getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"><span *ngIf="!cardCategory.insurance[0].isEnabled"><img src="assets/images/refer-friend/gift-icon-grey.svg"></span><span *ngIf="cardCategory.insurance[0].isEnabled"><img src="assets/images/refer-friend/gift-icon.svg"></span>${{cardCategory.investment[0].creditValue}}</div>
               <ng-container *ngIf="isInvestmentEnabled; else loader">
                 <!-- Purchased Investment and WiseSaver Card -->
                 <ng-container *ngIf="showPortfolioPurchased">
@@ -343,7 +343,7 @@
               </div>
             </div>
             <div class="widget insurance" *ngIf="showInsuranceSection">
-              <div class="reward-points" *ngIf="getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"><img src="assets/images/refer-friend/gift-icon.svg">${{cardCategory.insurance[0].creditValue}}</div>
+              <div class="reward-points" [ngClass]="{'grey': !cardCategory.insurance[0].isEnabled}" *ngIf="getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"><span *ngIf="!cardCategory.insurance[0].isEnabled"><img src="assets/images/refer-friend/gift-icon-grey.svg"></span><span *ngIf="cardCategory.insurance[0].isEnabled"><img src="assets/images/refer-friend/gift-icon.svg"></span>${{cardCategory.insurance[0].creditValue}}</div>
               <div class="widget-title">
                 <span class="flex">{{'DASHBOARD.INSURANCE.TITLE' | translate}}</span>
               </div>
