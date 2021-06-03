@@ -91,7 +91,7 @@ export class DashboardComponent implements OnInit {
   // iFast Maintenance
   iFastMaintenance = false;
   getReferralInfo: any;
-  cardCategory: { investment: any; insurance: any; Comprehensive: any; };
+  cardCategory: { investment: any; insurance: any; comprehensiveInfo: any; };
 
   constructor(
     private router: Router,
@@ -205,32 +205,43 @@ export class DashboardComponent implements OnInit {
     });
     this.getInvestmentsSummary();
     this.investmentAccountService.deactivateReassess();
-    this.getRefrerralCodeData();
+    this.getReferralCodeData();
   }
 
-  getRefrerralCodeData() {
-    this.signUpService.getRefrerralCodeData().subscribe((data) => {
+  getReferralCodeData() {
+    this.signUpService.getReferralCodeData().subscribe((data) => {      
       this.getReferralInfo = data.objectList;
-      this.cardCategory= this.getReferInfo(this.getReferralInfo);
+      this.cardCategory= this.getRefereeInfo(this.getReferralInfo);
     });
   }
 
-  getReferInfo(rerefeinfo){
-    if (rerefeinfo && rerefeinfo.referralVoucherList) {
-      const investment = this.findCategory(this.getReferralInfo.referralVoucherList, "Investment");
-      const insurance = this.findCategory(this.getReferralInfo.referralVoucherList, "Insurance");
-      const Comprehensive = this.findCategory(this.getReferralInfo.referralVoucherList, "Comprehensive");
+  getRefereeInfo(refereeInfo){
+    if (refereeInfo && refereeInfo.referralVoucherList) {
+      const investment = this.findCategory(refereeInfo.referralVoucherList, "Investment");
+      const insurance = this.findCategory(refereeInfo.referralVoucherList, "Insurance");
+      const comprehensive = this.findCategory(refereeInfo.referralVoucherList, "Comprehensive");
       return {
         investment: investment,
         insurance: insurance,
-        Comprehensive: Comprehensive
+        comprehensiveInfo: comprehensive
       }
+    } else {
+      return {
+        investment: [],
+        insurance: [],
+        comprehensiveInfo: []
+      };
     }
   }
 
   findCategory(elementList, category) {   
-    return elementList.filter(
+    const filteredData = elementList.filter(
       (element) => element.category.toUpperCase() === category.toUpperCase());
+    if(filteredData && filteredData[0]) {
+      return filteredData;
+    } else {
+      return [];
+    }
   }
   
   loadOptionListCollection() {
@@ -504,11 +515,8 @@ export class DashboardComponent implements OnInit {
       'DASHBOARD.INVESTMENT.CASH_ACCOUNT_BALANCE_MESSAGE'
     );
   }
-  openRefereeModal(term){
-    term = "dashboard"
+  openRefereeModal(){
     this.router.navigate([SIGN_UP_ROUTE_PATHS.REFER_REDIRECT+'/dashboard'],{ skipLocationChange: true });
-  
-   
   }
   
 }

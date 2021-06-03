@@ -170,51 +170,67 @@ app-referee {
                 padding: 0 10px;
             }
             &--grey {
-                color: $silver-grey-color;
-                font-size: 18px;
-                padding: 0 10px;
-                text-align: center;
-                border-top-right-radius: 6px;
-                border-bottom-right-radius: 6px;
                 background-color: $mercury-smoke-color;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                @include min375max400 {
-                    font-size: 17px;
-                    padding: 0px 15px 0 5px;
-                }
-                @include max360 {
-                    font-size: 16px;
-                    padding: 0 10px;
-                }
             }
         }
         &__separator {
             background-color: $mercury-smoke-color;
             height: 1px;
-            margin: 30px 0;
+            margin: 20px 0;
         }
         &__more-about {
             ul {
                 padding-left: 20px;
                 > li {
                     color: $silver-grey-color;
-                    font-size: 14px;
-                    margin-bottom: 20px;
-                    list-style-type: disc;
-                    a {
-                        color: $crusta-orange-color !important;
-                        text-decoration: none;
+                    font-size: 18px;
+                    padding: 0 10px;
+                    text-align: center;
+                    border-top-right-radius: 6px;
+                    border-bottom-right-radius: 6px;
+                    background-color: $mercury-smoke-color;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    @include min375max400 {
+                        font-size: 17px;
+                        padding: 0px 15px 0 5px;
+                    }
+                    @include max360 {
+                        font-size: 16px;
+                        padding: 0 10px;
                     }
                 }
             }
-            &__heading {
-                color: $black-color;
-                font-weight: bold;
-                font-size: 16px;
-                cursor: pointer;
-                margin-bottom: 15px;
+            &__separator {
+                background-color: $mercury-smoke-color;
+                height: 1px;
+                margin: 30px 0;
+            }
+            &__more-about {
+                ul {
+                    padding-left: 20px;
+                    > li {
+                        color: $silver-grey-color;
+                        font-size: 14px;
+                        margin-bottom: 20px;
+                        list-style-type: disc;
+                        a {
+                            color: $crusta-orange-color !important;
+                            text-decoration: none;
+                        }
+                    }
+                }
+                &__heading {
+                    color: $black-color;
+                    font-weight: bold;
+                    font-size: 16px;
+                    cursor: pointer;
+                    margin-bottom: 15px;
+                }
             }
         }
     }
@@ -232,15 +248,6 @@ app-referee {
             color: $silver-grey-color !important;
         }
     }
-    /* #moreAbtDetails {
-    height: 0;
-    transition:height 0.5s ease-in;
-    overflow: hidden;
-}
-.referee-modal__inner__more-about__heading.isActive + #moreAbtDetails {
-    transition:height 0.5s ease-out;
-    height: 150px;
-} */
     .referee-modal__inner__more-about__heading.isActive span img {
         transform: rotate(180deg);
         transition: all 0.5s;

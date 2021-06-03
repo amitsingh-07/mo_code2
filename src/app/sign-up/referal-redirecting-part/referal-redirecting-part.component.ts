@@ -1,17 +1,14 @@
-import { Component, Renderer2, OnInit, ElementRef, ViewChild, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, Renderer2, OnInit, ElementRef, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { forkJoin as observableForkJoin, Subscription } from 'rxjs';
+import { forkJoin as observableForkJoin} from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-import { environment } from './../../../environments/environment';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { RefereeComponent } from '../../shared/modal/referee/referee.component';
-
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SignUpService } from '../sign-up.service';
-import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
 import { ConfigService } from '../../config/config.service';
@@ -27,7 +24,6 @@ import { IMyProfile } from '../../comprehensive/comprehensive-types';
 import { GuideMeApiService } from '../../guide-me/guide-me.api.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
-import { GUIDE_ME_ROUTE_PATHS } from '../../guide-me/guide-me-routes.constants';
 import { DIRECT_ROUTE_PATHS } from '../../direct/direct-routes.constants';
 
 import { Location } from "@angular/common";
@@ -37,54 +33,22 @@ import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/inve
   templateUrl: './referal-redirecting-part.component.html',
   styleUrls: ['./referal-redirecting-part.component.scss']
 })
-export class ReferalRedirectingPartComponent implements OnInit {
-  [x: string]: any;
-  subscription;
-  isCollapsed: boolean = false;
-  pageTitle: string;
-  facebookShareLink: any;
-  whatsappShareLink: any;
-  telegramShareLink: any;
-  mailToLink: any;
-  referrerLink: any;
-  showFixedToastMessage: boolean;
-  toastMsg: any;
-  referralCode = '';
-  referrerName: any;
-  refereeTotalList = [];
-  refereeList = [];
-  totalRefereeListCount: number;
-  isHidden: boolean = true;
-  pageLimit = 5;
-  @ViewChild('toggleButton') toggleButton: ElementRef;
-  @ViewChild('toggleIcon') toggleIcon: ElementRef;
+export class ReferalRedirectingPartComponent implements OnInit { 
   investmentsSummary: any;
   isInvestmentEnabled: boolean;
-  isInvestmentConfigEnabled = false;
-  showStartInvesting: boolean;
   iFastMaintenance: boolean;
-
   // comprehensive 
-
   userName: string;
   comprehensivePlanning: number;
   userDetails: IMyProfile;
   getComprehensiveSummary: any;
-  getComprehensiveSummaryEnquiry: any;
   reportStatus: any; // new submitted ready
   advisorStatus: boolean;
-  reportDate: any;
   submittedDate: any;
   currentStep: number;
-  stepDetails = { hasDependents: 1, hasEndowments: 2 };
-  items: any;
   isLoadComplete = false;
   islocked: boolean;
-  isComprehensiveEnabled = false;
-  isComprehensiveLiveEnabled = false;
-  getComprehensiveDashboard: any;
   getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
-  comprehensiveLiteEnabled: boolean;
   versionTypeEnabled = false;
   getComprehensiveSummaryDashboard: any;
   promoCodeValidated = false;
@@ -93,13 +57,11 @@ export class ReferalRedirectingPartComponent implements OnInit {
   fetchData: string;
   paymentInstructions = false;
   showInsuranceSection: boolean;
-  // INSURANCE 
   insurance: any = {};
   reDirectiveUrl: string;
   rerefeinfo: any;
-  comphrenesiveInfo: any;
-  ReferrCategory: any
   cardCategory: any;
+  referralInfo: any;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -125,18 +87,16 @@ export class ReferalRedirectingPartComponent implements OnInit {
     });
 
   }
-  ngOnInit(): void {
-    
-    this.getRefrerralCodeData();
-
+  ngOnInit(): void {    
+    this.getReferralCodeData();
   }
-   // api call
-  getRefrerralCodeData() {
-    this.signUpService.getRefrerralCodeData().subscribe((data) => {
+   
+  getReferralCodeData() {
+    this.signUpService.getReferralCodeData().subscribe((data) => {
       if (data.responseMessage && data.responseMessage.responseCode === 6000) {
-      this.getReferralInfo = data.objectList;     
-      this.cardCategory= this.getReferInfo(this.getReferralInfo);
-      this.redirectPath(this.getReferralInfo, this.cardCategory);
+      this.referralInfo = data.objectList;     
+      this.cardCategory= this.getReferInfo(this.referralInfo);
+      this.redirectPath(this.referralInfo, this.cardCategory);
       } else {
         this.router.navigate([this.reDirectiveUrl]);
       }
@@ -183,9 +143,9 @@ export class ReferalRedirectingPartComponent implements OnInit {
 
     // }
     // console.log(data.objectList);
-    // this.getReferralInfo = data.objectList;
-    // this.cardCategory= this.getReferInfo(this.getReferralInfo);
-    // this.redirectPath(this.getReferralInfo, this.cardCategory);
+    // this.referralInfo = data.objectList;
+    // this.cardCategory= this.getReferInfo(this.referralInfo);
+    // this.redirectPath(this.referralInfo, this.cardCategory);
     
   }
   redirectPath(rerefeinfo,cardCategory) {
@@ -200,38 +160,32 @@ export class ReferalRedirectingPartComponent implements OnInit {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD])
     }
   }
-  getReferalInfo() {
-       
-  }
 
   findCategory(elementList, category) {   
       return elementList.filter(
-        (element) => element.category.toUpperCase() === category.toUpperCase());
+        (element) => element.category.toUpperCase() === category.toUpperCase())[0];
       }
-    
-
-  
+      
   getReferInfo(rerefeinfo){
     if (rerefeinfo && rerefeinfo.referralVoucherList) {
-      const investment = this.findCategory(this.getReferralInfo.referralVoucherList, "Investment");
-      const insurance = this.findCategory(this.getReferralInfo.referralVoucherList, "Insurance");
-      const Comprehensive = this.findCategory(this.getReferralInfo.referralVoucherList, "Comprehensive");
+      const investment = this.findCategory(this.referralInfo.referralVoucherList, "Investment");
+      const insurance = this.findCategory(this.referralInfo.referralVoucherList, "Insurance");
+      const comprehensive = this.findCategory(this.referralInfo.referralVoucherList, "Comprehensive");
       return {
         investment: investment,
         insurance: insurance,
-        Comprehensive: Comprehensive
+        comprehensive: comprehensive
       }
     }
   }
 
-  openRefereeModal(reDirectiveUrl,refereeInfo, cardCategory) {
+  openRefereeModal(reDirectiveUrl, refereeInfo, cardCategory) {
     const ref = this.modal.open(RefereeComponent, { centered: true });
     ref.componentInstance.refereeInfo = refereeInfo;
     ref.componentInstance.cardCategory = cardCategory;
     ref.componentInstance.comprehensiveAction.subscribe(() => {
       this.loaderService.showLoader({ title: 'Loading', autoHide: false });
-      this.getComprehensive();
-      
+      this.getComprehensive();      
     });
     ref.componentInstance.investmentAction.subscribe(() => {
       this.loaderService.showLoader({ title: 'Loading', autoHide: false });
@@ -243,8 +197,6 @@ export class ReferalRedirectingPartComponent implements OnInit {
     });
     ref.componentInstance.closeAction.subscribe(() => {
       this.router.navigate([reDirectiveUrl]);
-
-
     });
     ref.result.then(
       (result) => { },
@@ -252,7 +204,6 @@ export class ReferalRedirectingPartComponent implements OnInit {
         if (reason === 0) {
           this.router.navigate([reDirectiveUrl]);
         }
-
       });
   }
 
