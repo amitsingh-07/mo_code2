@@ -1,82 +1,82 @@
 @import "../../../../variables.scss";
 @import "../../../../_mixins.scss";
-app-referral-reward-details{
-.referrel-reward-header {
-  font-family: $muli-bold;
-  font-size: 16px;
-  line-height: normal;
-  letter-spacing: -0.15px;
-  color: $black-color;
-  margin-top: 20px;
-  align-self: flex-start;
-  color: $silver-grey-color;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  letter-spacing: -0.13px;
-  .arrow {
-    border: solid $silver-grey-color;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 4px;
-    float: right;
-    transform: rotate(-135deg);
-    -webkit-transform: rotate(-135deg);
-    margin-left: 10px;
-    margin-top: 8px;
-    &.active {
-      transform: rotate(45deg);
-      -webkit-transform: rotate(45deg);
-      margin-top: 0px;
+app-referral-reward-details {
+  .referrel-reward-header {
+    font-family: $muli-bold;
+    font-size: 16px;
+    line-height: normal;
+    letter-spacing: -0.15px;
+    color: $black-color;
+    margin-top: 20px;
+    align-self: flex-start;
+    color: $silver-grey-color;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    letter-spacing: -0.13px;
+    .arrow {
+      border: solid $silver-grey-color;
+      border-width: 0 3px 3px 0;
+      display: inline-block;
+      padding: 4px;
+      float: right;
+      transform: rotate(-135deg);
+      -webkit-transform: rotate(-135deg);
+      margin-left: 10px;
+      margin-top: 8px;
+      &.active {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        margin-top: 0px;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
     }
   }
-
-  &:hover,
-  &:focus {
-    text-decoration: none;
-  }
-}
-.terms-condition {
-  font-family: $muli-bold;
-  font-size: 16px;
-  line-height: 20px;
-  letter-spacing: -0.13125px;
-  color: #ff872f;
-  padding: 10px;
-}
-
-.note-list {
-  display: flex;
-  margin-top: 15px;
-  margin-left: 20px;
-
-  .teal-oval {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: $silver-grey-color;
-    margin-top: 7px;
-    margin-right: 12px;
+  .terms-condition {
+    font-family: $muli-bold;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.13125px;
+    color: #ff872f;
+    padding: 10px;
   }
 
-  .note-point-text {
-    font-family: $muli-regular;
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: -0.16px;
-    color: $silver-grey-color;
-    flex: 1;
-    span {
-      a{
-        color: #ff872f !important;
-      .faq-link {
-        color: #ff872f;
+  .note-list {
+    display: flex;
+    margin-top: 15px;
+    margin-left: 20px;
+
+    .teal-oval {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: $silver-grey-color;
+      margin-top: 7px;
+      margin-right: 12px;
+    }
+
+    .note-point-text {
+      font-family: $muli-regular;
+      font-size: 14px;
+      line-height: 22px;
+      letter-spacing: -0.16px;
+      color: $silver-grey-color;
+      flex: 1;
+      span {
+        a {
+          color: $myinfo-btn-color !important;
+          .faq-link {
+            color: $myinfo-btn-color;
+          }
+        }
       }
     }
   }
+  a {
+    color: $myinfo-btn-color;
   }
-}
-a {
-  color: #ff872f;
-}
 }

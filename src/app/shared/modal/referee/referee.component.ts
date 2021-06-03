@@ -3,10 +3,6 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } fro
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
-
-
-declare var require: any;
 
 @Component({
   selector: 'app-referee',
@@ -14,17 +10,16 @@ declare var require: any;
   styleUrls: ['./referee.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class RefereeComponent implements OnInit {  
+
+export class RefereeComponent implements OnInit {
   @Input() refereeInfo;
   @Input() cardCategory;
   @Output() closeAction = new EventEmitter<any>();
   @Output() comprehensiveAction = new EventEmitter<any>();
   @Output() investmentAction = new EventEmitter<any>();
   @Output() insuranceAction = new EventEmitter<any>();
- 
-  
   isActive = false;
- 
+
   constructor(
     public activeModal: NgbActiveModal,
     private router: Router,
@@ -36,34 +31,27 @@ export class RefereeComponent implements OnInit {
 
   ngOnInit() {
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd))
-    .subscribe(({ urlAfterRedirects }: NavigationEnd) => { 
-    //this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-        this.activeModal.dismiss();   
-      
-     
-    });   
-    
-
-      
+      .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
+        this.activeModal.dismiss();
+      });
   }
- 
- 
+
   closeIconAction() {
     this.closeAction.emit();
-    this.activeModal.close();       
+    this.activeModal.close();
   }
 
-  comprehensive(){
+  comprehensive() {
     this.comprehensiveAction.emit();
     this.activeModal.close();
   }
 
-  investment(){
+  investment() {
     this.investmentAction.emit();
-    this.activeModal.close()   
+    this.activeModal.close()
 
   }
-  insurance(){
+  insurance() {
     this.insuranceAction.emit();
     this.activeModal.close();
   }

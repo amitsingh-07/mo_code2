@@ -731,8 +731,8 @@ export class SignUpService {
     this.commit();
   }
 
-  getRefrerralCodeData() {
-    return this.apiService.getRefrerralCodeData();
+  getReferralCodeData() {
+    return this.apiService.getReferralCodeData();
   }
   getRefereeList() {
     // API Call here

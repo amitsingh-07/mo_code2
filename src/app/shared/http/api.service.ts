@@ -718,7 +718,7 @@ export class ApiService {
   }
 
   // referral code api
-  getRefrerralCodeData() {
+  getReferralCodeData() {
     return this.http.get(apiConstants.endpoint.getReferralCode)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))

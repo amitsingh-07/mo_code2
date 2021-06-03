@@ -124,7 +124,6 @@ export class ReferAFriendComponent implements OnInit {
   }
 
   openRefereeModal() {
-    const term ="refer-a-friend"
     this.router.navigate([SIGN_UP_ROUTE_PATHS.REFER_REDIRECT+'/refer-a-friend'],{ skipLocationChange: true });
   }
 
@@ -162,5 +161,4 @@ export class ReferAFriendComponent implements OnInit {
       this.refereeList = this.refereeTotalList.slice(0, (this.pageLimit + this.refereeList.length));
     }
   }
-
 }
