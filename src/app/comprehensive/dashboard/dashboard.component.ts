@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -52,6 +52,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
   paymentInstructions = false;
   showFixedToastMessage: boolean;
   toastMsg: any;
+  @Input() getReferralInfo:string;
+  @Input() comprehensiveInfo:string;
 constructor(
     private router: Router,
     private translate: TranslateService,
@@ -108,6 +110,7 @@ constructor(
 
     });
   }
+
   downloadComprehensiveReport() {
     const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     let newWindow;
@@ -131,6 +134,8 @@ constructor(
     });
 
   }
+
+  
   goToEditProfile() {
     if (this.comprehensivePlanning === 4 && !this.versionTypeEnabled && !this.promoCodeValidated) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
@@ -150,6 +155,7 @@ constructor(
       this.setComprehensiveSummary(true, routerURL);
     }
   }
+
   goToEditComprehensivePlan(viewMode: boolean) {
     if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
       if (!this.islocked) {
@@ -181,6 +187,7 @@ constructor(
     }
     
   }
+
   getComprehensiveCall() {
     this.loaderService.showLoader({ title:  this.fetchData});
     let reportStatusValue =  COMPREHENSIVE_CONST.REPORT_STATUS.NEW;
@@ -208,6 +215,7 @@ constructor(
         });
 
   }
+
   getCurrentComprehensiveStep() {
     if (this.getComprehensiveSummaryEnquiry) {
       for (const i in this.stepDetails) {
@@ -358,6 +366,7 @@ constructor(
 
     });
   }
+
   showPaymentModal() {
     const ref = this.modal.open(PaymentInstructionModalComponent, { centered: true });
     ref.componentInstance.showCopyToast.subscribe((data) => {

@@ -1,0 +1,167 @@
+<!-- Copy toaster-->
+<div class="toast-msg-fixed-block" *ngIf="showFixedToastMessage">
+    <div class="toast-msg-container">
+        <div class="flex-col-1">
+            <img src="assets/images/topupwithdraw/check_orange.svg" alt="" />
+        </div>
+        <div class="flex-col-11">
+            <div class="toast-msg">{{toastMsg?.desc}}</div>
+        </div>
+    </div>
+</div>
+<section class="invest-section">
+    <div class="invest-section-items">
+        <div class="invest-section-content">
+            <div class="invest-bg">
+                <div class="invest-bg-content">
+                    <div class="flex-row banner_content flex-col-12">
+                        <div class="banner_summary space-btwn flex-col-12">
+                            <div class="banner_summary_lbl">{{'REFER_FRIEND.BANNER_LBL' | translate}}</div>
+                            <div><img src="assets/images/refer-friend/reward-header-web.svg" /></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="refer-a-friend">
+    <div class="container-fluid max-width--1024">
+        <div class="row">
+            <div class="banner-bg">
+                <img src="assets/images/refer-friend/reward-header-mobile.svg" />
+            </div>
+            <div class="col-12 refer-friend-block-content">
+                <div class="content">
+                    <div class="desc-lbl">{{'REFER_FRIEND.DESC_LBL' | translate}}</div>
+                    <div class="toggle-block">
+                        <div class="works-btn" (click)="toggleinfo($event)">
+                            {{'REFER_FRIEND.WORKS_BTN_TXT' | translate}}
+                            <span><i class='arrow' [ngClass]="{'active': isCollapsed}"></i></span>
+                        </div>
+                        <div class="rewards-btn" (click)="openRefereeModal()" *ngIf='refereeExists'>
+                            {{'REFER_FRIEND.REWARDS_BTN_TXT' |
+                            translate}}</div>
+                    </div>
+                    <div class="works-btn-info" *ngIf="isCollapsed">
+                        <div class="flex work-steps">
+                            <div class="step-info">
+                                <div class="step-icon"><img src="assets/images/refer-friend/icon-1.svg" /></div>
+                                <div class="step-desc">{{'REFER_FRIEND.WORK_STEPS.STEP_1' | translate}}</div>
+                            </div>
+                            <div class="connector"><img src="assets/images/refer-friend/dots.svg" /></div>
+                            <div class="step-info">
+                                <div class="step-icon"><img src="assets/images/refer-friend/icon-2.svg" /></div>
+                                <div class="step-desc">{{'REFER_FRIEND.WORK_STEPS.STEP_2' | translate}}</div>
+                            </div>
+                            <div class="connector"><img src="assets/images/refer-friend/dots.svg" /></div>
+                            <div class="step-info">
+                                <div class="step-icon"><img src="assets/images/refer-friend/icon-3.svg" /></div>
+                                <div class="step-desc">{{'REFER_FRIEND.WORK_STEPS.STEP_3' | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="referral-details-block">
+                        <div class="new-user" *ngIf='!referralCode'>
+                            <button type="button" id="payment-instruction" class="btn btn-primary"
+                                (click)="getReferralLink()">
+                                {{'REFER_FRIEND.REFERRAL_LINK_LBL' | translate}}</button>
+                        </div>
+                        <div class="existing-user" *ngIf='referralCode'>
+                            <div class="referral-link-block">
+                                <div class="referral-link-details">
+                                    <div class="referral-link-lbl">{{'REFER_FRIEND.INVITE_SHARE_LINK_LBL' | translate}}
+                                    </div>
+                                    <div class="referral-link">
+                                        <span class="copy-txt" style='display:none' copy-clipboard
+                                            [copy-clipboard]="REFERRAL_LINK" (copied)="notify($event)" #REFERRAL_LINK>{{
+                                            referrerLink }}</span>
+                                        <span copy-clipboard [copy-clipboard]="REFERRAL_LINK" (copied)="notify($event)"
+                                            class="copy-icon"><img alt="copy"
+                                                src="assets/images/copy-clipboard-white.svg" /></span>
+                                        <span copy-clipboard [copy-clipboard]="REFERRAL_LINK" (copied)="notify($event)"
+                                            class="pl10">{{ referralCode
+                                            }}</span>
+                                    </div>
+                                </div>                           
+                                <div ngbDropdown class="share-btn-block">
+                                    <button class="btn btn-primary share-btn" id="dropdownConfig" ngbDropdownToggle>
+                                        <img alt="copy" class="share-icon" src="assets/images/share-icon-white.svg" />
+                                        {{'REFER_FRIEND.SHARE_LBL' | translate}}
+                                    </button>
+                                    <div class="social-media-block" ngbDropdownMenu aria-labelledby="dropdownConfig"
+                                        >
+                                        <div>{{'REFER_FRIEND.SOCIAL_MEDIA_INFO_LBL' | translate}}</div>
+                                        <div class="social-media-list">
+                                            <div class="mr20"><a href="{{ facebookShareLink }}" target="_blank"
+                                                    style='color:#fff'><span class="circle facebook"><img alt="copy"
+                                                            src="assets/images/social-networks/facebook-circle-icon.svg" /></span></a>
+                                            </div>
+                                            <div class="mr20"><a href="{{ whatsappShareLink }}" target="_blank"
+                                                    style='color:#fff'><span class="circle telegram"><img alt="copy"
+                                                            src="assets/images/social-networks/telegram-circle-icon.svg" /></span></a>
+                                            </div>
+                                            <div class="mr20"><a href="{{ telegramShareLink }}" target="_blank"
+                                                    style='color:#fff'><span class="circle whatsapp"><img alt="copy"
+                                                            src="assets/images/social-networks/whatsapp-circle-icon.svg" /></span></a>
+                                            </div>
+                                            <div><a href="{{ mailToLink }}" target="_blank" style='color:#fff'><span
+                                                        class="circle mail"><img alt="copy"
+                                                            src="assets/images/social-networks/mail-icon.svg" /></span></a>
+                                            </div>
+                                        </div>
+                                        <div class="preview-lbl">{{'REFER_FRIEND.SOCIAL_MEDIA_DESC_LBL' | translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="friends-details">
+                                <div class="total-friends">
+                                    <div>{{'REFER_FRIEND.FRIENDS_REFERRED_LBL' | translate}}</div>
+                                    <div class="total-friends-value"> {{ totalRefereeListCount }} </div>
+                                </div>
+                                <div class="friends-list">
+                                    <div class="friends-list-header">
+                                        <span class="mr5"><img
+                                                src="assets/images/refer-friend/reward-recieved-icon.svg" /></span>
+                                        <span>{{'REFER_FRIEND.RECEIVED_LBL' | translate}}</span>
+                                    </div>
+                                    <div class="friends-list-content">
+                                        <div class="friends-list-data" *ngIf="refereeList.length > 0">
+                                            <div class="friends-list">
+                                                <div class="list-item" *ngFor="let l of refereeList">
+                                                    <div class="friend-lbl">{{ l.refereeName | titlecase }}</div>
+                                                    <div class="reward-value">{{ l.referrerVoucherCreditSum |
+                                                        currency:'USD':'symbol-narrow':'1.0-0' }}</div>
+                                                </div>
+                                            </div>
+                                            <div class="show-more-block">
+                                                <div class="range"
+                                                    *ngIf="totalRefereeListCount > pageLimit && refereeList.length > 0">
+                                                    {{ refereeList.length }} {{'REFER_FRIEND.OF_LBL' | translate}} {{
+                                                    totalRefereeListCount }}</div>
+                                                <div class="show-more-div text-center"
+                                                    *ngIf="totalRefereeListCount > pageLimit && totalRefereeListCount > refereeList.length &&  refereeList.length > 0">
+                                                    <button type="button" class="btn btn-primary show-more-btn"
+                                                        (click)="getRefereeList()">{{'REFER_FRIEND.SHOW_MORE_BTN_LBL' |
+                                                        translate}}</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="no-data" *ngIf="!(refereeList.length > 0)">
+                                            {{'REFER_FRIEND.SPREAD_WORDS_LBL' |
+                                            translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <app-referral-reward-details></app-referral-reward-details>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

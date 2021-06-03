@@ -70,5 +70,12 @@ export let SIGN_UP_CONFIG = {
       TWO_FA:"2FA",
       UPDATE_CONTACT:"Update Contact",
       SIGN_UP:"Signup"
+    },
+    SOCIAL_REFERRER_LINK: {
+      FACEBOOK: "https://www.facebook.com/sharer.php?quote=",
+      TELEGRAM: "https://telegram.me/share/url?url=",
+      WHATSAPP: "https://api.whatsapp.com/send?text=",
+      MAILTO: "mailto:?body=",
+      SIGN_UP_URL: "/app/accounts/sign-up?referral_code="
     }
 };
