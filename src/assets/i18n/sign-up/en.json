@@ -652,12 +652,12 @@
   "REFER_FRIEND":{
     "PAGE_TITLE_LBL": "Refer a friend",
     "BANNER_LBL": "Share MoneyOwl with your friends",
-    "DESC_LBL": "You both earn when your friend sign up as new user using your referral link and use MoneyOwl services eligible for the rewards.",
+    "DESC_LBL": "You both earn when your friend signs up as a new user using your referral link and use MoneyOwl services eligible for the rewards.",
     "WORKS_BTN_TXT": "How it works",
     "REWARDS_BTN_TXT": "Welcome Rewards",
     "WORK_STEPS": {
       "STEP_1": "You invite a friend",
-      "STEP_2": "They join & use our services*",
+      "STEP_2": "They join & use our services",
       "STEP_3": "You both receive rewards"
     },
     "REFERRAL_LINK_LBL": "Get Referral Link",
