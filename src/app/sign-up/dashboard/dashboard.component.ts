@@ -211,26 +211,38 @@ export class DashboardComponent implements OnInit {
   getReferralCodeData() {
     this.signUpService.getReferralCodeData().subscribe((data) => {
       this.getReferralInfo = data.objectList;
-      this.cardCategory= this.getReferInfo(this.getReferralInfo);
+      this.cardCategory= this.getRefereeInfo(this.getReferralInfo);
+      //console.log(this.cardCategory);
     });
   }
 
-  getReferInfo(rerefeinfo){
-    if (rerefeinfo && rerefeinfo.referralVoucherList) {
-      const investment = this.findCategory(this.getReferralInfo.referralVoucherList, "Investment");
-      const insurance = this.findCategory(this.getReferralInfo.referralVoucherList, "Insurance");
-      const Comprehensive = this.findCategory(this.getReferralInfo.referralVoucherList, "Comprehensive");
+  getRefereeInfo(refereeInfo){
+    if (refereeInfo && refereeInfo.referralVoucherList) {
+      const investment = this.findCategory(refereeInfo.referralVoucherList, "Investment");
+      const insurance = this.findCategory(refereeInfo.referralVoucherList, "Insurance");
+      const Comprehensive = this.findCategory(refereeInfo.referralVoucherList, "Comprehensive");
       return {
         investment: investment,
         insurance: insurance,
         Comprehensive: Comprehensive
       }
+    } else {
+      return {
+        investment: [],
+        insurance: [],
+        Comprehensive: []
+      };
     }
   }
 
   findCategory(elementList, category) {   
-    return elementList.filter(
+    const filteredData = elementList.filter(
       (element) => element.category.toUpperCase() === category.toUpperCase());
+    if(filteredData && filteredData[0]) {
+      return filteredData;
+    } else {
+      return [];
+    }
   }
   
   loadOptionListCollection() {
