@@ -100,13 +100,7 @@
         font-size: 22px !important;
     }
     div.reward-points ~ .form-group-with-bg.overlay-bg .form-group-with-bg--header {
-        @include iphoneX  {
-            width: 75%;
-        }
-        @include iphone6 {
-            width: 75%;
-        }
-        @include max360 {
+        @include allmobiles {
             width: 75%;
         }
     }
@@ -211,15 +205,6 @@
     }
     .form-group-with-bg--header {
         padding: 15px 20px 5px;
-        @include iphoneX  {
-            width: 75%;
-        }
-        @include iphone6 {
-            width: 75%;
-        }
-        @include max360 {
-            width: 75%;
-        }
     }
 
     .ajax-loader-card-inline {
