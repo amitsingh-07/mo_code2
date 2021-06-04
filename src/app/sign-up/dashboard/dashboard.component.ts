@@ -45,8 +45,6 @@ import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
 import { HubspotService } from '../../shared/analytics/hubspot.service';
-import { RefereeComponent } from 'src/app/shared/modal/referee/referee.component';
-
 
 @Component({
   selector: 'app-dashboard',

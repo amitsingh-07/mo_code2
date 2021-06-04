@@ -624,6 +624,7 @@
     }    
   },
   "REFERRAL_REWARD_DETAILS":{
+    "MORE_BOUT_REFERRAL_REWARDS":"More about referral rewards",
     "NOTE": [
       "All payment must be completed to be eligible for any of the rewards.",
       "All rewards are sent to your email within 2 to 4 weeks after implementation. Please refer to the email for all rewards redemption instructions.",

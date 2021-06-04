@@ -1,4 +1,5 @@
-import { Component, Renderer2, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, Renderer2, OnInit} from '@angular/core';
+import { Location } from "@angular/common";
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin as observableForkJoin } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
@@ -26,7 +27,7 @@ import { GuideMeService } from '../../guide-me/guide-me.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { DIRECT_ROUTE_PATHS } from '../../direct/direct-routes.constants';
 
-import { Location } from "@angular/common";
+
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 @Component({
   selector: 'app-referal-redirecting-part',
@@ -59,7 +60,7 @@ export class ReferalRedirectingPartComponent implements OnInit {
   showInsuranceSection: boolean;
   insurance: any = {};
   reDirectiveUrl: string;
-  rerefeinfo: any;
+  refereeInfo: any;
   cardCategory: any;
   referralInfo: any;
   constructor(
@@ -103,14 +104,14 @@ export class ReferalRedirectingPartComponent implements OnInit {
     });
   }
 
-  redirectPath(rerefeinfo, cardCategory) {
+  redirectPath(refereeInfo, cardCategory) {
     if (this.route.snapshot.paramMap.get('term') === "refer-a-friend") {
       this.reDirectiveUrl = SIGN_UP_ROUTE_PATHS.REFER_FRIEND;
-      this.openRefereeModal(this.reDirectiveUrl, rerefeinfo, cardCategory);
+      this.openRefereeModal(this.reDirectiveUrl, refereeInfo, cardCategory);
     }
     else if (this.route.snapshot.paramMap.get('term') === "dashboard") {
       this.reDirectiveUrl = SIGN_UP_ROUTE_PATHS.DASHBOARD;
-      this.openRefereeModal(this.reDirectiveUrl, rerefeinfo, cardCategory);
+      this.openRefereeModal(this.reDirectiveUrl, refereeInfo, cardCategory);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD])
     }
@@ -121,8 +122,8 @@ export class ReferalRedirectingPartComponent implements OnInit {
       (element) => element.category.toUpperCase() === category.toUpperCase())[0];
   }
 
-  getReferInfo(rerefeinfo) {
-    if (rerefeinfo && rerefeinfo.referralVoucherList) {
+  getReferInfo(refereeInfo) {
+    if (refereeInfo && refereeInfo.referralVoucherList) {
       const investment = this.findCategory(this.referralInfo.referralVoucherList, "Investment");
       const insurance = this.findCategory(this.referralInfo.referralVoucherList, "Insurance");
       const comprehensive = this.findCategory(this.referralInfo.referralVoucherList, "Comprehensive");
