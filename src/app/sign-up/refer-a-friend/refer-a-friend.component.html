@@ -129,9 +129,9 @@
                                     <div class="friends-list-content">
                                         <div class="friends-list-data" *ngIf="refereeList.length > 0">
                                             <div class="friends-list">
-                                                <div class="list-item" *ngFor="let l of refereeList">
-                                                    <div class="friend-lbl">{{ l.refereeName | titlecase }}</div>
-                                                    <div class="reward-value">{{ l.referrerVoucherCreditSum |
+                                                <div class="list-item" *ngFor="let referee of refereeList">
+                                                    <div class="friend-lbl">{{ referee.refereeName | titlecase }}</div>
+                                                    <div class="reward-value">{{ referee.referrerVoucherCreditSum |
                                                         currency:'USD':'symbol-narrow':'1.0-0' }}</div>
                                                 </div>
                                             </div>

@@ -76,25 +76,6 @@ export class ReferAFriendComponent implements OnInit {
     });
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
-    // this.refereeTotalList = [
-    //   { name: 'Edwin Toh', rewards: 20 },
-    //   { name: 'Harry Tan', rewards: 20 },
-    //   { name: 'Teng Wei Hao', rewards: 20 },
-    //   { name: 'Natalie Ho', rewards: 40 },
-    //   { name: 'Bruno Mars', rewards: 20 },
-    //   { name: 'Edwin Toh1', rewards: 20 },
-    //   { name: 'Harry Tan2', rewards: 20 },
-    //   { name: 'Teng Wei Hao3', rewards: 20 },
-    //   { name: 'Natalie Ho4', rewards: 40 },
-    //   { name: 'Bruno Mars5', rewards: 20 },
-    //   { name: 'Edwin Toh11', rewards: 20 },
-    //   { name: 'Harry Tan12', rewards: 20 },
-    //   { name: 'Teng Wei Hao13', rewards: 20 },
-    //   { name: 'Natalie Ho14', rewards: 40 },
-    //   { name: 'Bruno Mars15', rewards: 20 }
-    // ];
-    // this.refereeList = this.refereeTotalList.slice(0, this.pageLimit);
-    // this.totalRefereeListCount = this.refereeTotalList.length;
   }
 
 
@@ -149,8 +130,8 @@ export class ReferAFriendComponent implements OnInit {
   getReferralLink() {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('REFER_A_FRIEND.REFER_LINK_MODAL.TITLE');
-    ref.componentInstance.errorMessage = 'We want you to try us out before your friends do! <br></br>Get started with any of our services (from your Dashboard), and come back here again. Your referral link will show after processing completes within 2 to 4 weeks.';
-    ref.componentInstance.primaryActionLabel = 'Go to Dashboard';
+    ref.componentInstance.errorMessage = this.translate.instant('REFER_A_FRIEND.REFER_LINK_MODAL.MESSAGE');
+    ref.componentInstance.primaryActionLabel = this.translate.instant('REFER_A_FRIEND.REFER_LINK_MODAL.PRIMARY_ACTION_LBL');
     ref.componentInstance.primaryAction.subscribe(() => {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     });

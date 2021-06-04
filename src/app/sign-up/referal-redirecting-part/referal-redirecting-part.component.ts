@@ -1,6 +1,6 @@
-import { Component, Renderer2, OnInit, ElementRef, ViewChild} from '@angular/core';
+import { Component, Renderer2, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { forkJoin as observableForkJoin} from 'rxjs';
+import { forkJoin as observableForkJoin } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
@@ -33,7 +33,7 @@ import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/inve
   templateUrl: './referal-redirecting-part.component.html',
   styleUrls: ['./referal-redirecting-part.component.scss']
 })
-export class ReferalRedirectingPartComponent implements OnInit { 
+export class ReferalRedirectingPartComponent implements OnInit {
   investmentsSummary: any;
   isInvestmentEnabled: boolean;
   iFastMaintenance: boolean;
@@ -87,86 +87,41 @@ export class ReferalRedirectingPartComponent implements OnInit {
     });
 
   }
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.getReferralCodeData();
   }
-   
+
   getReferralCodeData() {
     this.signUpService.getReferralCodeData().subscribe((data) => {
       if (data.responseMessage && data.responseMessage.responseCode === 6000) {
-      this.referralInfo = data.objectList;     
-      this.cardCategory= this.getReferInfo(this.referralInfo);
-      this.redirectPath(this.referralInfo, this.cardCategory);
+        this.referralInfo = data.objectList;
+        this.cardCategory = this.getReferInfo(this.referralInfo);
+        this.redirectPath(this.referralInfo, this.cardCategory);
       } else {
         this.router.navigate([this.reDirectiveUrl]);
       }
     });
-  
-    // const data  = {
-    //   "responseMessage": {
-    //     "responseCode": 6000,
-    //     "responseDescription": "Successful response"
-    //   },
-    //   "objectList":
-    //   {
-
-    //     "totalRewardsCount": 3,
-    //     "rewardsValidityDate": "1/11/2021",
-    //     "isWelcomeRewardsValid": false,
-
-    //     "referralVoucherList": [
-    //       {
-    //         "voucherType": "GrabFood",
-    //         "category": "Investment",
-    //         "creditValue": 20,
-    //         "isEnabled": true,
-    //         "voucherStatus": "ISSUED"
-
-    //       },
-    //       {
-    //         "voucherType": "GrabFood",
-    //         "category": "Insurance",
-    //         "creditValue": 20,
-    //         "isEnabled": true,
-    //         "voucherStatus": "NOT_ISSUED"
-
-    //       },
-    //       {
-    //         "voucherType": "GrabFood",
-    //         "category": "Comprehensive",
-    //         "creditValue": 20,
-    //         "isEnabled": true,
-    //         "voucherStatus": "NOT_APPLICABLE"
-
-    //       }]
-    //   }
-
-    // }
-    // console.log(data.objectList);
-    // this.referralInfo = data.objectList;
-    // this.cardCategory= this.getReferInfo(this.referralInfo);
-    // this.redirectPath(this.referralInfo, this.cardCategory);
-    
   }
-  redirectPath(rerefeinfo,cardCategory) {
+
+  redirectPath(rerefeinfo, cardCategory) {
     if (this.route.snapshot.paramMap.get('term') === "refer-a-friend") {
-     this.reDirectiveUrl = SIGN_UP_ROUTE_PATHS.REFER_FRIEND;
+      this.reDirectiveUrl = SIGN_UP_ROUTE_PATHS.REFER_FRIEND;
       this.openRefereeModal(this.reDirectiveUrl, rerefeinfo, cardCategory);
     }
     else if (this.route.snapshot.paramMap.get('term') === "dashboard") {
-     this.reDirectiveUrl = SIGN_UP_ROUTE_PATHS.DASHBOARD;
+      this.reDirectiveUrl = SIGN_UP_ROUTE_PATHS.DASHBOARD;
       this.openRefereeModal(this.reDirectiveUrl, rerefeinfo, cardCategory);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD])
     }
   }
 
-  findCategory(elementList, category) {   
-      return elementList.filter(
-        (element) => element.category.toUpperCase() === category.toUpperCase())[0];
-      }
-      
-  getReferInfo(rerefeinfo){
+  findCategory(elementList, category) {
+    return elementList.filter(
+      (element) => element.category.toUpperCase() === category.toUpperCase())[0];
+  }
+
+  getReferInfo(rerefeinfo) {
     if (rerefeinfo && rerefeinfo.referralVoucherList) {
       const investment = this.findCategory(this.referralInfo.referralVoucherList, "Investment");
       const insurance = this.findCategory(this.referralInfo.referralVoucherList, "Insurance");
@@ -185,7 +140,7 @@ export class ReferalRedirectingPartComponent implements OnInit {
     ref.componentInstance.cardCategory = cardCategory;
     ref.componentInstance.comprehensiveAction.subscribe(() => {
       this.loaderService.showLoader({ title: 'Loading', autoHide: false });
-      this.getComprehensive();      
+      this.getComprehensive();
     });
     ref.componentInstance.investmentAction.subscribe(() => {
       this.loaderService.showLoader({ title: 'Loading', autoHide: false });
@@ -311,7 +266,7 @@ export class ReferalRedirectingPartComponent implements OnInit {
         customerData.objectList.isMyInfoVerified : false;
       this.investmentAccountService.setMyInfoStatus(customerData.objectList.isMyInfoVerified);
       if (myInfoVerified) {
-        this.loaderService.hideLoaderForced(); 
+        this.loaderService.hideLoaderForced();
         if (beneficialOwner) {
           this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
         } else {
@@ -352,7 +307,7 @@ export class ReferalRedirectingPartComponent implements OnInit {
     this.currentStep = -1;
     this.paymentInstructions = false;
     const action = this.appService.getAction();
-    this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe((dashboardData: any) => {     
+    this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe((dashboardData: any) => {
       if (dashboardData && dashboardData.objectList[0]) {
         this.getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', this.getCurrentVersionType);
         if (this.getComprehensiveSummaryDashboard !== '') {
@@ -387,8 +342,8 @@ export class ReferalRedirectingPartComponent implements OnInit {
             this.loaderService.hideLoaderForced();
             this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
           }
-          else if (this.comprehensivePlanning === 4) { 
-            this.loaderService.hideLoaderForced();         
+          else if (this.comprehensivePlanning === 4) {
+            this.loaderService.hideLoaderForced();
             this.goToEditProfile();
           }
           this.isLoadComplete = true;
@@ -474,7 +429,7 @@ export class ReferalRedirectingPartComponent implements OnInit {
     });
   }
 
-  
+
   goToCurrentStep() {
     if (this.currentStep === 0 && this.getComprehensiveSummaryDashboard.isDobUpdated) {
       this.goToEditProfile();
@@ -490,7 +445,7 @@ export class ReferalRedirectingPartComponent implements OnInit {
 
   goToEditProfile() {
     if (this.comprehensivePlanning === 4 && !this.versionTypeEnabled && !this.promoCodeValidated) {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
     } else {
       this.setComprehensiveSummary(true, COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED);
     }
@@ -511,8 +466,8 @@ export class ReferalRedirectingPartComponent implements OnInit {
           this.guideMeService.convertResponseToGuideMeFormData(data.objectList[0]);
           this.insuranceRedirect()
         }
-   
-     } else if (data.responseMessage && data.responseMessage.responseCode === 5003) {
+
+      } else if (data.responseMessage && data.responseMessage.responseCode === 5003) {
         this.selectedPlansService.setInsuranceNewUser();
         this.insurance.hasInsurance = false;
         this.loaderService.hideLoaderForced();
@@ -532,5 +487,5 @@ export class ReferalRedirectingPartComponent implements OnInit {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     }
   }
-  
+
 }
