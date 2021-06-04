@@ -1,0 +1,527 @@
+@import "../../../_variables.scss";
+@import "../../../_mixins.scss";
+app-refer-a-friend {
+    .invest-section {
+        @include allmobiles {
+            display: none;
+        }
+        .invest-section-content {
+            background: $banner-teal-gradient-bg !important;
+        }
+    }
+
+    .invest-bg-content {
+        .banner_content {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 0 75px;
+
+            @include desktop {
+                padding: 0 100px;
+            }
+        }
+
+        .banner_summary {
+            display: flex;
+            padding-top: 80px;
+            font-family: $muli-bold;
+            letter-spacing: -0.2px;
+            color: $white-color;
+            font-size: 36px;
+            line-height: 45px;
+
+            .banner_summary_lbl {
+                max-width: 400px;
+                padding-top: 5px;
+            }
+        }
+    }
+    .refer-a-friend {
+        color: $black-color;
+        background-color: $white-color;
+        min-height: calc(100vh - 84px);
+        @include allmobiles {
+            min-height: calc(100vh - 45px);
+        }
+        .container-fluid {
+            &.max-width--1024 {
+                padding-top: 0;
+                @include allmobiles {
+                    padding-top: 60px;
+                }
+            }
+        }
+        .banner-bg {
+            margin: 0 auto;
+            width: 100%;
+            display: none;
+            @include allmobiles {
+                margin: 0 -5px;
+                width: auto;
+                display: block;
+            }
+            img {
+                max-width: 100%;
+                height: auto;
+                display: block;
+                width: 100%;
+            }
+        }
+        .refer-friend-block-content {
+            font-family: $muli-regular;
+            font-size: 16px;
+            line-height: 21px;
+            color: $silver-grey-color;
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 30px 0 0;
+            @include allmobiles {
+                padding: 20px 15px 0;
+            }
+            @include iphone5 {
+                padding: 20px 10px 0;
+            }
+            .desc-lbl{
+                text-align: left;
+                @include allmobiles {
+                    text-align: center;
+                }
+            }
+            .toggle-block {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-top: 12px;
+                font-size: 16px;
+                font-family: $muli-bold;
+                flex: 1;
+                letter-spacing: -0.13125px;
+                @include allmobiles {
+                    padding-top: 15px;
+                    justify-content: space-around;
+                }
+                .works-btn {
+                    color: $crusta-orange-color;
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                    line-height: 20px;
+                    .arrow {
+                        border: solid $crusta-orange-color;
+                        border-width: 0 3px 3px 0;
+                        display: inline-block;
+                        padding: 4px;
+                        float: right;
+                        margin-left: 10px;
+                        transform: rotate(45deg) scale(0.75);
+                        -webkit-transform: rotate(45deg) scale(0.75);
+                        margin-top: 0px;
+                        &.active {
+                            transform: rotate(-135deg) scale(0.75);
+                            -webkit-transform: rotate(-135deg) scale(0.75);
+                            margin-top: 8px;
+                        }
+                    }
+
+                    &:hover,
+                    &:focus {
+                        text-decoration: none;
+                    }
+                }
+                .rewards-btn {
+                    padding: 7px 20px;
+                    border: 1px solid $teal-color;
+                    color: $teal-color;
+                    border-radius: 22px;
+                    margin-left: 40px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    line-height: 18px;
+                    @include allmobiles {
+                        margin-left: 0px;
+                    }
+                    @include min300max350 {
+                        padding: 7px 5px;
+                    }
+                }
+            }
+
+            .works-btn-info {
+                margin-top: 30px;
+                .work-steps {
+                    display: flex;
+                    justify-content: space-between;
+                    font-family: $muli-regular;
+                    font-size: 14px;
+                    line-height: 16px;
+                    text-align: center;
+                    color: $silver-grey-color;
+                    flex: 1;
+                    width: 400px;
+                        margin: 0 auto;
+                    @include allmobiles{
+                        width: 100%;
+                        margin: 0 auto;
+                        justify-content: space-evenly;
+                    }
+                    .step-info {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        flex: 1;
+                        width: 110px;
+                        @include allmobiles{
+                            max-width: 75px;
+                        }
+                        @include min300max350{
+                            max-width: 70px;
+                        }
+                        .step-icon {
+                            img {
+                                max-width: 100%;
+                                height: auto;
+                            }
+                        }
+                        .step-desc {
+                            margin-top: 7px;
+                            width: 110px;
+                            @include allmobiles{
+                                width: 100px;
+                            }
+                            @include iphone6plus{
+                                width: 110px;
+                            }
+                        }
+                        &:first-child{
+                            .step-desc{
+                                margin-top: 0;
+                            }
+                        }
+                    }
+                    .connector {
+                        margin-top: 30px;
+                        img {
+                            max-width: 100%;
+                            height: auto;
+                        }
+                        @include min300max350{
+                            max-width: 25px;
+                        }
+                    }
+                }
+            }
+            .referral-details-block {
+                padding-top: 30px;
+                .existing-user {
+                    .referral-link-block {
+                        display: flex;
+                        justify-content: space-between;
+                        background: $referal-teal-gradient-bg;
+                        border-radius: 6px;
+                        padding: 20px;
+                        color: $white-color;
+                        font-family: $muli-bold;
+                        .referral-link-details {
+                            text-align: left;
+                            @include min300max350 {
+                                padding-right: 5px;
+                            }
+                            .referral-link-lbl {
+                                font-family: $muli-regular;
+                                font-size: 14px;
+                                line-height: 18px;
+                                letter-spacing: -0.16875px;
+                            }
+                            .referral-link {
+                                padding-top: 8px;
+                                display: flex;
+                                align-items: flex-end;
+                                span {
+                                    cursor: pointer;
+                                    font-size: 18px;
+                                    font-family: $muli-bold;
+                                    line-height: 23px;
+                                }
+                            }
+                        }
+                        .share-btn-block {
+                            position: relative;
+                            .dropdown-toggle{
+                                &::after{
+                                    display: none;
+                                }
+                            }
+                            .btn-primary {
+                                &.share-btn {
+                                    padding: 12px 20px 13px;
+                                    font-family: $muli-bold;
+                                    font-size: 16px;
+                                    line-height: 20px;
+                                    text-align: center;
+                                    letter-spacing: -0.13125px;
+                                    background: $crusta-orange-color;
+                                    border-radius: 6px;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    box-shadow: none !important;
+                                    .share-icon {
+                                        margin-right: 5px;
+                                    }
+                                    &:hover,
+                                    &:active,
+                                    &:focus {
+                                        color: $white-color !important;
+                                        background-color: $crusta-orange-color !important;
+                                        box-shadow: none !important;
+                                    }
+                                }
+                            }
+                            .social-media-block {
+                                transform: translate(-225px, -165px) !important;
+                                font-family: $muli-bold;
+                                font-size: 18px;
+                                line-height: 23px;
+                                letter-spacing: -0.13125px;
+                                color: $silver-grey-color;
+                                background: $white-color;
+                                border: 1px solid $white-smoke-color;
+                                box-sizing: border-box;
+                                box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+                                border-radius: 5px;
+                                padding: 20px 40px;
+                                width: 340px;
+                                text-align: center;
+                                @include min300max350 {
+                                    padding: 20px;
+                                    width: 300px;
+                                    transform: translate(-168px, -161px) !important;
+                                }
+                                @include min350max375 {
+                                    width: 320px;
+                                    transform: translate(-199px, -161px) !important;
+                                }
+                                @include min375max400 {
+                                    transform: translate(-212px, -161px) !important;
+                                }
+                                &::after {
+                                    content: "";
+                                    position: absolute;
+                                    display: block;
+                                    width: 30px;
+                                    height: 30px;
+                                    bottom: -10px;
+                                    right: 30px;
+                                    transform: rotate(45deg);
+                                    background-color: $white-color;
+                                    border: 0px solid $teal-color;
+                                    z-index: 2;
+                                    @include min300max350 {
+                                        right: 46px;
+                                    }
+                                    @include min350max375 {
+                                        right: 36px;
+                                    }
+                                    @include min375max400 {
+                                        right: 42px;
+                                    }
+                                }
+                                .social-media-list {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    padding: 16px 0 10px;
+                                    .circle {
+                                        width: 50px;
+                                        height: 50px;
+                                        border-radius: 25px;
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        &.facebook {
+                                            background: $chambray-color;
+                                        }
+                                        &.telegram {
+                                            background: $lochmara-color;
+                                        }
+                                        &.whatsapp {
+                                            background: $mountain-meadow-color;
+                                        }
+                                        &.mail {
+                                            background: $pale-sky-color;
+                                            margin-right: 0;
+                                        }
+                                    }
+                                }
+                                .preview-lbl {
+                                    font-family: $muli-regular;
+                                    font-size: 14px;
+                                    line-height: 18px;
+                                    text-align: center;
+                                    letter-spacing: -0.13125px;
+                                    color: $dark-dusty-grey-color;
+                                }
+                            }
+                        }
+                    }
+                    .friends-details {
+                        margin-top: 30px;
+                        padding: 20px;
+                        background: $white-color;
+                        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+                        border-radius: 6px;
+                        .total-friends {
+                            display: flex;
+                            justify-content: space-between;
+                            font-family: $muli-bold;
+                            font-size: 18px;
+                            line-height: 23px;
+                            letter-spacing: -0.13125px;
+                            color: $teal-color;
+                            .total-friends-value {
+                                font-family: $muli-regular;
+                                font-size: 24px;
+                                line-height: 30px;
+                                text-align: center;
+                                letter-spacing: -0.13125px;
+                                color: $silver-grey-color;
+                            }
+                        }
+                        .friends-list {
+                            .friends-list-header {
+                                padding: 20px;
+                                padding-right: 0;
+                                display: flex;
+                                justify-content: flex-end;
+                                align-items: center;
+                                font-family: $muli-regular;
+                                font-size: 14px;
+                                line-height: 18px;
+                                color: $silver-grey-color;
+                                span{
+                                    padding-top: 4px;
+                                    &.mr5{
+                                        padding-top: 0;
+                                    }
+                                }
+                            }
+                            .friends-list-content {
+                                border-top: 1px solid $teal-color;
+                                margin: 0 15px;
+                                @include allmobiles {
+                                    margin: 0;
+                                }
+                                .friends-list-data {
+                                    .friends-list {
+                                        .list-item {
+                                            display: flex;
+                                            justify-content: space-between;
+                                            padding: 15px 0;
+                                            font-family: $muli-regular;
+                                            font-size: 14px;
+                                            line-height: 18px;
+                                            color: $silver-grey-color;
+                                            border-bottom: 1px solid $mercury-smoke-color;
+                                            &:last-child {
+                                                border-bottom: none;
+                                            }
+                                        }
+                                        .friend-lbl {
+                                            font-family: $muli-bold;
+                                            color: $teal-color;
+                                        }
+                                    }
+                                    .show-more-block {
+                                        .range {
+                                            padding: 8px 0 10px;
+                                            font-family: $muli-semi-bold;
+                                            font-size: 14px;
+                                            line-height: 18px;
+                                            text-align: center;
+                                            color: $dark-dusty-grey-color;
+                                        }
+                                        .show-more-div {
+                                            .btn-primary {
+                                                &.show-more-btn {
+                                                    padding: 7px 15px 7px 16px;
+                                                    margin: 0 auto !important;
+                                                    font-family: $muli-semi-bold !important;
+                                                    font-size: 12px;
+                                                    letter-spacing: -0.26px;
+                                                    border-radius: 14px;
+                                                    text-align: center;
+                                                    color: $teal-color !important;
+                                                    background-color: $white-color;
+                                                    box-shadow: none !important;
+                                                    border: 1px solid $teal-color;
+                                                    line-height: 15px;
+                                                    &:hover,
+                                                    &:active,
+                                                    &:focus {
+                                                        background-color: $white-color !important;
+                                                        color: $teal-color !important;
+                                                        box-shadow: none !important;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                .no-data {
+                                    font-family: $muli-regular;
+                                    font-size: 14px;
+                                    line-height: 18px;
+                                    text-align: center;
+                                    color: $dusty-grey-color;
+                                    padding: 40px 0px;
+                                    max-width: 295px;
+                                    text-align: center;
+                                    margin: 0 auto;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .new-user {
+        padding: 20px;
+        background: $white-color;
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 6px;
+        text-align: center;
+        .btn {
+            &.btn-primary {
+                font-family: $muli-bold;
+                font-size: 18px;
+                line-height: 23px;
+                width: 275px;
+                background-color: $crusta-orange-color;
+                border-color: $crusta-orange-color;
+                box-shadow: none !important;
+                @include allmobiles{
+                    width: 275px;
+                }
+                @include min300max350 {
+                    width: 100%;
+                }
+                &:hover {
+                    background-color: $crusta-orange-color !important;
+                }
+
+                &:focus,
+                &:active {
+                    outline: none !important;
+                    background: $crusta-orange-color !important;
+                    border-color: none !important;
+                }
+
+                &.active {
+                    outline: none !important;
+                    background: $crusta-orange-color !important;
+                }
+            }
+        }
+    }
+}

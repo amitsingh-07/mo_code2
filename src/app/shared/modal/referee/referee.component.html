@@ -1,0 +1,164 @@
+<div class="modal-body white-bg">
+	<div class="referee-modal">
+		<div class="referee-modal__bannner">
+			<button class="referee-modal__bannner__close-btn close" (click)="closeIconAction()"></button>
+			<div class="referee-modal__bannner__gift-box"><img src="assets/images/refer-friend/Giftboxes.svg"></div>
+			<div class="referee-modal__bannner__valid-box">{{'REFEREE-MODAL.VALIDITY' |
+				translate}}{{refereeInfo.rewardsValidityDate | date:'dd MMM y'}}</div>
+			<div *ngIf="!refereeInfo.isWelcomeRewardsValid" class="referee-modal__bannner__stamped"><img
+					src="assets/images/refer-friend/Stamp expired.svg"></div>
+		</div>
+		<div class="referee-modal__inner">
+			<p class="mb30">{{'REFEREE-MODAL.PARA_ONE' | translate}}</p>
+			<div>
+				<p class="referee-modal__inner__heading">{{refereeInfo.totalRewardsCount}}{{'REFEREE-MODAL.HEADING' |
+					translate}}</p>
+				<p class="mb30" [innerHTML]="'REFEREE-MODAL.PARA_TWO' | translate"></p>
+			</div>
+			<div>
+				<div>
+					<div class="referee-modal__inner__coupon-card" *ngIf="cardCategory && cardCategory.comprehensive">
+						<div
+							*ngIf="cardCategory.comprehensive.voucherStatus ==='NOT_ISSUED' && refereeInfo.isWelcomeRewardsValid">
+							<img src="assets/images/refer-friend/Slice Left Coupon Blue.svg">
+						</div>
+						<div
+							*ngIf="cardCategory.comprehensive.voucherStatus ==='ISSUED' || cardCategory.comprehensive.voucherStatus ==='NOT_APPLICABLE' || !refereeInfo.isWelcomeRewardsValid">
+							<img src="assets/images/refer-friend/Slice Left Coupon Grey.svg">
+						</div>
+						<div class="referee-modal__inner__coupon-card__left"
+							[ngClass]="{'referee-bg-grey': cardCategory.comprehensive.voucherStatus ==='ISSUED' || cardCategory.comprehensive.voucherStatus ==='NOT_APPLICABLE' || !refereeInfo.isWelcomeRewardsValid }">
+							<p>{{'REFEREE-MODAL.COUPON_CARD_COMP' | translate}}</p>
+							<p [ngClass]="{'referee-bg-grey-get-started':!refereeInfo.isWelcomeRewardsValid }"
+								class="referee-modal__inner__coupon-card__left__get-started"
+								*ngIf="cardCategory.comprehensive.voucherStatus ==='NOT_ISSUED'"
+								(click)="comprehensive()">{{'REFEREE-MODAL.GET_STARTED' |
+								translate}}</p>
+							<p class="referee-modal__inner__coupon-card__left__issued"
+								*ngIf="cardCategory.comprehensive.voucherStatus ==='ISSUED'">
+								{{'REFEREE-MODAL.REWARD_HAS_BEEN_ISSUED' |
+								translate}}</p>
+							<p class="referee-modal__inner__coupon-card__left__issued"
+								*ngIf="cardCategory.comprehensive.voucherStatus ==='NOT_APPLICABLE'">
+								{{'REFEREE-MODAL.NOT_APPLICABLE' |
+								translate}}</p>
+						</div>
+						<div
+							*ngIf="cardCategory.comprehensive.voucherStatus ==='NOT_ISSUED' && refereeInfo.isWelcomeRewardsValid">
+							<img src="assets/images/refer-friend/Slice Mid Coupon Blue.svg">
+						</div>
+						<div
+							*ngIf="cardCategory.comprehensive.voucherStatus ==='ISSUED' || cardCategory.comprehensive.voucherStatus ==='NOT_APPLICABLE' || !refereeInfo.isWelcomeRewardsValid">
+							<img src="assets/images/refer-friend/Slice Mid Coupon Grey.svg">
+						</div>
+						<div class="referee-modal__inner__coupon-card__right"
+							[ngClass]="{'referee-bg-grey': cardCategory.comprehensive.voucherStatus ==='ISSUED' || cardCategory.comprehensive.voucherStatus ==='NOT_APPLICABLE'  || !refereeInfo.isWelcomeRewardsValid}">
+							<p>S${{cardCategory.comprehensive.creditValue}}</p>
+							<p *ngIf="cardCategory.comprehensive.voucherType === 'GrabFood'">
+								<img *ngIf="cardCategory.comprehensive.voucherStatus ==='NOT_ISSUED' && refereeInfo.isWelcomeRewardsValid"
+									src="assets/images/refer-friend/GrabFood logo.svg">
+								<img *ngIf="cardCategory.comprehensive.voucherStatus ==='ISSUED' || cardCategory.comprehensive.voucherStatus ==='NOT_APPLICABLE' || !refereeInfo.isWelcomeRewardsValid"
+									src="assets/images/refer-friend/GrabFood logo grey.svg">
+							</p>
+							<p>credits</p>
+						</div>
+					</div>
+					<div class="referee-modal__inner__coupon-card" *ngIf="cardCategory && cardCategory.investment">
+						<div
+							*ngIf="cardCategory.investment.voucherStatus ==='NOT_ISSUED' && refereeInfo.isWelcomeRewardsValid">
+							<img src="assets/images/refer-friend/Slice Left Coupon Blue.svg">
+						</div>
+						<div
+							*ngIf="cardCategory.investment.voucherStatus ==='ISSUED' || cardCategory.investment.voucherStatus ==='NOT_APPLICABLE' || !refereeInfo.isWelcomeRewardsValid">
+							<img src="assets/images/refer-friend/Slice Left Coupon Grey.svg">
+						</div>
+						<div class="referee-modal__inner__coupon-card__left"
+							[ngClass]="{'referee-bg-grey': cardCategory.investment.voucherStatus ==='ISSUED' || cardCategory.investment.voucherStatus ==='NOT_APPLICABLE' || !refereeInfo.isWelcomeRewardsValid }">
+							<p>{{'REFEREE-MODAL.COUPON_CARD_INVEST' | translate}}</p>
+							<p [ngClass]="{'referee-bg-grey-get-started':!refereeInfo.isWelcomeRewardsValid }"
+								class="referee-modal__inner__coupon-card__left__get-started"
+								*ngIf="cardCategory.investment.voucherStatus ==='NOT_ISSUED'" (click)="investment()">
+								{{'REFEREE-MODAL.GET_STARTED' |
+								translate}}</p>
+							<p class="referee-modal__inner__coupon-card__left__issued"
+								*ngIf="cardCategory.investment.voucherStatus ==='ISSUED'">
+								{{'REFEREE-MODAL.REWARD_HAS_BEEN_ISSUED' |
+								translate}}</p>
+							<p class="referee-modal__inner__coupon-card__left__issued"
+								*ngIf="cardCategory.investment.voucherStatus ==='NOT_APPLICABLE'">
+								{{'REFEREE-MODAL.NOT_APPLICABLE' |
+								translate}}</p>
+						</div>
+						<div
+							*ngIf="cardCategory.investment.voucherStatus ==='NOT_ISSUED' && refereeInfo.isWelcomeRewardsValid">
+							<img src="assets/images/refer-friend/Slice Mid Coupon Blue.svg">
+						</div>
+						<div
+							*ngIf="cardCategory.investment.voucherStatus ==='ISSUED' || cardCategory.investment.voucherStatus ==='NOT_APPLICABLE' || !refereeInfo.isWelcomeRewardsValid">
+							<img src="assets/images/refer-friend/Slice Mid Coupon Grey.svg">
+						</div>
+						<div class="referee-modal__inner__coupon-card__right"
+							[ngClass]="{'referee-bg-grey': cardCategory.investment.voucherStatus ==='ISSUED' || cardCategory.investment.voucherStatus ==='NOT_APPLICABLE'  || !refereeInfo.isWelcomeRewardsValid}">
+							<p>S${{cardCategory.investment.creditValue}}</p>
+							<p *ngIf="cardCategory.investment.voucherType === 'GrabFood'">
+								<img *ngIf="cardCategory.investment.voucherStatus ==='NOT_ISSUED' && refereeInfo.isWelcomeRewardsValid"
+									src="assets/images/refer-friend/GrabFood logo.svg">
+								<img *ngIf="cardCategory.investment.voucherStatus ==='ISSUED' || cardCategory.investment.voucherStatus ==='NOT_APPLICABLE' || !refereeInfo.isWelcomeRewardsValid"
+									src="assets/images/refer-friend/GrabFood logo grey.svg">
+							</p>
+							<p>credits</p>
+						</div>
+					</div>
+					<div class="referee-modal__inner__coupon-card" *ngIf="cardCategory && cardCategory.insurance">
+						<div
+							*ngIf="cardCategory.insurance.voucherStatus ==='NOT_ISSUED' && refereeInfo.isWelcomeRewardsValid">
+							<img src="assets/images/refer-friend/Slice Left Coupon Blue.svg">
+						</div>
+						<div
+							*ngIf="cardCategory.insurance.voucherStatus ==='ISSUED' || cardCategory.insurance.voucherStatus ==='NOT_APPLICABLE' || !refereeInfo.isWelcomeRewardsValid">
+							<img src="assets/images/refer-friend/Slice Left Coupon Grey.svg">
+						</div>
+						<div class="referee-modal__inner__coupon-card__left"
+							[ngClass]="{'referee-bg-grey': cardCategory.insurance.voucherStatus ==='ISSUED' || cardCategory.insurance.voucherStatus ==='NOT_APPLICABLE' || !refereeInfo.isWelcomeRewardsValid }">
+							<p>{{'REFEREE-MODAL.COUPON_CARD_INS' | translate}}</p>
+							<p [ngClass]="{'referee-bg-grey-get-started':!refereeInfo.isWelcomeRewardsValid }"
+								class="referee-modal__inner__coupon-card__left__get-started"
+								*ngIf="cardCategory.insurance.voucherStatus ==='NOT_ISSUED'" (click)="insurance()">
+								{{'REFEREE-MODAL.GET_STARTED' |
+								translate}}</p>
+							<p class="referee-modal__inner__coupon-card__left__issued"
+								*ngIf="cardCategory.insurance.voucherStatus ==='ISSUED'">
+								{{'REFEREE-MODAL.REWARD_HAS_BEEN_ISSUED' |
+								translate}}</p>
+							<p class="referee-modal__inner__coupon-card__left__issued"
+								*ngIf="cardCategory.insurance.voucherStatus ==='NOT_APPLICABLE'">
+								{{'REFEREE-MODAL.NOT_APPLICABLE' |
+								translate}}</p>
+						</div>
+						<div
+							*ngIf="cardCategory.insurance.voucherStatus ==='NOT_ISSUED' && refereeInfo.isWelcomeRewardsValid">
+							<img src="assets/images/refer-friend/Slice Mid Coupon Blue.svg">
+						</div>
+						<div
+							*ngIf="cardCategory.insurance.voucherStatus ==='ISSUED' || cardCategory.insurance.voucherStatus ==='NOT_APPLICABLE' || !refereeInfo.isWelcomeRewardsValid">
+							<img src="assets/images/refer-friend/Slice Mid Coupon Grey.svg">
+						</div>
+						<div class="referee-modal__inner__coupon-card__right"
+							[ngClass]="{'referee-bg-grey': cardCategory.insurance.voucherStatus ==='ISSUED' || cardCategory.insurance.voucherStatus ==='NOT_APPLICABLE'  || !refereeInfo.isWelcomeRewardsValid}">
+							<p>S${{cardCategory.insurance.creditValue}}</p>
+							<p *ngIf="cardCategory.insurance.voucherType === 'GrabFood'">
+								<img *ngIf="cardCategory.insurance.voucherStatus ==='NOT_ISSUED' && refereeInfo.isWelcomeRewardsValid"
+									src="assets/images/refer-friend/GrabFood logo.svg">
+								<img *ngIf="cardCategory.insurance.voucherStatus ==='ISSUED' || cardCategory.insurance.voucherStatus ==='NOT_APPLICABLE' || !refereeInfo.isWelcomeRewardsValid"
+									src="assets/images/refer-friend/GrabFood logo grey.svg">
+							</p>
+							<p>credits</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="referee-modal__inner__separator"></div>
+			<app-referral-reward-details></app-referral-reward-details>
+		</div>
+	</div>
+</div>
