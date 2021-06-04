@@ -397,7 +397,9 @@ app-dashboard {
                 }
               }
               div.reward-points ~ .topup-btn {
-                margin-top: -37px !important;
+                @include allmobiles {  
+                    margin-top: -37px !important;
+                }
               }
               .widget-portfolio-body {
                 padding:0px 18px 11px;
@@ -516,6 +518,7 @@ app-dashboard {
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 0 15px;
         }
     }
     .announcement-div {
