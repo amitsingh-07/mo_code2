@@ -38,12 +38,9 @@
         line-height: 30px;
     }
     &__close-btn {
-        position: absolute;
-        right: 20px;
-        top: 20px;
-        color: black;
-        border: none;
-        background: none;
+        &.close {
+            opacity: 1 !important;
+        }
     }
     &__stamped {
         position: absolute;

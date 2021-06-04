@@ -669,6 +669,8 @@
     "RECEIVED_LBL": "You received",
     "OF_LBL": "of",
     "SHOW_MORE_BTN_LBL": "Show More",
-    "SPREAD_WORDS_LBL":"Oops, pretty lonely here. Go on, help us spread the words."
+    "SPREAD_WORDS_LBL":"Oops, pretty lonely here. Go on, help us spread the words.",
+    "YOU_HAVE": "You’ve",
+    "WELCOME_REWARDS": "welcome rewards"
   }
 }
