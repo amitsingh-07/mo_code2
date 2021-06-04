@@ -17,6 +17,7 @@ import { LoaderService } from './../../shared/components/loader/loader.service';
 import { PaymentInstructionModalComponent } from './../../shared/modal/payment-instruction-modal/payment-instruction-modal.component';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
+import { SignUpService } from '../../sign-up/sign-up.service';
 
 @Component({
   selector: 'app-comprehensive-dashboard',
@@ -52,8 +53,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
   paymentInstructions = false;
   showFixedToastMessage: boolean;
   toastMsg: any;
-  @Input() getReferralInfo:string;
-  @Input() comprehensiveInfo:string;
+  getReferralInfo: any;
+  comprehensiveInfo: any;
 constructor(
     private router: Router,
     private translate: TranslateService,
@@ -65,6 +66,7 @@ constructor(
     private downloadfile: FileUtil,
     private authService: AuthenticationService,
     private loaderService: LoaderService, private appService: AppService,
+    private signUpService: SignUpService,
     private modal: NgbModal) {
       this.appService.clearPromoCode();
       this.configService.getConfig().subscribe((config) => {
@@ -98,10 +100,12 @@ constructor(
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
       this.setComprehensivePlan(true);
     }
+    this.getReferralCodeData();
   }
 
   ngOnInit() {
   }
+  
   generateReport() {
     this.comprehensiveApiService.getReport().subscribe((data: any) => {
       this.comprehensiveService.setReportId(data.objectList[0].id);
@@ -385,5 +389,31 @@ constructor(
       this.showFixedToastMessage = false;
       this.toastMsg = null;
     }, 3000);
+  }
+  
+  getReferralCodeData() {
+    this.signUpService.getReferralCodeData().subscribe((data) => {      
+      this.getReferralInfo = data.objectList;
+      this.comprehensiveInfo= this.getRefereeInfo(this.getReferralInfo);
+    });
+  }
+
+  getRefereeInfo(refereeInfo){
+    if (refereeInfo && refereeInfo.referralVoucherList) {
+      const comprehensive = this.findCategory(refereeInfo.referralVoucherList, "Comprehensive");
+      return comprehensive;      
+    } else {
+      return [];
+    }
+ }
+
+  findCategory(elementList, category) {   
+    const filteredData = elementList.filter(
+      (element) => element.category.toUpperCase() === category.toUpperCase());
+    if(filteredData && filteredData[0]) {
+      return filteredData;
+    } else {
+      return [];
+    }
   }
 }
