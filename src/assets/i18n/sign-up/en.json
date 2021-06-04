@@ -624,6 +624,7 @@
     }    
   },
   "REFERRAL_REWARD_DETAILS":{
+    "MORE_BOUT_REFERRAL_REWARDS":"More about referral rewards",
     "NOTE": [
       "All payment must be completed to be eligible for any of the rewards.",
       "All rewards are sent to your email within 2 to 4 weeks after implementation. Please refer to the email for all rewards redemption instructions.",
@@ -655,6 +656,7 @@
     "DESC_LBL": "You both earn when your friend signs up as a new user using your referral link and use MoneyOwl services eligible for the rewards.",
     "WORKS_BTN_TXT": "How it works",
     "REWARDS_BTN_TXT": "Welcome Rewards",
+    "VALIDITY": "Valid until ",
     "WORK_STEPS": {
       "STEP_1": "You invite a friend",
       "STEP_2": "They join & use our services",
@@ -669,6 +671,8 @@
     "RECEIVED_LBL": "You received",
     "OF_LBL": "of",
     "SHOW_MORE_BTN_LBL": "Show More",
-    "SPREAD_WORDS_LBL":"Oops, pretty lonely here. Go on, help us spread the words."
+    "SPREAD_WORDS_LBL":"Oops, pretty lonely here. Go on, help us spread the words.",
+    "YOU_HAVE": "You’ve",
+    "WELCOME_REWARDS": "welcome rewards"
   }
 }

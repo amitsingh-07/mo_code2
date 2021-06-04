@@ -12,6 +12,7 @@ import { RefereeComponent } from '../../shared/modal/referee/referee.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SignUpService } from '../sign-up.service';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 @Component({
   selector: 'app-refer-a-friend',
   templateUrl: './refer-a-friend.component.html',
@@ -42,7 +43,8 @@ export class ReferAFriendComponent implements OnInit {
     public modal: NgbModal,
     private translate: TranslateService,
     private signUpService: SignUpService,
-    config: NgbDropdownConfig
+    config: NgbDropdownConfig,
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -54,7 +56,9 @@ export class ReferAFriendComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loaderService.showLoader({ title: 'Loading', autoHide: false });
     this.signUpService.getRefereeList().subscribe((data) => {
+      this.loaderService.hideLoaderForced();
       const responseMessage = data.responseMessage;
       if (responseMessage.responseCode === 6000) {
         if (data.objectList) {

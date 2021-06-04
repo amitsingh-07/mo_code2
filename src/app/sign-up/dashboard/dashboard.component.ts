@@ -45,8 +45,6 @@ import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
 import { HubspotService } from '../../shared/analytics/hubspot.service';
-import { RefereeComponent } from 'src/app/shared/modal/referee/referee.component';
-
 
 @Component({
   selector: 'app-dashboard',
@@ -128,7 +126,8 @@ export class DashboardComponent implements OnInit {
       this.isInvestmentConfigEnabled = config.investmentEnabled;
       this.isComprehensiveEnabled = config.comprehensiveEnabled;
     });
-    this.portfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
+    this.portfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;    
+    this.getReferralCodeData();
   }
 
   ngOnInit() {
@@ -205,7 +204,6 @@ export class DashboardComponent implements OnInit {
     });
     this.getInvestmentsSummary();
     this.investmentAccountService.deactivateReassess();
-    this.getReferralCodeData();
   }
 
   getReferralCodeData() {
