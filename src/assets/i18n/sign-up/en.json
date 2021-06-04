@@ -405,7 +405,6 @@
           "IMG_TITLE": "Refer and receive rewards",
           "TEXT": "You will now be able to share your MoneyOwl referral link and start earning rewards. Look for it at <strong>Dashboard > Menu > Refer a friend</strong> and start sharing!",
           "APP_URL": "/accounts/refer-a-friend",
-          "QUERY_PARAMS": "refer-a-friend",
           "URL_TEXT": "Refer a friend"
         },  
         {
