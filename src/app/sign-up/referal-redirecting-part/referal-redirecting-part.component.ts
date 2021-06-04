@@ -1,4 +1,4 @@
-import { Component, Renderer2, OnInit} from '@angular/core';
+import { Component, Renderer2, OnInit } from '@angular/core';
 import { Location } from "@angular/common";
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin as observableForkJoin } from 'rxjs';
@@ -306,8 +306,8 @@ export class ReferalRedirectingPartComponent implements OnInit {
     this.advisorStatus = false;
     this.getComprehensiveSummaryDashboard = '';
     this.currentStep = -1;
-    this.paymentInstructions = false;  
-    this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);    
+    this.paymentInstructions = false;
+    this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
     this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe((dashboardData: any) => {
       if (dashboardData && dashboardData.objectList[0]) {
         this.getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', this.getCurrentVersionType);
@@ -347,7 +347,7 @@ export class ReferalRedirectingPartComponent implements OnInit {
             this.goToEditProfile();
           }
           this.isLoadComplete = true;
-        } else {         
+        } else {
           this.loaderService.hideLoaderForced();
           this.goToEditProfile();
         }
@@ -463,12 +463,13 @@ export class ReferalRedirectingPartComponent implements OnInit {
         this.insurance.isGuidedJourney = data.objectList[0].financialStatusMapping !== null;
         const lastTransact = new Date(data.objectList[0].lastEnquiredDate.split(' ')[0]);
         this.insurance.lastTransactionDate = lastTransact;
-        if (!this.guideMeService.checkGuidedDataLoaded() && this.insurance.isGuidedJourney) {
-          this.guideMeService.convertResponseToGuideMeFormData(data.objectList[0]);
-          this.insuranceRedirect()
-        } else {
+        if ((data.objectList[0] && data.objectList[0].enquiryData &&
+          data.objectList[0].enquiryData.createdTimeStamp) || this.insurance.lastTransactionDate) {
           this.loaderService.hideLoaderForced();
           this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+        } else{
+          this.loaderService.hideLoaderForced();
+          this.router.navigate([DIRECT_ROUTE_PATHS.COMPARE_PLANS]);
         }
       } else if (data.responseMessage && data.responseMessage.responseCode === 5003) {
         this.selectedPlansService.setInsuranceNewUser();
@@ -477,18 +478,9 @@ export class ReferalRedirectingPartComponent implements OnInit {
         this.router.navigate([DIRECT_ROUTE_PATHS.COMPARE_PLANS]);
       } else {
         this.loaderService.hideLoaderForced();
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+        this.router.navigate([DIRECT_ROUTE_PATHS.COMPARE_PLANS]);
       }
     });
   }
-
-  // redirect
-  insuranceRedirect() {
-    if (!this.insurance.isGuidedJourney) {
-      this.router.navigate([DIRECT_ROUTE_PATHS.COMPARE_PLANS]);
-    } else {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-    }
-  }
-
+  
 }
