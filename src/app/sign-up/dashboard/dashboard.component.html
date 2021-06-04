@@ -34,8 +34,8 @@
               <!--Refree Welcome Reward Box-->
               <div class="welcome-reward-box" (click)="openRefereeModal()" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists">
                 <div class="welcome-reward-box__left">
-                  <p>You’ve {{getReferralInfo.totalRewardsCount}} welcome rewards</p>
-                  <p>{{getReferralInfo.rewardsValidityDate}}</p>
+                  <p>{{'REFER_FRIEND.YOU_HAVE' | translate}} {{getReferralInfo.totalRewardsCount}} welcome rewards</p>
+                  <p>{{'REFER_FRIEND.WELCOME_REWARDS' | translate}}</p>
                 </div>
                 <div class="welcome-reward-box__right">
                   <img src="assets/images/refer-friend/chevron-next-circle.svg">
@@ -299,7 +299,7 @@
               <div class="widget-title">
                 <span class="flex">{{'DASHBOARD.WILL_WRITING.TITLE' | translate}}
                 </span>
-                <span class="view_all" (click)="redirectTo('edit')">{{'DASHBOARD.WILL_WRITING.EDIT_WILL'
+                <span class="view_all" *ngIf="wills.completedWill" (click)="redirectTo('edit')">{{'DASHBOARD.WILL_WRITING.EDIT_WILL'
                   | translate}}</span>
               </div>
               <div class="widget-body">
