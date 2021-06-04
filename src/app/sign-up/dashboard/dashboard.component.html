@@ -48,7 +48,7 @@
             </div>
           </div>
           <div class="widgets">
-            <app-comprehensive-dashboard *ngIf='isComprehensiveEnabled' [getReferralInfo]="getReferralInfo" [comprehensiveInfo]="cardCategory.comprehensiveInfo"></app-comprehensive-dashboard>
+            <app-comprehensive-dashboard *ngIf='isComprehensiveEnabled'></app-comprehensive-dashboard>
             <!-- Investment widget Start -->
             <div class="widget">
               <div class="reward-points" [ngClass]="{'grey': !cardCategory.investment[0].isEnabled}" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"><span *ngIf="!cardCategory.investment[0].isEnabled"><img src="assets/images/refer-friend/gift-icon-grey.svg"></span><span *ngIf="cardCategory.investment[0].isEnabled"><img src="assets/images/refer-friend/gift-icon.svg"></span>${{cardCategory.investment[0].creditValue}}</div>

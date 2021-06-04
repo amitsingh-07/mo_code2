@@ -306,13 +306,12 @@ export class ReferalRedirectingPartComponent implements OnInit {
     this.advisorStatus = false;
     this.getComprehensiveSummaryDashboard = '';
     this.currentStep = -1;
-    this.paymentInstructions = false;
-    const action = this.appService.getAction();
+    this.paymentInstructions = false;  
+    this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);    
     this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe((dashboardData: any) => {
       if (dashboardData && dashboardData.objectList[0]) {
         this.getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', this.getCurrentVersionType);
         if (this.getComprehensiveSummaryDashboard !== '') {
-          this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
           this.islocked = this.getComprehensiveSummaryDashboard.isLocked;
           this.paymentInstructions = (this.getComprehensiveSummaryDashboard.paymentStatus
             && (this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING ||
@@ -348,13 +347,14 @@ export class ReferalRedirectingPartComponent implements OnInit {
             this.goToEditProfile();
           }
           this.isLoadComplete = true;
-        } else {
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+        } else {         
+          this.loaderService.hideLoaderForced();
+          this.goToEditProfile();
         }
       } else {
         this.isLoadComplete = true;
         this.loaderService.hideLoaderForced();
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+        this.goToEditProfile();
       }
     });
   }
@@ -466,13 +466,15 @@ export class ReferalRedirectingPartComponent implements OnInit {
         if (!this.guideMeService.checkGuidedDataLoaded() && this.insurance.isGuidedJourney) {
           this.guideMeService.convertResponseToGuideMeFormData(data.objectList[0]);
           this.insuranceRedirect()
+        } else {
+          this.loaderService.hideLoaderForced();
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
         }
-
       } else if (data.responseMessage && data.responseMessage.responseCode === 5003) {
         this.selectedPlansService.setInsuranceNewUser();
         this.insurance.hasInsurance = false;
         this.loaderService.hideLoaderForced();
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+        this.router.navigate([DIRECT_ROUTE_PATHS.COMPARE_PLANS]);
       } else {
         this.loaderService.hideLoaderForced();
         this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
@@ -480,7 +482,7 @@ export class ReferalRedirectingPartComponent implements OnInit {
     });
   }
 
-  // redirect 
+  // redirect
   insuranceRedirect() {
     if (!this.insurance.isGuidedJourney) {
       this.router.navigate([DIRECT_ROUTE_PATHS.COMPARE_PLANS]);
