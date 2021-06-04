@@ -113,12 +113,12 @@ app-refer-a-friend {
                         padding: 4px;
                         float: right;
                         margin-left: 10px;
-                        transform: rotate(45deg);
-                        -webkit-transform: rotate(45deg);
+                        transform: rotate(45deg) scale(0.75);
+                        -webkit-transform: rotate(45deg) scale(0.75);
                         margin-top: 0px;
                         &.active {
-                            transform: rotate(-135deg);
-                            -webkit-transform: rotate(-135deg);
+                            transform: rotate(-135deg) scale(0.75);
+                            -webkit-transform: rotate(-135deg) scale(0.75);
                             margin-top: 8px;
                         }
                     }
