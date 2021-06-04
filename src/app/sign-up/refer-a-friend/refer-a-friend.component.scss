@@ -398,6 +398,12 @@ app-refer-a-friend {
                                 font-size: 14px;
                                 line-height: 18px;
                                 color: $silver-grey-color;
+                                span{
+                                    padding-top: 4px;
+                                    &.mr5{
+                                        padding-top: 0;
+                                    }
+                                }
                             }
                             .friends-list-content {
                                 border-top: 1px solid $teal-color;
@@ -447,8 +453,8 @@ app-refer-a-friend {
                                                     color: $teal-color !important;
                                                     background-color: $white-color;
                                                     box-shadow: none !important;
-                                                    margin-bottom: 20px !important;
                                                     border: 1px solid $teal-color;
+                                                    line-height: 15px;
                                                     &:hover,
                                                     &:active,
                                                     &:focus {
