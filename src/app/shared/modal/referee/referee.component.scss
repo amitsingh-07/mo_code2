@@ -120,6 +120,7 @@ app-referee {
                 font-size: 14px;
                 cursor: pointer;
                 line-height: 18px;
+                padding-top: 5px;
             }
             &__issued {
                 color: $dark-dusty-grey-color;
@@ -148,7 +149,7 @@ app-referee {
         &__coupon-card__right {
             color: $black-color;
             font-size: 18px;
-            padding: 0 10px;
+            padding: 0 20px;
             text-align: center;
             border-top-right-radius: 6px;
             border-bottom-right-radius: 6px;
