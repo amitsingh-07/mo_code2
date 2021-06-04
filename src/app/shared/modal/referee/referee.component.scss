@@ -46,14 +46,9 @@ app-referee {
             }
         }
         &__close-btn {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            color: $black-color;
-            border: none;
-            background: none;
-            z-index: 1;
-            margin-right: 5px;
+            &.close {
+                opacity: 1 !important;
+            }
         }
         &__stamped {
             position: absolute;
