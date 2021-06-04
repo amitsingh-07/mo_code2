@@ -392,15 +392,9 @@ app-dashboard {
                 line-height: 1.25;
               }
               div.reward-points + .widget-portfolio-title {
-                @include iphoneX {
+                @include allmobiles {
                     width: 68%;
                 }
-                @include iphone6 {
-                    width: 68%;
-                }
-				@include max360 {
-            		width: 75%;
-        		}
               }
               div.reward-points ~ .topup-btn {
                 margin-top: -37px !important;
