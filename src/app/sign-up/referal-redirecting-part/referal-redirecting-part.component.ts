@@ -1,34 +1,34 @@
-import { Component, Renderer2, OnInit } from '@angular/core';
 import { Location } from "@angular/common";
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { forkJoin as observableForkJoin } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { SIGN_UP_CONFIG } from '../sign-up.constant';
-import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
-import { RefereeComponent } from '../../shared/modal/referee/referee.component';
-import { NavbarService } from '../../shared/navbar/navbar.service';
-import { SignUpService } from '../sign-up.service';
-
-import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
-import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
-import { ConfigService } from '../../config/config.service';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment/investment-account/investment-account-routes.constants';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment/investment-common/investment-common-routes.constants';
-import { ComprehensiveApiService } from '../../comprehensive/comprehensive-api.service';
-import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
-import { COMPREHENSIVE_CONST } from '../../comprehensive/comprehensive-config.constants';
+import { TranslateService } from '@ngx-translate/core';
+import { forkJoin as observableForkJoin } from 'rxjs';
 import { AppService } from '../../app.service';
+import { ComprehensiveApiService } from '../../comprehensive/comprehensive-api.service';
+import { COMPREHENSIVE_CONST } from '../../comprehensive/comprehensive-config.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../../comprehensive/comprehensive-routes.constants';
-import { LoaderService } from '../../shared/components/loader/loader.service';
 import { IMyProfile } from '../../comprehensive/comprehensive-types';
+import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
+import { ConfigService } from '../../config/config.service';
+import { DIRECT_ROUTE_PATHS } from '../../direct/direct-routes.constants';
 import { GuideMeApiService } from '../../guide-me/guide-me.api.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
-import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
-import { DIRECT_ROUTE_PATHS } from '../../direct/direct-routes.constants';
-
-
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment/investment-account/investment-account-routes.constants';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment/investment-common/investment-common-routes.constants';
+import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+import { LoaderService } from '../../shared/components/loader/loader.service';
+import { RefereeComponent } from '../../shared/modal/referee/referee.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
+import { SIGN_UP_CONFIG } from '../sign-up.constant';
+import { SignUpService } from '../sign-up.service';
+
+
+
 @Component({
   selector: 'app-referal-redirecting-part',
   templateUrl: './referal-redirecting-part.component.html',
