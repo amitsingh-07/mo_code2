@@ -205,6 +205,12 @@
     }
     .form-group-with-bg--header {
         padding: 15px 20px 5px;
+        @include iphone6 {
+            width: 75%;
+        }
+        @include max360 {
+            width: 75%;
+        }
     }
 
     .ajax-loader-card-inline {
