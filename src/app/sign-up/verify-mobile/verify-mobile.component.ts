@@ -144,6 +144,9 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       if(!this.roleTwoFAEnabled) {
         this.appService.clearJourneys();
         this.appService.clearPromoCode();
+      } else {
+        this.signUpService.removeFromLoginPage();
+        this.signUpService.removeFromMobileNumber();
       }
     }
   }
@@ -299,7 +302,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
    * redirect to password creation page.
    */
   redirectToPasswordPage() {
-    if(this.roleTwoFAEnabled) {
+    if(this.authService.get2faVerifyAllowed() && this.roleTwoFAEnabled) {
       if(this.redirectAfterLogin === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
         this.loaderService.showLoader({ title: 'Loading', autoHide: false });
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT], { skipLocationChange: true });

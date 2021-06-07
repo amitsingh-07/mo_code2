@@ -632,6 +632,10 @@ export class SignUpService {
     sessionStorage.removeItem(FROM_LOGIN_PAGE);
   }
 
+  removeFromMobileNumber() {
+    sessionStorage.removeItem(USER_MOBILE);
+  }
+
   getCaptchaCount() {
     let captchaCount;
     if (window.sessionStorage && sessionStorage.getItem(CAPTACHA_COUNT)) {
