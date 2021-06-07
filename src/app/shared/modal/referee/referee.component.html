@@ -2,7 +2,7 @@
 	<div class="referee-modal">
 		<div class="referee-modal__bannner">
 			<button class="referee-modal__bannner__close-btn close" (click)="closeIconAction()"></button>
-			<div class="referee-modal__bannner__gift-box"><img src="assets/images/refer-friend/giftboxes.svg"></div>
+			<div class="referee-modal__bannner__gift-box"><img src="assets/images/refer-friend/gift-boxes.svg"></div>
 			<div class="referee-modal__bannner__valid-box">{{'REFEREE-MODAL.VALIDITY' |
 				translate}}{{refereeInfo.rewardsValidityDate | date:'dd MMM y'}}</div>
 			<div *ngIf="!refereeInfo.isWelcomeRewardsValid" class="referee-modal__bannner__stamped"><img
