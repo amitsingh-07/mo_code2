@@ -13,6 +13,10 @@ app-dashboard {
         }
         .user-profile-bg {
             padding-left: 20px;
+            @include desktop {
+                padding-left: 0;
+                padding-bottom: 10px;
+            }
             font-family: $muli-extra-light;
             font-size: 22px;
             font-weight: 200;
@@ -557,6 +561,9 @@ app-dashboard {
         background: #FFD052;
         border-radius: 6px;
         margin-top: 10px;
+        @include allmobiles {
+            margin-bottom: -10px;
+        }
         @include desktop {
             margin-top: 0;
             height: 80px;
@@ -581,7 +588,10 @@ app-dashboard {
         }
         &__gift-box {
             position: absolute;
-            right: 50px;
+            right: 55px;
+            @include max360 {
+                right: 50px;
+            }
             bottom: 0;
         }
     }
@@ -602,7 +612,7 @@ app-dashboard {
         color: $portfolio-card-text-color;
         img {
             vertical-align: top;
-            padding-right: 4px;
+            padding-right: 9px;
         }
     }
     div.reward-points + div.view_all {
