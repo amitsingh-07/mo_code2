@@ -217,7 +217,7 @@ export class DashboardComponent implements OnInit {
     if (refereeInfo && refereeInfo.referralVoucherList) {
       const investment = this.findCategory(refereeInfo.referralVoucherList, "Investment");
       const insurance = this.findCategory(refereeInfo.referralVoucherList, "Insurance");
-      const comprehensive = this.findCategory(refereeInfo.referralVoucherList, "Comprehensive");
+      const comprehensive = this.findCategory(refereeInfo.referralVoucherList, "CFP");
       return {
         investment: investment,
         insurance: insurance,
