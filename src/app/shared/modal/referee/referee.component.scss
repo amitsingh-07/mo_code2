@@ -178,7 +178,7 @@ app-referee {
         &__separator {
             background-color: $mercury-smoke-color;
             height: 1px;
-            margin: 20px 0;
+            margin: 30px 0 0;
         }
         &__more-about {
             ul {
@@ -254,5 +254,12 @@ app-referee {
     .terms-cond a {
         color: $crusta-orange-color !important;
         text-decoration: none;
+    }
+    .modal-body.white-bg .close {
+        background-image: url('/assets/images/refer-friend/close-btn-dark.svg') !important;
+        top: 25px !important;
+        right: 25px !important;
+        opacity: 0.6 !important;
+        z-index: 2 !important;
     }
 }
