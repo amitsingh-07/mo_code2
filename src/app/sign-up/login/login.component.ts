@@ -282,8 +282,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       return false;
     } else if (this.authService.isAuthenticated()) {
       this.progressModal = true;
+      const loginType = (SIGN_UP_CONFIG.AUTH_2FA_ENABLED) ? SIGN_UP_CONFIG.LOGIN_TYPE_2FA : '';
       this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
-        this.loginForm.value.captchaValue, this.finlitEnabled, accessCode, SIGN_UP_CONFIG.AUTH_2FA_ENABLED).subscribe((data) => {
+        this.loginForm.value.captchaValue, this.finlitEnabled, accessCode, loginType).subscribe((data) => {
           if(SIGN_UP_CONFIG.AUTH_2FA_ENABLED) {
             if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
               try {

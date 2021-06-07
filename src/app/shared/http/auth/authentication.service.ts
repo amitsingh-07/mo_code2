@@ -48,7 +48,7 @@ export class AuthenticationService {
   }
 
   // tslint:disable-next-line: max-line-length
-  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string, enqId?: number, journeyType?: string, finlitEnabled?: boolean, accessCode?: string, twoFaEnabled?: boolean) {
+  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string, enqId?: number, journeyType?: string, finlitEnabled?: boolean, accessCode?: string, loginType?: string) {
     const authenticateBody = {
       email: (userEmail && this.isUserNameEmail(userEmail)) ? userEmail : '',
       mobile: (userEmail && !this.isUserNameEmail(userEmail)) ? userEmail : '',
@@ -60,7 +60,7 @@ export class AuthenticationService {
     if (enqId && !finlitEnabled) { authenticateBody['enquiryId'] = enqId; }
     if (journeyType && !finlitEnabled) { authenticateBody['journeyType'] = journeyType; }
     if (finlitEnabled) { authenticateBody['accessCode'] = accessCode; }
-    if (twoFaEnabled) { authenticateBody['loginType'] = 'MANUAL'; }
+    if (loginType && loginType !== '') { authenticateBody['loginType'] = loginType; }
     const handleError = '?handleError=true';
     return this.doAuthenticate(authenticateBody, handleError, finlitEnabled);
   }

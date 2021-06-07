@@ -79,5 +79,6 @@ export let SIGN_UP_CONFIG = {
       SIGN_UP_URL: "/app/accounts/sign-up?referral_code="
     },
     AUTH_2FA_ENABLED: true,
-    ROLE_2FA: 'ROLE_2FA'
+    ROLE_2FA: 'ROLE_2FA',
+    LOGIN_TYPE_2FA: 'MANUAL'
 };
