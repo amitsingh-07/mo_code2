@@ -54,6 +54,9 @@ app-refer-a-friend {
             }
             .toast-msg {
                 margin-left: 29px;
+                @include allmobiles {
+                    margin-left: 16px;
+                }
             }
         }
         .container-fluid {
