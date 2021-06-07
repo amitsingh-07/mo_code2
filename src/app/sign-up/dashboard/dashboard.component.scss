@@ -579,16 +579,18 @@ app-dashboard {
                 font-family: $muli-bold;
                 font-size: 16px;
                 margin-bottom: 5px;
+                letter-spacing: -0.2px;
             }
             p:nth-child(2) {
                 font-family: $muli-regular;
                 font-size: 14px;
                 margin-bottom: 0;
+                letter-spacing: -0.15px;
             }
         }
         &__gift-box {
             position: absolute;
-            right: 55px;
+            right: 57px;
             @include max360 {
                 right: 50px;
             }
