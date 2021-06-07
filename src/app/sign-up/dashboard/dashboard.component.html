@@ -6,10 +6,9 @@
           <div class="widget-block">
             <!--for desktop-->
             <div class="hidden-sm">
-              <div class="user-profile-bg col-12" >
+              <div class="user-profile-bg col-12 mb10" >
                 <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
                 <div class="user_name">{{userProfileInfo.firstName | titlecase}}</div>
-                <div (click)="openRefereeModal()">Welcome Referee</div>
               </div>
             </div>
             <!--for mobile-->
@@ -18,35 +17,58 @@
                 <div class="user-profile-bg">
                   <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
                   <div class="user_name">{{userProfileInfo.firstName | titlecase}}</div>
-                  <div (click)="openRefereeModal()">Welcome Referee</div>
                 </div>
                 <div (click)="goToEditProfile()">
                   <img src="/app/assets/images/profile-icon.svg" />
                 </div>
               </div>
             </div>
-            <div class="announcement-div" (click)="openSRSJointAccPopup()">
-              <img class="announcement-img" src="assets/images/srs-joint-account/speaker.svg">
-              <div class="announcement-txt">{{'DASHBOARD.SRS_JOINT_ACCOUNT.FIND_OUT_MORE' | translate}}
+            <div class="announce-reward-wrapper">
+              <!--Announcement section-->
+              <div class="announcement-div" (click)="openSRSJointAccPopup()">
+                <img class="announcement-img" src="assets/images/srs-joint-account/speaker.svg">
+                <div class="announcement-txt">{{'DASHBOARD.SRS_JOINT_ACCOUNT.FIND_OUT_MORE' | translate}}
+                </div>
               </div>
+              <!--Announcement section /-->
+              <!--Refree Welcome Reward Box-->
+              <div class="welcome-reward-box" (click)="openRefereeModal()" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists">
+                <div class="welcome-reward-box__left">
+                  <p>{{'REFER_FRIEND.YOU_HAVE' | translate}} {{getReferralInfo.totalRewardsCount}} {{'REFER_FRIEND.WELCOME_REWARDS' | translate}}</p>
+                  <p>{{'REFER_FRIEND.VALIDITY' | translate}}{{getReferralInfo.rewardsValidityDate}}</p>
+                </div>
+                <div class="welcome-reward-box__right">
+                  <img src="assets/images/refer-friend/chevron-next-circle.svg">
+                </div>
+                <div class="welcome-reward-box__gift-box">
+                  <img src="assets/images/refer-friend/gift-box-small.svg">
+                </div>
+              </div>
+              <!--Refree Welcome Reward Box /-->
             </div>
           </div>
           <div class="widgets">
             <app-comprehensive-dashboard *ngIf='isComprehensiveEnabled'></app-comprehensive-dashboard>
             <!-- Investment widget Start -->
             <div class="widget">
+              <div class="reward-points" [ngClass]="{'grey': !cardCategory.investment[0].isEnabled}" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"><span *ngIf="!cardCategory.investment[0].isEnabled"><img src="assets/images/refer-friend/gift-icon-grey.svg"></span><span *ngIf="cardCategory.investment[0].isEnabled"><img src="assets/images/refer-friend/gift-icon.svg"></span>${{cardCategory.investment[0].creditValue}}</div>
               <ng-container *ngIf="isInvestmentEnabled; else loader">
                 <!-- Purchased Investment and WiseSaver Card -->
                 <ng-container *ngIf="showPortfolioPurchased">
                   <div class="widget-title widget-portfolio-title">
                     <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
                     </span>
-                    <button type="button" class="btn-with-icon top_up_btn" id="top-up_button" (click)="gotoTopUp()">
+                    <button type="button" class="btn-with-icon top_up_btn" id="top-up_button" (click)="gotoTopUp()" *ngIf="getReferralInfo && !getReferralInfo.isWelcomeRewardsValid && !getReferralInfo.refereeExists">
                       <span class="topup-btn-img"><img id="top-up_img" src="assets/images/dashboard-currency.svg"
                           alt="" /></span>
                       <span>{{'DASHBOARD.INVESTMENT.TOP_UP' | translate}}</span>
                     </button>
                   </div>
+                  <div class="topup-btn" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"> <button type="button" class="btn-with-icon top_up_btn" id="top-up_button" (click)="gotoTopUp()">
+                    <span class="topup-btn-img"><img id="top-up_img" src="assets/images/dashboard-currency.svg"
+                        alt="" /></span>
+                    <span>{{'DASHBOARD.INVESTMENT.TOP_UP' | translate}}</span>
+                  </button></div>
                   <div class="widget-body">
                     <div class="flex-row widget-portfolio-body">
                       <div class="flex-col-6 border-portfolio-section">
@@ -321,6 +343,7 @@
               </div>
             </div>
             <div class="widget insurance" *ngIf="showInsuranceSection">
+              <div class="reward-points" [ngClass]="{'grey': !cardCategory.insurance[0].isEnabled}" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists"><span *ngIf="!cardCategory.insurance[0].isEnabled"><img src="assets/images/refer-friend/gift-icon-grey.svg"></span><span *ngIf="cardCategory.insurance[0].isEnabled"><img src="assets/images/refer-friend/gift-icon.svg"></span>${{cardCategory.insurance[0].creditValue}}</div>
               <div class="widget-title">
                 <span class="flex">{{'DASHBOARD.INSURANCE.TITLE' | translate}}</span>
               </div>

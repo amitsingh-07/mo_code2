@@ -72,6 +72,22 @@
         margin: 0px 15px 20px;
         border-radius: 6px;
         box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25);
+        position: relative;
+        .view-edit {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: $teal-color;
+            z-index: 2;
+        }
+        div.reward-points + div.view-edit {
+            @include desktop {
+                right: 90px !important;
+            }
+            @include allmobiles {
+                top: 35px !important;
+            }
+        }
     }
     .comprehensive-plan-view{
         cursor: pointer;
@@ -82,6 +98,11 @@
     .form-group-with-bg--header-label {
         font-family: $muli-bold;
         font-size: 22px !important;
+    }
+    div.reward-points ~ .form-group-with-bg.overlay-bg .form-group-with-bg--header {
+        @include allmobiles {
+            width: 75%;
+        }
     }
     &.container-fluid {
         padding: 0!important;
@@ -184,6 +205,12 @@
     }
     .form-group-with-bg--header {
         padding: 15px 20px 5px;
+        @include iphone6 {
+            width: 75%;
+        }
+        @include max360 {
+            width: 75%;
+        }
     }
 
     .ajax-loader-card-inline {
@@ -254,5 +281,39 @@
         background-color: $white-color!important;
         color:$teal-color !important;
         box-shadow: none !important;
+    }
+    .reward-points {
+        position: absolute;
+        background: $reward-points-bg-color;
+        border-top-right-radius: 6px;
+        border-bottom-left-radius: 20px;
+        background-repeat: no-repeat;
+        width: 80px;
+        height: 40px;
+        right: 0;
+        z-index: 2;
+        padding: 10px 10px 0px 15px;
+        line-height: 17px;
+        font-family: $muli-bold;
+        font-size: 16px;
+        color: $portfolio-card-text-color;
+        img {
+            vertical-align: top;
+            padding-right: 9px;
+        }
+    } 
+    .reward-points.full-user {
+        @extend .reward-points;
+        border-top-right-radius: 0 !important;
+    }
+    .reward-points.grey {
+        @extend .reward-points;
+        background: $reward-points-bg-color-grey;
+        border-top-right-radius: 6px;
+        border-bottom-left-radius: 20px;
+        color: $dusty-grey-color;
+        &.full-user {
+            border-top-right-radius: 0;
+        }
     }
 }

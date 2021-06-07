@@ -88,7 +88,7 @@
         </li>
         <li *ngIf="isLoggedIn" class="nav-item hidden-lg"
           (click)="checkCurrentRouteAndNavigate('/accounts/refer-a-friend')">
-          <a class="navbar--text" href="javascript: void(0);">Refer a Friend</a>
+          <a class="navbar--text" href="javascript: void(0);">Refer a Friend<img class="ml10" src="assets/images/nav/new-icon.svg" /></a>
         </li>
         <li *ngIf="isLoggedIn && showMenu" class="nav-item home-btn" >
           <a class="nav-link" (click)="goToDashboard()">Dashboard</a>
@@ -249,7 +249,7 @@
               <a class="navbar--text" href="javascript: void(0);">Add Investment Promo Code</a>
             </button>
             <button class="dropdown-item" (click)="checkCurrentRouteAndNavigate('/accounts/refer-a-friend')">
-              <a class="navbar--text" href="javascript: void(0);">Refer a Friend</a>
+              <a class="navbar--text" href="javascript: void(0);">Refer a Friend<img class="ml10" src="assets/images/nav/new-icon.svg" /></a>
             </button>
             <button class="dropdown-item logout-menu-item" (click)="logout()">
               <a class="navbar--text" href="javascript: void(0);">Logout<i class="logout-black ml10"></i></a>
