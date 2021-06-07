@@ -10,6 +10,6 @@
     <div class="note-point-text" [innerHTML]="note"></div>
   </div>
 </div>
-<div class="terms-condition"><a class='faq-link' target='_blank'
+<div class="terms-condition" [ngClass]="{'remove-padding': isCollapsed}"><a class='faq-link' target='_blank'
     href='/referral/#referral-tnc'>{{'REFERRAL_REWARD_DETAILS.TERMS_CONDITION' | translate}}</a>
 </div>
