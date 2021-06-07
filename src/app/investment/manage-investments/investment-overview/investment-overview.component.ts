@@ -61,6 +61,8 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   portfolioCategories;
   selectedCategory;
 
+  noteForWiseIncome ="<b>For WiseIncome clients who are eligible for dividend distribution:</b> As dividends are distributed, you may experience a drop in your portfolio value. This is normal behaviour and does not mean that you have sustained a loss on your investments. Your portfolio value and total returns will reflect the impact of the dividend reinvestment or payout by the first week of August."
+  isReadMore = true;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -438,4 +440,8 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
       ele.scrollIntoView({behavior: "smooth", block: "end", inline : "center"});
     }
   }
+  showText() {
+    this.isReadMore = !this.isReadMore
+ }
+
 }

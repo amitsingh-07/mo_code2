@@ -1,11 +1,66 @@
-@import '../../../../_variables.scss';
-@import '../../../../_mixins.scss';
+@import "../../../../_variables.scss";
+@import "../../../../_mixins.scss";
 app-investment-overview {
     .invest-section {
         @include allmobiles {
             top: 0px;
         }
     }
+    //
+    .notes-wrapper-bg {
+        background-color: $white-color;
+        .notes-wrapper {
+            align-items: flex-start;
+            display: none;
+            padding-left: 20px;
+            padding-right: 20px;
+            opacity: 0;
+
+            &.show {
+                display: flex;
+                animation: note-slide-down 500ms forwards 500ms;
+            }
+
+            img {
+                width: 16px;
+                height: auto;
+                margin: 5px 10px 84px 0;
+            }
+
+            .note-content {
+                font-family: $muli-italic;
+                font-size: 13px;
+                line-height: normal;
+                letter-spacing: -0.14px;
+                color: $dark-grey-color;
+            }
+        }
+    }
+    a {
+        font-family: $muli-italic;
+        font-size: 13px;
+        color: $crusta-orange-color;
+        padding: 20px 40px;
+    }
+    @keyframes note-slide-down {
+        0% {
+            opacity: 0;
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+
+        100% {
+            opacity: 1;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+    }
+
+    .limitTextHeight {
+        height: 60px;
+        overflow: hidden;
+    }
+    //
     .cursor_pointer {
         cursor: pointer;
     }
@@ -20,8 +75,8 @@ app-investment-overview {
         display: flex;
         align-items: center;
         overflow-x: auto;
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
         .all-category {
             font-family: $muli-regular;
             margin-right: 8px;
@@ -34,7 +89,7 @@ app-investment-overview {
             display: flex;
             margin-bottom: 0px;
         }
-        label>div {
+        label > div {
             padding: 0 10px;
             background-color: $teal-color;
             height: 28px;
@@ -43,12 +98,12 @@ app-investment-overview {
             cursor: pointer;
             display: table;
 
-            .table-cell{
+            .table-cell {
                 display: table-cell;
                 vertical-align: middle;
             }
         }
-        label>div>span {
+        label > div > span {
             font-family: $muli-bold;
             font-size: 13px;
             letter-spacing: -0.12px;
@@ -56,14 +111,14 @@ app-investment-overview {
             color: $white-color;
             vertical-align: middle;
         }
-        label>div>span>img {
+        label > div > span > img {
             display: none;
             margin-right: 5px;
         }
-        input[type="radio"]:checked~* {
+        input[type="radio"]:checked ~ * {
             background-color: $pine-green-color;
         }
-        input[type="radio"]:checked~div>span>img {
+        input[type="radio"]:checked ~ div > span > img {
             display: table-cell;
             vertical-align: middle;
         }
