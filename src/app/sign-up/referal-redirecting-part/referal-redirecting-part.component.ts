@@ -126,7 +126,7 @@ export class ReferalRedirectingPartComponent implements OnInit {
     if (refereeInfo && refereeInfo.referralVoucherList) {
       const investment = this.findCategory(this.referralInfo.referralVoucherList, "Investment");
       const insurance = this.findCategory(this.referralInfo.referralVoucherList, "Insurance");
-      const comprehensive = this.findCategory(this.referralInfo.referralVoucherList, "Comprehensive");
+      const comprehensive = this.findCategory(this.referralInfo.referralVoucherList, "CFP");
       return {
         investment: investment,
         insurance: insurance,

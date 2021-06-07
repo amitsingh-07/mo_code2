@@ -400,7 +400,7 @@ constructor(
 
   getRefereeInfo(refereeInfo){
     if (refereeInfo && refereeInfo.referralVoucherList) {
-      const comprehensive = this.findCategory(refereeInfo.referralVoucherList, "Comprehensive");
+      const comprehensive = this.findCategory(refereeInfo.referralVoucherList, "CFP");
       return comprehensive;      
     } else {
       return [];
