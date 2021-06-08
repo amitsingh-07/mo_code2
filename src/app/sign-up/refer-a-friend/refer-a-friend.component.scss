@@ -94,14 +94,15 @@ app-refer-a-friend {
                     font-size: 28px;
                     line-height: 35px;
                     padding: 60px 35px 0 45px;
+                    @include min300max350 {
+                       padding: 30px 15px 0 20px;
+                    }
                     @include max360 {
                         padding: 45px 35px 0 35px;
-                    }
-                    @include min300max350 {
-                        padding: 30px 35px 0 25px;
+                        font-size: 27px;
                     }
                     @include min375max400 {
-                        padding: 55px 35px 0 45px;
+                        padding: 55px 35px 0 40px;
                     }
                 }
             }
