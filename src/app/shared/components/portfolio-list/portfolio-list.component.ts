@@ -135,17 +135,10 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     }
   }
 
-  showRebalanceMessage(riskProfileType) {
-    if (MANAGE_INVESTMENTS_CONSTANTS.REBALANCE_ADDITIONAL_MESSAGE.includes(riskProfileType.toUpperCase())) {
-      this.newMessageForRebalance = true;
-    } else {
-      this.newMessageForRebalance = false;
-    }
+  showRebalanceMessage() {  
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.TITLE');
-    ref.componentInstance.errorMessage = this.newMessageForRebalance ?
-      this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.MESSAGE_TWO') :
-      this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.MESSAGE_ONE');
+    ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.RBL_MODAL.MESSAGE_ONE');
     this.topClickedFlag = true;
   }
 

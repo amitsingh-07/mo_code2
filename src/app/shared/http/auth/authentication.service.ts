@@ -19,6 +19,7 @@ export const APP_JWT_TOKEN_KEY = 'app-jwt-token';
 const APP_SESSION_ID_KEY = 'app-session-id';
 const APP_ENQUIRY_ID = 'app-enquiry-id';
 const FROM_JOURNEY_HM = 'from_journey';
+const EMAIL = 'email';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -48,7 +49,7 @@ export class AuthenticationService {
   }
 
   // tslint:disable-next-line: max-line-length
-  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string, enqId?: number, journeyType?: string, finlitEnabled?: boolean, accessCode?: string) {
+  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string, enqId?: number, journeyType?: string, finlitEnabled?: boolean, accessCode?: string, loginType?: string) {
     const authenticateBody = {
       email: (userEmail && this.isUserNameEmail(userEmail)) ? userEmail : '',
       mobile: (userEmail && !this.isUserNameEmail(userEmail)) ? userEmail : '',
@@ -60,6 +61,7 @@ export class AuthenticationService {
     if (enqId && !finlitEnabled) { authenticateBody['enquiryId'] = enqId; }
     if (journeyType && !finlitEnabled) { authenticateBody['journeyType'] = journeyType; }
     if (finlitEnabled) { authenticateBody['accessCode'] = accessCode; }
+    if (loginType && loginType !== '') { authenticateBody['loginType'] = loginType; }
     const handleError = '?handleError=true';
     return this.doAuthenticate(authenticateBody, handleError, finlitEnabled);
   }
@@ -362,4 +364,55 @@ export class AuthenticationService {
     ref.componentInstance.closeBtn = false;
   }
 
+  //2FA Implementation for Login
+  public send2faRequestLogin(handleError?: any) {
+    if (!handleError) {
+      handleError = '';
+    }
+    console.log('Sent 2fa Authentication Request');
+    const send2faOtpUrl = apiConstants.endpoint.send2faOTPLogin;
+
+    return this.httpClient.get<IServerResponse>(`${this.apiBaseUrl}/${send2faOtpUrl}${handleError}`)
+      .pipe(map((response) => {
+        // login successful if there's a jwt token in the response
+        if (response && response.objectList[0] && response.objectList[0].securityToken) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          console.log('send2faRequest Login response', response);
+          this.saveAuthDetails(response.objectList[0]);
+        }
+        return response;
+      }));
+  }
+  public doValidate2faLogin(otp: string, userEmail: any, journeyType: any, enquiryId: any, handleError?: string) {
+    if (!handleError) {
+      handleError = '?handleError=true';
+    }
+    const validate2faBody = {
+      twoFactorOtpString: otp,
+      email: (userEmail && this.isUserNameEmail(userEmail)) ? userEmail : '',
+      mobile: (userEmail && !this.isUserNameEmail(userEmail)) ? userEmail : '',
+      enquiryId: enquiryId,
+      journeyType: journeyType
+    };
+    console.log('sd');
+    const authenticateUrl = apiConstants.endpoint.authenticate2faOTPLogin;
+    return this.httpClient.post<IServerResponse>(`${this.apiBaseUrl}/${authenticateUrl}${handleError}`, validate2faBody)
+      .pipe(map((response) => {
+        // login successful if there's a jwt token in the response
+        if (response && response.objectList[0] && response.objectList[0].securityToken) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          this.saveAuthDetails(response.objectList[0]);
+        }
+        return response;
+      }));
+  }
+
+  clearTokenID() {
+    if (sessionStorage) {
+      sessionStorage.removeItem(appConstants.APP_JWT_TOKEN_KEY);
+      sessionStorage.removeItem(appConstants.APP_SESSION_ID_KEY);
+      sessionStorage.removeItem(appConstants.APP_CUSTOMER_ID);
+      sessionStorage.removeItem(EMAIL);
+    }
+  }
 }

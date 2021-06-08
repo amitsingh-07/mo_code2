@@ -1,4 +1,4 @@
-import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
+import { ModelWithButtonComponent } from './../../shared/modal/model-with-button/model-with-button.component';
 import { Location } from '@angular/common';
 import {
   AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit,
@@ -40,7 +40,7 @@ import { HelperService } from './../../shared/http/helper.service';
 import { IError } from './../../shared/http/interfaces/error.interface';
 import { StateStoreService } from './../../shared/Services/state-store.service';
 import { LoginFormError } from './login-form-error';
-import { HubspotService } from 'src/app/shared/analytics/hubspot.service';
+import { HubspotService } from './../../shared/analytics/hubspot.service';
 import { SIGN_UP_CONFIG } from './../sign-up.constant';
 
 @Component({
@@ -119,6 +119,13 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.singpassEnabled = route.snapshot.data[0]['singpassEnabled'];
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
+    }
+    this.signUpService.removeUserType();
+    if(this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA)) {
+      console.log('2fa exists');
+      this.authService.clearTokenID();
+      this.signUpService.removeFromLoginPage();
+      this.signUpService.removeFromMobileNumber();
     }
   }
   /**
@@ -282,82 +289,131 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       return false;
     } else if (this.authService.isAuthenticated()) {
       this.progressModal = true;
+      const loginType = (SIGN_UP_CONFIG.AUTH_2FA_ENABLED) ? SIGN_UP_CONFIG.LOGIN_TYPE_2FA : '';
       this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
-        this.loginForm.value.captchaValue, this.finlitEnabled, accessCode).subscribe((data) => {
-          if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
-            // Pulling Customer information to log on Hubspot
-            this.signUpApiService.getUserProfileInfo().subscribe((data) => {
-              let userInfo = data.objectList;
-              this.hubspotService.registerEmail(userInfo.emailAddress);
-              this.hubspotService.registerPhone(userInfo.mobileNumber);
-              const hsPayload = [
-                {
-                  name: "email",
-                  value: userInfo.emailAddress
-                },
-                {
-                  name: "phone",
-                  value: userInfo.mobileNumber
-                },
-                {
-                  name: "firstname",
-                  value: userInfo.firstName
-                },
-                {
-                  name: "lastname",
-                  value: userInfo.lastName
-                }];
-              this.hubspotService.submitLogin(hsPayload);
-            });
-
-            this.investmentCommonService.clearAccountCreationActions();
-            try {
-              if (data.objectList[0].customerId) {
-                this.appService.setCustomerId(data.objectList[0].customerId);
+        this.loginForm.value.captchaValue, this.finlitEnabled, accessCode, loginType).subscribe((data) => {
+          if(SIGN_UP_CONFIG.AUTH_2FA_ENABLED) {
+            if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+              try {
+                if (data.objectList[0].customerId) {
+                  this.appService.setCustomerId(data.objectList[0].customerId);
+                }
+              } catch (e) {
+                console.log(e);
               }
-            } catch (e) {
-              console.log(e);
-            }
-            this.signUpService.removeCaptchaSessionId();
-            const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-            if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
-              this.updateInsuranceEnquiry(insuranceEnquiry, data, false);
-            } else {
-              this.goToNext();
-            }
-          } else if (data.responseMessage.responseCode === 5016 || data.responseMessage.responseCode === 5011) {
-            this.loginForm.controls['captchaValue'].reset();
-            this.loginForm.controls['loginPassword'].reset();
-            this.openErrorModal(data.responseMessage.responseDescription);
-            this.refreshCaptcha();
-          } else if (data.responseMessage.responseCode === 5012 || data.responseMessage.responseCode === 5014) {
-            if (data.responseMessage.responseCode === 5014) {
+              this.authService.set2faVerifyAllowed(true);
+              this.signUpService.removeCaptchaSessionId();
               this.signUpService.setUserMobileNo(data.objectList[0].mobileNumber);
               this.signUpService.setFromLoginPage();
-            }
-            if (data.objectList[0]) {
-              this.signUpService.setCustomerRef(data.objectList[0].customerRef);
-            }
-            const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-            if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
-              this.updateInsuranceEnquiry(insuranceEnquiry, data, true);
-            } else {
+              this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_2FA]);
+            } else if (data.responseMessage.responseCode === 5016 || data.responseMessage.responseCode === 5011) {
+              this.loginForm.controls['captchaValue'].reset();
+              this.loginForm.controls['loginPassword'].reset();
+              this.openErrorModal(data.responseMessage.responseDescription);
+              this.refreshCaptcha();
+            } else if (data.responseMessage.responseCode === 5012 || data.responseMessage.responseCode === 5014) {
+              if (data.responseMessage.responseCode === 5014) {
+                this.signUpService.setUserMobileNo(data.objectList[0].mobileNumber);
+                this.signUpService.setFromLoginPage();
+              }
+              if (data.objectList[0]) {
+                this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+              }
+             
               this.callErrorModal(data);
+            } else {
+              this.loginForm.controls['captchaValue'].reset();
+              this.loginForm.controls['loginPassword'].reset();
+              if (this.finlitEnabled) {
+                this.loginForm.controls['accessCode'].reset();
+              }
+              this.openErrorModal(data.responseMessage.responseDescription);
+              this.signUpService.setCaptchaCount();
+              if (data.objectList[0] && data.objectList[0].sessionId) {
+                this.signUpService.setCaptchaSessionId(data.objectList[0].sessionId);
+              } else if (data.objectList[0].attempt >= 3 || this.signUpService.getCaptchaCount() >= 2) {
+                this.signUpService.setCaptchaShown();
+                this.setCaptchaValidator();
+              }
             }
+            
           } else {
-            this.loginForm.controls['captchaValue'].reset();
-            this.loginForm.controls['loginPassword'].reset();
-            if (this.finlitEnabled) {
-              this.loginForm.controls['accessCode'].reset();
+            if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+              // Pulling Customer information to log on Hubspot
+              this.signUpApiService.getUserProfileInfo().subscribe((data) => {
+                let userInfo = data.objectList;
+                this.hubspotService.registerEmail(userInfo.emailAddress);
+                this.hubspotService.registerPhone(userInfo.mobileNumber);
+                const hsPayload = [
+                  {
+                    name: "email",
+                    value: userInfo.emailAddress
+                  },
+                  {
+                    name: "phone",
+                    value: userInfo.mobileNumber
+                  },
+                  {
+                    name: "firstname",
+                    value: userInfo.firstName
+                  },
+                  {
+                    name: "lastname",
+                    value: userInfo.lastName
+                  }];
+                this.hubspotService.submitLogin(hsPayload);
+              });
+  
+              this.investmentCommonService.clearAccountCreationActions();
+              try {
+                if (data.objectList[0].customerId) {
+                  this.appService.setCustomerId(data.objectList[0].customerId);
+                }
+              } catch (e) {
+                console.log(e);
+              }
+              this.signUpService.removeCaptchaSessionId();
+              const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+              if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
+                this.updateInsuranceEnquiry(insuranceEnquiry, data, false);
+              } else {
+                this.goToNext();
+              }
+            } else if (data.responseMessage.responseCode === 5016 || data.responseMessage.responseCode === 5011) {
+              this.loginForm.controls['captchaValue'].reset();
+              this.loginForm.controls['loginPassword'].reset();
+              this.openErrorModal(data.responseMessage.responseDescription);
+              this.refreshCaptcha();
+            } else if (data.responseMessage.responseCode === 5012 || data.responseMessage.responseCode === 5014) {
+              if (data.responseMessage.responseCode === 5014) {
+                this.signUpService.setUserMobileNo(data.objectList[0].mobileNumber);
+                this.signUpService.setFromLoginPage();
+              }
+              if (data.objectList[0]) {
+                this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+              }
+              const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+              if (this.checkInsuranceEnquiry(insuranceEnquiry)) {
+                this.updateInsuranceEnquiry(insuranceEnquiry, data, true);
+              } else {
+                this.callErrorModal(data);
+              }
+            } else {
+              this.loginForm.controls['captchaValue'].reset();
+              this.loginForm.controls['loginPassword'].reset();
+              if (this.finlitEnabled) {
+                this.loginForm.controls['accessCode'].reset();
+              }
+              this.openErrorModal(data.responseMessage.responseDescription);
+              this.signUpService.setCaptchaCount();
+              if (data.objectList[0] && data.objectList[0].sessionId) {
+                this.signUpService.setCaptchaSessionId(data.objectList[0].sessionId);
+              } else if (data.objectList[0].attempt >= 3 || this.signUpService.getCaptchaCount() >= 2) {
+                this.signUpService.setCaptchaShown();
+                this.setCaptchaValidator();
+              }
             }
-            this.openErrorModal(data.responseMessage.responseDescription);
-            this.signUpService.setCaptchaCount();
-            if (data.objectList[0] && data.objectList[0].sessionId) {
-              this.signUpService.setCaptchaSessionId(data.objectList[0].sessionId);
-            } else if (data.objectList[0].attempt >= 3 || this.signUpService.getCaptchaCount() >= 2) {
-              this.signUpService.setCaptchaShown();
-              this.setCaptchaValidator();
-            }
+
           }
         }).add(() => {
           this.progressModal = false;

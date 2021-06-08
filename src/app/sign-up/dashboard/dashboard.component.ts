@@ -46,7 +46,6 @@ import { environment } from './../../../environments/environment';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
 import { HubspotService } from '../../shared/analytics/hubspot.service';
 
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -89,6 +88,8 @@ export class DashboardComponent implements OnInit {
 
   // iFast Maintenance
   iFastMaintenance = false;
+  getReferralInfo: any;
+  cardCategory: { investment: any; insurance: any; comprehensiveInfo: any; };
 
   constructor(
     private router: Router,
@@ -125,7 +126,8 @@ export class DashboardComponent implements OnInit {
       this.isInvestmentConfigEnabled = config.investmentEnabled;
       this.isComprehensiveEnabled = config.comprehensiveEnabled;
     });
-    this.portfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
+    this.portfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;    
+    this.getReferralCodeData();
   }
 
   ngOnInit() {
@@ -204,6 +206,42 @@ export class DashboardComponent implements OnInit {
     this.investmentAccountService.deactivateReassess();
   }
 
+  getReferralCodeData() {
+    this.signUpService.getReferralCodeData().subscribe((data) => {      
+      this.getReferralInfo = data.objectList;
+      this.cardCategory= this.getRefereeInfo(this.getReferralInfo);
+    });
+  }
+
+  getRefereeInfo(refereeInfo){
+    if (refereeInfo && refereeInfo.referralVoucherList) {
+      const investment = this.findCategory(refereeInfo.referralVoucherList, "Investment");
+      const insurance = this.findCategory(refereeInfo.referralVoucherList, "Insurance");
+      const comprehensive = this.findCategory(refereeInfo.referralVoucherList, "CFP");
+      return {
+        investment: investment,
+        insurance: insurance,
+        comprehensiveInfo: comprehensive
+      }
+    } else {
+      return {
+        investment: [],
+        insurance: [],
+        comprehensiveInfo: []
+      };
+    }
+  }
+
+  findCategory(elementList, category) {   
+    const filteredData = elementList.filter(
+      (element) => element.category.toUpperCase() === category.toUpperCase());
+    if(filteredData && filteredData[0]) {
+      return filteredData;
+    } else {
+      return [];
+    }
+  }
+  
   loadOptionListCollection() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.investmentAccountService.setOptionList(data.objectList);
@@ -475,4 +513,10 @@ export class DashboardComponent implements OnInit {
       'DASHBOARD.INVESTMENT.CASH_ACCOUNT_BALANCE_MESSAGE'
     );
   }
+  openRefereeModal(){
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.REFER_REDIRECT+'/dashboard'],{ skipLocationChange: true });
+  }
+  
 }
+
+

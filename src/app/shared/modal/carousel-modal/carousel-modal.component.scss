@@ -94,6 +94,10 @@ app-carousel-modal {
     letter-spacing: normal;
     margin-top: 18px;
     text-align: center;
+    strong {
+      color: $black-color;
+      font-family: $muli-bold;
+    }
   }
 
   .url-txt {
