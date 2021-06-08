@@ -113,7 +113,15 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
             button: results.SEND_2FA_FAILED.BUTTON,
           };
           this.authService.openErrorModal(error2fa.title, error2fa.subtitle, error2fa.button);
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+          if(this.roleTwoFAEnabled) {
+            if (this.signUpService.getUserType() === appConstants.USERTYPE.FINLIT) {
+              this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
+            } else {
+              this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+            }
+          } else {
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+          }
         }
       });
     });
@@ -152,6 +160,11 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    if(this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA)) {
+      this.authService.clearTokenID();
+      this.signUpService.removeFromLoginPage();
+      this.signUpService.removeFromMobileNumber();
+    }
     this.authService.set2faVerifyAllowed(false);
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();

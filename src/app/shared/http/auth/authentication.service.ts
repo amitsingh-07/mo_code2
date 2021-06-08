@@ -19,6 +19,7 @@ export const APP_JWT_TOKEN_KEY = 'app-jwt-token';
 const APP_SESSION_ID_KEY = 'app-session-id';
 const APP_ENQUIRY_ID = 'app-enquiry-id';
 const FROM_JOURNEY_HM = 'from_journey';
+const EMAIL = 'email';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -404,5 +405,14 @@ export class AuthenticationService {
         }
         return response;
       }));
+  }
+
+  clearTokenID() {
+    if (sessionStorage) {
+      sessionStorage.removeItem(appConstants.APP_JWT_TOKEN_KEY);
+      sessionStorage.removeItem(appConstants.APP_SESSION_ID_KEY);
+      sessionStorage.removeItem(appConstants.APP_CUSTOMER_ID);
+      sessionStorage.removeItem(EMAIL);
+    }
   }
 }

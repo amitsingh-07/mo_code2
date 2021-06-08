@@ -120,6 +120,13 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
+    this.signUpService.removeUserType();
+    if(this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA)) {
+      console.log('2fa exists');
+      this.authService.clearTokenID();
+      this.signUpService.removeFromLoginPage();
+      this.signUpService.removeFromMobileNumber();
+    }
   }
   /**
     * Initialize tasks.
