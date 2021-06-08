@@ -77,5 +77,14 @@ export let SIGN_UP_CONFIG = {
       WHATSAPP: "https://api.whatsapp.com/send?text=",
       MAILTO: "mailto:?body=",
       SIGN_UP_URL: "/app/accounts/sign-up?referral_code="
+    },
+    REFEREE_REWARDS: {
+      CFP: "CFP",
+      INVESTMENT: "INVESTMENT",
+      INSURANCE: "INSURANCE",
+      NOT_ISSUED:"NOT_ISSUED",
+      ISSUED:"ISSUED",
+      NOT_APPLICABLE:"NOT_APPLICABLE"
     }
+
 };
