@@ -5,7 +5,7 @@ import { filter } from 'rxjs/operators';
 
 import { AppService } from '../app.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
-import { SIGN_UP_ROUTE_PATHS } from './sign-up.routes.constants';
+import { SIGN_UP_ROUTE_PATHS, EDIT_PROFILE_PATH } from './sign-up.routes.constants';
 import { SignUpService } from './sign-up.service';
 import { TranslateService } from '@ngx-translate/core';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
@@ -71,7 +71,11 @@ export class TwoFactorScreenGuardService implements CanActivate {
       return true;
     } else if(this.authService.isSignedUser()) {
       if (!this.authService.get2faVerifyAllowed()) {
-        this.route.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+        if(this.route.url && this.route.url === EDIT_PROFILE_PATH) {
+          this.route.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+        } else {
+          this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+        }
         return false;
       }
       this.authService.send2faRequest().subscribe((data) => {

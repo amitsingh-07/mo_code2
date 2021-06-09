@@ -261,10 +261,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   requestNewCode() {
     this.progressModal = true;
     if (this.authService.get2faVerifyAllowed()) {
-      console.log('Triggering New Verify 2FA');
       this.requestNew2faOTP();
     } else {
-      console.log('Triggering New Verify OTP');
       this.requestNewVerifyOTP();
     }
   }
@@ -478,7 +476,6 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     if (window.sessionStorage && sessionStorage.getItem('email')) {
       userEmail = sessionStorage.getItem('email');
     }
-    console.log(otp, userEmail, journeyType, enqId  );
     this.authService.doValidate2faLogin(otp, userEmail, journeyType, enqId  ).subscribe((data: any) => {
       if (data.responseMessage.responseCode  >= 6000) {
         this.mobileNumberVerified = true;
