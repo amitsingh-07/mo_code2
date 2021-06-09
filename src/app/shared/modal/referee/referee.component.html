@@ -4,7 +4,7 @@
 			<button class="referee-modal__bannner__close-btn close" (click)="closeIconAction()"></button>
 			<div class="referee-modal__bannner__gift-box"><img src="assets/images/refer-friend/gift-boxes.svg"></div>
 			<div class="referee-modal__bannner__valid-box">{{'REFEREE-MODAL.VALIDITY' |
-				translate}}{{refereeInfo.rewardsValidityDate | date:'dd MMM y'}}</div>
+				translate}}{{refereeInfo.rewardsValidityDate}}</div>
 			<div *ngIf="!refereeInfo.isWelcomeRewardsValid" class="referee-modal__bannner__stamped"><img
 					src="assets/images/refer-friend/stamp-expired.svg"></div>
 		</div>
