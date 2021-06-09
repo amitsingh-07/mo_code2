@@ -20,6 +20,8 @@
   "iFastMaintenance": true,
   "maintenanceStartTime": "2020-12-12T20:00:00.000+08:00",
   "maintenanceEndTime": "2020-12-13T00:10:00.000+08:00",
+  "wiseIncomeInfoStartTime": "2021-05-12T20:00:00.000+08:00",
+  "wiseIncomeInfoEndTime": "2021-12-13T00:10:00.000+08:00",
   "showPortfolioInfo": true,
   "investment": {
     "myInfoLoader2StartTime": 60,

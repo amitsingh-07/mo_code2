@@ -7,15 +7,23 @@ app-investment-overview {
         }
     }
     //
-    .notes-wrapper-bg {
+    .notes-wrapper-container {
         background-color: $white-color;
+        padding: 25px 15px 10px 5px;
+        .notes-wrapper-bg{
+            @include allmobiles{
+                width: 100%;
+            }
+            max-width: 812px;
+            margin: auto;
+        }
         .notes-wrapper {
             align-items: flex-start;
             display: none;
-            padding-left: 20px;
-            padding-right: 20px;
             opacity: 0;
-
+            line-height: 1.5;
+            letter-spacing: -0.26px;
+            padding:0 !important;
             &.show {
                 display: flex;
                 animation: note-slide-down 500ms forwards 500ms;
@@ -24,23 +32,34 @@ app-investment-overview {
             img {
                 width: 16px;
                 height: auto;
-                margin: 5px 10px 84px 0;
+                margin-right: 14px;
+                margin-top: 3px;
             }
 
             .note-content {
-                font-family: $muli-italic;
-                font-size: 13px;
-                line-height: normal;
+                font-family: $muli-regular;
+                font-size: 14px;
                 letter-spacing: -0.14px;
                 color: $dark-grey-color;
+                
             }
         }
     }
     a {
-        font-family: $muli-italic;
-        font-size: 13px;
-        color: $crusta-orange-color;
-        padding: 20px 40px;
+        font-family: $muli-bold;
+        font-size: 14px;
+        color: $dark-orange-color;
+        padding-left: 30px;
+        cursor: pointer;
+        text-decoration: none !important;
+    }
+    a:hover {
+        font-family: $muli-bold;
+        color: $dark-orange-color;
+    }
+    a:active {
+        font-family: $muli-bold;
+        color: $dark-orange-color;
     }
     @keyframes note-slide-down {
         0% {
@@ -57,8 +76,15 @@ app-investment-overview {
     }
 
     .limitTextHeight {
-        height: 60px;
+        @include allmobiles {
+            height: 105px;
+            overflow: hidden;
+        }
+        height: 45px;
         overflow: hidden;
+    }
+    .txt-bold{
+        font-family: $muli-bold;
     }
     //
     .cursor_pointer {

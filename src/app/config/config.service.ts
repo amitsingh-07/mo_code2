@@ -34,6 +34,8 @@ export interface IConfig {
   showPortfolioInfo: boolean;
   investment: any;
   account: any;
+  wiseIncomeInfoStartTime: string,
+  wiseIncomeInfoEndTime: string
 }
 
 const CACHE_SIZE = 1;

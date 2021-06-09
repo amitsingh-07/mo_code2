@@ -9,6 +9,7 @@ import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
+import { ConfigService, IConfig } from '../../../config/config.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpApiService } from '../../../sign-up/sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
@@ -61,8 +62,13 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   portfolioCategories;
   selectedCategory;
 
-  noteForWiseIncome ="<b>For WiseIncome clients who are eligible for dividend distribution:</b> As dividends are distributed, you may experience a drop in your portfolio value. This is normal behaviour and does not mean that you have sustained a loss on your investments. Your portfolio value and total returns will reflect the impact of the dividend reinvestment or payout by the first week of August."
+
   isReadMore = true;
+  wiseIncomeEndTime: string;
+  wiseIncomeStartTime: string;
+  wiseIncomeInfo: any;
+  readLess: any;
+  readMore: any;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -77,13 +83,21 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     private investmentAccountService: InvestmentAccountService,
     private signUpApiService: SignUpApiService,
     private loaderService: LoaderService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private configService :ConfigService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('YOUR_INVESTMENT.TITLE');
+      this.wiseIncomeInfo =this.translate.instant('YOUR_INVESTMENT.WISE_INCOME_INFO');
+      this.readMore =this.translate.instant('YOUR_INVESTMENT.READ_MORE');
+      this.readLess = this.translate.instant('YOUR_INVESTMENT.READ_LESS');
       this.setPageTitle(this.pageTitle);
     });
+    this.configService.getConfig().subscribe((config: IConfig) => {
+     this.wiseIncomeStartTime = config.wiseIncomeInfoStartTime;
+     this.wiseIncomeEndTime = config.wiseIncomeInfoEndTime;    
+    });    
   }
 
   setPageTitle(title: string) {
@@ -443,5 +457,15 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   showText() {
     this.isReadMore = !this.isReadMore
  }
+
+ checkIFastStatus(startTime, endTime) {
+    const startDateTime = new Date(startTime);
+    const endDateTime = new Date(endTime);
+    if (Date.now() >= startDateTime.valueOf() && Date.now() <= endDateTime.valueOf()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 }
