@@ -368,6 +368,10 @@ app-dashboard {
               }
               .total-portfolio-title-width {
                 width: 140px;
+                @include min300max350{
+                    width: 100%;
+                    height: auto;
+                }
               }
               .total-portfolio-value{
                 width: 93px;
@@ -573,8 +577,14 @@ app-dashboard {
         position: relative;
         padding: 20px;
         cursor: pointer;
+        @include iphone5{
+            padding: 20px 15px;
+        }
         &__left {
             color: #005960;
+            @include iphone5{
+                max-width: 75%;
+            }
             p:nth-child(1) {
                 font-family: $muli-bold;
                 font-size: 16px;
