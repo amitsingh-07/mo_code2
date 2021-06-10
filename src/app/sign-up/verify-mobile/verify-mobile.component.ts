@@ -261,10 +261,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   requestNewCode() {
     this.progressModal = true;
     if (this.authService.get2faVerifyAllowed()) {
-      console.log('Triggering New Verify 2FA');
       this.requestNew2faOTP();
     } else {
-      console.log('Triggering New Verify OTP');
       this.requestNewVerifyOTP();
     }
   }
@@ -478,7 +476,6 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     if (window.sessionStorage && sessionStorage.getItem('email')) {
       userEmail = sessionStorage.getItem('email');
     }
-    console.log(otp, userEmail, journeyType, enqId  );
     this.authService.doValidate2faLogin(otp, userEmail, journeyType, enqId  ).subscribe((data: any) => {
       if (data.responseMessage.responseCode  >= 6000) {
         this.mobileNumberVerified = true;
@@ -558,7 +555,6 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
         this.selectedPlansService.clearData();
         this.stateStoreService.clearAllStates();
-        //this.router.navigate(['email-enquiry/success']);
         this.redirectAfterLogin = 'email-enquiry/success';
         this.progressModal = true;
         this.loaderService.hideLoader();
@@ -577,7 +573,6 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
       this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_WILL_WRITING);
     } else {
-      //this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
       this.redirectAfterLogin = SIGN_UP_ROUTE_PATHS.DASHBOARD;
       this.progressModal = true;
       this.loaderService.hideLoader();
@@ -607,8 +602,6 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       } else {
         this.signUpService.setUserProfileInfo(userInfo.objectList);
         if (journeyType === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
-          //this.loaderService.showLoader({ title: 'Loading', autoHide: false });
-          //this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT], { skipLocationChange: true });
           this.redirectAfterLogin = appConstants.JOURNEY_TYPE_COMPREHENSIVE;
           this.progressModal = true;
           this.loaderService.hideLoader();
@@ -616,14 +609,11 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
           this.redirectAfterLogin = appConstants.JOURNEY_TYPE_INVESTMENT;
           this.progressModal = true;
           this.loaderService.hideLoader();
-          //this.investmentCommonService.redirectToInvestmentFromLogin(this.authService.getEnquiryId());
         } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING) {
-          //this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
           this.redirectAfterLogin = WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL;
           this.progressModal = true;
           this.loaderService.hideLoader();
         } else {
-          //this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
           this.redirectAfterLogin = SIGN_UP_ROUTE_PATHS.DASHBOARD;
           this.progressModal = true;
           this.loaderService.hideLoader();

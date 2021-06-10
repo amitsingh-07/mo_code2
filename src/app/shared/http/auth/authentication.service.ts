@@ -216,7 +216,6 @@ export class AuthenticationService {
     if (!handleError) {
       handleError = '';
     }
-    console.log('Sent 2fa Authentication Request');
     const send2faOtpUrl = apiConstants.endpoint.send2faOTP;
 
     return this.httpClient.get<IServerResponse>(`${this.apiBaseUrl}/${send2faOtpUrl}${handleError}`)
@@ -224,7 +223,6 @@ export class AuthenticationService {
         // login successful if there's a jwt token in the response
         if (response && response.objectList[0] && response.objectList[0].securityToken) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          console.log('send2faRequest response', response);
           this.saveAuthDetails(response.objectList[0]);
         }
         return response;
@@ -369,7 +367,6 @@ export class AuthenticationService {
     if (!handleError) {
       handleError = '';
     }
-    console.log('Sent 2fa Authentication Request');
     const send2faOtpUrl = apiConstants.endpoint.send2faOTPLogin;
 
     return this.httpClient.get<IServerResponse>(`${this.apiBaseUrl}/${send2faOtpUrl}${handleError}`)
@@ -377,7 +374,6 @@ export class AuthenticationService {
         // login successful if there's a jwt token in the response
         if (response && response.objectList[0] && response.objectList[0].securityToken) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          console.log('send2faRequest Login response', response);
           this.saveAuthDetails(response.objectList[0]);
         }
         return response;
@@ -394,7 +390,6 @@ export class AuthenticationService {
       enquiryId: enquiryId,
       journeyType: journeyType
     };
-    console.log('sd');
     const authenticateUrl = apiConstants.endpoint.authenticate2faOTPLogin;
     return this.httpClient.post<IServerResponse>(`${this.apiBaseUrl}/${authenticateUrl}${handleError}`, validate2faBody)
       .pipe(map((response) => {
