@@ -458,14 +458,14 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
       if (insuranceEnquiry && ( (insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0) )) {
         journeyType = (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT) ?
-          'insurance-direct' : 'insurance-guided';
+        appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
         enqId = insuranceEnquiry.enquiryId;
       }
     }
     
     // If the journeyType is not set, default it to 'direct'
     if (Util.isEmptyOrNull(journeyType)) {
-      journeyType = 'direct';
+      journeyType = appConstants.JOURNEY_TYPE_DIRECT;
     }
 
     journeyType = journeyType.toLowerCase();
