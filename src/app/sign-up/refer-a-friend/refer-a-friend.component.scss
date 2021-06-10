@@ -73,7 +73,7 @@ app-refer-a-friend {
             display: none;
             position: relative;
             @include allmobiles {
-                margin: 0 -5px;
+                margin: 0 -20px;
                 width: auto;
                 display: block;
             }
@@ -86,7 +86,6 @@ app-refer-a-friend {
             .banner_summary {
                 position: absolute;
                 top: 0;
-                background: $banner-teal-gradient-bg !important;
                 .banner_summary_lbl {
                     font-family: $muli-bold;
                     letter-spacing: -0.2px;
@@ -95,7 +94,7 @@ app-refer-a-friend {
                     line-height: 35px;
                     padding: 60px 35px 0 45px;
                     @include min300max350 {
-                       padding: 30px 15px 0 20px;
+                       padding: 30px 15px 0 20px !important;
                     }
                     @include max360 {
                         padding: 45px 35px 0 35px;
@@ -116,10 +115,10 @@ app-refer-a-friend {
             margin: 0 auto;
             padding: 30px 0 0;
             @include allmobiles {
-                padding: 20px 15px 0;
+                padding: 20px 0px 0;
             }
             @include iphone5 {
-                padding: 20px 10px 0;
+                padding: 20px 0px 0;
             }
             .desc-lbl {
                 text-align: left;
@@ -268,9 +267,6 @@ app-refer-a-friend {
                         font-family: $muli-bold;
                         .referral-link-details {
                             text-align: left;
-                            @include min300max350 {
-                                padding-right: 5px;
-                            }
                             .referral-link-lbl {
                                 font-family: $muli-regular;
                                 font-size: 14px;
@@ -545,6 +541,9 @@ app-refer-a-friend {
         }
         @include allmobiles {
             margin-bottom: 0;
+        }
+        @include iphone5{
+            padding: 23px 10px 22px;
         }
         .btn {
             &.btn-primary {
