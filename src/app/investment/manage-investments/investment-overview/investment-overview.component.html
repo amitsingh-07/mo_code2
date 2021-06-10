@@ -20,7 +20,9 @@
         </div>
         <div class="invest-bg-content">
           <div class="flex-col user_content flex-col-12">          
-            <div class="notes-wrapper-container" *ngIf="(selectedCategory === portfolioCategories.ALL || selectedCategory === portfolioCategories.WISEINCOME) && checkWiseIncomeStatus(wiseIncomeStartTime,wiseIncomeEndTime)" >
+            <div class="notes-wrapper-container" *ngIf="((selectedCategory === portfolioCategories.ALL || 
+            selectedCategory === portfolioCategories.WISEINCOME) && (wiseIncomePortfolio && wiseIncomePortfolio.length)) && 
+           showBannerInfo">
               <div class="notes-wrapper-bg">
               <div class="notes-wrapper" [class.show]="wiseIncomeInfo" [ngClass]="{'limitTextHeight': isReadMore}">
                 <img src="assets/images/alert-black.svg" />
