@@ -5,7 +5,7 @@
         <div class="flex-col-12" *ngIf="userProfileInfo">
           <div class="widget-block">
             <!--for desktop-->
-            <div class="hidden-sm">
+            <div class="hidden-sm-md">
               <div class="user-profile-bg col-12 mb10" >
                 <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
                 <div class="user_name">{{userProfileInfo.firstName | titlecase}}</div>
@@ -133,7 +133,7 @@
                 </ng-container>
                 <!-- Not Purchased Investment Card -->
                 <ng-container *ngIf="!showPortfolioPurchased">
-                  <div class="widget-title">
+                  <div class="widget-title widget-portfolio-title">
                     <span class="flex">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
                     </span>
                   </div>
