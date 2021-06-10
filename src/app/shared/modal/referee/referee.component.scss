@@ -8,6 +8,10 @@ app-referee {
             padding: 0 !important;
             width: 100%;
         }
+        @include minPhabletmaxTablet {
+            width: auto;
+            padding: 0 !important;
+        }
     }
     .referee-modal {
         letter-spacing: -0.196875px;
@@ -43,9 +47,10 @@ app-referee {
             border-radius: 30px;
             padding: 5px 10px;
             margin-bottom: 20px;
-            @include iphone5 {
-                margin-left: 5px;
+            @include min300max325 {
+                font-size: 12px;
                 margin-bottom: 10px;
+                padding: 5px 8px;
             }
         }
         &__close-btn {
@@ -75,6 +80,9 @@ app-referee {
         padding: 30px 88px;
         @include allmobiles {
             padding: 30px 20px;
+        }
+        @include minPhabletmaxTablet {
+            padding: 30px 60px;
         }
         color: $silver-grey-color;
         font-size: 16px;

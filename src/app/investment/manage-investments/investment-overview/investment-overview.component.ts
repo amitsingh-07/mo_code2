@@ -61,6 +61,13 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   portfolioCategories;
   selectedCategory;
 
+
+  isReadMore = true;
+  wiseIncomeEndTime: string;
+  wiseIncomeStartTime: string;
+  wiseIncomeInfo: any;
+  readLess: any;
+  readMore: any;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -80,8 +87,13 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('YOUR_INVESTMENT.TITLE');
+      this.wiseIncomeInfo =this.translate.instant('YOUR_INVESTMENT.WISE_INCOME_INFO');
+      this.readMore =this.translate.instant('YOUR_INVESTMENT.READ_MORE');
+      this.readLess = this.translate.instant('YOUR_INVESTMENT.READ_LESS');
       this.setPageTitle(this.pageTitle);
-    });
+    });   
+     this.wiseIncomeStartTime = MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.WISE_INCOME_INFO_START_DATE;
+     this.wiseIncomeEndTime =  MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.WISE_INCOME_INFO_END_DATE;      
   }
 
   setPageTitle(title: string) {
@@ -438,4 +450,18 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
       ele.scrollIntoView({behavior: "smooth", block: "end", inline : "center"});
     }
   }
+  showText() {
+    this.isReadMore = !this.isReadMore
+ }
+
+ checkWiseIncomeStatus(startTime, endTime) {
+    const startDateTime = new Date(startTime);
+    const endDateTime = new Date(endTime);
+    if (Date.now() >= startDateTime.valueOf() && Date.now() <= endDateTime.valueOf()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }
