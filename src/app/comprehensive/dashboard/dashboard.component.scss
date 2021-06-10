@@ -84,8 +84,11 @@
             @include desktop {
                 right: 90px !important;
             }
-            @include allmobiles {
+            @include minMobilemaxPhablet{
                 top: 35px !important;
+            }
+            @include tablet{
+                right: 100px;
             }
         }
     }
@@ -100,8 +103,11 @@
         font-size: 22px !important;
     }
     div.reward-points ~ .form-group-with-bg.overlay-bg .form-group-with-bg--header {
-        @include allmobiles {
+        @include minMobilemaxPhablet{
             width: 75%;
+        }
+        @include tablet {
+            width: 70%;
         }
     }
     &.container-fluid {
