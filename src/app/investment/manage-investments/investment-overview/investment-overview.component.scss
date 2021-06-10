@@ -10,19 +10,19 @@ app-investment-overview {
     .notes-wrapper-container {
         background-color: $white-color;
         padding: 25px 15px;
+        line-height: 19.5px;
+        letter-spacing: -0.12px;
         .notes-wrapper-bg{
             @include allmobiles{
                 width: 100%;
             }
-            max-width: 812px;
+            max-width: 844px;
             margin: auto;
         }
         .notes-wrapper {
             align-items: flex-start;
             display: none;
-            opacity: 0;
-            line-height: 1.5;
-            letter-spacing: -0.26px;
+            opacity: 0;           
             padding:0 !important;
             &.show {
                 display: flex;
@@ -39,7 +39,7 @@ app-investment-overview {
             .note-content {
                 font-family: $muli-regular;
                 font-size: 14px;
-                letter-spacing: -0.14px;
+                letter-spacing: -0.12px;
                 color: $dark-grey-color;
                 
             }
@@ -77,10 +77,10 @@ app-investment-overview {
 
     .limitTextHeight {
         @include allmobiles {
-            height: 105px;
+            height: 100px;
             overflow: hidden;
         }
-        height: 45px;
+        height: 42px;
         overflow: hidden;
     }
     .txt-bold{
