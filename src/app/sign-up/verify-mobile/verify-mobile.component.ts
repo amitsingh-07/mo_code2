@@ -479,7 +479,6 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     this.authService.doValidate2faLogin(otp, userEmail, journeyType, enqId  ).subscribe((data: any) => {
       if (data.responseMessage.responseCode  >= 6000) {
         this.mobileNumberVerified = true;
-        //this.authService.set2FAToken(data.responseMessage.responseCode);
         this.mobileNumberVerifiedMessage = this.loading['verified2fa'];
         
         this.progressModal = false;
