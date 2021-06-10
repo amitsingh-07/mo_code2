@@ -476,9 +476,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     const endDateTime = new Date(endTime);
     if (Date.now() >= startDateTime.valueOf() && Date.now() <= endDateTime.valueOf()) {
       this.showBannerInfo = true;
-    } else {
-      this.showBannerInfo = false;
-    }
+    } 
   }
 
 }
