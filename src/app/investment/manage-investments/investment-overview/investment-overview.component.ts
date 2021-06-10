@@ -9,7 +9,6 @@ import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
-import { ConfigService } from '../../../config/config.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpApiService } from '../../../sign-up/sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
@@ -83,8 +82,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     private investmentAccountService: InvestmentAccountService,
     private signUpApiService: SignUpApiService,
     private loaderService: LoaderService,
-    private route: ActivatedRoute,
-    private configService :ConfigService
+    private route: ActivatedRoute
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
