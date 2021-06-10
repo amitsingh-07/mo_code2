@@ -9,7 +9,7 @@ import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
-import { ConfigService, IConfig } from '../../../config/config.service';
+import { ConfigService } from '../../../config/config.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpApiService } from '../../../sign-up/sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
@@ -93,11 +93,9 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
       this.readMore =this.translate.instant('YOUR_INVESTMENT.READ_MORE');
       this.readLess = this.translate.instant('YOUR_INVESTMENT.READ_LESS');
       this.setPageTitle(this.pageTitle);
-    });
-    this.configService.getConfig().subscribe((config: IConfig) => {
-     this.wiseIncomeStartTime = config.wiseIncomeInfoStartTime;
-     this.wiseIncomeEndTime = config.wiseIncomeInfoEndTime;    
-    });    
+    });   
+     this.wiseIncomeStartTime = MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.WISE_INCOME_INFO_START_DATE;
+     this.wiseIncomeEndTime =  MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.WISE_INCOME_INFO_END_DATE;      
   }
 
   setPageTitle(title: string) {
@@ -458,7 +456,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     this.isReadMore = !this.isReadMore
  }
 
- checkIFastStatus(startTime, endTime) {
+ checkWiseIncomeStatus(startTime, endTime) {
     const startDateTime = new Date(startTime);
     const endDateTime = new Date(endTime);
     if (Date.now() >= startDateTime.valueOf() && Date.now() <= endDateTime.valueOf()) {
