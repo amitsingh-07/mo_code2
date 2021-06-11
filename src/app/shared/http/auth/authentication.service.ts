@@ -390,6 +390,9 @@ export class AuthenticationService {
       enquiryId: enquiryId,
       journeyType: journeyType
     };
+    if(this.getAccessCode()) {
+      validate2faBody['accessCode'] = this.getAccessCode();
+    }
     const authenticateUrl = apiConstants.endpoint.authenticate2faOTPLogin;
     return this.httpClient.post<IServerResponse>(`${this.apiBaseUrl}/${authenticateUrl}${handleError}`, validate2faBody)
       .pipe(map((response) => {
@@ -408,6 +411,22 @@ export class AuthenticationService {
       sessionStorage.removeItem(appConstants.APP_SESSION_ID_KEY);
       sessionStorage.removeItem(appConstants.APP_CUSTOMER_ID);
       sessionStorage.removeItem(EMAIL);
+      this.removeAccessCode();
     }
   }
+
+  saveAccessCode(accessCode: any) {
+    if (sessionStorage) {
+      sessionStorage.setItem(appConstants.FINLIT_ACCESS_CODE, accessCode);
+    }
+  }
+
+  getAccessCode() {
+    return sessionStorage.getItem(appConstants.FINLIT_ACCESS_CODE);
+  }
+
+  removeAccessCode() {
+    sessionStorage.removeItem(appConstants.FINLIT_ACCESS_CODE);
+  }
+
 }
