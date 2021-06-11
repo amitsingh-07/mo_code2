@@ -480,7 +480,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       if (data.responseMessage.responseCode  >= 6000) {
         this.mobileNumberVerified = true;
         this.mobileNumberVerifiedMessage = this.loading['verified2fa'];
-        
+        this.authService.removeAccessCode();
         this.progressModal = false;
         // Pulling Customer information to log on Hubspot
         this.signUpApiService.getUserProfileInfo().subscribe((data) => {
