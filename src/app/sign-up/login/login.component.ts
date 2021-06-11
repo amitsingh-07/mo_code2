@@ -300,6 +300,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
               } catch (e) {
                 console.log(e);
               }
+              if(this.finlitEnabled && accessCode && accessCode !== '') {
+                this.authService.saveAccessCode(accessCode);
+              }
               this.authService.set2faVerifyAllowed(true);
               this.signUpService.removeCaptchaSessionId();
               this.signUpService.setUserMobileNo(data.objectList[0].mobileNumber);
