@@ -293,6 +293,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
               const redirect = data.responseMessage.responseCode === 6000;
               this.updateInsuranceEnquiry(insuranceEnquiry, data, redirect);
             } else if (data.responseMessage.responseCode === 6000) {
+              this.authService.set2faVerifyAllowed(false);
+              this.signUpService.removeFromLoginPage();
+              this.signUpService.removeFromMobileNumber();
               if (this.finlitEnabled) {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_VERIFY_MOBILE]);
               } else {

@@ -22,6 +22,8 @@ export let apiConstants = {
         send2faOTP: ACCOUNT_API_BASE_URL + '/send2FAOTP',
         sendOTPEmail :ACCOUNT_API_BASE_URL + '/sendOTPEmail',
         authenticate2faOTP: ACCOUNT_API_BASE_URL + '/validate2FA',
+        send2faOTPLogin: ACCOUNT_API_BASE_URL + '/send2FAOTPLogin',
+        authenticate2faOTPLogin: ACCOUNT_API_BASE_URL + '/validate2FALogin',
         verify2faOTP: ACCOUNT_API_BASE_URL + '/is2FAuthenticated',
         getProfileList: ACCOUNT_API_BASE_URL + '/getProfileTypeList',
         getProtectionTypesList: INSURANCE_API_BASE_URL + '/getProtectionTypesList',

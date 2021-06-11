@@ -261,7 +261,7 @@ export class SignUpApiService {
    * @param username - email / mobile no.
    * @param password - password.
    */
-  verifyLogin(userEmail, userPassword, captcha, finlitEnabled, accessCode) {
+  verifyLogin(userEmail, userPassword, captcha, finlitEnabled, accessCode, loginType) {
     let enqId = -1;
     let journeyType = this.appService.getJourneyType();
     const sessionId = this.authService.getSessionId();
@@ -275,19 +275,19 @@ export class SignUpApiService {
       const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
       if (insuranceEnquiry && ( (insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0) )) {
         journeyType = (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT) ?
-          'insurance-direct' : 'insurance-guided';
+        appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
         enqId = insuranceEnquiry.enquiryId;
       }
     }
 
     // If the journeyType is not set, default it to 'direct'
     if (Util.isEmptyOrNull(journeyType)) {
-      journeyType = 'direct';
+      journeyType = appConstants.JOURNEY_TYPE_DIRECT;
     }
 
     journeyType = journeyType.toLowerCase();
 
-    return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId, enqId, journeyType, finlitEnabled, accessCode);
+    return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId, enqId, journeyType, finlitEnabled, accessCode, loginType);
   }
 
   logout() {
