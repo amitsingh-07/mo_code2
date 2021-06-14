@@ -85,6 +85,8 @@ export let SIGN_UP_CONFIG = {
       NOT_ISSUED:"NOT_ISSUED",
       ISSUED:"ISSUED",
       NOT_APPLICABLE:"NOT_APPLICABLE"
-    }
-
+    },
+    AUTH_2FA_ENABLED: true,
+    ROLE_2FA: 'ROLE_2FA',
+    LOGIN_TYPE_2FA: 'MANUAL'
 };

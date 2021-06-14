@@ -13,6 +13,10 @@ app-dashboard {
         }
         .user-profile-bg {
             padding-left: 20px;
+            @include desktop {
+                padding-left: 0;
+                padding-bottom: 10px;
+            }
             font-family: $muli-extra-light;
             font-size: 22px;
             font-weight: 200;
@@ -364,6 +368,10 @@ app-dashboard {
               }
               .total-portfolio-title-width {
                 width: 140px;
+                @include min300max350{
+                    width: 100%;
+                    height: auto;
+                }
               }
               .total-portfolio-value{
                 width: 93px;
@@ -392,18 +400,19 @@ app-dashboard {
                 line-height: 1.25;
               }
               div.reward-points + .widget-portfolio-title {
-                @include iphoneX {
+                @include allmobiles {
                     width: 68%;
                 }
-                @include iphone6 {
-                    width: 68%;
-                }
-				@include max360 {
-            		width: 75%;
-        		}
               }
               div.reward-points ~ .topup-btn {
-                margin-top: -37px !important;
+                @include allmobiles {  
+                    margin-top: -37px !important;
+                }
+              }
+              .reward-points ~ .widget-body {
+                  @include desktop {
+                      margin-top: -50px !important;
+                  }
               }
               .widget-portfolio-body {
                 padding:0px 18px 11px;
@@ -522,6 +531,7 @@ app-dashboard {
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 0 15px;
         }
     }
     .announcement-div {
@@ -560,6 +570,9 @@ app-dashboard {
         background: #FFD052;
         border-radius: 6px;
         margin-top: 10px;
+        @include allmobiles {
+            margin-bottom: -10px;
+        }
         @include desktop {
             margin-top: 0;
             height: 80px;
@@ -569,22 +582,33 @@ app-dashboard {
         position: relative;
         padding: 20px;
         cursor: pointer;
+        @include iphone5{
+            padding: 20px 15px;
+        }
         &__left {
             color: #005960;
+            @include iphone5{
+                max-width: 75%;
+            }
             p:nth-child(1) {
                 font-family: $muli-bold;
                 font-size: 16px;
                 margin-bottom: 5px;
+                letter-spacing: -0.2px;
             }
             p:nth-child(2) {
                 font-family: $muli-regular;
                 font-size: 14px;
                 margin-bottom: 0;
+                letter-spacing: -0.15px;
             }
         }
         &__gift-box {
             position: absolute;
-            right: 50px;
+            right: 57px;
+            @include max360 {
+                right: 50px;
+            }
             bottom: 0;
         }
     }
@@ -605,7 +629,7 @@ app-dashboard {
         color: $portfolio-card-text-color;
         img {
             vertical-align: top;
-            padding-right: 4px;
+            padding-right: 9px;
         }
     }
     div.reward-points + div.view_all {
