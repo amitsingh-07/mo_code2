@@ -1,13 +1,14 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-
+import { TranslateService } from '@ngx-translate/core';
 import { AppService } from '../../app.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { FileUtil } from '../../shared/utils/file.util';
+import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
+import { SignUpService } from '../../sign-up/sign-up.service';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyProfile } from '../comprehensive-types';
@@ -17,7 +18,7 @@ import { LoaderService } from './../../shared/components/loader/loader.service';
 import { PaymentInstructionModalComponent } from './../../shared/modal/payment-instruction-modal/payment-instruction-modal.component';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
-import { SignUpService } from '../../sign-up/sign-up.service';
+
 
 @Component({
   selector: 'app-comprehensive-dashboard',
@@ -400,7 +401,7 @@ constructor(
 
   getRefereeInfo(refereeInfo){
     if (refereeInfo && refereeInfo.referralVoucherList) {
-      const comprehensive = this.findCategory(refereeInfo.referralVoucherList, "CFP");
+      const comprehensive = this.findCategory(refereeInfo.referralVoucherList,  SIGN_UP_CONFIG.REFEREE_REWARDS.CFP);
       return comprehensive;      
     } else {
       return [];
