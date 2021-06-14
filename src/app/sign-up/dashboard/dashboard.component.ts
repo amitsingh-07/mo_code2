@@ -215,9 +215,9 @@ export class DashboardComponent implements OnInit {
 
   getRefereeInfo(refereeInfo){
     if (refereeInfo && refereeInfo.referralVoucherList) {
-      const investment = this.findCategory(refereeInfo.referralVoucherList, "Investment");
-      const insurance = this.findCategory(refereeInfo.referralVoucherList, "Insurance");
-      const comprehensive = this.findCategory(refereeInfo.referralVoucherList, "CFP");
+      const investment = this.findCategory(refereeInfo.referralVoucherList, SIGN_UP_CONFIG.REFEREE_REWARDS.INVESTMENT);
+      const insurance = this.findCategory(refereeInfo.referralVoucherList, SIGN_UP_CONFIG.REFEREE_REWARDS.INSURANCE);
+      const comprehensive = this.findCategory(refereeInfo.referralVoucherList,  SIGN_UP_CONFIG.REFEREE_REWARDS.CFP);
       return {
         investment: investment,
         insurance: insurance,
@@ -514,7 +514,7 @@ export class DashboardComponent implements OnInit {
     );
   }
   openRefereeModal(){
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.REFER_REDIRECT+'/dashboard'],{ skipLocationChange: true });
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.REFER_REDIRECT+'/'+SIGN_UP_CONFIG.REFEREE_REWARDS.DASHBOARD],{ skipLocationChange: true });
   }
   
 }

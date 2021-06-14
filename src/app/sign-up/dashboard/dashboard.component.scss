@@ -409,6 +409,11 @@ app-dashboard {
                     margin-top: -37px !important;
                 }
               }
+              .reward-points ~ .widget-body {
+                  @include desktop {
+                      margin-top: -50px !important;
+                  }
+              }
               .widget-portfolio-body {
                 padding:0px 18px 11px;
               }

@@ -28,7 +28,7 @@ const CAPTCHA_SESSION_ID = 'captcha_session_id';
 const USER_MOBILE = 'user_mobile';
 const FROM_LOGIN_PAGE = 'from_login_page';
 const CAPTACHA_COUNT = 'captcha_count';
-const EMAIL = 'email'
+const EMAIL = 'email';
 const FINLITENABLED = 'finlitenabled';
 
 @Injectable({
@@ -373,6 +373,10 @@ export class SignUpService {
     sessionStorage.removeItem(CAPTACHA_COUNT);
   }
 
+  removeUserType() {
+    sessionStorage.removeItem(FINLITENABLED);
+  }
+
   getEditProfileInfo() {
     // API Call here
     return this.apiService.getEditProfileList();
@@ -630,6 +634,10 @@ export class SignUpService {
 
   removeFromLoginPage() {
     sessionStorage.removeItem(FROM_LOGIN_PAGE);
+  }
+
+  removeFromMobileNumber() {
+    sessionStorage.removeItem(USER_MOBILE);
   }
 
   getCaptchaCount() {
