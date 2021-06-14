@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } fro
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { SIGN_UP_CONFIG } from '../../../sign-up/sign-up.constant';
 
 @Component({
   selector: 'app-referee',
@@ -19,6 +20,7 @@ export class RefereeComponent implements OnInit {
   @Output() investmentAction = new EventEmitter<any>();
   @Output() insuranceAction = new EventEmitter<any>();
   isActive = false;
+  REFEREE_CONSTANT;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -30,6 +32,7 @@ export class RefereeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.REFEREE_CONSTANT = SIGN_UP_CONFIG.REFEREE_REWARDS;  
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
         this.activeModal.dismiss();
