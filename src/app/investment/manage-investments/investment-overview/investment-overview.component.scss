@@ -74,16 +74,8 @@ app-investment-overview {
             padding-bottom: 20px;
         }
     }
-
-    .limitTextHeight {
-        @include allmobiles {
-            height: 100px;
-            overflow: hidden;
-        }
-        height: 42px;
-        overflow: hidden;
-    }
-        /*Safari Fix*/
+   
+    /*Safari Fix*/
     @media screen and (-webkit-min-device-pixel-ratio:0) {
         .limitTextHeight {
             @include allmobiles {
@@ -93,6 +85,14 @@ app-investment-overview {
             height: 62px;
             overflow: hidden;
         }
+    }
+    .limitTextHeight {
+        @include allmobiles {
+            height: 100px;
+            overflow: hidden;
+        }
+        height: 42px;
+        overflow: hidden;
     }
     .txt-bold{
         font-family: $muli-bold;
