@@ -126,7 +126,7 @@
       "START_BTN": "Skip",
       "END_BTN": "Got it!"
     },
-    "WISE_INCOME_INFO":"<span class='txt-bold'>For WiseIncome clients who are eligible for dividend distribution:</span> As dividends are distributed, you may experience a drop in your portfolio value. This is normal behaviour and does not mean that you have sustained a loss on your investments. Your portfolio value and total returns will reflect the impact of the dividend reinvestment or payout by the first week of August.",
+    "WISE_INCOME_INFO":"<span class='txt-bold'>For WiseIncome clients who are eligible for dividend distribution:</span> As dividends are distributed, you may experience a drop in your portfolio value. This is normal behaviour and does not mean that you have sustained a loss on your investments. Your portfolio value and total returns will reflect the impact of the dividend reinvestment or payout by the first week of ",
     "READ_MORE":"Read more",
     "READ_LESS" :"Read less"
   },

@@ -1,12 +1,12 @@
-@import "../../../../_variables.scss";
-@import "../../../../_mixins.scss";
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
 app-investment-overview {
     .invest-section {
         @include allmobiles {
             top: 0px;
         }
     }
-    //
+    
     .notes-wrapper-container {
         background-color: $white-color;
         padding: 25px 15px;
@@ -86,7 +86,7 @@ app-investment-overview {
     .txt-bold{
         font-family: $muli-bold;
     }
-    //
+
     .cursor_pointer {
         cursor: pointer;
     }
