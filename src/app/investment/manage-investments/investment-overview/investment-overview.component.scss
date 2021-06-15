@@ -7,7 +7,7 @@ app-investment-overview {
         }
     }
     
-    .notes-wrapper-container {
+    /* .notes-wrapper-container {
         background-color: $white-color;
         padding: 25px 15px;
         line-height: 19.5px;
@@ -74,7 +74,58 @@ app-investment-overview {
             padding-bottom: 20px;
         }
     }
-   
+     */
+
+    .record-date-banner {
+        background-color: $white-color;
+        padding: 25px 15px;
+        line-height: 19.5px;
+        letter-spacing: -0.12px;
+        &__text {
+            @include allmobiles{
+                width: 100%;
+            }
+            max-width: 844px;
+            margin: auto;
+            font-family: $muli-regular;
+            font-size: 14px;
+            letter-spacing: -0.12px;
+            color:$dark-grey-color;
+            height: 42px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-start;
+            img {
+                margin-right: 12px;
+                margin-top: 2px;
+            }
+        }
+        &__btn {
+            max-width: 844px;
+            margin: auto;
+            font-family: $muli-bold;
+            font-size: 14px;
+            color: $dark-orange-color;
+            padding-left: 30px;
+            cursor: pointer;
+            text-decoration: none !important;
+            padding-left: 30px;
+
+            &:hover {
+                font-family: $muli-bold;
+                color: $dark-orange-color;
+            }
+            &:active {
+                font-family: $muli-bold;
+                color: $dark-orange-color;
+            }
+        }
+        
+        .full-content {
+            overflow: visible;
+            height: auto;
+        }
+    }
     /*Safari Fix*/
     @media screen and (-webkit-min-device-pixel-ratio:0) {
         .limitTextHeight {
