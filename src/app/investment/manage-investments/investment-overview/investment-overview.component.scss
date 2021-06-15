@@ -26,7 +26,7 @@ app-investment-overview {
             padding:0 !important;
             &.show {
                 display: flex;
-                animation: note-slide-down 500ms forwards 500ms;
+                animation: note-slide-down 0ms forwards 0ms;
             }
 
             img {
