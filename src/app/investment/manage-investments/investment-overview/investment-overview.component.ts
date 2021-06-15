@@ -49,6 +49,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   selected;
   showMpPopup = false;
   showAnimation = false;
+  showFullContent = false;
 
   // transfer instructions
   bankDetails;
