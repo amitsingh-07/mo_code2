@@ -105,11 +105,11 @@ export class ReferalRedirectingPartComponent implements OnInit {
   }
 
   redirectPath(refereeInfo, cardCategory) {
-    if (this.route.snapshot.paramMap.get('term') === "refer-a-friend") {
+    if (this.route.snapshot.paramMap.get('term') === SIGN_UP_CONFIG.REFEREE_REWARDS.REFER_A_FRIEND) {
       this.reDirectiveUrl = SIGN_UP_ROUTE_PATHS.REFER_FRIEND;
       this.openRefereeModal(this.reDirectiveUrl, refereeInfo, cardCategory);
     }
-    else if (this.route.snapshot.paramMap.get('term') === "dashboard") {
+    else if (this.route.snapshot.paramMap.get('term') === SIGN_UP_CONFIG.REFEREE_REWARDS.DASHBOARD) {
       this.reDirectiveUrl = SIGN_UP_ROUTE_PATHS.DASHBOARD;
       this.openRefereeModal(this.reDirectiveUrl, refereeInfo, cardCategory);
     } else {

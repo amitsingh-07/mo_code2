@@ -7,7 +7,6 @@ import { NgbModal, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from './../../../environments/environment';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
-import { RefereeComponent } from '../../shared/modal/referee/referee.component';
 
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SignUpService } from '../sign-up.service';
@@ -109,7 +108,7 @@ export class ReferAFriendComponent implements OnInit {
   }
 
   openRefereeModal() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.REFER_REDIRECT+'/refer-a-friend'],{ skipLocationChange: true });
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.REFER_REDIRECT+'/'+SIGN_UP_CONFIG.REFEREE_REWARDS.REFER_A_FRIEND],{ skipLocationChange: true });
   }
 
   notify(event) {

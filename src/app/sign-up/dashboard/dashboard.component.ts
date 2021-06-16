@@ -514,7 +514,7 @@ export class DashboardComponent implements OnInit {
     );
   }
   openRefereeModal(){
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.REFER_REDIRECT+'/dashboard'],{ skipLocationChange: true });
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.REFER_REDIRECT+'/'+SIGN_UP_CONFIG.REFEREE_REWARDS.DASHBOARD],{ skipLocationChange: true });
   }
   
 }
