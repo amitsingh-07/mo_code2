@@ -23,7 +23,7 @@
 							<img src="assets/images/refer-friend/slice-left-coupon-blue.svg">
 						</div>
 						<div
-							*ngIf="cardCategory.comprehensive.voucherStatus === REFEREE_CONSTANT.ISSUED || cardCategory.comprehensive.voucherStatus ==='NOT_APPLICABLE' || !refereeInfo.isWelcomeRewardsValid">
+							*ngIf="cardCategory.comprehensive.voucherStatus === REFEREE_CONSTANT.ISSUED || cardCategory.comprehensive.voucherStatus ===REFEREE_CONSTANT.NOT_APPLICABLE || !refereeInfo.isWelcomeRewardsValid">
 							<img src="assets/images/refer-friend/slice-left-coupon-grey.svg">
 						</div>
 						<div class="referee-modal__inner__coupon-card__left"
@@ -48,16 +48,16 @@
 							<img src="assets/images/refer-friend/slice-mid-coupon-blue.svg">
 						</div>
 						<div
-							*ngIf="cardCategory.comprehensive.voucherStatus ===REFEREE_CONSTANT.ISSUED || cardCategory.comprehensive.voucherStatus ==='NOT_APPLICABLE' || !refereeInfo.isWelcomeRewardsValid">
+							*ngIf="cardCategory.comprehensive.voucherStatus ===REFEREE_CONSTANT.ISSUED || cardCategory.comprehensive.voucherStatus ===REFEREE_CONSTANT.NOT_APPLICABLE || !refereeInfo.isWelcomeRewardsValid">
 							<img src="assets/images/refer-friend/slice-mid-coupon-grey.svg">
 						</div>
 						<div class="referee-modal__inner__coupon-card__right"
-							[ngClass]="{'referee-bg-grey': cardCategory.comprehensive.voucherStatus ==='ISSUED' || cardCategory.comprehensive.voucherStatus ===REFEREE_CONSTANT.NOT_APPLICABLE  || !refereeInfo.isWelcomeRewardsValid}">
+							[ngClass]="{'referee-bg-grey': cardCategory.comprehensive.voucherStatus === REFEREE_CONSTANT.ISSUED || cardCategory.comprehensive.voucherStatus ===REFEREE_CONSTANT.NOT_APPLICABLE  || !refereeInfo.isWelcomeRewardsValid}">
 							<p>S${{cardCategory.comprehensive.creditValue}}</p>
 							<p *ngIf="cardCategory.comprehensive.voucherType === 'GrabFood'">
 								<img *ngIf="cardCategory.comprehensive.voucherStatus ===REFEREE_CONSTANT.NOT_ISSUED && refereeInfo.isWelcomeRewardsValid"
 									src="assets/images/refer-friend/grab-food-logo.svg">
-								<img *ngIf="cardCategory.comprehensive.voucherStatus ===REFEREE_CONSTANT.ISSUED || cardCategory.comprehensive.voucherStatus ==='NOT_APPLICABLE' || !refereeInfo.isWelcomeRewardsValid"
+								<img *ngIf="cardCategory.comprehensive.voucherStatus === REFEREE_CONSTANT.ISSUED || cardCategory.comprehensive.voucherStatus ===REFEREE_CONSTANT.NOT_APPLICABLE || !refereeInfo.isWelcomeRewardsValid"
 									src="assets/images/refer-friend/grab-food-logo-grey.svg">
 							</p>
 							<p>{{'REFEREE-MODAL.CREDITS'  | translate}}</p>
@@ -85,7 +85,7 @@
 								{{'REFEREE-MODAL.REWARD_HAS_BEEN_ISSUED' |
 								translate}}</p>
 							<p class="referee-modal__inner__coupon-card__left__issued"
-								*ngIf="cardCategory.investment.voucherStatus ==='NOT_APPLICABLE'">
+								*ngIf="cardCategory.investment.voucherStatus ===REFEREE_CONSTANT.NOT_APPLICABLE">
 								{{'REFEREE-MODAL.NOT_APPLICABLE' |
 								translate}}</p>
 						</div>
@@ -94,11 +94,11 @@
 							<img src="assets/images/refer-friend/slice-mid-coupon-blue.svg">
 						</div>
 						<div
-							*ngIf="cardCategory.investment.voucherStatus === REFEREE_CONSTANT.ISSUED || cardCategory.investment.voucherStatus ==='NOT_APPLICABLE' || !refereeInfo.isWelcomeRewardsValid">
+							*ngIf="cardCategory.investment.voucherStatus === REFEREE_CONSTANT.ISSUED || cardCategory.investment.voucherStatus ===REFEREE_CONSTANT.NOT_APPLICABLE || !refereeInfo.isWelcomeRewardsValid">
 							<img src="assets/images/refer-friend/slice-mid-coupon-grey.svg">
 						</div>
 						<div class="referee-modal__inner__coupon-card__right"
-							[ngClass]="{'referee-bg-grey': cardCategory.investment.voucherStatus === REFEREE_CONSTANT.ISSUED || cardCategory.investment.voucherStatus ==='NOT_APPLICABLE'  || !refereeInfo.isWelcomeRewardsValid}">
+							[ngClass]="{'referee-bg-grey': cardCategory.investment.voucherStatus === REFEREE_CONSTANT.ISSUED || cardCategory.investment.voucherStatus ===REFEREE_CONSTANT.NOT_APPLICABLE  || !refereeInfo.isWelcomeRewardsValid}">
 							<p>S${{cardCategory.investment.creditValue}}</p>
 							<p *ngIf="cardCategory.investment.voucherType === 'GrabFood'">
 								<img *ngIf="cardCategory.investment.voucherStatus === REFEREE_CONSTANT.NOT_ISSUED && refereeInfo.isWelcomeRewardsValid"
@@ -115,7 +115,7 @@
 							<img src="assets/images/refer-friend/slice-left-coupon-blue.svg">
 						</div>
 						<div
-							*ngIf="cardCategory.insurance.voucherStatus === REFEREE_CONSTANT.ISSUED || cardCategory.insurance.voucherStatus ==='NOT_APPLICABLE' || !refereeInfo.isWelcomeRewardsValid">
+							*ngIf="cardCategory.insurance.voucherStatus === REFEREE_CONSTANT.ISSUED || cardCategory.insurance.voucherStatus ===REFEREE_CONSTANT.NOT_APPLICABLE || !refereeInfo.isWelcomeRewardsValid">
 							<img src="assets/images/refer-friend/slice-left-coupon-grey.svg">
 						</div>
 						<div class="referee-modal__inner__coupon-card__left"
