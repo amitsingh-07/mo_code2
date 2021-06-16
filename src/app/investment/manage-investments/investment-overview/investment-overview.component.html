@@ -10,28 +10,15 @@
       {{toastMsg?.link_label}}</div>
   </div>
 </div>
-<!-- <div class="notes-wrapper-container" *ngIf="((selectedCategory === portfolioCategories.ALL || 
-selectedCategory === portfolioCategories.WISEINCOME) && (wiseIncomePortfolio && wiseIncomePortfolio.length)) && 
-showBannerInfo">
-  <div class="notes-wrapper-bg">
-    <div class="notes-wrapper" [class.show]="wiseIncomeInfo" [ngClass]="{'limitTextHeight': isReadMore}">
-      <img src="assets/images/alert-black.svg" />
-      <div class="note-content" [innerHTML]="wiseIncomeInfo"></div>
-    </div>
-    <div><a class="read_more" (click)="showText()">{{ isReadMore ? readMore : readLess }}</a></div>
-  </div>
-</div> -->
-
-<div class="record-date-banner"  *ngIf="((selectedCategory === portfolioCategories.ALL || 
+<div class="record-date-banner" *ngIf="((selectedCategory === portfolioCategories.ALL || 
 selectedCategory === portfolioCategories.WISEINCOME) && (wiseIncomePortfolio && wiseIncomePortfolio.length)) && 
 showBannerInfo">
   <div class="record-date-banner__text" [ngClass]="{'full-content': showFullContent}">
-  <img src="assets/images/alert-black.svg" /> 
-  <span [innerHTML]="wiseIncomeInfo"></span>
+    <img src="assets/images/alert-black.svg" />
+    <span [innerHTML]="wiseIncomeInfo"></span>
   </div>
- <div class="record-date-banner__btn" (click)="showFullContent = !showFullContent">{{ showFullContent ? 'Show less': 'Show more' }}</div>
- </div>
-
+  <div class="record-date-banner__btn" (click)="showText()">{{ showFullContent ? readLess : readMore }}</div>
+</div>
 <section class="invest-section" *ngIf="investmentoverviewlist">
   <div class="invest-section-items">
     <div class="invest-section-content">
