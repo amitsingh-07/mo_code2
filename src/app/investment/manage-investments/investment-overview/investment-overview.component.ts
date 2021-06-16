@@ -50,7 +50,6 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   showMpPopup = false;
   showAnimation = false;
   showFullContent = false;
-
   // transfer instructions
   bankDetails;
   paynowDetails;
@@ -58,12 +57,8 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   isToastMessageShown;
   toastMsg;
   private subscription: Subscription;
-
   portfolioCategories;
   selectedCategory;
-
-
-  isReadMore = true;
   wiseIncomeInfo: any;
   readLess: any;
   readMore: any;
@@ -471,7 +466,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     }
   }
   showText() {
-    this.isReadMore = !this.isReadMore
+    this.showFullContent = !this.showFullContent
   }
 
   checkWiseIncomeStatus(startTime, endTime, month) {
