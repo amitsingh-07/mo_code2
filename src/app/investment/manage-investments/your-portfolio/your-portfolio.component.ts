@@ -201,15 +201,8 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
-  }
-  
-  showNewMessageForRebalance(riskType) {
-    if (MANAGE_INVESTMENTS_CONSTANTS.REBALANCE_ADDITIONAL_MESSAGE.includes(riskType.toUpperCase())) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  }  
+ 
    getPortfolioWithdrawalRequests(sellRequests) {
     return sellRequests.filter(
       (req) => PORTFOLIO_WITHDRAWAL_KEYS.indexOf(req.paymentMode) >= 0

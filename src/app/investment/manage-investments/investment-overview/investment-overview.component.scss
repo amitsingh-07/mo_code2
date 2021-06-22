@@ -5,7 +5,66 @@ app-investment-overview {
         @include allmobiles {
             top: 0px;
         }
+    }   
+   
+    .record-date-banner {
+        background-color: $white-color;
+        padding: 25px 15px;
+        line-height: 19.5px;
+        letter-spacing: -0.12px;
+        &__text {
+            @include allmobiles{
+                width: 100%;
+            }
+            max-width: 844px;
+            margin: auto;
+            font-family: $muli-regular;
+            font-size: 14px;
+            letter-spacing: -0.12px;
+            color:$dark-grey-color;
+            height: 42px;
+            @include allmobiles{
+                height: 100px;
+            }
+            overflow: hidden;
+            display: flex;
+            align-items: flex-start;
+            img {
+                margin-right: 12px;
+                margin-top: 3px;
+                width: 16px;                
+            }
+        }
+        &__btn {
+            max-width: 844px;
+            margin: auto;
+            font-family: $muli-bold;
+            font-size: 14px;
+            color: $dark-orange-color;
+            padding-left: 30px;
+            cursor: pointer;
+            text-decoration: none !important;
+            padding-left: 30px;
+
+            &:hover {
+                font-family: $muli-bold;
+                color: $dark-orange-color;
+            }
+            &:active {
+                font-family: $muli-bold;
+                color: $dark-orange-color;
+            }
+        }
+        
+        .full-content {
+            overflow: visible;
+            height: auto;
+        }
+    }   
+    .txt-bold{
+        font-family: $muli-bold;
     }
+
     .cursor_pointer {
         cursor: pointer;
     }
@@ -20,8 +79,8 @@ app-investment-overview {
         display: flex;
         align-items: center;
         overflow-x: auto;
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
         .all-category {
             font-family: $muli-regular;
             margin-right: 8px;
@@ -34,7 +93,7 @@ app-investment-overview {
             display: flex;
             margin-bottom: 0px;
         }
-        label>div {
+        label > div {
             padding: 0 10px;
             background-color: $teal-color;
             height: 28px;
@@ -43,12 +102,12 @@ app-investment-overview {
             cursor: pointer;
             display: table;
 
-            .table-cell{
+            .table-cell {
                 display: table-cell;
                 vertical-align: middle;
             }
         }
-        label>div>span {
+        label > div > span {
             font-family: $muli-bold;
             font-size: 13px;
             letter-spacing: -0.12px;
@@ -56,14 +115,14 @@ app-investment-overview {
             color: $white-color;
             vertical-align: middle;
         }
-        label>div>span>img {
+        label > div > span > img {
             display: none;
             margin-right: 5px;
         }
-        input[type="radio"]:checked~* {
+        input[type="radio"]:checked ~ * {
             background-color: $pine-green-color;
         }
-        input[type="radio"]:checked~div>span>img {
+        input[type="radio"]:checked ~ div > span > img {
             display: table-cell;
             vertical-align: middle;
         }
