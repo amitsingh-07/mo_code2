@@ -22,6 +22,8 @@ export let apiConstants = {
         send2faOTP: ACCOUNT_API_BASE_URL + '/send2FAOTP',
         sendOTPEmail :ACCOUNT_API_BASE_URL + '/sendOTPEmail',
         authenticate2faOTP: ACCOUNT_API_BASE_URL + '/validate2FA',
+        send2faOTPLogin: ACCOUNT_API_BASE_URL + '/send2FAOTPLogin',
+        authenticate2faOTPLogin: ACCOUNT_API_BASE_URL + '/validate2FALogin',
         verify2faOTP: ACCOUNT_API_BASE_URL + '/is2FAuthenticated',
         getProfileList: ACCOUNT_API_BASE_URL + '/getProfileTypeList',
         getProtectionTypesList: INSURANCE_API_BASE_URL + '/getProtectionTypesList',
@@ -59,6 +61,8 @@ export let apiConstants = {
         financialWellness: ACCOUNT_API_BASE_URL + '/corp/updateLeadGen',
         validateReferralCode: ACCOUNT_API_BASE_URL + '/referralcode/validateReferralCode?handleError=true',
         getSingpassAccount: ACCOUNT_API_BASE_URL + '/activate/singpass',
+        getReferralCode: ACCOUNT_API_BASE_URL + '/referralcode/welcomeRewards',
+        getRefereeList: ACCOUNT_API_BASE_URL + '/referralcode/getRefereeList',       
         customer: {
             validateUIN: ACCOUNT_API_BASE_URL + '/customer/validateUin',
         },
