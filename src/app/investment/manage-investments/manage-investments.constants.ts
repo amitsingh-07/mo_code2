@@ -72,11 +72,10 @@ export let MANAGE_INVESTMENTS_CONSTANTS = {
     ],
     TRANSACTIONS: 'Transactions',
     WITHDRAWAL: 'Withdrawal',  
-    WISE_INCOME_TIME_INTERVALS: [     
-      { startTime: "2021-04-01T16:00:00.000+08:00", endTime: "2021-05-01T23:59:00.000+08:00" },
-      { startTime: "2021-07-01T16:00:00.000+08:00", endTime: "2021-08-02T23:59:00.000+08:00" },      
-      { startTime: "2021-10-01T16:00:00.000+08:00", endTime: "2021-11-01T23:59:00.000+08:00" },
-      { startTime: "2022-01-03T16:00:00.000+08:00", endTime: "2022-02-01T23:59:00.000+08:00" }
+    WISE_INCOME_TIME_INTERVALS: [
+      { startTime: "2021-07-01T16:00:00.000+08:00", endTime: "2021-08-02T23:59:59.000+08:00" , month:"August."},
+      { startTime: "2021-10-01T16:00:00.000+08:00", endTime: "2021-11-01T23:59:59.000+08:00" , month:"November."},
+      { startTime: "2022-01-03T16:00:00.000+08:00", endTime: "2022-02-01T23:59:59.000+08:00" , month:"February."}
     ],
    
   },

@@ -49,7 +49,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   selected;
   showMpPopup = false;
   showAnimation = false;
-
+  showFullContent = false;
   // transfer instructions
   bankDetails;
   paynowDetails;
@@ -57,17 +57,14 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   isToastMessageShown;
   toastMsg;
   private subscription: Subscription;
-
   portfolioCategories;
   selectedCategory;
-
-
-  isReadMore = true;
   wiseIncomeInfo: any;
   readLess: any;
   readMore: any;
   wiseIncomePortfolio: any[];
   showBannerInfo = false;
+  wiseIncomeInfoMonth :any;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -87,16 +84,17 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('YOUR_INVESTMENT.TITLE');
-      this.wiseIncomeInfo = this.translate.instant('YOUR_INVESTMENT.WISE_INCOME_INFO');
+      this.wiseIncomeInfoMonth = this.translate.instant('YOUR_INVESTMENT.WISE_INCOME_INFO');
       this.readMore = this.translate.instant('YOUR_INVESTMENT.READ_MORE');
       this.readLess = this.translate.instant('YOUR_INVESTMENT.READ_LESS');
       this.setPageTitle(this.pageTitle);
+      MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.WISE_INCOME_TIME_INTERVALS.forEach(wiseIncome => {
+        if (!this.showBannerInfo) {
+          this.checkWiseIncomeStatus(wiseIncome.startTime, wiseIncome.endTime, wiseIncome.month);
+        }
+      });
     });  
-    MANAGE_INVESTMENTS_CONSTANTS.INVESTMENT_OVERVIEW.WISE_INCOME_TIME_INTERVALS.forEach(wiseIncome => {
-      if (!this.showBannerInfo) {
-        this.checkWiseIncomeStatus(wiseIncome.startTime, wiseIncome.endTime);
-      }
-    });
+   
   }
 
   setPageTitle(title: string) {
@@ -468,14 +466,15 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     }
   }
   showText() {
-    this.isReadMore = !this.isReadMore
+    this.showFullContent = !this.showFullContent
   }
 
-  checkWiseIncomeStatus(startTime, endTime) {
+  checkWiseIncomeStatus(startTime, endTime, month) {
     const startDateTime = new Date(startTime);
     const endDateTime = new Date(endTime);
     if (Date.now() >= startDateTime.valueOf() && Date.now() <= endDateTime.valueOf()) {
       this.showBannerInfo = true;
+      this.wiseIncomeInfo = this.wiseIncomeInfoMonth + month;
     } 
   }
 
