@@ -62,6 +62,7 @@ app-refer-a-friend {
         .container-fluid {
             &.max-width--1024 {
                 padding-top: 0;
+                padding-bottom: 50px;
                 @include allmobiles {
                     padding-top: 60px;
                 }
@@ -451,10 +452,6 @@ app-refer-a-friend {
                             }
                             .friends-list-content {
                                 border-top: 1px solid $teal-color;
-                                margin: 0 15px;
-                                @include allmobiles {
-                                    margin: 0;
-                                }
                                 .friends-list-data {
                                     .friends-list {
                                         .list-item {
