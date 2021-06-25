@@ -1,92 +1,70 @@
-@import "../../../../_variables.scss";
-@import "../../../../_mixins.scss";
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
 app-investment-overview {
     .invest-section {
         @include allmobiles {
             top: 0px;
         }
-    }
-    //
-    .notes-wrapper-container {
+    }   
+   
+    .record-date-banner {
         background-color: $white-color;
         padding: 25px 15px;
-        .notes-wrapper-bg{
+        line-height: 19.5px;
+        letter-spacing: -0.12px;
+        &__text {
             @include allmobiles{
                 width: 100%;
             }
-            max-width: 812px;
+            max-width: 844px;
             margin: auto;
-        }
-        .notes-wrapper {
-            align-items: flex-start;
-            display: none;
-            opacity: 0;
-            line-height: 1.5;
-            letter-spacing: -0.26px;
-            padding:0 !important;
-            &.show {
-                display: flex;
-                animation: note-slide-down 500ms forwards 500ms;
+            font-family: $muli-regular;
+            font-size: 14px;
+            letter-spacing: -0.12px;
+            color:$dark-grey-color;
+            height: 42px;
+            @include allmobiles{
+                height: 100px;
             }
-
-            img {
-                width: 16px;
-                height: auto;
-                margin-right: 14px;
-                margin-top: 3px;
-            }
-
-            .note-content {
-                font-family: $muli-regular;
-                font-size: 14px;
-                letter-spacing: -0.14px;
-                color: $dark-grey-color;
-                
-            }
-        }
-    }
-    a {
-        font-family: $muli-bold;
-        font-size: 14px;
-        color: $dark-orange-color;
-        padding-left: 30px;
-        cursor: pointer;
-        text-decoration: none !important;
-    }
-    a:hover {
-        font-family: $muli-bold;
-        color: $dark-orange-color;
-    }
-    a:active {
-        font-family: $muli-bold;
-        color: $dark-orange-color;
-    }
-    @keyframes note-slide-down {
-        0% {
-            opacity: 0;
-            padding-top: 0px;
-            padding-bottom: 0px;
-        }
-
-        100% {
-            opacity: 1;
-            padding-top: 20px;
-            padding-bottom: 20px;
-        }
-    }
-
-    .limitTextHeight {
-        @include allmobiles {
-            height: 105px;
             overflow: hidden;
+            display: flex;
+            align-items: flex-start;
+            img {
+                margin-right: 12px;
+                margin-top: 3px;
+                width: 16px;                
+            }
         }
-        height: 45px;
-        overflow: hidden;
-    }
+        &__btn {
+            max-width: 844px;
+            margin: auto;
+            font-family: $muli-bold;
+            font-size: 14px;
+            color: $dark-orange-color;
+            padding-left: 30px;
+            cursor: pointer;
+            text-decoration: none !important;
+            padding-left: 30px;
+
+            &:hover {
+                font-family: $muli-bold;
+                color: $dark-orange-color;
+            }
+            &:active {
+                font-family: $muli-bold;
+                color: $dark-orange-color;
+            }
+        }
+        
+        .full-content {
+            overflow: visible;
+            height: auto;
+        }
+    }   
     .txt-bold{
         font-family: $muli-bold;
     }
-    //
+
     .cursor_pointer {
         cursor: pointer;
     }

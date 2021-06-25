@@ -10,6 +10,15 @@
       {{toastMsg?.link_label}}</div>
   </div>
 </div>
+<div class="record-date-banner" *ngIf="((selectedCategory === portfolioCategories.ALL || 
+selectedCategory === portfolioCategories.WISEINCOME) && (wiseIncomePortfolio && wiseIncomePortfolio.length)) && 
+showBannerInfo">
+  <div class="record-date-banner__text" [ngClass]="{'full-content': showFullContent}">
+    <img src="assets/images/alert-black.svg" />
+    <span [innerHTML]="wiseIncomeInfo"></span>
+  </div>
+  <div class="record-date-banner__btn" (click)="showText()">{{ showFullContent ? readLess : readMore }}</div>
+</div>
 <section class="invest-section" *ngIf="investmentoverviewlist">
   <div class="invest-section-items">
     <div class="invest-section-content">
@@ -19,16 +28,7 @@
           <div class="invest-bg-color"></div>
         </div>
         <div class="invest-bg-content">
-          <div class="flex-col user_content flex-col-12">          
-            <div class="notes-wrapper-container" *ngIf="(selectedCategory === portfolioCategories.ALL || selectedCategory === portfolioCategories.WISEINCOME) && checkWiseIncomeStatus(wiseIncomeStartTime,wiseIncomeEndTime)" >
-              <div class="notes-wrapper-bg">
-              <div class="notes-wrapper" [class.show]="wiseIncomeInfo" [ngClass]="{'limitTextHeight': isReadMore}">
-                <img src="assets/images/alert-black.svg" />
-                <div class="note-content" [innerHTML]="wiseIncomeInfo"></div>
-              </div>
-              <div><a class="read_more" (click)="showText()">{{ isReadMore ? readMore : readLess }}</a></div>
-            </div>
-          </div>   
+          <div class="flex-col user_content flex-col-12">
             <div class="container-fluid max-width--1024">
               <div *ngIf="false" class="mp-walkthrough-container flex-col-12">
                 <div [ngClass]="showAnimation? 'mp-animation': ''" class="new-investment-div"

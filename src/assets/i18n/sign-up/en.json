@@ -638,6 +638,7 @@
     "HEADING": " welcome rewards to claim!",
     "PARA_TWO": "You and your friend both <b>earn the same amount</b> when you complete any of these!",
     "COUPON_CARD_COMP": "Get a comprehensive financial planning",
+    "CREDITS":"credits",
     "COUPON_CARD_INS": "Get any insurance coverage",
     "COUPON_CARD_INVEST": "Invest or save in any portfolio",
     "GET_STARTED": "Get Started",
@@ -670,7 +671,7 @@
     "RECEIVED_LBL": "You received",
     "OF_LBL": "of",
     "SHOW_MORE_BTN_LBL": "Show More",
-    "SPREAD_WORDS_LBL":"Oops, pretty lonely here. Go on, help us spread the words.",
+    "SPREAD_WORDS_LBL":"Oops, pretty lonely here. Go on, help us spread the word.",
     "YOU_HAVE": "You’ve",
     "WELCOME_REWARDS": "welcome rewards"
   }

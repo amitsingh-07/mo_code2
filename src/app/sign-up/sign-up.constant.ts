@@ -78,6 +78,17 @@ export let SIGN_UP_CONFIG = {
       MAILTO: "mailto:?body=",
       SIGN_UP_URL: "/app/accounts/sign-up?referral_code="
     },
+    REFEREE_REWARDS: {
+      CFP: "CFP",
+      INVESTMENT: "INVESTMENT",
+      INSURANCE: "INSURANCE",
+      NOT_ISSUED: "NOT_ISSUED",
+      ISSUED: "ISSUED",
+      NOT_APPLICABLE: "NOT_APPLICABLE",
+      REFER_A_FRIEND: "refer-a-friend",
+      DASHBOARD: "dashboard",
+      GRAB_FOOD: "GrabFood"
+    },
     AUTH_2FA_ENABLED: true,
     ROLE_2FA: 'ROLE_2FA',
     LOGIN_TYPE_2FA: 'MANUAL'

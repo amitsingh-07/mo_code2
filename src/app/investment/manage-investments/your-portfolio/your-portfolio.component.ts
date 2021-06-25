@@ -70,6 +70,8 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   showDividend: boolean = false;
   wiseIncomePayoutType: any;
   nextPayoutLabel = '';
+  startTime: string;
+  endTime: string;
 
   constructor(
     public readonly translate: TranslateService,
@@ -97,6 +99,8 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
       this.showPortfolioInfo = config['showPortfolioInfo'];
     });
     this.portfolioType = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY_TYPE;
+    this.startTime = MANAGE_INVESTMENTS_CONSTANTS.WISE_INCOME_DELETE_PORTFOLIO_START_TIME;
+    this.endTime = MANAGE_INVESTMENTS_CONSTANTS.WISE_INCOME_DELETE_PORTFOLIO_END_TIME;
   }
 
   setPageTitle(title: string) {
@@ -353,7 +357,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
       }
       case 7: {
         if (this.portfolio.entitlements.showDelete) {
-          this.showDeletePortfolioModal();
+          this.showDeletePortfolioModal(this.portfolio);
         }
         break;
       }
@@ -453,43 +457,67 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
     }, 3000);
   }
 
-  showDeletePortfolioModal() {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.DELETE');
-    ref.componentInstance.errorMessage = this.translate.instant(
-      'YOUR_INVESTMENT.DELETE_TXT'
-    );
-    ref.componentInstance.yesOrNoButton = 'Yes';
-    ref.componentInstance.yesClickAction.subscribe(() => {
-      this.manageInvestmentsService.deletePortfolio(this.portfolio).subscribe((data) => {
-        if (data.responseMessage.responseCode < 6000) {
-          if (
-            data.objectList &&
-            data.objectList.length &&
-            data.objectList[data.objectList.length - 1].serverStatus &&
-            data.objectList[data.objectList.length - 1].serverStatus.errors &&
-            data.objectList[data.objectList.length - 1].serverStatus.errors.length
-          ) {
-            this.showCustomErrorModal(
-              'Error!',
-              data.objectList[data.objectList.length - 1].serverStatus.errors[0].msg
-            );
-          } else if (data.responseMessage && data.responseMessage.responseDescription) {
-            const errorResponse = data.responseMessage.responseDescription;
-            this.showCustomErrorModal('Error!', errorResponse);
+  showDeletePortfolioModal(portfolio) {
+    if (portfolio.portfolioType.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY_TYPE.WISEINCOME.toUpperCase()
+      && this.checkDeleteStatus(this.startTime, this.endTime)) {
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.WISE_INCOME_HEADER');
+      ref.componentInstance.errorMessage = this.translate.instant(
+        'YOUR_PORTFOLIO.WISE_INCOME_TEXT'
+      );
+      ref.componentInstance.primaryActionLabel = this.translate.instant('YOUR_PORTFOLIO.OKAY_GOT_IT');
+      ref.componentInstance.primaryAction.subscribe(() => {
+        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO])
+      });
+    } else {
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.DELETE');
+      ref.componentInstance.errorMessage = this.translate.instant(
+        'YOUR_INVESTMENT.DELETE_TXT'
+      );
+      ref.componentInstance.yesOrNoButton = 'Yes';
+      ref.componentInstance.yesClickAction.subscribe(() => {
+        this.manageInvestmentsService.deletePortfolio(this.portfolio).subscribe((data) => {
+          if (data.responseMessage.responseCode < 6000) {
+            if (
+              data.objectList &&
+              data.objectList.length &&
+              data.objectList[data.objectList.length - 1].serverStatus &&
+              data.objectList[data.objectList.length - 1].serverStatus.errors &&
+              data.objectList[data.objectList.length - 1].serverStatus.errors.length
+            ) {
+              this.showCustomErrorModal(
+                'Error!',
+                data.objectList[data.objectList.length - 1].serverStatus.errors[0].msg
+              );
+            } else if (data.responseMessage && data.responseMessage.responseDescription) {
+              const errorResponse = data.responseMessage.responseDescription;
+              this.showCustomErrorModal('Error!', errorResponse);
+            } else {
+              this.investmentAccountService.showGenericErrorModal();
+            }
           } else {
-            this.investmentAccountService.showGenericErrorModal();
+            this.authService.removeEnquiryId();
+            this.goToInvOverview();
           }
-        } else {
-          this.authService.removeEnquiryId();
-          this.goToInvOverview();
-        }
-      },
-        (err) => {
-          this.investmentAccountService.showGenericErrorModal();
-        });
-    });
-    ref.componentInstance.noClickAction.subscribe(() => { });
+        },
+          (err) => {
+            this.investmentAccountService.showGenericErrorModal();
+          });
+      });
+      ref.componentInstance.noClickAction.subscribe(() => { });
+    }
+  }
+
+  checkDeleteStatus(startTime, endTime) {
+    const startDateTime = new Date(startTime);
+    const endDateTime = new Date(endTime);
+
+    if (Date.now() >= startDateTime.valueOf() && Date.now() <= endDateTime.valueOf()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   showCustomErrorModal(title, desc) {
