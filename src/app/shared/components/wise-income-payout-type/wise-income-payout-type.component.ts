@@ -18,7 +18,7 @@ export class WiseIncomePayoutTypeComponent implements OnInit {
   @Input('portfolio') portfolio;
   @Input('payoutType') payoutType;
   payoutConst : any;
-  nextPayoutLabel: any;
+  payOutTimeInterval: any;
 
   constructor(private router: Router,
     private investmentAccountService: InvestmentAccountService,
@@ -37,16 +37,13 @@ export class WiseIncomePayoutTypeComponent implements OnInit {
   }
 
   PayoutLabel() {
-    const startDateTime = new Date(INVESTMENT_COMMON_CONSTANTS.NEXT_PAYOUT_START_TIME);
-    if (Date.now() >= startDateTime.valueOf()) {      
-      this.nextPayoutLabel = {
-        nextPayout: (this.portfolio && this.portfolio.nextPayout) ? this.portfolio.nextPayout : ''
+    debugger;
+      this.payOutTimeInterval = {
+        investBeforeMonth: (this.portfolio && this.portfolio.investBeforeMonth) ? this.portfolio.investBeforeMonth : '',
+        nextPayoutOrReinvestMonth: (this.portfolio && this.portfolio.nextPayoutOrReinvestMonth) ? this.portfolio.nextPayoutOrReinvestMonth : '',
       };
-    } else {      
-      this.nextPayoutLabel = {
-        nextPayout: INVESTMENT_COMMON_CONSTANTS.NEXT_PAYOUT
-      };
-    }
-  }
+    } 
+    
+  
   
 }
