@@ -143,7 +143,7 @@
     "SIMPLE_RETURN": "Simple Return",
     "NET_DEPOSITS": "Net Deposits",
     "TOTAL_DIVIDENDS": "Total Dividends",
-    "NEXT_PAYOUT": "Next Payout",
+    "NEXT_PAYOUT": "Next Dividend (Payout)",
     "CALCULATE_TOOLTIP": "How do we calculate?",
     "FROM_START_OF_INVESTMENT": "From start of investment",
     "YEARLY_RETURNS": "Yearly Returns",
@@ -510,8 +510,8 @@
     "PROMO_RATE": "(Promo Rate)"
   },
   "DIVIDEND": {
-    "TITLE": "Dividend Payout",
-    "PAYOUT_DATE": "Payout Date",
+    "TITLE": "Dividend History",
+    "PAYOUT_DATE": "Date",
     "DIVIDEND_RATE": "Dividend Rate Per Unit",
     "DIVIDEND_RECEIVED": "Dividends Received",
     "NO_HISTORY": "No Dividend History!"
