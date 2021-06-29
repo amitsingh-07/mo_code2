@@ -27,7 +27,7 @@ export class WiseIncomePayoutTypeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  this.PayoutLabel();
+  this.getPayoutTimeInterval();
   }
   
   goReviewInputs() {
@@ -36,10 +36,10 @@ export class WiseIncomePayoutTypeComponent implements OnInit {
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.WISE_INCOME_PAYOUT]);
   }
 
-  PayoutLabel() {
+  getPayoutTimeInterval() {
     this.payOutTimeInterval = {
       investBeforeMonth: (this.portfolio && this.portfolio.investBeforeMonth) ? this.portfolio.investBeforeMonth : '',
-      nextPayoutOrReinvestMonth: (this.portfolio && this.portfolio.nextPayoutOrReinvestMonth) ? this.portfolio.nextPayoutOrReinvestMonth : '',
+      nextPayoutOrReinvestMonth: (this.portfolio && this.portfolio.nextPayoutOrReinvestMonth) ? this.portfolio.nextPayoutOrReinvestMonth : ''
     };
   }
 }
