@@ -37,13 +37,9 @@ export class WiseIncomePayoutTypeComponent implements OnInit {
   }
 
   PayoutLabel() {
-    debugger;
-      this.payOutTimeInterval = {
-        investBeforeMonth: (this.portfolio && this.portfolio.investBeforeMonth) ? this.portfolio.investBeforeMonth : '',
-        nextPayoutOrReinvestMonth: (this.portfolio && this.portfolio.nextPayoutOrReinvestMonth) ? this.portfolio.nextPayoutOrReinvestMonth : '',
-      };
-    } 
-    
-  
-  
+    this.payOutTimeInterval = {
+      investBeforeMonth: (this.portfolio && this.portfolio.investBeforeMonth) ? this.portfolio.investBeforeMonth : '',
+      nextPayoutOrReinvestMonth: (this.portfolio && this.portfolio.nextPayoutOrReinvestMonth) ? this.portfolio.nextPayoutOrReinvestMonth : '',
+    };
+  }
 }
