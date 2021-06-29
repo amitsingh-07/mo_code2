@@ -18,7 +18,7 @@ export class WiseIncomePayoutTypeComponent implements OnInit {
   @Input('portfolio') portfolio;
   @Input('payoutType') payoutType;
   payoutConst : any;
-  payOutTimeInterval: any;
+  payoutTimeInterval: any;
 
   constructor(private router: Router,
     private investmentAccountService: InvestmentAccountService,
@@ -37,7 +37,7 @@ export class WiseIncomePayoutTypeComponent implements OnInit {
   }
 
   getPayoutTimeInterval() {
-    this.payOutTimeInterval = {
+    this.payoutTimeInterval = {
       investBeforeMonth: (this.portfolio && this.portfolio.investBeforeMonth) ? this.portfolio.investBeforeMonth : '',
       nextPayoutOrReinvestMonth: (this.portfolio && this.portfolio.nextPayoutOrReinvestMonth) ? this.portfolio.nextPayoutOrReinvestMonth : ''
     };
