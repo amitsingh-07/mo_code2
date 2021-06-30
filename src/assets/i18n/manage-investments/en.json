@@ -348,7 +348,8 @@
     "UNIT_PRICE": "Unit Price:",
     "UNITS": "Units:",
     "TRANSACTION_ID": "Transaction ID:",
-    "CASH_ACCOUNT_TRANSFER": "Cash Account Transfer",
+    "CASH_ACCOUNT_TRANSFER_IN": "Cash Account Transfer In",
+    "CASH_ACCOUNT_TRANSFER_OUT": "Cash Account Transfer Out",
     "DIVIDEND_PAYOUT": "Dividend Payout",
     "MODAL": {
       "TRANSACTION_FETCH_LOADER": {
