@@ -37,5 +37,6 @@ export let appConstants = {
         GUIDED: 'insurance-guided'
     },
    BROWSER_CLOSE :'BROWSER_CLOSE' ,
-   LOGOUT_BUTTON :'LOGOUT_BUTTON'
+   LOGOUT_BUTTON :'LOGOUT_BUTTON',
+   FINLIT_ACCESS_CODE: 'finlit-access-code'
 };
