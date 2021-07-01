@@ -373,7 +373,9 @@ constructor(
   }
 
   showPaymentModal() {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.PAYMENT_INSTRUCTIONS]);
+    //this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.PAYMENT_INSTRUCTIONS]);
+    const routerURL = COMPREHENSIVE_ROUTE_PATHS.PAYMENT_INSTRUCTIONS;
+    this.setComprehensiveSummary(true, routerURL);
   }
 
   showCopyToast(data) {
