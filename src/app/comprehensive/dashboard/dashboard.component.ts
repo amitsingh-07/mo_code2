@@ -47,7 +47,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
   comprehensiveLiteEnabled: boolean;
   versionTypeEnabled: boolean;
   getComprehensiveSummaryDashboard: any;
-  promoCodeValidated = false;
+  isCFPGetStarted = false;
   enquiryId: any;
   isReportGenerated = false;
   fetchData : string;
@@ -142,7 +142,7 @@ constructor(
 
   
   goToEditProfile() {
-    if (this.comprehensivePlanning === 4 && !this.versionTypeEnabled && !this.promoCodeValidated) {
+    if (this.comprehensivePlanning === 4 && !this.versionTypeEnabled && !this.isCFPGetStarted) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
     } else {
       this.setComprehensiveSummary(true, COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED);
@@ -339,7 +339,7 @@ constructor(
           && (this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING || 
           this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING)
           && this.getCurrentVersionType === this.getComprehensiveSummaryDashboard.type);
-          this.promoCodeValidated = this.getComprehensiveSummaryDashboard.isValidatedPromoCode;
+          this.isCFPGetStarted = this.getComprehensiveSummaryDashboard.isCFPGetStarted;
           this.reportStatus = this.getComprehensiveSummaryDashboard.reportStatus;
           this.enquiryId= this.getComprehensiveSummaryDashboard.enquiryId;
           if ((this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || this.reportStatus=== COMPREHENSIVE_CONST.REPORT_STATUS.EDIT) && (this.islocked === null || !this.islocked)) {
