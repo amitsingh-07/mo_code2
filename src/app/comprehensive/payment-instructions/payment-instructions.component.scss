@@ -63,7 +63,6 @@ app-payment-instructions {
             line-height: 22px;
             letter-spacing: -0.16px;
             .qrcode {
-                //padding: 20px 20px 0 20px;
                 text-align: center;
                 &__title {
                     font-size: 21px;
@@ -153,7 +152,6 @@ app-payment-instructions {
                     font-family: $muli-regular;
                     text-align: left;
                     margin-top: 30px;
-                    //padding-left: 10px;
                 }
             }
             .steps-title {
@@ -266,9 +264,7 @@ app-payment-instructions {
                     }
 
                     .copy-icon {
-                        // margin-top: -3px;
                         position: absolute;
-                        // right: 35px;
                         right: 0;
                     }
                 }
