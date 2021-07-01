@@ -39,7 +39,6 @@ export class ComprehensiveComponent implements OnInit {
   userDetails: IMyProfile;
   promoCodeForm: FormGroup;
   promoCodeSuccess: string;
-  promoCodeValidated: boolean;
   promoValidated: string;
   productAmount = COMPREHENSIVE_CONST.PROMOTION.AMOUNT;
   getComprehensiveSummaryDashboard: any;
@@ -114,8 +113,6 @@ export class ComprehensiveComponent implements OnInit {
                 this.loaderService.hideLoaderForced();
               }, 500);
             }
-            this.getComprehensiveSummaryDashboard.isValidatedPromoCode ? this.promoCodeValidated = true :
-              this.promoCodeValidated = false;
           } else {
             if (action === COMPREHENSIVE_CONST.PROMO_CODE.GET) {
               this.getPromoCode();
@@ -159,11 +156,11 @@ export class ComprehensiveComponent implements OnInit {
     const redirectUrl = this.signUpService.getRedirectUrl();
     if (this.getComprehensiveSummaryDashboard &&
       this.getComprehensiveSummaryDashboard.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED &&
-      (this.getComprehensiveSummaryDashboard.isValidatedPromoCode)) {
+      (this.getComprehensiveSummaryDashboard.isCFPGetStarted)) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
-    } else if (redirectUrl && (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isValidatedPromoCode)) {
+    } else if (redirectUrl && (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isCFPGetStarted)) {
       this.router.navigate([redirectUrl]);
-    } else if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isValidatedPromoCode) {
+    } else if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isCFPGetStarted) {
       this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((data: any) => {
         if (data && data.objectList[0]) {
           this.cmpService.setComprehensiveSummary(data.objectList[0]);
@@ -185,22 +182,22 @@ export class ComprehensiveComponent implements OnInit {
   getStarted() {
     this.appService.setAction(COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE);
     this.cmpService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
-    if (this.promoCodeForm.value.comprehensivePromoCodeToken !== '') {
+    /*if (this.promoCodeForm.value.comprehensivePromoCodeToken !== '') {
       this.appService.setPromoCode(this.promoCodeForm.value.comprehensivePromoCodeToken);
-    }
+    }*/
 
     if (this.authService.isSignedUser()) {
       const promoCode = {
         sessionId: this.authService.getSessionId(),
-        comprehensivePromoCodeToken: this.appService.getPromoCode(),
-        promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE
+        // comprehensivePromoCodeToken: this.appService.getPromoCode(),
+        // promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE
       };
-      if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isValidatedPromoCode) {
+      if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isCFPGetStarted) {
         this.redirect();
       } else {
         this.loaderService.showLoader({ title: this.loading, autoHide: false });
-        this.comprehensiveApiService.ValidatePromoCode(promoCode).subscribe((data: any) => {
-          if (data && data.objectList[0].validatePromoCode) {
+        this.comprehensiveApiService.generateComprehensiveEnquiry(promoCode).subscribe((data: any) => {
+          if (data && data.objectList[0].isCFPGetStarted) {
             this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((summaryData: any) => {
               if (summaryData && summaryData.objectList[0]) {
                 this.cmpService.setComprehensiveSummary(summaryData.objectList[0]);
@@ -231,7 +228,7 @@ export class ComprehensiveComponent implements OnInit {
     this.appService.setAction(COMPREHENSIVE_CONST.PROMO_CODE.GET);
     this.cmpService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
     if (this.authService.isSignedUser()) {
-      if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isValidatedPromoCode) {
+      if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isCFPGetStarted) {
         this.redirect();
       } else {
         this.comprehensiveApiService.getPromoCode().subscribe((data) => {

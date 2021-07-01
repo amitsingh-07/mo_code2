@@ -27,6 +27,7 @@ export interface IComprehensiveEnquiry {
     hasRegularSavingsPlans: boolean;
     type: string;
     isValidatedPromoCode: boolean;
+    isCFPGetStarted: boolean;
     promoCodeValidated?: boolean;
     reportStatus: string;
     stepCompleted: number;
