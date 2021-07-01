@@ -373,10 +373,7 @@ constructor(
   }
 
   showPaymentModal() {
-    const ref = this.modal.open(PaymentInstructionModalComponent, { centered: true });
-    ref.componentInstance.showCopyToast.subscribe((data) => {
-      this.showCopyToast(data);
-    });
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.PAYMENT_INSTRUCTIONS]);
   }
 
   showCopyToast(data) {

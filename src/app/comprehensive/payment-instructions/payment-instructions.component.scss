@@ -1,0 +1,327 @@
+@import "../../../variables";
+@import "../../../mixins";
+app-payment-instructions {
+    .toast-msg-top-space {
+        @include desktop {
+            top: 154px;
+            right: 40px;
+        }
+        @include tablet{
+            top: 154px;
+            right: 0px;
+        }
+        @include phablet {
+            top: 48px;
+            right: 0px;
+        }
+    }
+    .comprehensive {
+        .payment-instructions-block {
+            max-width: 450px;
+            margin: 0 auto;
+            padding-bottom: 120px;
+            @include allmobiles {
+                padding-bottom: 90px;
+            }
+            .report-info {
+                line-height: 24px;
+                letter-spacing: -0.16px;
+                text-align: center;
+                color: $white-color;
+                padding-bottom: 20px;
+                span {
+                    font-family: $muli-bold;
+                }
+            }
+            .payment-info {
+                padding: 20px;
+                border-radius: 6px;
+                background-color: $white-color;
+                font-family: $muli-semi-bold;
+                font-size: 18px;
+                line-height: normal;
+                letter-spacing: -0.34px;
+                color: $silver-grey-color;
+                margin-bottom: 20px;
+                justify-content: space-between;
+                .payment-details {
+                    color: $watercourse-color;
+                    .paynow-logo {
+                        margin-top: 6px;
+                        width: 63.4px;
+                        height: 12px;
+                        display: flex;
+                    }
+                }
+            }
+        }
+        .instruction-content {
+            background-color: $black-squeeze-grey-color;
+            border-radius: 6px;
+            padding: 27px 20px 30px;
+            color: $instruction-content-color;
+            line-height: 22px;
+            letter-spacing: -0.16px;
+            .qrcode {
+                text-align: center;
+                &__title {
+                    font-size: 21px;
+                    font-weight: bold;
+                    line-height: 1.48;
+                    letter-spacing: -0.21px;
+                    color: $watercourse-color;
+                    font-family: $muli-bold;
+                    text-align: left;
+                }
+                &__desc {
+                    font-family: $muli-regular;
+                    font-size: 16px;
+                    letter-spacing: -0.16px;
+                    color: $black-color;
+                    text-align: left;
+                }
+                &__imgcontainer {
+                    padding: 20px 0;
+                }
+                &__refcode {
+                    color: $black-color;
+                    font-size: 16px;
+                    font-family: $muli-regular;
+                    margin-bottom: 10px;
+                }
+                &__refcode-box {
+                    background-color: $cinderella-color;
+                    padding: 13px 20px !important;
+                    color: $dark-red-color;
+                    border-radius: 6px;
+                    border: 1px solid $red-color;
+                    margin: 7px 33px;
+                    line-height: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                &__refcode-icon {
+                    display: inline-block;
+                    margin-right: 10px;
+                    margin-top: 2px;
+                }
+                &__refcode-num {
+                    font-family: $muli-bold;
+                    font-size: 18px;
+                    color: $dark-red-color;
+                }
+                &__refcode-info {
+                    text-align: left;
+                    padding: 0 13px;
+                    &--text {
+                        font-size: 13px;
+                        color: $black-color;
+                        line-height: 16px;
+                        letter-spacing: -0.11px;
+                        span {
+                            color: $dark-red-color;
+                            font-family: $muli-bold;
+                        }
+                        span u {
+                            text-decoration: underline;
+                        }
+                        b {
+                            font-family: $muli-bold;
+                            color: $black-color !important;
+                        }
+                    }
+                }
+                &__save-btn {
+                    background-color: $teal-color;
+                    padding: 10px 20px;
+                    color: $white-color;
+                    margin: 15px auto;
+                    display: block;
+                    border-radius: 6px;
+                    text-decoration: none;
+                    font-size: 14px;
+                    font-family: $muli-semi-bold;
+                    max-width: 167px;
+                    @include allmobiles {
+                        max-width: 153px;
+                    }
+                }
+                &__alt-steps {
+                    font-size: 16px;
+                    font-family: $muli-regular;
+                    text-align: left;
+                    margin-top: 30px;
+                }
+            }
+            .steps-title {
+                font-family: $muli-bold;
+                font-size: 21px;
+                line-height: 1.48;
+                letter-spacing: -0.2px;
+                color: $instruction-content-title-color;
+                padding: 15px 0;
+            }
+            .list-none {
+                padding: 10px 0;
+                margin: 0;
+            }
+            li {
+                &:last-child {
+                    .section {
+                        border-left: none;
+                        padding-bottom: 0;
+                    }
+                }
+                .text-black {
+                    .sub-section {
+                        color: $black-color;
+                    }
+                }
+                .section {
+                    border-left: 1px solid $instruction-section-brdr-color;
+                    margin-left: -10px;
+                    padding-bottom: 25px;
+                    font-size: 16px;
+                    width: 100%;
+                    .sub-section {
+                        margin-left: 19.5px;
+                        padding-right: 25px;
+                        &.step {
+                            font-family: $muli-bold;
+                            letter-spacing: -0.3px;
+                            color: $instruction-step-color;
+                            font-size: 18px;
+                            top: -4px;
+                            position: relative;
+                        }
+                        span {
+                            font-family: $muli-bold;
+                        }
+                        .ref-code-context {
+                            color: $ref-code-context-color;
+                            letter-spacing: -0.16px;
+                            font-family: $muli-regular !important;
+                            font-weight: normal !important;
+                            font-size: 16px;
+                            line-height: 22px;
+                            word-wrap: break-word;
+                            span {
+                                font-family: $muli-bold;
+                                color: $ref-code-context-must-color;
+                                letter-spacing: -0.15px;
+                            }
+                            b {
+                                font-family: $muli-bold;
+                                color: $black-color !important;
+                            }
+                        }
+                    }
+                }
+            }
+            .circle {
+                width: 20px;
+                height: 20px;
+                background-color: $instruction-circle-bg;
+                border-radius: 50%;
+                padding: 10px;
+            }
+            .bank-details {
+                margin-left: 19.5px;
+                margin-top: 20px;
+                position: relative;
+                .flex-col {
+                    padding-bottom: 20px;
+                    div {
+                        &:last-child {
+                            font-family: $muli-semi-bold;
+                        }
+                    }
+                }
+                &-title {
+                    font-family: $muli-semi-bold;
+                    color: $bank-title-color;
+                    font-size: 18px;
+                    letter-spacing: -0.3px;
+                }
+                &-content {
+                    font-family: $muli-semi-bold;
+                    font-size: 16px;
+                    letter-spacing: -0.3px;
+                    color: $bank-centent-color;
+                    margin-top: 5px;
+                    strong {
+                        margin-right: 15px;
+                        font-weight: 600;
+                    }
+                    img {
+                        vertical-align: top;
+                        cursor: pointer;
+                    }
+
+                    .copy-txt {
+                        cursor: pointer;
+                    }
+
+                    .copy-icon {
+                        position: absolute;
+                        right: 0;
+                    }
+                }
+            }
+            .payment-support-mail {
+                color: $black-color !important;
+                cursor: pointer;
+                letter-spacing: -0.11px;
+            }
+            .faq-link {
+                text-align: left;
+                padding: 20px 10px 0;
+                a {
+                    font-family: $muli-bold;
+                    font-size: 16px;
+                    font-weight: 700;
+                    letter-spacing: -0.2px;
+                    text-align: center;
+                    color: $crusta-orange-color;
+                    text-decoration: none;
+                }
+            }
+        }
+        .footer-btn {
+            max-width: 340px;
+            margin: 0 auto;
+            .btn {
+                &.btn-primary {
+                    background-color: $btn-primary-backgrnd-color;
+                    border-color: $btn-primary-backgrnd-color;
+                    box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
+                    margin: 30px 0 0 !important;
+                }
+
+                @include allmobiles {
+                    box-shadow: none !important;
+                }
+
+                &:active,
+                &:focus,
+                &:visited,
+                .acive:hover {
+                    background-color: $btn-primary-hover-color !important;
+                }
+
+                &:focus,
+                &:active {
+                    outline: none !important;
+                    background: $btn-primary-active-color !important;
+                    border-color: none !important;
+                    box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
+                }
+                &.active {
+                    outline: none !important;
+                    background: $btn-primary-active-color !important;
+                }
+            }
+        }
+    }
+}
