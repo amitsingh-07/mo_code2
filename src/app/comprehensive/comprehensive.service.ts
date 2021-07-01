@@ -1153,6 +1153,15 @@ export class ComprehensiveService {
               accessibleUrl = urlList[index];
             }
             break;
+           case 28:
+              if (
+                accessPage && canAccess &&
+                retirementProgressData.subItems[0].completed && cmpSummary.comprehensiveEnquiry.paymentStatus && (cmpSummary.comprehensiveEnquiry.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING || 
+                cmpSummary.comprehensiveEnquiry.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING)
+              ) {
+                accessibleUrl = urlList[index];
+              }
+              break;
         }
       }
     }
