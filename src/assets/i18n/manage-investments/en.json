@@ -350,6 +350,7 @@
     "TRANSACTION_ID": "Transaction ID:",
     "CASH_ACCOUNT_TRANSFER": "Cash Account Transfer",
     "DIVIDEND_PAYOUT": "Dividend Payout",
+    "DIVIDEND_REINVEST": "Dividend Reinvested",
     "MODAL": {
       "TRANSACTION_FETCH_LOADER": {
         "TITLE": "Loading transaction history",
