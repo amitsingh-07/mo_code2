@@ -37,6 +37,7 @@ import { RetirementPlanComponent } from './retirement-plan/retirement-plan.compo
 import { ValidateResultComponent } from './validate-result/validate-result.component';
 import { SignUpService } from '../sign-up/sign-up.service';
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';
+import { PaymentInstructionsComponent } from './payment-instructions/payment-instructions.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -83,7 +84,8 @@ export function createTranslateLoader(http: HttpClient) {
     ComprehensiveViewModeDirective,
     ValidateResultComponent,
     ComprehensiveReviewComponent,
-    RiskProfileComponent
+    RiskProfileComponent,
+    PaymentInstructionsComponent
   ],
   providers: [NgbDateCustomParserFormatter],
   exports: [ComprehensiveDashboardComponent]
