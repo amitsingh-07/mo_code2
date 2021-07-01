@@ -10,7 +10,7 @@
   </div>
 </div>
 <div class="container-fluid max-width--1024 comprehensive"
-  *ngIf="((getComprehensiveSummary && getComprehensiveSummary.comprehensiveEnquiry !== null && getComprehensiveSummary.comprehensiveEnquiry.isValidatedPromoCode) || isComprehensiveLiveEnabled) && isComprehensiveEnabled">
+  *ngIf="((getComprehensiveSummary && getComprehensiveSummary.comprehensiveEnquiry !== null && getComprehensiveSummary.comprehensiveEnquiry.isCFPGetStarted) || isComprehensiveLiveEnabled) && isComprehensiveEnabled">
   <div class="comprehensive" [ngClass] = "{'dashboard-lite': comprehensiveLiteEnabled }">
     <div class="flex-row align-start ml15 mr15" *ngIf='comprehensiveLiteEnabled'>
         <div class="flex-col-6">

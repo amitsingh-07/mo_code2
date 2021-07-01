@@ -979,7 +979,7 @@ export class ComprehensiveService {
           case 0:
             if (
               !cmpSummary.comprehensiveEnquiry.enquiryId ||
-              !cmpSummary.comprehensiveEnquiry.isValidatedPromoCode
+              !cmpSummary.comprehensiveEnquiry.isCFPGetStarted
             ) {
               accessibleUrl = COMPREHENSIVE_BASE_ROUTE;
             }
