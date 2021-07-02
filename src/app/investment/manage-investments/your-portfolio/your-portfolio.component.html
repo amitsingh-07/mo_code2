@@ -227,7 +227,7 @@
                         </div>
                         <div class="portfolio_info_label right-col flex-div hand-cursor" (click)="goDividendPayout($event)" >
                           <div>
-                            <span *ngIf='!portfolio.payoutType === wiseIncomePayoutType.REINVEST'>{{'YOUR_PORTFOLIO.NEXT_PAYOUT' | translate}}</span> <span *ngIf='portfolio.payoutType === wiseIncomePayoutType.REINVEST'>{{'YOUR_PORTFOLIO.REINVEST' | translate}}</span>
+                            <span *ngIf='portfolio.payoutType !== wiseIncomePayoutType.REINVEST'>{{'YOUR_PORTFOLIO.NEXT_PAYOUT' | translate}}</span> <span *ngIf='portfolio.payoutType === wiseIncomePayoutType.REINVEST'>{{'YOUR_PORTFOLIO.REINVEST' | translate}}</span>
                             <div class="currency_value">{{nextPayoutLabel}}</div>
                           </div>
                           <img src="assets/images/investment-account/forward_portfolio.svg" alt="">
@@ -334,7 +334,7 @@
                         </div>
                         <div class="portfolio_info_label right-col flex-div hand-cursor" (click)="goDividendPayout($event)">
                           <div>
-                            {{'YOUR_PORTFOLIO.NEXT_PAYOUT' | translate}}
+                            <span *ngIf='portfolio.payoutType !== wiseIncomePayoutType.REINVEST'>{{'YOUR_PORTFOLIO.NEXT_PAYOUT' | translate}}</span> <span *ngIf='portfolio.payoutType === wiseIncomePayoutType.REINVEST'>{{'YOUR_PORTFOLIO.REINVEST' | translate}}</span>
                             <div class="currency_value">{{nextPayoutLabel}}</div>
                           </div>
                           <img src="assets/images/investment-account/forward_portfolio.svg" alt="">
