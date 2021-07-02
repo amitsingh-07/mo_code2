@@ -26,7 +26,6 @@ import { ResultComponent } from './result/result.component';
 import { RetirementPlanComponent } from './retirement-plan/retirement-plan.component';
 import { ValidateResultComponent } from './validate-result/validate-result.component';
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';
-import { PaymentInstructionsComponent } from './payment-instructions/payment-instructions.component';
 
 const routes: Routes = [
     {
@@ -67,8 +66,7 @@ const routes: Routes = [
             { path: COMPREHENSIVE_ROUTES.RISK_PROFILE + '/2', component: RiskProfileComponent, data: [{param: 2}]  },
             { path: COMPREHENSIVE_ROUTES.RISK_PROFILE + '/3', component: RiskProfileComponent, data: [{param: 3}]  },
             { path: COMPREHENSIVE_ROUTES.RISK_PROFILE + '/4', component: RiskProfileComponent, data: [{param: 4}]  },
-            { path: COMPREHENSIVE_ROUTES.REVIEW, component: ComprehensiveReviewComponent, resolve: { paymentBypass: PaymentResolver }},
-            { path: COMPREHENSIVE_ROUTES.PAYMENT_INSTRUCTIONS, component: PaymentInstructionsComponent }
+            { path: COMPREHENSIVE_ROUTES.REVIEW, component: ComprehensiveReviewComponent, resolve: { paymentBypass: PaymentResolver }}
         ]
     }
 ];
