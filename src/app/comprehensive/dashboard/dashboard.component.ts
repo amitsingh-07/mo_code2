@@ -15,7 +15,6 @@ import { IMyProfile } from '../comprehensive-types';
 import { environment } from './../../../environments/environment';
 import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
-import { PaymentInstructionModalComponent } from './../../shared/modal/payment-instruction-modal/payment-instruction-modal.component';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 import { PAYMENT_ROUTE_PATHS } from '../../payment/payment-routes.constants';
@@ -374,10 +373,7 @@ constructor(
   }
 
   showPaymentModal() {
-    //this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.PAYMENT_INSTRUCTIONS]);
-    //const routerURL = COMPREHENSIVE_ROUTE_PATHS.PAYMENT_INSTRUCTIONS;    
-    const routerURL = PAYMENT_ROUTE_PATHS.PAYMENT_INSTRUCTION;
-    this.setComprehensiveSummary(true, routerURL);
+    this.router.navigate([PAYMENT_ROUTE_PATHS.PAYMENT_INSTRUCTION]);
   }
 
   showCopyToast(data) {
