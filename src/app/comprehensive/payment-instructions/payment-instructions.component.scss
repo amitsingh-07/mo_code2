@@ -29,7 +29,7 @@ app-payment-instructions {
                 text-align: center;
                 color: $white-color;
                 padding-bottom: 20px;
-                span {
+                .txt-bold {
                     font-family: $muli-bold;
                 }
             }
@@ -46,8 +46,10 @@ app-payment-instructions {
                 justify-content: space-between;
                 .payment-details {
                     color: $watercourse-color;
+                    margin-left: 6.4px;
                     .paynow-logo {
                         margin-top: 6px;
+                        margin-left: -6.4px;
                         width: 63.4px;
                         height: 12px;
                         display: flex;

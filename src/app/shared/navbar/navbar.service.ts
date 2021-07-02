@@ -43,6 +43,7 @@ export class NavbarService {
   private pageProdInfoIcon = new BehaviorSubject(false);
   private pageClearNotify = new BehaviorSubject(false);
   private pageDropDownIcon = new BehaviorSubject(false);
+  private paymentLockIcon = new BehaviorSubject(false);
 
   private investPageTitle = new BehaviorSubject('');
   private investPageSuperTitle = new BehaviorSubject('');
@@ -75,6 +76,7 @@ export class NavbarService {
   onMenuItemClicked = this.$menuItemClick.asObservable();
   investmentPageTitle = this.investPageTitle.asObservable();
   investmentPageSuperTitle = this.investPageSuperTitle.asObservable();
+  currentPagePaymentLockIcon = this.paymentLockIcon.asObservable();
 
   promoAppliedCardObservable = this.promoAppliedCardVisibility.asObservable();
   // logout
@@ -278,4 +280,7 @@ export class NavbarService {
     this.currentActive.next(currentActive);
   }
 
+  setPaymentLockIcon(lockIcon: boolean) {
+    this.paymentLockIcon.next(lockIcon);
+  }
 }

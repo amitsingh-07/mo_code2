@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit,  Output, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import {  Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
@@ -14,12 +14,13 @@ import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
   styleUrls: ['./payment-instructions.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PaymentInstructionsComponent implements OnInit {
+export class PaymentInstructionsComponent implements OnInit, OnDestroy {
   toastMsg: any;
   showFixedToastMessage: boolean;
   addTopMargin: boolean;
   pageTitle: any;
   emailID: any;
+  getComprehensiveSummaryDashboard: any;
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -32,7 +33,7 @@ export class PaymentInstructionsComponent implements OnInit {
     
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('START.PAGE_TITLE');
+      this.pageTitle = this.translate.instant('COMPREHENSIVE.DASHBOARD.PAGE_TITLE');
       this.setPageTitle(this.pageTitle);
     });
    }
@@ -42,19 +43,22 @@ export class PaymentInstructionsComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.emailID = this.signUpService.getUserProfileInfo();
-    console.log(this.emailID.emailAddress);
     this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe( (dashboardData: any) => {
       if (dashboardData && dashboardData.objectList[0]) {
-        const getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
-        if (getComprehensiveSummaryDashboard !== '') {
-          console.log(getComprehensiveSummaryDashboard.paymentAmount);
-        }
+        this.getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
         }
       });
   }
 
+  ngOnDestroy() {
+    this.navbarService.unsubscribeBackPress();
+    this.navbarService.unsubscribeMenuItemClick();
+    this.navbarService.setPaymentLockIcon(false);
+  }
+
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
+    this.navbarService.setPaymentLockIcon(true);   
   }
   getQrCodeImg() {
     return document.getElementsByTagName('base')[0].href + 'assets/images/comprehensive/qrcode.png';
@@ -81,4 +85,5 @@ export class PaymentInstructionsComponent implements OnInit {
       this.addTopMargin = true;
     }, 3000);
   }
+
 }
