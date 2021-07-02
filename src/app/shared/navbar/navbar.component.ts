@@ -65,6 +65,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   showNotificationClear = false; // Notification Clear all Button
   closeIcon = false;
   showLabel: any;
+  showPaymentLockIcon = false; //Payment Lock Icon
 
   // Navbar Configurations
   modalRef: NgbModalRef; // Modal Ref
@@ -230,6 +231,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
     this.navbarService.currentPageHelpIcon.subscribe((showHelpIcon) => {
       this.showHelpIcon = showHelpIcon;
+    });
+    this.navbarService.currentPagePaymentLockIcon.subscribe((showPaymentLockIcon) => {
+      this.showPaymentLockIcon = showPaymentLockIcon;
     });
     this.navbarService.currentPageDropDownIcon.subscribe((showDropDownIcon) => {
       this.showDropDownIcon = showDropDownIcon;

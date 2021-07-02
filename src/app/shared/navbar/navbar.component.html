@@ -270,6 +270,8 @@
       <div *ngIf="showHelpIcon" class="navbar__helpIcon--mobile" (click)="showMobilePopUp()">
         <div class="tooltip-icon"></div>
       </div>
+      <!-- lock icon -->
+      <div class="navbar__lockIcon" *ngIf="showPaymentLockIcon"></div>
       <!--For WiseIncome Payout-->
       <div class="wiseincome-dropdown" *ngIf="showDropDownIcon" (click)="wiseIncomeDropDown($event)"><i class="material-icons" *ngIf="!wiseIncomeDropDownShow">keyboard_arrow_down</i><i class="material-icons" *ngIf="wiseIncomeDropDownShow">keyboard_arrow_up</i></div>
       <div class="wiseincome-dropdown-item" *ngIf="wiseIncomeDropDownShow">
@@ -309,4 +311,11 @@
       <div class="tooltip-icon"></div>
     </div>
   </div>
+  <!-- lock icon -->
+  <div class="navbar__lockIcon" *ngIf="showPaymentLockIcon"></div>
+</div>
+<div *ngIf="showPaymentLockIcon" class="comprehensive-desktop-header hidden-sm-md">
+  <div class="page-title">{{pageTitle}}</div>
+  <!-- lock icon -->
+  <div class="navbar__lockIcon"></div>
 </div>

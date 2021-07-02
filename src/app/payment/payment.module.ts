@@ -6,10 +6,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
+import { SharedModule } from '../shared/shared.module';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { PaymentModalComponent } from './payment-modal/payment-modal.component';
 import { PaymentRoutingModule } from './payment-routing.module';
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
+import { PaymentInstructionComponent } from './payment-instruction/payment-instruction.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new MultiTranslateHttpLoader(
@@ -23,6 +25,7 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
     imports: [
         CommonModule,
+        SharedModule,
         PaymentRoutingModule,
         NgbModule,
         FormsModule,
@@ -38,7 +41,8 @@ export function createTranslateLoader(http: HttpClient) {
     declarations: [
         CheckoutComponent,
         PaymentStatusComponent,
-        PaymentModalComponent
+        PaymentModalComponent,
+        PaymentInstructionComponent
     ],
     entryComponents: [PaymentModalComponent],
     providers: []
