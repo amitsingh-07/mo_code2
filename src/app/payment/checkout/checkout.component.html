@@ -1,5 +1,5 @@
 <div class="container-fluid max-width--1024 content">
-  <div class="flex-div">
+  <div class="flex-div" *ngIf="false">
     <div class="payment-summary-text">{{'CHECKOUT.PAYMENT_SUMMARY' | translate}}</div>
     <div class="review-text">{{'CHECKOUT.REVIEW_PURCHASE' | translate}}</div>
     <div class="first-box">
@@ -55,5 +55,55 @@
       <button [disabled]="!checkoutForm.valid" type="submit" class="btn btn__footer--fixed btn-primary width100"
         (click)="submitForm()">{{'CHECKOUT.PROCEED_PAY' | translate}}</button>
     </form>
+  </div>
+  <!-- compre-checkout -->
+  <div class="flex-div checkout-content-block">
+    <div class="payment-summary-text">{{'CHECKOUT.PAYMENT_SUMMARY' | translate}}</div>
+    <div class="promo-banner">
+      <div class="banner-logo"><img
+          src="assets/images/comprehensive/dashboard-comprehensive.svg" alt=""
+          /></div>
+      <div class="comprehensive-text">{{'CHECKOUT.BANNER_TXT' | translate}}</div>
+      <div class="amt">$99</div>
+    </div>
+    <div class="promo-calculation-block">
+      <div class="flex-row space-between align-items-top">
+        <div>{{'CHECKOUT.TOTAL_LBL' | translate}}</div>
+        <div class="value">$99.00</div>
+      </div>
+      <div class="flex-row space-between align-items-top mt15">
+        <div>
+          <div>{{'CHECKOUT.PROMO_LBL' | translate}}</div>
+          <div class="txt-regular">SLFXMO applied!</div>
+        </div>
+        <div class="value">-$74.25</div>
+      </div>
+      <hr>
+      <div class="flex-row space-between align-items-top">
+        <div>
+          <div class="txt-bold">{{'CHECKOUT.PAYABLE_LBL' | translate}}</div>
+          <div class="txt-regular txt-dark-teal">{{'CHECKOUT.GST_LBL' | translate}}</div>
+        </div>
+        <div>
+          <div class="value"><span class="currency">SGD</span><span>$24.75</span></div>
+          <div class="paynow-logo"><img
+              src="assets/images/paynow-logo.svg" /></div>
+        </div>
+      </div>
+    </div>
+    <div class="promo-code-block">
+      <div class="default-txt">{{'CHECKOUT.ENTER_PROMO_LBL' | translate}}</div>
+      <div class="flex-row space-between">
+        <div class="valid-promo">
+          <span class="valid-logo"><img src="assets/images/check-icon-green.svg" alt="" /></span>
+          <span class="pl10">NTUC Member (SLFXMO)</span>
+        </div>
+        <div class="remove-btn">{{'CHECKOUT.REMOVE_BTN_LBL' | translate}}</div>
+      </div>
+    </div>
+    <div class="terms">By purchasing, you agree to MoneyOwl's <span>Terms of Use</span> and <span>Privacy Policy</span>.</div>
+    <button type="submit" class="btn
+        btn__footer--fixed btn-primary width100"
+        >{{'CHECKOUT.PROCEED_PAYMENT' | translate}}</button>
   </div>
 </div>
