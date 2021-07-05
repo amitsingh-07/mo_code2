@@ -40,7 +40,6 @@ export class PromoCodeListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.promoSvc.getPromoCategory();
     this.promoCodeStatus = PROMO_CODE_STATUS;
     this.formGrp = this.formBuilder.group({
       promoCode: ['', [Validators.required]]

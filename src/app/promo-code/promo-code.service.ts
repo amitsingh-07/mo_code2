@@ -129,11 +129,13 @@ export class PromoCodeService {
       return this.promoJsonList;
     });
   }
-  setPromoCategory(){
-  
+  checkNtucMumber(ntucForm) {
+    const payload = {
+      lastFourCharOfNricNumber: ntucForm.nricOrFin,
+      mobileNumber: ntucForm.mobileNumber,
+      dob: ntucForm.dob
+    };
+    return this.apiService.checkNtucMumber(payload);
   }
 
-  getPromoCategory(){   
-   
-  }
 }

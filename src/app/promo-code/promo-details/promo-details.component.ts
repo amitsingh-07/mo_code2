@@ -62,10 +62,10 @@ export class PromoDetailsComponent implements OnInit {
       console.log("testing");      
       const ref = this.allModal.open(NtucMemberComponent, 
         { centered: true, windowClass: 'cfm-overwrite-modal', backdrop: 'static' });
-        ref.componentInstance.yesClickAction.subscribe(() => {
+        ref.componentInstance.ntucMember.subscribe((form) => {
           ref.close();
           // On yes click call API to update
-        
+        this.checkNtucMumber(form);
         });
     }
   else if (this.selectedPromo['isWrapFeeRelated'] === 'Y') {
@@ -82,6 +82,12 @@ export class PromoDetailsComponent implements OnInit {
     e.stopPropagation();
   }
   
+  checkNtucMumber(ntucForm) {
+    this.promoSvc.checkNtucMumber(ntucForm).subscribe((data) => {
+      console.log(data);
+    });
+  }
+
   openOverwriteModal(existingPromo) {
     const ref = this.allModal.open(ModelWithButtonComponent, { centered: true, windowClass: 'cfm-overwrite-modal', backdrop: 'static' });
     ref.componentInstance.errorTitle = this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_1') 

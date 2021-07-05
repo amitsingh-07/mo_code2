@@ -725,10 +725,18 @@ export class ApiService {
       );
   }
   // referral code api ends
-  getRefereeList(){
+  getRefereeList() {
     return this.http.get(apiConstants.endpoint.getRefereeList)
     .pipe(
       catchError((error: HttpErrorResponse) => this.handleError(error))
     );
+  }
+
+  // NTUC MUMBER
+  checkNtucMumber(payload) {
+    return this.http.post(apiConstants.endpoint.promoCode.checkNtucMumber, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 }
