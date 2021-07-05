@@ -24,7 +24,8 @@
     "GST_LBL": "Inclusive of 7% GST",
     "ENTER_PROMO_LBL": "Enter Promo Code",
     "REMOVE_BTN_LBL": "Remove",
-    "PROCEED_PAYMENT":"Proceed To Payment"
+    "PROCEED_PAYMENT": "Proceed To Payment",
+    "PROMOCODE_APPLIED": "Promo code is applied"
   },
   "PAYMENT_MODAL": {
     "PLEASE_WAIT": "Please wait…",

@@ -2,6 +2,35 @@
 @import "../../../mixins";
 
 app-checkout {
+  .toast-msg-top-space-checkout {
+    .toast-msg-container {
+      box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+      background-color: $light-green-color;
+      color: $white-color;
+      min-width: 280px;
+      @include desktop{
+        right: 0;
+      }
+      .toast-msg {
+        margin-left: 25px;
+        @include allmobiles{
+          margin-left: 15px;
+        }
+      }
+    }
+    @include desktop {
+      top: 154px;
+      right: 30px;
+    }
+    @include tablet {
+      top: 154px;
+      right: 15px;
+    }
+    @include phablet {
+      top: 48px;
+      right: 15px;
+    }
+  }
   .content {
     display: flex;
     justify-content: center;
