@@ -391,6 +391,12 @@ app-checkout {
       }
       span {
         font-family: $muli-bold;
+        text-decoration: underline;
+        cursor: pointer;
+        a{
+          text-decoration: underline;
+          color: #ffffff;
+        }
       }
     }
   }
