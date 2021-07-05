@@ -1,3 +1,14 @@
+<div class="toast-msg-fixed-block" [ngClass]="{'toast-msg-top-space-checkout': addTopMargin}" *ngIf="showFixedToastMessage">
+  <div class="toast-msg-container">
+    <div class="flex-col-1">
+      <img src="assets/images/icon_tick_white.svg" alt=""
+        />
+    </div>
+    <div class="flex-col-11">
+      <div class="toast-msg">Promo code is applied</div>
+    </div>
+  </div>
+</div>
 <div class="container-fluid max-width--1024 content">
   <div class="flex-div" *ngIf="false">
     <div class="payment-summary-text">{{'CHECKOUT.PAYMENT_SUMMARY' | translate}}</div>
