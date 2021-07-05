@@ -1,4 +1,4 @@
-<div class="toast-msg-fixed-block toast-msg-top-space-checkout" >
+<div class="toast-msg-fixed-block toast-msg-top-space-checkout" *ngIf="showFixedToastMessage">
   <div class="toast-msg-container">
     <div class="flex-col-1">
       <img src="assets/images/icon_tick_white.svg" alt=""
@@ -112,7 +112,7 @@
         <div class="remove-btn">{{'CHECKOUT.REMOVE_BTN_LBL' | translate}}</div>
       </div>
     </div>
-    <div class="terms">By purchasing, you agree to MoneyOwl's <span>Terms of Use</span> and <span>Privacy Policy</span>.</div>
+    <div class="terms">{{'CHECKOUT.AGREE' | translate}}<span (click)="openTNC($event)">{{'CHECKOUT.TERMS' | translate}}</span>.</div>
     <button type="submit" class="btn
         btn__footer--fixed btn-primary width100"
         >{{'CHECKOUT.PROCEED_PAYMENT' | translate}}</button>

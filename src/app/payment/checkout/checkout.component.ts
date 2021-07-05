@@ -30,6 +30,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   termsOfConditions = false;
   modalRef: NgbModalRef;
   nonProdEnv = false;
+  showFixedToastMessage: boolean;
 
   subTotal = PAYMENT_CONST.SUBTOTAL;
   gst = PAYMENT_CONST.GST;
