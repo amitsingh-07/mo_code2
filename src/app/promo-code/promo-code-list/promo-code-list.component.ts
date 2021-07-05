@@ -8,7 +8,9 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 import { PromoDetailsComponent } from './../promo-details/promo-details.component';
 import { PromoCodeService } from './../promo-code.service';
 import { PROMO_CODE_STATUS } from './../promo-code.constants';
+
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './../../investment/manage-investments/manage-investments-routes.constants';
+import { appConstants } from '../../app.constants';
 
 @Component({
   selector: 'app-promo-code-list',
@@ -38,6 +40,7 @@ export class PromoCodeListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.promoSvc.getPromoCategory();
     this.promoCodeStatus = PROMO_CODE_STATUS;
     this.formGrp = this.formBuilder.group({
       promoCode: ['', [Validators.required]]
@@ -79,7 +82,7 @@ export class PromoCodeListComponent implements OnInit {
       this.formGrp.controls['promoCode'].setErrors(null);
       this.showClearBtn = false;
       this.showSpinner = true;
-      this.showError = false;
+      this.showError = false;     
       this.promoSvc.validatePromoCode(this.formGrp.controls['promoCode'].value).subscribe((response) => {
         // Success
         const responseCode = response.responseMessage['responseCode'];

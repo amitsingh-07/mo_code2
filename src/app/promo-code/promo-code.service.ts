@@ -15,7 +15,6 @@ import { environment } from './../../environments/environment';
   providedIn: 'root'
 })
 export class PromoCodeService {
-
   private selectedPromo: any;
   public promoCodeWalletList = new BehaviorSubject([]);
   public promoWalletObservable = this.promoCodeWalletList.asObservable();
@@ -58,7 +57,7 @@ export class PromoCodeService {
   validatePromoCode(promoCode) {
     const payload = {
       promoCode: promoCode,
-      promoCodeCategory: appConstants.INVESTMENT_PROMO_CODE_TYPE,
+      promoCodeCategory:sessionStorage.getItem('promocodeCategory'),
       profileType: PROMO_PROFILE_TYPE.PUBLIC
     };
     return this.apiService.validateInvestPromoCode(payload);
@@ -107,18 +106,21 @@ export class PromoCodeService {
   // Fetch promo list json
   fetchPromoListJSON() {
     if (this.promoJsonList) {
+      console.log(this.promoJsonList  +"promoJsonList");
       return this.promoJsonList;
     } else {
       let url = environment.promoCodeJsonUrl;
       return fetch(url)
         .then((response) => {
           this.promoJsonList = response.json();
+           console.log(this.promoJsonList  +"promoJsonList");
           return this.promoJsonList;
         })
         .catch((error) => {
           this.getMockPromoListJson();
         });
     }
+   
   }
   // Fetch app backup copy incase of failure to fetch from S3
   getMockPromoListJson() {
@@ -126,5 +128,12 @@ export class PromoCodeService {
       this.promoJsonList = data.json();
       return this.promoJsonList;
     });
+  }
+  setPromoCategory(){
+  
+  }
+
+  getPromoCategory(){   
+   
   }
 }

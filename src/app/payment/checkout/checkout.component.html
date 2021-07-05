@@ -30,6 +30,7 @@
         <div class="grey-bold-txt">{{totalAmt | currency : 'USD' : 'symbol-narrow' : '1.0-0'}}</div>
       </div>
     </div>
+    
     <form id="checkoutForm" name="checkoutForm" [formGroup]="checkoutForm" method="POST" target=""
       enctype="application/x-www-form-urlencoded">
       <input name="request_id" formControlName="request_id" hidden>
@@ -55,5 +56,9 @@
       <button [disabled]="!checkoutForm.valid" type="submit" class="btn btn__footer--fixed btn-primary width100"
         (click)="submitForm()">{{'CHECKOUT.PROCEED_PAY' | translate}}</button>
     </form>
+    <div>
+      <div>Promo Code</div>
+   <app-promo-code-select></app-promo-code-select>
+    </div>
   </div>
 </div>

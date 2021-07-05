@@ -10,13 +10,14 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { PaymentModalComponent } from './payment-modal/payment-modal.component';
 import { PaymentRoutingModule } from './payment-routing.module';
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
-
+import { PromoCodeModule } from '../promo-code/promo-code.module';
 export function createTranslateLoader(http: HttpClient) {
     return new MultiTranslateHttpLoader(
         http,
         [
             { prefix: './assets/i18n/app/', suffix: '.json' },
-            { prefix: './assets/i18n/payment/', suffix: '.json' }
+            { prefix: './assets/i18n/payment/', suffix: '.json' },
+            { prefix: './assets/i18n/promo-code/', suffix: '.json' }
         ]);
 }
 
@@ -33,7 +34,8 @@ export function createTranslateLoader(http: HttpClient) {
                 useFactory: createTranslateLoader,
                 deps: [HttpClient]
             }
-        })
+        }),
+        PromoCodeModule
     ],
     declarations: [
         CheckoutComponent,

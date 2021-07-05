@@ -82,6 +82,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     (this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.FOUR_PERCENT  
      ||this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.EIGHT_PERCENT);
     this.getSrsAccDetailsAndOptionListCol();
+    sessionStorage.setItem('promocodeCategory', "INVEST"); 
   }
 
   getSrsAccDetailsAndOptionListCol() {

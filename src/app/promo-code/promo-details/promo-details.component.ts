@@ -9,6 +9,7 @@ import { PROMO_CODE_STATUS, PROMO_ROUTE } from '../promo-code.constants';
 import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+import { NtucMemberComponent } from '../ntuc-member/ntuc-member.component';
 
 @Component({
   selector: 'app-promo-details',
@@ -47,7 +48,9 @@ export class PromoDetailsComponent implements OnInit {
           return element['promoCode'] === this.selectedPromo['code'];
         }
       });
+      console.log( this.details + " this.details");
     });
+    console.log( this.details + " this.details");
   }
 
   close() {
@@ -55,7 +58,17 @@ export class PromoDetailsComponent implements OnInit {
   }
 
   usePromo(e) {
-    if (this.selectedPromo['isWrapFeeRelated'] === 'Y') {
+    if(this.selectedPromo['code'] === 'SLFXMO') {
+      console.log("testing");      
+      const ref = this.allModal.open(NtucMemberComponent, 
+        { centered: true, windowClass: 'cfm-overwrite-modal', backdrop: 'static' });
+        ref.componentInstance.yesClickAction.subscribe(() => {
+          ref.close();
+          // On yes click call API to update
+        
+        });
+    }
+  else if (this.selectedPromo['isWrapFeeRelated'] === 'Y') {
       const existingWrapFeePromo = this.promoSvc.checkForExistingWrapFee();
       if (existingWrapFeePromo) {
         this.openOverwriteModal(existingWrapFeePromo);

@@ -56,9 +56,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       this.pageTitle = this.translate.instant('CHECKOUT.CHECKOUT_PAYMENT');
       this.setNavbarServices(this.pageTitle);
     });
-    this.buildForm();
+    this.buildForm();    
     // Setting boolean to turn testing amt input
     this.nonProdEnv = environment.isDebugMode;
+    sessionStorage.setItem('promocodeCategory', "COMPRE");
   }
 
   ngOnDestroy() {
