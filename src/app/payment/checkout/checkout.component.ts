@@ -37,6 +37,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   promoCode = PAYMENT_CONST.PROMO_CODE;
   includingGst = false;
 
+  gstPercentLabel: any;
+  totalAmount: number;
+  paymentAmount: number;
+  reductionAmount: number;
+  gstPercent: number;
+  cfpPromoCode: string;
+  promoCodeDescription: string;
+  appliedPromoCode: string;
+
   constructor(
     private formBuilder: FormBuilder,
     public readonly translate: TranslateService,
@@ -49,6 +58,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   ) {
     this.translate.use('en');
     this.getProductAmount();
+    this.getCheckoutDetails();
   }
 
   ngOnInit() {
@@ -200,6 +210,32 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.subTotal = this.includingGst ? data.objectList[0]['totalAmount'] : data.objectList[0]['price'];
         this.gst = data.objectList[0]['gstPercentage'];
         this.totalAmt = data.objectList[0]['totalAmount'].toString();
+      }
+    });
+  }
+
+  getCheckoutDetails() {  
+    this.gstPercentLabel = { gstPercent: 7};
+    this.totalAmount = 99;
+    this.paymentAmount = 24.75;
+    this.reductionAmount = -74.25;
+    this.gstPercent = 7;
+    this.cfpPromoCode = 'SLFXMO';
+    this.promoCodeDescription = '75% off';
+    this.appliedPromoCode = 'NTUC Member (SLFXMO)';
+    const payload = { comprehensivePromoCodeToken: null, promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE };
+    this.paymentService.getPaymentCheckoutCfpDetails(payload).subscribe((data: any) => {
+      if (data && data.objectList[0]) {
+        console.log(data);
+        const checkOutData = data.objectList[0];
+        this.gstPercentLabel = { gstPercent: checkOutData.pricingDetails.gstPercentage};
+        this.totalAmount = checkOutData.pricingDetails.totalAmount;
+        this.paymentAmount = checkOutData.pricingDetails.payableAmount;
+        this.reductionAmount = checkOutData.pricingDetails.discountAmount;
+        this.gstPercent = checkOutData.pricingDetails.gstPercentage;
+        this.cfpPromoCode = checkOutData.promoCode;
+        this.promoCodeDescription = checkOutData.discountMessage;
+        this.appliedPromoCode = checkOutData.shortDescription;
       }
     });
   }
