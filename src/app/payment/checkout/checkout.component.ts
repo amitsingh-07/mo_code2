@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import {  Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from './../../../environments/environment';
@@ -8,12 +9,17 @@ import { ComprehensiveApiService } from './../../comprehensive/comprehensive-api
 import { COMPREHENSIVE_CONST } from './../../comprehensive/comprehensive-config.constants';
 import { ComprehensiveService } from './../../comprehensive/comprehensive.service';
 import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 import { ModelWithButtonComponent } from './../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { SignUpService } from './../../sign-up/sign-up.service';
 import { PaymentModalComponent } from './../payment-modal/payment-modal.component';
 import { PAYMENT_CONST, PAYMENT_REQUEST } from './../payment.constants';
 import { PaymentService } from './../payment.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
+import { COMPREHENSIVE_ROUTE_PATHS } from '../../comprehensive/comprehensive-routes.constants';
+import { FooterService } from '../../shared/footer/footer.service';
+import { PAYMENT_ROUTE_PATHS } from '../payment-routes.constants';
 
 @Component({
   selector: 'app-checkout',
@@ -37,32 +43,55 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   totalAmt = (PAYMENT_CONST.TOTAL_AMT).toString();
   promoCode = PAYMENT_CONST.PROMO_CODE;
   includingGst = false;
+  
+  loading: string;
+  gstPercentLabel: any;
+  totalAmount: number;
+  paymentAmount: number;
+  reductionAmount: number;
+  gstPercent: number;
+  cfpPromoCode: string;
+  promoCodeDescription: string;
+  appliedPromoCode: string;
+  isWaivedPromo: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
     public readonly translate: TranslateService,
+    private router: Router,
     private modal: NgbModal,
     public navbarService: NavbarService,
     private paymentService: PaymentService,
     private comprehensiveService: ComprehensiveService,
     private signUpService: SignUpService,
-    private comprehensiveApiService: ComprehensiveApiService
+    private comprehensiveApiService: ComprehensiveApiService,
+    private loaderService: LoaderService,
+    public footerService: FooterService
   ) {
     this.translate.use('en');
-    this.getProductAmount();
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('CHECKOUT.CHECKOUT_PAYMENT');
+      this.loading = this.translate.instant('COMMON_LOADER.TITLE');
+      this.setPageTitle(this.pageTitle);
+    });
+    this.fetchDashboard();
   }
 
   ngOnInit() {
-    this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('CHECKOUT.CHECKOUT_PAYMENT');
-      this.setNavbarServices(this.pageTitle);
-    });
-    this.buildForm();
-    // Setting boolean to turn testing amt input
-    this.nonProdEnv = environment.isDebugMode;
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
   }
 
   ngOnDestroy() {
+    this.navbarService.unsubscribeBackPress();
+    this.navbarService.unsubscribeMenuItemClick();
+    this.navbarService.setPaymentLockIcon(false);
+  }
+
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
+    this.navbarService.setPaymentLockIcon(true);   
   }
 
   // Create form
@@ -205,4 +234,130 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     });
   }
 
+  getCheckoutDetails() {  
+    this.gstPercentLabel = { gstPercent: 7};
+    this.totalAmount = 99;
+    this.paymentAmount = 24.75;
+    this.reductionAmount = -74.25;
+    this.gstPercent = 7;
+    this.cfpPromoCode = 'SLFXMO';
+    this.promoCodeDescription = '75% off';
+    this.appliedPromoCode = 'NTUC Member (SLFXMO)';
+    this.isWaivedPromo = false;    
+    this.showCopyToast();
+    const payload = { comprehensivePromoCodeToken: null, promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE };
+    this.paymentService.getPaymentCheckoutCfpDetails(payload).subscribe((data: any) => {
+      this.loaderService.hideLoaderForced();
+      if (data && data.objectList[0]) {
+        console.log(data);
+        const checkOutData = data.objectList[0];
+        this.gstPercentLabel = { gstPercent: checkOutData.pricingDetails.gstPercentage};
+        this.totalAmount = checkOutData.pricingDetails.totalAmount;
+        this.paymentAmount = checkOutData.pricingDetails.payableAmount;
+        this.reductionAmount = checkOutData.pricingDetails.discountAmount;
+        this.gstPercent = checkOutData.pricingDetails.gstPercentage;
+        this.cfpPromoCode = checkOutData.promoCode;
+        this.promoCodeDescription = checkOutData.discountMessage;
+        this.appliedPromoCode = checkOutData.shortDescription;
+        this.isWaivedPromo = this.isWaivedPromo;
+      }
+    }, (err) => {
+      this.loaderService.hideLoaderForced();
+    });
+  }
+
+  fetchDashboard(){
+    this.loaderService.showLoader({ title: this.loading, autoHide: false });
+    this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((summaryData: any) => {
+      if (summaryData && summaryData.objectList[0]) {
+        this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);        
+        const reportStatus = this.comprehensiveService.getReportStatus();
+        this.loaderService.hideLoaderForced();
+        if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
+        } else if (!this.comprehensiveService.checkResultData()) {
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
+        } else if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW){          
+          this.getCheckoutDetails();
+        } else {
+          this.backToDashboard();
+        }
+      } else {
+        this.loaderService.hideLoaderForced();
+        this.backToDashboard();
+      }
+    });    
+  }
+
+  backToDashboard() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+  }
+
+  goToNext() {
+    const reportStatus = this.comprehensiveService.getReportStatus();
+    if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
+    } else if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && this.comprehensiveService.checkResultData()) {
+      const currentStep = this.comprehensiveService.getMySteps();
+      if (currentStep === 4) {
+          this.loaderService.showLoader({ title: this.loading, autoHide: false });
+          this.initiateReport();
+      } else {
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + currentStep]);
+      }
+    } else {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
+    }
+  }
+
+  initiateReport() {
+    const enquiryId = { enquiryId: this.comprehensiveService.getEnquiryId(), promoCode: this.promoCode, waivedPromo: this.isWaivedPromo };
+    const cashPayload = { enquiryId: this.comprehensiveService.getEnquiryId(), liquidCashAmount: this.comprehensiveService.getLiquidCash(),
+      spareCashAmount : this.comprehensiveService.getComputeSpareCash() };
+    this.comprehensiveApiService.generateComprehensiveCashflow(cashPayload).subscribe((cashData) => {
+      });
+    this.comprehensiveApiService.generateComprehensiveReport(enquiryId).subscribe((data) => {     
+      const reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED;
+      const viewMode = true;
+      this.comprehensiveService.setReportStatus(reportStatus);
+      this.comprehensiveService.setLocked(true);
+      this.comprehensiveService.setViewableMode(viewMode);
+      this.loaderService.hideLoaderForced();
+      if (this.isWaivedPromo) {
+        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
+      } else {        
+        this.goToPaymentInstructions();
+      }
+    }, (err) => {
+      this.loaderService.hideLoaderForced();
+    });
+  }
+
+  removeAppliedPromoCode() {
+    this.paymentAmount = this.totalAmount;
+    this.reductionAmount = 0;
+    this.cfpPromoCode = '';
+    this.promoCodeDescription = '';
+    this.appliedPromoCode = '';
+    this.isWaivedPromo = false;
+  }
+
+  goToPaymentInstructions() {
+    this.router.navigate([PAYMENT_ROUTE_PATHS.PAYMENT_INSTRUCTION]);
+  }
+
+  showCopyToast() {
+    this.showFixedToastMessage = true;
+    this.hideToastMessage();
+  }
+
+  hideToastMessage() {
+    setTimeout(() => {
+      this.showFixedToastMessage = false;
+    }, 3000);
+  }
+
+  goToPromoCode() {
+    
+  }
 }

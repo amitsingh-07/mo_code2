@@ -1,6 +1,6 @@
 {
   "CHECKOUT": {
-    "CHECKOUT_PAYMENT": "Checkout Payment",
+    "CHECKOUT_PAYMENT": "Checkout",
     "PAYMENT_SUMMARY": "Payment Summary",
     "REVIEW_PURCHASE": "Please review and submit your purchase.",
     "COMPREHENSIVE_FINANCIAL_PLANNING": "Comprehensive Financial Planning",
@@ -19,14 +19,15 @@
     "REDIRECT_ERROR_MSG": "Redirection to payment gateway unsuccessful",
     "BANNER_TXT": "Comprehensive Financial Planning Report",
     "TOTAL_LBL": "Total",
-    "PROMO_LBL": "Promo (75% off)",
+    "PROMO_LBL": "Promo ",
     "PAYABLE_LBL": "Payable Amount",
-    "GST_LBL": "Inclusive of 7% GST",
+    "GST_LBL": "Inclusive of {{gstPercent}}% GST",
     "ENTER_PROMO_LBL": "Enter Promo Code",
     "REMOVE_BTN_LBL": "Remove",
     "AGREE": "By purchasing, you agree to MoneyOwl's ",
     "TERMS": "Terms of Use",
     "PROCEED_PAYMENT": "Proceed To Payment",
+    "PROCEED": "Proceed",
     "PROMOCODE_APPLIED": "Promo code is applied"
   },
   "PAYMENT_MODAL": {

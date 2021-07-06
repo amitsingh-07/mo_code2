@@ -28,10 +28,10 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   isPaymentEnabled = false;
   comprehensiveJourneyMode: boolean;
-  requireToPay = false;
   loading: string;
   tandcEnableFlag: boolean;
   enableTc: boolean;
+  requireToPay = false;
 
   constructor(
     private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
@@ -44,18 +44,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private loaderService: LoaderService) {
     this.pageId = this.activatedRoute.routeConfig.component.name;
-    this.configService.getConfig().subscribe((config: any) => {
-      // Payment enabled > Payment Bypass > Not Require to Pay
-      // Payment enabled > Payment Not Bypass > Require to Pay
-      if (config.paymentEnabled && !this.activatedRoute.snapshot.data['paymentBypass']) {
-        this.paymentService.getLastSuccessfulSubmittedTs().subscribe((res) => {
-          if (res['last_submit_ts'].length === 0) {
-            this.requireToPay = true;
-          }
-        }, (error) => {
-          this.requireToPay = false;
-        });
-      }
+    this.configService.getConfig().subscribe((config: any) => {      
       this.isPaymentEnabled = config.paymentEnabled;
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -117,14 +106,9 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     } else if (this.comprehensiveService.checkResultData()) {
       const currentStep = this.comprehensiveService.getMySteps();
       if (currentStep === 4) {
-        if (this.isPaymentEnabled && this.comprehensiveJourneyMode) {
+        if (this.isPaymentEnabled && this.comprehensiveJourneyMode && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
           // If payment is enabled and user has not paid, go payment else initiate report gen
-          this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]).then((result) => {
-            if (result === false) {
-              this.loaderService.showLoader({ title: this.loading, autoHide: false });
-              this.initiateReport();
-            }
-          });
+          this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);
         } else {
           this.loaderService.showLoader({ title: this.loading, autoHide: false });
           this.initiateReport();
@@ -137,12 +121,12 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     }
   }
   initiateReport() {
-    const enquiryId = { enquiryId: this.comprehensiveService.getEnquiryId() };
+    const enquiryId = { enquiryId: this.comprehensiveService.getEnquiryId(), promoCode: this.comprehensiveService.getCfpPromoCode(), waivedPromo: this.comprehensiveService.getWaivedPromo() };
     if (this.comprehensiveJourneyMode) {
       const cashPayload = { enquiryId: this.comprehensiveService.getEnquiryId(), liquidCashAmount: this.comprehensiveService.getLiquidCash(),
         spareCashAmount : this.comprehensiveService.getComputeSpareCash() };
       this.comprehensiveApiService.generateComprehensiveCashflow(cashPayload).subscribe((cashData) => {
-        });
+        });      
     }
     this.comprehensiveApiService.generateComprehensiveReport(enquiryId).subscribe((data) => {
       let reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.READY;

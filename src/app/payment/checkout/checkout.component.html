@@ -10,63 +10,6 @@
   </div>
 </div>
 <div class="container-fluid max-width--1024 content">
-  <div class="flex-div" *ngIf="false">
-    <div class="payment-summary-text">{{'CHECKOUT.PAYMENT_SUMMARY' | translate}}</div>
-    <div class="review-text">{{'CHECKOUT.REVIEW_PURCHASE' | translate}}</div>
-    <div class="first-box">
-      <img src="assets/images/comprehensive/dashboard-comprehensive.svg" alt="" />
-      <div class="divider"></div>
-      <div>
-        <div class="comprehensive-text">{{'CHECKOUT.COMPREHENSIVE_FINANCIAL_PLANNING' | translate}}</div>
-        <div class="amt">{{subTotal | currency : 'USD' : 'symbol-narrow' : '1.0-0'}}</div>
-      </div>
-    </div>
-    <div class="second-box">
-      <div class="rebate-title">
-        <img src="assets/images/payment/mini-owl-head.svg" alt="" />
-        {{'CHECKOUT.FEE_REBATE' | translate}}
-      </div>
-      <div class="rebate-info" [innerHTML]="this.translate.instant('CHECKOUT.FEE_REBATE_DESC')"></div>
-      <div class="flex-mt20">
-        <div class="teal-txt">{{'CHECKOUT.TOTAL_BEFORE_GST' | translate}}</div>
-        <div class="grey-txt">{{subTotal | currency : 'USD' : 'symbol-narrow' : '1.0-0'}}</div>
-      </div>
-      <div class="flex-mt15">
-        <div class="teal-txt">{{'CHECKOUT.GST' | translate:({'gst': gst})}}</div>
-        <div class="grey-txt">{{subTotal * (gst/100) | currency : 'USD' : 'symbol-narrow' : '1.0-0'}}</div>
-      </div>
-      <div class="horizontal-divider"></div>
-      <div class="flex-mt20">
-        <div class="teal-bold-txt" [innerHTML]="this.translate.instant('CHECKOUT.TOTAL_AMOUNT')"></div>
-        <div class="grey-bold-txt">{{totalAmt | currency : 'USD' : 'symbol-narrow' : '1.0-0'}}</div>
-      </div>
-    </div>
-    <form id="checkoutForm" name="checkoutForm" [formGroup]="checkoutForm" method="POST" target=""
-      enctype="application/x-www-form-urlencoded">
-      <input name="request_id" formControlName="request_id" hidden>
-      <input name="request_time_stamp" formControlName="request_time_stamp" hidden>
-      <input name="request_signature" formControlName="request_signature" hidden>
-      <input name="merchant_account_id" formControlName="merchant_account_id" hidden>
-      <input name="transaction_type" formControlName="transaction_type" hidden>
-      <input name="requested_amount" formControlName="requested_amount" hidden>
-      <input name="requested_amount_currency" formControlName="requested_amount_currency" hidden>
-      <input name="redirect_url" formControlName="redirect_url" hidden>
-      <input name="cancel_redirect_url" formControlName="cancel_redirect_url" hidden>
-      <input name="attempt_three_d" formControlName="attempt_three_d" hidden>
-      <input *ngIf="nonProdEnv" placeholder="Input Test Amt" (input)="testingAmt($event.target.value)">
-
-      <div class="checkbox-button mt20">
-        <input id="termsOfConditions" name="termsOfConditions" formControlName="termsOfConditions" type="checkbox"
-          class="field checkbox" required>
-        <label for="termsOfConditions">
-          <div class="checkbox-label">{{'CHECKOUT.AGREE_TNC' | translate}} <span
-              (click)="openTNC($event)">{{'CHECKOUT.TERMS_OF_USE' | translate}}</span>.</div>
-        </label>
-      </div>
-      <button [disabled]="!checkoutForm.valid" type="submit" class="btn btn__footer--fixed btn-primary width100"
-        (click)="submitForm()">{{'CHECKOUT.PROCEED_PAY' | translate}}</button>
-    </form>
-  </div>
   <!-- compre-checkout -->
   <div class="flex-div checkout-content-block">
     <div class="payment-summary-text">{{'CHECKOUT.PAYMENT_SUMMARY' | translate}}</div>
@@ -75,46 +18,50 @@
           src="assets/images/comprehensive/dashboard-comprehensive.svg" alt=""
           /></div>
       <div class="comprehensive-text">{{'CHECKOUT.BANNER_TXT' | translate}}</div>
-      <div class="amt">$99</div>
+      <div class="amt">{{ totalAmount |
+        currency:'USD':'symbol-narrow':'1.0-2'}}</div>
     </div>
     <div class="promo-calculation-block">
       <div class="flex-row space-between align-items-top">
         <div>{{'CHECKOUT.TOTAL_LBL' | translate}}</div>
-        <div class="value">$99.00</div>
+        <div class="value">{{ totalAmount |
+          currency:'USD':'symbol-narrow':'1.2'}}</div>
       </div>
-      <div class="flex-row space-between align-items-top mt15">
+      <div class="flex-row space-between align-items-top mt15" *ngIf='cfpPromoCode && promoCodeDescription && reductionAmount'>
         <div>
-          <div>{{'CHECKOUT.PROMO_LBL' | translate}}</div>
-          <div class="txt-regular">SLFXMO applied!</div>
+          <div>{{'CHECKOUT.PROMO_LBL' | translate}} ({{ promoCodeDescription }})</div>
+          <div class="txt-regular">{{ cfpPromoCode }} applied!</div>
         </div>
-        <div class="value">-$74.25</div>
+        <div class="value">{{ reductionAmount |
+          currency:'USD':'symbol-narrow':'1.2'}}</div>
       </div>
       <hr>
       <div class="flex-row space-between align-items-top">
         <div>
           <div class="txt-bold">{{'CHECKOUT.PAYABLE_LBL' | translate}}</div>
-          <div class="txt-regular txt-dark-teal">{{'CHECKOUT.GST_LBL' | translate}}</div>
+          <div class="txt-regular txt-dark-teal">{{'CHECKOUT.GST_LBL' | translate:gstPercentLabel}}</div>
         </div>
         <div>
-          <div class="value"><span class="currency">SGD</span><span>$24.75</span></div>
+          <div class="value"><span class="currency">SGD</span><span>{{ paymentAmount |
+            currency:'USD':'symbol-narrow':'1.2'}}</span></div>
           <div class="paynow-logo"><img
               src="assets/images/paynow-logo.svg" /></div>
         </div>
       </div>
     </div>
     <div class="promo-code-block">
-      <div class="default-txt">{{'CHECKOUT.ENTER_PROMO_LBL' | translate}}</div>
-      <div class="flex-row space-between">
+      <div class="default-txt" *ngIf="!cfpPromoCode" (click)="goToPromoCode();">{{'CHECKOUT.ENTER_PROMO_LBL' | translate}}</div>
+      <div class="flex-row space-between"  *ngIf="cfpPromoCode && appliedPromoCode">
         <div class="valid-promo">
           <span class="valid-logo"><img src="assets/images/check-icon-green.svg" alt="" /></span>
-          <span class="pl10">NTUC Member (SLFXMO)</span>
+          <span class="pl10">{{ appliedPromoCode }}</span>
         </div>
-        <div class="remove-btn">{{'CHECKOUT.REMOVE_BTN_LBL' | translate}}</div>
+        <div class="remove-btn" (click)="removeAppliedPromoCode();">{{'CHECKOUT.REMOVE_BTN_LBL' | translate}}</div>
       </div>
     </div>
     <div class="terms">{{'CHECKOUT.AGREE' | translate}}<span (click)="openTNC($event)">{{'CHECKOUT.TERMS' | translate}}</span>.</div>
     <button type="submit" class="btn
-        btn__footer--fixed btn-primary width100"
-        >{{'CHECKOUT.PROCEED_PAYMENT' | translate}}</button>
+        btn__footer--fixed btn-primary width100" (click)="goToNext();"
+        >{{ isWaivedPromo ? ('CHECKOUT.PROCEED' | translate) : ('CHECKOUT.PROCEED_PAYMENT' | translate) }}</button>
   </div>
 </div>
