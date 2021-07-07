@@ -18,7 +18,8 @@ export function createTranslateLoader(http: HttpClient) {
         http,
         [
             { prefix: './assets/i18n/app/', suffix: '.json' },
-            { prefix: './assets/i18n/payment/', suffix: '.json' }
+            { prefix: './assets/i18n/payment/', suffix: '.json' },
+            { prefix: './assets/i18n/promo-code/', suffix: '.json' }
         ]);
 }
 
@@ -36,7 +37,8 @@ export function createTranslateLoader(http: HttpClient) {
                 useFactory: createTranslateLoader,
                 deps: [HttpClient]
             }
-        })
+        }),
+        PromoCodeModule
     ],
     declarations: [
         CheckoutComponent,

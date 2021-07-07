@@ -15,8 +15,8 @@ import { environment } from './../../environments/environment';
   providedIn: 'root'
 })
 export class PromoCodeService {
-
   private selectedPromo: any;
+  private promoDetails: any;
   public promoCodeWalletList = new BehaviorSubject([]);
   public promoWalletObservable = this.promoCodeWalletList.asObservable();
   public promoJsonList: any;
@@ -39,6 +39,14 @@ export class PromoCodeService {
     return this.selectedPromo;
   }
 
+  setPromoDetails(promoDetails){
+    this.promoDetails = promoDetails;
+  }
+  
+  getPromoDetails() {
+    return this.promoDetails;
+  }
+
   removeAppliedPromo() {
     this.usedPromo.next({});
     this.clearInput.next(true);
@@ -58,7 +66,7 @@ export class PromoCodeService {
   validatePromoCode(promoCode) {
     const payload = {
       promoCode: promoCode,
-      promoCodeCategory: appConstants.INVESTMENT_PROMO_CODE_TYPE,
+      promoCodeCategory:appConstants.INVESTMENT_PROMO_CODE_TYPE,
       profileType: PROMO_PROFILE_TYPE.PUBLIC
     };
     return this.apiService.validateInvestPromoCode(payload);
@@ -107,18 +115,21 @@ export class PromoCodeService {
   // Fetch promo list json
   fetchPromoListJSON() {
     if (this.promoJsonList) {
+      console.log(this.promoJsonList  +"promoJsonList");
       return this.promoJsonList;
     } else {
       let url = environment.promoCodeJsonUrl;
       return fetch(url)
         .then((response) => {
           this.promoJsonList = response.json();
+           console.log(this.promoJsonList  +"promoJsonList");
           return this.promoJsonList;
         })
         .catch((error) => {
           this.getMockPromoListJson();
         });
     }
+   
   }
   // Fetch app backup copy incase of failure to fetch from S3
   getMockPromoListJson() {
@@ -127,4 +138,23 @@ export class PromoCodeService {
       return this.promoJsonList;
     });
   }
+
+  checkNtucMumber(ntucForm) {
+    const payload = {
+      lastFourCharOfNricNumber: ntucForm.nricOrFin,
+      mobileNumber: ntucForm.mobileNumber,
+      dob: ntucForm.dob
+    };
+    return this.apiService.checkNtucMumber(payload);
+  }
+
+  validateCpfPromoCode(promoCode) {
+    const payload = {
+      comprehensivePromoCodeToken: promoCode,
+      promoCodeCat:appConstants.COMPREHENSIVE_PROMO_CODE_TYPE,
+      profileType: PROMO_PROFILE_TYPE.PUBLIC    
+    };
+   return this.apiService.validateCpfPromoCode(payload); 
+  }
+
 }
