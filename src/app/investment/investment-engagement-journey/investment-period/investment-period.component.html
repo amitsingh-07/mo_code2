@@ -40,7 +40,7 @@
                       <input type="text"  (keyup)="changeSlide($event)" (change)="changeSlide($event)" class="input-control" maxLength="2" 
                       [value]="personalInfoForm.controls.investmentPeriod.value" /></span></div>
                     <div>
-                      <span *ngIf="personalInfoForm.controls.investmentPeriod.value ===0">{{ 'PERSONAL_INFO.YEAR' | translate}}</span>
+                      <span *ngIf="personalInfoForm.controls.investmentPeriod.value == 0 || personalInfoForm.controls.investmentPeriod.value == 1">{{ 'PERSONAL_INFO.YEAR' | translate}}</span>
                       <span *ngIf="personalInfoForm.controls.investmentPeriod.value > 1">{{ 'PERSONAL_INFO.YEARS' | translate}}</span>
                     </div>
                 </div>

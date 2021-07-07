@@ -75,7 +75,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
   ngAfterViewInit() {
     this.piInvestmentSlider.writeValue(this.formValues.investmentPeriod);
     this.onSliderChange(this.formValues.investmentPeriod);
-    this.piInvestmentSlider.writeValue(this.formValues.investmentPeriod ? this.formValues.investmentPeriod :'0' );
+    this.piInvestmentSlider.writeValue(this.formValues.investmentPeriod);
     this.onSliderChange(this.formValues.investmentPeriod ? this.formValues.investmentPeriod : '0');
   }
 
