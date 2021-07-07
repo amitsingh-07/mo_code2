@@ -27,6 +27,7 @@ export interface IComprehensiveEnquiry {
     hasRegularSavingsPlans: boolean;
     type: string;
     isValidatedPromoCode: boolean;
+    isCFPGetStarted: boolean;
     promoCodeValidated?: boolean;
     reportStatus: string;
     stepCompleted: number;
@@ -38,6 +39,8 @@ export interface IComprehensiveEnquiry {
     isDobUpdated: boolean;
     dobPopUpEnable: boolean;
     paymentStatus:string;
+    promoCode?: string;
+    isWaivedPromo?: boolean;
 }
 export interface IPromoCode {
     comprehensivePromoCodeToken: string;
