@@ -96,6 +96,7 @@ export class PromoDetailsComponent implements OnInit {
     this.promoSvc.checkNtucMumber(ntucForm).subscribe((data) => {
       if (data.responseMessage.responseCode === 6000) {
         this.promoSvc.usedPromo.next(this.selectedPromo);
+        this.promoSvc.tostMessage.next(true);
         this.allModal.dismissAll();
         this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);            
       } else {

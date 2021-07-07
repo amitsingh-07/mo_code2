@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
 import { appConstants } from '../app.constants';
@@ -21,7 +21,8 @@ export class PromoCodeService {
   public promoWalletObservable = this.promoCodeWalletList.asObservable();
   public promoJsonList: any;
   public usedPromo = new BehaviorSubject({});
-  usedPromoObservable = this.usedPromo.asObservable();
+  public tostMessage = new Subject(); 
+  tostMessageObservable = this.usedPromo.asObservable();
   public clearInput = new BehaviorSubject(false);
 
   constructor(

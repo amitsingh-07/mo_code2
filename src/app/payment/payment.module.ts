@@ -12,6 +12,7 @@ import { PaymentModalComponent } from './payment-modal/payment-modal.component';
 import { PaymentRoutingModule } from './payment-routing.module';
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
 import { PaymentInstructionComponent } from './payment-instruction/payment-instruction.component';
+import { PromoCodeModule } from '../promo-code/promo-code.module';
 
 export function createTranslateLoader(http: HttpClient) {
     return new MultiTranslateHttpLoader(

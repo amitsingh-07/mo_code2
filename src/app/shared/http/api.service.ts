@@ -739,4 +739,19 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  checkNtucMumber(payload) {
+    return this.http.post(apiConstants.endpoint.promoCode.checkNtucMumber, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+ 
+  validateCpfPromoCode(payload) {
+    // return this.http.post(apiConstants.endpoint.promoCode.validatePromo, payload)
+    //   .pipe(
+    //     catchError((error: HttpErrorResponse) => this.handleError(error))
+    //   );
+    const url = 'assets/mock-data/promo.json';
+    return this.http.getMock(url);
+  }
 }
