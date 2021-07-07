@@ -128,7 +128,10 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
   }
 
   changeSlide($event){
-    this.piInvestmentSlider.writeValue($event.target.value);
+    const slideValue = ($event.target.value > 40) ? 40 : $event.target.value
+    this.piInvestmentSlider.writeValue(slideValue);
+    this.personalInfoForm.controls.investmentPeriod.setValue(slideValue);
+    this.onSliderChange(slideValue);
   }
   
   save(form: any) {
