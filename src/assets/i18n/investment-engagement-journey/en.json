@@ -161,8 +161,8 @@
     "PERSONAL_INFO": {
         "TITLE": "Your Investment Period",
         "STEP_1_LABEL": "Step 1",
-        "YEARS": " Years",
-        "YEAR": " Year",
+        "YEARS": " years",
+        "YEAR": " year",
         "BORN_ON": "I was born on",
         "INVESTMENT_PERIOD": "Your Investment Period",
         "HOW_MANY_YEARS": "For how many years do you want to stay invested?",

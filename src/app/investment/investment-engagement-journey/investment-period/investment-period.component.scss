@@ -29,6 +29,7 @@ app-investment-period {
     font-size: 15px;
     letter-spacing: -0.15px;
     color: $callout-txt-color;
+    bottom: 8px;
   }
 
   .time-horizon {
@@ -90,14 +91,16 @@ app-investment-period {
 
   .pointer-container {
     position: absolute;
-    bottom: -14px;
-    left: 30px;
-    left: 34px;
-    right: 0px;
+    left: 37px;
+    right: 65px;
     transform: translate(-100%, 0px);
   }
+  .personalInfoInvestmentDesc {
+    font-family: $muli-semi-bold;
+    font-size: 15px;
+    color: $slider-instruction;
+  }
 
-  .personalInfoInvestmentDesc,
   .personalInfoSliderDesc {
     font-family: $muli-italic;
     font-size: 15px;
@@ -124,10 +127,11 @@ app-investment-period {
     height: 0;
     border-left: 15px solid transparent;
     border-right: 18px solid transparent;
-    border-bottom: 20px solid $white-color;
+    border-top: 20px solid $white-color;
     right: 0px;
     left: auto;
     position: absolute;
+    bottom: -10px;
   }
 
   .callout h5 {
@@ -157,8 +161,36 @@ app-investment-period {
   }
 }
 
-
+.investmentSlider-wrapper {
+  position: relative;
+}
+.investmentSlider-period {
+  position: absolute;
+  right: 10px;
+  top: -5px;
+}
+.investmentSlider-years-box input {
+    background-color: $white-color;
+    border-radius: 6px;
+    color: $slider-instruction;
+    font-size: 24px;
+    font-family: 'Muli Bold';
+    width: 44px;
+    height: 37px;
+    text-align: center;
+    outline: none;
+    border: none;
+}
+.investmentSlider-note {
+  background-color: $white-color;
+  border-radius: 6px;
+  color: $teal-color;
+  padding: 15px;
+}
 .investmentSlider {
+  margin-top: 30px;
+  margin-right: 80px;
+  margin-bottom: 30px;
   .noUi-target {
     height: 50px !important;
     border-radius: 25px !important;
@@ -183,9 +215,9 @@ app-investment-period {
   .noUi-horizontal .noUi-handle {
     width: 63px !important;
     height: 64px !important;
-    background: url('/assets/images/owl-icon.png') no-repeat center;
+    background: url('/assets/images/new-silder-button.svg') no-repeat center;
     border: none !important;
-    right: 0px;
+    right: -24px !important;
   }
 
   .noUi-origin {

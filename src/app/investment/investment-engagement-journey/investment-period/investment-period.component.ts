@@ -75,6 +75,8 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
   ngAfterViewInit() {
     this.piInvestmentSlider.writeValue(this.formValues.investmentPeriod);
     this.onSliderChange(this.formValues.investmentPeriod);
+    this.piInvestmentSlider.writeValue(this.formValues.investmentPeriod);
+    this.onSliderChange(this.formValues.investmentPeriod ? this.formValues.investmentPeriod : '0');
   }
 
   ngOnInit() {
@@ -125,6 +127,10 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
     return x > min && x <= max;
   }
 
+  changeSlide($event){
+    this.piInvestmentSlider.writeValue($event.target.value);
+  }
+  
   save(form: any) {
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
