@@ -40,6 +40,7 @@ export class PromoCodeListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.promoSvc
     this.promoCodeStatus = PROMO_CODE_STATUS;
     this.formGrp = this.formBuilder.group({
       promoCode: ['', [Validators.required]]
@@ -81,37 +82,75 @@ export class PromoCodeListComponent implements OnInit {
       this.formGrp.controls['promoCode'].setErrors(null);
       this.showClearBtn = false;
       this.showSpinner = true;
-      this.showError = false;     
-      this.promoSvc.validatePromoCode(this.formGrp.controls['promoCode'].value).subscribe((response) => {
-        // Success
-        const responseCode = response.responseMessage['responseCode'];
-        if (responseCode === 6005) {
-          setTimeout(() => {
-            this.showSpinner = false;
-            this.showClearBtn = true;
-            this.showDetails(response['objectList'][0]);
-          }, 1200);
-        } else {
-          setTimeout(() => {
-            this.showSpinner = false;
-            this.showClearBtn = true;
-            this.showError = true;
-            // Show different error codes
-            if (responseCode === 5025) {
-              this.formGrp.controls['promoCode'].setErrors({ promoCodeAlreadyApplied: true });
-            } else if (responseCode === 5026) {
-              this.formGrp.controls['promoCode'].setErrors({ existingPromoCode: true });
-            } else if (responseCode === 5029) {
-              this.formGrp.controls['promoCode'].setErrors({ noExistingPortfolio: true });
-            } else {
-              this.formGrp.controls['promoCode'].setErrors({ invalidPromoCode: true });
-            }
-          }, 1200);
-        }
-      });
+      this.showError = false;    
+      if (this.router.url === '/payment/checkout') {
+        this.validateCpfPromoCode();
+      } else {
+        this.validateInvestPromoCode();
+      }
     }
     event.stopPropagation();
     event.preventDefault();
+    }
+
+  validateInvestPromoCode() {
+    this.promoSvc.validatePromoCode(this.formGrp.controls['promoCode'].value).subscribe((response) => {
+      // Success
+      const responseCode = response.responseMessage['responseCode'];
+      if (responseCode === 6005) {
+        setTimeout(() => {
+          this.showSpinner = false;
+          this.showClearBtn = true;
+          this.showDetails(response['objectList'][0]);
+        }, 1200);
+      } else {
+        setTimeout(() => {
+          this.showSpinner = false;
+          this.showClearBtn = true;
+          this.showError = true;
+          // Show different error codes
+          if (responseCode === 5025) {
+            this.formGrp.controls['promoCode'].setErrors({ promoCodeAlreadyApplied: true });
+          } else if (responseCode === 5026) {
+            this.formGrp.controls['promoCode'].setErrors({ existingPromoCode: true });
+          } else if (responseCode === 5029) {
+            this.formGrp.controls['promoCode'].setErrors({ noExistingPortfolio: true });
+          } else {
+            this.formGrp.controls['promoCode'].setErrors({ invalidPromoCode: true });
+          }
+        }, 1200);
+      }
+    });
+  }
+
+  validateCpfPromoCode(){
+    this.promoSvc.validateCpfPromoCode(this.formGrp.controls['promoCode'].value).subscribe((response) => {
+      // Success
+      const responseCode = response.responseMessage['responseCode'];
+      if (responseCode === 6000) {
+        setTimeout(() => {
+          this.showSpinner = false;
+          this.showClearBtn = true;
+          this.showDetails(response['objectList'][0]);
+        }, 1200);
+      } else {
+        setTimeout(() => {
+          this.showSpinner = false;
+          this.showClearBtn = true;
+          this.showError = true;
+          // Show different error codes
+          if (responseCode === 5025) {
+            this.formGrp.controls['promoCode'].setErrors({ promoCodeAlreadyApplied: true });
+          } else if (responseCode === 5026) {
+            this.formGrp.controls['promoCode'].setErrors({ existingPromoCode: true });
+          } else if (responseCode === 5029) {
+            this.formGrp.controls['promoCode'].setErrors({ noExistingPortfolio: true });
+          } else {
+            this.formGrp.controls['promoCode'].setErrors({ invalidPromoCode: true });
+          }
+        }, 1200);
+      }
+    });
   }
 
   clearPromoCode(event?) {
@@ -133,6 +172,8 @@ export class PromoCodeListComponent implements OnInit {
     }
   }
   
+
+
   navigateToWrapFees(event) {
     this.modal.dismissAll();
     this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.FEES]);

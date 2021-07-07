@@ -16,6 +16,7 @@ import { environment } from './../../environments/environment';
 })
 export class PromoCodeService {
   private selectedPromo: any;
+  private promoDetails: any;
   public promoCodeWalletList = new BehaviorSubject([]);
   public promoWalletObservable = this.promoCodeWalletList.asObservable();
   public promoJsonList: any;
@@ -38,6 +39,14 @@ export class PromoCodeService {
     return this.selectedPromo;
   }
 
+  setPromoDetails(promoDetails){
+    this.promoDetails = promoDetails;
+  }
+  
+  getPromoDetails() {
+    return this.promoDetails;
+  }
+
   removeAppliedPromo() {
     this.usedPromo.next({});
     this.clearInput.next(true);
@@ -57,7 +66,7 @@ export class PromoCodeService {
   validatePromoCode(promoCode) {
     const payload = {
       promoCode: promoCode,
-      promoCodeCategory:sessionStorage.getItem('promocodeCategory'),
+      promoCodeCategory:appConstants.INVESTMENT_PROMO_CODE_TYPE,
       profileType: PROMO_PROFILE_TYPE.PUBLIC
     };
     return this.apiService.validateInvestPromoCode(payload);
@@ -129,6 +138,7 @@ export class PromoCodeService {
       return this.promoJsonList;
     });
   }
+
   checkNtucMumber(ntucForm) {
     const payload = {
       lastFourCharOfNricNumber: ntucForm.nricOrFin,
@@ -136,6 +146,15 @@ export class PromoCodeService {
       dob: ntucForm.dob
     };
     return this.apiService.checkNtucMumber(payload);
+  }
+
+  validateCpfPromoCode(promoCode) {
+    const payload = {
+      comprehensivePromoCodeToken: promoCode,
+      promoCodeCat:appConstants.COMPREHENSIVE_PROMO_CODE_TYPE,
+      profileType: PROMO_PROFILE_TYPE.PUBLIC    
+    };
+   return this.apiService.validateCpfPromoCode(payload); 
   }
 
 }

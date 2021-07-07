@@ -3,8 +3,8 @@ import {
 } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
-import { SignUpService } from '../../sign-up/sign-up.service';
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { PromoCodeService } from '../promo-code.service';
 
 @Component({
   selector: 'app-ntuc-member',
@@ -13,36 +13,24 @@ import { SignUpService } from '../../sign-up/sign-up.service';
   encapsulation: ViewEncapsulation.None
 })
 export class NtucMemberComponent implements OnInit {
-  ntucMumberForm: FormGroup;
+  ntucMumberForm: FormGroup; 
+  promo : any;  
   @Output() ntucMember: EventEmitter<any> = new EventEmitter();
-  dobFormat: any;
+ 
   constructor(
     public activeModal: NgbActiveModal,
-    private signUpService: SignUpService
-  ) {
+    private promoSvc: PromoCodeService) {
   }
-  ngOnInit() {
-    const userInfo = this.signUpService.getUserProfileInfo();
-    debugger;
-    const dob = this.constructDate(userInfo.dateOfBirth);
+  ngOnInit() {    
+    this.promo = this.promoSvc.getSelectedPromo();
     this.ntucMumberForm = new FormGroup({
-      mobileNumber: new FormControl(userInfo.mobileNumber),
-      dob: new FormControl(dob),
+      mobileNumber: new FormControl(this.promo.mobileNo),
+      dob: new FormControl(this.promo.DateOfBirth),
       nricOrFin: new FormControl('', [Validators.required, Validators.pattern(RegexConstants.nricOrFinLastFourCharacters)])
-
     });
   }
 
-  constructDate(dob) {
-    this.dobFormat = dob;
-    if (dob) {
-      const dateArr = dob.split('-');
-      if (dateArr.length === 3) {
-        this.dobFormat = dateArr[2] + '/' + dateArr[1] + '/' + dateArr[0];
-      }
-    }
-    return this.dobFormat;
-  }
+ 
   goToCheckOut(form) {
     this.ntucMember.emit(form.getRawValue());
   }

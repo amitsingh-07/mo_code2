@@ -731,12 +731,24 @@ export class ApiService {
       catchError((error: HttpErrorResponse) => this.handleError(error))
     );
   }
-
-  // NTUC MUMBER
+  
   checkNtucMumber(payload) {
-    return this.http.post(apiConstants.endpoint.promoCode.checkNtucMumber, payload)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
+    // return this.http.post(apiConstants.endpoint.promoCode.checkNtucMumber, payload)
+    //   .pipe(
+    //     catchError((error: HttpErrorResponse) => this.handleError(error))
+    //   );
+    const url = 'assets/mock-data/promo1.json';
+    return this.http.getMock(url);
   }
+
+  validateCpfPromoCode(payload) {
+    // return this.http.post(apiConstants.endpoint.promoCode.validatePromo, payload)
+    //   .pipe(
+    //     catchError((error: HttpErrorResponse) => this.handleError(error))
+    //   );
+    const url = 'assets/mock-data/promo.json';
+    return this.http.getMock(url);
+  }
+  
+
 }
