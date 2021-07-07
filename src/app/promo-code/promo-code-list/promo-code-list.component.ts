@@ -8,9 +8,8 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 import { PromoDetailsComponent } from './../promo-details/promo-details.component';
 import { PromoCodeService } from './../promo-code.service';
 import { PROMO_CODE_STATUS } from './../promo-code.constants';
-
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './../../investment/manage-investments/manage-investments-routes.constants';
-import { appConstants } from '../../app.constants';
+
 
 @Component({
   selector: 'app-promo-code-list',

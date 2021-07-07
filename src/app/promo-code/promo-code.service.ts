@@ -21,8 +21,8 @@ export class PromoCodeService {
   public promoWalletObservable = this.promoCodeWalletList.asObservable();
   public promoJsonList: any;
   public usedPromo = new BehaviorSubject({});
-  public tostMessage = new Subject(); 
-  tostMessageObservable = this.usedPromo.asObservable();
+  usedPromoObservable = this.usedPromo.asObservable();
+  public tostMessage = new Subject();
   public clearInput = new BehaviorSubject(false);
 
   constructor(

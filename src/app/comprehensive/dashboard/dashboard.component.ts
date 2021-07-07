@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { PAYMENT_ROUTE_PATHS } from 'src/app/payment/payment-routes.constants';
 import { AppService } from '../../app.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';

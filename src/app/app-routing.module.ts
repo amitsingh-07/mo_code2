@@ -80,9 +80,9 @@ const routes: Routes = [
       },
       {
         path: 'payment',
-        loadChildren: () => import('./payment/payment.module').then(m => m.PaymentModule)
-        // canActivate: [PaymentEnableGuard],
-        // canActivateChild: [PaymentChildEnableGuard]
+        loadChildren: () => import('./payment/payment.module').then(m => m.PaymentModule),
+        canActivate: [PaymentEnableGuard],
+        canActivateChild: [PaymentChildEnableGuard]
       },
       {
         path: 'promo-code',
