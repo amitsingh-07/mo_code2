@@ -731,4 +731,12 @@ export class ApiService {
       catchError((error: HttpErrorResponse) => this.handleError(error))
     );
   }
+
+  // fetch cfp checkout page details
+  getPaymentCheckoutCfpDetails(payload) {
+    return this.http.post(apiConstants.endpoint.payment.getPaymentCheckoutCfpDetails, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

@@ -39,7 +39,6 @@ export class ComprehensiveComponent implements OnInit {
   userDetails: IMyProfile;
   promoCodeForm: FormGroup;
   promoCodeSuccess: string;
-  promoCodeValidated: boolean;
   promoValidated: string;
   productAmount = COMPREHENSIVE_CONST.PROMOTION.AMOUNT;
   getComprehensiveSummaryDashboard: any;
@@ -84,7 +83,6 @@ export class ComprehensiveComponent implements OnInit {
     this.navbarService.setNavbarComprehensive(true);
     this.footerService.setFooterVisibility(false);
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
-    this.buildPromoCodeForm();
     if (this.authService.isSignedUser()) {
       const action = this.appService.getAction();
       this.loaderService.showLoader({ title: this.fetchData, autoHide: false });
@@ -103,9 +101,7 @@ export class ComprehensiveComponent implements OnInit {
           // tslint:disable-next-line: max-line-length
           this.getComprehensiveSummaryDashboard = this.cmpService.filterDataByInput(dashboardData.objectList, 'type', COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
           if (this.getComprehensiveSummaryDashboard !== '') {
-            if (action === COMPREHENSIVE_CONST.PROMO_CODE.GET) {
-              this.getPromoCode();
-            } else if (action === COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE) {
+            if (action === COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE) {
               this.getStarted();
             } else if (!getCurrentVersionType) {
               this.redirect();
@@ -114,12 +110,8 @@ export class ComprehensiveComponent implements OnInit {
                 this.loaderService.hideLoaderForced();
               }, 500);
             }
-            this.getComprehensiveSummaryDashboard.isValidatedPromoCode ? this.promoCodeValidated = true :
-              this.promoCodeValidated = false;
           } else {
-            if (action === COMPREHENSIVE_CONST.PROMO_CODE.GET) {
-              this.getPromoCode();
-            } else if (action === COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE) {
+            if (action === COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE) {
               this.getStarted();
             } else {
               setTimeout(() => {
@@ -128,9 +120,7 @@ export class ComprehensiveComponent implements OnInit {
             }
           }
         } else {
-          if (action === COMPREHENSIVE_CONST.PROMO_CODE.GET) {
-            this.getPromoCode();
-          } else if (action === COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE) {
+          if (action === COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE) {
             this.getStarted();
           } else {
             setTimeout(() => {
@@ -159,11 +149,11 @@ export class ComprehensiveComponent implements OnInit {
     const redirectUrl = this.signUpService.getRedirectUrl();
     if (this.getComprehensiveSummaryDashboard &&
       this.getComprehensiveSummaryDashboard.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED &&
-      (this.getComprehensiveSummaryDashboard.isValidatedPromoCode)) {
+      (this.getComprehensiveSummaryDashboard.isCFPGetStarted)) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
-    } else if (redirectUrl && (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isValidatedPromoCode)) {
+    } else if (redirectUrl && (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isCFPGetStarted)) {
       this.router.navigate([redirectUrl]);
-    } else if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isValidatedPromoCode) {
+    } else if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isCFPGetStarted) {
       this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((data: any) => {
         if (data && data.objectList[0]) {
           this.cmpService.setComprehensiveSummary(data.objectList[0]);
@@ -177,30 +167,19 @@ export class ComprehensiveComponent implements OnInit {
     }, 500);
   }
 
-  buildPromoCodeForm() {
-    this.promoCodeForm = this.formBuilder.group({
-      comprehensivePromoCodeToken: ["", [Validators.required, Validators.pattern(RegexConstants.SixDigitPromo)]]
-    });
-  }
   getStarted() {
     this.appService.setAction(COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE);
     this.cmpService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
-    if (this.promoCodeForm.value.comprehensivePromoCodeToken !== '') {
-      this.appService.setPromoCode(this.promoCodeForm.value.comprehensivePromoCodeToken);
-    }
-
     if (this.authService.isSignedUser()) {
       const promoCode = {
-        sessionId: this.authService.getSessionId(),
-        comprehensivePromoCodeToken: this.appService.getPromoCode(),
-        promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE
+        sessionId: this.authService.getSessionId()
       };
-      if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isValidatedPromoCode) {
+      if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isCFPGetStarted) {
         this.redirect();
       } else {
         this.loaderService.showLoader({ title: this.loading, autoHide: false });
-        this.comprehensiveApiService.ValidatePromoCode(promoCode).subscribe((data: any) => {
-          if (data && data.objectList[0].validatePromoCode) {
+        this.comprehensiveApiService.generateComprehensiveEnquiry(promoCode).subscribe((data: any) => {
+          if (data && data.objectList[0].isCFPGetStarted) {
             this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((summaryData: any) => {
               if (summaryData && summaryData.objectList[0]) {
                 this.cmpService.setComprehensiveSummary(summaryData.objectList[0]);
@@ -219,36 +198,7 @@ export class ComprehensiveComponent implements OnInit {
       this.showLoginOrSignUpModal();
     }
   }
-  showSuccessPopup() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = '';
-    ref.componentInstance.promoSuccessMsg = this.promoCodeSuccess;
-    ref.componentInstance.email = this.signUpService.getUserProfileInfo().emailAddress;
-    ref.componentInstance.promoSuccess = true;
-  }
-
-  getPromoCode() {
-    this.appService.setAction(COMPREHENSIVE_CONST.PROMO_CODE.GET);
-    this.cmpService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
-    if (this.authService.isSignedUser()) {
-      if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isValidatedPromoCode) {
-        this.redirect();
-      } else {
-        this.comprehensiveApiService.getPromoCode().subscribe((data) => {
-          setTimeout(() => {
-            this.loaderService.hideLoaderForced();
-          }, 500);
-          this.showSuccessPopup();
-
-        }, (err) => {
-
-        });
-      }
-
-    } else {
-      this.showLoginOrSignUpModal();
-    }
-  }
+   
   showLoginOrSignUpModal() {
     this.cmpService.clearFormData();
     this.cmpService.setStartingPage(APP_ROUTES.COMPREHENSIVE);
@@ -263,6 +213,7 @@ export class ComprehensiveComponent implements OnInit {
     return (new Date() >= new Date(START_TIME)
       && new Date() <= new Date(END_TIME));
   }
+
   getProductAmount() {
     const payload = { productType: COMPREHENSIVE_CONST.VERSION_TYPE.FULL };
     this.comprehensiveApiService.getProductAmount(payload).subscribe((data: any) => {
@@ -271,15 +222,6 @@ export class ComprehensiveComponent implements OnInit {
         this.productAmount = !this.includingGst ? data.objectList[0].totalAmount : data.objectList[0].price;
       }
     });
-  }
-
-  checkDate() {
-    const startDateTime = new Date(COMPREHENSIVE_CONST.NTUC_PROMO_DATE);
-    if (Date.now() >= startDateTime.valueOf()) {
-      return true;
-    } else {
-      return false;
-    }
   }
   
 }

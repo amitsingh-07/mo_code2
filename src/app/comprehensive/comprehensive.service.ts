@@ -979,7 +979,7 @@ export class ComprehensiveService {
           case 0:
             if (
               !cmpSummary.comprehensiveEnquiry.enquiryId ||
-              !cmpSummary.comprehensiveEnquiry.isValidatedPromoCode
+              !cmpSummary.comprehensiveEnquiry.isCFPGetStarted
             ) {
               accessibleUrl = COMPREHENSIVE_BASE_ROUTE;
             }
@@ -2693,5 +2693,13 @@ export class ComprehensiveService {
       uin: uin
     };
     return this.apiService.validateUin(payload);
+  }
+  getCfpPromoCode() {
+    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
+      .promoCode;
+  }
+  getWaivedPromo() {
+    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
+      .isWaivedPromo;
   }
 }

@@ -426,6 +426,10 @@
             "COMPREHENSIVE_REPORT_ERROR_MSG": "We faced an error when generating your report. Please click on “Make Changes” to generate a new report.",
             "COMPREHENSIVE_PAYMENT_INSTRUCTION": "Payment Instructions",
             "COMPREHENSIVE_PLANNING_SUBMITTED_PAYMENT": "Your report will be ready soon! Follow the payment instructions to make payment.",
+            "PAGE_TITLE": "Payment Instructions",
+            "PAYMENT_SUMMARY": "Your report will be ready within the next 3 working days after payment is completed.",
+            "PAYMENT_SUMMARY_SUBLBL":"Once it is ready, we will notify you via email at ",
+            "PAYABLE_LBL": "Payable Amount",
             "TRANSFER_INSTRUCTION": {
                 "TITLE": "Payment Instructions",
                 "DESCRIPTION": "You may do a <b>Bank Transfer</b> or <b>PayNow</b> to make payment.",
@@ -491,7 +495,8 @@
                             "ALT_STEPS": "Alternatively, follow these steps to pay by entering UEN number."
                         }
                     }
-                }
+                },
+                "BACK_TO_DASHBOARD": "Back To Dashboard"
             },
             "INCL_GST":" (incl. GST)"
         }
