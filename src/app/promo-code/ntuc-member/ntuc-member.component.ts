@@ -26,7 +26,7 @@ export class NtucMemberComponent implements OnInit {
     this.ntucMumberForm = new FormGroup({
       mobileNumber: new FormControl(this.promo.mobileNo),
       dob: new FormControl(this.promo.DateOfBirth),
-      nricOrFin: new FormControl('', [Validators.required, Validators.pattern(RegexConstants.nricOrFinLastFourCharacters)])
+      nricOrFin: new FormControl('', [Validators.required,Validators.pattern(RegexConstants.nricOrFinLastFourCharacters)])
     });
   }
 

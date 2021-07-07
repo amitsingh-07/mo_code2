@@ -40,28 +40,33 @@ export class PromoCodeListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.promoSvc
     this.promoCodeStatus = PROMO_CODE_STATUS;
     this.formGrp = this.formBuilder.group({
       promoCode: ['', [Validators.required]]
     });
-    this.promoSvc.getPromoWallet().subscribe((response)=> {
-      if (response && response['objectList']) {
-        this.promoArray = response['objectList'];
-        this.promoSvc.promoCodeWalletList.next(response['objectList']);
-      } 
-      // Error
-    });
+    // 
+    if (this.router.url !== '/payment/checkout') {
+      this.getPromoWallet();  // i add condition
+    }
     // Fetch the promo list json
     this.promoSvc.fetchPromoListJSON();
     // Set the new promo list when any changes to the promo wallet
-    this.promoSvc.promoWalletObservable.subscribe((data)=>{
+    this.promoSvc.promoWalletObservable.subscribe((data) => {
       this.promoArray = data;
     });
 
-    this.promoSvc.clearInput.subscribe((data)=>{
+    this.promoSvc.clearInput.subscribe((data) => {
       this.clearPromoCode();
     })
+  }
+  getPromoWallet() {
+    this.promoSvc.getPromoWallet().subscribe((response) => {
+      if (response && response['objectList']) {
+        this.promoArray = response['objectList'];
+        this.promoSvc.promoCodeWalletList.next(response['objectList']);
+      }
+      // Error
+    });
   }
 
   onKeyupEvent(event) {
@@ -82,7 +87,7 @@ export class PromoCodeListComponent implements OnInit {
       this.formGrp.controls['promoCode'].setErrors(null);
       this.showClearBtn = false;
       this.showSpinner = true;
-      this.showError = false;    
+      this.showError = false;
       if (this.router.url === '/payment/checkout') {
         this.validateCpfPromoCode();
       } else {
@@ -91,7 +96,7 @@ export class PromoCodeListComponent implements OnInit {
     }
     event.stopPropagation();
     event.preventDefault();
-    }
+  }
 
   validateInvestPromoCode() {
     this.promoSvc.validatePromoCode(this.formGrp.controls['promoCode'].value).subscribe((response) => {
@@ -123,7 +128,7 @@ export class PromoCodeListComponent implements OnInit {
     });
   }
 
-  validateCpfPromoCode(){
+  validateCpfPromoCode() {
     this.promoSvc.validateCpfPromoCode(this.formGrp.controls['promoCode'].value).subscribe((response) => {
       // Success
       const responseCode = response.responseMessage['responseCode'];
@@ -171,7 +176,7 @@ export class PromoCodeListComponent implements OnInit {
       event.preventDefault();
     }
   }
-  
+
 
 
   navigateToWrapFees(event) {
@@ -183,8 +188,8 @@ export class PromoCodeListComponent implements OnInit {
 
   checkError() {
     const formError = this.formGrp.controls['promoCode']['errors'];
-    if (formError && (formError['invalidPromoCode'] || formError['promoCodeAlreadyApplied'] || 
-    formError['existingPromoCode'] || formError['noExistingPortfolio'])) {
+    if (formError && (formError['invalidPromoCode'] || formError['promoCodeAlreadyApplied'] ||
+      formError['existingPromoCode'] || formError['noExistingPortfolio'])) {
       return true;
     } else {
       return false;

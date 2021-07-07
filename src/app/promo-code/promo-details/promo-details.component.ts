@@ -59,27 +59,34 @@ export class PromoDetailsComponent implements OnInit {
   }
 
   usePromo(e) {
-    if (this.selectedPromo['isNTUCPromocode'] && this.selectedPromo['isSPOrRobo2Customer'] === false
-      && this.selectedPromo['isNTUCVerified'] === false) {
-      const ref = this.allModal.open(NtucMemberComponent,
-        { centered: true, windowClass: 'cfm-overwrite-modal', backdrop: 'static' });
-      ref.componentInstance.ntucMember.subscribe((form) => {
-        ref.close();
-        this.checkNtucMumber(form);
-      });
-    } else if (this.selectedPromo['isNTUCPromocode'] && this.selectedPromo['isSPOrRobo2Customer']
-      && this.selectedPromo['isNTUCVerified'] === false) {
-      this.showErrorPopup();
+    if (this.router.url === '/payment/checkout') {
+      if (this.selectedPromo['isNTUCPromocode'] && this.selectedPromo['isSPOrRobo2Customer'] === false
+        && this.selectedPromo['isNTUCVerified'] === false) {
+        const ref = this.allModal.open(NtucMemberComponent,
+          { centered: true, windowClass: 'cfm-overwrite-modal', backdrop: 'static' });
+        ref.componentInstance.ntucMember.subscribe((form) => {
+          ref.close();
+          this.checkNtucMumber(form);
+        });
+      } else if (this.selectedPromo['isNTUCPromocode'] && this.selectedPromo['isSPOrRobo2Customer']
+        && this.selectedPromo['isNTUCVerified'] === false) {
+        this.showErrorPopup();
+      } else{
+         this.allModal.dismissAll();
+      }
     }
-    else if (this.selectedPromo['isWrapFeeRelated'] === 'Y') {
-      const existingWrapFeePromo = this.promoSvc.checkForExistingWrapFee();
-      if (existingWrapFeePromo) {
-        this.openOverwriteModal(existingWrapFeePromo);
-      } else {
+    else {
+      if (this.selectedPromo['isWrapFeeRelated'] === 'Y') {
+        const existingWrapFeePromo = this.promoSvc.checkForExistingWrapFee();
+        if (existingWrapFeePromo) {
+          this.openOverwriteModal(existingWrapFeePromo);
+        } else {
+          this.checkPath();
+        }
+      }
+      else {
         this.checkPath();
       }
-    } else {
-      this.checkPath();
     }
     e.preventDefault();
     e.stopPropagation();
@@ -88,9 +95,9 @@ export class PromoDetailsComponent implements OnInit {
   checkNtucMumber(ntucForm) {
     this.promoSvc.checkNtucMumber(ntucForm).subscribe((data) => {
       if (data.responseMessage.responseCode === 6000) {
+        this.promoSvc.usedPromo.next(this.selectedPromo);
         this.allModal.dismissAll();
-        this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]); 
-        this.promoSvc.usedPromo.next(this.selectedPromo);     
+        this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);            
       } else {
         this.allModal.dismissAll();
         this.showErrorPopup();
