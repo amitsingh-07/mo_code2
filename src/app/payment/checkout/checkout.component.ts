@@ -21,6 +21,8 @@ import { COMPREHENSIVE_ROUTE_PATHS } from '../../comprehensive/comprehensive-rou
 import { FooterService } from '../../shared/footer/footer.service';
 import { PAYMENT_ROUTE_PATHS } from '../payment-routes.constants';
 import { PromoCodeService } from 'src/app/promo-code/promo-code.service';
+import { PromoDetailsComponent } from 'src/app/promo-code/promo-details/promo-details.component';
+import { PromoCodeModalComponent } from 'src/app/promo-code/promo-code-modal/promo-code-modal.component';
 
 @Component({
   selector: 'app-checkout',
@@ -85,7 +87,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    sessionStorage.setItem('promocodeCategory', "COMPRE");
   }
 
   ngAfterViewInit() {
@@ -306,7 +307,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   goToNext() {
-    sessionStorage.removeItem('promocodeCategory');
     const reportStatus = this.comprehensiveService.getReportStatus();
     if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
@@ -372,7 +372,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }, 3000);
   }
 
-  goToPromoCode() {
-    this.router.navigate(['/promo-code']);
+  goToPromoCode(e) {  
+    this.modal.open(PromoCodeModalComponent, { centered: true });   
+      e.preventDefault();
+      e.stopPropagation();    
   }
 }

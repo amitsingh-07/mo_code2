@@ -47,7 +47,7 @@
       </div>
     </div>
     <div class="promo-code-block">
-      <div class="default-txt" *ngIf="!cfpPromoCode" (click)="goToPromoCode();">{{'CHECKOUT.ENTER_PROMO_LBL' |
+      <div class="default-txt" *ngIf="!cfpPromoCode" (click)="goToPromoCode($event);">{{'CHECKOUT.ENTER_PROMO_LBL' |
         translate}}</div>
       <div class="flex-row space-between" *ngIf="cfpPromoCode && appliedPromoCode">
         <div class="valid-promo">
@@ -56,7 +56,6 @@
         </div>
         <div class="remove-btn" (click)="removeAppliedPromoCode();">{{'CHECKOUT.REMOVE_BTN_LBL' | translate}}</div>
       </div>
-
       <div class="terms">{{'CHECKOUT.AGREE' | translate}}<span (click)="openTNC($event)">{{'CHECKOUT.TERMS' |
           translate}}</span>.</div>
       <button type="submit" class="btn

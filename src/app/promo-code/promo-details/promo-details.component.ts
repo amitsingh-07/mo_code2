@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
 import { PromoCodeService } from '../promo-code.service';
-import { PROMO_CODE_STATUS, PROMO_ROUTE } from '../promo-code.constants';
+import { PAYMENT_CHECKOUT, PROMO_CODE_STATUS, PROMO_ROUTE } from '../promo-code.constants';
 import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
@@ -59,7 +59,7 @@ export class PromoDetailsComponent implements OnInit {
   }
 
   usePromo(e) {
-    if (sessionStorage.getItem('promocodeCategory') === 'COMPRE') {
+    if (this.router.url === PAYMENT_CHECKOUT) {
       if (this.selectedPromo['isNTUCPromocode'] && this.selectedPromo['isSPOrRobo2Customer'] === false
         && this.selectedPromo['isNTUCVerified'] === false) {
         const ref = this.allModal.open(NtucMemberComponent,

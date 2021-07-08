@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { PromoDetailsComponent } from './../promo-details/promo-details.component';
 import { PromoCodeService } from './../promo-code.service';
-import { PROMO_CODE_STATUS } from './../promo-code.constants';
+import { PAYMENT_CHECKOUT, PROMO_CODE_STATUS } from './../promo-code.constants';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './../../investment/manage-investments/manage-investments-routes.constants';
 
 
@@ -44,7 +44,7 @@ export class PromoCodeListComponent implements OnInit {
       promoCode: ['', [Validators.required]]
     });
     // 
-    if (sessionStorage.getItem('promocodeCategory') !== 'COMPRE') {
+    if (this.router.url !== PAYMENT_CHECKOUT) {
       this.getPromoWallet();  // i add condition
     }
     // Fetch the promo list json
@@ -87,7 +87,7 @@ export class PromoCodeListComponent implements OnInit {
       this.showClearBtn = false;
       this.showSpinner = true;
       this.showError = false;    
-      if (sessionStorage.getItem('promocodeCategory') === 'COMPRE') {
+       if (this.router.url === PAYMENT_CHECKOUT) {
         this.validateCpfPromoCode();
       } else {
         this.validateInvestPromoCode();
