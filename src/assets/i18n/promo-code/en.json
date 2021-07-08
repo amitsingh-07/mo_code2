@@ -40,5 +40,22 @@
   "PROMO_CODE_ERROR": {
     "ERR_TITLE": "Error",
     "ERR_MSG": "Error Applying Promo Code"
+  },
+  "NTUC_PROMO_MODAL":{
+    "TITLE": "Use NTUC Member Promo",
+    "DESC": "<p>If your member mobile number is not updated, please update it via NTUC <span>e-services</span> and apply promo code again.</p>",
+    "MOBILE_LBL": "Mobile Number",
+    "DOB_LBL": "Date of Birth",
+    "NRIC_LBL": "Last 4 Characters of NRIC/FIN",
+    "PLACEHOLDER_NRIC_LBL": "Enter Last 4 Chars",
+    "ERROR_MSG": "If your NRIC/FIN is S1234567A, the last 4 characters should be 567A,",
+    "BTN_LBL": "Confirm"
+  },
+  "NTUC_MEMBER_PROMO": {
+    "ERROR": {
+      "TITLE": "Sorry, we couldn’t find your NTUC Member",
+      "DESC": "<p>If your member mobile number is not updated, please update it via NTUC <span>e-services</span> and apply promo code again.</p><p>If you are under the <span class='txt-bold'>NTUC Family Membership</span>, please fill your details in <a class='hyperlink_color' href='https://www.moneyowl.com.sg/ntuc-family-members/' target='_blank'>this form</a>. Our customer service team will get back to you in 2 working days to provide you with a special promo code to proceed.</p><p>For other enquiries, you may wish to contact us at <span>enquiries@moneyowl.com.sg</span>.</p>",
+      "BTN_LBL": "Back to Checkout"
+    }
   }
 }

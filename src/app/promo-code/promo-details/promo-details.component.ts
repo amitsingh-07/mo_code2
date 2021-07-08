@@ -110,10 +110,10 @@ export class PromoDetailsComponent implements OnInit {
   }
 
   showErrorPopup() {
-    const ref = this.allModal.open(ModelWithButtonComponent, { centered: true, windowClass: 'cfm-overwrite-modal', backdrop: 'static' });
-    ref.componentInstance.errorTitle = "Sorry, we couldn’t find your NTUC Member";
-    ref.componentInstance.errorMessage = "If your member mobile number is not updated, please update it via NTUC e-services and apply promo code again. For other enquiries, you may wish to contact us at enquiries@moneyowl.com.sg.";
-    ref.componentInstance.primaryActionLabel = 'Back to Checkout';
+    const ref = this.allModal.open(ModelWithButtonComponent, { centered: true, windowClass: 'ntuc-promo-error', backdrop: 'static' });
+    ref.componentInstance.errorTitle = this.translate.instant('NTUC_MEMBER_PROMO.ERROR.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('NTUC_MEMBER_PROMO.ERROR.DESC');
+    ref.componentInstance.primaryActionLabel = this.translate.instant('NTUC_MEMBER_PROMO.ERROR.BTN_LBL');
     ref.componentInstance.primaryAction.subscribe(() => {
       this.allModal.dismissAll();
       this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);
