@@ -169,12 +169,16 @@ app-investment-period {
   right: 10px;
   top: -5px;
 }
+.investmentSlider-years-box + div {
+  font-size: 18px;
+  text-align: center;
+}
 .investmentSlider-years-box input {
     background-color: $white-color;
     border-radius: 6px;
     color: $slider-instruction;
     font-size: 24px;
-    font-family: 'Muli Bold';
+    font-family: 'Muli Extra Bold';
     width: 44px;
     height: 37px;
     text-align: center;
@@ -192,7 +196,7 @@ app-investment-period {
   margin-right: 80px;
   margin-bottom: 30px;
   .noUi-target {
-    height: 50px !important;
+    height: 35px !important;
     border-radius: 25px !important;
   }
 
@@ -218,6 +222,7 @@ app-investment-period {
     background: url('/assets/images/new-silder-button.svg') no-repeat center;
     border: none !important;
     right: -24px !important;
+    top: -12px !important;
   }
 
   .noUi-origin {
