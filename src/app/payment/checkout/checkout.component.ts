@@ -89,9 +89,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   ngAfterViewInit() {
+    this.loaderService.showLoader({ title: this.loading, autoHide: false });
     this.promoCodeService.tostMessage.subscribe((showTostMessage) => {
       if (showTostMessage) {
-        this.showCopyToast();
+        this.promoCodeService.getCpfPromoCodeObservable.subscribe((promoCode) => {
+          this.getCheckoutDetails(promoCode);
+          this.showCopyToast();
+        });
       }
     });
   }
@@ -247,8 +251,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     });
   }
 
-  getCheckoutDetails() {  
-    const payload = { comprehensivePromoCodeToken: null, promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE };
+  getCheckoutDetails(promoCode) {  
+    const payload = { comprehensivePromoCodeToken: promoCode, promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE };
     this.paymentService.getPaymentCheckoutCfpDetails(payload).subscribe((data: any) => {
       this.loaderService.hideLoaderForced();
       if (data && data.objectList) {
@@ -280,7 +284,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         } else if (!this.comprehensiveService.checkResultData()) {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
         } else if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
-          this.getCheckoutDetails();
+          this.getCheckoutDetails(this.comprehensiveService.getCfpPromoCode());
         } else {
           this.backToDashboard();
         }
