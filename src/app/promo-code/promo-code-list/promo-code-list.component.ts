@@ -44,7 +44,7 @@ export class PromoCodeListComponent implements OnInit {
       promoCode: ['', [Validators.required]]
     });
     // 
-    if (sessionStorage.getItem('promocodeCategory') === 'COMPRE') {
+    if (sessionStorage.getItem('promocodeCategory') !== 'COMPRE') {
       this.getPromoWallet();  // i add condition
     }
     // Fetch the promo list json

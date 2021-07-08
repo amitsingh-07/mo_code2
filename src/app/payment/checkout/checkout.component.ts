@@ -306,6 +306,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   goToNext() {
+    sessionStorage.removeItem('promocodeCategory');
     const reportStatus = this.comprehensiveService.getReportStatus();
     if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
