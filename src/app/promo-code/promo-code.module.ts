@@ -13,6 +13,7 @@ import { PromoDetailsComponent } from './promo-details/promo-details.component';
 import { PromoCodeSelectComponent } from './promo-code-select/promo-code-select.component';
 import { PromoCodeModalComponent } from './promo-code-modal/promo-code-modal.component';
 import { PromoCodeRoutingModule } from './promo-code-routing.module';
+import { NtucMemberComponent } from './ntuc-member/ntuc-member.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new MultiTranslateHttpLoader(
@@ -45,7 +46,8 @@ export function createTranslateLoader(http: HttpClient) {
         PromoCodeListComponent,
         PromoDetailsComponent,
         PromoCodeSelectComponent,
-        PromoCodeModalComponent
+        PromoCodeModalComponent,
+        NtucMemberComponent
     ],
     entryComponents: [],
     providers: []
