@@ -2694,4 +2694,12 @@ export class ComprehensiveService {
     };
     return this.apiService.validateUin(payload);
   }
+  getCfpPromoCode() {
+    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
+      .promoCode;
+  }
+  getWaivedPromo() {
+    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
+      .isWaivedPromo;
+  }
 }
