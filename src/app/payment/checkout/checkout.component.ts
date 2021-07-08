@@ -235,7 +235,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   getCheckoutDetails() {  
-    this.gstPercentLabel = { gstPercent: 7};
+    /*this.gstPercentLabel = { gstPercent: 7};
     this.totalAmount = 99;
     this.paymentAmount = 24.75;
     this.reductionAmount = -74.25;
@@ -243,14 +243,14 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.cfpPromoCode = 'SLFXMO';
     this.promoCodeDescription = '75% off';
     this.appliedPromoCode = 'NTUC Member (SLFXMO)';
-    this.isWaivedPromo = false;    
+    this.isWaivedPromo = false;   */ 
     this.showCopyToast();
     const payload = { comprehensivePromoCodeToken: null, promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE };
     this.paymentService.getPaymentCheckoutCfpDetails(payload).subscribe((data: any) => {
       this.loaderService.hideLoaderForced();
-      if (data && data.objectList[0]) {
+      if (data && data.objectList) {
         console.log(data);
-        const checkOutData = data.objectList[0];
+        const checkOutData = data.objectList;
         this.gstPercentLabel = { gstPercent: checkOutData.pricingDetails.gstPercentage};
         this.totalAmount = checkOutData.pricingDetails.totalAmount;
         this.paymentAmount = checkOutData.pricingDetails.payableAmount;
@@ -274,7 +274,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         const reportStatus = this.comprehensiveService.getReportStatus();
         this.loaderService.hideLoaderForced();
         if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
-          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
+          this.backToDashboard();
         } else if (!this.comprehensiveService.checkResultData()) {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
         } else if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW){          
