@@ -1,0 +1,83 @@
+<div class="ntuc-promo-modal">
+  <form id="ntucMumberForm" name="ntucMumberForm" [formGroup]="ntucMumberForm">
+    <div class="modal-header">
+      <div class="modal-title popup-header-icon">
+        <img src="assets/images/owl.svg" />
+      </div>
+    </div>
+    <div class="modal-body white-bg">
+      <div class="modal-body-title">Use NTUC Member Promo</div>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true"></span>
+      </button>
+      <div class="modal-body-message">
+        <p>If your member mobile number is not updated, please update it via NTUC <span>e-services</span> and apply promo code again.</p>
+        <p>For other enquiries, you may wish to contact us at <span>enquiries@moneyowl.com.sg</span>.</p>
+        </div>
+      <div class="form-group">
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <label id="editInvestment-oneTimeInv-lbl" for="editInvestment-oneTimeInv-txt">Mobile Number</label>
+          </div>
+          <div class="flex-col-7">
+            <div name="mobileNumber">
+              <input type="number" maxlength="8" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber"
+                class="form-control" required disabled>
+            </div>
+          </div>
+        </div>
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <label for="dob" id="invPersInfoLbl7">Date of Birth</label>
+          </div>
+          <div class="flex-col-7">
+            <div class="datepicker-control">
+              <div class="input-group date-picker mb0">
+                <input class="form-control" formControlName="dob" name="dp" ngbDatepicker id="invPersInfoInpt7"
+                  disabled>
+                <div class="input-group-append">
+                  <button [disabled]="!ntucMumberForm.get('dob').enabled" class="btn btn-primary" type="button"
+                    id="invPersInfoBtn1">
+                    <img class="date-picker-image--valid" id="invPersInfoImg1"
+                      *ngIf="ntucMumberForm.get('dob').valid || ntucMumberForm.get('dob').pristine"
+                      src="assets/images/calendar-normal.svg" />
+                    <img class="date-picker-image--invalid" id="invPersInfoImg1"
+                      *ngIf="!ntucMumberForm.get('dob').valid && !ntucMumberForm.get('dob').pristine"
+                      src="assets/images/calendar-error.svg" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <label id="nricOrFin" for="last-four-characters-of-nric">Last 4 Characters of NRIC/FIN</label>
+          </div>
+          <div class="flex-col-7">
+            
+            <div class="form-control" [ngClass]="{'inline-error': ntucMumberForm.get('nricOrFin').enabled && !ntucMumberForm.get('nricOrFin').valid && !ntucMumberForm.get('nricOrFin').pristine}">
+              <div name="nricOrFin">
+                <input id="last-four-characters-of-nric" class="input-control" type="text" maxLength="4"
+                  name="nricOrFin" formControlName="nricOrFin" oninput="this.value = this.value.toUpperCase()"   
+
+                  placeholder="Enter Last 4 Chars"
+                  
+                  >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="alert-msg">
+          <div *ngIf="ntucMumberForm.get('nricOrFin').errors?.pattern">
+            <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+            <span class="err-msg">If your NRIC/FIN is S1234567A, the last 4 characters should be 567A,</span>
+          </div>
+        </div>
+      </div>
+      <button type="button" (click)="goToCheckOut(ntucMumberForm)" class="btn btn-primary width100 btn__footer--fixed" id="incomeBtn"
+        [disabled]=!ntucMumberForm>{{
+        'LABEL.SAVE' | translate}}</button>
+    </div>
+  </form>
+</div>

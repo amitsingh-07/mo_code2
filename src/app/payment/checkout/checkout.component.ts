@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from './../../../environments/environment';
@@ -20,6 +20,9 @@ import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../../comprehensive/comprehensive-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { PAYMENT_ROUTE_PATHS } from '../payment-routes.constants';
+import { PromoCodeService } from 'src/app/promo-code/promo-code.service';
+import { PromoDetailsComponent } from 'src/app/promo-code/promo-details/promo-details.component';
+import { PromoCodeModalComponent } from 'src/app/promo-code/promo-code-modal/promo-code-modal.component';
 
 @Component({
   selector: 'app-checkout',
@@ -43,7 +46,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   totalAmt = (PAYMENT_CONST.TOTAL_AMT).toString();
   promoCode = PAYMENT_CONST.PROMO_CODE;
   includingGst = false;
-  
+
   loading: string;
   gstPercentLabel: any;
   totalAmount: number;
@@ -54,6 +57,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   promoCodeDescription: string;
   appliedPromoCode: string;
   isWaivedPromo: boolean;
+  usedPromo: {};
 
   constructor(
     private formBuilder: FormBuilder,
@@ -66,7 +70,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     private signUpService: SignUpService,
     private comprehensiveApiService: ComprehensiveApiService,
     private loaderService: LoaderService,
-    public footerService: FooterService
+    public footerService: FooterService,
+    public promoCodeService: PromoCodeService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -77,10 +82,19 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.fetchDashboard();
   }
 
+
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
+  }
+
+  ngAfterViewInit() {
+    this.promoCodeService.tostMessage.subscribe((showTostMessage) => {
+      if (showTostMessage) {
+        this.showCopyToast();
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -91,7 +105,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
-    this.navbarService.setPaymentLockIcon(true);   
+    this.navbarService.setPaymentLockIcon(true);
   }
 
   // Create form
@@ -159,12 +173,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   makeHttpRequest(body) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', PAYMENT_REQUEST.requestURL);
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.setRequestHeader( 'Access-Control-Allow-Origin', '*');
-    xhr.onreadystatechange = () => {
-    // Call a function when the state changes.
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', PAYMENT_REQUEST.requestURL);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+    xhr.onreadystatechange = () => {
+      // Call a function when the state changes.
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
           window.open(xhr.responseURL, '_self');
@@ -234,8 +248,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     });
   }
 
-  getCheckoutDetails() {  
-    this.gstPercentLabel = { gstPercent: 7};
+  getCheckoutDetails() {
+    this.gstPercentLabel = { gstPercent: 7 };
     this.totalAmount = 99;
     this.paymentAmount = 24.75;
     this.reductionAmount = -74.25;
@@ -243,15 +257,14 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.cfpPromoCode = 'SLFXMO';
     this.promoCodeDescription = '75% off';
     this.appliedPromoCode = 'NTUC Member (SLFXMO)';
-    this.isWaivedPromo = false;    
-    this.showCopyToast();
+    this.isWaivedPromo = false;
     const payload = { comprehensivePromoCodeToken: null, promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE };
     this.paymentService.getPaymentCheckoutCfpDetails(payload).subscribe((data: any) => {
       this.loaderService.hideLoaderForced();
       if (data && data.objectList[0]) {
         console.log(data);
         const checkOutData = data.objectList[0];
-        this.gstPercentLabel = { gstPercent: checkOutData.pricingDetails.gstPercentage};
+        this.gstPercentLabel = { gstPercent: checkOutData.pricingDetails.gstPercentage };
         this.totalAmount = checkOutData.pricingDetails.totalAmount;
         this.paymentAmount = checkOutData.pricingDetails.payableAmount;
         this.reductionAmount = checkOutData.pricingDetails.discountAmount;
@@ -266,18 +279,18 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     });
   }
 
-  fetchDashboard(){
+  fetchDashboard() {
     this.loaderService.showLoader({ title: this.loading, autoHide: false });
     this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((summaryData: any) => {
       if (summaryData && summaryData.objectList[0]) {
-        this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);        
+        this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
         const reportStatus = this.comprehensiveService.getReportStatus();
         this.loaderService.hideLoaderForced();
         if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
         } else if (!this.comprehensiveService.checkResultData()) {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
-        } else if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW){          
+        } else if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
           this.getCheckoutDetails();
         } else {
           this.backToDashboard();
@@ -286,7 +299,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.loaderService.hideLoaderForced();
         this.backToDashboard();
       }
-    });    
+    });
   }
 
   backToDashboard() {
@@ -300,8 +313,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     } else if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && this.comprehensiveService.checkResultData()) {
       const currentStep = this.comprehensiveService.getMySteps();
       if (currentStep === 4) {
-          this.loaderService.showLoader({ title: this.loading, autoHide: false });
-          this.initiateReport();
+        this.loaderService.showLoader({ title: this.loading, autoHide: false });
+        this.initiateReport();
       } else {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + currentStep]);
       }
@@ -312,11 +325,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   initiateReport() {
     const enquiryId = { enquiryId: this.comprehensiveService.getEnquiryId(), promoCode: this.promoCode, waivedPromo: this.isWaivedPromo };
-    const cashPayload = { enquiryId: this.comprehensiveService.getEnquiryId(), liquidCashAmount: this.comprehensiveService.getLiquidCash(),
-      spareCashAmount : this.comprehensiveService.getComputeSpareCash() };
+    const cashPayload = {
+      enquiryId: this.comprehensiveService.getEnquiryId(), liquidCashAmount: this.comprehensiveService.getLiquidCash(),
+      spareCashAmount: this.comprehensiveService.getComputeSpareCash()
+    };
     this.comprehensiveApiService.generateComprehensiveCashflow(cashPayload).subscribe((cashData) => {
-      });
-    this.comprehensiveApiService.generateComprehensiveReport(enquiryId).subscribe((data) => {     
+    });
+    this.comprehensiveApiService.generateComprehensiveReport(enquiryId).subscribe((data) => {
       const reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED;
       const viewMode = true;
       this.comprehensiveService.setReportStatus(reportStatus);
@@ -325,7 +340,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       this.loaderService.hideLoaderForced();
       if (this.isWaivedPromo) {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
-      } else {        
+      } else {
         this.goToPaymentInstructions();
       }
     }, (err) => {
@@ -357,7 +372,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }, 3000);
   }
 
-  goToPromoCode() {
-    
+  goToPromoCode(e) {  
+    this.modal.open(PromoCodeModalComponent, { centered: true });   
+      e.preventDefault();
+      e.stopPropagation();    
   }
 }

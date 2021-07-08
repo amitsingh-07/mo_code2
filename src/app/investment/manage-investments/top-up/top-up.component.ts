@@ -95,7 +95,6 @@ export class TopUpComponent implements OnInit, OnDestroy {
     this.cashBalance = this.manageInvestmentsService.getUserCashBalance();
     this.fundDetails = this.manageInvestmentsService.getFundingDetails();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
-    
     this.topForm = this.formBuilder.group({
       portfolio: [this.formValues.selectedCustomerPortfolio, Validators.required],
       Investment: [
@@ -117,7 +116,7 @@ export class TopUpComponent implements OnInit, OnDestroy {
       this.getSrsAccountDetails();
     }
     this.buildFormInvestment();
-    this.setSelectedPortfolio();
+    this.setSelectedPortfolio(); 
   }
 
   ngOnDestroy() {
