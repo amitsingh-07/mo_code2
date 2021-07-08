@@ -52,14 +52,14 @@
       <div class="flex-row space-between" *ngIf="cfpPromoCode && appliedPromoCode">
         <div class="valid-promo">
           <span class="valid-logo"><img src="assets/images/check-icon-green.svg" alt="" /></span>
-          <span class="pl10">{{ appliedPromoCode }}</span>
+          <span class="pl10 promo-display">{{ appliedPromoCode }}</span>
         </div>
         <div class="remove-btn" (click)="removeAppliedPromoCode();">{{'CHECKOUT.REMOVE_BTN_LBL' | translate}}</div>
       </div>
+    </div>
       <div class="terms">{{'CHECKOUT.AGREE' | translate}}<span (click)="openTNC($event)">{{'CHECKOUT.TERMS' |
           translate}}</span>.</div>
       <button type="submit" class="btn
         btn__footer--fixed btn-primary width100" (click)="goToNext();">{{ isWaivedPromo ? ('CHECKOUT.PROCEED' |
         translate) : ('CHECKOUT.PROCEED_PAYMENT' | translate) }}</button>
-    </div>
   </div>

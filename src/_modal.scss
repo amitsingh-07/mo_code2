@@ -1323,3 +1323,31 @@ body.modal-open::-webkit-scrollbar {
     outline: none;
   }
 }
+
+.ntuc-promo-error{
+  .modal-dialog {
+    max-width: 375px;
+
+    @include allmobiles {
+      max-width: 100vw;
+    }
+  }
+  .modal-body-message{
+    span{
+      color: $dark-orange-color;
+    }
+    .txt-bold{
+      font-family: $muli-bold;
+      color: $black-color;
+      text-decoration: underline;
+    }
+    .hyperlink_color{
+      font-weight: normal;
+    }
+  }
+  .action-button{
+    background-color: $btn-comprehensive;
+    font-size: 18px;
+    height: 60px;
+  }
+}

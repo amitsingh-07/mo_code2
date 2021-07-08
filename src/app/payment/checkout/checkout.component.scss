@@ -354,6 +354,7 @@ app-checkout {
       border-radius: 6px;
       border: solid 1px $half-baked-blue-color;
       padding: 6px;
+      width: 100%;
       .default-txt {
         line-height: 20px;
         letter-spacing: -0.16px;
@@ -367,10 +368,16 @@ app-checkout {
         line-height: 20px;
         display: flex;
         align-items: center;
+        flex-direction: row;
+        width: calc(100% - 90px);
         .valid-logo {
           width: 18px;
           height: 18px;
           display: flex;
+        }
+        .promo-display{
+          white-space: nowrap;
+          overflow: hidden;
         }
       }
       .remove-btn {
