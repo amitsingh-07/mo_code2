@@ -71,9 +71,12 @@ export class PromoDetailsComponent implements OnInit {
       } else if (this.selectedPromo['isNTUCPromocode'] && this.selectedPromo['isSPOrRobo2Customer']
         && this.selectedPromo['isNTUCVerified'] === false) {
         this.showErrorPopup();
-      } else{
-         this.allModal.dismissAll();
-      }
+      } else {
+        this.promoSvc.usedPromo.next(this.selectedPromo);
+        this.promoSvc.tostMessage.next(true);
+        this.allModal.dismissAll();
+        this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);          
+      }     
     }
     else {
       if (this.selectedPromo['isWrapFeeRelated'] === 'Y') {

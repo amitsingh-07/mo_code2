@@ -750,7 +750,6 @@ export class ApiService {
     return this.http.post(apiConstants.endpoint.promoCode.validatePromo + this.handleErrorFlag, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
- 
+      ); 
   }
 }

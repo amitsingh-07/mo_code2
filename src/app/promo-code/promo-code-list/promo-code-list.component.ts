@@ -131,20 +131,13 @@ export class PromoCodeListComponent implements OnInit {
     this.promoSvc.validateCpfPromoCode(this.formGrp.controls['promoCode'].value).subscribe((response) => {
       // Success
       const responseCode = response.responseMessage['responseCode'];
-      if (responseCode === 6000) {
+      if (responseCode === 6000 || responseCode === 5032) {
         setTimeout(() => {
           this.showSpinner = false;
           this.showClearBtn = true;
           this.showDetails(response['objectList'][0]);
         }, 1200);
-      } else if(responseCode === 5032){
-        setTimeout(() => {
-          this.showSpinner = false;
-          this.showClearBtn = true;
-          this.showDetails(response['objectList'][0]);
-        }, 1200);
-      }
-        else {
+      } else {
         setTimeout(() => {
           this.showSpinner = false;
           this.showClearBtn = true;
@@ -156,8 +149,6 @@ export class PromoCodeListComponent implements OnInit {
             this.formGrp.controls['promoCode'].setErrors({ existingPromoCode: true });
           } else if (responseCode === 5029) {
             this.formGrp.controls['promoCode'].setErrors({ noExistingPortfolio: true });
-          } else if (responseCode === 5017) {
-            this.formGrp.controls['promoCode'].setErrors({ invalidPromoCode: true });
           } else  {
             this.formGrp.controls['promoCode'].setErrors({ invalidPromoCode: true });
           }
