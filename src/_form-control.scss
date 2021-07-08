@@ -460,6 +460,21 @@ input::placeholder {
   .content-editable {
     border: none !important;
   }
+
+  // autofill colors for inline error
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+  -webkit-text-fill-color: $inline-error-border-color !important;
+  background-color: $inline-error-bg-color !important;
+  -webkit-box-shadow: inset 0 0 0px 9999px $inline-error-bg-color !important;
+}
 }
 
 .form__col--mid {
