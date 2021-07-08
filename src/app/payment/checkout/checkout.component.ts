@@ -85,6 +85,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
+    sessionStorage.setItem('promocodeCategory', "COMPRE");
   }
 
   ngAfterViewInit() {
@@ -371,6 +372,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   goToPromoCode() {
-
+    this.router.navigate(['/promo-code']);
   }
 }

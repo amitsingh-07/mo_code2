@@ -116,7 +116,8 @@ export class TopUpComponent implements OnInit, OnDestroy {
       this.getSrsAccountDetails();
     }
     this.buildFormInvestment();
-    this.setSelectedPortfolio(); 
+    this.setSelectedPortfolio();
+    sessionStorage.setItem('promocodeCategory', "INVEST"); 
   }
 
   ngOnDestroy() {

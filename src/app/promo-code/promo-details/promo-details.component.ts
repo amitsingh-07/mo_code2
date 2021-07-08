@@ -59,7 +59,7 @@ export class PromoDetailsComponent implements OnInit {
   }
 
   usePromo(e) {
-    if (this.router.url === '/payment/checkout') {
+    if (sessionStorage.getItem('promocodeCategory') === 'COMPRE') {
       if (this.selectedPromo['isNTUCPromocode'] && this.selectedPromo['isSPOrRobo2Customer'] === false
         && this.selectedPromo['isNTUCVerified'] === false) {
         const ref = this.allModal.open(NtucMemberComponent,

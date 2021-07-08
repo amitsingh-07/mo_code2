@@ -44,7 +44,7 @@ export class PromoCodeListComponent implements OnInit {
       promoCode: ['', [Validators.required]]
     });
     // 
-    if (this.router.url !== '/payment/checkout') {
+    if (sessionStorage.getItem('promocodeCategory') === 'COMPRE') {
       this.getPromoWallet();  // i add condition
     }
     // Fetch the promo list json
@@ -86,8 +86,8 @@ export class PromoCodeListComponent implements OnInit {
       this.formGrp.controls['promoCode'].setErrors(null);
       this.showClearBtn = false;
       this.showSpinner = true;
-      this.showError = false;
-      if (this.router.url === '/payment/checkout') {
+      this.showError = false;    
+      if (sessionStorage.getItem('promocodeCategory') === 'COMPRE') {
         this.validateCpfPromoCode();
       } else {
         this.validateInvestPromoCode();
@@ -147,8 +147,6 @@ export class PromoCodeListComponent implements OnInit {
             this.formGrp.controls['promoCode'].setErrors({ promoCodeAlreadyApplied: true });
           } else if (responseCode === 5026) {
             this.formGrp.controls['promoCode'].setErrors({ existingPromoCode: true });
-          } else if (responseCode === 5029) {
-            this.formGrp.controls['promoCode'].setErrors({ noExistingPortfolio: true });
           } else  {
             this.formGrp.controls['promoCode'].setErrors({ invalidPromoCode: true });
           }
