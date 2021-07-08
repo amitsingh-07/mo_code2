@@ -13,7 +13,6 @@ import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ComprehensiveService } from '../comprehensive.service';
 import { PAYMENT_ROUTE_PATHS } from './../../payment/payment-routes.constants';
 import { PaymentService } from './../../payment/payment.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-comprehensive-review',
@@ -23,15 +22,12 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   pageId: string;
   pageTitle: string;
-  tandcForm: FormGroup;
   menuClickSubscription: Subscription;
   subscription: Subscription;
   isPaymentEnabled = false;
   comprehensiveJourneyMode: boolean;
   loading: string;
-  tandcEnableFlag: boolean;
-  enableTc: boolean;
-  requireToPay = false;
+  requireToPay: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
@@ -41,7 +37,6 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     private comprehensiveService: ComprehensiveService,
     private comprehensiveApiService: ComprehensiveApiService,
     private paymentService: PaymentService,
-    private formBuilder: FormBuilder,
     private loaderService: LoaderService) {
     this.pageId = this.activatedRoute.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {      
@@ -80,12 +75,12 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       }
     });
     const reportStatus = this.comprehensiveService.getReportStatus();
+    this.requireToPay = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && this.comprehensiveJourneyMode);
     if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
       this.initiateReport();
     } else if (!this.comprehensiveService.checkResultData()) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
     }
-    this.buildTcForm();
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
@@ -143,24 +138,6 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
 
     }, (err) => {
       this.loaderService.hideLoaderForced();
-    });
-  }
-
-  @HostListener('input', ['$event'])
-  reviewtandcCheck() {
-    this.tandcForm.valueChanges.subscribe((form: any) => {
-      this.enableTc = form.tandc;
-    });
-  }
-
-  buildTcForm() {
-    const reportStatus = this.comprehensiveService.getReportStatus();
-    const comprehensiveData = this.comprehensiveService.getComprehensiveEnquiry();
-    const paymentStatus = (comprehensiveData.paymentStatus) ? comprehensiveData.paymentStatus.toLowerCase() : '';
-    this.tandcEnableFlag = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || paymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING || paymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING);
-    this.enableTc = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW  || paymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING || paymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING);
-    this.tandcForm = this.formBuilder.group({
-      tandc: [this.enableTc]
     });
   }
 }

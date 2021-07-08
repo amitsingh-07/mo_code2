@@ -20,9 +20,8 @@ import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../../comprehensive/comprehensive-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { PAYMENT_ROUTE_PATHS } from '../payment-routes.constants';
-import { PromoCodeService } from 'src/app/promo-code/promo-code.service';
-import { PromoDetailsComponent } from 'src/app/promo-code/promo-details/promo-details.component';
-import { PromoCodeModalComponent } from 'src/app/promo-code/promo-code-modal/promo-code-modal.component';
+import { PromoCodeService } from './../../promo-code/promo-code.service';
+import { PromoCodeModalComponent } from './../../promo-code/promo-code-modal/promo-code-modal.component';
 
 @Component({
   selector: 'app-checkout',
@@ -248,23 +247,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     });
   }
 
-  getCheckoutDetails() {
-    this.gstPercentLabel = { gstPercent: 7 };
-    this.totalAmount = 99;
-    this.paymentAmount = 24.75;
-    this.reductionAmount = -74.25;
-    this.gstPercent = 7;
-    this.cfpPromoCode = 'SLFXMO';
-    this.promoCodeDescription = '75% off';
-    this.appliedPromoCode = 'NTUC Member (SLFXMO)';
-    this.isWaivedPromo = false;
+  getCheckoutDetails() {  
     const payload = { comprehensivePromoCodeToken: null, promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE };
     this.paymentService.getPaymentCheckoutCfpDetails(payload).subscribe((data: any) => {
       this.loaderService.hideLoaderForced();
-      if (data && data.objectList[0]) {
-        console.log(data);
-        const checkOutData = data.objectList[0];
-        this.gstPercentLabel = { gstPercent: checkOutData.pricingDetails.gstPercentage };
+      if (data && data.objectList) {
+        const checkOutData = data.objectList;
+        this.gstPercentLabel = { gstPercent: checkOutData.pricingDetails.gstPercentage};
         this.totalAmount = checkOutData.pricingDetails.totalAmount;
         this.paymentAmount = checkOutData.pricingDetails.payableAmount;
         this.reductionAmount = checkOutData.pricingDetails.discountAmount;
@@ -287,7 +276,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         const reportStatus = this.comprehensiveService.getReportStatus();
         this.loaderService.hideLoaderForced();
         if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
-          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
+          this.backToDashboard();
         } else if (!this.comprehensiveService.checkResultData()) {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
         } else if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
