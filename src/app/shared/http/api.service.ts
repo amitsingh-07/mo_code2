@@ -747,11 +747,10 @@ export class ApiService {
   }
  
   validateCpfPromoCode(payload) {
-    // return this.http.post(apiConstants.endpoint.promoCode.validatePromo, payload)
-    //   .pipe(
-    //     catchError((error: HttpErrorResponse) => this.handleError(error))
-    //   );
-    const url = 'assets/mock-data/promo.json';
-    return this.http.getMock(url);
+    return this.http.post(apiConstants.endpoint.promoCode.validatePromo + this.handleErrorFlag, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+ 
   }
 }

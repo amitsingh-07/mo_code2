@@ -137,7 +137,14 @@ export class PromoCodeListComponent implements OnInit {
           this.showClearBtn = true;
           this.showDetails(response['objectList'][0]);
         }, 1200);
-      } else {
+      } else if(responseCode === 5032){
+        setTimeout(() => {
+          this.showSpinner = false;
+          this.showClearBtn = true;
+          this.showDetails(response['objectList'][0]);
+        }, 1200);
+      }
+        else {
         setTimeout(() => {
           this.showSpinner = false;
           this.showClearBtn = true;
@@ -149,7 +156,9 @@ export class PromoCodeListComponent implements OnInit {
             this.formGrp.controls['promoCode'].setErrors({ existingPromoCode: true });
           } else if (responseCode === 5029) {
             this.formGrp.controls['promoCode'].setErrors({ noExistingPortfolio: true });
-          } else {
+          } else if (responseCode === 5017) {
+            this.formGrp.controls['promoCode'].setErrors({ invalidPromoCode: true });
+          } else  {
             this.formGrp.controls['promoCode'].setErrors({ invalidPromoCode: true });
           }
         }, 1200);
