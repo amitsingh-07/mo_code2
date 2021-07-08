@@ -131,7 +131,7 @@ export class PromoCodeListComponent implements OnInit {
     this.promoSvc.validateCpfPromoCode(this.formGrp.controls['promoCode'].value).subscribe((response) => {
       // Success
       const responseCode = response.responseMessage['responseCode'];
-      if (responseCode === 6000 || responseCode === 5032) {
+      if (responseCode === 6005 || responseCode === 5032) {
         setTimeout(() => {
           this.showSpinner = false;
           this.showClearBtn = true;

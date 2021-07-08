@@ -22,6 +22,7 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { PAYMENT_ROUTE_PATHS } from '../payment-routes.constants';
 import { PromoCodeService } from './../../promo-code/promo-code.service';
 import { PromoCodeModalComponent } from './../../promo-code/promo-code-modal/promo-code-modal.component';
+import { Util } from './../../shared/utils/util';
 
 @Component({
   selector: 'app-checkout',
@@ -264,7 +265,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.gstPercent = checkOutData.pricingDetails.gstPercentage;
         this.cfpPromoCode = checkOutData.promoCode;
         this.promoCodeDescription = checkOutData.discountMessage;
-        this.appliedPromoCode = checkOutData.shortDescription;
+        this.appliedPromoCode = !(Util.isEmptyOrNull(checkOutData.shortDescription)) ? checkOutData.shortDescription : '';
         this.isWaivedPromo = this.isWaivedPromo;
       }
     }, (err) => {
@@ -284,7 +285,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         } else if (!this.comprehensiveService.checkResultData()) {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
         } else if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
-          this.getCheckoutDetails(this.comprehensiveService.getCfpPromoCode());
+          this.promoCodeService.getCpfPromoCodeObservable.subscribe((promoCode) => {
+            if (promoCode) {              
+            this.getCheckoutDetails(promoCode);
+            } else {
+              this.getCheckoutDetails(this.comprehensiveService.getCfpPromoCode());
+            }
+          });
         } else {
           this.backToDashboard();
         }
