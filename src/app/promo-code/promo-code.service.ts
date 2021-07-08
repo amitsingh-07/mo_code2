@@ -24,6 +24,8 @@ export class PromoCodeService {
   usedPromoObservable = this.usedPromo.asObservable();
   public tostMessage = new Subject();
   public clearInput = new BehaviorSubject(false);
+  public setCpfPromoCode = new BehaviorSubject('');
+  getCpfPromoCodeObservable = this.setCpfPromoCode.asObservable();
 
   constructor(
     private apiService: ApiService,
@@ -51,6 +53,10 @@ export class PromoCodeService {
   removeAppliedPromo() {
     this.usedPromo.next({});
     this.clearInput.next(true);
+  }
+  
+  setPromoCodeCpf(promoCode: any) {
+    this.setCpfPromoCode.next(promoCode);
   }
 
   // API CALLS FOR PROMO CODE
