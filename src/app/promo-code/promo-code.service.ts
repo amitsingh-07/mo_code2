@@ -150,7 +150,7 @@ export class PromoCodeService {
     const payload = {
       lastFourCharOfNricNumber: ntucForm.nricOrFin,
       mobileNumber: ntucForm.mobileNumber,
-      dob: ntucForm.dob
+      dob: this.selectedPromo.dateOfBirth
     };
     return this.apiService.checkNtucMumber(payload);
   }
