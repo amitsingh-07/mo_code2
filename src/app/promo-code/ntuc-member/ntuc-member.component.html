@@ -61,14 +61,14 @@
                 </div>
               </div>
             </div>
-            <div class="alert-msg flex" *ngIf="ntucMumberForm.get('nricOrFin').errors?.pattern">
+            <div class="alert-msg flex" *ngIf="ntucMumberForm.get('nricOrFin').errors?.pattern && ntucMumberForm.get('nricOrFin').value.length > 3">
               <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
               <span class="err-msg">{{'NTUC_PROMO_MODAL.ERROR_MSG' | translate}}</span>
             </div>
           </div>
         </div>
         <button type="button" (click)="goToCheckOut(ntucMumberForm)" class="btn btn-primary width100" id="incomeBtn"
-          [disabled]=!ntucMumberForm>{{'NTUC_PROMO_MODAL.BTN_LBL' | translate}}</button>
+        [disabled]="!ntucMumberForm.valid">{{'NTUC_PROMO_MODAL.BTN_LBL' | translate}}</button>
       </form>
     </div>
 </div>
