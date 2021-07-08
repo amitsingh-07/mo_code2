@@ -75,7 +75,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       }
     });
     const reportStatus = this.comprehensiveService.getReportStatus();
-    this.requireToPay = (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && this.comprehensiveJourneyMode);
+    this.requireToPay = !(reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && this.comprehensiveJourneyMode);
     if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
       this.initiateReport();
     } else if (!this.comprehensiveService.checkResultData()) {
