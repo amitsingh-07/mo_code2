@@ -30,6 +30,7 @@ import { ValidatePassword } from './password.validator';
 import { ValidateRange } from './range.validator';
 import { ANIMATION_DATA } from '../../../assets/animation/animationData';
 import { Util } from '../../shared/utils/util';
+import { AffiliateService } from '../../shared/Services/affiliate.service';
 
 declare var require: any;
 const bodymovin = require("../../../assets/scripts/lottie_svg.min.js");
@@ -82,7 +83,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private appService: AppService,
     private apiService: ApiService,
     private selectedPlansService: SelectedPlansService,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private affiliateService: AffiliateService
   ) {
     this.translate.use('en');
     this.configService.getConfig().subscribe((config) => {
@@ -389,6 +391,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     };
     this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
       if (redirect) {
+        this.affiliateService.removeClickIdJson();
         this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
       } else {
         this.callErrorModal(data);

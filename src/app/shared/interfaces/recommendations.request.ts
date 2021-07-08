@@ -36,6 +36,8 @@ export interface IEnquiryData {
     numberOfDependents: number;
     hasPremiumWaiver: boolean;
     type: string;
+    irClickId?: string;
+    clickEventDate?: string;
 }
 
 export interface IProtectionTypeData {
@@ -124,5 +126,6 @@ export interface IEnquiryByEmail {
     enquiryId: number;
     enquiryProtectionTypeData: IProtectionType[];
     journeyType: string;
-
+    irClickId?: string;
+    clickEventDate?: string; 
 }

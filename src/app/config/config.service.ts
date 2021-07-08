@@ -34,6 +34,8 @@ export interface IConfig {
   showPortfolioInfo: boolean;
   investment: any;
   account: any;
+  affiliateEnabled: boolean;
+  affiliateAttributionInMs: number;
 }
 
 const CACHE_SIZE = 1;

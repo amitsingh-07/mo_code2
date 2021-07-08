@@ -1,3 +1,4 @@
+import { AffiliateService } from './../Services/affiliate.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -35,7 +36,8 @@ export class ApiService {
     private guideMeService: GuideMeService,
     private httpClient: HttpClient,
     private router: Router,
-    private loaderService: LoaderService) { }
+    private loaderService: LoaderService,
+    private affiliateService: AffiliateService) { }
 
   private handleError(error: HttpErrorResponse) {
     this.loaderService.hideLoader();
@@ -385,7 +387,7 @@ export class ApiService {
   }
   /** Post Login */
   updateInsuranceEnquiry(payload: IEnquiryUpdate) {
-    return this.http.post(apiConstants.endpoint.updateProductEnquiry, payload)
+    return this.http.post(apiConstants.endpoint.updateProductEnquiry, this.affiliateService.appendClickId(payload))
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -601,7 +603,7 @@ export class ApiService {
 
 
   enquiryByEmail(payload) {
-    return this.http.post(apiConstants.endpoint.enquiryByEmail + '?handleError=true', payload)
+    return this.http.post(apiConstants.endpoint.enquiryByEmail + '?handleError=true', this.affiliateService.appendClickId(payload))
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
