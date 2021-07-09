@@ -1349,6 +1349,10 @@ export class ComprehensiveService {
     if (!comprehensiveVersion) {
       this.progressData.items.push(this.getRiskProfileProgressData());
     }
+    
+    if (comprehensiveVersion && !this.getViewableMode()) {
+      this.progressData.items.push(this.getReviewInputsProgressData());
+    }
     return this.progressData;
   }
 
@@ -1357,6 +1361,7 @@ export class ComprehensiveService {
     return {
       title: 'Get Started',
       expanded: true,
+      showArrow: true,
       completed: typeof myProfile.gender !== 'undefined',
       customStyle: this.getStartedStyle,
       subItems: [
@@ -1531,6 +1536,7 @@ export class ComprehensiveService {
     return {
       title: 'What\'s On Your Shoulders',
       expanded: true,
+      showArrow: true,
       completed: hasDependants,
       customStyle: 'dependant',
       subItems: subItemsArray
@@ -1636,6 +1642,7 @@ export class ComprehensiveService {
     return {
       title: 'Your Finances',
       expanded: true,
+      showArrow: true,
       completed: false,
       customStyle: 'finances',
       subItems: subItemsArray
@@ -1766,6 +1773,7 @@ export class ComprehensiveService {
     return {
       title: 'Risk-Proof Your Journey',
       expanded: true,
+      showArrow: true,
       completed: false,
       customStyle: 'risk-proof',
       subItems: [
@@ -1823,6 +1831,7 @@ export class ComprehensiveService {
     return {
       title: 'Your Risk Profile',
       expanded: true,
+      showArrow: true,
       completed: false,
       customStyle: 'risk-profile',
       subItems: [
@@ -1944,10 +1953,23 @@ export class ComprehensiveService {
     return {
       title: 'Financial Independence',
       expanded: true,
+      showArrow: true,
       completed: false,
       customStyle: 'retirement-icon',
       subItems: subItemsArray
 
+    };
+  }
+
+  getReviewInputsProgressData(): IProgressTrackerItem {
+    return {
+      title: COMPREHENSIVE_CONST.REVIEW_INPUTS,
+      expanded: false,
+      showArrow: false,
+      path: COMPREHENSIVE_ROUTE_PATHS.REVIEW,
+      completed: false,
+      customStyle: "review-inputs",
+      subItems: []
     };
   }
 

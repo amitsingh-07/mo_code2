@@ -145,7 +145,14 @@
           background: url('../../../../assets/images/comprehensive/progress-tracker/risk-assessment.svg');
           background-position: 10px 3px;
           background-repeat: no-repeat;
+        }     
+        
+        &.review-inputs {
+          background: url('../../../../assets/images/comprehensive/progress-tracker/review-inputs.svg');
+          background-position: 10px 3px;
+          background-repeat: no-repeat;
         }
+
         &__arrow {
           height: 10px;
           width: 16px;
@@ -166,6 +173,10 @@
             -o-transition: all .2s ease-in-out;
             -ms-transition: all .2s ease-in-out;
             transition: all .2s ease-in-out;
+          }
+
+          &.hidden {
+            visibility: hidden;
           }
         }
       }
