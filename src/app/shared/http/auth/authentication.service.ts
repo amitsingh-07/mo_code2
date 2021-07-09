@@ -14,7 +14,6 @@ import { appConstants } from './../../../app.constants';
 import { BaseService } from './../base.service';
 import { RequestCache } from './../http-cache.service';
 import { environment } from './../../../../environments/environment';
-import { PromoCodeService } from '../../../promo-code/promo-code.service';
 
 export const APP_JWT_TOKEN_KEY = 'app-jwt-token';
 const APP_SESSION_ID_KEY = 'app-session-id';
@@ -39,8 +38,7 @@ export class AuthenticationService {
   constructor(
     private httpClient: HttpClient, public jwtHelper: JwtHelperService,
     private cache: RequestCache, private http: BaseService,
-    private modal: NgbModal,
-    private promoCodeService: PromoCodeService,
+    private modal: NgbModal
     
   ) {
 
@@ -181,7 +179,6 @@ export class AuthenticationService {
   }
 
   public logout(browserClose?) {
-   this.promoCodeService.setCpfPromoCode.unsubscribe();
    const logoutParam = (browserClose === appConstants.BROWSER_CLOSE) ? appConstants.BROWSER_CLOSE : appConstants.LOGOUT_BUTTON
     return this.http.get(apiConstants.endpoint.logout.replace('$LOGOUT_BUTTON$', logoutParam))
       .pipe(
