@@ -144,6 +144,9 @@ export class PromoCodeListComponent implements OnInit {
           this.showError = true;
           // Show different error codes
           if (responseCode === 5025) {
+            if (this.formGrp.controls['promoCode'].value) {
+              this.promoSvc.setPromoCodeCpf(this.formGrp.controls['promoCode'].value);
+            }
             this.formGrp.controls['promoCode'].setErrors({ promoCodeAlreadyApplied: true });
           } else if (responseCode === 5026) {
             this.formGrp.controls['promoCode'].setErrors({ existingPromoCode: true });
