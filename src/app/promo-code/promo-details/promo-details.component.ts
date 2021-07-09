@@ -10,7 +10,8 @@ import { ManageInvestmentsService } from '../../investment/manage-investments/ma
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../investment/manage-investments/manage-investments-routes.constants';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NtucMemberComponent } from '../ntuc-member/ntuc-member.component';
-import { PAYMENT_ROUTE_PATHS } from 'src/app/payment/payment-routes.constants';
+import { PAYMENT_ROUTE_PATHS } from '../../payment/payment-routes.constants';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-promo-details',
@@ -26,6 +27,7 @@ export class PromoDetailsComponent implements OnInit {
   usedPromo: any;
   promoCodeStatus: any;
   selectedPromoDetails: any;
+  loading: any;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -34,8 +36,10 @@ export class PromoDetailsComponent implements OnInit {
     private router: Router,
     private datePipe: DatePipe,
     private promoSvc: PromoCodeService,
-    private manageInvestmentsService: ManageInvestmentsService) {
+    private manageInvestmentsService: ManageInvestmentsService,
+    private loaderService: LoaderService,) {
     this.translate.use('en');
+    this.loading = this.translate.instant('COMMON_LOADER.TITLE');
   }
 
   ngOnInit() {
@@ -104,7 +108,9 @@ export class PromoDetailsComponent implements OnInit {
   }
 
   checkNtucMumber(ntucForm) {
+    this.loaderService.showLoader({ title: this.loading, autoHide: false });
     this.promoSvc.checkNtucMumber(ntucForm).subscribe((data) => {
+      this.loaderService.hideLoaderForced();
       if (data.responseMessage.responseCode === 6000 && data.objectList) {
         if (this.selectedPromo && this.selectedPromo.promoCode) {
           this.promoSvc.setPromoCodeCpf(this.selectedPromo.promoCode);
@@ -114,6 +120,7 @@ export class PromoDetailsComponent implements OnInit {
         this.allModal.dismissAll();
         this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);
       } else {
+        this.loaderService.hideLoaderForced();
         this.promoSvc.setPromoCodeCpf('');
         this.allModal.dismissAll();
         this.showErrorPopup();
