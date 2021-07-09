@@ -116,4 +116,14 @@
       }
     }
   }
+
+  .hyperlink_color {
+    color: $dark-orange-color;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+      color: $dark-orange-color;
+      text-decoration: none;
+    }
+  }
 }
