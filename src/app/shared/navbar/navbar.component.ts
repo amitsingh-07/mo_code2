@@ -504,6 +504,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.sessionsService.createNewActiveInstance();
     this.authService.doClear2FASession({ errorPopup: false, updateData: false });
     this.appService.clearData();
+    this.navbarService.setPromoCodeCpf('');
     this.appService.startAppSession();
     this.selectedPlansService.clearData();
     if (isRedirect) {

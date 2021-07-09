@@ -2722,6 +2722,6 @@ export class ComprehensiveService {
   }
   getWaivedPromo() {
     return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
-      .isWaivedPromo;
+      .promoWaived;
   }
 }
