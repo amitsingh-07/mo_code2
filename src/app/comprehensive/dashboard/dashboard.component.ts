@@ -156,7 +156,7 @@ constructor(
       const routerURL = COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep + 1);
       this.setComprehensiveSummary(true, routerURL);
     } else if (this.currentStep === 4) {
-      const routerURL = COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep);
+      const routerURL = (!this.comprehensiveService.getViewableMode() && this.getCurrentVersionType == COMPREHENSIVE_CONST.VERSION_TYPE.FULL) ? COMPREHENSIVE_ROUTE_PATHS.REVIEW : COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep);
       this.setComprehensiveSummary(true, routerURL);
     }
   }

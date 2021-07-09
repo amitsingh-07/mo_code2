@@ -299,5 +299,6 @@ export const COMPREHENSIVE_CONST = {
         MANUAL: "MANUAL",
     },
     API_SOURCE: "Robo3",
-    NTUC_PROMO_DATE: "2021-06-01T00:00:00.000+08:00"
+    NTUC_PROMO_DATE: "2021-06-01T00:00:00.000+08:00",
+    REVIEW_INPUTS: "Review Inputs"
 };
