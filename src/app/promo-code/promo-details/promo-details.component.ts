@@ -73,7 +73,7 @@ export class PromoDetailsComponent implements OnInit {
         this.showErrorPopup();
       }
       else if (this.selectedPromo['isNTUCPromocode'] && this.selectedPromo['isSPOrRobo2Customer']
-        && this.selectedPromo['isNTUCVerified']) {
+        && this.selectedPromo['isNTUCVerified'] || this.selectedPromo['isNTUCPromocode'] === false ) {         
         this.promoSvc.usedPromo.next(this.selectedPromo);
         if (this.selectedPromo && this.selectedPromo.promoCode) {
           this.promoSvc.setPromoCodeCpf(this.selectedPromo.promoCode);
