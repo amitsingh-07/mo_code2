@@ -18,6 +18,7 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
   pageTitle: string;
   step: number;
+  currentStep: number;
   url: string;
   pageId: string;
   menuClickSubscription: Subscription;
@@ -45,13 +46,15 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
     this.step = parseInt(this.route.snapshot.paramMap.get('stepNo'));
     this.viewMode = this.comprehensiveService.getViewableMode();
     this.reportStatus = this.comprehensiveService.getReportStatus();
-    const currentStep = this.comprehensiveService.getMySteps();
+    this.currentStep = this.comprehensiveService.getMySteps();
     const stepCalculated = this.step - 1;
-    if (stepCalculated >= 1 && stepCalculated < 4 && (stepCalculated > currentStep)) {
+    if (stepCalculated >= 1 && stepCalculated < 4 && (stepCalculated > this.currentStep)) {
       const stepCheck = this.comprehensiveService.checkStepValidation(stepCalculated);
       if (stepCheck.status) {
-        const stepIndicatorData = { enquiryId: this.comprehensiveService.getEnquiryId(), stepCompleted: stepCalculated,
-           subStepCompleted: 0 };
+        const stepIndicatorData = {
+          enquiryId: this.comprehensiveService.getEnquiryId(), stepCompleted: stepCalculated,
+          subStepCompleted: 0
+        };
         this.comprehensiveApiService.saveStepIndicator(stepIndicatorData).subscribe((data) => {
           this.comprehensiveService.setMySteps(stepCalculated, 0);
         });
@@ -108,7 +111,16 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
       case 4:
         this.url = this.comprehensiveJourneyMode ? COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN : COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1';
         break;
+      case 6:
+        if (this.comprehensiveJourneyMode && !this.viewMode && this.comprehensiveService.checkResultData() 
+          && this.comprehensiveService.getMySteps() == 4) {
+          this.url = COMPREHENSIVE_ROUTE_PATHS.REVIEW;
+        }
+        break;
     }
-    this.router.navigate([this.url]);
+
+    if (this.url) {
+      this.router.navigate([this.url]);
+    }
   }
 }

@@ -986,7 +986,7 @@ h6 {
         }
 
         &:hover,
-        &:focus,  {
+        &:focus  {
           background-color: $white-color;
           outline: none;
           border-bottom: none;
@@ -2080,6 +2080,10 @@ select:-webkit-autofill:focus {
       position: relative;
       margin-bottom: 30px;
       color: #9fd4d4;
+
+      &:not(:first-child) {
+        top: 4px;
+      }
 
       span {
         height: 15px;

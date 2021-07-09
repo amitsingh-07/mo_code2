@@ -23,6 +23,7 @@ import { PAYMENT_ROUTE_PATHS } from '../payment-routes.constants';
 import { PromoCodeService } from './../../promo-code/promo-code.service';
 import { PromoCodeModalComponent } from './../../promo-code/promo-code-modal/promo-code-modal.component';
 import { Util } from './../../shared/utils/util';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-checkout',
@@ -53,10 +54,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   paymentAmount: number;
   reductionAmount: number;
   gstPercent: number;
-  cfpPromoCode: string;
+  cfpPromoCode = '';
   promoCodeDescription: string;
   appliedPromoCode: string;
-  isWaivedPromo: boolean;
+  isWaivedPromo = false;
   usedPromo: {};
 
   constructor(
@@ -71,7 +72,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     private comprehensiveApiService: ComprehensiveApiService,
     private loaderService: LoaderService,
     public footerService: FooterService,
-    public promoCodeService: PromoCodeService
+    public promoCodeService: PromoCodeService,
+    public authService: AuthenticationService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -93,10 +95,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.loaderService.showLoader({ title: this.loading, autoHide: false });
     this.promoCodeService.tostMessage.subscribe((showTostMessage) => {
       if (showTostMessage) {
-        this.promoCodeService.getCpfPromoCodeObservable.subscribe((promoCode) => {
-          this.getCheckoutDetails(promoCode);
-          this.showCopyToast();
-        });
+        this.showCopyToast();
       }
     });
   }
@@ -266,7 +265,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.cfpPromoCode = checkOutData.promoCode;
         this.promoCodeDescription = checkOutData.discountMessage;
         this.appliedPromoCode = !(Util.isEmptyOrNull(checkOutData.shortDescription)) ? checkOutData.shortDescription : '';
-        this.isWaivedPromo = this.isWaivedPromo;
+        this.isWaivedPromo = checkOutData.isWaivedPromo;
       }
     }, (err) => {
       this.loaderService.hideLoaderForced();
@@ -285,10 +284,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         } else if (!this.comprehensiveService.checkResultData()) {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
         } else if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
-          this.promoCodeService.getCpfPromoCodeObservable.subscribe((promoCode) => {
+          this.navbarService.getCpfPromoCodeObservable.subscribe((promoCode) => {
             if (promoCode) {              
             this.getCheckoutDetails(promoCode);
-            } else {
+            } else if(this.authService.isSignedUser()){
               this.getCheckoutDetails(this.comprehensiveService.getCfpPromoCode());
             }
           });
@@ -324,7 +323,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   initiateReport() {
-    const enquiryId = { enquiryId: this.comprehensiveService.getEnquiryId(), promoCode: this.promoCode, waivedPromo: this.isWaivedPromo };
+    const enquiryId = { enquiryId: this.comprehensiveService.getEnquiryId(), promoCode: this.cfpPromoCode, waivedPromo: this.isWaivedPromo };
     const cashPayload = {
       enquiryId: this.comprehensiveService.getEnquiryId(), liquidCashAmount: this.comprehensiveService.getLiquidCash(),
       spareCashAmount: this.comprehensiveService.getComputeSpareCash()
@@ -368,7 +367,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   hideToastMessage() {
     setTimeout(() => {
-      this.showFixedToastMessage = false;
+      this.showFixedToastMessage = false;      
+      this.promoCodeService.tostMessage.next(false);
     }, 3000);
   }
 
