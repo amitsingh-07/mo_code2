@@ -60,8 +60,8 @@ export class PromoDetailsComponent implements OnInit {
 
   usePromo(e) {
     if (this.router.url === PAYMENT_CHECKOUT) {
-      if (this.selectedPromo['isNTUCPromocode'] && this.selectedPromo['isSPOrRobo2Customer'] === false
-        && this.selectedPromo['isNTUCVerified'] === false) {
+      if (this.selectedPromo['isNTUCPromocode'] && !this.selectedPromo['isSPOrRobo2Customer']
+        && !this.selectedPromo['isNTUCVerified']) {
         const ref = this.allModal.open(NtucMemberComponent,
           { centered: true, windowClass: 'cfm-overwrite-modal', backdrop: 'static' });
         ref.componentInstance.ntucMember.subscribe((form) => {
@@ -69,11 +69,11 @@ export class PromoDetailsComponent implements OnInit {
           this.checkNtucMumber(form);
         });
       } else if (this.selectedPromo['isNTUCPromocode'] && this.selectedPromo['isSPOrRobo2Customer']
-        && this.selectedPromo['isNTUCVerified'] === false) {
+        && !this.selectedPromo['isNTUCVerified']) {
         this.showErrorPopup();
       }
       else if (this.selectedPromo['isNTUCPromocode'] && this.selectedPromo['isSPOrRobo2Customer']
-        && this.selectedPromo['isNTUCVerified'] || this.selectedPromo['isNTUCPromocode'] === false ) {         
+        && this.selectedPromo['isNTUCVerified'] || !this.selectedPromo['isNTUCPromocode']) {         
         this.promoSvc.usedPromo.next(this.selectedPromo);
         if (this.selectedPromo && this.selectedPromo.promoCode) {
           this.promoSvc.setPromoCodeCpf(this.selectedPromo.promoCode);
