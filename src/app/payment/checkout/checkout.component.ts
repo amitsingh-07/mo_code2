@@ -93,10 +93,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.loaderService.showLoader({ title: this.loading, autoHide: false });
     this.promoCodeService.tostMessage.subscribe((showTostMessage) => {
       if (showTostMessage) {
-        this.promoCodeService.getCpfPromoCodeObservable.subscribe((promoCode) => {
-          this.getCheckoutDetails(promoCode);
-          this.showCopyToast();
-        });
+        this.showCopyToast();
       }
     });
   }
