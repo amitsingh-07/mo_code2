@@ -57,6 +57,7 @@
   }
   .alert-msg{
     padding-top: 13px;
+    margin-bottom: -20px;
     .err-msg {
       color: $dark-orange-color !important;
       padding-left: 7px;
@@ -110,6 +111,9 @@
     &:disabled {
       background-color: $btn-comprehensive-disabled-bg;
       color: $white-color;
+      &:hover{
+        background-color: $btn-comprehensive-disabled-bg !important;
+      }
     }
   }
 }

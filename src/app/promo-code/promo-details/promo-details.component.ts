@@ -60,8 +60,8 @@ export class PromoDetailsComponent implements OnInit {
 
   usePromo(e) {
     if (this.router.url === PAYMENT_CHECKOUT) {
-      if (this.selectedPromo['isNTUCPromocode'] && this.selectedPromo['isSPOrRobo2Customer'] === false
-        && this.selectedPromo['isNTUCVerified'] === false) {
+      if (this.selectedPromo['isNTUCPromocode'] && !this.selectedPromo['isSPOrRobo2Customer']
+        && !this.selectedPromo['isNTUCVerified']) {
         const ref = this.allModal.open(NtucMemberComponent,
           { centered: true, windowClass: 'cfm-overwrite-modal', backdrop: 'static' });
         ref.componentInstance.ntucMember.subscribe((form) => {
@@ -69,14 +69,22 @@ export class PromoDetailsComponent implements OnInit {
           this.checkNtucMumber(form);
         });
       } else if (this.selectedPromo['isNTUCPromocode'] && this.selectedPromo['isSPOrRobo2Customer']
-        && this.selectedPromo['isNTUCVerified'] === false) {
+        && !this.selectedPromo['isNTUCVerified']) {
         this.showErrorPopup();
-      } else {
+      }
+      else if (this.selectedPromo['isNTUCPromocode'] && this.selectedPromo['isSPOrRobo2Customer']
+        && this.selectedPromo['isNTUCVerified'] || !this.selectedPromo['isNTUCPromocode']) {         
         this.promoSvc.usedPromo.next(this.selectedPromo);
+        if (this.selectedPromo && this.selectedPromo.promoCode) {
+          this.promoSvc.setPromoCodeCpf(this.selectedPromo.promoCode);
+        }
         this.promoSvc.tostMessage.next(true);
         this.allModal.dismissAll();
-        this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);          
-      }     
+        this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);
+      } else {
+        this.allModal.dismissAll();
+        this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);
+      }
     }
     else {
       if (this.selectedPromo['isWrapFeeRelated'] === 'Y') {
@@ -97,14 +105,14 @@ export class PromoDetailsComponent implements OnInit {
 
   checkNtucMumber(ntucForm) {
     this.promoSvc.checkNtucMumber(ntucForm).subscribe((data) => {
-      if (data.responseMessage.responseCode === 6000) {
-        if(this.selectedPromo && this.selectedPromo.promoCode) {
+      if (data.responseMessage.responseCode === 6000 && data.objectList) {
+        if (this.selectedPromo && this.selectedPromo.promoCode) {
           this.promoSvc.setPromoCodeCpf(this.selectedPromo.promoCode);
         }
         this.promoSvc.usedPromo.next(this.selectedPromo);
         this.promoSvc.tostMessage.next(true);
         this.allModal.dismissAll();
-        this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);            
+        this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);
       } else {
         this.promoSvc.setPromoCodeCpf('');
         this.allModal.dismissAll();

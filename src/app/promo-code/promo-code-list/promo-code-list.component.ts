@@ -131,7 +131,7 @@ export class PromoCodeListComponent implements OnInit {
     this.promoSvc.validateCpfPromoCode(this.formGrp.controls['promoCode'].value).subscribe((response) => {
       // Success
       const responseCode = response.responseMessage['responseCode'];
-      if (responseCode === 6000 || responseCode === 5032) {
+      if (responseCode === 6005 || responseCode === 5032) {
         setTimeout(() => {
           this.showSpinner = false;
           this.showClearBtn = true;
@@ -144,6 +144,9 @@ export class PromoCodeListComponent implements OnInit {
           this.showError = true;
           // Show different error codes
           if (responseCode === 5025) {
+            if (this.formGrp.controls['promoCode'].value) {
+              this.promoSvc.setPromoCodeCpf(this.formGrp.controls['promoCode'].value);
+            }
             this.formGrp.controls['promoCode'].setErrors({ promoCodeAlreadyApplied: true });
           } else if (responseCode === 5026) {
             this.formGrp.controls['promoCode'].setErrors({ existingPromoCode: true });

@@ -27,7 +27,7 @@ app-checkout {
       right: 15px;
     }
     @include phablet {
-      top: 48px;
+      top: 116px;
       right: 15px;
     }
   }
@@ -270,7 +270,7 @@ app-checkout {
     width: 350px;
     display: flex;
     flex-direction: column;
-    padding: 5px 0 55px;
+    padding: 55px 0;
     @include allmobiles {
       width: 100%;
       padding: 0;
@@ -396,9 +396,9 @@ app-checkout {
     .terms {
       line-height: 15px;
       letter-spacing: -0.15px;
-      color: #ffffff;
+      color: $white-color;
       padding: 0 6px;
-      margin-bottom: 40px;
+      margin-bottom: 26px;
       @include allmobiles {
         margin-bottom: 16px;
       }
