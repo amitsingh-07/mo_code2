@@ -362,6 +362,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   hideToastMessage() {
     setTimeout(() => {
       this.showFixedToastMessage = false;
+      this.promoCodeService.tostMessage.unsubscribe();
     }, 3000);
   }
 

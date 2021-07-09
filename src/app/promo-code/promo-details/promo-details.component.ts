@@ -50,9 +50,9 @@ export class PromoDetailsComponent implements OnInit {
     this.promoSvc.fetchPromoListJSON().then((data) => {
       this.details = data.promoList.find(element => {
         if (this.selectedPromo['promoCode']) {
-          return element['promoCode'] === this.selectedPromo['promoCode'];
+          return element['promoCode'].toUpperCase() === this.selectedPromo['promoCode'].toUpperCase();
         } else {
-          return element['promoCode'] === this.selectedPromo['code'];
+          return element['promoCode'].toUpperCase() === this.selectedPromo['code'].toUpperCase();
         }
       });
     });
