@@ -54,7 +54,7 @@
   "NTUC_MEMBER_PROMO": {
     "ERROR": {
       "TITLE": "Sorry, we couldn’t find your NTUC Member",
-      "DESC": "<p>If your member mobile number is not updated, please update it via NTUC <span>e-services</span> and apply promo code again.</p><p>If you are under the <span class='txt-bold'>NTUC Family Membership</span>, please fill your details in <a class='hyperlink_color' href='https://www.moneyowl.com.sg/ntuc-family-members/' target='_blank'>this form</a>. Our customer service team will get back to you in 2 working days to provide you with a special promo code to proceed.</p><p>For other enquiries, you may wish to contact us at <span>enquiries@moneyowl.com.sg</span>.</p>",
+      "DESC": "<p>If your member mobile number is not updated, please update it via NTUC <span>e-services</span> and apply promo code again.</p><p>If you are under the <span class='txt-bold'>NTUC Family Membership</span>, please fill your details in <a class='hyperlink_color' href='https://www.moneyowl.com.sg/ntuc-family-members/' target='_blank'>this form</a>. Our customer service team will get back to you in 2 working days to provide you with a special promo code to proceed.</p><p>For other enquiries, you may wish to contact us at <span><a target='_blank' href='enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a></span>.</p>",
       "BTN_LBL": "Back to Checkout"
     }
   }
