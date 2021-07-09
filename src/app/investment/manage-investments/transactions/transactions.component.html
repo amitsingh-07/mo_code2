@@ -92,7 +92,7 @@
                             [class.show]="activeTransactionIndex === i.toString() + j.toString()">
                             <div class="flex-col-7">{{fund.fund.name}}</div>
                             <div class="flex-col-5 text-right">
-                              <span *ngIf="transaction.transactionType.name.toUpperCase() !== 'BUY'">-</span>
+                              <span *ngIf="transaction.transactionType.name.toUpperCase() !== 'BUY' && transaction.transactionType.name.toUpperCase() !== 'DIVIDEND_REINVEST'">-</span>
                               {{fund.splitAmount | formatCurrency }}
                             </div>
                             <div class="flex-col-12 text-left unit-price">
