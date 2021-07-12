@@ -491,7 +491,19 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
             } else {
               this.investmentAccountService.showGenericErrorModal();
             }
-          } else {
+          }
+          else if(data.responseMessage.responseCode === 6017){
+            const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+            ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.DELETE_HEADER');
+            ref.componentInstance.errorMessage = this.translate.instant(
+              'YOUR_PORTFOLIO.DELETE_TEXT'
+            );
+            ref.componentInstance.primaryActionLabel = this.translate.instant('YOUR_PORTFOLIO.OKAY_GOT_IT');
+            ref.componentInstance.primaryAction.subscribe(() => {
+              this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO])
+            });
+          }
+           else {
             this.authService.removeEnquiryId();
             this.goToInvOverview();
           }
