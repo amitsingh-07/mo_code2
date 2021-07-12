@@ -15,7 +15,7 @@ import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom
   encapsulation: ViewEncapsulation.None
 })
 export class NtucMemberComponent implements OnInit {
-  ntucMumberForm: FormGroup; 
+  ntucMemberForm: FormGroup; 
   promo : any;  
   @Output() ntucMember: EventEmitter<any> = new EventEmitter();
  
@@ -26,7 +26,7 @@ export class NtucMemberComponent implements OnInit {
   }
   ngOnInit() {    
     this.promo = this.promoSvc.getSelectedPromo();
-    this.ntucMumberForm = new FormGroup({
+    this.ntucMemberForm = new FormGroup({
       mobileNumber: new FormControl(this.promo.mobileNo),
       dob: new FormControl(this.parserFormatter.parse(this.promo.dateOfBirth)),
       nricOrFin: new FormControl('', [Validators.required,Validators.pattern(RegexConstants.nricOrFinLastFourCharacters)])

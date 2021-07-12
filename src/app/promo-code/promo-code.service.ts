@@ -144,13 +144,13 @@ export class PromoCodeService {
     });
   }
 
-  checkNtucMumber(ntucForm) {
+  checkNtucMember(ntucForm) {
     const payload = {
       lastFourCharOfNricNumber: ntucForm.nricOrFin,
       mobileNumber: ntucForm.mobileNumber,
       dob: this.selectedPromo.dateOfBirth
     };
-    return this.apiService.checkNtucMumber(payload);
+    return this.apiService.checkNtucMember(payload);
   }
 
   validateCpfPromoCode(promoCode) {

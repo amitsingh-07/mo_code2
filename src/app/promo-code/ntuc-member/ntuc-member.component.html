@@ -10,7 +10,7 @@
         <span aria-hidden="true"></span>
       </button>
       <div class="modal-body-message" [innerHtml]="'NTUC_PROMO_MODAL.DESC' | translate"></div>
-      <form id="ntucMumberForm" name="ntucMumberForm" [formGroup]="ntucMumberForm">
+      <form id="ntucMemberForm" name="ntucMemberForm" [formGroup]="ntucMemberForm">
         <div class="form-group">
           <div class="flex-row">
             <div class="flex-col-5">
@@ -33,13 +33,13 @@
                   <input class="form-control" formControlName="dob" name="dp" ngbDatepicker id="invPersInfoInpt7"
                     disabled>
                   <div class="input-group-append">
-                    <button [disabled]="ntucMumberForm.get('dob').enabled" class="btn btn-primary" type="button"
+                    <button [disabled]="ntucMemberForm.get('dob').enabled" class="btn btn-primary" type="button"
                       id="invPersInfoBtn1">
                       <img class="date-picker-image--valid" id="invPersInfoImg1"
-                        *ngIf="ntucMumberForm.get('dob').valid || ntucMumberForm.get('dob').pristine"
+                        *ngIf="ntucMemberForm.get('dob').valid || ntucMemberForm.get('dob').pristine"
                         src="assets/images/calendar-normal.svg" />
                       <img class="date-picker-image--invalid" id="invPersInfoImg1"
-                        *ngIf="!ntucMumberForm.get('dob').valid && !ntucMumberForm.get('dob').pristine"
+                        *ngIf="!ntucMemberForm.get('dob').valid && !ntucMemberForm.get('dob').pristine"
                         src="assets/images/calendar-error.svg" />
                     </button>
                   </div>
@@ -53,7 +53,7 @@
             </div>
             <div class="flex-col-7">
               
-              <div class="form-control" [ngClass]="{'inline-error': ntucMumberForm.get('nricOrFin').enabled && !ntucMumberForm.get('nricOrFin').valid && !ntucMumberForm.get('nricOrFin').pristine}">
+              <div class="form-control" [ngClass]="{'inline-error': ntucMemberForm.get('nricOrFin').enabled && !ntucMemberForm.get('nricOrFin').valid && !ntucMemberForm.get('nricOrFin').pristine}">
                 <div name="nricOrFin">
                   <input id="last-four-characters-of-nric" class="input-control" type="text" maxLength="4"
                     name="nricOrFin" formControlName="nricOrFin" oninput="this.value = this.value.toUpperCase()"  
@@ -61,14 +61,14 @@
                 </div>
               </div>
             </div>
-            <div class="alert-msg flex" *ngIf="ntucMumberForm.get('nricOrFin').errors?.pattern && ntucMumberForm.get('nricOrFin').value.length > 3">
+            <div class="alert-msg flex" *ngIf="ntucMemberForm.get('nricOrFin').errors?.pattern && ntucMemberForm.get('nricOrFin').value.length > 3">
               <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
               <span class="err-msg">{{'NTUC_PROMO_MODAL.ERROR_MSG' | translate}}</span>
             </div>
           </div>
         </div>
-        <button type="button" (click)="goToCheckOut(ntucMumberForm)" class="btn btn-primary width100" id="incomeBtn"
-        [disabled]="!ntucMumberForm.valid">{{'NTUC_PROMO_MODAL.BTN_LBL' | translate}}</button>
+        <button type="button" (click)="goToCheckOut(ntucMemberForm)" class="btn btn-primary width100" id="incomeBtn"
+        [disabled]="!ntucMemberForm.valid">{{'NTUC_PROMO_MODAL.BTN_LBL' | translate}}</button>
       </form>
     </div>
 </div>
