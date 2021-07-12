@@ -2098,7 +2098,8 @@ select:-webkit-autofill:focus {
       }
 
       &.active {
-
+        cursor: pointer;
+        
         .road-map__step-number,
         .road-map__step-title,
         .road-map__step-desc {
@@ -2124,6 +2125,8 @@ select:-webkit-autofill:focus {
       }
 
       &.success {
+        cursor: pointer;
+
         span {
           background-image: url(/assets/images/comprehensive/step-success.svg);
           width: 30px;
