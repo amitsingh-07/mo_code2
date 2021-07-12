@@ -1003,10 +1003,13 @@ app-your-portfolio {
     }
     .right-col{
       @include desktop{
-        padding-left: 148px;
+        margin-left: 148px !important;
       }
       @include tablet{
-        padding-left: 56px;
+        margin-left: 56px;
+      }
+      @include LargeDevice{
+        margin-left: 130px;
       }
     }
   }
