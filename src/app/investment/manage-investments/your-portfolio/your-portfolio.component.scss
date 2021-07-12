@@ -979,14 +979,13 @@ app-your-portfolio {
   }
   
   .dividend-display {
-    display: grid;
-    grid-template-columns: auto auto 90px 90px;
+    display: flex;
     padding-top: 20px;
     margin-bottom: 6px;
     border-top: 1px solid #e7e7e7;
-    justify-content: space-between;
     @include allmobiles {
       display: flex;
+      justify-content: space-between;
     }
 
     .flex-div {
@@ -1002,7 +1001,14 @@ app-your-portfolio {
         }
       }
     }
-
+    .right-col{
+      @include desktop{
+        padding-left: 148px;
+      }
+      @include tablet{
+        padding-left: 56px;
+      }
+    }
   }
 }
 .modal-body {
