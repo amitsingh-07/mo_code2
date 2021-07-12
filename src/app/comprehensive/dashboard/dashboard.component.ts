@@ -56,6 +56,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
   toastMsg: any;
   getReferralInfo: any;
   comprehensiveInfo: any;
+  paymentWaived = false;
 constructor(
     private router: Router,
     private translate: TranslateService,
@@ -330,6 +331,7 @@ constructor(
     this.getComprehensiveSummaryDashboard = '';
     this.currentStep = -1;
     this.paymentInstructions = false;
+    this.paymentWaived = false;
     this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe( (dashboardData: any) => {
       if (dashboardData && dashboardData.objectList[0]) {
         this.getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', this.getCurrentVersionType);
@@ -339,6 +341,9 @@ constructor(
           && (this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING || 
           this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING)
           && this.getCurrentVersionType === this.getComprehensiveSummaryDashboard.type);
+          this.paymentWaived = (this.getComprehensiveSummaryDashboard.paymentStatus
+            && this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED
+            && this.getCurrentVersionType === this.getComprehensiveSummaryDashboard.type);
           this.isCFPGetStarted = this.getComprehensiveSummaryDashboard.isCFPGetStarted;
           this.reportStatus = this.getComprehensiveSummaryDashboard.reportStatus;
           this.enquiryId= this.getComprehensiveSummaryDashboard.enquiryId;
