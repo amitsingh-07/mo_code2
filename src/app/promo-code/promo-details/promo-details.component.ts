@@ -70,7 +70,7 @@ export class PromoDetailsComponent implements OnInit {
           { centered: true, windowClass: 'cfm-overwrite-modal', backdrop: 'static' });
         ref.componentInstance.ntucMember.subscribe((form) => {
           ref.close();
-          this.checkNtucMumber(form);
+          this.checkNtucMember(form);
         });
       } else if (this.selectedPromo['isNTUCPromocode'] && this.selectedPromo['isSPOrRobo2Customer']
         && !this.selectedPromo['isNTUCVerified']) {
@@ -107,9 +107,9 @@ export class PromoDetailsComponent implements OnInit {
     e.stopPropagation();
   }
 
-  checkNtucMumber(ntucForm) {
+  checkNtucMember(ntucForm) {
     this.loaderService.showLoader({ title: this.loading, autoHide: false });
-    this.promoSvc.checkNtucMumber(ntucForm).subscribe((data) => {
+    this.promoSvc.checkNtucMember(ntucForm).subscribe((data) => {
       this.loaderService.hideLoaderForced();
       if (data.responseMessage.responseCode === 6000 && data.objectList) {
         if (this.selectedPromo && this.selectedPromo.promoCode) {

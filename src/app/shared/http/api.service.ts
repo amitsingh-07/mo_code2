@@ -739,8 +739,8 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-  checkNtucMumber(payload) {
-    return this.http.post(apiConstants.endpoint.promoCode.checkNtucMumber, payload)
+  checkNtucMember(payload) {
+    return this.http.post(apiConstants.endpoint.promoCode.checkNtucMember, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

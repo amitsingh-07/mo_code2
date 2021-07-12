@@ -130,7 +130,7 @@ export let apiConstants = {
             getCustomerInvestmentPromoCode: ACCOUNT_API_BASE_URL + '/promocode/getCustomerInvestmentPromoCode',
             validateInvestPromoCode: ACCOUNT_API_BASE_URL + '/promocode/validateInvestmentPromoCode?handleError=true',
             saveCustomerPromoCode: ACCOUNT_API_BASE_URL + '/promocode/saveCustomerPromoCode',
-            checkNtucMumber : ACCOUNT_API_BASE_URL + '/ntuc/membership/verification',
+            checkNtucMember : ACCOUNT_API_BASE_URL + '/ntuc/membership/verification',
             validatePromo : ACCOUNT_API_BASE_URL + '/promocode/validateComprehensivePromoCode'
         }
     }
