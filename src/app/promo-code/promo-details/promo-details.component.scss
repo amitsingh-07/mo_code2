@@ -22,6 +22,10 @@ app-promo-details {
       right: 0;
     }
 
+    b{
+      color: $silver-grey-color !important;
+    }
+
     .modal-body-message {
       display: flex;
       flex-direction:column;
