@@ -57,6 +57,7 @@
   }
   .alert-msg{
     padding-top: 13px;
+    margin-bottom: -20px;
     .err-msg {
       color: $dark-orange-color !important;
       padding-left: 7px;
@@ -110,6 +111,19 @@
     &:disabled {
       background-color: $btn-comprehensive-disabled-bg;
       color: $white-color;
+      &:hover{
+        background-color: $btn-comprehensive-disabled-bg !important;
+      }
+    }
+  }
+
+  .hyperlink_color {
+    color: $dark-orange-color;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+      color: $dark-orange-color;
+      text-decoration: none;
     }
   }
 }
