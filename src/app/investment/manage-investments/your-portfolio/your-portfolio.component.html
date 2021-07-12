@@ -544,7 +544,7 @@
                     *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.awaitingFundRequests.length">
                     <div class="flex-col"
                       *ngFor="let awaitingRequest of pendingMonthlyBuyRequests.awaitingFundRequests; let i = index;">
-                      <div class="processing-time">{{'YOUR_PORTFOLIO.MONTHLY_FUND_TIME' | translate}}</div>
+                      <div class="processing-time">{{'YOUR_PORTFOLIO.MONTHLY_FUND_TIME' | translate : { month:awaitingRequest.createdDate.fundBy} }}</div>
                       <div class="flex-col-12 flex-row">
                         <div class="flex align-center"><span
                             class="fund-state"></span><span>{{awaitingRequest.createdDate | date : "dd MMM,
