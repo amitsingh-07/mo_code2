@@ -167,7 +167,7 @@ app-investment-period {
 .investmentSlider-period {
   position: absolute;
   right: 10px;
-  top: -5px;
+  top: -15px;
 }
 .investmentSlider-years-box + div {
   font-size: 18px;
@@ -184,17 +184,19 @@ app-investment-period {
     text-align: center;
     outline: none;
     border: none;
+    padding: 8px;
 }
 .investmentSlider-note {
   background-color: $white-color;
   border-radius: 6px;
   color: $teal-color;
-  padding: 15px;
+  padding: 20px;
+  font-size: 15px;
 }
 .investmentSlider {
-  margin-top: 30px;
+  margin-top: 40px;
   margin-right: 80px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   .noUi-target {
     height: 35px !important;
     border-radius: 25px !important;
