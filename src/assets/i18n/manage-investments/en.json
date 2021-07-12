@@ -222,7 +222,7 @@
     "PROCESSING": "Processing",
     "PROCESSING_TIME": "It will take 3-4 working days to complete.",
     "MONTHLY": "Monthly",
-    "MONTHLY_FUND_TIME": "Fund before 15th of .",
+    "MONTHLY_FUND_TIME": "Fund before 15th of {{month}}",
     "CASH_ACCOUNT": "Cash Account",
     "BALANCE_AMOUNT": "Balance Amount",
     "REFERENCE_CODE": "Reference Code",
