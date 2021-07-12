@@ -47,7 +47,7 @@
       <div *ngIf="step===4" class="road-map__step-desc">{{'CMP.COMPREHENSIVE_STEPS.STEP_4_DESC_LITE' | translate}}</div>
     </li>
 
-    <li class="review-inputs" *ngIf="comprehensiveJourneyMode && !this.viewMode" [ngClass]="{'success': currentStep=== 4}">  
+    <li class="review-inputs" *ngIf="comprehensiveJourneyMode && !this.viewMode" [ngClass]="{'active': currentStep=== 4, 'success': currentStep=== 4}">  
       <span (click)="goToNext(6)"></span>
       <div class="road-map__step-number" (click)="goToNext(6)">{{'CMP.COMPREHENSIVE_STEPS.STEP_6_TITLE' | translate}}</div>
     </li>
