@@ -5,7 +5,7 @@
         <span class="add-promo">{{'PROMO_CODE_LIST.ADD_PROMO' | translate}}</span>
         <div class="div-container">
           <div class="form-group-floating-label input-container" [ngClass]="{'inline-error': checkError()}">
-            <input type="text" id="promoInpt" formControlName="promoCode" (keyup)="onKeyupEvent($event)" autocomplete="off" class="form-control" required [readonly]="showSpinner">
+            <input type="text" id="promoInpt" formControlName="promoCode" (keyup)="onKeyupEvent($event)" autocomplete="off" class="form-control" required [readonly]="showSpinner" oninput="this.value = this.value.toUpperCase()">
             <label class="form-control-placeholder" for="promoCode">{{'PROMO_CODE_LIST.ENTER_PROMO' | translate}}</label>
             <img id="cross-btn" *ngIf="showClearBtn && !promoCodeValidated" (click)="clearPromoCode($event)" src="assets/images/button-clear-txt.svg" />
             <div *ngIf="!promoCodeValidated && !showSpinner" class="apply-container" (click)="applyPromoCode($event)" [ngStyle]="{'background-color': (formGrp.controls['promoCode'].value.length === 6)? '#ff872f' : '#00a7a7'}">
