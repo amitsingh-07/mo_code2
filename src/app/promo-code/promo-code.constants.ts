@@ -13,3 +13,4 @@ export const PROMO_PROFILE_TYPE = {
 export const PROMO_JSON_URL = 'https://mo-static-assets.s3-ap-southeast-1.amazonaws.com/promo/promo-details.json';
 export const PROMO_MOCK_JSON = 'assets/mock-data/promo-details.json';
 export const PROMO_ROUTE = '/promo-code';
+export const PAYMENT_CHECKOUT = '/payment/checkout';

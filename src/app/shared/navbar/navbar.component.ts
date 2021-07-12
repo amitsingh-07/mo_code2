@@ -65,6 +65,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   showNotificationClear = false; // Notification Clear all Button
   closeIcon = false;
   showLabel: any;
+  showPaymentLockIcon = false; //Payment Lock Icon
 
   // Navbar Configurations
   modalRef: NgbModalRef; // Modal Ref
@@ -230,6 +231,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
     this.navbarService.currentPageHelpIcon.subscribe((showHelpIcon) => {
       this.showHelpIcon = showHelpIcon;
+    });
+    this.navbarService.currentPagePaymentLockIcon.subscribe((showPaymentLockIcon) => {
+      this.showPaymentLockIcon = showPaymentLockIcon;
     });
     this.navbarService.currentPageDropDownIcon.subscribe((showDropDownIcon) => {
       this.showDropDownIcon = showDropDownIcon;
@@ -500,6 +504,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.sessionsService.createNewActiveInstance();
     this.authService.doClear2FASession({ errorPopup: false, updateData: false });
     this.appService.clearData();
+    this.navbarService.setPromoCodeCpf('');
     this.appService.startAppSession();
     this.selectedPlansService.clearData();
     if (isRedirect) {

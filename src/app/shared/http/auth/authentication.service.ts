@@ -39,6 +39,7 @@ export class AuthenticationService {
     private httpClient: HttpClient, public jwtHelper: JwtHelperService,
     private cache: RequestCache, private http: BaseService,
     private modal: NgbModal
+    
   ) {
 
     this.apiBaseUrl = Util.getApiBaseUrl();

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PaymentResolver } from './../payment/payment.resolver';
 import { ProgressTrackerComponent } from './../shared/modal/progress-tracker/progress-tracker.component';
 
 import { BadMoodFundComponent } from './bad-mood-fund/bad-mood-fund.component';
@@ -66,7 +65,7 @@ const routes: Routes = [
             { path: COMPREHENSIVE_ROUTES.RISK_PROFILE + '/2', component: RiskProfileComponent, data: [{param: 2}]  },
             { path: COMPREHENSIVE_ROUTES.RISK_PROFILE + '/3', component: RiskProfileComponent, data: [{param: 3}]  },
             { path: COMPREHENSIVE_ROUTES.RISK_PROFILE + '/4', component: RiskProfileComponent, data: [{param: 4}]  },
-            { path: COMPREHENSIVE_ROUTES.REVIEW, component: ComprehensiveReviewComponent, resolve: { paymentBypass: PaymentResolver }}
+            { path: COMPREHENSIVE_ROUTES.REVIEW, component: ComprehensiveReviewComponent}
         ]
     }
 ];
@@ -74,8 +73,6 @@ const routes: Routes = [
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
-    providers: [
-        PaymentResolver
-      ]
+    providers: []
 })
 export class ComprehensiveRoutingModule { }

@@ -24,6 +24,7 @@ export class NavbarService {
   private promoAppliedCardVisibility = new BehaviorSubject(false);
   private scrollTo = new Subject();
   private currentActive = new Subject();
+  private setCpfPromoCode = new BehaviorSubject('');
 
 
   existingNavbar = this.navbar.asObservable();
@@ -35,6 +36,7 @@ export class NavbarService {
   currentBackListener = this.backListener.asObservable();
   scrollToObserv = this.scrollTo.asObservable();
   currentActiveObserv = this.currentActive.asObservable();
+  getCpfPromoCodeObservable = this.setCpfPromoCode.asObservable();
 
   /* Header Params */
   private pageTitle = new BehaviorSubject('');
@@ -43,6 +45,7 @@ export class NavbarService {
   private pageProdInfoIcon = new BehaviorSubject(false);
   private pageClearNotify = new BehaviorSubject(false);
   private pageDropDownIcon = new BehaviorSubject(false);
+  private paymentLockIcon = new BehaviorSubject(false);
 
   private investPageTitle = new BehaviorSubject('');
   private investPageSuperTitle = new BehaviorSubject('');
@@ -75,6 +78,7 @@ export class NavbarService {
   onMenuItemClicked = this.$menuItemClick.asObservable();
   investmentPageTitle = this.investPageTitle.asObservable();
   investmentPageSuperTitle = this.investPageSuperTitle.asObservable();
+  currentPagePaymentLockIcon = this.paymentLockIcon.asObservable();
 
   promoAppliedCardObservable = this.promoAppliedCardVisibility.asObservable();
   // logout
@@ -246,6 +250,7 @@ export class NavbarService {
   }
 
   logoutUser() {
+    this.setPromoCodeCpf('');
     this.logoutSubject.next('LOGGED_OUT');
   }
 
@@ -278,4 +283,11 @@ export class NavbarService {
     this.currentActive.next(currentActive);
   }
 
+  setPaymentLockIcon(lockIcon: boolean) {
+    this.paymentLockIcon.next(lockIcon);
+  }
+  
+  setPromoCodeCpf(promoCode: any) {
+    this.setCpfPromoCode.next(promoCode);
+  }
 }
