@@ -98,6 +98,7 @@ export class PromoCodeListComponent implements OnInit {
         }
       }
     } else {
+      this.modal.dismissAll();
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     }
     event.stopPropagation();

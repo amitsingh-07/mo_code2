@@ -77,6 +77,7 @@ export class PromoDetailsComponent implements OnInit {
             if (this.authService.isSignedUser()) {
             this.checkNtucMember(form);
             } else {
+            this.allModal.dismissAll();
             this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
             }
           });
@@ -112,6 +113,7 @@ export class PromoDetailsComponent implements OnInit {
         }
       }
     } else {
+      this.allModal.dismissAll();
       this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     }
     e.preventDefault();
