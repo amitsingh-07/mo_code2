@@ -8,9 +8,9 @@
     </div>
     <div *ngIf="data.items" class="progress-tracker-accordion mt35">
       <div *ngFor="let item of data.items">
-        <div class="progress-tracker-accordion__heading pointer-cursor {{item.customStyle}}" (click)="toggle(item)">
+        <div class="progress-tracker-accordion__heading pointer-cursor {{item.customStyle}}" (click)="navigateOrToggle(item)">
           {{item.title}}
-          <span class=" progress-tracker-accordion__heading__arrow" [ngClass]="{'active': !item.expanded}"></span>
+          <span class=" progress-tracker-accordion__heading__arrow" [ngClass]="{'active': !item.expanded, 'hidden': !item.showArrow }"></span>
         </div>
         <div class="progress-tracker-accordion__body" *ngIf="item.expanded">
           <ul>

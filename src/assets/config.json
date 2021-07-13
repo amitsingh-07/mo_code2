@@ -16,7 +16,7 @@
   "resetPasswordUrl": "/app/accounts/reset-password",
   "verifyEmailUrl": "/app/accounts/email-verification",
   "showAnnualizedReturns": false,
-  "paymentEnabled": false,
+  "paymentEnabled": true,
   "iFastMaintenance": true,
   "maintenanceStartTime": "2020-12-12T20:00:00.000+08:00",
   "maintenanceEndTime": "2020-12-13T00:10:00.000+08:00",

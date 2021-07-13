@@ -38,7 +38,8 @@ export class PaymentChildEnableGuard implements CanActivateChild {
           return true;
         }
       } else {
-        if (this.isPaymentEnabled) {
+        const comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
+        if (this.isPaymentEnabled && comprehensiveJourneyMode) {
           return true;
         } else {
           return false;
