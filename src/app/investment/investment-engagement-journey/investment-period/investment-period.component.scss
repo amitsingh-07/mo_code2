@@ -99,6 +99,8 @@ app-investment-period {
     font-family: $muli-semi-bold;
     font-size: 15px;
     color: $slider-instruction;
+    line-height: normal;
+    letter-spacing: -0.15px;
   }
 
   .personalInfoSliderDesc {
@@ -192,6 +194,11 @@ app-investment-period {
   color: $teal-color;
   padding: 20px;
   font-size: 15px;
+  line-height: normal;
+  letter-spacing: -0.15px;
+  @include iphoneX {
+    padding: 20px 10px 20px 15px;
+  }
 }
 .investmentSlider {
   margin-top: 40px;
