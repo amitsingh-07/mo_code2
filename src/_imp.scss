@@ -32,7 +32,9 @@
   justify-content: center;
   align-items: center;
 }
-
+.justify-right {
+  justify-content: flex-end !important;
+}
 .space-between {
   justify-content: space-between;
   align-items: center;
