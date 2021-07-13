@@ -12,6 +12,8 @@ import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/m
 import { NtucMemberComponent } from '../ntuc-member/ntuc-member.component';
 import { PAYMENT_ROUTE_PATHS } from '../../payment/payment-routes.constants';
 import { LoaderService } from '../../shared/components/loader/loader.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 
 @Component({
   selector: 'app-promo-details',
@@ -37,7 +39,8 @@ export class PromoDetailsComponent implements OnInit {
     private datePipe: DatePipe,
     private promoSvc: PromoCodeService,
     private manageInvestmentsService: ManageInvestmentsService,
-    private loaderService: LoaderService,) {
+    private loaderService: LoaderService,
+    public authService: AuthenticationService) {
     this.translate.use('en');
     this.loading = this.translate.instant('COMMON_LOADER.TITLE');
   }
@@ -63,45 +66,53 @@ export class PromoDetailsComponent implements OnInit {
   }
 
   usePromo(e) {
-    if (this.router.url === PAYMENT_CHECKOUT) {
-      if (this.selectedPromo['isNTUCPromocode'] && !this.selectedPromo['isSPOrRobo2Customer']
-        && !this.selectedPromo['isNTUCVerified']) {
-        const ref = this.allModal.open(NtucMemberComponent,
-          { centered: true, windowClass: 'cfm-overwrite-modal', backdrop: 'static' });
-        ref.componentInstance.ntucMember.subscribe((form) => {
-          ref.close();
-          this.checkNtucMember(form);
-        });
-      } else if (this.selectedPromo['isNTUCPromocode'] && this.selectedPromo['isSPOrRobo2Customer']
-        && !this.selectedPromo['isNTUCVerified']) {
-        this.showErrorPopup();
-      }
-      else if (this.selectedPromo['isNTUCPromocode'] && this.selectedPromo['isSPOrRobo2Customer']
-        && this.selectedPromo['isNTUCVerified'] || !this.selectedPromo['isNTUCPromocode']) {         
-        this.promoSvc.usedPromo.next(this.selectedPromo);
-        if (this.selectedPromo && this.selectedPromo.promoCode) {
-          this.promoSvc.setPromoCodeCpf(this.selectedPromo.promoCode);
+    if (this.authService.isSignedUser()) {
+      if (this.router.url === PAYMENT_CHECKOUT) {
+        if (this.selectedPromo['isNTUCPromocode'] && !this.selectedPromo['isSPOrRobo2Customer']
+          && !this.selectedPromo['isNTUCVerified']) {
+          const ref = this.allModal.open(NtucMemberComponent,
+            { centered: true, windowClass: 'cfm-overwrite-modal', backdrop: 'static' });
+          ref.componentInstance.ntucMember.subscribe((form) => {
+            ref.close();
+            if (this.authService.isSignedUser()) {
+            this.checkNtucMember(form);
+            } else {
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+            }
+          });
+        } else if (this.selectedPromo['isNTUCPromocode'] && this.selectedPromo['isSPOrRobo2Customer']
+          && !this.selectedPromo['isNTUCVerified']) {
+          this.showErrorPopup();
         }
-        this.promoSvc.tostMessage.next(true);
-        this.allModal.dismissAll();
-        this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);
-      } else {
-        this.allModal.dismissAll();
-        this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);
-      }
-    }
-    else {
-      if (this.selectedPromo['isWrapFeeRelated'] === 'Y') {
-        const existingWrapFeePromo = this.promoSvc.checkForExistingWrapFee();
-        if (existingWrapFeePromo) {
-          this.openOverwriteModal(existingWrapFeePromo);
+        else if (this.selectedPromo['isNTUCPromocode'] && this.selectedPromo['isSPOrRobo2Customer']
+          && this.selectedPromo['isNTUCVerified'] || !this.selectedPromo['isNTUCPromocode']) {
+          this.promoSvc.usedPromo.next(this.selectedPromo);
+          if (this.selectedPromo && this.selectedPromo.promoCode) {
+            this.promoSvc.setPromoCodeCpf(this.selectedPromo.promoCode);
+          }
+          this.promoSvc.tostMessage.next(true);
+          this.allModal.dismissAll();
+          this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);
         } else {
-          this.checkPath();
+          this.allModal.dismissAll();
+          this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);
         }
       }
       else {
-        this.checkPath();
+        if (this.selectedPromo['isWrapFeeRelated'] === 'Y') {
+          const existingWrapFeePromo = this.promoSvc.checkForExistingWrapFee();
+          if (existingWrapFeePromo) {
+            this.openOverwriteModal(existingWrapFeePromo);
+          } else {
+            this.checkPath();
+          }
+        }
+        else {
+          this.checkPath();
+        }
       }
+    } else {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     }
     e.preventDefault();
     e.stopPropagation();
