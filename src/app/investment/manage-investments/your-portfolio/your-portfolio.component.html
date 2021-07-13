@@ -327,7 +327,7 @@
                           </div>
                         </ng-template>
                       </div>
-                      <div *ngIf="portfolio.payoutType === wiseIncomePayoutType.FOUR_FIVE_PAYOUT || portfolio.payoutType === wiseIncomePayoutType.EIGHT_PAYOUT" class="mt20 dividend-display">
+                      <div *ngIf="portfolio.payoutType === wiseIncomePayoutType.FOUR_FIVE_PAYOUT || portfolio.payoutType === wiseIncomePayoutType.EIGHT_PAYOUT || portfolio.payoutType === wiseIncomePayoutType.REINVEST" class="mt20 dividend-display">
                         <div class="portfolio_info_label ">
                           {{'YOUR_PORTFOLIO.TOTAL_DIVIDENDS' | translate}}
                           <div class="currency_value">{{portfolio.totalDividends}}</div>
