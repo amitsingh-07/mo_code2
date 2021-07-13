@@ -8,7 +8,6 @@
     <div>
       <div class="promo-title">{{details?.header}}</div>
       <div *ngIf="selectedPromo && (selectedPromo.promoCodeEndDate || selectedPromo.endDate)" class="validity-txt mt5">{{'PROMO_CODE_DETAILS.VAlID_UNTIL' | translate}}{{selectedPromo?.promoCodeEndDate || selectedPromo?.endDate | date:'dd MMM y'}}</div>
-      <div *ngIf="!(selectedPromo.promoCodeEndDate && selectedPromo.endDate) && (details && details.validity)" class="validity-txt mt5">{{details.validity}}</div>
       <ng-container *ngFor="let promo of details?.promoDesc">
         <div class="mt20 mb30">
           <div [innerHTML]="promo.title" class="sub-header"></div>
