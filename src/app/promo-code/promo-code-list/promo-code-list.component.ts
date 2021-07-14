@@ -29,7 +29,7 @@ export class PromoCodeListComponent implements OnInit {
   showError: boolean = false;
   promoArray = [];
   promoCodeStatus: any;
-  checkOutPage: string;
+  checkOutPage = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,11 +40,11 @@ export class PromoCodeListComponent implements OnInit {
     private modal: NgbModal,
     public authService: AuthenticationService) {
     this.translate.use('en');
+    this.checkOutPage = !(this.router.url === PAYMENT_CHECKOUT) ;
   }
 
   ngOnInit() {
     this.promoCodeStatus = PROMO_CODE_STATUS;
-    this.checkOutPage = PAYMENT_CHECKOUT;
     this.formGrp = this.formBuilder.group({
       promoCode: ['', [Validators.required]]
     });
