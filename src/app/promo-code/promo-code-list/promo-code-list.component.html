@@ -25,7 +25,7 @@
 
     </div>
   </form>
-  <div *ngIf="promoArray.length !== 0 && router.url !== checkOutPage; else noPromo" class="active-promo-display mt20">
+  <div *ngIf="promoArray.length !== 0 && checkOutPage; else noPromo" class="active-promo-display mt20">
     <span>{{'PROMO_CODE_LIST.ACTIVE_PROMO' | translate}}</span>
     <div class="flex-wrap-div">
       <div *ngFor="let promo of promoArray" class="promo-card mt15" (click)="showDetails(promo, $event)"
