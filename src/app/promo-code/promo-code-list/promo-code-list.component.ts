@@ -29,6 +29,7 @@ export class PromoCodeListComponent implements OnInit {
   showError: boolean = false;
   promoArray = [];
   promoCodeStatus: any;
+  checkOutPage: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,6 +44,7 @@ export class PromoCodeListComponent implements OnInit {
 
   ngOnInit() {
     this.promoCodeStatus = PROMO_CODE_STATUS;
+    this.checkOutPage = PAYMENT_CHECKOUT;
     this.formGrp = this.formBuilder.group({
       promoCode: ['', [Validators.required]]
     });
