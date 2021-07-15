@@ -10,7 +10,7 @@
         <div class="flex-col-12 payout_desc text-center mb-30" *ngIf='payoutConst.GROW === payoutType'> 
             <div class='payout-icon mb-10'><img class="small" src="assets/images/investment-account/wiseincome-conservative-icon.svg" /></div>
             <div class='payout-message mb-10'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.GROW_AND_FUND_PAYOUT' | translate}}</div>
-            <div class='payout-hint'  [innerHTML]="'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.GROW_AND_FUND_PAYOUT_DESC' | translate:nextPayoutLabel"></div>            
+            <div class='payout-hint'  [innerHTML]="'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.GROW_AND_FUND_PAYOUT_DESC' | translate:payoutTimeInterval"></div>            
            
         </div>
         
@@ -20,7 +20,7 @@
             <div class='payout-message mb-10'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.4_PERCENT_PAYOUT' | translate}}</div>
             <div class='payout-type'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.4_PERCENT_PAYOUT_VALUE' | translate}}</div>
             <div class='payout-message mb-10'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.4_PERCENT_PAYOUT_DESC_1' | translate}}</div> 
-            <div class='payout-hint' [innerHTML]="'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.4_PERCENT_PAYOUT_DESC_2' | translate:nextPayoutLabel"></div>                                   
+            <div class='payout-hint' [innerHTML]="'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.4_PERCENT_PAYOUT_DESC_2' | translate:payoutTimeInterval"></div>                                   
         </div>
         <!-- 8% -->
         <div class="flex-col-12 payout_desc text-center mb-30" *ngIf='payoutConst.EIGHT_PERCENT === payoutType'>
@@ -28,7 +28,7 @@
             <div class='payout-message mb-10'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.8_PERCENT_PAYOUT' | translate}}</div>
             <div class='payout-type'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.8_PERCENT_PAYOUT_VALUE' | translate}}</div>
             <div class='payout-message mb-10'>{{ 'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.8_PERCENT_PAYOUT_DESC_1' | translate}}</div> 
-            <div class='payout-hint' [innerHTML]="'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.8_PERCENT_PAYOUT_DESC_2' | translate:nextPayoutLabel"></div>                       
+            <div class='payout-hint' [innerHTML]="'PORTFOLIO_RECOMMENDATION.WISE_INCOME_PORTFOLIO.8_PERCENT_PAYOUT_DESC_2' | translate:payoutTimeInterval"></div>                       
         </div>
 
         <div class="flex-col-12 mb-30">
