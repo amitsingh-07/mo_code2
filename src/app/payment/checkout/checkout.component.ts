@@ -346,6 +346,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       this.comprehensiveService.setViewableMode(viewMode);
       this.loaderService.hideLoaderForced();
       if (this.isWaivedPromo) {
+        this.comprehensiveService.setPaymentStatus(COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED);
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
       } else {
         this.goToPaymentInstructions();
