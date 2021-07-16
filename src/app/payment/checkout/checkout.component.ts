@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 import { environment } from './../../../environments/environment';
 import { ComprehensiveApiService } from './../../comprehensive/comprehensive-api.service';
@@ -59,6 +60,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   appliedPromoCode: string;
   isWaivedPromo = false;
   usedPromo: {};
+  promoSubscription: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -104,6 +106,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.navbarService.unsubscribeBackPress();
     this.navbarService.unsubscribeMenuItemClick();
     this.navbarService.setPaymentLockIcon(false);
+    this.promoSubscription.unsubscribe();
   }
 
   setPageTitle(title: string) {
@@ -251,8 +254,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     });
   }
 
-  getCheckoutDetails(promoCode) {  
-    const payload = { comprehensivePromoCodeToken: promoCode, promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE };
+  getCheckoutDetails(promoCode, isRemoved: boolean) {  
+    this.loaderService.showLoader({ title: this.loading, autoHide: false });
+    const payload = { comprehensivePromoCodeToken: promoCode, promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE, isRemoved: isRemoved };
     this.paymentService.getPaymentCheckoutCfpDetails(payload).subscribe((data: any) => {
       this.loaderService.hideLoaderForced();
       if (data && data.objectList) {
@@ -284,11 +288,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         } else if (!this.comprehensiveService.checkResultData()) {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
         } else if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
-          this.navbarService.getCpfPromoCodeObservable.subscribe((promoCode) => {
-            if (promoCode) {              
-            this.getCheckoutDetails(promoCode);
-            } else if(this.authService.isSignedUser()){
-              this.getCheckoutDetails(this.comprehensiveService.getCfpPromoCode());
+          this.promoSubscription = this.navbarService.getCpfPromoCodeObservable.subscribe((promoCode) => {
+            if (promoCode) {  
+              this.getCheckoutDetails(promoCode, false);
+            } else if(this.authService.isSignedUser()){  
+              if (promoCode === null){  
+                this.getCheckoutDetails(null, false); 
+              } else {   
+                this.getCheckoutDetails(promoCode, true);
+              }
             }
           });
         } else {
@@ -348,6 +356,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   removeAppliedPromoCode() {
+    this.navbarService.setPromoCodeCpf('');
     this.paymentAmount = this.totalAmount;
     this.reductionAmount = 0;
     this.cfpPromoCode = '';
