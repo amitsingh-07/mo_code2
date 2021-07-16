@@ -91,12 +91,12 @@ app-investment-period {
 
   .pointer-container {
     position: absolute;
-    left: 37px;
+    left: 33px;
     right: 65px;
     transform: translate(-100%, 0px);
   }
   .personalInfoInvestmentDesc {
-    font-family: $muli-semi-bold;
+    font-family: $muli-regular;
     font-size: 15px;
     color: $slider-instruction;
     line-height: normal;
@@ -133,7 +133,7 @@ app-investment-period {
     right: 0px;
     left: auto;
     position: absolute;
-    bottom: -10px;
+    bottom: -9px;
   }
 
   .callout h5 {
