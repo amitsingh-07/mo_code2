@@ -105,8 +105,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.navbarService.unsubscribeBackPress();
     this.navbarService.unsubscribeMenuItemClick();
-    this.navbarService.setPaymentLockIcon(false);
-    this.promoSubscription.unsubscribe();
+    this.navbarService.setPaymentLockIcon(false);    
+    if (this.promoSubscription) {
+      this.promoSubscription.unsubscribe();
+    }
   }
 
   setPageTitle(title: string) {
