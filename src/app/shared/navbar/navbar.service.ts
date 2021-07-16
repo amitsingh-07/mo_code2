@@ -24,7 +24,7 @@ export class NavbarService {
   private promoAppliedCardVisibility = new BehaviorSubject(false);
   private scrollTo = new Subject();
   private currentActive = new Subject();
-  private setCpfPromoCode = new BehaviorSubject('');
+  private setCpfPromoCode = new BehaviorSubject(null);
 
 
   existingNavbar = this.navbar.asObservable();

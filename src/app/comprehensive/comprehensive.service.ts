@@ -2724,4 +2724,8 @@ export class ComprehensiveService {
     return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
       .promoWaived;
   }
+  setPaymentStatus(paymentStatus: string) {
+    this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.paymentStatus = paymentStatus;
+    this.commit();
+  }
 }
