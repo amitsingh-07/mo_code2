@@ -76,7 +76,7 @@ export class MyInfoService {
     const screenHeight = screen.height;
     const left = 0;
     const top = 0;
-    this.windowRef = window.open(authoriseUrl, '_self');
+    this.windowRef = window.open(authoriseUrl);
 
     const timer = setInterval(() => {
       if (this.windowRef.closed) {
