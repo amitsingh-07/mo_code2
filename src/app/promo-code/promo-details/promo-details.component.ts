@@ -73,7 +73,7 @@ export class PromoDetailsComponent implements OnInit {
         if (this.selectedPromo['isNTUCPromocode'] && !this.selectedPromo['isSPOrRobo2Customer']
           && !this.selectedPromo['isNTUCVerified']) {
           const ref = this.allModal.open(NtucMemberComponent,
-            { centered: true, windowClass: 'cfm-overwrite-modal', backdrop: 'static' });
+            { centered: true, backdrop: 'static' });
           ref.componentInstance.ntucMember.subscribe((form) => {
             ref.close();
             if (this.authService.isSignedUser()) {
@@ -156,7 +156,7 @@ export class PromoDetailsComponent implements OnInit {
   }
 
   openOverwriteModal(existingPromo) {
-    const ref = this.allModal.open(ModelWithButtonComponent, { centered: true, windowClass: 'cfm-overwrite-modal', backdrop: 'static' });
+    const ref = this.allModal.open(ModelWithButtonComponent, { centered: true, backdrop: 'static' });
     ref.componentInstance.errorTitle = this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_1')
       + existingPromo['wrapFeeDiscountMsg'] + this.translate.instant('PROMO_CODE_OVERWRITE.OVERWRITE_TXT_3');
     ref.componentInstance.yesOrNoButton = 'Yes';
