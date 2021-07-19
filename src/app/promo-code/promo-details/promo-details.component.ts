@@ -13,6 +13,7 @@ import { NtucMemberComponent } from '../ntuc-member/ntuc-member.component';
 import { PAYMENT_ROUTE_PATHS } from '../../payment/payment-routes.constants';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { appConstants } from '../../app.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 
 @Component({
@@ -51,7 +52,13 @@ export class PromoDetailsComponent implements OnInit {
     this.selectedPromoDetails = this.promoSvc.getPromoDetails();
     this.usedPromo = this.promoSvc.usedPromo;
     this.promoSvc.fetchPromoListJSON().then((data) => {
-      this.details = data.promoList.find(element => {
+      this.details = data.promoList.filter(element => {
+        if (this.router.url === PAYMENT_CHECKOUT) {
+          return element['promoType'] === appConstants.COMPREHENSIVE_PROMO_CODE_TYPE;
+        } else {
+          return element['promoType'] === appConstants.INVESTMENT_PROMO_CODE_TYPE;
+        }
+      }).find(element => {
         if (this.selectedPromo['promoCode']) {
           return element['promoCode'] === this.selectedPromo['promoCode'];
         } else {
