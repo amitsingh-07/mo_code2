@@ -40,8 +40,11 @@
           <div class="txt-regular txt-dark-teal">{{'CHECKOUT.GST_LBL' | translate:gstPercentLabel}}</div>
         </div>
         <div>
-          <div class="value"><span class="currency">SGD</span><span>{{ paymentAmount |
-              currency:'USD':'symbol-narrow':'1.2'}}</span></div>
+          <div class="value">
+            <span class="currency">{{'CHECKOUT.SGD' | translate}}</span>
+            <span *ngIf="!defaultPaymentAmount">{{ paymentAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
+            <span *ngIf="defaultPaymentAmount">{{ paymentAmount | currency:'USD':'symbol-narrow':'1.2'}}</span>
+          </div>
           <div class="paynow-logo"><img src="assets/images/paynow-logo.svg" /></div>
         </div>
       </div>

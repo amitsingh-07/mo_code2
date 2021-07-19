@@ -61,6 +61,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   isWaivedPromo = false;
   usedPromo: {};
   promoSubscription: Subscription;
+  defaultPaymentAmount: boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -272,6 +273,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.promoCodeDescription = checkOutData.discountMessage;
         this.appliedPromoCode = !(Util.isEmptyOrNull(checkOutData.shortDescription)) ? checkOutData.shortDescription : '';
         this.isWaivedPromo = checkOutData.isWaivedPromo;
+        if(this.paymentAmount === 0){
+          this.defaultPaymentAmount = !this.defaultPaymentAmount;
+        }
+        else{
+          this.defaultPaymentAmount = this.defaultPaymentAmount;
+        }
       }
     }, (err) => {
       this.loaderService.hideLoaderForced();
