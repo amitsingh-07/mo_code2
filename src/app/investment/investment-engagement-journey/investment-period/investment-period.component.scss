@@ -180,6 +180,9 @@ app-investment-period {
     border-radius: 6px;
     color: $slider-instruction;
     font-size: 24px;
+    @include allmobiles {
+      font-size: 22px;
+    }
     font-family: 'Muli Extra Bold';
     width: 44px;
     height: 37px;
