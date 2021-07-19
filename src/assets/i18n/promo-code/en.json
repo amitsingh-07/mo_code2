@@ -48,7 +48,7 @@
     "DOB_LBL": "Date of Birth",
     "NRIC_LBL": "Last 4 Characters of NRIC/FIN",
     "PLACEHOLDER_NRIC_LBL": "Enter Last 4 Chars",
-    "ERROR_MSG": "If your NRIC/FIN is S1234567A, the last 4 characters should be 567A,",
+    "ERROR_MSG": "If your NRIC/FIN is S1234567A, the last 4 characters should be 567A",
     "BTN_LBL": "Confirm"
   },
   "NTUC_MEMBER_PROMO": {
