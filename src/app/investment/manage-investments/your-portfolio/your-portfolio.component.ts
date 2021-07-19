@@ -61,7 +61,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   simpleReturnsValue: any; // Simple returns
   showTimeWeightedReturns = false;
   investmentAmount: any; // Net Deposits
-  isExpand:boolean= false;
+  isExpand: boolean = false;
   private subscription: Subscription;
 
   showFixedToastMessage: boolean;
@@ -131,7 +131,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         this.showCopyToast(data);
       }
     });
-    this.wiseIncomePayoutType=MANAGE_INVESTMENTS_CONSTANTS.WISEINCOME_PAYOUT_TYPE;
+    this.wiseIncomePayoutType = MANAGE_INVESTMENTS_CONSTANTS.WISEINCOME_PAYOUT_TYPE;
   }
 
   ngOnDestroy() {
@@ -144,7 +144,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
     this.manageInvestmentsService.getCustomerPortfolioDetailsById(customerPortfolioId).subscribe((data) => {
       this.portfolio = data.objectList;
       this.nextPayoutLabel = (this.portfolio && this.portfolio.nextPayoutOrReinvestMonth) ? this.portfolio.nextPayoutOrReinvestMonth : '';
-     this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
+      this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
       this.holdingValues = this.portfolio.dPMSPortfolio ? this.portfolio.dPMSPortfolio.dpmsDetailsDisplay : null;
       this.constructFundingParams(this.portfolio);
       this.totalReturnsPercentage = this.portfolio.dPMSPortfolio && this.portfolio.dPMSPortfolio.totalReturns
@@ -200,9 +200,9 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
-  }  
- 
-   getPortfolioWithdrawalRequests(sellRequests) {
+  }
+
+  getPortfolioWithdrawalRequests(sellRequests) {
     return sellRequests.filter(
       (req) => PORTFOLIO_WITHDRAWAL_KEYS.indexOf(req.paymentMode) >= 0
     );
@@ -356,7 +356,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         }
         break;
       }
-     
+
     }
   }
 
@@ -465,54 +465,42 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO])
       });
     } else {
-      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.DELETE');
-      ref.componentInstance.errorMessage = this.translate.instant(
-        'YOUR_INVESTMENT.DELETE_TXT'
-      );
-      ref.componentInstance.yesOrNoButton = 'Yes';
-      ref.componentInstance.yesClickAction.subscribe(() => {
-        this.manageInvestmentsService.deletePortfolio(this.portfolio).subscribe((data) => {
-          if (data.responseMessage.responseCode < 6000) {
-            if (
-              data.objectList &&
-              data.objectList.length &&
-              data.objectList[data.objectList.length - 1].serverStatus &&
-              data.objectList[data.objectList.length - 1].serverStatus.errors &&
-              data.objectList[data.objectList.length - 1].serverStatus.errors.length
-            ) {
-              this.showCustomErrorModal(
-                'Error!',
-                data.objectList[data.objectList.length - 1].serverStatus.errors[0].msg
-              );
-            } else if (data.responseMessage && data.responseMessage.responseDescription) {
-              const errorResponse = data.responseMessage.responseDescription;
-              this.showCustomErrorModal('Error!', errorResponse);
-            } else {
-              this.investmentAccountService.showGenericErrorModal();
-            }
-          }
-          else if(data.responseMessage.responseCode === 6017){
-            const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-            ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.DELETE_HEADER');
-            ref.componentInstance.errorMessage = this.translate.instant(
-              'YOUR_PORTFOLIO.DELETE_TEXT'
-            );
-            ref.componentInstance.primaryActionLabel = this.translate.instant('YOUR_PORTFOLIO.OKAY_GOT_IT');
-            ref.componentInstance.primaryAction.subscribe(() => {
-              this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO])
-            });
-          }
-           else {
-            this.authService.removeEnquiryId();
-            this.goToInvOverview();
-          }
-        },
-          (err) => {
-            this.investmentAccountService.showGenericErrorModal();
+      this.manageInvestmentsService.deletePortfolio(this.portfolio).subscribe((data) => {
+        if (data && data.responseMessage && data.responseMessage.responseCode === 6017) {
+          const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.DELETE_HEADER');
+          ref.componentInstance.errorMessage = this.translate.instant(
+            'YOUR_PORTFOLIO.DELETE_TEXT'
+          );
+          ref.componentInstance.primaryActionLabel = this.translate.instant('YOUR_PORTFOLIO.OKAY_GOT_IT');
+          ref.componentInstance.primaryAction.subscribe(() => {
+            this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO])
           });
+        } else if (data.responseMessage.responseCode < 6000) {
+          if (
+            data.objectList &&
+            data.objectList.length &&
+            data.objectList[data.objectList.length - 1].serverStatus &&
+            data.objectList[data.objectList.length - 1].serverStatus.errors &&
+            data.objectList[data.objectList.length - 1].serverStatus.errors.length
+          ) {
+            this.showCustomErrorModal(
+              'Error!',
+              data.objectList[data.objectList.length - 1].serverStatus.errors[0].msg
+            );
+          } else if (data.responseMessage && data.responseMessage.responseDescription) {
+            const errorResponse = data.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
+          } else {
+            this.investmentAccountService.showGenericErrorModal();
+          }
+        } else {
+          this.authService.removeEnquiryId();
+          this.goToInvOverview();
+        }        
+      }, (err) => {
+        this.investmentAccountService.showGenericErrorModal();
       });
-      ref.componentInstance.noClickAction.subscribe(() => { });
     }
   }
 
