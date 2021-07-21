@@ -1,5 +1,5 @@
-@import "../../../variables";
-@import "../../../mixins";
+@import '../../../variables';
+@import '../../../mixins';
 app-payment-instruction {
     .toast-msg-top-space {
         @include desktop {
@@ -295,6 +295,7 @@ app-payment-instruction {
             margin: 0 auto;
             .btn {
                 &.btn-primary {
+                    font-size: 22px;
                     background-color: $btn-primary-backgrnd-color;
                     border-color: $btn-primary-backgrnd-color;
                     box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;

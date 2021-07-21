@@ -64,10 +64,7 @@ export class PaymentService {
     return this.apiService.getCustPromoCodeByCategory(payload);
   }
 
-  getPaymentCheckoutCfpDetails(promoCode) {
-    const payload = {
-      promoCodeCat: promoCode
-    };
+  getPaymentCheckoutCfpDetails(payload) {
     return this.apiService.getPaymentCheckoutCfpDetails(payload);
   }
 }

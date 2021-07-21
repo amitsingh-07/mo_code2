@@ -40,7 +40,7 @@ export interface IComprehensiveEnquiry {
     dobPopUpEnable: boolean;
     paymentStatus:string;
     promoCode?: string;
-    isWaivedPromo?: boolean;
+    promoWaived?: boolean;
 }
 export interface IPromoCode {
     comprehensivePromoCodeToken: string;

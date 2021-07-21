@@ -2722,6 +2722,10 @@ export class ComprehensiveService {
   }
   getWaivedPromo() {
     return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
-      .isWaivedPromo;
+      .promoWaived;
+  }
+  setPaymentStatus(paymentStatus: string) {
+    this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.paymentStatus = paymentStatus;
+    this.commit();
   }
 }

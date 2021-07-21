@@ -327,7 +327,7 @@
                           </div>
                         </ng-template>
                       </div>
-                      <div *ngIf="portfolio.payoutType === wiseIncomePayoutType.FOUR_FIVE_PAYOUT || portfolio.payoutType === wiseIncomePayoutType.EIGHT_PAYOUT" class="mt20 dividend-display">
+                      <div *ngIf="portfolio.payoutType === wiseIncomePayoutType.FOUR_FIVE_PAYOUT || portfolio.payoutType === wiseIncomePayoutType.EIGHT_PAYOUT || portfolio.payoutType === wiseIncomePayoutType.REINVEST" class="mt20 dividend-display">
                         <div class="portfolio_info_label ">
                           {{'YOUR_PORTFOLIO.TOTAL_DIVIDENDS' | translate}}
                           <div class="currency_value">{{portfolio.totalDividends}}</div>
@@ -544,12 +544,8 @@
                     *ngIf="pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.awaitingFundRequests.length">
                     <div class="flex-col"
                       *ngFor="let awaitingRequest of pendingMonthlyBuyRequests.awaitingFundRequests; let i = index;">
-                      <div class="processing-time">{{'YOUR_PORTFOLIO.MONTHLY_FUND_TIME' | translate}}</div>
-                      <div class="flex-col-12 flex-row">
-                        <div class="flex align-center"><span
-                            class="fund-state"></span><span>{{awaitingRequest.createdDate | date : "dd MMM,
-                            hh:mma"}}</span>
-                        </div>
+                      <div class="processing-time">{{'YOUR_PORTFOLIO.MONTHLY_FUND_TIME' | translate : { month:awaitingRequest.fundBy} }}</div>
+                      <div class="flex-col-12 flex-row justify-right">
                         <div class="fund-amt">
                           <span>{{awaitingRequest.amount | formatCurrency}}</span><span class="forward-icon"
                             *ngIf="false"><img src="assets/images/investment-account/forward_portfolio.svg" /></span>
@@ -581,8 +577,7 @@
                       <div class="processing-time">{{'YOUR_PORTFOLIO.PROCESSING_TIME' | translate}}</div>
                       <div class="flex-col"
                         *ngFor="let processingRequest of pendingMonthlyBuyRequests.processingRequests; let i = index;">
-                        <div class="flex-col-12 flex-row">
-                          <div>{{processingRequest.createdDate | date : "dd MMM, hh:mma"}}</div>
+                        <div class="flex-col-12 flex-row justify-right">
                           <div class="fund-amt">
                             <span>{{processingRequest.amount | formatCurrency}}</span><span class="forward-icon"
                               *ngIf="false"><img src="assets/images/investment-account/forward_portfolio.svg" /></span>

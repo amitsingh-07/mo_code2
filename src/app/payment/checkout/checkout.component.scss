@@ -1,5 +1,5 @@
-@import "../../../variables";
-@import "../../../mixins";
+@import '../../../variables';
+@import '../../../mixins';
 
 app-checkout {
   .toast-msg-top-space-checkout {
@@ -27,7 +27,7 @@ app-checkout {
       right: 15px;
     }
     @include phablet {
-      top: 48px;
+      top: 116px;
       right: 15px;
     }
   }
@@ -270,11 +270,17 @@ app-checkout {
     width: 350px;
     display: flex;
     flex-direction: column;
-    padding: 5px 0 55px;
+    padding: 55px 0;
     @include allmobiles {
       width: 100%;
       padding: 0;
     }
+    .promo-code-container {
+      width: 100%;
+      padding-top: 5px;
+      padding-bottom: 26px;
+    }
+    
     .promo-banner {
       margin: 20px 0;
       padding: 25px 21px;
@@ -318,6 +324,7 @@ app-checkout {
       }
       .value {
         color: $silver-grey-color;
+        text-align: right;
         .currency {
           font-size: 14px;
           letter-spacing: -0.26px;
@@ -348,6 +355,7 @@ app-checkout {
       border-radius: 6px;
       border: solid 1px $half-baked-blue-color;
       padding: 6px;
+      width: 100%;
       .default-txt {
         line-height: 20px;
         letter-spacing: -0.16px;
@@ -361,10 +369,16 @@ app-checkout {
         line-height: 20px;
         display: flex;
         align-items: center;
+        flex-direction: row;
+        width: calc(100% - 90px);
         .valid-logo {
           width: 18px;
           height: 18px;
           display: flex;
+        }
+        .promo-display{
+          white-space: nowrap;
+          overflow: hidden;
         }
       }
       .remove-btn {
@@ -383,9 +397,9 @@ app-checkout {
     .terms {
       line-height: 15px;
       letter-spacing: -0.15px;
-      color: #ffffff;
+      color: $white-color;
       padding: 0 6px;
-      margin-bottom: 40px;
+      margin-bottom: 26px;
       @include allmobiles {
         margin-bottom: 16px;
       }

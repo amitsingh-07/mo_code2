@@ -22,6 +22,7 @@
     "PROMO_LBL": "Promo ",
     "PAYABLE_LBL": "Payable Amount",
     "GST_LBL": "Inclusive of {{gstPercent}}% GST",
+    "SGD": "SGD",
     "ENTER_PROMO_LBL": "Enter Promo Code",
     "REMOVE_BTN_LBL": "Remove",
     "AGREE": "By purchasing, you agree to MoneyOwl's ",
