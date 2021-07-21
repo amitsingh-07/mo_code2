@@ -157,7 +157,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
 
   showModalPopUp(value) {
     const investmentPeriodValue = {
-      period: value === 1 ?  value  + ' ' + 'year' : value  + ' ' +'years'
+      period: value == 1 ?  value  + ' ' + 'year' : value  + ' ' +'years'
     };
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('PERSONAL_INFO.MODAL.TITLE');
