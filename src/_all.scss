@@ -986,7 +986,7 @@ h6 {
         }
 
         &:hover,
-        &:focus,  {
+        &:focus  {
           background-color: $white-color;
           outline: none;
           border-bottom: none;
@@ -2081,6 +2081,10 @@ select:-webkit-autofill:focus {
       margin-bottom: 30px;
       color: #9fd4d4;
 
+      &:not(:first-child) {
+        top: 4px;
+      }
+
       span {
         height: 15px;
         width: 15px;
@@ -2094,7 +2098,8 @@ select:-webkit-autofill:focus {
       }
 
       &.active {
-
+        cursor: pointer;
+        
         .road-map__step-number,
         .road-map__step-title,
         .road-map__step-desc {
@@ -2120,6 +2125,8 @@ select:-webkit-autofill:focus {
       }
 
       &.success {
+        cursor: pointer;
+
         span {
           background-image: url(/assets/images/comprehensive/step-success.svg);
           width: 30px;
