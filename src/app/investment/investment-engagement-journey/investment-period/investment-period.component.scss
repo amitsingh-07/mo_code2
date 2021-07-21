@@ -21,6 +21,12 @@ app-investment-period {
 
   .callout {
     padding: 20px 25px 20px 20px;
+    @include iphoneX {
+      padding: 20px 23px 20px 20px;
+    }
+    @include iphone6 {
+      padding: 20px 23px 20px 20px;
+    }
     background-color: $callout-bg;
     border-radius: 6px;
     margin-top: 30px;
@@ -200,6 +206,9 @@ app-investment-period {
   line-height: normal;
   letter-spacing: -0.15px;
   @include iphoneX {
+    padding: 20px 10px 20px 15px;
+  }
+  @include iphone6 {
     padding: 20px 10px 20px 15px;
   }
 }
