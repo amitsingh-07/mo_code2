@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ProgressTrackerService } from './progress-tracker.service';
 import { IProgressTrackerData, IProgressTrackerItem, IProgressTrackerSubItem } from './progress-tracker.types';
 import { ComprehensiveService } from '../../../comprehensive/comprehensive.service';
-import { COMPREHENSIVE_CONST } from 'src/app/comprehensive/comprehensive-config.constants';
+import { COMPREHENSIVE_CONST } from '../../../comprehensive/comprehensive-config.constants';
 @Component({
     selector: 'app-progress-tracker',
     templateUrl: './progress-tracker.component.html',
