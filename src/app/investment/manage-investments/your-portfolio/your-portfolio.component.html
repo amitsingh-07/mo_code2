@@ -530,7 +530,7 @@
               </div>
               <div class="form-group-with-bg">
                 <div class="form-group-with-bg--header">
-                  <div class="invest-type">
+                  <div class="invest-type" [ngClass]="{'no-border': pendingMonthlyBuyRequests && pendingMonthlyBuyRequests.processingRequests.length}">
                     <span class="invest-type-icon">
                       <img src="assets/images/investment-account/monthly-icon.svg" />
                     </span>
@@ -559,8 +559,7 @@
                     <div class="flex-col"
                       *ngFor="let recievedRequest of pendingMonthlyBuyRequests.recievedRequests; let i = index;">
                       <div class="processing-time">{{'YOUR_PORTFOLIO.FUND_RECIEVED_AND_PROCESSED' | translate}}</div>
-                      <div class="flex-col-12 flex-row">
-                        <div><span>{{recievedRequest.createdDate | date : "dd MMM, hh:mma"}}</span></div>
+                      <div class="flex-col-12 flex-row justify-right">
                         <div class="fund-amt">
                           <span>{{recievedRequest.amount | formatCurrency}}</span><span class="forward-icon"
                             *ngIf="false"><img src="assets/images/investment-account/forward_portfolio.svg" /></span>
