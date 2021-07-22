@@ -688,6 +688,9 @@ app-your-portfolio {
             align-items: center;
             padding-bottom: 10px;
             border-bottom: 1px solid #f1f1f1;
+            &.no-border {
+              border-bottom: none;
+            }
             .invest-type-icon{
               width: 34px;
               height: 24px;
