@@ -465,7 +465,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
         this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO])
       });
     } else {
-      this.manageInvestmentsService.validate(this.portfolio).subscribe((data) => {
+      this.manageInvestmentsService.validateCustomerPortfolioDelete(this.portfolio).subscribe((data) => {
         if (data && data.responseMessage && data.responseMessage.responseCode === 6017 && !data.objectList) {
           const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
           ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.DELETE_HEADER');

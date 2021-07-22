@@ -185,9 +185,9 @@ export class ManageInvestmentsService {
     return this.investmentApiService.deletePortfolio(payload);
   }
 
-  validate(data) {
+  validateCustomerPortfolioDelete(data) {
     const payload = this.constructDeletePortfolioParams(data);
-    return this.investmentApiService.validate(payload);
+    return this.investmentApiService.validateCustomerPortfolioDelete(payload);
   }
 
   constructDeletePortfolioParams(data) {

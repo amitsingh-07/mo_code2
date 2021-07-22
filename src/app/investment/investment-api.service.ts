@@ -250,9 +250,9 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-    validate(data) {
+  validateCustomerPortfolioDelete(data) {
     return this.http.get(
-      investmentApiConstants.endpoint.investmentAccount.validate.replace('$CUSTOMER_PORTFOLIO_ID$', data.customerPortfolioId)  + '?handleError=true')
+      investmentApiConstants.endpoint.investmentAccount.validateCustomerPortfolioDelete.replace('$CUSTOMER_PORTFOLIO_ID$', data.customerPortfolioId)  + '?handleError=true')
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
