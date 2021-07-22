@@ -41,6 +41,7 @@
     &:disabled {
       background-color: $iceberg-blue-color;
       color: $teal-color;
+      -webkit-text-fill-color: $teal-color;
       cursor: not-allowed;
     }
     & + .input-group-append {
