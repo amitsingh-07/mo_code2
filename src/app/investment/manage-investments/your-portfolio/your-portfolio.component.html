@@ -559,7 +559,7 @@
                     <div class="flex-col"
                       *ngFor="let recievedRequest of pendingMonthlyBuyRequests.recievedRequests; let i = index;">
                       <div class="processing-time">{{'YOUR_PORTFOLIO.FUND_RECIEVED_AND_PROCESSED' | translate}}</div>
-                      <div class="flex-col-12 flex-row">
+                      <div class="flex-col-12 flex-row justify-right">
                         <div class="fund-amt">
                           <span>{{recievedRequest.amount | formatCurrency}}</span><span class="forward-icon"
                             *ngIf="false"><img src="assets/images/investment-account/forward_portfolio.svg" /></span>
