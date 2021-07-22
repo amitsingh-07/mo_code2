@@ -185,6 +185,11 @@ export class ManageInvestmentsService {
     return this.investmentApiService.deletePortfolio(payload);
   }
 
+  validate(data) {
+    const payload = this.constructDeletePortfolioParams(data);
+    return this.investmentApiService.validate(payload);
+  }
+
   constructDeletePortfolioParams(data) {
     return {
       customerPortfolioId: data.customerPortfolioId

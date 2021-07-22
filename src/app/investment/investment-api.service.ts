@@ -250,6 +250,14 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+    validate(data) {
+    return this.http.get(
+      investmentApiConstants.endpoint.investmentAccount.validate.replace('$CUSTOMER_PORTFOLIO_ID$', data.customerPortfolioId)  + '?handleError=true')
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   // tslint:disable-next-line:no-identical-functions MONTHLY INVESTMENT API
   monthlyInvestment(customerPortfolioId, data) {
     const url = investmentApiConstants.endpoint.investmentAccount.monthlyInvestment.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
