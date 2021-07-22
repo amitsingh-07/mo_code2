@@ -20,7 +20,13 @@ app-investment-period {
   }
 
   .callout {
-    padding: 15px;
+    padding: 20px 25px 20px 20px;
+    @include iphoneX {
+      padding: 20px 23px 20px 20px;
+    }
+    @include iphone6 {
+      padding: 20px 23px 20px 20px;
+    }
     background-color: $callout-bg;
     border-radius: 6px;
     margin-top: 30px;
@@ -29,6 +35,7 @@ app-investment-period {
     font-size: 15px;
     letter-spacing: -0.15px;
     color: $callout-txt-color;
+    bottom: 8px;
   }
 
   .time-horizon {
@@ -90,14 +97,18 @@ app-investment-period {
 
   .pointer-container {
     position: absolute;
-    bottom: -14px;
-    left: 30px;
     left: 34px;
-    right: 0px;
+    right: 65px;
     transform: translate(-100%, 0px);
   }
+  .personalInfoInvestmentDesc {
+    font-family: $muli-regular;
+    font-size: 15px;
+    color: $slider-instruction;
+    line-height: normal;
+    letter-spacing: -0.15px;
+  }
 
-  .personalInfoInvestmentDesc,
   .personalInfoSliderDesc {
     font-family: $muli-italic;
     font-size: 15px;
@@ -124,10 +135,11 @@ app-investment-period {
     height: 0;
     border-left: 15px solid transparent;
     border-right: 18px solid transparent;
-    border-bottom: 20px solid $white-color;
+    border-top: 20px solid $white-color;
     right: 0px;
     left: auto;
     position: absolute;
+    bottom: -9px;
   }
 
   .callout h5 {
@@ -157,10 +169,55 @@ app-investment-period {
   }
 }
 
-
+.investmentSlider-wrapper {
+  position: relative;
+}
+.investmentSlider-period {
+  position: absolute;
+  right: 5px;
+  top: -15px;
+}
+.investmentSlider-years-box + div {
+  font-size: 18px;
+  text-align: center;
+}
+.investmentSlider-years-box input {
+    background-color: $white-color;
+    border-radius: 6px;
+    color: $slider-instruction;
+    font-size: 24px;
+    @include allmobiles {
+      font-size: 22px;
+    }
+    font-family: 'Muli Extra Bold';
+    width: 44px;
+    height: 37px;
+    text-align: center;
+    outline: none;
+    border: none;
+    padding: 7px;
+}
+.investmentSlider-note {
+  background-color: $white-color;
+  border-radius: 6px;
+  color: $teal-color;
+  padding: 20px;
+  font-size: 15px;
+  line-height: normal;
+  letter-spacing: -0.15px;
+  @include iphoneX {
+    padding: 20px 10px 20px 15px;
+  }
+  @include iphone6 {
+    padding: 20px 10px 20px 15px;
+  }
+}
 .investmentSlider {
+  margin-top: 40px;
+  margin-right: 80px;
+  margin-bottom: 40px;
   .noUi-target {
-    height: 50px !important;
+    height: 35px !important;
     border-radius: 25px !important;
   }
 
@@ -183,9 +240,10 @@ app-investment-period {
   .noUi-horizontal .noUi-handle {
     width: 63px !important;
     height: 64px !important;
-    background: url('/assets/images/owl-icon.png') no-repeat center;
+    background: url('/assets/images/new-silder-button.svg') no-repeat center;
     border: none !important;
-    right: 0px;
+    right: -24px !important;
+    top: -12px !important;
   }
 
   .noUi-origin {

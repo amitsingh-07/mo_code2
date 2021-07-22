@@ -15,9 +15,9 @@ import { IMyProfile } from '../comprehensive-types';
 import { environment } from './../../../environments/environment';
 import { ConfigService } from './../../config/config.service';
 import { LoaderService } from './../../shared/components/loader/loader.service';
-import { PaymentInstructionModalComponent } from './../../shared/modal/payment-instruction-modal/payment-instruction-modal.component';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
+import { PAYMENT_ROUTE_PATHS } from '../../payment/payment-routes.constants';
 
 
 @Component({
@@ -47,7 +47,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
   comprehensiveLiteEnabled: boolean;
   versionTypeEnabled: boolean;
   getComprehensiveSummaryDashboard: any;
-  promoCodeValidated = false;
+  isCFPGetStarted = false;
   enquiryId: any;
   isReportGenerated = false;
   fetchData : string;
@@ -56,6 +56,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
   toastMsg: any;
   getReferralInfo: any;
   comprehensiveInfo: any;
+  paymentWaived = false;
 constructor(
     private router: Router,
     private translate: TranslateService,
@@ -142,7 +143,7 @@ constructor(
 
   
   goToEditProfile() {
-    if (this.comprehensivePlanning === 4 && !this.versionTypeEnabled && !this.promoCodeValidated) {
+    if (this.comprehensivePlanning === 4 && !this.versionTypeEnabled && !this.isCFPGetStarted) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
     } else {
       this.setComprehensiveSummary(true, COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED);
@@ -156,7 +157,7 @@ constructor(
       const routerURL = COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep + 1);
       this.setComprehensiveSummary(true, routerURL);
     } else if (this.currentStep === 4) {
-      const routerURL = COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep);
+      const routerURL = (!this.comprehensiveService.getViewableMode() && this.getCurrentVersionType == COMPREHENSIVE_CONST.VERSION_TYPE.FULL) ? COMPREHENSIVE_ROUTE_PATHS.REVIEW : COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep);
       this.setComprehensiveSummary(true, routerURL);
     }
   }
@@ -330,6 +331,7 @@ constructor(
     this.getComprehensiveSummaryDashboard = '';
     this.currentStep = -1;
     this.paymentInstructions = false;
+    this.paymentWaived = false;
     this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe( (dashboardData: any) => {
       if (dashboardData && dashboardData.objectList[0]) {
         this.getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', this.getCurrentVersionType);
@@ -339,7 +341,10 @@ constructor(
           && (this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING || 
           this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING)
           && this.getCurrentVersionType === this.getComprehensiveSummaryDashboard.type);
-          this.promoCodeValidated = this.getComprehensiveSummaryDashboard.isValidatedPromoCode;
+          this.paymentWaived = (this.getComprehensiveSummaryDashboard.paymentStatus
+            && this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED
+            && this.getCurrentVersionType === this.getComprehensiveSummaryDashboard.type);
+          this.isCFPGetStarted = this.getComprehensiveSummaryDashboard.isCFPGetStarted;
           this.reportStatus = this.getComprehensiveSummaryDashboard.reportStatus;
           this.enquiryId= this.getComprehensiveSummaryDashboard.enquiryId;
           if ((this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || this.reportStatus=== COMPREHENSIVE_CONST.REPORT_STATUS.EDIT) && (this.islocked === null || !this.islocked)) {
@@ -373,10 +378,7 @@ constructor(
   }
 
   showPaymentModal() {
-    const ref = this.modal.open(PaymentInstructionModalComponent, { centered: true });
-    ref.componentInstance.showCopyToast.subscribe((data) => {
-      this.showCopyToast(data);
-    });
+    this.router.navigate([PAYMENT_ROUTE_PATHS.PAYMENT_INSTRUCTION]);
   }
 
   showCopyToast(data) {

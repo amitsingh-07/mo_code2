@@ -20,27 +20,8 @@
         <span>${{productAmount}} {{'CMP.COMPREHENSIVE.INCLUSIVE_GST' | translate}}</span>
       </div>
     </div>
-    <div [hidden]="promoCodeValidated" class="promocode-entry">
-      <span>{{'CMP.COMPREHENSIVE.ENTER_PROMO_CODE' | translate}}</span></div>
     <div class="promocode">
-      <form [hidden]="promoCodeValidated" [formGroup]="promoCodeForm" id="promoCodeForm" name="promoCodeForm">
-        <div class="offer-code">
-          <div>
-            <input type="text" id="promoCodeInpt" class="form-control promo-code"
-              formControlName="comprehensivePromoCodeToken"
-              placeholder="{{ 'CMP.COMPREHENSIVE.INPUT_PLACEHOLDER' | translate}}">
-          </div>
-          <div class="no-promo">
-            {{ 'CMP.COMPREHENSIVE.NO_PROMOCODE' | translate}}
-            <span id="intro-get-now" (click)="getPromoCode()"
-              class='getOneNow'>{{ 'CMP.COMPREHENSIVE.GET_NOW' | translate}}</span>
-          </div>
-        </div>
-      </form>
-      <div *ngIf="checkDate()" class='no-promo'>
-        <span [innerHTML]="this.translate.instant('CMP.COMPREHENSIVE.NTUC_PROMO')"></span>
-      </div>
-      <button type="button" [disabled]="!(promoCodeForm.valid || promoCodeValidated)" class="btn btn__footer--fixed btn-primary with-white-bg width100" (click)="getStarted()"
+      <button type="button" class="btn btn__footer--fixed btn-primary with-white-bg width100" (click)="getStarted()"
         id="intro-continue">{{'CMP.COMPREHENSIVE.GET_STARTED' | translate}}</button>
     </div>
   </div>

@@ -13,6 +13,8 @@ export interface IProgressTrackerProperties {
 export class IProgressTrackerItem {
     title: string;
     expanded = false;
+    showArrow = false;
+    path?: string;
     completed = false;
     customStyle?: string;
     subItems: IProgressTrackerSubItem[];
