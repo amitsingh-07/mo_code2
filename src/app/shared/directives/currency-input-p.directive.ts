@@ -45,6 +45,14 @@ export class CurrencyInputPortfolioDirective implements AfterViewInit {
     @HostListener('blur', ['$event'])
     onblur() {
         this.formatCurrency();
+    }    
+
+    @HostListener('paste', ['$event'])
+    onPaste(event: ClipboardEvent) {
+        const Regexp = new RegExp('[' + this.currencySymbol + ',]', 'g');
+        const pastedAmount = event.clipboardData.getData('text').replace(Regexp, '');
+        this.el.nativeElement.value = (pastedAmount) ? pastedAmount : 0;
+        event.preventDefault();
     }
     
     formatCurrency() {
