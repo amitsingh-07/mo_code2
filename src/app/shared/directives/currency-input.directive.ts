@@ -21,7 +21,7 @@ export class CurrencyInputDirective implements AfterViewInit {
     ngAfterViewInit() {
         this.formatCurrency();
     }
-    
+
     @HostListener('keyup', ['$event'])
     onKeyUp(event: KeyboardEvent) {
         if ((event.keyCode !== 37 && event.keyCode !== 39 && event.keyCode !== 8 && (event.keyCode < 48 || event.keyCode > 57)) || event.keyCode === undefined) {
@@ -46,7 +46,7 @@ export class CurrencyInputDirective implements AfterViewInit {
         this.formatCurrency();
     }
 
-    @HostListener('document:paste', ['$event'])
+    @HostListener('paste', ['$event'])
     onPaste(event: ClipboardEvent) {
         const Regexp = new RegExp('[' + this.currencySymbol + ',]', 'g');
         const pastedAmount = event.clipboardData.getData('text').replace(Regexp, '');
