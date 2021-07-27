@@ -21,12 +21,14 @@ export class CurrencyInputDirective implements AfterViewInit {
     ngAfterViewInit() {
         this.formatCurrency();
     }
-
+    
     @HostListener('keyup', ['$event'])
     onKeyUp(event: KeyboardEvent) {
-        const regPattern = this.allowDecimal ? /[^0-9.]/g : /[^0-9]/g;
-        this.el.nativeElement.value = this.el.nativeElement.value.replace(regPattern, '');
-        this.el.nativeElement.dispatchEvent(new Event('input'));
+        if ((event.keyCode !== 37 && event.keyCode !== 39 && event.keyCode !== 8 && (event.keyCode < 48 || event.keyCode > 57)) || event.keyCode === undefined) {
+            const regPattern = this.allowDecimal ? /[^0-9.]/g : /[^0-9]/g;
+            this.el.nativeElement.value = this.el.nativeElement.value.replace(regPattern, '');
+            this.el.nativeElement.dispatchEvent(new Event('input'));
+        }
     }
 
     @HostListener('focus', ['$event'])
@@ -42,6 +44,14 @@ export class CurrencyInputDirective implements AfterViewInit {
     @HostListener('blur', ['$event'])
     onblur() {
         this.formatCurrency();
+    }
+
+    @HostListener('document:paste', ['$event'])
+    onPaste(event: ClipboardEvent) {
+        const Regexp = new RegExp('[' + this.currencySymbol + ',]', 'g');
+        const pastedAmount = event.clipboardData.getData('text').replace(Regexp, '');
+        this.el.nativeElement.value = (pastedAmount) ? pastedAmount : 0;
+        event.preventDefault();
     }
 
     formatCurrency() {
