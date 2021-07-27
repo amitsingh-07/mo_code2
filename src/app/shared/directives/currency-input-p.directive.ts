@@ -49,9 +49,10 @@ export class CurrencyInputPortfolioDirective implements AfterViewInit {
 
     @HostListener('paste', ['$event'])
     onPaste(event: ClipboardEvent) {
+        const amountMaxLength = (this.el.nativeElement.getAttribute('maxlength'));
         const Regexp = new RegExp('[' + this.currencySymbol + ',]', 'g');
         const pastedAmount = event.clipboardData.getData('text').replace(Regexp, '');
-        this.el.nativeElement.value = (pastedAmount) ? pastedAmount : 0;
+        this.el.nativeElement.value = (pastedAmount) ? ((amountMaxLength && amountMaxLength !== undefined) ? pastedAmount.substr(0, amountMaxLength) : pastedAmount) : 0;
         event.preventDefault();
     }
     
