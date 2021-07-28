@@ -49,8 +49,8 @@ export class CurrencyInputDirective implements AfterViewInit {
     @HostListener('paste', ['$event'])
     onPaste(event: ClipboardEvent) {
         const amountMaxLength = (this.el.nativeElement.getAttribute('maxlength'));
-        const Regexp = new RegExp('[' + this.currencySymbol + ',]', 'g');
-        const pastedAmount = event.clipboardData.getData('text').replace(Regexp, '');
+        const regPattern = this.allowDecimal ? /[^0-9.]/g : /[^0-9]/g;
+        const pastedAmount = event.clipboardData.getData('text').replace(regPattern, '');
         this.el.nativeElement.value = (pastedAmount) ? ((amountMaxLength && amountMaxLength !== undefined) ? pastedAmount.substr(0, amountMaxLength) : pastedAmount) : 0;
         this.el.nativeElement.dispatchEvent(new Event('input'));
         event.preventDefault();
