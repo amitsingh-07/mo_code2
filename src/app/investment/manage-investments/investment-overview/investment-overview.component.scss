@@ -100,7 +100,8 @@ app-investment-overview {
             margin-right: 8px;
             border-radius: 17px;
             cursor: pointer;
-            display: table;
+            display: flex;
+            align-items: center;
 
             .table-cell {
                 display: table-cell;
