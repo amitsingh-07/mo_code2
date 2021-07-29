@@ -59,5 +59,6 @@ export const RegexConstants = {
     },
     MobileNumber: /^(8|9)\d{7}$/,
     portfolioName: /^\S.*$/,
-    trimSpace: /\s\s+/g
+    trimSpace: /\s\s+/g,
+    nricOrFinLastFourCharacters :/^[0-9]{3}[a-zA-Z]$/
 };

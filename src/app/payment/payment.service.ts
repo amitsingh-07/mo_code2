@@ -63,4 +63,8 @@ export class PaymentService {
     };
     return this.apiService.getCustPromoCodeByCategory(payload);
   }
+
+  getPaymentCheckoutCfpDetails(payload) {
+    return this.apiService.getPaymentCheckoutCfpDetails(payload);
+  }
 }

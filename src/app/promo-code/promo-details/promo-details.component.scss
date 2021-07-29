@@ -18,6 +18,12 @@ app-promo-details {
       width: 100%;
       height: 100%;
       border-radius: 0px;
+      left: 0;
+      right: 0;
+    }
+
+    b{
+      color: $silver-grey-color !important;
     }
 
     .modal-body-message {

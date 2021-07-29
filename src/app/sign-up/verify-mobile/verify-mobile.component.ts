@@ -326,9 +326,6 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       const redirect_url = this.signUpService.getRedirectUrl();
       const journeyType = this.appService.getJourneyType();
       if (journeyType) {
-        if (journeyType === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
-          this.sendWelcomeEmail();
-        }
         this.resendEmailVerification();
       } else if (redirect_url) {
         // Do a final redirect

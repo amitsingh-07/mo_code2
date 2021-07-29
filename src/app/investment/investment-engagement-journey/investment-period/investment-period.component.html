@@ -5,37 +5,48 @@
         <h2>{{ 'PERSONAL_INFO.INVESTMENT_PERIOD' | translate}}</h2>
         <h6>{{ 'PERSONAL_INFO.HOW_MANY_YEARS' | translate}}</h6>
         <div class="banner-image">
-          <img src="assets/images/investment-account/investment-period.svg"/>
+          <img src="assets/images/investment-account/financials-investment-period.svg"/>
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
         <form id="personalInfoForm" name="personalInfoForm" [formGroup]="personalInfoForm">
           <div class="form-group" style="position: relative;">
             <div class="form-group-with-bg--content">
-              <div class="investmentSlider">
-                <input type="hidden" id="sliderValueSetter" formControlName="sliderValueSetter" name="sliderValueSetter" />
-                <nouislider #piInvestmentSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" 
-                  [min]="sliderMinValue" [max]="sliderMaxValue" [step]="1" data-toggle="tooltip"
-                  id="personalInfoSlider" data-placement="bottom"></nouislider>
+              <div class="callout">
+                <div>
+                  <h5 id="personalInfoInvestmentHeading">{{ 'PERSONAL_INFO.SELECT_INVESTMENT_HEAD' | translate}} </h5>
+                  <p class="personalInfoInvestmentDesc" id="personalInfoInvestmentDesc">{{
+                    'PERSONAL_INFO.SELECT_INVESTMENT_DESC' | translate}}</p>        
+                </div>
+                <!-- <div *ngIf="personalInfoForm.controls.investmentPeriod.value">
+                  <h5 id="personalInfoInvestmentContent">{{ 'PERSONAL_INFO.I_WANT_INVEST_LBL' | translate}}
+                    <span id="personalInfoInvestmentYears" class="period-count">{{personalInfoForm.controls.investmentPeriod.value}}</span>
+                    <span *ngIf="personalInfoForm.controls.investmentPeriod.value ===1">{{ 'PERSONAL_INFO.YEAR' | translate}}</span>
+                    <span *ngIf="personalInfoForm.controls.investmentPeriod.value > 1">{{ 'PERSONAL_INFO.YEARS' | translate}}</span></h5>
+                </div> -->
               </div>
+              <div class="pointer-container" id="personalInfoPointer">
+                <div class="pointer"></div>
+              </div>
+              <div class="investmentSlider-wrapper">
+                <div class="investmentSlider">
+                  <input type="hidden" id="sliderValueSetter" formControlName="sliderValueSetter" name="sliderValueSetter" />
+                  <nouislider #piInvestmentSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" 
+                    [min]="sliderMinValue" [max]="sliderMaxValue" [step]="1" data-toggle="tooltip"
+                    id="personalInfoSlider" data-placement="bottom"></nouislider>
+                </div>
+                <div class="investmentSlider-period">
+                    <div class="investmentSlider-years-box"><span id="personalInfoInvestmentYears" class="period-count"> 
+                      <input type="text" appCurrencyInput  (keyup)="changeSlide($event)" (change)="changeSlide($event)" class="input-control" maxLength="2" 
+                      [value]="personalInfoForm.controls.investmentPeriod.value" /></span></div>
+                    <div>
+                      <span *ngIf="personalInfoForm.controls.investmentPeriod.value == 0 || personalInfoForm.controls.investmentPeriod.value == 1">{{ 'PERSONAL_INFO.YEAR' | translate}}</span>
+                      <span *ngIf="personalInfoForm.controls.investmentPeriod.value > 1">{{ 'PERSONAL_INFO.YEARS' | translate}}</span>
+                    </div>
+                </div>
+              </div>
+              <div class="investmentSlider-note"> <div innerHTML="{{'PERSONAL_INFO.NOTE' | translate}}"></div></div>
             </div>
-            <div class="pointer-container" id="personalInfoPointer">
-              <div class="pointer"></div>
-            </div>
-          </div>
-          <div class="callout">
-            <div *ngIf="!personalInfoForm.controls.investmentPeriod.value">
-              <h5 id="personalInfoInvestmentHeading">{{ 'PERSONAL_INFO.SELECT_INVESTMENT_HEAD' | translate}} </h5>
-              <p class="personalInfoInvestmentDesc" id="personalInfoInvestmentDesc">{{
-                'PERSONAL_INFO.SELECT_INVESTMENT_DESC' | translate}}</p>        
-            </div>
-            <div *ngIf="personalInfoForm.controls.investmentPeriod.value">
-              <h5 id="personalInfoInvestmentContent">{{ 'PERSONAL_INFO.I_WANT_INVEST_LBL' | translate}}
-                <span id="personalInfoInvestmentYears" class="period-count">{{personalInfoForm.controls.investmentPeriod.value}}</span>
-                <span *ngIf="personalInfoForm.controls.investmentPeriod.value ===1">{{ 'PERSONAL_INFO.YEAR' | translate}}</span>
-                <span *ngIf="personalInfoForm.controls.investmentPeriod.value > 1">{{ 'PERSONAL_INFO.YEARS' | translate}}</span></h5>
-            </div>
-            <div innerHTML="{{'PERSONAL_INFO.NOTE' | translate}}"></div>
           </div>
           <div class="time-horizon">
             <div class="txt-nrml pb20">{{'PERSONAL_INFO.TIME_HORIZON_DESC' | translate}}</div>
@@ -57,7 +68,7 @@
             </div>
           </div>
           <div>
-            <button type="button" id="personalInforNextBtn" [disabled]="(!personalInfoForm.controls.investmentPeriod.value)" (click)="goToNext(personalInfoForm)"
+            <button type="button" id="personalInforNextBtn" [disabled]="!(personalInfoForm.controls.investmentPeriod.value > 0)" (click)="goToNext(personalInfoForm)"
               class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 Continue" id="getStrdBtn3">{{
               'LABEL.CONTINUE' | translate}}</button>
           </div>

@@ -75,6 +75,8 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
   ngAfterViewInit() {
     this.piInvestmentSlider.writeValue(this.formValues.investmentPeriod);
     this.onSliderChange(this.formValues.investmentPeriod);
+    this.piInvestmentSlider.writeValue(this.formValues.investmentPeriod);
+    this.onSliderChange(this.formValues.investmentPeriod ? this.formValues.investmentPeriod : '0');
   }
 
   ngOnInit() {
@@ -125,6 +127,13 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
     return x > min && x <= max;
   }
 
+  changeSlide($event){
+    const slideValue = ($event.target.value > 40) ? 40 : $event.target.value
+    this.piInvestmentSlider.writeValue(slideValue);
+    this.personalInfoForm.controls.investmentPeriod.setValue(slideValue);
+    this.onSliderChange(slideValue);
+  }
+  
   save(form: any) {
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
@@ -148,7 +157,7 @@ export class InvestmentPeriodComponent implements OnInit, AfterViewInit, IPageCo
 
   showModalPopUp(value) {
     const investmentPeriodValue = {
-      period: value === 1 ?  value  + ' ' + 'year' : value  + ' ' +'years'
+      period: value == 1 ?  value  + ' ' + 'year' : value  + ' ' +'years'
     };
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('PERSONAL_INFO.MODAL.TITLE');

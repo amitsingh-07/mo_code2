@@ -52,7 +52,7 @@ export class ReferalRedirectingPartComponent implements OnInit {
   getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
   versionTypeEnabled = false;
   getComprehensiveSummaryDashboard: any;
-  promoCodeValidated = false;
+  isCFPGetStarted = false;
   enquiryId: any;
   isReportGenerated = false;
   fetchData: string;
@@ -317,7 +317,7 @@ export class ReferalRedirectingPartComponent implements OnInit {
             && (this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING ||
               this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING)
             && this.getCurrentVersionType === this.getComprehensiveSummaryDashboard.type);
-          this.promoCodeValidated = this.getComprehensiveSummaryDashboard.isValidatedPromoCode;
+          this.isCFPGetStarted = this.getComprehensiveSummaryDashboard.isCFPGetStarted;
           this.reportStatus = this.getComprehensiveSummaryDashboard.reportStatus;
           this.enquiryId = this.getComprehensiveSummaryDashboard.enquiryId;
           this.currentStep = (this.getComprehensiveSummaryDashboard.stepCompleted !== null)
@@ -445,7 +445,7 @@ export class ReferalRedirectingPartComponent implements OnInit {
 
 
   goToEditProfile() {
-    if (this.comprehensivePlanning === 4 && !this.versionTypeEnabled && !this.promoCodeValidated) {
+    if (this.comprehensivePlanning === 4 && !this.versionTypeEnabled && !this.isCFPGetStarted) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
     } else {
       this.setComprehensiveSummary(true, COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED);

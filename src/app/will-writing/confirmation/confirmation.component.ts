@@ -88,10 +88,6 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
     this.router.navigate([url]);
   }
 
-  setIsEngSpeaker(event) {
-    this.isNotEngSpeaker = event.target.checked;
-  }
-
   goNext() {
     if (!this.createWillTriggered && this.willWritingService.checkDuplicateUinAll()) {
       this.createWillTriggered = true;
