@@ -1966,7 +1966,7 @@ export class ComprehensiveService {
       title: COMPREHENSIVE_CONST.REVIEW_INPUTS,
       expanded: false,
       showArrow: false,
-      path: COMPREHENSIVE_ROUTE_PATHS.REVIEW,
+      path: this.getComprehensiveSummary().comprehensiveEnquiry && this.getMySteps() == 4 && this.checkResultData() ? COMPREHENSIVE_ROUTE_PATHS.REVIEW : '',
       completed: false,
       customStyle: "review-inputs",
       subItems: []
@@ -2404,7 +2404,7 @@ export class ComprehensiveService {
       const apiInput = getResultConfig[financeInput].API_KEY;
       const validationDataSet = getResultConfig[financeInput].VALIDATION_INPUT;
       validationDataSet.forEach((dataSet) => {
-        if (getCompData[apiInput][dataSet]) {
+        if (getCompData[apiInput] && getCompData[apiInput][dataSet]) {
           const getAmount = this.getValidAmount(getCompData[apiInput][dataSet]);
           totalAmount += getAmount;
         }
@@ -2723,5 +2723,9 @@ export class ComprehensiveService {
   getWaivedPromo() {
     return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
       .promoWaived;
+  }
+  setPaymentStatus(paymentStatus: string) {
+    this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.paymentStatus = paymentStatus;
+    this.commit();
   }
 }

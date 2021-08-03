@@ -20,7 +20,13 @@ app-investment-period {
   }
 
   .callout {
-    padding: 15px;
+    padding: 20px 25px 20px 20px;
+    @include iphoneX {
+      padding: 20px 23px 20px 20px;
+    }
+    @include iphone6 {
+      padding: 20px 23px 20px 20px;
+    }
     background-color: $callout-bg;
     border-radius: 6px;
     margin-top: 30px;
@@ -91,14 +97,16 @@ app-investment-period {
 
   .pointer-container {
     position: absolute;
-    left: 37px;
+    left: 34px;
     right: 65px;
     transform: translate(-100%, 0px);
   }
   .personalInfoInvestmentDesc {
-    font-family: $muli-semi-bold;
+    font-family: $muli-regular;
     font-size: 15px;
     color: $slider-instruction;
+    line-height: normal;
+    letter-spacing: -0.15px;
   }
 
   .personalInfoSliderDesc {
@@ -131,7 +139,7 @@ app-investment-period {
     right: 0px;
     left: auto;
     position: absolute;
-    bottom: -10px;
+    bottom: -9px;
   }
 
   .callout h5 {
@@ -166,7 +174,7 @@ app-investment-period {
 }
 .investmentSlider-period {
   position: absolute;
-  right: 10px;
+  right: 5px;
   top: -15px;
 }
 .investmentSlider-years-box + div {
@@ -178,13 +186,16 @@ app-investment-period {
     border-radius: 6px;
     color: $slider-instruction;
     font-size: 24px;
+    @include allmobiles {
+      font-size: 22px;
+    }
     font-family: 'Muli Extra Bold';
     width: 44px;
     height: 37px;
     text-align: center;
     outline: none;
     border: none;
-    padding: 8px;
+    padding: 7px;
 }
 .investmentSlider-note {
   background-color: $white-color;
@@ -192,6 +203,14 @@ app-investment-period {
   color: $teal-color;
   padding: 20px;
   font-size: 15px;
+  line-height: normal;
+  letter-spacing: -0.15px;
+  @include iphoneX {
+    padding: 20px 10px 20px 15px;
+  }
+  @include iphone6 {
+    padding: 20px 10px 20px 15px;
+  }
 }
 .investmentSlider {
   margin-top: 40px;

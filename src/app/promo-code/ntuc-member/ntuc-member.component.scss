@@ -19,7 +19,6 @@
 
           &:disabled {
             color: $form-control-disabled-txt-color !important;
-            background-color: $form-control-disabled-bg-color !important;
             opacity: 1 !important;
             .date-picker-image--valid{
               cursor: not-allowed;
@@ -42,6 +41,7 @@
     &:disabled {
       background-color: $iceberg-blue-color;
       color: $teal-color;
+      -webkit-text-fill-color: $teal-color;
       cursor: not-allowed;
     }
     & + .input-group-append {
@@ -57,9 +57,13 @@
   }
   .alert-msg{
     padding-top: 13px;
-    margin-bottom: -20px;
+    margin-bottom: -10px;
+    @include allmobiles{
+      margin-bottom: -20px;
+
+    }
     .err-msg {
-      color: $dark-orange-color !important;
+      color: $mango-tango-color !important;
       padding-left: 7px;
       font-family: $muli-italic;
       font-size: 14px;
@@ -67,8 +71,14 @@
     }
   }
   .modal-body {
+    padding-bottom: 25px;
+    @include allmobiles{
+      padding-bottom: 0;
+    }
     .form-group {
-      margin: 30px 0;
+      @include allmobiles{
+        margin: 30px 0;
+      }
       label {
         font-size: 16px;
         color: $dark-teal-color;
@@ -97,12 +107,6 @@
       }
     }
   }
-  .error-label {
-    font-size: 14px;
-    margin: 3px 0px 0px 0px;
-    font-style: italic;
-    color: $inline-error-border-color;
-  }
 
   .btn-primary {
     background-color: $btn-comprehensive;
@@ -124,6 +128,11 @@
     &:hover {
       color: $dark-orange-color;
       text-decoration: none;
+    }
+  }
+  .ntuc-promo-modal-header {
+    @include iphoneX; @include iphone6 {
+      font-size: 15px;
     }
   }
 }

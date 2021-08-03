@@ -9,6 +9,8 @@ import { PromoDetailsComponent } from './../promo-details/promo-details.componen
 import { PromoCodeService } from './../promo-code.service';
 import { PAYMENT_CHECKOUT, PROMO_CODE_STATUS } from './../promo-code.constants';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from './../../investment/manage-investments/manage-investments-routes.constants';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 
 
 @Component({
@@ -27,6 +29,7 @@ export class PromoCodeListComponent implements OnInit {
   showError: boolean = false;
   promoArray = [];
   promoCodeStatus: any;
+  checkOutPage = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,8 +37,10 @@ export class PromoCodeListComponent implements OnInit {
     public navbarService: NavbarService,
     private promoSvc: PromoCodeService,
     private router: Router,
-    private modal: NgbModal) {
+    private modal: NgbModal,
+    public authService: AuthenticationService) {
     this.translate.use('en');
+    this.checkOutPage = !(this.router.url === PAYMENT_CHECKOUT) ;
   }
 
   ngOnInit() {
@@ -81,17 +86,22 @@ export class PromoCodeListComponent implements OnInit {
   }
 
   applyPromoCode(event) {
-    if (this.formGrp.controls['promoCode'].value.length === 6) {
-      // Show the spinner
-      this.formGrp.controls['promoCode'].setErrors(null);
-      this.showClearBtn = false;
-      this.showSpinner = true;
-      this.showError = false;    
-       if (this.router.url === PAYMENT_CHECKOUT) {
-        this.validateCpfPromoCode();
-      } else {
-        this.validateInvestPromoCode();
+    if (this.authService.isSignedUser()) {
+      if (this.formGrp.controls['promoCode'].value.length === 6) {
+        // Show the spinner
+        this.formGrp.controls['promoCode'].setErrors(null);
+        this.showClearBtn = false;
+        this.showSpinner = true;
+        this.showError = false;
+        if (this.router.url === PAYMENT_CHECKOUT) {
+          this.validateCpfPromoCode();
+        } else {
+          this.validateInvestPromoCode();
+        }
       }
+    } else {
+      this.modal.dismissAll();
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
     }
     event.stopPropagation();
     event.preventDefault();
@@ -131,7 +141,7 @@ export class PromoCodeListComponent implements OnInit {
     this.promoSvc.validateCpfPromoCode(this.formGrp.controls['promoCode'].value).subscribe((response) => {
       // Success
       const responseCode = response.responseMessage['responseCode'];
-      if (responseCode === 6005 || responseCode === 5032 || responseCode === 5030) {
+      if (responseCode === 6005 || responseCode === 5030 || responseCode === 5031 || responseCode === 5032) {
         setTimeout(() => {
           this.showSpinner = false;
           this.showClearBtn = true;
@@ -144,13 +154,10 @@ export class PromoCodeListComponent implements OnInit {
           this.showError = true;
           // Show different error codes
           if (responseCode === 5025) {
-            if (this.formGrp.controls['promoCode'].value) {
-              this.promoSvc.setPromoCodeCpf(this.formGrp.controls['promoCode'].value);
-            }
             this.formGrp.controls['promoCode'].setErrors({ promoCodeAlreadyApplied: true });
           } else if (responseCode === 5026) {
             this.formGrp.controls['promoCode'].setErrors({ existingPromoCode: true });
-          } else  {
+          } else {
             this.formGrp.controls['promoCode'].setErrors({ invalidPromoCode: true });
           }
         }, 1200);

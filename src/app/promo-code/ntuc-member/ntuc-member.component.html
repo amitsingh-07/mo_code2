@@ -9,7 +9,7 @@
       <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true"></span>
       </button>
-      <div class="modal-body-message" [innerHtml]="'NTUC_PROMO_MODAL.DESC' | translate"></div>
+      <div class="modal-body-message ntuc-promo-modal-header" [innerHtml]="'NTUC_PROMO_MODAL.DESC' | translate"></div>
       <form id="ntucMemberForm" name="ntucMemberForm" [formGroup]="ntucMemberForm">
         <div class="form-group">
           <div class="flex-row">
@@ -53,7 +53,7 @@
             </div>
             <div class="flex-col-7">
               
-              <div class="form-control" [ngClass]="{'inline-error': ntucMemberForm.get('nricOrFin').enabled && !ntucMemberForm.get('nricOrFin').valid && !ntucMemberForm.get('nricOrFin').pristine}">
+              <div class="form-control" [ngClass]="{'inline-error': ntucMemberForm.get('nricOrFin').enabled && !ntucMemberForm.get('nricOrFin').valid && !ntucMemberForm.get('nricOrFin').pristine && ntucMemberForm.get('nricOrFin').value.length > 3}">
                 <div name="nricOrFin">
                   <input id="last-four-characters-of-nric" class="input-control" type="text" maxLength="4"
                     name="nricOrFin" formControlName="nricOrFin" oninput="this.value = this.value.toUpperCase()"  
