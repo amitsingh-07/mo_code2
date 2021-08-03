@@ -23,7 +23,7 @@ export class AffiliateService {
       let irclickidJSON = JSON.parse(localStorage.getItem("irclickid_json"));
       let clickDate = new Date(irclickidJSON['eventDate']);
       // Check if click event date has exceed 30 days
-      if (new Date().getTime() - clickDate.getTime() < this.affiliateAttributionInMs) {
+      if ((new Date().getTime() - clickDate.getTime()) < this.affiliateAttributionInMs) {
         payload.irClickId = irclickidJSON['irclickid'];
         payload.clickEventDate = irclickidJSON['eventDate'];
       } else {
