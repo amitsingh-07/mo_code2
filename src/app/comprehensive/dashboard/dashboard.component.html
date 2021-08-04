@@ -12,23 +12,6 @@
 <div class="container-fluid max-width--1024 comprehensive"
   *ngIf="((getComprehensiveSummary && getComprehensiveSummary.comprehensiveEnquiry !== null && getComprehensiveSummary.comprehensiveEnquiry.isCFPGetStarted) || isComprehensiveLiveEnabled) && isComprehensiveEnabled">
   <div class="comprehensive" [ngClass] = "{'dashboard-lite': comprehensiveLiteEnabled }">
-    <div class="flex-row align-start ml15 mr15" *ngIf='comprehensiveLiteEnabled'>
-        <div class="flex-col-6">
-          <button  [ngClass]="{'active': versionTypeEnabled}" type="button" class="btn btn-primary btn-lite width100" id="prfBtn1"
-            (click)="setComprehensivePlan(false)">
-            <div class="ft-18" for="name">Lite <span *ngIf='versionTypeEnabled'><img src="assets/images/comprehensive/dashboard-comprehensive-lite-corporate-small.svg"></span>
-              <span *ngIf='!versionTypeEnabled'><img src="assets/images/comprehensive/dashboard-comprehensive-lite-corporate-small-disabled.svg"></span>
-            </div>
-          </button>
-        </div>
-        <div class="flex-col-6 pl10">
-          <button [ngClass]="{'active': !versionTypeEnabled}" type="button" class="btn btn-primary btn-lite width100" id="prfBtn1" (click)="setComprehensivePlan(true)">
-            <div class="ft-18"  for="name">Full
-            </div>
-          </button>
-        </div>
-    </div>
-    <!--/Tab-->
   <div class="widget">
     <div class="reward-points" [ngClass]="{'full-user': comprehensiveLiteEnabled, 'grey': !comprehensiveInfo[0].isEnabled}" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists && !versionTypeEnabled && comprehensiveInfo"><span *ngIf="!comprehensiveInfo[0].isEnabled"><img src="assets/images/refer-friend/gift-icon-grey.svg"></span><span *ngIf="comprehensiveInfo[0].isEnabled"><img src="assets/images/refer-friend/gift-icon.svg"></span>${{comprehensiveInfo[0].creditValue}}</div>
     <div class="view-edit">
