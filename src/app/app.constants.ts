@@ -25,7 +25,8 @@ export let appConstants = {
     SESSION_KEY: {
         COMPREHENSIVE: 'app-comprehensive-session',
         COMPREHENSIVE_LITE: 'app-comprehensive-lite-session',
-        COMPREHENSIVE_VERSION: 'app-comprehensive-version'
+        COMPREHENSIVE_VERSION: 'app-comprehensive-version',
+        CFP_USER_ROLE: 'app-comprehensive-user'
     },
     USERTYPE: {
         NORMAL: "normal",
