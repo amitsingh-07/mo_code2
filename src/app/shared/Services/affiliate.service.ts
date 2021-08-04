@@ -21,11 +21,11 @@ export class AffiliateService {
   public appendClickId(payload) {
     if (this.enableAffiliate && localStorage.getItem("irclickid_json")) {
       let irclickidJSON = JSON.parse(localStorage.getItem("irclickid_json"));
-      let clickDate = new Date(irclickidJSON['eventDate']);
+      let clickDate = new Date(irclickidJSON['clickIdCreatedDate']);
       // Check if click event date has exceed 30 days
       if ((new Date().getTime() - clickDate.getTime()) < this.affiliateAttributionInMs) {
-        payload.irClickId = irclickidJSON['irclickid'];
-        payload.clickEventDate = irclickidJSON['eventDate'];
+        payload.irClickId = irclickidJSON['irClickId'];
+        payload.clickIdCreatedDate = irclickidJSON['clickIdCreatedDate'];
       } else {
           this.removeClickIdJson();
       }

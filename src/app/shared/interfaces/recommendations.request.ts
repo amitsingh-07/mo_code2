@@ -37,7 +37,7 @@ export interface IEnquiryData {
     hasPremiumWaiver: boolean;
     type: string;
     irClickId?: string;
-    clickEventDate?: string;
+    clickIdCreatedDate?: string;
 }
 
 export interface IProtectionTypeData {
@@ -127,5 +127,5 @@ export interface IEnquiryByEmail {
     enquiryProtectionTypeData: IProtectionType[];
     journeyType: string;
     irClickId?: string;
-    clickEventDate?: string; 
+    clickIdCreatedDate?: string; 
 }
