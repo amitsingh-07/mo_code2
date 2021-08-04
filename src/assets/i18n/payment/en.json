@@ -29,7 +29,11 @@
     "TERMS": "Terms of Use",
     "PROCEED_PAYMENT": "Proceed To Payment",
     "PROCEED": "Proceed",
-    "PROMOCODE_APPLIED": "Promo code is applied"
+    "PROMOCODE_APPLIED": "Promo code is applied",
+    "ADVISER_CONSULTATION": "2-Hour Adviser Consultation",
+    "INCLUDES": "Includes",
+    "EXPLAINING_REPORT": "Explaining report",
+    "CUSTOMISED_IMPLEMENTATION": "Customised implementation"
   },
   "PAYMENT_MODAL": {
     "PLEASE_WAIT": "Please wait…",
