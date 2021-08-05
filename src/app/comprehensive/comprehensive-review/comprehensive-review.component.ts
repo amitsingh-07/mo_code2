@@ -94,6 +94,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   goToReviewInput() {
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
   }
+
   goToNext() {
     const reportStatus = this.comprehensiveService.getReportStatus();
     if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
@@ -115,6 +116,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
     }
   }
+
   initiateReport() {
     const enquiryId = { enquiryId: this.comprehensiveService.getEnquiryId(), promoCode: this.comprehensiveService.getCfpPromoCode(), waivedPromo: this.comprehensiveService.getWaivedPromo() };
     if (this.comprehensiveJourneyMode) {
@@ -140,4 +142,10 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       this.loaderService.hideLoaderForced();
     });
   }
+
+  goToDashboard() {
+    this.comprehensiveService.setToastMessage(true);
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
+  }
+
 }

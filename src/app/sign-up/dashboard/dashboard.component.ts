@@ -207,14 +207,12 @@ export class DashboardComponent implements OnInit {
     });
     this.getInvestmentsSummary();
     this.investmentAccountService.deactivateReassess();
+    const toastMessage = this.comprehensiveService.getToastMessage();
+    if (toastMessage) {
+      this.showCopyToast();
+    }
   }
-  ngAfterViewInit() {    
-    this.comprehensiveService.tostMessage.subscribe((showTostMessage) => {
-      if (showTostMessage) {
-        this.showCopyToast();
-      }
-    });
-  }
+ 
 
   getReferralCodeData() {
     this.signUpService.getReferralCodeData().subscribe((data) => {      
@@ -535,7 +533,7 @@ export class DashboardComponent implements OnInit {
   hideToastMessage() {
     setTimeout(() => {
       this.showFixedToastMessage = false; 
-      this.comprehensiveService.tostMessage.next(true);
+      this.comprehensiveService.setToastMessage(false);
     }, 3000);
   }
 }

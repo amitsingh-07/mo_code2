@@ -2753,4 +2753,12 @@ export class ComprehensiveService {
     this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.paymentStatus = paymentStatus;
     this.commit();
   }
+  
+  setToastMessage(toastMessage) {
+    this.comprehensiveFormData.toastMessage = toastMessage;
+  }
+  
+  getToastMessage() {
+    return this.comprehensiveFormData.toastMessage;
+  }
 }
