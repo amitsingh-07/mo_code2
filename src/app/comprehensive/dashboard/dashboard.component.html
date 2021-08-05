@@ -19,9 +19,9 @@
         [hidden]="comprehensivePlanning !== 0" (click)="goToEditComprehensivePlan(true)">
         {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_VIEW' | translate }}</div>
       <div class="form-group-with-bg--header-label plan-view-icon text-right comprehensive-plan-view"
-        [hidden]="!(comprehensivePlanning === 5 || comprehensivePlanning === 1 || comprehensivePlanning === 2)"
+      [hidden]="!(comprehensivePlanning === 5 || comprehensivePlanning === 1 || comprehensivePlanning === 2)"
         (click)="goToEditComprehensivePlan(false)">
-        {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_EDIT' | translate }}</div>
+        <span class="edit-icon"><img src="assets/images/comprehensive/comprehesive-edit-icon.svg"></span></div>
     </div>
     <div class="form-group-with-bg overlay-bg">
       <div [ngClass]="{'hidden': !isLoadComplete}">
@@ -124,20 +124,7 @@
               </button>
             </div>
           </div>
-          <div class="flex-row align-start" [hidden]="!(comprehensivePlanning === 1 || comprehensivePlanning === 2)">
-            <div class="flex-col-12">
-        
-              <button *ngIf="isReportGenerated" (click)="downloadComprehensiveReport()" type="button" class="btn btn-view width100" id="prfBtn1">
-                <div class="ft-18 "  for="name">
-                <span class="download-report"> {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_VIEW_REPORT' | translate}}</span> 
-                  <div class="label-grey ft-13 last-update" for="name">
-                    {{ ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_LAST_UPDATED' | translate).replace('LAST_UPDATED_DATE', submittedDate | date: 'dd MMM yyyy')}}
-                  </div>
-                </div>
-              </button>
-              <div class="report-error-msg flex" *ngIf="!isReportGenerated" > <span class="mr10"><img src="assets/images/comprehensive/error-icon/exclamation_alert_icon.svg" width="22" height="19" /></span><span>{{'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_REPORT_ERROR_MSG'| translate}} </span></div>
-            </div>
-          </div>
+         
           <div class="flex-row align-start" [hidden]="comprehensivePlanning !== 3">
             <div class="flex-col-12">
               <button type="button" class="btn btn-primary width100" id="prfBtn1" (click)="goToCurrentStep()">
@@ -170,8 +157,9 @@
               </button>
             </div>
           </div>
-           
-          <div class="flex-row align-start" *ngIf='paymentInstructions'>
+         
+        <div class="comprehensive-btn-block">  
+          <div class="flex-row align-start" *ngIf="paymentInstructions" [ngClass] = "{'width100': paymentInstructions && !isReportGenerated}">
             <div class="flex-col-12">
               <button type="button" class="btn btn-primary width100" id="payment-instruction" (click)="showPaymentModal()">
                 <div class="ft-18" for="name">{{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PAYMENT_INSTRUCTION' | translate}}
@@ -179,7 +167,22 @@
               </button>
             </div>
           </div>
-
+          <div class="flex-row align-start" [ngClass] = "{'width100': !paymentInstructions }" [hidden]="!(comprehensivePlanning === 1 || comprehensivePlanning === 2)">
+            <div class="flex-col-12">
+              <button *ngIf="isReportGenerated" (click)="downloadComprehensiveReport()" type="button" class="btn btn-view width100" [ngClass] = "{'ml0': !paymentInstructions }" id="prfBtn1">
+                <div class="ft-18 "  for="name">
+                <span class="download-report"> {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_VIEW_REPORT' | translate}}</span> 
+                  <div class="label-grey ft-13 last-update" for="name">
+                    {{ ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_LAST_UPDATED' | translate).replace('LAST_UPDATED_DATE', submittedDate | date: 'dd MMM yyyy')}}
+                  </div>
+                </div>
+              </button>
+              <div class="report-error-msg flex" *ngIf="!isReportGenerated" > <span class="mr10"><img src="assets/images/comprehensive/error-icon/exclamation_alert_icon.svg" width="22" height="19" /></span><span>{{'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_REPORT_ERROR_MSG'| translate}} </span></div>
+            </div>
+          </div>
+        </div>
+          <div class="adviser-btn"><span (click)="speakToAdviserModal()">{{ 'COMPREHENSIVE.DASHBOARD.SPEAK_TO_ADVISER' | translate}}</span></div>
+          <div class="appointment-btn"><span class="icon" (click)="adviserAppointmentModal()"><img src="assets/images/calender-orange.svg" /></span><span class="pl10" (click)="adviserAppointmentModal()">{{ 'COMPREHENSIVE.DASHBOARD.APPOINTMENT' | translate}}</span></div>
         </div>
       </div>
       <div [ngClass]="{'hidden': isLoadComplete}" class="ajax-loader-card-inline">
