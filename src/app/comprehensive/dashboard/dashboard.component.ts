@@ -18,6 +18,8 @@ import { LoaderService } from './../../shared/components/loader/loader.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 import { PAYMENT_ROUTE_PATHS } from '../../payment/payment-routes.constants';
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 
 
 @Component({
@@ -411,5 +413,17 @@ constructor(
     } else {
       return [];
     }
+  }
+
+  speakToAdviserModal() {
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'speak-to-adivser-modal'});
+      ref.componentInstance.errorTitle = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.TITLE');
+      ref.componentInstance.errorMessageHTML = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.DESC');
+      ref.componentInstance.primaryActionLabel = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.BTN_LBL');
+  }
+  adviserAppointmentModal() {
+      const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'adivser-appointment-modal'});
+      ref.componentInstance.errorTitle = this.translate.instant('COMPREHENSIVE.DASHBOARD.APPOINTMENT_MODAL.TITLE');
+      ref.componentInstance.errorMessage = this.translate.instant('COMPREHENSIVE.DASHBOARD.APPOINTMENT_MODAL.DESC');
   }
 }
