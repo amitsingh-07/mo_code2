@@ -121,7 +121,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         } else {
             this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
         }
-        this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((data: any) => {
+        this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
             if (data && data.objectList[0]) {
                 this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
                 this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
@@ -228,7 +228,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                             const payload = {enquiryId: this.userDetails.enquiryId, reportStatus : COMPREHENSIVE_CONST.REPORT_STATUS.NEW};
                             this.comprehensiveApiService.updateComprehensiveReportStatus(payload).subscribe((reportRes: any) => {
                                 if (reportRes) {
-                                    this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((resData: any) => {
+                                    this.comprehensiveApiService.getComprehensiveSummary().subscribe((resData: any) => {
                                         if (resData && resData.objectList[0]) {
                                             this.comprehensiveService.setComprehensiveSummary(resData.objectList[0]);                                            
                                             this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.NEW);
@@ -239,7 +239,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                                 }
                                 });
                         } else {
-                            this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((resData: any) => {
+                            this.comprehensiveApiService.getComprehensiveSummary().subscribe((resData: any) => {
                                 if (resData && resData.objectList[0]) {
                                     this.comprehensiveService.setComprehensiveSummary(resData.objectList[0]);     
                                     this.loaderService.hideLoader();

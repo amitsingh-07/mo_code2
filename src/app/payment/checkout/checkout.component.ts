@@ -280,7 +280,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   fetchDashboard() {
     this.loaderService.showLoader({ title: this.loading, autoHide: false });
-    this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((summaryData: any) => {
+    this.comprehensiveApiService.getComprehensiveSummary().subscribe((summaryData: any) => {
       if (summaryData && summaryData.objectList[0]) {
         this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
         const reportStatus = this.comprehensiveService.getReportStatus();
