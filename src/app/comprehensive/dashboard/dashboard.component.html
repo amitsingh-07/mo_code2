@@ -181,8 +181,8 @@
             </div>
           </div>
         </div>
-          <div class="adviser-btn"><span (click)="speakToAdviserModal()">{{ 'COMPREHENSIVE.DASHBOARD.SPEAK_TO_ADVISER' | translate}}</span></div>
-          <div class="appointment-btn"><span class="icon" (click)="adviserAppointmentModal()"><img src="assets/images/calender-orange.svg" /></span><span class="pl10" (click)="adviserAppointmentModal()">{{ 'COMPREHENSIVE.DASHBOARD.APPOINTMENT' | translate}}</span></div>
+          <div class="adviser-btn" *ngIf='isReportGenerated'><span (click)="speakToAdviserModal()">{{ 'COMPREHENSIVE.DASHBOARD.SPEAK_TO_ADVISER' | translate}}</span></div>
+          <div class="appointment-btn" *ngIf='comprehensivePlanning === 0'><span class="icon" (click)="adviserAppointmentModal()"><img src="assets/images/calender-orange.svg" /></span><span class="pl10" (click)="adviserAppointmentModal()">{{ 'COMPREHENSIVE.DASHBOARD.APPOINTMENT' | translate}}</span></div>
         </div>
       </div>
       <div [ngClass]="{'hidden': isLoadComplete}" class="ajax-loader-card-inline">
