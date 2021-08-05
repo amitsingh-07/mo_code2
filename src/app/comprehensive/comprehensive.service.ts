@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
-import { Observable, Subject } from 'rxjs';
+import { Observable} from 'rxjs';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
@@ -50,8 +50,7 @@ import {
   IProgressTrackerWrapper,
   IPromoCode,
   IRegularSavings,
-  IRetirementPlan,
-  
+  IRetirementPlan  
 } from './comprehensive-types';
 @Injectable({
   providedIn: 'root'
@@ -64,7 +63,6 @@ export class ComprehensiveService {
   private progressWrapper: IProgressTrackerWrapper;
   private getStartedStyle = 'get-started';
   private comprehensiveLiteEnabled = false;
-   public tostMessage = new Subject();
   constructor(
     private http: HttpClient,
     private modal: NgbModal,

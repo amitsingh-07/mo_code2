@@ -114,7 +114,6 @@ constructor(
   }
 
   downloadComprehensiveReport() {
-    this.comprehensiveService.tostMessage.next(true);
     const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     let newWindow;
     if (iOS) {
