@@ -10,6 +10,7 @@ import { environment } from './../../environments/environment';
 import { FBPixelService } from '../shared/analytics/fb-pixel.service';
 import { GoogleAnalyticsService } from '../shared/analytics/google-analytics.service';
 import { trackingConstants } from '../shared/analytics/tracking.constants';
+import { AffiliateService } from '../shared/Services/affiliate.service';
 
 @Component({
   selector: 'app-email-enquiry-success',
@@ -32,7 +33,8 @@ export class EmailEnquirySuccessComponent implements OnInit {
     public authService: AuthenticationService,
     private fbPixelService: FBPixelService,
     private googleAnalyticsService: GoogleAnalyticsService,
-    private router: Router) {
+    private router: Router,
+    private affiliateService: AffiliateService) {
     this.isSignedUser = this.authService.isSignedUser();
   }
 
@@ -41,6 +43,7 @@ export class EmailEnquirySuccessComponent implements OnInit {
     this.googleAnalyticsService.emitConversionsTracker(trackingConstants.ga.emailEnquirySuccess);
     this.navbarService.setNavbarMode(2);
     this.footerService.setFooterVisibility(false);
+    this.affiliateService.removeClickIdJson();
   }
 
   checkHideHomePageFlag() {

@@ -130,4 +130,9 @@
       text-decoration: none;
     }
   }
+  .ntuc-promo-modal-header {
+    @include iphoneX; @include iphone6 {
+      font-size: 15px;
+    }
+  }
 }

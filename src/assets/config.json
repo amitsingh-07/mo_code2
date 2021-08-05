@@ -21,6 +21,8 @@
   "maintenanceStartTime": "2020-12-12T20:00:00.000+08:00",
   "maintenanceEndTime": "2020-12-13T00:10:00.000+08:00",
   "showPortfolioInfo": true,
+  "affiliateEnabled": true,
+  "affiliateAttributionInMs": 2592000000,
   "investment": {
     "myInfoLoader2StartTime": 60,
     "myInfoLoader3StartTime": 90

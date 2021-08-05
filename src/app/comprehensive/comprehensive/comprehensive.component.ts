@@ -40,7 +40,7 @@ export class ComprehensiveComponent implements OnInit {
   promoCodeForm: FormGroup;
   promoCodeSuccess: string;
   promoValidated: string;
-  productAmount = COMPREHENSIVE_CONST.PROMOTION.AMOUNT;
+  
   getComprehensiveSummaryDashboard: any;
   isBannerNoteVisible: boolean;
   includingGst = false;
@@ -86,7 +86,6 @@ export class ComprehensiveComponent implements OnInit {
     if (this.authService.isSignedUser()) {
       const action = this.appService.getAction();
       this.loaderService.showLoader({ title: this.fetchData, autoHide: false });
-      this.getProductAmount();
       const comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
       let getCurrentVersionType = this.cmpService.getComprehensiveCurrentVersion();
       if ((getCurrentVersionType === '' || getCurrentVersionType === null ||
@@ -131,8 +130,7 @@ export class ComprehensiveComponent implements OnInit {
       });
 
     } else {
-      this.authService.authenticate().subscribe((data: any) => {
-        this.getProductAmount();
+      this.authService.authenticate().subscribe((data: any) => {  
         this.authService.clearAuthDetails();
       });
 
@@ -212,16 +210,6 @@ export class ComprehensiveComponent implements OnInit {
   isCurrentDateInRange(START_TIME, END_TIME) {
     return (new Date() >= new Date(START_TIME)
       && new Date() <= new Date(END_TIME));
-  }
-
-  getProductAmount() {
-    const payload = { productType: COMPREHENSIVE_CONST.VERSION_TYPE.FULL };
-    this.comprehensiveApiService.getProductAmount(payload).subscribe((data: any) => {
-      if (data && data.objectList[0]) {
-        this.includingGst = data.objectList[0].includingGst;
-        this.productAmount = !this.includingGst ? data.objectList[0].totalAmount : data.objectList[0].price;
-      }
-    });
   }
   
 }
