@@ -21,6 +21,11 @@
       id="moDpdnt2BtnFooter">
       {{requireToPay && comprehensiveJourneyMode ? ('CMP.REVIEW.CONFIRM_WITH_PAY' | translate) : ('CMP.REVIEW.CONFIRM' | translate)}}
     </button>
+
+    <button *ngIf="false" type="button" class="btn btn-primary confirmBtn width100" id="moDpdnt2BtnFooter">
+      {{'CMP.REVIEW.CHECKOUT' | translate}}
+    </button>
+
     <button *ngIf="false" type="button" class="btn btn-primary-outline width100 reviewInput" id="moDpdnt2BtnFooter">
       {{'CMP.REVIEW.VIEW_DASHBOARD' | translate}}
     </button>
