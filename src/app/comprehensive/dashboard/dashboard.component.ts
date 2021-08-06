@@ -10,7 +10,7 @@ import { FileUtil } from '../../shared/utils/file.util';
 import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
-import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { COMPREHENSIVE_ROUTES, COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyProfile } from '../comprehensive-types';
 import { environment } from './../../../environments/environment';
 import { ConfigService } from './../../config/config.service';
@@ -427,10 +427,18 @@ constructor(
       ref.componentInstance.errorTitle = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.TITLE');
       ref.componentInstance.errorMessageHTML = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.DESC');
       ref.componentInstance.primaryActionLabel = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.BTN_LBL');
+      ref.componentInstance.primaryAction.subscribe(() => {
+        console.log("path ======= /comprehensive/review", COMPREHENSIVE_ROUTE_PATHS.REVIEW);
+        this.router.navigateByUrl("/comprehensive/" + COMPREHENSIVE_ROUTES.REVIEW);
+        console.log("after redirect ======= ", COMPREHENSIVE_ROUTES.REVIEW);
+      });
   }
   adviserAppointmentModal() {
       const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'adivser-appointment-modal'});
       ref.componentInstance.errorTitle = this.translate.instant('COMPREHENSIVE.DASHBOARD.APPOINTMENT_MODAL.TITLE');
       ref.componentInstance.errorMessage = this.translate.instant('COMPREHENSIVE.DASHBOARD.APPOINTMENT_MODAL.DESC');
+      ref.componentInstance.primaryAction.subscribe(() => {
+        this.router.navigate([COMPREHENSIVE_ROUTES.REVIEW]);
+      });
   }
 }
