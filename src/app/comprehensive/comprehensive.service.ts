@@ -102,25 +102,9 @@ export class ComprehensiveService {
   isCorporateRole() {
     return (appConstants.SESSION_KEY.CFP_USER_ROLE === COMPREHENSIVE_CONST.ROLES.CORPORATE);
   }
-  setComprehensiveVersion(versionType: string) {
-
-    /* Robo3 FULL or LITE Config*/
-    if (this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE) && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED && versionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE) {
-      sessionStorage.setItem(
-        appConstants.SESSION_KEY.COMPREHENSIVE_VERSION,
-        COMPREHENSIVE_CONST.VERSION_TYPE.LITE
-      );
-    } else {
-      sessionStorage.setItem(
-        appConstants.SESSION_KEY.COMPREHENSIVE_VERSION,
-        COMPREHENSIVE_CONST.VERSION_TYPE.FULL
-      );
-
-    }
-  }
   commit() {
     if (window.sessionStorage) {
-      const comprehensiveVersionType = this.getComprehensiveSessionVersion();
+      const comprehensiveVersionType = appConstants.SESSION_KEY.COMPREHENSIVE;
 
       /* Robo3 FULL or LITE Config*/
       const cmpSessionData = this.getComprehensiveSessionData();
@@ -133,18 +117,6 @@ export class ComprehensiveService {
       );
     }
   }
-  getComprehensiveSessionVersion() {
-    // tslint:disable-next-line: prefer-immediate-return
-    const comprehensiveVersionType = (sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION)
-      === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED)
-      ? appConstants.SESSION_KEY.COMPREHENSIVE_LITE : appConstants.SESSION_KEY.COMPREHENSIVE;
-    return comprehensiveVersionType;
-  }
-  getComprehensiveCurrentVersion() {
-    // tslint:disable-next-line: prefer-immediate-return
-    const comprehensiveVersionType = sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION);
-    return comprehensiveVersionType;
-  }
   getComprehensiveVersion() {
     // tslint:disable-next-line: prefer-immediate-return
     const comprehensiveVersionType = !(this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE) && sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION)
@@ -153,7 +125,7 @@ export class ComprehensiveService {
   }
   getComprehensiveSessionData() {
     // tslint:disable-next-line: max-line-length
-    const comprehensiveVersionType = this.getComprehensiveSessionVersion();
+    const comprehensiveVersionType = appConstants.SESSION_KEY.COMPREHENSIVE;
     if (
       window.sessionStorage &&
       sessionStorage.getItem(comprehensiveVersionType)
@@ -174,7 +146,6 @@ export class ComprehensiveService {
   clearFormData() {
     this.comprehensiveFormData = {} as ComprehensiveFormData;
     this.commit();
-    sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION);
     sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE);
     sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE_LITE);
     sessionStorage.removeItem(appConstants.SESSION_KEY.CFP_USER_ROLE);
