@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
@@ -50,7 +50,7 @@ import {
   IProgressTrackerWrapper,
   IPromoCode,
   IRegularSavings,
-  IRetirementPlan,
+  IRetirementPlan  
 } from './comprehensive-types';
 @Injectable({
   providedIn: 'root'
@@ -1444,15 +1444,6 @@ export class ComprehensiveService {
       value: dependentHouseHoldData.houseHoldIncome ? dependentHouseHoldData.houseHoldIncome + '' : '',
       completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
     });
-    if (!comprehensiveVersion) {
-      subItemsArray.push({
-        id: '',
-        path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
-        title: 'No. of years to provide for',
-        value: dependentHouseHoldData.noOfYears ? Util.toNumber(dependentHouseHoldData.noOfYears) + '' : '0',
-        completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
-      });
-    }
 
     if (comprehensiveVersion) {
       subItemsArray.push({
@@ -2750,5 +2741,13 @@ export class ComprehensiveService {
   setPaymentStatus(paymentStatus: string) {
     this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.paymentStatus = paymentStatus;
     this.commit();
+  }
+  
+  setToastMessage(toastMessage) {
+    this.comprehensiveFormData.toastMessage = toastMessage;
+  }
+  
+  getToastMessage() {
+    return this.comprehensiveFormData.toastMessage;
   }
 }
