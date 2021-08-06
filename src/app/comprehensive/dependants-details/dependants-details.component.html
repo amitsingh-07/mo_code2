@@ -172,6 +172,52 @@
             </div>
           </div>
         </div>
+
+        <!--Support Amount-->
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <div class="form-group-with-bg--content-label" for="name">
+                <div class="with-help-icon">{{ 'LABEL.SUPPORT_AMOUNT' | translate}}
+              <span class="help-icon" (click)="showSupportAmountModal()"></span></div>
+            </div>
+          </div>
+          <div class="flex-col-7">
+            <div class="form-control form-control-right" [ngClass]="{disabled : isFormControlDisabled}">
+              <i class="fixed-currency">$</i>
+              <input [attr.disabled]="isFormControlDisabled" type="text" class="input-control"
+                appCurrencyInput maxLength="5" #supportAmount formControlName="supportAmount" value="0">
+              <i class="right">{{ 'CMP.DEPENDANT_SELECTION.PER_MONTH' | translate}}</i>
+            </div>
+          </div>
+        </div>
+
+        <!--Years Needed-->
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <div class="form-group-with-bg--content-label" for="name">
+                <div class="with-help-icon">{{ 'LABEL.YEARS_NEEDED' | translate}}
+              <span class="help-icon" (click)="showYearsNeededModal()"></span></div>
+            </div>
+          </div>
+          <div class="flex-col-7">
+            <div class="dropdown-control"
+                [ngClass]="{'inline-error': submitted &&  dependentMappingList['controls'].years.invalid}">
+                <div ngbDropdown id="moDpdnt2DrpdwnYearsNeeded" placement="top-right">
+                  <button type="button" class="btn btn-dropdown" id="dropdownYearsNeeded" ngbDropdownToggle>
+                  <span class="grey-text">{{'COMMON.LBL_SELECT' | translate}}</span>
+                </button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownYearsNeeded">
+                      <button class="dropdown-item" (click)="selectYearsNeeded('',i)">Select</button>
+                      <button type="button" class="dropdown-item" *ngFor="let years of yearsNeeded;"
+                        (click)="selectYearsNeeded(years,i)">
+                        {{years}}
+                      </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      </div>
       </div>
       <!--Form content /-->
     </div>
