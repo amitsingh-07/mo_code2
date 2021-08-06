@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
@@ -50,7 +50,7 @@ import {
   IProgressTrackerWrapper,
   IPromoCode,
   IRegularSavings,
-  IRetirementPlan,
+  IRetirementPlan  
 } from './comprehensive-types';
 @Injectable({
   providedIn: 'root'
@@ -2750,5 +2750,13 @@ export class ComprehensiveService {
   setPaymentStatus(paymentStatus: string) {
     this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.paymentStatus = paymentStatus;
     this.commit();
+  }
+  
+  setToastMessage(toastMessage) {
+    this.comprehensiveFormData.toastMessage = toastMessage;
+  }
+  
+  getToastMessage() {
+    return this.comprehensiveFormData.toastMessage;
   }
 }
