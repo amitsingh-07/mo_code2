@@ -113,14 +113,8 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     ngOnInit() {
         this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-        this.loaderService.showLoader({ title: 'Fetching Data' });
-        const comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
-        this.getCurrentVersionType =  this.comprehensiveService.getComprehensiveCurrentVersion();
-        if ((this.getCurrentVersionType === '' || this.getCurrentVersionType === null || this.getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE ) && comprehensiveLiteEnabled) {
-            this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
-        } else {
-            this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
-        }
+        this.loaderService.showLoader({ title: 'Fetching Data' });        
+        this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
         this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
             if (data && data.objectList[0]) {
                 this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
