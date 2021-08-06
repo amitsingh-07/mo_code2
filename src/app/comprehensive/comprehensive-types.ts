@@ -70,7 +70,6 @@ export interface IdependentsSummaryList {
     dependentsList: IDependantDetail[];
     houseHoldIncome: string;
     noOfHouseholdMembers: number;
-    noOfYears: number;
     enquiryId: number;
 }
 export interface IChildEndowment {

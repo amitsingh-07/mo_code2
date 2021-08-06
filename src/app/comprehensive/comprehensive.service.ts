@@ -1444,15 +1444,6 @@ export class ComprehensiveService {
       value: dependentHouseHoldData.houseHoldIncome ? dependentHouseHoldData.houseHoldIncome + '' : '',
       completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
     });
-    if (!comprehensiveVersion) {
-      subItemsArray.push({
-        id: '',
-        path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
-        title: 'No. of years to provide for',
-        value: dependentHouseHoldData.noOfYears ? Util.toNumber(dependentHouseHoldData.noOfYears) + '' : '0',
-        completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
-      });
-    }
 
     if (comprehensiveVersion) {
       subItemsArray.push({

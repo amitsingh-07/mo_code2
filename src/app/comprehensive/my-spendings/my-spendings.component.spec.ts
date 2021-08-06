@@ -234,7 +234,6 @@ describe('MySpendingsComponent', () => {
     spyOn(comprehensiveService, 'getReportStatus').and.returnValue('new');
     //spyOn(comprehensiveService, 'comprehensiveFormData').and.returnValue([]);
     //spyOn(comprehensiveService, 'getMyDependant').and.returnValue([]);
-    component.comprehensiveJourneyMode = true;
    // const transformAsCurrencySpy = spyOn(comprehensiveService, 'transformAsCurrency');
   });
 
