@@ -366,7 +366,7 @@ export class ReferalRedirectingPartComponent implements OnInit {
       this.isLoadComplete = false;
     }
     this.comprehensivePlanning = 4;
-    this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
+    this.comprehensiveApiService.getComprehensiveSummary().subscribe((summaryData: any) => {
       if (summaryData && summaryData.objectList[0]) {
         this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
         this.userDetails = this.comprehensiveService.getMyProfile();

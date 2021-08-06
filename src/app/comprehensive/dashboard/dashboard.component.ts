@@ -18,6 +18,8 @@ import { LoaderService } from './../../shared/components/loader/loader.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
 import { PAYMENT_ROUTE_PATHS } from '../../payment/payment-routes.constants';
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 
 
 @Component({
@@ -92,17 +94,11 @@ constructor(
      * 3 - Not Completed
      */
       this.comprehensivePlanning = 4;
-      this.comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
-      this.getCurrentVersionType =  this.comprehensiveService.getComprehensiveCurrentVersion();
-      if ((this.getCurrentVersionType === '' || this.getCurrentVersionType === null ||
-    this.getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE ) && this.comprehensiveLiteEnabled) {
-      this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
-      this.setComprehensivePlan(false);
-    } else {
+      this.comprehensiveService.setUserRole();
+      this.comprehensiveLiteEnabled = false;
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
       this.setComprehensivePlan(true);
-    }
-    this.getReferralCodeData();
+      this.getReferralCodeData();
   }
 
   ngOnInit() {
@@ -143,7 +139,7 @@ constructor(
 
   
   goToEditProfile() {
-    if (this.comprehensivePlanning === 4 && !this.versionTypeEnabled && !this.isCFPGetStarted) {
+    if (this.comprehensivePlanning === 4 && !this.isCFPGetStarted) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
     } else {
       this.setComprehensiveSummary(true, COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED);
@@ -175,7 +171,7 @@ constructor(
             };
             this.comprehensiveService.openTooltipModalWithDismiss(toolTipParams);
           } else {
-            this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((data: any) => {
+            this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
               if (data && data.objectList[0]) {
                   this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
                   this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
@@ -185,7 +181,7 @@ constructor(
       (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) || (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR)){
         this.getComprehensiveCall();
     } else{
-      this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((data: any) => {
+      this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
         if (data && data.objectList[0]) {
             this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
@@ -203,7 +199,7 @@ constructor(
     const payload = {enquiryId: this.enquiryId, reportStatus : reportStatusValue};
     this.comprehensiveApiService.updateComprehensiveReportStatus(payload).subscribe((data: any) => {
           if (data) {
-            this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
+            this.comprehensiveApiService.getComprehensiveSummary().subscribe((summaryData: any) => {
               if (summaryData) {
                 summaryData.objectList[0].comprehensiveEnquiry.reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.EDIT;
                 this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
@@ -234,7 +230,6 @@ constructor(
     }
   }
   setComprehensivePlan(versionType: boolean) {
-    this.comprehensiveService.clearFormData();
     if (!versionType) {
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
       this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
@@ -256,7 +251,7 @@ constructor(
       this.isLoadComplete = false;
     }
     this.comprehensivePlanning = 4;
-    this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
+    this.comprehensiveApiService.getComprehensiveSummary().subscribe((summaryData: any) => {
       if (summaryData && summaryData.objectList[0]) {
         this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
         this.userDetails = this.comprehensiveService.getMyProfile();
@@ -418,5 +413,17 @@ constructor(
     } else {
       return [];
     }
+  }
+
+  speakToAdviserModal() {
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'speak-to-adivser-modal'});
+      ref.componentInstance.errorTitle = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.TITLE');
+      ref.componentInstance.errorMessageHTML = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.DESC');
+      ref.componentInstance.primaryActionLabel = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.BTN_LBL');
+  }
+  adviserAppointmentModal() {
+      const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'adivser-appointment-modal'});
+      ref.componentInstance.errorTitle = this.translate.instant('COMPREHENSIVE.DASHBOARD.APPOINTMENT_MODAL.TITLE');
+      ref.componentInstance.errorMessage = this.translate.instant('COMPREHENSIVE.DASHBOARD.APPOINTMENT_MODAL.DESC');
   }
 }

@@ -80,6 +80,28 @@ export class ComprehensiveService {
     this.getComprehensiveFormData();
     this.comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
   }
+  //Set User Role based on ROLE_COMPRE_LITE
+  setUserRole() {
+    if (this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE)){
+      sessionStorage.setItem(
+        appConstants.SESSION_KEY.CFP_USER_ROLE,
+        COMPREHENSIVE_CONST.ROLES.CORPORATE
+      );
+    } else {
+      sessionStorage.setItem(
+        appConstants.SESSION_KEY.CFP_USER_ROLE,
+        COMPREHENSIVE_CONST.ROLES.PUBLIC
+      );
+    }
+  }
+  //Get User Role for CFP
+  getUserRole() {
+    return appConstants.SESSION_KEY.CFP_USER_ROLE;
+  }
+  //Get User Role for CFP True = Corporate False = Public
+  isCorporateRole() {
+    return (appConstants.SESSION_KEY.CFP_USER_ROLE === COMPREHENSIVE_CONST.ROLES.CORPORATE);
+  }
   setComprehensiveVersion(versionType: string) {
 
     /* Robo3 FULL or LITE Config*/
@@ -155,6 +177,7 @@ export class ComprehensiveService {
     sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION);
     sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE);
     sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE_LITE);
+    sessionStorage.removeItem(appConstants.SESSION_KEY.CFP_USER_ROLE);
     this.getComprehensiveFormData();
   }
 

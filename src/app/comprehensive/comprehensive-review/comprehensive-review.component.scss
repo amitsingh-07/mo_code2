@@ -2,19 +2,19 @@
 @import '../../../mixins';
 
 .comprehensive.review {
-  background: #fff;
-  height: 98vh !important;
+  background: $white-color;
+  min-height: calc(100vh - 84px);
 
+  @include min568max767{
+    min-height: calc(100vh - 45px);
+  }
+  @include allmobiles{
+    min-height: calc(100vh - 45px);
+  }
   @include desktop {
     &.container-fluid {
       padding: 90px 20px 20px 20px;
     }
-  }
-
-  .header {
-    color: #066360;
-    font-size: 24px;
-    font-family: $muli-bold;
   }
 
   .reviewImg {
@@ -26,29 +26,12 @@
     margin-bottom: 20px;
   }
 
-  .result-panel {
-    &__about {
-      font-size: 14px;
-      color: #9f9f9f;
-      font-family: $muli-italic;
-    }
-  }
-
   .about {
     font-size: 16px;
-    color: #066360;
+    color: $elm-dark-cyan-color;
     font-family: $muli-regular;
   }
-  .tandc {
-    font-size: 16px;
-    color: $termsandcond-link;
-    font-family: $muli-regular;
-  }
-  .tandc a {
-    font-family: $muli-bold;
-    text-decoration: underline;
-    color: $termsandcond-link;
-  }
+ 
   .reviewInput {
     margin: 0px !important;
     border-radius: 6px;
@@ -56,6 +39,7 @@
     background-color: $white-color;
     color: $modal-txt-highlight-color;
     font-size: 18px!important;
+    font-family: $muli-regular;
   }
   .confirmBtn{
     margin-top: 20px;

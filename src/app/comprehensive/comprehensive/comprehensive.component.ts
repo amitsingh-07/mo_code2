@@ -152,7 +152,7 @@ export class ComprehensiveComponent implements OnInit {
     } else if (redirectUrl && (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isCFPGetStarted)) {
       this.router.navigate([redirectUrl]);
     } else if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isCFPGetStarted) {
-      this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((data: any) => {
+      this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
         if (data && data.objectList[0]) {
           this.cmpService.setComprehensiveSummary(data.objectList[0]);
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
@@ -178,7 +178,7 @@ export class ComprehensiveComponent implements OnInit {
         this.loaderService.showLoader({ title: this.loading, autoHide: false });
         this.comprehensiveApiService.generateComprehensiveEnquiry(promoCode).subscribe((data: any) => {
           if (data && data.objectList[0].isCFPGetStarted) {
-            this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((summaryData: any) => {
+            this.comprehensiveApiService.getComprehensiveSummary().subscribe((summaryData: any) => {
               if (summaryData && summaryData.objectList[0]) {
                 this.cmpService.setComprehensiveSummary(summaryData.objectList[0]);
                 this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
