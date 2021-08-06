@@ -94,17 +94,11 @@ constructor(
      * 3 - Not Completed
      */
       this.comprehensivePlanning = 4;
-      this.comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
-      this.getCurrentVersionType =  this.comprehensiveService.getComprehensiveCurrentVersion();
-      if ((this.getCurrentVersionType === '' || this.getCurrentVersionType === null ||
-    this.getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE ) && this.comprehensiveLiteEnabled) {
-      this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
-      this.setComprehensivePlan(false);
-    } else {
+      this.comprehensiveService.setUserRole();
+      this.comprehensiveLiteEnabled = false;
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
       this.setComprehensivePlan(true);
-    }
-    this.getReferralCodeData();
+      this.getReferralCodeData();
   }
 
   ngOnInit() {
@@ -236,7 +230,6 @@ constructor(
     }
   }
   setComprehensivePlan(versionType: boolean) {
-    this.comprehensiveService.clearFormData();
     if (!versionType) {
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
       this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
