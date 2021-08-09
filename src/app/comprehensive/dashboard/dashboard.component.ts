@@ -47,7 +47,6 @@ export class ComprehensiveDashboardComponent implements OnInit {
   getComprehensiveDashboard: any;
   getCurrentVersionType = '';
   comprehensiveLiteEnabled: boolean;
-  versionTypeEnabled: boolean;
   getComprehensiveSummaryDashboard: any;
   isCFPGetStarted = false;
   enquiryId: any;
@@ -139,7 +138,7 @@ constructor(
 
   
   goToEditProfile() {
-    if (this.comprehensivePlanning === 4 && !this.versionTypeEnabled && !this.isCFPGetStarted) {
+    if (this.comprehensivePlanning === 4 && !this.isCFPGetStarted) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
     } else {
       this.setComprehensiveSummary(true, COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED);
@@ -171,17 +170,17 @@ constructor(
             };
             this.comprehensiveService.openTooltipModalWithDismiss(toolTipParams);
           } else {
-            this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((data: any) => {
+            this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
               if (data && data.objectList[0]) {
                   this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
                   this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
               }});
           }
-    } else if ( this.versionTypeEnabled &&
+    } else if ( 
       (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) || (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR)){
         this.getComprehensiveCall();
     } else{
-      this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((data: any) => {
+      this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
         if (data && data.objectList[0]) {
             this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
@@ -193,13 +192,13 @@ constructor(
   getComprehensiveCall() {
     this.loaderService.showLoader({ title:  this.fetchData});
     let reportStatusValue =  COMPREHENSIVE_CONST.REPORT_STATUS.NEW;
-    if ( ( !this.versionTypeEnabled && this.comprehensivePlanning === 0 ) ||  this.comprehensivePlanning === 1) {
+    if ( (this.comprehensivePlanning === 0 ) ||  this.comprehensivePlanning === 1) {
       reportStatusValue = COMPREHENSIVE_CONST.REPORT_STATUS.EDIT;
     }
     const payload = {enquiryId: this.enquiryId, reportStatus : reportStatusValue};
     this.comprehensiveApiService.updateComprehensiveReportStatus(payload).subscribe((data: any) => {
           if (data) {
-            this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
+            this.comprehensiveApiService.getComprehensiveSummary().subscribe((summaryData: any) => {
               if (summaryData) {
                 summaryData.objectList[0].comprehensiveEnquiry.reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.EDIT;
                 this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
@@ -230,19 +229,7 @@ constructor(
     }
   }
   setComprehensivePlan(versionType: boolean) {
-    if (!versionType) {
-      this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
-      this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
-      this.versionTypeEnabled = true;
       this.setComprehensiveDashboard();
-
-    } else {
-      this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
-      this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
-      this.versionTypeEnabled = false;
-      this.setComprehensiveDashboard();
-
-    }
   }
   setComprehensiveSummary(routerEnabled: boolean, routerUrlPath: any) {
     if (routerEnabled) {
@@ -251,7 +238,7 @@ constructor(
       this.isLoadComplete = false;
     }
     this.comprehensivePlanning = 4;
-    this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
+    this.comprehensiveApiService.getComprehensiveSummary().subscribe((summaryData: any) => {
       if (summaryData && summaryData.objectList[0]) {
         this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
         this.userDetails = this.comprehensiveService.getMyProfile();
@@ -303,11 +290,7 @@ constructor(
       } else {
         if (routerEnabled) {
           this.loaderService.hideLoader();
-          if (!this.versionTypeEnabled) {
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
-          } else {
-          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
-          }
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
         } else {
           this.isLoadComplete = true;
         }

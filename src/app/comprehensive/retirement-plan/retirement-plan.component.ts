@@ -86,7 +86,6 @@ export class RetirementPlanComponent
     }*/
   };
   userAge: number;
-  comprehensiveJourneyMode: boolean;
   constructor(
     private navbarService: NavbarService,
     private progressService: ProgressTrackerService,
@@ -143,7 +142,6 @@ export class RetirementPlanComponent
 
   ngOnInit() {
     this.navbarService.setNavbarComprehensive(true);
-    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe(
       (pageId) => {
         if (this.pageId === pageId) {
@@ -232,11 +230,9 @@ export class RetirementPlanComponent
 
     this.retirementPlanForm = this.formBuilder.group({
       retirementAge: [this.sliderValue],
-      haveOtherSourceRetirementIncome: [
-        this.comprehensiveJourneyMode ? ( this.retirementDetails
+      haveOtherSourceRetirementIncome: [( this.retirementDetails
           ? this.retirementDetails.haveOtherSourceRetirementIncome
-          : '') : ''
-      ],
+          : '')],
       retirementIncomeSet: this.formBuilder.array(retirementIncomeSet),
       lumpSumBenefitSet: this.formBuilder.array(lumpSumBenefitSet)
     });
@@ -353,24 +349,18 @@ export class RetirementPlanComponent
         const retirementData = form.value;
         (retirementData.enquiryId = this.comprehensiveService.getEnquiryId()),
           (retirementData.retirementAge = this.sliderValue.toString());
-        if (!this.comprehensiveJourneyMode || !this.showLumpSumBenefit) {
+        if (!this.showLumpSumBenefit) {
           retirementData.lumpSumBenefitSet = [];
         }
-        if (!this.comprehensiveJourneyMode ||  !this.showRetirementIncome) {
+        if (!this.showRetirementIncome) {
           retirementData.retirementIncomeSet = [];
         }
         this.comprehensiveApiService
           .saveRetirementPlanning(retirementData)
           .subscribe((data: any) => {
             this.comprehensiveService.setRetirementPlan(retirementData);
-            if (this.comprehensiveService.getMySteps() === 3 && this.comprehensiveJourneyMode
-            && this.comprehensiveService.getMySubSteps() < 1) {
+            if (this.comprehensiveService.getMySteps() === 3 && this.comprehensiveService.getMySubSteps() < 1) {
               this.comprehensiveService.setStepCompletion(3, 1).subscribe((data1: any) => {
-                this.routerPath();
-              });
-            } else if (this.comprehensiveService.getMySteps() === 2 && !this.comprehensiveJourneyMode
-            && this.comprehensiveService.getMySubSteps() < 1) {
-              this.comprehensiveService.setStepCompletion(2, 1).subscribe((data1: any) => {
                 this.routerPath();
               });
             } else {
@@ -502,10 +492,6 @@ export class RetirementPlanComponent
     }
   }
   routerPath() {
-    if (this.comprehensiveJourneyMode) {
       this.showSummaryModal();
-    } else {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/4', ]);
-    }
   }
 }

@@ -272,7 +272,7 @@ export const COMPREHENSIVE_CONST = {
     COMPREHENSIVE_LITE_ENABLED: true,
     VERSION_TYPE: {
         LITE: 'Comprehensive-Lite',
-        FULL: 'Comprehensive'
+        FULL: 'CFP_PLUS'
     },
     ROLES: {
         ROLE_COMPRE_LITE: 'ROLE_COMPRE_LITE',

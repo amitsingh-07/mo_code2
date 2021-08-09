@@ -56,7 +56,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   myinfoChangeListener: Subscription;
   showRetirementAccount: boolean = false;
   myAge: any;
-  comprehensiveJourneyMode;
   saveData: string;
   schemeTypeList: any;
   schemeType = '';
@@ -64,8 +63,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   frsConfig = '';
   brsConfig = '';
   fundTypeList: any;
-  fundTypeLite: any;
-  errorMessageLite: any;
   fundType = [];
   showEditIcon:boolean = false;
 
@@ -91,8 +88,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
         this.schemeTypeList = this.translate.instant('CMP.MY_ASSETS.SCHEME_TYPE_LIST');        
         this.fundTypeList = this.translate.instant('CMP.FUND_TYPE_LIST');  
-        this.fundTypeLite = this.translate.instant('CMP.RSP.FUND_TYPE_LITE');        
-        this.errorMessageLite = this.translate.instant('CMP.RSP.LITE_RSP_ERROR');
       });
     });
     const today: Date = new Date();
@@ -150,14 +145,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.assetDetails = this.comprehensiveService.getMyAssets();
-    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
-    if (!this.comprehensiveJourneyMode && this.assetDetails) {
-      this.assetDetails.homeMarketValue = 0;
-      this.assetDetails.otherAssetsValue = 0;
-      this.assetDetails.investmentPropertiesValue = 0;
-    }
-    
+    this.assetDetails = this.comprehensiveService.getMyAssets();    
     if (this.assetDetails && this.assetDetails.source === COMPREHENSIVE_CONST.CPF_SOURCE.MY_INFO) {
       this.cpfFromMyInfo = true;
       this.showEditIcon = true;
@@ -255,7 +243,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       this.assetDetails.assetsInvestmentSet.forEach((otherInvest, i) => {
         otherInvestFormArray.push(this.buildInvestmentForm(otherInvest, i));
         this.investType[inc] = otherInvest.typeOfInvestment;
-        this.fundType[inc] = (!this.comprehensiveJourneyMode ) ? this.fundTypeLite : otherInvest.fundType;        
+        this.fundType[inc] = otherInvest.fundType;        
         inc++;
       });
     } else {
@@ -322,7 +310,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     this.onTotalAssetsBucket();
   }
   buildInvestmentForm(inputParams, totalLength) {
-    const fundTypeValue = (!this.comprehensiveJourneyMode ) ? this.fundTypeLite : inputParams.fundType; 
+    const fundTypeValue = inputParams.fundType; 
     if (totalLength > 0) {
       return this.formBuilder.group({
         typeOfInvestment: [{ value: inputParams.typeOfInvestment, disabled: this.viewMode }, []],
@@ -396,9 +384,6 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         form.get(key).markAsDirty();
       });
       const error = this.comprehensiveService.getFormError(form, COMPREHENSIVE_FORM_CONSTANTS.MY_ASSETS);
-      if(error.errorMessages && !this.comprehensiveJourneyMode){
-        error.errorMessages = [this.errorMessageLite];
-      }
       this.comprehensiveService.openErrorModal(error.title, error.errorMessages, false,
         this.translate.instant('CMP.ERROR_MODAL_TITLE.MY_ASSETS'));
       return false;
