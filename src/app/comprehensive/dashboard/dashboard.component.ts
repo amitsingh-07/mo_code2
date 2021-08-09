@@ -47,7 +47,6 @@ export class ComprehensiveDashboardComponent implements OnInit {
   getComprehensiveDashboard: any;
   getCurrentVersionType = '';
   comprehensiveLiteEnabled: boolean;
-  versionTypeEnabled: boolean;
   getComprehensiveSummaryDashboard: any;
   isCFPGetStarted = false;
   enquiryId: any;
@@ -177,7 +176,7 @@ constructor(
                   this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
               }});
           }
-    } else if ( this.versionTypeEnabled &&
+    } else if ( 
       (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) || (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR)){
         this.getComprehensiveCall();
     } else{
@@ -193,7 +192,7 @@ constructor(
   getComprehensiveCall() {
     this.loaderService.showLoader({ title:  this.fetchData});
     let reportStatusValue =  COMPREHENSIVE_CONST.REPORT_STATUS.NEW;
-    if ( ( !this.versionTypeEnabled && this.comprehensivePlanning === 0 ) ||  this.comprehensivePlanning === 1) {
+    if ( (this.comprehensivePlanning === 0 ) ||  this.comprehensivePlanning === 1) {
       reportStatusValue = COMPREHENSIVE_CONST.REPORT_STATUS.EDIT;
     }
     const payload = {enquiryId: this.enquiryId, reportStatus : reportStatusValue};
@@ -230,19 +229,7 @@ constructor(
     }
   }
   setComprehensivePlan(versionType: boolean) {
-    if (!versionType) {
-      this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
-      this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
-      this.versionTypeEnabled = true;
       this.setComprehensiveDashboard();
-
-    } else {
-      this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
-      this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
-      this.versionTypeEnabled = false;
-      this.setComprehensiveDashboard();
-
-    }
   }
   setComprehensiveSummary(routerEnabled: boolean, routerUrlPath: any) {
     if (routerEnabled) {
@@ -303,11 +290,7 @@ constructor(
       } else {
         if (routerEnabled) {
           this.loaderService.hideLoader();
-          if (!this.versionTypeEnabled) {
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
-          } else {
-          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
-          }
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
         } else {
           this.isLoadComplete = true;
         }
