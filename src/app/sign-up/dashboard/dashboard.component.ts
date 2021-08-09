@@ -208,7 +208,7 @@ export class DashboardComponent implements OnInit {
     this.getInvestmentsSummary();
     this.investmentAccountService.deactivateReassess();
     const toastMessage = this.comprehensiveService.getToastMessage();
-    if (toastMessage) {
+    if(toastMessage) {
       this.showCopyToast();
     }
   }

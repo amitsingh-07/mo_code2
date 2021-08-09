@@ -258,7 +258,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   getCheckoutDetails(promoCode, isRemoved: boolean) {  
     this.loaderService.showLoader({ title: this.loading, autoHide: false });
-    const payload = { comprehensivePromoCodeToken: promoCode, promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE, isRemoved: isRemoved };
+    const payload = { comprehensivePromoCodeToken: promoCode, promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE, isRemoved: isRemoved, promoSubCategory: this.comprehensiveService.isCorporateRole() ? COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_ADVISOR : COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_REPORT };
     this.paymentService.getPaymentCheckoutCfpDetails(payload).subscribe((data: any) => {
       this.loaderService.hideLoaderForced();
       if (data && data.objectList) {
