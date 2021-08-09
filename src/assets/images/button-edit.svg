@@ -1,24 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
     <defs>
-        <filter id="lgn3a1q22a" width="158.3%" height="158.3%" x="-29.2%" y="-20.8%" filterUnits="objectBoundingBox">
+        <filter id="7oytusjppa" width="140%" height="140%" x="-20%" y="-10%" filterUnits="objectBoundingBox">
             <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
-            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="1"/>
             <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"/>
         </filter>
-        <circle id="g8oz1lt2ib" cx="12" cy="12" r="12"/>
+        <circle id="qm4n011x4b" cx="12" cy="10" r="10"/>
     </defs>
     <g fill="none" fill-rule="evenodd">
         <g>
             <g>
                 <g>
                     <g transform="translate(-316.000000, -250.000000) translate(16.000000, 230.000000) translate(300.000000, 20.000000)">
-                        <use fill="#000" filter="url(#lgn3a1q22a)" xlink:href="#g8oz1lt2ib"/>
-                        <use fill="#005960" xlink:href="#g8oz1lt2ib"/>
+                        <use fill="#000" filter="url(#7oytusjppa)" xlink:href="#qm4n011x4b"/>
+                        <use fill="#005960" xlink:href="#qm4n011x4b"/>
                     </g>
                     <g>
-                        <path d="M0 0H16V16H0z" transform="translate(-316.000000, -250.000000) translate(16.000000, 230.000000) translate(300.000000, 20.000000) translate(4.000000, 4.000000)"/>
+                        <path d="M0.667 0.667H13.667V13.667H0.667z" transform="translate(-316.000000, -250.000000) translate(16.000000, 230.000000) translate(300.000000, 20.000000) translate(5.333333, 3.333333)"/>
                         <g fill="#FFF" fill-rule="nonzero">
-                            <path d="M0 12h2.5l7.372-7.372-2.5-2.5L0 9.5V12zm1.333-1.946l6.04-6.04.613.614-6.04 6.039h-.613v-.613zM10.245.195c-.26-.26-.68-.26-.94 0l-1.22 1.22 2.5 2.5 1.22-1.22c.26-.26.26-.68 0-.94l-1.56-1.56z" transform="translate(-316.000000, -250.000000) translate(16.000000, 230.000000) translate(300.000000, 20.000000) translate(4.000000, 4.000000) translate(2.000000, 2.000000)"/>
+                            <path d="M0 10h2.083l6.144-6.144-2.083-2.083L0 7.917V10zm1.111-1.622l5.033-5.033.51.511L1.623 8.89h-.511v-.511zM8.538.162c-.217-.216-.567-.216-.784 0L6.738 1.18l2.083 2.083 1.017-1.016c.216-.217.216-.567 0-.784l-1.3-1.3z" transform="translate(-316.000000, -250.000000) translate(16.000000, 230.000000) translate(300.000000, 20.000000) translate(5.333333, 3.333333) translate(1.666667, 1.666667)"/>
                         </g>
                     </g>
                 </g>
