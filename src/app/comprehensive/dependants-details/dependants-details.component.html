@@ -201,10 +201,12 @@
           </div>
           <div class="flex-col-7">
             <div class="dropdown-control"
-                [ngClass]="{'inline-error': submitted &&  dependentMappingList['controls'].years.invalid}">
+                [ngClass]="{'inline-error': submitted &&  dependentMappingList['controls'].yearsNeeded.invalid}">
                 <div ngbDropdown id="moDpdnt2DrpdwnYearsNeeded" placement="top-right">
-                  <button type="button" class="btn btn-dropdown" id="dropdownYearsNeeded" ngbDropdownToggle>
-                  <span class="grey-text">{{'COMMON.LBL_SELECT' | translate}}</span>
+                  <button type="button" class="btn btn-dropdown" id="dropdownYearsNeeded" ngbDropdownToggle  appComprehensiveViewMode="{{viewMode}}" mode=1>
+                  <span class="grey-text"  *ngIf="dependentMappingList.get('yearsNeeded').value ===''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                  <span
+                    *ngIf="dependentMappingList.get('yearsNeeded').value !==''">{{dependentMappingList.get('yearsNeeded').value}}</span>
                 </button>
                     <div ngbDropdownMenu aria-labelledby="dropdownYearsNeeded">
                       <button class="dropdown-item" (click)="selectYearsNeeded('',i)">Select</button>

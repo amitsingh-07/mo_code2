@@ -16,9 +16,7 @@ export class YearsNeededComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.yearsNeeded = this.translate.instant('CMP.DEPENDANT_SELECTION.YEARS_NEEDED');
-      console.log(this.yearsNeeded);
       this.profileType = this.translate.instant('CMP.DEPENDANT_SELECTION.PROFILE_TYPE');
-      console.log(this.profileType);
   });
 }
 
