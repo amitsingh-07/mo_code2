@@ -359,8 +359,8 @@ export class RetirementPlanComponent
           .saveRetirementPlanning(retirementData)
           .subscribe((data: any) => {
             this.comprehensiveService.setRetirementPlan(retirementData);
-            if (this.comprehensiveService.getMySteps() === 3 && this.comprehensiveService.getMySubSteps() < 1) {
-              this.comprehensiveService.setStepCompletion(3, 1).subscribe((data1: any) => {
+            if (this.comprehensiveService.getMySteps() === 4 && this.comprehensiveService.getMySubSteps() < 1) {
+              this.comprehensiveService.setStepCompletion(4, 1).subscribe((data1: any) => {
                 this.routerPath();
               });
             } else {
@@ -398,7 +398,7 @@ export class RetirementPlanComponent
         contentObj: this.retireModal,
         nextPageURL: this.viewMode
           ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
-          : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT,
+          : COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
         routerEnabled: this.summaryRouterFlag
       };
       this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
