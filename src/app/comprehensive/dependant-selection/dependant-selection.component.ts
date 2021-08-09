@@ -35,7 +35,6 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   viewMode: boolean;
   submitted: any;
   householdDetails: IdependentsSummaryList;
-  comprehensiveJourneyMode: boolean;
   stepIndicatorCount:number;
   constructor(
     private cmpService: ComprehensiveService, private progressService: ProgressTrackerService,
@@ -62,8 +61,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
       });
     });
     this.viewMode = this.cmpService.getViewableMode();
-    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
-    this.stepIndicatorCount =  this.comprehensiveJourneyMode ? 5 : 1 ;
+    this.stepIndicatorCount =  5;
   }
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.cmpService.generateProgressTrackerData());
@@ -100,14 +98,13 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   }
 
   buildMyDependantSelectionForm() {
-    this.hasDependant = this.comprehensiveJourneyMode ? this.cmpService.hasDependant() : false;
+    this.hasDependant = this.cmpService.hasDependant();
     this.householdDetails = this.cmpService.gethouseHoldDetails();
     this.dependantSelectionForm = new FormGroup({
       dependantSelection: new FormControl(this.hasDependant, Validators.required),
       noOfHouseholdMembers: new FormControl(this.householdDetails ? this.householdDetails.noOfHouseholdMembers : '', [Validators.required, Validators.min(1), Validators.max(10)]),
       houseHoldIncome: new FormControl(this.householdDetails ? this.householdDetails.houseHoldIncome : '', Validators.required),
-      noOfYears: new FormControl(this.householdDetails ? this.householdDetails.noOfYears : 0),
-    });
+     });
 
   }
   selectHouseHoldMembers(status) {
@@ -131,7 +128,6 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
           hasDependents: dependantSelectionForm.value.dependantSelection,
           noOfHouseholdMembers: dependantSelectionForm.value.noOfHouseholdMembers,
           houseHoldIncome: dependantSelectionForm.value.houseHoldIncome,
-          noOfYears: dependantSelectionForm.value.noOfYears,
           enquiryId: this.cmpService.getEnquiryId(),
           dependentMappingList: [{
             id: 0,
@@ -164,15 +160,11 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
     }
   }
   routerPath(dependantSelectionForm) {
-    if (this.comprehensiveJourneyMode) {
       if (dependantSelectionForm.value.dependantSelection) {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
       } else {
         this.showSummaryModal();
       }
-    } else {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/2']);
-    }
   }
   showSummaryModal() {
     if (this.routerEnabled) {

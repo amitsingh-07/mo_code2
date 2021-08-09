@@ -389,6 +389,9 @@
         }
         .flex-col-12{
             min-width: 390px;
+            @include min768max768{
+                min-width: 266px;
+            }
             @include allmobiles{
                 min-width: 230px;
             }

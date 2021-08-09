@@ -50,7 +50,6 @@ export class ReferalRedirectingPartComponent implements OnInit {
   isLoadComplete = false;
   islocked: boolean;
   getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
-  versionTypeEnabled = false;
   getComprehensiveSummaryDashboard: any;
   isCFPGetStarted = false;
   enquiryId: any;
@@ -307,7 +306,6 @@ export class ReferalRedirectingPartComponent implements OnInit {
     this.getComprehensiveSummaryDashboard = '';
     this.currentStep = -1;
     this.paymentInstructions = false;
-    this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
     this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe((dashboardData: any) => {
       if (dashboardData && dashboardData.objectList[0]) {
         this.getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', this.getCurrentVersionType);
@@ -418,11 +416,7 @@ export class ReferalRedirectingPartComponent implements OnInit {
       } else {
         if (routerEnabled) {
           this.loaderService.hideLoader();
-          if (!this.versionTypeEnabled) {
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
-          } else {
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
-          }
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
         } else {
           this.isLoadComplete = true;
         }
@@ -445,7 +439,7 @@ export class ReferalRedirectingPartComponent implements OnInit {
 
 
   goToEditProfile() {
-    if (this.comprehensivePlanning === 4 && !this.versionTypeEnabled && !this.isCFPGetStarted) {
+    if (this.comprehensivePlanning === 4 && !this.isCFPGetStarted) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
     } else {
       this.setComprehensiveSummary(true, COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED);

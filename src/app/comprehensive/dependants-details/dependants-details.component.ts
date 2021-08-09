@@ -232,7 +232,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
           form.value.hasDependents = this.hasDependant;
           form.value.noOfHouseholdMembers = this.houseHold.noOfHouseholdMembers;
           form.value.houseHoldIncome = this.houseHold.houseHoldIncome;
-          form.value.noOfYears =  this.houseHold.noOfYears;
           form.value.saveDependentInfo =  true;
           form.value.enquiryId = this.comprehensiveService.getEnquiryId();
           this.loaderService.showLoader({ title: this.saveData });

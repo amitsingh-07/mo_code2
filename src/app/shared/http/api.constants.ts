@@ -109,7 +109,7 @@ export let apiConstants = {
             saveLiabilities: FINANCE_API_BASE_URL + 'saveComprehensiveLiabilities',
             getPromoCode: ACCOUNT_API_BASE_URL + '/customer/comprehensive/requestComprehensivePromoCode?category=COMPRE',
             generateComprehensiveEnquiry: ACCOUNT_API_BASE_URL + '/customer/comprehensive/mapAndGenerateCFPEnquiryId',
-            downloadComprehensiveReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'downloadLiteReportPdf',
+            downloadComprehensiveReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'downloadCompreReportPdf',
             saveStepIndicator: COMPREHENSIVE_API_BASE_URL + 'saveComprehensiveStepCompletion',
             generateComprehensiveReport: COMPREHENSIVE_API_BASE_URL + 'generateComprehensiveReport',
             getReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'getReport',
