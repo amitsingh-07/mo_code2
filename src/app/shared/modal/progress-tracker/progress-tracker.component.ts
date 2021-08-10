@@ -69,11 +69,11 @@ export class ProgressTrackerComponent implements OnInit {
     * Navigate to the selected component or toggle the accordion.
     */
     public navigateOrToggle(item) {
-        if (item.title == COMPREHENSIVE_CONST.REVIEW_INPUTS && this.comprehensiveService.checkResultData() 
-            && this.comprehensiveService.getMySteps() == 4) {
+        if (item.title == COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.REVIEW_INPUTS.TITLE && this.comprehensiveService.checkResultData() 
+            && this.comprehensiveService.getMySteps() == COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.NO) {
             this.progressService.hide();
             this.progressService.navigate(item.path);
-        } else if (item.title != COMPREHENSIVE_CONST.REVIEW_INPUTS) {
+        } else if (item.title != COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.REVIEW_INPUTS.TITLE) {
             this.toggle(item);
         }
     }

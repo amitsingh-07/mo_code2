@@ -1348,8 +1348,7 @@ export class ComprehensiveService {
     this.progressData = {} as IProgressTrackerData;
     this.progressData = {
       title: 'Your Progress Tracker',
-      subTitle: (!comprehensiveVersion)
-        ? 'Est. Time Required: 10 mins' : 'Est. Time Required: 20 mins',
+      subTitle: 'Est. Time Required: 20 mins',
       properties: {
         disabled: false
       },
@@ -1359,15 +1358,11 @@ export class ComprehensiveService {
     this.progressData.items.push(this.getGetStartedProgressData());
     this.progressData.items.push(this.getDependantsProgressData());
     this.progressData.items.push(this.getFinancesProgressData());
-    if (comprehensiveVersion) {
-      this.progressData.items.push(this.getFireproofingProgressData());
-    }
+    this.progressData.items.push(this.getFireproofingProgressData());
     this.progressData.items.push(this.getRetirementProgressData());
-    if (!comprehensiveVersion) {
-      this.progressData.items.push(this.getRiskProfileProgressData());
-    }
+    this.progressData.items.push(this.getRiskProfileProgressData());
     
-    if (comprehensiveVersion && !this.getViewableMode()) {
+    if (!this.getViewableMode()) {
       this.progressData.items.push(this.getReviewInputsProgressData());
     }
     return this.progressData;
@@ -1834,56 +1829,64 @@ export class ComprehensiveService {
    */
   // tslint:disable-next-line:cognitive-complexity
   getRiskProfileProgressData(): IProgressTrackerItem {
+    const skipRiskProfile = false;
     const cmpSummary = this.getComprehensiveSummary();
     const isCompleted = false; //cmpSummary.comprehensiveInsurancePlanning !== null;
+    const subSteps = [{
+      id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
+      path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
+      title: 'Temporary Losses',
+      value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1
+        && cmpSummary.riskQuestionList) ?
+        cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1] : '',
+      completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1
+        && cmpSummary.riskQuestionList && (this.validateSteps(COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.NO, 1)))
+    },
+    {
+      id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/2',
+      path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/2',
+      title: 'Unrealised/Paper Loss',
+      value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2
+        && cmpSummary.riskQuestionList) ?
+        cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2] : '',
+      completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2
+        && cmpSummary.riskQuestionList && (this.validateSteps(COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.NO, 2)))
+    },
+    {
+      id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/3',
+      path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/3',
+      title: 'Stress Level',
+      value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3
+        && cmpSummary.riskQuestionList) ?
+        cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3] : '',
+      completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3
+        && cmpSummary.riskQuestionList && (this.validateSteps(COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.NO, 3)))
+    },
+    {
+      id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/4',
+      path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/4',
+      title: 'Portfolio Type',
+      value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4
+        && cmpSummary.riskQuestionList) ?
+        cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4] : '',
+      completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4
+        && cmpSummary.riskQuestionList && (this.validateSteps(COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.NO, 4)))
+    }];
+
+    const startRiskProfile = [{
+      id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
+      path: this.getMySteps() >= COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.NO && this.checkResultData() ? COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1' : '',
+      title: COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.TITLE,
+      value: '',
+      completed: true
+    }];
     return {
       title: 'Your Risk Profile',
       expanded: true,
       showArrow: true,
       completed: false,
       customStyle: 'risk-profile',
-      subItems: [
-        {
-          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
-          path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
-          title: 'Temporary Losses',
-          value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1
-            && cmpSummary.riskQuestionList) ?
-            cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1] : '',
-          completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1
-            && cmpSummary.riskQuestionList && (this.validateSteps(4, 1)))
-        },
-        {
-          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/2',
-          path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/2',
-          title: 'Unrealised/Paper Loss',
-          value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2
-            && cmpSummary.riskQuestionList) ?
-            cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2] : '',
-          completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2
-            && cmpSummary.riskQuestionList && (this.validateSteps(4, 2)))
-        },
-        {
-          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/3',
-          path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/3',
-          title: 'Stress Level',
-          value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3
-            && cmpSummary.riskQuestionList) ?
-            cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3] : '',
-          completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3
-            && cmpSummary.riskQuestionList && (this.validateSteps(4, 3)))
-        },
-        {
-          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/4',
-          path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/4',
-          title: 'Portfolio Type',
-          value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4
-            && cmpSummary.riskQuestionList) ?
-            cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4] : '',
-          completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4
-            && cmpSummary.riskQuestionList && (this.validateSteps(4, 4)))
-        }
-      ]
+      subItems: skipRiskProfile ? startRiskProfile : subSteps
     };
   }
 
@@ -1971,7 +1974,7 @@ export class ComprehensiveService {
 
   getReviewInputsProgressData(): IProgressTrackerItem {
     return {
-      title: COMPREHENSIVE_CONST.REVIEW_INPUTS,
+      title: COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.REVIEW_INPUTS.TITLE,
       expanded: false,
       showArrow: false,
       path: this.getComprehensiveSummary().comprehensiveEnquiry && this.getMySteps() == 4 && this.checkResultData() ? COMPREHENSIVE_ROUTE_PATHS.REVIEW : '',
