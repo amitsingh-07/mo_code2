@@ -107,7 +107,6 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
     });
   }
   setCurrentQuestion() {
-
     this.currentQuestion = this.questionsList[this.questionIndex - 1];
     this.isSpecialCase = this.currentQuestion.listOrder ===
       COMPREHENSIVE_CONST.RISK_ASSESSMENT.SPECIAL_QUESTION_ORDER ? true : false;
@@ -135,9 +134,9 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       if (this.questionIndex < this.questionsList.length) {
         // NEXT QUESTION
         this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
-          if (this.comprehensiveService.getMySteps() === 3
+         if (this.comprehensiveService.getMySteps() === 4
           && this.comprehensiveService.getMySubSteps() < (this.questionIndex + 1)) {
-            this.comprehensiveService.setStepCompletion(3, this.questionIndex).subscribe((data1: any) => {
+            this.comprehensiveService.setStepCompletion(4, this.questionIndex).subscribe((data1: any) => {
               this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
               this.router.navigate([
                 COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
@@ -152,9 +151,9 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
         });
       } else {
         this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
-          if (this.comprehensiveService.getMySteps() === 3
+          if (this.comprehensiveService.getMySteps() === 4
           && this.comprehensiveService.getMySubSteps() < 4) {
-            this.comprehensiveService.setStepCompletion(3, 4).subscribe((data1: any) => {
+            this.comprehensiveService.setStepCompletion(4, 4).subscribe((data1: any) => {
               this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
               const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
             : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
