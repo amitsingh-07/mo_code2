@@ -35,6 +35,9 @@ export const COMPREHENSIVE_ROUTES = {
     ENQUIRY: 'enquiry',
     VALIDATE_RESULT: 'validate-result',
     REVIEW: 'review',
+    ADVISOR: 'advisor',
+    EDIT: 'edit',
+    REVIEW_ADVISOR: 'review-advisor',
     RISK_PROFILE: 'risk-profile'
 };
 

@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
 
 import { ConfigService } from '../../config/config.service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
@@ -9,7 +11,7 @@ import { ProgressTrackerService } from '../../shared/modal/progress-tracker/prog
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
-import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { COMPREHENSIVE_ROUTES, COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ComprehensiveService } from '../comprehensive.service';
 import { PAYMENT_ROUTE_PATHS } from './../../payment/payment-routes.constants';
 import { PaymentService } from './../../payment/payment.service';
@@ -28,6 +30,10 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   comprehensiveJourneyMode: boolean;
   loading: string;
   requireToPay: boolean;
+  sourceLocation: any;
+  isFirstTimeCorporateJourney: boolean;
+  isEditJourney: boolean;
+  isFromSpeakToAdvisor: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
@@ -37,9 +43,10 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     private comprehensiveService: ComprehensiveService,
     private comprehensiveApiService: ComprehensiveApiService,
     private paymentService: PaymentService,
-    private loaderService: LoaderService) {
+    private loaderService: LoaderService, 
+    private modal: NgbModal) {
     this.pageId = this.activatedRoute.routeConfig.component.name;
-    this.configService.getConfig().subscribe((config: any) => {      
+    this.configService.getConfig().subscribe((config: any) => {
       this.isPaymentEnabled = config.paymentEnabled;
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -61,10 +68,12 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
 
       }
     });
+    this.isFirstTimeCorporateJourney = comprehensiveService.getSpeakToAdvisorFlag(router.url);
+    this.isEditJourney = comprehensiveService.getIsEditFlag(router.url);
+    this.isFromSpeakToAdvisor = comprehensiveService.getReviewSpeakToAdvisor(router.url);
   }
 
   ngOnInit() {
-
     this.loaderService.hideLoaderForced();
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.progressService.setReadOnly(false);
@@ -82,6 +91,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
     }
   }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.menuClickSubscription.unsubscribe();
@@ -148,4 +158,14 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
   }
 
+  speakToAdvisor() {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'speak-to-adivser-modal'});
+      ref.componentInstance.errorTitle = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.TITLE');
+      ref.componentInstance.errorMessageHTML = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.DESC');
+      ref.componentInstance.primaryActionLabel = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.BTN_LBL');
+      ref.componentInstance.primaryAction.subscribe(() => {
+        const routerURL = COMPREHENSIVE_ROUTE_PATHS.REVIEW + '/' + COMPREHENSIVE_ROUTES.REVIEW_ADVISOR;
+        this.router.navigate([routerURL]);
+      });
+  }
 }

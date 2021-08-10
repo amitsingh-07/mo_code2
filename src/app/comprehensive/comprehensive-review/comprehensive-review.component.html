@@ -7,12 +7,13 @@
     <span
       *ngIf="comprehensiveJourneyMode">{{ requireToPay ? ('CMP.REVIEW.ABOUT_WITH_PAY' | translate) :  ('CMP.REVIEW.ABOUT' | translate)  }}</span>
     <span *ngIf="!comprehensiveJourneyMode">{{'CMP.REVIEW.ABOUT_LITE' | translate }}</span>
-    <span *ngIf="false">{{'CMP.REVIEW.SPEAK_TO_ADVISER' | translate }}</span>
-    <span *ngIf="false">{{'CMP.REVIEW.EDIT_FINLIT_USER' | translate }}</span>
+    <span *ngIf="isFirstTimeCorporateJourney">{{'CMP.REVIEW.SPEAK_TO_ADVISER' | translate }}</span>
+    <span *ngIf="isEditJourney">{{'CMP.REVIEW.EDIT_FINLIT_USER' | translate }}</span>
+    <span *ngIf="!isPaymentEnabled">{{'CMP.REVIEW.ABOUT_WITH_PAYMENT_ENABLED' | translate }}</span>
   </div>
   <div class="footer-cta">
 
-    <button type="button" (click)="goToReviewInput()" class="btn btn-primary-outline width100 reviewInput"
+    <button *ngIf="!isEditJourney || isFromSpeakToAdvisor" type="button" (click)="goToReviewInput()" class="btn btn-primary-outline width100 reviewInput"
       id="moDpdnt2BtnFooter">{{'CMP.REVIEW.REVIEW_INPUT'
       | translate}}
     </button>
@@ -22,15 +23,15 @@
       {{requireToPay && comprehensiveJourneyMode ? ('CMP.REVIEW.CONFIRM_WITH_PAY' | translate) : ('CMP.REVIEW.CONFIRM' | translate)}}
     </button>
 
-    <button *ngIf="false" type="button" class="btn btn-primary confirmBtn width100" id="moDpdnt2BtnFooter">
+    <button *ngIf="isFromSpeakToAdvisor || !isPaymentEnabled" type="button" class="btn btn-primary confirmBtn width100" id="moDpdnt2BtnFooter">
       {{'CMP.REVIEW.CHECKOUT' | translate}}
     </button>
 
-    <button *ngIf="false" type="button" class="btn btn-primary-outline width100 reviewInput" id="moDpdnt2BtnFooter" (click)="goToDashboard()">
+    <button *ngIf="isEditJourney" type="button" class="btn btn-primary-outline width100 reviewInput" id="moDpdnt2BtnFooter" (click)="goToDashboard()">
       {{'CMP.REVIEW.VIEW_DASHBOARD' | translate}}
     </button>
 
-    <button *ngIf="false" type="button" class="btn btn-primary confirmBtn width100" id="moDpdnt2BtnFooter">
+    <button *ngIf="isEditJourney" (click)="speakToAdvisor()" type="button" class="btn btn-primary confirmBtn width100" id="moDpdnt2BtnFooter">
       {{'CMP.REVIEW.SPEAK_ADVISER' | translate}}
     </button>
   </div>

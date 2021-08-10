@@ -58,6 +58,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
   getReferralInfo: any;
   comprehensiveInfo: any;
   paymentWaived = false;
+  isCorporateUser = false;
 constructor(
     private router: Router,
     private translate: TranslateService,
@@ -101,8 +102,14 @@ constructor(
   }
 
   ngOnInit() {
+    this.getIscorporateUserFlag();
   }
   
+  getIscorporateUserFlag() {
+    console.log('is corporate ', this.comprehensiveService.isCorporateRole());
+    this.isCorporateUser = this.comprehensiveService.isCorporateRole();
+  }
+
   generateReport() {
     this.comprehensiveApiService.getReport().subscribe((data: any) => {
       this.comprehensiveService.setReportId(data.objectList[0].id);
@@ -183,7 +190,8 @@ constructor(
       this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
         if (data && data.objectList[0]) {
             this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+            // this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REVIEW + '/edit']);
         }});
     }
     
@@ -404,9 +412,9 @@ constructor(
       ref.componentInstance.errorMessageHTML = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.DESC');
       ref.componentInstance.primaryActionLabel = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.BTN_LBL');
       ref.componentInstance.primaryAction.subscribe(() => {
-        console.log("path ======= /comprehensive/review", COMPREHENSIVE_ROUTE_PATHS.REVIEW);
-        this.router.navigateByUrl("/comprehensive/" + COMPREHENSIVE_ROUTES.REVIEW);
-        console.log("after redirect ======= ", COMPREHENSIVE_ROUTES.REVIEW);
+        // const routerURL = (!this.comprehensiveService.getViewableMode() && this.getCurrentVersionType == COMPREHENSIVE_CONST.VERSION_TYPE.FULL) ? COMPREHENSIVE_ROUTE_PATHS.REVIEW + '/advisor' : COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep);
+        const routerURL = COMPREHENSIVE_ROUTE_PATHS.REVIEW + '/' + COMPREHENSIVE_ROUTES.ADVISOR;
+        this.setComprehensiveSummary(true, routerURL);
       });
   }
   adviserAppointmentModal() {

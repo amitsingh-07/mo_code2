@@ -31,6 +31,7 @@ import {
   COMPREHENSIVE_BASE_ROUTE,
   COMPREHENSIVE_FULL_ROUTER_CONFIG,
   COMPREHENSIVE_LITE_ROUTER_CONFIG,
+  COMPREHENSIVE_ROUTES,
   COMPREHENSIVE_ROUTE_PATHS
 } from './comprehensive-routes.constants';
 import {
@@ -2720,5 +2721,29 @@ export class ComprehensiveService {
   
   getToastMessage() {
     return this.comprehensiveFormData.toastMessage;
+  }
+
+  getSpeakToAdvisorFlag(url: any) {
+    if(url.indexOf(COMPREHENSIVE_ROUTES.ADVISOR) >= 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getIsEditFlag(url: any) {
+    if(url.indexOf(COMPREHENSIVE_ROUTES.EDIT) >= 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getReviewSpeakToAdvisor(url: any) {
+    if(url.indexOf(COMPREHENSIVE_ROUTES.REVIEW_ADVISOR) >= 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
