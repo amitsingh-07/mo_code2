@@ -278,7 +278,9 @@ export const COMPREHENSIVE_CONST = {
         ROLE_COMPRE_LITE: 'ROLE_COMPRE_LITE',
         ROLE_DISCOUNT_PROMOTION: 'ROLE_DISCOUNT_PROMOTION',
         PUBLIC: 'public',
-        CORPORATE: 'corporate'
+        CORPORATE: 'corporate',
+        COMPREHENSIVE_REPORT :'COMPREHENSIVE_REPORT',
+        COMPREHENSIVE_ADVISOR :'COMPREHENSIVE_ADVISOR'
     },
     RISK_ASSESSMENT: {
         SPECIAL_QUESTION_ORDER: 4
@@ -314,4 +316,6 @@ export const COMPREHENSIVE_CONST = {
             }
         }
     }
+    CPF_PLUS :"CPF_PLUS",
+    JOURNEY_TYPE : 'journeyType'
 };

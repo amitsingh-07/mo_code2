@@ -266,9 +266,7 @@ export class ComprehensiveService {
       this.reloadDependantDetails();
       this.setBucketAmountByCal();
       this.setViewableMode(false);
-     // if (!this.getComprehensiveVersion()) {
-        this.setRiskAssessmentAnswers();
-     // }
+      this.setRiskAssessmentAnswers();
       this.commit();
       this.setRiskQuestions().subscribe((data) => {
         return true;
@@ -1132,42 +1130,46 @@ export class ComprehensiveService {
             break;
           // 'retirement-plan/summary'
           case 24:
-          // 'result'
-          case 25:
-          case 26:
             if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted >= 3 && accessRetirementAge) {
               accessibleUrl = urlList[index];
             }
             break;
-          case 27:
+          // 'Step 5'
+          case 25:
+              if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted >=3) {
+                accessibleUrl = urlList[index];
+              }
+              break;
+          // 'Risk Profile'
+          case 26:
               if (accessPage && canAccess && riskProfileProgressData.subItems[0].completed && stepCompleted > 3 && accessRetirementAge) {
                 accessibleUrl = urlList[index];
               }
               break;
-            case 28:
+            case 27:
               if (accessPage && canAccess && riskProfileProgressData.subItems[1].completed && stepCompleted > 3 && accessRetirementAge) {
                 accessibleUrl = urlList[index];
               }
               break;
-            case 29:
+            case 28:
               if (accessPage && canAccess && riskProfileProgressData.subItems[2].completed && stepCompleted > 3 && accessRetirementAge) {
                 accessibleUrl = urlList[index];
               }
               break;
-            // 'result'
-            case 30:
-            case 31:
+            case 29:
               if (accessPage && canAccess && riskProfileProgressData.subItems[3].completed && stepCompleted >= 4 && accessRetirementAge) {
                 accessibleUrl = urlList[index];
               }
               break;
-          case 32:
-            if (
+            case 30:
+            case 31:
+            case 32:
+              if (
               accessPage && canAccess &&
               retirementProgressData.subItems[0].completed &&
               reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED
-            ) {
-              accessibleUrl = urlList[index];
+              ) {
+               accessibleUrl = urlList[index];
             }
             break;
         }
@@ -2438,9 +2440,8 @@ export class ComprehensiveService {
       progressData.push(this.getFireproofingProgressData());
     }
     progressData.push(this.getRetirementProgressData());
-    if (!comprehensiveVersion) {
-      progressData.push(this.getRiskProfileProgressData());
-    }
+    progressData.push(this.getRiskProfileProgressData());
+    
     let goToStep = 0;
     let stepStatus = true;
     const stepIndicator = this.getMySteps();
@@ -2738,6 +2739,14 @@ export class ComprehensiveService {
   setPaymentStatus(paymentStatus: string) {
     this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.paymentStatus = paymentStatus;
     this.commit();
+  }
+
+  setAdvisorStatus(advisorPaymentStatus : string) {
+    this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.advisorPaymentStatus = advisorPaymentStatus;
+    this.commit();
+  }
+   getAdvisorStatus() {
+    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.advisorPaymentStatus;
   }
   
   setToastMessage(toastMessage) {

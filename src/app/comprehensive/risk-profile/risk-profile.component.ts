@@ -134,7 +134,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       if (this.questionIndex < this.questionsList.length) {
         // NEXT QUESTION
         this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
-          if (this.comprehensiveService.getMySteps() === 4
+         if (this.comprehensiveService.getMySteps() === 4
           && this.comprehensiveService.getMySubSteps() < (this.questionIndex + 1)) {
             this.comprehensiveService.setStepCompletion(4, this.questionIndex).subscribe((data1: any) => {
               this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());

@@ -64,8 +64,6 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit() {
-   // this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
-   // this.stepLite = this.comprehensiveJourneyMode ? 5 : 4;
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {

@@ -4,11 +4,13 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
 import { appConstants } from '../app.constants';
+import { COMPREHENSIVE_CONST } from '../comprehensive/comprehensive-config.constants';
 import { ApiService } from '../shared/http/api.service';
 import { NavbarService } from '../shared/navbar/navbar.service';
 import { PROMO_CODE_STATUS, PROMO_PROFILE_TYPE, PROMO_MOCK_JSON } from './promo-code.constants';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { environment } from './../../environments/environment';
+import { ComprehensiveService } from '../comprehensive/comprehensive.service';
 
 
 @Injectable({
@@ -29,7 +31,8 @@ export class PromoCodeService {
     private apiService: ApiService,
     private navbarService: NavbarService,
     private modal: NgbModal,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private comprehensiveService :ComprehensiveService
   ) { }
 
   setAppliedPromo(promo) {
@@ -155,7 +158,11 @@ export class PromoCodeService {
     const payload = {
       promoCode: promoCode,
       promoCodeCategory:appConstants.COMPREHENSIVE_PROMO_CODE_TYPE,
-      profileType: PROMO_PROFILE_TYPE.PUBLIC.toUpperCase()   
+      profileType: PROMO_PROFILE_TYPE.PUBLIC.toUpperCase(),
+      subCategory: this.comprehensiveService.isCorporateRole() ?
+       COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_ADVISOR :
+        COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_REPORT
+
     };
    return this.apiService.validateCpfPromoCode(payload); 
   }
