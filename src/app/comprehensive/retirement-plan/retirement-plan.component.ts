@@ -398,7 +398,7 @@ export class RetirementPlanComponent
         contentObj: this.retireModal,
         nextPageURL: this.viewMode
           ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
-          : COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
+          : COMPREHENSIVE_ROUTE_PATHS.STEPS+'/5',
         routerEnabled: this.summaryRouterFlag
       };
       this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);

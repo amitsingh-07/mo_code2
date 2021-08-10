@@ -48,6 +48,7 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
     this.reportStatus = this.comprehensiveService.getReportStatus();
     this.currentStep = this.comprehensiveService.getMySteps();
     const stepCalculated = this.step - 1;
+    console.log(stepCalculated,'stepCalculated');
     if (stepCalculated >= 1 && stepCalculated < 5 && (stepCalculated > this.currentStep)) {
       const stepCheck = this.comprehensiveService.checkStepValidation(stepCalculated);
       if (stepCheck.status) {
@@ -112,7 +113,7 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
         this.url =  COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN;
         break;
       case 5:
-        this.url =  COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1';
+        this.url =  COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE;
         break;
       case 6:
         if (!this.viewMode && this.comprehensiveService.checkResultData() 
