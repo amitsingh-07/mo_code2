@@ -1136,7 +1136,7 @@ export class ComprehensiveService {
             break;
           // 'Step 5'
           case 25:
-              if (accessPage && canAccess && riskProfileProgressData.subItems[0].completed && stepCompleted > 0) {
+              if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted >=3) {
                 accessibleUrl = urlList[index];
               }
               break;
