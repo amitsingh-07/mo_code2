@@ -316,6 +316,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   goToNext() {
+    if (this.comprehensiveService.isCorporateRole()) {
+     this.getCheckoutSpeakToAdvisor();
+    } else {
     const reportStatus = this.comprehensiveService.getReportStatus();
     if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
@@ -330,6 +333,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     } else {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
     }
+   }
   }
 
   initiateReport() {
@@ -388,5 +392,25 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.modal.open(PromoCodeModalComponent, { centered: true });   
       e.preventDefault();
       e.stopPropagation();    
+  }
+
+  getCheckoutSpeakToAdvisor() {
+    this.loaderService.showLoader({ title: this.loading, autoHide: false });
+    const payload = {
+      promoCode: this.cfpPromoCode,
+      payableAmount: this.paymentAmount,
+      discountAmount: this.reductionAmount,
+      totalAmount: this.totalAmount,
+      shortDescription: this.appliedPromoCode,
+      enquiryId: this.comprehensiveService.getEnquiryId()
+    }
+    this.paymentService.getCheckoutSpeakToAdvisor(payload).subscribe((data: any) => {
+      this.loaderService.hideLoaderForced();
+      if (data && data.objectList) {
+        const checkOutData = data.objectList;      
+      }
+    }, (err) => {
+      this.loaderService.hideLoaderForced();
+    });
   }
 }
