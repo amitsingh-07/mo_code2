@@ -62,7 +62,7 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
     } else if (this.comprehensiveService.checkResultData()) {
       const currentStep = this.comprehensiveService.getMySteps();
       const stepCalculated = 5;
-      if (currentStep === 3 || currentStep === 5) {
+      if (currentStep === 4 || currentStep === 5) {
         const stepCheck = this.comprehensiveService.checkStepValidation(stepCalculated);
         if (stepCheck.status) {
           if (currentStep === 5) {
