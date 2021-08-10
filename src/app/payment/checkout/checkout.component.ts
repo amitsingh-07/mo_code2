@@ -408,14 +408,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.paymentService.getCheckoutSpeakToAdvisor(payload).subscribe((data: any) => {
       this.loaderService.hideLoaderForced();
       if (data && data.objectList) {
-        const reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED;
         const viewMode = true;
-        this.comprehensiveService.setReportStatus(reportStatus);
         this.comprehensiveService.setLocked(true);
         this.comprehensiveService.setViewableMode(viewMode);
         this.loaderService.hideLoaderForced();
         if (this.isWaivedPromo) {
-          this.comprehensiveService.setPaymentStatus(COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED);
+          this.comprehensiveService.setAdvisorStatus(COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED);
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
         } else {
           this.goToPaymentInstructions();
