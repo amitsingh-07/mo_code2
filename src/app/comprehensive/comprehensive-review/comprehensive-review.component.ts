@@ -111,7 +111,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
     } else if (this.comprehensiveService.checkResultData()) {
       const currentStep = this.comprehensiveService.getMySteps();
-      if (currentStep === 4) {
+      if (currentStep === 5) {
         if (this.isPaymentEnabled && this.comprehensiveJourneyMode && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
           // If payment is enabled and user has not paid, go payment else initiate report gen
           this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);
