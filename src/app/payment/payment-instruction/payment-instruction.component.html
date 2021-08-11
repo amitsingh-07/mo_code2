@@ -12,7 +12,7 @@
 </div>
 <div class="container-fluid max-width--1024 comprehensive">
     <div class="payment-instructions-block">
-        <div class="report-info">
+        <div class="report-info" *ngIf='!isCorporate'>
             <div class='mb25'>{{ 'COMPREHENSIVE.DASHBOARD.PAYMENT_SUMMARY' | translate }}</div>
             <div>
                 <span>{{ 'COMPREHENSIVE.DASHBOARD.PAYMENT_SUMMARY_SUBLBL' | translate }}</span>

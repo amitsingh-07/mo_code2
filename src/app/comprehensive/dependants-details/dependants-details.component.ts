@@ -1,3 +1,4 @@
+import { YearsNeededComponent } from './years-needed/years-needed.component';
 import { Component, OnDestroy, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,6 +19,8 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
 import { IDependantDetail, IMySummaryModal, IdependentsSummaryList } from './../comprehensive-types';
 import { ComprehensiveService } from './../comprehensive.service';
+import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-dependants-details',
@@ -50,9 +53,12 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   minDate: any;
   maxDate: any;
   saveData: string;
+  supportAmountTitle: string;
+  supportAmountMessage: string;
+  yearsNeeded: any;
 
   constructor(
-    private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
+    private route: ActivatedRoute, private router: Router, public navbarService: NavbarService, public modal: NgbModal,
     private loaderService: LoaderService, private progressService: ProgressTrackerService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
@@ -70,6 +76,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
+        this.yearsNeeded = this.translate.instant('CMP.DEPENDANT_SELECTION.YEARS_NEEDED_VALUES');
         this.relationShipList = this.translate.instant('CMP.DEPENDANT_DETAILS.RELATIONSHIP_LIST');
         this.nationalityList = this.translate.instant('CMP.NATIONALITY');
         this.genderList = this.translate.instant('CMP.GENDER');
@@ -85,6 +92,10 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     });
     this.dependantDetails = this.comprehensiveService.getMyDependant();
     this.buildDependantForm();
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.supportAmountTitle = this.translate.instant('CMP.DEPENDANT_SELECTION.SUPPORT_AMOUNT_TITLE');
+      this.supportAmountMessage = this.translate.instant('CMP.DEPENDANT_SELECTION.SUPPORT_AMOUNT_MESSAGE');
+    });
   }
 
   ngOnInit() {
@@ -152,6 +163,11 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     this.myDependantForm.controls['dependentMappingList']['controls'][i].controls.nation.setValue(nationality);
     this.myDependantForm.controls['dependentMappingList']['controls'][i].markAsDirty();
   }
+  selectYearsNeeded(status, i) {
+    const years = status ? status : '0';
+    this.myDependantForm.controls['dependentMappingList']['controls'][i].controls.yearsNeeded.setValue(years);
+    this.myDependantForm.controls['dependentMappingList']['controls'][i].markAsDirty();
+  }
 
   buildDependantDetailsForm(thisDependant) {
     return this.formBuilder.group({
@@ -161,7 +177,9 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       relationship: [thisDependant.relationship, [Validators.required]],
       gender: [thisDependant.gender, [Validators.required]],
       dateOfBirth: [this.parserFormatter.parse(thisDependant.dateOfBirth), [Validators.required]],
-      nation: [thisDependant.nation, [Validators.required]]
+      nation: [thisDependant.nation, [Validators.required]], 
+      yearsNeeded: [thisDependant.yearsNeeded ? thisDependant.yearsNeeded :'0', [Validators.required]],
+       supportAmount: [thisDependant.supportAmount ? thisDependant.supportAmount :'0', [Validators.required]]
     });
   }
 
@@ -173,7 +191,9 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       relationship: ['', [Validators.required]],
       gender: ['', [Validators.required]],
       dateOfBirth: ['', [Validators.required]],
-      nation: ['', [Validators.required]]
+      nation: ['', [Validators.required]],
+      yearsNeeded: ['0', [Validators.required]],
+      supportAmount: ['0', [Validators.required]]
     });
   }
 
@@ -213,7 +233,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
           form.value.hasDependents = this.hasDependant;
           form.value.noOfHouseholdMembers = this.houseHold.noOfHouseholdMembers;
           form.value.houseHoldIncome = this.houseHold.houseHoldIncome;
-          form.value.noOfYears =  this.houseHold.noOfYears;
           form.value.saveDependentInfo =  true;
           form.value.enquiryId = this.comprehensiveService.getEnquiryId();
           this.loaderService.showLoader({ title: this.saveData });
@@ -323,5 +342,16 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       selection.removeAllRanges();
       selection.addRange(range);
     }
+  }
+  showSupportAmountModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.supportAmountTitle;
+    ref.componentInstance.errorMessage = this.supportAmountMessage;
+    return false;
+  }
+  showYearsNeededModal() {
+    const ref = this.modal.open(YearsNeededComponent, {
+      centered: true
+    });
   }
 }

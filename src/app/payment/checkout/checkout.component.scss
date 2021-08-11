@@ -310,6 +310,34 @@ app-checkout {
           padding-left: 0;
         }
       }
+      &.adviser{
+        margin: 20px 0 0;
+        .banner-logo {
+          width: 70px;
+          height: 70px;
+        }
+        .comprehensive-text {
+          padding-left: 20px;
+        }
+      }
+      &.package{
+        flex-direction: column;
+        margin: -5px 0 0;
+        padding: 25px 20px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        box-shadow: 0 -5px 8px 0 rgba(0, 0, 0, 0.1);
+        background-color: $concrete-grey-color;
+        font-size: 16px;
+        font-family: $muli-regular;
+        letter-spacing: -0.3px;
+        color: $dark-teal-color;
+        .check-icon{
+          width: 18px;
+          height: 18px;
+          display: flex;
+        }
+      }
     }
     .promo-calculation-block {
       margin-bottom: 20px;

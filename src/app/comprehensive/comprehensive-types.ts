@@ -41,6 +41,8 @@ export interface IComprehensiveEnquiry {
     paymentStatus:string;
     promoCode?: string;
     promoWaived?: boolean;
+    advisorPaymentStatus : string;
+    promoWaivedSpeakToAdvisor?: boolean;
 }
 export interface IPromoCode {
     comprehensivePromoCodeToken: string;
@@ -65,12 +67,13 @@ export interface IDependantDetail {
     dateOfBirth: string;
     nation: string;
     isInsuranceNeeded: boolean;
+    yearsNeeded: string
+    supportAmount: string
 }
 export interface IdependentsSummaryList {
     dependentsList: IDependantDetail[];
     houseHoldIncome: string;
     noOfHouseholdMembers: number;
-    noOfYears: number;
     enquiryId: number;
 }
 export interface IChildEndowment {

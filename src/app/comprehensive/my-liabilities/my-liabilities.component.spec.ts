@@ -263,7 +263,6 @@ describe('MyLiabilitiesComponent', () => {
     spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
     //spyOn(comprehensiveService, 'comprehensiveFormData').and.returnValue([]);
     //spyOn(comprehensiveService, 'getMyDependant').and.returnValue([]);
-    component.comprehensiveJourneyMode = true;
    // const transformAsCurrencySpy = spyOn(comprehensiveService, 'transformAsCurrency');
   });
 
@@ -326,14 +325,12 @@ describe('MyLiabilitiesComponent', () => {
   }); 
   
   it('should redirect to Liabilities Summary true', () => {
-	component.comprehensiveJourneyMode = true;
     const navigateSpy = spyOn(router, 'navigate');
     component.routerPath();
     expect(navigateSpy).toHaveBeenCalledWith(['../comprehensive/my-liabilities/summary']);
   });
   
   it('should redirect to Liabilities Summary false', () => {
-    component.comprehensiveJourneyMode = false;
     const navigateSpy = spyOn(router, 'navigate');
     component.routerPath();
     expect(navigateSpy).toHaveBeenCalledWith(['../comprehensive/my-liabilities/summary']);

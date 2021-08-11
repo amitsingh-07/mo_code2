@@ -109,7 +109,7 @@ export let apiConstants = {
             saveLiabilities: FINANCE_API_BASE_URL + 'saveComprehensiveLiabilities',
             getPromoCode: ACCOUNT_API_BASE_URL + '/customer/comprehensive/requestComprehensivePromoCode?category=COMPRE',
             generateComprehensiveEnquiry: ACCOUNT_API_BASE_URL + '/customer/comprehensive/mapAndGenerateCFPEnquiryId',
-            downloadComprehensiveReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'downloadLiteReportPdf',
+            downloadComprehensiveReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'downloadCompreReportPdf',
             saveStepIndicator: COMPREHENSIVE_API_BASE_URL + 'saveComprehensiveStepCompletion',
             generateComprehensiveReport: COMPREHENSIVE_API_BASE_URL + 'generateComprehensiveReport',
             getReport: COMPREHENSIVE_REPORT_API_BASE_URL + 'getReport',
@@ -124,7 +124,8 @@ export let apiConstants = {
             cancelPayment: PAYMENT_API_BASE_URL + 'cancelPayment',
             getLastSuccessfulSubmittedTs: PAYMENT_API_BASE_URL + 'getLastSuccessfulSubmittedTs',
             getCustPromoCodeByCategory: ACCOUNT_API_BASE_URL + '/promocode/getCustPromoCodeByCategory',
-            getPaymentCheckoutCfpDetails: ACCOUNT_API_BASE_URL + '/promocode/checkout/details'
+            getPaymentCheckoutCfpDetails: ACCOUNT_API_BASE_URL + '/promocode/checkout/details',
+            getCheckoutSpeakToAdvisor : INSURANCE_RECOMMEND_API_BASE_URL + '/checkoutSpeakToAdvisor'
         },
         promoCode: {
             getCustomerInvestmentPromoCode: ACCOUNT_API_BASE_URL + '/promocode/getCustomerInvestmentPromoCode',

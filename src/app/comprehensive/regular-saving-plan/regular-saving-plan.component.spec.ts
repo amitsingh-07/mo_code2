@@ -208,7 +208,6 @@ describe('RegularSavingPlanComponent', () => {
     spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
     //spyOn(comprehensiveService, 'comprehensiveFormData').and.returnValue([]);
     //spyOn(comprehensiveService, 'getMyDependant').and.returnValue([]);
-    component.comprehensiveJourneyMode = true;
    // const transformAsCurrencySpy = spyOn(comprehensiveService, 'transformAsCurrency');
   });
 

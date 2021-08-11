@@ -94,6 +94,15 @@
     }
     .comprehensive-plan-view{
         cursor: pointer;
+        .edit-icon{
+            width: 24px;
+            height: 24px;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+            background-color: $blue-stone-color;
+            border-radius: 50%;
+            display: flex;
+            float: right;
+        }
     }
     .hidden {
         display: none;
@@ -320,6 +329,98 @@
         color: $dusty-grey-color;
         &.full-user {
             border-top-right-radius: 0;
+        }
+    }
+    .adviser-btn{
+        font-family: $muli-semi-bold;
+        font-size: 16px;
+        line-height: normal;
+        letter-spacing: -0.16px;
+        color: $dark-orange-color;
+        span{
+            cursor: pointer;
+        }
+        @include allmobiles{
+            text-align: center;
+        }
+    }
+    .appointment-btn{
+        font-family: $muli-semi-bold;
+        font-size: 16px;
+        line-height: normal;
+        letter-spacing: -0.16px;
+        color: $dark-orange-color;
+        display: flex;
+        align-items: center;
+        .icon{
+            width: 18px;
+            height: 18px;
+            display: flex;
+        }
+        span{
+            cursor: pointer;
+        }
+        @include allmobiles{
+            justify-content: center;
+        }
+    }
+    .comprehensive-btn-block{
+        display: flex;
+        flex: 1;
+        overflow-x: auto;
+        align-items: center;
+        @include allmobiles{
+           flex-direction: row;
+        }
+        @include min300max350{
+            flex-direction: column;
+        }
+        @include min350max375{
+            flex-direction: column;
+        }
+        .flex-row{
+            margin-bottom: 20px;
+            @include min300max350{
+                width: 100%;
+            }
+            @include min350max375{
+                width: 100%;
+            }
+        }
+        .flex-col-12{
+            min-width: 390px;
+            @include min768max768{
+                min-width: 266px;
+            }
+            @include allmobiles{
+                min-width: 230px;
+            }
+            @include min300max350{
+                width: 100%;
+            }
+            @include min350max375{
+                width: 100%;
+            }
+            .btn-view{
+                padding: 8px;
+                min-height: 65px;
+                margin-left: 15px;
+                @include min300max350{
+                    margin-left: 0;
+                }
+                @include min350max375{
+                    margin-left: 0;
+                }
+            }
+            .btn-primary{
+                min-height: 65px;
+                @include min300max350{
+                    margin-right: 0;
+                }
+                @include min350max375{
+                    margin-right: 0;
+                }
+            }
         }
     }
 }

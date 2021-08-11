@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { SummaryModalComponent } from '../shared/modal/summary-modal/summary-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
@@ -50,7 +50,7 @@ import {
   IProgressTrackerWrapper,
   IPromoCode,
   IRegularSavings,
-  IRetirementPlan,
+  IRetirementPlan  
 } from './comprehensive-types';
 @Injectable({
   providedIn: 'root'
@@ -62,7 +62,6 @@ export class ComprehensiveService {
   private progressData: IProgressTrackerData;
   private progressWrapper: IProgressTrackerWrapper;
   private getStartedStyle = 'get-started';
-  private comprehensiveLiteEnabled = false;
   constructor(
     private http: HttpClient,
     private modal: NgbModal,
@@ -78,27 +77,32 @@ export class ComprehensiveService {
     private apiService: ApiService
   ) {
     this.getComprehensiveFormData();
-    this.comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
   }
-  setComprehensiveVersion(versionType: string) {
-
-    /* Robo3 FULL or LITE Config*/
-    if (this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE) && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED && versionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE) {
+  //Set User Role based on ROLE_COMPRE_LITE
+  setUserRole() {
+    if (this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE)){
       sessionStorage.setItem(
-        appConstants.SESSION_KEY.COMPREHENSIVE_VERSION,
-        COMPREHENSIVE_CONST.VERSION_TYPE.LITE
+        appConstants.SESSION_KEY.CFP_USER_ROLE,
+        COMPREHENSIVE_CONST.ROLES.CORPORATE
       );
     } else {
       sessionStorage.setItem(
-        appConstants.SESSION_KEY.COMPREHENSIVE_VERSION,
-        COMPREHENSIVE_CONST.VERSION_TYPE.FULL
+        appConstants.SESSION_KEY.CFP_USER_ROLE,
+        COMPREHENSIVE_CONST.ROLES.PUBLIC
       );
-
     }
+  }
+  //Get User Role for CFP
+  getUserRole() {
+    return appConstants.SESSION_KEY.CFP_USER_ROLE;
+  }
+  //Get User Role for CFP True = Corporate False = Public
+  isCorporateRole() {
+    return this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
   }
   commit() {
     if (window.sessionStorage) {
-      const comprehensiveVersionType = this.getComprehensiveSessionVersion();
+      const comprehensiveVersionType = appConstants.SESSION_KEY.COMPREHENSIVE;
 
       /* Robo3 FULL or LITE Config*/
       const cmpSessionData = this.getComprehensiveSessionData();
@@ -111,18 +115,6 @@ export class ComprehensiveService {
       );
     }
   }
-  getComprehensiveSessionVersion() {
-    // tslint:disable-next-line: prefer-immediate-return
-    const comprehensiveVersionType = (sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION)
-      === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED)
-      ? appConstants.SESSION_KEY.COMPREHENSIVE_LITE : appConstants.SESSION_KEY.COMPREHENSIVE;
-    return comprehensiveVersionType;
-  }
-  getComprehensiveCurrentVersion() {
-    // tslint:disable-next-line: prefer-immediate-return
-    const comprehensiveVersionType = sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION);
-    return comprehensiveVersionType;
-  }
   getComprehensiveVersion() {
     // tslint:disable-next-line: prefer-immediate-return
     const comprehensiveVersionType = !(this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE) && sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION)
@@ -131,7 +123,7 @@ export class ComprehensiveService {
   }
   getComprehensiveSessionData() {
     // tslint:disable-next-line: max-line-length
-    const comprehensiveVersionType = this.getComprehensiveSessionVersion();
+    const comprehensiveVersionType = appConstants.SESSION_KEY.COMPREHENSIVE;
     if (
       window.sessionStorage &&
       sessionStorage.getItem(comprehensiveVersionType)
@@ -152,9 +144,9 @@ export class ComprehensiveService {
   clearFormData() {
     this.comprehensiveFormData = {} as ComprehensiveFormData;
     this.commit();
-    sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION);
     sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE);
     sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE_LITE);
+    sessionStorage.removeItem(appConstants.SESSION_KEY.CFP_USER_ROLE);
     this.getComprehensiveFormData();
   }
 
@@ -272,9 +264,7 @@ export class ComprehensiveService {
       this.reloadDependantDetails();
       this.setBucketAmountByCal();
       this.setViewableMode(false);
-      if (!this.getComprehensiveVersion()) {
-        this.setRiskAssessmentAnswers();
-      }
+      this.setRiskAssessmentAnswers();
       this.commit();
       this.setRiskQuestions().subscribe((data) => {
         return true;
@@ -689,7 +679,7 @@ export class ComprehensiveService {
   // Set Risk Assessment Questions - Answer Minimal Info
   setRiskQuestions() {
     return new Observable((obs) => {
-      if (!this.getComprehensiveVersion() && Util.isEmptyOrNull(this.comprehensiveFormData.comprehensiveDetails.riskQuestionList)) {
+      if (Util.isEmptyOrNull(this.comprehensiveFormData.comprehensiveDetails.riskQuestionList)) {
         this.getQuestionsList().subscribe((qData) => {
           let riskQues = {};
           if (qData.objectList) {
@@ -945,6 +935,7 @@ export class ComprehensiveService {
     const financeProgressData = this.getFinancesProgressData();
     const fireProofingProgressData = this.getFireproofingProgressData();
     const retirementProgressData = this.getRetirementProgressData();
+    const riskProfileProgressData = this.getRiskProfileProgressData();
     const reportStatusData = this.getReportStatus();
     const stepCompleted = this.getMySteps();
     let userAge = 0;
@@ -1137,20 +1128,52 @@ export class ComprehensiveService {
             break;
           // 'retirement-plan/summary'
           case 24:
-          // 'result'
-          case 25:
-          case 26:
             if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted >= 3 && accessRetirementAge) {
               accessibleUrl = urlList[index];
             }
             break;
-          case 27:
-            if (
+          // 'Step 5'
+          case 25:
+              if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted >=3) {
+                accessibleUrl = urlList[index];
+              }
+              break;
+          // 'Risk Profile'
+          case 26:
+              if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted > 3 && accessRetirementAge) {
+                accessibleUrl = urlList[index];
+              }
+              break;
+            case 27:
+              if (accessPage && canAccess && riskProfileProgressData.subItems[0].completed && stepCompleted > 3 && accessRetirementAge) {
+                accessibleUrl = urlList[index];
+              }
+              break;
+            case 28:
+              if (accessPage && canAccess && riskProfileProgressData.subItems[1].completed && stepCompleted > 3 && accessRetirementAge) {
+                accessibleUrl = urlList[index];
+              }
+              break;
+            case 29:
+              if (accessPage && canAccess && riskProfileProgressData.subItems[2].completed && stepCompleted >= 4 && accessRetirementAge) {
+                accessibleUrl = urlList[index];
+              }
+              break;
+            case 30:
+            case 31: 
+              if (
               accessPage && canAccess &&
-              retirementProgressData.subItems[0].completed &&
-              reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED
-            ) {
-              accessibleUrl = urlList[index];
+              riskProfileProgressData.subItems[2].completed && stepCompleted >= 4 && accessRetirementAge
+              ) {
+               accessibleUrl = urlList[index];
+            }
+            case 32:
+              if (
+              accessPage && canAccess &&
+              riskProfileProgressData.subItems[2].completed &&
+              (reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.READY)
+              ) {
+               accessibleUrl = urlList[index];
             }
             break;
         }
@@ -1421,15 +1444,6 @@ export class ComprehensiveService {
       value: dependentHouseHoldData.houseHoldIncome ? dependentHouseHoldData.houseHoldIncome + '' : '',
       completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
     });
-    if (!comprehensiveVersion) {
-      subItemsArray.push({
-        id: '',
-        path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
-        title: 'No. of years to provide for',
-        value: dependentHouseHoldData.noOfYears ? Util.toNumber(dependentHouseHoldData.noOfYears) + '' : '0',
-        completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
-      });
-    }
 
     if (comprehensiveVersion) {
       subItemsArray.push({
@@ -1843,7 +1857,7 @@ export class ComprehensiveService {
             && cmpSummary.riskQuestionList) ?
             cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1] : '',
           completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1
-            && cmpSummary.riskQuestionList && (this.validateSteps(3, 1)))
+            && cmpSummary.riskQuestionList && (this.validateSteps(4, 1)))
         },
         {
           id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/2',
@@ -1853,7 +1867,7 @@ export class ComprehensiveService {
             && cmpSummary.riskQuestionList) ?
             cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2] : '',
           completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2
-            && cmpSummary.riskQuestionList && (this.validateSteps(3, 2)))
+            && cmpSummary.riskQuestionList && (this.validateSteps(4, 2)))
         },
         {
           id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/3',
@@ -1863,7 +1877,7 @@ export class ComprehensiveService {
             && cmpSummary.riskQuestionList) ?
             cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3] : '',
           completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3
-            && cmpSummary.riskQuestionList && (this.validateSteps(3, 3)))
+            && cmpSummary.riskQuestionList && (this.validateSteps(4, 3)))
         },
         {
           id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/4',
@@ -1873,7 +1887,7 @@ export class ComprehensiveService {
             && cmpSummary.riskQuestionList) ?
             cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4] : '',
           completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4
-            && cmpSummary.riskQuestionList && (this.validateSteps(3, 4)))
+            && cmpSummary.riskQuestionList && (this.validateSteps(4, 4)))
         }
       ]
     };
@@ -2427,9 +2441,8 @@ export class ComprehensiveService {
       progressData.push(this.getFireproofingProgressData());
     }
     progressData.push(this.getRetirementProgressData());
-    if (!comprehensiveVersion) {
-      progressData.push(this.getRiskProfileProgressData());
-    }
+    progressData.push(this.getRiskProfileProgressData());
+    
     let goToStep = 0;
     let stepStatus = true;
     const stepIndicator = this.getMySteps();
@@ -2724,8 +2737,28 @@ export class ComprehensiveService {
     return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
       .promoWaived;
   }
+  getWaivedSpeakToAdvisorPromo() {
+    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
+      .promoWaivedSpeakToAdvisor;
+  }
   setPaymentStatus(paymentStatus: string) {
     this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.paymentStatus = paymentStatus;
     this.commit();
+  }
+
+  setAdvisorStatus(advisorPaymentStatus : string) {
+    this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.advisorPaymentStatus = advisorPaymentStatus;
+    this.commit();
+  }
+   getAdvisorStatus() {
+    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.advisorPaymentStatus;
+  }
+  
+  setToastMessage(toastMessage) {
+    this.comprehensiveFormData.toastMessage = toastMessage;
+  }
+  
+  getToastMessage() {
+    return this.comprehensiveFormData.toastMessage;
   }
 }

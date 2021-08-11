@@ -231,7 +231,6 @@ describe('RetirementPlanComponent', () => {
   it('should execute ngOnInit', () => {
     const setNavbarModeSpy = spyOn(navbarService, 'setNavbarComprehensive');
     component.ngOnInit();
-    component.comprehensiveJourneyMode = true;
     progressTrackerService.setReadOnly(true);
     navbarService.setNavbarComprehensive(true);
 

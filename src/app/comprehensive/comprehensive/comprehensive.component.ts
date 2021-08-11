@@ -86,14 +86,7 @@ export class ComprehensiveComponent implements OnInit {
     if (this.authService.isSignedUser()) {
       const action = this.appService.getAction();
       this.loaderService.showLoader({ title: this.fetchData, autoHide: false });
-      const comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
-      let getCurrentVersionType = this.cmpService.getComprehensiveCurrentVersion();
-      if ((getCurrentVersionType === '' || getCurrentVersionType === null ||
-        getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE) && comprehensiveLiteEnabled) {
-        getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
-      } else {
-        getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
-      }
+      const getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
 
       this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe((dashboardData: any) => {
         if (dashboardData && dashboardData.objectList[0]) {
@@ -152,7 +145,7 @@ export class ComprehensiveComponent implements OnInit {
     } else if (redirectUrl && (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isCFPGetStarted)) {
       this.router.navigate([redirectUrl]);
     } else if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isCFPGetStarted) {
-      this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((data: any) => {
+      this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
         if (data && data.objectList[0]) {
           this.cmpService.setComprehensiveSummary(data.objectList[0]);
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
@@ -167,7 +160,6 @@ export class ComprehensiveComponent implements OnInit {
 
   getStarted() {
     this.appService.setAction(COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE);
-    this.cmpService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
     if (this.authService.isSignedUser()) {
       const promoCode = {
         sessionId: this.authService.getSessionId()
@@ -178,7 +170,7 @@ export class ComprehensiveComponent implements OnInit {
         this.loaderService.showLoader({ title: this.loading, autoHide: false });
         this.comprehensiveApiService.generateComprehensiveEnquiry(promoCode).subscribe((data: any) => {
           if (data && data.objectList[0].isCFPGetStarted) {
-            this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((summaryData: any) => {
+            this.comprehensiveApiService.getComprehensiveSummary().subscribe((summaryData: any) => {
               if (summaryData && summaryData.objectList[0]) {
                 this.cmpService.setComprehensiveSummary(summaryData.objectList[0]);
                 this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);

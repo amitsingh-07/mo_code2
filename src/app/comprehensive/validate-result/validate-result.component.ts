@@ -61,11 +61,11 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
     } else if (this.comprehensiveService.checkResultData()) {
       const currentStep = this.comprehensiveService.getMySteps();
-      const stepCalculated = 4;
-      if (currentStep === 3 || currentStep === 4) {
+      const stepCalculated = 5;
+      if (currentStep === 4 || currentStep === 5) {
         const stepCheck = this.comprehensiveService.checkStepValidation(stepCalculated);
         if (stepCheck.status) {
-          if (currentStep === 4) {
+          if (currentStep === 5) {
             this.loaderService.showLoader({ title: 'Loading', autoHide: false });
             this.initiateReport();
           } else {

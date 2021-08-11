@@ -400,8 +400,9 @@
             "COMPREHENSIVE_PLANNING_ADVISOR": "I want my adviser to contact me",
             "COMPREHENSIVE_PLANNING_PENDING_DESC": "You are almost there! Complete your journey and get your financial report!",
             "COMPREHENSIVE_PLANNING_CONTINUE": "Continue",
-            "COMPREHENSIVE_PLANNING_STEPS_PENDING": "Completed CURRENT_STEP out of 4 steps",
+            "COMPREHENSIVE_PLANNING_STEPS_PENDING": "Completed CURRENT_STEP out of 5 steps",
             "COMPREHENSIVE_MAKE_CHANGES_CONTENT": "You can now make further edits to your inputs and/or resubmit them to generate another report.",
+            "COMPREHENSIVE_REPORT_READY": "Your planning report is ready.",
             "COMPREHENSIVE_MAKE_CHANGES": "Make Changes",
             "INSURANCE": "Insurance",
             "INSURANCE_DESC": "Assess your insurance coverage to find out what you really need.",
@@ -423,7 +424,7 @@
             "COMPREHENSIVE_PLANNING_LAST_SUBMITTED_DATE": "Last Submitted LAST_SUBMITTED_DATE",
             "WARNING_POPUP": "Note that your DOB/Gender is different from Investment journey. Reach adviser on how to proceed",
             "COMPREHENSIVE_PLANNING_SUBMITTED": "Once your report is ready, you will be contacted via email to set up an appointment with the adviser.",
-            "COMPREHENSIVE_REPORT_ERROR_MSG": "We faced an error when generating your report. Please click on “Make Changes” to generate a new report.",
+            "COMPREHENSIVE_REPORT_ERROR_MSG": "We faced an error generating your report. Please click on edit icon to generate a new report.",
             "COMPREHENSIVE_PAYMENT_INSTRUCTION": "Payment Instructions",
             "COMPREHENSIVE_PLANNING_SUBMITTED_PAYMENT": "Your report will be ready soon! Follow the payment instructions to make payment.",
             "PAGE_TITLE": "Payment Instructions",
@@ -496,9 +497,20 @@
                         }
                     }
                 },
-                "BACK_TO_DASHBOARD": "Back To Dashboard"
+                "BACK_TO_DASHBOARD": "Back to Dashboard"
             },
-            "INCL_GST":" (incl. GST)"
+            "INCL_GST":" (incl. GST)",
+            "ADVISER_MODAL": {
+                "TITLE": "Speak to Adviser",
+                "DESC": "<div class=\"text-center mt20 mb20\"><img src=\"assets/images/comprehensive/speak-to-adviser.svg\"></div><p class=\"adviser-title\">2-Hour Adviser Consultation For $49</p><p>You are strongly encouraged to have the 2-hour consultation session with our adviser to discuss your Comprehensive Financial Plan.</p> <p>Most of our clients have found it more beneficial through the consultation session, as our adviser will be able to address any clarifications you have about your report.</p> <p>For enquiries, you may wish to contact us at <a class=\"anchor-txt\" href=\"mailto:enquiries@moneyowl.com.sg\" target=\"_blank\" rel=\"noopener noreferrer\">enquiries@moneyowl.com.sg</a>.</p>",
+                "BTN_LBL": "Get Adviser Consultation"
+            },
+            "APPOINTMENT_MODAL":{
+                "TITLE":"Make your Appointment",
+                "DESC": "<div class=\"text-center mt20 mb20\"><img src=\"assets/images/comprehensive/appointment-logo.svg\"></div><p><b>Once payment is made, you will receive an email within 1-2 work days</b> with steps to make your appointment with our adviser.</p> <p>For enquiries, you may wish to contact us at <a class=\"anchor-txt\" href=\"mailto:enquiries@moneyowl.com.sg\" target=\"_blank\" rel=\"noopener noreferrer\">enquiries@moneyowl.com.sg</a>.</p>"
+            },
+            "SPEAK_TO_ADVISER": "Speak to Adviser",
+            "APPOINTMENT": "Next, make your appointment"
         }
     },
     "TRANSFER_INSTRUCTION": {
