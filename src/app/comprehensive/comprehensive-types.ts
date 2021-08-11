@@ -66,6 +66,8 @@ export interface IDependantDetail {
     dateOfBirth: string;
     nation: string;
     isInsuranceNeeded: boolean;
+    yearsNeeded: string
+    supportAmount: string
 }
 export interface IdependentsSummaryList {
     dependentsList: IDependantDetail[];
