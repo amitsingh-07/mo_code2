@@ -177,8 +177,8 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       relationship: [thisDependant.relationship, [Validators.required]],
       gender: [thisDependant.gender, [Validators.required]],
       dateOfBirth: [this.parserFormatter.parse(thisDependant.dateOfBirth), [Validators.required]],
-      nation: [thisDependant.nation, [Validators.required]], yearsNeeded: [thisDependant.yearsNeeded, [Validators.required]],
-       supportAmount: [thisDependant.supportAmount, [Validators.required]]
+      nation: [thisDependant.nation, [Validators.required]], yearsNeeded: [thisDependant.yearsNeeded],
+       supportAmount: [thisDependant.supportAmount]
     });
   }
 
@@ -191,8 +191,8 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       gender: ['', [Validators.required]],
       dateOfBirth: ['', [Validators.required]],
       nation: ['', [Validators.required]],
-      yearsNeeded: ['', [Validators.required]],
-      supportAmount: ['', [Validators.required]],
+      yearsNeeded: [''],
+      supportAmount: [''],
     });
   }
 
