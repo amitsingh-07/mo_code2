@@ -315,7 +315,7 @@ export const COMPREHENSIVE_CONST = {
                 TITLE: "Review Inputs"
             }
         }
-    }
+    },
     CPF_PLUS :"CPF_PLUS",
     JOURNEY_TYPE : 'journeyType'
 };

@@ -18,7 +18,7 @@
               <span *ngIf="subItem.title == 'Start Risk Profile'">{{subItem.title}}</span>
             </a>
           </div>
-          <ng-template #showSubItems>
+          <div #showSubItems>
             <ul>
               <li (click)="navigate(subItem)" *ngFor="let subItem of item.subItems"
                 [ngClass]="{'hidden': subItem.hidden, 'incomplete': !subItem.completed, 'complete': subItem.completed, 'active': currentPath == subItem.id.replace(pathRegex, '')}">
@@ -34,7 +34,7 @@
                 </ul>
               </li>
             </ul>
-          </ng-template>
+          </div>
         </div>
       </div>
     </div>

@@ -1352,7 +1352,6 @@ export class ComprehensiveService {
   }
 
   generateProgressTrackerData(): IProgressTrackerData {
-    const comprehensiveVersion = this.getComprehensiveVersion();
     this.progressData = {} as IProgressTrackerData;
     this.progressData = {
       title: 'Your Progress Tracker',
@@ -1837,10 +1836,11 @@ export class ComprehensiveService {
    */
   // tslint:disable-next-line:cognitive-complexity
   getRiskProfileProgressData(): IProgressTrackerItem {
-    const skipRiskProfile = false;
     const cmpSummary = this.getComprehensiveSummary();
     const isCompleted = false; //cmpSummary.comprehensiveInsurancePlanning !== null;
-    const subSteps = [{
+    const skipRiskProfile = false;
+
+    const riskProfileSubSteps = [{
       id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
       path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
       title: 'Temporary Losses',
@@ -1886,15 +1886,16 @@ export class ComprehensiveService {
       path: this.getMySteps() >= COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.NO && this.checkResultData() ? COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1' : '',
       title: COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.TITLE,
       value: '',
-      completed: true
+      completed: false
     }];
+
     return {
       title: 'Your Risk Profile',
       expanded: true,
       showArrow: true,
       completed: false,
       customStyle: 'risk-profile',
-      subItems: skipRiskProfile ? startRiskProfile : subSteps
+      subItems: skipRiskProfile ? startRiskProfile : riskProfileSubSteps
     };
   }
 
@@ -1985,7 +1986,7 @@ export class ComprehensiveService {
       title: COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.REVIEW_INPUTS.TITLE,
       expanded: false,
       showArrow: false,
-      path: this.getComprehensiveSummary().comprehensiveEnquiry && this.getMySteps() == 4 && this.checkResultData() ? COMPREHENSIVE_ROUTE_PATHS.REVIEW : '',
+      path: this.getMySteps() == COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.REVIEW_INPUTS.NO && this.checkResultData() ? COMPREHENSIVE_ROUTE_PATHS.REVIEW : '',
       completed: false,
       customStyle: "review-inputs",
       subItems: []
