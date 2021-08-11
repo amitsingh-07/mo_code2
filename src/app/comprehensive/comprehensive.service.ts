@@ -2737,6 +2737,10 @@ export class ComprehensiveService {
     return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
       .promoWaived;
   }
+  getWaivedSpeakToAdvisorPromo() {
+    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
+      .promoWaivedSpeakToAdvisor;
+  }
   setPaymentStatus(paymentStatus: string) {
     this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.paymentStatus = paymentStatus;
     this.commit();

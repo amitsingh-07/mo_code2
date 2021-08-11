@@ -50,7 +50,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
       });
     });
-    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
+    this.comprehensiveJourneyMode = !this.comprehensiveService.isCorporateRole();
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
       if (event && event !== '') {
         if (this.comprehensiveJourneyMode) {
@@ -118,13 +118,11 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   }
 
   initiateReport() {
-    const enquiryId = { enquiryId: this.comprehensiveService.getEnquiryId(), promoCode: this.comprehensiveService.getCfpPromoCode(), waivedPromo: this.comprehensiveService.getWaivedPromo() };
-    if (this.comprehensiveJourneyMode) {
-      const cashPayload = { enquiryId: this.comprehensiveService.getEnquiryId(), liquidCashAmount: this.comprehensiveService.getLiquidCash(),
-        spareCashAmount : this.comprehensiveService.getComputeSpareCash() };
-      this.comprehensiveApiService.generateComprehensiveCashflow(cashPayload).subscribe((cashData) => {
-        });      
-    }
+    const enquiryId = { enquiryId: this.comprehensiveService.getEnquiryId(), promoCode: this.comprehensiveService.getCfpPromoCode(), waivedPromo: (!this.comprehensiveJourneyMode) ? this.comprehensiveService.getWaivedSpeakToAdvisorPromo() : this.comprehensiveService.getWaivedPromo() };
+    const cashPayload = { enquiryId: this.comprehensiveService.getEnquiryId(), liquidCashAmount: this.comprehensiveService.getLiquidCash(),
+      spareCashAmount : this.comprehensiveService.getComputeSpareCash() };
+    this.comprehensiveApiService.generateComprehensiveCashflow(cashPayload).subscribe((cashData) => {
+      }); 
     this.comprehensiveApiService.generateComprehensiveReport(enquiryId).subscribe((data) => {
       let reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.READY;
       let viewMode = false;

@@ -12,11 +12,12 @@
   <!-- compre-checkout -->
   <div class="flex-div checkout-content-block">
     <div class="payment-summary-text">{{'CHECKOUT.PAYMENT_SUMMARY' | translate}}</div>
-    <div>
+    <div *ngIf='isCorporate'>
       <div class="promo-banner adviser">
         <div class="banner-logo"><img src="assets/images/comprehensive/appointment-logo.svg" alt="" /></div>
         <div class="comprehensive-text">{{'CHECKOUT.ADVISER_CONSULTATION' | translate}}</div>
-        <div class="amt">$49</div>
+        <div class="amt">{{ totalAmount |
+          currency:'USD':'symbol-narrow':'1.0-2'}}</div>
       </div>
       <div class="promo-banner package">
         <div class="pb5">{{'CHECKOUT.INCLUDES' | translate}}</div>
@@ -24,7 +25,7 @@
         <div class="flex align-items-center"><span class="check-icon"><img src="assets/images/green-check-icon.svg" alt="" /></span><span class="pl10">{{'CHECKOUT.CUSTOMISED_IMPLEMENTATION' | translate}}</span></div>
       </div>
     </div>
-    <div class="promo-banner">
+    <div class="promo-banner" *ngIf='!isCorporate'>
       <div class="banner-logo"><img src="assets/images/comprehensive/dashboard-comprehensive.svg" alt="" /></div>
       <div class="comprehensive-text">{{'CHECKOUT.BANNER_TXT' | translate}}</div>
       <div class="amt">{{ totalAmount |
