@@ -322,7 +322,7 @@ constructor(
         if (this.getComprehensiveSummaryDashboard !== '') {
           this.islocked = this.getComprehensiveSummaryDashboard.isLocked;
           this.isSpeakToAdvisor = (this.isCorporate && (this.getComprehensiveSummaryDashboard.advisorPaymentStatus === '' || this.getComprehensiveSummaryDashboard.advisorPaymentStatus === null));
-          this.isAdvisorAppointment = (this.isCorporate && this.getComprehensiveSummaryDashboard.advisorPaymentStatus
+          this.isAdvisorAppointment = (this.islocked && this.isCorporate && this.getComprehensiveSummaryDashboard.advisorPaymentStatus
             && (this.getComprehensiveSummaryDashboard.advisorPaymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING || 
             this.getComprehensiveSummaryDashboard.advisorPaymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED));            
           this.paymentInstructions = ((!this.isCorporate && this.getComprehensiveSummaryDashboard.paymentStatus

@@ -42,6 +42,7 @@ export interface IComprehensiveEnquiry {
     promoCode?: string;
     promoWaived?: boolean;
     advisorPaymentStatus : string;
+    promoWaivedSpeakToAdvisor?: boolean;
 }
 export interface IPromoCode {
     comprehensivePromoCodeToken: string;
