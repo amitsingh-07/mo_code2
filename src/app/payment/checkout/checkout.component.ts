@@ -258,7 +258,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   getCheckoutDetails(promoCode, isRemoved: boolean) {  
     this.loaderService.showLoader({ title: this.loading, autoHide: false });
-    const payload = { comprehensivePromoCodeToken: promoCode, promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE, isRemoved: isRemoved };
+    const payload = { comprehensivePromoCodeToken: promoCode, promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE, isRemoved: isRemoved, promoSubCategory: this.comprehensiveService.isCorporateRole() ? COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_ADVISOR : COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_REPORT };
     this.paymentService.getPaymentCheckoutCfpDetails(payload).subscribe((data: any) => {
       this.loaderService.hideLoaderForced();
       if (data && data.objectList) {
@@ -323,14 +323,19 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       const currentStep = this.comprehensiveService.getMySteps();
       if (currentStep === 4) {
         this.loaderService.showLoader({ title: this.loading, autoHide: false });
-        this.initiateReport();
+        if (this.comprehensiveService.isCorporateRole()) {
+          this.getCheckoutSpeakToAdvisor();
+         } else {
+          this.initiateReport();
+         }       
       } else {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + currentStep]);
       }
     } else {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
     }
-  }
+   }
+  
 
   initiateReport() {
     const enquiryId = { enquiryId: this.comprehensiveService.getEnquiryId(), promoCode: this.cfpPromoCode, waivedPromo: this.isWaivedPromo };
@@ -388,5 +393,34 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.modal.open(PromoCodeModalComponent, { centered: true });   
       e.preventDefault();
       e.stopPropagation();    
+  }
+
+  getCheckoutSpeakToAdvisor() {   
+    const payload = {
+      promoCode: this.cfpPromoCode,
+      payableAmount: this.paymentAmount,
+      discountAmount: this.reductionAmount,
+      totalAmount: this.totalAmount,
+      shortDescription: this.appliedPromoCode,
+      enquiryId: this.comprehensiveService.getEnquiryId(),
+      waivedPromo: this.isWaivedPromo
+    }
+    this.paymentService.getCheckoutSpeakToAdvisor(payload).subscribe((data: any) => {
+      this.loaderService.hideLoaderForced();
+      if (data && data.objectList) {
+        const viewMode = true;
+        this.comprehensiveService.setLocked(true);
+        this.comprehensiveService.setViewableMode(viewMode);
+        this.loaderService.hideLoaderForced();
+        if (this.isWaivedPromo) {
+          this.comprehensiveService.setAdvisorStatus(COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED);
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
+        } else {
+          this.goToPaymentInstructions();
+        }     
+      }
+    }, (err) => {
+      this.loaderService.hideLoaderForced();
+    });
   }
 }

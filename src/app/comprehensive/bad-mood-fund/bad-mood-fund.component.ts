@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { ApiService } from '../../shared/http/api.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
+import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { HospitalPlan, IHospitalPlanList } from '../comprehensive-types';
@@ -117,7 +118,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     this.hospitalPlanList = this.comprehensiveService.getHospitalPlan();
 
     if (this.hospitalPlanList.length === 0) {
-      this.apiService.getHospitalPlanList('journeyType=comprehensive').subscribe((hospitalPlanData: any) => {
+      this.apiService.getHospitalPlanList(COMPREHENSIVE_CONST.JOURNEY_TYPE +'='+ COMPREHENSIVE_CONST.CPF_PLUS).subscribe((hospitalPlanData: any) => {
         this.hospitalPlanList = hospitalPlanData.objectList;
         this.comprehensiveService.setHospitalPlan(hospitalPlanData.objectList);
       });

@@ -266,9 +266,7 @@ export class ComprehensiveService {
       this.reloadDependantDetails();
       this.setBucketAmountByCal();
       this.setViewableMode(false);
-      if (!this.getComprehensiveVersion()) {
-        this.setRiskAssessmentAnswers();
-      }
+      this.setRiskAssessmentAnswers();
       this.commit();
       this.setRiskQuestions().subscribe((data) => {
         return true;
@@ -683,7 +681,7 @@ export class ComprehensiveService {
   // Set Risk Assessment Questions - Answer Minimal Info
   setRiskQuestions() {
     return new Observable((obs) => {
-      if (!this.getComprehensiveVersion() && Util.isEmptyOrNull(this.comprehensiveFormData.comprehensiveDetails.riskQuestionList)) {
+      if (Util.isEmptyOrNull(this.comprehensiveFormData.comprehensiveDetails.riskQuestionList)) {
         this.getQuestionsList().subscribe((qData) => {
           let riskQues = {};
           if (qData.objectList) {
@@ -939,6 +937,7 @@ export class ComprehensiveService {
     const financeProgressData = this.getFinancesProgressData();
     const fireProofingProgressData = this.getFireproofingProgressData();
     const retirementProgressData = this.getRetirementProgressData();
+    const riskProfileProgressData = this.getRiskProfileProgressData();
     const reportStatusData = this.getReportStatus();
     const stepCompleted = this.getMySteps();
     let userAge = 0;
@@ -1131,20 +1130,52 @@ export class ComprehensiveService {
             break;
           // 'retirement-plan/summary'
           case 24:
-          // 'result'
-          case 25:
-          case 26:
             if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted >= 3 && accessRetirementAge) {
               accessibleUrl = urlList[index];
             }
             break;
-          case 27:
-            if (
+          // 'Step 5'
+          case 25:
+              if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted >=3) {
+                accessibleUrl = urlList[index];
+              }
+              break;
+          // 'Risk Profile'
+          case 26:
+              if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted > 3 && accessRetirementAge) {
+                accessibleUrl = urlList[index];
+              }
+              break;
+            case 27:
+              if (accessPage && canAccess && riskProfileProgressData.subItems[0].completed && stepCompleted > 3 && accessRetirementAge) {
+                accessibleUrl = urlList[index];
+              }
+              break;
+            case 28:
+              if (accessPage && canAccess && riskProfileProgressData.subItems[1].completed && stepCompleted > 3 && accessRetirementAge) {
+                accessibleUrl = urlList[index];
+              }
+              break;
+            case 29:
+              if (accessPage && canAccess && riskProfileProgressData.subItems[2].completed && stepCompleted >= 4 && accessRetirementAge) {
+                accessibleUrl = urlList[index];
+              }
+              break;
+            case 30:
+            case 31: 
+              if (
               accessPage && canAccess &&
-              retirementProgressData.subItems[0].completed &&
-              reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED
-            ) {
-              accessibleUrl = urlList[index];
+              riskProfileProgressData.subItems[2].completed && stepCompleted >= 4 && accessRetirementAge
+              ) {
+               accessibleUrl = urlList[index];
+            }
+            case 32:
+              if (
+              accessPage && canAccess &&
+              riskProfileProgressData.subItems[2].completed &&
+              (reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.READY)
+              ) {
+               accessibleUrl = urlList[index];
             }
             break;
         }
@@ -1828,7 +1859,7 @@ export class ComprehensiveService {
             && cmpSummary.riskQuestionList) ?
             cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1] : '',
           completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1
-            && cmpSummary.riskQuestionList && (this.validateSteps(3, 1)))
+            && cmpSummary.riskQuestionList && (this.validateSteps(4, 1)))
         },
         {
           id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/2',
@@ -1838,7 +1869,7 @@ export class ComprehensiveService {
             && cmpSummary.riskQuestionList) ?
             cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2] : '',
           completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2
-            && cmpSummary.riskQuestionList && (this.validateSteps(3, 2)))
+            && cmpSummary.riskQuestionList && (this.validateSteps(4, 2)))
         },
         {
           id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/3',
@@ -1848,7 +1879,7 @@ export class ComprehensiveService {
             && cmpSummary.riskQuestionList) ?
             cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3] : '',
           completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3
-            && cmpSummary.riskQuestionList && (this.validateSteps(3, 3)))
+            && cmpSummary.riskQuestionList && (this.validateSteps(4, 3)))
         },
         {
           id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/4',
@@ -1858,7 +1889,7 @@ export class ComprehensiveService {
             && cmpSummary.riskQuestionList) ?
             cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4] : '',
           completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4
-            && cmpSummary.riskQuestionList && (this.validateSteps(3, 4)))
+            && cmpSummary.riskQuestionList && (this.validateSteps(4, 4)))
         }
       ]
     };
@@ -2412,9 +2443,8 @@ export class ComprehensiveService {
       progressData.push(this.getFireproofingProgressData());
     }
     progressData.push(this.getRetirementProgressData());
-    if (!comprehensiveVersion) {
-      progressData.push(this.getRiskProfileProgressData());
-    }
+    progressData.push(this.getRiskProfileProgressData());
+    
     let goToStep = 0;
     let stepStatus = true;
     const stepIndicator = this.getMySteps();
@@ -2712,6 +2742,14 @@ export class ComprehensiveService {
   setPaymentStatus(paymentStatus: string) {
     this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.paymentStatus = paymentStatus;
     this.commit();
+  }
+
+  setAdvisorStatus(advisorPaymentStatus : string) {
+    this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.advisorPaymentStatus = advisorPaymentStatus;
+    this.commit();
+  }
+   getAdvisorStatus() {
+    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.advisorPaymentStatus;
   }
   
   setToastMessage(toastMessage) {

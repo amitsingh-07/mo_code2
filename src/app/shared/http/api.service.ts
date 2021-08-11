@@ -741,6 +741,13 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  getCheckoutSpeakToAdvisor(payload) {
+    return this.http.post(apiConstants.endpoint.payment.getCheckoutSpeakToAdvisor, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
   checkNtucMember(payload) {
     return this.http.post(apiConstants.endpoint.promoCode.checkNtucMember, payload)
       .pipe(
