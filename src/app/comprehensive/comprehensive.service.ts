@@ -1142,32 +1142,38 @@ export class ComprehensiveService {
               break;
           // 'Risk Profile'
           case 26:
-              if (accessPage && canAccess && riskProfileProgressData.subItems[0].completed && stepCompleted > 3 && accessRetirementAge) {
+              if (accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted > 3 && accessRetirementAge) {
                 accessibleUrl = urlList[index];
               }
               break;
             case 27:
-              if (accessPage && canAccess && riskProfileProgressData.subItems[1].completed && stepCompleted > 3 && accessRetirementAge) {
+              if (accessPage && canAccess && riskProfileProgressData.subItems[0].completed && stepCompleted > 3 && accessRetirementAge) {
                 accessibleUrl = urlList[index];
               }
               break;
             case 28:
-              if (accessPage && canAccess && riskProfileProgressData.subItems[2].completed && stepCompleted > 3 && accessRetirementAge) {
+              if (accessPage && canAccess && riskProfileProgressData.subItems[1].completed && stepCompleted > 3 && accessRetirementAge) {
                 accessibleUrl = urlList[index];
               }
               break;
             case 29:
-              if (accessPage && canAccess && riskProfileProgressData.subItems[3].completed && stepCompleted >= 4 && accessRetirementAge) {
+              if (accessPage && canAccess && riskProfileProgressData.subItems[2].completed && stepCompleted >= 4 && accessRetirementAge) {
                 accessibleUrl = urlList[index];
               }
               break;
             case 30:
-            case 31:
+            case 31: 
+              if (
+              accessPage && canAccess &&
+              riskProfileProgressData.subItems[2].completed && stepCompleted >= 4 && accessRetirementAge
+              ) {
+               accessibleUrl = urlList[index];
+            }
             case 32:
               if (
               accessPage && canAccess &&
-              retirementProgressData.subItems[0].completed &&
-              reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED
+              riskProfileProgressData.subItems[2].completed &&
+              (reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.READY)
               ) {
                accessibleUrl = urlList[index];
             }
