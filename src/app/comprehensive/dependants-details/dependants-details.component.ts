@@ -164,7 +164,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     this.myDependantForm.controls['dependentMappingList']['controls'][i].markAsDirty();
   }
   selectYearsNeeded(status, i) {
-    const years = status ? status : '';
+    const years = status ? status : '0';
     this.myDependantForm.controls['dependentMappingList']['controls'][i].controls.yearsNeeded.setValue(years);
     this.myDependantForm.controls['dependentMappingList']['controls'][i].markAsDirty();
   }
@@ -191,7 +191,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       gender: ['', [Validators.required]],
       dateOfBirth: ['', [Validators.required]],
       nation: ['', [Validators.required]],
-      yearsNeeded: ['', [Validators.required]],
+      yearsNeeded: ['0', [Validators.required]],
       supportAmount: ['', [Validators.required]],
     });
   }
