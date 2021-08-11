@@ -58,7 +58,9 @@ export class ComprehensiveDashboardComponent implements OnInit {
   getReferralInfo: any;
   comprehensiveInfo: any;
   paymentWaived = false;
-  isCorporateUser = false;
+  isCorporate: boolean;
+  isSpeakToAdvisor = false;
+  isAdvisorAppointment = false;
 constructor(
     private router: Router,
     private translate: TranslateService,
@@ -97,17 +99,13 @@ constructor(
       this.comprehensiveService.setUserRole();
       this.comprehensiveLiteEnabled = false;
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
+      this.isCorporate = this.comprehensiveService.isCorporateRole();
       this.setComprehensivePlan(true);
       this.getReferralCodeData();
   }
 
   ngOnInit() {
-    this.getIscorporateUserFlag();
-  }
-  
-  getIscorporateUserFlag() {
-    console.log('is corporate ', this.comprehensiveService.isCorporateRole());
-    this.isCorporateUser = this.comprehensiveService.isCorporateRole();
+    console.log('is corporate ', this.comprehensiveService.isCorporateRole(), this.comprehensiveService.getAdvisorStatus());
   }
 
   generateReport() {
@@ -155,10 +153,10 @@ constructor(
   goToCurrentStep() {
     if (this.currentStep === 0 && this.getComprehensiveSummaryDashboard.isDobUpdated) {
       this.goToEditProfile();
-    } else if (this.currentStep >= 0 && this.currentStep < 4) {
+    } else if (this.currentStep >= 0 && this.currentStep < 5) {
       const routerURL = COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep + 1);
       this.setComprehensiveSummary(true, routerURL);
-    } else if (this.currentStep === 4) {
+    } else if (this.currentStep === 5) {
       const routerURL = (!this.comprehensiveService.getViewableMode() && this.getCurrentVersionType == COMPREHENSIVE_CONST.VERSION_TYPE.FULL) ? COMPREHENSIVE_ROUTE_PATHS.REVIEW : COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep);
       this.setComprehensiveSummary(true, routerURL);
     }
@@ -240,6 +238,7 @@ constructor(
       this.setComprehensiveDashboard();
   }
   setComprehensiveSummary(routerEnabled: boolean, routerUrlPath: any) {
+    debugger
     if (routerEnabled) {
       this.loaderService.showLoader({ title:  this.fetchData });
     } else {
@@ -318,18 +317,26 @@ constructor(
     this.currentStep = -1;
     this.paymentInstructions = false;
     this.paymentWaived = false;
+    this.isSpeakToAdvisor = false;
+    this.isAdvisorAppointment = false;
     this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe( (dashboardData: any) => {
       if (dashboardData && dashboardData.objectList[0]) {
         this.getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', this.getCurrentVersionType);
+        this.getComprehensiveSummaryDashboard.reportStatus = 'ready';
         if (this.getComprehensiveSummaryDashboard !== '') {
           this.islocked = this.getComprehensiveSummaryDashboard.isLocked;
-          this.paymentInstructions = (this.getComprehensiveSummaryDashboard.paymentStatus
+          this.isSpeakToAdvisor = (this.isCorporate && (this.getComprehensiveSummaryDashboard.advisorPaymentStatus === '' || this.getComprehensiveSummaryDashboard.advisorPaymentStatus === null));
+          this.isAdvisorAppointment = (this.isCorporate && this.getComprehensiveSummaryDashboard.advisorPaymentStatus
+            && (this.getComprehensiveSummaryDashboard.advisorPaymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING || 
+            this.getComprehensiveSummaryDashboard.advisorPaymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED));            
+          this.paymentInstructions = ((!this.isCorporate && this.getComprehensiveSummaryDashboard.paymentStatus
           && (this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING || 
           this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING)
-          && this.getCurrentVersionType === this.getComprehensiveSummaryDashboard.type);
-          this.paymentWaived = (this.getComprehensiveSummaryDashboard.paymentStatus
+          ) || (this.isCorporate && this.getComprehensiveSummaryDashboard.advisorPaymentStatus && this.getComprehensiveSummaryDashboard.advisorPaymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING));
+          this.paymentWaived = ((!this.isCorporate && this.getComprehensiveSummaryDashboard.paymentStatus
             && this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED
-            && this.getCurrentVersionType === this.getComprehensiveSummaryDashboard.type);
+            ) || (this.isCorporate && this.getComprehensiveSummaryDashboard.advisorPaymentStatus
+              && this.getComprehensiveSummaryDashboard.advisorPaymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED));
           this.isCFPGetStarted = this.getComprehensiveSummaryDashboard.isCFPGetStarted;
           this.reportStatus = this.getComprehensiveSummaryDashboard.reportStatus;
           this.enquiryId= this.getComprehensiveSummaryDashboard.enquiryId;
@@ -413,7 +420,7 @@ constructor(
       ref.componentInstance.primaryActionLabel = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.BTN_LBL');
       ref.componentInstance.primaryAction.subscribe(() => {
         // const routerURL = (!this.comprehensiveService.getViewableMode() && this.getCurrentVersionType == COMPREHENSIVE_CONST.VERSION_TYPE.FULL) ? COMPREHENSIVE_ROUTE_PATHS.REVIEW + '/advisor' : COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep);
-        const routerURL = COMPREHENSIVE_ROUTE_PATHS.REVIEW + '/' + COMPREHENSIVE_ROUTES.ADVISOR;
+        const routerURL = COMPREHENSIVE_ROUTE_PATHS.SPEAK_TO_ADVISOR;
         this.setComprehensiveSummary(true, routerURL);
       });
   }

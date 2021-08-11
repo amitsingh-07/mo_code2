@@ -63,7 +63,6 @@ export class ComprehensiveService {
   private progressData: IProgressTrackerData;
   private progressWrapper: IProgressTrackerWrapper;
   private getStartedStyle = 'get-started';
-  private comprehensiveLiteEnabled = false;
   constructor(
     private http: HttpClient,
     private modal: NgbModal,
@@ -79,7 +78,6 @@ export class ComprehensiveService {
     private apiService: ApiService
   ) {
     this.getComprehensiveFormData();
-    this.comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
   }
   //Set User Role based on ROLE_COMPRE_LITE
   setUserRole() {
@@ -101,7 +99,7 @@ export class ComprehensiveService {
   }
   //Get User Role for CFP True = Corporate False = Public
   isCorporateRole() {
-    return (appConstants.SESSION_KEY.CFP_USER_ROLE === COMPREHENSIVE_CONST.ROLES.CORPORATE);
+    return this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
   }
   commit() {
     if (window.sessionStorage) {
@@ -2761,27 +2759,4 @@ export class ComprehensiveService {
     return this.comprehensiveFormData.toastMessage;
   }
 
-  getSpeakToAdvisorFlag(url: any) {
-    if(url.indexOf(COMPREHENSIVE_ROUTES.ADVISOR) >= 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  getIsEditFlag(url: any) {
-    if(url.indexOf(COMPREHENSIVE_ROUTES.EDIT) >= 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  getReviewSpeakToAdvisor(url: any) {
-    if(url.indexOf(COMPREHENSIVE_ROUTES.REVIEW_ADVISOR) >= 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 }

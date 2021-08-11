@@ -66,7 +66,7 @@ const routes: Routes = [
             { path: COMPREHENSIVE_ROUTES.RISK_PROFILE + '/3', component: RiskProfileComponent, data: [{param: 3}]  },
             { path: COMPREHENSIVE_ROUTES.RISK_PROFILE + '/4', component: RiskProfileComponent, data: [{param: 4}]  },
             { path: COMPREHENSIVE_ROUTES.REVIEW, component: ComprehensiveReviewComponent},
-            { path: COMPREHENSIVE_ROUTES.REVIEW + '/:location', component: ComprehensiveReviewComponent}
+            { path: COMPREHENSIVE_ROUTES.SPEAK_TO_ADVISOR, component: ComprehensiveReviewComponent}
         ]
     }
 ];

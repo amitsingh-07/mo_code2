@@ -61,6 +61,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   isWaivedPromo = false;
   usedPromo: {};
   promoSubscription: Subscription;
+  isCorporate: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -84,6 +85,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       this.setPageTitle(this.pageTitle);
     });
     this.fetchDashboard();
+    this.isCorporate = comprehensiveService.isCorporateRole();
   }
 
 
