@@ -253,6 +253,7 @@ export interface ILumpSumBenefitSet {
     maturityYear: number;
 }
 export interface IRiskAssesmentAnswers {
+    skipRiskProfile : boolean;
     enquiryId: number;
     answers: IRiskAnswers[];
     riskProfileAnswers: IRiskProfile;

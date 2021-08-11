@@ -15,13 +15,25 @@
     <div class="banner-image text-center">
       <img src="assets/images/investment-account/qn-1.svg" width="244" height="239">
     </div>
+    <div class="checkbox-button one-label mb20 mt30">{{'CMP.RISK_PROFILE.PAGE_NOTES' | translate}} <img
+      src="assets/images/comprehensive/summary-page/img_smiley.svg" /></div>
   </div>
+
   <div *ngIf="currentQuestion">
     <form name="riskAssessmentForm" [formGroup]="riskAssessmentForm" id="riskAssessmentForm">
-      <div class="form-group-single-column flex-col">
+      <div class="checkbox-button one-label mb10">
+        <input appComprehensiveViewMode="{{viewMode}}"  id="riskProfileCheckboxFlag" name="riskProfileCheckboxFlag" formControlName="riskProfileCheckboxFlag"
+          type="checkbox" class="field checkbox" (change)="onCheckboxChange()"
+          value="I want to skip risk profile">
+        <label for="riskProfileCheckboxFlag">
+          <div class="title">{{ 'CMP.RISK_PROFILE.SKIP_RISK_PROFILE' | translate }}</div>
+        </label>
+      </div>
+      <div *ngIf="!skipRiskProfile" class="form-group-single-column flex-col">
         <div class="question-title mb20 mt30" id="risk-assessment_question_lbl">
           {{currentQuestion.description}}
         </div>
+    
         <!-- NORMAL CASE -->
         <div class="row" *ngIf="!isSpecialCase">
           <div class="col-12" *ngFor="let option of currentQuestion.options; let i = index">

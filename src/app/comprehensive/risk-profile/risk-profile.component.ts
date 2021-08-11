@@ -36,6 +36,8 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
   isRiskProfileAnswer: boolean;
   riskProfileAnswers: any;
   viewMode: boolean;
+  skipRiskProfile: boolean = false;  
+
 
   constructor(
     public navbarService: NavbarService,
@@ -53,7 +55,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
           // meta tag and title
-          this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_4_TITLE_LITE');
+          this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_5_TITLE');
           this.setPageTitle(this.pageTitle);
       });
   });
@@ -63,7 +65,8 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
     if (route.snapshot.data[0]) {
       self.questionIndex = +route.snapshot.data[0]['param'];
       this.riskAssessmentForm = new FormGroup({
-        questSelOption: new FormControl('', Validators.required)
+        riskProfileCheckboxFlag: new FormControl(false),
+        questSelOption: new FormControl('',[Validators.required])
       });
       if (!self.questionsList.length) {
         self.getQuestions();
@@ -124,16 +127,20 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       return true;
     }
   }
-
+  
   goToNext(form) {
     if (this.save(form)) {
       this.comprehensiveService.setRiskAssessment(
         form.controls.questSelOption.value,
         this.questionIndex
       );
+      console.log(this.questionIndex,'this.questionIndex');
       if (this.questionIndex < this.questionsList.length) {
+        //SKIP PROFILE FLAG save
+        this.comprehensiveService.saveSkipRiskProfile().subscribe((skipRiskProfile) => {
+        });
         // NEXT QUESTION
-        this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
+       /* this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
          if (this.comprehensiveService.getMySteps() === 4
           && this.comprehensiveService.getMySubSteps() < (this.questionIndex + 1)) {
             this.comprehensiveService.setStepCompletion(4, this.questionIndex).subscribe((data1: any) => {
@@ -148,7 +155,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
               COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
             ]);
           }
-        });
+        });*/
       } else {
         this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
           if (this.comprehensiveService.getMySteps() === 4
@@ -169,6 +176,19 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
         });
       }
     }
+  }
+
+  onCheckboxChange() {
+    console.log(this.riskAssessmentForm.get('riskProfileCheckboxFlag').value);
+    if(this.riskAssessmentForm.get('riskProfileCheckboxFlag').value){
+      this.skipRiskProfile = true;             
+      this.riskAssessmentForm.controls['questSelOption'].clearValidators(); 
+     // this.riskAssessmentForm.controls['questSelOption'].setValidators([]);
+    }else{
+      this.skipRiskProfile = false; 
+      this.riskAssessmentForm.controls['questSelOption'].setValidators([Validators.required]);             
+    }
+    this.riskAssessmentForm.controls['questSelOption'].updateValueAndValidity();
   }
   ngOnDestroy() {
     this.navbarService.unsubscribeMenuItemClick();

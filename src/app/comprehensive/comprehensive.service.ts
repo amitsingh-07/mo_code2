@@ -650,9 +650,22 @@ export class ComprehensiveService {
       this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers = selAnswers;
     } else {
       const enquiryId = riskProfileAnswersData && riskProfileAnswersData.enquiryId ? riskProfileAnswersData.enquiryId : null;
-      this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer = { enquiryId: enquiryId, answers: [], riskProfileAnswers: selAnswers };
+      const skipRiskProfileFlag = riskProfileAnswersData && riskProfileAnswersData.enquiryId ? riskProfileAnswersData.skipRiskProfile : null;
+      this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer = {skipRiskProfile:skipRiskProfileFlag, enquiryId: enquiryId, answers: [], riskProfileAnswers: selAnswers };
     }
   }
+  saveSkipRiskProfile() {
+    const data = this.constructSkipRiskProfileRequest();
+    return this.comprehensiveApiService.saveSkipRiskProfile(data);
+  }
+  constructSkipRiskProfileRequest(){
+    const data = this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.skipRiskProfile;
+    return {
+      enquiryId: this.getEnquiryId(),
+      skipRiskProfile: data
+    };
+  }
+
   saveRiskAssessment() {
     const data = this.constructRiskAssessmentSaveRequest();
     return this.comprehensiveApiService.saveRiskAssessment(data);
