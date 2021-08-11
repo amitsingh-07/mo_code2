@@ -87,6 +87,18 @@ export class ComprehensiveFormError {
                     errorTitle: 'Invalid Relationship',
                     errorMessage: 'Relationship'
                 }
+            },
+            yearsNeeded: {
+                required: {
+                    errorTitle: 'Invalid years',
+                    errorMessage: 'years'
+                }
+            },
+            supportAmount: {
+                required: {
+                    errorTitle: 'Invalid supportAmount',
+                    errorMessage: 'supportAmount'
+                }
             }
 
         }
