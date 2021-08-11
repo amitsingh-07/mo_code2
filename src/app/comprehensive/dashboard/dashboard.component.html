@@ -85,7 +85,7 @@
           <div class="flex-row align-start" *ngIf="comprehensivePlanning === 5 || (isCorporate && comprehensivePlanning === 1)" >
             <div class="flex-col-8">
               <div class="form-group-with-bg--content-label" for="name">
-                {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_MAKE_CHANGES_CONTENT' | translate}}
+                {{ (isCorporate && isReportGenerated) ? ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_REPORT_READY' | translate) : ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_MAKE_CHANGES_CONTENT' | translate)}}
               </div>
             </div>
             <div class="flex-col-4 text-right">
@@ -101,7 +101,7 @@
              {{ getComprehensiveSummaryDashboard.paymentAmount | currency:'USD':'symbol-narrow':'1.0-2'}}{{ 'COMPREHENSIVE.DASHBOARD.INCL_GST' | translate}}</div>
           </div>
         </div>
-         <!-- LIMITED OFFER -->
+         <!-- LIMITED OFFER
           <div class="flex-row align-start" *ngIf="comprehensivePlanning === 5 || (isCorporate && comprehensivePlanning === 1)" >
             <div class="flex-col-12">
               <button type="button" class="btn btn-primary width100" id="prfBtn1"
@@ -113,7 +113,7 @@
                 </div>
               </button>
             </div>
-          </div>
+          </div> -->
          
           <div class="flex-row align-start" [hidden]="comprehensivePlanning !== 2">
             <div class="flex-col-12">
