@@ -102,8 +102,8 @@ app-investment-overview {
             cursor: pointer;
             display: table;
 
-            .table-cell {
-                display: table-cell;
+            .category-filter-tab {
+                display: inline-block;
                 vertical-align: middle;
             }
         }
@@ -111,19 +111,20 @@ app-investment-overview {
             font-family: $muli-bold;
             font-size: 13px;
             letter-spacing: -0.12px;
-            line-height: normal;
+            line-height: 28px;
             color: $white-color;
             vertical-align: middle;
         }
         label > div > span > img {
             display: none;
             margin-right: 5px;
+            margin-top: -3px;
         }
         input[type="radio"]:checked ~ * {
             background-color: $pine-green-color;
         }
         input[type="radio"]:checked ~ div > span > img {
-            display: table-cell;
+            display: inline-block;
             vertical-align: middle;
         }
     }
