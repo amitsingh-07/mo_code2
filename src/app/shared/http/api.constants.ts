@@ -29,7 +29,7 @@ export let apiConstants = {
         getProtectionTypesList: INSURANCE_API_BASE_URL + '/getProtectionTypesList',
         getLongTermCareList: INSURANCE_API_BASE_URL + '/getCareGiverList',
         getHospitalPlanList: INSURANCE_API_BASE_URL + '/getHospitalClassList',
-        saveRiskProfileFlag: INSURANCE_RECOMMEND_API_BASE_URL + 'saveSkipRiskProfile',
+        saveRiskProfileFlag: INSURANCE_RECOMMEND_API_BASE_URL + '/saveSkipRiskProfile',
         getRiskAssessmentQuestions: INVEST_API_BASE_URL + 'RiskAssessment',
         getRecommendations: INSURANCE_RECOMMEND_API_BASE_URL + '/getRecommendations',
         updateProductEnquiry: ACCOUNT_API_BASE_URL + '/updateCustomerEnquiry',
