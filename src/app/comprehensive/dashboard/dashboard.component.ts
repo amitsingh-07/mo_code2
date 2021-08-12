@@ -416,10 +416,7 @@ constructor(
       ref.componentInstance.errorMessageHTML = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.DESC');
       ref.componentInstance.primaryActionLabel = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.BTN_LBL');
       ref.componentInstance.primaryAction.subscribe(() => {
-        // const routerURL = (!this.comprehensiveService.getViewableMode() && this.getCurrentVersionType == COMPREHENSIVE_CONST.VERSION_TYPE.FULL) ? COMPREHENSIVE_ROUTE_PATHS.REVIEW + '/advisor' : COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep);
-        const routerURL = COMPREHENSIVE_ROUTE_PATHS.SPEAK_TO_ADVISOR;
-        this.router.navigate([routerURL]);
-        // this.setComprehensiveSummary(true, routerURL);
+        this.setComprehensiveSummary(true, COMPREHENSIVE_ROUTE_PATHS.SPEAK_TO_ADVISOR);
       });
   }
   adviserAppointmentModal() {

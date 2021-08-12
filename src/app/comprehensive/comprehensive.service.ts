@@ -945,7 +945,6 @@ export class ComprehensiveService {
         new Date()
       );
     }
-
     let accessPage = true;
     if (userAge < COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MIN_AGE
       || userAge > COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MAX_AGE) {
@@ -1160,14 +1159,15 @@ export class ComprehensiveService {
               }
               break;
             case 30:
-            case 31: 
+            case 31:
+            case 32: 
               if (
               accessPage && canAccess &&
               riskProfileProgressData.subItems[2].completed && stepCompleted >= 4 && accessRetirementAge
               ) {
                accessibleUrl = urlList[index];
             }
-            case 32:
+            case 33:
               if (
               accessPage && canAccess &&
               riskProfileProgressData.subItems[2].completed &&
@@ -2408,7 +2408,8 @@ export class ComprehensiveService {
       (getCompData.comprehensiveEnquiry.reportStatus !==
         COMPREHENSIVE_CONST.REPORT_STATUS.NEW && getCompData.comprehensiveEnquiry.reportStatus !==
         COMPREHENSIVE_CONST.REPORT_STATUS.EDIT && getCompData.comprehensiveEnquiry.reportStatus !==
-        COMPREHENSIVE_CONST.REPORT_STATUS.ERROR)
+        COMPREHENSIVE_CONST.REPORT_STATUS.ERROR && getCompData.comprehensiveEnquiry.reportStatus !==
+        COMPREHENSIVE_CONST.REPORT_STATUS.READY)
     ) {
       validateFlag = false;
     }
