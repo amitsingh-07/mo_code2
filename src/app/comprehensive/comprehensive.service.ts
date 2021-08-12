@@ -618,13 +618,20 @@ export class ComprehensiveService {
   getQuestionsList() {
     return this.comprehensiveApiService.getQuestionsList();
   }
+  getRiskProfileFlag(){
+    if(this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileSkipped){
+     return this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileSkipped;
+    }
+  }
+
   getSelectedOptionByIndex(index) {
     if (this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers) {
       return this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers['riskAssessQuest' + index];
     }
   }
-  setRiskAssessment(data, questionIndex) {
+  setRiskAssessment(riskProfileCheckboxFlag, data, questionIndex) {
     this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers['riskAssessQuest' + questionIndex] = data;
+    this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileSkipped = riskProfileCheckboxFlag;
     this.commit();
 
   }
@@ -648,9 +655,22 @@ export class ComprehensiveService {
       this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers = selAnswers;
     } else {
       const enquiryId = riskProfileAnswersData && riskProfileAnswersData.enquiryId ? riskProfileAnswersData.enquiryId : null;
-      this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer = { enquiryId: enquiryId, answers: [], riskProfileAnswers: selAnswers };
+      const skipRiskProfile= riskProfileAnswersData && riskProfileAnswersData.riskProfileSkipped;
+      this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer = {riskProfileSkipped:skipRiskProfile, enquiryId: enquiryId, answers: [], riskProfileAnswers: selAnswers };
     }
   }
+  saveSkipRiskProfile() {
+    const data = this.constructSkipRiskProfileRequest();
+    return this.comprehensiveApiService.saveSkipRiskProfile(data);
+  }
+  constructSkipRiskProfileRequest(){
+    const data = this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileSkipped;
+    return {
+      enquiryId: this.getEnquiryId(),
+      skipRiskProfile: data
+    };
+  }
+
   saveRiskAssessment() {
     const data = this.constructRiskAssessmentSaveRequest();
     return this.comprehensiveApiService.saveRiskAssessment(data);
@@ -945,7 +965,6 @@ export class ComprehensiveService {
         new Date()
       );
     }
-
     let accessPage = true;
     if (userAge < COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MIN_AGE
       || userAge > COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MAX_AGE) {
@@ -1160,17 +1179,18 @@ export class ComprehensiveService {
               }
               break;
             case 30:
-            case 31: 
+            case 31:
+            case 32: 
               if (
               accessPage && canAccess &&
-              riskProfileProgressData.subItems[2].completed && stepCompleted >= 4 && accessRetirementAge
+              (cmpSummary.riskAssessmentAnswer.riskProfileSkipped || riskProfileProgressData.subItems[2].completed) && stepCompleted >= 4 && accessRetirementAge
               ) {
                accessibleUrl = urlList[index];
             }
-            case 32:
+            case 33:
               if (
               accessPage && canAccess &&
-              riskProfileProgressData.subItems[2].completed &&
+              (cmpSummary.riskAssessmentAnswer.riskProfileSkipped ||  riskProfileProgressData.subItems[2].completed) &&
               (reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.READY)
               ) {
                accessibleUrl = urlList[index];
@@ -2412,7 +2432,8 @@ export class ComprehensiveService {
       (getCompData.comprehensiveEnquiry.reportStatus !==
         COMPREHENSIVE_CONST.REPORT_STATUS.NEW && getCompData.comprehensiveEnquiry.reportStatus !==
         COMPREHENSIVE_CONST.REPORT_STATUS.EDIT && getCompData.comprehensiveEnquiry.reportStatus !==
-        COMPREHENSIVE_CONST.REPORT_STATUS.ERROR)
+        COMPREHENSIVE_CONST.REPORT_STATUS.ERROR && getCompData.comprehensiveEnquiry.reportStatus !==
+        COMPREHENSIVE_CONST.REPORT_STATUS.READY)
     ) {
       validateFlag = false;
     }
@@ -2741,6 +2762,10 @@ export class ComprehensiveService {
     return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
       .promoWaived;
   }
+  getWaivedSpeakToAdvisorPromo() {
+    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry
+      .promoWaivedSpeakToAdvisor;
+  }
   setPaymentStatus(paymentStatus: string) {
     this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.paymentStatus = paymentStatus;
     this.commit();
@@ -2761,4 +2786,5 @@ export class ComprehensiveService {
   getToastMessage() {
     return this.comprehensiveFormData.toastMessage;
   }
+
 }

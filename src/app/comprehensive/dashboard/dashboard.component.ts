@@ -10,7 +10,7 @@ import { FileUtil } from '../../shared/utils/file.util';
 import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
-import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { COMPREHENSIVE_ROUTES, COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyProfile } from '../comprehensive-types';
 import { environment } from './../../../environments/environment';
 import { ConfigService } from './../../config/config.service';
@@ -106,7 +106,7 @@ constructor(
 
   ngOnInit() {
   }
-  
+
   generateReport() {
     this.comprehensiveApiService.getReport().subscribe((data: any) => {
       this.comprehensiveService.setReportId(data.objectList[0].id);
@@ -187,7 +187,8 @@ constructor(
       this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
         if (data && data.objectList[0]) {
             this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+            // this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.REVIEW + '/edit']);
         }});
     }
     
@@ -322,7 +323,7 @@ constructor(
         if (this.getComprehensiveSummaryDashboard !== '') {
           this.islocked = this.getComprehensiveSummaryDashboard.isLocked;
           this.isSpeakToAdvisor = (this.isCorporate && (this.getComprehensiveSummaryDashboard.advisorPaymentStatus === '' || this.getComprehensiveSummaryDashboard.advisorPaymentStatus === null));
-          this.isAdvisorAppointment = (this.isCorporate && this.getComprehensiveSummaryDashboard.advisorPaymentStatus
+          this.isAdvisorAppointment = (this.islocked && this.isCorporate && this.getComprehensiveSummaryDashboard.advisorPaymentStatus
             && (this.getComprehensiveSummaryDashboard.advisorPaymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING || 
             this.getComprehensiveSummaryDashboard.advisorPaymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED));            
           this.paymentInstructions = ((!this.isCorporate && this.getComprehensiveSummaryDashboard.paymentStatus
@@ -414,10 +415,16 @@ constructor(
       ref.componentInstance.errorTitle = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.TITLE');
       ref.componentInstance.errorMessageHTML = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.DESC');
       ref.componentInstance.primaryActionLabel = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.BTN_LBL');
+      ref.componentInstance.primaryAction.subscribe(() => {
+        this.setComprehensiveSummary(true, COMPREHENSIVE_ROUTE_PATHS.SPEAK_TO_ADVISOR);
+      });
   }
   adviserAppointmentModal() {
       const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'adivser-appointment-modal'});
       ref.componentInstance.errorTitle = this.translate.instant('COMPREHENSIVE.DASHBOARD.APPOINTMENT_MODAL.TITLE');
       ref.componentInstance.errorMessage = this.translate.instant('COMPREHENSIVE.DASHBOARD.APPOINTMENT_MODAL.DESC');
+      ref.componentInstance.primaryAction.subscribe(() => {
+        this.router.navigate([COMPREHENSIVE_ROUTES.REVIEW]);
+      });
   }
 }

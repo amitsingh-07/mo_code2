@@ -30,16 +30,9 @@ export class PaymentEnableGuard implements CanActivate {
       // Navigate only if payment enabled and user has not paid
       // Skip for payment-instruction page
       if (state.url.includes(PAYMENT_ROUTES.PAYMENT_INSTRUCTION)) {
-        const comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
-        if(!comprehensiveJourneyMode) {
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-          return false;
-        } else {
           return true;
-        }
       } else {
-        const comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
-        if (this.isPaymentEnabled && comprehensiveJourneyMode) {
+        if (this.isPaymentEnabled) {
           return true;
         } else {
           return false;

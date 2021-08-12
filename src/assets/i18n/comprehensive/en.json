@@ -150,6 +150,8 @@
     "RISK_PROFILE": {
       "PAGE_HEADING": "Grow your retirement savings!",
       "PAGE_SUB_HEADING": "The key to sucessful investing is to stay invested. This means investing in a suitable portfolio that matches your risk profile so that you can comfortably ride out the ups and downs in the market.",
+      "PAGE_NOTES": "We strongly encourage you to do a risk profiling to get a more suitable recommendation in your report.",
+      "SKIP_RISK_PROFILE" : "I want to skip risk profile",
       "QUESTION_4_COL_1": "Portfolio",
       "QUESTION_4_COL_2": "Optimistic",
       "QUESTION_4_COL_2_SUB": "Return Projection (per annum)",
@@ -833,7 +835,8 @@
       "CHECKOUT": "Checkout",
       "VIEW_DASHBOARD": "View Report on Dashboard",
       "SPEAK_ADVISER": "Speak to Adviser",
-      "EDIT_FINLIT_USER":"Your report is ready. You may edit your details anytime to get a new report. Editing is disabled during appointment period until meeting with adviser."
+      "EDIT_FINLIT_USER":"Your report is ready. You may edit your details anytime to get a new report. Editing is disabled during appointment period until meeting with adviser.",
+      "ABOUT_WITH_PAYMENT_ENABLED": "Your report is ready in one last step. You may review your inputs before clicking \"Checkout\" to make payment."
     }
   }
 }
