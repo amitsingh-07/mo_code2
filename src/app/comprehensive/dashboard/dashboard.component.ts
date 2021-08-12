@@ -10,7 +10,7 @@ import { FileUtil } from '../../shared/utils/file.util';
 import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
-import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
+import { COMPREHENSIVE_ROUTES, COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyProfile } from '../comprehensive-types';
 import { environment } from './../../../environments/environment';
 import { ConfigService } from './../../config/config.service';
@@ -106,7 +106,7 @@ constructor(
 
   ngOnInit() {
   }
-  
+
   generateReport() {
     this.comprehensiveApiService.getReport().subscribe((data: any) => {
       this.comprehensiveService.setReportId(data.objectList[0].id);
@@ -162,7 +162,7 @@ constructor(
   }
 
   goToEditComprehensivePlan(viewMode: boolean) {
-    if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+    if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
       if (!this.islocked) {
         this.getComprehensiveCall();
       } else if (this.getComprehensiveSummaryDashboard.dobPopUpEnable) {
@@ -180,9 +180,8 @@ constructor(
                   this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
               }});
           }
-    } else if ( 
-      (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) || (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR)){
-        this.getComprehensiveCall();
+    } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR){
+      this.getComprehensiveCall();
     } else{
       this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
         if (data && data.objectList[0]) {
@@ -262,8 +261,13 @@ constructor(
             this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp) {
             this.submittedDate = this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp;
           }
-        } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED ) {
+        } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED  || (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY && this.islocked)) {
           this.comprehensivePlanning = 0;
+          if (this.getComprehensiveSummary.comprehensiveEnquiry &&
+            this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp && this.isCorporate) {
+            this.submittedDate = this.getComprehensiveSummary.comprehensiveEnquiry.reportSubmittedTimeStamp;
+            this.isReportGenerated = this.getComprehensiveSummary.comprehensiveEnquiry.reportStatus;
+          }
         }
          else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY ||
            this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR) {
@@ -343,8 +347,13 @@ constructor(
           if (this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp) {
           this.submittedDate = this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp;
           }
-          } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+          } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY && this.islocked) ) {
             this.comprehensivePlanning = 0;
+            if (this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp && this.isCorporate) {
+              this.submittedDate = this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp;
+              this.isReportGenerated = (this.getComprehensiveSummaryDashboard.reportStatus === 
+              COMPREHENSIVE_CONST.REPORT_STATUS.READY)
+              }
           }
            else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR) {
             this.comprehensivePlanning =  1;
@@ -414,10 +423,13 @@ constructor(
       ref.componentInstance.errorTitle = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.TITLE');
       ref.componentInstance.errorMessageHTML = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.DESC');
       ref.componentInstance.primaryActionLabel = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.BTN_LBL');
+      ref.componentInstance.primaryAction.subscribe(() => {
+        this.setComprehensiveSummary(true, COMPREHENSIVE_ROUTE_PATHS.SPEAK_TO_ADVISOR);
+      });
   }
   adviserAppointmentModal() {
       const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'adivser-appointment-modal'});
       ref.componentInstance.errorTitle = this.translate.instant('COMPREHENSIVE.DASHBOARD.APPOINTMENT_MODAL.TITLE');
-      ref.componentInstance.errorMessage = this.translate.instant('COMPREHENSIVE.DASHBOARD.APPOINTMENT_MODAL.DESC');
+      ref.componentInstance.errorMessage = this.translate.instant('COMPREHENSIVE.DASHBOARD.APPOINTMENT_MODAL.DESC');      
   }
 }

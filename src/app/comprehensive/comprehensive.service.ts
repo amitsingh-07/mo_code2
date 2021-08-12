@@ -618,16 +618,24 @@ export class ComprehensiveService {
   getQuestionsList() {
     return this.comprehensiveApiService.getQuestionsList();
   }
+  getRiskProfileFlag(){
+    if(this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileSkipped){
+     return this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileSkipped;
+    }
+  }
+
   getSelectedOptionByIndex(index) {
     if (this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers) {
       return this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers['riskAssessQuest' + index];
     }
   }
-  setRiskAssessment(data, questionIndex) {
+  setRiskAssessment(riskProfileCheckboxFlag, data, questionIndex) {
     this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers['riskAssessQuest' + questionIndex] = data;
+    this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileSkipped = riskProfileCheckboxFlag;
     this.commit();
 
   }
+
   setRiskAssessmentAnswers() {
     const riskProfileAnswersData = this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer;
     let selAnswers = {
@@ -648,9 +656,22 @@ export class ComprehensiveService {
       this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers = selAnswers;
     } else {
       const enquiryId = riskProfileAnswersData && riskProfileAnswersData.enquiryId ? riskProfileAnswersData.enquiryId : null;
-      this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer = { enquiryId: enquiryId, answers: [], riskProfileAnswers: selAnswers };
+      const skipRiskProfile= riskProfileAnswersData && riskProfileAnswersData.riskProfileSkipped;
+      this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer = {riskProfileSkipped:skipRiskProfile, enquiryId: enquiryId, answers: [], riskProfileAnswers: selAnswers };
     }
   }
+  saveSkipRiskProfile() {
+    const data = this.constructSkipRiskProfileRequest();
+    return this.comprehensiveApiService.saveSkipRiskProfile(data);
+  }
+  constructSkipRiskProfileRequest(){
+    const data = this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileSkipped;
+    return {
+      enquiryId: this.getEnquiryId(),
+      skipRiskProfile: data
+    };
+  }
+
   saveRiskAssessment() {
     const data = this.constructRiskAssessmentSaveRequest();
     return this.comprehensiveApiService.saveRiskAssessment(data);
@@ -945,7 +966,6 @@ export class ComprehensiveService {
         new Date()
       );
     }
-
     let accessPage = true;
     if (userAge < COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MIN_AGE
       || userAge > COMPREHENSIVE_CONST.YOUR_PROFILE.APP_MAX_AGE) {
@@ -1160,17 +1180,18 @@ export class ComprehensiveService {
               }
               break;
             case 30:
-            case 31: 
+            case 31:
+            case 32: 
               if (
               accessPage && canAccess &&
-              riskProfileProgressData.subItems[2].completed && stepCompleted >= 4 && accessRetirementAge
+              (cmpSummary.riskAssessmentAnswer.riskProfileSkipped || riskProfileProgressData.subItems[2].completed) && stepCompleted >= 4 && accessRetirementAge
               ) {
                accessibleUrl = urlList[index];
             }
-            case 32:
+            case 33:
               if (
               accessPage && canAccess &&
-              riskProfileProgressData.subItems[2].completed &&
+              (cmpSummary.riskAssessmentAnswer.riskProfileSkipped ||  riskProfileProgressData.subItems[2].completed) &&
               (reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.READY)
               ) {
                accessibleUrl = urlList[index];
@@ -1350,12 +1371,10 @@ export class ComprehensiveService {
   }
 
   generateProgressTrackerData(): IProgressTrackerData {
-    const comprehensiveVersion = this.getComprehensiveVersion();
     this.progressData = {} as IProgressTrackerData;
     this.progressData = {
       title: 'Your Progress Tracker',
-      subTitle: (!comprehensiveVersion)
-        ? 'Est. Time Required: 10 mins' : 'Est. Time Required: 20 mins',
+      subTitle: 'Est. Time Required: 20 mins',
       properties: {
         disabled: false
       },
@@ -1365,15 +1384,11 @@ export class ComprehensiveService {
     this.progressData.items.push(this.getGetStartedProgressData());
     this.progressData.items.push(this.getDependantsProgressData());
     this.progressData.items.push(this.getFinancesProgressData());
-    if (comprehensiveVersion) {
-      this.progressData.items.push(this.getFireproofingProgressData());
-    }
+    this.progressData.items.push(this.getFireproofingProgressData());
     this.progressData.items.push(this.getRetirementProgressData());
-    if (!comprehensiveVersion) {
-      this.progressData.items.push(this.getRiskProfileProgressData());
-    }
+    this.progressData.items.push(this.getRiskProfileProgressData());
     
-    if (comprehensiveVersion && !this.getViewableMode()) {
+    if (!this.getViewableMode()) {
       this.progressData.items.push(this.getReviewInputsProgressData());
     }
     return this.progressData;
@@ -1842,54 +1857,64 @@ export class ComprehensiveService {
   getRiskProfileProgressData(): IProgressTrackerItem {
     const cmpSummary = this.getComprehensiveSummary();
     const isCompleted = false; //cmpSummary.comprehensiveInsurancePlanning !== null;
+    const skipRiskProfile = this.getRiskProfileFlag();
+
+    const riskProfileSubSteps = [{
+      id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
+      path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
+      title: 'Temporary Losses',
+      value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1
+        && cmpSummary.riskQuestionList) ?
+        cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1] : '',
+      completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1
+        && cmpSummary.riskQuestionList && (this.validateSteps(COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.NO, 1)))
+    },
+    {
+      id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/2',
+      path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/2',
+      title: 'Unrealised/Paper Loss',
+      value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2
+        && cmpSummary.riskQuestionList) ?
+        cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2] : '',
+      completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2
+        && cmpSummary.riskQuestionList && (this.validateSteps(COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.NO, 2)))
+    },
+    {
+      id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/3',
+      path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/3',
+      title: 'Stress Level',
+      value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3
+        && cmpSummary.riskQuestionList) ?
+        cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3] : '',
+      completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3
+        && cmpSummary.riskQuestionList && (this.validateSteps(COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.NO, 3)))
+    },
+    {
+      id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/4',
+      path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/4',
+      title: 'Portfolio Type',
+      value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4
+        && cmpSummary.riskQuestionList) ?
+        cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4] : '',
+      completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4
+        && cmpSummary.riskQuestionList && (this.validateSteps(COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.NO, 4)))
+    }];
+
+    const startRiskProfile = [{
+      id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
+      path: this.getMySteps() >= COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.NO && this.checkResultData() ? COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1' : '',
+      title: COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.TITLE,
+      value: '',
+      completed: true
+    }];
+
     return {
       title: 'Your Risk Profile',
       expanded: true,
       showArrow: true,
       completed: false,
       customStyle: 'risk-profile',
-      subItems: [
-        {
-          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
-          path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
-          title: 'Temporary Losses',
-          value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1
-            && cmpSummary.riskQuestionList) ?
-            cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1] : '',
-          completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest1
-            && cmpSummary.riskQuestionList && (this.validateSteps(4, 1)))
-        },
-        {
-          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/2',
-          path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/2',
-          title: 'Unrealised/Paper Loss',
-          value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2
-            && cmpSummary.riskQuestionList) ?
-            cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2] : '',
-          completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest2
-            && cmpSummary.riskQuestionList && (this.validateSteps(4, 2)))
-        },
-        {
-          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/3',
-          path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/3',
-          title: 'Stress Level',
-          value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3
-            && cmpSummary.riskQuestionList) ?
-            cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3] : '',
-          completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest3
-            && cmpSummary.riskQuestionList && (this.validateSteps(4, 3)))
-        },
-        {
-          id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/4',
-          path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/4',
-          title: 'Portfolio Type',
-          value: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4
-            && cmpSummary.riskQuestionList) ?
-            cmpSummary.riskQuestionList[cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4] : '',
-          completed: (cmpSummary.riskAssessmentAnswer && cmpSummary.riskAssessmentAnswer.riskProfileAnswers.riskAssessQuest4
-            && cmpSummary.riskQuestionList && (this.validateSteps(4, 4)))
-        }
-      ]
+      subItems: skipRiskProfile ? startRiskProfile : riskProfileSubSteps
     };
   }
 
@@ -1977,10 +2002,10 @@ export class ComprehensiveService {
 
   getReviewInputsProgressData(): IProgressTrackerItem {
     return {
-      title: COMPREHENSIVE_CONST.REVIEW_INPUTS,
+      title: COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.REVIEW_INPUTS.TITLE,
       expanded: false,
       showArrow: false,
-      path: this.getComprehensiveSummary().comprehensiveEnquiry && this.getMySteps() == 4 && this.checkResultData() ? COMPREHENSIVE_ROUTE_PATHS.REVIEW : '',
+      path: this.getMySteps() == COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.REVIEW_INPUTS.NO && this.checkResultData() ? COMPREHENSIVE_ROUTE_PATHS.REVIEW : '',
       completed: false,
       customStyle: "review-inputs",
       subItems: []
@@ -2408,7 +2433,8 @@ export class ComprehensiveService {
       (getCompData.comprehensiveEnquiry.reportStatus !==
         COMPREHENSIVE_CONST.REPORT_STATUS.NEW && getCompData.comprehensiveEnquiry.reportStatus !==
         COMPREHENSIVE_CONST.REPORT_STATUS.EDIT && getCompData.comprehensiveEnquiry.reportStatus !==
-        COMPREHENSIVE_CONST.REPORT_STATUS.ERROR)
+        COMPREHENSIVE_CONST.REPORT_STATUS.ERROR && getCompData.comprehensiveEnquiry.reportStatus !==
+        COMPREHENSIVE_CONST.REPORT_STATUS.READY)
     ) {
       validateFlag = false;
     }
@@ -2761,4 +2787,5 @@ export class ComprehensiveService {
   getToastMessage() {
     return this.comprehensiveFormData.toastMessage;
   }
+
 }

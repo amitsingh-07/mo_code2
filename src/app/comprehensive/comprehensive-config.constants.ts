@@ -304,7 +304,18 @@ export const COMPREHENSIVE_CONST = {
     },
     API_SOURCE: "Robo3",
     NTUC_PROMO_DATE: "2021-06-01T00:00:00.000+08:00",
-    REVIEW_INPUTS: "Review Inputs",
+    PROGRESS_TRACKER: {
+        STEPS: {
+            RISK_PROFILE: { // step: 4
+                NO: 4,
+                TITLE: "Start Risk Profile"
+            },
+            REVIEW_INPUTS: { // step: 5
+                NO: 5,
+                TITLE: "Review Inputs"
+            }
+        }
+    },
     CPF_PLUS :"CPF_PLUS",
     JOURNEY_TYPE : 'journeyType'
 };
