@@ -344,8 +344,13 @@ constructor(
           if (this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp) {
           this.submittedDate = this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp;
           }
-          } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+          } else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY && this.islocked) ) {
             this.comprehensivePlanning = 0;
+            if (this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp && this.isCorporate) {
+              this.submittedDate = this.getComprehensiveSummaryDashboard.reportSubmittedTimeStamp;
+              this.isReportGenerated = (this.getComprehensiveSummaryDashboard.reportStatus === 
+              COMPREHENSIVE_CONST.REPORT_STATUS.READY)
+              }
           }
            else if (this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY || this.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR) {
             this.comprehensivePlanning =  1;

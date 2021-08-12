@@ -69,10 +69,9 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       .subscribeBackPress()
       .subscribe((event) => {
         if (event && event !== "") {
-          if (!this.isCorporateUser) {
-            this.router.navigate([
-              COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN_SUMMARY + "/summary",
-            ]);
+          const reportStatus = this.comprehensiveService.getReportStatus();
+          if (this.isCorporateUser && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
           } else {
             this.router.navigate([
               COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + "/4",

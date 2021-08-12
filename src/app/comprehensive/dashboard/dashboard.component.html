@@ -54,7 +54,7 @@
                 {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_SUBMITTED' | translate}}
               </div>
               <div class="form-group-with-bg--content-label" for="name" *ngIf='paymentInstructions'>
-                {{ 'COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_SUBMITTED_PAYMENT' | translate}}
+                {{ (isAdvisorAppointment && comprehensivePlanning === 0) ? ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_REPORT_APPOINTMENT' | translate) : ('COMPREHENSIVE.DASHBOARD.COMPREHENSIVE_PLANNING_SUBMITTED_PAYMENT' | translate)}}
               </div>
             </div>
             <div class="flex-col-4 text-right">
@@ -166,7 +166,7 @@
               </button>
             </div>
           </div>
-          <div class="flex-row align-start" [ngClass] = "{'width100': !paymentInstructions }" [hidden]="!(comprehensivePlanning === 1 || comprehensivePlanning === 2)">
+          <div class="flex-row align-start" [ngClass] = "{'width100': !paymentInstructions }" [hidden]="!(comprehensivePlanning === 1 || comprehensivePlanning === 2 || (isAdvisorAppointment && comprehensivePlanning === 0))">
             <div class="flex-col-12">
               <button *ngIf="isReportGenerated" (click)="downloadComprehensiveReport()" type="button" class="btn btn-view width100" [ngClass] = "{'ml0': !paymentInstructions }" id="prfBtn1">
                 <div class="ft-18 "  for="name">
