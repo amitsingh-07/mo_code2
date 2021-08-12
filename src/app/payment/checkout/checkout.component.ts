@@ -86,7 +86,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     });
     this.isCorporate = this.comprehensiveService.isCorporateRole();
     this.fetchDashboard();
-    this.isCorporate = comprehensiveService.isCorporateRole();
   }
 
 
