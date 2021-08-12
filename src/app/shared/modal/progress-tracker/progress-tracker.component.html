@@ -13,12 +13,12 @@
           <span class=" progress-tracker-accordion__heading__arrow" [ngClass]="{'active': !item.expanded, 'hidden': !item.showArrow }"></span>
         </div>
         <div class="progress-tracker-accordion__body" *ngIf="item.expanded">
-          <div *ngIf="(item.subItems.length == 1 && item.subItems[0].title == 'Start Risk Profile'); else showSubItems">
+          <div *ngIf="(item.subItems.length == 1 && item.subItems[0].title == startRiskProfileTitle); else showSubItems">
             <a *ngFor="let subItem of item.subItems" (click)="navigate(subItem)" class="start-risk">
-              <span *ngIf="subItem.title == 'Start Risk Profile'">{{subItem.title}}</span>
+              <span *ngIf="subItem.title == startRiskProfileTitle">{{subItem.title}}</span>
             </a>
           </div>
-          <div #showSubItems>
+          <ng-template #showSubItems>
             <ul>
               <li (click)="navigate(subItem)" *ngFor="let subItem of item.subItems"
                 [ngClass]="{'hidden': subItem.hidden, 'incomplete': !subItem.completed, 'complete': subItem.completed, 'active': currentPath == subItem.id.replace(pathRegex, '')}">
@@ -34,7 +34,7 @@
                 </ul>
               </li>
             </ul>
-          </div>
+          </ng-template>
         </div>
       </div>
     </div>

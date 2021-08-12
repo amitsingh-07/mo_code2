@@ -15,6 +15,7 @@ export class ProgressTrackerComponent implements OnInit {
 
     currentPath = '';
     pathRegex = /../;
+    startRiskProfileTitle = COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.TITLE;
 
     constructor(
         private progressService: ProgressTrackerService,

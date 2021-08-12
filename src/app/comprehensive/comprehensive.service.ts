@@ -1836,7 +1836,7 @@ export class ComprehensiveService {
   getRiskProfileProgressData(): IProgressTrackerItem {
     const cmpSummary = this.getComprehensiveSummary();
     const isCompleted = false; //cmpSummary.comprehensiveInsurancePlanning !== null;
-    const skipRiskProfile = false;
+    const skipRiskProfile = true;
 
     const riskProfileSubSteps = [{
       id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
@@ -1884,7 +1884,7 @@ export class ComprehensiveService {
       path: this.getMySteps() >= COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.NO && this.checkResultData() ? COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1' : '',
       title: COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.TITLE,
       value: '',
-      completed: false
+      completed: true
     }];
 
     return {
