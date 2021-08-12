@@ -618,13 +618,20 @@ export class ComprehensiveService {
   getQuestionsList() {
     return this.comprehensiveApiService.getQuestionsList();
   }
+  getRiskProfileFlag(){
+    if(this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileSkipped){
+     return this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileSkipped;
+    }
+  }
+
   getSelectedOptionByIndex(index) {
     if (this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers) {
       return this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers['riskAssessQuest' + index];
     }
   }
-  setRiskAssessment(data, questionIndex) {
+  setRiskAssessment(riskProfileCheckboxFlag, data, questionIndex) {
     this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers['riskAssessQuest' + questionIndex] = data;
+    this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileSkipped = riskProfileCheckboxFlag;
     this.commit();
 
   }
@@ -648,9 +655,22 @@ export class ComprehensiveService {
       this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers = selAnswers;
     } else {
       const enquiryId = riskProfileAnswersData && riskProfileAnswersData.enquiryId ? riskProfileAnswersData.enquiryId : null;
-      this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer = { enquiryId: enquiryId, answers: [], riskProfileAnswers: selAnswers };
+      const skipRiskProfile= riskProfileAnswersData && riskProfileAnswersData.riskProfileSkipped;
+      this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer = {riskProfileSkipped:skipRiskProfile, enquiryId: enquiryId, answers: [], riskProfileAnswers: selAnswers };
     }
   }
+  saveSkipRiskProfile() {
+    const data = this.constructSkipRiskProfileRequest();
+    return this.comprehensiveApiService.saveSkipRiskProfile(data);
+  }
+  constructSkipRiskProfileRequest(){
+    const data = this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileSkipped;
+    return {
+      enquiryId: this.getEnquiryId(),
+      skipRiskProfile: data
+    };
+  }
+
   saveRiskAssessment() {
     const data = this.constructRiskAssessmentSaveRequest();
     return this.comprehensiveApiService.saveRiskAssessment(data);
@@ -1163,14 +1183,14 @@ export class ComprehensiveService {
             case 32: 
               if (
               accessPage && canAccess &&
-              riskProfileProgressData.subItems[2].completed && stepCompleted >= 4 && accessRetirementAge
+              (cmpSummary.riskAssessmentAnswer.riskProfileSkipped || riskProfileProgressData.subItems[2].completed) && stepCompleted >= 4 && accessRetirementAge
               ) {
                accessibleUrl = urlList[index];
             }
             case 33:
               if (
               accessPage && canAccess &&
-              riskProfileProgressData.subItems[2].completed &&
+              (cmpSummary.riskAssessmentAnswer.riskProfileSkipped ||  riskProfileProgressData.subItems[2].completed) &&
               (reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED || reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.READY)
               ) {
                accessibleUrl = urlList[index];
