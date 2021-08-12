@@ -36,8 +36,6 @@ export const COMPREHENSIVE_ROUTES = {
     VALIDATE_RESULT: 'validate-result',
     REVIEW: 'review',
     SPEAK_TO_ADVISOR: 'speak-to-advisor',
-    EDIT: 'edit',
-    REVIEW_ADVISOR: 'review-advisor',
     RISK_PROFILE: 'risk-profile'
 };
 

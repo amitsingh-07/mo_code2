@@ -16,7 +16,8 @@
       <div class="promo-banner adviser">
         <div class="banner-logo"><img src="assets/images/comprehensive/appointment-logo.svg" alt="" /></div>
         <div class="comprehensive-text">{{'CHECKOUT.ADVISER_CONSULTATION' | translate}}</div>
-        <div class="amt">$49</div>
+        <div class="amt">{{ totalAmount |
+          currency:'USD':'symbol-narrow':'1.0-2'}}</div>
       </div>
       <div class="promo-banner package">
         <div class="pb5">{{'CHECKOUT.INCLUDES' | translate}}</div>

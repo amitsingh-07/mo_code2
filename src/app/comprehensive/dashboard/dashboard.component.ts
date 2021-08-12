@@ -105,7 +105,6 @@ constructor(
   }
 
   ngOnInit() {
-    console.log('is corporate ', this.comprehensiveService.isCorporateRole(), this.comprehensiveService.getAdvisorStatus());
   }
 
   generateReport() {
@@ -238,7 +237,6 @@ constructor(
       this.setComprehensiveDashboard();
   }
   setComprehensiveSummary(routerEnabled: boolean, routerUrlPath: any) {
-    debugger
     if (routerEnabled) {
       this.loaderService.showLoader({ title:  this.fetchData });
     } else {
@@ -322,11 +320,10 @@ constructor(
     this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe( (dashboardData: any) => {
       if (dashboardData && dashboardData.objectList[0]) {
         this.getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', this.getCurrentVersionType);
-        this.getComprehensiveSummaryDashboard.reportStatus = 'ready';
         if (this.getComprehensiveSummaryDashboard !== '') {
           this.islocked = this.getComprehensiveSummaryDashboard.isLocked;
           this.isSpeakToAdvisor = (this.isCorporate && (this.getComprehensiveSummaryDashboard.advisorPaymentStatus === '' || this.getComprehensiveSummaryDashboard.advisorPaymentStatus === null));
-          this.isAdvisorAppointment = (this.isCorporate && this.getComprehensiveSummaryDashboard.advisorPaymentStatus
+          this.isAdvisorAppointment = (this.islocked && this.isCorporate && this.getComprehensiveSummaryDashboard.advisorPaymentStatus
             && (this.getComprehensiveSummaryDashboard.advisorPaymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING || 
             this.getComprehensiveSummaryDashboard.advisorPaymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED));            
           this.paymentInstructions = ((!this.isCorporate && this.getComprehensiveSummaryDashboard.paymentStatus
@@ -421,7 +418,8 @@ constructor(
       ref.componentInstance.primaryAction.subscribe(() => {
         // const routerURL = (!this.comprehensiveService.getViewableMode() && this.getCurrentVersionType == COMPREHENSIVE_CONST.VERSION_TYPE.FULL) ? COMPREHENSIVE_ROUTE_PATHS.REVIEW + '/advisor' : COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep);
         const routerURL = COMPREHENSIVE_ROUTE_PATHS.SPEAK_TO_ADVISOR;
-        this.setComprehensiveSummary(true, routerURL);
+        this.router.navigate([routerURL]);
+        // this.setComprehensiveSummary(true, routerURL);
       });
   }
   adviserAppointmentModal() {

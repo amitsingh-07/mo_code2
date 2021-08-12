@@ -84,6 +84,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       this.loading = this.translate.instant('COMMON_LOADER.TITLE');
       this.setPageTitle(this.pageTitle);
     });
+    this.isCorporate = this.comprehensiveService.isCorporateRole();
     this.fetchDashboard();
     this.isCorporate = comprehensiveService.isCorporateRole();
   }
@@ -260,7 +261,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   getCheckoutDetails(promoCode, isRemoved: boolean) {  
     this.loaderService.showLoader({ title: this.loading, autoHide: false });
-    const payload = { comprehensivePromoCodeToken: promoCode, promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE, isRemoved: isRemoved, promoSubCategory: this.comprehensiveService.isCorporateRole() ? COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_ADVISOR : COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_REPORT };
+    const payload = { comprehensivePromoCodeToken: promoCode, promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE, isRemoved: isRemoved, promoSubCategory: this.isCorporate ? COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_ADVISOR : COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_REPORT };
     this.paymentService.getPaymentCheckoutCfpDetails(payload).subscribe((data: any) => {
       this.loaderService.hideLoaderForced();
       if (data && data.objectList) {
@@ -291,7 +292,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
           this.backToDashboard();
         } else if (!this.comprehensiveService.checkResultData()) {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
-        } else if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+        } else if ((this.isCorporate && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) || (!this.isCorporate && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW)) {
           this.promoSubscription = this.navbarService.getCpfPromoCodeObservable.subscribe((promoCode) => {
             if (promoCode) {  
               this.getCheckoutDetails(promoCode, false);
@@ -325,7 +326,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       const currentStep = this.comprehensiveService.getMySteps();
       if (currentStep === 4) {
         this.loaderService.showLoader({ title: this.loading, autoHide: false });
-        if (this.comprehensiveService.isCorporateRole()) {
+        if (this.isCorporate) {
           this.getCheckoutSpeakToAdvisor();
          } else {
           this.initiateReport();

@@ -30,7 +30,6 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   menuClickSubscription: Subscription;
   subscription: Subscription;
   isPaymentEnabled = false;
-  comprehensiveJourneyMode: boolean;
   loading: string;
   requireToPay: boolean;
   sourceLocation: any;
@@ -39,6 +38,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   adviserPaymentStatus: any;
   isFirstTimeCorporateUser: boolean;
   isSpeakToAdvisor: boolean;
+  isEditJourney: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -56,7 +56,6 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     this.pageId = this.activatedRoute.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.isPaymentEnabled = config.paymentEnabled;
-      // this.isPaymentEnabled = false;
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
@@ -66,13 +65,11 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
       });
     });
-    this.comprehensiveJourneyMode =
-      this.comprehensiveService.getComprehensiveVersion();
     this.subscription = this.navbarService
       .subscribeBackPress()
       .subscribe((event) => {
         if (event && event !== "") {
-          if (this.comprehensiveJourneyMode) {
+          if (!this.isCorporateUser) {
             this.router.navigate([
               COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN_SUMMARY + "/summary",
             ]);
@@ -83,10 +80,8 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
           }
         }
       });
-    // this.isFirstTimeCorporateJourney = comprehensiveService.getSpeakToAdvisorFlag(router.url);
-    // this.isEditJourney = comprehensiveService.getIsEditFlag(router.url);
-    // this.isFromSpeakToAdvisor = comprehensiveService.getReviewSpeakToAdvisor(router.url);
     this.isCorporateUser = comprehensiveService.isCorporateRole();
+    this.adviserPaymentStatus = comprehensiveService.getAdvisorStatus();
   }
 
   ngOnInit() {
@@ -106,7 +101,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     const reportStatus = this.comprehensiveService.getReportStatus();
     this.requireToPay =
       reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW &&
-      this.comprehensiveJourneyMode;
+      !this.isCorporateUser;
     if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
       this.initiateReport();
     } else if (!this.comprehensiveService.checkResultData()) {
@@ -116,14 +111,13 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     if (!this.isCorporateUser) {
       this.setPublicUserFlags(reportStatus);
     } else {
-      if (this.router.url.indexOf(COMPREHENSIVE_ROUTES.SPEAK_TO_ADVISOR) >= 0) {
+      if (this.router.url.indexOf(COMPREHENSIVE_ROUTES.SPEAK_TO_ADVISOR) >= 0 && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY && (this.adviserPaymentStatus === null || this.adviserPaymentStatus === undefined)) {
         this.isSpeakToAdvisor = true;
       } else {
         this.isSpeakToAdvisor = false;
       }
       this.setCorporateUserFlag(reportStatus);
     }
-    console.log("payment status", this.isPaymentEnabled, reportStatus);
   }
 
   ngOnDestroy() {
@@ -144,14 +138,6 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
 
   goToNext() {
     const reportStatus = this.comprehensiveService.getReportStatus();
-    // || (this.adviserPaymentStatus === null || this.adviserPaymentStatus === undefined)
-    if (
-      this.isCorporateUser &&
-      (this.adviserPaymentStatus === null ||
-        this.adviserPaymentStatus === undefined)
-    ) {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
-    } else if (!this.isCorporateUser) {
       if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
       } else if (this.comprehensiveService.checkResultData()) {
@@ -159,7 +145,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
         if (currentStep === 5) {
           if (
             this.isPaymentEnabled &&
-            this.comprehensiveJourneyMode &&
+            !this.isCorporateUser &&
             reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW
           ) {
             // If payment is enabled and user has not paid, go payment else initiate report gen
@@ -179,32 +165,31 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       } else {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
       }
-    }
   }
 
   initiateReport() {
     const enquiryId = {
       enquiryId: this.comprehensiveService.getEnquiryId(),
       promoCode: this.comprehensiveService.getCfpPromoCode(),
-      waivedPromo: this.comprehensiveService.getWaivedPromo(),
+      waivedPromo: this.isCorporateUser
+        ? this.comprehensiveService.getWaivedSpeakToAdvisorPromo()
+        : this.comprehensiveService.getWaivedPromo(),
     };
-    if (this.comprehensiveJourneyMode) {
-      const cashPayload = {
-        enquiryId: this.comprehensiveService.getEnquiryId(),
-        liquidCashAmount: this.comprehensiveService.getLiquidCash(),
-        spareCashAmount: this.comprehensiveService.getComputeSpareCash(),
-      };
-      this.comprehensiveApiService
-        .generateComprehensiveCashflow(cashPayload)
-        .subscribe((cashData) => {});
-    }
+    const cashPayload = {
+      enquiryId: this.comprehensiveService.getEnquiryId(),
+      liquidCashAmount: this.comprehensiveService.getLiquidCash(),
+      spareCashAmount: this.comprehensiveService.getComputeSpareCash(),
+    };
+    this.comprehensiveApiService
+      .generateComprehensiveCashflow(cashPayload)
+      .subscribe((cashData) => {});
     this.comprehensiveApiService
       .generateComprehensiveReport(enquiryId)
       .subscribe(
         (data) => {
           let reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.READY;
           let viewMode = false;
-          if (this.comprehensiveJourneyMode) {
+          if (!this.isCorporateUser) {
             reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED;
             viewMode = true;
           }
@@ -241,23 +226,16 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     );
     ref.componentInstance.primaryAction.subscribe(() => {
       const routerURL =
-        COMPREHENSIVE_ROUTE_PATHS.REVIEW +
-        "/" +
-        COMPREHENSIVE_ROUTES.REVIEW_ADVISOR;
+        COMPREHENSIVE_ROUTE_PATHS.SPEAK_TO_ADVISOR
       this.router.navigate([routerURL]);
     });
   }
 
-  checkout(userType: any) {
-    if (userType.indexOf("CFP") >= 0) {
-      console.log("corporate user");
-    } else {
-      console.log("public user");
-    }
+  checkout() {
+    this.router.navigate([PAYMENT_ROUTE_PATHS.CHECKOUT]);
   }
 
   setPublicUserFlags(reportStatus: any) {
-    debugger;
     if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
       if (this.isPaymentEnabled) {
         this.isFirstTimePublicUser = true;
@@ -270,22 +248,28 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   }
 
   setCorporateUserFlag(reportStatus: string) {
+    const isLocked = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.isLocked;
     if (
       this.adviserPaymentStatus === null ||
       this.adviserPaymentStatus === undefined
     ) {
       this.isFirstTimeCorporateUser = true;
     } else if (
-      this.adviserPaymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.PAID
+      (this.adviserPaymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.PAID ||
+      this.adviserPaymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED) && !isLocked
     ) {
-    } else if (
-      this.adviserPaymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING
-    ) {
-    } else if (
-      this.adviserPaymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED
-    ) {
-    } else {
+      this.isEditJourney = true;
       this.isFirstTimeCorporateUser = false;
     }
+  }
+
+  speakToAdviserModal() {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'speak-to-adivser-modal'});
+    ref.componentInstance.errorTitle = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.TITLE');
+    ref.componentInstance.errorMessageHTML = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.DESC');
+    ref.componentInstance.primaryActionLabel = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.BTN_LBL');
+    ref.componentInstance.primaryAction.subscribe(() => {
+      const routerURL = COMPREHENSIVE_ROUTE_PATHS.SPEAK_TO_ADVISOR;
+    });
   }
 }
