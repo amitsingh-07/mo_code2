@@ -21,7 +21,7 @@
 
   <div *ngIf="currentQuestion">
     <form name="riskAssessmentForm" [formGroup]="riskAssessmentForm" id="riskAssessmentForm">
-      <div *ngIf="!skipRiskProfile && questionIndex==1" class="checkbox-button one-label mb10">
+      <div *ngIf="questionIndex==1" class="checkbox-button one-label mb10">
         <input appComprehensiveViewMode="{{viewMode}}"  id="riskProfileCheckboxFlag" name="riskProfileCheckboxFlag" formControlName="riskProfileCheckboxFlag"
           type="checkbox" class="field checkbox" (change)="onCheckboxChange()"
           value="I want to skip risk profile">

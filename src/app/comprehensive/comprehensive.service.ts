@@ -635,6 +635,7 @@ export class ComprehensiveService {
     this.commit();
 
   }
+
   setRiskAssessmentAnswers() {
     const riskProfileAnswersData = this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer;
     let selAnswers = {
@@ -1856,7 +1857,7 @@ export class ComprehensiveService {
   getRiskProfileProgressData(): IProgressTrackerItem {
     const cmpSummary = this.getComprehensiveSummary();
     const isCompleted = false; //cmpSummary.comprehensiveInsurancePlanning !== null;
-    const skipRiskProfile = true;
+    const skipRiskProfile = this.getRiskProfileFlag();
 
     const riskProfileSubSteps = [{
       id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
