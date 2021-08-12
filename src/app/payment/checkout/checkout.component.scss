@@ -312,6 +312,9 @@ app-checkout {
       }
       &.adviser{
         margin: 20px 0 0;
+        @include allmobiles{
+          justify-content: space-between;
+        }
         .banner-logo {
           width: 70px;
           height: 70px;
@@ -322,7 +325,7 @@ app-checkout {
       }
       &.package{
         flex-direction: column;
-        margin: -5px 0 0;
+        margin: -5px 0 20px;
         padding: 25px 20px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
