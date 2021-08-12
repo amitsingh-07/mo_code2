@@ -430,9 +430,6 @@ constructor(
   adviserAppointmentModal() {
       const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'adivser-appointment-modal'});
       ref.componentInstance.errorTitle = this.translate.instant('COMPREHENSIVE.DASHBOARD.APPOINTMENT_MODAL.TITLE');
-      ref.componentInstance.errorMessage = this.translate.instant('COMPREHENSIVE.DASHBOARD.APPOINTMENT_MODAL.DESC');
-      ref.componentInstance.primaryAction.subscribe(() => {
-        this.router.navigate([COMPREHENSIVE_ROUTES.REVIEW]);
-      });
+      ref.componentInstance.errorMessage = this.translate.instant('COMPREHENSIVE.DASHBOARD.APPOINTMENT_MODAL.DESC');      
   }
 }
