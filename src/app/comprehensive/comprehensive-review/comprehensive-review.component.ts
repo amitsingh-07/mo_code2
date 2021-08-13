@@ -115,7 +115,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     if (!this.isCorporateUser) {
       this.setPublicUserFlags(reportStatus);
     } else {
-      if (this.router.url.indexOf(COMPREHENSIVE_ROUTES.SPEAK_TO_ADVISOR) >= 0 && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY  && (this.adviserPaymentStatus === null || this.adviserPaymentStatus === undefined)) {
+      if (this.router.url.indexOf(COMPREHENSIVE_ROUTES.SPEAK_TO_ADVISOR) >= 0 && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY  && Util.isEmptyOrNull(this.adviserPaymentStatus)) {
         this.isSpeakToAdvisor = true;
       } else {
         this.isSpeakToAdvisor = false;
@@ -210,7 +210,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
           }
 
           let routerURL: any;
-          if(this.isCorporateUser && this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT && (this.adviserPaymentStatus === null || this.adviserPaymentStatus === undefined)) {
+          if(this.isCorporateUser && this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT && Util.isEmptyOrNull(this.adviserPaymentStatus)) {
             routerURL = COMPREHENSIVE_ROUTE_PATHS.REVIEW;
             this.isEditJourney = true;
             this.isFirstTimeCorporateUser = false;
@@ -277,8 +277,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   setCorporateUserFlag(reportStatus: string) {
     const isLocked = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.isLocked;
     if (
-      (this.adviserPaymentStatus === null ||
-      this.adviserPaymentStatus === undefined) && (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT)
+      Util.isEmptyOrNull( this.adviserPaymentStatus) && (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT)
     ) {
       this.isFirstTimeCorporateUser = true;
     } else if (
