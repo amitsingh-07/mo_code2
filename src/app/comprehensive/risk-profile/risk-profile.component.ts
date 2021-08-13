@@ -197,11 +197,9 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
     if(this.riskAssessmentForm.get('riskProfileCheckboxFlag').value) {
       this.skipRiskProfile = true;             
       this.riskAssessmentForm.controls['questSelOption'].clearValidators();
-      this.riskAssessmentForm.controls['questSelOption'].setValue('');
     } else{
       this.skipRiskProfile = false; 
       this.riskAssessmentForm.controls['questSelOption'].setValidators([Validators.required]);  
-      this.riskAssessmentForm.controls['questSelOption'].setValue(this.comprehensiveService.getSelectedOptionByIndex(this.questionIndex));
     }
     this.riskAssessmentForm.controls['questSelOption'].updateValueAndValidity();
   }

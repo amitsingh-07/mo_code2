@@ -338,6 +338,7 @@
         line-height: normal;
         letter-spacing: -0.16px;
         color: $dark-orange-color;
+        margin-top: 5px;
         span{
             cursor: pointer;
         }
@@ -353,6 +354,7 @@
         color: $dark-orange-color;
         display: flex;
         align-items: center;
+        margin-top:5px;
         .icon{
             width: 18px;
             height: 18px;
@@ -422,6 +424,20 @@
                     margin-right: 0;
                 }
             }
+        }
+        &::-webkit-scrollbar {
+            scroll-behavior: smooth;
+            height: 6px;
+            @include allmobiles{
+                display: none;
+            }
+          }
+        &::-webkit-scrollbar-track {
+            background: $border-light;
+          }
+        &::-webkit-scrollbar-thumb {
+        background: $dusty-grey-color;
+        border-radius: 10px;
         }
     }
 }
