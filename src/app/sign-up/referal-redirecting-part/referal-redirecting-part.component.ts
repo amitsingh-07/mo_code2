@@ -428,10 +428,10 @@ export class ReferalRedirectingPartComponent implements OnInit {
   goToCurrentStep() {
     if (this.currentStep === 0 && this.getComprehensiveSummaryDashboard.isDobUpdated) {
       this.goToEditProfile();
-    } else if (this.currentStep >= 0 && this.currentStep < 4) {
+    } else if (this.currentStep >= 0 && this.currentStep < 5) {
       const routerURL = COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep + 1);
       this.setComprehensiveSummary(true, routerURL);
-    } else if (this.currentStep === 4) {
+    } else if (this.currentStep === 5) {
       const routerURL = COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep);
       this.setComprehensiveSummary(true, routerURL);
     }

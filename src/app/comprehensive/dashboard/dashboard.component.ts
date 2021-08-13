@@ -61,6 +61,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
   isCorporate: boolean;
   isSpeakToAdvisor = false;
   isAdvisorAppointment = false;
+  reportStatusTypes: any;
+
 constructor(
     private router: Router,
     private translate: TranslateService,
@@ -102,6 +104,7 @@ constructor(
       this.isCorporate = this.comprehensiveService.isCorporateRole();
       this.setComprehensivePlan(true);
       this.getReferralCodeData();
+      this.reportStatusTypes = COMPREHENSIVE_CONST.REPORT_STATUS;
   }
 
   ngOnInit() {
