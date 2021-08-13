@@ -39,6 +39,10 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   isFirstTimeCorporateUser: boolean;
   isSpeakToAdvisor: boolean;
   isEditJourney: boolean;
+  comprehensivePlanning: number;
+  enquiryId: any;
+  getComprehensiveSummaryDashboard: any;
+  getCurrentVersionType = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -114,8 +118,8 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
         this.isSpeakToAdvisor = true;
       } else {
         this.isSpeakToAdvisor = false;
+        this.setCorporateUserFlag(reportStatus);
       }
-      this.setCorporateUserFlag(reportStatus);
     }
   }
 
@@ -132,7 +136,19 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     });
   }
   goToReviewInput() {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+    if(this.isSpeakToAdvisor) {
+      this.comprehensivePlanning = 1;
+      this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
+      this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe( (dashboardData: any) => {
+        if (dashboardData && dashboardData.objectList[0]) {
+          this.getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', this.getCurrentVersionType);
+          this.enquiryId = this.getComprehensiveSummaryDashboard.enquiryId;
+          this.getComprehensiveCall();
+        }
+      })
+    } else {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+    }
   }
 
   goToNext() {
@@ -259,6 +275,10 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     ) {
       this.isEditJourney = true;
       this.isFirstTimeCorporateUser = false;
+    } else if (
+      this.adviserPaymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING
+    ) {
+      this.isFirstTimeCorporateUser = true;
     }
   }
 
@@ -269,6 +289,36 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     ref.componentInstance.primaryActionLabel = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.BTN_LBL');
     ref.componentInstance.primaryAction.subscribe(() => {
       const routerURL = COMPREHENSIVE_ROUTE_PATHS.SPEAK_TO_ADVISOR;
+      this.router.navigate([routerURL]);
     });
   }
+
+  getComprehensiveCall() {
+    this.loaderService.showLoader({ title:  this.pageTitle});
+    let reportStatusValue =  COMPREHENSIVE_CONST.REPORT_STATUS.NEW;
+    if ( (this.comprehensivePlanning === 0 ) ||  this.comprehensivePlanning === 1) {
+      reportStatusValue = COMPREHENSIVE_CONST.REPORT_STATUS.EDIT;
+    }
+    const payload = {enquiryId: this.enquiryId, reportStatus : reportStatusValue};
+    this.comprehensiveApiService.updateComprehensiveReportStatus(payload).subscribe((data: any) => {
+          if (data) {
+            this.comprehensiveApiService.getComprehensiveSummary().subscribe((summaryData: any) => {
+              if (summaryData) {
+                summaryData.objectList[0].comprehensiveEnquiry.reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.EDIT;
+                this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
+                this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.EDIT);
+                this.comprehensiveService.setViewableMode(true);
+                this.loaderService.hideLoader();
+                this.comprehensiveService.setRiskQuestions().subscribe((riskQues) => {
+                  this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
+                });
+              }
+            });
+          } else {
+            this.loaderService.hideLoader();
+          }
+        });
+
+  }
+  
 }
