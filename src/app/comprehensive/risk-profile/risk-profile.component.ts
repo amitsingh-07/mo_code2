@@ -143,7 +143,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       );
 
       //SKIP PROFILE FLAG save
-      this.comprehensiveService.saveSkipRiskProfile();
+      this.comprehensiveService.saveSkipRiskProfile().subscribe(() => {});
 
       if (form.controls.riskProfileCheckboxFlag.value) {
         this.comprehensiveService.setStepCompletion(4, this.questionIndex).subscribe(() => {
