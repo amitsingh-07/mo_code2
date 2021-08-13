@@ -428,6 +428,9 @@
         &::-webkit-scrollbar {
             scroll-behavior: smooth;
             height: 6px;
+            @include allmobiles{
+                display: none;
+            }
           }
         &::-webkit-scrollbar-track {
             background: $border-light;
