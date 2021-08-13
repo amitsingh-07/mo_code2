@@ -18,6 +18,7 @@ import {
 import { ComprehensiveService } from "../comprehensive.service";
 import { PAYMENT_ROUTE_PATHS } from "./../../payment/payment-routes.constants";
 import { PaymentService } from "./../../payment/payment.service";
+import { Util } from '../../shared/utils/util';
 
 @Component({
   selector: "app-comprehensive-review",
@@ -114,7 +115,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     if (!this.isCorporateUser) {
       this.setPublicUserFlags(reportStatus);
     } else {
-      if (this.router.url.indexOf(COMPREHENSIVE_ROUTES.SPEAK_TO_ADVISOR) >= 0 && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY && (this.adviserPaymentStatus === null || this.adviserPaymentStatus === undefined)) {
+      if (this.router.url.indexOf(COMPREHENSIVE_ROUTES.SPEAK_TO_ADVISOR) >= 0 && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY  && (this.adviserPaymentStatus === null || this.adviserPaymentStatus === undefined)) {
         this.isSpeakToAdvisor = true;
       } else {
         this.isSpeakToAdvisor = false;
@@ -137,7 +138,6 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   }
   goToReviewInput() {
     if(this.isSpeakToAdvisor) {
-      this.comprehensivePlanning = 1;
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
       this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe( (dashboardData: any) => {
         if (dashboardData && dashboardData.objectList[0]) {
@@ -208,11 +208,23 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
             reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED;
             viewMode = true;
           }
+
+          let routerURL: any;
+          if(this.isCorporateUser && this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT && (this.adviserPaymentStatus === null || this.adviserPaymentStatus === undefined)) {
+            routerURL = COMPREHENSIVE_ROUTE_PATHS.REVIEW;
+            this.isEditJourney = true;
+            this.isFirstTimeCorporateUser = false;
+            this.isSpeakToAdvisor = false;
+          } else {
+            routerURL = COMPREHENSIVE_ROUTE_PATHS.RESULT;
+          }
           this.comprehensiveService.setReportStatus(reportStatus);
-          this.comprehensiveService.setLocked(true);
-          this.comprehensiveService.setViewableMode(viewMode);
-          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
-          this.loaderService.hideLoaderForced();
+          if(!this.isCorporateUser || (this.isCorporateUser && Util.isEmptyOrNull( this.adviserPaymentStatus))) {
+            this.comprehensiveService.setLocked(true);
+            this.comprehensiveService.setViewableMode(viewMode);
+          }
+          this.router.navigate([routerURL]);
+          this.loaderService.hideLoaderForced();         
         },
         (err) => {
           this.loaderService.hideLoaderForced();
@@ -265,21 +277,17 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   setCorporateUserFlag(reportStatus: string) {
     const isLocked = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.isLocked;
     if (
-      this.adviserPaymentStatus === null ||
-      this.adviserPaymentStatus === undefined
+      (this.adviserPaymentStatus === null ||
+      this.adviserPaymentStatus === undefined) && (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT)
     ) {
       this.isFirstTimeCorporateUser = true;
     } else if (
-      (this.adviserPaymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.PAID ||
-      this.adviserPaymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED) && !isLocked
-    ) {
-      this.isEditJourney = true;
-      this.isFirstTimeCorporateUser = false;
-    } else if (
-      this.adviserPaymentStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING
-    ) {
-      this.isFirstTimeCorporateUser = true;
-    }
+        this.adviserPaymentStatus && (this.adviserPaymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PAID ||
+        this.adviserPaymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED) && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT && !isLocked
+      ) {
+        this.isEditJourney = false;
+        this.isFirstTimeCorporateUser = true;
+      } 
   }
 
   speakToAdviserModal() {
@@ -295,10 +303,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
 
   getComprehensiveCall() {
     this.loaderService.showLoader({ title:  this.pageTitle});
-    let reportStatusValue =  COMPREHENSIVE_CONST.REPORT_STATUS.NEW;
-    if ( (this.comprehensivePlanning === 0 ) ||  this.comprehensivePlanning === 1) {
-      reportStatusValue = COMPREHENSIVE_CONST.REPORT_STATUS.EDIT;
-    }
+     const reportStatusValue = COMPREHENSIVE_CONST.REPORT_STATUS.EDIT;
     const payload = {enquiryId: this.enquiryId, reportStatus : reportStatusValue};
     this.comprehensiveApiService.updateComprehensiveReportStatus(payload).subscribe((data: any) => {
           if (data) {
