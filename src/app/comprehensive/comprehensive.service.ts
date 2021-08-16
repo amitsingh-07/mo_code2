@@ -30,7 +30,6 @@ import { ComprehensiveFormError } from './comprehensive-form-error';
 import {
   COMPREHENSIVE_BASE_ROUTE,
   COMPREHENSIVE_FULL_ROUTER_CONFIG,
-  COMPREHENSIVE_LITE_ROUTER_CONFIG,
   COMPREHENSIVE_ROUTE_PATHS
 } from './comprehensive-routes.constants';
 import {
@@ -78,24 +77,6 @@ export class ComprehensiveService {
   ) {
     this.getComprehensiveFormData();
   }
-  //Set User Role based on ROLE_COMPRE_LITE
-  setUserRole() {
-    if (this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE)){
-      sessionStorage.setItem(
-        appConstants.SESSION_KEY.CFP_USER_ROLE,
-        COMPREHENSIVE_CONST.ROLES.CORPORATE
-      );
-    } else {
-      sessionStorage.setItem(
-        appConstants.SESSION_KEY.CFP_USER_ROLE,
-        COMPREHENSIVE_CONST.ROLES.PUBLIC
-      );
-    }
-  }
-  //Get User Role for CFP
-  getUserRole() {
-    return appConstants.SESSION_KEY.CFP_USER_ROLE;
-  }
   //Get User Role for CFP True = Corporate False = Public
   isCorporateRole() {
     return this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
@@ -114,12 +95,6 @@ export class ComprehensiveService {
         JSON.stringify(cmpSessionData)
       );
     }
-  }
-  getComprehensiveVersion() {
-    // tslint:disable-next-line: prefer-immediate-return
-    const comprehensiveVersionType = !(this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE) && sessionStorage.getItem(appConstants.SESSION_KEY.COMPREHENSIVE_VERSION)
-      === COMPREHENSIVE_CONST.VERSION_TYPE.LITE && COMPREHENSIVE_CONST.COMPREHENSIVE_LITE_ENABLED);
-    return comprehensiveVersionType;
   }
   getComprehensiveSessionData() {
     // tslint:disable-next-line: max-line-length
@@ -145,8 +120,6 @@ export class ComprehensiveService {
     this.comprehensiveFormData = {} as ComprehensiveFormData;
     this.commit();
     sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE);
-    sessionStorage.removeItem(appConstants.SESSION_KEY.COMPREHENSIVE_LITE);
-    sessionStorage.removeItem(appConstants.SESSION_KEY.CFP_USER_ROLE);
     this.getComprehensiveFormData();
   }
 
@@ -905,7 +878,7 @@ export class ComprehensiveService {
    * @memberof ComprehensiveService
    */
   getPreviousUrl(currentUrl: string): string {
-    const urlList = (!this.getComprehensiveVersion()) ? this.getComprehensiveUrlList(COMPREHENSIVE_LITE_ROUTER_CONFIG) : this.getComprehensiveUrlList(COMPREHENSIVE_FULL_ROUTER_CONFIG);
+    const urlList = this.getComprehensiveUrlList(COMPREHENSIVE_FULL_ROUTER_CONFIG);
     const currentUrlIndex = Util.toInteger(Util.getKeyByValue(urlList, currentUrl));
     if (currentUrlIndex > 0) {
       const previousUrl = urlList[currentUrlIndex - 1];
@@ -930,13 +903,8 @@ export class ComprehensiveService {
    */
   // tslint:disable-next-line:cognitive-complexity
   getAccessibleUrl(url: string): string {
-    if (!this.getComprehensiveVersion()) {
-      const urlLists = this.getComprehensiveUrlList(COMPREHENSIVE_LITE_ROUTER_CONFIG);
-      return this.getAccessibleLiteJourney(urlLists, url);
-    } else {
-      const urlLists = this.getComprehensiveUrlList(COMPREHENSIVE_FULL_ROUTER_CONFIG);
-      return this.getAccessibleFullJourney(urlLists, url);
-    }
+    const urlLists = this.getComprehensiveUrlList(COMPREHENSIVE_FULL_ROUTER_CONFIG);
+    return this.getAccessibleFullJourney(urlLists, url);
   }
   // Return Access Url for Full Journey
   getAccessibleFullJourney(urlList: any, url: any) {
@@ -1425,7 +1393,6 @@ export class ComprehensiveService {
     const childEndowmentData: IChildEndowment[] = this.getChildEndowment();
     const dependantData: IDependantDetail[] = this.getMyDependant();
     const dependentHouseHoldData: IdependentsSummaryList = this.gethouseHoldDetails();
-    const comprehensiveVersion = this.getComprehensiveVersion();
 
     if (enquiry && enquiry.hasDependents !== null && dependantData && dependantData.length > 0) {
       hasDependants = true;
@@ -1442,7 +1409,7 @@ export class ComprehensiveService {
     }
 
     let noOfDependants = '';
-    if (dependantData && comprehensiveVersion) {
+    if (dependantData) {
       noOfDependants = dependantData.length + '';
     }
     subItemsArray.push({
@@ -1460,19 +1427,19 @@ export class ComprehensiveService {
       completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
     });
 
-    if (comprehensiveVersion) {
-      subItemsArray.push({
-        id: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
-        path:
-          enquiry.hasDependents !== null && enquiry.hasDependents !== false
-            ? COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS
-            : COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
-        title: 'Number of Dependant(s)',
-        value: noOfDependants,
-        completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
-      });
-    }
-    if (comprehensiveVersion && (enquiry.hasDependents === null || dependantData && dependantData.length > 0)) {
+   
+    subItemsArray.push({
+      id: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS,
+      path:
+        enquiry.hasDependents !== null && enquiry.hasDependents !== false
+          ? COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS
+          : COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
+      title: 'Number of Dependant(s)',
+      value: noOfDependants,
+      completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 1)))
+    });
+   
+    if ((enquiry.hasDependents === null || dependantData && dependantData.length > 0)) {
       const eduPrefs: IChildEndowment[] = this.getChildEndowment();
       const eduPlan: string = this.hasEndowment();
 
@@ -1928,7 +1895,7 @@ export class ComprehensiveService {
     let retirementAgeValue = '';
     const cmpSummary = this.getComprehensiveSummary();
     const isCompleted = cmpSummary.comprehensiveRetirementPlanning !== null;
-    const isStepCompleted = (!this.getComprehensiveVersion()) ? 2 : 3;
+    const isStepCompleted = 3;
     if (
       isCompleted &&
       cmpSummary.comprehensiveRetirementPlanning.retirementAge
@@ -1947,7 +1914,7 @@ export class ComprehensiveService {
       value: retirementAgeValue,
       completed: (isCompleted && (this.validateSteps(isStepCompleted, 1)))
     });
-    if (this.getComprehensiveVersion() && cmpSummary.comprehensiveRetirementPlanning && (this.validateSteps(isStepCompleted, 1))) {
+    if (cmpSummary.comprehensiveRetirementPlanning && (this.validateSteps(isStepCompleted, 1))) {
       cmpSummary.comprehensiveRetirementPlanning.retirementIncomeSet.forEach((item, index) => {
         subItemsArray.push({
           id: COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN + '1',
@@ -2460,12 +2427,9 @@ export class ComprehensiveService {
    */
   checkStepValidation(currentStep: number) {
     const progressData = [];
-    const comprehensiveVersion = this.getComprehensiveVersion();
     progressData.push(this.getDependantsProgressData());
     progressData.push(this.getFinancesProgressData());
-    if (comprehensiveVersion) {
-      progressData.push(this.getFireproofingProgressData());
-    }
+    progressData.push(this.getFireproofingProgressData());
     progressData.push(this.getRetirementProgressData());
     progressData.push(this.getRiskProfileProgressData());
     

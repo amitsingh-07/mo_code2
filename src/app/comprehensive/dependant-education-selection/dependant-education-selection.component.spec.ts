@@ -235,7 +235,6 @@ describe('DependantEducationSelectionComponent', () => {
     comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
     comprehensiveService.setComprehensiveSummary(summaryData);
 
-    spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
     spyOn(comprehensiveService, 'hasEndowment').and.returnValue([]);
 
   });
