@@ -139,7 +139,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     this.fromLoginPage = this.signUpService.getFromLoginPage();
     if (this.fromLoginPage) {
       this.mobileNumber = {
-        code: '+65',
+        code: (this.signUpService.getUserMobileCountryCode()) ? this.signUpService.getUserMobileCountryCode() : '+65',
         number: this.signUpService.getUserMobileNo()
       };
     } else {
@@ -155,6 +155,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       } else {
         this.signUpService.removeFromLoginPage();
         this.signUpService.removeFromMobileNumber();
+        this.signUpService.removeFromMobileCountryCode();
       }
     }
   }
@@ -164,6 +165,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       this.authService.clearTokenID();
       this.signUpService.removeFromLoginPage();
       this.signUpService.removeFromMobileNumber();
+      this.signUpService.removeFromMobileCountryCode();
     }
     this.authService.set2faVerifyAllowed(false);
     this.ngUnsubscribe.next();
