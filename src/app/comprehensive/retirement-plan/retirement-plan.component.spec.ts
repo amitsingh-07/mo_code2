@@ -222,7 +222,6 @@ describe('RetirementPlanComponent', () => {
     comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
     comprehensiveService.setComprehensiveSummary(summaryData);
 
-    spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(false);
     progressTrackerService.setProgressTrackerData(
       comprehensiveService.generateProgressTrackerData()
     );

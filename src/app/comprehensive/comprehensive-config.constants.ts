@@ -269,7 +269,6 @@ export const COMPREHENSIVE_CONST = {
         MAX_AGE: 71,
         STEP: 1
     },
-    COMPREHENSIVE_LITE_ENABLED: true,
     VERSION_TYPE: {
         LITE: 'Comprehensive-Lite',
         FULL: 'CFP_PLUS'
