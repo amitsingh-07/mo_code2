@@ -96,7 +96,6 @@ constructor(
      * 3 - Not Completed
      */
       this.comprehensivePlanning = 4;
-      this.comprehensiveService.setUserRole();
       this.comprehensiveLiteEnabled = false;
       this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
       this.isCorporate = this.comprehensiveService.isCorporateRole();

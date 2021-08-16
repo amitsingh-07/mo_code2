@@ -215,7 +215,6 @@ describe('RiskProfileComponent', () => {
     const setNavbarModeSpy = spyOn(navbarService, 'setNavbarComprehensive');
     component.ngOnInit();
       progressTrackerService.setProgressTrackerData(comprehensiveService.generateProgressTrackerData());
-    spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
     progressTrackerService.setReadOnly(true);
     navbarService.setNavbarComprehensive(true);
 
