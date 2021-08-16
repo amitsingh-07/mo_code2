@@ -139,7 +139,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     this.fromLoginPage = this.signUpService.getFromLoginPage();
     if (this.fromLoginPage) {
       this.mobileNumber = {
-        code: (this.signUpService.getUserMobileCountryCode()) ? this.signUpService.getUserMobileCountryCode() : '+65',
+        code: (this.signUpService.getUserMobileCountryCode()) ? this.signUpService.getUserMobileCountryCode() : appConstants.SINGAPORE_COUNTRY_CODE,
         number: this.signUpService.getUserMobileNo()
       };
     } else {
