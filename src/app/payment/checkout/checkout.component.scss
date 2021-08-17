@@ -312,6 +312,7 @@ app-checkout {
       }
       &.adviser{
         margin: 20px 0 0;
+        padding: 25px 20px;
         @include allmobiles{
           justify-content: space-between;
         }

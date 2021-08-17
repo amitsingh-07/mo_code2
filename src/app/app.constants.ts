@@ -38,5 +38,6 @@ export let appConstants = {
     },
    BROWSER_CLOSE :'BROWSER_CLOSE' ,
    LOGOUT_BUTTON :'LOGOUT_BUTTON',
-   FINLIT_ACCESS_CODE: 'finlit-access-code'
+   FINLIT_ACCESS_CODE: 'finlit-access-code',
+   SINGAPORE_COUNTRY_CODE: '+65'
 };
