@@ -166,7 +166,8 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
     } else {
         if (this.validateRegularSavings(form)) {
-          if (!form.pristine || this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+          if (!form.pristine ||
+            this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT) {
             if(!form.value.hasRegularSavings) {
               form.value.comprehensiveRegularSavingsList = [{
                 portfolioType: '',

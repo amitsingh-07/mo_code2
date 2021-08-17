@@ -161,7 +161,8 @@ export class MyEarningsComponent implements OnInit, OnDestroy {
     } else {
       if (this.validateEarnings(form)) {
         const earningsData = this.comprehensiveService.getComprehensiveSummary().comprehensiveIncome;
-        if (!form.pristine || Util.isEmptyOrNull(earningsData)) {
+        if (!form.pristine || Util.isEmptyOrNull(earningsData) ||
+        this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT) {
           this.earningDetails = form.value;
           this.earningDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_EARNINGS.API_TOTAL_BUCKET_KEY] = this.totalAnnualIncomeBucket;
           this.earningDetails.enquiryId = this.comprehensiveService.getEnquiryId();
