@@ -4,7 +4,7 @@ export const RegexConstants = {
     AlphaWithSymbol: /^[a-zA-Z!"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~\s]{2,40}$/,
     Alphanumeric: /^[a-zA-Z0-9]*$/,
     AlphanumericSpace: /^[a-zA-Z0-9\s]*$/,
-    CharactersLimit: /\w{10,15}/, // Characters length should be 10 to 15
+    CharactersLimit: /^[0-9]{8,15}$/, // Characters length should be 8 to 15
     OnlyNumeric: /[^0-9]/g, // Only numeric values
     OTP: /(?:[0-9])/,
     Password: {
