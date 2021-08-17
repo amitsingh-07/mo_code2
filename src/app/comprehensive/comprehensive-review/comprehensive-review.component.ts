@@ -37,7 +37,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   isCorporateUser: boolean;
   isFirstTimePublicUser: boolean;
   adviserPaymentStatus: any;
-  isFirstTimeCorporateUser: boolean;
+  isFirstTimeCorporateUser = true;
   isSpeakToAdvisor: boolean;
   isEditJourney: boolean;
   comprehensivePlanning: number;
@@ -113,10 +113,13 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     }
 
     if (!this.isCorporateUser) {
+      this.isFirstTimeCorporateUser = false;
       this.setPublicUserFlags(reportStatus);
     } else {
+      this.isFirstTimePublicUser = false;
       if (this.router.url.indexOf(COMPREHENSIVE_ROUTES.SPEAK_TO_ADVISOR) >= 0 && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY  && Util.isEmptyOrNull(this.adviserPaymentStatus)) {
         this.isSpeakToAdvisor = true;
+        this.isFirstTimeCorporateUser = false;
       } else {
         this.isSpeakToAdvisor = false;
         this.setCorporateUserFlag(reportStatus);
