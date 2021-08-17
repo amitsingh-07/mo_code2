@@ -1869,10 +1869,10 @@ export class ComprehensiveService {
 
     const startRiskProfile = [{
       id: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
-      path: this.getMySteps() >= COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.NO && this.checkResultData() ? COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1' : '',
+      path: COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1',
       title: COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.TITLE,
       value: '',
-      completed: true
+      completed: this.getMySteps() >= COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.NO
     }];
 
     return {
