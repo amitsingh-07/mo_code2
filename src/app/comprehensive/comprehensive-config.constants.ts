@@ -317,6 +317,5 @@ export const COMPREHENSIVE_CONST = {
             }
         }
     },
-    CPF_PLUS :"CPF_PLUS",
     JOURNEY_TYPE : 'journeyType'
 };
