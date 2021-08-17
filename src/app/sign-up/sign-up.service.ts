@@ -30,6 +30,7 @@ const FROM_LOGIN_PAGE = 'from_login_page';
 const CAPTACHA_COUNT = 'captcha_count';
 const EMAIL = 'email';
 const FINLITENABLED = 'finlitenabled';
+const USER_MOBILE_COUNTRY_CODE = 'user_mobile_country_code';
 
 @Injectable({
   providedIn: 'root'
@@ -622,6 +623,16 @@ export class SignUpService {
     return sessionStorage.getItem(USER_MOBILE);
   }
 
+  setUserMobileCountryCode(code) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(USER_MOBILE_COUNTRY_CODE, code);
+    }
+  }
+
+  getUserMobileCountryCode() {
+    return sessionStorage.getItem(USER_MOBILE_COUNTRY_CODE);
+  }
+
   setFromLoginPage() {
     if (window.sessionStorage) {
       sessionStorage.setItem(FROM_LOGIN_PAGE, 'true');
@@ -640,6 +651,9 @@ export class SignUpService {
     sessionStorage.removeItem(USER_MOBILE);
   }
 
+  removeFromMobileCountryCode() {
+    sessionStorage.removeItem(USER_MOBILE_COUNTRY_CODE);
+  }
   getCaptchaCount() {
     let captchaCount;
     if (window.sessionStorage && sessionStorage.getItem(CAPTACHA_COUNT)) {
