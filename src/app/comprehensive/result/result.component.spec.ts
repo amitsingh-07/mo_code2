@@ -203,7 +203,6 @@ describe('ResultComponent', () => {
   it('should execute ngOnInit', () => {
     const setNavbarModeSpy = spyOn(navbarService, 'setNavbarComprehensive');
     component.ngOnInit();
-    spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
     component.comprehensiveJourneyMode = true;
     progressTrackerService.setReadOnly(true);
     navbarService.setNavbarComprehensive(true);

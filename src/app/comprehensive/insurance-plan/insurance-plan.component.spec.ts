@@ -225,7 +225,6 @@ describe('InsurancePlanComponent', () => {
     comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
     comprehensiveService.setComprehensiveSummary(summaryData);
 
-    spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
     spyOn(comprehensiveService, 'getMyDependant').and.returnValue([]);
     spyOn(comprehensiveService, 'getMyProfile').and.returnValue([]);
 

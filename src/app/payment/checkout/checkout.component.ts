@@ -286,12 +286,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       if (summaryData && summaryData.objectList[0]) {
         this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
         const reportStatus = this.comprehensiveService.getReportStatus();
+        const advisorPaymentStatus = this.comprehensiveService.getAdvisorStatus();
         this.loaderService.hideLoaderForced();
         if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
           this.backToDashboard();
         } else if (!this.comprehensiveService.checkResultData()) {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
-        } else if ((this.isCorporate && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) || (!this.isCorporate && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW)) {
+        } else if ((this.isCorporate && advisorPaymentStatus === null && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) || (!this.isCorporate && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW)) {
           this.promoSubscription = this.navbarService.getCpfPromoCodeObservable.subscribe((promoCode) => {
             if (promoCode) {  
               this.getCheckoutDetails(promoCode, false);
@@ -321,9 +322,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     const reportStatus = this.comprehensiveService.getReportStatus();
     if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
-    } else if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && this.comprehensiveService.checkResultData()) {
+    } else if (((reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && !this.isCorporate) || (this.isCorporate && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY)) && this.comprehensiveService.checkResultData()) {
       const currentStep = this.comprehensiveService.getMySteps();
-      if (currentStep === 4) {
+      if (currentStep === 5) {
         this.loaderService.showLoader({ title: this.loading, autoHide: false });
         if (this.isCorporate) {
           this.getCheckoutSpeakToAdvisor();

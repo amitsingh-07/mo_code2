@@ -186,7 +186,6 @@ describe('ComprehensiveComponent', () => {
   
   afterEach(() => {
     TestBed.resetTestingModule();
-    spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
     navbarService.setNavbarComprehensive(true);
     footerService.setFooterVisibility(false);
     appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
