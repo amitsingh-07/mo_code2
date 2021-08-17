@@ -61,6 +61,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   isWaivedPromo = false;
   usedPromo: {};
   promoSubscription: Subscription;
+  isCorporate: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -83,6 +84,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       this.loading = this.translate.instant('COMMON_LOADER.TITLE');
       this.setPageTitle(this.pageTitle);
     });
+    this.isCorporate = this.comprehensiveService.isCorporateRole();
     this.fetchDashboard();
   }
 
@@ -258,7 +260,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   getCheckoutDetails(promoCode, isRemoved: boolean) {  
     this.loaderService.showLoader({ title: this.loading, autoHide: false });
-    const payload = { comprehensivePromoCodeToken: promoCode, promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE, isRemoved: isRemoved, promoSubCategory: this.comprehensiveService.isCorporateRole() ? COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_ADVISOR : COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_REPORT };
+    const payload = { comprehensivePromoCodeToken: promoCode, promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE, isRemoved: isRemoved, promoSubCategory: this.isCorporate ? COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_ADVISOR : COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_REPORT };
     this.paymentService.getPaymentCheckoutCfpDetails(payload).subscribe((data: any) => {
       this.loaderService.hideLoaderForced();
       if (data && data.objectList) {
@@ -284,12 +286,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       if (summaryData && summaryData.objectList[0]) {
         this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
         const reportStatus = this.comprehensiveService.getReportStatus();
+        const advisorPaymentStatus = this.comprehensiveService.getAdvisorStatus();
         this.loaderService.hideLoaderForced();
         if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
           this.backToDashboard();
         } else if (!this.comprehensiveService.checkResultData()) {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
-        } else if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+        } else if ((this.isCorporate && advisorPaymentStatus === null && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) || (!this.isCorporate && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW)) {
           this.promoSubscription = this.navbarService.getCpfPromoCodeObservable.subscribe((promoCode) => {
             if (promoCode) {  
               this.getCheckoutDetails(promoCode, false);
@@ -319,11 +322,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     const reportStatus = this.comprehensiveService.getReportStatus();
     if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
-    } else if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && this.comprehensiveService.checkResultData()) {
+    } else if (((reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW && !this.isCorporate) || (this.isCorporate && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY)) && this.comprehensiveService.checkResultData()) {
       const currentStep = this.comprehensiveService.getMySteps();
-      if (currentStep === 4) {
+      if (currentStep === 5) {
         this.loaderService.showLoader({ title: this.loading, autoHide: false });
-        if (this.comprehensiveService.isCorporateRole()) {
+        if (this.isCorporate) {
           this.getCheckoutSpeakToAdvisor();
          } else {
           this.initiateReport();

@@ -42,6 +42,7 @@ export interface IComprehensiveEnquiry {
     promoCode?: string;
     promoWaived?: boolean;
     advisorPaymentStatus : string;
+    promoWaivedSpeakToAdvisor?: boolean;
 }
 export interface IPromoCode {
     comprehensivePromoCodeToken: string;
@@ -255,6 +256,7 @@ export interface ILumpSumBenefitSet {
     maturityYear: number;
 }
 export interface IRiskAssesmentAnswers {
+    riskProfileSkipped : boolean;
     enquiryId: number;
     answers: IRiskAnswers[];
     riskProfileAnswers: IRiskProfile;

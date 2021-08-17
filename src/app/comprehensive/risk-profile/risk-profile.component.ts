@@ -36,6 +36,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
   isRiskProfileAnswer: boolean;
   riskProfileAnswers: any;
   viewMode: boolean;
+  skipRiskProfile: boolean = false;  
 
   constructor(
     public navbarService: NavbarService,
@@ -53,7 +54,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
           // meta tag and title
-          this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_4_TITLE_LITE');
+          this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_5_TITLE');
           this.setPageTitle(this.pageTitle);
       });
   });
@@ -63,7 +64,8 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
     if (route.snapshot.data[0]) {
       self.questionIndex = +route.snapshot.data[0]['param'];
       this.riskAssessmentForm = new FormGroup({
-        questSelOption: new FormControl('', Validators.required)
+        riskProfileCheckboxFlag: new FormControl(false),
+        questSelOption: new FormControl('',[Validators.required])
       });
       if (!self.questionsList.length) {
         self.getQuestions();
@@ -91,6 +93,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
         }
       }
     });
+    this.setRiskProfileFlag();
 
   }
 
@@ -100,6 +103,13 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       iconClass: 'navbar__menuItem--journey-map'
     });
   }
+
+  setRiskProfileFlag(){
+    this.skipRiskProfile = this.comprehensiveService.getRiskProfileFlag();
+    this.riskAssessmentForm.controls.riskProfileCheckboxFlag.setValue(this.skipRiskProfile);
+    this.onCheckboxChange();    
+  }
+
   getQuestions() {
     this.comprehensiveService.getQuestionsList().subscribe((data) => {
       this.questionsList = data.objectList;
@@ -124,52 +134,76 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       return true;
     }
   }
-
+  
   goToNext(form) {
     if (this.save(form)) {
-      this.comprehensiveService.setRiskAssessment(
+      this.comprehensiveService.setRiskAssessment(form.controls.riskProfileCheckboxFlag.value,
         form.controls.questSelOption.value,
         this.questionIndex
       );
-      if (this.questionIndex < this.questionsList.length) {
-        // NEXT QUESTION
-        this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
-         if (this.comprehensiveService.getMySteps() === 4
-          && this.comprehensiveService.getMySubSteps() < (this.questionIndex + 1)) {
-            this.comprehensiveService.setStepCompletion(4, this.questionIndex).subscribe((data1: any) => {
+
+      //SKIP PROFILE FLAG save
+      this.comprehensiveService.saveSkipRiskProfile().subscribe(() => {});
+
+      if (form.controls.riskProfileCheckboxFlag.value) {
+        this.comprehensiveService.setStepCompletion(4, this.questionIndex).subscribe(() => {
+          this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+          const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
+            : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
+          this.router.navigate([routerURL]);
+        });
+      } else {
+        if (this.questionIndex < this.questionsList.length) {
+          // NEXT QUESTION
+          this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
+            if (this.comprehensiveService.getMySteps() === 4
+              && this.comprehensiveService.getMySubSteps() < (this.questionIndex + 1)) {
+              this.comprehensiveService.setStepCompletion(4, this.questionIndex).subscribe((data1: any) => {
+                this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+                this.router.navigate([
+                  COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
+                ]);
+              });
+            } else {
               this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
               this.router.navigate([
                 COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
               ]);
-            });
-          } else {
-            this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-            this.router.navigate([
-              COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
-            ]);
-          }
-        });
-      } else {
-        this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
-          if (this.comprehensiveService.getMySteps() === 4
-          && this.comprehensiveService.getMySubSteps() < 4) {
-            this.comprehensiveService.setStepCompletion(4, 4).subscribe((data1: any) => {
+            }
+          });
+        } else {
+          this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
+            if (this.comprehensiveService.getMySteps() === 4
+              && this.comprehensiveService.getMySubSteps() < 4) {
+              this.comprehensiveService.setStepCompletion(4, 4).subscribe((data1: any) => {
+                this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+                const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
+                  : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
+                this.router.navigate([routerURL]);
+              });
+            } else {
               this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
               const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
-            : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
+                : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
               this.router.navigate([routerURL]);
-            });
-          } else {
-            this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-            const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
-            : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
-            this.router.navigate([routerURL]);
-          }
-
-        });
+            }
+          });
+        }
       }
     }
   }
+
+  onCheckboxChange() {
+    if(this.riskAssessmentForm.get('riskProfileCheckboxFlag').value) {
+      this.skipRiskProfile = true;             
+      this.riskAssessmentForm.controls['questSelOption'].clearValidators();
+    } else{
+      this.skipRiskProfile = false; 
+      this.riskAssessmentForm.controls['questSelOption'].setValidators([Validators.required]);  
+    }
+    this.riskAssessmentForm.controls['questSelOption'].updateValueAndValidity();
+  }
+
   ngOnDestroy() {
     this.navbarService.unsubscribeMenuItemClick();
     this.menuClickSubscription.unsubscribe();

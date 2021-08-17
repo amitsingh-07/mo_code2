@@ -213,7 +213,6 @@ describe('MyEarningsComponent', () => {
     comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.LITE);
     comprehensiveService.setComprehensiveSummary(summaryData);
     //spyOn(comprehensiveService, 'transformAsCurrency').and.returnValue('$10');
-    spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
     //spyOn(comprehensiveService, 'comprehensiveFormData').and.returnValue([]);
     //spyOn(comprehensiveService, 'getMyDependant').and.returnValue([]);
    // const transformAsCurrencySpy = spyOn(comprehensiveService, 'transformAsCurrency');
