@@ -396,9 +396,7 @@ export class RetirementPlanComponent
       this.summaryModalDetails = {
         setTemplateModal: 4,
         contentObj: this.retireModal,
-        nextPageURL: this.viewMode
-          ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
-          : COMPREHENSIVE_ROUTE_PATHS.STEPS+'/5',
+        nextPageURL: COMPREHENSIVE_ROUTE_PATHS.STEPS+'/5',
         routerEnabled: this.summaryRouterFlag
       };
       this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
