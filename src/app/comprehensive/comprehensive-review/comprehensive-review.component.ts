@@ -37,6 +37,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   isCorporateUser: boolean;
   isFirstTimePublicUser: boolean;
   adviserPaymentStatus: any;
+  skipProfileStatus: any;
   isFirstTimeCorporateUser = true;
   isSpeakToAdvisor: boolean;
   isEditJourney: boolean;
@@ -60,6 +61,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   ) {
     this.isCorporateUser = comprehensiveService.isCorporateRole();
     this.adviserPaymentStatus = comprehensiveService.getAdvisorStatus();
+    this.skipProfileStatus = comprehensiveService.getSkipProfileStatus();
     const reportStatus = this.comprehensiveService.getReportStatus();
     if (this.isCorporateUser && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY && router.url.indexOf(COMPREHENSIVE_ROUTES.SPEAK_TO_ADVISOR) < 0) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
@@ -83,9 +85,8 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
           if (this.isCorporateUser && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
           } else {
-            this.router.navigate([
-              COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + "/4",
-            ]);
+            const url = this.skipProfileStatus ? COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + "/1" : COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + "/4";
+            this.router.navigate([url]);
           }
         } 
       });
