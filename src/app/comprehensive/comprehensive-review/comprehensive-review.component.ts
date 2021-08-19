@@ -62,7 +62,6 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     this.isCorporateUser = comprehensiveService.isCorporateRole();
     this.adviserPaymentStatus = comprehensiveService.getAdvisorStatus();
     this.skipProfileStatus = comprehensiveService.getSkipProfileStatus();
-    console.log(this.skipProfileStatus,'skipProfileStatus');
     const reportStatus = this.comprehensiveService.getReportStatus();
     if (this.isCorporateUser && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY && router.url.indexOf(COMPREHENSIVE_ROUTES.SPEAK_TO_ADVISOR) < 0) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
