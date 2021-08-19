@@ -22,7 +22,7 @@
   <div *ngIf="currentQuestion">
     <form name="riskAssessmentForm" [formGroup]="riskAssessmentForm" id="riskAssessmentForm">
       <div *ngIf="questionIndex==1" class="checkbox-button one-label mb10">
-        <input appComprehensiveViewMode="{{viewMode}}"  id="riskProfileCheckboxFlag" name="riskProfileCheckboxFlag" formControlName="riskProfileCheckboxFlag"
+        <input appComprehensiveViewMode="{{viewMode}}" mode=1  id="riskProfileCheckboxFlag" name="riskProfileCheckboxFlag" formControlName="riskProfileCheckboxFlag"
           type="checkbox" class="field checkbox" (change)="onCheckboxChange()"
           value="I want to skip risk profile">
         <label for="riskProfileCheckboxFlag">
@@ -76,8 +76,8 @@
           </div>
         </div>
       </div>
-      <div class="footer-cta"> <button type="button" [disabled]="!riskAssessmentForm.valid"
-          (click)="goToNext(riskAssessmentForm)" class="btn btn-primary width100" id="prfBtn1">{{ 'CMP.RISK_PROFILE.FOOTER_BTN_TEXT' | translate}}</button></div>
+      <div class="footer-cta"> <button type="button"  [disabled]="!riskAssessmentForm.valid"
+          (click)="goToNext(riskAssessmentForm)" class="btn btn-primary width100" id="prfBtn1"> {{(!viewMode) ? ('CMP.RISK_PROFILE.FOOTER_BTN_TEXT' | translate) : ('CMP.FORM_LABEL.NEXT'|translate)}}</button></div>
     </form>
   </div>
 </div>
