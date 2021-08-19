@@ -86,14 +86,8 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
           if (this.isCorporateUser && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
           } else {
-             if(this.skipProfileStatus === true){
-                this.router.navigate([
-                   COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + "/1", ]);
-             }else{
-                 this.router.navigate([
-                  COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + "/4",
-            ]);
-          }
+            const url = this.skipProfileStatus ? COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + "/1" : COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + "/4";
+            this.router.navigate([url]);
           }
         } 
       });
