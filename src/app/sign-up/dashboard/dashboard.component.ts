@@ -45,7 +45,7 @@ import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
 import { HubspotService } from '../../shared/analytics/hubspot.service';
-import { ComprehensiveService } from 'src/app/comprehensive/comprehensive.service';
+import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
 
 @Component({
   selector: 'app-dashboard',
