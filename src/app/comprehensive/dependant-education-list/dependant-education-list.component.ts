@@ -15,6 +15,7 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
 import { ComprehensiveService } from './../comprehensive.service';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-dependant-education-list',
@@ -40,11 +41,12 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
   summaryFlag = true;
   dependantSummaryCons = [];
   viewMode: boolean;
+  saveData: any;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private progressService: ProgressTrackerService,
     private configService: ConfigService, private comprehensiveService: ComprehensiveService, private aboutAge: AboutAge,
-    private comprehensiveApiService: ComprehensiveApiService) {
+    private comprehensiveApiService: ComprehensiveApiService, private loaderService: LoaderService) {
     this.viewMode = this.comprehensiveService.getViewableMode();
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP1;
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();
@@ -68,6 +70,7 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
         // meta tag and title
 
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
+        this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
         this.setPageTitle(this.pageTitle);
         this.childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
         this.childrenEducationDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.DEPENDANTS');
@@ -164,10 +167,12 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
             this.endowmentArrayPlan[index].endowmentMaturityYears = '';
           }
         });
+        this.loaderService.showLoader({ title: this.saveData });
         this.comprehensiveApiService.saveChildEndowment({
           hasEndowments: this.comprehensiveService.hasEndowment(), endowmentDetailsList:
             this.endowmentArrayPlan
         }).subscribe((data: any) => {
+          this.loaderService.hideLoader();
           this.showDependantSummary(this.endowmentArrayPlan);
         });
       } else {
@@ -207,7 +212,7 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
             }
             );
           });
-
+          this.loaderService.showLoader({ title: this.saveData });
           this.comprehensiveApiService.saveChildEndowment({
             hasEndowments: this.comprehensiveService.hasEndowment(), endowmentDetailsList:
               educationPreferenceList
@@ -215,9 +220,11 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
             if (this.comprehensiveService.getMySteps() === 0
               && this.comprehensiveService.getMySubSteps() < 5) {
               this.comprehensiveService.setStepCompletion(0, 5).subscribe((data1: any) => {
+                this.loaderService.hideLoader();
                 this.showDependantSummary(dependantArray);
               });
             } else {
+              this.loaderService.hideLoader();
               this.showDependantSummary(dependantArray);
             }
           });

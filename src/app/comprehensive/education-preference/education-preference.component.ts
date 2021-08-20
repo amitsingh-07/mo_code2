@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, AfterViewInit, ViewChild, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit, QueryList, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,6 +13,7 @@ import { ConfigService } from './../../config/config.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-education-preference',
@@ -48,11 +49,12 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy, AfterVie
     }
   };
   sliderValid = false;
+  saveData: any;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-    private progressService: ProgressTrackerService) {
+    private progressService: ProgressTrackerService, private loaderService: LoaderService) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -61,6 +63,7 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy, AfterVie
         this.locationList = this.translate.instant('CMP.LOCATION_LIST');
         this.courseList = this.translate.instant('CMP.COURSE_LIST');
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
+        this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
         this.setPageTitle(this.pageTitle);
 
       });
@@ -168,7 +171,9 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy, AfterVie
           this.endowmentDetail[index].educationCourse = preferenceDetails.educationCourse;
           this.endowmentDetail[index].educationSpendingShare = this.sliderValue[index];
         });
-        if (!form.pristine || this.sliderValid) {
+        if (!form.pristine || this.sliderValid || (this.comprehensiveService.getMySteps() === 0
+        && this.comprehensiveService.getMySubSteps() < 4)) {
+          this.loaderService.showLoader({ title: this.saveData });
           this.comprehensiveApiService.saveChildEndowment({
             hasEndowments: this.comprehensiveService.hasEndowment(),
             endowmentDetailsList: this.endowmentDetail
@@ -176,10 +181,12 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy, AfterVie
             if (this.comprehensiveService.getMySteps() === 0
               && this.comprehensiveService.getMySubSteps() < 4) {
               this.comprehensiveService.setStepCompletion(0, 4).subscribe((data1: any) => {
+                this.loaderService.hideLoader();
                 this.comprehensiveService.setChildEndowment(this.endowmentDetail);
                 this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
               });
             } else {
+              this.loaderService.hideLoader();
               this.comprehensiveService.setChildEndowment(this.endowmentDetail);
               this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST]);
             }
