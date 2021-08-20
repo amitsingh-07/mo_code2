@@ -327,6 +327,7 @@
     "APPLY_CHANGES": "Apply Changes"
   },
   "DASHBOARD": {
+    "TOAST_MESSAGE" :"Your report is ready to be downloaded",
     "PROFILE": {
       "WELCOME": "Welcome back,",
       "EDIT_PROFILE": "Edit Profile",

@@ -1344,3 +1344,24 @@ body.modal-open::-webkit-scrollbar {
     height: 60px;
   }
 }
+
+.speak-to-adivser-modal{
+  .adviser-title{
+    font-family: $muli-bold;
+    font-size: 18px;
+    line-height: 1.33;
+    letter-spacing: -0.18px;
+    text-align: center;
+    color: $watercourse-color;
+  }
+}
+.adivser-appointment-modal{
+  .modal-body{
+    b{
+      font-family: $muli-bold;
+      @include allmobiles{
+        color: $silver-grey-color;
+      }
+    }
+  }
+}

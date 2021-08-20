@@ -227,8 +227,6 @@ describe('DependantSelectionComponent', () => {
     };
     comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
     comprehensiveService.setComprehensiveSummary(summaryData);
-    component.comprehensiveJourneyMode = true;
-    spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
     spyOn(comprehensiveService, 'getMyDependant').and.returnValue([]);
   });
 

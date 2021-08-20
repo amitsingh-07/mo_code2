@@ -39,8 +39,8 @@ export class ComprehensiveApiService {
             'Something bad happened; please try again later.');
     }
 
-    getComprehensiveSummary(requestType?: string) {
-        const sessionId = { sessionId: this.authService.getSessionId(), requestType: (requestType) ? requestType : 'Comprehensive' };
+    getComprehensiveSummary() {
+        const sessionId = { sessionId: this.authService.getSessionId() };
 
         return this.http
             .post(apiConstants.endpoint.comprehensive.getComprehensiveSummary, sessionId)
@@ -155,6 +155,12 @@ export class ComprehensiveApiService {
             .get(apiConstants.endpoint.comprehensive.getReport)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
+    saveSkipRiskProfile(data) {
+        return this.http.post(apiConstants.endpoint.saveRiskProfileFlag, data)
+          .pipe(
+            catchError((error: HttpErrorResponse) => this.handleError(error))
+          );
+      }
     saveRiskAssessment(data) {
         return this.http.post(apiConstants.endpoint.getRiskAssessmentQuestions, data)
           .pipe(

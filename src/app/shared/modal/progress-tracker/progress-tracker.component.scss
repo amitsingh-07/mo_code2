@@ -182,6 +182,15 @@
       }
 
       &__body {
+        .start-risk {
+          padding-left: 20px;
+          color: $orange-color;
+          text-decoration: underline;
+          cursor: pointer;
+          font-size: 16px;
+          font-family: $muli-bold;
+        }
+
         li {
           font-size: 16px;
           font-family: $muli-regular;

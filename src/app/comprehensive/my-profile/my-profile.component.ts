@@ -113,15 +113,9 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     ngOnInit() {
         this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-        this.loaderService.showLoader({ title: 'Fetching Data' });
-        const comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
-        this.getCurrentVersionType =  this.comprehensiveService.getComprehensiveCurrentVersion();
-        if ((this.getCurrentVersionType === '' || this.getCurrentVersionType === null || this.getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE ) && comprehensiveLiteEnabled) {
-            this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
-        } else {
-            this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
-        }
-        this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((data: any) => {
+        this.loaderService.showLoader({ title: 'Fetching Data' });        
+        this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
+        this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
             if (data && data.objectList[0]) {
                 this.comprehensiveService.setComprehensiveSummary(data.objectList[0]);
                 this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
@@ -184,8 +178,11 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         this.setUserProfileData();
         this.buildProfileForm();
         this.myProfileShow = true;
-       this.progressService.updateValue(this.router.url, this.userDetails.firstName);
-       this.progressService.refresh();
+        this.comprehensiveService.setRiskQuestions().subscribe((data) => {
+            this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+            this.progressService.updateValue(this.router.url, this.userDetails.firstName);
+            this.progressService.refresh();
+        });
         if (this.getComprehensiveEnquiry.isDobUpdated) {
             this.validateDOB(this.userDetails.ngbDob);
         }
@@ -228,7 +225,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                             const payload = {enquiryId: this.userDetails.enquiryId, reportStatus : COMPREHENSIVE_CONST.REPORT_STATUS.NEW};
                             this.comprehensiveApiService.updateComprehensiveReportStatus(payload).subscribe((reportRes: any) => {
                                 if (reportRes) {
-                                    this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((resData: any) => {
+                                    this.comprehensiveApiService.getComprehensiveSummary().subscribe((resData: any) => {
                                         if (resData && resData.objectList[0]) {
                                             this.comprehensiveService.setComprehensiveSummary(resData.objectList[0]);                                            
                                             this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.NEW);
@@ -239,7 +236,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                                 }
                                 });
                         } else {
-                            this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((resData: any) => {
+                            this.comprehensiveApiService.getComprehensiveSummary().subscribe((resData: any) => {
                                 if (resData && resData.objectList[0]) {
                                     this.comprehensiveService.setComprehensiveSummary(resData.objectList[0]);     
                                     this.loaderService.hideLoader();

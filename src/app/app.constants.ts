@@ -21,11 +21,10 @@ export let appConstants = {
     JOURNEY_TYPE_GUIDED: 'GUIDED',
     JOURNEY_TYPE_WILL_WRITING: 'WILL_WRITING',
     HOME_ROUTE: '/home#',
-    JOURNEY_TYPE_COMPREHENSIVE: 'COMPREHENSIVE',
+    JOURNEY_TYPE_COMPREHENSIVE: 'comprehensive-plus',
     SESSION_KEY: {
         COMPREHENSIVE: 'app-comprehensive-session',
-        COMPREHENSIVE_LITE: 'app-comprehensive-lite-session',
-        COMPREHENSIVE_VERSION: 'app-comprehensive-version'
+        CFP_USER_ROLE: 'app-comprehensive-user'
     },
     USERTYPE: {
         NORMAL: "normal",

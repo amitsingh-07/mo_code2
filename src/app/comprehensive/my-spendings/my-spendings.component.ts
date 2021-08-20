@@ -45,7 +45,6 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
   homeTypeList: any[];
   mortgageTypeOfHome = '';
   HLTypeOfHome = '';
-  comprehensiveJourneyMode: boolean;
   saveData: string;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -71,17 +70,6 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     this.mortgageTypeOfHome = this.spendingDetails.mortgageTypeOfHome ? this.spendingDetails.mortgageTypeOfHome : '';
     this.HLTypeOfHome = this.spendingDetails.HLtypeOfHome ? this.spendingDetails.HLtypeOfHome : '';
     this.viewMode = this.comprehensiveService.getViewableMode();
-    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
-    if (!this.comprehensiveJourneyMode && this.spendingDetails) {
-      this.spendingDetails.HLtypeOfHome = '';
-      this.spendingDetails.mortgagePaymentUsingCPF = 0;
-      this.spendingDetails.mortgagePaymentUsingCash = 0;
-      this.spendingDetails.mortgageTypeOfHome = '';
-      this.spendingDetails.mortgagePayOffUntil = null;
-      this.spendingDetails.carLoanPayment = 0;
-      this.spendingDetails.carLoanPayoffUntil = null;
-      this.spendingDetails.otherLoanPayoffUntil = null;
-    }
   }
   // tslint:disable-next-line:cognitive-complexity
   ngOnInit() {
@@ -200,7 +188,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
         case 'carLoanPayment':
           const carLoanPayment = parseInt(this.mySpendingsForm.controls['carLoanPayment'].value);
           const carLoanPayoffUntil = this.mySpendingsForm.controls['carLoanPayoffUntil'];
-          if (this.comprehensiveJourneyMode && carLoanPayment > 0) {
+          if (carLoanPayment > 0) {
             carLoanPayoffUntil.setValidators([Validators.required, this.payOffYearValid]);
             carLoanPayoffUntil.updateValueAndValidity();
           } else {
@@ -212,7 +200,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
         case 'otherLoanPayment':
           const otherLoanPayment = parseInt(this.mySpendingsForm.controls['otherLoanPayment'].value);
           const otherLoanPayoffUntil = this.mySpendingsForm.controls['otherLoanPayoffUntil'];
-          if (this.comprehensiveJourneyMode && otherLoanPayment > 0) {
+          if (otherLoanPayment > 0) {
             otherLoanPayoffUntil.setValidators([Validators.required, this.payOffYearValid]);
             otherLoanPayoffUntil.updateValueAndValidity();
           } else {
@@ -253,7 +241,8 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
     } else {
       if (this.validateSpendings(form)) {
         const spendingsData = this.comprehensiveService.getComprehensiveSummary().comprehensiveSpending;
-        if (!form.pristine || Util.isEmptyOrNull(spendingsData)) {
+        if (!form.pristine || Util.isEmptyOrNull(spendingsData) ||
+        this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT) {
           this.spendingDetails = form.value;
           this.spendingDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_SPENDING.API_TOTAL_BUCKET_KEY] = this.totalSpending;
           this.spendingDetails.enquiryId = this.comprehensiveService.getEnquiryId();

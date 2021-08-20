@@ -45,6 +45,7 @@ import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
 import { HubspotService } from '../../shared/analytics/hubspot.service';
+import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -90,6 +91,7 @@ export class DashboardComponent implements OnInit {
   iFastMaintenance = false;
   getReferralInfo: any;
   cardCategory: { investment: any; insurance: any; comprehensiveInfo: any; };
+  showFixedToastMessage: boolean;
 
   constructor(
     private router: Router,
@@ -111,6 +113,7 @@ export class DashboardComponent implements OnInit {
     private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService,
     private hubspotService: HubspotService,
+    private comprehensiveService :ComprehensiveService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -204,7 +207,12 @@ export class DashboardComponent implements OnInit {
     });
     this.getInvestmentsSummary();
     this.investmentAccountService.deactivateReassess();
+    const toastMessage = this.comprehensiveService.getToastMessage();
+    if(toastMessage) {
+      this.showCopyToast();
+    }
   }
+ 
 
   getReferralCodeData() {
     this.signUpService.getReferralCodeData().subscribe((data) => {      
@@ -517,6 +525,17 @@ export class DashboardComponent implements OnInit {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.REFER_REDIRECT+'/'+SIGN_UP_CONFIG.REFEREE_REWARDS.DASHBOARD],{ skipLocationChange: true });
   }
   
+  showCopyToast() {
+    this.showFixedToastMessage = true;
+    this.hideToastMessage();
+  }
+
+  hideToastMessage() {
+    setTimeout(() => {
+      this.showFixedToastMessage = false; 
+      this.comprehensiveService.setToastMessage(false);
+    }, 3000);
+  }
 }
 
 
