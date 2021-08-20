@@ -1337,7 +1337,7 @@ export class ComprehensiveService {
         hidden: !this.hasChildDependant()
       });
 
-      if (enquiry.hasEndowments === '1' && this.validateSteps(0, 4)) {
+      if (enquiry.hasEndowments === '1') {
         subItemsArray.push({
           id: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE,
           path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE,
@@ -1345,6 +1345,7 @@ export class ComprehensiveService {
           value:
             prefsList.length === 0 || enquiry.hasEndowments !== '1' ? 'No' : '',
           completed:
+            this.validateSteps(0, 4) &&
             hasDependants &&
             hasEndowments &&
             eduPrefs &&
