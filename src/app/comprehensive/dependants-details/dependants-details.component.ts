@@ -225,7 +225,8 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
           form.value.dependentMappingList[index].name = dependant.name.trim().replace(RegexConstants.trimSpace, ' ');
           form.value.dependentMappingList[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
         });
-        if (!form.pristine) {
+        if (!form.pristine || (this.comprehensiveService.getMySteps() === 0
+        && this.comprehensiveService.getMySubSteps() < 2)) {
           this.hasDependant = form.value.dependentMappingList.length > 0;
           this.houseHold = this.comprehensiveService.gethouseHoldDetails();
 

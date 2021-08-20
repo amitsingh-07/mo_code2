@@ -171,7 +171,8 @@ export class EducationPreferenceComponent implements OnInit, OnDestroy, AfterVie
           this.endowmentDetail[index].educationCourse = preferenceDetails.educationCourse;
           this.endowmentDetail[index].educationSpendingShare = this.sliderValue[index];
         });
-        if (!form.pristine || this.sliderValid) {
+        if (!form.pristine || this.sliderValid || (this.comprehensiveService.getMySteps() === 0
+        && this.comprehensiveService.getMySubSteps() < 4)) {
           this.loaderService.showLoader({ title: this.saveData });
           this.comprehensiveApiService.saveChildEndowment({
             hasEndowments: this.comprehensiveService.hasEndowment(),

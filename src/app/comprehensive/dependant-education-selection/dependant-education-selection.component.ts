@@ -238,7 +238,8 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       } else {
         let selectedChildArray: IChildEndowment[] = form.value.endowmentDetailsList
           .filter((item: IChildEndowment) => item.preferenceSelection);
-        if (!form.pristine) {
+        if (!form.pristine || (this.comprehensiveService.getMySteps() === 0
+        && this.comprehensiveService.getMySubSteps() < 3)) {
 
           this.loaderService.showLoader({ title: this.saveData });
 
