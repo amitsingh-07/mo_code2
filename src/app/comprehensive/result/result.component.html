@@ -3,7 +3,7 @@
     <div *ngIf="!isCorporate">{{'CMP.RESULT.READY' | translate }}</div>
     <div *ngIf="isCorporate && !lockedWithWaived">{{'CMP.RESULT.READY_LITE' | translate }}</div>
     <div *ngIf="isCorporate && lockedWithWaived">{{'CMP.RESULT.READY_WAIVED' | translate }}</div>
-    
+
   </header>
   <div class="result-panel mt30 text-center">
     <div class="result-panel__img resultImg"></div>
@@ -11,11 +11,13 @@
   <div class="text-center about mb30">
     <div *ngIf="!isCorporate">
 
-      <span *ngIf="!isPayment"> {{'CMP.RESULT.ABOUT' | translate }}<span *ngIf="emailID" class="email"> {{emailID.emailAddress}}</span></span>
+      <span *ngIf="!isPayment"> {{'CMP.RESULT.ABOUT' | translate }}<span *ngIf="emailID" class="email">
+          {{emailID.emailAddress}}</span></span>
       <span *ngIf="isPayment"> {{'CMP.RESULT.ABOUT_PAY' | translate }}</span>
     </div>
     <div *ngIf="isCorporate && !lockedWithWaived">{{'CMP.RESULT.ABOUT_LITE' | translate }}</div>
-    <div *ngIf="isCorporate && lockedWithWaived">{{('CMP.RESULT.ABOUT_WAIVED' | translate).replace('EMAIL_ID', emailID.emailAddress) }}</div>
+    <div *ngIf="isCorporate && lockedWithWaived">
+      {{('CMP.RESULT.ABOUT_WAIVED' | translate).replace('EMAIL_ID', emailID.emailAddress) }}</div>
   </div>
   <div class="what-next" *ngIf="!isCorporate || (isCorporate && lockedWithWaived)">
     <div class="what-next--title">{{'CMP.RESULT.STEP_TITLE' | translate }}</div>

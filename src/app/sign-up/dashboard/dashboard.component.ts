@@ -1,8 +1,8 @@
-import { forkJoin as observableForkJoin } from 'rxjs';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { forkJoin as observableForkJoin } from 'rxjs';
 
 import { ConfigService, IConfig } from '../../config/config.service';
 import { GuideMeApiService } from '../../guide-me/guide-me.api.service';
@@ -113,7 +113,7 @@ export class DashboardComponent implements OnInit {
     private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService,
     private hubspotService: HubspotService,
-    private comprehensiveService :ComprehensiveService
+    private comprehensiveService: ComprehensiveService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -129,7 +129,7 @@ export class DashboardComponent implements OnInit {
       this.isInvestmentConfigEnabled = config.investmentEnabled;
       this.isComprehensiveEnabled = config.comprehensiveEnabled;
     });
-    this.portfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;    
+    this.portfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY;
     this.getReferralCodeData();
   }
 
@@ -195,8 +195,8 @@ export class DashboardComponent implements OnInit {
       if (data.responseMessage && data.responseMessage.responseCode === 6000) {
         this.insurance.hasInsurance = true;
         this.insurance.isGuidedJourney = data.objectList[0].financialStatusMapping !== null;
-		const lastTransact = new Date(data.objectList[0].lastEnquiredDate.split(' ')[0]);
-		this.insurance.lastTransactionDate = lastTransact;
+        const lastTransact = new Date(data.objectList[0].lastEnquiredDate.split(' ')[0]);
+        this.insurance.lastTransactionDate = lastTransact;
         if (!this.guideMeService.checkGuidedDataLoaded() && this.insurance.isGuidedJourney) {
           this.guideMeService.convertResponseToGuideMeFormData(data.objectList[0]);
         }
@@ -208,24 +208,24 @@ export class DashboardComponent implements OnInit {
     this.getInvestmentsSummary();
     this.investmentAccountService.deactivateReassess();
     const toastMessage = this.comprehensiveService.getToastMessage();
-    if(toastMessage) {
+    if (toastMessage) {
       this.showCopyToast();
     }
   }
- 
+
 
   getReferralCodeData() {
-    this.signUpService.getReferralCodeData().subscribe((data) => {      
+    this.signUpService.getReferralCodeData().subscribe((data) => {
       this.getReferralInfo = data.objectList;
-      this.cardCategory= this.getRefereeInfo(this.getReferralInfo);
+      this.cardCategory = this.getRefereeInfo(this.getReferralInfo);
     });
   }
 
-  getRefereeInfo(refereeInfo){
+  getRefereeInfo(refereeInfo) {
     if (refereeInfo && refereeInfo.referralVoucherList) {
       const investment = this.findCategory(refereeInfo.referralVoucherList, SIGN_UP_CONFIG.REFEREE_REWARDS.INVESTMENT);
       const insurance = this.findCategory(refereeInfo.referralVoucherList, SIGN_UP_CONFIG.REFEREE_REWARDS.INSURANCE);
-      const comprehensive = this.findCategory(refereeInfo.referralVoucherList,  SIGN_UP_CONFIG.REFEREE_REWARDS.CFP);
+      const comprehensive = this.findCategory(refereeInfo.referralVoucherList, SIGN_UP_CONFIG.REFEREE_REWARDS.CFP);
       return {
         investment: investment,
         insurance: insurance,
@@ -240,16 +240,16 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  findCategory(elementList, category) {   
+  findCategory(elementList, category) {
     const filteredData = elementList.filter(
       (element) => element.category.toUpperCase() === category.toUpperCase());
-    if(filteredData && filteredData[0]) {
+    if (filteredData && filteredData[0]) {
       return filteredData;
     } else {
       return [];
     }
   }
-  
+
   loadOptionListCollection() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.investmentAccountService.setOptionList(data.objectList);
@@ -521,10 +521,10 @@ export class DashboardComponent implements OnInit {
       'DASHBOARD.INVESTMENT.CASH_ACCOUNT_BALANCE_MESSAGE'
     );
   }
-  openRefereeModal(){
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.REFER_REDIRECT+'/'+SIGN_UP_CONFIG.REFEREE_REWARDS.DASHBOARD],{ skipLocationChange: true });
+  openRefereeModal() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.REFER_REDIRECT + '/' + SIGN_UP_CONFIG.REFEREE_REWARDS.DASHBOARD], { skipLocationChange: true });
   }
-  
+
   showCopyToast() {
     this.showFixedToastMessage = true;
     this.hideToastMessage();
@@ -532,7 +532,7 @@ export class DashboardComponent implements OnInit {
 
   hideToastMessage() {
     setTimeout(() => {
-      this.showFixedToastMessage = false; 
+      this.showFixedToastMessage = false;
       this.comprehensiveService.setToastMessage(false);
     }, 3000);
   }

@@ -1,19 +1,19 @@
 <div class="comprehensive hidden-sm-md">
-    <!--Step indicator-->
-    <div class="step-indicator-wrapper">
-      <div class="step-indicator-container">
-        <app-step-indicator [count]="stepIndicatorCount" [activeStepIndex]="0"></app-step-indicator>
-      </div>
+  <!--Step indicator-->
+  <div class="step-indicator-wrapper">
+    <div class="step-indicator-container">
+      <app-step-indicator [count]="stepIndicatorCount" [activeStepIndex]="0"></app-step-indicator>
     </div>
-    <!--Step indicator /-->
+  </div>
+  <!--Step indicator /-->
 </div>
 <!--Container fluid-->
 <div class="container-fluid max-width--1024 comprehensive">
   <!--Step indicator-->
   <div class="step-indicator-container hidden-lg">
-      <app-step-indicator [count]="stepIndicatorCount" [activeStepIndex]="0"></app-step-indicator>
-    </div>
-    <!--Step indicator /-->
+    <app-step-indicator [count]="stepIndicatorCount" [activeStepIndex]="0"></app-step-indicator>
+  </div>
+  <!--Step indicator /-->
   <!--Page sub-heading-->
   <div class="comprehensive__page-sub-heading mt30">{{'CMP.DEPENDANT_SELECTION.DEPENDANTS'|translate}}</div>
   <!--Page sub-heading /-->
@@ -25,7 +25,7 @@
     <!--Formgroup single col-->
     <div class="form-group-single-column  flex-col">
       <!--Form label-->
-      <div  class="checkbox-button one-label">
+      <div class="checkbox-button one-label">
         <input id="dependantYesInput" name="dependantSelection" formControlName="dependantSelection" type="radio"
           [value]=true class="field radio" appComprehensiveViewMode="{{viewMode}}" mode=1>
         <label id="dependantYesLabel" for="dependantYesInput">
@@ -106,7 +106,7 @@
             </div>
           </div>
         </div>
-      </div>   
+      </div>
     </div>
 
     <!--Formgroup single col /-->

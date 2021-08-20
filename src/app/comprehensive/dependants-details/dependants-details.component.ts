@@ -17,7 +17,7 @@ import { ConfigService } from './../../config/config.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
-import { IDependantDetail, IMySummaryModal, IdependentsSummaryList } from './../comprehensive-types';
+import { IDependantDetail, IMySummaryModal, IDependantSummaryList } from './../comprehensive-types';
 import { ComprehensiveService } from './../comprehensive.service';
 import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -49,7 +49,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   summaryRouterFlag: boolean;
   routerEnabled = false;
   viewMode: boolean;
-  houseHold: IdependentsSummaryList;
+  houseHold: IDependantSummaryList;
   minDate: any;
   maxDate: any;
   saveData: string;
@@ -177,9 +177,9 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       relationship: [thisDependant.relationship, [Validators.required]],
       gender: [thisDependant.gender, [Validators.required]],
       dateOfBirth: [this.parserFormatter.parse(thisDependant.dateOfBirth), [Validators.required]],
-      nation: [thisDependant.nation, [Validators.required]], 
-      yearsNeeded: [thisDependant.yearsNeeded ? thisDependant.yearsNeeded :'0', [Validators.required]],
-       supportAmount: [thisDependant.supportAmount ? thisDependant.supportAmount :'0', [Validators.required]]
+      nation: [thisDependant.nation, [Validators.required]],
+      yearsNeeded: [thisDependant.yearsNeeded ? thisDependant.yearsNeeded : '0', [Validators.required]],
+      supportAmount: [thisDependant.supportAmount ? thisDependant.supportAmount : '0', [Validators.required]]
     });
   }
 
@@ -227,13 +227,13 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
           form.value.dependentMappingList[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
         });
         if (!form.pristine) {
-          this.hasDependant = form.value.dependentMappingList.length > 0; 
+          this.hasDependant = form.value.dependentMappingList.length > 0;
           this.houseHold = this.comprehensiveService.gethouseHoldDetails();
 
           form.value.hasDependents = this.hasDependant;
           form.value.noOfHouseholdMembers = this.houseHold.noOfHouseholdMembers;
           form.value.houseHoldIncome = this.houseHold.houseHoldIncome;
-          form.value.saveDependentInfo =  true;
+          form.value.saveDependentInfo = true;
           form.value.enquiryId = this.comprehensiveService.getEnquiryId();
           this.loaderService.showLoader({ title: this.saveData });
           this.comprehensiveApiService.addDependents(form.value).subscribe(((data: any) => {
@@ -242,11 +242,11 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
             this.comprehensiveService.clearEndowmentPlan();
             this.comprehensiveService.setEndowment(null);
             if (this.comprehensiveService.getMySteps() === 0
-            && this.comprehensiveService.getMySubSteps() < 2) {
-            this.comprehensiveService.setStepCompletion(0, 2).subscribe((data1: any) => {
-              this.loaderService.hideLoader();
-              this.goToNextPage();
-            });
+              && this.comprehensiveService.getMySubSteps() < 2) {
+              this.comprehensiveService.setStepCompletion(0, 2).subscribe((data1: any) => {
+                this.loaderService.hideLoader();
+                this.goToNextPage();
+              });
             } else {
               this.loaderService.hideLoader();
               this.goToNextPage();
@@ -321,7 +321,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
       const dependentName = event.target.innerText;
       if (dependentName.length >= 100) {
         const dependentNameList = dependentName.substring(0, 100);
-        
+
         this.myDependantForm.controls['dependentMappingList']['controls'][arr[1]].controls.name.setValue(dependentNameList);
         this.myDependantForm.controls['dependentMappingList']['controls'][arr[1]].markAsDirty();
         const el = document.querySelector("#" + id);

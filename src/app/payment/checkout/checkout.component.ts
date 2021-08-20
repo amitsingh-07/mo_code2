@@ -107,7 +107,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.navbarService.unsubscribeBackPress();
     this.navbarService.unsubscribeMenuItemClick();
-    this.navbarService.setPaymentLockIcon(false);    
+    this.navbarService.setPaymentLockIcon(false);
     if (this.promoSubscription) {
       this.promoSubscription.unsubscribe();
     }
@@ -258,14 +258,14 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     });
   }
 
-  getCheckoutDetails(promoCode, isRemoved: boolean) {  
+  getCheckoutDetails(promoCode, isRemoved: boolean) {
     this.loaderService.showLoader({ title: this.loading, autoHide: false });
     const payload = { comprehensivePromoCodeToken: promoCode, promoCodeCat: COMPREHENSIVE_CONST.PROMO_CODE.TYPE, isRemoved: isRemoved, promoSubCategory: this.isCorporate ? COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_ADVISOR : COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_REPORT };
     this.paymentService.getPaymentCheckoutCfpDetails(payload).subscribe((data: any) => {
       this.loaderService.hideLoaderForced();
       if (data && data.objectList) {
         const checkOutData = data.objectList;
-        this.gstPercentLabel = { gstPercent: checkOutData.pricingDetails.gstPercentage};
+        this.gstPercentLabel = { gstPercent: checkOutData.pricingDetails.gstPercentage };
         this.totalAmount = checkOutData.pricingDetails.totalAmount;
         this.paymentAmount = checkOutData.pricingDetails.payableAmount;
         this.reductionAmount = checkOutData.pricingDetails.discountAmount;
@@ -294,12 +294,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
         } else if ((this.isCorporate && advisorPaymentStatus === null && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) || (!this.isCorporate && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW)) {
           this.promoSubscription = this.navbarService.getCpfPromoCodeObservable.subscribe((promoCode) => {
-            if (promoCode) {  
+            if (promoCode) {
               this.getCheckoutDetails(promoCode, false);
-            } else if(this.authService.isSignedUser()){  
-              if (promoCode === null){  
-                this.getCheckoutDetails(null, false); 
-              } else {   
+            } else if (this.authService.isSignedUser()) {
+              if (promoCode === null) {
+                this.getCheckoutDetails(null, false);
+              } else {
                 this.getCheckoutDetails(promoCode, true);
               }
             }
@@ -328,17 +328,17 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.loaderService.showLoader({ title: this.loading, autoHide: false });
         if (this.isCorporate) {
           this.getCheckoutSpeakToAdvisor();
-         } else {
+        } else {
           this.initiateReport();
-         }       
+        }
       } else {
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + currentStep]);
       }
     } else {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT]);
     }
-   }
-  
+  }
+
 
   initiateReport() {
     const enquiryId = { enquiryId: this.comprehensiveService.getEnquiryId(), promoCode: this.cfpPromoCode, waivedPromo: this.isWaivedPromo };
@@ -387,18 +387,18 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   hideToastMessage() {
     setTimeout(() => {
-      this.showFixedToastMessage = false;      
+      this.showFixedToastMessage = false;
       this.promoCodeService.tostMessage.next(false);
     }, 3000);
   }
 
-  goToPromoCode(e) {  
-    this.modal.open(PromoCodeModalComponent, { centered: true });   
-      e.preventDefault();
-      e.stopPropagation();    
+  goToPromoCode(e) {
+    this.modal.open(PromoCodeModalComponent, { centered: true });
+    e.preventDefault();
+    e.stopPropagation();
   }
 
-  getCheckoutSpeakToAdvisor() {   
+  getCheckoutSpeakToAdvisor() {
     const payload = {
       promoCode: this.cfpPromoCode,
       payableAmount: this.paymentAmount,
@@ -420,7 +420,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
         } else {
           this.goToPaymentInstructions();
-        }     
+        }
       }
     }, (err) => {
       this.loaderService.hideLoaderForced();

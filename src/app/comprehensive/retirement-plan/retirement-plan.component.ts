@@ -22,6 +22,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
 import { Subscription } from 'rxjs';
+
 import { ConfigService } from '../../config/config.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
@@ -109,7 +110,7 @@ export class RetirementPlanComponent
       this.comprehensiveService.getMyProfile().dateOfBirth,
       new Date()
     );
-    this.userAge = ++ this.userAge;
+    this.userAge = ++this.userAge;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -183,7 +184,7 @@ export class RetirementPlanComponent
     this.renderer.addClass(containerRef, 'lastSliderPips');*/
     if (this.sliderValue >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE && this.sliderValue < this.userAge) {
       //this.sliderValue = Math.ceil(this.userAge / 5) * 5;
-      this.sliderValue =  this.userAge;
+      this.sliderValue = this.userAge;
       this.ciMultiplierSlider.writeValue(this.sliderValue);
     } else {
       this.ciMultiplierSlider.writeValue(this.sliderValue);
@@ -230,9 +231,9 @@ export class RetirementPlanComponent
 
     this.retirementPlanForm = this.formBuilder.group({
       retirementAge: [this.sliderValue],
-      haveOtherSourceRetirementIncome: [( this.retirementDetails
-          ? this.retirementDetails.haveOtherSourceRetirementIncome
-          : '')],
+      haveOtherSourceRetirementIncome: [(this.retirementDetails
+        ? this.retirementDetails.haveOtherSourceRetirementIncome
+        : '')],
       retirementIncomeSet: this.formBuilder.array(retirementIncomeSet),
       lumpSumBenefitSet: this.formBuilder.array(lumpSumBenefitSet)
     });
@@ -396,7 +397,7 @@ export class RetirementPlanComponent
       this.summaryModalDetails = {
         setTemplateModal: 4,
         contentObj: this.retireModal,
-        nextPageURL: COMPREHENSIVE_ROUTE_PATHS.STEPS+'/5',
+        nextPageURL: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/5',
         routerEnabled: this.summaryRouterFlag
       };
       this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
@@ -490,6 +491,6 @@ export class RetirementPlanComponent
     }
   }
   routerPath() {
-      this.showSummaryModal();
+    this.showSummaryModal();
   }
 }
