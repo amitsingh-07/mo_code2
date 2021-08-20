@@ -1,8 +1,7 @@
-import { YearsNeededComponent } from './years-needed/years-needed.component';
 import { Component, OnDestroy, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbDateParserFormatter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
@@ -20,7 +19,7 @@ import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
 import { IDependantDetail, IMySummaryModal, IDependantSummaryList } from './../comprehensive-types';
 import { ComprehensiveService } from './../comprehensive.service';
 import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { YearsNeededComponent } from './years-needed/years-needed.component';
 
 @Component({
   selector: 'app-dependants-details',
