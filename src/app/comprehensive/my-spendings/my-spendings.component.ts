@@ -242,7 +242,7 @@ export class MySpendingsComponent implements OnInit, OnDestroy {
       if (this.validateSpendings(form)) {
         const spendingsData = this.comprehensiveService.getComprehensiveSummary().comprehensiveSpending;
         if (!form.pristine || Util.isEmptyOrNull(spendingsData) ||
-        this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT) {
+          this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT) {
           this.spendingDetails = form.value;
           this.spendingDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_SPENDING.API_TOTAL_BUCKET_KEY] = this.totalSpending;
           this.spendingDetails.enquiryId = this.comprehensiveService.getEnquiryId();
