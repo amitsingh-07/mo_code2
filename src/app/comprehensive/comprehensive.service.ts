@@ -2743,6 +2743,10 @@ export class ComprehensiveService {
    getAdvisorStatus() {
     return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.advisorPaymentStatus;
   }
+
+  getSkipProfileStatus() {
+    return this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileSkipped;
+  }
   
   setToastMessage(toastMessage) {
     this.comprehensiveFormData.toastMessage = toastMessage;

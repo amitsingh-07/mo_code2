@@ -271,7 +271,7 @@ export const COMPREHENSIVE_CONST = {
     },
     VERSION_TYPE: {
         LITE: 'Comprehensive-Lite',
-        FULL: 'CFP_PLUS'
+        FULL: 'comprehensive-plus'
     },
     ROLES: {
         ROLE_COMPRE_LITE: 'ROLE_COMPRE_LITE',
@@ -304,7 +304,6 @@ export const COMPREHENSIVE_CONST = {
     API_SOURCE: "Robo3",
     NTUC_PROMO_DATE: "2021-06-01T00:00:00.000+08:00",
     REVIEW_INPUTS: "Review Inputs",
-    CFP_PLUS :"CFP_PLUS",
     PROGRESS_TRACKER: {
         STEPS: {
             RISK_PROFILE: { // step: 4

@@ -37,6 +37,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   isCorporateUser: boolean;
   isFirstTimePublicUser: boolean;
   adviserPaymentStatus: any;
+  skipProfileStatus: any;
   isFirstTimeCorporateUser = true;
   isSpeakToAdvisor: boolean;
   isEditJourney: boolean;
@@ -58,6 +59,13 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     private loaderService: LoaderService,
     private modal: NgbModal
   ) {
+    this.isCorporateUser = comprehensiveService.isCorporateRole();
+    this.adviserPaymentStatus = comprehensiveService.getAdvisorStatus();
+    this.skipProfileStatus = comprehensiveService.getSkipProfileStatus();
+    const reportStatus = this.comprehensiveService.getReportStatus();
+    if (this.isCorporateUser && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY && router.url.indexOf(COMPREHENSIVE_ROUTES.SPEAK_TO_ADVISOR) < 0) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
+    }
     this.pageId = this.activatedRoute.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
       this.isPaymentEnabled = config.paymentEnabled;
@@ -74,18 +82,14 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
       .subscribeBackPress()
       .subscribe((event) => {
         if (event && event !== "") {
-          const reportStatus = this.comprehensiveService.getReportStatus();
           if (this.isCorporateUser && reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
           } else {
-            this.router.navigate([
-              COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + "/4",
-            ]);
+            const url = this.skipProfileStatus ? COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + "/1" : COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + "/4";
+            this.router.navigate([url]);
           }
-        }
+        } 
       });
-    this.isCorporateUser = comprehensiveService.isCorporateRole();
-    this.adviserPaymentStatus = comprehensiveService.getAdvisorStatus();
   }
 
   ngOnInit() {
@@ -267,11 +271,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
 
   setPublicUserFlags(reportStatus: any) {
     if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
-      if (this.isPaymentEnabled) {
-        this.isFirstTimePublicUser = true;
-      } else {
-        this.isFirstTimePublicUser = false;
-      }
+      this.isPaymentEnabled ? this.isFirstTimePublicUser = true : this.isFirstTimePublicUser = false;
     } else {
       this.isFirstTimePublicUser = false;
     }
@@ -314,7 +314,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
                 summaryData.objectList[0].comprehensiveEnquiry.reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.EDIT;
                 this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
                 this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.EDIT);
-                this.comprehensiveService.setViewableMode(true);
+                this.comprehensiveService.setViewableMode(false);
                 this.loaderService.hideLoader();
                 this.comprehensiveService.setRiskQuestions().subscribe((riskQues) => {
                   this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
