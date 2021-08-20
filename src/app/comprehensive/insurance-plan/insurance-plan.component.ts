@@ -5,7 +5,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { ConfigService } from '../../config/config.service';
-import { ApiService } from '../../shared/http/api.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
@@ -15,6 +14,7 @@ import { ProgressTrackerService } from './../../shared/modal/progress-tracker/pr
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
 import { Util } from '../../shared/utils/util';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 
 
 @Component({
@@ -45,12 +45,13 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   careShieldTitle: string;
   careShieldMessage: string;
   userAgeCriteria: any;
+  saveData: any;
   constructor(
     private navbarService: NavbarService, private progressService: ProgressTrackerService,
     private translate: TranslateService,
     private formBuilder: FormBuilder, private configService: ConfigService, private router: Router,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-    private age: AboutAge, private route: ActivatedRoute, private apiService: ApiService) {
+    private age: AboutAge, private route: ActivatedRoute, private loaderService: LoaderService) {
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP3;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -64,6 +65,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         this.insurancePlanningNonDependantModal = this.translate.instant('CMP.MODAL.INSURANCE_PLANNING_MODAL.NO_DEPENDANTS');
         this.careShieldTitle = this.translate.instant('CARE_SHIELD_TITLE');
         this.careShieldMessage = this.translate.instant('CARE_SHIELD_MESSAGE');
+        this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
         if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
           this.routerEnabled = !this.summaryRouterFlag;
           this.showSummaryModal();
@@ -270,7 +272,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
 
         }
 
-
+        this.loaderService.showLoader({ title: this.saveData });
         this.comprehensiveApiService.saveInsurancePlanning(form.value).subscribe((data) => {
           if (form.value.haveCPFDependentsProtectionScheme !== 1) {
             form.value.lifeProtectionAmount = this.userAgeCriteria;
@@ -283,9 +285,11 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
           if (this.comprehensiveService.getMySteps() === 2
             && this.comprehensiveService.getMySubSteps() < 1) {
             this.comprehensiveService.setStepCompletion(2, 1).subscribe((data1: any) => {
+              this.loaderService.hideLoader();
               this.showSummaryModal();
             });
           } else {
+            this.loaderService.hideLoader();
             this.showSummaryModal();
           }
         });
@@ -309,8 +313,10 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         };
         this.comprehensiveService.openSummaryPopUpModal(summaryModalDetails);
       } else {
+        this.loaderService.showLoader({ title: this.saveData });
         this.comprehensiveApiService.getInsurancePlanning().subscribe(
           (data: any) => {
+            this.loaderService.hideLoader();
             if (data && data[fireProofingDetails.gender][fireProofingDetails.age]) {
               const termLifeDetails = data[fireProofingDetails.gender][fireProofingDetails.age];
               const Regexp = new RegExp('[,]', 'g');
