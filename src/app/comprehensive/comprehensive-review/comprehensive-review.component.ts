@@ -245,7 +245,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   speakToAdvisor() {
     const ref = this.modal.open(ModelWithButtonComponent, {
       centered: true,
-      windowClass: "speak-to-adivser-modal",
+      windowClass: "speak-to-adviser-modal",
     });
     ref.componentInstance.errorTitle = this.translate.instant(
       "COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.TITLE"
@@ -291,7 +291,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
   }
 
   speakToAdviserModal() {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'speak-to-adivser-modal' });
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'speak-to-adviser-modal' });
     ref.componentInstance.errorTitle = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.TITLE');
     ref.componentInstance.errorMessageHTML = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.DESC');
     ref.componentInstance.primaryActionLabel = this.translate.instant('COMPREHENSIVE.DASHBOARD.ADVISER_MODAL.BTN_LBL');

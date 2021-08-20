@@ -149,7 +149,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
         const liabilitiesData = this.comprehensiveService.getComprehensiveSummary().comprehensiveLiabilities;
 
         if (!form.pristine || Util.isEmptyOrNull(liabilitiesData) ||
-        this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT) {
+          this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT) {
           if (!form.controls.homeLoanOutstandingAmount.pristine) {
             this.comprehensiveService.setHomeLoanChanges(true);
           }
@@ -235,6 +235,6 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
     }
   }
   routerPath() {
-      this.showSummaryModal();
+    this.showSummaryModal();
   }
 }

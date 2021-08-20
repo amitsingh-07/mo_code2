@@ -2,9 +2,9 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { ConfigService } from './../../config/config.service';
-
 import { Subscription } from 'rxjs';
+
+import { ConfigService } from './../../config/config.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -36,7 +36,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
   isRiskProfileAnswer: boolean;
   riskProfileAnswers: any;
   viewMode: boolean;
-  skipRiskProfile: boolean = false;  
+  skipRiskProfile: boolean = false;
 
   constructor(
     public navbarService: NavbarService,
@@ -53,19 +53,19 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
       this.translate.get(config.common).subscribe((result: string) => {
-          // meta tag and title
-          this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_5_TITLE');
-          this.setPageTitle(this.pageTitle);
+        // meta tag and title
+        this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_5_TITLE');
+        this.setPageTitle(this.pageTitle);
       });
-  });
-   
+    });
+
     this.viewMode = this.comprehensiveService.getViewableMode();
     const self = this;
     if (route.snapshot.data[0]) {
       self.questionIndex = +route.snapshot.data[0]['param'];
       this.riskAssessmentForm = new FormGroup({
         riskProfileCheckboxFlag: new FormControl(false),
-        questSelOption: new FormControl('',[Validators.required])
+        questSelOption: new FormControl('', [Validators.required])
       });
       if (!self.questionsList.length) {
         self.getQuestions();
@@ -104,10 +104,10 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
     });
   }
 
-  setRiskProfileFlag(){
+  setRiskProfileFlag() {
     this.skipRiskProfile = this.comprehensiveService.getRiskProfileFlag();
     this.riskAssessmentForm.controls.riskProfileCheckboxFlag.setValue(this.skipRiskProfile);
-    this.onCheckboxChange();    
+    this.onCheckboxChange();
   }
 
   getQuestions() {
@@ -134,7 +134,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       return true;
     }
   }
-  
+
   goToNext(form) {
     if (this.save(form)) {
       this.comprehensiveService.setRiskAssessment(form.controls.riskProfileCheckboxFlag.value,
@@ -143,7 +143,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       );
 
       //SKIP PROFILE FLAG save
-      this.comprehensiveService.saveSkipRiskProfile().subscribe(() => {});
+      this.comprehensiveService.saveSkipRiskProfile().subscribe(() => { });
 
       if (form.controls.riskProfileCheckboxFlag.value) {
         this.comprehensiveService.setStepCompletion(4, this.questionIndex).subscribe(() => {
@@ -194,12 +194,12 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
   }
 
   onCheckboxChange() {
-    if(this.riskAssessmentForm.get('riskProfileCheckboxFlag').value) {
-      this.skipRiskProfile = true;             
+    if (this.riskAssessmentForm.get('riskProfileCheckboxFlag').value) {
+      this.skipRiskProfile = true;
       this.riskAssessmentForm.controls['questSelOption'].clearValidators();
-    } else{
-      this.skipRiskProfile = false; 
-      this.riskAssessmentForm.controls['questSelOption'].setValidators([Validators.required]);  
+    } else {
+      this.skipRiskProfile = false;
+      this.riskAssessmentForm.controls['questSelOption'].setValidators([Validators.required]);
     }
     this.riskAssessmentForm.controls['questSelOption'].updateValueAndValidity();
   }

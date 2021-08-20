@@ -6,9 +6,9 @@
   </div>
 </div>
 <div class="container-fluid max-width--1024 comprehensive">
-    <div class="step-indicator-container hidden-lg">
-        <app-step-indicator [count]="4" [activeStepIndex]="questionIndex-1" [mode]="1"></app-step-indicator>
-      </div>
+  <div class="step-indicator-container hidden-lg">
+    <app-step-indicator [count]="4" [activeStepIndex]="questionIndex-1" [mode]="1"></app-step-indicator>
+  </div>
   <div *ngIf="questionIndex === 1">
     <div class="comprehensive__page-sub-heading mt30"> {{ 'CMP.RISK_PROFILE.PAGE_HEADING' | translate}}</div>
     <div class="comprehensive__page-content">{{ 'CMP.RISK_PROFILE.PAGE_SUB_HEADING' | translate}}</div>
@@ -16,15 +16,16 @@
       <img src="assets/images/investment-account/qn-1.svg" width="244" height="239">
     </div>
     <div class="risk-profile-message-box"><span><img
-      src="assets/images/comprehensive/summary-page/img_smiley.svg" /></span><span>{{'CMP.RISK_PROFILE.PAGE_NOTES' | translate}}</span></div>
+          src="assets/images/comprehensive/summary-page/img_smiley.svg" /></span><span>{{'CMP.RISK_PROFILE.PAGE_NOTES' | translate}}</span>
+    </div>
   </div>
 
   <div *ngIf="currentQuestion">
     <form name="riskAssessmentForm" [formGroup]="riskAssessmentForm" id="riskAssessmentForm">
       <div *ngIf="questionIndex==1" class="checkbox-button one-label mb10">
-        <input appComprehensiveViewMode="{{viewMode}}" mode=1  id="riskProfileCheckboxFlag" name="riskProfileCheckboxFlag" formControlName="riskProfileCheckboxFlag"
-          type="checkbox" class="field checkbox" (change)="onCheckboxChange()"
-          value="I want to skip risk profile">
+        <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="riskProfileCheckboxFlag"
+          name="riskProfileCheckboxFlag" formControlName="riskProfileCheckboxFlag" type="checkbox"
+          class="field checkbox" (change)="onCheckboxChange()" value="I want to skip risk profile">
         <label for="riskProfileCheckboxFlag">
           <div class="title">{{ 'CMP.RISK_PROFILE.SKIP_RISK_PROFILE' | translate }}</div>
         </label>
@@ -33,13 +34,14 @@
         <div class="question-title mb20 mt30" id="risk-assessment_question_lbl">
           {{currentQuestion.description}}
         </div>
-    
+
         <!-- NORMAL CASE -->
         <div class="row" *ngIf="!isSpecialCase">
           <div class="col-12" *ngFor="let option of currentQuestion.options; let i = index">
             <div class="checkbox-button one-label">
-              <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="risk-assessment_option{{i+1}}_radio" name="questSelOption" formControlName="questSelOption"
-                type="radio" class="field radio" [value]="option.questionOptionId" tabindex="{{i+1}}">
+              <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="risk-assessment_option{{i+1}}_radio"
+                name="questSelOption" formControlName="questSelOption" type="radio" class="field radio"
+                [value]="option.questionOptionId" tabindex="{{i+1}}">
               <label for="risk-assessment_option{{i+1}}_radio" id="riskAssessLbl_{{i}}">
                 <div><span id="risk-assessment_option-text{{i+1}}_lbl" class="input-label-grey">{{option.text}}</span>
                 </div>
@@ -64,8 +66,9 @@
           </div>
           <div class="table-row" *ngFor="let option of currentQuestion.options; let i = index">
             <div class="table-cell">
-              <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="risk-assessment_option{{i+1}}_radio" name="questSelOption" formControlName="questSelOption"
-                type="radio" class="field radio" [value]="option.questionOptionId"  tabindex="{{i+1}}">
+              <input appComprehensiveViewMode="{{viewMode}}" mode=1 id="risk-assessment_option{{i+1}}_radio"
+                name="questSelOption" formControlName="questSelOption" type="radio" class="field radio"
+                [value]="option.questionOptionId" tabindex="{{i+1}}">
               <label for="risk-assessment_option{{i+1}}_radio" id="riskAssessLbl_{{i}}">
                 <div><span id="risk-assessment_option-text{{i+1}}_lbl" class="input-label-grey">{{option.text}}</span>
                 </div>
@@ -76,8 +79,10 @@
           </div>
         </div>
       </div>
-      <div class="footer-cta"> <button type="button"  [disabled]="!riskAssessmentForm.valid"
-          (click)="goToNext(riskAssessmentForm)" class="btn btn-primary width100" id="prfBtn1"> {{(!viewMode) ? ('CMP.RISK_PROFILE.FOOTER_BTN_TEXT' | translate) : ('CMP.FORM_LABEL.NEXT'|translate)}}</button></div>
+      <div class="footer-cta"> <button type="button" [disabled]="!riskAssessmentForm.valid"
+          (click)="goToNext(riskAssessmentForm)" class="btn btn-primary width100" id="prfBtn1">
+          {{(!viewMode) ? ('CMP.RISK_PROFILE.FOOTER_BTN_TEXT' | translate) : ('CMP.FORM_LABEL.NEXT'|translate)}}</button>
+      </div>
     </form>
   </div>
 </div>

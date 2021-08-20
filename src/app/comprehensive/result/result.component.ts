@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+
 import { ConfigService } from '../../config/config.service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
