@@ -7,7 +7,7 @@ import { LoaderService } from './../../shared/components/loader/loader.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { IMySummaryModal, IdependentsSummaryList } from '../comprehensive-types';
+import { IMySummaryModal, IDependantSummaryList } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
@@ -34,7 +34,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   routerEnabled = false;
   viewMode: boolean;
   submitted: any;
-  householdDetails: IdependentsSummaryList;
+  householdDetails: IDependantSummaryList;
   stepIndicatorCount:number;
   constructor(
     private cmpService: ComprehensiveService, private progressService: ProgressTrackerService,

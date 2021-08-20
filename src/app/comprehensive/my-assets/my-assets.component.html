@@ -80,7 +80,8 @@
             <div class="form-group-with-bg--header-label">{{ 'CMP.MY_ASSETS.YOUR_CPF' | translate}}<div
                 class="form-group-with-bg--header-sub-label"></div>
             </div>
-            <span (click)="editCPFFields()" *ngIf="!viewMode && showEditIcon" class="edit-icon"><img src="assets/images/comprehensive/edit-icon-pencil.svg" /></span>
+            <span (click)="editCPFFields()" *ngIf="!viewMode && showEditIcon" class="edit-icon"><img
+                src="assets/images/comprehensive/edit-icon-pencil.svg" /></span>
           </div>
         </div>
       </div>
@@ -146,8 +147,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="!viewMode" class="auto-fill-cpf" appComprehensiveViewMode="{{viewMode}}"
-          mode=1>
+        <div *ngIf="!viewMode" class="auto-fill-cpf" appComprehensiveViewMode="{{viewMode}}" mode=1>
           <img class="auto-fill-logo" src="assets/images/retrieve-singpass-logo.svg" (click)="openModal()">
         </div>
 
@@ -199,7 +199,8 @@
 
         <div class="flex-row" *ngIf="showRetirementAccount">
           <div class="flex-col-5">
-            <div class="form-group-with-bg--content-label retirement-sum" for="name">{{'CMP.MY_ASSETS.SET_RETIREMENT_SUM'| translate}}
+            <div class="form-group-with-bg--content-label retirement-sum" for="name">
+              {{'CMP.MY_ASSETS.SET_RETIREMENT_SUM'| translate}}
               <span class="help-icon"
                 (click)="showToolTipModal('SET_RETIREMENT_SUM_TITLE','SET_RETIREMENT_SUM_MESSAGE')"></span>
             </div>

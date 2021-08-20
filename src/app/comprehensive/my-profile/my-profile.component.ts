@@ -1,4 +1,3 @@
-import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { Component, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -58,7 +57,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     @HostListener('window:popstate', ['$event'])
     onPopState(event) {
-      this.redirectToDashboard();
+        this.redirectToDashboard();
     }
 
     public onCloseClick(): void {
@@ -81,8 +80,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         private parserFormatter: NgbDateParserFormatter,
         private comprehensiveApiService: ComprehensiveApiService,
         private progressService: ProgressTrackerService,
-        private aboutAge: AboutAge,
-        private authService: AuthenticationService
+        private aboutAge: AboutAge
     ) {
         const today: Date = new Date();
         this.minDate = {
@@ -113,7 +111,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     ngOnInit() {
         this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-        this.loaderService.showLoader({ title: 'Fetching Data' });        
+        this.loaderService.showLoader({ title: 'Fetching Data' });
         this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
         this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
             if (data && data.objectList[0]) {
@@ -121,7 +119,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                 this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
                 this.getComprehensiveData = this.comprehensiveService.getComprehensiveEnquiry().type;
                 if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus
-                === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+                    === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
                 }
                 this.loaderService.hideLoader();
                 this.checkRedirect();
@@ -222,23 +220,23 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                     this.comprehensiveApiService.savePersonalDetails(this.userDetails).subscribe((data) => {
                         this.comprehensiveService.setMyProfile(this.userDetails);
                         if (this.comprehensiveService.getReportStatus() === null) {
-                            const payload = {enquiryId: this.userDetails.enquiryId, reportStatus : COMPREHENSIVE_CONST.REPORT_STATUS.NEW};
+                            const payload = { enquiryId: this.userDetails.enquiryId, reportStatus: COMPREHENSIVE_CONST.REPORT_STATUS.NEW };
                             this.comprehensiveApiService.updateComprehensiveReportStatus(payload).subscribe((reportRes: any) => {
                                 if (reportRes) {
                                     this.comprehensiveApiService.getComprehensiveSummary().subscribe((resData: any) => {
                                         if (resData && resData.objectList[0]) {
-                                            this.comprehensiveService.setComprehensiveSummary(resData.objectList[0]);                                            
+                                            this.comprehensiveService.setComprehensiveSummary(resData.objectList[0]);
                                             this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.NEW);
                                             this.loaderService.hideLoader();
                                             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
                                         }
                                     });
                                 }
-                                });
+                            });
                         } else {
                             this.comprehensiveApiService.getComprehensiveSummary().subscribe((resData: any) => {
                                 if (resData && resData.objectList[0]) {
-                                    this.comprehensiveService.setComprehensiveSummary(resData.objectList[0]);     
+                                    this.comprehensiveService.setComprehensiveSummary(resData.objectList[0]);
                                     this.loaderService.hideLoader();
                                     this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/1']);
                                 }
@@ -275,7 +273,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         //COMPREHENSIVE_CONST.REPORT_STATUS.NEW
         if (this.comprehensiveService.getReportStatus() === null) {
             this.moGetStrdForm.markAsDirty();
-          }
+        }
         if (!form.valid) {
             Object.keys(form.controls).forEach((key) => {
                 form.get(key).markAsDirty();

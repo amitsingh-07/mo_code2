@@ -44,7 +44,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   liabilitiesDetails: IMyLiabilities;
   careShieldTitle: string;
   careShieldMessage: string;
-  userAgeCriteria:any;
+  userAgeCriteria: any;
   constructor(
     private navbarService: NavbarService, private progressService: ProgressTrackerService,
     private translate: TranslateService,
@@ -93,12 +93,12 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     if (userAge < COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT_AGE_SIXTY) {
       this.userAgeCriteria = COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT_AGE_LESS_THAN_SIXTY;
     }
-    else if(userAge >= COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT_AGE_SIXTY && userAge <= COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT_AGE_SIXTY_FIVE) {
+    else if (userAge >= COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT_AGE_SIXTY && userAge <= COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT_AGE_SIXTY_FIVE) {
       this.userAgeCriteria = COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT_AGE_SIXTY_TO_SIXTYFIVE;
     }
     else {
       this.userAgeCriteria = COMPREHENSIVE_CONST.INSURANCE_PLAN.LIFE_PROTECTION_AMOUNT_AGE_ABOVE_SIXTY_FIVE;
-   }
+    }
     this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
     this.buildInsuranceForm();
     const cmpSummary = this.comprehensiveService.getComprehensiveSummary();
@@ -259,8 +259,8 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
             form.value.shieldType = COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.CARE_SHIELD;
           } else {
             form.value.shieldType = COMPREHENSIVE_CONST.LONG_TERM_SHIELD_TYPE.ELDER_SHIELD;
-            form.value.longTermElderShieldAmount = (form.value.haveLongTermElderShield === 1 && form.value.longTermElderShieldAmount) ? form.value.longTermElderShieldAmount: 0;
-            form.value.otherLongTermCareInsuranceAmount = (form.value.haveLongTermElderShield === 1 && form.value.otherLongTermCareInsuranceAmount) ? form.value.otherLongTermCareInsuranceAmount: 0;
+            form.value.longTermElderShieldAmount = (form.value.haveLongTermElderShield === 1 && form.value.longTermElderShieldAmount) ? form.value.longTermElderShieldAmount : 0;
+            form.value.otherLongTermCareInsuranceAmount = (form.value.haveLongTermElderShield === 1 && form.value.otherLongTermCareInsuranceAmount) ? form.value.otherLongTermCareInsuranceAmount : 0;
           }
         } else {
           form.value.haveLongTermElderShield = null;
