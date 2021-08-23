@@ -310,6 +310,14 @@ app-dashboard {
                     font-size: 16px;
                     font-weight: normal;
                     cursor: pointer;
+                    width: 28px;
+                    height: 28px;
+                    img {
+                        margin-top: 0;
+                        margin-left: 0;
+                        width: 28px;
+                        height: 28px;
+                    }
                 }
             }
             .investment-widget {
