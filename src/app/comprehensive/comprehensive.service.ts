@@ -1271,7 +1271,7 @@ export class ComprehensiveService {
           : COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
       title: 'Number of Dependant(s)',
       value: noOfDependants,
-      completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 2)))
+      completed: ((enquiry.hasDependents !== null && enquiry.hasDependents !== false && this.validateSteps(0, 2)) || (enquiry.hasDependents !== null && this.validateSteps(0, 1)))
     });
 
     if ((enquiry.hasDependents === null || dependantData && dependantData.length > 0)) {
