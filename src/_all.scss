@@ -2254,6 +2254,14 @@ select:-webkit-autofill:focus {
       padding-left: 0;
       padding-right: 0;
     }
+    @include minPhabletmaxTablet {
+      top: 165px;
+      margin: -30px 0 0;
+    }
+    @include phablet {
+      margin-left: -75px;
+      top: 136px;
+    }
   }
   .delete-icon {
     background: url("./assets/images/comprehensive/delete-icon.svg");
@@ -2325,6 +2333,10 @@ select:-webkit-autofill:focus {
     @include allmobiles {
       width: 100%;
     }
+    @include minPhabletmaxTablet {
+      width: 100%;
+      left: 0;
+    }
   }
 
   .income-bucket-panel {
@@ -2371,7 +2383,11 @@ select:-webkit-autofill:focus {
     @extend .flex;
     @extend .space-btwn;
     align-items: center;
-}
+    @include minPhabletmaxTablet {
+      width: 100%;
+      left: 0;
+    }
+  }
   .slider-dark {
     .noUi-horizontal .noUi-handle {
       width: 30px !important;
