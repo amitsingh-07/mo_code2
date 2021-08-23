@@ -1271,7 +1271,7 @@ export class ComprehensiveService {
           : COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION,
       title: 'Number of Dependant(s)',
       value: noOfDependants,
-      completed: (enquiry.hasDependents !== null && (this.validateSteps(0, 2)))
+      completed: ((enquiry.hasDependents !== null && enquiry.hasDependents !== false && this.validateSteps(0, 2)) || (enquiry.hasDependents !== null && this.validateSteps(0, 1)))
     });
 
     if ((enquiry.hasDependents === null || dependantData && dependantData.length > 0)) {
@@ -1337,7 +1337,7 @@ export class ComprehensiveService {
         hidden: !this.hasChildDependant()
       });
 
-      if (enquiry.hasEndowments === '1' && this.validateSteps(0, 4)) {
+      if (enquiry.hasEndowments === '1') {
         subItemsArray.push({
           id: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE,
           path: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_PREFERENCE,
@@ -1345,6 +1345,7 @@ export class ComprehensiveService {
           value:
             prefsList.length === 0 || enquiry.hasEndowments !== '1' ? 'No' : '',
           completed:
+            this.validateSteps(0, 4) &&
             hasDependants &&
             hasEndowments &&
             eduPrefs &&
