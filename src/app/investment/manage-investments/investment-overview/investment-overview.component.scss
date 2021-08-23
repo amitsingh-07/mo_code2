@@ -112,6 +112,9 @@ app-investment-overview {
             font-size: 13px;
             letter-spacing: -0.12px;
             line-height: 28px;
+            @include iPhone11 {
+                line-height: 25px;
+            }
             color: $white-color;
             vertical-align: middle;
         }
