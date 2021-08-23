@@ -6,9 +6,9 @@
   </div>
 </div>
 <div class="container-fluid max-width--1024 comprehensive">
-    <div class="step-indicator-container hidden-lg" id="moDpdnt2StepIndctr">
-        <app-step-indicator [count]="6" [activeStepIndex]="2" [mode]="1"></app-step-indicator>
-      </div>
+  <div class="step-indicator-container hidden-lg" id="moDpdnt2StepIndctr">
+    <app-step-indicator [count]="6" [activeStepIndex]="2" [mode]="1"></app-step-indicator>
+  </div>
   <div class="flex space-btwn align-items-start rsp mt30">
     <div class="comprehensive__page-sub-heading pr10">{{'CMP.RSP.TITLE'|translate}}</div>
     <div>
@@ -26,7 +26,7 @@
         <section *ngIf="RSPForm.get('hasRegularSavings').value" class="rspSelectionList">
           <div formArrayName="comprehensiveRegularSavingsList" class="regularSavings" class="form-group-with-bg"
             *ngFor="let comprehensiveRegularSavingsList of RSPForm['controls'].comprehensiveRegularSavingsList['controls'] ; let i = index;">
-            <div class="form-group-with-bg" >
+            <div class="form-group-with-bg">
               <!--Form Header-->
               <div class="form-group-with-bg--header rsp-border-top pr0">
                 <div class="flex space-btwn">
@@ -130,7 +130,9 @@
         </label>
       </div>
       <div class="footer-cta">
-        <button type="button" [disabled]="!RSPForm.valid && RSPForm.get('hasRegularSavings').value !== true && RSPForm.get('hasRegularSavings').value !== false" (click)="goToNext(RSPForm)" class="btn btn-primary width100"
+        <button type="button"
+          [disabled]="!RSPForm.valid && RSPForm.get('hasRegularSavings').value !== true && RSPForm.get('hasRegularSavings').value !== false"
+          (click)="goToNext(RSPForm)" class="btn btn-primary width100"
           id="moDpdnt2BtnFooter">{{(!viewMode) ? ('CMP.FORM_LABEL.SAVE_AND_CONTINUE'|translate) : ('CMP.FORM_LABEL.NEXT'|translate)}}
         </button>
       </div>

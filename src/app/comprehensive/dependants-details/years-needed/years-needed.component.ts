@@ -17,13 +17,13 @@ export class YearsNeededComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.yearsNeeded = this.translate.instant('CMP.DEPENDANT_SELECTION.YEARS_NEEDED');
       this.profileType = this.translate.instant('CMP.DEPENDANT_SELECTION.PROFILE_TYPE');
-  });
-}
+    });
+  }
 
   ngOnInit() {
   }
   showMessage(value) {
-    this.selectedOption = value ;
+    this.selectedOption = value;
   }
 
 }

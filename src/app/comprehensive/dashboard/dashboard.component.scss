@@ -101,7 +101,7 @@
             background-color: $blue-stone-color;
             border-radius: 50%;
             display: flex;
-            float: right;
+            margin-left: auto;
         }
     }
     .hidden {
@@ -428,6 +428,9 @@
         &::-webkit-scrollbar {
             scroll-behavior: smooth;
             height: 6px;
+            @include allmobiles{
+                display: none;
+            }
           }
         &::-webkit-scrollbar-track {
             background: $border-light;

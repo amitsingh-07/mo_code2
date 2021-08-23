@@ -204,7 +204,6 @@ describe('DashboardComponent', () => {
     spyOn(appService, 'clearPromoCode');
     component.comprehensivePlanning=4;
 
-    spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
     component.setComprehensivePlan(true);
    
    

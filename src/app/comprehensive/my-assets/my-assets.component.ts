@@ -2,13 +2,12 @@ import { AboutAge } from './../../shared/utils/about-age.util';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { MyInfoService } from '../../shared/Services/my-info.service';
-import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_FORM_CONSTANTS } from '../comprehensive-form-constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
@@ -27,8 +26,7 @@ import { SIGN_UP_ROUTE_PATHS } from './../../sign-up/sign-up.routes.constants';
 @Component({
   selector: 'app-my-assets',
   templateUrl: './my-assets.component.html',
-  styleUrls: ['./my-assets.component.scss'],
-  providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
+  styleUrls: ['./my-assets.component.scss']
 })
 export class MyAssetsComponent implements OnInit, OnDestroy {
   RSPForm: any;
@@ -64,7 +62,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   brsConfig = '';
   fundTypeList: any;
   fundType = [];
-  showEditIcon:boolean = false;
+  showEditIcon: boolean = false;
 
   // tslint:disable-next-line:cognitive-complexity
   constructor(
@@ -72,7 +70,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     private translate: TranslateService, private formBuilder: FormBuilder, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
     private progressService: ProgressTrackerService, private loaderService: LoaderService, private myInfoService: MyInfoService,
-    private modal: NgbModal, private parserFormatter: NgbDateParserFormatter, private aboutAge: AboutAge) {
+    private modal: NgbModal, private aboutAge: AboutAge) {
     this.pageId = this.route.routeConfig.component.name;
     this.viewMode = this.comprehensiveService.getViewableMode();
     this.configService.getConfig().subscribe((config: any) => {
@@ -86,8 +84,8 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
         this.validationFlag = this.translate.instant('CMP.MY_ASSETS.OPTIONAL_VALIDATION_FLAG');
         this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
-        this.schemeTypeList = this.translate.instant('CMP.MY_ASSETS.SCHEME_TYPE_LIST');        
-        this.fundTypeList = this.translate.instant('CMP.FUND_TYPE_LIST');  
+        this.schemeTypeList = this.translate.instant('CMP.MY_ASSETS.SCHEME_TYPE_LIST');
+        this.fundTypeList = this.translate.instant('CMP.FUND_TYPE_LIST');
       });
     });
     const today: Date = new Date();
@@ -99,14 +97,14 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       this.brsConfig = (retirementSumConfigValue && retirementSumConfigValue['BRS']) ? retirementSumConfigValue['BRS'] : '';
       this.frsConfig = (retirementSumConfigValue && retirementSumConfigValue['FRS']) ? retirementSumConfigValue['FRS'] : '';
     }
-    
+
     this.myinfoChangeListener = this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '') {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled
           && this.myInfoService.checkMyInfoSourcePage()) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
             if (data && data['objectList'] && data['objectList'][0]['uin']) {
-              this.comprehensiveService.validateUin(data['objectList'][0]['uin']).subscribe((response)=>{
+              this.comprehensiveService.validateUin(data['objectList'][0]['uin']).subscribe((response) => {
                 if (response.responseMessage['responseCode'] === 6013) {
                   const cpfValues = data.objectList[0].cpfbalances;
                   const oaFormControl = this.myAssetsForm.controls['cpfOrdinaryAccount'];
@@ -145,7 +143,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.assetDetails = this.comprehensiveService.getMyAssets();    
+    this.assetDetails = this.comprehensiveService.getMyAssets();
     if (this.assetDetails && this.assetDetails.source === COMPREHENSIVE_CONST.CPF_SOURCE.MY_INFO) {
       this.cpfFromMyInfo = true;
       this.showEditIcon = true;
@@ -183,7 +181,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
 
   openModal() {
     if (!this.viewMode) {
-      const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'retrieve-myinfo-modal'});
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'retrieve-myinfo-modal' });
       ref.componentInstance.errorTitle = this.translate.instant('MYINFO.RETRIEVE_CPF_DATA.TITLE');
       ref.componentInstance.errorMessageHTML = this.translate.instant('MYINFO.RETRIEVE_CPF_DATA.DESCRIPTION');
       ref.componentInstance.primaryActionLabel = this.translate.instant('MYINFO.RETRIEVE_CPF_DATA.BTN-TEXT');
@@ -243,7 +241,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
       this.assetDetails.assetsInvestmentSet.forEach((otherInvest, i) => {
         otherInvestFormArray.push(this.buildInvestmentForm(otherInvest, i));
         this.investType[inc] = otherInvest.typeOfInvestment;
-        this.fundType[inc] = otherInvest.fundType;        
+        this.fundType[inc] = otherInvest.fundType;
         inc++;
       });
     } else {
@@ -310,7 +308,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     this.onTotalAssetsBucket();
   }
   buildInvestmentForm(inputParams, totalLength) {
-    const fundTypeValue = inputParams.fundType; 
+    const fundTypeValue = inputParams.fundType;
     if (totalLength > 0) {
       return this.formBuilder.group({
         typeOfInvestment: [{ value: inputParams.typeOfInvestment, disabled: this.viewMode }, []],
@@ -363,7 +361,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   }
   setInvestValidation(totalLength) {
     const otherInvestmentControl = this.myAssetsForm.controls['assetsInvestmentSet']['controls'][0].controls;
-    
+
     otherInvestmentControl['typeOfInvestment'].setValidators([]);
     otherInvestmentControl['typeOfInvestment'].updateValueAndValidity();
     otherInvestmentControl['fundType'].setValidators([]);
@@ -398,7 +396,8 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     } else {
       if (this.validateAssets(form)) {
         const assetsData = this.comprehensiveService.getComprehensiveSummary().comprehensiveAssets;
-        if (!form.pristine || Util.isEmptyOrNull(assetsData)) {
+        if (!form.pristine || Util.isEmptyOrNull(assetsData) ||
+          this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT) {
           this.assetDetails = form.value;
           this.cpfFromMyInfo ? this.assetDetails.source = COMPREHENSIVE_CONST.CPF_SOURCE.MY_INFO : this.assetDetails.source = COMPREHENSIVE_CONST.CPF_SOURCE.MANUAL;
           this.assetDetails[COMPREHENSIVE_CONST.YOUR_FINANCES.YOUR_ASSETS.API_TOTAL_BUCKET_KEY] = this.totalAssets;
@@ -487,7 +486,7 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
   // NRIC used error modal
   openNricErrorModal() {
     if (!this.viewMode) {
-      const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'nric-used-modal'});
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'nric-used-modal' });
       ref.componentInstance.errorTitle = this.translate.instant('MYINFO.NRIC_USED_ERROR.TITLE');
       ref.componentInstance.errorMessageHTML = this.translate.instant('MYINFO.NRIC_USED_ERROR.DESCRIPTION');
       ref.componentInstance.primaryActionLabel = this.translate.instant('MYINFO.NRIC_USED_ERROR.BTN-TEXT');
@@ -501,8 +500,8 @@ export class MyAssetsComponent implements OnInit, OnDestroy {
     }
   }
 
-  editCPFFields(){
-    if(this.cpfFromMyInfo){
+  editCPFFields() {
+    if (this.cpfFromMyInfo) {
       this.cpfFromMyInfo = false;
       this.showEditIcon = false;
       this.assetDetails.source = COMPREHENSIVE_CONST.CPF_SOURCE.MANUAL;

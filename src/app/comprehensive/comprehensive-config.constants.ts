@@ -269,18 +269,17 @@ export const COMPREHENSIVE_CONST = {
         MAX_AGE: 71,
         STEP: 1
     },
-    COMPREHENSIVE_LITE_ENABLED: true,
     VERSION_TYPE: {
         LITE: 'Comprehensive-Lite',
-        FULL: 'CFP_PLUS'
+        FULL: 'comprehensive-plus'
     },
     ROLES: {
         ROLE_COMPRE_LITE: 'ROLE_COMPRE_LITE',
         ROLE_DISCOUNT_PROMOTION: 'ROLE_DISCOUNT_PROMOTION',
         PUBLIC: 'public',
         CORPORATE: 'corporate',
-        COMPREHENSIVE_REPORT :'COMPREHENSIVE_REPORT',
-        COMPREHENSIVE_ADVISOR :'COMPREHENSIVE_ADVISOR'
+        COMPREHENSIVE_REPORT: 'COMPREHENSIVE_REPORT',
+        COMPREHENSIVE_ADVISOR: 'COMPREHENSIVE_ADVISOR'
     },
     RISK_ASSESSMENT: {
         SPECIAL_QUESTION_ORDER: 4
@@ -304,6 +303,7 @@ export const COMPREHENSIVE_CONST = {
     },
     API_SOURCE: "Robo3",
     NTUC_PROMO_DATE: "2021-06-01T00:00:00.000+08:00",
+    REVIEW_INPUTS: "Review Inputs",
     PROGRESS_TRACKER: {
         STEPS: {
             RISK_PROFILE: { // step: 4
@@ -316,6 +316,5 @@ export const COMPREHENSIVE_CONST = {
             }
         }
     },
-    CPF_PLUS :"CPF_PLUS",
-    JOURNEY_TYPE : 'journeyType'
+    JOURNEY_TYPE: 'journeyType'
 };

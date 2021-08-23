@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NouisliderModule } from 'ng2-nouislider';
