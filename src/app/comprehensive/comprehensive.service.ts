@@ -1351,7 +1351,7 @@ export class ComprehensiveService {
             eduPrefs &&
             typeof eduPrefs !== 'undefined' &&
             prefsListCompleted,
-          list: prefsList
+          list: this.validateSteps(0, 4) ? prefsList : []
         });
         subItemsArray.push({
           id: COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_LIST,

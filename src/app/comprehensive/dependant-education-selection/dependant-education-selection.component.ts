@@ -232,14 +232,22 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
             endowmentMaturityYears: null
           } as IChildEndowment]
         }).subscribe((data: any) => {
-          this.loaderService.hideLoader();
-          this.showSummaryModal();
+          if (this.comprehensiveService.getMySteps() === 0
+            && this.comprehensiveService.getMySubSteps() < 3) {
+            this.comprehensiveService.setStepCompletion(0, 3).subscribe((data1: any) => {
+              this.loaderService.hideLoader();
+              this.showSummaryModal();
+            });
+          } else {
+            this.loaderService.hideLoader();
+            this.showSummaryModal();
+          }
         });
       } else {
         let selectedChildArray: IChildEndowment[] = form.value.endowmentDetailsList
           .filter((item: IChildEndowment) => item.preferenceSelection);
         if (!form.pristine || (this.comprehensiveService.getMySteps() === 0
-        && this.comprehensiveService.getMySubSteps() < 3)) {
+          && this.comprehensiveService.getMySubSteps() < 3)) {
 
           this.loaderService.showLoader({ title: this.saveData });
 
