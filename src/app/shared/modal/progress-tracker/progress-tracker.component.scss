@@ -42,6 +42,20 @@
     left: 50%;
     margin-left: -300px;
   }
+  @include tablet {
+    position: fixed;
+    width: calc(100% - 280px);
+    padding-right: 15px;
+    top: 55px;
+    right: 65px;
+  }
+  @include phablet {
+    position: fixed;
+    width: calc(100% - 280px);
+    padding-right: 15px;
+    top: 95px;
+    right: 10px;
+  }
 
   &:before {
     content: '';
