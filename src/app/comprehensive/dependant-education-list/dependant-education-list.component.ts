@@ -155,7 +155,7 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
   }
   // tslint:disable-next-line:cognitive-complexity
   goToNext(form) {
-    if (this.viewMode || form.pristine) {
+    if (this.viewMode) {
       this.showSummaryModal();
     } else {
       const dependantArray = [];
@@ -172,8 +172,16 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
           hasEndowments: this.comprehensiveService.hasEndowment(), endowmentDetailsList:
             this.endowmentArrayPlan
         }).subscribe((data: any) => {
-          this.loaderService.hideLoader();
-          this.showDependantSummary(this.endowmentArrayPlan);
+          if (this.comprehensiveService.getMySteps() === 0
+            && this.comprehensiveService.getMySubSteps() < 5) {
+            this.comprehensiveService.setStepCompletion(0, 5).subscribe((data1: any) => {
+              this.loaderService.hideLoader();
+              this.showDependantSummary(this.endowmentArrayPlan);
+            });
+          } else {
+            this.loaderService.hideLoader();
+            this.showDependantSummary(this.endowmentArrayPlan);
+          }
         });
       } else {
         form.value.endowmentPlan.forEach((preferenceDetails: any, index) => {
