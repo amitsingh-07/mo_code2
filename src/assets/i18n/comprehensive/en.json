@@ -149,8 +149,8 @@
     },
     "RISK_PROFILE": {
       "PAGE_HEADING": "Grow your retirement savings!",
-      "PAGE_SUB_HEADING": "The key to sucessful investing is to stay invested. This means investing in a suitable portfolio that matches your risk profile so that you can comfortably ride out the ups and downs in the market.",
-      "PAGE_NOTES": "We strongly encourage you to do a risk profiling to get a more suitable recommendation in your report.",
+      "PAGE_SUB_HEADING": "We assess your risk profile by considering your need, ability and willingness to take risk. This will be used for the purpose of recommending an investment portfolio to project your retirement income.",
+      "PAGE_NOTES": "We strongly encourage you to do a risk profiling to get a more suitable recommendation in your report. Should you choose to skip, we will assume your risk profile to be Balanced for the above-mentioned purpose.",
       "SKIP_RISK_PROFILE" : "I want to skip risk profile",
       "QUESTION_4_COL_1": "Portfolio",
       "QUESTION_4_COL_2": "Optimistic",
