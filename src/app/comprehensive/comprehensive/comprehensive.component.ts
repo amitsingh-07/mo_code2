@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -42,6 +42,8 @@ export class ComprehensiveComponent implements OnInit {
   includingGst = false;
   fetchData: string;
   loading: string;
+  productAmount = COMPREHENSIVE_CONST.PROMOTION.AMOUNT;
+  isCorporate: boolean;
 
 
   constructor(
@@ -71,6 +73,7 @@ export class ComprehensiveComponent implements OnInit {
           }
         });
       });
+      this.isCorporate = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE)
     });
   }
 
@@ -81,6 +84,7 @@ export class ComprehensiveComponent implements OnInit {
     if (this.authService.isSignedUser()) {
       const action = this.appService.getAction();
       this.loaderService.showLoader({ title: this.fetchData, autoHide: false });
+      this.getProductAmount();
       const getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
 
       this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe((dashboardData: any) => {
@@ -119,6 +123,7 @@ export class ComprehensiveComponent implements OnInit {
 
     } else {
       this.authService.authenticate().subscribe((data: any) => {
+        this.getProductAmount();
         this.authService.clearAuthDetails();
       });
 
@@ -199,4 +204,12 @@ export class ComprehensiveComponent implements OnInit {
       && new Date() <= new Date(END_TIME));
   }
 
+  getProductAmount() {
+    const payload = { productType: COMPREHENSIVE_CONST.VERSION_TYPE.REPORT };
+    this.comprehensiveApiService.getProductAmount(payload).subscribe((data: any) => {
+      if (data && data.objectList[0]) {
+        this.productAmount = data.objectList[0]['totalAmount'].toString();
+      }
+    });
+  }
 }
