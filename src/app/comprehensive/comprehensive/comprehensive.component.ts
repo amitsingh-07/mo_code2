@@ -205,11 +205,13 @@ export class ComprehensiveComponent implements OnInit {
   }
 
   getProductAmount() {
-    const payload = { productType: COMPREHENSIVE_CONST.VERSION_TYPE.REPORT };
-    this.comprehensiveApiService.getProductAmount(payload).subscribe((data: any) => {
-      if (data && data.objectList[0]) {
-        this.productAmount = data.objectList[0]['totalAmount'].toString();
-      }
-    });
+    if (!this.isCorporate) {
+      const payload = { productType: COMPREHENSIVE_CONST.VERSION_TYPE.REPORT };
+      this.comprehensiveApiService.getProductAmount(payload).subscribe((data: any) => {
+        if (data && data.objectList[0]) {
+          this.productAmount = data.objectList[0]['totalAmount'].toString();
+        }
+      });
+    }
   }
 }
