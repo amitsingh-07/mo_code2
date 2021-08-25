@@ -106,7 +106,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
 
   setRiskProfileFlag(){
     this.skipRiskProfile = this.comprehensiveService.getRiskProfileFlag();
-    this.riskAssessmentForm.controls.riskProfileCheckboxFlag.setValue(this.skipRiskProfile);
+    this.riskAssessmentForm.controls.riskProfileCheckboxFlag.setValue(this.skipRiskProfile || false);
     this.onCheckboxChange();    
   }
 
