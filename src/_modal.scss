@@ -1125,6 +1125,13 @@ body.modal-open::-webkit-scrollbar {
       padding-bottom: 50px;
     }
   }
+  @include minPhabletmaxTablet {
+    .modal-body {
+      max-height: 100vh;;
+      overflow-y: auto;
+      padding-bottom: 50px;
+    }
+  }
 }
 
 .review-buy-request-modal {
@@ -1345,7 +1352,7 @@ body.modal-open::-webkit-scrollbar {
   }
 }
 
-.speak-to-adivser-modal{
+.speak-to-adviser-modal{
   .adviser-title{
     font-family: $muli-bold;
     font-size: 18px;

@@ -306,6 +306,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
               this.authService.set2faVerifyAllowed(true);
               this.signUpService.removeCaptchaSessionId();
               this.signUpService.setUserMobileNo(data.objectList[0].mobileNumber);
+              this.signUpService.setUserMobileCountryCode(data.objectList[0].countryCode);
               this.signUpService.setFromLoginPage();
               this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_2FA]);
             } else if (data.responseMessage.responseCode === 5016 || data.responseMessage.responseCode === 5011) {

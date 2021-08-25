@@ -270,16 +270,16 @@ export const COMPREHENSIVE_CONST = {
         STEP: 1
     },
     VERSION_TYPE: {
-        LITE: 'Comprehensive-Lite',
-        FULL: 'comprehensive-plus'
+        FULL: 'comprehensive-plus',
+        REPORT: 'COMPREHENSIVE_REPORT'
     },
     ROLES: {
         ROLE_COMPRE_LITE: 'ROLE_COMPRE_LITE',
         ROLE_DISCOUNT_PROMOTION: 'ROLE_DISCOUNT_PROMOTION',
         PUBLIC: 'public',
         CORPORATE: 'corporate',
-        COMPREHENSIVE_REPORT :'COMPREHENSIVE_REPORT',
-        COMPREHENSIVE_ADVISOR :'COMPREHENSIVE_ADVISOR'
+        COMPREHENSIVE_REPORT: 'COMPREHENSIVE_REPORT',
+        COMPREHENSIVE_ADVISOR: 'COMPREHENSIVE_ADVISOR'
     },
     RISK_ASSESSMENT: {
         SPECIAL_QUESTION_ORDER: 4
@@ -316,5 +316,5 @@ export const COMPREHENSIVE_CONST = {
             }
         }
     },
-    JOURNEY_TYPE : 'journeyType'
+    JOURNEY_TYPE: 'journeyType'
 };

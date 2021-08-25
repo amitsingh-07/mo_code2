@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
@@ -52,11 +52,12 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   };
   viewMode: boolean;
+  saveData: any;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService, private apiService: ApiService,
     private translate: TranslateService, private configService: ConfigService,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
-    private progressService: ProgressTrackerService
+    private progressService: ProgressTrackerService, private loaderService: LoaderService
   ) {
     this.totalAnnualIncomeBucket = 0;
     this.pageId = this.route.routeConfig.component.name;
@@ -67,6 +68,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
         // meta tag and title
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
         this.bucketImage = this.translate.instant('CMP.YOUR_FINANCES.BAD_MOOD_FUND_BUCKET');
+        this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
         this.setPageTitle(this.pageTitle);
       });
     });
@@ -118,7 +120,7 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
     this.hospitalPlanList = this.comprehensiveService.getHospitalPlan();
 
     if (this.hospitalPlanList.length === 0) {
-      this.apiService.getHospitalPlanList(COMPREHENSIVE_CONST.JOURNEY_TYPE +'='+ COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((hospitalPlanData: any) => {
+      this.apiService.getHospitalPlanList(COMPREHENSIVE_CONST.JOURNEY_TYPE + '=' + COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((hospitalPlanData: any) => {
         this.hospitalPlanList = hospitalPlanData.objectList;
         this.comprehensiveService.setHospitalPlan(hospitalPlanData.objectList);
       });
@@ -161,15 +163,18 @@ export class BadMoodFundComponent implements OnInit, OnDestroy, AfterViewInit {
         form.value.badMoodMonthlyAmount = this.sliderValue;
         form.value.hospitalPlanName = this.downOnLuck.hospitalPlanName;
         form.value.enquiryId = this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.enquiryId;
+        this.loaderService.showLoader({ title: this.saveData });
         this.comprehensiveApiService.saveDownOnLuck(form.value).subscribe((data:
           any) => {
           this.comprehensiveService.setDownOnLuck(form.value);
           if (this.comprehensiveService.getMySteps() === 1
-          && this.comprehensiveService.getMySubSteps() < 4) {
+            && this.comprehensiveService.getMySubSteps() < 4) {
             this.comprehensiveService.setStepCompletion(1, 4).subscribe((data1: any) => {
+              this.loaderService.hideLoader();
               this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
             });
           } else {
+            this.loaderService.hideLoader();
             this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_ASSETS]);
           }
         });

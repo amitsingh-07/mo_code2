@@ -15,6 +15,7 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
 import { ComprehensiveService } from './../comprehensive.service';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-dependant-education-list',
@@ -40,17 +41,18 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
   summaryFlag = true;
   dependantSummaryCons = [];
   viewMode: boolean;
+  saveData: any;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder, private progressService: ProgressTrackerService,
     private configService: ConfigService, private comprehensiveService: ComprehensiveService, private aboutAge: AboutAge,
-    private comprehensiveApiService: ComprehensiveApiService) {
+    private comprehensiveApiService: ComprehensiveApiService, private loaderService: LoaderService) {
     this.viewMode = this.comprehensiveService.getViewableMode();
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP1;
     this.endowmentDetail = this.comprehensiveService.getChildEndowment();
     if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
       this.endowmentDetail.forEach((dependant: any) => {
-      
+
         this.summaryFlag = false;
         this.dependantSummaryCons.push({
           userName: dependant.name,
@@ -58,7 +60,7 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
           // tslint:disable-next-line: max-line-length
           userEstimatedCost: this.comprehensiveService.setDependantExpense(dependant.location, dependant.educationCourse, dependant.age, dependant.nation)
         });
-       
+
       });
     }
     this.configService.getConfig().subscribe((config: any) => {
@@ -68,6 +70,7 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
         // meta tag and title
 
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
+        this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
         this.setPageTitle(this.pageTitle);
         this.childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
         this.childrenEducationDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.DEPENDANTS');
@@ -152,7 +155,7 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
   }
   // tslint:disable-next-line:cognitive-complexity
   goToNext(form) {
-    if (this.viewMode || form.pristine) {
+    if (this.viewMode) {
       this.showSummaryModal();
     } else {
       const dependantArray = [];
@@ -164,11 +167,21 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
             this.endowmentArrayPlan[index].endowmentMaturityYears = '';
           }
         });
+        this.loaderService.showLoader({ title: this.saveData });
         this.comprehensiveApiService.saveChildEndowment({
           hasEndowments: this.comprehensiveService.hasEndowment(), endowmentDetailsList:
             this.endowmentArrayPlan
         }).subscribe((data: any) => {
-          this.showDependantSummary(this.endowmentArrayPlan);
+          if (this.comprehensiveService.getMySteps() === 0
+            && this.comprehensiveService.getMySubSteps() < 5) {
+            this.comprehensiveService.setStepCompletion(0, 5).subscribe((data1: any) => {
+              this.loaderService.hideLoader();
+              this.showDependantSummary(this.endowmentArrayPlan);
+            });
+          } else {
+            this.loaderService.hideLoader();
+            this.showDependantSummary(this.endowmentArrayPlan);
+          }
         });
       } else {
         form.value.endowmentPlan.forEach((preferenceDetails: any, index) => {
@@ -207,17 +220,19 @@ export class DependantEducationListComponent implements OnInit, OnDestroy {
             }
             );
           });
-
+          this.loaderService.showLoader({ title: this.saveData });
           this.comprehensiveApiService.saveChildEndowment({
             hasEndowments: this.comprehensiveService.hasEndowment(), endowmentDetailsList:
               educationPreferenceList
           }).subscribe((data: any) => {
             if (this.comprehensiveService.getMySteps() === 0
-            && this.comprehensiveService.getMySubSteps() < 5) {
-            this.comprehensiveService.setStepCompletion(0, 5).subscribe((data1: any) => {
-              this.showDependantSummary(dependantArray);
-            });
+              && this.comprehensiveService.getMySubSteps() < 5) {
+              this.comprehensiveService.setStepCompletion(0, 5).subscribe((data1: any) => {
+                this.loaderService.hideLoader();
+                this.showDependantSummary(dependantArray);
+              });
             } else {
+              this.loaderService.hideLoader();
               this.showDependantSummary(dependantArray);
             }
           });

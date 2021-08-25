@@ -21,7 +21,7 @@ export class CreateAccountFormError {
       },
       pattern: {
         errorTitle: 'Invalid Mobile Number',
-        errorMessage: 'Mobile number field should container 8 to 10 digits'
+        errorMessage: 'Mobile number field should container 8 to 15 digits'
       },
       mobileRange: {
         errorTitle: 'Invalid Mobile Number',

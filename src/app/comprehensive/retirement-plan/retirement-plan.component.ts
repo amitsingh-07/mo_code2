@@ -1,27 +1,22 @@
 import {
   AfterViewInit,
   Component,
-  ElementRef,
   OnDestroy,
   OnInit,
-  Renderer2,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import {
-  AbstractControl,
   FormArray,
   FormBuilder,
-  FormControl,
-  FormGroup,
-  ValidatorFn,
-  Validators
+  FormGroup
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
 import { Subscription } from 'rxjs';
+
 import { ConfigService } from '../../config/config.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
@@ -33,6 +28,7 @@ import { IMySummaryModal, IRetirementPlan } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
 import { AboutAge } from './../../shared/utils/about-age.util';
 import { COMPREHENSIVE_CONST } from './../comprehensive-config.constants';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-retirement-plan',
@@ -79,13 +75,9 @@ export class RetirementPlanComponent
       max: COMPREHENSIVE_CONST.RETIREMENT_PLAN.MAX_AGE
     },
     step: COMPREHENSIVE_CONST.RETIREMENT_PLAN.STEP
-    /*,pips: {
-      mode: 'values',
-      values: [45, 50, 55, 60, 65, 70],
-      density: 4
-    }*/
   };
   userAge: number;
+  saveData: any;
   constructor(
     private navbarService: NavbarService,
     private progressService: ProgressTrackerService,
@@ -96,10 +88,9 @@ export class RetirementPlanComponent
     private router: Router,
     private route: ActivatedRoute,
     private aboutAge: AboutAge,
-    private eleRef: ElementRef,
-    private renderer: Renderer2,
     private formBuilder: FormBuilder,
-    private modal: NgbModal
+    private modal: NgbModal,
+    private loaderService: LoaderService
   ) {
     this.routerEnabled = this.summaryRouterFlag =
       COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP4;
@@ -109,7 +100,7 @@ export class RetirementPlanComponent
       this.comprehensiveService.getMyProfile().dateOfBirth,
       new Date()
     );
-    this.userAge = ++ this.userAge;
+    this.userAge = ++this.userAge;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -126,6 +117,7 @@ export class RetirementPlanComponent
           'CMP.RETIREMENT_PLAN.CONFIRM_DELETE'
         );
         this.retireModal = this.translate.instant('CMP.MODAL.RETIREMENT_MODAL');
+        this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
         if (
           this.route.snapshot.paramMap.get('summary') === 'summary' &&
           this.summaryRouterFlag === true
@@ -169,21 +161,14 @@ export class RetirementPlanComponent
       ? parseInt(this.comprehensiveService.getRetirementPlan().retirementAge)
       : COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE;
     if (this.sliderValue >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE && this.sliderValue < this.userAge) {
-      //this.sliderValue = Math.ceil(this.userAge / 5) * 5;
       this.sliderValue = this.userAge;
     }
     this.retirementDetails = this.comprehensiveService.getRetirementPlan();
     this.buildRetirementPlanForm();
   }
   ngAfterViewInit() {
-    /*const containerRef = this.eleRef.nativeElement.querySelector(
-      '.noUi-value:last-child'
-    );
-    this.renderer.setProperty(containerRef, 'innerHTML', '62 or later');
-    this.renderer.addClass(containerRef, 'lastSliderPips');*/
     if (this.sliderValue >= COMPREHENSIVE_CONST.RETIREMENT_PLAN.MIN_AGE && this.sliderValue < this.userAge) {
-      //this.sliderValue = Math.ceil(this.userAge / 5) * 5;
-      this.sliderValue =  this.userAge;
+      this.sliderValue = this.userAge;
       this.ciMultiplierSlider.writeValue(this.sliderValue);
     } else {
       this.ciMultiplierSlider.writeValue(this.sliderValue);
@@ -230,9 +215,9 @@ export class RetirementPlanComponent
 
     this.retirementPlanForm = this.formBuilder.group({
       retirementAge: [this.sliderValue],
-      haveOtherSourceRetirementIncome: [( this.retirementDetails
-          ? this.retirementDetails.haveOtherSourceRetirementIncome
-          : '')],
+      haveOtherSourceRetirementIncome: [(this.retirementDetails
+        ? this.retirementDetails.haveOtherSourceRetirementIncome
+        : '')],
       retirementIncomeSet: this.formBuilder.array(retirementIncomeSet),
       lumpSumBenefitSet: this.formBuilder.array(lumpSumBenefitSet)
     });
@@ -355,15 +340,18 @@ export class RetirementPlanComponent
         if (!this.showRetirementIncome) {
           retirementData.retirementIncomeSet = [];
         }
+        this.loaderService.showLoader({ title: this.saveData });
         this.comprehensiveApiService
           .saveRetirementPlanning(retirementData)
           .subscribe((data: any) => {
             this.comprehensiveService.setRetirementPlan(retirementData);
             if (this.comprehensiveService.getMySteps() === 3 && this.comprehensiveService.getMySubSteps() < 1) {
               this.comprehensiveService.setStepCompletion(3, 1).subscribe((data1: any) => {
+                this.loaderService.hideLoader();
                 this.routerPath();
               });
             } else {
+              this.loaderService.hideLoader();
               this.routerPath();
             }
           });
@@ -396,7 +384,7 @@ export class RetirementPlanComponent
       this.summaryModalDetails = {
         setTemplateModal: 4,
         contentObj: this.retireModal,
-        nextPageURL: COMPREHENSIVE_ROUTE_PATHS.STEPS+'/5',
+        nextPageURL: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/5',
         routerEnabled: this.summaryRouterFlag
       };
       this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
@@ -490,6 +478,6 @@ export class RetirementPlanComponent
     }
   }
   routerPath() {
-      this.showSummaryModal();
+    this.showSummaryModal();
   }
 }
