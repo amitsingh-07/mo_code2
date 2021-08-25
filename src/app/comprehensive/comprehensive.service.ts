@@ -593,6 +593,8 @@ export class ComprehensiveService {
   getRiskProfileFlag() {
     if (this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileSkipped) {
       return this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileSkipped;
+    } else {
+      return false;
     }
   }
 
@@ -2580,10 +2582,6 @@ export class ComprehensiveService {
   }
   getAdvisorStatus() {
     return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.advisorPaymentStatus;
-  }
-
-  getSkipProfileStatus() {
-    return this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileSkipped;
   }
 
   setToastMessage(toastMessage) {
