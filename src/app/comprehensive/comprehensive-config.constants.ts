@@ -270,8 +270,8 @@ export const COMPREHENSIVE_CONST = {
         STEP: 1
     },
     VERSION_TYPE: {
-        LITE: 'Comprehensive-Lite',
-        FULL: 'comprehensive-plus'
+        FULL: 'comprehensive-plus',
+        REPORT: 'COMPREHENSIVE_REPORT'
     },
     ROLES: {
         ROLE_COMPRE_LITE: 'ROLE_COMPRE_LITE',
