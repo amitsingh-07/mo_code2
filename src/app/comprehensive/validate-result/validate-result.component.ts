@@ -57,7 +57,9 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
       }
     });
     const reportStatus = this.comprehensiveService.getReportStatus();
-    if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+    if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR || reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
+    } else if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
     } else if (this.comprehensiveService.checkResultData()) {
       const currentStep = this.comprehensiveService.getMySteps();

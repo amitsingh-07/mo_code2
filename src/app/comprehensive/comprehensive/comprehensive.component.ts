@@ -139,7 +139,10 @@ export class ComprehensiveComponent implements OnInit {
     this.appService.clearPromoCode();
     const redirectUrl = this.signUpService.getRedirectUrl();
     if (this.getComprehensiveSummaryDashboard &&
-      this.getComprehensiveSummaryDashboard.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED &&
+      (this.getComprehensiveSummaryDashboard.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED
+       || this.getComprehensiveSummaryDashboard.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY
+       || this.getComprehensiveSummaryDashboard.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR
+       ) &&
       (this.getComprehensiveSummaryDashboard.isCFPGetStarted)) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
     } else if (redirectUrl && (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isCFPGetStarted)) {
