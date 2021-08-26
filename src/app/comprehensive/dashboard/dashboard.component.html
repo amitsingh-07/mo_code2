@@ -177,10 +177,10 @@
                   </button>
                 </div>
               </div>
-              <div class="flex-row align-start" [ngClass]="{'width100': !paymentInstructions }"
+              <div class="flex-row align-start" *ngIf="isReportGenerated" [ngClass]="{'width100': !paymentInstructions }"
                 [hidden]="!(comprehensivePlanning === 1 || comprehensivePlanning === 2 || (isAdvisorAppointment && comprehensivePlanning === 0))">
                 <div class="flex-col-12">
-                  <button *ngIf="isReportGenerated" (click)="downloadComprehensiveReport()" type="button"
+                  <button (click)="downloadComprehensiveReport()" type="button"
                     class="btn btn-view width100" [ngClass]="{'ml0': !paymentInstructions }" id="prfBtn1">
                     <div class="ft-18 " for="name">
                       <span class="download-report">

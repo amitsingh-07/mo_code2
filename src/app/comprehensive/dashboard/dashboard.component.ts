@@ -291,8 +291,8 @@ export class ComprehensiveDashboardComponent implements OnInit {
           this.comprehensiveService.setViewableMode(false);
         }
         if (routerEnabled) {
-          this.loaderService.hideLoader();
           this.comprehensiveService.setRiskQuestions().subscribe((riskQues) => {
+            this.loaderService.hideLoader();
             this.router.navigate([routerUrlPath]);
           });
         } else {
