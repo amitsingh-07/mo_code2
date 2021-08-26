@@ -119,7 +119,9 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                 this.getComprehensiveEnquiry = this.comprehensiveService.getComprehensiveEnquiry();
                 this.getComprehensiveData = this.comprehensiveService.getComprehensiveEnquiry().type;
                 if (this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus
-                    === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
+                    === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR || this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus
+                    === COMPREHENSIVE_CONST.REPORT_STATUS.READY ) {
+                    this.redirectToDashboard();
                 }
                 this.loaderService.hideLoader();
                 this.checkRedirect();
