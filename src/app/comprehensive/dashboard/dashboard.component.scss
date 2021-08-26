@@ -339,11 +339,9 @@
         letter-spacing: -0.16px;
         color: $dark-orange-color;
         margin-top: 5px;
+        text-align: center;
         span{
             cursor: pointer;
-        }
-        @include allmobiles{
-            text-align: center;
         }
     }
     .appointment-btn{
