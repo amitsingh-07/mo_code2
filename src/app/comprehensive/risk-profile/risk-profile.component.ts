@@ -12,6 +12,7 @@ import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
+import { LoaderService } from './../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-risk-profile',
@@ -37,7 +38,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
   riskProfileAnswers: any;
   viewMode: boolean;
   skipRiskProfile: boolean = false;
-
+  saveData: any;
   constructor(
     public navbarService: NavbarService,
     public readonly translate: TranslateService,
@@ -46,7 +47,8 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
     private progressService: ProgressTrackerService,
     private route: ActivatedRoute,
     private router: Router,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private loaderService: LoaderService
   ) {
     this.pageId = this.route.routeConfig.component.name;
     this.configService.getConfig().subscribe((config: any) => {
@@ -55,6 +57,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_5_TITLE');
+        this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
         this.setPageTitle(this.pageTitle);
       });
     });
@@ -141,55 +144,68 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
         form.controls.questSelOption.value,
         this.questionIndex
       );
-
+      this.loaderService.showLoader({ title: this.saveData });
       //SKIP PROFILE FLAG save
-      this.comprehensiveService.saveSkipRiskProfile().subscribe(() => { 
+      this.comprehensiveService.saveSkipRiskProfile().subscribe(() => {
 
-      if (form.controls.riskProfileCheckboxFlag.value) {
-        this.comprehensiveService.setStepCompletion(4, this.questionIndex).subscribe(() => {
-          this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-          const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
-            : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
-          this.router.navigate([routerURL]);
-        });
-      } else {
-        if (this.questionIndex < this.questionsList.length) {
-          // NEXT QUESTION
-          this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
-            if (this.comprehensiveService.getMySteps() === 4
-              && this.comprehensiveService.getMySubSteps() < (this.questionIndex + 1)) {
-              this.comprehensiveService.setStepCompletion(4, this.questionIndex).subscribe((data1: any) => {
-                this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-                this.router.navigate([
-                  COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
-                ]);
-              });
-            } else {
-              this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-              this.router.navigate([
-                COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
-              ]);
-            }
-          });
-        } else {
-          this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
-            if (this.comprehensiveService.getMySteps() === 4
-              && this.comprehensiveService.getMySubSteps() < 4) {
-              this.comprehensiveService.setStepCompletion(4, 4).subscribe((data1: any) => {
-                this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-                const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
-                  : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
-                this.router.navigate([routerURL]);
-              });
-            } else {
+        if (form.controls.riskProfileCheckboxFlag.value) {
+          if (this.comprehensiveService.getMySteps() === 4
+            && this.comprehensiveService.getMySubSteps() < (this.questionIndex + 1)) {
+            this.comprehensiveService.setStepCompletion(4, this.questionIndex).subscribe(() => {
+              this.loaderService.hideLoader();
               this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
               const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
                 : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
               this.router.navigate([routerURL]);
-            }
-          });
+            });
+          } else {
+            this.loaderService.hideLoader();
+            this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+            const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
+              : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
+            this.router.navigate([routerURL]);
+          }
+        } else {
+          if (this.questionIndex < this.questionsList.length) {
+            // NEXT QUESTION
+            this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
+              if (this.comprehensiveService.getMySteps() === 4
+                && this.comprehensiveService.getMySubSteps() < (this.questionIndex + 1)) {
+                this.loaderService.hideLoader();
+                this.comprehensiveService.setStepCompletion(4, this.questionIndex).subscribe((data1: any) => {
+                  this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+                  this.router.navigate([
+                    COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
+                  ]);
+                });
+              } else {
+                this.loaderService.hideLoader();
+                this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+                this.router.navigate([
+                  COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/' + (this.questionIndex + 1)
+                ]);
+              }
+            });
+          } else {
+            this.comprehensiveService.saveRiskAssessment().subscribe((data) => {
+              if (this.comprehensiveService.getMySteps() === 4
+                && this.comprehensiveService.getMySubSteps() < 4) {
+                this.comprehensiveService.setStepCompletion(4, 4).subscribe((data1: any) => {
+                  this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+                  const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
+                    : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
+                  this.router.navigate([routerURL]);
+                });
+              } else {
+                this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
+                const routerURL = this.viewMode ? COMPREHENSIVE_ROUTE_PATHS.DASHBOARD
+                  : COMPREHENSIVE_ROUTE_PATHS.VALIDATE_RESULT;
+                this.router.navigate([routerURL]);
+              }
+            });
+          }
         }
-      }});
+      });
     }
   }
 
