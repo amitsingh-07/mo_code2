@@ -44,7 +44,7 @@
               <!--Refree Welcome Reward Box-->
               <div class="welcome-reward-box" (click)="openRefereeModal()" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists">
                 <div class="welcome-reward-box__left">
-                  <p>{{'REFER_FRIEND.YOU_HAVE' | translate}} {{getReferralInfo.totalRewardsCount}} {{'REFER_FRIEND.WELCOME_REWARDS' | translate}}</p>
+                  <p>{{'REFER_FRIEND.WELCOME_REWARDS' | translate}}</p>
                   <p>{{'REFER_FRIEND.VALIDITY' | translate}}{{getReferralInfo.rewardsValidityDate}}</p>
                 </div>
                 <div class="welcome-reward-box__right">
