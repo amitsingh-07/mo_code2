@@ -222,7 +222,6 @@ describe('RetirementPlanComponent', () => {
     comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
     comprehensiveService.setComprehensiveSummary(summaryData);
 
-    spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(false);
     progressTrackerService.setProgressTrackerData(
       comprehensiveService.generateProgressTrackerData()
     );
@@ -231,7 +230,6 @@ describe('RetirementPlanComponent', () => {
   it('should execute ngOnInit', () => {
     const setNavbarModeSpy = spyOn(navbarService, 'setNavbarComprehensive');
     component.ngOnInit();
-    component.comprehensiveJourneyMode = true;
     progressTrackerService.setReadOnly(true);
     navbarService.setNavbarComprehensive(true);
 

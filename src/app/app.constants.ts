@@ -21,11 +21,10 @@ export let appConstants = {
     JOURNEY_TYPE_GUIDED: 'GUIDED',
     JOURNEY_TYPE_WILL_WRITING: 'WILL_WRITING',
     HOME_ROUTE: '/home#',
-    JOURNEY_TYPE_COMPREHENSIVE: 'COMPREHENSIVE',
+    JOURNEY_TYPE_COMPREHENSIVE: 'comprehensive-plus',
     SESSION_KEY: {
         COMPREHENSIVE: 'app-comprehensive-session',
-        COMPREHENSIVE_LITE: 'app-comprehensive-lite-session',
-        COMPREHENSIVE_VERSION: 'app-comprehensive-version'
+        CFP_USER_ROLE: 'app-comprehensive-user'
     },
     USERTYPE: {
         NORMAL: "normal",
@@ -39,5 +38,6 @@ export let appConstants = {
     },
    BROWSER_CLOSE :'BROWSER_CLOSE' ,
    LOGOUT_BUTTON :'LOGOUT_BUTTON',
-   FINLIT_ACCESS_CODE: 'finlit-access-code'
+   FINLIT_ACCESS_CODE: 'finlit-access-code',
+   SINGAPORE_COUNTRY_CODE: '+65'
 };

@@ -57,21 +57,25 @@ export class ValidateResultComponent implements OnInit, OnDestroy {
       }
     });
     const reportStatus = this.comprehensiveService.getReportStatus();
-    if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
+    if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR || reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
+    } else if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
     } else if (this.comprehensiveService.checkResultData()) {
       const currentStep = this.comprehensiveService.getMySteps();
-      const stepCalculated = 4;
-      if (currentStep === 3 || currentStep === 4) {
+      const stepCalculated = 5;
+      if (currentStep === 4 || currentStep === 5) {
         const stepCheck = this.comprehensiveService.checkStepValidation(stepCalculated);
         if (stepCheck.status) {
-          if (currentStep === 4) {
+          if (currentStep === 5) {
             this.loaderService.showLoader({ title: 'Loading', autoHide: false });
             this.initiateReport();
           } else {
             this.loaderService.showLoader({ title: 'Loading', autoHide: false });
-            const stepIndicatorData = { enquiryId: this.comprehensiveService.getEnquiryId(), stepCompleted: stepCalculated,
-               subStepCompleted: 0 };
+            const stepIndicatorData = {
+              enquiryId: this.comprehensiveService.getEnquiryId(), stepCompleted: stepCalculated,
+              subStepCompleted: 0
+            };
             this.comprehensiveApiService.saveStepIndicator(stepIndicatorData).subscribe((data) => {
               this.comprehensiveService.setMySteps(stepCalculated, 0);
               this.initiateReport();

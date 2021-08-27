@@ -39,6 +39,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   summaryRouterFlag: boolean;
   routerEnabled = false;
   viewMode: boolean;
+  saveData: any;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder,
@@ -53,6 +54,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
+        this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
         this.setPageTitle(this.pageTitle);
         this.childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
         if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
@@ -214,7 +216,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     if (!this.viewMode) {
       const dependantArray = [];
       if (form.value.hasEndowments === '0') {
-        this.loaderService.showLoader({ title: 'Saving' });
+        this.loaderService.showLoader({ title: this.saveData });
         this.comprehensiveService.setEndowment(form.value.hasEndowments);
         this.comprehensiveService.setChildEndowment([]);
         this.comprehensiveApiService.saveChildEndowment({
@@ -230,15 +232,24 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
             endowmentMaturityYears: null
           } as IChildEndowment]
         }).subscribe((data: any) => {
-          this.loaderService.hideLoader();
-          this.showSummaryModal();
+          if (this.comprehensiveService.getMySteps() === 0
+            && this.comprehensiveService.getMySubSteps() < 3) {
+            this.comprehensiveService.setStepCompletion(0, 3).subscribe((data1: any) => {
+              this.loaderService.hideLoader();
+              this.showSummaryModal();
+            });
+          } else {
+            this.loaderService.hideLoader();
+            this.showSummaryModal();
+          }
         });
       } else {
         let selectedChildArray: IChildEndowment[] = form.value.endowmentDetailsList
           .filter((item: IChildEndowment) => item.preferenceSelection);
-        if (!form.pristine) {
+        if (!form.pristine || (this.comprehensiveService.getMySteps() === 0
+          && this.comprehensiveService.getMySubSteps() < 3)) {
 
-          this.loaderService.showLoader({ title: 'Saving' });
+          this.loaderService.showLoader({ title: this.saveData });
 
           this.comprehensiveApiService.saveChildEndowment({
             hasEndowments: form.value.hasEndowments,
@@ -273,7 +284,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
             this.comprehensiveService.setMyDependant(this.dependantDetailsArray);
             this.comprehensiveService.setChildEndowment(selectedChildArray);
             if (this.comprehensiveService.getMySteps() === 0
-            && this.comprehensiveService.getMySubSteps() < 3) {
+              && this.comprehensiveService.getMySubSteps() < 3) {
               this.comprehensiveService.setStepCompletion(0, 3).subscribe((data1: any) => {
                 this.loaderService.hideLoader();
                 this.gotoNextPage(form);

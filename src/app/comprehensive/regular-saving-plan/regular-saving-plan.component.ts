@@ -34,10 +34,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   hasRegularSavings: boolean;
   enquiryId: number;
   viewMode: boolean;
-  comprehensiveJourneyMode: boolean;
   fundTypeList: any;
-  fundTypeLite: any;
-  errorMessageLite: any;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private formBuilder: FormBuilder,
@@ -50,15 +47,12 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
       this.translate.get(config.common).subscribe((result: string) => {
         // meta tag and title
         this.investmentList = this.translate.instant('CMP.INVESTMENT_TYPE_LIST');
-        this.fundTypeList = this.translate.instant('CMP.FUND_TYPE_LIST');  
-        this.fundTypeLite = this.translate.instant('CMP.RSP.FUND_TYPE_LITE');
+        this.fundTypeList = this.translate.instant('CMP.FUND_TYPE_LIST');
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
         this.setPageTitle(this.pageTitle);
         this.validationFlag = this.translate.instant('CMP.RSP.OPTIONAL_VALIDATION_FLAG');
-        this.errorMessageLite = this.translate.instant('CMP.RSP.LITE_RSP_ERROR');
       });
     });
-    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
     this.enquiryId = this.comprehensiveService.getEnquiryId();
     this.viewMode = this.comprehensiveService.getViewableMode();
 
@@ -97,7 +91,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
 
     this.regularSavingsArray = this.comprehensiveService.getRegularSavingsList();
     this.hasRegularSavings = this.comprehensiveService.hasRegularSavings();
-    if (this.regularSavingsArray !=null && this.regularSavingsArray.length > 0 && this.hasRegularSavings === null 
+    if (this.regularSavingsArray != null && this.regularSavingsArray.length > 0 && this.hasRegularSavings === null
       && this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
       this.hasRegularSavings = true;
     }
@@ -114,7 +108,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
   buildRSPForm() {
     const regularSavings = [];
 
-    if (this.regularSavingsArray !=null && this.regularSavingsArray.length > 0) {
+    if (this.regularSavingsArray != null && this.regularSavingsArray.length > 0) {
 
       this.regularSavingsArray.forEach((regularSavePlan: any) => {
         regularSavings.push(this.buildRSPDetailsForm(regularSavePlan));
@@ -129,7 +123,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     });
   }
   buildRSPDetailsForm(value) {
-    const fundTypeValue = (!this.comprehensiveJourneyMode)?this.fundTypeLite:value.fundType;
+    const fundTypeValue = value.fundType;
     return this.formBuilder.group({
       portfolioType: [value.portfolioType],
       fundType: [fundTypeValue],
@@ -139,7 +133,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     });
   }
   buildEmptyRSPForm() {
-    const fundTypeValue = (!this.comprehensiveJourneyMode)?this.fundTypeLite:'';
+    const fundTypeValue = '';
     return this.formBuilder.group({
       portfolioType: [''],
       fundType: [fundTypeValue],
@@ -161,7 +155,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     const investment = status ? status : '';
     this.RSPForm.controls['comprehensiveRegularSavingsList']['controls'][i].controls.portfolioType.setValue(investment);
     this.RSPForm.get('comprehensiveRegularSavingsList').markAsDirty();
-  }  
+  }
   selectFundType(status, i) {
     const investment = status ? status : '';
     this.RSPForm.controls['comprehensiveRegularSavingsList']['controls'][i].controls.fundType.setValue(investment);
@@ -171,24 +165,25 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     if (this.viewMode) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
     } else {
-        if (this.validateRegularSavings(form)) {
-          if (!form.pristine || this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW) {
-            if(!form.value.hasRegularSavings) {
-              form.value.comprehensiveRegularSavingsList = [{
-                portfolioType: '',
-                fundType: '',
-                amount: '',
-                enquiryId: this.enquiryId          
-              }];
-            }
-            this.comprehensiveApiService.saveRegularSavings(form.value).subscribe((data: any) => {
+      if (this.validateRegularSavings(form)) {
+        if (!form.pristine ||
+          this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT) {
+          if (!form.value.hasRegularSavings) {
+            form.value.comprehensiveRegularSavingsList = [{
+              portfolioType: '',
+              fundType: '',
+              amount: '',
+              enquiryId: this.enquiryId
+            }];
+          }
+          this.comprehensiveApiService.saveRegularSavings(form.value).subscribe((data: any) => {
             this.comprehensiveService.setRegularSavings(form.value.hasRegularSavings);
             this.comprehensiveService.setRegularSavingsList(form.value.comprehensiveRegularSavingsList);
             if (!this.comprehensiveService.hasBadMoodFund() && this.comprehensiveService.getDownOnLuck().badMoodMonthlyAmount) {
               this.comprehensiveService.saveBadMoodFund();
             }
             if (this.comprehensiveService.getMySteps() === 1
-            && this.comprehensiveService.getMySubSteps() < 3) {
+              && this.comprehensiveService.getMySubSteps() < 3) {
               this.comprehensiveService.setStepCompletion(1, 3).subscribe((data1: any) => {
                 this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.BAD_MOOD_FUND]);
               });
@@ -213,15 +208,12 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     if (form.value.hasRegularSavings) {
       if (!form.valid) {
         Object.keys(form.controls).forEach((key) => {
-  
+
           form.get(key).markAsDirty();
         });
         const error = this.comprehensiveService.getFormError(form, COMPREHENSIVE_FORM_CONSTANTS.REGULAR_SAVINGS);
-        if(error.errorMessages && !this.comprehensiveJourneyMode){
-          error.errorMessages = [this.errorMessageLite];
-        }
-      this.comprehensiveService.openErrorModal(error.title, error.errorMessages, false,
-        this.translate.instant('CMP.ERROR_MODAL_TITLE.REGULAR_SAVINGS'));
+        this.comprehensiveService.openErrorModal(error.title, error.errorMessages, false,
+          this.translate.instant('CMP.ERROR_MODAL_TITLE.REGULAR_SAVINGS'));
         return false;
       } else {
         this.submitted = false;
@@ -243,7 +235,7 @@ export class RegularSavingPlanComponent implements OnInit, OnDestroy {
     if (this.RSPForm.controls['comprehensiveRegularSavingsList']['controls'].length > 0) {
       this.RSPForm.controls['comprehensiveRegularSavingsList']['controls'].forEach((otherInvest, i) => {
         const otherInvestmentControl = this.RSPForm.controls['comprehensiveRegularSavingsList']['controls'][i].controls;
-        if (otherInvestmentControl['amount'].value > 0 ) {
+        if (otherInvestmentControl['amount'].value > 0) {
           otherInvestmentControl['portfolioType'].setValidators([Validators.required]);
           otherInvestmentControl['portfolioType'].updateValueAndValidity();
           otherInvestmentControl['fundType'].setValidators([Validators.required]);

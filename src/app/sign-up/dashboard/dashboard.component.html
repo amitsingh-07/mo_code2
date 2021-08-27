@@ -1,3 +1,13 @@
+<div class="toast-msg-fixed-block toast-msg-top-space-checkout" *ngIf="showFixedToastMessage">
+  <div class="toast-msg-container">
+    <div class="flex-col-1">
+      <img src="assets/images/icon_tick_white.svg" alt="" />
+    </div>
+    <div class="flex-col-11">
+      <div class="toast-msg">{{'DASHBOARD.TOAST_MESSAGE' | translate}}</div>
+    </div>
+  </div>
+</div>
 <div class="content">
   <div class="container-fluid max-width--1024 post-login-dashboard">
     <div class="welcome-user">
@@ -34,7 +44,7 @@
               <!--Refree Welcome Reward Box-->
               <div class="welcome-reward-box" (click)="openRefereeModal()" *ngIf="getReferralInfo && getReferralInfo.isWelcomeRewardsValid && getReferralInfo.refereeExists">
                 <div class="welcome-reward-box__left">
-                  <p>{{'REFER_FRIEND.YOU_HAVE' | translate}} {{getReferralInfo.totalRewardsCount}} {{'REFER_FRIEND.WELCOME_REWARDS' | translate}}</p>
+                  <p>{{'REFER_FRIEND.WELCOME_REWARDS' | translate}}</p>
                   <p>{{'REFER_FRIEND.VALIDITY' | translate}}{{getReferralInfo.rewardsValidityDate}}</p>
                 </div>
                 <div class="welcome-reward-box__right">
@@ -299,8 +309,7 @@
               <div class="widget-title">
                 <span class="flex">{{'DASHBOARD.WILL_WRITING.TITLE' | translate}}
                 </span>
-                <span class="view_all" *ngIf="wills.completedWill" (click)="redirectTo('edit')">{{'DASHBOARD.WILL_WRITING.EDIT_WILL'
-                  | translate}}</span>
+                <span class="view_all" *ngIf="wills.completedWill" (click)="redirectTo('edit')"><img src="assets/images/button-edit.svg"></span>
               </div>
               <div class="widget-body">
                 <div class="scenarios flex-col-12">

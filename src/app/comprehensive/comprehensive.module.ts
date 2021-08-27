@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NouisliderModule } from 'ng2-nouislider';
@@ -37,6 +37,7 @@ import { RetirementPlanComponent } from './retirement-plan/retirement-plan.compo
 import { ValidateResultComponent } from './validate-result/validate-result.component';
 import { SignUpService } from '../sign-up/sign-up.service';
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';
+import { YearsNeededComponent } from './dependants-details/years-needed/years-needed.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -83,7 +84,8 @@ export function createTranslateLoader(http: HttpClient) {
     ComprehensiveViewModeDirective,
     ValidateResultComponent,
     ComprehensiveReviewComponent,
-    RiskProfileComponent
+    RiskProfileComponent,
+    YearsNeededComponent
   ],
   providers: [NgbDateCustomParserFormatter],
   exports: [ComprehensiveDashboardComponent]

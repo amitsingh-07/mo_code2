@@ -3,11 +3,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+
 import { LoaderService } from './../../shared/components/loader/loader.service';
 import { ComprehensiveApiService } from './../comprehensive-api.service';
-
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
-import { IMySummaryModal, IdependentsSummaryList } from '../comprehensive-types';
+import { IMySummaryModal, IDependantSummaryList } from '../comprehensive-types';
 import { ConfigService } from './../../config/config.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
@@ -34,9 +34,9 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   routerEnabled = false;
   viewMode: boolean;
   submitted: any;
-  householdDetails: IdependentsSummaryList;
-  comprehensiveJourneyMode: boolean;
-  stepIndicatorCount:number;
+  householdDetails: IDependantSummaryList;
+  stepIndicatorCount: number;
+  saveData: any;
   constructor(
     private cmpService: ComprehensiveService, private progressService: ProgressTrackerService,
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -53,6 +53,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
         this.householdMembersList = this.translate.instant('CMP.DEPENDANT_SELECTION.HOUSEHOLD_MEMBERS_VALUES');
         this.householdIncomeList = this.translate.instant('CMP.DEPENDANT_SELECTION.HOUSEHOLD_INCOME_VALUES');
         this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_1_TITLE');
+        this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
         this.setPageTitle(this.pageTitle);
         this.childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
         if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
@@ -62,8 +63,7 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
       });
     });
     this.viewMode = this.cmpService.getViewableMode();
-    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
-    this.stepIndicatorCount =  this.comprehensiveJourneyMode ? 5 : 1 ;
+    this.stepIndicatorCount = 5;
   }
   ngOnInit() {
     this.progressService.setProgressTrackerData(this.cmpService.generateProgressTrackerData());
@@ -100,13 +100,12 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
   }
 
   buildMyDependantSelectionForm() {
-    this.hasDependant = this.comprehensiveJourneyMode ? this.cmpService.hasDependant() : false;
+    this.hasDependant = this.cmpService.hasDependant();
     this.householdDetails = this.cmpService.gethouseHoldDetails();
     this.dependantSelectionForm = new FormGroup({
       dependantSelection: new FormControl(this.hasDependant, Validators.required),
       noOfHouseholdMembers: new FormControl(this.householdDetails ? this.householdDetails.noOfHouseholdMembers : '', [Validators.required, Validators.min(1), Validators.max(10)]),
       houseHoldIncome: new FormControl(this.householdDetails ? this.householdDetails.houseHoldIncome : '', Validators.required),
-      noOfYears: new FormControl(this.householdDetails ? this.householdDetails.noOfYears : 0),
     });
 
   }
@@ -122,56 +121,52 @@ export class DependantSelectionComponent implements OnInit, OnDestroy {
 
   goToNext(dependantSelectionForm) {
     if (this.viewMode) {
-        this. routerPath(dependantSelectionForm);
+      this.routerPath(dependantSelectionForm);
     } else {
       this.cmpService.setDependantSelection(dependantSelectionForm.value.dependantSelection);
       dependantSelectionForm.value.dependentsList = this.householdDetails.dependentsList;
       this.cmpService.sethouseHoldDetails(dependantSelectionForm.value);
       const payload = {
-          hasDependents: dependantSelectionForm.value.dependantSelection,
-          noOfHouseholdMembers: dependantSelectionForm.value.noOfHouseholdMembers,
-          houseHoldIncome: dependantSelectionForm.value.houseHoldIncome,
-          noOfYears: dependantSelectionForm.value.noOfYears,
-          enquiryId: this.cmpService.getEnquiryId(),
-          dependentMappingList: [{
-            id: 0,
-            customerId: 0,
-            name: '',
-            relationship: '',
-            gender: '',
-            dateOfBirth: '',
-            nation: ''
-          }],
-          saveDependentInfo: false
-        };
+        hasDependents: dependantSelectionForm.value.dependantSelection,
+        noOfHouseholdMembers: dependantSelectionForm.value.noOfHouseholdMembers,
+        houseHoldIncome: dependantSelectionForm.value.houseHoldIncome,
+        enquiryId: this.cmpService.getEnquiryId(),
+        dependentMappingList: [{
+          id: 0,
+          customerId: 0,
+          name: '',
+          relationship: '',
+          gender: '',
+          dateOfBirth: '',
+          nation: ''
+        }],
+        saveDependentInfo: false
+      };
+      this.loaderService.showLoader({ title: this.saveData });
       this.cmpApiService.addDependents(payload).subscribe((data: any) => {
-          this.cmpService.setHasDependant(dependantSelectionForm.value.dependantSelection);
-          const dependantDetails = this.comprehensiveService.getMyDependant();
-          if  (!(dependantSelectionForm.value.dependantSelection && dependantDetails.length > 0)) {
-            this.cmpService.setMyDependant([]);
-            this.cmpService.clearEndowmentPlan();
-          }
-          if (this.comprehensiveService.getMySteps() === 0 && this.comprehensiveService.getMySubSteps() < 1) {
-            this.comprehensiveService.setStepCompletion(0, 1).subscribe((data1: any) => {
-              this.loaderService.hideLoader();
-              this. routerPath(dependantSelectionForm);
-            });
-          } else {
+        this.cmpService.setHasDependant(dependantSelectionForm.value.dependantSelection);
+        const dependantDetails = this.comprehensiveService.getMyDependant();
+        if (!(dependantSelectionForm.value.dependantSelection && dependantDetails.length > 0)) {
+          this.cmpService.setMyDependant([]);
+          this.cmpService.clearEndowmentPlan();
+        }
+        if (this.comprehensiveService.getMySteps() === 0 && this.comprehensiveService.getMySubSteps() < 1) {
+          this.comprehensiveService.setStepCompletion(0, 1).subscribe((data1: any) => {
             this.loaderService.hideLoader();
-            this. routerPath(dependantSelectionForm);
-          }
-        });
+            this.routerPath(dependantSelectionForm);
+          });
+        } else {
+          this.loaderService.hideLoader();
+          this.routerPath(dependantSelectionForm);
+        }
+      });
     }
   }
   routerPath(dependantSelectionForm) {
-    if (this.comprehensiveJourneyMode) {
-      if (dependantSelectionForm.value.dependantSelection) {
-        this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
-      } else {
-        this.showSummaryModal();
-      }
+    if (dependantSelectionForm.value.dependantSelection) {
+      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS]);
     } else {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/2']);
+      this.showSummaryModal();
     }
   }
   showSummaryModal() {

@@ -38,7 +38,6 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   routerEnabled = false;
   bucketImage: string;
   viewMode: boolean;
-  comprehensiveJourneyMode: boolean;
   saveData: string;
   constructor(
     private route: ActivatedRoute, private router: Router, public navbarService: NavbarService,
@@ -52,7 +51,6 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
     });
     this.viewMode = this.comprehensiveService.getViewableMode();
-    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
     this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP2;
     this.translate.get('COMMON').subscribe((result: string) => {
       // meta tag and title
@@ -66,10 +64,6 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       }
     });
     this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
-    if (!this.comprehensiveJourneyMode && this.liabilitiesDetails) {
-      this.liabilitiesDetails.otherPropertyLoanOutstandingAmount = 0;
-      this.liabilitiesDetails.carLoansAmount = 0;
-    }
   }
 
   ngOnInit() {
@@ -155,7 +149,7 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
         const liabilitiesData = this.comprehensiveService.getComprehensiveSummary().comprehensiveLiabilities;
 
         if (!form.pristine || Util.isEmptyOrNull(liabilitiesData) ||
-        this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT) {
+          this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.NEW || this.comprehensiveService.getReportStatus() === COMPREHENSIVE_CONST.REPORT_STATUS.EDIT) {
           if (!form.controls.homeLoanOutstandingAmount.pristine) {
             this.comprehensiveService.setHomeLoanChanges(true);
           }
@@ -241,10 +235,6 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
     }
   }
   routerPath() {
-    if (this.comprehensiveJourneyMode) {
-      this.showSummaryModal();
-    } else {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.STEPS + '/3']);
-    }
+    this.showSummaryModal();
   }
 }

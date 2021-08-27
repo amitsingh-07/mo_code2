@@ -6,9 +6,9 @@
   </div>
 </div>
 <div class="container-fluid max-width--1024 comprehensive">
-    <div class="step-indicator-container hidden-lg" id="moDpdnt2StepIndctr">
-        <app-step-indicator [count]="6" [activeStepIndex]="5" [mode]="1"></app-step-indicator>
-      </div>
+  <div class="step-indicator-container hidden-lg" id="moDpdnt2StepIndctr">
+    <app-step-indicator [count]="6" [activeStepIndex]="5" [mode]="1"></app-step-indicator>
+  </div>
   <div class="comprehensive__page-sub-heading mt30">{{'CMP.MY_LIABILITIES.TITLE'|translate}}</div>
   <div class="comprehensive__page-content">{{'CMP.MY_LIABILITIES.HEADER'|translate}}</div>
   <div class='income-bucket-panel'>
@@ -52,7 +52,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="comprehensiveJourneyMode">
+        <div>
           <div class="flex-row investmentProperties home-loan mb0" [hidden]="!propertyLoan" *ngIf="!viewMode">
             <div class="flex-col-12 mt15 ">
               <div class="with-help-icon" for="name"><u class="clickable" (click)="addPropertyLoan()">{{
@@ -125,7 +125,7 @@
         </div>
       </div>
     </div>
-    <div *ngIf="comprehensiveJourneyMode"  class="form-group-with-bg">
+    <div class="form-group-with-bg">
       <!--Form Header-->
       <div class="form-group-with-bg--header">
         <div class="flex-row ">

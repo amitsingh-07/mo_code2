@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+
 import { ConfigService } from '../../config/config.service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { ProgressTrackerService } from '../../shared/modal/progress-tracker/progress-tracker.service';
@@ -24,8 +25,9 @@ export class ResultComponent implements OnInit, OnDestroy {
   emailID: any;
   alertTitle: string;
   alertMessage: string;
-  comprehensiveJourneyMode: boolean;
+  isCorporate: boolean;
   isPayment: boolean;
+  lockedWithWaived: boolean;
   @Output() backPressed: EventEmitter<any> = new EventEmitter();
   constructor(private activatedRoute: ActivatedRoute, public navbarService: NavbarService,
     private translate: TranslateService,
@@ -54,8 +56,10 @@ export class ResultComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
-    if (this.comprehensiveJourneyMode) {
+    this.isCorporate = this.comprehensiveService.isCorporateRole();
+    const advisorStatus = (this.comprehensiveService.getAdvisorStatus()) ? this.comprehensiveService.getAdvisorStatus().toLowerCase() : '';
+    this.lockedWithWaived = (this.comprehensiveService.getLocked() && advisorStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED);
+    if (!this.isCorporate) {
       this.paymentStatus();
     }
     this.loaderService.hideLoaderForced();

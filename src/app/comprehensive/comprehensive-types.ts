@@ -3,7 +3,7 @@ import { IProgressTrackerItem } from '../shared/modal/progress-tracker/progress-
 
 export interface IComprehensiveDetails {
     baseProfile: IMyProfile;
-    dependentsSummaryList: IdependentsSummaryList;
+    dependentsSummaryList: IDependantSummaryList;
     comprehensiveEnquiry: IComprehensiveEnquiry;
     dependentEducationPreferencesList: IChildEndowment[];
     comprehensiveDownOnLuck: HospitalPlan;
@@ -38,9 +38,11 @@ export interface IComprehensiveEnquiry {
     reportSubmittedTimeStamp: string;
     isDobUpdated: boolean;
     dobPopUpEnable: boolean;
-    paymentStatus:string;
+    paymentStatus: string;
     promoCode?: string;
     promoWaived?: boolean;
+    advisorPaymentStatus: string;
+    promoWaivedSpeakToAdvisor?: boolean;
 }
 export interface IPromoCode {
     comprehensivePromoCodeToken: string;
@@ -65,12 +67,13 @@ export interface IDependantDetail {
     dateOfBirth: string;
     nation: string;
     isInsuranceNeeded: boolean;
+    yearsNeeded: string
+    supportAmount: string
 }
-export interface IdependentsSummaryList {
+export interface IDependantSummaryList {
     dependentsList: IDependantDetail[];
     houseHoldIncome: string;
     noOfHouseholdMembers: number;
-    noOfYears: number;
     enquiryId: number;
 }
 export interface IChildEndowment {
@@ -232,8 +235,8 @@ export interface IInsurancePlan {
     haveLongTermElderShield: number;
     longTermElderShieldAmount: number;
     otherLongTermCareInsuranceAmount: number;
-    shieldType:string;
-    haveLongTermPopup:boolean;
+    shieldType: string;
+    haveLongTermPopup: boolean;
 }
 export interface IRetirementPlan {
     enquiryId: number;
@@ -253,6 +256,7 @@ export interface ILumpSumBenefitSet {
     maturityYear: number;
 }
 export interface IRiskAssesmentAnswers {
+    riskProfileSkipped: boolean;
     enquiryId: number;
     answers: IRiskAnswers[];
     riskProfileAnswers: IRiskProfile;

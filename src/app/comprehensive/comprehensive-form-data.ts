@@ -12,4 +12,5 @@ export class ComprehensiveFormData {
     hospitalPlanList: IHospitalPlanList[];
     promoCodeActionType: string;
     promoCode: IPromoCode;
+    toastMessage: boolean;
 }
