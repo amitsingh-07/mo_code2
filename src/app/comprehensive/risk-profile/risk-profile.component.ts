@@ -141,9 +141,9 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
         form.controls.questSelOption.value,
         this.questionIndex
       );
-
+        console.log(form.controls.riskProfileCheckboxFlag.value,'ts');
       //SKIP PROFILE FLAG save
-      this.comprehensiveService.saveSkipRiskProfile().subscribe(() => { });
+      this.comprehensiveService.saveSkipRiskProfile().subscribe(() => { 
 
       if (form.controls.riskProfileCheckboxFlag.value) {
         this.comprehensiveService.setStepCompletion(4, this.questionIndex).subscribe(() => {
@@ -189,7 +189,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
             }
           });
         }
-      }
+      }});
     }
   }
 
