@@ -229,7 +229,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
           }
           this.comprehensiveService.setReportStatus(reportStatus);
           if (!this.isCorporateUser || (this.isCorporateUser && Util.isEmptyOrNull(this.adviserPaymentStatus))) {
-            this.comprehensiveService.setLocked(true);
+            this.comprehensiveService.setLocked(viewMode);
             this.comprehensiveService.setViewableMode(viewMode);
           }
           this.router.navigate([routerURL]);
