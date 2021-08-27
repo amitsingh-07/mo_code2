@@ -141,7 +141,7 @@ export class RiskProfileComponent implements IPageComponent, OnInit {
         form.controls.questSelOption.value,
         this.questionIndex
       );
-        console.log(form.controls.riskProfileCheckboxFlag.value,'ts');
+
       //SKIP PROFILE FLAG save
       this.comprehensiveService.saveSkipRiskProfile().subscribe(() => { 
 
