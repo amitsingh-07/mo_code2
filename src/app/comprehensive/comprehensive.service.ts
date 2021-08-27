@@ -945,7 +945,8 @@ export class ComprehensiveService {
       accessRetirementAge = (parseInt(this.getRetirementPlan().retirementAge) >= userAge);
     }
     let isEditAccess = true;
-    if (reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR || reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.READY) {
+    const isLocked = this.getLocked();
+    if (reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR || (!isLocked && reportStatusData === COMPREHENSIVE_CONST.REPORT_STATUS.READY)) {
       isEditAccess = false;
     }
     for (let index = currentUrlIndex; index >= 0; index--) {
