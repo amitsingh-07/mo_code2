@@ -636,7 +636,7 @@
     "CLOSE_BTN": "X",
     "VALIDITY": "Valid until ",
     "PARA_ONE": "We are excited to share these rewards with all Owl friends who just join us through friend referral.",
-    "HEADING": " welcome rewards to claim!",
+    "HEADING": " Welcome rewards to claim!",
     "PARA_TWO": "You and your friend both <b>earn the same amount</b> when you complete any of these!",
     "COUPON_CARD_COMP": "Get a comprehensive financial planning",
     "CREDITS":"credits",
@@ -673,7 +673,6 @@
     "OF_LBL": "of",
     "SHOW_MORE_BTN_LBL": "Show More",
     "SPREAD_WORDS_LBL":"Oops, pretty lonely here. Go on, help us spread the word.",
-    "YOU_HAVE": "You’ve",
-    "WELCOME_REWARDS": "welcome rewards"
+    "WELCOME_REWARDS": "You’ve welcome rewards"
   }
 }
