@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SelectPortfolioTypeComponent } from './select-portfolio-type/select-portfolio-type.component';
 import { SelectPortfolioComponent } from './select-portfolio/select-portfolio.component';
 import { FundingMethodComponent } from './funding-method/funding-method.component';
 import { GetStartedStep1Component } from './get-started-step1/get-started-step1.component';
@@ -29,6 +30,11 @@ const routes: Routes = [
     redirectTo: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.START,
     pathMatch: 'full',
     canActivate: [InvestmentEngagementJourneyGuard]
+  },
+  {
+    path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.SELECT_PORTFOLIO_TYPE,
+    component: SelectPortfolioTypeComponent,
+    // canActivate: [InvestmentEngagementJourneyGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.SELECT_PORTFOLIO,
