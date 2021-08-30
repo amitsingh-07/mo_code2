@@ -33,6 +33,7 @@ export function createTranslateLoader(http: HttpClient) {
   ]);
 }
 import { PromoCodeModule } from './../../promo-code/promo-code.module';
+import { AddSecondaryHolderComponent } from './add-secondary-holder/add-secondary-holder.component';
 
 @NgModule({
   imports: [
@@ -60,7 +61,8 @@ import { PromoCodeModule } from './../../promo-code/promo-code.module';
     AccountCreationErrorModalComponent,
     AddPortfolioNameComponent,
     FundingIntroComponent,
-    FundingAccountDetailsComponent
+    FundingAccountDetailsComponent,
+    AddSecondaryHolderComponent
   ],
   entryComponents: [AccountCreationErrorModalComponent],
   providers: [CurrencyPipe, FormatCurrencyPipe]
