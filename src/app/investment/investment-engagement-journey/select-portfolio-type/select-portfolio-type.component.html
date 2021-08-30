@@ -1,38 +1,38 @@
 <!--Hospital Plan Screen-->
 <div class="container-fluid max-width--1024">
-    <div class="content">
-      <div class="row">
-        <div class="col-lg-7 col-md-6 hidden-sm-md">
-          <h2>Portfolio Type</h2>
-          <div class="banner-image">
-            <img src="assets/images/investment-account/select-portfolio-type.svg" />
+  <div class="content">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 hidden-sm-md">
+        <h2>Portfolio Type</h2>
+        <div class="banner-image">
+          <img src="assets/images/investment-account/select-portfolio-type.svg" />
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-6">
+        <h6>What type of portfolio do you want to create?</h6>
+        <form name="hospitalPlanForm" id="hospitalPlanForm">
+          <div class="form-group flex">
+            <div class="special-radio-button hidden">
+              <input type="radio" [(ngModel)]="portfolioType" value="1" class="field radio" name="portfolio_type" id="hospitalPlan_1" tabindex="1" />
+              <label for="hospitalPlan_1">
+                <div class="input-label-white">{{'SELECT_PORTFOLIO_TYPE.PERSONAL_ACCOUNT.TITLE' | translate}}</div>
+                <div class="input-label-normal">{{'SELECT_PORTFOLIO_TYPE.PERSONAL_ACCOUNT.DESC' | translate}}</div>
+              </label>
+            </div>
+            <div class="special-radio-button hidden">
+              <input type="radio" [(ngModel)]="portfolioType" value="2" class="field radio" name="portfolio_type" id="hospitalPlan_2" tabindex="2" />
+              <label for="hospitalPlan_2">
+                <div class="input-label-white">{{'SELECT_PORTFOLIO_TYPE.JOINT_ACCOUNT.TITLE' | translate}}</div>
+                <div class="input-label-normal">{{'SELECT_PORTFOLIO_TYPE.JOINT_ACCOUNT.DESC' | translate}}</div>
+              </label>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-5 col-md-6">
-          <h6>What type of portfolio do you want to create?</h6>
-          <form name="hospitalPlanForm" id="hospitalPlanForm">
-            <div class="form-group flex">
-              <div class="special-radio-button hidden" >
-                <input type="radio" class="field radio" id="hospitalPlan_1" tabindex="1"/>
-                  <label for="hospitalPlan_1">
-                    <div class="input-label-white">Personal Account</div>
-                    <div class="input-label-normal">Owner of this portfolio</div>
-                  </label>
-              </div>
-                <div class="special-radio-button hidden">
-                  <input type="radio" class="field radio"  id="hospitalPlan_2" tabindex="2"/>
-                    <label for="hospitalPlan_2">
-                      <div class="input-label-white">Joint Account</div>
-                      <div class="input-label-normal">Co-own this portfolio with another person</div>
-                    </label>
-                </div>
-            </div>
-            <div>
-              <button type="button" class="btn btn-primary btn__footer--fixed width100">Continue</button>
-            </div>
-          </form>
-        </div>
+          <div>
+            <button type="button" [disabled]="portfolioType === undefined" (click)="goToNext()"
+              class="btn btn-primary btn__footer--fixed width100">Continue</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-  
+</div>
