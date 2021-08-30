@@ -148,7 +148,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     this.investmentCommonService.clearJourneyData();
     const portfolioType = this.toDecidedPortfolioType(this.portfolioCategory);
     this.investmentEngagementService.setSelectPortfolioType({selectPortfolioType : portfolioType});
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO_TYPE]);
   }
 
   toDecidedPortfolioType(selectedPortfolioValue) {
