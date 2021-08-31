@@ -52,7 +52,6 @@ export class SelectPortfolioTypeComponent implements OnInit {
       } 
     }
   }
-
   buildPortfolioFormType() {
     this.portfolioTypeForm = new FormGroup({
       portfolioType: new FormControl('', Validators.required)
