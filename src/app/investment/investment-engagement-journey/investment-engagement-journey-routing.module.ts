@@ -35,7 +35,7 @@ const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.SELECT_PORTFOLIO_TYPE,
     component: SelectPortfolioTypeComponent,
-    // canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.SELECT_PORTFOLIO,
