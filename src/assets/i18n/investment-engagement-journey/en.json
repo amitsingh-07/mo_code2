@@ -391,11 +391,11 @@
   "SELECT_PORTFOLIO_TYPE": {
     "PERSONAL_ACCOUNT": {
       "TITLE": "Personal Account",
-      "PERSONAL_ACCOUNT_DESC": "Owner of this portfolio"
+      "DESC": "Owner of this portfolio"
     },
     "JOINT_ACCOUNT": {
       "TITLE": "Joint Account",
-      "JOINT_ACCOUNT_DESC": "Co-own this portfolio with another person"
+      "DESC": "Co-own this portfolio with another person"
     }
   }
 }

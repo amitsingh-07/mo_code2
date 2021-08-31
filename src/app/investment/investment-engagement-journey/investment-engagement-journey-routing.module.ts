@@ -23,6 +23,7 @@ import {
 } from './your-investment-amount/your-investment-amount.component';
 import { RiskAcknowledgementComponent } from './risk-acknowledgement/risk-acknowledgement.component';
 import { WiseIncomePayoutComponent } from './wise-income-payout/wise-income-payout.component';
+import { AddSecondaryHolderComponent } from './add-secondary-holder/add-secondary-holder.component';
 
 const routes: Routes = [
   {
@@ -106,6 +107,11 @@ const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.WISE_INCOME_PAYOUT,
     component: WiseIncomePayoutComponent,
+    canActivate: [InvestmentEngagementJourneyGuard]
+  },
+  {
+    path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.ADD_SECONDARY_HOLDER,
+    component: AddSecondaryHolderComponent,
     canActivate: [InvestmentEngagementJourneyGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }

@@ -21,6 +21,6 @@ export class SelectPortfolioTypeComponent implements OnInit {
 
   goToNext() {
     this.portfolioType === 1 ? this.isPersonalAccount = true : this.isPersonalAccount = false;
-    this.isPersonalAccount ? this.router.navigate(['../' + INVESTMENT_COMMON_ROUTE_PATHS.ADD_SECONDARY_HOLDER_DETAILS]) : this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+    this.isPersonalAccount ? this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.ADD_SECONDARY_HOLDER_DETAILS]) : this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
   }
 }

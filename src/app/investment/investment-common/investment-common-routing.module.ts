@@ -5,7 +5,6 @@ import { AuthGuardService as AuthGuard } from '../../sign-up/auth-guard.service'
 import { FundingIntroComponent } from '../investment-common/funding-intro/funding-intro.component';
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
 import { AddPortfolioNameComponent } from './add-portfolio-name/add-portfolio-name.component';
-import { AddSecondaryHolderComponent } from './add-secondary-holder/add-secondary-holder.component';
 import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
 import {
     FundingAccountDetailsComponent
@@ -50,11 +49,6 @@ const routes: Routes = [
   {
     path: INVESTMENT_COMMON_ROUTES.FUNDING_ACCOUNT_DETAILS,
     component: FundingAccountDetailsComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: INVESTMENT_COMMON_ROUTES.ADD_SECONDARY_HOLDER,
-    component: AddSecondaryHolderComponent,
     canActivate: [AuthGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }
