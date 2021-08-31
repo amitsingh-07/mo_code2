@@ -460,4 +460,15 @@ export class InvestmentEngagementJourneyService {
   getUserPortfolioType() {
     return this.investmentEngagementJourneyFormData?.userPortfolioType;
   }
+
+  /* Set secondary holder type */
+  setSecondaryHolderType(secondaryHolderType) {
+    // this.investmentEngagementJourneyFormData.userPortfolioType = potfolioType;
+    // this.commit();
+  }
+
+  /* Get secondary holder type */
+  getSecondaryHolderType() {
+    // return this.investmentEngagementJourneyFormData?.userPortfolioType;
+  }
 }
