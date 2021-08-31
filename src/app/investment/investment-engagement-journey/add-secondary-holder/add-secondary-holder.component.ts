@@ -32,6 +32,7 @@ export class AddSecondaryHolderComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('secondary holder');
+    this.selectNationalityFormValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.selectNationalityForm = new FormGroup({
       nationality: new FormControl(this.selectNationalityFormValues.nationality, Validators.required)
     });

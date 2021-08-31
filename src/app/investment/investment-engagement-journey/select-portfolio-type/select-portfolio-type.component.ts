@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 
 @Component({
   selector: 'app-select-portfolio-type',
@@ -16,33 +18,44 @@ import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagem
 export class SelectPortfolioTypeComponent implements OnInit {
 
   pageTitle: string;
-  isPersonalAccount: boolean;
-  portfolioType: any;
+  selectedPortfolio: any;
+  portfolioTypeForm: FormGroup;
   constructor(
     private router: Router,
     public readonly translate: TranslateService,
     public headerService: HeaderService,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    ) { 
-      this.translate.use('en');
-      this.translate.get('COMMON').subscribe((result: string) => {
-        this.pageTitle = this.translate.instant('SELECT_PORTFOLIO_TYPE.PAGE_TITLE');
-        this.setPageTitle(this.pageTitle);
-      });
-    }
+    public authService: AuthenticationService
+  ) {
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('SELECT_PORTFOLIO_TYPE.PAGE_TITLE');
+      this.setPageTitle(this.pageTitle);
+    });
+  }
 
   ngOnInit() {
+    this.buildPortfolioFormType();
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    console.log("account type", this.portfolioType);
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
   goToNext() {
-    this.portfolioType === 1 ? this.isPersonalAccount = true : this.isPersonalAccount = false;
-    this.isPersonalAccount ? this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.ADD_SECONDARY_HOLDER_DETAILS]) : this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+    if (this.portfolioTypeForm.valid) {
+      if (this.authService.isSignedUser()) {
+        this.portfolioTypeForm.value?.portfolioType === '2' ? this.selectedPortfolio = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT : this.selectedPortfolio = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.PERSONAL_ACCOUNT;
+        this.selectedPortfolio === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT ? this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.ADD_SECONDARY_HOLDER_DETAILS]) : this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+      } 
+    }
+  }
+
+  buildPortfolioFormType() {
+    this.portfolioTypeForm = new FormGroup({
+      portfolioType: new FormControl('', Validators.required)
+    });
   }
 }
