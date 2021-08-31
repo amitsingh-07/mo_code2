@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -15,7 +15,8 @@ import { InvestmentEngagementJourneyService } from '../investment-engagement-jou
 @Component({
   selector: 'app-add-secondary-holder',
   templateUrl: './add-secondary-holder.component.html',
-  styleUrls: ['./add-secondary-holder.component.scss']
+  styleUrls: ['./add-secondary-holder.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AddSecondaryHolderComponent implements OnInit {
 
