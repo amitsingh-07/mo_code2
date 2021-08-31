@@ -1,0 +1,19 @@
+<div class="">
+    <form name="selectNationalityForm" [formGroup]="selectNationalityForm">
+      <div class="flex-row">
+        <div class="flex-col-5">
+          <label for="name" id="select_nationality_lab">{{ 'SELECT_NATIONALITY.NATIONALITY_LEB' | translate}}</label>
+        </div>
+        <div class="flex-col-7">
+          <div class="dropdown-control">
+            <app-dropdown-with-search [disabled]="isDisabled()" controlName="nationality" [optionList]="nationalityList"
+              displayKey="name" placement="top-right"
+              placeholderText="{{ 'SELECT_NATIONALITY.SELECT_NATIONALITY' | translate}}"
+              (itemSelected)="selectNationality($event)">
+            </app-dropdown-with-search>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  
