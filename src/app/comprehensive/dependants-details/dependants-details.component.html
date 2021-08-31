@@ -182,15 +182,15 @@
             </div>
           </div>
           <div class="flex-col-7">
-            <div class="form-control form-control-right" [ngClass]="{disabled : isFormControlDisabled}">
+            <div class="form-control form-control-right" [ngClass]="{disabled : isFormControlDisabled}" [ngClass]="{'view-mode': viewMode}">
               <i class="fixed-currency">$</i>
               <input [attr.disabled]="isFormControlDisabled" type="text" class="input-control" appCurrencyInput
-                maxLength="5" #supportAmount formControlName="supportAmount" value="0">
+                maxLength="5" #supportAmount formControlName="supportAmount" value="0" appComprehensiveViewMode="{{viewMode}}" mode=1>
               <i class="right">{{ 'CMP.DEPENDANT_SELECTION.PER_MONTH' | translate}}</i>
             </div>
           </div>
         </div>
-
+        
         <!--Years Needed-->
         <div class="flex-row">
           <div class="flex-col-5">
