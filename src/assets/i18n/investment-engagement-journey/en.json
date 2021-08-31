@@ -389,13 +389,16 @@
     "DESC": "This is a low risk portfolio. By<br> proceeding, you agree that this<br> portfolio aligns with your willingness<br> and ability to take risk."
   },
   "SELECT_PORTFOLIO_TYPE": {
+    "PAGE_TITLE" : "Portfolio Type",
+    "DESC_LBL": "What type of portfolio do you want to create?",
     "PERSONAL_ACCOUNT": {
       "TITLE": "Personal Account",
-      "PERSONAL_ACCOUNT_DESC": "Owner of this portfolio"
+      "DESC": "Owner of this portfolio"
     },
     "JOINT_ACCOUNT": {
       "TITLE": "Joint Account",
-      "JOINT_ACCOUNT_DESC": "Co-own this portfolio with another person"
-    }
+      "DESC": "Co-own this portfolio with another person"
+    },
+    "CONTINUE":"Continue"
   }
 }

@@ -1,27 +1,27 @@
 <!--Hospital Plan Screen-->
-<div class="container-fluid max-width--1024">
+<div class="container-fluid max-width--1024 investment">
   <div class="content">
     <div class="row">
       <div class="col-lg-7 col-md-6 hidden-sm-md">
-        <h2>Portfolio Type</h2>
+        <h2>{{'SELECT_PORTFOLIO_TYPE.PAGE_TITLE' | translate}}</h2>
         <div class="banner-image">
           <img src="assets/images/investment-account/select-portfolio-type.svg" />
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
-        <h6>What type of portfolio do you want to create?</h6>
-        <form name="hospitalPlanForm" id="hospitalPlanForm">
+        <h6>{{'SELECT_PORTFOLIO_TYPE.DESC_LBL' | translate}}</h6>
+        <form name="portfolioTypeForm" id="portfolioTypeForm">
           <div class="form-group flex">
             <div class="special-radio-button hidden">
-              <input type="radio" [(ngModel)]="portfolioType" value="1" class="field radio" name="portfolio_type" id="hospitalPlan_1" tabindex="1" />
-              <label for="hospitalPlan_1">
+              <input type="radio" [(ngModel)]="portfolioType" value="1" class="field radio" name="portfolio_type" id="portfolio_type_1" tabindex="1" />
+              <label for="portfolio_type_1">
                 <div class="input-label-white">{{'SELECT_PORTFOLIO_TYPE.PERSONAL_ACCOUNT.TITLE' | translate}}</div>
                 <div class="input-label-normal">{{'SELECT_PORTFOLIO_TYPE.PERSONAL_ACCOUNT.DESC' | translate}}</div>
               </label>
             </div>
             <div class="special-radio-button hidden">
-              <input type="radio" [(ngModel)]="portfolioType" value="2" class="field radio" name="portfolio_type" id="hospitalPlan_2" tabindex="2" />
-              <label for="hospitalPlan_2">
+              <input type="radio" [(ngModel)]="portfolioType" value="2" class="field radio" name="portfolio_type" id="portfolio_type_2" tabindex="2" />
+              <label for="portfolio_type_2">
                 <div class="input-label-white">{{'SELECT_PORTFOLIO_TYPE.JOINT_ACCOUNT.TITLE' | translate}}</div>
                 <div class="input-label-normal">{{'SELECT_PORTFOLIO_TYPE.JOINT_ACCOUNT.DESC' | translate}}</div>
               </label>
@@ -29,7 +29,7 @@
           </div>
           <div>
             <button type="button" [disabled]="portfolioType === undefined" (click)="goToNext()"
-              class="btn btn-primary btn__footer--fixed width100">Continue</button>
+              class="btn btn-primary btn__footer--fixed width100">{{'SELECT_PORTFOLIO_TYPE.CONTINUE' | translate}}</button>
           </div>
         </form>
       </div>
