@@ -8,6 +8,7 @@ import { HeaderService } from '../../../shared/header/header.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
+import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 
 @Component({
   selector: 'app-select-portfolio-type',
@@ -26,7 +27,8 @@ export class SelectPortfolioTypeComponent implements OnInit {
     public headerService: HeaderService,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    public authService: AuthenticationService
+    public authService: AuthenticationService,
+    private investmentEngagementJourneyService: InvestmentEngagementJourneyService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -48,6 +50,7 @@ export class SelectPortfolioTypeComponent implements OnInit {
     if (this.portfolioTypeForm.valid) {
       if (this.authService.isSignedUser()) {
         this.portfolioTypeForm.value?.portfolioType === '2' ? this.selectedPortfolio = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT : this.selectedPortfolio = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.PERSONAL_ACCOUNT;
+        this.investmentEngagementJourneyService.setUserPortfolioType(this.selectedPortfolio);
         this.selectedPortfolio === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT ? this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.ADD_SECONDARY_HOLDER_DETAILS]) : this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
       } 
     }
