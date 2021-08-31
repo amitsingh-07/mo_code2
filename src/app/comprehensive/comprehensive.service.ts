@@ -598,6 +598,12 @@ export class ComprehensiveService {
     }
   }
 
+  setRiskProfileFlag(flag) {
+    this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileSkipped = flag;
+    this.saveSkipRiskProfile().subscribe(() => { });    
+    this.commit();
+  }
+
   getSelectedOptionByIndex(index) {
     if (this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers) {
       return this.comprehensiveFormData.comprehensiveDetails.riskAssessmentAnswer.riskProfileAnswers['riskAssessQuest' + index];
