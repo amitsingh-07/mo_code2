@@ -18,7 +18,7 @@
                 ngbNavLink>{{'SECONDARY_HOLDER.MAJOR.TAB_LBL' | translate}}</a>
               <ng-template ngbNavContent>
                 <div class="pannel-tab-content">
-                  <div>
+                  <div class="major-tab-content">
                     <div class="desc-lbl flex space-between">
                       <span>{{'SECONDARY_HOLDER.MAJOR.DESC_LBL' | translate}}</span>
                       <i class="tooltip-icon">
@@ -26,6 +26,41 @@
                       </i>
                     </div>
                     <div class="desc-sub-lbl">{{'SECONDARY_HOLDER.MAJOR.DESC_SUB_LBL' | translate}}</div>
+                    <div class="flex-row align-center">
+                      <div class="flex-col-5">
+                        <label id="nricOrFin" for="last-four-characters-of-nric">
+                          <div>{{'SECONDARY_HOLDER.MAJOR.NRIC_LBL' | translate}}</div>
+                          <div class="sub-label">Last 4 Chars</div>
+                        </label>
+                      </div>
+                      <div class="flex-col-7">
+                        <div class="form-control">
+                          <div name="nricOrFin">
+                            <input id="last-four-characters-of-nric" class="input-control" type="text" maxLength="4"
+                              name="nricOrFin"
+                              placeholder="{{'SECONDARY_HOLDER.MAJOR.PLACEHOLDER_NRIC_LBL' | translate}}">
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <div class="alert-msg flex" *ngIf="ntucMemberForm.get('nricOrFin').errors?.pattern && ntucMemberForm.get('nricOrFin').value.length > 3">
+                        <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                        <span class="err-msg">{{'NTUC_PROMO_MODAL.ERROR_MSG' | translate}}</span>
+                      </div> -->
+                    </div>
+                    <div class="flex-row align-center">
+                      <div class="flex-col-5">
+                        <label id="nricOrFin" for="last-four-characters-of-nric">
+                          <div>{{'SECONDARY_HOLDER.MAJOR.EMAIL' | translate}}</div>
+                        </label>
+                      </div>
+                      <div class="flex-col-7">
+                        <div class="form-control">
+                          <div>
+                              <input type="text" class="input-control" placeholder="{{'SECONDARY_HOLDER.MAJOR.EMAIL_PLACEHOLDER' | translate}}" required>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </ng-template>
@@ -35,7 +70,7 @@
                 ngbNavLink>{{'SECONDARY_HOLDER.MINOR.TAB_LBL' | translate}}</a>
               <ng-template ngbNavContent>
                 <div class="pannel-tab-content">
-                  <div>
+                  <div class="minor-tab-content">
                     <div class="desc-lbl">{{'SECONDARY_HOLDER.MINOR.DESC_LBL' | translate}}</div>
                     <div class="desc-sub-lbl">{{'SECONDARY_HOLDER.MINOR.DESC_SUB_LBL' | translate}}</div>
                     <div class="flex-row">

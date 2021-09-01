@@ -407,7 +407,11 @@
     "MAJOR": {
       "TAB_LBL": "18 & above",
       "DESC_LBL": "Secondary Holder Details",
-      "DESC_SUB_LBL": "Important: Do note that the proposed secondary investment account holder needs to have a MoneyOwl account and set up a personal investment portfolio before setting up a joint investment."
+      "DESC_SUB_LBL": "Important: Do note that the proposed secondary investment account holder needs to have a MoneyOwl account and set up a personal investment portfolio before setting up a joint investment.",
+      "NRIC_LBL": "NRIC / Passport Number",
+      "PLACEHOLDER_NRIC_LBL": "Enter Last 4 Chars",
+      "EMAIL": "Email",
+      "EMAIL_PLACEHOLDER": "secondaryholder@gmail.com"
     },
     "MINOR": {
       "TAB_LBL": "Below 18",

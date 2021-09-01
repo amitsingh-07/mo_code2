@@ -5,7 +5,7 @@ app-add-secondary-holder {
         border-bottom: 0;
         .btn-outline-primary {
             &.fixed-btn--sm {
-                max-width: 164px;
+                max-width: calc(50% - 10px);
                 height: 52px;
                 border-color: $white-color;
                 opacity: 0.6;
@@ -25,11 +25,24 @@ app-add-secondary-holder {
         }
     }
     .pannel-tab-content{
+        .form-control{
+            max-height: 52px;
+            .input-control{
+                text-align: left;
+            }
+        }
         .flex-row{
+            margin-bottom: 10px;
             label{
                 font-family: $muli-semi-bold;
                 line-height: normal;
                 letter-spacing: -0.3px;
+                .sub-label{
+                    font-family: $muli-regular;
+                    font-size: 14px;
+                    line-height: normal;
+                    letter-spacing: -0.26px;
+                }
             }
         }
         .desc-lbl{
@@ -52,6 +65,16 @@ app-add-secondary-holder {
             u{
                 font-family: $muli-semi-bold;
             }
+        }
+        .major-tab-content{
+            .flex-row{
+                label{
+                    font-size: 18px;
+                    @include allmobiles{
+                        font-size: 16px;  
+                    }
+                }
+            }  
         }
     }
 }
