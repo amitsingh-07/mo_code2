@@ -26,7 +26,12 @@ export class AddSecondaryHolderComponent implements OnInit {
   secondaryHolderFormValues: any;
   userProfileType: any;
   tooltipDetails: any;
+  blockedCountryModal: any;
+  activeTabId = 1;
+  investmentAccountSecondaryHolder: any;
   @Input('portfolioCategory') portfolioCategory;
+  editModalData: any;
+  blockedNationalityModal: any;
   constructor(
     public authService: AuthenticationService,
     private investmentCommonService: InvestmentCommonService,
@@ -40,77 +45,42 @@ export class AddSecondaryHolderComponent implements OnInit {
     this.userProfileType = investmentEngagementService.getUserPortfolioType();
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
+      this.blockedNationalityModal = this.translate.instant('SELECT_NATIONALITY.blockedNationality');
+      this.blockedCountryModal = this.translate.instant('SELECT_NATIONALITY.blockedCountry');
+      this.editModalData = this.translate.instant('SELECT_NATIONALITY.editModalData');
+      this.blockedCountryModal = this.translate.instant('SELECT_NATIONALITY.blockedCountry');
       this.tooltipDetails = this.translate.instant('BLOCKED_COUNTRY_TOOLTIP');
     });
   }
 
   ngOnInit(): void {
     console.log('secondary holder');
-    this.secondaryHolderFormValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.secondaryHolderForm = new FormGroup({
-      isMinor: new FormControl('', Validators.required)
+      isMinor: new FormControl('', Validators.required),
+      unitedStatesResident: new FormControl('', Validators.required),
+      nationality: new FormControl('', Validators.required)
     });
     this.getNationalityCountryList();
   }
 
-  addNationalityControl() {
-    this.secondaryHolderForm.addControl(
-      'singaporeanResident',
-      new FormControl('', Validators.required)
-    );
-  }
-
-  addResidentialsControl() {
-    this.secondaryHolderForm.removeControl('unitedStatesResident');
-    this.secondaryHolderForm.removeControl('singaporeanResident');
-    this.cdr.detectChanges();
-    const selectedNationality = this.secondaryHolderForm.controls.nationality.value;
-    const selectedNationalityName = this.secondaryHolderForm.controls.nationality.value &&
-      this.secondaryHolderForm.controls.nationality.value.name ?
-      this.secondaryHolderForm.controls.nationality.value.name.toUpperCase() : '';
-    if (['SINGAPOREAN', 'SG'].indexOf(selectedNationalityName) >= 0) {
-      this.secondaryHolderForm.addControl(
-        'unitedStatesResident',
-        new FormControl(this.secondaryHolderFormValues.unitedStatesResident, Validators.required)
-      );
-    } else if (selectedNationality && !selectedNationality.blocked) {
-      this.secondaryHolderForm.addControl(
-        'unitedStatesResident',
-        new FormControl(this.secondaryHolderFormValues.unitedStatesResident, Validators.required)
-      );
-      this.secondaryHolderForm.addControl(
-        'singaporeanResident',
-        new FormControl(this.secondaryHolderFormValues.singaporeanResident, Validators.required)
-      );
-    }
-  }
-
   selectedSecondaryHolderAge(secondaryHolderType) {
-    this.investmentEngagementService.setSecondaryHolderType(secondaryHolderType);
+    this.investmentEngagementService.setIsMinor(secondaryHolderType);
   }
 
   getNationalityCountryList() {
     this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
       this.nationalityList = data.objectList;
       this.countryList = this.investmentAccountService.getCountryList(data.objectList);
-      if (this.secondaryHolderFormValues.nationalityCode) {
-        const nationalityObj = this.getSelectedNationality(
-          this.secondaryHolderFormValues.nationalityCode
-        );
-        this.secondaryHolderForm.controls.nationality.setValue(nationalityObj);
-      }
-      this.addResidentialsControl();
+      // if (this.secondaryHolderFormValues.nationalityCode) {
+      //   const nationalityObj = this.getSelectedNationality(
+      //     this.secondaryHolderFormValues.nationalityCode
+      //   );
+      //   this.secondaryHolderForm.controls.nationality.setValue(nationalityObj);
+      // }
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
       });
-  }
-
-  getSelectedNationality(nationalityCode) {
-    const selectedNationality = this.nationalityList.filter(
-      (nationality) => nationality.nationalityCode === nationalityCode
-    );
-    return selectedNationality[0];
   }
 
   showBlockedCountryErrorMessage(modalTitle: any, modalMessage: any) {
@@ -127,6 +97,28 @@ export class AddSecondaryHolderComponent implements OnInit {
     return false;
   }
 
+  isDisabled() {
+    return true;
+  }
+
+  selectNationality(nationality) {
+    console.log('cointry', nationality);
+    this.secondaryHolderForm.controls.isMinor.setValue(true);
+    this.secondaryHolderForm.controls.nationality.setValue(nationality);
+    if (nationality.blocked) {
+      this.showBlockedCountryErrorMessage('Oops, Unable To Proceed', 'Due to compliance issues, MoneyOwl is unable to accept customers from the selected country.');
+      this.secondaryHolderForm.removeControl('singaporeanResident');
+    } else {
+      if (!this.isNationalitySingapore()) {
+        this.secondaryHolderForm.addControl(
+          'singaporeanResident', new FormControl('', Validators.required)
+        );
+      } else {
+        this.secondaryHolderForm.removeControl('singaporeanResident');
+      }
+    }
+  }
+
   isNationalitySingapore() {
     const selectedNationalityName = this.secondaryHolderForm.controls.nationality.value &&
       this.secondaryHolderForm.controls.nationality.value.name ?
@@ -136,5 +128,37 @@ export class AddSecondaryHolderComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  unitedStatesPRChange(isUnitedStatesPR) {
+    if (isUnitedStatesPR) {
+      this.showErrorMessage('Oops, Unable To Proceed',
+        'Due to compliance issues, MoneyOwl is unable to accept customers who are US Citizens, Permanent Residents or Tax Residents.');
+    }
+    console.log('us pr', this.secondaryHolderForm.value);
+  }
+
+  showErrorMessage(modalTitle: any, modalMessage: any) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = modalTitle;
+    ref.componentInstance.errorMessage = modalMessage;
+  }
+
+  singaporeanPRChange(isSingaporePR) {
+    console.log('SR pr', isSingaporePR);
+    // this.secondaryHolderForm.controls.singaporeanResident.setValue(isSingaporePR);
+    console.log('form', this.secondaryHolderForm.value);
+  }
+
+  goToNext() {
+    console.log('form', this.secondaryHolderForm.controls);
+    // if(this.secondaryHolderForm.valid) {
+    if (this.secondaryHolderForm.value.nationality?.blocked) {
+      this.showBlockedCountryErrorMessage('Oops, Unable To Proceed', 'Due to compliance issues, MoneyOwl is unable to accept customers from the selected country.');
+    } else if (this.secondaryHolderForm.value.unitedStatesResident) {
+      this.showErrorMessage('Oops, Unable To Proceed',
+        'Due to compliance issues, MoneyOwl is unable to accept customers who are US Citizens, Permanent Residents or Tax Residents.');
+    }
+    // }
   }
 }

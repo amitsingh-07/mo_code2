@@ -297,7 +297,7 @@ export class InvestmentEngagementJourneyService {
         enquiryId: enquiryIdValue,
         fundingTypeId: invCommonFormValues.initialFundingMethodId,
         portfolioTypeId: formData.portfolioTypeId,
-        
+
       };
     } else if (selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO) {
       return {
@@ -307,7 +307,7 @@ export class InvestmentEngagementJourneyService {
         fundingTypeId: invCommonFormValues.initialFundingMethodId,
         portfolioTypeId: formData.portfolioTypeId
       };
-    } else  {
+    } else {
       return {
         investmentPeriod: formData.investmentPeriod,
         monthlyIncome: formData.monthlyIncome,
@@ -462,13 +462,13 @@ export class InvestmentEngagementJourneyService {
   }
 
   /* Set secondary holder type */
-  setSecondaryHolderType(secondaryHolderType) {
-    // this.investmentEngagementJourneyFormData.userPortfolioType = potfolioType;
-    // this.commit();
+  setIsMinor(isMinor) {
+    // this.investmentEngagementJourneyFormData.isMinor = isMinor;
+    this.commit();
   }
 
   /* Get secondary holder type */
-  getSecondaryHolderType() {
-    // return this.investmentEngagementJourneyFormData?.userPortfolioType;
+  getIsMinor() {
+    // return this.investmentEngagementJourneyFormData?.isMinor;
   }
 }
