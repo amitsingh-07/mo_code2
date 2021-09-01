@@ -12,7 +12,7 @@
         <div class="secondary-holder-tabs">
           <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTabId">
             <ng-container [ngbNavItem]="1">
-              <a (click)="tabChange()" class="flex-col-6 btn-outline-primary fixed-btn--sm mr10" ngbNavLink>18 & above</a>
+              <a (click)="tabChange()" class="flex-col-6 btn-outline-primary fixed-btn--sm mr10" ngbNavLink>{{'SECONDARY_HOLDER.MAJOR.TAB_LBL' | translate}}</a>
               <ng-template ngbNavContent>
                 <div class="pannel-tab-content">
                   <form [formGroup]="secondaryHolderMajorForm">
@@ -68,7 +68,7 @@
               </ng-template>
             </ng-container>
             <ng-container [ngbNavItem]="2">
-              <a (click)="tabChange()" class="flex-col-6 btn-outline-primary fixed-btn--sm" ngbNavLink>Below 18</a>
+              <a (click)="tabChange()" class="flex-col-6 btn-outline-primary fixed-btn--sm" ngbNavLink>{{'SECONDARY_HOLDER.MINOR.TAB_LBL' | translate}}</a>
               <ng-template ngbNavContent>
                 <div class="pannel-tab-content">
                   <form [formGroup]="secondaryHolderMinorForm">
