@@ -161,4 +161,12 @@ export class AddSecondaryHolderComponent implements OnInit {
     }
     // }
   }
+
+  isSingaporePR() {
+    if(this.secondaryHolderForm.value.singaporeanResident) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
