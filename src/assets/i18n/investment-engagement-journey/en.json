@@ -400,5 +400,25 @@
       "DESC": "Co-own this portfolio with another person"
     },
     "CONTINUE":"Continue"
+  },
+  "SECONDARY_HOLDER": {
+    "PAGE_TITLE": "Add Secondary Holder",
+    "PAGE_LBL": "What is the age of secondary holder?",
+    "MAJOR": {
+      "TAB_LBL": "18 & above",
+      "DESC_LBL": "Secondary Holder Details",
+      "DESC_SUB_LBL": "Important: Do note that the proposed secondary investment account holder needs to have a MoneyOwl account and set up a personal investment portfolio before setting up a joint investment."
+    },
+    "MINOR": {
+      "TAB_LBL": "Below 18",
+      "DESC_LBL": "Secondary Holder Details",
+      "DESC_SUB_LBL": "Supporting documents and full details are required to register as a secondary holder.",
+      "NATIONALITY_LBL": "Nationality",
+      "QUESTION_ONE": "Is secondary holder a United States Permanent Resident / Tax Resident?",
+      "YES_lABEL": "Yes",
+      "NO_LABEL": "No",
+      "QUESTION_TWO": "Is secondary holder a Singapore Permanent Resident?",
+      "IMPORTANT_NOTICE": "Important: Please note that we do not accept applications if you <u>reside or have tax residencies in the following restricted countries.</u>"
+    }
   }
 }

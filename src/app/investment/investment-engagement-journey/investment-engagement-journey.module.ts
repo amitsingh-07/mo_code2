@@ -92,7 +92,5 @@ export function createTranslateLoader(http: HttpClient) {
 })
 
 export class InvestmentEngagementJourneyModule {
-  constructor() {
-    console.log("Engagement Journey Loaded...");
-  }
+  constructor() { }
 }

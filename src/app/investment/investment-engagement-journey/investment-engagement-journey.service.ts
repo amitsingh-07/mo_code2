@@ -451,8 +451,8 @@ export class InvestmentEngagementJourneyService {
   }
 
   /* Set user account type */
-  setUserPortfolioType(potfolioType) {
-    this.investmentEngagementJourneyFormData.userPortfolioType = potfolioType;
+  setUserPortfolioType(portfolioType) {
+    this.investmentEngagementJourneyFormData.userPortfolioType = portfolioType;
     this.commit();
   }
 

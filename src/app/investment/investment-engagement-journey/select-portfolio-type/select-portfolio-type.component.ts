@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
+import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';

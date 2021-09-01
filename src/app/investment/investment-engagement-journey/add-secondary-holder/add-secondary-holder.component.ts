@@ -1,7 +1,8 @@
 import { ChangeDetectorRef, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
+import { TranslateService } from '@ngx-translate/core';
+import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
@@ -28,11 +29,13 @@ export class AddSecondaryHolderComponent implements OnInit {
     private investmentEngagementService: InvestmentEngagementJourneyService,
     private investmentAccountService: InvestmentAccountService,
     private cdr: ChangeDetectorRef,
-    private router: Router
-  ) { }
+    private router: Router,
+    public readonly translate: TranslateService,
+  ) { 
+    this.translate.use('en');
+  }
 
-  ngOnInit(): void {
-    console.log('secondary holder');
+  ngOnInit() {
     this.selectNationalityFormValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.selectNationalityForm = new FormGroup({
       nationality: new FormControl(this.selectNationalityFormValues.nationality, Validators.required)

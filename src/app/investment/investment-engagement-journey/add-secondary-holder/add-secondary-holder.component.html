@@ -2,7 +2,7 @@
   <div class="content">
     <div class="row">
       <div class="col-lg-7 col-md-6 hidden-sm-md">
-        <h2>Add Secondary Holder</h2>
+        <h2>{{'SECONDARY_HOLDER.PAGE_TITLE' | translate}}</h2>
         <div class="banner-image">
           <img
             src="assets/images/investment-account/secondary-holder-banner.svg"
@@ -10,70 +10,57 @@
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
-        <h6>What is the age of secondary holder?</h6>
+        <h6>{{'SECONDARY_HOLDER.PAGE_LBL' | translate}}</h6>
         <div class="secondary-holder-tabs">
           <nav ngbNav #nav="ngbNav" class="nav-tabs">
             <ng-container [ngbNavItem]="1">
               <a class="flex-col-6 btn-outline-primary fixed-btn--sm mr10"
-                ngbNavLink>18 & above</a>
+                ngbNavLink>{{'SECONDARY_HOLDER.MAJOR.TAB_LBL' | translate}}</a>
               <ng-template ngbNavContent>
                 <div class="pannel-tab-content">
                   <div>
                     <div class="desc-lbl flex space-between">
-                      <span>Secondary Holder Details</span>
-                      <!--  (click)="showHelpModal()" -->
+                      <span>{{'SECONDARY_HOLDER.MAJOR.DESC_LBL' | translate}}</span>
                       <i class="tooltip-icon">
                         <img src="assets/images/tooltip-icon-white.svg" >
                       </i>
                     </div>
-                    <div class="desc-sub-lbl">Important: Do note that the
-                      proposed secondary investment account holder needs to have
-                      a MoneyOwl account and set up a personal investment
-                      portfolio before setting up a joint investment.</div>
+                    <div class="desc-sub-lbl">{{'SECONDARY_HOLDER.MAJOR.DESC_SUB_LBL' | translate}}</div>
                   </div>
                 </div>
               </ng-template>
             </ng-container>
             <ng-container [ngbNavItem]="2">
               <a class="flex-col-6 btn-outline-primary fixed-btn--sm"
-                ngbNavLink>Below 18</a>
+                ngbNavLink>{{'SECONDARY_HOLDER.MINOR.TAB_LBL' | translate}}</a>
               <ng-template ngbNavContent>
                 <div class="pannel-tab-content">
                   <div>
-                    <div class="desc-lbl">Secondary Holder Details</div>
-                    <div class="desc-sub-lbl">Supporting documents and full
-                      details are required to
-                      register as a secondary holder.</div>
+                    <div class="desc-lbl">{{'SECONDARY_HOLDER.MINOR.DESC_LBL' | translate}}</div>
+                    <div class="desc-sub-lbl">{{'SECONDARY_HOLDER.MINOR.DESC_SUB_LBL' | translate}}</div>
                     <div class="flex-row">
                       <div class="flex-col-5">
-                        <label for="name" id="select_nationality_lab">Nationality</label>
+                        <label for="name" id="select_nationality_lab">{{'SECONDARY_HOLDER.MINOR.NATIONALITY_LBL' | translate}}</label>
                       </div>
                       <div class="flex-col-7">
                         <div class="dropdown-control">
-                          <!-- <app-dropdown-with-search [disabled]="isDisabled()" controlName="nationality" [optionList]="nationalityList"
-                                    displayKey="name" placement="top-right"
-                                    placeholderText="{{ 'SELECT_NATIONALITY.SELECT_NATIONALITY' | translate}}"
-                                    (itemSelected)="selectNationality($event)">
-                                  </app-dropdown-with-search> -->
+                          
                         </div>
                       </div>
                     </div>
                     <!-- other coutryquestion -->
-                    <!-- *ngIf="selectNationalityForm.get('unitedStatesResident')" -->
                     <div>
                       <div class="flex-row mb10">
                         <div class="flex-col-12 mt15">
                           <label class="form-group-with-bg--content-label"
                             id="select_nationality_question-one"
-                            for="name">Is secondary holder a United States
-                            Permanent Resident / Tax Resident?
+                            for="name">{{'SECONDARY_HOLDER.MINOR.QUESTION_ONE' | translate}}
                           </label>
                         </div>
                       </div>
                       <!-- buttons -->
                       <div class="flex-row">
                         <div class="flex-col-12 mb10">
-                          <!-- formControlName="unitedStatesResident" -->
                           <div class="btn-group--toggle" ngbRadioGroup
                             name="radioGender">
                             <div class="flex-row">
@@ -82,7 +69,7 @@
                                   fixed-btn--sm mr5">
                                   <input ngbButton type="radio"
                                     id="select_nationlity_yes"
-                                    [value]="true">Yes
+                                    [value]="true">{{'SECONDARY_HOLDER.MINOR.YES_lABEL' | translate}}
                                 </label>
                               </div>
                               <div class="flex-col-6">
@@ -90,7 +77,7 @@
                                   fixed-btn--sm">
                                   <input ngbButton type="radio"
                                     id="select_nationlity_no"
-                                    [value]="false">No</label>
+                                    [value]="false">{{'SECONDARY_HOLDER.MINOR.NO_LABEL' | translate}}</label>
                               </div>
                             </div>
                           </div>
@@ -103,14 +90,13 @@
                         <div class=flex-col-10>
                           <label class="form-group-with-bg--content-label"
                             id="select_nationality_question-two" for="name">
-                            {{ 'SELECT_NATIONALITY.QUESTION_TWO' | translate}}
+                            {{ 'SECONDARY_HOLDER.MINOR.QUESTION_TWO' | translate}}
                           </label>
                         </div>
                       </div>
                       <!-- buttons -->
                       <div class="flex-row">
                         <div class="flex-col-12 mb10">
-                          <!--  formControlName="singaporeanResident" -->
                           <div class="btn-group--toggle" ngbRadioGroup
                             name="radioGender">
                             <div class="flex-row">
@@ -119,7 +105,7 @@
                                   fixed-btn--sm mr5">
                                   <input ngbButton type="radio"
                                     id="select_nationlity_yes1" [value]="true">
-                                  Yes
+                                    {{'SECONDARY_HOLDER.MINOR.YES_lABEL' | translate}}
                                 </label>
                               </div>
                               <div class="flex-col-6">
@@ -127,7 +113,7 @@
                                   fixed-btn--sm">
                                   <input ngbButton type="radio"
                                     id="select_nationlity_no1" [value]="false">
-                                  No</label>
+                                    {{'SECONDARY_HOLDER.MINOR.NO_lABEL' | translate}}</label>
                               </div>
                             </div>
                           </div>
@@ -139,14 +125,8 @@
                           src="assets/images/investment-account/note-icon-white.svg"
                           /></div>
                       <div class="pl-2 flex-col-10">
-                        <!-- [innerHtml]="'SELECT_NATIONALITY.IMPORTANT_NOTICE' | translate" -->
-                        <span class="desc-sub-lbl">
-                          Important: Please note that we do not accept
-                          applications if you <u>reside or have tax residencies in
-                          the following restricted countries.</u>
+                        <span class="desc-sub-lbl" [innerHtml]="'SECONDARY_HOLDER.MINOR.IMPORTANT_NOTICE' | translate">
                         </span>
-                        <!-- <span class="country-list" (click)="openModal()"
-                                [innerHtml]="'SELECT_NATIONALITY.RESTRICTED_COUNTRIES' | translate"></span> -->
                       </div>
                     </div>
 

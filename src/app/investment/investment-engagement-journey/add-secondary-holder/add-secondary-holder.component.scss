@@ -7,13 +7,13 @@ app-add-secondary-holder {
             &.fixed-btn--sm {
                 max-width: 164px;
                 height: 52px;
-                border-color: #fff;
+                border-color: $white-color;
                 opacity: 0.6;
                 border-radius: 6px;
                 margin: 20px 0;
                 &:active,
                 &.active {
-                    border-color: #fff;
+                    border-color: $white-color;
                     outline: none;
                     opacity: 1;
                 }
