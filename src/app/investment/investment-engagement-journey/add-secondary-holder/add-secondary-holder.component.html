@@ -15,7 +15,7 @@
               <a class="flex-col-6 btn-outline-primary fixed-btn--sm mr10" ngbNavLink>18 & above</a>
               <ng-template ngbNavContent>
                 <div class="pannel-tab-content">
-                  <div>
+                  <div class="major-tab-content">
                     <div class="desc-lbl flex space-between">
                       <span>{{'SECONDARY_HOLDER.MAJOR.DESC_LBL' | translate}}</span>
                       <i class="tooltip-icon">
@@ -23,6 +23,42 @@
                       </i>
                     </div>
                     <div class="desc-sub-lbl">{{'SECONDARY_HOLDER.MAJOR.DESC_SUB_LBL' | translate}}</div>
+                    <div class="flex-row align-center">
+                      <div class="flex-col-5">
+                        <label id="nricOrFin" for="last-four-characters-of-nric">
+                          <div>{{'SECONDARY_HOLDER.MAJOR.NRIC_LBL' | translate}}</div>
+                          <div class="sub-label">Last 4 Chars</div>
+                        </label>
+                      </div>
+                      <div class="flex-col-7">
+                        <div class="form-control">
+                          <div name="nricOrFin">
+                            <input id="last-four-characters-of-nric" class="input-control" type="text" maxLength="4"
+                              name="nricOrFin"
+                              placeholder="{{'SECONDARY_HOLDER.MAJOR.PLACEHOLDER_NRIC_LBL' | translate}}">
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <div class="alert-msg flex" *ngIf="ntucMemberForm.get('nricOrFin').errors?.pattern && ntucMemberForm.get('nricOrFin').value.length > 3">
+                        <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                        <span class="err-msg">{{'NTUC_PROMO_MODAL.ERROR_MSG' | translate}}</span>
+                      </div> -->
+                    </div>
+                    <div class="flex-row align-center">
+                      <div class="flex-col-5">
+                        <label id="nricOrFin" for="last-four-characters-of-nric">
+                          <div>{{'SECONDARY_HOLDER.MAJOR.EMAIL' | translate}}</div>
+                        </label>
+                      </div>
+                      <div class="flex-col-7">
+                        <div class="form-control">
+                          <div>
+                            <input type="text" class="input-control"
+                              placeholder="{{'SECONDARY_HOLDER.MAJOR.EMAIL_PLACEHOLDER' | translate}}" required>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </ng-template>
@@ -32,14 +68,13 @@
               <ng-template ngbNavContent>
                 <div class="pannel-tab-content">
                   <form [formGroup]="secondaryHolderForm">
-                    <div>
-                      <div class="desc-lbl">Secondary Holder Details</div>
-                      <div class="desc-sub-lbl">Supporting documents and full
-                        details are required to
-                        register as a secondary holder.</div>
+                    <div class="minor-tab-content">
+                      <div class="desc-lbl">{{'SECONDARY_HOLDER.MINOR.DESC_LBL' | translate}}</div>
+                      <div class="desc-sub-lbl">{{'SECONDARY_HOLDER.MINOR.DESC_SUB_LBL' | translate}}</div>
                       <div class="flex-row">
                         <div class="flex-col-5">
-                          <label for="name" id="select_nationality_lab">Nationality</label>
+                          <label for="name"
+                            id="select_nationality_lab">{{'SECONDARY_HOLDER.MINOR.NATIONALITY_LBL' | translate}}</label>
                         </div>
                         <div class="flex-col-7">
                           <div class="dropdown-control">
@@ -52,29 +87,25 @@
                         </div>
                       </div>
                       <!-- other coutryquestion -->
-                      <!-- *ngIf="selectNationalityForm.get('unitedStatesResident')" -->
                       <div>
                         <div class="flex-row mb10">
                           <div class="flex-col-12 mt15">
                             <label class="form-group-with-bg--content-label" id="select_nationality_question-one"
-                              for="name">Is secondary holder a United States
-                              Permanent Resident / Tax Resident?
+                              for="name">{{'SECONDARY_HOLDER.MINOR.QUESTION_ONE' | translate}}
                             </label>
                           </div>
                         </div>
                         <!-- buttons -->
                         <div class="flex-row">
                           <div class="flex-col-12 mb10">
-                            <!--  -->
                             <div class="btn-group--toggle" ngbRadioGroup name="radioGender">
                               <div class="flex-row">
                                 <div class="flex-col-6">
                                   <label ngbButtonLabel class="btn-outline-primary
                                   fixed-btn--sm mr5">
-                                    <!-- formControlName="unitedStatesResident" -->
                                     <input ngbButton type="radio" formControlName="unitedStatesResident"
                                       id="select_nationlity_yes" [value]="true"
-                                      (change)="unitedStatesPRChange($event.target.value)">Yes
+                                      (change)="unitedStatesPRChange($event.target.value)">{{'SECONDARY_HOLDER.MINOR.YES_lABEL' | translate}}
                                   </label>
                                 </div>
                                 <div class="flex-col-6">
@@ -82,7 +113,7 @@
                                   fixed-btn--sm">
                                     <input ngbButton type="radio" formControlName="unitedStatesResident"
                                       id="select_nationlity_no" [value]="false"
-                                      (change)="unitedStatesPRChange($event.target.value)">No</label>
+                                      (change)="unitedStatesPRChange($event.target.value)">{{'SECONDARY_HOLDER.MINOR.NO_LABEL' | translate}}</label>
                                 </div>
                               </div>
                             </div>
@@ -94,7 +125,7 @@
                           <div class=flex-col-10>
                             <label class="form-group-with-bg--content-label" id="select_nationality_question-two"
                               for="name">
-                              {{ 'Is secondary holder a Singapore Permanent Resident?' | translate}}
+                              {{ 'SECONDARY_HOLDER.MINOR.QUESTION_TWO' | translate}}
                             </label>
                           </div>
                         </div>
@@ -107,16 +138,18 @@
                                   <label ngbButtonLabel class="btn-outline-primary
                                   fixed-btn--sm mr5">
                                     <input ngbButton type="radio" formControlName="singaporeanResident"
-                                      id="select_nationlity_yes1" [value]="true" (change)="singaporeanPRChange($event.target.value)">
-                                    Yes
+                                      id="select_nationlity_yes1" [value]="true"
+                                      (change)="singaporeanPRChange($event.target.value)">
+                                    {{'SECONDARY_HOLDER.MINOR.YES_lABEL' | translate}}
                                   </label>
                                 </div>
                                 <div class="flex-col-6">
                                   <label ngbButtonLabel class="btn-outline-primary
                                   fixed-btn--sm">
                                     <input ngbButton type="radio" formControlName="singaporeanResident"
-                                      id="select_nationlity_no1" [value]="false" (change)="singaporeanPRChange($event.target.value)">
-                                    No</label>
+                                      id="select_nationlity_no1" [value]="false"
+                                      (change)="singaporeanPRChange($event.target.value)">
+                                    {{'SECONDARY_HOLDER.MINOR.NO_LABEL' | translate}}</label>
                                 </div>
                               </div>
                             </div>
@@ -127,14 +160,9 @@
                         <div class="flex-col-1"> <img src="assets/images/investment-account/note-icon-white.svg" />
                         </div>
                         <div class="pl-2 flex-col-10">
-                          <!-- [innerHtml]="'SELECT_NATIONALITY.IMPORTANT_NOTICE' | translate" -->
-                          <span class="desc-sub-lbl">
-                            Important: Please note that we do not accept
-                            applications if you <u>reside or have tax residencies in
-                              the following restricted countries.</u>
+                          <span class="desc-sub-lbl" [innerHtml]="'SECONDARY_HOLDER.MINOR.IMPORTANT_NOTICE' | translate">
+                            
                           </span>
-                          <!-- <span class="country-list" (click)="openModal()"
-                                [innerHtml]="'SELECT_NATIONALITY.RESTRICTED_COUNTRIES' | translate"></span> -->
                         </div>
                       </div>
 
