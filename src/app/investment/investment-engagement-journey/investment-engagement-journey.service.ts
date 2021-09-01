@@ -449,4 +449,15 @@ export class InvestmentEngagementJourneyService {
   getFundListMethod(portfolioTypeId) {
     return this.investmentApiService.getFundListMethod(portfolioTypeId);
   }
+
+  /* Set user account type */
+  setUserPortfolioType(portfolioType) {
+    this.investmentEngagementJourneyFormData.userPortfolioType = portfolioType;
+    this.commit();
+  }
+
+  /* Get user account type */
+  getUserPortfolioType() {
+    return this.investmentEngagementJourneyFormData?.userPortfolioType;
+  }
 }
