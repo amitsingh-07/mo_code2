@@ -3,9 +3,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { LoaderService } from 'src/app/shared/components/loader/loader.service';
 import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 import { ErrorModalComponent } from 'src/app/shared/modal/error-modal/error-modal.component';
 import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
+import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
@@ -22,7 +24,8 @@ export class AddSecondaryHolderComponent implements OnInit {
 
   nationalityList: any;
   countryList: any;
-  secondaryHolderForm: FormGroup;
+  secondaryHolderMinorForm: FormGroup;
+  secondaryHolderMajorForm: FormGroup;
   secondaryHolderFormValues: any;
   userProfileType: any;
   tooltipDetails: any;
@@ -32,6 +35,8 @@ export class AddSecondaryHolderComponent implements OnInit {
   @Input('portfolioCategory') portfolioCategory;
   editModalData: any;
   blockedNationalityModal: any;
+  optionList: any;
+  raceList: any;
   constructor(
     public authService: AuthenticationService,
     private investmentCommonService: InvestmentCommonService,
@@ -40,7 +45,8 @@ export class AddSecondaryHolderComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private router: Router,
     private modal: NgbModal,
-    public readonly translate: TranslateService
+    public readonly translate: TranslateService,
+    private loaderService: LoaderService
   ) {
     this.userProfileType = investmentEngagementService.getUserPortfolioType();
     this.translate.use('en');
@@ -51,16 +57,30 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.blockedCountryModal = this.translate.instant('SELECT_NATIONALITY.blockedCountry');
       this.tooltipDetails = this.translate.instant('BLOCKED_COUNTRY_TOOLTIP');
     });
+    this.buildMajorForm();
   }
 
   ngOnInit(): void {
-    console.log('secondary holder');
-    this.secondaryHolderForm = new FormGroup({
+
+  }
+
+  buildMinorForm() {
+    this.secondaryHolderMinorForm = new FormGroup({
       isMinor: new FormControl('', Validators.required),
       unitedStatesResident: new FormControl('', Validators.required),
       nationality: new FormControl('', Validators.required)
     });
-    this.getNationalityCountryList();
+    this.secondaryHolderMinorForm.controls.isMinor.setValue(true);
+  }
+
+  buildMajorForm() {
+    this.secondaryHolderMajorForm = new FormGroup({
+      isMinor: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.pattern(RegexConstants.Email)]),
+      relationship: new FormControl('', Validators.required),
+      nricNumber: new FormControl('', [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]),
+    });
+    this.secondaryHolderMajorForm.controls.isMinor.setValue(false);
   }
 
   selectedSecondaryHolderAge(secondaryHolderType) {
@@ -103,26 +123,25 @@ export class AddSecondaryHolderComponent implements OnInit {
 
   selectNationality(nationality) {
     console.log('cointry', nationality);
-    this.secondaryHolderForm.controls.isMinor.setValue(true);
-    this.secondaryHolderForm.controls.nationality.setValue(nationality);
+    this.secondaryHolderMinorForm.controls.nationality.setValue(nationality);
     if (nationality.blocked) {
       this.showBlockedCountryErrorMessage('Oops, Unable To Proceed', 'Due to compliance issues, MoneyOwl is unable to accept customers from the selected country.');
-      this.secondaryHolderForm.removeControl('singaporeanResident');
+      this.secondaryHolderMinorForm.removeControl('singaporeanResident');
     } else {
       if (!this.isNationalitySingapore()) {
-        this.secondaryHolderForm.addControl(
+        this.secondaryHolderMinorForm.addControl(
           'singaporeanResident', new FormControl('', Validators.required)
         );
       } else {
-        this.secondaryHolderForm.removeControl('singaporeanResident');
+        this.secondaryHolderMinorForm.removeControl('singaporeanResident');
       }
     }
   }
 
   isNationalitySingapore() {
-    const selectedNationalityName = this.secondaryHolderForm.controls.nationality.value &&
-      this.secondaryHolderForm.controls.nationality.value.name ?
-      this.secondaryHolderForm.controls.nationality.value.name.toUpperCase() : '';
+    const selectedNationalityName = this.secondaryHolderMinorForm.controls.nationality.value &&
+      this.secondaryHolderMinorForm.controls.nationality.value.name ?
+      this.secondaryHolderMinorForm.controls.nationality.value.name.toUpperCase() : '';
     if (['SINGAPOREAN', 'SG'].indexOf(selectedNationalityName) >= 0) {
       return true;
     } else {
@@ -135,7 +154,7 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.showErrorMessage('Oops, Unable To Proceed',
         'Due to compliance issues, MoneyOwl is unable to accept customers who are US Citizens, Permanent Residents or Tax Residents.');
     }
-    console.log('us pr', this.secondaryHolderForm.value);
+    console.log('us pr', this.secondaryHolderMinorForm.value);
   }
 
   showErrorMessage(modalTitle: any, modalMessage: any) {
@@ -145,17 +164,14 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   singaporeanPRChange(isSingaporePR) {
-    console.log('SR pr', isSingaporePR);
-    // this.secondaryHolderForm.controls.singaporeanResident.setValue(isSingaporePR);
-    console.log('form', this.secondaryHolderForm.value);
   }
 
-  goToNext() {
-    console.log('form', this.secondaryHolderForm.controls);
+  minorHolderGoToNext() {
+    console.log('form', this.secondaryHolderMinorForm.controls);
     // if(this.secondaryHolderForm.valid) {
-    if (this.secondaryHolderForm.value.nationality?.blocked) {
+    if (this.secondaryHolderMinorForm.value.nationality?.blocked) {
       this.showBlockedCountryErrorMessage('Oops, Unable To Proceed', 'Due to compliance issues, MoneyOwl is unable to accept customers from the selected country.');
-    } else if (this.secondaryHolderForm.value.unitedStatesResident) {
+    } else if (this.secondaryHolderMinorForm.value.unitedStatesResident) {
       this.showErrorMessage('Oops, Unable To Proceed',
         'Due to compliance issues, MoneyOwl is unable to accept customers who are US Citizens, Permanent Residents or Tax Residents.');
     }
@@ -163,10 +179,44 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   isSingaporePR() {
-    if(this.secondaryHolderForm.value.singaporeanResident) {
+    if (this.secondaryHolderMinorForm.value.singaporeanResident) {
       return true;
     } else {
       return false;
+    }
+  }
+
+  setOptionList() {
+    this.loaderService.showLoader({
+      title: this.translate.instant(
+        'COMMON_LOADER.TITLE'
+      ),
+      desc: this.translate.instant(
+        'COMMON_LOADER.DESC'
+      )
+    });
+    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+      this.loaderService.hideLoader();
+      this.investmentAccountService.setOptionList(data.objectList);
+      this.optionList = this.investmentAccountService.getOptionList();
+      this.raceList = this.optionList.race;
+    },
+      (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  }
+
+  majorHolderGoToNext() {
+
+  }
+
+  tabChange() {
+    if (this.activeTabId === 2) {
+      this.buildMinorForm();
+      this.getNationalityCountryList();
+    } else {
+      this.buildMajorForm();
     }
   }
 }
