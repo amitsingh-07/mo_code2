@@ -410,6 +410,8 @@
       "DESC_SUB_LBL": "Important: Do note that the proposed secondary investment account holder needs to have a MoneyOwl account and set up a personal investment portfolio before setting up a joint investment.",
       "NRIC_LBL": "NRIC / Passport Number",
       "PLACEHOLDER_NRIC_LBL": "Enter Last 4 Chars",
+      "RELATIONSHIP": "Relationship",
+      "SELECT_RELATIONSHIP": "Select Relationship",
       "EMAIL": "Email",
       "EMAIL_PLACEHOLDER": "secondaryholder@gmail.com",
       "helpData": {
@@ -426,7 +428,25 @@
       "YES_lABEL": "Yes",
       "NO_LABEL": "No",
       "QUESTION_TWO": "Is secondary holder a Singapore Permanent Resident?",
-      "IMPORTANT_NOTICE": "Important: Please note that we do not accept applications if you <u>reside or have tax residencies in the following restricted countries.</u>"
+      "IMPORTANT_NOTICE": "Important: Please note that we do not accept applications if you <u>reside or have tax residencies in the following restricted countries.</u>",
+      "PERSONAL_INFO":{
+        "FULL_NAME": "Full Name",
+        "FULL_NAME_NRIC": "(as per NRIC/Birth Cert)",
+        "FULL_NAME_PASSPORT": "(as per Passport)",
+        "NRIC_NUMBER": "NRIC Number",
+        "PASSPORT_NUMBER": "Passport Number",
+        "PASSPORT_EXPIRY": "Passport Expiry",
+        "DOB": "Date of Birth",
+        "GENDER": "Gender",
+        "BIRTH_COUNTRY": "Country of Birth",
+        "PASSPORT_ISSUED_COUNTRY": "Passport Issued Country",
+        "RACE": "Race",
+        "SELECT_BIRTH_COUNTRY": "Select Country",
+        "SELECT_PASSPORT_ISSUED_COUNTRY": "Select Country",
+        "SELECT_RACE": "Select Race",
+        "RELATIONSHIP": "Relationship",
+        "SELECT_RELATIONSHIP": "Select Relationship"
+      }
     }
   }
 }
