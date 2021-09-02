@@ -33,6 +33,7 @@ app-add-secondary-holder {
         }
         .flex-row{
             margin-bottom: 10px;
+            align-items: center;
             label{
                 font-family: $muli-semi-bold;
                 line-height: normal;
@@ -75,6 +76,18 @@ app-add-secondary-holder {
                     }
                 }
             }  
+        }
+        .minor-tab-content{
+            .minor-details{
+                margin-top: 35px;
+                .datepicker-control{
+                    .input-group-append{
+                        .btn-primary{
+                            max-height: 52px;
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -24,7 +24,7 @@
                         </i>
                       </div>
                       <div class="desc-sub-lbl">{{'SECONDARY_HOLDER.MAJOR.DESC_SUB_LBL' | translate}}</div>
-                      <div class="flex-row align-center">
+                      <div class="flex-row">
                         <div class="flex-col-5" >
                           <label id="nricOrFin" for="last-four-characters-of-nric">
                             <div>{{'SECONDARY_HOLDER.MAJOR.NRIC_LBL' | translate}}</div>
@@ -45,7 +45,32 @@
                         <span class="err-msg">{{'NTUC_PROMO_MODAL.ERROR_MSG' | translate}}</span>
                       </div> -->
                       </div>
-                      <div class="flex-row align-center">
+                      <!-- relationship start -->
+                      <div class="flex-row">
+                        <div class="flex-col-5">
+                          <label for="salutation-drpdown" id="salutation-lbl">{{ 'SECONDARY_HOLDER.MAJOR.RELATIONSHIP'
+                                | translate}}</label>
+                        </div>
+                        <div class="flex-col-7">
+                          <div class="dropdown-control">
+                            <div ngbDropdown>
+                              <button class="btn btn-dropdown without-border" id="salutation-drpdown" ngbDropdownToggle>
+                                <span>
+                                  {{'SECONDARY_HOLDER.MAJOR.SELECT_RELATIONSHIP'  | translate}}
+                                </span>
+                                <span>
+                                  <!-- {{invPersonalInfoForm.controls.salutation.value.name }} -->
+                                </span>
+                              </button>
+                              <div class="dropdown" ngbDropdownMenu aria-labelledby="salutation-drpdown">
+                                <button class="dropdown-item" ></button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- relationship end -->
+                      <div class="flex-row">
                         <div class="flex-col-5">
                           <label id="nricOrFin" for="last-four-characters-of-nric">
                             <div>{{'SECONDARY_HOLDER.MAJOR.EMAIL' | translate}}</div>
@@ -174,10 +199,189 @@
                       <div class="" *ngIf="secondaryHolderMinorForm.value.singaporeanResident">
                         Singapore PR
                       </div>
-
+                      <div class="minor-details">
+                      <!-- personal info -->
+                        <div class="flex-row">
+                          <div class="flex-col-5">
+                            <label id="invPersInfoLbl1">
+                              <div>{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.FULL_NAME' | translate}}</div>
+                              <div class="sub-label" id="invPersInfoSubLbl1">
+                                <span>{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.FULL_NAME_NRIC' | translate}}</span>
+                                <span>{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.FULL_NAME_PASSPORT' | translate}}</span>
+                              </div>
+                            </label>
+                          </div>
+                          <div class="flex-col-7">
+                            <div placeholder="Full Name">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="flex-row">
+                          <div class="flex-col-5">
+                            <label id="invPersInfoLbl4">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.NRIC_NUMBER' | translate}}</label>
+                          </div>
+                          <div class="flex-col-7">
+                            <input type="text" placeholder="e.g S****244F" id="invPersInfoInpt4" class="form-control">
+                          </div>
+                        </div>
+                        <div class="flex-row">
+                          <div class="flex-col-5">
+                            <label for="dob" id="invPersInfoLbl7">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.DOB' | translate}}</label>
+                          </div>
+                          <div #usrFrmDp class="flex-col-7">
+                            <div class="datepicker-control">
+                              <div class="input-group date-picker mb0">
+                                <input class="form-control"
+                                  placeholder="DD / MM / YYYY" name="dp" ngbDatepicker
+                                  #dobInput="ngbDatepicker" id="invPersInfoInpt7">
+                                <div class="input-group-append">
+                                  <button  class="btn btn-primary" type="button"
+                                    id="invPersInfoBtn1">
+                                    <img class="date-picker-image--valid" id="invPersInfoImg1"
+                                      src="assets/images/calendar-normal.svg" />
+                                    <!-- <img class="date-picker-image--invalid" id="invPersInfoImg1"
+                                      src="assets/images/calendar-error.svg" /> -->
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="flex-row">
+                          <div class="flex-col-5">
+                            <label for="gender" id="invPersInfoLbl8">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.GENDER' | translate}}</label>
+                          </div>
+                          <div class="flex-col-7">
+                            <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
+                              <div class="flex-row mb0">
+                                <div class="flex-col-6">
+                                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr10" id="invPersInfoLbl2">
+                                    <input ngbButton type="radio" value="male" id="invPersInfoInpt8"> {{ 'LABEL.MALE' |
+                                        translate}}
+                                  </label>
+                                </div>
+                                <div class="flex-col-6">
+                                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm" id="invPersInfoLbl3">
+                                    <input ngbButton type="radio" value="female" id="invPersInfoInpt9"> {{ 'LABEL.FEMALE' |
+                                        translate}}
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Country of Birth start -->
+                        <div class="flex-row">
+                          <div class="flex-col-5">
+                            <label for="residentialAddress-country-drpdown" id="residentialAddress-country-lbl">{{
+                                  'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.BIRTH_COUNTRY'
+                                  | translate}}</label>
+                          </div>
+                          <div class="flex-col-7">
+                            <div class="dropdown-control">
+                              <app-dropdown-with-search placement="top-right"
+                                placeholderText="{{'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.SELECT_BIRTH_COUNTRY' | translate}}">
+                              </app-dropdown-with-search>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Country of Birth end -->
+                        <div class="flex-row" *ngIf="showPassport">
+                          <div class="flex-col-5">
+                            <label for="name" id="invPersInfoLbl5">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.PASSPORT_NUMBER' | translate}}</label>
+                          </div>
+                          <div class="flex-col-7">
+                            <input type="text" id="invPersInfoInpt5" class="form-control" #passportNumber
+                              maxLength="30">
+                          </div>
+                        </div>
+                        <!-- Passport issued country start -->
+                        <div class="flex-row">
+                          <div class="flex-col-5">
+                            <label for="residentialAddress-country-drpdown" id="residentialAddress-country-lbl">{{
+                                  'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.PASSPORT_ISSUED_COUNTRY'
+                                  | translate}}</label>
+                          </div>
+                          <div class="flex-col-7">
+                            <div class="dropdown-control">
+                              <app-dropdown-with-search placement="top-right"
+                                placeholderText="{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.SELECT_PASSPORT_ISSUED_COUNTRY' | translate }}">
+                              </app-dropdown-with-search>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Passport issued country end -->
+                        <div class="flex-row" *ngIf="showPassport">
+                          <div class="flex-col-5">
+                            <label for="passportExpiry"
+                              id="invPersInfoLbl6">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.PASSPORT_EXPIRY' | translate}}</label>
+                          </div>
+                          <div #usrFrmDp class="flex-col-7">
+                            <div class="datepicker-control">
+                              <div class="input-group date-picker mb0">
+                                <input class="form-control" placeholder="DD / MM / YYYY" ngbDatepicker
+                                  id="invPersInfoInpt6">
+                                <div class="input-group-append">
+                                  <button  class="btn btn-primary" type="button"
+                                    id="invPersInfoBtn1" >
+                                    <img class="date-picker-image--valid" id="invPersInfoImg1"
+                                      
+                                      src="assets/images/calendar-normal.svg" />
+                                    <!-- <img class="date-picker-image--invalid" id="invPersInfoImg1"
+                                      
+                                      src="assets/images/calendar-error.svg" /> -->
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Race start -->
+                        <div class="flex-row">
+                          <div class="flex-col-5">
+                            <label for="residentialAddress-country-drpdown" id="residentialAddress-country-lbl">{{
+                                  'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.RACE'
+                                  | translate}}</label>
+                          </div>
+                          <div class="flex-col-7">
+                            <div class="dropdown-control">
+                              <app-dropdown-with-search displayKey="name" placeholderText="{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.SELECT_RACE' | translate }}"
+                                placement="top-right" >
+                              </app-dropdown-with-search>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Race end -->
+                        <!-- relationship start -->
+                        <div class="flex-row">
+                          <div class="flex-col-5">
+                            <label for="salutation-drpdown" id="salutation-lbl">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.RELATIONSHIP'
+                                  | translate}}</label>
+                          </div>
+                          <div class="flex-col-7">
+                            <div class="dropdown-control">
+                              <div ngbDropdown>
+                                <button class="btn btn-dropdown without-border" id="salutation-drpdown" ngbDropdownToggle>
+                                  <span>
+                                    {{'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.SELECT_RELATIONSHIP'  | translate}}
+                                  </span>
+                                  <span>
+                                    <!-- {{invPersonalInfoForm.controls.salutation.value.name }} -->
+                                  </span>
+                                </button>
+                                <div class="dropdown" ngbDropdownMenu aria-labelledby="salutation-drpdown">
+                                  <button class="dropdown-item" ></button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- relationship end -->
+                      </div>
+                      <!-- personal info -->
+                    </div>
                       <!-- [disabled]="!secondaryHolderForm.valid" -->
                       <button (click)="minorHolderGoToNext()" class="btn btn-primary btn__footer--fixed width100">Continue</button>
-                    </div>
                   </form>
                 </div>
               </ng-template>
