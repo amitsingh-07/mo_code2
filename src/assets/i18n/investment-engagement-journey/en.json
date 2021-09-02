@@ -401,6 +401,15 @@
     },
     "CONTINUE":"Continue"
   },
+  "CONFIRM_WITHDRAWAL": {
+    "STEP_NO": "2",
+    "PAGE_TITLE" : "Confirm Withdrawal Account",
+    "DESC_LBL": "Withdrawal Bank Details",
+    "PERSONAL_ACCOUNT": {
+      "TITLE": "Personal Account",
+      "DESC": "Owner of this portfolio"
+    }
+  },
   "SECONDARY_HOLDER": {
     "PAGE_TITLE": "Add Secondary Holder",
     "PAGE_LBL": "What is the age of secondary holder?",
