@@ -37,6 +37,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   blockedNationalityModal: any;
   optionList: any;
   raceList: any;
+  helpData: any;
   constructor(
     public authService: AuthenticationService,
     private investmentCommonService: InvestmentCommonService,
@@ -56,6 +57,7 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.editModalData = this.translate.instant('SELECT_NATIONALITY.editModalData');
       this.blockedCountryModal = this.translate.instant('SELECT_NATIONALITY.blockedCountry');
       this.tooltipDetails = this.translate.instant('BLOCKED_COUNTRY_TOOLTIP');
+      this.helpData = this.translate.instant('SECONDARY_HOLDER.MAJOR.helpData');
     });
     this.buildMajorForm();
   }
@@ -208,5 +210,12 @@ export class AddSecondaryHolderComponent implements OnInit {
     } else {
       this.buildMajorForm();
     }
+  }
+
+  showHelpModal(){
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.helpData.modalTitle;
+    ref.componentInstance.errorDescription = this.helpData.modalDesc;
+    return false;
   }
 }
