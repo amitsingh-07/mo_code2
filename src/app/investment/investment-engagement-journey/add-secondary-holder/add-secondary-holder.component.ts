@@ -78,7 +78,7 @@ export class AddSecondaryHolderComponent implements OnInit {
       isMinor: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.pattern(RegexConstants.Email)]),
       relationship: new FormControl('', Validators.required),
-      nricNumber: new FormControl('', [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]),
+      nricNumber: new FormControl('', [Validators.required, Validators.minLength(4), Validators.pattern(RegexConstants.Alphanumeric)]),
     });
     this.secondaryHolderMajorForm.controls.isMinor.setValue(false);
   }
@@ -122,7 +122,6 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   selectNationality(nationality) {
-    console.log('cointry', nationality);
     this.secondaryHolderMinorForm.controls.nationality.setValue(nationality);
     if (nationality.blocked) {
       this.showBlockedCountryErrorMessage('Oops, Unable To Proceed', 'Due to compliance issues, MoneyOwl is unable to accept customers from the selected country.');
@@ -154,7 +153,6 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.showErrorMessage('Oops, Unable To Proceed',
         'Due to compliance issues, MoneyOwl is unable to accept customers who are US Citizens, Permanent Residents or Tax Residents.');
     }
-    console.log('us pr', this.secondaryHolderMinorForm.value);
   }
 
   showErrorMessage(modalTitle: any, modalMessage: any) {
@@ -167,7 +165,6 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   minorHolderGoToNext() {
-    console.log('form', this.secondaryHolderMinorForm.controls);
     // if(this.secondaryHolderForm.valid) {
     if (this.secondaryHolderMinorForm.value.nationality?.blocked) {
       this.showBlockedCountryErrorMessage('Oops, Unable To Proceed', 'Due to compliance issues, MoneyOwl is unable to accept customers from the selected country.');
@@ -175,15 +172,8 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.showErrorMessage('Oops, Unable To Proceed',
         'Due to compliance issues, MoneyOwl is unable to accept customers who are US Citizens, Permanent Residents or Tax Residents.');
     }
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
     // }
-  }
-
-  isSingaporePR() {
-    if (this.secondaryHolderMinorForm.value.singaporeanResident) {
-      return true;
-    } else {
-      return false;
-    }
   }
 
   setOptionList() {
