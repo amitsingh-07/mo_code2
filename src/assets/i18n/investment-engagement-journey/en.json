@@ -411,7 +411,11 @@
       "NRIC_LBL": "NRIC / Passport Number",
       "PLACEHOLDER_NRIC_LBL": "Enter Last 4 Chars",
       "EMAIL": "Email",
-      "EMAIL_PLACEHOLDER": "secondaryholder@gmail.com"
+      "EMAIL_PLACEHOLDER": "secondaryholder@gmail.com",
+      "helpData": {
+        "modalTitle": "Type of Accounts",
+        "modalDesc": "<p>A MoneyOwl Account allows our clients to use our service(s) through the online platform. The secondary holder can create an account <a class=\"hyperlink_color\" target='_blank' href='https://www.moneyowl.com.sg/app/accounts/sign-up'>here</a>.</p>After creating a MoneyOwl account, he/she will need to open a Personal Investment Account under the \"Investment & Savings\" card on the dashboard."
+      }
     },
     "MINOR": {
       "TAB_LBL": "Below 18",
