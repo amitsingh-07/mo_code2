@@ -431,9 +431,11 @@
       "IMPORTANT_NOTICE": "Important: Please note that we do not accept applications if you <u>reside or have tax residencies in the following restricted countries.</u>",
       "PERSONAL_INFO":{
         "FULL_NAME": "Full Name",
+        "FULL_NAME_NRIC_BIRTH_CERT": "as per NRIC",
         "FULL_NAME_NRIC": "(as per NRIC/Birth Cert)",
         "FULL_NAME_PASSPORT": "(as per Passport)",
         "NRIC_NUMBER": "NRIC Number",
+        "NRIC_BIRTH_CERTIFICATE_NUMBER": "NRIC/ Birth Cert Number",
         "PASSPORT_NUMBER": "Passport Number",
         "PASSPORT_EXPIRY": "Passport Expiry",
         "DOB": "Date of Birth",

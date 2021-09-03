@@ -461,14 +461,51 @@ export class InvestmentEngagementJourneyService {
     return this.investmentEngagementJourneyFormData?.userPortfolioType;
   }
 
-  /* Set secondary holder type */
-  setIsMinor(isMinor) {
-    // this.investmentEngagementJourneyFormData.isMinor = isMinor;
+  setMajorSecondaryHolderData(majorHolderFormData) {
+    this.investmentEngagementJourneyFormData.majorSecondaryHolderFormData = majorHolderFormData;
     this.commit();
   }
 
-  /* Get secondary holder type */
-  getIsMinor() {
-    // return this.investmentEngagementJourneyFormData?.isMinor;
+  /* Get user account type */
+  getMajorSecondaryHolderData() {
+    return this.investmentEngagementJourneyFormData?.majorSecondaryHolderFormData;
+  }
+
+  setMinorSecondaryHolderData(minorHolderFormData) {
+    this.investmentEngagementJourneyFormData.minorSecondaryHolderFormData = minorHolderFormData;
+    this.commit();
+  }
+
+  /* Get user account type */
+  getMinorSecondaryHolderData() {
+    return this.investmentEngagementJourneyFormData?.minorSecondaryHolderFormData;
+  }
+
+  buildMajorHolderData() {
+    debugger;
+    const formData = this.investmentEngagementJourneyFormData?.majorSecondaryHolderFormData;
+    return {
+      nricOrPassport: formData?.nricNumber,
+      email: formData?.email,
+      relationship: formData?.relationship.name
+    }
+  }
+
+  buildMinorHolderData() {
+    const formData = this.investmentEngagementJourneyFormData?.minorSecondaryHolderFormData;
+    return {
+
+    }
+  }
+
+  // Validate Major Secondary Holder
+  validateMajorSecondaryHolder() {
+    const data = this.buildMajorHolderData();
+    return this.investmentApiService.validateMajorSecondaryHolder(data);
+  }
+  // Save Minor Secondary Holder
+  saveMinorSecondaryHolder() {
+    const data = this.buildMinorHolderData();
+    return this.investmentApiService.saveMinorSecondaryHolder(data);
   }
 }

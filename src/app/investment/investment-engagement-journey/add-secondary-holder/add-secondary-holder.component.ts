@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -8,7 +8,9 @@ import { AuthenticationService } from 'src/app/shared/http/auth/authentication.s
 import { ErrorModalComponent } from 'src/app/shared/modal/error-modal/error-modal.component';
 import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
+import { InvestmentAccountCommon } from '../../investment-account/investment-account-common';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../investment-account/investment-account.constant';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
@@ -38,6 +40,14 @@ export class AddSecondaryHolderComponent implements OnInit {
   optionList: any;
   raceList: any;
   helpData: any;
+  editMode: boolean;
+  minorForeignerRelationships: any;
+  minorSGRelationships: any;
+  majorRelationships: any;
+  countries: any;
+  tabChangeCount = 0;
+  investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
+  isNationalitySingaporePR: boolean;
   constructor(
     public authService: AuthenticationService,
     private investmentCommonService: InvestmentCommonService,
@@ -60,18 +70,28 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.helpData = this.translate.instant('SECONDARY_HOLDER.MAJOR.helpData');
     });
     this.buildMajorForm();
+    this.setOptionList();
   }
 
   ngOnInit(): void {
+    this.prefetchData();
+  }
 
+  prefetchData() {
+    let majorHolderFormData = this.investmentEngagementService.getMajorSecondaryHolderData();
+    let minorHolderFormData = this.investmentEngagementService.getMinorSecondaryHolderData();
+    if (majorHolderFormData) {
+
+    }
   }
 
   buildMinorForm() {
     this.secondaryHolderMinorForm = new FormGroup({
       isMinor: new FormControl('', Validators.required),
       unitedStatesResident: new FormControl('', Validators.required),
-      nationality: new FormControl('', Validators.required)
+      nationality: new FormControl('', Validators.required),
     });
+    this.addPersonalInfoControls();
     this.secondaryHolderMinorForm.controls.isMinor.setValue(true);
   }
 
@@ -83,10 +103,6 @@ export class AddSecondaryHolderComponent implements OnInit {
       nricNumber: new FormControl('', [Validators.required, Validators.minLength(4), Validators.pattern(RegexConstants.Alphanumeric)]),
     });
     this.secondaryHolderMajorForm.controls.isMinor.setValue(false);
-  }
-
-  selectedSecondaryHolderAge(secondaryHolderType) {
-    this.investmentEngagementService.setIsMinor(secondaryHolderType);
   }
 
   getNationalityCountryList() {
@@ -124,7 +140,10 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   selectNationality(nationality) {
+    this.removePersonaInfoControls();
+    this.removeNonSingaporeanControls();
     this.secondaryHolderMinorForm.controls.nationality.setValue(nationality);
+    this.secondaryHolderMinorForm.controls.unitedStatesResident.setValue('');
     if (nationality.blocked) {
       this.showBlockedCountryErrorMessage('Oops, Unable To Proceed', 'Due to compliance issues, MoneyOwl is unable to accept customers from the selected country.');
       this.secondaryHolderMinorForm.removeControl('singaporeanResident');
@@ -135,6 +154,7 @@ export class AddSecondaryHolderComponent implements OnInit {
         );
       } else {
         this.secondaryHolderMinorForm.removeControl('singaporeanResident');
+        this.addPersonalInfoControls();
       }
     }
   }
@@ -164,6 +184,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   singaporeanPRChange(isSingaporePR) {
+    isSingaporePR ? this.addSingaporeanControls() : this.addNonSingaporeanControls();
   }
 
   minorHolderGoToNext() {
@@ -192,6 +213,10 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.investmentAccountService.setOptionList(data.objectList);
       this.optionList = this.investmentAccountService.getOptionList();
       this.raceList = this.optionList.race;
+      this.countries = this.investmentAccountService.getCountriesFormData();
+      this.minorForeignerRelationships = this.optionList?.jointAccountMinorForeignerRelationship;
+      this.majorRelationships = this.optionList?.jointAccountMajorRelationship;
+      this.minorSGRelationships = this.optionList?.jointAccountMinorRelationship;
     },
       (err) => {
         this.loaderService.hideLoader();
@@ -200,22 +225,142 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   majorHolderGoToNext() {
-
-  }
-
-  tabChange() {
-    if (this.activeTabId === 2) {
-      this.buildMinorForm();
-      this.getNationalityCountryList();
-    } else {
-      this.buildMajorForm();
+    if (this.secondaryHolderMajorForm.valid) {
+      this.investmentEngagementService.setMajorSecondaryHolderData(this.secondaryHolderMajorForm.value);
+      this.investmentEngagementService.validateMajorSecondaryHolder().subscribe(resp => {
+        console.log('major details validate resp', resp);
+      })
     }
   }
 
-  showHelpModal(){
+  tabChange() {
+    if (this.tabChangeCount === 0) {
+      if (this.activeTabId === 2) {
+        this.buildMinorForm();
+        this.getNationalityCountryList();
+      } else {
+        this.buildMajorForm();
+      }
+    }
+    this.tabChangeCount++;
+  }
+
+  showHelpModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.helpData.modalTitle;
     ref.componentInstance.errorDescription = this.helpData.modalDesc;
     return false;
+  }
+
+  setDropDownValue(event, key, value, isMinor) {
+    setTimeout(() => {
+      isMinor ? this.secondaryHolderMinorForm.controls[key].setValue(value) : this.secondaryHolderMajorForm.controls[key].setValue(value);
+    }, 100);
+  }
+
+  private validateExpiry(control: AbstractControl) {
+    const value = control.value;
+    const today = new Date();
+    if (control.value !== undefined && isNaN(control.value) && !(control.errors && control.errors.ngbDate)) {
+      const isMinExpiry =
+        new Date(value.year, value.month - 1, value.day) >=
+        new Date(
+          today.getFullYear(),
+          today.getMonth() + INVESTMENT_ACCOUNT_CONSTANTS.personal_info.min_passport_expiry,
+          today.getDate()
+        );
+      if (!isMinExpiry) {
+        return { isMinExpiry: true };
+      }
+    }
+    return null;
+  }
+
+  private validateMinimumAge(control: AbstractControl) {
+    const value = control.value;
+    if (control.value !== undefined && isNaN(control.value) && !(control.errors && control.errors.ngbDate)) {
+      const isMinAge =
+        new Date(
+          value.year + INVESTMENT_ACCOUNT_CONSTANTS.personal_info.min_age,
+          value.month - 1,
+          value.day
+        ) <= new Date();
+      if (!isMinAge) {
+        return { isMinAge: true };
+      }
+    }
+    return null;
+  }
+
+  validateNric(control: AbstractControl) {
+    const value = control.value;
+    if (value && value !== undefined) {
+      const isValidNric = this.investmentAccountCommon.isValidNric(value);
+      if (!isValidNric) {
+        return { nric: true };
+      }
+    }
+    return null;
+  }
+
+  addSingaporeanControls() {
+    this.isNationalitySingaporePR = false;
+    this.removeNonSingaporeanControls();
+    this.addPersonalInfoControls();
+  }
+
+  addNonSingaporeanControls() {
+    this.isNationalitySingaporePR = true;
+    this.addPersonalInfoControls();
+    this.secondaryHolderMinorForm.removeControl('nricNumber');
+    this.secondaryHolderMinorForm.addControl(
+      'passportNumber', new FormControl('', Validators.required)
+    );
+    this.secondaryHolderMinorForm.addControl(
+      'passportExpiry', new FormControl('', [Validators.required, this.validateExpiry])
+    );
+  }
+
+  addPersonalInfoControls() {
+    this.secondaryHolderMinorForm.addControl(
+      'fullName', new FormControl('', [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)])
+    );
+    this.secondaryHolderMinorForm.addControl(
+      'nricNumber', new FormControl('', [Validators.required, this.validateNric.bind(this)])
+    );
+    this.secondaryHolderMinorForm.addControl(
+      'race', new FormControl('', Validators.required)
+    );
+    this.secondaryHolderMinorForm.addControl(
+      'relationship', new FormControl('', Validators.required)
+    );
+    this.secondaryHolderMinorForm.addControl(
+      'birthCountry', new FormControl('', Validators.required)
+    );
+    this.secondaryHolderMinorForm.addControl(
+      'gender', new FormControl('', Validators.required)
+    );
+    this.secondaryHolderMinorForm.addControl(
+      'dob', new FormControl('', [Validators.required, this.validateMinimumAge])
+    );
+    this.secondaryHolderMinorForm.addControl(
+      'issuedCountry', new FormControl('', Validators.required)
+    );
+  }
+
+  removePersonaInfoControls() {
+    this.secondaryHolderMinorForm.removeControl('fullName');
+    this.secondaryHolderMinorForm.removeControl('nricNumber');
+    this.secondaryHolderMinorForm.removeControl('race');
+    this.secondaryHolderMinorForm.removeControl('relationship');
+    this.secondaryHolderMinorForm.removeControl('birthCountry');
+    this.secondaryHolderMinorForm.removeControl('gender');
+    this.secondaryHolderMinorForm.removeControl('dob');
+    this.secondaryHolderMinorForm.removeControl('issuedCountry');
+  }
+
+  removeNonSingaporeanControls() {
+    this.secondaryHolderMinorForm.removeControl('passportNumber');
+    this.secondaryHolderMinorForm.removeControl('passportExpiry');
   }
 }
