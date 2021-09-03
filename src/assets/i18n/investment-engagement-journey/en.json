@@ -404,6 +404,7 @@
   "SECONDARY_HOLDER": {
     "PAGE_TITLE": "Add Secondary Holder",
     "PAGE_LBL": "What is the age of secondary holder?",
+    "CONTINUE": "Continue",
     "MAJOR": {
       "TAB_LBL": "18 & above",
       "DESC_LBL": "Secondary Holder Details",
@@ -448,6 +449,26 @@
         "SELECT_RACE": "Select Race",
         "RELATIONSHIP": "Relationship",
         "SELECT_RELATIONSHIP": "Select Relationship"
+      },
+      "TAX_INFO": {
+        "CARD_TITLE": "Tax Residence",
+        "TITLE": "Tax Information",
+        "TAX_MODEL_TITLE": "Taxpayer Identification No.",
+        "TAX_MODEL_DESC": "<p>For Singapore Tax Residents, please note that your NRIC/FIN No. is your Taxpayer Identification No.</p><p>Taxpayer Identification No. is a personal tax account number that has been assigned to you by the country that you are a tax resident of. For more information, please refer to <a  class=\"hyperlink_color\" target='_blank' href='http://www.oecd.org'>http://www.oecd.org</a>.</p>",
+        "COUNTRY_TEXT": "Country Of Tax Residence",
+        "TIN_QUESTION": "Do you have a Taxpayer Identification Number (TIN) for the above country?",
+        "YES_lABEL": "Yes",
+        "NO_LABEL": "No",
+        "REASON_TEXT": "Reason",
+        "TIN_TEXT": "TIN Number",
+        "CONTINUE": "Continue",
+        "COUNTRY_ERROR": "Country can not be same",
+        "COUNTRY_ERROR_MSG": "Please check your selected countries",
+        "SELECT_COUNTRY": "Select Country",
+        "TAX_OTHER_COUNTRY": "Are you paying tax in another country?",
+        "ADD_TAX_RESIDENCE": "Add Tax Residence",
+        "SG_COUNTRY_CODE": "SG",
+        "NRIC_HINT": "For Singaporean taxpayers, TIN is usually NRIC."
       }
     }
   }
