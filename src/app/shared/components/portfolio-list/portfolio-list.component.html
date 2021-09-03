@@ -10,6 +10,42 @@
                 </div>
             </div>
             <div class="multiple-portfolio-content">
+
+                
+                <div class="multiple-portfolio-type" *ngIf="filteredAwaitingList?.length > 0">
+                    <div class="multiple-portfolio-type-title awaiting-list">{{'YOUR_INVESTMENT.AWAITING_TO_JOIN' | translate}}</div>
+                    <div class="portfolio-list" *ngFor="let portfolio of filteredAwaitingList; let i = index;">
+                        <div *ngIf="(i <= 4) || showAllForInvested" class="portfolio">
+                            <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
+                            <div class="portfolio-details">
+                                <div class="portfolio-name">
+                                    <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
+                                    <span *ngIf="portfolio?.fundingTypeValue == 'SRS'" class="portfolio-fund-type">
+                                  {{'YOUR_INVESTMENT.SRS' | translate}}
+                                </span>
+                                </div>
+                                <div class="ja-logo" *ngIf="portfolio?.entitlements?.jointAccount"><span class="ja-icon"><img src="assets/images/investment-account/ja-icon.svg" /></span><span>{{'YOUR_INVESTMENT.JOINT_ACCOUNT' | translate}}</span></div>
+                                <div class="ja-investment mt10">Equity</div>
+                                <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
+                                    currency:'USD':'symbol-narrow':'1.0-2'}} </div>
+                                <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
+                                    currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                                <div class="row">
+                                    <div class='col-md-6 awaiting-period mt10'>{{ portfolio.awaitingPeriod }} {{'YOUR_INVESTMENT.PRIMARY_AWAITING_PERIOD' | translate}}</div>
+                                    <div class='col-md-6 ja-btn-group'>
+                                        <button class="send-reminder-btn cursorPointer">{{'YOUR_INVESTMENT.SEND_REMINDER' | translate}}</button>
+                                        <button class="withdraw-btn cursorPointer ml10" (click)="withDrawModal(portfolio.portfolioName)">{{'YOUR_INVESTMENT.WITHDRAW' | translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-btn" *ngIf="filteredInvestedList.length > 5">
+                        <span *ngIf="!showAllForInvested" (click)="showHideToggle('showAllForInvested')">{{'YOUR_INVESTMENT.LIST_ALL' | translate}} ({{ filteredInvestedList.length - 5}})<img src="assets/images/investment-account/list-down.svg" /></span>
+                        <span *ngIf="showAllForInvested" (click)="showHideToggle('showAllForInvested')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}}<img class="show-less" src="assets/images/investment-account/list-down.svg" /></span>
+                    </div>
+                </div>
+
                 <div class="multiple-portfolio-type" *ngIf="filteredNotInvestedList?.length > 0">
                     <div class="multiple-portfolio-type-title">{{'YOUR_INVESTMENT.NOT_YET_INVESTED' | translate}}</div>
                     <div class="portfolio-list" *ngFor="let portfolio of filteredNotInvestedList; let i = index;">

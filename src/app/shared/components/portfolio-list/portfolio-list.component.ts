@@ -23,6 +23,9 @@ import {
 } from './../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../../../investment/manage-investments/manage-investments.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from './../../../investment/investment-engagement-journey/investment-engagement-journey.constants';
+import { ModelWithButtonComponent } from './../../modal/model-with-button/model-with-button.component';
+import { IToastMessage } from '../../../investment/manage-investments/manage-investments-form-data';
+import { ManageInvestmentsService } from '../../../investment/manage-investments/manage-investments.service';
 
 @Component({
   selector: 'app-portfolio-list',
@@ -37,6 +40,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   monthlyInvestment: any;
   investedList: any;
   notInvestedList: any;
+  awaitingList: any;
   showAllForInvested: boolean;
   showAllForNotInvested: boolean;
   topClickedFlag: boolean;
@@ -51,10 +55,16 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   @Output() detailSelected = new EventEmitter<boolean>();
   @Output() topUpSelected = new EventEmitter<boolean>();
   @Output() investAgainSelected = new EventEmitter<boolean>();
+  @Output() emitToastMessage = new EventEmitter<boolean>();
 
   // Filtered Portfolio List
   filteredInvestedList: any;
   filteredNotInvestedList: any;
+  filteredAwaitingList: any;
+  filteredWithdrawnList: any;
+  filteredDeclinedList: any;
+  filteredVerifyList: any;
+  filteredExpiredList: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -65,7 +75,8 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     private investmentAccountService: InvestmentAccountService,
     private investmentEngagementService: InvestmentEngagementJourneyService,
     private investmentCommonService: InvestmentCommonService,
-    private router: Router) {
+    private router: Router,
+    private manageInvestmentsService: ManageInvestmentsService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => { });
   }
@@ -85,15 +96,22 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   portfoioSpliter() {
     this.notInvestedList = [];
     this.investedList = [];
+    this.awaitingList = [];
     if (this.portfolioList) {
       for (const portfolio of this.portfolioList) {
         if (portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING'
           || portfolio.portfolioStatus === 'REBALANCING') {
           this.investedList.push(portfolio);
-        } else {
+          const awaitingTimeStamp = 1630669362000;
+          portfolio.awaitingPeriod = '18 hours 47 minutes';
+          this.awaitingList.push(portfolio);
+        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.AWAITING) {
+          this.awaitingList.push(portfolio);
+        }else {
           this.notInvestedList.push(portfolio);
         }
       }
+      this.investmentEngagementService.sortByProperty(this.awaitingList, 'createdDate', 'desc');
       this.investmentEngagementService.sortByProperty(this.investedList, 'createdDate', 'desc');
       this.investmentEngagementService.sortByProperty(this.notInvestedList, 'createdDate', 'desc');
     }
@@ -177,6 +195,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     } else {
       this.filteredNotInvestedList = this.notInvestedList;
       this.filteredInvestedList = this.investedList;
+      this.filteredAwaitingList = this.awaitingList;
       this.totalPortfoliosLength = this.portfolioList.length;
     }
   }
@@ -189,7 +208,10 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     this.filteredInvestedList = this.investedList.filter((portfolio) => {
       return portfolio['portfolioCategory'].toUpperCase() === category.toUpperCase();
     });
-    this.totalPortfoliosLength = this.filteredNotInvestedList.length + this.filteredInvestedList.length;
+    this.filteredAwaitingList = this.awaitingList.filter((portfolio) => {
+      return portfolio['portfolioCategory'].toUpperCase() === category.toUpperCase();
+    });
+    this.totalPortfoliosLength = this.filteredNotInvestedList.length + this.filteredInvestedList.length + this.filteredAwaitingList.length;
   }
 
   setBorderClass(portfolio) {
@@ -200,6 +222,24 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     } else {
       return '';
     }
+  }
+
+  withDrawModal(portfolioName) {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.WITHDRAW_JOINT_ACCOUNT_APPLICATION');
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'YOUR_INVESTMENT.WITHDRAW_JOINT_ACCOUNT_APPLICATION_DESC'
+    );
+    ref.componentInstance.primaryActionLabel = this.translate.instant('YOUR_INVESTMENT.CONFIRM_WITHDRAWAL');
+    ref.componentInstance.primaryAction.subscribe(() => {
+      //this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO])      
+      const toastMessage: IToastMessage = {
+        isShown: true,
+        desc: this.translate.instant('TOAST_MESSAGES.WITHDRAW_PORTFOLIO_SUCCESS', {userGivenPortfolioName : portfolioName} ),       
+      };
+      this.manageInvestmentsService.setToastMessage(toastMessage);
+      this.emitToastMessage.emit(portfolioName);
+    });
   }
 
 }

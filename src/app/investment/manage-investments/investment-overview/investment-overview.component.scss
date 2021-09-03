@@ -312,6 +312,51 @@ app-investment-overview {
                         @include allmobiles {
                             padding: 5px 15px;
                         }
+                    }     
+                    .ja-btn-group {
+                        display: flex;
+                        justify-content: flex-end;
+                        @include allmobiles {
+                            justify-content: flex-start;
+                            margin-top: 20px;
+                        }
+                    }               
+                    .awaiting-list {
+                        background-color: $awaiting-bg-color;
+                    }
+                    .ja-investment {
+                        font-size: 14px;
+                        font-family: $muli-regular;
+                        color: $tuna-color;
+                        letter-spacing: -0.26px;
+                    }
+                    .send-reminder-btn {
+                        border-radius: 6px;
+                        background-color: $teal-color;
+                        font-size: 14px;
+                        font-family: $muli-bold;
+                        color: $white-color;
+                        letter-spacing: -0.11px;
+                        padding: 7px 15px;
+                        border: 0px;
+                        min-width: 132px;
+                    }
+                    .withdraw-btn {
+                        border-radius: 6px;
+                        background-color: $mercury-smoke-color;
+                        font-size: 14px;
+                        font-family: $muli-bold;
+                        color: $silver-grey-color;
+                        letter-spacing: -0.11px;
+                        padding: 7px 15px;
+                        border: 0px;
+                        min-width: 132px;
+                    }
+                    .awaiting-period {
+                        font-size: 14px;
+                        font-family: $muli-regular;
+                        color: $myinfo-block-btn-bg-color;
+                        letter-spacing: -0.26px;
                     }
                     .portfolio-list {
                         background-color: $white-smoke-color;
