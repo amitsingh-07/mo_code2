@@ -241,7 +241,7 @@
         "VIEW": "View"
     },
     "CONFIRM_ACCOUNT_DETAILS": {
-        "TITLE": "Confirm Account Details",
+        "TITLE": "Confirm Funding Details",
         "FUND_METHOD": "Funding Method",
         "SELECT_FUNDING_LAB": "You have selected the following funding method for this portfolio.",
         "ACCOUNT_DETAILS": "Please provide your account details.",
