@@ -32,6 +32,7 @@ export class AcknowledgementComponent implements OnInit {
       this.pageTitle = this.translate.instant('ACKNOWLEDGEMENT.TITLE');
       this.setPageTitle(this.pageTitle);
     });
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);

@@ -58,11 +58,11 @@
             </div>
         </div>
         <form name="tncForm" [formGroup]="tncForm" id="tncForm">
-        <div class="checkbox-button one-label mb10">
+        <div class="checkbox-button one-label tnc-checkbox">
             <input id="tncCheckboxFlag" name="tncCheckboxFlag" formControlName="tncCheckboxFlag" type="checkbox"
               class="field checkbox" value="I agree to the Terms and Conditions" #tncChkBox>
             <label class="ml10" for="tncCheckboxFlag">
-              <div class="title">I agree to the <a (click)="showTncModal()">Terms and Conditions</a></div>
+              <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.I_AGREE' | translate}} <a (click)="showTncModal()">{{ 'PORTFOLIO_RECOMMENDATION.TNC' | translate}}</a></div>
             </label>
           </div>
           </form>

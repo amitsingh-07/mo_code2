@@ -149,4 +149,13 @@ app-confirm-portfolio {
       .wise-income-payout {
         margin-top:10px;
       }
+      .tnc-checkbox {
+          @include desktop {
+            margin: 0 0 30px 10px;
+          }
+          .title a {
+              text-decoration: underline !important;
+          }
+      }
+
 }
