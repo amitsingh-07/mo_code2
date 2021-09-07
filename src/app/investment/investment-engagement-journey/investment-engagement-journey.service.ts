@@ -466,9 +466,9 @@ export class InvestmentEngagementJourneyService {
     this.commit();
   }
 
-  /* Get user account type */
+  /* Get Major holder data */
   getMajorSecondaryHolderData() {
-    return this.investmentEngagementJourneyFormData?.majorSecondaryHolderFormData;
+    return this.investmentEngagementJourneyFormData.majorSecondaryHolderFormData;
   }
 
   setMinorSecondaryHolderData(minorHolderFormData) {
@@ -482,7 +482,6 @@ export class InvestmentEngagementJourneyService {
   }
 
   buildMajorHolderData() {
-    debugger;
     const formData = this.investmentEngagementJourneyFormData?.majorSecondaryHolderFormData;
     return {
       nricOrPassport: formData?.nricNumber,
@@ -507,5 +506,14 @@ export class InvestmentEngagementJourneyService {
   saveMinorSecondaryHolder() {
     const data = this.buildMinorHolderData();
     return this.investmentApiService.saveMinorSecondaryHolder(data);
+  }
+
+  convertStringToDateObj(dateString) {
+    let dateObj = new Date(dateString);
+    return {
+      year: dateObj.getFullYear(),
+      month: dateObj.getMonth() + 1,
+      day: dateObj.getDate()
+    }
   }
 }
