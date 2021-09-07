@@ -30,7 +30,7 @@ export class AcknowledgementComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
       this.pageTitle = this.translate.instant('ACKNOWLEDGEMENT.TITLE');
-      this.setPageTitle(this.pageTitle);
+      // this.setPageTitle(this.pageTitle);
     });
     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
   }
