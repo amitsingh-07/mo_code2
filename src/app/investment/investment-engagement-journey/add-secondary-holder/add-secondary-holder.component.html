@@ -13,7 +13,7 @@
           <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTabId">
             <ng-container [ngbNavItem]="1">
               <a (click)="tabChange()" class="flex-col-6 btn-outline-primary fixed-btn--sm mr10"
-                ngbNavLink>{{'SECONDARY_HOLDER.MAJOR.TAB_LBL' | translate}}</a>
+                ngbNavLink>{{'SECONDARY_HOLDER.MAJOR.TAB_LBL' | translate}}, {{activeTabId}}</a>
               <ng-template ngbNavContent>
                 <div class="pannel-tab-content">
                   <form [formGroup]="secondaryHolderMajorForm">
@@ -205,9 +205,8 @@
                         <div class="flex-col-1"> <img src="assets/images/investment-account/note-icon-white.svg" />
                         </div>
                         <div class="pl-2 flex-col-10">
-                          <span class="desc-sub-lbl" [innerHtml]="'SECONDARY_HOLDER.MINOR.IMPORTANT_NOTICE'
+                          <span class="desc-sub-lbl" (click)="openModal()" [innerHtml]="'SECONDARY_HOLDER.MINOR.IMPORTANT_NOTICE'
                             | translate">
-
                           </span>
                         </div>
                       </div>
@@ -477,12 +476,13 @@
                           </div>
                           <div class="widget-body" [formGroupName]="x">
                             <div class="flex-row">
-                              <div class="flex-col-4">
+                              <div class="flex-col-5">
                                 <label for="name" id="tax-info-label">{{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.COUNTRY_TEXT' |
                                   translate}}
-                                  <i class="tooltip-block-icon" id="countryHelpIcon"></i></label>
+                                  <i class="tooltip-block-icon" id="countryHelpIcon"
+                                    (click)="showHelpModalCountry()"></i></label>
                               </div>
-                              <div class="flex-col-8">
+                              <div class="flex-col-7">
                                 <div class="dropdown-control"
                                   [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.taxCountry)}">
                                   <app-dropdown-with-search placement="bottom" displayKey="name" [form]="taxInfoItem"
@@ -496,18 +496,18 @@
                             <!-- PLACEHOLDER -->
                             <!-- Do you have a TIN question -->
                             <div class="flex-row mb10">
-                              <div class="flex-col-11 mt15">
+                              <div class="flex-col-11 mt5">
                                 <div class="tin_question_text" id="tax_Info_question-one">
                                   {{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.TIN_QUESTION' | translate}}
                                 </div>
                               </div>
                               <div class="flex-col-1">
-                                <i class="tooltip-icon" id="myFinancialHelpIcon"></i>
+                                <i class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModalTinNumber()"></i>
                               </div>
                             </div>
                             <!-- Button part -->
                             <div class="flex-row">
-                              <div class="flex-col-12 mb15">
+                              <div class="flex-col-12">
                                 <div class="btn-group--toggle" ngbRadioGroup name="radioTin" formControlName="radioTin">
                                   <div class="flex-row">
                                     <div class="flex-col-6">
@@ -592,7 +592,6 @@
                       </div>
                       <!-- tax info end -->
                     </div>
-                    <!-- [disabled]="!secondaryHolderMinorForm.valid" -->
                     <button (click)="minorHolderGoToNext()" [disabled]="!secondaryHolderMinorForm.valid"
                       class="btn btn-primary btn__footer--fixed width100">{{'SECONDARY_HOLDER.CONTINUE' | translate}}</button>
                   </form>

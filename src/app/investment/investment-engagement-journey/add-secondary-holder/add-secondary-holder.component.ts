@@ -1,26 +1,28 @@
 import { ChangeDetectorRef, Component, HostListener, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, FormArray, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { LoaderService } from 'src/app/shared/components/loader/loader.service';
 import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 import { ErrorModalComponent } from 'src/app/shared/modal/error-modal/error-modal.component';
-import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
+import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
 import { Util } from 'src/app/shared/utils/util';
 import { InvestmentAccountCommon } from '../../investment-account/investment-account-common';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../investment-account/investment-account.constant';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 
 @Component({
   selector: 'app-add-secondary-holder',
   templateUrl: './add-secondary-holder.component.html',
   styleUrls: ['./add-secondary-holder.component.scss'],
+  providers: [
+    { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }
+  ],
   encapsulation: ViewEncapsulation.None
 })
 export class AddSecondaryHolderComponent implements OnInit {
@@ -35,7 +37,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   userProfileType: any;
   tooltipDetails: any;
   blockedCountryModal: any;
-  activeTabId = 1;
+  activeTabId = 3;
   investmentAccountSecondaryHolder: any;
   @Input('portfolioCategory') portfolioCategory;
   editModalData: any;
@@ -60,6 +62,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   maxDate: any;
   passportMinDate: any;
   passportMaxDate: any;
+  taxInfoModal: any;
   constructor(
     public authService: AuthenticationService,
     private investmentCommonService: InvestmentCommonService,
@@ -80,6 +83,7 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.editModalData = this.translate.instant('SELECT_NATIONALITY.editModalData');
       this.tooltipDetails = this.translate.instant('BLOCKED_COUNTRY_TOOLTIP');
       this.helpData = this.translate.instant('SECONDARY_HOLDER.MAJOR.helpData');
+      this.taxInfoModal = this.translate.instant('SECONDARY_HOLDER.MINOR.TAX_INFO');
       const today: Date = new Date();
       this.minDate = {
         year: today.getFullYear() - 100,
@@ -104,23 +108,12 @@ export class AddSecondaryHolderComponent implements OnInit {
     });
     this.secondaryHolderMinorFormValues = investmentEngagementService.getMinorSecondaryHolderData();
     this.secondaryHolderMajorFormValues = investmentEngagementService.getMajorSecondaryHolderData();
-    this.setSecondaryHolderType();
     this.buildMajorForm();
     this.setOptionList();
   }
 
   ngOnInit(): void {
     this.taxInfoFormValues = this.investmentAccountService.getInvestmentAccountFormData();
-  }
-
-  setSecondaryHolderType() {
-    if (this.secondaryHolderMinorFormValues && this.secondaryHolderMinorFormValues.isMinor) {
-      this.activeTabId = 2;
-      this.tabChange();
-    } else {
-      this.activeTabId = 1;
-      this.tabChange();
-    }
   }
 
   buildMinorForm() {
@@ -181,13 +174,16 @@ export class AddSecondaryHolderComponent implements OnInit {
 
   openModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.tooltipDetails.TITLE;
-    ref.componentInstance.errorDescription = this.tooltipDetails.DESC;
-    ref.componentInstance.tooltipButtonLabel = this.tooltipDetails.GOT_IT;
+    ref.componentInstance.errorTitle = this.taxInfoModal.BLOCKED_COUNTRY_TOOLTIP.TITLE;
+    ref.componentInstance.errorDescription = this.taxInfoModal.BLOCKED_COUNTRY_TOOLTIP.DESC;
+    ref.componentInstance.tooltipButtonLabel = this.taxInfoModal.BLOCKED_COUNTRY_TOOLTIP.GOT_IT;
     return false;
   }
 
   selectNationality(nationality) {
+    this.secondaryHolderMinorForm.addControl(
+      'unitedStatesResident', new FormControl('', Validators.required)
+    );
     this.removePersonaInfoControls();
     this.removeNonSingaporeanControls();
     this.secondaryHolderMinorForm.controls.nationality.setValue(nationality);
@@ -199,14 +195,12 @@ export class AddSecondaryHolderComponent implements OnInit {
         this.secondaryHolderMinorForm.addControl(
           'singaporeanResident', new FormControl('', Validators.required)
         );
-        this.secondaryHolderMinorForm.addControl(
-          'unitedStatesResident', new FormControl('', Validators.required)
-        );
       } else {
         setTimeout(() => {
-          this.addPersonalInfoControls();
           this.secondaryHolderMinorForm.removeControl('singaporeanResident');
-          this.secondaryHolderMinorForm.removeControl('unitedStatesResident');
+          if (this.secondaryHolderMinorForm.value && !Util.isEmptyOrNull(this.secondaryHolderMinorForm.value.unitedStatesResident) && !this.secondaryHolderMinorForm.value.unitedStatesResident) {
+            this.addPersonalInfoControls();
+          }
         });
       }
     }
@@ -220,20 +214,18 @@ export class AddSecondaryHolderComponent implements OnInit {
     }
     if (this.secondaryHolderMinorFormValues && !Util.isEmptyOrNull(this.secondaryHolderMinorFormValues.unitedStatesResident)) {
       unitedStatesResident = this.secondaryHolderMinorFormValues.unitedStatesResident;
+      this.secondaryHolderMinorForm.addControl(
+        'unitedStatesResident', new FormControl(!Util.isEmptyOrNull(unitedStatesResident) ? unitedStatesResident : '', Validators.required)
+      );
     }
     if (!this.isNationalitySingapore()) {
       this.secondaryHolderMinorForm.addControl(
         'singaporeanResident', new FormControl(!Util.isEmptyOrNull(singaporeResident) ? singaporeResident : '', Validators.required)
       );
-      this.secondaryHolderMinorForm.addControl(
-        'unitedStatesResident', new FormControl(!Util.isEmptyOrNull(unitedStatesResident) ? unitedStatesResident : '', Validators.required)
-      );
       this.singaporeanPRChange(singaporeResident);
     } else {
       setTimeout(() => {
         this.secondaryHolderMinorForm.removeControl('singaporeanResident');
-        this.secondaryHolderMinorForm.removeControl('unitedStatesResident');
-        this.addPersonalInfoControls();
       });
     }
   }
@@ -251,8 +243,13 @@ export class AddSecondaryHolderComponent implements OnInit {
 
   unitedStatesPRChange(isUnitedStatesPR) {
     if (isUnitedStatesPR) {
+      this.removePersonaInfoControls();
       this.showErrorMessage(this.blockedCountryModal.error_title,
         this.blockedCountryModal.unitedStatesPRYes);
+    } else if (this.isNationalitySingapore() && !isUnitedStatesPR) {
+      setTimeout(() => {
+        this.addPersonalInfoControls();
+      });
     }
   }
 
@@ -272,8 +269,11 @@ export class AddSecondaryHolderComponent implements OnInit {
         this.showBlockedCountryErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.blockedCountryMessage);
       } else if (this.secondaryHolderMinorForm.value.unitedStatesResident) {
         this.showErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.unitedStatesPRYes);
+      } else if (Util.isEmptyOrNull(this.validateMinimumAge(this.secondaryHolderMinorForm.controls['dob']))) {
+        this.showErrorMessage('Oops! Please check the following details:', 'Secondary holder must be below 18 years to proceed.');
+      } else if (this.secondaryHolderMinorForm.controls['passportExpiry'] && !Util.isEmptyOrNull(this.validateExpiry(this.secondaryHolderMinorForm.controls['passportExpiry']))) {
+        this.showErrorMessage('Oops! Please check the following details:', 'Your passport must have at least 6 months validity to proceed.');
       } else {
-        debugger;
         if (this.secondaryHolderMinorForm.value && this.secondaryHolderMinorForm.value.dob && typeof this.secondaryHolderMinorForm.value.dob !== 'object') {
           this.secondaryHolderMinorForm.get('dob').setValue(this.investmentEngagementService.convertStringToDateObj(this.secondaryHolderMinorForm.value.dob));
         }
@@ -286,7 +286,7 @@ export class AddSecondaryHolderComponent implements OnInit {
           this.secondaryHolderMinorForm.addControl('jaAccountId', new FormControl(resp.objectList));
           this.investmentEngagementService.setMinorSecondaryHolderData(this.secondaryHolderMinorForm.value);
           this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
-        })
+        });
       }
     }
   }
@@ -340,9 +340,10 @@ export class AddSecondaryHolderComponent implements OnInit {
     this.tabChangeCount++;
   }
 
-  showHelpModal() {
+  showHelpModal(modalType) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.helpData.modalTitle;
+    if (modalType === 'majorHelp')
+      ref.componentInstance.errorTitle = this.helpData.modalTitle;
     ref.componentInstance.errorDescription = this.helpData.modalDesc;
     return false;
   }
@@ -424,13 +425,13 @@ export class AddSecondaryHolderComponent implements OnInit {
     this.secondaryHolderMinorForm.removeControl('nricNumber');
     this.secondaryHolderMinorForm.removeControl('issuedCountry');
     this.secondaryHolderMinorForm.addControl(
-      'passportNumber', new FormControl(passportNumber !== '' ? passportNumber : '', Validators.required)
+      'passportNumber', new FormControl(passportNumber !== '' ? passportNumber : '', [Validators.required, Validators.pattern(RegexConstants.PassportNumber)])
     );
     this.secondaryHolderMinorForm.addControl(
       'passportExpiry', new FormControl(passportExpiry ? passportExpiry : '', [Validators.required, this.validateExpiry])
     );
     this.secondaryHolderMinorForm.addControl(
-      'passportIssuedCountry', new FormControl(passportIssuedCountry ? passportIssuedCountry : {}, [Validators.required, , Validators.pattern(RegexConstants.PassportNumber)])
+      'passportIssuedCountry', new FormControl(passportIssuedCountry ? passportIssuedCountry : {}, [Validators.required])
     );
   }
 
@@ -529,20 +530,8 @@ export class AddSecondaryHolderComponent implements OnInit {
         tinNoOrReasonValue = data.noTinReason ? data.noTinReason : null;
       }
       this.isTinNumberAvailChanged(data.radioTin, newFormGroup, tinNoOrReasonValue);
-      // this.setDefaultTinNoAndPlaceholder(newFormGroup, data);
     }
     this.formCount = this.secondaryHolderMinorForm.controls.addTax.value.length;
-  }
-
-  getInvalidFields() {
-    const invalid = [];
-    const controls = this.secondaryHolderMinorForm.controls;
-    for (const name in controls) {
-      if (controls[name].invalid) {
-        invalid.push(name);
-      }
-    }
-    return invalid;
   }
 
   createForm(data) {
@@ -561,7 +550,6 @@ export class AddSecondaryHolderComponent implements OnInit {
     taxInfoItem.removeControl('noTinReason');
     setTimeout(() => { /* Removing and adding control instantly, causes view to not refresh, hence settimeout */
       taxInfoItem.controls.radioTin.setValue(null);
-      // this.setDefaultTinNoAndPlaceholder(taxInfoItem, null);
       this.showHint(country.countryCode, taxInfoItem);
     });
   }
@@ -576,14 +564,6 @@ export class AddSecondaryHolderComponent implements OnInit {
 
   selectReason(reasonObj, taxInfoItem) {
     taxInfoItem.controls.noTinReason.setValue(reasonObj);
-    const invalid = [];
-    const controls = this.secondaryHolderMinorForm.controls;
-    for (const name in controls) {
-      if (controls[name].invalid) {
-        invalid.push(name);
-      }
-    }
-    console.log('form controls', this.secondaryHolderMinorForm.controls, this.secondaryHolderMinorForm.value, invalid);
   }
 
   markAllFieldsDirty(form) {
@@ -631,17 +611,7 @@ export class AddSecondaryHolderComponent implements OnInit {
     control.removeAt(index);
     this.formCount = this.secondaryHolderMinorForm.controls.addTax.value.length;
   }
-  getPlaceholder(country, taxInfoItem) {
-    if (taxInfoItem.controls.tinNumber && country) {
-      if (country.countryCode === 'SG') {
-        return 'e.g S****5678C';
-      } else {
-        return '';
-      }
-    } else {
-      return '';
-    }
-  }
+
   hasDuplicates(array) {
     return new Set(array).size !== array.length;
   }
@@ -680,37 +650,6 @@ export class AddSecondaryHolderComponent implements OnInit {
     return null;
   }
 
-  setDefaultTinNoAndPlaceholder(taxInfoItem, data) {
-    if (taxInfoItem.controls.taxCountry.value.countryCode === INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_COUNTRY_CODE) {
-      this.singPlaceHolder = 'e.g S****5678C';
-      if (this.isTaxCountrySingapore()) {
-        this.isTinNumberAvailChanged(true, taxInfoItem, this.taxInfoFormValues.nricNumber);
-        this.setControlEnableDisable(taxInfoItem, 'radioTin', false);
-        this.setControlEnableDisable(taxInfoItem, 'tinNumber', false);
-      } else {
-        this.setTinNoValue(taxInfoItem, data ? data.tinNumber : null);
-        this.singPlaceHolder = '';
-        this.setControlEnableDisable(taxInfoItem, 'radioTin', true);
-        this.setControlEnableDisable(taxInfoItem, 'tinNumber', true);
-      }
-    } else {
-      this.setTinNoValue(taxInfoItem, data ? data.tinNumber : null);
-      this.singPlaceHolder = '';
-      this.setControlEnableDisable(taxInfoItem, 'radioTin', true);
-      this.setControlEnableDisable(taxInfoItem, 'tinNumber', true);
-    }
-  }
-
-  isTaxCountrySingapore() {
-    let selectedNationality = ''
-    if (this.secondaryHolderMinorFormValues && this.secondaryHolderMinorFormValues.nationality.nationalityCode && this.secondaryHolderMinorFormValues.nationality.nationalityCode) {
-      selectedNationality = this.secondaryHolderMinorFormValues.nationality.nationalityCode.toUpperCase();
-    }
-    return (
-      selectedNationality === INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_NATIONALITY_CODE ||
-      this.secondaryHolderMinorForm.value?.singaporeanResident
-    );
-  }
   setTinNoValue(taxInfoItem, value) {
     if (taxInfoItem.controls.tinNumber) {
       taxInfoItem.controls.tinNumber.setValue(value);
@@ -730,10 +669,18 @@ export class AddSecondaryHolderComponent implements OnInit {
 
   showHelpModalCountry() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.tooltipDetails.TITLE;
+    ref.componentInstance.errorTitle = this.taxInfoModal.BLOCKED_COUNTRY_TOOLTIP.TITLE;
     // tslint:disable-next-line:max-line-length
-    ref.componentInstance.errorDescription = this.tooltipDetails.DESC;
-    ref.componentInstance.tooltipButtonLabel = this.tooltipDetails.GOT_IT;
+    ref.componentInstance.errorDescription = this.taxInfoModal.BLOCKED_COUNTRY_TOOLTIP.DESC;
+    ref.componentInstance.tooltipButtonLabel = this.taxInfoModal.BLOCKED_COUNTRY_TOOLTIP.GOT_IT;
+    return false;
+  }
+
+  showHelpModalTinNumber() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.taxInfoModal.TAX_MODEL_TITLE;
+    // tslint:disable-next-line:max-line-length
+    ref.componentInstance.errorDescription = this.taxInfoModal.TAX_MODEL_DESC;
     return false;
   }
 
@@ -758,12 +705,5 @@ export class AddSecondaryHolderComponent implements OnInit {
         this.investmentAccountService.setCaratTo(el, 100, contentList);
       }
     }
-  }
-
-  validateDOB(selectedDate, control) {
-    console.log('data', selectedDate);
-    // let input = this.investmentEngagementService.convertStringToDateObj(selectedDate._inputValue);
-    // this.secondaryHolderMinorForm.get(control).setValue(selectedDate);
-    console.log('form values', this.secondaryHolderMinorForm.value);
   }
 }
