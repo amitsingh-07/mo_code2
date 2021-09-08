@@ -143,7 +143,7 @@
     "APPLICATION_NEEDS_VERIFICATION": "Joint account application needs verification",
     "APPLICATION_VERIFY": "Verify",
     "APPLICATION_DECLINED": "Application declined by secondary holder",
-    "PORTFOLIO_WITHDRAWN_BY_PRIMARY_HOLDER ": "Portfolio withdrawn by primary holder",
+    "PORTFOLIO_WITHDRAWN_BY_PRIMARY_HOLDER": "Portfolio withdrawn by primary holder",
     "ONE_TIME_AMOUNT": "One-Time Amount",
     "MONTHLY_AMOUNT": "Monthly Amount"
   },
@@ -470,7 +470,8 @@
   "TOAST_MESSAGES": {
     "RENAME_PORTFOLIO_SUCCESS": "\"{{oldPortfolioName}}\" has been renamed to \"{{newPortfolioName}}\".",
     "DELTE_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been Deleted.",
-    "WITHDRAW_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been withdrawn."
+    "WITHDRAW_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been withdrawn.",
+    "DELETE_PORTFOLIO_BY_HOLDER": "You have deleted \"{{userGivenPortfolioName}}\"."
   },
   "TRANSFER": {
     "TITLE": "Transfer between Cash Accounts",

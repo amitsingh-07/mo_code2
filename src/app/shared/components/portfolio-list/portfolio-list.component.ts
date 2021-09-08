@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription, interval } from 'rxjs';
 
 import {
   InvestmentAccountService
@@ -41,11 +42,22 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   investedList: any;
   notInvestedList: any;
   awaitingList: any;
+  withdrawnList: any;
+  declinedList: any;
+  expiredList: any;
+  progressList: any;
+  verifyList: any;
   showAllForInvested: boolean;
   showAllForNotInvested: boolean;
   topClickedFlag: boolean;
   totalPortfoliosLength: number;
   newMessageForRebalance = false;
+  showAllForAwaited: boolean;
+  showAllForWithdrawn: boolean;
+  showAllForDeclined: boolean;
+  showAllForExpired: boolean;
+  showAllForProgress: boolean;
+  showAllForVerify: boolean;
 
   @Input('portfolioList') portfolioList;
   @Input('showTotalReturn') showTotalReturn;
@@ -63,8 +75,17 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   filteredAwaitingList: any;
   filteredWithdrawnList: any;
   filteredDeclinedList: any;
-  filteredVerifyList: any;
   filteredExpiredList: any;
+  filteredProgressList: any;
+  filteredVerifyList: any;
+
+  subscription: Subscription;  
+ 
+  milliSecondsInASecond = 1000;
+  hoursInADay = 24;
+  minutesInAnHour = 60;
+  SecondsInAMinute  = 60;
+  timeDifference: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -83,6 +104,8 @@ export class PortfolioListComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
+    this.subscription = interval(1000*60)
+           .subscribe(x => { this.getTimeDifference(); });
   }
 
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
@@ -97,21 +120,47 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     this.notInvestedList = [];
     this.investedList = [];
     this.awaitingList = [];
+    this.withdrawnList = [];
+    this.declinedList = [];
+    this.expiredList = [];
+    this.progressList = [];
+    this.verifyList = [];
     if (this.portfolioList) {
       for (const portfolio of this.portfolioList) {
         if (portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING'
           || portfolio.portfolioStatus === 'REBALANCING') {
           this.investedList.push(portfolio);
           const awaitingTimeStamp = 1630669362000;
+          console.log(Date.now());
           portfolio.awaitingPeriod = '18 hours 47 minutes';
           this.awaitingList.push(portfolio);
+          this.withdrawnList.push(portfolio);
+          this.declinedList.push(portfolio);
+          this.expiredList.push(portfolio);
+          this.progressList.push(portfolio);
+          this.verifyList.push(portfolio);
         } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.AWAITING) {
           this.awaitingList.push(portfolio);
-        }else {
+        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.WITHDRAWN) {
+          this.withdrawnList.push(portfolio);
+        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.DECLINED) {
+          this.declinedList.push(portfolio);
+        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.EXPIRED) {
+          this.expiredList.push(portfolio);
+        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.IN_PROGRESS) {
+          this.progressList.push(portfolio);
+        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.VERIFY) {
+          this.verifyList.push(portfolio);
+        }  else {
           this.notInvestedList.push(portfolio);
         }
       }
       this.investmentEngagementService.sortByProperty(this.awaitingList, 'createdDate', 'desc');
+      this.investmentEngagementService.sortByProperty(this.withdrawnList, 'createdDate', 'desc');
+      this.investmentEngagementService.sortByProperty(this.declinedList, 'createdDate', 'desc');
+      this.investmentEngagementService.sortByProperty(this.expiredList, 'createdDate', 'desc');
+      this.investmentEngagementService.sortByProperty(this.progressList, 'createdDate', 'desc');
+      this.investmentEngagementService.sortByProperty(this.verifyList, 'createdDate', 'desc');
       this.investmentEngagementService.sortByProperty(this.investedList, 'createdDate', 'desc');
       this.investmentEngagementService.sortByProperty(this.notInvestedList, 'createdDate', 'desc');
     }
@@ -196,8 +245,14 @@ export class PortfolioListComponent implements OnInit, OnChanges {
       this.filteredNotInvestedList = this.notInvestedList;
       this.filteredInvestedList = this.investedList;
       this.filteredAwaitingList = this.awaitingList;
+      this.filteredWithdrawnList = this.withdrawnList; 
+      this.filteredDeclinedList = this.declinedList;
+      this.filteredExpiredList = this.expiredList;
+      this.filteredProgressList = this.progressList;
+      this.filteredVerifyList = this.verifyList;
       this.totalPortfoliosLength = this.portfolioList.length;
     }
+    this.getTimeDifference();
   }
 
   // Filter by category and calculate the new values
@@ -211,7 +266,22 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     this.filteredAwaitingList = this.awaitingList.filter((portfolio) => {
       return portfolio['portfolioCategory'].toUpperCase() === category.toUpperCase();
     });
-    this.totalPortfoliosLength = this.filteredNotInvestedList.length + this.filteredInvestedList.length + this.filteredAwaitingList.length;
+    this.filteredWithdrawnList = this.withdrawnList.filter((portfolio) => {
+      return portfolio['portfolioCategory'].toUpperCase() === category.toUpperCase();
+    });
+    this.filteredDeclinedList = this.declinedList.filter((portfolio) => {
+      return portfolio['portfolioCategory'].toUpperCase() === category.toUpperCase();
+    });
+    this.filteredExpiredList = this.expiredList.filter((portfolio) => {
+      return portfolio['portfolioCategory'].toUpperCase() === category.toUpperCase();
+    });
+    this.filteredProgressList = this.progressList.filter((portfolio) => {
+      return portfolio['portfolioCategory'].toUpperCase() === category.toUpperCase();
+    });
+    this.filteredVerifyList = this.verifyList.filter((portfolio) => {
+      return portfolio['portfolioCategory'].toUpperCase() === category.toUpperCase();
+    });
+    this.totalPortfoliosLength = this.filteredNotInvestedList.length + this.filteredInvestedList.length + this.filteredAwaitingList.length + this.filteredWithdrawnList.length + this.filteredDeclinedList.length + this.filteredExpiredList.length + this.filteredProgressList.length + this.filteredVerifyList.length;
   }
 
   setBorderClass(portfolio) {
@@ -242,4 +312,33 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     });
   }
 
+  deleteByHolder(portfolioName) {
+    const toastMessage: IToastMessage = {
+      isShown: true,
+      desc: this.translate.instant('TOAST_MESSAGES.DELETE_PORTFOLIO_BY_HOLDER', {userGivenPortfolioName : portfolioName} ),       
+    };
+    this.manageInvestmentsService.setToastMessage(toastMessage);
+    this.emitToastMessage.emit(portfolioName);
+  }
+
+  getTimeDifference () {
+    this.filteredAwaitingList.forEach((awaitList: any, index) => {
+      const tmp = (index > 0) ? 1630669362000 : 1630933928946;
+      const awaitingTimeStamp = tmp  + (7 * 24 * 60 * 60 * 1000);
+      this.timeDifference = awaitingTimeStamp - Date.now();
+      this.filteredAwaitingList[index].awaitingPeriod = (this.timeDifference > 0) ? this.allocateTimeUnits(this.timeDifference) : '-';
+    });
+  }
+
+  allocateTimeUnits (timeDifference) {
+    const secondsToDay = Math.floor((timeDifference) / (this.milliSecondsInASecond) % this.SecondsInAMinute);
+    const minutesToDay = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour) % this.SecondsInAMinute);
+    const hoursToDay = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute) % this.hoursInADay);
+    const daysToDay = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute * this.hoursInADay));
+    if(daysToDay > 0) {
+      return daysToDay + ' days';
+    } else {
+      return hoursToDay + ' hours' + minutesToDay + ' minutes';
+    }
+  }
 }

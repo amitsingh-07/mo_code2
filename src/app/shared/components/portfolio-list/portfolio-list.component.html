@@ -11,11 +11,10 @@
             </div>
             <div class="multiple-portfolio-content">
 
-                
-                <div class="multiple-portfolio-type" *ngIf="filteredAwaitingList?.length > 0">
+               <div class="multiple-portfolio-type" *ngIf="filteredAwaitingList?.length > 0">
                     <div class="multiple-portfolio-type-title awaiting-list">{{'YOUR_INVESTMENT.AWAITING_TO_JOIN' | translate}}</div>
                     <div class="portfolio-list" *ngFor="let portfolio of filteredAwaitingList; let i = index;">
-                        <div *ngIf="(i <= 4) || showAllForInvested" class="portfolio">
+                        <div *ngIf="(i <= 4) || showAllForAwaited" class="portfolio">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
                             <div class="portfolio-details">
                                 <div class="portfolio-name">
@@ -32,19 +31,180 @@
                                     currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                                 <div class="row">
                                     <div class='col-md-6 awaiting-period mt10'>{{ portfolio.awaitingPeriod }} {{'YOUR_INVESTMENT.PRIMARY_AWAITING_PERIOD' | translate}}</div>
-                                    <div class='col-md-6 ja-btn-group'>
+                                    <div class='col-md-6 ja-btn-group' *ngIf='false'>
                                         <button class="send-reminder-btn cursorPointer">{{'YOUR_INVESTMENT.SEND_REMINDER' | translate}}</button>
                                         <button class="withdraw-btn cursorPointer ml10" (click)="withDrawModal(portfolio.portfolioName)">{{'YOUR_INVESTMENT.WITHDRAW' | translate}}</button>
+                                    </div>
+                                    <div class='col-md-6 flex justify-right' *ngIf='true'>
+                                        <button class="accept-decline-btn cursorPointer">{{'YOUR_INVESTMENT.ACCEPT_DECLINE' | translate}}</button>                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="list-btn" *ngIf="filteredInvestedList.length > 5">
-                        <span *ngIf="!showAllForInvested" (click)="showHideToggle('showAllForInvested')">{{'YOUR_INVESTMENT.LIST_ALL' | translate}} ({{ filteredInvestedList.length - 5}})<img src="assets/images/investment-account/list-down.svg" /></span>
-                        <span *ngIf="showAllForInvested" (click)="showHideToggle('showAllForInvested')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}}<img class="show-less" src="assets/images/investment-account/list-down.svg" /></span>
+                    <div class="list-btn" *ngIf="filteredAwaitingList.length > 5">
+                        <span *ngIf="!showAllForAwaited" (click)="showHideToggle('showAllForAwaited')">{{'YOUR_INVESTMENT.LIST_ALL' | translate}} ({{ filteredAwaitingList.length - 5}})<img src="assets/images/investment-account/list-down.svg" /></span>
+                        <span *ngIf="showAllForAwaited" (click)="showHideToggle('showAllForAwaited')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}}<img class="show-less" src="assets/images/investment-account/list-down.svg" /></span>
                     </div>
                 </div>
+
+                <div class="multiple-portfolio-type" *ngIf="filteredWithdrawnList?.length > 0">
+                    <div class="multiple-portfolio-type-title withdrawn-list">{{'YOUR_INVESTMENT.PORTFOLIO_WITHDRAWN_BY_PRIMARY_HOLDER' | translate}}</div>
+                    <div class="portfolio-list" *ngFor="let portfolio of filteredWithdrawnList; let i = index;">
+                        <div *ngIf="(i <= 4) || showAllForWithdrawn" class="portfolio">
+                            <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
+                            <div class="portfolio-details">
+                                <div class="portfolio-name">
+                                    <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
+                                    <span *ngIf="portfolio?.fundingTypeValue == 'SRS'" class="portfolio-fund-type">
+                                  {{'YOUR_INVESTMENT.SRS' | translate}}
+                                </span>
+                                </div>
+                                <div class="ja-logo" *ngIf="portfolio?.entitlements?.jointAccount"><span class="ja-icon"><img src="assets/images/investment-account/ja-icon.svg" /></span><span>{{'YOUR_INVESTMENT.JOINT_ACCOUNT' | translate}}</span></div>
+                                <div class="ja-investment mt10">Equity</div>
+                                <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
+                                    currency:'USD':'symbol-narrow':'1.0-2'}} </div>
+                                <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
+                                    currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                                <div class="row">                                    
+                                    <div class='col-md-12 flex justify-right'>
+                                        <button class="delete-btn cursorPointer" (click)="deleteByHolder(portfolio.portfolioName)">{{'YOUR_INVESTMENT.APPLICATION_DELETE' | translate}}</button>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-btn" *ngIf="filteredWithdrawnList.length > 5">
+                        <span *ngIf="!showAllForWithdrawn" (click)="showHideToggle('showAllForWithdrawn')">{{'YOUR_INVESTMENT.LIST_ALL' | translate}} ({{ filteredWithdrawnList.length - 5}})<img src="assets/images/investment-account/list-down.svg" /></span>
+                        <span *ngIf="showAllForWithdrawn" (click)="showHideToggle('showAllForWithdrawn')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}}<img class="show-less" src="assets/images/investment-account/list-down.svg" /></span>
+                    </div>
+                </div>
+
+                <div class="multiple-portfolio-type" *ngIf="filteredDeclinedList?.length > 0">
+                    <div class="multiple-portfolio-type-title declined-list">{{'YOUR_INVESTMENT.APPLICATION_DECLINED' | translate}}</div>
+                    <div class="portfolio-list" *ngFor="let portfolio of filteredDeclinedList; let i = index;">
+                        <div *ngIf="(i <= 4) || showAllForDeclined" class="portfolio">
+                            <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
+                            <div class="portfolio-details">
+                                <div class="portfolio-name">
+                                    <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
+                                    <span *ngIf="portfolio?.fundingTypeValue == 'SRS'" class="portfolio-fund-type">
+                                  {{'YOUR_INVESTMENT.SRS' | translate}}
+                                </span>
+                                </div>
+                                <div class="ja-logo" *ngIf="portfolio?.entitlements?.jointAccount"><span class="ja-icon"><img src="assets/images/investment-account/ja-icon.svg" /></span><span>{{'YOUR_INVESTMENT.JOINT_ACCOUNT' | translate}}</span></div>
+                                <div class="ja-investment mt10">Equity</div>
+                                <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
+                                    currency:'USD':'symbol-narrow':'1.0-2'}} </div>
+                                <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
+                                    currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                                <div class="row">                                    
+                                    <div class='col-md-12 flex justify-right'>
+                                        <button class="delete-btn cursorPointer" (click)="deleteByHolder(portfolio.portfolioName)">{{'YOUR_INVESTMENT.APPLICATION_DELETE' | translate}}</button>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-btn" *ngIf="filteredDeclinedList.length > 5">
+                        <span *ngIf="!showAllForDeclined" (click)="showHideToggle('showAllForDeclined')">{{'YOUR_INVESTMENT.LIST_ALL' | translate}} ({{ filteredDeclinedList.length - 5}})<img src="assets/images/investment-account/list-down.svg" /></span>
+                        <span *ngIf="showAllForDeclined" (click)="showHideToggle('showAllForDeclined')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}}<img class="show-less" src="assets/images/investment-account/list-down.svg" /></span>
+                    </div>
+                </div>
+
+                <div class="multiple-portfolio-type" *ngIf="filteredExpiredList?.length > 0">
+                    <div class="multiple-portfolio-type-title expired-list">{{'YOUR_INVESTMENT.APPLICATION_EXPIRED' | translate}}</div>
+                    <div class="portfolio-list" *ngFor="let portfolio of filteredExpiredList; let i = index;">
+                        <div *ngIf="(i <= 4) || showAllForExpired" class="portfolio">
+                            <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
+                            <div class="portfolio-details">
+                                <div class="portfolio-name">
+                                    <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
+                                    <span *ngIf="portfolio?.fundingTypeValue == 'SRS'" class="portfolio-fund-type">
+                                  {{'YOUR_INVESTMENT.SRS' | translate}}
+                                </span>
+                                </div>
+                                <div class="ja-logo" *ngIf="portfolio?.entitlements?.jointAccount"><span class="ja-icon"><img src="assets/images/investment-account/ja-icon.svg" /></span><span>{{'YOUR_INVESTMENT.JOINT_ACCOUNT' | translate}}</span></div>
+                                <div class="ja-investment mt10">Equity</div>
+                                <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
+                                    currency:'USD':'symbol-narrow':'1.0-2'}} </div>
+                                <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
+                                    currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                                <div class="row">                                    
+                                    <div class='col-md-12 flex justify-right'>
+                                        <button class="delete-btn cursorPointer" (click)="deleteByHolder(portfolio.portfolioName)">{{'YOUR_INVESTMENT.APPLICATION_DELETE' | translate}}</button>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-btn" *ngIf="filteredExpiredList.length > 5">
+                        <span *ngIf="!showAllForExpired" (click)="showHideToggle('showAllForExpired')">{{'YOUR_INVESTMENT.LIST_ALL' | translate}} ({{ filteredExpiredList.length - 5}})<img src="assets/images/investment-account/list-down.svg" /></span>
+                        <span *ngIf="showAllForExpired" (click)="showHideToggle('showAllForExpired')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}}<img class="show-less" src="assets/images/investment-account/list-down.svg" /></span>
+                    </div>
+                </div>
+
+               <div class="multiple-portfolio-type" *ngIf="filteredProgressList?.length > 0">
+                <div class="multiple-portfolio-type-title progress-list">{{'YOUR_INVESTMENT.APPLICATION_IN_PROGRESS' | translate}}</div>
+                <div class="portfolio-list" *ngFor="let portfolio of filteredProgressList; let i = index;">
+                    <div *ngIf="(i <= 4) || showAllForProgress" class="portfolio">
+                        <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
+                        <div class="portfolio-details">
+                            <div class="portfolio-name">
+                                <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
+                                <span *ngIf="portfolio?.fundingTypeValue == 'SRS'" class="portfolio-fund-type">
+                              {{'YOUR_INVESTMENT.SRS' | translate}}
+                            </span>
+                            </div>
+                            <div class="ja-logo" *ngIf="portfolio?.entitlements?.jointAccount"><span class="ja-icon"><img src="assets/images/investment-account/ja-icon.svg" /></span><span>{{'YOUR_INVESTMENT.JOINT_ACCOUNT' | translate}}</span></div>
+                            <div class="ja-investment mt10">Equity</div>
+                            <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
+                                currency:'USD':'symbol-narrow':'1.0-2'}} </div>
+                            <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
+                                currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-btn" *ngIf="filteredProgressList.length > 5">
+                    <span *ngIf="!showAllForProgress" (click)="showHideToggle('showAllForProgress')">{{'YOUR_INVESTMENT.LIST_ALL' | translate}} ({{ filteredProgressList.length - 5}})<img src="assets/images/investment-account/list-down.svg" /></span>
+                    <span *ngIf="showAllForProgress" (click)="showHideToggle('showAllForProgress')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}}<img class="show-less" src="assets/images/investment-account/list-down.svg" /></span>
+                </div>
+            </div>
+
+            <div class="multiple-portfolio-type" *ngIf="filteredVerifyList?.length > 0">
+             <div class="multiple-portfolio-type-title verify-list">{{'YOUR_INVESTMENT.APPLICATION_NEEDS_VERIFICATION' | translate}}</div>
+             <div class="portfolio-list" *ngFor="let portfolio of filteredVerifyList; let i = index;">
+                 <div *ngIf="(i <= 4) || showAllForVerify" class="portfolio">
+                     <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
+                     <div class="portfolio-details">
+                         <div class="portfolio-name">
+                             <span class="portfolio-lbl flex-col-11">{{portfolio?.portfolioName}}</span>
+                             <span *ngIf="portfolio?.fundingTypeValue == 'SRS'" class="portfolio-fund-type">
+                           {{'YOUR_INVESTMENT.SRS' | translate}}
+                         </span>
+                         </div>
+                         <div class="ja-logo" *ngIf="portfolio?.entitlements?.jointAccount"><span class="ja-icon"><img src="assets/images/investment-account/ja-icon.svg" /></span><span>{{'YOUR_INVESTMENT.JOINT_ACCOUNT' | translate}}</span></div>
+                         <div class="row">
+                            <div class='col-md-6'>
+                                <div class="ja-investment mt10">Equity</div>
+                                <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
+                                    currency:'USD':'symbol-narrow':'1.0-2'}} </div>
+                                <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
+                                    currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                            </div>
+                             <div class='col-md-6 ja-btn-group verify-btn-align'>
+                                 <button class="send-reminder-btn cursorPointer">{{'YOUR_INVESTMENT.APPLICATION_VERIFY' | translate}}</button>
+                                 <button class="withdraw-btn cursorPointer ml10" (click)="withDrawModal(portfolio.portfolioName)">{{'YOUR_INVESTMENT.WITHDRAW' | translate}}</button>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="list-btn" *ngIf="filteredVerifyList.length > 5">
+                 <span *ngIf="!showAllForVerify" (click)="showHideToggle('showAllForVerify')">{{'YOUR_INVESTMENT.LIST_ALL' | translate}} ({{ filteredVerifyList.length - 5}})<img src="assets/images/investment-account/list-down.svg" /></span>
+                 <span *ngIf="showAllForVerify" (click)="showHideToggle('showAllForVerify')">{{'YOUR_INVESTMENT.SHOW_LESS' | translate}}<img class="show-less" src="assets/images/investment-account/list-down.svg" /></span>
+             </div>
+         </div>
 
                 <div class="multiple-portfolio-type" *ngIf="filteredNotInvestedList?.length > 0">
                     <div class="multiple-portfolio-type-title">{{'YOUR_INVESTMENT.NOT_YET_INVESTED' | translate}}</div>

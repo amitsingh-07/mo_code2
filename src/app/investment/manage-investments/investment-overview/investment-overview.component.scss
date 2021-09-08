@@ -318,10 +318,10 @@ app-investment-overview {
                         justify-content: flex-end;
                         @include allmobiles {
                             justify-content: flex-start;
-                            margin-top: 20px;
+                            margin-top: 22px;
                         }
                     }               
-                    .awaiting-list {
+                    .awaiting-list, .progress-list {
                         background-color: $awaiting-bg-color;
                     }
                     .ja-investment {
@@ -358,6 +358,50 @@ app-investment-overview {
                         color: $myinfo-block-btn-bg-color;
                         letter-spacing: -0.26px;
                     }
+                    .accept-decline-btn {
+                        border-radius: 6px;
+                        background-color: $teal-color;
+                        font-size: 14px;
+                        font-family: $muli-bold;
+                        color: $white-color;
+                        letter-spacing: -0.11px;
+                        padding: 7px 15px;
+                        border: 0px;
+                        min-width: 132px;
+                        @include allmobiles {
+                            margin-top: 22px;
+                        }
+                    }
+                    .withdrawn-list, .expired-list {                        
+                        background-color: $withdrawn-bg-color;
+                        color: $black-color;
+                    }
+                    .delete-btn  {
+                        border-radius: 6px;
+                        background-color: $teal-color;
+                        font-size: 14px;
+                        font-family: $muli-bold;
+                        color: $white-color;
+                        letter-spacing: -0.11px;
+                        padding: 7px 15px;
+                        border: 0px;
+                        min-width: 132px;
+                        margin-top: 39px;
+                        @include allmobiles {
+                            margin-top: 22px;
+                        }
+                    }
+                    .declined-list {                        
+                        background-color: $withdrawn-bg-color;
+                        color: $tuna-color;
+                    }
+                    .verify-list {                        
+                        background-color: $verify-bg-color;
+                        color: $white-color;
+                    }
+                    .verify-btn-align{
+                        align-items: flex-end;
+                    } 
                     .portfolio-list {
                         background-color: $white-smoke-color;
                         &.invested {
