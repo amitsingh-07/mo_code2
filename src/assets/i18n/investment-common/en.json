@@ -45,6 +45,7 @@
             }
         },
         "USER_INPUT_SUB_TEXT": "Here's your projected portfolio value for <strong> {{ onetime }} one-time amount </strong> &amp; <strong> {{ monthly }} monthly amount </strong> for {{ period }} years.",
+        "WISE_SAVER_USER_INPUT_SUB_TEXT": "<div>You will be funding</div> <strong>{{ onetime }} for One-Time Investment </strong> and <strong>{{ monthly }} for Monthly Investment.</strong>",
         "REVIEW_INPUTS": "Review My Inputs",
         "ASSET_ALLOCATION": "Asset Allocation",
         "FUND_ASSET_ALLOCATION_LBL": "Fund Details & Asset Allocation",
@@ -150,7 +151,9 @@
                 "UNDERSTAND_PROCEED": "Proceed",
                 "CANCEL": "Cancel"
             }
-        }
+        },
+        "I_AGREE": "I agree to the ",
+        "TNC": "Terms and Conditions"
     },
     "FUND_INTRO": {
         "TITLE": "Fund Your Account",
@@ -241,7 +244,7 @@
         "VIEW": "View"
     },
     "CONFIRM_ACCOUNT_DETAILS": {
-        "TITLE": "Confirm Account Details",
+        "TITLE": "Confirm Funding Details",
         "FUND_METHOD": "Funding Method",
         "SELECT_FUNDING_LAB": "You have selected the following funding method for this portfolio.",
         "ACCOUNT_DETAILS": "Please provide your account details.",

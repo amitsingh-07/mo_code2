@@ -201,7 +201,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
       } else if (this.investmentCommonService.isUsersFirstPortfolio(data)) {
         this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
       }  else {
-        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
       }
     });
   }
