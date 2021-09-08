@@ -173,6 +173,6 @@ export class UploadDocumentBOComponent implements OnInit {
   }
 
   redirectToNextPage() {
-    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
   }
 }

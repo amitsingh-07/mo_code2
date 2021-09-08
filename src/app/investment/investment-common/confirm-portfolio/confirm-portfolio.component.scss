@@ -153,6 +153,9 @@ app-confirm-portfolio {
           @include desktop {
             margin: 0 0 30px 10px;
           }
+          @include allmobiles{
+            margin: 0 0 30px 0;
+          }
           .title a {
               text-decoration: underline !important;
           }
