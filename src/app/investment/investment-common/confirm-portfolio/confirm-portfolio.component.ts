@@ -29,7 +29,7 @@ import { InvestmentCommonService } from '../investment-common.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment-engagement-journey/investment-engagement-journey.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
 import { AcknowledgementComponent } from '../acknowledgement/acknowledgement.component';
-import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-confirm-portfolio',
   templateUrl: './confirm-portfolio.component.html',
@@ -50,7 +50,6 @@ export class ConfirmPortfolioComponent implements OnInit {
   investmentCriteria: IInvestmentCriteria;
   wiseSaverDetails :any;
   wiseIncomeEnabled: any;
-  subscription: Subscription;
 
   constructor(
     public readonly translate: TranslateService,
@@ -82,18 +81,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.getPortfolioDetails();
-    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
-      if (event && event !== '') {
-          this.redirectToDashboard();
-      }
-  });
   }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-    this.navbarService.unsubscribeBackPress();
-    this.navbarService.unsubscribeMenuItemClick();
-}
 
   getPortfolioDetails() {
     this.investmentAccountService
@@ -321,7 +309,4 @@ export class ConfirmPortfolioComponent implements OnInit {
     });
     return false;
   }
-  redirectToDashboard() {
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.START]);
-}
 }
