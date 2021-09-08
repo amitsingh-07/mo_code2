@@ -10,8 +10,8 @@
             <div class="page-title">{{ 'PORTFOLIO_RECOMMENDATION.CONFIRM_PORTFOLIO' | translate}}</div>
         </div>
         <div class="portfolio-allocation-details" [ngClass]="{'ja-type': isJAEnabled}">
-            <div class="flex-col-12 portfolio-allocation-details__container"  *ngIf="!wiseIncomeEnabled">
-                <div class="portfolio-allocation-details__content white-bg" *ngIf="portfolio.portfolioType !== 'WiseIncome'">
+            <div class="flex-col-12 portfolio-allocation-details__container" *ngIf="!wiseIncomeEnabled">
+                <div class="portfolio-allocation-details__content white-bg">
                     <div class="flex-col-12 portfolio-allocation-details__content__desc">
                         <div class="portfolio_img hidden-sm" *ngIf="investmentEnabled"><img src={{iconImage}} id="riskProfileImg" /></div>
                         <div class="flex-col-12 portfolio-allocation-details__content__block" *ngIf="investmentEnabled" [innerHTML]="'PORTFOLIO_RECOMMENDATION.USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
@@ -59,8 +59,17 @@
             </div>
             <div class="ja-disclaimer" [innerHTML]="'PORTFOLIO_RECOMMENDATION.JA_DISCLAIMER' | translate"></div>
         </div>
+
+        <div class="checkbox-button one-label tnc-checkbox">
+            <input id="tncCheckboxFlag" name="tncCheckboxFlag" formControlName="tncCheckboxFlag" type="checkbox"
+                class="field checkbox" value="I agree to the Terms and Conditions" #tncChkBox>
+            <label class="ml10" for="tncCheckboxFlag">
+                <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.I_AGREE' | translate}} <a (click)="showTncModal()">{{ 'PORTFOLIO_RECOMMENDATION.TNC' | translate}}</a></div>
+            </label>
+        </div>
+             
         <div class="text-center">
-            <button type="button" (click)="showPayoutModal()" class="btn btn__footer--fixed btn-primary width100">{{
+            <button type="button" [disabled]="!tncChkBox.checked" (click)="showPayoutModal()" class="btn btn__footer--fixed btn-primary width100">{{
     'PORTFOLIO_RECOMMENDATION.CONTINUE' | translate}}</button>
         </div>
     </div>

@@ -28,6 +28,7 @@ import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.const
 import { InvestmentCommonService } from '../investment-common.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment-engagement-journey/investment-engagement-journey.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
+import { AcknowledgementComponent } from '../acknowledgement/acknowledgement.component';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -306,5 +307,12 @@ export class ConfirmPortfolioComponent implements OnInit {
     } else {
       this.confirmPortfolio();
     }    
+  }
+  showTncModal() {
+    const ref = this.modal.open(AcknowledgementComponent, {
+      centered: true,
+      windowClass: 'custom-full-height'
+    });
+    return false;
   }
 }

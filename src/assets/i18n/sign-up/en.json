@@ -434,13 +434,6 @@
           "URL": "/faq",
           "URL_FRAGMENT": "srs-joint-account",
           "URL_TEXT": "Learn More About Joint Account"
-        },
-        {
-          "TITLE": "Apply Now!",
-          "TEXT": "Please note that Joint Investment Accounts are currently handled offline.",
-          "CONTACT": "Contact us to apply:",
-          "TEL": "(65) 6329 9188",
-          "EMAIL": "enquiries@moneyowl.com.sg"
         }
       ],
       "START_BTN": "Dismiss",
