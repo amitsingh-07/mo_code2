@@ -128,7 +128,7 @@
                         </div>
                       </div>
                       <!-- other coutryquestion -->
-                      <div>
+                      <div *ngIf="secondaryHolderMinorForm.get('unitedStatesResident')">
                         <div class="flex-row mb10">
                           <div class="flex-col-12 mt15">
                             <label class="form-group-with-bg--content-label" id="select_nationality_question-one"
@@ -230,15 +230,14 @@
                             </label>
                           </div>
                           <div class="flex-col-7">
-                            <div placeholder="Full Name"
+                            <div
                               [ngClass]="{'inline-error': secondaryHolderMinorForm.get('fullName').enabled && !secondaryHolderMinorForm.get('fullName').valid && !secondaryHolderMinorForm.get('fullName').pristine}">
                               <div id="fullname" [attr.contenteditable]="!isDisabled('fullName')"
                                 [textContent]="secondaryHolderMinorForm.get('fullName').value"
                                 (focusout)="setControlValue($event.target.textContent, 'fullName', secondaryHolderMinorForm);"
                                 maxlength="100" (keypress)="onKeyPressEvent($event, $event.target.textContent)"
-                                class="content-editable" placeholder="{{
-                                  'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.FULL_NAME'
-                                  | translate}}" [class.fullName-disabled]="isDisabled('fullName')">
+                                class="content-editable" [class.fullName-disabled]="isDisabled('fullName')"
+                                placeholder="Full Name">
                               </div>
                             </div>
                           </div>
@@ -288,8 +287,8 @@
                                   | translate}}" name="dp" ngbDatepicker #dobInput="ngbDatepicker"
                                   id="invPersInfoInpt7">
                                 <div class="input-group-append">
-                                  <button class="btn btn-primary" type="button"
-                                    (click)="toggleDate(dobInput, expiryInput)" id="invPersInfoBtn1">
+                                  <button class="btn btn-primary" type="button" (click)="dobInput.toggle()"
+                                    id="invPersInfoBtn1">
                                     <img class="date-picker-image--valid" id="invPersInfoImg1"
                                       *ngIf="secondaryHolderMinorForm.get('dob').valid || secondaryHolderMinorForm.get('dob').pristine"
                                       src="assets/images/calendar-normal.svg" />
@@ -594,7 +593,7 @@
                       <!-- tax info end -->
                     </div>
                     <!-- [disabled]="!secondaryHolderMinorForm.valid" -->
-                    <button (click)="minorHolderGoToNext()"
+                    <button (click)="minorHolderGoToNext()" [disabled]="!secondaryHolderMinorForm.valid"
                       class="btn btn-primary btn__footer--fixed width100">{{'SECONDARY_HOLDER.CONTINUE' | translate}}</button>
                   </form>
                 </div>

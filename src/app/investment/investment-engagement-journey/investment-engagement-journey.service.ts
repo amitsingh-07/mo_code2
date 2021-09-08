@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Util } from 'src/app/shared/utils/util';
 
 import { appConstants } from '../../app.constants';
 import { ApiService } from '../../shared/http/api.service';
@@ -492,9 +493,38 @@ export class InvestmentEngagementJourneyService {
 
   buildMinorHolderData() {
     const formData = this.investmentEngagementJourneyFormData?.minorSecondaryHolderFormData;
+    let taxInfo = this.setAddTaxData(formData?.addTax);
     return {
-
+      singaporePR: !Util.isEmptyOrNull(formData?.singaporeanResident) ? formData?.singaporeanResident : null,
+      usPR: !Util.isEmptyOrNull(formData?.unitedStatesResident) ? formData?.unitedStatesResident : null,
+      minor: true,
+      relationship: formData?.relationship?.id,
+      personalInfo: {
+        nationalityCode: formData?.nationality?.nationalityCode,
+        fullName: formData?.fullName,
+        nricNumber: formData?.nricNumber,
+        passportNumber: formData?.passportNumber,
+        passportIssuedCountryId: formData?.singaporeanResident ? formData?.issuedCountry?.id : formData?.passportIssuedCountry?.id,
+        gender: formData?.gender,
+        birthCountryId: formData?.birthCountry?.id,
+        race: formData?.race?.name,
+        passportExpiryDate: formData.passportExpiry ? `${formData?.passportExpiry?.day}-${formData?.passportExpiry?.month}-${formData?.passportExpiry?.year}` : null,
+        dateOfBirth: formData.dob ? `${formData?.dob?.day}-${formData?.dob?.month}-${formData?.dob?.year}` : null
+      },
+      taxDetails: taxInfo
     }
+  }
+
+  setAddTaxData(taxData) {
+    let taxInfo = []
+    taxData.forEach(element => {
+      taxInfo.push({
+        taxCountryId: element?.taxCountry?.id,
+        tinNumber: element?.tinNumber,
+        noTinReason: element?.noTinReason?.id
+      })
+    });
+    return taxInfo;
   }
 
   // Validate Major Secondary Holder
