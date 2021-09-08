@@ -13,9 +13,9 @@
             <div class="flex-col-12 portfolio-allocation-details__container"  *ngIf="!wiseIncomeEnabled">
                 <div class="portfolio-allocation-details__content white-bg" *ngIf="portfolio.portfolioType !== 'WiseIncome'">
                     <div class="flex-col-12 portfolio-allocation-details__content__desc">
-                        <div class="portfolio_img hidden-sm"><img src={{iconImage}} id="riskProfileImg" /></div>
+                        <div class="portfolio_img hidden-sm" *ngIf="investmentEnabled"><img src={{iconImage}} id="riskProfileImg" /></div>
                         <div class="flex-col-12 portfolio-allocation-details__content__block" *ngIf="investmentEnabled" [innerHTML]="'PORTFOLIO_RECOMMENDATION.USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
-                        <div class="flex-col-12 portfolio-allocation-details__content__block" *ngIf="wiseSaverEnabled" [innerHTML]="'PORTFOLIO_RECOMMENDATION.WISE_SAVER_USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
+                        <div class="flex-col-12 portfolio-allocation-details__content__block wisesaver" *ngIf="wiseSaverEnabled" [innerHTML]="'PORTFOLIO_RECOMMENDATION.WISE_SAVER_USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
                     </div>
                 </div>
                 <app-portfolio-info [portfolio]="portfolio" [wiseSaverDetails]="wiseSaverDetails"></app-portfolio-info>

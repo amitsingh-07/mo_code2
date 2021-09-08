@@ -55,6 +55,18 @@ app-confirm-portfolio {
                             strong {
                                 font-family: $muli-bold;
                             }
+                            &.wisesaver{
+                                padding: 38px 47px 37px 48px;
+                                @include allmobiles{
+                                    padding: 20px 30px;
+                                }
+                                div{
+                                    display: block;
+                                    @include allmobiles{
+                                        display: inline;
+                                    }
+                                }
+                            }
                         }
                         .review-edit {
                             justify-content: center;
