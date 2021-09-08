@@ -49,7 +49,10 @@ export class ConfirmPortfolioComponent implements OnInit {
   investmentCriteria: IInvestmentCriteria;
   wiseSaverDetails :any;
   wiseIncomeEnabled: any;
-
+  investmentEnabled: any;
+  wiseSaverEnabled: any;
+  userPortfolioType: any;
+  isJAEnabled: boolean;
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -69,6 +72,7 @@ export class ConfirmPortfolioComponent implements OnInit {
       this.pageTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.TITLE');
       this.setPageTitle(this.pageTitle);
     });
+    this.userPortfolioType = investmentEngagementJourneyService.getUserPortfolioType();
   }
 
   setPageTitle(title: string) {
@@ -92,6 +96,9 @@ export class ConfirmPortfolioComponent implements OnInit {
         this.portfolio = data.objectList;
         this.investmentCommonService.setPortfolioType(this.portfolio.portfolioType)
         this.investmentCommonService.setPortfolioDetails(this.portfolio);
+        this.isJAEnabled = (this.userPortfolioType.toLowerCase() == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT.toLowerCase());
+        this.investmentEnabled = (this.portfolio.portfolioType.toLowerCase() == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT.toLowerCase());
+        this.wiseSaverEnabled = (this.portfolio.portfolioType.toLowerCase() == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER.toLowerCase());
         this.wiseIncomeEnabled = (this.portfolio.portfolioType.toLowerCase() == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase());
         this.getInvestmentCriteria(this.portfolio);
         if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT) {
@@ -100,6 +107,7 @@ export class ConfirmPortfolioComponent implements OnInit {
         } else if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER){
           this.getWiseSaverDetails();
           this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO });
+          this.iconImage = ProfileIcons[6]['icon'];
         } else {
           this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO });
         }

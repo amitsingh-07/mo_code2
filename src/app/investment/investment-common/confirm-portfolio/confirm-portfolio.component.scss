@@ -101,6 +101,35 @@ app-confirm-portfolio {
                     text-decoration: underline;
                 }
             }
+            &.ja-type{
+                .portfolio-info-container{
+                    border-radius: 6px;
+                }
+                hr{
+                    display: none;
+                }
+                .portfolio-allocation-details__content{
+                    display: none;
+                    &.white-bg{
+                        display: block;
+                    }
+                }
+                .wise-income-payout {
+                    .payout_container{
+                        .payout-bt{
+                            display: none;
+                        }
+                    }
+                }
+                .wise-income-fund{
+                    .fund-bt{
+                        display: none;
+                    }
+                }
+                .ja-disclaimer{
+                    display: block;
+                }
+            }
         }
         .review-block {
             padding: 20px 35px;
@@ -145,8 +174,21 @@ app-confirm-portfolio {
         letter-spacing: -0.34px;
         color: $white-color;
         margin: 30px 0 20px 0;
-      }
-      .wise-income-payout {
+    }
+    .wise-income-payout {
         margin-top:10px;
-      }
+    }
+    .ja-disclaimer{
+        margin-top: -15px;
+        font-family: $muli-semi-bold;
+        font-size: 14px;
+        letter-spacing: -0.26px;
+        z-index: 1;
+        max-width: 780px;
+        display: none;
+        a{
+            color: $white-color;
+            text-decoration: underline;
+        }
+    }
 }
