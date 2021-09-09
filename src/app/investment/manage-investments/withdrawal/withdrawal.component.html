@@ -16,14 +16,7 @@
         <div class="max-width col-lg-6 col-md-6">
           <!-- HOLIDAY AND OTHER IMPORTANT NOTE -->
           <app-notes category="withdraw" [noteInSession]="formValues?.investmentNote"></app-notes>
-          <div *ngIf="entitlements.jointAccount || (isInvestAndJointAccountHolder && !isBankDetailsAvailable && withdrawForm.controls.withdrawPortfolio?.value.portfolioType !== 'SRS')"
-            class="joint_account">
-            <img src="assets/images/alert-black.svg" />
-            <div *ngIf="entitlements.jointAccount" class="joint_account-note"
-              innerHTML="{{'WITHDRAW.JOINT_ACCOUNT_DESC' | translate}}"></div>
-            <div *ngIf="isInvestAndJointAccountHolder && !isBankDetailsAvailable && !entitlements.jointAccount"
-              class="joint_account-note" innerHTML="{{'WITHDRAW.PERSONAL_JOINT_ACCOUNT_DESC' | translate}}"></div>
-          </div>
+  
           <form id="withdraw_form" name="withdrawForm" [formGroup]="withdrawForm">
             <!-- PORTFOLIO -->
             <div class="form-group" *ngIf="withdrawForm.get('withdrawPortfolio')">
@@ -79,7 +72,6 @@
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <ng-container *ngFor="let type of withdrawalTypes; let i = index">
                           <button class="dropdown-item"
-                            [disabled]="(type.value === 'CASH_TO_BANK_ACCOUNT' || type.value === 'PORTFOLIO_TO_BANK_ACCOUNT') && (entitlements.jointAccount || (isInvestAndJointAccountHolder && !isBankDetailsAvailable))"
                             [class.hide]="(type.value === 'PORTFOLIO_TO_BANK_ACCOUNT' && 
                             (!entitlements.showWithdrawPvToBa && !entitlements.jointAccount  && 
                             !(isInvestAndJointAccountHolder && !isBankDetailsAvailable)))||

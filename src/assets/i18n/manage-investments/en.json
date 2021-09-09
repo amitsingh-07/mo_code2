@@ -97,7 +97,7 @@
     "SRS_MSG": "SRS account portfolio currently handled offline.",
     "SRS_HYPERLINK": "Click here",
     "SRS": "SRS",
-    "SRS_JOINT_ACCOUNT_REMINDER": "Please note that Joint Investment Accounts are currently handled offline.",
+    "SRS_JOINT_ACCOUNT_REMINDER": "You can open Joint Investment Account online now. Add Portfolio to get started!",
     "MP_WALKTHROUGH": {
       "NEW_INVESTMENT_UPDATE": "We’ve new investment updates.",
       "SHOW_ME_AROUND": "Show me around!",
@@ -490,7 +490,8 @@
     "NOTE": " Note:",
     "TRANSFER_NOTE": [
       "Transfer service will not be available from 11:30pm to 12:00am daily for system maintenance. In the event that the service is unavailable or unsuccesssful, please try again later.",
-      "Transfer between Cash Accounts will be processed and completed immediately. "
+      "Transfer between Cash Accounts will be processed and completed immediately. ",
+      "Transfer out from Joint Investment Cash Account is not allowed."
     ],
     "MODAL": {
       "CONFIRM_TRANSFER": {

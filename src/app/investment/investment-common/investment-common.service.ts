@@ -163,7 +163,7 @@ export class InvestmentCommonService {
     if( data.accountCreationState ===  INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_PURCHASED){
       this.navbarService.setMenuItemInvestUser(true);
     }
-    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
   }
 
   setInvestmentsSummary(investmentsSummary) {
