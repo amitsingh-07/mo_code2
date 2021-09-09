@@ -116,7 +116,7 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
           if (this.investmentAccountService.isReassessActive()) {
             this.investmentAccountService.deactivateReassess();
           }
-          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
         }
       });
     } else {

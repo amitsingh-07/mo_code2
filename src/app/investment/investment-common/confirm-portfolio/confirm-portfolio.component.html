@@ -11,10 +11,11 @@
         </div>
         <div class="portfolio-allocation-details">
             <div class="flex-col-12 portfolio-allocation-details__container"  *ngIf="!wiseIncomeEnabled">
-                <div class="portfolio-allocation-details__content white-bg" *ngIf="portfolio.portfolioType === 'Investment'">
+                <div class="portfolio-allocation-details__content white-bg">
                     <div class="flex-col-12 portfolio-allocation-details__content__desc">
-                        <div class="portfolio_img hidden-sm"><img src={{iconImage}} id="riskProfileImg" /></div>
-                        <div class="flex-col-12 portfolio-allocation-details__content__block" [innerHTML]="'PORTFOLIO_RECOMMENDATION.USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
+                        <div class="portfolio_img hidden-sm" *ngIf="portfolio.portfolioType === 'Investment'"><img src={{iconImage}} id="riskProfileImg" /></div>
+                        <div class="flex-col-12 portfolio-allocation-details__content__block" *ngIf="portfolio.portfolioType === 'Investment'" [innerHTML]="'PORTFOLIO_RECOMMENDATION.USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
+                        <div class="flex-col-12 portfolio-allocation-details__content__block" *ngIf="portfolio.portfolioType === 'WiseSaver'" [innerHTML]="'PORTFOLIO_RECOMMENDATION.WISE_SAVER_USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
                     </div>
                 </div>
                 <app-portfolio-info [portfolio]="portfolio" [wiseSaverDetails]="wiseSaverDetails"></app-portfolio-info>
@@ -57,8 +58,17 @@
                     {{ 'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a>
             </div>
         </div>
+
+        <div class="checkbox-button one-label tnc-checkbox">
+            <input id="tncCheckboxFlag" name="tncCheckboxFlag" formControlName="tncCheckboxFlag" type="checkbox"
+                class="field checkbox" value="I agree to the Terms and Conditions" #tncChkBox>
+            <label class="ml10" for="tncCheckboxFlag">
+                <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.I_AGREE' | translate}} <a (click)="showTncModal()">{{ 'PORTFOLIO_RECOMMENDATION.TNC' | translate}}</a></div>
+            </label>
+        </div>
+             
         <div class="text-center">
-            <button type="button" (click)="showPayoutModal()" class="btn btn__footer--fixed btn-primary width100">{{
+            <button type="button" [disabled]="!tncChkBox.checked" (click)="showPayoutModal()" class="btn btn__footer--fixed btn-primary width100">{{
     'PORTFOLIO_RECOMMENDATION.CONTINUE' | translate}}</button>
         </div>
     </div>

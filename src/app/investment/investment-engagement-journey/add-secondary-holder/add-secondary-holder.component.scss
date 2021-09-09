@@ -1,0 +1,57 @@
+@import "../../../../_variables.scss";
+@import "../../../../_mixins.scss";
+app-add-secondary-holder {
+    .nav-tabs {
+        border-bottom: 0;
+        .btn-outline-primary {
+            &.fixed-btn--sm {
+                max-width: 164px;
+                height: 52px;
+                border-color: $white-color;
+                opacity: 0.6;
+                border-radius: 6px;
+                margin: 20px 0;
+                &:active,
+                &.active {
+                    border-color: $white-color;
+                    outline: none;
+                    opacity: 1;
+                }
+                &:focus {
+                    box-shadow: none !important;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    .pannel-tab-content{
+        .flex-row{
+            label{
+                font-family: $muli-semi-bold;
+                line-height: normal;
+                letter-spacing: -0.3px;
+            }
+        }
+        .desc-lbl{
+            font-family: $muli-bold;
+            font-size: 18px;
+            line-height: normal;
+            letter-spacing: -0.34px;
+            margin-bottom: 15px;
+            .tooltip-icon{
+                width: 15px;
+                height: 15px;
+                display: flex;
+            }
+        }
+        .desc-sub-lbl{
+            font-size: 13px;
+            line-height: normal;
+            letter-spacing: -0.24px;
+            margin-bottom: 20px;
+            u{
+                font-family: $muli-semi-bold;
+            }
+        }
+    }
+}

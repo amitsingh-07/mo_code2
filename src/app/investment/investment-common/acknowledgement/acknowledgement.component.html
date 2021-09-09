@@ -1,6 +1,10 @@
+<div class="modal-body white-bg">
+<div class="modal-body-title border-0">IMPORTANT NOTICE</div>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')" id="fund-details-close_button">
+    <span aria-hidden="true"></span>
+  </button>
 <div class="app-acknowledgement investment-account">
-  <div class="container-fluid max-width--1024 acknowledgement_text">
-    <h2 class="acknowledgement-title hidden-sm-md">{{pageTitle}}</h2>
+  <div class="acknowledgement_text">
     <ol>
       <li class="text-bold">FUND MANAGEMENT SERVICE
         <ul class="list-none">
@@ -623,8 +627,6 @@
 <label class="text-bold pt10"> YOU SHALL BE TAKEN TO HAVE ACCEPTED THESE TERMS AND CONDITIONS BY ACKNOWLEDGING AND
   PROCEEDING. IF YOU DO NOT AGREE
   WITH THESE TERMS & CONDITIONS, PLEASE DO NOT PROCEED FURTHER.</label>
-<button type="button" id="ackBtn" (click)="goNext()"
-  class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-  id="getStrdBtn3">{{ 'ACKNOWLEDGEMENT.AGREE' | translate}}</button>
+</div>
 </div>
 </div>
