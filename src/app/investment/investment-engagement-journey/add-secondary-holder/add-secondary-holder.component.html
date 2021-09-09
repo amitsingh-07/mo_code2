@@ -43,10 +43,6 @@
                             </div>
                           </div>
                         </div>
-                        <!-- <div class="alert-msg flex" *ngIf="ntucMemberForm.get('nricOrFin').errors?.pattern && ntucMemberForm.get('nricOrFin').value.length > 3">
-                        <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                        <span class="err-msg">{{'NTUC_PROMO_MODAL.ERROR_MSG' | translate}}</span>
-                      </div> -->
                       </div>
                       <!-- relationship start -->
                       <div class="flex-row">
@@ -137,7 +133,6 @@
                             </label>
                           </div>
                         </div>
-                        <!-- buttons -->
                         <div class="flex-row">
                           <div class="flex-col-12 mb10">
                             <div class="btn-group--toggle" ngbRadioGroup name="radioGender"
@@ -173,7 +168,6 @@
                             </label>
                           </div>
                         </div>
-                        <!-- buttons -->
                         <div class="flex-row">
                           <div class="flex-col-12 mb10">
                             <div class="btn-group--toggle" ngbRadioGroup name="radioGender"
@@ -244,7 +238,7 @@
                         <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('nricNumber')">
                           <div class="flex-col-5">
                             <label
-                              id="invPersInfoLbl4">{{ isNationalitySingapore() ? ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.NRIC_BIRTH_CERTIFICATE_NUMBER' | translate) : ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.NRIC_NUMBER' | translate)}}</label>
+                              id="invPersInfoLbl4">{{ isNationalitySingapore() || checkSingaporePR() ? ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.NRIC_BIRTH_CERTIFICATE_NUMBER' | translate) : ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.NRIC_NUMBER' | translate)}}</label>
                           </div>
                           <div class="flex-col-7"
                             [ngClass]="{'inline-error': secondaryHolderMinorForm.get('nricNumber').enabled && !secondaryHolderMinorForm.get('nricNumber').valid && !secondaryHolderMinorForm.get('nricNumber').pristine}">
