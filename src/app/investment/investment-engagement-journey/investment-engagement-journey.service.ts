@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Util } from 'src/app/shared/utils/util';
+import { Util } from '../../shared/utils/util';
 
 import { appConstants } from '../../app.constants';
 import { ApiService } from '../../shared/http/api.service';
@@ -451,6 +451,8 @@ export class InvestmentEngagementJourneyService {
     return this.investmentApiService.getFundListMethod(portfolioTypeId);
   }
 
+  /* ******* START SECONDARY HOLDER FUNCTIONALITY AND METHODS******* */
+
   /* Set user account type */
   setUserPortfolioType(portfolioType) {
     this.investmentEngagementJourneyFormData.userPortfolioType = portfolioType;
@@ -546,4 +548,14 @@ export class InvestmentEngagementJourneyService {
       day: dateObj.getDate()
     }
   }
+
+  getSecondaryHolderFormError(control) {
+    const errors: any = {};
+    errors.errorMessages = [];
+    errors.errorMessages.push(this.investmentEngagementJourneyFormErrors.formFieldErrors.
+      secondaryHolderValidations[control]);
+    return errors;
+  }
+
+  /* ******* END SECONDARY HOLDER FUNCTIONALITY AND METHODS******* */
 }
