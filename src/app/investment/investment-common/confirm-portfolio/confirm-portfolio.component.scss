@@ -28,8 +28,11 @@ app-confirm-portfolio {
                 color: $portfolio-allocation-container-txt-color;
                 border-radius: 6px;
                 .portfolio-allocation-details__content {
-                    margin-bottom: 10px;
+                    margin-bottom: 30px;
                     border-radius: 6px;
+                    @include allmobiles{
+                        margin-bottom: 10px;
+                    }
                     .portfolio-allocation-details__content__desc {
                         .portfolio_img {
                             text-align: center;
@@ -107,7 +110,7 @@ app-confirm-portfolio {
                 font-weight: 400;
                 letter-spacing: -0.2px;
                 text-align: center;
-                padding: 21px 0 45px;
+                padding: 21px 0 30px;
                 a {
                     color: $white-color;
                     text-decoration: underline;
@@ -191,7 +194,7 @@ app-confirm-portfolio {
         margin-top:10px;
     }
     .ja-disclaimer{
-        margin-top: -15px;
+        margin-bottom: 20px;
         font-family: $muli-semi-bold;
         font-size: 14px;
         letter-spacing: -0.26px;
@@ -205,12 +208,7 @@ app-confirm-portfolio {
     }
      
     .tnc-checkbox {
-        @include desktop {
-        margin: 0 0 30px 10px;
-        }
-        @include allmobiles{
-        margin: 0 0 30px 0;
-        }
+        margin-bottom: 30px;
         .title a {
             text-decoration: underline !important;
         }
