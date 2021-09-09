@@ -13,7 +13,7 @@
           <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTabId">
             <ng-container [ngbNavItem]="1">
               <a (click)="tabChange()" class="flex-col-6 btn-outline-primary fixed-btn--sm mr10"
-                ngbNavLink>{{'SECONDARY_HOLDER.MAJOR.TAB_LBL' | translate}}, {{activeTabId}}</a>
+                ngbNavLink>{{'SECONDARY_HOLDER.MAJOR.TAB_LBL' | translate}}</a>
               <ng-template ngbNavContent>
                 <div class="pannel-tab-content">
                   <form [formGroup]="secondaryHolderMajorForm">
@@ -90,9 +90,6 @@
                         </div>
                       </div>
                     </div>
-
-                    <button [disabled]="!secondaryHolderMajorForm.valid" (click)="majorHolderGoToNext()"
-                      class="btn btn-primary btn__footer--fixed width100">Continue</button>
                   </form>
                 </div>
               </ng-template>
@@ -586,14 +583,18 @@
                       </div>
                       <!-- tax info end -->
                     </div>
-                    <button (click)="minorHolderGoToNext()" [disabled]="!secondaryHolderMinorForm.valid"
-                      class="btn btn-primary btn__footer--fixed width100">{{'SECONDARY_HOLDER.CONTINUE' | translate}}</button>
                   </form>
                 </div>
               </ng-template>
             </ng-container>
           </nav>
           <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+          <button *ngIf="activeTabId === 1 || activeTabId === 3" [disabled]="!secondaryHolderMajorForm.valid"
+            (click)="majorHolderGoToNext()"
+            class="btn btn-primary btn__footer--fixed width100">{{'SECONDARY_HOLDER.CONTINUE' | translate}}</button>
+          <button *ngIf="activeTabId === 2" (click)="minorHolderGoToNext()" [disabled]="!secondaryHolderMinorForm.valid"
+            class="btn btn-primary btn__footer--fixed width100">{{'SECONDARY_HOLDER.CONTINUE' | translate}}</button>
         </div>
       </div>
     </div>
