@@ -285,7 +285,7 @@ export class AddSecondaryHolderComponent implements OnInit {
         this.investmentEngagementService.saveMinorSecondaryHolder().subscribe(resp => {
           this.secondaryHolderMinorForm.addControl('jaAccountId', new FormControl(resp.objectList));
           this.investmentEngagementService.setMinorSecondaryHolderData(this.secondaryHolderMinorForm.value);
-          this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+          this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.JA_UPLOAD_DOCUMENT]);
         });
       }
     }

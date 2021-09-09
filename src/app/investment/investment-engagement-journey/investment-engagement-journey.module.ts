@@ -39,6 +39,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { WiseIncomePayoutComponent } from './wise-income-payout/wise-income-payout.component';
 import { SelectPortfolioTypeComponent } from './select-portfolio-type/select-portfolio-type.component';
 import { AddSecondaryHolderComponent } from './add-secondary-holder/add-secondary-holder.component';
+import { JointAccountUploadDocumentComponent } from './joint-account-upload-document/joint-account-upload-document.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
@@ -85,7 +86,8 @@ export function createTranslateLoader(http: HttpClient) {
     RiskAcknowledgementComponent,
     WiseIncomePayoutComponent,
     SelectPortfolioTypeComponent,
-    AddSecondaryHolderComponent
+    AddSecondaryHolderComponent,
+    JointAccountUploadDocumentComponent
   ],
   providers: [CurrencyPipe, FormatCurrencyPipe],
   entryComponents: [SrsTooltipComponent]
