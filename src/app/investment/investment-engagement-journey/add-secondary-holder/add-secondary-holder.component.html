@@ -43,10 +43,6 @@
                             </div>
                           </div>
                         </div>
-                        <!-- <div class="alert-msg flex" *ngIf="ntucMemberForm.get('nricOrFin').errors?.pattern && ntucMemberForm.get('nricOrFin').value.length > 3">
-                        <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                        <span class="err-msg">{{'NTUC_PROMO_MODAL.ERROR_MSG' | translate}}</span>
-                      </div> -->
                       </div>
                       <!-- relationship start -->
                       <div class="flex-row">
@@ -94,9 +90,6 @@
                         </div>
                       </div>
                     </div>
-
-                    <button [disabled]="!secondaryHolderMajorForm.valid" (click)="majorHolderGoToNext()"
-                      class="btn btn-primary btn__footer--fixed width100">Continue</button>
                   </form>
                 </div>
               </ng-template>
@@ -137,7 +130,6 @@
                             </label>
                           </div>
                         </div>
-                        <!-- buttons -->
                         <div class="flex-row">
                           <div class="flex-col-12 mb10">
                             <div class="btn-group--toggle" ngbRadioGroup name="radioGender"
@@ -173,7 +165,6 @@
                             </label>
                           </div>
                         </div>
-                        <!-- buttons -->
                         <div class="flex-row">
                           <div class="flex-col-12 mb10">
                             <div class="btn-group--toggle" ngbRadioGroup name="radioGender"
@@ -205,9 +196,8 @@
                         <div class="flex-col-1"> <img src="assets/images/investment-account/note-icon-white.svg" />
                         </div>
                         <div class="pl-2 flex-col-10">
-                          <span class="desc-sub-lbl" [innerHtml]="'SECONDARY_HOLDER.MINOR.IMPORTANT_NOTICE'
+                          <span class="desc-sub-lbl" (click)="openModal()" [innerHtml]="'SECONDARY_HOLDER.MINOR.IMPORTANT_NOTICE'
                             | translate">
-
                           </span>
                         </div>
                       </div>
@@ -245,7 +235,7 @@
                         <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('nricNumber')">
                           <div class="flex-col-5">
                             <label
-                              id="invPersInfoLbl4">{{ isNationalitySingapore() ? ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.NRIC_BIRTH_CERTIFICATE_NUMBER' | translate) : ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.NRIC_NUMBER' | translate)}}</label>
+                              id="invPersInfoLbl4">{{ isNationalitySingapore() || checkSingaporePR() ? ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.NRIC_BIRTH_CERTIFICATE_NUMBER' | translate) : ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.NRIC_NUMBER' | translate)}}</label>
                           </div>
                           <div class="flex-col-7"
                             [ngClass]="{'inline-error': secondaryHolderMinorForm.get('nricNumber').enabled && !secondaryHolderMinorForm.get('nricNumber').valid && !secondaryHolderMinorForm.get('nricNumber').pristine}">
@@ -477,12 +467,13 @@
                           </div>
                           <div class="widget-body" [formGroupName]="x">
                             <div class="flex-row">
-                              <div class="flex-col-4">
+                              <div class="flex-col-5">
                                 <label for="name" id="tax-info-label">{{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.COUNTRY_TEXT' |
                                   translate}}
-                                  <i class="tooltip-block-icon" id="countryHelpIcon"></i></label>
+                                  <i class="tooltip-block-icon" id="countryHelpIcon"
+                                    (click)="showHelpModalCountry()"></i></label>
                               </div>
-                              <div class="flex-col-8">
+                              <div class="flex-col-7">
                                 <div class="dropdown-control"
                                   [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.taxCountry)}">
                                   <app-dropdown-with-search placement="bottom" displayKey="name" [form]="taxInfoItem"
@@ -496,18 +487,18 @@
                             <!-- PLACEHOLDER -->
                             <!-- Do you have a TIN question -->
                             <div class="flex-row mb10">
-                              <div class="flex-col-11 mt15">
+                              <div class="flex-col-11 mt5">
                                 <div class="tin_question_text" id="tax_Info_question-one">
                                   {{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.TIN_QUESTION' | translate}}
                                 </div>
                               </div>
                               <div class="flex-col-1">
-                                <i class="tooltip-icon" id="myFinancialHelpIcon"></i>
+                                <i class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModalTinNumber()"></i>
                               </div>
                             </div>
                             <!-- Button part -->
                             <div class="flex-row">
-                              <div class="flex-col-12 mb15">
+                              <div class="flex-col-12">
                                 <div class="btn-group--toggle" ngbRadioGroup name="radioTin" formControlName="radioTin">
                                   <div class="flex-row">
                                     <div class="flex-col-6">
@@ -592,15 +583,18 @@
                       </div>
                       <!-- tax info end -->
                     </div>
-                    <!-- [disabled]="!secondaryHolderMinorForm.valid" -->
-                    <button (click)="minorHolderGoToNext()" [disabled]="!secondaryHolderMinorForm.valid"
-                      class="btn btn-primary btn__footer--fixed width100">{{'SECONDARY_HOLDER.CONTINUE' | translate}}</button>
                   </form>
                 </div>
               </ng-template>
             </ng-container>
           </nav>
           <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+          <button *ngIf="activeTabId === 1 || activeTabId === 3" [disabled]="!secondaryHolderMajorForm.valid"
+            (click)="majorHolderGoToNext()"
+            class="btn btn-primary btn__footer--fixed width100">{{'SECONDARY_HOLDER.CONTINUE' | translate}}</button>
+          <button *ngIf="activeTabId === 2" (click)="minorHolderGoToNext()" [disabled]="!secondaryHolderMinorForm.valid"
+            class="btn btn-primary btn__footer--fixed width100">{{'SECONDARY_HOLDER.CONTINUE' | translate}}</button>
         </div>
       </div>
     </div>
