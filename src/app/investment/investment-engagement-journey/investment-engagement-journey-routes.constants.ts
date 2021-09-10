@@ -23,7 +23,7 @@ export const INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES = {
   RISK_ACKNOWLEDGEMENT:'risk-acknowledgement',
   WISE_INCOME_PAYOUT: 'wise-income-payout',
   ADD_SECONDARY_HOLDER: 'add-secondary-holder',
-  JA_UPLOAD_DOCUMENT: 'joint-account-upload-document',
+  JA_UPLOAD_DOCUMENT: 'upload-document',
 };
 
 export const INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS = {

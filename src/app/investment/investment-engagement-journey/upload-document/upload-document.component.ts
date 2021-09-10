@@ -14,18 +14,20 @@ import {
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { Util } from 'src/app/shared/utils/util';
 import { InvestmentAccountCommon } from '../../investment-account/investment-account-common';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../investment-account/investment-account.constant';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 
 @Component({
-  selector: 'app-joint-account-upload-document',
-  templateUrl: './joint-account-upload-document.component.html',
-  styleUrls: ['./joint-account-upload-document.component.scss']
+  selector: 'app-upload-document',
+  templateUrl: './upload-document.component.html',
+  styleUrls: ['./upload-document.component.scss']
 })
-export class JointAccountUploadDocumentComponent implements OnInit {
+export class UploadDocumentComponent implements OnInit {
 
   uploadForm: FormGroup;
   pageTitle: string;
@@ -163,7 +165,7 @@ export class JointAccountUploadDocumentComponent implements OnInit {
       title: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE'),
       desc: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE')
     });
-    this.investmentAccountService.uploadDocument(this.formData).subscribe((response) => {
+   this.investmentAccountService.uploadDocument(this.formData).subscribe((response) => {
       this.loaderService.hideLoader();
       if (response) {
         this.redirectToNextPage();
@@ -233,7 +235,7 @@ export class JointAccountUploadDocumentComponent implements OnInit {
         this.investmentAccountService.setAccountCreationStatus(
           INVESTMENT_ACCOUNT_CONSTANTS.status.documents_pending
         );
-      //  this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.STATUS]);
+       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.STATUS]);
       });
     } else {
       this.proceed(form);
@@ -247,9 +249,9 @@ export class JointAccountUploadDocumentComponent implements OnInit {
   redirectToNextPage() {
     const boStatus = this.investmentAccountService.getBOStatus();
     if (boStatus) {
-    //  this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
     } else {
-     // this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
+      this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
     }
   }
 
