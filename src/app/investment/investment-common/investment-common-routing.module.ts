@@ -6,11 +6,12 @@ import { FundingIntroComponent } from '../investment-common/funding-intro/fundin
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
 import { AddPortfolioNameComponent } from './add-portfolio-name/add-portfolio-name.component';
 import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
+import { ConfirmWithdrawalComponent } from './confirm-withdrawal/confirm-withdrawal.component';
 import {
-    FundingAccountDetailsComponent
+  FundingAccountDetailsComponent
 } from './funding-account-details/funding-account-details.component';
 import {
-    FundingInstructionsComponent
+  FundingInstructionsComponent
 } from './funding-instructions/funding-instructions.component';
 import { InvestmentCommonGuardService } from './investment-common-guard.service';
 import { INVESTMENT_COMMON_ROUTES } from './investment-common-routes.constants';
@@ -41,7 +42,7 @@ const routes: Routes = [
     component: FundingIntroComponent,
     canActivate: [AuthGuard]
   },
- {
+  {
     path: INVESTMENT_COMMON_ROUTES.FUNDING_INSTRUCTIONS,
     component: FundingInstructionsComponent,
     canActivate: [AuthGuard]
@@ -51,6 +52,11 @@ const routes: Routes = [
     component: FundingAccountDetailsComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: INVESTMENT_COMMON_ROUTES.CONFIRM_WITHDRAWAL,
+    component: ConfirmWithdrawalComponent,
+    // canActivate: [AuthGuard]
+  },
   { path: '**', redirectTo: '/page-not-found' }
 ];
 
@@ -58,4 +64,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   declarations: []
 })
-export class InvestmentCommonRoutingModule {}
+export class InvestmentCommonRoutingModule { }
