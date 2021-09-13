@@ -1125,6 +1125,13 @@ body.modal-open::-webkit-scrollbar {
       padding-bottom: 50px;
     }
   }
+  @include minPhabletmaxTablet {
+    .modal-body {
+      max-height: 100vh;;
+      overflow-y: auto;
+      padding-bottom: 50px;
+    }
+  }
 }
 
 .review-buy-request-modal {
@@ -1342,5 +1349,26 @@ body.modal-open::-webkit-scrollbar {
     background-color: $btn-comprehensive;
     font-size: 18px;
     height: 60px;
+  }
+}
+
+.speak-to-adviser-modal{
+  .adviser-title{
+    font-family: $muli-bold;
+    font-size: 18px;
+    line-height: 1.33;
+    letter-spacing: -0.18px;
+    text-align: center;
+    color: $watercourse-color;
+  }
+}
+.adivser-appointment-modal{
+  .modal-body{
+    b{
+      font-family: $muli-bold;
+      @include allmobiles{
+        color: $silver-grey-color;
+      }
+    }
   }
 }

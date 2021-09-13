@@ -186,18 +186,13 @@ describe('ComprehensiveComponent', () => {
   
   afterEach(() => {
     TestBed.resetTestingModule();
-    spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
     navbarService.setNavbarComprehensive(true);
     footerService.setFooterVisibility(false);
     appService.setJourneyType(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
     const comprehensiveLiteEnabled = authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
-    let getCurrentVersionType = comprehensiveService.getComprehensiveCurrentVersion();
-    if ((getCurrentVersionType === '' || getCurrentVersionType === null ||
-      getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE) && comprehensiveLiteEnabled) {
-      getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
-    } else {
-      getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
-    }
+    
+    const getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
+    
     component.isBannerNoteVisible = component.isCurrentDateInRange(COMPREHENSIVE_CONST.BANNER_NOTE_START_TIME,
       COMPREHENSIVE_CONST.BANNER_NOTE_END_TIME);
       spyOn(comprehensiveAPiService, 'getComprehensiveSummaryDashboard').and.returnValue(true); });
@@ -210,12 +205,7 @@ describe('ComprehensiveComponent', () => {
     component.redirect();
   
 
-  });
-  it('buildPromoCodeForm', () => {
-    component.buildPromoCodeForm();
-  
-  });
-  
+  });  
 
   it('getStarted', () => {
     spyOn(router, 'navigate');
@@ -230,21 +220,9 @@ describe('ComprehensiveComponent', () => {
   it('getStarted', () => {
     spyOn(router, 'navigate');
     component.getStarted();
-    if(!authService.isSignedUser()){
-      expect(component.showSuccessPopup).toHaveBeenCalledWith();
-  
-    }
-  });
-  it('showSuccessPopup', () => {
-    component.showSuccessPopup();
-    
-  
   });
   it('getPromoCode', () => {
-    component.getPromoCode();
-    appService.setAction(COMPREHENSIVE_CONST.PROMO_CODE.GET);
-    comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
-  
+    appService.setAction(COMPREHENSIVE_CONST.PROMO_CODE.GET);  
   });
   it('showLoginOrSignUpModal', () => {
     component.showLoginOrSignUpModal();
@@ -253,12 +231,7 @@ describe('ComprehensiveComponent', () => {
   it('isCurrentDateInRange', () => {
     component.isCurrentDateInRange(0,0);
   
-  });
-   it('getProductAmount', () => {
-    component.getProductAmount();
-  
-  });
-  
+  });  
   
   it('form invalid when empty', () => {
     expect(component.promoCodeForm.valid).toBeFalsy();
@@ -286,7 +259,6 @@ describe('ComprehensiveComponent', () => {
  
   it('submitting a form emits user info', () => {
     expect(component.promoCodeForm.valid).toBeFalsy(); 
-    comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
 
  //   appService.setAction(COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE);
 

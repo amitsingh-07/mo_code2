@@ -1,22 +1,19 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { RegexConstants } from '../../shared/utils/api.regex.constants';
+
 import { APP_ROUTES } from '../../app-routes.constants';
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import { LoaderService } from '../../shared/components/loader/loader.service';
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { ComprehensiveApiService } from '../comprehensive-api.service';
 import { COMPREHENSIVE_CONST } from '../comprehensive-config.constants';
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { IMyProfile } from '../comprehensive-types';
 import { ComprehensiveService } from '../comprehensive.service';
-import { environment } from './../../../environments/environment';
 import { ConfigService } from './../../config/config.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
@@ -37,24 +34,24 @@ export class ComprehensiveComponent implements OnInit {
   modalRef: NgbModalRef;
   safeURL: any;
   userDetails: IMyProfile;
-  promoCodeForm: FormGroup;
   promoCodeSuccess: string;
   promoValidated: string;
-  productAmount = COMPREHENSIVE_CONST.PROMOTION.AMOUNT;
+
   getComprehensiveSummaryDashboard: any;
   isBannerNoteVisible: boolean;
   includingGst = false;
   fetchData: string;
   loading: string;
+  productAmount = COMPREHENSIVE_CONST.PROMOTION.AMOUNT;
+  isCorporate: boolean;
 
 
   constructor(
     private appService: AppService, private cmpService: ComprehensiveService,
-    private route: ActivatedRoute, private router: Router, public translate: TranslateService,
+    private router: Router, public translate: TranslateService,
     public navbarService: NavbarService, private configService: ConfigService,
     private authService: AuthenticationService, public modal: NgbModal,
     private loaderService: LoaderService, private signUpService: SignUpService,
-    private formBuilder: FormBuilder,
     public footerService: FooterService, private sanitizer: DomSanitizer, private comprehensiveApiService: ComprehensiveApiService) {
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
@@ -76,6 +73,7 @@ export class ComprehensiveComponent implements OnInit {
           }
         });
       });
+      this.isCorporate = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE)
     });
   }
 
@@ -87,14 +85,7 @@ export class ComprehensiveComponent implements OnInit {
       const action = this.appService.getAction();
       this.loaderService.showLoader({ title: this.fetchData, autoHide: false });
       this.getProductAmount();
-      const comprehensiveLiteEnabled = this.authService.isSignedUserWithRole(COMPREHENSIVE_CONST.ROLES.ROLE_COMPRE_LITE);
-      let getCurrentVersionType = this.cmpService.getComprehensiveCurrentVersion();
-      if ((getCurrentVersionType === '' || getCurrentVersionType === null ||
-        getCurrentVersionType === COMPREHENSIVE_CONST.VERSION_TYPE.LITE) && comprehensiveLiteEnabled) {
-        getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.LITE;
-      } else {
-        getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
-      }
+      const getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
 
       this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe((dashboardData: any) => {
         if (dashboardData && dashboardData.objectList[0]) {
@@ -148,13 +139,16 @@ export class ComprehensiveComponent implements OnInit {
     this.appService.clearPromoCode();
     const redirectUrl = this.signUpService.getRedirectUrl();
     if (this.getComprehensiveSummaryDashboard &&
-      this.getComprehensiveSummaryDashboard.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED &&
+      (this.getComprehensiveSummaryDashboard.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED
+       || this.getComprehensiveSummaryDashboard.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.READY
+       || this.getComprehensiveSummaryDashboard.reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR
+       ) &&
       (this.getComprehensiveSummaryDashboard.isCFPGetStarted)) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DASHBOARD]);
     } else if (redirectUrl && (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isCFPGetStarted)) {
       this.router.navigate([redirectUrl]);
     } else if (this.getComprehensiveSummaryDashboard && this.getComprehensiveSummaryDashboard.isCFPGetStarted) {
-      this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((data: any) => {
+      this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
         if (data && data.objectList[0]) {
           this.cmpService.setComprehensiveSummary(data.objectList[0]);
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
@@ -169,7 +163,6 @@ export class ComprehensiveComponent implements OnInit {
 
   getStarted() {
     this.appService.setAction(COMPREHENSIVE_CONST.PROMO_CODE.VALIDATE);
-    this.cmpService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
     if (this.authService.isSignedUser()) {
       const promoCode = {
         sessionId: this.authService.getSessionId()
@@ -180,7 +173,7 @@ export class ComprehensiveComponent implements OnInit {
         this.loaderService.showLoader({ title: this.loading, autoHide: false });
         this.comprehensiveApiService.generateComprehensiveEnquiry(promoCode).subscribe((data: any) => {
           if (data && data.objectList[0].isCFPGetStarted) {
-            this.comprehensiveApiService.getComprehensiveSummary(COMPREHENSIVE_CONST.VERSION_TYPE.FULL).subscribe((summaryData: any) => {
+            this.comprehensiveApiService.getComprehensiveSummary().subscribe((summaryData: any) => {
               if (summaryData && summaryData.objectList[0]) {
                 this.cmpService.setComprehensiveSummary(summaryData.objectList[0]);
                 this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
@@ -198,7 +191,7 @@ export class ComprehensiveComponent implements OnInit {
       this.showLoginOrSignUpModal();
     }
   }
-   
+
   showLoginOrSignUpModal() {
     this.cmpService.clearFormData();
     this.cmpService.setStartingPage(APP_ROUTES.COMPREHENSIVE);
@@ -215,13 +208,13 @@ export class ComprehensiveComponent implements OnInit {
   }
 
   getProductAmount() {
-    const payload = { productType: COMPREHENSIVE_CONST.VERSION_TYPE.FULL };
-    this.comprehensiveApiService.getProductAmount(payload).subscribe((data: any) => {
-      if (data && data.objectList[0]) {
-        this.includingGst = data.objectList[0].includingGst;
-        this.productAmount = !this.includingGst ? data.objectList[0].totalAmount : data.objectList[0].price;
-      }
-    });
+    if (!this.isCorporate) {
+      const payload = { productType: COMPREHENSIVE_CONST.VERSION_TYPE.REPORT };
+      this.comprehensiveApiService.getProductAmount(payload).subscribe((data: any) => {
+        if (data && data.objectList[0]) {
+          this.productAmount = data.objectList[0]['totalAmount'].toString();
+        }
+      });
+    }
   }
-  
 }

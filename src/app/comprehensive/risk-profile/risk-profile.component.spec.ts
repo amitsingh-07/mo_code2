@@ -215,7 +215,6 @@ describe('RiskProfileComponent', () => {
     const setNavbarModeSpy = spyOn(navbarService, 'setNavbarComprehensive');
     component.ngOnInit();
       progressTrackerService.setProgressTrackerData(comprehensiveService.generateProgressTrackerData());
-    spyOn(comprehensiveService, 'getComprehensiveVersion').and.returnValue(true);
     progressTrackerService.setReadOnly(true);
     navbarService.setNavbarComprehensive(true);
 
@@ -250,7 +249,7 @@ describe('RiskProfileComponent', () => {
   });
   it('should set page title', () => {
     const setPageTitleSpy = spyOn(navbarService, 'setPageTitleWithIcon');
-    component.setPageTitle('CMP.COMPREHENSIVE_STEPS.STEP_4_TITLE_LITE');
-    expect(setPageTitleSpy).toHaveBeenCalledWith('CMP.COMPREHENSIVE_STEPS.STEP_4_TITLE_LITE', { id: 'RiskProfileComponent', iconClass: 'navbar__menuItem--journey-map' });
+    component.setPageTitle('CMP.COMPREHENSIVE_STEPS.STEP_5_TITLE');
+    expect(setPageTitleSpy).toHaveBeenCalledWith('CMP.COMPREHENSIVE_STEPS.STEP_5_TITLE', { id: 'RiskProfileComponent', iconClass: 'navbar__menuItem--journey-map' });
   });
 });

@@ -2,9 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+
 import { ComprehensiveApiService } from './../comprehensive-api.service';
 import { ComprehensiveService } from './../comprehensive.service';
-
 import { COMPREHENSIVE_ROUTE_PATHS } from '../comprehensive-routes.constants';
 import { ConfigService } from './../../config/config.service';
 import { ProgressTrackerService } from './../../shared/modal/progress-tracker/progress-tracker.service';
@@ -48,7 +48,7 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
     this.reportStatus = this.comprehensiveService.getReportStatus();
     this.currentStep = this.comprehensiveService.getMySteps();
     const stepCalculated = this.step - 1;
-    if (stepCalculated >= 1 && stepCalculated < 4 && (stepCalculated > this.currentStep)) {
+    if (stepCalculated >= 1 && stepCalculated < 5 && (stepCalculated > this.currentStep)) {
       const stepCheck = this.comprehensiveService.checkStepValidation(stepCalculated);
       if (stepCheck.status) {
         const stepIndicatorData = {
@@ -64,8 +64,6 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit() {
-    this.comprehensiveJourneyMode = this.comprehensiveService.getComprehensiveVersion();
-    this.stepLite = this.comprehensiveJourneyMode ? 4 : 3;
     this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
     this.navbarService.setNavbarComprehensive(true);
     this.menuClickSubscription = this.navbarService.onMenuItemClicked.subscribe((pageId) => {
@@ -106,14 +104,17 @@ export class ComprehensiveStepsComponent implements OnInit, OnDestroy {
         this.url = COMPREHENSIVE_ROUTE_PATHS.MY_EARNINGS;
         break;
       case 3:
-        this.url = this.comprehensiveJourneyMode ? COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN : COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN;
+        this.url = COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN;
         break;
       case 4:
-        this.url = this.comprehensiveJourneyMode ? COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN : COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1';
+        this.url = COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN;
+        break;
+      case 5:
+        this.url = COMPREHENSIVE_ROUTE_PATHS.RISK_PROFILE + '/1';
         break;
       case 6:
-        if (this.comprehensiveJourneyMode && !this.viewMode && this.comprehensiveService.checkResultData() 
-          && this.comprehensiveService.getMySteps() == 4) {
+        if (!this.viewMode && this.comprehensiveService.checkResultData()
+          && this.comprehensiveService.getMySteps() == 5) {
           this.url = COMPREHENSIVE_ROUTE_PATHS.REVIEW;
         }
         break;

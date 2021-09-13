@@ -13,7 +13,7 @@
   <div class="content">
     <img class="owl-icon" src="assets/images/createAccount-icon.svg">
     <div class="instructions-txt  mt-25" innerHTML="{{'CMP.COMPREHENSIVE.INSTRUCTIONS' | translate}}"></div>
-    <div class="full-width">
+    <div class="full-width" *ngIf='!isCorporate'>
       <div class="comprehensive-txt">{{'CMP.COMPREHENSIVE.COMPREHENSIVE_PLAN' | translate}}</div>
       <div class="free-tag">
         <img src="assets/images/comprehensive/limited-offer.svg">
