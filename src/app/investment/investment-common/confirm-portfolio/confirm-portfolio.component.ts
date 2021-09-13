@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -54,6 +54,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   wiseSaverEnabled: any;
   userPortfolioType: any;
   isJAEnabled: boolean;
+  tncCheckboxForm: FormGroup;
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -66,7 +67,8 @@ export class ConfirmPortfolioComponent implements OnInit {
     public investmentAccountService: InvestmentAccountService,
     private investmentCommonService: InvestmentCommonService,
     private authService: AuthenticationService,
-    private formatCurrencyPipe: FormatCurrencyPipe
+    private formatCurrencyPipe: FormatCurrencyPipe,
+    private formBuilder: FormBuilder
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -84,6 +86,9 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
+    this.tncCheckboxForm = this.formBuilder.group({
+      tncCheckboxFlag: ['']
+    });
     this.getPortfolioDetails();
   }
 

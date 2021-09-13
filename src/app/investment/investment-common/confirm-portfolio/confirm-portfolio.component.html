@@ -58,14 +58,15 @@
                     {{ 'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a>
             </div>
             <div class="ja-disclaimer" [innerHTML]="'PORTFOLIO_RECOMMENDATION.JA_DISCLAIMER' | translate"></div>
-            
-            <div class="checkbox-button one-label tnc-checkbox">
-                <input id="tncCheckboxFlag" name="tncCheckboxFlag" formControlName="tncCheckboxFlag" type="checkbox"
-                    class="field checkbox" value="I agree to the Terms and Conditions" #tncChkBox>
-                <label for="tncCheckboxFlag">
-                    <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.I_AGREE' | translate}} <a (click)="showTncModal()">{{ 'PORTFOLIO_RECOMMENDATION.TNC' | translate}}</a></div>
-                </label>
-            </div>
+            <form name="tncCheckboxForm" [formGroup]="tncCheckboxForm" id="tncCheckboxForm">
+                <div class="checkbox-button one-label tnc-checkbox" >
+                    <input id="tncCheckboxFlag" name="tncCheckboxFlag" formControlName="tncCheckboxFlag" type="checkbox"
+                        class="field checkbox" #tncChkBox>
+                    <label for="tncCheckboxFlag">
+                        <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.I_AGREE' | translate}} <a (click)="showTncModal()">{{ 'PORTFOLIO_RECOMMENDATION.TNC' | translate}}</a></div>
+                    </label>
+                </div>
+            </form>
         </div>
         <div class="text-center">
             <button type="button" [disabled]="!tncChkBox.checked" (click)="showPayoutModal()" class="btn btn__footer--fixed btn-primary width100">{{
