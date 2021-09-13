@@ -48,6 +48,17 @@ export class InvestmentEngagementJourneyFormErrors {
         errorTitle: 'Invalid Amount',
         errorMessage: ' Must select at least 1 checkbox to continue.'
       }
+    },
+    secondaryHolderValidations: {
+      dob: {
+        errorTitle: 'Invalid Date of Birth',
+        errorMessage:
+          'Secondary holder must be below 18 years to proceed.'
+      },
+      passportExpiry: {
+        errorTitle: 'Invalid Passport Expiry',
+        errorMessage: 'Your passport must have at least 6 months validity to proceed.'
+      }
     }
   };
 }

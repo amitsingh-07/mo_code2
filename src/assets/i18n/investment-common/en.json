@@ -266,5 +266,14 @@
     "COMMON_LOADER": {
         "TITLE": "Loading",
         "DESC": "Please wait while we load the data"
-    }
+    },
+    "CONFIRM_WITHDRAWAL": {
+        "STEP_NO": "Step 2",
+        "PAGE_TITLE" : "Confirm Withdrawal Account",
+        "DESC_LBL": "Withdrawal Bank Details",
+        "PERSONAL_ACCOUNT": {
+          "TITLE": "Personal Account",
+          "DESC": "Owner of this portfolio"
+        }
+      }
 }
