@@ -477,7 +477,7 @@ export class InvestmentApiService {
       );
   }
 
-  // Mjor Secondary Holder validation
+  // Major Secondary Holder validation
   validateMajorSecondaryHolder(data) {
     return this.http.post(investmentApiConstants.endpoint.portfolio.validateMajorSecondaryHolder, data)
       .pipe(
