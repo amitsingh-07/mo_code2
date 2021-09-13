@@ -122,8 +122,9 @@ export class AddSecondaryHolderComponent implements OnInit {
     this.secondaryHolderMinorForm = this.formBuilder.group({
       isMinor: new FormControl('', Validators.required),
       nationality: new FormControl('', Validators.required),
+      singaporeanResident: new FormControl('')
     });
-    this.secondaryHolderMinorForm.controls.isMinor.setValue(this.secondaryHolderMinorFormValues?.isMinor);
+    this.secondaryHolderMinorForm.controls.singaporeanResident.setValue(this.secondaryHolderMinorFormValues?.singaporeanResident);
     this.secondaryHolderMinorForm.controls.isMinor.setValue(true);
   }
 
@@ -197,7 +198,9 @@ export class AddSecondaryHolderComponent implements OnInit {
         this.secondaryHolderMinorForm.addControl(
           'singaporeanResident', new FormControl('', Validators.required)
         );
+        this.secondaryHolderMinorForm.controls.singaporeanResident.setValue(false);
       } else {
+        this.secondaryHolderMinorForm.controls.singaporeanResident.setValue(true);
         setTimeout(() => {
           this.secondaryHolderMinorForm.removeControl('singaporeanResident');
           if (this.secondaryHolderMinorForm.value && !Util.isEmptyOrNull(this.secondaryHolderMinorForm.value.unitedStatesResident) && !this.secondaryHolderMinorForm.value.unitedStatesResident) {
