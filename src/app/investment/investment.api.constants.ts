@@ -13,7 +13,8 @@ export let investmentApiConstants = {
             getFinancialDetails: INVESTMENT_API_BASE_URL + '/customer/getFinancialDetailsForInvestment',
             getAllocationDetails: INVESTMENT_API_BASE_URL + '/enquiries/$ENQUIRY_ID$/portfolios/recommend',
             getWiseSaverValues : INVESTMENT_API_BASE_URL + '/bfaConfigurationListByKey',
-            getFundListMethod : INVESTMENT_API_BASE_URL + '/portfolio/$PORTFOLIO_TYPE_ID$/getFundList'
+            getFundListMethod : INVESTMENT_API_BASE_URL + '/portfolio/$PORTFOLIO_TYPE_ID$/getFundList',
+            validateMajorSecondaryHolder : INVESTMENT_API_BASE_URL + '/jointAccount/validateSecondaryHolder'
         },
         investmentAccount: {
             nationalityCountrylist: INVESTMENT_API_BASE_URL + '/groupedCountryList',
@@ -51,6 +52,7 @@ export let investmentApiConstants = {
             getActionRequestToken:INVESTMENT_API_BASE_URL + '/portfolio/$CUSTOMER_PORTFOLIO_ID$/actions',
             saveCashTransfer :INVESTMENT_API_BASE_URL + '/customer/transferCashAccount?handleError=true',
             getUserNricValidation: ACCOUNT_API_BASE_URL + '/customer/validateUin',
+            saveMinorSecondaryHolder : ACCOUNT_API_BASE_URL + '/secondary/saveCustomerDetails'
         },
         investment: {
             getUserAddress: ACCOUNT_API_BASE_URL + '/customer/address',

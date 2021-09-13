@@ -38,6 +38,7 @@ export class SelectPortfolioTypeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.selectedPortfolio = this.investmentEngagementJourneyService.getUserPortfolioType();
     this.buildPortfolioFormType();
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
@@ -49,15 +50,18 @@ export class SelectPortfolioTypeComponent implements OnInit {
   goToNext() {
     if (this.portfolioTypeForm.valid) {
       if (this.authService.isSignedUser()) {
-        this.portfolioTypeForm.value?.portfolioType === '2' ? this.selectedPortfolio = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT : this.selectedPortfolio = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.PERSONAL_ACCOUNT;
+        Number(this.portfolioTypeForm.value.portfolioType) === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID ? this.selectedPortfolio = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID : this.selectedPortfolio = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.PERSONAL_ACCOUNT_ID;
         this.investmentEngagementJourneyService.setUserPortfolioType(this.selectedPortfolio);
-        this.selectedPortfolio === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT ? this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.ADD_SECONDARY_HOLDER_DETAILS]) : this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
-      } 
+        this.selectedPortfolio === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID ? this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.ADD_SECONDARY_HOLDER_DETAILS]) : this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+      }
     }
   }
   buildPortfolioFormType() {
     this.portfolioTypeForm = new FormGroup({
       portfolioType: new FormControl('', Validators.required)
     });
+    if (this.selectedPortfolio) {
+      this.selectedPortfolio === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID ? this.portfolioTypeForm.controls['portfolioType'].setValue('2') : this.portfolioTypeForm.controls['portfolioType'].setValue('1');
+    }
   }
 }

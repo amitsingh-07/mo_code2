@@ -4,139 +4,597 @@
       <div class="col-lg-7 col-md-6 hidden-sm-md">
         <h2>{{'SECONDARY_HOLDER.PAGE_TITLE' | translate}}</h2>
         <div class="banner-image">
-          <img
-            src="assets/images/investment-account/secondary-holder-banner.svg"
-            />
+          <img src="assets/images/investment-account/secondary-holder-banner.svg" />
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
         <h6>{{'SECONDARY_HOLDER.PAGE_LBL' | translate}}</h6>
         <div class="secondary-holder-tabs">
-          <nav ngbNav #nav="ngbNav" class="nav-tabs">
+          <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTabId">
             <ng-container [ngbNavItem]="1">
-              <a class="flex-col-6 btn-outline-primary fixed-btn--sm mr10"
+              <a (click)="tabChange()" class="flex-col-6 btn-outline-primary fixed-btn--sm mr10"
                 ngbNavLink>{{'SECONDARY_HOLDER.MAJOR.TAB_LBL' | translate}}</a>
               <ng-template ngbNavContent>
                 <div class="pannel-tab-content">
-                  <div>
-                    <div class="desc-lbl flex space-between">
-                      <span>{{'SECONDARY_HOLDER.MAJOR.DESC_LBL' | translate}}</span>
-                      <i class="tooltip-icon">
-                        <img src="assets/images/tooltip-icon-white.svg" >
-                      </i>
+                  <form [formGroup]="secondaryHolderMajorForm">
+                    <div class="major-tab-content">
+                      <div class="desc-lbl flex space-between">
+                        <span>{{'SECONDARY_HOLDER.MAJOR.DESC_LBL' | translate}}</span>
+                        <i class="tooltip-icon" (click)="showHelpModal()">
+                          <img src="assets/images/tooltip-icon-white.svg">
+                        </i>
+                      </div>
+                      <div class="desc-sub-lbl">{{'SECONDARY_HOLDER.MAJOR.DESC_SUB_LBL'
+                        | translate}}</div>
+                      <div class="flex-row">
+                        <div class="flex-col-5">
+                          <label id="nricOrFin" for="last-four-characters-of-nric">
+                            <div>{{'SECONDARY_HOLDER.MAJOR.NRIC_LBL' | translate}}</div>
+                            <div class="sub-label">{{'SECONDARY_HOLDER.MAJOR.NRIC_LAST_4_CHAR' | translate}}</div>
+                          </label>
+                        </div>
+                        <div class="flex-col-7">
+                          <div class="form-control"
+                            [ngClass]="{'inline-error': secondaryHolderMajorForm.get('nricNumber').enabled && !secondaryHolderMajorForm.get('nricNumber').valid && !secondaryHolderMajorForm.get('nricNumber').pristine}">
+                            <div name="nricOrFin">
+                              <input id="last-four-characters-of-nric" class="input-control" type="text" maxLength="4"
+                                name="nricOrFin" formControlName="nricNumber" placeholder="{{'SECONDARY_HOLDER.MAJOR.PLACEHOLDER_NRIC_LBL'
+                                | translate}}">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- relationship start -->
+                      <div class="flex-row">
+                        <div class="flex-col-5">
+                          <label for="salutation-drpdown" id="salutation-lbl">{{
+                            'SECONDARY_HOLDER.MAJOR.RELATIONSHIP'
+                            | translate}}</label>
+                        </div>
+                        <div class="flex-col-7">
+                          <div class="dropdown-control"
+                            [ngClass]="{'inline-error': secondaryHolderMajorForm.get('relationship').enabled && !secondaryHolderMajorForm.get('relationship').valid && !secondaryHolderMajorForm.get('relationship').pristine}">
+                            <div ngbDropdown>
+                              <button class="btn btn-dropdown without-border" id="salutation-drpdown" ngbDropdownToggle>
+                                <span *ngIf="!secondaryHolderMajorForm.controls?.relationship?.value">
+                                  {{'SECONDARY_HOLDER.MAJOR.SELECT_RELATIONSHIP'  | translate}}
+                                </span>
+                                <span *ngIf="secondaryHolderMajorForm.controls.relationship.value">
+                                  {{secondaryHolderMajorForm.controls?.relationship?.value.name }}
+                                </span>
+                              </button>
+                              <div class="dropdown" ngbDropdownMenu aria-labelledby="salutation-drpdown">
+                                <button class="dropdown-item"
+                                  *ngFor="let relationship of majorRelationships; let i = index;"
+                                  (click)="setDropDownValue(relationship, 'relationship', false)">{{relationship?.name}}</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- relationship end -->
+                      <div class="flex-row">
+                        <div class="flex-col-5">
+                          <label id="nricOrFin" for="last-four-characters-of-nric">
+                            <div>{{'SECONDARY_HOLDER.MAJOR.EMAIL' | translate}}</div>
+                          </label>
+                        </div>
+                        <div class="flex-col-7">
+                          <div class="form-control"
+                            [ngClass]="{'inline-error': secondaryHolderMajorForm.get('email').enabled && !secondaryHolderMajorForm.get('email').valid && !secondaryHolderMajorForm.get('email').pristine}">
+                            <div>
+                              <input type="email" class="input-control" formControlName="email" placeholder="{{'SECONDARY_HOLDER.MAJOR.EMAIL_PLACEHOLDER'
+                                | translate}}" required>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="desc-sub-lbl">{{'SECONDARY_HOLDER.MAJOR.DESC_SUB_LBL' | translate}}</div>
-                  </div>
+                  </form>
                 </div>
               </ng-template>
             </ng-container>
             <ng-container [ngbNavItem]="2">
-              <a class="flex-col-6 btn-outline-primary fixed-btn--sm"
+              <a (click)="tabChange()" class="flex-col-6 btn-outline-primary fixed-btn--sm"
                 ngbNavLink>{{'SECONDARY_HOLDER.MINOR.TAB_LBL' | translate}}</a>
               <ng-template ngbNavContent>
                 <div class="pannel-tab-content">
-                  <div>
-                    <div class="desc-lbl">{{'SECONDARY_HOLDER.MINOR.DESC_LBL' | translate}}</div>
-                    <div class="desc-sub-lbl">{{'SECONDARY_HOLDER.MINOR.DESC_SUB_LBL' | translate}}</div>
-                    <div class="flex-row">
-                      <div class="flex-col-5">
-                        <label for="name" id="select_nationality_lab">{{'SECONDARY_HOLDER.MINOR.NATIONALITY_LBL' | translate}}</label>
-                      </div>
-                      <div class="flex-col-7">
-                        <div class="dropdown-control">
-                          
-                        </div>
-                      </div>
-                    </div>
-                    <!-- other coutryquestion -->
-                    <div>
-                      <div class="flex-row mb10">
-                        <div class="flex-col-12 mt15">
-                          <label class="form-group-with-bg--content-label"
-                            id="select_nationality_question-one"
-                            for="name">{{'SECONDARY_HOLDER.MINOR.QUESTION_ONE' | translate}}
-                          </label>
-                        </div>
-                      </div>
-                      <!-- buttons -->
+                  <form [formGroup]="secondaryHolderMinorForm">
+                    <div class="minor-tab-content">
+                      <div class="desc-lbl">{{'SECONDARY_HOLDER.MINOR.DESC_LBL'
+                        | translate}}</div>
+                      <div class="desc-sub-lbl">{{'SECONDARY_HOLDER.MINOR.DESC_SUB_LBL'
+                        | translate}}</div>
                       <div class="flex-row">
-                        <div class="flex-col-12 mb10">
-                          <div class="btn-group--toggle" ngbRadioGroup
-                            name="radioGender">
-                            <div class="flex-row">
-                              <div class="flex-col-6">
-                                <label ngbButtonLabel class="btn-outline-primary
-                                  fixed-btn--sm mr5">
-                                  <input ngbButton type="radio"
-                                    id="select_nationlity_yes"
-                                    [value]="true">{{'SECONDARY_HOLDER.MINOR.YES_lABEL' | translate}}
-                                </label>
-                              </div>
-                              <div class="flex-col-6">
-                                <label ngbButtonLabel class="btn-outline-primary
-                                  fixed-btn--sm">
-                                  <input ngbButton type="radio"
-                                    id="select_nationlity_no"
-                                    [value]="false">{{'SECONDARY_HOLDER.MINOR.NO_LABEL' | translate}}</label>
+                        <div class="flex-col-5">
+                          <label for="name" id="select_nationality_lab">{{'SECONDARY_HOLDER.MINOR.NATIONALITY_LBL'
+                            | translate}}</label>
+                        </div>
+                        <div class="flex-col-7">
+                          <div class="dropdown-control"
+                            [ngClass]="{'inline-error': secondaryHolderMinorForm.get('nationality').enabled && !secondaryHolderMinorForm.get('nationality').valid && !secondaryHolderMinorForm.get('nationality').pristine}">
+                            <app-dropdown-with-search controlName="nationality" [optionList]="nationalityList"
+                              displayKey="name" placement="top-right" placeholderText="{{ 'Select' | translate}}"
+                              (itemSelected)="selectNationality($event)">
+                            </app-dropdown-with-search>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- other coutryquestion -->
+                      <div *ngIf="secondaryHolderMinorForm.get('unitedStatesResident')">
+                        <div class="flex-row mb10">
+                          <div class="flex-col-12 mt15">
+                            <label class="form-group-with-bg--content-label" id="select_nationality_question-one"
+                              for="name">{{'SECONDARY_HOLDER.MINOR.QUESTION_ONE'
+                              | translate}}
+                            </label>
+                          </div>
+                        </div>
+                        <div class="flex-row">
+                          <div class="flex-col-12 mb10">
+                            <div class="btn-group--toggle" ngbRadioGroup name="radioGender"
+                              formControlName="unitedStatesResident">
+                              <div class="flex-row">
+                                <div class="flex-col-6">
+                                  <label ngbButtonLabel class="btn-outline-primary
+                                    fixed-btn--sm mr5">
+                                    <input ngbButton type="radio" id="select_nationlity_yes" [value]=true
+                                      (change)="unitedStatesPRChange($event.target.value)">{{'SECONDARY_HOLDER.MINOR.YES_lABEL'
+                                    | translate}}
+                                  </label>
+                                </div>
+                                <div class="flex-col-6">
+                                  <label ngbButtonLabel class="btn-outline-primary
+                                    fixed-btn--sm">
+                                    <input ngbButton type="radio" id="select_nationlity_no" [value]=false
+                                      (change)="unitedStatesPRChange($event.target.value)">{{'SECONDARY_HOLDER.MINOR.NO_LABEL'
+                                    | translate}}</label>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div
-                      *ngIf="selectNationalityForm.get('singaporeanResident')">
-                      <div class="flex-row mb10">
-                        <div class=flex-col-10>
-                          <label class="form-group-with-bg--content-label"
-                            id="select_nationality_question-two" for="name">
-                            {{ 'SECONDARY_HOLDER.MINOR.QUESTION_TWO' | translate}}
-                          </label>
+                      <div *ngIf="secondaryHolderMinorForm.get('singaporeanResident')">
+                        <div class="flex-row mb10">
+                          <div class=flex-col-10>
+                            <label class="form-group-with-bg--content-label" id="select_nationality_question-two"
+                              for="name">
+                              {{ 'SECONDARY_HOLDER.MINOR.QUESTION_TWO' |
+                              translate}}
+                            </label>
+                          </div>
                         </div>
-                      </div>
-                      <!-- buttons -->
-                      <div class="flex-row">
-                        <div class="flex-col-12 mb10">
-                          <div class="btn-group--toggle" ngbRadioGroup
-                            name="radioGender">
-                            <div class="flex-row">
-                              <div class="flex-col-6">
-                                <label ngbButtonLabel class="btn-outline-primary
-                                  fixed-btn--sm mr5">
-                                  <input ngbButton type="radio"
-                                    id="select_nationlity_yes1" [value]="true">
-                                    {{'SECONDARY_HOLDER.MINOR.YES_lABEL' | translate}}
-                                </label>
-                              </div>
-                              <div class="flex-col-6">
-                                <label ngbButtonLabel class="btn-outline-primary
-                                  fixed-btn--sm">
-                                  <input ngbButton type="radio"
-                                    id="select_nationlity_no1" [value]="false">
-                                    {{'SECONDARY_HOLDER.MINOR.NO_lABEL' | translate}}</label>
+                        <div class="flex-row">
+                          <div class="flex-col-12 mb10">
+                            <div class="btn-group--toggle" ngbRadioGroup name="radioGender"
+                              formControlName="singaporeanResident">
+                              <div class="flex-row">
+                                <div class="flex-col-6">
+                                  <label ngbButtonLabel class="btn-outline-primary
+                                    fixed-btn--sm mr5">
+                                    <input ngbButton type="radio" id="select_nationlity_yes1" [value]="true"
+                                      (change)="singaporeanPRChange($event.target.value)">
+                                    {{'SECONDARY_HOLDER.MINOR.YES_lABEL' |
+                                    translate}}
+                                  </label>
+                                </div>
+                                <div class="flex-col-6">
+                                  <label ngbButtonLabel class="btn-outline-primary
+                                    fixed-btn--sm">
+                                    <input ngbButton type="radio" id="select_nationlity_no1" [value]="false"
+                                      (change)="singaporeanPRChange($event.target.value)">
+                                    {{'SECONDARY_HOLDER.MINOR.NO_LABEL' |
+                                    translate}}</label>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="mt20 flex-row restrict-notice">
-                      <div class="flex-col-1"> <img
-                          src="assets/images/investment-account/note-icon-white.svg"
-                          /></div>
-                      <div class="pl-2 flex-col-10">
-                        <span class="desc-sub-lbl" [innerHtml]="'SECONDARY_HOLDER.MINOR.IMPORTANT_NOTICE' | translate">
-                        </span>
+                      <div class="mt20 flex-row restrict-notice">
+                        <div class="flex-col-1"> <img src="assets/images/investment-account/note-icon-white.svg" />
+                        </div>
+                        <div class="pl-2 flex-col-10">
+                          <span class="desc-sub-lbl" (click)="openModal()" [innerHtml]="'SECONDARY_HOLDER.MINOR.IMPORTANT_NOTICE'
+                            | translate">
+                          </span>
+                        </div>
                       </div>
-                    </div>
 
-                    <button class="btn btn-primary btn__footer--fixed width100">Continue</button>
-                  </div>
+                      <div class="minor-details">
+                        <!-- personal info -->
+                        <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('fullName')">
+                          <div class="flex-col-5">
+                            <label id="invPersInfoLbl1">
+                              <div>{{
+                                'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.FULL_NAME'
+                                | translate}}</div>
+                              <div class="sub-label" id="invPersInfoSubLbl1">
+                                <span
+                                  *ngIf="!secondaryHolderMinorForm.get('passportExpiry')">{{ isNationalitySingapore() || secondaryHolderMinorForm.value?.singaporeanResident ? ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.FULL_NAME_NRIC_BIRTH_CERT' | translate) : ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.FULL_NAME_NRIC' | translate)}}
+                                </span>
+                                <span
+                                  *ngIf="secondaryHolderMinorForm.get('passportExpiry')">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.FULL_NAME_PASSPORT' | translate}}</span>
+                              </div>
+                            </label>
+                          </div>
+                          <div class="flex-col-7">
+                            <div
+                              [ngClass]="{'inline-error': secondaryHolderMinorForm.get('fullName').enabled && !secondaryHolderMinorForm.get('fullName').valid && !secondaryHolderMinorForm.get('fullName').pristine}">
+                              <div id="fullname" [attr.contenteditable]="!isDisabled('fullName')"
+                                [textContent]="secondaryHolderMinorForm.get('fullName').value"
+                                (focusout)="setControlValue($event.target.textContent, 'fullName', secondaryHolderMinorForm);"
+                                maxlength="100" (keypress)="onKeyPressEvent($event, $event.target.textContent)"
+                                class="content-editable" [class.fullName-disabled]="isDisabled('fullName')"
+                                placeholder="Full Name">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('nricNumber')">
+                          <div class="flex-col-5">
+                            <label
+                              id="invPersInfoLbl4">{{ isNationalitySingapore() || checkSingaporePR() ? ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.NRIC_BIRTH_CERTIFICATE_NUMBER' | translate) : ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.NRIC_NUMBER' | translate)}}</label>
+                          </div>
+                          <div class="flex-col-7"
+                            [ngClass]="{'inline-error': secondaryHolderMinorForm.get('nricNumber').enabled && !secondaryHolderMinorForm.get('nricNumber').valid && !secondaryHolderMinorForm.get('nricNumber').pristine}">
+                            <input type="text" formControlName="nricNumber" placeholder="{{
+                              'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.NRIC_FORMAT'
+                              | translate}}" id="invPersInfoInpt4" class="form-control">
+                          </div>
+                        </div>
+                        <!-- Country Of Issue start -->
+                        <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('issuedCountry')">
+                          <div class="flex-col-5">
+                            <label for="residentialAddress-country-drpdown" id="residentialAddress-country-lbl">{{
+                                  'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.COUNTRY_OF_ISSUE'
+                                  | translate}}</label>
+                          </div>
+                          <div class="flex-col-7">
+                            <div class="dropdown-control"
+                              [ngClass]="{'inline-error': secondaryHolderMinorForm.get('issuedCountry').enabled && !secondaryHolderMinorForm.get('issuedCountry').valid && !secondaryHolderMinorForm.get('issuedCountry').pristine}">
+                              <app-dropdown-with-search placement="top-right" [optionList]="countryList"
+                                displayKey="name" controlName="issuedCountry"
+                                (itemSelected)="setDropDownValue($event, 'issuedCountry', true)"
+                                placeholderText="{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.SELECT_PASSPORT_ISSUED_COUNTRY' | translate }}">
+                              </app-dropdown-with-search>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Country Of Issue end -->
+                        <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('dob')">
+                          <div class="flex-col-5">
+                            <label for="dob"
+                              id="invPersInfoLbl7">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.DOB' | translate}}</label>
+                          </div>
+                          <div #usrFrmDp class="flex-col-7">
+                            <div class="datepicker-control">
+                              <div class="input-group date-picker mb0">
+                                <input class="form-control" [minDate]="minDate" [maxDate]="maxDate"
+                                  formControlName="dob" placeholder="{{
+                                  'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.DOB_PATTERN'
+                                  | translate}}" name="dp" ngbDatepicker #dobInput="ngbDatepicker"
+                                  id="invPersInfoInpt7">
+                                <div class="input-group-append">
+                                  <button class="btn btn-primary" type="button" (click)="dobInput.toggle()"
+                                    id="invPersInfoBtn1">
+                                    <img class="date-picker-image--valid" id="invPersInfoImg1"
+                                      *ngIf="secondaryHolderMinorForm.get('dob').valid || secondaryHolderMinorForm.get('dob').pristine"
+                                      src="assets/images/calendar-normal.svg" />
+                                    <img class="date-picker-image--invalid" id="invPersInfoImg1"
+                                      *ngIf="!secondaryHolderMinorForm.get('dob').valid && !secondaryHolderMinorForm.get('dob').pristine"
+                                      src="assets/images/calendar-error.svg" />
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('gender')">
+                          <div class="flex-col-5">
+                            <label for="gender"
+                              id="invPersInfoLbl8">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.GENDER' | translate}}</label>
+                          </div>
+                          <div class="flex-col-7">
+                            <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
+                              <div class="flex-row mb0">
+                                <div class="flex-col-6">
+                                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr10"
+                                    id="invPersInfoLbl2">
+                                    <input ngbButton type="radio" value="male" id="invPersInfoInpt8"> {{ 'LABEL.MALE' |
+                                        translate}}
+                                  </label>
+                                </div>
+                                <div class="flex-col-6">
+                                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm" id="invPersInfoLbl3">
+                                    <input ngbButton type="radio" value="female" id="invPersInfoInpt9"> {{ 'LABEL.FEMALE' |
+                                        translate}}
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Country of Birth start -->
+                        <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('birthCountry')">
+                          <div class="flex-col-5">
+                            <label for="residentialAddress-country-drpdown" id="residentialAddress-country-lbl">{{
+                              'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.BIRTH_COUNTRY'
+                              | translate}}</label>
+                          </div>
+                          <div class="flex-col-7">
+                            <div class="dropdown-control"
+                              [ngClass]="{'inline-error': secondaryHolderMinorForm.get('birthCountry').enabled && !secondaryHolderMinorForm.get('birthCountry').valid && !secondaryHolderMinorForm.get('birthCountry').pristine}">
+                              <app-dropdown-with-search placement="top-right" [optionList]="countryList"
+                                displayKey="name" controlName="birthCountry"
+                                (itemSelected)="setDropDownValue($event, 'birthCountry', true)"
+                                placeholderText="{{'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.SELECT_BIRTH_COUNTRY' | translate}}">
+                              </app-dropdown-with-search>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Country of Birth end -->
+                        <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('passportNumber')">
+                          <div class="flex-col-5">
+                            <label for="name"
+                              id="invPersInfoLbl5">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.PASSPORT_NUMBER' | translate}}</label>
+                          </div>
+                          <div class="flex-col-7">
+                            <input type="text" id="invPersInfoInpt5" formControlName="passportNumber"
+                              class="form-control" #passportNumber maxLength="30"
+                              placeholder="{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.PASSPORT_NUMBER' | translate}}">
+                          </div>
+                        </div>
+                        <!-- Passport issued country start -->
+                        <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('passportIssuedCountry')">
+                          <div class="flex-col-5">
+                            <label for="residentialAddress-country-drpdown" id="residentialAddress-country-lbl">{{
+                                  'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.COUNTRY_OF_ISSUE'
+                                  | translate}}</label>
+                          </div>
+                          <div class="flex-col-7">
+                            <div class="dropdown-control"
+                              [ngClass]="{'inline-error': secondaryHolderMinorForm.get('passportIssuedCountry').enabled && !secondaryHolderMinorForm.get('passportIssuedCountry').valid && !secondaryHolderMinorForm.get('passportIssuedCountry').pristine}">
+                              <app-dropdown-with-search placement="top-right" [optionList]="countryList"
+                                displayKey="name" controlName="passportIssuedCountry"
+                                (itemSelected)="setDropDownValue($event, 'passportIssuedCountry', true)"
+                                placeholderText="{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.SELECT_PASSPORT_ISSUED_COUNTRY' | translate }}">
+                              </app-dropdown-with-search>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Passport issued country end -->
+                        <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('passportExpiry')">
+                          <div class="flex-col-5">
+                            <label for="passportExpiry" id="invPersInfoLbl6">{{
+                              'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.PASSPORT_EXPIRY'
+                              | translate}}</label>
+                          </div>
+                          <div #usrFrmDp class="flex-col-7">
+                            <div class="datepicker-control">
+                              <div class="input-group date-picker mb0">
+                                <input class="form-control" formControlName="passportExpiry" [minDate]=passportMinDate
+                                  [maxDate]=passportMaxDate placeholder="{{
+                                    'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.DOB_PATTERN'
+                                    | translate}}" ngbDatepicker id="invPersInfoInpt6" #expiryInput="ngbDatepicker">
+                                <div class="input-group-append">
+                                  <button (click)="toggleDate(expiryInput, dobInput)" class="btn btn-primary"
+                                    type="button" id="invPersInfoBtn1">
+                                    <img class="date-picker-image--valid" id="invPersInfoImg1"
+                                      *ngIf="secondaryHolderMinorForm.get('passportExpiry').valid || secondaryHolderMinorForm.get('passportExpiry').pristine"
+                                      src="assets/images/calendar-normal.svg" />
+                                    <img class="date-picker-image--invalid" id="invPersInfoImg1"
+                                      *ngIf="!secondaryHolderMinorForm.get('passportExpiry').valid && !secondaryHolderMinorForm.get('passportExpiry').pristine"
+                                      src="assets/images/calendar-error.svg" />
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Race start -->
+                        <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('race')">
+                          <div class="flex-col-5">
+                            <label for="residentialAddress-country-drpdown" id="residentialAddress-country-lbl">{{
+                              'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.RACE'
+                              | translate}}</label>
+                          </div>
+                          <div class="flex-col-7">
+                            <div class="dropdown-control"
+                              [ngClass]="{'inline-error': secondaryHolderMinorForm.get('race').enabled && !secondaryHolderMinorForm.get('race').valid && !secondaryHolderMinorForm.get('race').pristine}">
+                              <app-dropdown-with-search displayKey="name" [optionList]="raceList" controlName="race"
+                                placeholderText="{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.SELECT_RACE' | translate }}"
+                                placement="top-right" (itemSelected)="setDropDownValue($event, 'race', true)">
+                              </app-dropdown-with-search>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Race end -->
+                        <!-- relationship start -->
+                        <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('relationship')">
+                          <div class="flex-col-5">
+                            <label for="salutation-drpdown" id="salutation-lbl">{{
+                              'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.RELATIONSHIP'
+                              | translate}}</label>
+                          </div>
+                          <div class="flex-col-7">
+                            <div class="dropdown-control"
+                              [ngClass]="{'inline-error': secondaryHolderMinorForm.get('relationship').enabled && !secondaryHolderMinorForm.get('relationship').valid && !secondaryHolderMinorForm.get('relationship').pristine}">
+                              <div ngbDropdown>
+                                <button class="btn btn-dropdown without-border" id="salutation-drpdown"
+                                  ngbDropdownToggle>
+                                  <span *ngIf="!secondaryHolderMinorForm.controls?.relationship?.value">
+                                    {{'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.SELECT_RELATIONSHIP'  | translate}}
+                                  </span>
+                                  <span *ngIf="secondaryHolderMinorForm.controls?.relationship?.value">
+                                    {{secondaryHolderMinorForm.controls.relationship.value.name }}
+                                  </span>
+                                </button>
+                                <div
+                                  *ngIf="secondaryHolderMinorForm.get('singaporeanResident') && !secondaryHolderMinorForm.get('singaporeanResident').value; else singaporeanJA"
+                                  class="dropdown" ngbDropdownMenu aria-labelledby="salutation-drpdown">
+                                  <button *ngFor="let relationship of minorForeignerRelationships; let i = index;"
+                                    (click)="setDropDownValue(relationship, 'relationship', true)"
+                                    class="dropdown-item">{{relationship?.name}}</button>
+                                </div>
+                                <ng-template #singaporeanJA>
+                                  <div class="dropdown" ngbDropdownMenu aria-labelledby="salutation-drpdown">
+                                    <button *ngFor="let relationship of minorSGRelationships; let i = index;"
+                                      (click)="setDropDownValue(relationship, 'relationship', true)"
+                                      class="dropdown-item">{{relationship?.name}}</button>
+                                  </div>
+                                </ng-template>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- relationship end -->
+                      </div>
+                      <!-- personal info -->
+                      <!-- tax info -->
+                      <div class="tax-info" *ngIf="secondaryHolderMinorForm.get('addTax')">
+                        <div class="tax-form" formArrayName="addTax" class="tax-form"
+                          [ngClass]="{'brdr-btm':getBorder()}" *ngFor="let taxInfoItem of
+                          secondaryHolderMinorForm.get('addTax')['controls']; let x= index">
+                          <div class="widget-title">
+                            <span>{{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.CARD_TITLE' |
+                              translate}}</span>
+                            <span class="delete-icon" *ngIf="x !== 0">
+                              <img (click)="removeTaxForm(secondaryHolderMinorForm , x)"
+                                src="assets/images/investment-account/delete.svg" alt="" />
+                            </span>
+                          </div>
+                          <div class="widget-body" [formGroupName]="x">
+                            <div class="flex-row">
+                              <div class="flex-col-5">
+                                <label for="name" id="tax-info-label">{{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.COUNTRY_TEXT' |
+                                  translate}}
+                                  <i class="tooltip-block-icon" id="countryHelpIcon"
+                                    (click)="showHelpModalCountry()"></i></label>
+                              </div>
+                              <div class="flex-col-7">
+                                <div class="dropdown-control"
+                                  [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.taxCountry)}">
+                                  <app-dropdown-with-search placement="bottom" displayKey="name" [form]="taxInfoItem"
+                                    placeholderText="{{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.SELECT_COUNTRY' |
+                                    translate}}" [optionList]="countryList"
+                                    (itemSelected)="selectCountry($event, taxInfoItem)" controlName="taxCountry">
+                                  </app-dropdown-with-search>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- PLACEHOLDER -->
+                            <!-- Do you have a TIN question -->
+                            <div class="flex-row mb10">
+                              <div class="flex-col-11 mt5">
+                                <div class="tin_question_text" id="tax_Info_question-one">
+                                  {{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.TIN_QUESTION' | translate}}
+                                </div>
+                              </div>
+                              <div class="flex-col-1">
+                                <i class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModalTinNumber()"></i>
+                              </div>
+                            </div>
+                            <!-- Button part -->
+                            <div class="flex-row">
+                              <div class="flex-col-12">
+                                <div class="btn-group--toggle" ngbRadioGroup name="radioTin" formControlName="radioTin">
+                                  <div class="flex-row">
+                                    <div class="flex-col-6">
+                                      <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm
+                                        mr5">
+                                        <input ngbButton type="radio" id="tin_yes" [value]=true
+                                          (change)="isTinNumberAvailChanged(true , taxInfoItem, null)">
+                                        {{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.YES_lABEL' | translate}}
+                                      </label>
+                                    </div>
+                                    <div class="flex-col-6">
+                                      <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
+                                        <input ngbButton type="radio"
+                                          (change)="isTinNumberAvailChanged(false , taxInfoItem, null)" id="tin_no"
+                                          [value]=false>{{
+                                        'SECONDARY_HOLDER.MINOR.TAX_INFO.NO_LABEL' | translate}}</label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Second Dropdown -->
+                            <div class="flex-row" *ngIf="taxInfoItem.get('noTinReason')">
+                              <div class="flex-col-4">
+                                <label class="tin_question_text pb10" for="name" id="tax-info-reason_label">{{
+                                  'SECONDARY_HOLDER.MINOR.TAX_INFO.REASON_TEXT' |
+                                  translate}}</label>
+                              </div>
+                              <div class="flex-col-8 flex-col-moz">
+                                <div class="dropdown-control">
+                                  <div ngbDropdown>
+                                    <button class="btn btn-dropdown" ngbDropdownToggle>
+                                      <span *ngIf="taxInfoItem.controls.noTinReason?.value" class="dependent-count"
+                                        id="tax_Info_dropdown_country">{{taxInfoItem.controls.noTinReason.value.name}}</span>
+                                      <span *ngIf="!taxInfoItem.controls.noTinReason?.value" class="dependent-count"
+                                        id="tax_Info_dropdown_country">{{
+                                          'SECONDARY_HOLDER.MINOR.TAX_INFO.SELECT_REASON_TEXT' |
+                                          translate}}</span>
+                                    </button>
+                                    <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                      <button class="dropdown-item" (click)="selectReason(reasonListObj , taxInfoItem)"
+                                        id="selectReason-country-option-{{i}}"
+                                        *ngFor="let reasonListObj of noTinReasonlist; let i = index;">
+                                        {{reasonListObj.name}}
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Tin text box -->
+                            <!-- Second Dropdown -->
+                            <div class="flex-row" *ngIf="taxInfoItem.get('tinNumber')">
+                              <div class="flex-col-4">
+                                <label class="tin_question_text pb10" for="name" id="tax-info-reason_label">{{
+                                  'SECONDARY_HOLDER.MINOR.TAX_INFO.TIN_TEXT' |
+                                  translate}}</label>
+                              </div>
+                              <div class="flex-col-8">
+                                <div class="dropdown-control"
+                                  [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.tinNumber)}">
+                                  <input type="text" formControlName="tinNumber" id="invPersInfoInpt1"
+                                    class="form-control" maxLength="50" placeholder="{{
+                                      'SECONDARY_HOLDER.MINOR.TAX_INFO.TIN_TEXT' |
+                                      translate}}">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="mt15 tin-hint" *ngIf="secondaryHolderMinorForm.get('passportExpiry')">
+                              {{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.NRIC_HINT' | translate}}</div>
+                            <div class="thumb-close-icon">
+                              <img src="assets/images/close-button-dark.svg" alt="x" />
+                            </div>
+                          </div>
+                          <div class="tax-lbl">{{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.TAX_OTHER_COUNTRY' |
+                            translate}}</div>
+                        </div>
+                        <div *ngIf="formCount < 4" (click)="addTaxForm(null)" class="add-tax-box">
+                          <div class="add-tax-text">{{
+                            'SECONDARY_HOLDER.MINOR.TAX_INFO.ADD_TAX_RESIDENCE' | translate}}</div>
+                        </div>
+                      </div>
+                      <!-- tax info end -->
+                    </div>
+                  </form>
                 </div>
               </ng-template>
             </ng-container>
           </nav>
           <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+          <button *ngIf="activeTabId === 1 || activeTabId === 3" [disabled]="!secondaryHolderMajorForm.valid"
+            (click)="majorHolderGoToNext()"
+            class="btn btn-primary btn__footer--fixed width100">{{'SECONDARY_HOLDER.CONTINUE' | translate}}</button>
+          <button *ngIf="activeTabId === 2" (click)="minorHolderGoToNext()" [disabled]="!secondaryHolderMinorForm.valid"
+            class="btn btn-primary btn__footer--fixed width100">{{'SECONDARY_HOLDER.CONTINUE' | translate}}</button>
         </div>
       </div>
     </div>
