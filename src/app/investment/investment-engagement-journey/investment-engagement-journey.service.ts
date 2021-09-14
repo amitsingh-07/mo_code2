@@ -558,4 +558,25 @@ export class InvestmentEngagementJourneyService {
   }
 
   /* ******* END SECONDARY HOLDER FUNCTIONALITY AND METHODS******* */
+
+  /*Upload Document Method start*/
+  isSingaporeResident() {
+    const selectedNationality = this.investmentEngagementJourneyFormData.minorSecondaryHolderFormData.nationality.nationalityCode;
+    return (
+      selectedNationality === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SINGAPORE_NATIONALITY_CODE 
+      //|| this.investmentEngagementJourneyFormData.minorSecondaryHolderFormData.nationalityCode
+    );
+    // const selectedNationality = this.investmentEngagementJourneyFormData.personalInfo.nationalityCode.toUpperCase();
+    // return (
+    //   selectedNationality === INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_NATIONALITY_CODE ||
+    //   this.investmentEngagementJourneyFormData.singaporeanResident
+    // );
+  }
+
+   // Upload Document
+   uploadDocument(formData) {
+    return this.investmentApiService.uploadDocument(formData);
+  }
+    /*Upload Document Method end*/
 }
+

@@ -25,17 +25,23 @@ import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investmen
 @Component({
   selector: 'app-upload-document',
   templateUrl: './upload-document.component.html',
-  styleUrls: ['./upload-document.component.scss']
+  styleUrls: ['./upload-document.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class UploadDocumentComponent implements OnInit {
 
   uploadForm: FormGroup;
+  uploadFormValues:any;
   pageTitle: string;
   formValues: any;
   countries: any;
   isUserNationalitySingapore: any;
   defaultThumb: any;
   formData: FormData = new FormData();
+  uploadDocumentList: any;
+  nricDiv=false;
+  dobDiv=false;
+  passportDiv=false;
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
     public readonly translate: TranslateService,
@@ -46,6 +52,7 @@ export class UploadDocumentComponent implements OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     public investmentAccountService: InvestmentAccountService,
+    public investmentEngagementJourneyService : InvestmentEngagementJourneyService,
     private loaderService: LoaderService
   ) {
     this.translate.use('en');
@@ -54,6 +61,15 @@ export class UploadDocumentComponent implements OnInit {
       this.setPageTitle(this.pageTitle);
       this.defaultThumb = INVESTMENT_ACCOUNT_CONSTANTS.upload_documents.default_thumb;
     });
+
+    
+  }
+  buildListForSingapore(){
+    this.uploadDocumentList = [{"name":"NRIC","value":"NRIC"},{"name":"dateofBirth","value":"dateofBirth"}];
+  }
+
+  buildListForOtherCountry(){
+    this.uploadDocumentList = [{"name":"Passport","value":"Passport"}];
   }
 
   setPageTitle(title: string) {
@@ -64,27 +80,61 @@ export class UploadDocumentComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
-    this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
-    this.uploadForm = this.isUserNationalitySingapore
-      ? this.buildFormForSingapore()
-      : this.buildFormForOtherCountry();
-    this.addOrRemoveMailingAddressproof();
+    this.isUserNationalitySingapore = this.investmentEngagementJourneyService.isSingaporeResident();
+    this.formValues = this.investmentEngagementJourneyService.getMinorSecondaryHolderData();
+    
+    //this.addOrRemoveMailingAddressproof();
     this.investmentAccountService.loadInvestmentAccountRoadmap(true);
-  }
 
-  buildFormForSingapore(): FormGroup {
-    return this.formBuilder.group({
-      nricFrontImage: [this.formValues.nricFrontImage, Validators.required],
-      nricBackImage: [this.formValues.nricBackImage, Validators.required]
+    this.uploadFormValues = this.isUserNationalitySingapore
+      ? this.buildListForSingapore()
+      : this.buildListForOtherCountry();
+
+    this.uploadForm = new FormGroup({
+      uploadDocument: new FormControl('', Validators.required)
     });
   }
 
-  buildFormForOtherCountry(): FormGroup {
-    return this.formBuilder.group({
-      passportImage: [this.formValues.passportImage, Validators.required],
-      resAddressProof: [this.formValues.resAddressProof, Validators.required]
-    });
+  setDropDownValue(event, key) {
+    console.log(event,'eventevent')
+    this.isUserNationalitySingapore
+      ? this.buildFormForSingapore(event)
+      : this.buildFormForOtherCountry(event);
+    setTimeout(() => {
+    }, 100);
+    console.log(this.uploadForm,'uploadForm');
+  }
+
+  buildFormForSingapore(event) {
+    if(event.value == 'NRIC'){
+      this.nricDiv=true;
+      this.dobDiv=false;
+      this.uploadForm.controls['uploadDocument'].setValue(event);
+      this.uploadForm.addControl(
+      'nricFrontImage', new FormControl(this.formValues.nricFrontImage,Validators.required)
+     );
+      this.uploadForm.addControl(
+      'nricBackImage', new FormControl(this.formValues.nricBackImage,Validators.required)
+     );
+  }
+  if(event.value == 'dateofBirth'){
+    this.dobDiv=true;
+    this.nricDiv=false;
+    this.uploadForm.controls['uploadDocument'].setValue(event);
+    this.uploadForm.addControl(
+      'dateofBirthImage', new FormControl(this.formValues.dateofBirthImage,Validators.required)
+     );
+  }
+}
+
+  buildFormForOtherCountry(event) {
+    if(event.value == 'Passport'){
+      this.passportDiv=true;
+      this.uploadForm.controls['uploadDocument'].setValue(event);
+       this.uploadForm.addControl(
+      'passportImage', new FormControl(this.formValues.passportImage,Validators.required)
+     );
+  }
   }
   addOrRemoveMailingAddressproof() {
     if (!this.formValues.isMailingAddressSame) {
@@ -165,7 +215,7 @@ export class UploadDocumentComponent implements OnInit {
       title: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE'),
       desc: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE')
     });
-   this.investmentAccountService.uploadDocument(this.formData).subscribe((response) => {
+   this.investmentEngagementJourneyService.uploadDocument(this.formData).subscribe((response) => {
       this.loaderService.hideLoader();
       if (response) {
         this.redirectToNextPage();
@@ -218,41 +268,14 @@ export class UploadDocumentComponent implements OnInit {
   }
 
   goToNext(form) {
-    if (!form.valid) {
-      const errorTitle = this.translate.instant(
-        'UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.TITLE'
-      );
-      const errorMessage = this.translate.instant(
-        'UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.MESSAGE'
-      );
-      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-      ref.componentInstance.errorTitle = errorTitle;
-      ref.componentInstance.errorMessageHTML = errorMessage;
-      ref.componentInstance.primaryActionLabel = this.translate.instant(
-        'UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.CONFIRM_PROCEED'
-      );
-      ref.componentInstance.primaryAction.subscribe(() => {
-        this.investmentAccountService.setAccountCreationStatus(
-          INVESTMENT_ACCOUNT_CONSTANTS.status.documents_pending
-        );
-       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.STATUS]);
-      });
-    } else {
-      this.proceed(form);
+    if (form.valid) {
+      this.uploadDocument();
     }
-  }
-
-  proceed(form) {
-    this.uploadDocument();
   }
 
   redirectToNextPage() {
-    const boStatus = this.investmentAccountService.getBOStatus();
-    if (boStatus) {
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
-    } else {
-      this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
-    }
+   this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+    
   }
 
 }
