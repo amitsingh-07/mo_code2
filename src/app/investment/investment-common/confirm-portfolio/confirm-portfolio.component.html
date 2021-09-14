@@ -1,7 +1,7 @@
 <div class="app-confirm-portfolio investment-account">
     <div class="step-indicator-container">
         <div class="container-fluid max-width--1024">
-            <app-step-indicator [count]="2" [activeStepIndex]="0" [mode]="0"></app-step-indicator>
+            <app-step-indicator [count]="isJAEnabled ? 3 : 2 " [activeStepIndex]="0" [mode]="0"></app-step-indicator>
         </div>
     </div>
     <div class="container-fluid max-width--1024" *ngIf="portfolio">
@@ -9,13 +9,13 @@
             <div>{{ 'PORTFOLIO_RECOMMENDATION.STEP1' | translate}}</div>
             <div class="page-title">{{ 'PORTFOLIO_RECOMMENDATION.CONFIRM_PORTFOLIO' | translate}}</div>
         </div>
-        <div class="portfolio-allocation-details">
-            <div class="flex-col-12 portfolio-allocation-details__container"  *ngIf="!wiseIncomeEnabled">
+        <div class="portfolio-allocation-details" [ngClass]="{'ja-type': isJAEnabled}">
+            <div class="flex-col-12 portfolio-allocation-details__container" *ngIf="!wiseIncomeEnabled">
                 <div class="portfolio-allocation-details__content white-bg">
                     <div class="flex-col-12 portfolio-allocation-details__content__desc">
-                        <div class="portfolio_img hidden-sm" *ngIf="portfolio.portfolioType === 'Investment'"><img src={{iconImage}} id="riskProfileImg" /></div>
-                        <div class="flex-col-12 portfolio-allocation-details__content__block" *ngIf="portfolio.portfolioType === 'Investment'" [innerHTML]="'PORTFOLIO_RECOMMENDATION.USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
-                        <div class="flex-col-12 portfolio-allocation-details__content__block" *ngIf="portfolio.portfolioType === 'WiseSaver'" [innerHTML]="'PORTFOLIO_RECOMMENDATION.WISE_SAVER_USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
+                        <div class="portfolio_img hidden-sm" *ngIf="investmentEnabled"><img src={{iconImage}} id="riskProfileImg" /></div>
+                        <div class="flex-col-12 portfolio-allocation-details__content__block" *ngIf="investmentEnabled" [innerHTML]="'PORTFOLIO_RECOMMENDATION.USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
+                        <div class="flex-col-12 portfolio-allocation-details__content__block wisesaver" *ngIf="wiseSaverEnabled" [innerHTML]="'PORTFOLIO_RECOMMENDATION.WISE_SAVER_USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
                     </div>
                 </div>
                 <app-portfolio-info [portfolio]="portfolio" [wiseSaverDetails]="wiseSaverDetails"></app-portfolio-info>
@@ -57,19 +57,20 @@
                 <a target="_blank" routerLink="/faq-investment-wiseincome">
                     {{ 'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a>
             </div>
+            <div class="ja-disclaimer" [innerHTML]="'PORTFOLIO_RECOMMENDATION.JA_DISCLAIMER' | translate"></div>
+            <form name="tncCheckboxForm" [formGroup]="tncCheckboxForm" id="tncCheckboxForm">
+                <div class="checkbox-button one-label tnc-checkbox" >
+                    <input id="tncCheckboxFlag" name="tncCheckboxFlag" formControlName="tncCheckboxFlag" type="checkbox"
+                        class="field checkbox" #tncChkBox>
+                    <label for="tncCheckboxFlag">
+                        <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.I_AGREE' | translate}} <a (click)="showTncModal()">{{ 'PORTFOLIO_RECOMMENDATION.TNC' | translate}}</a></div>
+                    </label>
+                </div>
+            </form>
         </div>
-
-        <div class="checkbox-button one-label tnc-checkbox">
-            <input id="tncCheckboxFlag" name="tncCheckboxFlag" formControlName="tncCheckboxFlag" type="checkbox"
-                class="field checkbox" value="I agree to the Terms and Conditions" #tncChkBox>
-            <label class="ml10" for="tncCheckboxFlag">
-                <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.I_AGREE' | translate}} <a (click)="showTncModal()">{{ 'PORTFOLIO_RECOMMENDATION.TNC' | translate}}</a></div>
-            </label>
-        </div>
-             
         <div class="text-center">
             <button type="button" [disabled]="!tncChkBox.checked" (click)="showPayoutModal()" class="btn btn__footer--fixed btn-primary width100">{{
-    'PORTFOLIO_RECOMMENDATION.CONTINUE' | translate}}</button>
+            'PORTFOLIO_RECOMMENDATION.CONTINUE' | translate}}</button>
         </div>
     </div>
 </div>
