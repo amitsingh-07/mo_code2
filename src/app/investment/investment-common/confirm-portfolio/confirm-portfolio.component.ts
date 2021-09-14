@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup} from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -50,7 +50,11 @@ export class ConfirmPortfolioComponent implements OnInit {
   investmentCriteria: IInvestmentCriteria;
   wiseSaverDetails :any;
   wiseIncomeEnabled: any;
-
+  investmentEnabled: any;
+  wiseSaverEnabled: any;
+  userPortfolioType: any;
+  isJAEnabled: boolean;
+  tncCheckboxForm: FormGroup;
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -63,13 +67,15 @@ export class ConfirmPortfolioComponent implements OnInit {
     public investmentAccountService: InvestmentAccountService,
     private investmentCommonService: InvestmentCommonService,
     private authService: AuthenticationService,
-    private formatCurrencyPipe: FormatCurrencyPipe
+    private formatCurrencyPipe: FormatCurrencyPipe,
+    private formBuilder: FormBuilder
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.TITLE');
       this.setPageTitle(this.pageTitle);
     });
+    this.userPortfolioType = investmentEngagementJourneyService.getUserPortfolioType();
   }
 
   setPageTitle(title: string) {
@@ -80,6 +86,9 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
+    this.tncCheckboxForm = this.formBuilder.group({
+      tncCheckboxFlag: ['']
+    });
     this.getPortfolioDetails();
   }
 
@@ -93,7 +102,10 @@ export class ConfirmPortfolioComponent implements OnInit {
         this.portfolio = data.objectList;
         this.investmentCommonService.setPortfolioType(this.portfolio.portfolioType)
         this.investmentCommonService.setPortfolioDetails(this.portfolio);
-        this.wiseIncomeEnabled = (this.portfolio.portfolioType.toLowerCase() == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase());
+        this.isJAEnabled = (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID);
+        this.investmentEnabled = (this.portfolio.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT.toLowerCase());
+        this.wiseSaverEnabled = (this.portfolio.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER.toLowerCase());
+        this.wiseIncomeEnabled = (this.portfolio.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase());
         this.getInvestmentCriteria(this.portfolio);
         if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT) {
           this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO });

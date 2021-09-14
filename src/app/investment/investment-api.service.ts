@@ -252,7 +252,7 @@ export class InvestmentApiService {
   }
   validateCustomerPortfolioDelete(data) {
     return this.http.get(
-      investmentApiConstants.endpoint.investmentAccount.validateCustomerPortfolioDelete.replace('$CUSTOMER_PORTFOLIO_ID$', data.customerPortfolioId)  + '?handleError=true')
+      investmentApiConstants.endpoint.investmentAccount.validateCustomerPortfolioDelete.replace('$CUSTOMER_PORTFOLIO_ID$', data.customerPortfolioId) + '?handleError=true')
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -472,6 +472,22 @@ export class InvestmentApiService {
   // nric validation
   getUserNricValidationInfo(data) {
     return this.http.post(investmentApiConstants.endpoint.investmentAccount.getUserNricValidation, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  // Major Secondary Holder validation
+  validateMajorSecondaryHolder(data) {
+    return this.http.post(investmentApiConstants.endpoint.portfolio.validateMajorSecondaryHolder, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  // Save Minor Secondary holder
+  saveMinorSecondaryHolder(data) {
+    return this.http.post(investmentApiConstants.endpoint.investmentAccount.saveMinorSecondaryHolder, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
