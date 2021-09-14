@@ -283,5 +283,59 @@
       "ACCOUNT_NO_CHAR_LENGTH": "CHAR_COUNT / 13",
       "ENSURE_CORRECT_ACC_DETAILS_TEXT": "Please ensure you have entered the correct account information. "
     }
+  },
+  "PORTFOLIO_SUMMARY": {
+    "TITLE": "Portfolio Summary",
+    "CONTINUE": "Continue",
+    "REVIEW_DETAILS_LABEL": "Please review all details carefully before you proceed. An Invitation will be sent to the secondary holder via email and expires after 7 days. ",
+    "CHANGE_PORTFOLIO_BUTTON_TEXT": "Change to another portfolio",
+    "PORTFOLIO_DETAILS": {
+      "DATE_OF_APPLICATION_TITLE": "Date of Application",
+      "PORTFOLIO_TYPE_TITLE": "Portfolio Type",
+      "PORTFOLIO_NAME_TEXT": "Portfolio Name",
+      "PORTFOLIO_TITLE": "Portfolio",
+      "FUNDING_METHOD_TITLE": "Funding Method",
+      "FUNDING_AMOUNT_TITLE": "Funding Amount",
+      "ONE_TIME_AMOUNT_TITLE": "One-Time Amount: $",
+      "MONTHLY_AMOUNT_TITLE": "Monthly Amount: $",
+      "PROMO_CODE_TITLE": "Promo Code"
+    },
+    "PRIMARY_HOLDER": {
+      "TITLE": "Primary Holder",
+      "NAME_TEXT": "Name"
+    },
+    "SECONDARY_HOLDER_MAJOR": {
+      "TITLE": "Secondary Holder",
+      "NAME_TEXT": "Name",
+      "NRIC_PASSPORT_NO_TEXT": "NRIC / Passport (Last 4 Chars)",
+      "RELATIONSHIP_TEXT": "Relationship",
+      "EMAIL_TEXT": "Email"
+    },
+    "SECONDARY_HOLDER_MINOR": {
+      "TITLE": "Secondary Holder (Below 18)",
+      "NAME_AS_PER_BIRTH_CERT_TEXT": "Full Name (As per NRIC/Birth Cert)",
+      "NAME_AS_PER_PASSPORT_TEXT": "Full Name (As per Passport)",
+      "NRIC_BIRT_CERT_TEXT": "NRIC/Birth Cert Number",
+      "RELATIONSHIP_TEXT": "Relationship",
+      "US_PR_TEXT": "United States Permanent / Tax Resident",
+      "NATIONALITY_TEXT": "Nationality",
+      "ISSUED_COUNTRY_TEXT": "Country of Issued",
+      "DOB_TEXT": "Date of Birth",
+      "GENDER_TEXT": "Gender",
+      "BIRTH_COUNTRY_TEXT": "Country of Birth",
+      "RACE_TEXT": "Race",
+      "FIRST_TAX_RESIDENCE_COUNTRY_TEXT": "Country of Tax Residence (First)",
+      "TIN_TEXT": "Taxpayer Identification Number",
+      "NO_TIN_REASON_TEXT": "Reason",
+      "TIN_NO_TEXT": "TIN Number",
+      "PASSPORT_NO_TEXT": "Passport Number",
+      "PASSPORT_EXPIRY_TEXT": "Passport Expiry"
+    },
+    "WITHDRAWAL_BANK_DETAILS": {
+      "TITLE": "Withdrawal Bank Details",
+      "ACCOUNT_HOLDER_NAME_TEXT": "Bank Account Holder Name(s)",
+      "BANK_NAME_TEXT": "Bank Name",
+      "ACCOUNT_NUMBER_TEXT": "Account No."
+    }
   }
 }
