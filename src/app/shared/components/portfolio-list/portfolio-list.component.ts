@@ -58,6 +58,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   showAllForExpired: boolean;
   showAllForProgress: boolean;
   showAllForVerify: boolean;
+  portfolioTypes: any;
 
   @Input('portfolioList') portfolioList;
   @Input('showTotalReturn') showTotalReturn;
@@ -78,14 +79,13 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   filteredExpiredList: any;
   filteredProgressList: any;
   filteredVerifyList: any;
-
-  subscription: Subscription;  
  
   milliSecondsInASecond = 1000;
   hoursInADay = 24;
   minutesInAnHour = 60;
   SecondsInAMinute  = 60;
   timeDifference: any;
+  awaitingMsg: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -99,13 +99,14 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     private router: Router,
     private manageInvestmentsService: ManageInvestmentsService) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => { });
+    this.translate.get('COMMON').subscribe((result: string) => { 
+      this.awaitingMsg = this.translate.instant('YOUR_INVESTMENT.PRIMARY_AWAITING_TIME');      
+    });
   }
 
   ngOnInit() {
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
-    this.subscription = interval(1000*60)
-           .subscribe(x => { this.getTimeDifference(); });
+    this.portfolioTypes = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY_TYPE;
   }
 
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
@@ -130,7 +131,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
         if (portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING'
           || portfolio.portfolioStatus === 'REBALANCING') {
           this.investedList.push(portfolio);
-          const awaitingTimeStamp = 1630669362000;
+          /*const awaitingTimeStamp = 1630669362000;
           console.log(Date.now());
           portfolio.awaitingPeriod = '18 hours 47 minutes';
           this.awaitingList.push(portfolio);
@@ -138,9 +139,13 @@ export class PortfolioListComponent implements OnInit, OnChanges {
           this.declinedList.push(portfolio);
           this.expiredList.push(portfolio);
           this.progressList.push(portfolio);
-          this.verifyList.push(portfolio);
+          this.verifyList.push(portfolio);*/
         } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.AWAITING) {
+          const awaitingTimeStamp = 1630669362000;
+          console.log(Date.now());
+          portfolio.awaitingPeriod = '18 hours 47 minutes';
           this.awaitingList.push(portfolio);
+          console.log(portfolio);
         } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.WITHDRAWN) {
           this.withdrawnList.push(portfolio);
         } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.DECLINED) {
@@ -323,14 +328,13 @@ export class PortfolioListComponent implements OnInit, OnChanges {
 
   getTimeDifference () {
     this.filteredAwaitingList.forEach((awaitList: any, index) => {
-      const tmp = (index > 0) ? 1630669362000 : 1630933928946;
-      const awaitingTimeStamp = tmp  + (7 * 24 * 60 * 60 * 1000);
-      this.timeDifference = awaitingTimeStamp - Date.now();
-      this.filteredAwaitingList[index].awaitingPeriod = (this.timeDifference > 0) ? this.allocateTimeUnits(this.timeDifference) : '-';
+      //const awaitingTimeStamp = tmp  + (7 * 24 * 60 * 60 * 1000);
+      this.timeDifference = awaitList.applicationExpiryDate - Date.now();
+      this.filteredAwaitingList[index].awaitingPeriod = (this.timeDifference > 0) ? this.allocateTimeUnits(this.timeDifference, true) : this.awaitingMsg;
     });
   }
 
-  allocateTimeUnits (timeDifference) {
+  allocateTimeUnits (timeDifference, isStaticTextEnabled) {
     const secondsToDay = Math.floor((timeDifference) / (this.milliSecondsInASecond) % this.SecondsInAMinute);
     const minutesToDay = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour) % this.SecondsInAMinute);
     const hoursToDay = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute) % this.hoursInADay);
@@ -338,7 +342,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     if(daysToDay > 0) {
       return daysToDay + ' days';
     } else {
-      return hoursToDay + ' hours' + minutesToDay + ' minutes';
+      return (isStaticTextEnabled) ? this.awaitingMsg : hoursToDay + ' hours ' + minutesToDay + ' minutes';
     }
   }
 }

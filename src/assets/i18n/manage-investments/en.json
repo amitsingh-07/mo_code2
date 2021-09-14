@@ -130,6 +130,7 @@
     "READ_MORE":"Read more",
     "READ_LESS" :"Read less",
     "AWAITING_TO_JOIN": "Awaiting Secondary Holder to join",
+    "PRIMARY_AWAITING_TIME": "Few hours left",
     "PRIMARY_AWAITING_PERIOD": "before invalid",
     "SEND_REMINDER": "Send Reminder",
     "WITHDRAW": "Withdraw",
