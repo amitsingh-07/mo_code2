@@ -28,8 +28,11 @@ app-confirm-portfolio {
                 color: $portfolio-allocation-container-txt-color;
                 border-radius: 6px;
                 .portfolio-allocation-details__content {
-                    margin-bottom: 10px;
+                    margin-bottom: 30px;
                     border-radius: 6px;
+                    @include allmobiles{
+                        margin-bottom: 10px;
+                    }
                     .portfolio-allocation-details__content__desc {
                         .portfolio_img {
                             text-align: center;
@@ -54,6 +57,18 @@ app-confirm-portfolio {
                             }
                             strong {
                                 font-family: $muli-bold;
+                            }
+                            &.wisesaver{
+                                padding: 38px 47px 37px 48px;
+                                @include allmobiles{
+                                    padding: 20px 30px;
+                                }
+                                div{
+                                    display: block;
+                                    @include allmobiles{
+                                        display: inline;
+                                    }
+                                }
                             }
                         }
                         .review-edit {
@@ -95,10 +110,39 @@ app-confirm-portfolio {
                 font-weight: 400;
                 letter-spacing: -0.2px;
                 text-align: center;
-                padding: 21px 0 45px;
+                padding: 21px 0 30px;
                 a {
                     color: $white-color;
                     text-decoration: underline;
+                }
+            }
+            &.ja-type{
+                .portfolio-info-container{
+                    border-radius: 6px;
+                }
+                hr{
+                    display: none;
+                }
+                .portfolio-allocation-details__content{
+                    display: none;
+                    &.white-bg{
+                        display: block;
+                    }
+                }
+                .wise-income-payout {
+                    .payout_container{
+                        .payout-bt{
+                            display: none;
+                        }
+                    }
+                }
+                .wise-income-fund{
+                    .fund-bt{
+                        display: none;
+                    }
+                }
+                .ja-disclaimer{
+                    display: block;
                 }
             }
         }
@@ -145,20 +189,29 @@ app-confirm-portfolio {
         letter-spacing: -0.34px;
         color: $white-color;
         margin: 30px 0 20px 0;
-      }
-      .wise-income-payout {
+    }
+    .wise-income-payout {
         margin-top:10px;
-      }
-      .tnc-checkbox {
-          @include desktop {
-            margin: 0 0 30px 10px;
-          }
-          @include allmobiles{
-            margin: 0 0 30px 0;
-          }
-          .title a {
-              text-decoration: underline !important;
-          }
-      }
-
+    }
+    .ja-disclaimer{
+        margin-bottom: 20px;
+        font-family: $muli-semi-bold;
+        font-size: 14px;
+        letter-spacing: -0.26px;
+        z-index: 1;
+        max-width: 780px;
+        display: none;
+        a{
+            color: $white-color;
+            text-decoration: underline;
+        }
+    }
+     
+    .tnc-checkbox {
+        margin-bottom: 30px;
+        .title a {
+            text-decoration: underline !important;
+        }
+    }
+    
 }

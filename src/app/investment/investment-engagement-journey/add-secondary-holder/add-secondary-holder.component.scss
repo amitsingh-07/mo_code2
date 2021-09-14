@@ -80,11 +80,6 @@ app-add-secondary-holder {
       line-height: normal;
       letter-spacing: -0.24px;
       margin-bottom: 20px;
-
-      u {
-        font-family: $muli-semi-bold;
-        cursor: pointer;
-      }
     }
 
     .major-tab-content {
@@ -100,6 +95,16 @@ app-add-secondary-holder {
     }
 
     .minor-tab-content {
+
+      .restrict-notice{
+        .flex-col-11{
+          line-height: normal;
+          padding: 0 10px 0 15px;
+          .desc-sub-lbl{
+            letter-spacing: -0.11px;
+          }
+        }
+      }
       .minor-details {
         margin-top: 35px;
 
