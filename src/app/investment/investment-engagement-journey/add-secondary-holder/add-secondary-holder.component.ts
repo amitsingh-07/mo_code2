@@ -60,6 +60,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   passportMinDate: any;
   passportMaxDate: any;
   taxInfoModal: any;
+  errorModalData: any;
   constructor(
     public authService: AuthenticationService,
     private investmentEngagementService: InvestmentEngagementJourneyService,
@@ -79,6 +80,7 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.tooltipDetails = this.translate.instant('BLOCKED_COUNTRY_TOOLTIP');
       this.helpData = this.translate.instant('SECONDARY_HOLDER.MAJOR.helpData');
       this.taxInfoModal = this.translate.instant('SECONDARY_HOLDER.MINOR.TAX_INFO');
+      this.errorModalData = this.translate.instant('SECONDARY_HOLDER.MAJOR.errorModalData');
       const today: Date = new Date();
       this.minDate = {
         year: today.getFullYear() - 100,
@@ -107,7 +109,7 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.activeTabId = 2;
       this.tabChange();
     }
-    if (this.secondaryHolderMajorFormValues && this.secondaryHolderMajorFormValues.isMinor) {
+    if (this.secondaryHolderMajorFormValues && !this.secondaryHolderMajorFormValues.isMinor) {
       this.activeTabId = 1;
       this.tabChange();
     }
@@ -338,10 +340,18 @@ export class AddSecondaryHolderComponent implements OnInit {
     if (this.secondaryHolderMajorForm.valid) {
       this.investmentEngagementService.setMinorSecondaryHolderData(null);
       this.investmentEngagementService.setMajorSecondaryHolderData(this.secondaryHolderMajorForm.value);
-      this.investmentEngagementService.validateMajorSecondaryHolder().subscribe(resp => {
-        this.secondaryHolderMajorForm.addControl('jaAccountId', new FormControl(resp.objectList));
-      });
-      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+      this.investmentEngagementService.saveMajorSecondaryHolder().subscribe(resp => {
+        if(resp.responseMessage.responseCode === 6000){
+          this.secondaryHolderMajorForm.addControl('jaAccountId', new FormControl(resp.objectList));
+          this.investmentEngagementService.setMajorSecondaryHolderData(this.secondaryHolderMajorForm.value);
+          this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+        }
+        else{
+          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.errorModalData.modalTitle;
+          ref.componentInstance.errorDescription = this.errorModalData.modalDesc;
+        }
+      });   
     }
   }
 
