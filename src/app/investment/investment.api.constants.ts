@@ -14,7 +14,7 @@ export let investmentApiConstants = {
             getAllocationDetails: INVESTMENT_API_BASE_URL + '/enquiries/$ENQUIRY_ID$/portfolios/recommend',
             getWiseSaverValues : INVESTMENT_API_BASE_URL + '/bfaConfigurationListByKey',
             getFundListMethod : INVESTMENT_API_BASE_URL + '/portfolio/$PORTFOLIO_TYPE_ID$/getFundList',
-            validateMajorSecondaryHolder : INVESTMENT_API_BASE_URL + '/jointAccount/validateSecondaryHolder'
+            saveMajorSecondaryHolder : ACCOUNT_API_BASE_URL + '/jointAccount/validateAndSaveMajorSecondaryHolder'
         },
         investmentAccount: {
             nationalityCountrylist: INVESTMENT_API_BASE_URL + '/groupedCountryList',
