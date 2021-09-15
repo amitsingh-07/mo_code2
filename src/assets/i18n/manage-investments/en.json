@@ -128,7 +128,28 @@
     },
     "WISE_INCOME_INFO":"<span class='txt-bold'>For WiseIncome clients who are eligible for dividend distribution:</span> As dividends are distributed, you may experience a drop in your portfolio value. This is normal behaviour and does not mean that you have sustained a loss on your investments. Your portfolio value and total returns will reflect the impact of the dividend reinvestment or payout by the first week of ",
     "READ_MORE":"Read more",
-    "READ_LESS" :"Read less"
+    "READ_LESS" :"Read less",
+    "AWAITING_TO_JOIN": "Awaiting Secondary Holder to join",
+    "PRIMARY_AWAITING_TIME": "Few hours left",
+    "PRIMARY_AWAITING_PERIOD": "before invalid",
+    "SEND_REMINDER": "Send Reminder",
+    "WITHDRAW": "Withdraw",
+    "ACCEPT_DECLINE": "Accept/Decline",
+    "APPLICATION_EXPIRED": "Application Expired",
+    "APPLICATION_DELETE": "Delete",
+    "APPLICATION_IN_PROGRESS": "Joint account application in progress",
+    "WITHDRAW_JOINT_ACCOUNT_APPLICATION": "Withdraw Joint Account Application",
+    "WITHDRAW_JOINT_ACCOUNT_APPLICATION_DESC": "Once withdrawn, the portfolio application will be removed from your account. You will need to <b>redo</b> the process if you wish to create a new portfolio.",
+    "CONFIRM_WITHDRAWAL": "Confirm Withdrawal",
+    "APPLICATION_NEEDS_VERIFICATION": "Joint account application needs verification",
+    "APPLICATION_VERIFY": "Verify",
+    "APPLICATION_DECLINED": "Application declined by secondary holder",
+    "PORTFOLIO_WITHDRAWN_BY_PRIMARY_HOLDER": "Portfolio withdrawn by primary holder",
+    "ONE_TIME_AMOUNT": "One-Time Amount",
+    "MONTHLY_AMOUNT": "Monthly Amount",
+    "DAYS": "days",
+    "MINUTES": "minutes",
+    "HOURS": "hours"
   },
   "YOUR_PORTFOLIO": {
     "TITLE": "Your Portfolio",
@@ -304,7 +325,7 @@
     "AFTER_WITHDRAWAL": "After Withdrawal:",
     "WITHDRAWAL_ERROR_CASH": "Withdrawal amount should not be more than the Cash Account Balance",
     "WITHDRAWAL_ERROR_PORTFOLIO": "Withdrawal amount should not be more than the Portfolio Balance",
-    "JOINT_ACCOUNT_DESC": "Please note that withdrawals to bank account for <strong>Joint Investment Portfolios</strong> are currently handled offline. Email <a target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> before 11am to process your request on the same business day.",
+    "JOINT_ACCOUNT_DESC": "If your personal bank account has not been added, please email <a target='_blank' href='mailto:clientsupport@moneyowl.com.sg'>clientsupport@moneyowl.com.sg</a> to update your bank details.",
     "PERSONAL_JOINT_ACCOUNT_DESC": "Please note that withdrawals to bank account for <strong>Personal Investment Portfolios</strong> are currently handled offline. Email <a target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> before 11am to process your request on the same business day.",
     "PENDING_WITHDRAWAL_ERROR": "Oops, your available portfolio balance is insufficient due to another withdrawal request that is in progress."
   },
@@ -452,7 +473,9 @@
   },
   "TOAST_MESSAGES": {
     "RENAME_PORTFOLIO_SUCCESS": "\"{{oldPortfolioName}}\" has been renamed to \"{{newPortfolioName}}\".",
-    "DELTE_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been Deleted."
+    "DELTE_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been Deleted.",
+    "WITHDRAW_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been withdrawn.",
+    "DELETE_PORTFOLIO_BY_HOLDER": "You have deleted \"{{userGivenPortfolioName}}\"."
   },
   "TRANSFER": {
     "TITLE": "Transfer between Cash Accounts",

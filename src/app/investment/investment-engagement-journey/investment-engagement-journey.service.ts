@@ -489,7 +489,7 @@ export class InvestmentEngagementJourneyService {
     return {
       nricOrPassport: formData?.nricNumber,
       email: formData?.email,
-      relationship: formData?.relationship.name
+      relationship: formData?.relationship?.id
     }
   }
 
@@ -529,10 +529,10 @@ export class InvestmentEngagementJourneyService {
     return taxInfo;
   }
 
-  // Validate Major Secondary Holder
-  validateMajorSecondaryHolder() {
+  // Save Major Secondary Holder
+  saveMajorSecondaryHolder() {
     const data = this.buildMajorHolderData();
-    return this.investmentApiService.validateMajorSecondaryHolder(data);
+    return this.investmentApiService.saveMajorSecondaryHolder(data);
   }
   // Save Minor Secondary Holder
   saveMinorSecondaryHolder() {
