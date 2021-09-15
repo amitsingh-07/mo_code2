@@ -1,4 +1,4 @@
-<div class="container-fluid max-width--1024 investment">
+<div class="container-fluid max-width--1024 investment" [ngClass]="{'edit-holder': navigationType}">
   <div class="content">
     <div class="row">
       <div class="col-lg-7 col-md-6 hidden-sm-md">
@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
-        <h6>{{'SECONDARY_HOLDER.PAGE_LBL' | translate}}</h6>
+        <h6 [ngClass]="{'edit-holder': navigationType}">{{'SECONDARY_HOLDER.PAGE_LBL' | translate}}</h6>
         <div class="secondary-holder-tabs">
           <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTabId">
             <ng-container [ngbNavItem]="1">

@@ -684,7 +684,7 @@ export class InvestmentAccountService {
   // MyInfo - Personal data
   setMyInfoPersonal(data) {
     if (data.uin) {
-      this.investmentAccountFormData.nricNumber = data.uin.toUpperCase();    
+      this.investmentAccountFormData.nricNumber = data.uin.toUpperCase();
       const nricStartChar = data.uin.charAt(0).toUpperCase();
       if (nricStartChar === 'S' || nricStartChar === 'T') {
         this.investmentAccountFormData.showForeignerAlert = false;
@@ -1453,6 +1453,10 @@ export class InvestmentAccountService {
     this.investmentAccountFormData.recommendedCustomerPortfolioId = data.recommendedCustomerPortfolioId;
     this.investmentAccountFormData.recommendedRiskProfileId = data.recommendedRiskProfileId;
     this.commit();
+  }
+
+  getCustomerPortfolioId() {
+    return this.investmentAccountFormData.recommendedCustomerPortfolioId;
   }
 
   setDefaultPortfolioName(portfolioName) {
