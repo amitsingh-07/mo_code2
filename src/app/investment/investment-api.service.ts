@@ -492,4 +492,11 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  //trigger action by primary/secondary holder 
+  setActionByHolder(data) {
+    return this.http.post(investmentApiConstants.endpoint.portfolio.setActionByHolder, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

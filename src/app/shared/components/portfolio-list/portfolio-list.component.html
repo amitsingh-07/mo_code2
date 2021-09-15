@@ -33,7 +33,7 @@
                                     <div class='col-md-6 awaiting-period mt10'>{{ portfolio.awaitingPeriod }} {{'YOUR_INVESTMENT.PRIMARY_AWAITING_PERIOD' | translate}}</div>
                                     <div class='col-md-6 ja-btn-group' *ngIf='portfolio.primaryHolder'>
                                         <button class="send-reminder-btn cursorPointer">{{'YOUR_INVESTMENT.SEND_REMINDER' | translate}}</button>
-                                        <button class="withdraw-btn cursorPointer ml10" (click)="withDrawModal(portfolio.portfolioName)">{{'YOUR_INVESTMENT.WITHDRAW' | translate}}</button>
+                                        <button class="withdraw-btn cursorPointer ml10" (click)="withDrawModal(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.WITHDRAW' | translate}}</button>
                                     </div>
                                     <div class='col-md-6 flex justify-right' *ngIf='!portfolio.primaryHolder'>
                                         <button class="accept-decline-btn cursorPointer">{{'YOUR_INVESTMENT.ACCEPT_DECLINE' | translate}}</button>                                        
@@ -194,7 +194,7 @@
                             </div>
                              <div class='col-md-6 ja-btn-group verify-btn-align'>
                                  <button class="send-reminder-btn cursorPointer">{{'YOUR_INVESTMENT.APPLICATION_VERIFY' | translate}}</button>
-                                 <button class="withdraw-btn cursorPointer ml10" (click)="withDrawModal(portfolio.portfolioName)">{{'YOUR_INVESTMENT.WITHDRAW' | translate}}</button>
+                                 <button class="withdraw-btn cursorPointer ml10" (click)="withDrawModal(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.WITHDRAW' | translate}}</button>
                              </div>
                          </div>
                      </div>

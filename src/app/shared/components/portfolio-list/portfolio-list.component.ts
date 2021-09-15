@@ -3,7 +3,6 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription, interval } from 'rxjs';
 
 import {
   InvestmentAccountService
@@ -299,7 +298,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     }
   }
 
-  withDrawModal(portfolioName) {
+  withDrawModal(portfolioName, customerPortfolioId) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.WITHDRAW_JOINT_ACCOUNT_APPLICATION');
     ref.componentInstance.errorMessage = this.translate.instant(
@@ -307,13 +306,14 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     );
     ref.componentInstance.primaryActionLabel = this.translate.instant('YOUR_INVESTMENT.CONFIRM_WITHDRAWAL');
     ref.componentInstance.primaryAction.subscribe(() => {
-      //this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO])      
-      const toastMessage: IToastMessage = {
-        isShown: true,
-        desc: this.translate.instant('TOAST_MESSAGES.WITHDRAW_PORTFOLIO_SUCCESS', {userGivenPortfolioName : portfolioName} ),       
-      };
-      this.manageInvestmentsService.setToastMessage(toastMessage);
-      this.emitToastMessage.emit(portfolioName);
+      //this.investmentEngagementService.setActionByHolder(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.WITHDRAWN).subscribe(resp => {     
+        const toastMessage: IToastMessage = {
+          isShown: true,
+          desc: this.translate.instant('TOAST_MESSAGES.WITHDRAW_PORTFOLIO_SUCCESS', {userGivenPortfolioName : portfolioName} ),       
+        };
+        this.manageInvestmentsService.setToastMessage(toastMessage);
+        this.emitToastMessage.emit(portfolioName);
+      //});
     });
   }
 

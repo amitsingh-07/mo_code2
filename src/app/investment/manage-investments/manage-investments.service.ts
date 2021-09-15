@@ -723,4 +723,11 @@ export class ManageInvestmentsService {
     });
     return isInvestAndJointAccountHolder;
   }
+  setActionByHolder(customerPortfolioId, jointAccountAction) {
+    const payload = {
+      customerPortfolioId: customerPortfolioId,
+      jointAccountAction: jointAccountAction      
+    };
+    return this.investmentApiService.setActionByHolder(payload);
+  }
 }
