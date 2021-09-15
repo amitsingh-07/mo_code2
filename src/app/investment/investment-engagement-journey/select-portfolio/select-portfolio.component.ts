@@ -13,12 +13,15 @@ import { LoaderService } from '../../../shared/components/loader/loader.service'
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { AuthenticationService } from '../../../shared/http/auth/authentication.service';
+import { InvestmentCommonService } from './../../investment-common/investment-common.service';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { SeoServiceService } from './../../../shared/Services/seo-service.service';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
+import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
 
 @Component({
   selector: 'app-select-portfolio',
@@ -50,6 +53,11 @@ export class SelectPortfolioComponent implements OnInit {
     dots: true,
     infinite: false,
   };
+  userPortfolioType: any;
+  fundingMethods: any;
+  loaderTitle: string;
+  loaderDesc: string;
+
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -60,6 +68,8 @@ export class SelectPortfolioComponent implements OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     public authService: AuthenticationService,
+    private investmentCommonService: InvestmentCommonService,
+    private investmentAccountService: InvestmentAccountService,
     private _location: Location,
     private formBuilder: FormBuilder,
     private modal: NgbModal,
@@ -75,6 +85,7 @@ export class SelectPortfolioComponent implements OnInit {
         this.translate.instant('START.META.META_DESCRIPTION'),
         this.translate.instant('START.META.META_KEYWORDS'));
     });
+    this.userPortfolioType = investmentEngagementJourneyService.getUserPortfolioType();
   }
 
   ngOnInit() {
@@ -86,6 +97,7 @@ export class SelectPortfolioComponent implements OnInit {
       selectPortfolioType: new FormControl(
         this.selectedPortfolioType, Validators.required)
     });
+    this.getOptionListCollection();
   }
   @HostListener('input', ['$event'])
 
@@ -100,11 +112,51 @@ export class SelectPortfolioComponent implements OnInit {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
     this.redirectToNextScreen();
   }
-  redirectToNextScreen() {
-    if (this.selectPortfolioForm.controls.selectPortfolioType && this.selectPortfolioForm.controls.selectPortfolioType.value === 'wiseIncomePortfolio') {
-      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.WISE_INCOME_PAYOUT]);
+  getOptionListCollection() {
+    this.loaderService.showLoader({
+      title: this.loaderTitle,
+      desc: this.loaderDesc
+    });
+    this.investmentAccountService.getSpecificDropList('portfolioFundingMethod').subscribe((data) => {
+      this.loaderService.hideLoader();
+      this.fundingMethods = data.objectList.portfolioFundingMethod;
+      this.investmentEngagementJourneyService.sortByProperty(this.fundingMethods, 'name', 'asc');
+
+    },
+      (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  }
+  getFundingMethodNameByName(fundingMethodName, fundingOptions) {
+    if (fundingMethodName && fundingOptions) {
+      const fundingMethod = fundingOptions.filter(
+        (prop) => prop.name.toUpperCase() === fundingMethodName.toUpperCase()
+      );
+      return fundingMethod[0].id;
     } else {
-      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
+      return '';
+    }
+  }
+  redirectToNextScreen() {
+    if(this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID){
+      const fundingMethod = this.getFundingMethodNameByName(INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CASH, this.fundingMethods);
+      this.investmentCommonService.setInitialFundingMethod({ initialFundingMethodId: fundingMethod });
+      if (this.selectPortfolioForm.controls.selectPortfolioType && this.selectPortfolioForm.controls.selectPortfolioType.value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
+        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+      }else if(this.selectPortfolioForm.controls.selectPortfolioType && this.selectPortfolioForm.controls.selectPortfolioType.value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO){
+        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.WISE_INCOME_PAYOUT]);
+      }
+       else {
+        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
+      }
+    }
+    else{
+      if (this.selectPortfolioForm.controls.selectPortfolioType && this.selectPortfolioForm.controls.selectPortfolioType.value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) {
+        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.WISE_INCOME_PAYOUT]);
+      } else {
+        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
+      }
     }
   }
   investPortfolio(event) {
