@@ -91,7 +91,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   goNext() {
     if (!this.createWillTriggered && this.willWritingService.checkDuplicateUinAll()) {
       this.createWillTriggered = true;
-      this.abtMeInfo.isEngSpeaker = !this.isNotEngSpeaker;
+      this.abtMeInfo.isEngSpeaker = true;
       this.willWritingService.setAboutMeInfo(this.abtMeInfo);
       if (this.authService.isSignedUser()) {
         let createUpdateWill;
