@@ -464,6 +464,17 @@ export class InvestmentEngagementJourneyService {
     return this.investmentEngagementJourneyFormData?.userPortfolioType;
   }
 
+  /* Set withdrawal account details for JA */
+  setWithdrawalAccountDetailsJA(withdrawalDetails) {
+    this.investmentEngagementJourneyFormData.withdrawalAccountJointAccount = withdrawalDetails;
+    this.commit();
+  }
+
+  /* Get withdrawal account details for JA */
+  getWithdrawalAccountDetailsJA() {
+    return this.investmentEngagementJourneyFormData?.withdrawalAccountJointAccount;
+  }
+
   setMajorSecondaryHolderData(majorHolderFormData) {
     this.investmentEngagementJourneyFormData.majorSecondaryHolderFormData = majorHolderFormData;
     this.commit();

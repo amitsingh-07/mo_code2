@@ -12,9 +12,9 @@ export let investmentApiConstants = {
             updateRiskAssessment: INVESTMENT_API_BASE_URL + '/RiskAssessment',
             getFinancialDetails: INVESTMENT_API_BASE_URL + '/customer/getFinancialDetailsForInvestment',
             getAllocationDetails: INVESTMENT_API_BASE_URL + '/enquiries/$ENQUIRY_ID$/portfolios/recommend',
-            getWiseSaverValues : INVESTMENT_API_BASE_URL + '/bfaConfigurationListByKey',
-            getFundListMethod : INVESTMENT_API_BASE_URL + '/portfolio/$PORTFOLIO_TYPE_ID$/getFundList',
-            validateMajorSecondaryHolder : INVESTMENT_API_BASE_URL + '/jointAccount/validateSecondaryHolder'
+            getWiseSaverValues: INVESTMENT_API_BASE_URL + '/bfaConfigurationListByKey',
+            getFundListMethod: INVESTMENT_API_BASE_URL + '/portfolio/$PORTFOLIO_TYPE_ID$/getFundList',
+            validateMajorSecondaryHolder: INVESTMENT_API_BASE_URL + '/jointAccount/validateSecondaryHolder'
         },
         investmentAccount: {
             nationalityCountrylist: INVESTMENT_API_BASE_URL + '/groupedCountryList',
@@ -48,16 +48,16 @@ export let investmentApiConstants = {
             getProfileSrsDetails: ACCOUNT_API_BASE_URL + '/customer/profile/getSrsBankDetails?handleError=true',
             saveProfileSrsAccountDetails: ACCOUNT_API_BASE_URL + '/customer/profile/$CUSTOMER_ID$/srsbankDetails',
             getInvestmentNote: INVESTMENT_API_BASE_URL + '/holiday/alert?handleError=true',
-            getCashPortfolioList :INVESTMENT_API_BASE_URL + '/customers/portfolios/cashAccountList',
-            getActionRequestToken:INVESTMENT_API_BASE_URL + '/portfolio/$CUSTOMER_PORTFOLIO_ID$/actions',
-            saveCashTransfer :INVESTMENT_API_BASE_URL + '/customer/transferCashAccount?handleError=true',
+            getCashPortfolioList: INVESTMENT_API_BASE_URL + '/customers/portfolios/cashAccountList',
+            getActionRequestToken: INVESTMENT_API_BASE_URL + '/portfolio/$CUSTOMER_PORTFOLIO_ID$/actions',
+            saveCashTransfer: INVESTMENT_API_BASE_URL + '/customer/transferCashAccount?handleError=true',
             getUserNricValidation: ACCOUNT_API_BASE_URL + '/customer/validateUin',
-            saveMinorSecondaryHolder : ACCOUNT_API_BASE_URL + '/secondary/saveCustomerDetails'
+            saveMinorSecondaryHolder: ACCOUNT_API_BASE_URL + '/secondary/saveCustomerDetails'
         },
         investment: {
             getUserAddress: ACCOUNT_API_BASE_URL + '/customer/address',
             getUserBankList: ACCOUNT_API_BASE_URL + '/customer/banks',
-            addProfileNewBank: ACCOUNT_API_BASE_URL + '/customer/bank?handleError=true',
+            addProfileNewBank: ACCOUNT_API_BASE_URL + '/customer/bank?customerPortfolioId=$CUSTOMER_PORTFOLIO_ID$&isJointAccount=$IS_JOINT_ACCOUNT$',
             addNewBank: INVESTMENT_API_BASE_URL + '/customer/bank?handleError=true',
             getTransactions: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/transactions/search',
             getStatement: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/statements/',
