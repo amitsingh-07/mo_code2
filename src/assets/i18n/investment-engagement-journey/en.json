@@ -424,6 +424,10 @@
       "helpData": {
         "modalTitle": "Type of Accounts",
         "modalDesc": "<p>A MoneyOwl Account allows our clients to use our service(s) through the online platform. The secondary holder can create an account <a class=\"hyperlink_color\" target='_blank' href='https://www.moneyowl.com.sg/app/accounts/sign-up'>here</a>.</p>After creating a MoneyOwl account, he/she will need to open a Personal Investment Account under the \"Investment & Savings\" card on the dashboard."
+      },
+      "errorModalData": {
+        "modalTitle": "Oops! Please verify your information again.",
+        "modalDesc": "The information you entered may be incorrect or the proposed secondary account holder does not have a MoneyOwl account and personal investment account.</br>Please verify again."
       }
     },
     "MINOR": {
