@@ -79,7 +79,6 @@ app-upload-document {
       display: flex;
       justify-content: space-between;
       flex: 1;
-      padding: 0 15px;
 
       .upload-desc {
         display: flex;
@@ -153,6 +152,16 @@ app-upload-document {
 
     .btn__footer--fixed {
       font-family: $muli-bold !important;
+    }
+
+    .title-small{
+      font-family: $muli;
+      font-size: 13px;
+      max-width: 340px;
+      a{
+        color: $white-color;
+        text-decoration: underline;
+      }
     }
   }
 }

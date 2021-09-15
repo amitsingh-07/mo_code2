@@ -564,13 +564,8 @@ export class InvestmentEngagementJourneyService {
     const selectedNationality = this.investmentEngagementJourneyFormData.minorSecondaryHolderFormData.nationality.nationalityCode;
     return (
       selectedNationality === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SINGAPORE_NATIONALITY_CODE 
-      //|| this.investmentEngagementJourneyFormData.minorSecondaryHolderFormData.nationalityCode
+       || this.investmentEngagementJourneyFormData.minorSecondaryHolderFormData.singaporeanResident
     );
-    // const selectedNationality = this.investmentEngagementJourneyFormData.personalInfo.nationalityCode.toUpperCase();
-    // return (
-    //   selectedNationality === INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_NATIONALITY_CODE ||
-    //   this.investmentEngagementJourneyFormData.singaporeanResident
-    // );
   }
 
    // Upload Document

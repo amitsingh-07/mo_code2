@@ -42,6 +42,7 @@ export class UploadDocumentComponent implements OnInit {
   nricDiv=false;
   dobDiv=false;
   passportDiv=false;
+  uploadContent = false;
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
     public readonly translate: TranslateService,
@@ -57,7 +58,7 @@ export class UploadDocumentComponent implements OnInit {
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('UPLOAD_DOCUMENTS.TITLE');
+      this.pageTitle = this.translate.instant('UPLOAD_DOCUMENTS.PAGE_TITLE');
       this.setPageTitle(this.pageTitle);
       this.defaultThumb = INVESTMENT_ACCOUNT_CONSTANTS.upload_documents.default_thumb;
     });
@@ -65,7 +66,7 @@ export class UploadDocumentComponent implements OnInit {
     
   }
   buildListForSingapore(){
-    this.uploadDocumentList = [{"name":"NRIC","value":"NRIC"},{"name":"dateofBirth","value":"dateofBirth"}];
+    this.uploadDocumentList = [{"name":"NRIC","value":"NRIC"},{"name":"Birth Certificate","value":"Birth Certificate"}];
   }
 
   buildListForOtherCountry(){
@@ -82,8 +83,6 @@ export class UploadDocumentComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.isUserNationalitySingapore = this.investmentEngagementJourneyService.isSingaporeResident();
     this.formValues = this.investmentEngagementJourneyService.getMinorSecondaryHolderData();
-    
-    //this.addOrRemoveMailingAddressproof();
     this.investmentAccountService.loadInvestmentAccountRoadmap(true);
 
     this.uploadFormValues = this.isUserNationalitySingapore
@@ -96,13 +95,12 @@ export class UploadDocumentComponent implements OnInit {
   }
 
   setDropDownValue(event, key) {
-    console.log(event,'eventevent')
-    this.isUserNationalitySingapore
+    this.uploadContent = true;
+    setTimeout(() => {
+      this.isUserNationalitySingapore
       ? this.buildFormForSingapore(event)
       : this.buildFormForOtherCountry(event);
-    setTimeout(() => {
-    }, 100);
-    console.log(this.uploadForm,'uploadForm');
+    });
   }
 
   buildFormForSingapore(event) {
@@ -110,6 +108,8 @@ export class UploadDocumentComponent implements OnInit {
       this.nricDiv=true;
       this.dobDiv=false;
       this.uploadForm.controls['uploadDocument'].setValue(event);
+      this.uploadForm.removeControl('passportImage');
+      this.uploadForm.removeControl('birthCertificateImage');
       this.uploadForm.addControl(
       'nricFrontImage', new FormControl(this.formValues.nricFrontImage,Validators.required)
      );
@@ -117,12 +117,16 @@ export class UploadDocumentComponent implements OnInit {
       'nricBackImage', new FormControl(this.formValues.nricBackImage,Validators.required)
      );
   }
-  if(event.value == 'dateofBirth'){
+  if(event.value == 'Birth Certificate'){
     this.dobDiv=true;
     this.nricDiv=false;
+    this.passportDiv=false;
     this.uploadForm.controls['uploadDocument'].setValue(event);
+    this.uploadForm.removeControl('nricFrontImage');
+    this.uploadForm.removeControl('nricBackImage');
+    this.uploadForm.removeControl('passportImage');
     this.uploadForm.addControl(
-      'dateofBirthImage', new FormControl(this.formValues.dateofBirthImage,Validators.required)
+      'birthCertificateImage', new FormControl(this.formValues.birthCertificateImage,Validators.required)
      );
   }
 }
@@ -131,19 +135,15 @@ export class UploadDocumentComponent implements OnInit {
     if(event.value == 'Passport'){
       this.passportDiv=true;
       this.uploadForm.controls['uploadDocument'].setValue(event);
+      this.uploadForm.removeControl('nricFrontImage');
+      this.uploadForm.removeControl('nricBackImage');
+      this.uploadForm.removeControl('birthCertificateImage');
        this.uploadForm.addControl(
       'passportImage', new FormControl(this.formValues.passportImage,Validators.required)
      );
   }
   }
-  addOrRemoveMailingAddressproof() {
-    if (!this.formValues.isMailingAddressSame) {
-      this.uploadForm.addControl(
-        'mailAdressProof',
-        new FormControl('', Validators.required)
-      );
-    }
-  }
+  
   getInlineErrorStatus(control) {
     return !control.pristine && !control.valid;
   }
@@ -215,7 +215,8 @@ export class UploadDocumentComponent implements OnInit {
       title: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE'),
       desc: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE')
     });
-   this.investmentEngagementJourneyService.uploadDocument(this.formData).subscribe((response) => {
+    this.formData.append('jointAccountDetailsId',this.formValues.jaAccountId);
+    this.investmentEngagementJourneyService.uploadDocument(this.formData).subscribe((response) => {
       this.loaderService.hideLoader();
       if (response) {
         this.redirectToNextPage();
