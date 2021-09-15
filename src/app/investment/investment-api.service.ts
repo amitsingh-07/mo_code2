@@ -478,8 +478,8 @@ export class InvestmentApiService {
   }
 
   // Major Secondary Holder validation
-  validateMajorSecondaryHolder(data) {
-    return this.http.post(investmentApiConstants.endpoint.portfolio.validateMajorSecondaryHolder, data)
+  saveMajorSecondaryHolder(data) {
+    return this.http.post(investmentApiConstants.endpoint.portfolio.saveMajorSecondaryHolder, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
