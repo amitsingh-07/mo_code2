@@ -325,7 +325,7 @@
     "AFTER_WITHDRAWAL": "After Withdrawal:",
     "WITHDRAWAL_ERROR_CASH": "Withdrawal amount should not be more than the Cash Account Balance",
     "WITHDRAWAL_ERROR_PORTFOLIO": "Withdrawal amount should not be more than the Portfolio Balance",
-    "JOINT_ACCOUNT_DESC": "Please note that withdrawals to bank account for <strong>Joint Investment Portfolios</strong> are currently handled offline. Email <a target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> before 11am to process your request on the same business day.",
+    "JOINT_ACCOUNT_DESC": "If your personal bank account has not been added, please email <a target='_blank' href='mailto:clientsupport@moneyowl.com.sg'>clientsupport@moneyowl.com.sg</a> to update your bank details.",
     "PERSONAL_JOINT_ACCOUNT_DESC": "Please note that withdrawals to bank account for <strong>Personal Investment Portfolios</strong> are currently handled offline. Email <a target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> before 11am to process your request on the same business day.",
     "PENDING_WITHDRAWAL_ERROR": "Oops, your available portfolio balance is insufficient due to another withdrawal request that is in progress."
   },

@@ -42,6 +42,7 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
   isRequestSubmitted = false;
   error2fa: any;
   activeRef: any;
+  customerPortfolioId: any;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
   private subscription: Subscription;
   isInvestAndJointAccountHolder;
@@ -69,12 +70,13 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
     this.navbarService.setNavbarMode(10);
     this.footerService.setFooterVisibility(false);
     this.getLookupList();
-    this.getUserBankList();
     this.getUserAddress();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
+    this.customerPortfolioId = this.formValues.selectedCustomerPortfolioId;
+    this.isInvestAndJointAccountHolder = this.manageInvestmentsService.isInvestAndJointAccount();
+    this.getUserBankList(this.customerPortfolioId,this.isInvestAndJointAccountHolder);
     this.userInfo = this.signUpService.getUserProfileInfo();
     this.fullName = this.userInfo.fullName ? this.userInfo.fullName : this.userInfo.firstName + ' ' + this.userInfo.lastName;
-    this.isInvestAndJointAccountHolder = this.manageInvestmentsService.isInvestAndJointAccount();
     this.signUpService.getEditProfileInfo()
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((data) => {
@@ -122,9 +124,9 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
       });
   }
 
-  getUserBankList() {
+  getUserBankList(customerPortfolioId, isJointAccount) {
     this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
-      this.manageInvestmentsService.getUserBankList().subscribe((data) => {
+      this.manageInvestmentsService.getUserBankList(customerPortfolioId, isJointAccount).subscribe((data) => {
         if (data.responseMessage.responseCode >= 6000) {
           this.userBankList = data.objectList;
           if (this.userBankList.length > 0) {
@@ -252,7 +254,7 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
         this.manageInvestmentsService.saveProfileNewBank(data).subscribe((response) => {
           this.isEdit = true;
           if (response.responseMessage.responseCode >= 6000) {
-            this.getUserBankList(); // refresh updated bank list
+            this.getUserBankList(this.customerPortfolioId, this.isInvestAndJointAccountHolder); // refresh updated bank list
           } else if (
             response.objectList &&
             response.objectList.serverStatus &&
@@ -304,7 +306,7 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
           data.accountNo, this.userBankList[index].id).subscribe((response) => {
             this.isEdit = true;
             if (response.responseMessage.responseCode >= 6000) {
-              this.getUserBankList(); // refresh updated bank list
+              this.getUserBankList(this.customerPortfolioId, this.isInvestAndJointAccountHolder); // refresh updated bank list
             } else if (
               response.objectList &&
               response.objectList.serverStatus &&

@@ -293,8 +293,8 @@ export class ManageInvestmentsService {
     this.commit();
   }
 
-  getUserBankList() {
-    return this.investmentApiService.getUserBankList();
+  getUserBankList(customerPortfolioId, isJointAccount) {
+    return this.investmentApiService.getUserBankList(customerPortfolioId, isJointAccount);
   }
 
   getUserAddress() {

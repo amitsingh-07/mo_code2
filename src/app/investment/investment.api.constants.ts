@@ -14,7 +14,7 @@ export let investmentApiConstants = {
             getAllocationDetails: INVESTMENT_API_BASE_URL + '/enquiries/$ENQUIRY_ID$/portfolios/recommend',
             getWiseSaverValues : INVESTMENT_API_BASE_URL + '/bfaConfigurationListByKey',
             getFundListMethod : INVESTMENT_API_BASE_URL + '/portfolio/$PORTFOLIO_TYPE_ID$/getFundList',
-            validateMajorSecondaryHolder : INVESTMENT_API_BASE_URL + '/jointAccount/validateSecondaryHolder',
+            saveMajorSecondaryHolder : ACCOUNT_API_BASE_URL + '/jointAccount/validateAndSaveMajorSecondaryHolder',
             setActionByHolder: INVESTMENT_API_BASE_URL + '/jointAccount/action'
         },
         investmentAccount: {
@@ -57,9 +57,9 @@ export let investmentApiConstants = {
         },
         investment: {
             getUserAddress: ACCOUNT_API_BASE_URL + '/customer/address',
-            getUserBankList: ACCOUNT_API_BASE_URL + '/customer/banks',
-            addProfileNewBank: ACCOUNT_API_BASE_URL + '/customer/bank?handleError=true',
-            addNewBank: INVESTMENT_API_BASE_URL + '/customer/bank?handleError=true',
+            getUserBankList: ACCOUNT_API_BASE_URL + '/customer/banks?customerPortfolioId=$CUSTOMER_PORTFOLIO_ID$&isJointAccount=$IS_JA_ACCOUNT$',
+            addProfileNewBank: ACCOUNT_API_BASE_URL + '/customer/bank?customerPortfolioId=30692&isJointAccount=true',
+            addNewBank: INVESTMENT_API_BASE_URL + '/customer/bank?customerPortfolioId=30692&isJointAccount=true',
             getTransactions: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/transactions/search',
             getStatement: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/statements/',
             monthlyInvestmentInfo: INVESTMENT_API_BASE_URL + '/customers/portfolios/$CUSTOMER_PORTFOLIO_ID$/CustomerInvestmentObjective',
