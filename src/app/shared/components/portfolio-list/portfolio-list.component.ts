@@ -85,6 +85,9 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   SecondsInAMinute  = 60;
   timeDifference: any;
   awaitingMsg: any;
+  days: any;
+  hours: any;
+  minutes: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -99,7 +102,10 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     private manageInvestmentsService: ManageInvestmentsService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => { 
-      this.awaitingMsg = this.translate.instant('YOUR_INVESTMENT.PRIMARY_AWAITING_TIME');      
+      this.awaitingMsg = this.translate.instant('YOUR_INVESTMENT.PRIMARY_AWAITING_TIME'); 
+      this.days = this.translate.instant('YOUR_INVESTMENT.DAYS');   
+      this.hours = this.translate.instant('YOUR_INVESTMENT.HOURS'); 
+      this.minutes = this.translate.instant('YOUR_INVESTMENT.MINUTES');      
     });
   }
 
@@ -130,21 +136,9 @@ export class PortfolioListComponent implements OnInit, OnChanges {
         if (portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING'
           || portfolio.portfolioStatus === 'REBALANCING') {
           this.investedList.push(portfolio);
-          /*const awaitingTimeStamp = 1630669362000;
-          console.log(Date.now());
-          portfolio.awaitingPeriod = '18 hours 47 minutes';
-          this.awaitingList.push(portfolio);
-          this.withdrawnList.push(portfolio);
-          this.declinedList.push(portfolio);
-          this.expiredList.push(portfolio);
-          this.progressList.push(portfolio);
-          this.verifyList.push(portfolio);*/
         } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.AWAITING) {
-          const awaitingTimeStamp = 1630669362000;
-          console.log(Date.now());
-          portfolio.awaitingPeriod = '18 hours 47 minutes';
+          portfolio.awaitingPeriod = '';
           this.awaitingList.push(portfolio);
-          console.log(portfolio);
         } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.WITHDRAWN) {
           this.withdrawnList.push(portfolio);
         } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.DECLINED) {
@@ -306,14 +300,14 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     );
     ref.componentInstance.primaryActionLabel = this.translate.instant('YOUR_INVESTMENT.CONFIRM_WITHDRAWAL');
     ref.componentInstance.primaryAction.subscribe(() => {
-      //this.investmentEngagementService.setActionByHolder(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.WITHDRAWN).subscribe(resp => {     
+      this.manageInvestmentsService.setActionByHolder(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.WITHDRAW).subscribe(resp => {     
         const toastMessage: IToastMessage = {
           isShown: true,
           desc: this.translate.instant('TOAST_MESSAGES.WITHDRAW_PORTFOLIO_SUCCESS', {userGivenPortfolioName : portfolioName} ),       
         };
         this.manageInvestmentsService.setToastMessage(toastMessage);
         this.emitToastMessage.emit(portfolioName);
-      //});
+      });
     });
   }
 
@@ -328,7 +322,6 @@ export class PortfolioListComponent implements OnInit, OnChanges {
 
   getTimeDifference () {
     this.filteredAwaitingList.forEach((awaitList: any, index) => {
-      //const awaitingTimeStamp = tmp  + (7 * 24 * 60 * 60 * 1000);
       this.timeDifference = awaitList.applicationExpiryDate - Date.now();
       this.filteredAwaitingList[index].awaitingPeriod = (this.timeDifference > 0) ? this.allocateTimeUnits(this.timeDifference, true) : this.awaitingMsg;
     });
@@ -340,9 +333,9 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     const hoursToDay = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute) % this.hoursInADay);
     const daysToDay = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute * this.hoursInADay));
     if(daysToDay > 0) {
-      return daysToDay + ' days';
+      return daysToDay + ' ' + this.days;
     } else {
-      return (isStaticTextEnabled) ? this.awaitingMsg : hoursToDay + ' hours ' + minutesToDay + ' minutes';
+      return (isStaticTextEnabled) ? this.awaitingMsg : hoursToDay + ' ' + this.hours + ' ' + minutesToDay + ' ' + this.minutes;
     }
   }
 }
