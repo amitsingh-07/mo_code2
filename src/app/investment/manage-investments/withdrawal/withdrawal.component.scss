@@ -26,6 +26,9 @@ app-withdrawal {
     .joint_account-note {
       font-family: $muli-italic;
       font-size: 13px;
+      @include iphoneX; @include iphone6 {
+        font-size: 12.5px;
+      }
       line-height: normal;
       letter-spacing: -0.14px;
       color: $dark-grey-color;

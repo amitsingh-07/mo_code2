@@ -45,12 +45,13 @@
             }
         },
         "USER_INPUT_SUB_TEXT": "Here's your projected portfolio value for <strong> {{ onetime }} one-time amount </strong> &amp; <strong> {{ monthly }} monthly amount </strong> for {{ period }} years.",
-        "WISE_SAVER_USER_INPUT_SUB_TEXT": "<div>You will be funding</div> <strong>{{ onetime }} for One-Time Investment </strong> and <strong>{{ monthly }} for Monthly Investment.</strong>",
+        "WISE_SAVER_USER_INPUT_SUB_TEXT": "You will be funding <div><strong> {{ onetime }}  for One-Time Investment </strong> and <strong> {{ monthly }} for Monthly Investment.</strong></div>",
         "REVIEW_INPUTS": "Review My Inputs",
         "ASSET_ALLOCATION": "Asset Allocation",
         "FUND_ASSET_ALLOCATION_LBL": "Fund Details & Asset Allocation",
         "ANNUAL_FEES": "Annual Fees",
         "FAQ_DESC_TEXT": "For more information, visit our FAQs.",
+        "JA_DISCLAIMER": "The doctrine of survivorship shall apply to accounts opened in joint names of more than one person. For more information refer to <a target='_blank' href=\"https://www.moneyowl.com.sg/faq-investment/#investment|3\">FAQ</a>.",
         "CONFIRM_SUB_TEXT": "By clicking on Confirm, you will add this portfolio to your account.",
         "INVESTMENT_FUND_CONDITION": "Please note that your investment only starts after you have created and funded your account.",
         "PORTFOLIO_PROJECTION_SUBTEXT": "Your investment returns may vary. The projected portfolio value ranges between {{ worst }} to {{ best }}. The average projected portfolio value is {{ median }}.",
@@ -266,5 +267,14 @@
     "COMMON_LOADER": {
         "TITLE": "Loading",
         "DESC": "Please wait while we load the data"
-    }
+    },
+    "CONFIRM_WITHDRAWAL": {
+        "STEP_NO": "Step 2",
+        "PAGE_TITLE" : "Confirm Withdrawal Account",
+        "DESC_LBL": "Withdrawal Bank Details",
+        "PERSONAL_ACCOUNT": {
+          "TITLE": "Personal Account",
+          "DESC": "Owner of this portfolio"
+        }
+      }
 }

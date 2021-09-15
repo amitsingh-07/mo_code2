@@ -404,10 +404,31 @@
   "SECONDARY_HOLDER": {
     "PAGE_TITLE": "Add Secondary Holder",
     "PAGE_LBL": "What is the age of secondary holder?",
+    "CONTINUE": "Continue",
+    "blockedCountry": {
+      "error_title": "Oops, Unable To Proceed",
+      "unitedStatesPRYes": "Due to compliance issues, MoneyOwl is unable to accept customers who are US Citizens, Permanent Residents or Tax Residents.",
+      "blockedCountryMessage": "Due to compliance issues, MoneyOwl is unable to accept customers from the selected country."
+    },
     "MAJOR": {
       "TAB_LBL": "18 & above",
       "DESC_LBL": "Secondary Holder Details",
-      "DESC_SUB_LBL": "Important: Do note that the proposed secondary investment account holder needs to have a MoneyOwl account and set up a personal investment portfolio before setting up a joint investment."
+      "DESC_SUB_LBL": "Important: Do note that the proposed secondary investment account holder needs to have a MoneyOwl account and set up a personal investment portfolio before setting up a joint investment.",
+      "NRIC_LBL": "NRIC / Passport Number",
+      "NRIC_LAST_4_CHAR": "Last 4 Chars",
+      "PLACEHOLDER_NRIC_LBL": "Enter Last 4 Chars",
+      "RELATIONSHIP": "Relationship",
+      "SELECT_RELATIONSHIP": "Select Relationship",
+      "EMAIL": "Email",
+      "EMAIL_PLACEHOLDER": "secondaryholder@gmail.com",
+      "helpData": {
+        "modalTitle": "Type of Accounts",
+        "modalDesc": "<p>A MoneyOwl Account allows our clients to use our service(s) through the online platform. The secondary holder can create an account <a class=\"hyperlink_color\" target='_blank' href='https://www.moneyowl.com.sg/app/accounts/sign-up'>here</a>.</p>After creating a MoneyOwl account, he/she will need to open a Personal Investment Account under the \"Investment & Savings\" card on the dashboard."
+      },
+      "errorModalData": {
+        "modalTitle": "Oops! Please verify your information again.",
+        "modalDesc": "The information you entered may be incorrect or the proposed secondary account holder does not have a MoneyOwl account and personal investment account.</br>Please verify again."
+      }
     },
     "MINOR": {
       "TAB_LBL": "Below 18",
@@ -418,7 +439,56 @@
       "YES_lABEL": "Yes",
       "NO_LABEL": "No",
       "QUESTION_TWO": "Is secondary holder a Singapore Permanent Resident?",
-      "IMPORTANT_NOTICE": "Important: Please note that we do not accept applications if you <u>reside or have tax residencies in the following restricted countries.</u>"
+      "IMPORTANT_NOTICE": "Important: Please note that we do not accept applications if you <u>reside or have tax residencies in the following restricted countries.</u>",
+      "PERSONAL_INFO":{
+        "FULL_NAME": "Full Name",
+        "FULL_NAME_NRIC": "as per NRIC",
+        "FULL_NAME_NRIC_BIRTH_CERT": "(as per NRIC/Birth Cert)",
+        "FULL_NAME_PASSPORT": "(as per Passport)",
+        "NRIC_NUMBER": "NRIC Number",
+        "NRIC_FORMAT": "e.g S****244F",
+        "NRIC_BIRTH_CERTIFICATE_NUMBER": "NRIC/ Birth Cert Number",
+        "PASSPORT_NUMBER": "Passport Number",
+        "PASSPORT_EXPIRY": "Passport Expiry",
+        "DOB": "Date of Birth",
+        "DOB_PATTERN": "DD / MM / YYYY",
+        "GENDER": "Gender",
+        "BIRTH_COUNTRY": "Country of Birth",
+        "PASSPORT_ISSUED_COUNTRY": "Passport Issued Country",
+        "COUNTRY_OF_ISSUE": "Country of Issued",
+        "RACE": "Race",
+        "SELECT_BIRTH_COUNTRY": "Select Country",
+        "SELECT_PASSPORT_ISSUED_COUNTRY": "Select Country",
+        "SELECT_RACE": "Select Race",
+        "RELATIONSHIP": "Relationship",
+        "SELECT_RELATIONSHIP": "Select Relationship"
+      },
+      "TAX_INFO": {
+        "CARD_TITLE": "Tax Residence",
+        "TITLE": "Tax Information",
+        "TAX_MODEL_TITLE": "Taxpayer Identification No.",
+        "TAX_MODEL_DESC": "<p>For Singapore Tax Residents, please note that your NRIC/FIN No. is your Taxpayer Identification No.</p><p>Taxpayer Identification No. is a personal tax account number that has been assigned to you by the country that you are a tax resident of. For more information, please refer to <a  class=\"hyperlink_color\" target='_blank' href='http://www.oecd.org'>http://www.oecd.org</a>.</p>",
+        "COUNTRY_TEXT": "Country Of Tax Residence",
+        "TIN_QUESTION": "Do you have a Taxpayer Identification Number (TIN) for the above country?",
+        "YES_lABEL": "Yes",
+        "NO_LABEL": "No",
+        "REASON_TEXT": "Reason",
+        "SELECT_REASON_TEXT": "Reason",
+        "TIN_TEXT": "TIN Number",
+        "CONTINUE": "Continue",
+        "COUNTRY_ERROR": "Country can not be same",
+        "COUNTRY_ERROR_MSG": "Please check your selected countries",
+        "SELECT_COUNTRY": "Select Country",
+        "TAX_OTHER_COUNTRY": "Are you paying tax in another country?",
+        "ADD_TAX_RESIDENCE": "Add Tax Residence",
+        "SG_COUNTRY_CODE": "SG",
+        "NRIC_HINT": "For Singaporean taxpayers, TIN is usually NRIC.",
+        "BLOCKED_COUNTRY_TOOLTIP": {
+          "TITLE": "We do not accept applications if you reside or have tax residencies in the following countries.",
+          "DESC": "Afghanistan, Albania, Algeria, Angola, Anguilla, Antigua and Barbuda, Argentina, Armenia, Azerbaijan, Bahamas, Bangladesh, Belarus, Belize, Benin, Bolivia, Bosnia-Herzegovina, Botswana, Brazil, Burkina Faso, Burundi, Cameroon, Cambodia, Cape Verde, Central African Republic, Chad, Columbia, Comoros, Congo (Brazzaville), Congo (The Democratic Republic), Cook Islands, Costa Rica, Cote D’Ivoire, Cuba, Curacao, Cyprus, Djibouti, Dominican Republic, Ecuador, Egypt, El Salvador, Equatorial Guinea, Eritrea, Ethiopia, Gabon, Gambia, Ghana, Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti, Honduras, Iceland, India, Iran (Islamic Republic of), Iraq, Jamaica, Kazakhstan, Kenya, Kosovo, Kyrgyzstan, Lao People’s Democratic Republic, Laos, Latvia, Lebanon, Liberia, Lesotho, Libya, Liechtenstein, Macau, Madagascar, Malawi, Maldives, Mali, Marshall Islands, Mauritania, Mexico, Moldova, Mongolia, Monaco, Morocco, Mozambique, Myanmar, Namibia, Nauru, Nepal, Nicaragua, Niger, Nigeria, Niue, North Korea, Pakistan, Palau, Panama, Papua New Guinea, Paraguay, Peru, Philippines, Russian Federation, Saudi Arabia, Senegal, Serbia, Seychelles, Sierra Leone, Somalia, South Sudan, Sri Lanka, St Kitts & Nevis, Sudan, Swaziland, Syria, Tajikistan, Tanzania, The Southern Philippines, The Sulu/Sulawesi, Seas Littoral, The Trans-Sahara, Timor-Leste, Togo, Trinidad and Tobago, Tunisia, Turkey, Turkmenistan, Uganda, Ukraine, United Arab Emirates, Uzbekistan, Vanuatu, Venezuela, Vietnam, West Bank (Palestinian Territory, Occupied), Yemen, Zambia, Zimbabwe.",
+          "GOT_IT": "Got It"
+        }
+      }
     }
   }
 }

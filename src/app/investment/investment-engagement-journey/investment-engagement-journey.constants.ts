@@ -35,6 +35,8 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
   },
   PORTFOLIO_TYPE: {
     JOINT_ACCOUNT: 'joint-account',
-    PERSONAL_ACCOUNT: 'personal-account'
+    JOINT_ACCOUNT_ID: '2',
+    PERSONAL_ACCOUNT: 'personal-account',
+    PERSONAL_ACCOUNT_ID: '1'
   }
 };

@@ -23,6 +23,9 @@ import {
 } from './../../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { MANAGE_INVESTMENTS_CONSTANTS } from '../../../investment/manage-investments/manage-investments.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from './../../../investment/investment-engagement-journey/investment-engagement-journey.constants';
+import { ModelWithButtonComponent } from './../../modal/model-with-button/model-with-button.component';
+import { IToastMessage } from '../../../investment/manage-investments/manage-investments-form-data';
+import { ManageInvestmentsService } from '../../../investment/manage-investments/manage-investments.service';
 
 @Component({
   selector: 'app-portfolio-list',
@@ -37,11 +40,24 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   monthlyInvestment: any;
   investedList: any;
   notInvestedList: any;
+  awaitingList: any;
+  withdrawnList: any;
+  declinedList: any;
+  expiredList: any;
+  progressList: any;
+  verifyList: any;
   showAllForInvested: boolean;
   showAllForNotInvested: boolean;
   topClickedFlag: boolean;
   totalPortfoliosLength: number;
   newMessageForRebalance = false;
+  showAllForAwaited: boolean;
+  showAllForWithdrawn: boolean;
+  showAllForDeclined: boolean;
+  showAllForExpired: boolean;
+  showAllForProgress: boolean;
+  showAllForVerify: boolean;
+  portfolioTypes: any;
 
   @Input('portfolioList') portfolioList;
   @Input('showTotalReturn') showTotalReturn;
@@ -51,10 +67,27 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   @Output() detailSelected = new EventEmitter<boolean>();
   @Output() topUpSelected = new EventEmitter<boolean>();
   @Output() investAgainSelected = new EventEmitter<boolean>();
+  @Output() emitToastMessage = new EventEmitter<boolean>();
 
   // Filtered Portfolio List
   filteredInvestedList: any;
   filteredNotInvestedList: any;
+  filteredAwaitingList: any;
+  filteredWithdrawnList: any;
+  filteredDeclinedList: any;
+  filteredExpiredList: any;
+  filteredProgressList: any;
+  filteredVerifyList: any;
+ 
+  milliSecondsInASecond = 1000;
+  hoursInADay = 24;
+  minutesInAnHour = 60;
+  SecondsInAMinute  = 60;
+  timeDifference: any;
+  awaitingMsg: any;
+  days: any;
+  hours: any;
+  minutes: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -65,13 +98,20 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     private investmentAccountService: InvestmentAccountService,
     private investmentEngagementService: InvestmentEngagementJourneyService,
     private investmentCommonService: InvestmentCommonService,
-    private router: Router) {
+    private router: Router,
+    private manageInvestmentsService: ManageInvestmentsService) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => { });
+    this.translate.get('COMMON').subscribe((result: string) => { 
+      this.awaitingMsg = this.translate.instant('YOUR_INVESTMENT.PRIMARY_AWAITING_TIME'); 
+      this.days = this.translate.instant('YOUR_INVESTMENT.DAYS');   
+      this.hours = this.translate.instant('YOUR_INVESTMENT.HOURS'); 
+      this.minutes = this.translate.instant('YOUR_INVESTMENT.MINUTES');      
+    });
   }
 
   ngOnInit() {
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
+    this.portfolioTypes = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY_TYPE;
   }
 
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
@@ -85,15 +125,40 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   portfoioSpliter() {
     this.notInvestedList = [];
     this.investedList = [];
+    this.awaitingList = [];
+    this.withdrawnList = [];
+    this.declinedList = [];
+    this.expiredList = [];
+    this.progressList = [];
+    this.verifyList = [];
     if (this.portfolioList) {
       for (const portfolio of this.portfolioList) {
         if (portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING'
           || portfolio.portfolioStatus === 'REBALANCING') {
           this.investedList.push(portfolio);
-        } else {
+        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.AWAITING) {
+          portfolio.awaitingPeriod = '';
+          this.awaitingList.push(portfolio);
+        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.WITHDRAWN) {
+          this.withdrawnList.push(portfolio);
+        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.DECLINED) {
+          this.declinedList.push(portfolio);
+        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.EXPIRED) {
+          this.expiredList.push(portfolio);
+        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.IN_PROGRESS) {
+          this.progressList.push(portfolio);
+        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.VERIFY) {
+          this.verifyList.push(portfolio);
+        }  else {
           this.notInvestedList.push(portfolio);
         }
       }
+      this.investmentEngagementService.sortByProperty(this.awaitingList, 'createdDate', 'desc');
+      this.investmentEngagementService.sortByProperty(this.withdrawnList, 'createdDate', 'desc');
+      this.investmentEngagementService.sortByProperty(this.declinedList, 'createdDate', 'desc');
+      this.investmentEngagementService.sortByProperty(this.expiredList, 'createdDate', 'desc');
+      this.investmentEngagementService.sortByProperty(this.progressList, 'createdDate', 'desc');
+      this.investmentEngagementService.sortByProperty(this.verifyList, 'createdDate', 'desc');
       this.investmentEngagementService.sortByProperty(this.investedList, 'createdDate', 'desc');
       this.investmentEngagementService.sortByProperty(this.notInvestedList, 'createdDate', 'desc');
     }
@@ -177,8 +242,15 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     } else {
       this.filteredNotInvestedList = this.notInvestedList;
       this.filteredInvestedList = this.investedList;
+      this.filteredAwaitingList = this.awaitingList;
+      this.filteredWithdrawnList = this.withdrawnList; 
+      this.filteredDeclinedList = this.declinedList;
+      this.filteredExpiredList = this.expiredList;
+      this.filteredProgressList = this.progressList;
+      this.filteredVerifyList = this.verifyList;
       this.totalPortfoliosLength = this.portfolioList.length;
     }
+    this.getTimeDifference();
   }
 
   // Filter by category and calculate the new values
@@ -189,7 +261,25 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     this.filteredInvestedList = this.investedList.filter((portfolio) => {
       return portfolio['portfolioCategory'].toUpperCase() === category.toUpperCase();
     });
-    this.totalPortfoliosLength = this.filteredNotInvestedList.length + this.filteredInvestedList.length;
+    this.filteredAwaitingList = this.awaitingList.filter((portfolio) => {
+      return portfolio['portfolioCategory'].toUpperCase() === category.toUpperCase();
+    });
+    this.filteredWithdrawnList = this.withdrawnList.filter((portfolio) => {
+      return portfolio['portfolioCategory'].toUpperCase() === category.toUpperCase();
+    });
+    this.filteredDeclinedList = this.declinedList.filter((portfolio) => {
+      return portfolio['portfolioCategory'].toUpperCase() === category.toUpperCase();
+    });
+    this.filteredExpiredList = this.expiredList.filter((portfolio) => {
+      return portfolio['portfolioCategory'].toUpperCase() === category.toUpperCase();
+    });
+    this.filteredProgressList = this.progressList.filter((portfolio) => {
+      return portfolio['portfolioCategory'].toUpperCase() === category.toUpperCase();
+    });
+    this.filteredVerifyList = this.verifyList.filter((portfolio) => {
+      return portfolio['portfolioCategory'].toUpperCase() === category.toUpperCase();
+    });
+    this.totalPortfoliosLength = this.filteredNotInvestedList.length + this.filteredInvestedList.length + this.filteredAwaitingList.length + this.filteredWithdrawnList.length + this.filteredDeclinedList.length + this.filteredExpiredList.length + this.filteredProgressList.length + this.filteredVerifyList.length;
   }
 
   setBorderClass(portfolio) {
@@ -202,4 +292,50 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     }
   }
 
+  withDrawModal(portfolioName, customerPortfolioId) {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.WITHDRAW_JOINT_ACCOUNT_APPLICATION');
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'YOUR_INVESTMENT.WITHDRAW_JOINT_ACCOUNT_APPLICATION_DESC'
+    );
+    ref.componentInstance.primaryActionLabel = this.translate.instant('YOUR_INVESTMENT.CONFIRM_WITHDRAWAL');
+    ref.componentInstance.primaryAction.subscribe(() => {
+      this.manageInvestmentsService.setActionByHolder(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.WITHDRAW).subscribe(resp => {     
+        const toastMessage: IToastMessage = {
+          isShown: true,
+          desc: this.translate.instant('TOAST_MESSAGES.WITHDRAW_PORTFOLIO_SUCCESS', {userGivenPortfolioName : portfolioName} ),       
+        };
+        this.manageInvestmentsService.setToastMessage(toastMessage);
+        this.emitToastMessage.emit(portfolioName);
+      });
+    });
+  }
+
+  deleteByHolder(portfolioName) {
+    const toastMessage: IToastMessage = {
+      isShown: true,
+      desc: this.translate.instant('TOAST_MESSAGES.DELETE_PORTFOLIO_BY_HOLDER', {userGivenPortfolioName : portfolioName} ),       
+    };
+    this.manageInvestmentsService.setToastMessage(toastMessage);
+    this.emitToastMessage.emit(portfolioName);
+  }
+
+  getTimeDifference () {
+    this.filteredAwaitingList.forEach((awaitList: any, index) => {
+      this.timeDifference = awaitList.applicationExpiryDate - Date.now();
+      this.filteredAwaitingList[index].awaitingPeriod = (this.timeDifference > 0) ? this.allocateTimeUnits(this.timeDifference, true) : this.awaitingMsg;
+    });
+  }
+
+  allocateTimeUnits (timeDifference, isStaticTextEnabled) {
+    const secondsToDay = Math.floor((timeDifference) / (this.milliSecondsInASecond) % this.SecondsInAMinute);
+    const minutesToDay = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour) % this.SecondsInAMinute);
+    const hoursToDay = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute) % this.hoursInADay);
+    const daysToDay = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute * this.hoursInADay));
+    if(daysToDay > 0) {
+      return daysToDay + ' ' + this.days;
+    } else {
+      return (isStaticTextEnabled) ? this.awaitingMsg : hoursToDay + ' ' + this.hours + ' ' + minutesToDay + ' ' + this.minutes;
+    }
+  }
 }
