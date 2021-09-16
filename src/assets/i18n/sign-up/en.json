@@ -490,7 +490,10 @@
       "PENDING": "Pending investment account application to complete",
       "LINK_LBL": "Link",
       "LINKED_LBL": "Linked"
-    }
+    },
+    "JA_BANK_INFO": "Bank Account (Joint Investment)",
+    "PORTFOLIO_NAME": "Portfolio Name",
+    "HOLDER_NAMES": "Holder Name(s)"
   },
   "ADD_BANK": {
     "ACCOUNT_NAME": "Account Holders Name",

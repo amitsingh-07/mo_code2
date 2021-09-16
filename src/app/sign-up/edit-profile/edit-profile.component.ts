@@ -31,6 +31,7 @@ import {
   ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { TitleCasePipe } from '@angular/common';
+import { CustomerJointAccountInfo } from '../signup-types';
 
 @Component({
   selector: 'app-edit-profile',
@@ -47,6 +48,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   residentialAddress: any;
   empolymentDetails: any;
   bankDetails: any;
+  customerJointAccBankDetails: CustomerJointAccountInfo[] = [];
   mailingAddress: any;
   contactDetails: any;
   employerAddress: any;
@@ -62,6 +64,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   pageTitle: any;
   investmentStatus: string;
   showBankInfo = false;
+  showJAccInfo = false;
   dobFormat: any;
   private subscription: Subscription;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
@@ -261,7 +264,11 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           if (data.objectList.customerBankDetail) {
             this.bankDetails = data.objectList.customerBankDetail[0];
           }
+          if (data.objectList.customerJointAccountBankDetail) {
+            this.customerJointAccBankDetails = data.objectList.customerJointAccountBankDetail;
+          }
           this.showBankInfo = data.objectList.cashPortfolioAvailable ? data.objectList.cashPortfolioAvailable : false;
+          this.showJAccInfo = data.objectList.jointAccount ? data.objectList.jointAccount : false;
 
           // Hidden the mailing address for future use
           // if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
