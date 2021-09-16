@@ -301,7 +301,7 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
       if (this.isEdit) {
         this.isEdit = false;
         this.manageInvestmentsService.updateBankInfo(data.bank, data.accountHolderName,
-          data.accountNo, this.userBankList[index].id).subscribe((response) => {
+          data.accountNo, this.userBankList[index].id, null, null).subscribe((response) => {
             this.isEdit = true;
             if (response.responseMessage.responseCode >= 6000) {
               this.getUserBankList(); // refresh updated bank list

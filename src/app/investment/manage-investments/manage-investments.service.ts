@@ -303,7 +303,7 @@ export class ManageInvestmentsService {
 
   saveProfileNewBank(data) {
     const payload = this.constructSaveNewBankRequest(data);
-    return this.apiService.saveNewBankProfile(payload);
+    return this.apiService.saveNewBankProfile(payload, data.customerPortfolioId, data.isJointAccount);
   }
 
   constructSaveNewBankRequest(data) {
@@ -313,10 +313,10 @@ export class ManageInvestmentsService {
     request['accountNumber'] = data.accountNo;
     return request;
   }
-  updateBankInfo(bank, fullName, accountNum, id) {
+  updateBankInfo(bank, fullName, accountNum, id, customerPortfolioId, isJointAccount) {
     // API Call here
     const data = this.constructUpdateBankPayload(bank, fullName, accountNum, id);
-    return this.apiService.saveNewBankProfile(data);
+    return this.apiService.saveNewBankProfile(data, customerPortfolioId, isJointAccount);
   }
   // tslint:disable-next-line:no-identical-functions
   constructUpdateBankPayload(bank, fullName, accountNum, id) {
@@ -706,7 +706,7 @@ export class ManageInvestmentsService {
     this.manageInvestmentsFormData.TransferAll = null;
     this.commit();
   }
-  
+
   getWrapFeeDetails(customerId) {
     const payload = {
       customer_id: customerId,
