@@ -21,7 +21,7 @@ import { InvestmentCommonService } from '../../investment-common/investment-comm
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
-
+import {INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS} from '../investment-engagement-journey.constants';
 @Component({
   selector: 'app-upload-document',
   templateUrl: './upload-document.component.html',
@@ -66,11 +66,11 @@ export class UploadDocumentComponent implements OnInit {
     
   }
   buildListForSingapore(){
-    this.uploadDocumentList = [{"name":"NRIC","value":"NRIC"},{"name":"Birth Certificate","value":"Birth Certificate"}];
+    this.uploadDocumentList = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.UPLOAD_SINGAPOREAN_DOC_LIST;
   }
 
   buildListForOtherCountry(){
-    this.uploadDocumentList = [{"name":"Passport","value":"Passport"}];
+    this.uploadDocumentList = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.UPLOAD_NON_SINGAPOREAN_DOC_LIST;
   }
 
   setPageTitle(title: string) {
