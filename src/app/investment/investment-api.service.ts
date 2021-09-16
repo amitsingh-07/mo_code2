@@ -492,4 +492,12 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  // Accept secondary holder portfolio
+  acceptAndGetPortfolioDetails(customerPortfolioId) {
+    return this.http.get(investmentApiConstants.endpoint.portfolio.acceptJAPortfolio.replace('$customerPortfolioId$', customerPortfolioId))
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

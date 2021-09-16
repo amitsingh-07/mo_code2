@@ -2,6 +2,30 @@
 @import '../../../../mixins';
 app-confirm-portfolio {
     .app-confirm-portfolio {
+        .accept-holder{
+            letter-spacing: -0.31px;
+            text-align: center;
+            color: $white-color;
+            .ja-sub-lbl{
+                font-size: 24px;
+                line-height: normal;
+                letter-spacing: -0.18px;
+                margin-bottom: 20px;
+            }
+            .txt-bold{
+                font-family: $muli-bold;
+            }
+            .desc-lbl{
+                letter-spacing: -0.3px;
+                max-width: 670px;
+                margin: 0 auto 30px;
+                .ja-icon{
+                    width: 12px;
+                    height: 11px;
+                    margin-right: 5px;
+                }
+            }
+        }
         .container-fluid {
             @include allmobiles {
                 padding-right: 15px !important;
@@ -213,5 +237,36 @@ app-confirm-portfolio {
             text-decoration: underline !important;
         }
     }
-    
+    .accept-holder-btn-block{
+        flex-direction: column;
+        padding-bottom: 15px;
+        @include allmobiles{
+            padding-bottom: 0;
+            margin-bottom: -46px;
+            z-index: 1;
+        }
+        .btn{
+            width: 340px;
+            font-family: $muli-bold;
+            @include allmobiles{
+                width: 100%;
+            }
+        }
+        .btn-orange{
+            padding: 0.9rem;
+            font-size: 22px;
+            letter-spacing: -0.16px;
+            box-shadow: 0 12px 14px 0 rgb(0 0 0 / 21%) !important;
+            @include allmobiles{
+                letter-spacing: -0.17px;
+            }
+        }
+        .btn-outline-primary{
+            border: 1px solid $white-color;
+            background: transparent;
+            color: $white-color;
+            box-shadow: none !important;
+            margin-top: 30px;
+        }
+    }
 }

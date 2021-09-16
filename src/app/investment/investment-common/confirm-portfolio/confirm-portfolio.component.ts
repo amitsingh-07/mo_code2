@@ -55,6 +55,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   userPortfolioType: any;
   isJAEnabled: boolean;
   tncCheckboxForm: FormGroup;
+  primaryHolderName : String;
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -100,6 +101,7 @@ export class ConfirmPortfolioComponent implements OnInit {
           this.authService.saveEnquiryId(data.objectList.enquiryId);
         }
         this.portfolio = data.objectList;
+        this.acceptAndGetPortfolioDetails();
         this.investmentCommonService.setPortfolioType(this.portfolio.portfolioType)
         this.investmentCommonService.setPortfolioDetails(this.portfolio);
         this.isJAEnabled = (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID);
@@ -319,5 +321,11 @@ export class ConfirmPortfolioComponent implements OnInit {
       windowClass: 'custom-full-height'
     });
     return false;
+  }
+  // accept to join
+  acceptAndGetPortfolioDetails(){
+    this.investmentCommonService.acceptAndGetPortfolioDetails(this.portfolio.customerPortfolioId).subscribe((data) => {
+      this.primaryHolderName = data.objectList.primaryHolderName;
+    });
   }
 }
