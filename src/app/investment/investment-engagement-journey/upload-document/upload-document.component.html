@@ -29,7 +29,7 @@
                       <div ngbDropdown>
                         <button class="btn btn-dropdown without-border" id="salutation-drpdown" ngbDropdownToggle>
                           <span *ngIf="!uploadForm.controls.uploadDocument.value">
-                            {{'UPLOAD_DOCUMENTS.TITLE'  | translate}}
+                            {{'UPLOAD_DOCUMENTS.DROP_DOWN_TITLE'  | translate}}
                           </span>
                           <span *ngIf="uploadForm.controls.uploadDocument.value">
                             {{uploadForm.controls.uploadDocument.value.name}}
