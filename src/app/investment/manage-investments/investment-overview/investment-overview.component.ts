@@ -478,4 +478,9 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     } 
   }
 
+  emitToastMessage($event) {    
+    this.toastMsg = this.manageInvestmentsService.getToastMessage();
+    this.showToastMessage();
+  }
+
 }

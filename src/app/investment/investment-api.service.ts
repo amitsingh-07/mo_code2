@@ -210,8 +210,10 @@ export class InvestmentApiService {
       );
   }
 
-  getUserBankList() {
-    return this.http.get(investmentApiConstants.endpoint.investment.getUserBankList)
+  getUserBankList(customerPortfolioId, isJointAccount) {
+    let url =investmentApiConstants.endpoint.investment.getUserBankList.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    url= url.replace('$IS_JA_ACCOUNT$', isJointAccount);
+    return this.http.get(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -488,6 +490,13 @@ export class InvestmentApiService {
   // Save Minor Secondary holder
   saveMinorSecondaryHolder(data) {
     return this.http.post(investmentApiConstants.endpoint.investmentAccount.saveMinorSecondaryHolder, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  //trigger action by primary/secondary holder 
+  setActionByHolder(data) {
+    return this.http.post(investmentApiConstants.endpoint.portfolio.setActionByHolder, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
