@@ -10,6 +10,7 @@ import { InvestmentApiService } from '../investment-api.service';
 import { InvestmentEngagementJourneyFormData } from './investment-engagement-journey-form-data';
 import { InvestmentEngagementJourneyFormErrors } from './investment-engagement-journey-form-errors';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from './investment-engagement-journey.constants';
+import {INVESTMENT_ACCOUNT_CONSTANTS} from '../investment-account/investment-account.constant';
 import { PersonalInfo } from './investment-period/investment-period';
 
 const PORTFOLIO_RECOMMENDATION_COUNTER_KEY = 'portfolio_recommendation-counter';
@@ -563,7 +564,7 @@ export class InvestmentEngagementJourneyService {
   isSingaporeResident() {
     const selectedNationality = this.investmentEngagementJourneyFormData.minorSecondaryHolderFormData.nationality.nationalityCode;
     return (
-      selectedNationality === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SINGAPORE_NATIONALITY_CODE 
+      selectedNationality === INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_NATIONALITY_CODE 
        || this.investmentEngagementJourneyFormData.minorSecondaryHolderFormData.singaporeanResident
     );
   }
