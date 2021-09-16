@@ -536,7 +536,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
     this.manageInvestmentsService.clearToastMessage();
     const toastMessage: IToastMessage = {
       isShown: true,
-      desc: this.translate.instant('TOAST_MESSAGES.DELTE_PORTFOLIO_SUCCESS', { userGivenPortfolioName: this.portfolio['portfolioName'] }),
+      desc: this.translate.instant('TOAST_MESSAGES.DELETE_PORTFOLIO_SUCCESS', { userGivenPortfolioName: this.portfolio['portfolioName'] }),
       link_label: '',
       link_url: '',
       id: this.portfolio.customerPortfolioId
