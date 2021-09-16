@@ -311,6 +311,10 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     });
   }
 
+  verify(customerPortfolioId){
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.ADD_SECONDARY_HOLDER_DETAILS+"/"+customerPortfolioId]);
+  }
+
   deleteByHolder(portfolioName) {
     const toastMessage: IToastMessage = {
       isShown: true,

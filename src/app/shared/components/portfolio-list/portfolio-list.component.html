@@ -193,7 +193,7 @@
                                     currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                             </div>
                              <div class='col-md-6 ja-btn-group verify-btn-align'>
-                                 <button class="send-reminder-btn cursorPointer">{{'YOUR_INVESTMENT.APPLICATION_VERIFY' | translate}}</button>
+                                 <button class="send-reminder-btn cursorPointer" (click)="verify(portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.APPLICATION_VERIFY' | translate}}</button>
                                  <button class="withdraw-btn cursorPointer ml10" (click)="withDrawModal(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.WITHDRAW' | translate}}</button>
                              </div>
                          </div>

@@ -115,6 +115,11 @@ const routes: Routes = [
     canActivate: [InvestmentEngagementJourneyGuard]
   },
   {
+    path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.ADD_SECONDARY_HOLDER + '/:customerPortfolioId',
+    component: AddSecondaryHolderComponent,
+    canActivate: [InvestmentEngagementJourneyGuard]
+  },
+  {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.JA_UPLOAD_DOCUMENT,
     component: UploadDocumentComponent,
     canActivate: [InvestmentEngagementJourneyGuard]

@@ -541,6 +541,11 @@ export class InvestmentEngagementJourneyService {
     return this.investmentApiService.saveMinorSecondaryHolder(data);
   }
 
+  // get verify details
+  getVerifyDetails(customerPortfolioId) {
+    return this.investmentApiService.getJointAccountVerifyDetails(customerPortfolioId);
+  }
+
   convertStringToDateObj(dateString) {
     let dateObj = new Date(dateString);
     return {
