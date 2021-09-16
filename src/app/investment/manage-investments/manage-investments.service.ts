@@ -293,8 +293,8 @@ export class ManageInvestmentsService {
     this.commit();
   }
 
-  getUserBankList() {
-    return this.investmentApiService.getUserBankList();
+  getUserBankList(customerPortfolioId, isJointAccount) {
+    return this.investmentApiService.getUserBankList(customerPortfolioId, isJointAccount);
   }
 
   getUserAddress() {
@@ -722,5 +722,12 @@ export class ManageInvestmentsService {
       }
     });
     return isInvestAndJointAccountHolder;
+  }
+  setActionByHolder(customerPortfolioId, jointAccountAction) {
+    const payload = {
+      customerPortfolioId: customerPortfolioId,
+      jointAccountAction: jointAccountAction      
+    };
+    return this.investmentApiService.setActionByHolder(payload);
   }
 }
