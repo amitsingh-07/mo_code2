@@ -286,6 +286,15 @@ export class InvestmentApiService {
       );
   }
 
+  // GET THE PORTFOLIO SUMMARY DETAILS FOR PORTFOLIO SUMMARY PAGE
+  getPortFolioSummaryDetails(customerPortfolioId) {
+    const url = investmentApiConstants.endpoint.portfolio.portfolioSummary.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.get(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   downloadStatement(data, customerPortfolioId) {
     const url = investmentApiConstants.endpoint.investment.getStatement.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
     return this.http.getBlob(url + data)

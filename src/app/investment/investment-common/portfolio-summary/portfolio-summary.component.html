@@ -1,0 +1,329 @@
+<div class="portfolio-naming-backdrop">
+  <div class="container-fluid max-width--1024">
+    <div class="portfolio-naming-wrapper">
+      <div class="portfolio-block">
+        <div class="portfolio-naming">
+          <div class="title">{{pageTitle}}</div>
+        </div>
+
+        <div class="review-text" style="border: 2px solid red;">
+          <div class="review-label"> {{'PORTFOLIO_SUMMARY.REVIEW_DETAILS_LABEL' |
+            translate}}</div>
+        </div>
+
+        <div class="summary-details">
+          <div class="primary-holder-details">
+            <div class="widget-body">
+              <div class="">
+                <div class="primary-holder">{{
+                              'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.DATE_OF_APPLICATION_TITLE' |
+                              translate}}</div>
+                <div class="primary-holder-value">{{summaryDetails?.dateOfApplication}}</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                          'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.PORTFOLIO_TYPE_TITLE' |
+                          translate}}</div>
+                <div class="primary-holder-value">Joint Account</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">
+                  <div> {{'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.PORTFOLIO_NAME_TEXT' |
+                          translate}}
+                  </div>
+                  <div class="edit-icon" (click)="editPortfolioName()">
+                    <img src="assets/images/comprehensive/comprehesive-edit-icon.svg">
+                  </div>
+                </div>
+                <div class="primary-holder-value">{{summaryDetails?.portfolioName}}</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                          'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.PORTFOLIO_TITLE' |
+                          translate}}</div>
+                <div class="primary-holder-value">{{summaryDetails?.portfolioType}}</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                          'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.FUNDING_METHOD_TITLE' |
+                          translate}}</div>
+                <div class="primary-holder-value">{{summaryDetails?.fundingMethod}}</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">
+                  <div> {{
+                          'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.FUNDING_AMOUNT_TITLE' |
+                          translate}}
+                  </div>
+                  <div class="edit-icon" (click)="editFundingMethod()">
+                    <img src="assets/images/comprehensive/comprehesive-edit-icon.svg">
+                  </div>
+                </div>
+                <div class="primary-holder-value">
+                  <div class="">
+                    <span>
+                      {{'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.ONE_TIME_AMOUNT_TITLE' |
+                      translate}}
+                    </span>
+                    <span>{{summaryDetails?.oneTimeAmount}}</span>
+                  </div>
+                  <div class="">
+                    <span>
+                      {{'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.MONTHLY_AMOUNT_TITLE' |
+                      translate}}
+                    </span>
+                    <span>{{summaryDetails?.monthlyAmount}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">
+                  <div>{{
+                          'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.PROMO_CODE_TITLE' |
+                          translate}}
+                  </div>
+                  <div class="edit-icon" (click)="editPromoCode()">
+                    <img src="assets/images/comprehensive/comprehesive-edit-icon.svg">
+                  </div>
+                </div>
+                <div class="primary-holder-value">123456789</div>
+              </div>
+
+              <div class="change-portfolio mt30">
+                <span>
+                  {{
+                    'PORTFOLIO_SUMMARY.CHANGE_PORTFOLIO_BUTTON_TEXT' |
+                    translate}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-details mt20">
+          <div class="primary-holder-details">
+            <div class="widget-title">
+              <span>{{ 'PORTFOLIO_SUMMARY.PRIMARY_HOLDER.TITLE' |
+                      translate}}</span>
+            </div>
+            <div class="widget-body">
+              <div class="">
+                <div class="primary-holder">{{
+                      'PORTFOLIO_SUMMARY.PRIMARY_HOLDER.NAME_TEXT' |
+                      translate}}</div>
+                <div class="primary-holder-value">{{summaryDetails?.primaryHolderName}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-details mt20" *ngIf="secondaryHolderMajorFormValues">
+          <div class="primary-holder-details">
+            <div class="widget-title">
+              <span>{{ 'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MAJOR.TITLE' |
+                        translate}}</span>
+              <span class="edit-icon" (click)="ediMajorHolderDetails()">
+                <img src="assets/images/comprehensive/comprehesive-edit-icon.svg">
+              </span>
+            </div>
+            <div class="widget-body">
+              <div class="">
+                <div class="primary-holder">{{
+                            'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MAJOR.NAME_TEXT' |
+                            translate}}</div>
+                <div class="primary-holder-value">Steven Goh</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                        'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MAJOR.NRIC_PASSPORT_NO_TEXT' |
+                        translate}}</div>
+                <div class="primary-holder-value">{{secondaryHolderMajorFormValues.nricNumber}}</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                        'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MAJOR.RELATIONSHIP_TEXT' |
+                        translate}}</div>
+                <div class="primary-holder-value">{{secondaryHolderMajorFormValues.relationship.name}}</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                        'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MAJOR.EMAIL_TEXT' |
+                        translate}}</div>
+                <div class="primary-holder-value">{{secondaryHolderMajorFormValues.email}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-details mt20" *ngIf="secondaryHolderMinorFormValues">
+          <div class="primary-holder-details">
+            <div class="widget-title">
+              <span>{{ 'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.TITLE' |
+                          translate}}</span>
+              <span class="edit-icon" (click)="editMinorHolderDetails()">
+                <img src="assets/images/comprehensive/comprehesive-edit-icon.svg">
+              </span>
+            </div>
+            <div class="widget-body">
+              <div class="">
+                <div class="primary-holder">{{
+                              'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.NATIONALITY_TEXT' |
+                              translate}}</div>
+                <div class="primary-holder-value">Singaporean</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                          'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.US_PR_TEXT' |
+                          translate}}</div>
+                <div class="primary-holder-value">No</div>
+              </div>
+
+              <!-- CHANGE NAME TEXT AS PER FOREIGNER AND SINGAPORE PR -->
+              <div class="mt15">
+                <div class="primary-holder">{{
+                          'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.NAME_AS_PER_BIRTH_CERT_TEXT' |
+                          translate}}</div>
+                <div class="primary-holder-value">{{secondaryHolderMinorFormValues.fullName}}</div>
+              </div>
+
+              <!-- START OF SINGAPORE PR FIELDS -->
+              <div class="mt15">
+                <div class="primary-holder">{{
+                          'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.NRIC_BIRT_CERT_TEXT' |
+                          translate}}</div>
+                <div class="primary-holder-value">XXXXX852T</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                            'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.ISSUED_COUNTRY_TEXT' |
+                            translate}}</div>
+                <div class="primary-holder-value">Singapore</div>
+              </div>
+              <!-- END OF SINGAPORE PR FIELDS -->
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                            'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.DOB_TEXT' |
+                            translate}}</div>
+                <div class="primary-holder-value">20 Dec 1995</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                            'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.GENDER_TEXT' |
+                            translate}}</div>
+                <div class="primary-holder-value">{{secondaryHolderMinorFormValues.gender}}</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                            'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.BIRTH_COUNTRY_TEXT' |
+                            translate}}</div>
+                <div class="primary-holder-value">{{secondaryHolderMinorFormValues.birthCountry.name}}</div>
+              </div>
+
+              <!-- START OF FOREIGNER FIELDS -->
+              <div class="mt15">
+                <div class="primary-holder">{{
+                            'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.PASSPORT_NO_TEXT' |
+                            translate}}</div>
+                <div class="primary-holder-value">K0000000E</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                            'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.ISSUED_COUNTRY_TEXT' |
+                            translate}}</div>
+                <div class="primary-holder-value">{{secondaryHolderMinorFormValues.issuedCountry.name}}</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                            'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.PASSPORT_EXPIRY_TEXT' |
+                            translate}}</div>
+                <div class="primary-holder-value">20 Jun 2022</div>
+              </div>
+              <!-- END OF FOREIGNER FIELDS -->
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                            'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.RACE_TEXT' |
+                            translate}}</div>
+                <div class="primary-holder-value">{{secondaryHolderMinorFormValues.race.name}}</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                            'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.RELATIONSHIP_TEXT' |
+                            translate}}</div>
+                <div class="primary-holder-value">{{secondaryHolderMinorFormValues.relationship.name}}</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                            'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.FIRST_TAX_RESIDENCE_COUNTRY_TEXT' |
+                            translate}}</div>
+                <div class="primary-holder-value">Singapore</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                            'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.TIN_TEXT' |
+                            translate}}</div>
+                <div class="primary-holder-value">Yes</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                            'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.TIN_NO_TEXT' |
+                            translate}}</div>
+                <div class="primary-holder-value">XXXXX6789</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                            'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.FIRST_TAX_RESIDENCE_COUNTRY_TEXT' |
+                            translate}}</div>
+                <div class="primary-holder-value">Malaysia</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                            'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.TIN_TEXT' |
+                            translate}}</div>
+                <div class="primary-holder-value">No</div>
+              </div>
+
+              <div class="mt15">
+                <div class="primary-holder">{{
+                            'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.NO_TIN_REASON_TEXT' |
+                            translate}}</div>
+                <div class="primary-holder-value">I am unable to obtain a TIN or equivalent number.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="">
+          <app-bank-details [bankDetails]="withdrawalBankDetails"></app-bank-details>
+        </div>
+
+        <div class="mt30">
+          <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary width100">{{
+      'PORTFOLIO_SUMMARY.CONTINUE' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

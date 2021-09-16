@@ -15,6 +15,7 @@ import {
 } from './funding-instructions/funding-instructions.component';
 import { InvestmentCommonGuardService } from './investment-common-guard.service';
 import { INVESTMENT_COMMON_ROUTES } from './investment-common-routes.constants';
+import { PortfolioSummaryComponent } from './portfolio-summary/portfolio-summary.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,11 @@ const routes: Routes = [
     path: INVESTMENT_COMMON_ROUTES.FUNDING_ACCOUNT_DETAILS,
     component: FundingAccountDetailsComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: INVESTMENT_COMMON_ROUTES.PORTFOLIO_SUMMARY,
+    component: PortfolioSummaryComponent,
+    // canActivate: [AuthGuard]
   },
   {
     path: INVESTMENT_COMMON_ROUTES.CONFIRM_WITHDRAWAL,
