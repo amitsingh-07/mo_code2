@@ -136,18 +136,18 @@ export class PortfolioListComponent implements OnInit, OnChanges {
         if (portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING'
           || portfolio.portfolioStatus === 'REBALANCING') {
           this.investedList.push(portfolio);
-        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.AWAITING) {
+        } else if(portfolio.jointAccount && portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.AWAITING) {
           portfolio.awaitingPeriod = '';
           this.awaitingList.push(portfolio);
-        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.WITHDRAWN) {
+        } else if(portfolio.jointAccount && !portfolio.primaryHolder && portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.WITHDRAWN) {
           this.withdrawnList.push(portfolio);
-        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.DECLINED) {
+        } else if(portfolio.jointAccount && portfolio.primaryHolder && portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.DECLINED) {
           this.declinedList.push(portfolio);
-        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.EXPIRED) {
+        } else if(portfolio.jointAccount && portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.EXPIRED) {
           this.expiredList.push(portfolio);
-        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.IN_PROGRESS) {
+        } else if(portfolio.jointAccount && portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.IN_PROGRESS) {
           this.progressList.push(portfolio);
-        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.VERIFY) {
+        } else if(portfolio.jointAccount && portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.VERIFY) {
           this.verifyList.push(portfolio);
         }  else {
           this.notInvestedList.push(portfolio);
