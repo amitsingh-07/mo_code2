@@ -744,11 +744,4 @@ export class AddSecondaryHolderComponent implements OnInit {
       return false;
     }
   }
-
-  verifyCall(){
-    var customerPortfolioId = 12345;
-    this.investmentEngagementService.getVerifyDetails(customerPortfolioId).subscribe(resp => {
-
-    });
-  }
 }

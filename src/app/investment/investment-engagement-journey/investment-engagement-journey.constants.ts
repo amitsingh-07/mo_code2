@@ -38,5 +38,7 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
     PERSONAL_ACCOUNT: 'personal-account',
     JOINT_ACCOUNT_ID: '2',
     PERSONAL_ACCOUNT_ID: '1'
-  }
+  },
+  UPLOAD_SINGAPOREAN_DOC_LIST : [{"name":"NRIC","value":"NRIC"},{"name":"Birth Certificate","value":"Birth Certificate"}],
+  UPLOAD_NON_SINGAPOREAN_DOC_LIST : [{"name":"Passport","value":"Passport"}]
 };
