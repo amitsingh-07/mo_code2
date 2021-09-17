@@ -114,6 +114,11 @@ const routes: Routes = [
     component: AddSecondaryHolderComponent,
     canActivate: [InvestmentEngagementJourneyGuard]
   },
+  {
+    path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.ADD_SECONDARY_HOLDER + '/:customerPortfolioId',
+    component: AddSecondaryHolderComponent,
+    canActivate: [InvestmentEngagementJourneyGuard]
+  },
   { path: '**', redirectTo: '/page-not-found' }
 ];
 

@@ -558,4 +558,13 @@ export class InvestmentEngagementJourneyService {
   }
 
   /* ******* END SECONDARY HOLDER FUNCTIONALITY AND METHODS******* */
+
+  /** VERIFY METHOD PREFILL DETAILS */
+  getVerifyDetails(customerPortfolioId, jointAccountAction) {
+    const payload = {
+      customerPortfolioId: customerPortfolioId,
+      jointAccountAction: jointAccountAction
+    };
+    return this.investmentApiService.setActionByHolder(payload);
+  }
 }

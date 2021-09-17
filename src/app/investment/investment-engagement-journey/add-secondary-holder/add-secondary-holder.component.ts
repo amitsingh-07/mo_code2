@@ -14,6 +14,7 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../investment-account/investment-account.constant';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
+import { INVESTMENT_COMMON_CONSTANTS } from './../../../investment/investment-common/investment-common.constants';
 
 @Component({
   selector: 'app-add-secondary-holder',
@@ -61,6 +62,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   passportMaxDate: any;
   taxInfoModal: any;
   errorModalData: any;
+  verifyApplicantData: any;
   constructor(
     public authService: AuthenticationService,
     private investmentEngagementService: InvestmentEngagementJourneyService,
@@ -118,6 +120,11 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.router.url);
+    if (this.router.url) {
+      var customerPortfolioId = 12345;
+      this.verifyCall(customerPortfolioId);
+    }
   }
 
   buildMinorForm() {
@@ -743,5 +750,53 @@ export class AddSecondaryHolderComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  verifyCall(customerPortfolioId) {
+    this.investmentEngagementService.getVerifyDetails(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.VERIFY).subscribe(resp => {
+      if (resp.responseMessage.responseCode === 6000) {
+        this.secondaryHolderMajorFormValues = null;
+        this.secondaryHolderMinorFormValues = null;
+        this.verifyApplicantData = resp.objectList;
+         //Major Major flow
+        if (this.verifyApplicantData.minor) {
+          this.activeTabId = 1;
+          this.secondaryHolderMajorForm.controls.email.setValue(this.verifyApplicantData.secondaryHolderEmail);
+          this.secondaryHolderMajorForm.controls.nric.setValue(this.verifyApplicantData.secondaryHolderNricOrPassport);
+          this.secondaryHolderMajorForm.controls.isMinor.setValue(this.verifyApplicantData.minor);
+
+        } else {//else - Major Minor
+          this.activeTabId = 2;
+          this.secondaryHolderMinorForm.controls.fullName.setValue(this.verifyApplicantData.minorSecondaryHolderSummary.fullName);
+          this.secondaryHolderMinorForm.controls.gender.setValue(this.verifyApplicantData.minorSecondaryHolderSummary.gender);
+          this.secondaryHolderMinorForm.controls.isMinor.setValue(this.verifyApplicantData.minor);
+          this.secondaryHolderMinorForm.controls.unitedStatesResident.setValue(this.verifyApplicantData.minorSecondaryHolderSummary.usPR);
+          this.secondaryHolderMinorForm.controls.singaporeanResident.setValue(this.verifyApplicantData.minorSecondaryHolderSummary.singaporePR);
+          this.secondaryHolderMinorForm.controls.dateOfBirth.setValue(this.verifyApplicantData.minorSecondaryHolderSummary.dob);
+          //this.secondaryHolderMinorForm.controls.taxDetails.setValue(this.verifyApplicantData.minorSecondaryHolderSum.);
+          this.secondaryHolderMinorForm.controls.tinNumber.setValue(this.verifyApplicantData.minorSecondaryHolderSummary.taxDetails.tinNumber);
+          this.secondaryHolderMinorForm.controls.noTinReason.setValue(this.verifyApplicantData.minorSecondaryHolderSummary.taxDetails.noTinReason);
+          this.secondaryHolderMinorForm.controls.tin.setValue(this.verifyApplicantData.minorSecondaryHolderSummary.taxDetails.isTinNumberPresent);
+         
+
+          this.secondaryHolderMinorForm.controls.race.setValue(this.verifyApplicantData.minorSecondaryHolderSummary.race);
+          this.secondaryHolderMinorForm.controls.relationship.setValue(this.verifyApplicantData.minorSecondaryHolderSummary.relationship);
+         
+          if (this.checkSingaporeResident()) {
+            this.secondaryHolderMinorForm.controls.nricNumber.setValue(this.verifyApplicantData.minorSecondaryHolderSummary.nricNumber);
+          } else {
+            this.secondaryHolderMinorForm.controls.passportNumber.setValue(this.verifyApplicantData.minorSecondaryHolderSummary.passportNumber);
+            this.secondaryHolderMinorForm.controls.passportExpiryDate.setValue(this.verifyApplicantData.minorSecondaryHolderSummary);
+            this.secondaryHolderMinorForm.controls.passportIssuedCountry.setValue(this.verifyApplicantData.minorSecondaryHolderSummary.passportIssuedCountry);
+          }
+        }
+      }
+    });
+  }
+
+  checkSingaporeResident() {
+    return this.verifyApplicantData.minorSecondaryHolderSummary.nationalityCode != null &&
+      this.verifyApplicantData.minorSecondaryHolderSummary.nationalityCode == INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_NATIONALITY_CODE
+      || this.verifyApplicantData.minorSecondaryHolderSummary.singaporePR;
   }
 }
