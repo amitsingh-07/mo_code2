@@ -310,7 +310,6 @@ export class PortfolioListComponent implements OnInit, OnChanges {
       });
     });
   }
-  
   deleteByHolder(portfolioName) {
     const toastMessage: IToastMessage = {
       isShown: true,
