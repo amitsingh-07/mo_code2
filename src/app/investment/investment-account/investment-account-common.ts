@@ -28,6 +28,10 @@ export class InvestmentAccountCommon {
         payloadKey = 'supportingDocument';
         break;
       }
+      case 'BIRTH_CERTIFICATE': {
+        payloadKey = 'supportingDocument';
+        break;
+      }
     }
     return payloadKey;
   }

@@ -264,8 +264,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           if (data.objectList.customerBankDetail) {
             this.bankDetails = data.objectList.customerBankDetail[0];
           }
-          if (data.objectList.customerJointAccountBankDetail) {
-            this.customerJointAccBankDetails = data.objectList.customerJointAccountBankDetail;
+          if (data.objectList.customerJointAccountBankDetails) {
+            this.customerJointAccBankDetails = data.objectList.customerJointAccountBankDetails;
           }
           this.showBankInfo = data.objectList.cashPortfolioAvailable ? data.objectList.cashPortfolioAvailable : false;
           this.showJAccInfo = data.objectList.jointAccount ? data.objectList.jointAccount : false;
