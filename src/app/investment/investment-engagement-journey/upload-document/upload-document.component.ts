@@ -21,7 +21,7 @@ import { InvestmentCommonService } from '../../investment-common/investment-comm
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
-import {INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS} from '../investment-engagement-journey.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 @Component({
   selector: 'app-upload-document',
   templateUrl: './upload-document.component.html',
@@ -39,9 +39,9 @@ export class UploadDocumentComponent implements OnInit {
   defaultThumb: any;
   formData: FormData = new FormData();
   uploadDocumentList: any;
-  nricDiv=false;
-  dobDiv=false;
-  passportDiv=false;
+  nricDiv = false;
+  dobDiv = false;
+  passportDiv = false;
   uploadContent = false;
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
@@ -65,11 +65,11 @@ export class UploadDocumentComponent implements OnInit {
 
     
   }
-  buildListForSingapore(){
+  buildListForSingapore() {
     this.uploadDocumentList = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.UPLOAD_SINGAPOREAN_DOC_LIST;
   }
 
-  buildListForOtherCountry(){
+  buildListForOtherCountry() {
     this.uploadDocumentList = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.UPLOAD_NON_SINGAPOREAN_DOC_LIST;
   }
 
@@ -98,50 +98,50 @@ export class UploadDocumentComponent implements OnInit {
     this.uploadContent = true;
     setTimeout(() => {
       this.isUserNationalitySingapore
-      ? this.buildFormForSingapore(event)
-      : this.buildFormForOtherCountry(event);
+        ? this.buildFormForSingapore(event)
+        : this.buildFormForOtherCountry(event);
     });
   }
 
   buildFormForSingapore(event) {
-    if(event.value == 'NRIC'){
-      this.nricDiv=true;
-      this.dobDiv=false;
+    if (event.value == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.UPLOAD_TYPE.NRIC) {
+      this.nricDiv = true;
+      this.dobDiv = false;
       this.uploadForm.controls['uploadDocument'].setValue(event);
       this.uploadForm.removeControl('passportImage');
       this.uploadForm.removeControl('birthCertificateImage');
       this.uploadForm.addControl(
-      'nricFrontImage', new FormControl(this.formValues.nricFrontImage,Validators.required)
-     );
+        'nricFrontImage', new FormControl(this.formValues.nricFrontImage, Validators.required)
+      );
       this.uploadForm.addControl(
-      'nricBackImage', new FormControl(this.formValues.nricBackImage,Validators.required)
-     );
+        'nricBackImage', new FormControl(this.formValues.nricBackImage, Validators.required)
+      );
+    }
+    if (event.value == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.UPLOAD_TYPE.BIRTH_CERTIFICATE) {
+      this.dobDiv = true;
+      this.nricDiv = false;
+      this.passportDiv = false;
+      this.uploadForm.controls['uploadDocument'].setValue(event);
+      this.uploadForm.removeControl('nricFrontImage');
+      this.uploadForm.removeControl('nricBackImage');
+      this.uploadForm.removeControl('passportImage');
+      this.uploadForm.addControl(
+        'birthCertificateImage', new FormControl(this.formValues.birthCertificateImage, Validators.required)
+      );
+    }
   }
-  if(event.value == 'Birth Certificate'){
-    this.dobDiv=true;
-    this.nricDiv=false;
-    this.passportDiv=false;
-    this.uploadForm.controls['uploadDocument'].setValue(event);
-    this.uploadForm.removeControl('nricFrontImage');
-    this.uploadForm.removeControl('nricBackImage');
-    this.uploadForm.removeControl('passportImage');
-    this.uploadForm.addControl(
-      'birthCertificateImage', new FormControl(this.formValues.birthCertificateImage,Validators.required)
-     );
-  }
-}
 
   buildFormForOtherCountry(event) {
-    if(event.value == 'Passport'){
-      this.passportDiv=true;
+    if (event.value == INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.UPLOAD_TYPE.PASSPORT) {
+      this.passportDiv = true;
       this.uploadForm.controls['uploadDocument'].setValue(event);
       this.uploadForm.removeControl('nricFrontImage');
       this.uploadForm.removeControl('nricBackImage');
       this.uploadForm.removeControl('birthCertificateImage');
-       this.uploadForm.addControl(
-      'passportImage', new FormControl(this.formValues.passportImage,Validators.required)
-     );
-  }
+      this.uploadForm.addControl(
+        'passportImage', new FormControl(this.formValues.passportImage, Validators.required)
+      );
+    }
   }
   
   getInlineErrorStatus(control) {
@@ -250,8 +250,8 @@ export class UploadDocumentComponent implements OnInit {
   }
 
   redirectToNextPage() {
-   this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
-    
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+
   }
 
 }
