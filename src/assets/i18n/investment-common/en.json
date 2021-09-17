@@ -288,7 +288,7 @@
   "PORTFOLIO_SUMMARY": {
     "TITLE": "Portfolio Summary",
     "CONTINUE": "Continue",
-    "REVIEW_DETAILS_LABEL": "Please review all details carefully before you proceed. An Invitation will be sent to the secondary holder via email and expires after 7 days. ",
+    "REVIEW_DETAILS_LABEL": "<strong>Please review all details carefully before you proceed.</strong> An Invitation will be sent to the secondary holder via email and expires after 7 days. ",
     "CHANGE_PORTFOLIO_BUTTON_TEXT": "Change to another portfolio",
     "PORTFOLIO_DETAILS": {
       "DATE_OF_APPLICATION_TITLE": "Date of Application",
@@ -327,10 +327,14 @@
       "RACE_TEXT": "Race",
       "FIRST_TAX_RESIDENCE_COUNTRY_TEXT": "Country of Tax Residence (First)",
       "TIN_TEXT": "Taxpayer Identification Number",
+      "TIN_TEXT_YES": "Yes",
+      "TIN_TEXT_NO": "No",
       "NO_TIN_REASON_TEXT": "Reason",
       "TIN_NO_TEXT": "TIN Number",
       "PASSPORT_NO_TEXT": "Passport Number",
-      "PASSPORT_EXPIRY_TEXT": "Passport Expiry"
+      "PASSPORT_EXPIRY_TEXT": "Passport Expiry",
+      "US_PR_YES": "Yes",
+      "US_PR_NO": "No"
     },
     "WITHDRAWAL_BANK_DETAILS": {
       "TITLE": "Withdrawal Bank Details",

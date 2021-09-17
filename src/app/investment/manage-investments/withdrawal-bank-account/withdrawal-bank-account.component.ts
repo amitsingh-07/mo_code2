@@ -47,6 +47,7 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   isInvestAndJointAccountHolder;
   isEdit = true;
+  isJAAccount: boolean
 
   constructor(
     public readonly translate: TranslateService,
@@ -73,8 +74,9 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
     this.getUserAddress();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
     this.customerPortfolioId = this.formValues.selectedCustomerPortfolioId;
+    this.isJAAccount = this.formValues.selectedCustomerPortfolio.entitlements.jointAccount;
     this.isInvestAndJointAccountHolder = this.manageInvestmentsService.isInvestAndJointAccount();
-    this.getUserBankList(this.customerPortfolioId,this.isInvestAndJointAccountHolder);
+    this.getUserBankList(this.customerPortfolioId,this.isJAAccount);
     this.userInfo = this.signUpService.getUserProfileInfo();
     this.fullName = this.userInfo.fullName ? this.userInfo.fullName : this.userInfo.firstName + ' ' + this.userInfo.lastName;
     this.signUpService.getEditProfileInfo()
@@ -251,10 +253,10 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
       this.activeRef.close();
       if (this.isEdit) {
         this.isEdit = false;
-        this.manageInvestmentsService.saveProfileNewBank(data).subscribe((response) => {
+        this.manageInvestmentsService.saveProfileNewBank(data, this.customerPortfolioId, this.isJAAccount).subscribe((response) => {
           this.isEdit = true;
           if (response.responseMessage.responseCode >= 6000) {
-            this.getUserBankList(this.customerPortfolioId, this.isInvestAndJointAccountHolder); // refresh updated bank list
+            this.getUserBankList(this.customerPortfolioId, this.isJAAccount); // refresh updated bank list
           } else if (
             response.objectList &&
             response.objectList.serverStatus &&
@@ -303,10 +305,10 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
       if (this.isEdit) {
         this.isEdit = false;
         this.manageInvestmentsService.updateBankInfo(data.bank, data.accountHolderName,
-          data.accountNo, this.userBankList[index].id, null, null).subscribe((response) => {
+          data.accountNo, this.userBankList[index].id, this.customerPortfolioId, this.isJAAccount).subscribe((response) => {
             this.isEdit = true;
             if (response.responseMessage.responseCode >= 6000) {
-              this.getUserBankList(this.customerPortfolioId, this.isInvestAndJointAccountHolder); // refresh updated bank list
+              this.getUserBankList(this.customerPortfolioId, this.isJAAccount); // refresh updated bank list
             } else if (
               response.objectList &&
               response.objectList.serverStatus &&

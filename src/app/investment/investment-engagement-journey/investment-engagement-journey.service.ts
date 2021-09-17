@@ -338,6 +338,11 @@ export class InvestmentEngagementJourneyService {
     return this.investmentApiService.getPortfolioAllocationDetails(params);
   }
 
+  // CALL ALLOCATION DETAILS API WITH JA ACCOUNT ID
+  getJAPortfolioAllocationDetails(params) {
+    return this.investmentApiService.getJAPortfolioAllocationDetails(params);
+  }
+
   getFundDetails() {
     return this.investmentEngagementJourneyFormData.fundDetails;
   }
@@ -496,6 +501,12 @@ export class InvestmentEngagementJourneyService {
   buildMinorHolderData() {
     const formData = this.investmentEngagementJourneyFormData?.minorSecondaryHolderFormData;
     let taxInfo = this.setAddTaxData(formData?.addTax);
+    let passporIssuedCountry;
+    if (formData && formData.issuedCountry) {
+      passporIssuedCountry = formData.issuedCountry.id
+    } else if (formData && formData.passportIssuedCountry) {
+      passporIssuedCountry = formData.passportIssuedCountry.id
+    }
     return {
       singaporePR: !Util.isEmptyOrNull(formData?.singaporeanResident) ? formData?.singaporeanResident : null,
       usPR: !Util.isEmptyOrNull(formData?.unitedStatesResident) ? formData?.unitedStatesResident : null,
@@ -506,7 +517,7 @@ export class InvestmentEngagementJourneyService {
         fullName: formData?.fullName,
         nricNumber: formData?.nricNumber,
         passportNumber: formData?.passportNumber,
-        passportIssuedCountryId: formData?.singaporeanResident ? formData?.issuedCountry?.id : formData?.passportIssuedCountry?.id,
+        passportIssuedCountryId: passporIssuedCountry,
         gender: formData?.gender,
         birthCountryId: formData?.birthCountry?.id,
         race: formData?.race?.name,

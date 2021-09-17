@@ -34,6 +34,7 @@ export function createTranslateLoader(http: HttpClient) {
 }
 import { PromoCodeModule } from './../../promo-code/promo-code.module';
 import { ConfirmWithdrawalComponent } from './confirm-withdrawal/confirm-withdrawal.component';
+import { PortfolioSummaryComponent } from './portfolio-summary/portfolio-summary.component';
 
 @NgModule({
   imports: [
@@ -62,7 +63,8 @@ import { ConfirmWithdrawalComponent } from './confirm-withdrawal/confirm-withdra
     AddPortfolioNameComponent,
     FundingIntroComponent,
     FundingAccountDetailsComponent,
-    ConfirmWithdrawalComponent
+    ConfirmWithdrawalComponent,
+    PortfolioSummaryComponent
   ],
   entryComponents: [AccountCreationErrorModalComponent],
   providers: [CurrencyPipe, FormatCurrencyPipe]

@@ -301,9 +301,9 @@ export class ManageInvestmentsService {
     return this.investmentApiService.getUserAddress();
   }
 
-  saveProfileNewBank(data) {
+  saveProfileNewBank(data, customerPortfolioId, isJAAccount) {
     const payload = this.constructSaveNewBankRequest(data);
-    return this.apiService.saveNewBankProfile(payload, data.customerPortfolioId, data.isJointAccount);
+    return this.apiService.saveNewBankProfile(payload, customerPortfolioId, isJAAccount);
   }
 
   constructSaveNewBankRequest(data) {
