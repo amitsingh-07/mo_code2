@@ -40,7 +40,7 @@
                 <div class="flex-row cursor_pointer" (click)=showHide(showHideUser)>
                     <div class="flex-col-11">
                         <div class="form-group-heading">
-                            {{'EDIT_PROFILE.UPDATE_USER_ID' | translate}}
+                            {{'EDIT_PROFILE.USER_ID' | translate}}
                         </div>
                     </div>
                     <div class="flex-col-1">
@@ -79,7 +79,7 @@
                 <div class="flex-row cursor_pointer" (click)=showHide(showHidePassword)>
                     <div class="flex-col-11">
                         <div class="form-group-heading">
-                            {{'EDIT_PROFILE.CHANGE_PASS' | translate}}
+                            {{'EDIT_PROFILE.PASSWORD' | translate}}
                         </div>
                     </div>
                     <div class="flex-col-1">
@@ -539,6 +539,98 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Update Joint Account bank details  -->
+            <div class="bank_details" *ngIf="showJAccInfo">
+                <div class="edit-profile-section-bg">
+                    <div class="flex-row cursor_pointer" (click)=showHide(showHideJABank)>
+                        <div class="flex-col-11">
+                            <div class="form-group-heading">
+                                {{'EDIT_PROFILE.JA_BANK_INFO' | translate}}
+                            </div>
+                        </div>
+                        <div class="flex-col-1">
+                            <div class="dropdown-img">
+                                <span id="showHideJABank" class="arrow"
+                                    [class.active]="showHideJABank.style.display === 'block' || showHideJABank.style.display === ''"></span>
+                                <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" /> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dots" #showHideJABank>
+                        <div *ngIf="customerJointAccBankDetails && customerJointAccBankDetails.length">
+                            <div *ngFor="let jaBankDetail of customerJointAccBankDetails, let i = index">
+                                <div class="flex-row">
+                                    <div class="flex-col-4">
+                                        <div class="bank-account">
+                                            {{'EDIT_PROFILE.BANK' | translate}}
+                                        </div>
+                                    </div>
+                                    <div class="flex-col-8">
+                                        <div class="bank-account-num">
+                                            {{ jaBankDetail.bankName }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-row">
+                                    <div class="flex-col-4">
+                                        <div class="bank-account">
+                                            {{'EDIT_PROFILE.BANK_ACC' | translate}}
+                                        </div>
+                                    </div>
+                                    <div class="flex-col-8">
+                                        <div class="bank-account-num">
+                                            {{jaBankDetail.bankAccountNumber}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-row">
+                                    <div class="flex-col-4">
+                                        <div class="bank-account">
+                                            {{'EDIT_PROFILE.HOLDER_NAMES' | translate}}
+                                        </div>
+                                    </div>
+                                    <div class="flex-col-8">
+                                        <div class="bank-account-num">
+                                            {{jaBankDetail.accountHolderName}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-row">
+                                    <div class="flex-col-4">
+                                        <div class="bank-account">
+                                            {{'EDIT_PROFILE.PORTFOLIO_NAME' | translate}}
+                                        </div>
+                                    </div>
+                                    <div class="flex-col-8">
+                                        <div class="bank-account-num">
+                                            {{jaBankDetail.customerPortfolioName}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr *ngIf="customerJointAccBankDetails.length !== i + 1">
+                            </div>
+                            <div *ngIf="entireUserData.jointAccount" class="joint-account-desc"
+                                innerHTML="{{'EDIT_PROFILE.JOINT_ACCOUNT_DESC' | translate}}"></div>
+                        </div>
+                        <div class="no-details" *ngIf="!(customerJointAccBankDetails && customerJointAccBankDetails.length)">
+                            <div class="flex-row">
+                                <div class="flex-col-12">
+                                    <div *ngIf="!entireUserData.jointAccount" class="no-bank-account">
+                                        {{'EDIT_PROFILE.NO_BANK' | translate}}
+                                    </div>
+                                    <div *ngIf="entireUserData.jointAccount" class="no-bank-account no-bank-details">
+                                        {{'EDIT_PROFILE.NO_BANK_DETAILS' | translate}}
+                                    </div>
+                                </div>
+                                <div *ngIf="entireUserData.jointAccount" class="joint-account-desc"
+                                    innerHTML="{{'EDIT_PROFILE.JOINT_ACCOUNT_DESC' | translate}}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Update srs details  -->
             <div class="srs_details" *ngIf="srsDetails">
                 <div class="edit-profile-section-bg">
