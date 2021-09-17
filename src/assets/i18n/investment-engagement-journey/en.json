@@ -490,5 +490,47 @@
         }
       }
     }
+  },
+  "UPLOAD_DOCUMENTS": {
+    "PAGE_TITLE": "Add Secondary Holder",
+    "TITLE": "Upload Document",
+    "INFO": "The doctrine of survivorship shall apply to accounts opened in joint names of more than one person. For more information refer to <a href='https://www.moneyowl.com.sg/faq-investment/#investment|3'>FAQ</a>",
+    "PAGE_SUB_CAPTION": "Help us verify your identity and prevent fraud.",
+    "IDENTITY_VERIFICATION": "For identity verifications, upload the required documents.",
+    "PROOF_OF_IDENTITY": "Proof Of Identity",
+    "PROOF_OF_IDENTITY_BO": "Proof Of Beneficial Owner's Identity",
+    "NRIC": "NRIC",
+    "PASSPORT": "Passport",
+    "PASSPORT_BO": "Beneficial Owner's Passport",
+    "FRONT_NRIC": "Front NRIC",
+    "BACK_NRIC": "Back NRIC",
+    "BIRTH_CERTIFICATE" : "Birth Certificate",
+    "TAP_TO_UPLOAD": "Tap to Upload",
+    "PROOF_OF_RESIDENT_SUBTEXT": "<p>This document must be from a billing organisation and clearly display your name, current residential address and be dated no more than 90 days prior to today's date.</p><p>You may use utility bills, phone bills, credit card bills etc.</p>",
+    "CHOOSE_FILE": "Choose File",
+    "UPLOADED": "Uploaded",
+    "NO_FILE_SELECTED": "no file selected",
+    "SPECIFICATION": "Please ensure each document upload:",
+    "FILE_LESS-THAN": "File less than",
+    "TEN_MB": "10MB",
+    "FILE_TYPE": "Allowed file types:",
+    "SUPPORTED_FILES": "pdf, jpg, jpeg, png, gif, bmp",
+    "VERIFICATION_DOC": "Verification Document",
+    "CONTINUE": "Continue",
+    "DROP_DOWN_TITLE" : "Select Document",
+    "MODAL": {
+      "UPLOADING_LOADER": {
+        "TITLE": "Uploading",
+        "MESSAGE": "Please be patient, upload may take a few minutes."
+      },
+      "FILE_SIZE_EXCEEDED": {
+        "TITLE": "Error !",
+        "MESSAGE": "File of size more than 10 MB is not allowed."
+      },
+      "FILE_TYPE_MISMATCH": {
+        "TITLE": "Error !",
+        "MESSAGE": "The selected file type is not allowed."
+      }
+    }
   }
 }
