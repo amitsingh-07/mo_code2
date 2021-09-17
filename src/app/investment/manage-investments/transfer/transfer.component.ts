@@ -87,7 +87,7 @@ export class TransferComponent implements OnInit, OnDestroy {
   sourceCashPortfolio(cashPortfolioList) {
     this.sourceCashPortfolioList = [];
     cashPortfolioList.forEach(element => {
-      if (element.cashAccountBalance > 0) {
+      if (element.cashAccountBalance > 0 && !(element.jointAccount)) {
         return this.sourceCashPortfolioList.push(element);
       }
     });
