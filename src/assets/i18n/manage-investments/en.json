@@ -259,9 +259,13 @@
       "PRIMARY_HOLDER": "Primary holder",
       "SECONDARY_HOLDER": "Secondary holder",
       "JOINT": "Joint",
-      "ACCOUNT_WITH" : "Account with"
+      "ACCOUNT_WITH": "Account with",
+      "API_FAILED": {
+        "TITLE": "Oops! Something went wrong",
+        "DESC": "Please refresh the page and try again",
+        "BUTTON_TEXT": "Refresh"
+      }
     }
-
   },
   "WITHDRAW": {
     "TITLE": "Withdrawal",
@@ -477,7 +481,9 @@
     "WITHDRAW_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been withdrawn.",
     "DELETE_PORTFOLIO_BY_HOLDER": "You have deleted \"{{userGivenPortfolioName}}\".",
     "PORTFOLIO_SUBMITTED_TO_MINOR": "We have submitted your Joint Account Application for \"{{userGivenPortfolioName}}\".",    
-    "PORTFOLIO_SUBMITTED_TO_MAJOR": "The Joint Investment Account Application has been sent to \"{{secondaryHolderName}}\"."
+    "PORTFOLIO_SUBMITTED_TO_MAJOR": "The Joint Investment Account Application has been sent to \"{{secondaryHolderName}}\".",
+    "REMINDER_TEXT": "The reminder has been sent to {{secondaryHolderName}}. You may send one reminder per day.",
+    "ONE_REMINDER_PER_DAY": "You can only send one reminder per day, please try again tomorrow."
   },
   "TRANSFER": {
     "TITLE": "Transfer between Cash Accounts",
@@ -497,6 +503,7 @@
     "TRANSFER_NOTE": [
       "Transfer service will not be available from 11:30pm to 12:00am daily for system maintenance. In the event that the service is unavailable or unsuccesssful, please try again later.",
       "Transfer between Cash Accounts will be processed and completed immediately. ",
+      "Transfers from Personal Investment Cash Account to Joint Investment Cash Account can be done offline. Please email to inv_ops@moneyowl.com.sg.",
       "Transfer out from Joint Investment Cash Account is not allowed."
     ],
     "MODAL": {
