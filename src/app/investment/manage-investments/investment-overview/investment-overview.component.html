@@ -149,7 +149,7 @@ showBannerInfo">
   [portfolioCategory]="selectedCategory" [showTotalReturn]="investmentoverviewlist.showTotalReturn"
   (detailSelected)="yourPortfolio($event)" (investAgainSelected)="investAgain($event)"
   (transferInstSelected)="ViewTransferInst($event)" (topUpSelected)="gotoTopUp($event)"
-  [portfolioData]="investmentoverviewlist" (emitToastMessage)="emitToastMessage($event)">
+  [portfolioData]="investmentoverviewlist" (emitToastMessage)="emitToastMessage($event)" (emitMessage)="emitMessage($event)">
 </app-portfolio-list>
 <div *ngIf="investmentoverviewlist" class="srs-block">
   <div class="container-fluid max-width--1024">
