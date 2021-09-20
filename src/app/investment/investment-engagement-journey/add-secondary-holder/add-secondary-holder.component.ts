@@ -1,6 +1,6 @@
 import { Component, HostListener, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, FormArray, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
@@ -12,7 +12,9 @@ import { Util } from '../../../shared/utils/util';
 import { InvestmentAccountCommon } from '../../investment-account/investment-account-common';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../investment-account/investment-account.constant';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 
 @Component({
@@ -61,6 +63,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   passportMaxDate: any;
   taxInfoModal: any;
   errorModalData: any;
+  navigationType: any;
   constructor(
     public authService: AuthenticationService,
     private investmentEngagementService: InvestmentEngagementJourneyService,
@@ -69,7 +72,8 @@ export class AddSecondaryHolderComponent implements OnInit {
     private modal: NgbModal,
     public readonly translate: TranslateService,
     private loaderService: LoaderService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute
   ) {
     this.userProfileType = investmentEngagementService.getUserPortfolioType();
     this.translate.use('en');
@@ -118,6 +122,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.navigationType = this.route.snapshot.paramMap.get('navigationType');
   }
 
   buildMinorForm() {
@@ -247,7 +252,8 @@ export class AddSecondaryHolderComponent implements OnInit {
     const selectedNationalityName = this.secondaryHolderMinorForm.controls.nationality.value &&
       this.secondaryHolderMinorForm.controls.nationality.value.name ?
       this.secondaryHolderMinorForm.controls.nationality.value.name.toUpperCase() : '';
-    if (['SINGAPOREAN', 'SG'].indexOf(selectedNationalityName) >= 0) {
+    if ([INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_NAME, INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_CODE]
+      .indexOf(selectedNationalityName) >= 0) {
       return true;
     } else {
       return false;
@@ -341,17 +347,21 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.investmentEngagementService.setMinorSecondaryHolderData(null);
       this.investmentEngagementService.setMajorSecondaryHolderData(this.secondaryHolderMajorForm.value);
       this.investmentEngagementService.saveMajorSecondaryHolder().subscribe(resp => {
-        if(resp.responseMessage.responseCode === 6000){
+        if (resp.responseMessage.responseCode === 6000) {
           this.secondaryHolderMajorForm.addControl('jaAccountId', new FormControl(resp.objectList));
           this.investmentEngagementService.setMajorSecondaryHolderData(this.secondaryHolderMajorForm.value);
-          this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+          if (!Util.isEmptyOrNull(this.navigationType)) {
+            this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.PORTFOLIO_SUMMARY]);
+          } else {
+            this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+          }
         }
-        else{
+        else {
           const ref = this.modal.open(ErrorModalComponent, { centered: true });
           ref.componentInstance.errorTitle = this.errorModalData.modalTitle;
           ref.componentInstance.errorDescription = this.errorModalData.modalDesc;
         }
-      });   
+      });
     }
   }
 

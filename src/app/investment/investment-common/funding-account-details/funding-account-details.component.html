@@ -1,7 +1,8 @@
 <div class="funding-account-details investment-account">
   <div class="step-indicator-container">
     <div class="container-fluid max-width--1024">
-      <app-step-indicator [count]="2" [activeStepIndex]="1" [mode]="0"></app-step-indicator>
+      <app-step-indicator [count]="isJAEnabled ? 3 : 2 " [activeStepIndex]="isJAEnabled ? 2 : 1" [mode]="0">
+      </app-step-indicator>
     </div>
   </div>
   <div class="container-fluid invest-web-width">
@@ -29,21 +30,21 @@
                         class="btn btn-dropdown mb15" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
                         {{ 'CONFIRM_ACCOUNT_DETAILS.SELECT' | translate}}
                       </button>
-                      <button  *ngIf="this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value"
-                       class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
+                      <button *ngIf="this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value"
+                        class="btn btn-dropdown" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
                         {{getFundingMethodNameById(this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods) }}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let fundingMethod of fundingMethods; let i = index;"
-                        
-                        (click)="selectFundingMethod('confirmedFundingMethodId', fundingMethod.id)"
+                          (click)="selectFundingMethod('confirmedFundingMethodId', fundingMethod.id)"
                           id="additional_declaration_sourse-drpdown-option-{{i}}">{{fundingMethod.name}}</button>
                       </div>
                     </div>
                   </div>
                   <div class="form-control" *ngIf="disableFundingMethod">
                     <input class="input-control" type="text" id="funding_method_cash"
-                      [value]="getFundingMethodNameById(this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods)" disabled>
+                      [value]="getFundingMethodNameById(this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods)"
+                      disabled>
                   </div>
                 </div>
               </div>
@@ -110,7 +111,8 @@
               </div>
               <!-- SRS bLOCK -->
             </div>
-            <ng-container *ngIf="isCashAccount(fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods)">
+            <ng-container
+              *ngIf="isCashAccount(fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods)">
               <div class="note-info pb30">
                 <span class="note-icon"><img src="assets/images/investment-account/note-icon-white.svg" /></span>
                 <span>{{
