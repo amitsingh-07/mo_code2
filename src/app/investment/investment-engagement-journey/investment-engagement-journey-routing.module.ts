@@ -124,6 +124,11 @@ const routes: Routes = [
     component: UploadDocumentComponent,
     canActivate: [InvestmentEngagementJourneyGuard]
   },
+  {
+    path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.JA_UPLOAD_DOCUMENT + '/:customerPortfolioId',
+    component: UploadDocumentComponent,
+    canActivate: [InvestmentEngagementJourneyGuard]
+  },
   { path: '**', redirectTo: '/page-not-found' }
 ];
 
