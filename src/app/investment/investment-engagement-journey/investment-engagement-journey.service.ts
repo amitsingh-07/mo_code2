@@ -583,5 +583,13 @@ export class InvestmentEngagementJourneyService {
     };
     return this.investmentApiService.setActionByHolder(payload);
   }
+    //Verify - Submission
+   verifyFlowSubmission(customerPortfolioId, jointAccountAction) {
+    const payload = {
+      customerPortfolioId: customerPortfolioId,
+      jointAccountAction: jointAccountAction
+    };
+    return this.investmentApiService.setActionByHolder(payload);
+  }
 }
 
