@@ -68,6 +68,8 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   @Output() topUpSelected = new EventEmitter<boolean>();
   @Output() investAgainSelected = new EventEmitter<boolean>();
   @Output() emitToastMessage = new EventEmitter<boolean>();
+  @Output() emitMessage = new EventEmitter<any>();
+
 
   // Filtered Portfolio List
   filteredInvestedList: any;
@@ -337,5 +339,49 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     } else {
       return (isStaticTextEnabled) ? this.awaitingMsg : hoursToDay + ' ' + this.hours + ' ' + minutesToDay + ' ' + this.minutes;
     }
+  }
+
+  sendReminderModal(customerPortfolioId, secondaryHolderName) {
+    this.manageInvestmentsService.setActionByHolder(customerPortfolioId, MANAGE_INVESTMENTS_CONSTANTS.JOINT_ACCOUNT.ACTIONS.SEND_REMINDER.toString()).subscribe((response) => {
+      if(response && response.responseMessage && response.responseMessage.responseCode == 6000) {
+        const toastMessage: IToastMessage = {
+          isShown: true,
+          desc: this.translate.instant('YOUR_PORTFOLIO.JOINT_ACCOUNT.TOAST_MSG.REMINDER_TEXT', {secondaryHolderName : secondaryHolderName})      
+        };
+        this.setToasterAndEmit(toastMessage);
+      } else if(response && response.responseMessage && response.responseMessage.responseCode == MANAGE_INVESTMENTS_CONSTANTS.JOINT_ACCOUNT.ERROR_CODES.ONE_REMINDER_PER_DAY) {
+        const toastMessage: IToastMessage = {
+          isShown: true,
+          desc: this.translate.instant('YOUR_PORTFOLIO.JOINT_ACCOUNT.TOAST_MSG.ONE_REMINDER_PER_DAY')
+        };
+        this.setToasterAndEmit(toastMessage);
+      } else {
+        this.showErrorModal();
+      }
+    });
+  }
+
+  private setToasterAndEmit(toastMessage: IToastMessage) {
+    this.manageInvestmentsService.setToastMessage(toastMessage);
+    this.emitToastMessage.emit(true);
+  }
+
+  showErrorModal() {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'YOUR_PORTFOLIO.JOINT_ACCOUNT.API_FAILED.TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'YOUR_PORTFOLIO.JOINT_ACCOUNT.API_FAILED.DESC'
+    );
+    ref.componentInstance.primaryActionLabel = this.translate.instant(
+      'YOUR_PORTFOLIO.JOINT_ACCOUNT.API_FAILED.BUTTON_TEXT'
+    );
+    ref.componentInstance.primaryAction.subscribe(() => {
+      const emitOptions = {
+        action: MANAGE_INVESTMENTS_CONSTANTS.JOINT_ACCOUNT.REFRESH
+      }
+      this.emitMessage.emit(emitOptions);
+    });
   }
 }
