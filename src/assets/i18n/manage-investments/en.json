@@ -477,7 +477,8 @@
     "WITHDRAW_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been withdrawn.",
     "DELETE_PORTFOLIO_BY_HOLDER": "You have deleted \"{{userGivenPortfolioName}}\".",
     "PORTFOLIO_SUBMITTED_TO_MINOR": "We have submitted your Joint Account Application for \"{{userGivenPortfolioName}}\".",    
-    "PORTFOLIO_SUBMITTED_TO_MAJOR": "The Joint Investment Account Application has been sent to \"{{secondaryHolderName}}\"."
+    "PORTFOLIO_SUBMITTED_TO_MAJOR": "The Joint Investment Account Application has been sent to \"{{secondaryHolderName}}\".",
+    "VERIFY_SUBMISSION": "Joint account application in progress"
   },
   "TRANSFER": {
     "TITLE": "Transfer between Cash Accounts",

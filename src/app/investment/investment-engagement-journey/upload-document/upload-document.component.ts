@@ -24,6 +24,8 @@ import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investmen
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from './../../../investment/investment-common/investment-common.constants';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-investments-routes.constants';
+import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
+import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 
 @Component({
   selector: 'app-upload-document',
@@ -60,7 +62,8 @@ export class UploadDocumentComponent implements OnInit {
     public investmentAccountService: InvestmentAccountService,
     public investmentEngagementJourneyService : InvestmentEngagementJourneyService,
     private loaderService: LoaderService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public manageInvestmentsService: ManageInvestmentsService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -276,6 +279,11 @@ redirectToNextPage() {
     this.investmentEngagementJourneyService.verifyFlowSubmission(this.customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.SUBMISSION).subscribe((response) => {
       this.loaderService.hideLoader();
       if (response) {
+        const toastMessage: IToastMessage = {
+          isShown: true,
+          desc: this.translate.instant('TOAST_MESSAGES.VERIFY_SUBMISSION'),
+        };
+        this.manageInvestmentsService.setToastMessage(toastMessage);
        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
       }
     },

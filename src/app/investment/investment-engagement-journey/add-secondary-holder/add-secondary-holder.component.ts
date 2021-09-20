@@ -12,6 +12,7 @@ import { Util } from '../../../shared/utils/util';
 import { InvestmentAccountCommon } from '../../investment-account/investment-account-common';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../investment-account/investment-account.constant';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { INVESTMENT_COMMON_CONSTANTS } from './../../../investment/investment-common/investment-common.constants';
@@ -64,6 +65,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   errorModalData: any;
   verifyApplicantData: any;
   customerPortfolioId: any;
+  navigationType: any;
   constructor(
     public authService: AuthenticationService,
     private investmentEngagementService: InvestmentEngagementJourneyService,
@@ -128,6 +130,7 @@ export class AddSecondaryHolderComponent implements OnInit {
     if (this.customerPortfolioId) {
       this.verifyCall(this.customerPortfolioId.get('customerPortfolioId'));
     }
+    this.navigationType = this.route.snapshot.paramMap.get('navigationType');
   }
 
   buildMinorForm() {
@@ -313,7 +316,11 @@ export class AddSecondaryHolderComponent implements OnInit {
         this.investmentEngagementService.saveMinorSecondaryHolder().subscribe(resp => {
         this.secondaryHolderMinorForm.addControl('jaAccountId', new FormControl(resp.objectList));
         this.investmentEngagementService.setMinorSecondaryHolderData(this.secondaryHolderMinorForm.value);
-        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.JA_UPLOAD_DOCUMENT]);
+          if (this.customerPortfolioId) {
+            this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.JA_UPLOAD_DOCUMENT + "/" + this.customerPortfolioId]);
+          } else {
+            this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.JA_UPLOAD_DOCUMENT]);
+          }
         });
       }
     }
@@ -354,7 +361,11 @@ export class AddSecondaryHolderComponent implements OnInit {
         if (resp.responseMessage.responseCode === 6000) {
           this.secondaryHolderMajorForm.addControl('jaAccountId', new FormControl(resp.objectList));
           this.investmentEngagementService.setMajorSecondaryHolderData(this.secondaryHolderMajorForm.value);
-          this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+          if (!Util.isEmptyOrNull(this.navigationType)) {
+            this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.PORTFOLIO_SUMMARY]);
+          } else {
+            this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+          }
         }
         else {
           const ref = this.modal.open(ErrorModalComponent, { centered: true });
@@ -756,14 +767,15 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   verifyCall(customerPortfolioId) {
-    this.investmentEngagementService.getVerifyDetails(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.VERIFY).subscribe(resp => {
+    this.investmentEngagementService.getVerifyDetails(Number(customerPortfolioId), INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.VERIFY).subscribe(resp => {
       if (resp.responseMessage.responseCode === 6000) {
         this.secondaryHolderMajorFormValues = null;
         this.secondaryHolderMinorFormValues = null;
         this.verifyApplicantData = resp.objectList;
         //Major Major flow
-        if (this.verifyApplicantData.minor) {
+        if (!this.verifyApplicantData.minor) {
           this.activeTabId = 1;
+          this.tabChange();
           this.secondaryHolderMajorForm.controls.isMinor.setValue(this.verifyApplicantData.minor);
           this.secondaryHolderMajorForm.controls.nric.setValue(this.verifyApplicantData.secondaryHolderNricOrPassport);
           if (this.majorRelationships) {
@@ -776,10 +788,11 @@ export class AddSecondaryHolderComponent implements OnInit {
 
         } else {//else - Major Minor
           this.activeTabId = 2;
+          this.tabChange();
           let dob = this.investmentEngagementService.convertStringToDateObj(this.verifyApplicantData.minorSecondaryHolderSummary.dob);
           this.secondaryHolderMinorForm.controls.isMinor.setValue(this.verifyApplicantData.minor);
           if (this.nationalityList) {
-            const nationalityId = this.verifyApplicantData.minorSecondaryHolderSummary.race;
+            const nationalityId = this.verifyApplicantData.minorSecondaryHolderSummary.nationalityCode;
             const nationality = this.nationalityList.find(x => x.id == nationalityId);
             this.secondaryHolderMinorForm.addControl(
               'nationality', new FormControl(nationality, [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)])
@@ -793,15 +806,15 @@ export class AddSecondaryHolderComponent implements OnInit {
           );
 
           this.secondaryHolderMinorForm.addControl(
-            'dob', new FormControl(dob ? dob : '', [Validators.required])
+            'dob', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.dob ? this.verifyApplicantData.minorSecondaryHolderSummary.dob : '', [Validators.required])
           );
           this.secondaryHolderMinorForm.addControl(
             'gender', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.gender, Validators.required)
           );
 
           if (this.countries) {
-            const birthCountryId = this.verifyApplicantData.minorSecondaryHolderSummary.birthCountry;
-            const birthCountry = this.countries.find(x => x.id == birthCountryId);
+            const birthCountryName = this.verifyApplicantData.minorSecondaryHolderSummary.birthCountry;
+            const birthCountry = this.countries.find(x => x.name == birthCountryName);
             this.secondaryHolderMinorForm.addControl(
               'birthCountry', new FormControl(birthCountry, [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)])
             );
@@ -809,26 +822,37 @@ export class AddSecondaryHolderComponent implements OnInit {
 
 
           if (this.raceList) {
-            const raceId = this.verifyApplicantData.minorSecondaryHolderSummary.race;
-            const race = this.raceList.find(x => x.id == raceId);
+            const raceName = this.verifyApplicantData.minorSecondaryHolderSummary.race;
+            const race = this.raceList.find(x => x.name == raceName);
             this.secondaryHolderMinorForm.addControl(
               'race', new FormControl(race, [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)])
             );
           }
 
-          //iteration         
+          //iteration 
+          const taxArray = this.verifyApplicantData.minorSecondaryHolderSummary.taxDetails;
+          let taxArrayResponse = [];
+          taxArray.forEach(element => {
+            taxArrayResponse.push({
+              radioTin: element.isTinNumberPresent,
+              taxCountry: element.taxCountryId,
+              tinNumber: element.tinNumber,
+              noTinReason: element.noTinReason
+            });
+          });
+          this.setTaxDetails(taxArrayResponse);
+          
+
           //this.secondaryHolderMinorForm.controls.taxCountry.setValue();
           //this.secondaryHolderMinorForm.controls.taxDetails.setValue(this.verifyApplicantData.minorSecondaryHolderSum.);
-          this.secondaryHolderMinorForm.controls.tinNumber.setValue(this.verifyApplicantData.minorSecondaryHolderSummary.taxDetails.tinNumber);
-          this.secondaryHolderMinorForm.controls.noTinReason.setValue(this.verifyApplicantData.minorSecondaryHolderSummary.taxDetails.noTinReason);
-          this.secondaryHolderMinorForm.controls.tin.setValue(this.verifyApplicantData.minorSecondaryHolderSummary.taxDetails.isTinNumberPresent);
+          // this.secondaryHolderMinorForm.controls.tinNumber.setValue(this.verifyApplicantData.minorSecondaryHolderSummary.taxDetails.tinNumber);
+          // this.secondaryHolderMinorForm.controls.noTinReason.setValue(this.verifyApplicantData.minorSecondaryHolderSummary.taxDetails.noTinReason);
+          // this.secondaryHolderMinorForm.controls.tin.setValue(this.verifyApplicantData.minorSecondaryHolderSummary.taxDetails.isTinNumberPresent);
 
 
 
-          if (this.checkSingaporeResident()) {
-            this.secondaryHolderMinorForm.addControl(
-              'singaporeanResident', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.singaporePR, Validators.required)
-            );
+          if (this.checkSingaporeNationality()) {
+           
             this.secondaryHolderMinorForm.addControl(
               'nricNumber', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.nricNumber, [Validators.required, this.validateNric.bind(this)])
             );
@@ -843,15 +867,21 @@ export class AddSecondaryHolderComponent implements OnInit {
 
             if (this.minorSGRelationships) {
               const relationshipId = this.verifyApplicantData.minorSecondaryHolderSummary.relationship;
-              const relationship = this.minorSGRelationships.find(x => x.id == relationshipId);
+              const relationship = this.minorSGRelationships.find(x => x.name == relationshipId);
               this.secondaryHolderMinorForm.addControl(
                 'relationship', new FormControl(relationship, [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)])
               );
             }
           } else {
+            if(this.checkSingaporeResident()){
+              this.secondaryHolderMinorForm.addControl(
+                'singaporeanResident', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.singaporePR, Validators.required)
+              );
+            }
+
             if (this.minorForeignerRelationships) {
               const relationshipId = this.verifyApplicantData.minorSecondaryHolderSummary.relationship;
-              const relationship = this.minorForeignerRelationships.find(x => x.id == relationshipId);
+              const relationship = this.minorForeignerRelationships.find(x => x.name == relationshipId);
               this.secondaryHolderMinorForm.addControl(
                 'relationship', new FormControl(relationship, [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)])
               );
@@ -865,7 +895,7 @@ export class AddSecondaryHolderComponent implements OnInit {
             );
             if (this.countries) {
               const issuedCountryId = this.verifyApplicantData.minorSecondaryHolderSummary.passportIssuedCountry;
-              const issuedCountry = this.countries.find(x => x.id == issuedCountryId);
+              const issuedCountry = this.countries.find(x => x.name == issuedCountryId);
               this.secondaryHolderMinorForm.addControl(
                 'passportIssuedCountry', new FormControl(issuedCountry, [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)])
               );
@@ -876,9 +906,29 @@ export class AddSecondaryHolderComponent implements OnInit {
     });
   }
 
-  checkSingaporeResident() {
+  
+  checkSingaporeNationality() {
     return this.verifyApplicantData.minorSecondaryHolderSummary.nationalityCode != null &&
       this.verifyApplicantData.minorSecondaryHolderSummary.nationalityCode == INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_NATIONALITY_CODE
-      || this.verifyApplicantData.minorSecondaryHolderSummary.singaporePR;
+  }
+
+  checkSingaporeResident() {
+    return this.verifyApplicantData.minorSecondaryHolderSummary != null &&
+       this.verifyApplicantData.minorSecondaryHolderSummary.singaporePR;
+  }
+
+  setTaxDetails(taxArray){
+    this.secondaryHolderMinorForm.addControl(
+      'addTax', this.formBuilder.array([])
+    );
+
+    if (this.secondaryHolderMinorFormValues && this.secondaryHolderMinorFormValues.addTax) {
+      // Existing Value
+      taxArray.map((item) => {
+        this.addTaxForm(item);
+      });
+    } else {
+      this.addTaxForm(null);
+    }
   }
 }

@@ -2,6 +2,14 @@
 @import "../../../../_mixins.scss";
 
 app-add-secondary-holder {
+  .edit-holder {
+
+    .nav-tabs,
+    h6 {
+      display: none;
+    }
+  }
+
   .nav-tabs {
     border-bottom: 0;
 
@@ -96,15 +104,17 @@ app-add-secondary-holder {
 
     .minor-tab-content {
 
-      .restrict-notice{
-        .flex-col-11{
+      .restrict-notice {
+        .flex-col-11 {
           line-height: normal;
           padding: 0 10px 0 15px;
-          .desc-sub-lbl{
+
+          .desc-sub-lbl {
             letter-spacing: -0.11px;
           }
         }
       }
+
       .minor-details {
         margin-top: 35px;
 
