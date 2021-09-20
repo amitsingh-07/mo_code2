@@ -49,5 +49,9 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
     PASSPORT: 'Passport'
   },
   UPLOAD_SINGAPOREAN_DOC_LIST: [{ "name": "NRIC", "value": "NRIC" }, { "name": "Birth Certificate", "value": "Birth Certificate" }],
-  UPLOAD_NON_SINGAPOREAN_DOC_LIST: [{ "name": "Passport", "value": "Passport" }]
+  UPLOAD_NON_SINGAPOREAN_DOC_LIST: [{ "name": "Passport", "value": "Passport" }],
+  NATIONALITY: {
+    COUNTRY_NAME: "SINGAPOREAN",
+    COUNTRY_CODE: "SG"
+  }
 };

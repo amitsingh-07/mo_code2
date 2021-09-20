@@ -141,7 +141,7 @@ export function createTranslateLoader(http: HttpClient) {
     SpinnerComponent,
     WiseIncomePayoutTypeComponent,
     WiseIncomeFundComponent,
-    ReferralRewardDetailsComponent, ReferralRewardDetailsComponent],
+    ReferralRewardDetailsComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent, SpinnerComponent,
