@@ -402,4 +402,9 @@ export class InvestmentCommonService {
       return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO
     }
   }
+
+  // GET THE PORTFOLIO SUMMARY DETAILS FOR PORTFOLIO SUMMARY PAGE
+  getPortFolioSummaryDetails(customerPortfolioId) {
+    return this.investmentApiService.getPortFolioSummaryDetails(customerPortfolioId);
+  }
 }

@@ -10,6 +10,7 @@ import { InvestmentApiService } from '../investment-api.service';
 import { InvestmentEngagementJourneyFormData } from './investment-engagement-journey-form-data';
 import { InvestmentEngagementJourneyFormErrors } from './investment-engagement-journey-form-errors';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from './investment-engagement-journey.constants';
+import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account/investment-account.constant';
 import { PersonalInfo } from './investment-period/investment-period';
 
 const PORTFOLIO_RECOMMENDATION_COUNTER_KEY = 'portfolio_recommendation-counter';
@@ -338,6 +339,11 @@ export class InvestmentEngagementJourneyService {
     return this.investmentApiService.getPortfolioAllocationDetails(params);
   }
 
+  // CALL ALLOCATION DETAILS API WITH JA ACCOUNT ID
+  getJAPortfolioAllocationDetails(params) {
+    return this.investmentApiService.getJAPortfolioAllocationDetails(params);
+  }
+
   getFundDetails() {
     return this.investmentEngagementJourneyFormData.fundDetails;
   }
@@ -496,6 +502,12 @@ export class InvestmentEngagementJourneyService {
   buildMinorHolderData() {
     const formData = this.investmentEngagementJourneyFormData?.minorSecondaryHolderFormData;
     let taxInfo = this.setAddTaxData(formData?.addTax);
+    let passporIssuedCountry;
+    if (formData && formData.issuedCountry) {
+      passporIssuedCountry = formData.issuedCountry.id
+    } else if (formData && formData.passportIssuedCountry) {
+      passporIssuedCountry = formData.passportIssuedCountry.id
+    }
     return {
       singaporePR: !Util.isEmptyOrNull(formData?.singaporeanResident) ? formData?.singaporeanResident : null,
       usPR: !Util.isEmptyOrNull(formData?.unitedStatesResident) ? formData?.unitedStatesResident : null,
@@ -506,7 +518,7 @@ export class InvestmentEngagementJourneyService {
         fullName: formData?.fullName,
         nricNumber: formData?.nricNumber,
         passportNumber: formData?.passportNumber,
-        passportIssuedCountryId: formData?.singaporeanResident ? formData?.issuedCountry?.id : formData?.passportIssuedCountry?.id,
+        passportIssuedCountryId: passporIssuedCountry,
         gender: formData?.gender,
         birthCountryId: formData?.birthCountry?.id,
         race: formData?.race?.name,
@@ -558,4 +570,20 @@ export class InvestmentEngagementJourneyService {
   }
 
   /* ******* END SECONDARY HOLDER FUNCTIONALITY AND METHODS******* */
+
+  /*Upload Document Method start*/
+  isSingaporeResident() {
+    const selectedNationality = this.investmentEngagementJourneyFormData.minorSecondaryHolderFormData.nationality.nationalityCode;
+    return (
+      selectedNationality === INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_NATIONALITY_CODE 
+       || this.investmentEngagementJourneyFormData.minorSecondaryHolderFormData.singaporeanResident
+    );
+  }
+
+   // Upload Document
+   uploadDocument(formData) {
+    return this.investmentApiService.uploadDocument(formData);
+  }
+    /*Upload Document Method end*/
 }
+

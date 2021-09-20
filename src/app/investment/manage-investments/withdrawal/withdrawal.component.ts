@@ -55,6 +55,7 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
   isInvestAndJointAccountHolder;
   fundingMethods: any;
   customerPortfolioId: any;
+  isJAAccount: boolean;
 
   private destroySubscription$ = new Subject();
 
@@ -105,7 +106,8 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
     this.setSelectedPortfolio();
     this.getAndSetSrsDetails();
     this.isInvestAndJointAccountHolder = this.manageInvestmentsService.isInvestAndJointAccount();
-    this.getUserBankList(this.customerPortfolioId,this.isInvestAndJointAccountHolder);
+    this.isJAAccount = this.formValues.selectedCustomerPortfolio.entitlements.jointAccount;
+    this.getUserBankList(this.customerPortfolioId,this.isJAAccount);
     this.withdrawForm.get('withdrawRedeem').valueChanges.subscribe((value) => {
       if(value && !this.withdrawForm.controls['withdrawAmount'].disabled) {
         this.withdrawForm.get('withdrawAmount').disable();

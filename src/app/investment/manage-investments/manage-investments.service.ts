@@ -301,9 +301,9 @@ export class ManageInvestmentsService {
     return this.investmentApiService.getUserAddress();
   }
 
-  saveProfileNewBank(data) {
+  saveProfileNewBank(data, customerPortfolioId, isJAAccount) {
     const payload = this.constructSaveNewBankRequest(data);
-    return this.apiService.saveNewBankProfile(payload);
+    return this.apiService.saveNewBankProfile(payload, customerPortfolioId, isJAAccount);
   }
 
   constructSaveNewBankRequest(data) {
@@ -313,10 +313,10 @@ export class ManageInvestmentsService {
     request['accountNumber'] = data.accountNo;
     return request;
   }
-  updateBankInfo(bank, fullName, accountNum, id) {
+  updateBankInfo(bank, fullName, accountNum, id, customerPortfolioId, isJointAccount) {
     // API Call here
     const data = this.constructUpdateBankPayload(bank, fullName, accountNum, id);
-    return this.apiService.saveNewBankProfile(data);
+    return this.apiService.saveNewBankProfile(data, customerPortfolioId, isJointAccount);
   }
   // tslint:disable-next-line:no-identical-functions
   constructUpdateBankPayload(bank, fullName, accountNum, id) {
@@ -706,7 +706,7 @@ export class ManageInvestmentsService {
     this.manageInvestmentsFormData.TransferAll = null;
     this.commit();
   }
-  
+
   getWrapFeeDetails(customerId) {
     const payload = {
       customer_id: customerId,
