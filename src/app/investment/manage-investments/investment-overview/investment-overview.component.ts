@@ -483,4 +483,9 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     this.showToastMessage();
   }
 
+  emitMessage(event) {
+    if (event.action == MANAGE_INVESTMENTS_CONSTANTS.JOINT_ACCOUNT.REFRESH) {    
+      this.getInvestmentOverview();
+    }
+  }
 }
