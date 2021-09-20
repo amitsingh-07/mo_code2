@@ -55,8 +55,7 @@ export class PortfolioSummaryComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    // this.getPortFolioSummaryDetails(this.investmentAccountService.getCustomerPortfolioId());
-    this.getPortFolioSummaryDetails(30879);
+    this.getPortFolioSummaryDetails(this.investmentAccountService.getCustomerPortfolioId());
   }
 
   setPageTitle(title: string) {
@@ -67,20 +66,19 @@ export class PortfolioSummaryComponent implements OnInit {
     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_WITHDRAWAL, { navigationType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT }]);
   }
 
-  goToNext() {    
-    this.investmentEngagementJourneyService.setMinorSecondaryHolderData(null);
+  goToNext() {
+    this.clearData();
     if (this.summaryDetails.minor) {
       const toastMessage: IToastMessage = {
         isShown: true,
-        desc: this.translate.instant('TOAST_MESSAGES.PORTFOLIO_SUBMITTED_TO_MINOR', {userGivenPortfolioName : this.summaryDetails.portfolioName} ),       
+        desc: this.translate.instant('TOAST_MESSAGES.PORTFOLIO_SUBMITTED_TO_MINOR', { userGivenPortfolioName: this.summaryDetails.portfolioName }),
       };
       this.manageInvestmentsService.setToastMessage(toastMessage);
       this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
     } else {
-      this.investmentEngagementJourneyService.setMajorSecondaryHolderData(null);
       const toastMessage: IToastMessage = {
         isShown: true,
-        desc: this.translate.instant('TOAST_MESSAGES.PORTFOLIO_SUBMITTED_TO_MAJOR', {secondaryHolderName : this.summaryDetails.secondaryHolderName} ),       
+        desc: this.translate.instant('TOAST_MESSAGES.PORTFOLIO_SUBMITTED_TO_MAJOR', { secondaryHolderName: this.summaryDetails.secondaryHolderName }),
       };
       this.manageInvestmentsService.setToastMessage(toastMessage);
       this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
@@ -100,7 +98,14 @@ export class PortfolioSummaryComponent implements OnInit {
   }
 
   editPromoCode() {
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
+  }
 
+  clearData() {
+    this.investmentAccountService.clearInvestmentAccountFormData();
+    this.investmentCommonService.clearJourneyData();
+    this.investmentCommonService.clearFundingDetails();
+    this.investmentCommonService.clearAccountCreationActions();
   }
 
   editFundingMethod() {
@@ -144,8 +149,7 @@ export class PortfolioSummaryComponent implements OnInit {
 
   saveUpdatedInvestmentData(updatedData) {
     const params = this.constructUpdateInvestmentParams(updatedData);
-    // const customerPortfolioId = this.investmentAccountService.getCustomerPortfolioId();
-    const customerPortfolioId = 30879;
+    const customerPortfolioId = this.investmentAccountService.getCustomerPortfolioId();
     this.investmentAccountService.updateInvestment(customerPortfolioId, params).subscribe((data) => {
       this.getPortFolioSummaryDetails(this.investmentAccountService.getCustomerPortfolioId());
     },
@@ -171,7 +175,8 @@ export class PortfolioSummaryComponent implements OnInit {
   }
 
   isForeignerCheck() {
-    if (this.summaryDetails && this.summaryDetails.nationality && ['SINGAPOREAN', 'SG'].indexOf(this.summaryDetails.nationality) < 0) {
+    if (this.summaryDetails && this.summaryDetails.nationality && [INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_NAME, INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_CODE]
+      .indexOf(this.summaryDetails.nationality) < 0) {
       return this.summaryDetails.singaporePR;
     } else {
       return true;

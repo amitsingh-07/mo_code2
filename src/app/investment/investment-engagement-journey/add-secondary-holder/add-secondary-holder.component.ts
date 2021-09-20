@@ -14,6 +14,7 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../investment-account/investment-account.constant';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { INVESTMENT_COMMON_CONSTANTS } from './../../../investment/investment-common/investment-common.constants';
 
@@ -260,7 +261,8 @@ export class AddSecondaryHolderComponent implements OnInit {
     const selectedNationalityName = this.secondaryHolderMinorForm.controls.nationality.value &&
       this.secondaryHolderMinorForm.controls.nationality.value.name ?
       this.secondaryHolderMinorForm.controls.nationality.value.name.toUpperCase() : '';
-    if (['SINGAPOREAN', 'SG'].indexOf(selectedNationalityName) >= 0) {
+    if ([INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_NAME, INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_CODE]
+      .indexOf(selectedNationalityName) >= 0) {
       return true;
     } else {
       return false;
