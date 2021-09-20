@@ -311,13 +311,15 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     });
   }
 
-  deleteByHolder(portfolioName) {
-    const toastMessage: IToastMessage = {
-      isShown: true,
-      desc: this.translate.instant('TOAST_MESSAGES.DELETE_PORTFOLIO_BY_HOLDER', {userGivenPortfolioName : portfolioName} ),       
-    };
-    this.manageInvestmentsService.setToastMessage(toastMessage);
-    this.emitToastMessage.emit(portfolioName);
+  deleteByHolder(portfolioName, customerPortfolioId) {
+    this.manageInvestmentsService.setActionByHolder(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.DELETE).subscribe(resp => {     
+      const toastMessage: IToastMessage = {
+        isShown: true,
+        desc: this.translate.instant('TOAST_MESSAGES.DELETE_PORTFOLIO_BY_HOLDER', {userGivenPortfolioName : portfolioName} ),       
+      };
+      this.manageInvestmentsService.setToastMessage(toastMessage);
+      this.emitToastMessage.emit(portfolioName);
+    });
   }
 
   getTimeDifference () {
