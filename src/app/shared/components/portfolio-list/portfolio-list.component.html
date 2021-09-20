@@ -32,7 +32,7 @@
                                 <div class="row">
                                     <div class='col-md-6 awaiting-period mt10'>{{ portfolio.awaitingPeriod }} {{'YOUR_INVESTMENT.PRIMARY_AWAITING_PERIOD' | translate}}</div>
                                     <div class='col-md-6 ja-btn-group' *ngIf='portfolio.primaryHolder'>
-                                        <button class="send-reminder-btn cursorPointer">{{'YOUR_INVESTMENT.SEND_REMINDER' | translate}}</button>
+                                        <button class="send-reminder-btn cursorPointer" (click)="sendReminderModal(portfolio.customerPortfolioId, portfolio.secondaryHolderName)">{{'YOUR_INVESTMENT.SEND_REMINDER' | translate}}</button>
                                         <button class="withdraw-btn cursorPointer ml10" (click)="withDrawModal(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.WITHDRAW' | translate}}</button>
                                     </div>
                                     <div class='col-md-6 flex justify-right' *ngIf='!portfolio.primaryHolder'>

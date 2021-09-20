@@ -139,7 +139,7 @@ export function createTranslateLoader(http: HttpClient) {
     SecurePipe, PortfolioListComponent, InstructionStepsComponent, FormatCurrencyPipe, NotesComponent,
     CopyClipboardDirective,
     SpinnerComponent,
-    WiseIncomePayoutTypeComponent, 
+    WiseIncomePayoutTypeComponent,
     WiseIncomeFundComponent,
     ReferralRewardDetailsComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,

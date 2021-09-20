@@ -616,8 +616,9 @@ export class ApiService {
       );
   }
 
-  saveNewBankProfile(data) {
-    return this.http.post(investmentApiConstants.endpoint.investment.addProfileNewBank, data)
+  saveNewBankProfile(data, customerPortfolioId, isJAAccount) {
+    const url = investmentApiConstants.endpoint.investment.addProfileNewBank.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId).replace('$IS_JOINT_ACCOUNT$', isJAAccount);
+    return this.http.post(url, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -729,9 +730,9 @@ export class ApiService {
   // referral code api ends
   getRefereeList() {
     return this.http.get(apiConstants.endpoint.getRefereeList)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
   // fetch cfp checkout page details
@@ -754,11 +755,11 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
- 
+
   validateCpfPromoCode(payload) {
     return this.http.post(apiConstants.endpoint.promoCode.validatePromo + this.handleErrorFlag, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
-      ); 
+      );
   }
 }
