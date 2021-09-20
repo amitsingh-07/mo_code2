@@ -290,6 +290,7 @@
     "CONTINUE": "Continue",
     "REVIEW_DETAILS_LABEL": "<strong>Please review all details carefully before you proceed.</strong> An Invitation will be sent to the secondary holder via email and expires after 7 days. ",
     "CHANGE_PORTFOLIO_BUTTON_TEXT": "Change to another portfolio",
+    "ACCOUNT_TYPE": "Joint Account",
     "PORTFOLIO_DETAILS": {
       "DATE_OF_APPLICATION_TITLE": "Date of Application",
       "PORTFOLIO_TYPE_TITLE": "Portfolio Type",

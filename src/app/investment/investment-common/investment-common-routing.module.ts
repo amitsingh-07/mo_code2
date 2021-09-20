@@ -56,12 +56,12 @@ const routes: Routes = [
   {
     path: INVESTMENT_COMMON_ROUTES.PORTFOLIO_SUMMARY,
     component: PortfolioSummaryComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: INVESTMENT_COMMON_ROUTES.CONFIRM_WITHDRAWAL,
     component: ConfirmWithdrawalComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }
 ];
