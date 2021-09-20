@@ -341,17 +341,17 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   }
 
   sendReminderModal(customerPortfolioId, secondaryHolderName) {
-    this.manageInvestmentsService.setActionByHolder(customerPortfolioId, MANAGE_INVESTMENTS_CONSTANTS.JOINT_ACCOUNT.ACTIONS.SEND_REMINDER.toString()).subscribe((response) => {
+    this.manageInvestmentsService.setActionByHolder(customerPortfolioId, MANAGE_INVESTMENTS_CONSTANTS.JOINT_ACCOUNT.ACTIONS.SEND_REMINDER).subscribe((response) => {
       if(response && response.responseMessage && response.responseMessage.responseCode == 6000) {
         const toastMessage: IToastMessage = {
           isShown: true,
-          desc: this.translate.instant('YOUR_PORTFOLIO.JOINT_ACCOUNT.TOAST_MSG.REMINDER_TEXT', {secondaryHolderName : secondaryHolderName})      
+          desc: this.translate.instant('TOAST_MESSAGES.REMINDER_TEXT', {secondaryHolderName : secondaryHolderName})      
         };
         this.setToasterAndEmit(toastMessage);
       } else if(response && response.responseMessage && response.responseMessage.responseCode == MANAGE_INVESTMENTS_CONSTANTS.JOINT_ACCOUNT.ERROR_CODES.ONE_REMINDER_PER_DAY) {
         const toastMessage: IToastMessage = {
           isShown: true,
-          desc: this.translate.instant('YOUR_PORTFOLIO.JOINT_ACCOUNT.TOAST_MSG.ONE_REMINDER_PER_DAY')
+          desc: this.translate.instant('TOAST_MESSAGES.ONE_REMINDER_PER_DAY')
         };
         this.setToasterAndEmit(toastMessage);
       } else {
