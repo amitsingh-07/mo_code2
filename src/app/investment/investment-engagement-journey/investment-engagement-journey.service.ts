@@ -590,11 +590,11 @@ export class InvestmentEngagementJourneyService {
 
   /** VERIFY METHOD PREFILL DETAILS */
   getVerifyDetails(customerPortfolioId, jointAccountAction) {
-    this.verifyEditAndSubmit(customerPortfolioId, jointAccountAction);
+    return this.verifyEditAndSubmit(customerPortfolioId, jointAccountAction);
   }
   //Verify - Submission
   verifyFlowSubmission(customerPortfolioId, jointAccountAction) {
-    this.verifyEditAndSubmit(customerPortfolioId, jointAccountAction);
+    return this.verifyEditAndSubmit(customerPortfolioId, jointAccountAction);
   }
 
   verifyEditAndSubmit(customerPortfolioId, jointAccountAction) {
