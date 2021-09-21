@@ -2,6 +2,12 @@
 @import "../../../../_mixins.scss";
 
 app-add-secondary-holder {
+  .container-fluid {
+    @include min568max767 {
+      padding-top: 80px;
+    }
+  }
+
   .edit-holder {
 
     .nav-tabs,

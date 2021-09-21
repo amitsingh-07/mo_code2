@@ -378,7 +378,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   showHelpModal() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'major-tooltip' });
     ref.componentInstance.errorTitle = this.helpData.modalTitle;
     ref.componentInstance.errorDescription = this.helpData.modalDesc;
     return false;
