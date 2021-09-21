@@ -303,23 +303,34 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     );
     ref.componentInstance.primaryActionLabel = this.translate.instant('YOUR_INVESTMENT.CONFIRM_WITHDRAWAL');
     ref.componentInstance.primaryAction.subscribe(() => {
-      this.manageInvestmentsService.setActionByHolder(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.WITHDRAW).subscribe(resp => {     
-        const toastMessage: IToastMessage = {
-          isShown: true,
-          desc: this.translate.instant('TOAST_MESSAGES.WITHDRAW_PORTFOLIO_SUCCESS', {userGivenPortfolioName : portfolioName} ),       
-        };
-        this.manageInvestmentsService.setToastMessage(toastMessage);
-        this.emitToastMessage.emit(portfolioName);
+      this.manageInvestmentsService.setActionByHolder(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.WITHDRAW).subscribe(response => {     
+        if(response && response.responseMessage && response.responseMessage.responseCode == 6000) {          
+          const toastMessage: IToastMessage = {
+            isShown: true,
+            desc: this.translate.instant('TOAST_MESSAGES.WITHDRAW_PORTFOLIO_SUCCESS', {userGivenPortfolioName : portfolioName} ),       
+          };
+          this.manageInvestmentsService.setToastMessage(toastMessage);
+          this.emitToastMessage.emit(true);
+        } else {
+          this.showErrorModal();
+        }
       });
     });
   }
-  deleteByHolder(portfolioName) {
-    const toastMessage: IToastMessage = {
-      isShown: true,
-      desc: this.translate.instant('TOAST_MESSAGES.DELETE_PORTFOLIO_BY_HOLDER', {userGivenPortfolioName : portfolioName} ),       
-    };
-    this.manageInvestmentsService.setToastMessage(toastMessage);
-    this.emitToastMessage.emit(portfolioName);
+
+  deleteByHolder(portfolioName, customerPortfolioId) {
+    this.manageInvestmentsService.setActionByHolder(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.DELETE).subscribe(response => {     
+      if(response && response.responseMessage && response.responseMessage.responseCode == 6000) {
+        const toastMessage: IToastMessage = {
+          isShown: true,
+          desc: this.translate.instant('TOAST_MESSAGES.DELETE_PORTFOLIO_BY_HOLDER', {userGivenPortfolioName : portfolioName} ),       
+        };
+        this.manageInvestmentsService.setToastMessage(toastMessage);
+        this.emitToastMessage.emit(true);
+      } else {
+        this.showErrorModal();
+      }
+    });
   }
 
   getTimeDifference () {
@@ -365,7 +376,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
 
   private setToasterAndEmit(toastMessage: IToastMessage) {
     this.manageInvestmentsService.setToastMessage(toastMessage);
-    this.emitToastMessage.emit(true);
+    this.emitToastMessage.emit(false);
   }
 
   showErrorModal() {

@@ -632,7 +632,7 @@
             </div>
 
             <!-- Update srs details  -->
-            <div class="srs_details" *ngIf="srsDetails">
+            <div class="srs_details" *ngIf="srsDetails && entireUserData && entireUserData.srsportfolioAvaialble">
                 <div class="edit-profile-section-bg">
                     <div class="flex-row cursor_pointer" (click)=showHide(showHideSrs)>
                         <div class="flex-col-11">
