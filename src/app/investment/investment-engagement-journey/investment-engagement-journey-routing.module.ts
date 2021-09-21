@@ -24,7 +24,7 @@ import {
 import { RiskAcknowledgementComponent } from './risk-acknowledgement/risk-acknowledgement.component';
 import { WiseIncomePayoutComponent } from './wise-income-payout/wise-income-payout.component';
 import { AddSecondaryHolderComponent } from './add-secondary-holder/add-secondary-holder.component';
-
+import { UploadDocumentComponent} from './upload-document/upload-document.component';
 const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.ROOT,
@@ -112,6 +112,11 @@ const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.ADD_SECONDARY_HOLDER,
     component: AddSecondaryHolderComponent,
+    canActivate: [InvestmentEngagementJourneyGuard]
+  },
+  {
+    path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.JA_UPLOAD_DOCUMENT,
+    component: UploadDocumentComponent,
     canActivate: [InvestmentEngagementJourneyGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }

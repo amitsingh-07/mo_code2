@@ -69,6 +69,8 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   @Output() topUpSelected = new EventEmitter<boolean>();
   @Output() investAgainSelected = new EventEmitter<boolean>();
   @Output() emitToastMessage = new EventEmitter<boolean>();
+  @Output() emitMessage = new EventEmitter<any>();
+
 
   // Filtered Portfolio List
   filteredInvestedList: any;
@@ -137,18 +139,18 @@ export class PortfolioListComponent implements OnInit, OnChanges {
         if (portfolio.portfolioStatus === 'PURCHASED' || portfolio.portfolioStatus === 'REDEEMING'
           || portfolio.portfolioStatus === 'REBALANCING') {
           this.investedList.push(portfolio);
-        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.AWAITING) {
+        } else if(portfolio.jointAccount && portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.AWAITING) {
           portfolio.awaitingPeriod = '';
           this.awaitingList.push(portfolio);
-        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.WITHDRAWN) {
+        } else if(portfolio.jointAccount && !portfolio.primaryHolder && portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.WITHDRAWN) {
           this.withdrawnList.push(portfolio);
-        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.DECLINED) {
+        } else if(portfolio.jointAccount && portfolio.primaryHolder && portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.DECLINED) {
           this.declinedList.push(portfolio);
-        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.EXPIRED) {
+        } else if(portfolio.jointAccount && portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.EXPIRED) {
           this.expiredList.push(portfolio);
-        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.IN_PROGRESS) {
+        } else if(portfolio.jointAccount && portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.IN_PROGRESS) {
           this.progressList.push(portfolio);
-        } else if(portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.VERIFY) {
+        } else if(portfolio.jointAccount && portfolio.portfolioStatus === INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.VERIFY) {
           this.verifyList.push(portfolio);
         }  else {
           this.notInvestedList.push(portfolio);
@@ -311,7 +313,6 @@ export class PortfolioListComponent implements OnInit, OnChanges {
       });
     });
   }
-
   deleteByHolder(portfolioName) {
     const toastMessage: IToastMessage = {
       isShown: true,
@@ -341,5 +342,48 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   }
   acceptJAPortfolio(customerPortfolioId){
     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACCEPT_JA_HOLDER + '/' + customerPortfolioId]);
+  }
+  sendReminderModal(customerPortfolioId, secondaryHolderName) {
+    this.manageInvestmentsService.setActionByHolder(customerPortfolioId, MANAGE_INVESTMENTS_CONSTANTS.JOINT_ACCOUNT.ACTIONS.SEND_REMINDER).subscribe((response) => {
+      if(response && response.responseMessage && response.responseMessage.responseCode == 6000) {
+        const toastMessage: IToastMessage = {
+          isShown: true,
+          desc: this.translate.instant('TOAST_MESSAGES.REMINDER_TEXT', {secondaryHolderName : secondaryHolderName})      
+        };
+        this.setToasterAndEmit(toastMessage);
+      } else if(response && response.responseMessage && response.responseMessage.responseCode == MANAGE_INVESTMENTS_CONSTANTS.JOINT_ACCOUNT.ERROR_CODES.ONE_REMINDER_PER_DAY) {
+        const toastMessage: IToastMessage = {
+          isShown: true,
+          desc: this.translate.instant('TOAST_MESSAGES.ONE_REMINDER_PER_DAY')
+        };
+        this.setToasterAndEmit(toastMessage);
+      } else {
+        this.showErrorModal();
+      }
+    });
+  }
+
+  private setToasterAndEmit(toastMessage: IToastMessage) {
+    this.manageInvestmentsService.setToastMessage(toastMessage);
+    this.emitToastMessage.emit(true);
+  }
+
+  showErrorModal() {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'YOUR_PORTFOLIO.JOINT_ACCOUNT.API_FAILED.TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'YOUR_PORTFOLIO.JOINT_ACCOUNT.API_FAILED.DESC'
+    );
+    ref.componentInstance.primaryActionLabel = this.translate.instant(
+      'YOUR_PORTFOLIO.JOINT_ACCOUNT.API_FAILED.BUTTON_TEXT'
+    );
+    ref.componentInstance.primaryAction.subscribe(() => {
+      const emitOptions = {
+        action: MANAGE_INVESTMENTS_CONSTANTS.JOINT_ACCOUNT.REFRESH
+      }
+      this.emitMessage.emit(emitOptions);
+    });
   }
 }

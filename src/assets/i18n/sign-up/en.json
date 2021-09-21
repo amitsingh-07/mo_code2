@@ -445,7 +445,7 @@
     "GENDER": "Gender",
     "NATIONALITY": "Nationality",
     "DOB": "Date of Birth",
-    "UPDATE_USER_ID": "Update User ID",
+    "USER_ID": "User ID",
     "MOB": "Mobile Number",
     "EMAIL": "Email Address",
     "EDIT": "Edit",
@@ -470,7 +470,7 @@
     "INDUSTRY": "Industry",
     "EMP_CONTRACT": "Employer Contact",
     "OCCUPATUION": "Occupation",
-    "UPDATE_BANK": "Update Bank Details",
+    "UPDATE_BANK": "Bank Account (Personal Investment)",
     "BANK": "Bank Name",
     "BANK_ACC": " Bank Account",
     "NO_BANK": "No bank added",
@@ -490,7 +490,10 @@
       "PENDING": "Pending investment account application to complete",
       "LINK_LBL": "Link",
       "LINKED_LBL": "Linked"
-    }
+    },
+    "JA_BANK_INFO": "Bank Account (Joint Investment)",
+    "PORTFOLIO_NAME": "Portfolio Name",
+    "HOLDER_NAMES": "Holder Name(s)"
   },
   "ADD_BANK": {
     "ACCOUNT_NAME": "Account Holders Name",
@@ -526,7 +529,7 @@
     }
   },
   "UPDATE_SRS": {
-    "TITLE": "Update SRS Account",
+    "TITLE": "SRS Account",
     "SRS_OPERATOR": "SRS Operator",
     "SRS_ACCOUNT_NUMBER": "SRS Account Number",
     "NOTE": "No account added",

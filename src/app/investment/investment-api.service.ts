@@ -64,6 +64,14 @@ export class InvestmentApiService {
       );
   }
 
+  getJAPortfolioAllocationDetails(param) {
+    const url = investmentApiConstants.endpoint.portfolio.getJAAllocationDetails.replace('$ENQUIRY_ID$', param.enquiryId).replace('$JA_ACCOUNT_ID$', param.jaAccountId);
+    return this.http.get(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   getPortfolioDetailsWithAuth() {
     return this.http.get(investmentApiConstants.endpoint.investmentAccount.getPortfolioDetailsWithAuth)
       .pipe(
@@ -280,6 +288,15 @@ export class InvestmentApiService {
 
   getTransactionHistory(customerPortfolioId) {
     const url = investmentApiConstants.endpoint.investment.getTransactions.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.get(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  // GET THE PORTFOLIO SUMMARY DETAILS FOR PORTFOLIO SUMMARY PAGE
+  getPortFolioSummaryDetails(customerPortfolioId) {
+    const url = investmentApiConstants.endpoint.portfolio.portfolioSummary.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
     return this.http.get(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
