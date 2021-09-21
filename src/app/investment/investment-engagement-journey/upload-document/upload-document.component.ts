@@ -8,9 +8,7 @@ import { LoaderService } from '../../../shared/components/loader/loader.service'
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
-import {
-  ModelWithButtonComponent
-} from '../../../shared/modal/model-with-button/model-with-button.component';
+import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { Util } from 'src/app/shared/utils/util';
 import { InvestmentAccountCommon } from '../../investment-account/investment-account-common';

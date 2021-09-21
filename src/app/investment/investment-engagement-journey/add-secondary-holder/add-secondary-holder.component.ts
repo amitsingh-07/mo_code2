@@ -127,7 +127,6 @@ export class AddSecondaryHolderComponent implements OnInit {
     apiCalls.push(this.investmentAccountService.getAllDropDownList());
     apiCalls.push(this.investmentAccountService.getNationalityCountryList());
     forkJoin(apiCalls).subscribe(results => {
-      console.log('results', results);
       this.setDropdownLists(results[0]);
       this.getNationalityCountriesList(results[1]);
       this.route.paramMap.subscribe(params => {

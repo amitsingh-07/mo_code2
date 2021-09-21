@@ -588,21 +588,22 @@ export class InvestmentEngagementJourneyService {
   }
     /*Upload Document Method end*/
 
-     /** VERIFY METHOD PREFILL DETAILS */
+  /** VERIFY METHOD PREFILL DETAILS */
   getVerifyDetails(customerPortfolioId, jointAccountAction) {
+    this.verifyEditAndSubmit(customerPortfolioId, jointAccountAction);
+  }
+  //Verify - Submission
+  verifyFlowSubmission(customerPortfolioId, jointAccountAction) {
+    this.verifyEditAndSubmit(customerPortfolioId, jointAccountAction);
+  }
+
+  verifyEditAndSubmit(customerPortfolioId, jointAccountAction) {
     const payload = {
       customerPortfolioId: customerPortfolioId,
       jointAccountAction: jointAccountAction
     };
     return this.investmentApiService.setActionByHolder(payload);
   }
-    //Verify - Submission
-   verifyFlowSubmission(customerPortfolioId, jointAccountAction) {
-    const payload = {
-      customerPortfolioId: customerPortfolioId,
-      jointAccountAction: jointAccountAction
-    };
-    return this.investmentApiService.setActionByHolder(payload);
-  }
+ /** VERIFY METHOD PREFILL DETAILS END */
 }
 
