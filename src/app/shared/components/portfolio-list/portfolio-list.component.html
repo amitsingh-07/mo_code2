@@ -35,7 +35,7 @@
                                         <button class="send-reminder-btn cursorPointer">{{'YOUR_INVESTMENT.SEND_REMINDER' | translate}}</button>
                                         <button class="withdraw-btn cursorPointer ml10" (click)="withDrawModal(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.WITHDRAW' | translate}}</button>
                                     </div>
-                                    <div class='col-md-6 flex justify-right' *ngIf='!portfolio.primaryHolder'>
+                                    <div class='col-md-6 flex justify-right' *ngIf='!portfolio.primaryHolder' (click)="acceptJAPortfolio(portfolio.customerPortfolioId)">
                                         <button class="accept-decline-btn cursorPointer">{{'YOUR_INVESTMENT.ACCEPT_DECLINE' | translate}}</button>                                        
                                     </div>
                                 </div>

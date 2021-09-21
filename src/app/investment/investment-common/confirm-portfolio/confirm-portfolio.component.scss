@@ -6,6 +6,9 @@ app-confirm-portfolio {
             letter-spacing: -0.31px;
             text-align: center;
             color: $white-color;
+            @include min568max767{
+                padding-top: 50px;
+            }
             .ja-sub-lbl{
                 font-size: 24px;
                 line-height: normal;
@@ -260,6 +263,10 @@ app-confirm-portfolio {
             @include allmobiles{
                 letter-spacing: -0.17px;
             }
+            &:disabled{
+                background-color: $crusta-orange-color !important;
+                cursor: not-allowed;
+            }
         }
         .btn-outline-primary{
             border: 1px solid $white-color;
@@ -267,6 +274,72 @@ app-confirm-portfolio {
             color: $white-color;
             box-shadow: none !important;
             margin-top: 30px;
+            &:disabled{
+                background-color: transparent !important;
+                cursor: not-allowed;
+            }
         }
+    }
+    .withdraw-bank-details{
+        .title {
+            font-family: $muli-bold;
+            font-size: 18px;
+            letter-spacing: -0.4px;
+            color: $asset-allocation-title-txt-color;
+            @include allmobiles{
+                font-size: 19px;
+            }
+        }
+        .summary-details {     
+            .primary-holder-details {
+              .widget-title {
+                background-color: $white-color;
+                letter-spacing: -0.3px;
+                border-top-left-radius: 6px;
+                border-top-right-radius: 6px;
+                padding: 20px 22px;
+                display: flex;
+                justify-content: space-between;
+                line-height: normal;
+                letter-spacing: -0.34px;
+                font-family: $muli;
+                color: $teal-color;
+     
+                span:last-of-type {
+                  cursor: pointer;
+                }
+     
+                .delete-icon {
+                  cursor: pointer;
+                }
+              }
+     
+              .widget-body {
+                margin: 15px 0 30px;
+                padding: 20px;
+                background-color: $bond-container-bg;
+                font-family: $muli-semi-bold;
+                font-size: 18px;
+                letter-spacing: -0.34px;
+                color: $teal-color;
+                border-radius: 6px;
+                text-align: left;
+
+                .primary-holder {
+                    font-size: 16px;
+                    display: flex;
+                    line-height: 23px;
+                    letter-spacing: -0.3px;
+                }
+     
+                .primary-holder-value {
+                  font-size: 16px;
+                  line-height: 23px;
+                  letter-spacing: -0.13px;
+                  color: $black-color;
+                }
+              }
+            }
+          }
     }
 }

@@ -26,6 +26,7 @@ import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from './../../../investment/i
 import { ModelWithButtonComponent } from './../../modal/model-with-button/model-with-button.component';
 import { IToastMessage } from '../../../investment/manage-investments/manage-investments-form-data';
 import { ManageInvestmentsService } from '../../../investment/manage-investments/manage-investments.service';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../../investment/investment-common/investment-common-routes.constants';
 
 @Component({
   selector: 'app-portfolio-list',
@@ -337,5 +338,8 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     } else {
       return (isStaticTextEnabled) ? this.awaitingMsg : hoursToDay + ' ' + this.hours + ' ' + minutesToDay + ' ' + this.minutes;
     }
+  }
+  acceptJAPortfolio(customerPortfolioId){
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACCEPT_JA_HOLDER + '/' + customerPortfolioId]);
   }
 }

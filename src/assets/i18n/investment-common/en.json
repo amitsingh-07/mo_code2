@@ -19,7 +19,7 @@
         "CONFIRM_PORTFOLIO": "Confirm Portfolio",
         "JOINT_ACCOUNT": "Joint Account Portfolio",
         "JA_SUB_LBL": "JA Investment Plan for My Family and Future",
-        "JA_DESC_LBL": "<span class=\"ja-icon\"><img src=\"assets/images/investment-account/ja-icon-white.svg\"></span>You are invited to a Joint Account with Kelvin Goh. Review and join portfolio by clicking on <span class=\"txt-bold\">Accept to Join</span> below.",
+        "JA_DESC_LBL": "<span class=\"ja-icon\"><img src=\"assets/images/investment-account/ja-icon-white.svg\"></span>You are invited to a Joint Account with {{primaryName}}. Review and join portfolio by clicking on <span class=\"txt-bold\">Accept to Join</span> below.",
         "ASSET_ALLOCATION_BREAKDOWN": "Asset Allocation Breakdown",
         "PROJECTED_RETURNS": "Projected Returns",
         "PROJECTED_VALUE": "Projected Value",
@@ -71,6 +71,7 @@
         "VIEW_FUND_DETAILS": "View Fund Details",
         "NUMBER_HOLDINGS_LBL": "Number of Holdings",
         "TITLE": "Confirm Portfolio",
+        "JA_ACCEPTANCE_TITLE": "Joint Account Portfolio",
         "PORTFOLIO": "Portfolio",
         "WISE_SAVER_PORTOFOLIO": {
             "TITLE_DESC": "The underlying cash fund holds assets primarily in <span class=\"bold-text\">Singapore Dollar</span> deposits. ",
@@ -159,7 +160,13 @@
             }
         },
         "I_AGREE": "I agree to the ",
-        "TNC": "Terms and Conditions"
+        "TNC": "Terms and Conditions",
+        "WITHDRAWAL_BANK_DETAILS": {
+            "CARD_TITLE": "Withdrawal Bank Account",
+            "ACCOUNT_HOLDER_NAME_TEXT": "Bank Account Holder Name(s)",
+            "BANK_NAME_TEXT": "Bank Name",
+            "ACCOUNT_NUMBER_TEXT": "Account No."
+        }
     },
     "FUND_INTRO": {
         "TITLE": "Fund Your Account",
@@ -247,7 +254,9 @@
     },
     "TOAST_MESSAGES": {
         "ADD_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been added.",
-        "VIEW": "View"
+        "VIEW": "View",
+        "PORTFOLIO_DECLINED": "\"{{userGivenPortfolioName}}\" has been declined.",
+        "PORTFOLIO_ACCEPTED": "We have submitted your Joint Account Application for \"{{userGivenPortfolioName}}\"."
     },
     "CONFIRM_ACCOUNT_DETAILS": {
         "TITLE": "Confirm Funding Details",

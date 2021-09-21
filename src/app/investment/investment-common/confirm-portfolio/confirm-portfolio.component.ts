@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, OnInit,Output, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { NavigationStart, Router } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -24,12 +24,15 @@ import {
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import { IInvestmentCriteria } from '../investment-common-form-data';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
+import { INVESTMENT_COMMON_ROUTES, INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment-engagement-journey/investment-engagement-journey.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
 import { AcknowledgementComponent } from '../acknowledgement/acknowledgement.component';
-
+import { IToastMessage } from '../../../investment/manage-investments/manage-investments-form-data';
+import {
+  MANAGE_INVESTMENTS_ROUTE_PATHS
+} from '../../../investment/manage-investments/manage-investments-routes.constants';
 @Component({
   selector: 'app-confirm-portfolio',
   templateUrl: './confirm-portfolio.component.html',
@@ -55,7 +58,13 @@ export class ConfirmPortfolioComponent implements OnInit {
   userPortfolioType: any;
   isJAEnabled: boolean;
   tncCheckboxForm: FormGroup;
-  primaryHolderName : String;
+  acceptJAHolderDetails : any;
+  isAcceptPortfolio = false;
+  customerPortfolioId: any;
+  primaryHolderName;
+  jaAcceptanceTitle: any;
+  
+  @Output() emitToastMessage = new EventEmitter<boolean>();
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -69,12 +78,18 @@ export class ConfirmPortfolioComponent implements OnInit {
     private investmentCommonService: InvestmentCommonService,
     private authService: AuthenticationService,
     private formatCurrencyPipe: FormatCurrencyPipe,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.TITLE');
-      this.setPageTitle(this.pageTitle);
+      this.jaAcceptanceTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.JA_ACCEPTANCE_TITLE');
+      if(this.router.url.indexOf(INVESTMENT_COMMON_ROUTES.ACCEPT_JA_HOLDER) >= 0 ){
+        this.setPageTitle(this.jaAcceptanceTitle);
+      }else{
+        this.setPageTitle(this.pageTitle);
+      }
     });
     this.userPortfolioType = investmentEngagementJourneyService.getUserPortfolioType();
   }
@@ -91,6 +106,16 @@ export class ConfirmPortfolioComponent implements OnInit {
       tncCheckboxFlag: ['']
     });
     this.getPortfolioDetails();
+    if(this.router.url.indexOf(INVESTMENT_COMMON_ROUTES.ACCEPT_JA_HOLDER) >= 0 ){
+      this.isAcceptPortfolio = true;
+      this.route.paramMap
+      .subscribe(
+        params => {
+          this.customerPortfolioId = params.get('customerPortfolioId');
+          this.acceptAndGetPortfolioDetails(this.customerPortfolioId);
+        }
+      );
+    }
   }
 
   getPortfolioDetails() {
@@ -101,7 +126,6 @@ export class ConfirmPortfolioComponent implements OnInit {
           this.authService.saveEnquiryId(data.objectList.enquiryId);
         }
         this.portfolio = data.objectList;
-        this.acceptAndGetPortfolioDetails();
         this.investmentCommonService.setPortfolioType(this.portfolio.portfolioType)
         this.investmentCommonService.setPortfolioDetails(this.portfolio);
         this.isJAEnabled = (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID);
@@ -322,10 +346,40 @@ export class ConfirmPortfolioComponent implements OnInit {
     });
     return false;
   }
+  // accept or decline from dashboard
+  acceptAndGetPortfolioDetails(customerPortfolioId){
+    this.investmentCommonService.acceptAndGetPortfolioDetails(customerPortfolioId).subscribe((data) => {
+      this.acceptJAHolderDetails = data.objectList;
+      this.primaryHolderName = {
+        //primaryName: this.acceptJAHolderDetails?.bankName
+        primaryName: this.acceptJAHolderDetails?.primaryHolderName
+      };
+    });
+  }
+
+  // decline
+  decline(portfolioName, customerPortfolioId){
+    this.manageInvestmentsService.setActionByHolder(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.DECLINE).subscribe(resp => {     
+      const toastMessage: IToastMessage = {
+        isShown: true,
+        desc: this.translate.instant('TOAST_MESSAGES.PORTFOLIO_DECLINED', {userGivenPortfolioName : portfolioName} ),       
+      };
+      this.manageInvestmentsService.setToastMessage(toastMessage);
+      this.emitToastMessage.emit(portfolioName);
+      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
+    });
+  }
+
   // accept to join
-  acceptAndGetPortfolioDetails(){
-    this.investmentCommonService.acceptAndGetPortfolioDetails(this.portfolio.customerPortfolioId).subscribe((data) => {
-      this.primaryHolderName = data.objectList.primaryHolderName;
+  acceptToJoin(portfolioName, customerPortfolioId){
+    this.manageInvestmentsService.setActionByHolder(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.ACCEPTED).subscribe(resp => {     
+      const toastMessage: IToastMessage = {
+        isShown: true,
+        desc: this.translate.instant('TOAST_MESSAGES.PORTFOLIO_ACCEPTED', {userGivenPortfolioName : portfolioName} ),       
+      };
+      this.manageInvestmentsService.setToastMessage(toastMessage);
+      this.emitToastMessage.emit(portfolioName);
+      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
     });
   }
 }
