@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -8,9 +8,7 @@ import { LoaderService } from '../../../shared/components/loader/loader.service'
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
-import {
-    ModelWithButtonComponent
-} from '../../../shared/modal/model-with-button/model-with-button.component';
+import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { Util } from 'src/app/shared/utils/util';
 import { InvestmentAccountCommon } from '../../investment-account/investment-account-common';
@@ -22,6 +20,11 @@ import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagem
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
+import { INVESTMENT_COMMON_CONSTANTS } from './../../../investment/investment-common/investment-common.constants';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-investments-routes.constants';
+import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
+import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
+
 @Component({
   selector: 'app-upload-document',
   templateUrl: './upload-document.component.html',
@@ -31,7 +34,7 @@ import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagemen
 export class UploadDocumentComponent implements OnInit {
 
   uploadForm: FormGroup;
-  uploadFormValues:any;
+  uploadFormValues: any;
   pageTitle: string;
   formValues: any;
   countries: any;
@@ -43,6 +46,9 @@ export class UploadDocumentComponent implements OnInit {
   dobDiv = false;
   passportDiv = false;
   uploadContent = false;
+  routeParams: any;
+  customerPortfolioId: any;
+  navigationType: any;
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
     public readonly translate: TranslateService,
@@ -53,8 +59,10 @@ export class UploadDocumentComponent implements OnInit {
     public navbarService: NavbarService,
     public footerService: FooterService,
     public investmentAccountService: InvestmentAccountService,
-    public investmentEngagementJourneyService : InvestmentEngagementJourneyService,
-    private loaderService: LoaderService
+    public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
+    private loaderService: LoaderService,
+    private route: ActivatedRoute,
+    public manageInvestmentsService: ManageInvestmentsService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -62,9 +70,8 @@ export class UploadDocumentComponent implements OnInit {
       this.setPageTitle(this.pageTitle);
       this.defaultThumb = INVESTMENT_ACCOUNT_CONSTANTS.upload_documents.default_thumb;
     });
-
-    
   }
+
   buildListForSingapore() {
     this.uploadDocumentList = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.UPLOAD_SINGAPOREAN_DOC_LIST;
   }
@@ -84,7 +91,6 @@ export class UploadDocumentComponent implements OnInit {
     this.isUserNationalitySingapore = this.investmentEngagementJourneyService.isSingaporeResident();
     this.formValues = this.investmentEngagementJourneyService.getMinorSecondaryHolderData();
     this.investmentAccountService.loadInvestmentAccountRoadmap(true);
-
     this.uploadFormValues = this.isUserNationalitySingapore
       ? this.buildListForSingapore()
       : this.buildListForOtherCountry();
@@ -92,6 +98,13 @@ export class UploadDocumentComponent implements OnInit {
     this.uploadForm = new FormGroup({
       uploadDocument: new FormControl('', Validators.required)
     });
+    this.route.paramMap.subscribe(params => {
+      this.routeParams = params;
+      if (this.routeParams && this.routeParams.get('customerPortfolioId')) {
+        this.customerPortfolioId = this.routeParams.get('customerPortfolioId');
+      }
+    });
+    this.navigationType = this.route.snapshot.paramMap.get('navigationType');
   }
 
   setDropDownValue(event, key) {
@@ -143,11 +156,11 @@ export class UploadDocumentComponent implements OnInit {
       );
     }
   }
-  
+
   getInlineErrorStatus(control) {
     return !control.pristine && !control.valid;
   }
-
+  
   setNestedDropDownValue(key, value, nestedKey) {
     this.uploadForm.controls[nestedKey]['controls'][key].setValue(value);
   }
@@ -215,17 +228,17 @@ export class UploadDocumentComponent implements OnInit {
       title: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE'),
       desc: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE')
     });
-    this.formData.append('jointAccountDetailsId',this.formValues.jaAccountId);
+    this.formData.append('jointAccountDetailsId', this.formValues.jaAccountId);
     this.investmentEngagementJourneyService.uploadDocument(this.formData).subscribe((response) => {
       this.loaderService.hideLoader();
       if (response) {
         this.redirectToNextPage();
       }
     },
-    (err) => {
-      this.loaderService.hideLoader();
-      this.investmentAccountService.showGenericErrorModal();
-    });
+      (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   setThumbnail(thumbElem, file) {
@@ -250,8 +263,31 @@ export class UploadDocumentComponent implements OnInit {
   }
 
   redirectToNextPage() {
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
-
+    if (this.customerPortfolioId) {
+      this.verifyFlowSubmission();
+    } else if (!Util.isEmptyOrNull(this.navigationType)) {
+      this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.PORTFOLIO_SUMMARY]);
+    }
+    else {
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+    }
   }
 
+  verifyFlowSubmission() {
+    this.investmentEngagementJourneyService.verifyFlowSubmission(this.customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.SUBMISSION).subscribe((response) => {
+      this.loaderService.hideLoader();
+      if (response) {
+        const toastMessage: IToastMessage = {
+          isShown: true,
+          desc: this.translate.instant('TOAST_MESSAGES.VERIFY_SUBMISSION'),
+        };
+        this.manageInvestmentsService.setToastMessage(toastMessage);
+        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
+      }
+    },
+      (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  }
 }
