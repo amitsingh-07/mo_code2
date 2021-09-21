@@ -216,6 +216,16 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     const params: any = this.constructParamsWithUserPortfolioType();
     if (params && params.enquiryId && params.jaAccountId) {
       this.investmentEngagementJourneyService.getJAPortfolioAllocationDetails(params).subscribe((data) => {
+        let secondaryHolderMajorData = this.investmentEngagementJourneyService.getMajorSecondaryHolderData();
+        let secondaryHolderMinorData = this.investmentEngagementJourneyService.getMinorSecondaryHolderData();
+        if(secondaryHolderMajorData) {
+          secondaryHolderMajorData.customerPortfolioId = data.objectList.customerPortfolioId;
+          this.investmentEngagementJourneyService.setMajorSecondaryHolderData(secondaryHolderMajorData);
+        }
+        if(secondaryHolderMinorData) {
+          secondaryHolderMinorData.customerPortfolioId = data.objectList.customerPortfolioId;
+          this.investmentEngagementJourneyService.setMinorSecondaryHolderData(secondaryHolderMinorData);
+        }
         this.loaderService.hideLoader();
         this.redirectToNextPage();
       },

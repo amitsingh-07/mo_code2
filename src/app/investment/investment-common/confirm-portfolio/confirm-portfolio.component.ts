@@ -376,7 +376,7 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   // accept to join
   acceptToJoin(portfolioName, customerPortfolioId){
-    this.manageInvestmentsService.setActionByHolder(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.ACCEPTED).subscribe(resp => {     
+    this.manageInvestmentsService.setActionByHolder(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.ACCEPT).subscribe(resp => {     
       const toastMessage: IToastMessage = {
         isShown: true,
         desc: this.translate.instant('TOAST_MESSAGES.PORTFOLIO_ACCEPTED', {userGivenPortfolioName : portfolioName} ),       
