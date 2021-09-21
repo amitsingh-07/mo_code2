@@ -70,9 +70,8 @@ export class UploadDocumentComponent implements OnInit {
       this.setPageTitle(this.pageTitle);
       this.defaultThumb = INVESTMENT_ACCOUNT_CONSTANTS.upload_documents.default_thumb;
     });
-
-
   }
+
   buildListForSingapore() {
     this.uploadDocumentList = INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.UPLOAD_SINGAPOREAN_DOC_LIST;
   }
@@ -92,7 +91,6 @@ export class UploadDocumentComponent implements OnInit {
     this.isUserNationalitySingapore = this.investmentEngagementJourneyService.isSingaporeResident();
     this.formValues = this.investmentEngagementJourneyService.getMinorSecondaryHolderData();
     this.investmentAccountService.loadInvestmentAccountRoadmap(true);
-
     this.uploadFormValues = this.isUserNationalitySingapore
       ? this.buildListForSingapore()
       : this.buildListForOtherCountry();
@@ -100,14 +98,12 @@ export class UploadDocumentComponent implements OnInit {
     this.uploadForm = new FormGroup({
       uploadDocument: new FormControl('', Validators.required)
     });
-
     this.route.paramMap.subscribe(params => {
       this.routeParams = params;
+      if (this.routeParams && this.routeParams.get('customerPortfolioId')) {
+        this.customerPortfolioId = this.routeParams.get('customerPortfolioId');
+      }
     });
-    if (this.routeParams && this.routeParams.get('customerPortfolioId')) {
-      this.customerPortfolioId = this.routeParams.get('customerPortfolioId');
-    }
-
     this.navigationType = this.route.snapshot.paramMap.get('navigationType');
   }
 
@@ -164,7 +160,7 @@ export class UploadDocumentComponent implements OnInit {
   getInlineErrorStatus(control) {
     return !control.pristine && !control.valid;
   }
-
+  
   setNestedDropDownValue(key, value, nestedKey) {
     this.uploadForm.controls[nestedKey]['controls'][key].setValue(value);
   }
@@ -263,9 +259,9 @@ export class UploadDocumentComponent implements OnInit {
   goToNext(form) {
     if (form.valid) {
       this.uploadDocument();
-
     }
   }
+
   redirectToNextPage() {
     if (this.customerPortfolioId) {
       this.verifyFlowSubmission();

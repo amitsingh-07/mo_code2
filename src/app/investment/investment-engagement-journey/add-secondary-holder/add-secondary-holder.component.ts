@@ -131,11 +131,11 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.getNationalityCountriesList(results[1]);
       this.route.paramMap.subscribe(params => {
         this.routeParams = params;
+        if (this.routeParams && this.routeParams.get('customerPortfolioId')) {
+          this.customerPortfolioId = this.routeParams.get('customerPortfolioId');
+          this.verifyCall(this.customerPortfolioId);
+        }
       });
-      if (this.routeParams && this.routeParams.get('customerPortfolioId')) {
-        this.customerPortfolioId = this.routeParams.get('customerPortfolioId');
-        this.verifyCall(this.customerPortfolioId);
-      }
     });
   }
 

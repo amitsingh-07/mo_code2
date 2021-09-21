@@ -587,7 +587,6 @@ export class InvestmentEngagementJourneyService {
     return this.investmentApiService.uploadDocument(formData);
   }
     /*Upload Document Method end*/
-
   /** VERIFY METHOD PREFILL DETAILS */
   getVerifyDetails(customerPortfolioId, jointAccountAction) {
     return this.verifyEditAndSubmit(customerPortfolioId, jointAccountAction);
@@ -596,7 +595,6 @@ export class InvestmentEngagementJourneyService {
   verifyFlowSubmission(customerPortfolioId, jointAccountAction) {
     return this.verifyEditAndSubmit(customerPortfolioId, jointAccountAction);
   }
-
   verifyEditAndSubmit(customerPortfolioId, jointAccountAction) {
     const payload = {
       customerPortfolioId: customerPortfolioId,
@@ -606,4 +604,3 @@ export class InvestmentEngagementJourneyService {
   }
  /** VERIFY METHOD PREFILL DETAILS END */
 }
-
