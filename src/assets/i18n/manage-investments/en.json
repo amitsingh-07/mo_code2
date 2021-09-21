@@ -482,6 +482,7 @@
     "DELETE_PORTFOLIO_BY_HOLDER": "You have deleted \"{{userGivenPortfolioName}}\".",
     "PORTFOLIO_SUBMITTED_TO_MINOR": "We have submitted your Joint Account Application for \"{{userGivenPortfolioName}}\".",    
     "PORTFOLIO_SUBMITTED_TO_MAJOR": "The Joint Investment Account Application has been sent to \"{{secondaryHolderName}}\".",
+    "VERIFY_SUBMISSION": "Joint account application in progress",
     "REMINDER_TEXT": "The reminder has been sent to {{secondaryHolderName}}. You may send one reminder per day.",
     "ONE_REMINDER_PER_DAY": "You can only send one reminder per day, please try again tomorrow."
   },
