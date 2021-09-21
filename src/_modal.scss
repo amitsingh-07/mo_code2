@@ -1372,3 +1372,12 @@ body.modal-open::-webkit-scrollbar {
     }
   }
 }
+
+.major-tooltip {
+  .hyperlink_color {
+    color: $orange-color;
+    &:hover {
+      color: $orange-color;
+    }
+  }
+}
