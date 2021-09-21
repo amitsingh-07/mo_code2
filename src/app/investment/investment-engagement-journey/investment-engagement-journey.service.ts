@@ -493,6 +493,7 @@ export class InvestmentEngagementJourneyService {
   buildMajorHolderData() {
     const formData = this.investmentEngagementJourneyFormData?.majorSecondaryHolderFormData;
     return {
+      customerPortfolioId: formData.customerPortfolioId ? formData.customerPortfolioId : null,
       nricOrPassport: formData?.nricNumber,
       email: formData?.email,
       relationship: formData?.relationship?.id
@@ -509,6 +510,7 @@ export class InvestmentEngagementJourneyService {
       passporIssuedCountry = formData.passportIssuedCountry.id
     }
     return {
+      customerPortfolioId: formData.customerPortfolioId ? formData.customerPortfolioId : null,
       singaporePR: !Util.isEmptyOrNull(formData?.singaporeanResident) ? formData?.singaporeanResident : null,
       usPR: !Util.isEmptyOrNull(formData?.unitedStatesResident) ? formData?.unitedStatesResident : null,
       minor: true,
