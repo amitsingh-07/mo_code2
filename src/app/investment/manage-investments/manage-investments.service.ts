@@ -317,6 +317,9 @@ export class ManageInvestmentsService {
     request['bank'] = data.bank;
     request['accountName'] = data.accountHolderName;
     request['accountNumber'] = data.accountNo;
+    if (data && data.id) {
+      request['id'] =  data.id;
+    }
     return request;
   }
   updateBankInfo(bank, fullName, accountNum, id, customerPortfolioId, isJointAccount) {

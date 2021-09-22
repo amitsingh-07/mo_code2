@@ -625,7 +625,7 @@ export class ApiService {
   }
 
   saveJAWithdrawalBank(data, customerPortfolioId, isJAAccount, isEngagementJourney) {
-    let url = investmentApiConstants.endpoint.investment.addProfileNewBank.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId).replace('$IS_JOINT_ACCOUNT$', isJAAccount).replace('$IS_ENGAGEMENT_JOURNEY$', isEngagementJourney);
+    let url = investmentApiConstants.endpoint.investment.addWithdrawalBank.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId).replace('$IS_JOINT_ACCOUNT$', isJAAccount).replace('$IS_ENGAGEMENT_JOURNEY$', isEngagementJourney);
     return this.http.post(url, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))

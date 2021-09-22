@@ -20,7 +20,7 @@ import {
 import {
   InvestmentEngagementJourneyService
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
+import { INVESTMENT_COMMON_ROUTES, INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
 import { InvestmentCommonService } from '../investment-common.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment-engagement-journey/investment-engagement-journey.constants';
@@ -88,7 +88,7 @@ export class FundingAccountDetailsComponent implements OnInit {
       (this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.FOUR_PERCENT
         || this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.EIGHT_PERCENT)) || (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID);
     this.getSrsAccDetailsAndOptionListCol();
-    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url);
+    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_COMMON_ROUTES.EDIT_FUNDING_ACCOUNT_DETAILS);
   }
 
   getSrsAccDetailsAndOptionListCol() {
@@ -244,7 +244,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     const params = this.constructSaveSrsAccountParams(form.value);
     const customerPortfolioId = this.investmentAccountFormValues.recommendedCustomerPortfolioId;
     this.investmentCommonService.saveSrsAccountDetails(params, customerPortfolioId).subscribe((data) => {
-      if(Util.isEmptyOrNull(this.navigationType)) {
+      if(!Util.isEmptyOrNull(this.navigationType)) {
         this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.PORTFOLIO_SUMMARY]);
       } else {
         this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);

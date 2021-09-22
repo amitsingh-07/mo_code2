@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Util } from '../../../shared/utils/util';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -44,7 +44,6 @@ export class ConfirmWithdrawalComponent implements OnInit {
     public manageInvestmentsService: ManageInvestmentsService,
     private investmentEngagementService: InvestmentEngagementJourneyService,
     private investmentCommonService: InvestmentCommonService,
-    private route: ActivatedRoute
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -64,7 +63,7 @@ export class ConfirmWithdrawalComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url);
+    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_COMMON_ROUTES.EDIT_WITHDRAWAL);
   }
 
   setPageTitle(title: string) {
@@ -90,7 +89,6 @@ export class ConfirmWithdrawalComponent implements OnInit {
         }
       });
     }
-    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUNDING_ACCOUNT_DETAILS]);
   }
 
   onKeyPressEvent(event: any, content: any) {
@@ -129,6 +127,9 @@ export class ConfirmWithdrawalComponent implements OnInit {
         this.withdrawalAccountForm.controls.accountHolderName.setValue(this.bankDetails[0].accountName);
         this.withdrawalAccountForm.controls.accountNo.setValue(this.bankDetails[0].accountNumber);
         this.withdrawalAccountForm.controls.bank.setValue(this.bankDetails[0].bank);
+        this.withdrawalAccountForm.addControl(
+          'id', new FormControl(this.bankDetails[0].id)
+        );
       }
     });
   }

@@ -16,6 +16,7 @@ import { IInvestmentCriteria } from '../investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
 import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
+import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
 
 @Component({
   selector: 'app-portfolio-summary',
@@ -61,7 +62,6 @@ export class PortfolioSummaryComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.getPortFolioSummaryDetails(this.investmentAccountService.getCustomerPortfolioId());
-    // this.getPortFolioSummaryDetails(30879);
     this.promoCode = this.investmentEngagementJourneyService.getPromoCode();
   }
 
@@ -71,6 +71,10 @@ export class PortfolioSummaryComponent implements OnInit {
 
   editWithdrawDetails() {
     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.EDIT_WITHDRAWAL]);
+  }
+
+  changePortfolio() {
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
   }
 
   goToNext() {
@@ -126,6 +130,10 @@ export class PortfolioSummaryComponent implements OnInit {
           this.getTaxPrecendence();
         }
         this.summaryDetails.formattedAccountNumber = this.manageInvestmentsService.srsAccountFormat(this.summaryDetails.accountNo, this.summaryDetails.bankName)
+        const portfolioIndex = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO.findIndex(x => x.KEY === this.summaryDetails.portfolio);
+        if (this.summaryDetails && this.summaryDetails.portfolio && portfolioIndex >= 0) {
+          this.summaryDetails.portfolioDisplayName = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO[portfolioIndex].VALUE;
+        }
         this.getInvestmentCriteria(this.summaryDetails);
       }
     });
@@ -143,7 +151,6 @@ export class PortfolioSummaryComponent implements OnInit {
     ref.componentInstance.modifiedInvestmentData.subscribe((emittedValue) => {
       // update form data
       ref.close();
-      debugger;
       this.saveUpdatedInvestmentData(emittedValue);
     });
     this.dismissPopup(ref);
@@ -160,7 +167,6 @@ export class PortfolioSummaryComponent implements OnInit {
   saveUpdatedInvestmentData(updatedData) {
     const params = this.constructUpdateInvestmentParams(updatedData);
     const customerPortfolioId = this.investmentAccountService.getCustomerPortfolioId();
-    // const customerPortfolioId = 30879;
     this.investmentAccountService.updateInvestment(customerPortfolioId, params).subscribe((data) => {
       this.getPortFolioSummaryDetails(customerPortfolioId);
     },
@@ -186,11 +192,13 @@ export class PortfolioSummaryComponent implements OnInit {
   }
 
   isForeignerCheck() {
-    if (this.summaryDetails && this.summaryDetails.nationality && [INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_NAME, INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_CODE]
-      .indexOf(this.summaryDetails.nationality) < 0) {
-      return this.summaryDetails.singaporePR;
+    if (this.summaryDetails && this.summaryDetails.minorSecondaryHolderSummary 
+      && this.summaryDetails.minorSecondaryHolderSummary.nationality
+       && [INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_NAME, INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_CODE]
+      .indexOf(this.summaryDetails.minorSecondaryHolderSummary.nationality) < 0) {
+      return this.summaryDetails.minorSecondaryHolderSummary.singaporePR;
     } else {
-      return true;
+      return false;
     }
   }
 

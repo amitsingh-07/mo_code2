@@ -75,15 +75,11 @@
                       translate}}</label>
                   </div>
                   <div class="flex-col-8">
-                    <div class="dropdown-control">
+                    <div class="dropdown-control"
+                      [ngClass]="{'inline-error': withdrawalAccountForm.get('accountNo').enabled && !withdrawalAccountForm.get('accountNo').valid && !withdrawalAccountForm.get('accountNo').pristine}">
                       <input type="text" class="form-control" placeholder="{{
                         'CONFIRM_WITHDRAWAL.WITHDRAWAL_BANK_DETAILS.ACCOUNT_NO_PLACEHOLDER' |
                         translate}}" formControlName="accountNo" #accNo (input)="onAccountNumberChange(accNo.value)">
-                      <div class="account-no-char-count">
-                        <span class="account_no_char_count">{{
-                          ('CONFIRM_WITHDRAWAL.WITHDRAWAL_BANK_DETAILS.ACCOUNT_NO_CHAR_LENGTH' |
-                          translate).replace('CHAR_COUNT', accountNumberCharCount)}}</span>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -99,8 +95,8 @@
   </div>
 
   <div class="text-center">
-    <!-- [disabled]="!withdrawalAccountForm.valid" -->
-    <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary width100">{{
+    <button type="button" (click)="goToNext()" [disabled]="!withdrawalAccountForm.valid"
+      class="btn btn__footer--fixed btn-primary width100">{{
 'CONFIRM_WITHDRAWAL.CONTINUE' | translate}}</button>
   </div>
 </div>

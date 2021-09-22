@@ -83,5 +83,19 @@ export let INVESTMENT_COMMON_CONSTANTS = {
       VERIFY: 'VERIFY',
       SUBMISSION: 'SUBMISSION',
       DELETE: 'DELETE'
-    }
+    },
+    PORTFOLIO: [
+      {
+        KEY: "WiseIncome R- 4.5 percent (Payout)",
+        VALUE: "WiseIncome - 4.5% p.a. Income Payout"
+      },
+      {
+        KEY: "WiseIncome R- 4.5 percent (Reinvested) - Cash",
+        VALUE: "WiseIncome - Grow & Invest Payout"
+      },
+      {
+        KEY: "WiseIncome R1- 8 percent (Payout) Portfolio",
+        VALUE: "WiseIncome - 8% p.a. Income Payout"
+      }
+    ]
 };

@@ -48,7 +48,7 @@
                 <div class="primary-holder">{{
                           'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.PORTFOLIO_TITLE' |
                           translate}}</div>
-                <div class="primary-holder-value">{{summaryDetails?.portfolio}}</div>
+                <div class="primary-holder-value">{{summaryDetails?.portfolioDisplayName}}</div>
               </div>
 
               <div class="mt15">
@@ -70,17 +70,13 @@
                 </div>
                 <div class="primary-holder-value">
                   <div class="">
-                    <span>
-                      {{'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.ONE_TIME_AMOUNT_TITLE' |
+                    {{'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.ONE_TIME_AMOUNT_TITLE' |
                       translate}}
-                    </span>
                     <span>{{summaryDetails?.oneTimeAmount}}</span>
                   </div>
                   <div class="">
-                    <span>
-                      {{'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.MONTHLY_AMOUNT_TITLE' |
+                    {{'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.MONTHLY_AMOUNT_TITLE' |
                       translate}}
-                    </span>
                     <span>{{summaryDetails?.monthlyAmount}}</span>
                   </div>
                 </div>
@@ -100,7 +96,7 @@
               </div>
 
               <div class="change-portfolio mt30">
-                <span>
+                <span (click)="changePortfolio()">
                   {{
                     'PORTFOLIO_SUMMARY.CHANGE_PORTFOLIO_BUTTON_TEXT' |
                     translate}}
@@ -216,7 +212,8 @@
                 <div class="primary-holder">{{
                             'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.ISSUED_COUNTRY_TEXT' |
                             translate}}</div>
-                <div class="primary-holder-value">{{summaryDetails?.minorSecondaryHolderSummary.birthCountry}}</div>
+                <div class="primary-holder-value">{{summaryDetails?.minorSecondaryHolderSummary.passportIssuedCountry}}
+                </div>
               </div>
               <!-- END OF SINGAPORE PR FIELDS -->
 
@@ -261,7 +258,8 @@
                 <div class="primary-holder">{{
                             'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.PASSPORT_EXPIRY_TEXT' |
                             translate}}</div>
-                <div class="primary-holder-value">20 Jun 2022</div>
+                <div class="primary-holder-value">{{summaryDetails?.minorSecondaryHolderSummary.passportExpiryDate}}
+                </div>
               </div>
               <!-- END OF FOREIGNER FIELDS -->
 
@@ -281,9 +279,11 @@
 
               <div *ngFor="let tax of taxDetails; let i = index;">
                 <div class="mt15">
-                  <div class="primary-holder">{{
-                            'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.FIRST_TAX_RESIDENCE_COUNTRY_TEXT' |
+                  <div class="primary-holder">
+                    <span> 
+                        {{ 'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.FIRST_TAX_RESIDENCE_COUNTRY_TEXT' |
                             translate}}
+                    </span>
                     <span>
                       {{tax?.precedence}}
                     </span>
@@ -323,7 +323,6 @@
             <div class="widget-title">
               <span>{{ 'PORTFOLIO_SUMMARY.WITHDRAWAL_BANK_DETAILS.TITLE' |
                       translate}}</span>
-              <!-- <span (click)="editWithdrawDetails()">Edit</span> -->
               <span class="edit-icon" (click)="editWithdrawDetails()">
                 <img src="assets/images/comprehensive/comprehesive-edit-icon.svg">
               </span>
