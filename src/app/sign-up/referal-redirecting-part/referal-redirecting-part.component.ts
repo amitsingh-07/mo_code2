@@ -50,7 +50,6 @@ export class ReferalRedirectingPartComponent implements OnInit {
   isLoadComplete = false;
   islocked: boolean;
   getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
-  versionTypeEnabled = false;
   getComprehensiveSummaryDashboard: any;
   isCFPGetStarted = false;
   enquiryId: any;
@@ -307,7 +306,6 @@ export class ReferalRedirectingPartComponent implements OnInit {
     this.getComprehensiveSummaryDashboard = '';
     this.currentStep = -1;
     this.paymentInstructions = false;
-    this.comprehensiveService.setComprehensiveVersion(COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
     this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe((dashboardData: any) => {
       if (dashboardData && dashboardData.objectList[0]) {
         this.getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', this.getCurrentVersionType);
@@ -366,7 +364,7 @@ export class ReferalRedirectingPartComponent implements OnInit {
       this.isLoadComplete = false;
     }
     this.comprehensivePlanning = 4;
-    this.comprehensiveApiService.getComprehensiveSummary(this.getCurrentVersionType).subscribe((summaryData: any) => {
+    this.comprehensiveApiService.getComprehensiveSummary().subscribe((summaryData: any) => {
       if (summaryData && summaryData.objectList[0]) {
         this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
         this.userDetails = this.comprehensiveService.getMyProfile();
@@ -418,11 +416,7 @@ export class ReferalRedirectingPartComponent implements OnInit {
       } else {
         if (routerEnabled) {
           this.loaderService.hideLoader();
-          if (!this.versionTypeEnabled) {
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
-          } else {
-            this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
-          }
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
         } else {
           this.isLoadComplete = true;
         }
@@ -434,10 +428,10 @@ export class ReferalRedirectingPartComponent implements OnInit {
   goToCurrentStep() {
     if (this.currentStep === 0 && this.getComprehensiveSummaryDashboard.isDobUpdated) {
       this.goToEditProfile();
-    } else if (this.currentStep >= 0 && this.currentStep < 4) {
+    } else if (this.currentStep >= 0 && this.currentStep < 5) {
       const routerURL = COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep + 1);
       this.setComprehensiveSummary(true, routerURL);
-    } else if (this.currentStep === 4) {
+    } else if (this.currentStep === 5) {
       const routerURL = COMPREHENSIVE_ROUTE_PATHS.STEPS + '/' + (this.currentStep);
       this.setComprehensiveSummary(true, routerURL);
     }
@@ -445,7 +439,7 @@ export class ReferalRedirectingPartComponent implements OnInit {
 
 
   goToEditProfile() {
-    if (this.comprehensivePlanning === 4 && !this.versionTypeEnabled && !this.isCFPGetStarted) {
+    if (this.comprehensivePlanning === 4 && !this.isCFPGetStarted) {
       this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
     } else {
       this.setComprehensiveSummary(true, COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED);

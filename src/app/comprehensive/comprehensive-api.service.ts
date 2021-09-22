@@ -1,12 +1,13 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+
 import { apiConstants } from '../shared/http/api.constants';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { BaseService } from '../shared/http/base.service';
 import { HelperService } from '../shared/http/helper.service';
-import { Observable, throwError } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
@@ -39,8 +40,8 @@ export class ComprehensiveApiService {
             'Something bad happened; please try again later.');
     }
 
-    getComprehensiveSummary(requestType?: string) {
-        const sessionId = { sessionId: this.authService.getSessionId(), requestType: (requestType) ? requestType : 'Comprehensive' };
+    getComprehensiveSummary() {
+        const sessionId = { sessionId: this.authService.getSessionId() };
 
         return this.http
             .post(apiConstants.endpoint.comprehensive.getComprehensiveSummary, sessionId)
@@ -51,9 +52,9 @@ export class ComprehensiveApiService {
         return this.http.post(apiConstants.endpoint.comprehensive.addPersonalDetails, payload)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
-    updateComprehensiveReportStatus(payload){
-        return this.http.post(apiConstants.endpoint.comprehensive.updateComprehensiveStatus , payload)
-        .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
+    updateComprehensiveReportStatus(payload) {
+        return this.http.post(apiConstants.endpoint.comprehensive.updateComprehensiveStatus, payload)
+            .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
     addDependents(payload) {
         return this.http.post(apiConstants.endpoint.comprehensive.addDependents, payload)
@@ -155,19 +156,25 @@ export class ComprehensiveApiService {
             .get(apiConstants.endpoint.comprehensive.getReport)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
+    saveSkipRiskProfile(data) {
+        return this.http.post(apiConstants.endpoint.saveRiskProfileFlag, data)
+            .pipe(
+                catchError((error: HttpErrorResponse) => this.handleError(error))
+            );
+    }
     saveRiskAssessment(data) {
         return this.http.post(apiConstants.endpoint.getRiskAssessmentQuestions, data)
-          .pipe(
-            catchError((error: HttpErrorResponse) => this.handleError(error))
-          );
-      }
+            .pipe(
+                catchError((error: HttpErrorResponse) => this.handleError(error))
+            );
+    }
 
     getComprehensiveSummaryDashboard() {
         return this.http
             .get(apiConstants.endpoint.comprehensive.getComprehensiveSummaryDashboard)
             .pipe(catchError((error: HttpErrorResponse) => this.helperService.handleError(error)));
     }
-   
+
     getProductAmount(payload) {
         return this.http
             .post(apiConstants.endpoint.comprehensive.getProductAmount, payload)

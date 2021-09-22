@@ -67,4 +67,7 @@ export class PaymentService {
   getPaymentCheckoutCfpDetails(payload) {
     return this.apiService.getPaymentCheckoutCfpDetails(payload);
   }
+  getCheckoutSpeakToAdvisor(payload) {
+    return this.apiService.getCheckoutSpeakToAdvisor(payload);
+  }
 }

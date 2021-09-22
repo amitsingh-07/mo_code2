@@ -1,6 +1,35 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
 app-dashboard {
+    .toast-msg-top-space-dashboard {
+        .toast-msg-container {
+          box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+          background-color: $light-green-color;
+          color: $white-color;
+          min-width: 280px;
+          @include desktop{
+            right: 0;
+          }
+          .toast-msg {
+            margin-left: 25px;
+            @include allmobiles{
+              margin-left: 15px;
+            }
+          }
+        }
+        @include desktop {
+          top: 104px;
+          right: 30px;
+        }
+        @include tablet {
+          top: 104px;
+          right: 15px;
+        }
+        @include phablet {
+          top: 56px;
+          right: 15px;
+        }
+      }
     .post-login-dashboard {
         @include allmobiles {
             padding: 0 !important;
@@ -281,6 +310,14 @@ app-dashboard {
                     font-size: 16px;
                     font-weight: normal;
                     cursor: pointer;
+                    width: 28px;
+                    height: 28px;
+                    img {
+                        margin-top: 0;
+                        margin-left: 0;
+                        width: 28px;
+                        height: 28px;
+                    }
                 }
             }
             .investment-widget {

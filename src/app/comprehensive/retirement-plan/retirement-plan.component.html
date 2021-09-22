@@ -6,9 +6,9 @@
   </div>
 </div>
 <div class="container-fluid max-width--1024 comprehensive retirement-plan-container">
-    <div class="step-indicator-container hidden-lg" id="moDpdnt2StepIndctr">
-        <app-step-indicator [count]="1" [activeStepIndex]="0" [mode]="1"></app-step-indicator>
-      </div>
+  <div class="step-indicator-container hidden-lg" id="moDpdnt2StepIndctr">
+    <app-step-indicator [count]="1" [activeStepIndex]="0" [mode]="1"></app-step-indicator>
+  </div>
   <div class="comprehensive__page-sub-heading mt30">{{'CMP.COMPREHENSIVE_STEPS.STEP_4_TITLE'|translate}}</div>
   <div class="comprehensive__page-content">{{'CMP.RETIREMENT_PLAN.SUB_TITLE'|translate}} </div>
   <div class="income-bucket-panel">
@@ -37,11 +37,13 @@
     <div class="slider-dark mt20">
       <nouislider [disabled]="viewMode" id="retirementSlider" #ciMultiplierSlider (slide)="onSliderChange($event)"
         [config]="ciSliderConfig"></nouislider>
-        <div class="min-max-val">
-          <div class="min-val">{{'CMP.RETIREMENT_PLAN.MIN_AGE'|translate}}<span class="min-text">{{'CMP.RETIREMENT_PLAN.MIN_LABEL'|translate}}</span></div>
-          <div class="max-val">{{'CMP.RETIREMENT_PLAN.MAX_AGE'|translate}}<span class="max-text">{{'CMP.RETIREMENT_PLAN.MAX_LABEL'|translate}}</span>
-          </div>
+      <div class="min-max-val">
+        <div class="min-val">{{'CMP.RETIREMENT_PLAN.MIN_AGE'|translate}}<span
+            class="min-text">{{'CMP.RETIREMENT_PLAN.MIN_LABEL'|translate}}</span></div>
+        <div class="max-val">{{'CMP.RETIREMENT_PLAN.MAX_AGE'|translate}}<span
+            class="max-text">{{'CMP.RETIREMENT_PLAN.MAX_LABEL'|translate}}</span>
         </div>
+      </div>
     </div>
     <div class="flex-row retirementAgeValid" *ngIf="!(sliderValid.minAge && sliderValid.userAge)">
       <div class="flex-col-12">
@@ -55,8 +57,8 @@
         </div>
       </div>
     </div>
-    <div *ngIf="comprehensiveJourneyMode" class="title mt30">{{'CMP.RETIREMENT_PLAN.FORM_HEADER'|translate}}</div>
-    <div *ngIf="comprehensiveJourneyMode" class="form-group-single-column  flex-col mt10">
+    <div class="title mt30">{{'CMP.RETIREMENT_PLAN.FORM_HEADER'|translate}}</div>
+    <div class="form-group-single-column  flex-col mt10">
       <!--Form label-->
       <div class="checkbox-button one-label">
         <input id="haveRetirementIncomeYes" name="haveOtherSourceRetirementIncome"
@@ -227,7 +229,7 @@
       <!--Form label /-->
       <!--Form label-->
       <div (click)="!viewMode && openConfirmationModal()" class="checkbox-button one-label">
-        <input   id="haveRetirementIncomeNo" name="haveOtherSourceRetirementIncome"
+        <input id="haveRetirementIncomeNo" name="haveOtherSourceRetirementIncome"
           formControlName="haveOtherSourceRetirementIncome" type="radio" [value]=false class="field radio"
           appComprehensiveViewMode="{{viewMode}}" mode=1>
         <label id="HaveRetirementIncomeLabel" for="haveRetirementIncomeNo">
