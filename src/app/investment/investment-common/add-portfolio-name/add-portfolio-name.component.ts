@@ -313,7 +313,6 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
     );
     this.manageInvestmentsService.activateToastMessage();
     if (this.isSubsequentPortfolio) {
-      this.clearData();
       if ((this.fundingMethod).toUpperCase() === 'CASH') {
         if (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID) {
           this.redirectToPortfolioSummary();

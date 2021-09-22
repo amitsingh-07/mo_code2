@@ -24,7 +24,7 @@ import {
 import {
   IAccountCreationActions, IInvestmentCriteria, InvestmentCommonFormData
 } from './investment-common-form-data';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from './investment-common-routes.constants';
+import { INVESTMENT_COMMON_ROUTES, INVESTMENT_COMMON_ROUTE_PATHS } from './investment-common-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from './investment-common.constants';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 
@@ -406,5 +406,16 @@ export class InvestmentCommonService {
   // GET THE PORTFOLIO SUMMARY DETAILS FOR PORTFOLIO SUMMARY PAGE
   getPortFolioSummaryDetails(customerPortfolioId) {
     return this.investmentApiService.getPortFolioSummaryDetails(customerPortfolioId);
+  }
+
+  getJAAccountDetails(customerPortfolioId, isJAAccount, isEngagementJourney) {
+    return this.investmentApiService.getJABankDetails(customerPortfolioId, isJAAccount, isEngagementJourney);
+  }
+
+  setNavigationType(url) {
+    if (url.indexOf(INVESTMENT_COMMON_ROUTES.EDIT_WITHDRAWAL)) {
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT;
+    }
+    return null;
   }
 }

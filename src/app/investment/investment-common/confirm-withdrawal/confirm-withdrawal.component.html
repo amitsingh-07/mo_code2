@@ -1,7 +1,7 @@
 <div class="app-confirm-withdrawal investment-account">
   <div class="step-indicator-container">
     <div class="container-fluid max-width--1024">
-      <app-step-indicator [count]="isJAEnabled ? 3 : 2 " [activeStepIndex]="1" [mode]="0"></app-step-indicator>
+      <app-step-indicator [count]="isJAAccount ? 3 : 2 " [activeStepIndex]="1" [mode]="0"></app-step-indicator>
     </div>
   </div>
   <div class="container-fluid max-width--1024">
@@ -76,7 +76,7 @@
                   </div>
                   <div class="flex-col-8">
                     <div class="dropdown-control">
-                      <input type="text" class="form-control" maxLength="13" placeholder="{{
+                      <input type="text" class="form-control" placeholder="{{
                         'CONFIRM_WITHDRAWAL.WITHDRAWAL_BANK_DETAILS.ACCOUNT_NO_PLACEHOLDER' |
                         translate}}" formControlName="accountNo" #accNo (input)="onAccountNumberChange(accNo.value)">
                       <div class="account-no-char-count">

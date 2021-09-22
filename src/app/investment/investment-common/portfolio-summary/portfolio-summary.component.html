@@ -96,7 +96,7 @@
                     <img src="assets/images/comprehensive/comprehesive-edit-icon.svg">
                   </div>
                 </div>
-                <div class="primary-holder-value">123456789</div>
+                <div class="primary-holder-value">{{promoCode}}</div>
               </div>
 
               <div class="change-portfolio mt30">
@@ -127,12 +127,12 @@
           </div>
         </div>
 
-        <div class="summary-details mt20" *ngIf="!summaryDetails.minor">
+        <div class="summary-details mt20" *ngIf="!isMinor">
           <div class="primary-holder-details">
             <div class="widget-title">
               <span>{{ 'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MAJOR.TITLE' |
                         translate}}</span>
-              <span class="edit-icon" (click)="ediMajorHolderDetails()">
+              <span class="edit-icon" (click)="ediSecondaryHolderDetails()">
                 <img src="assets/images/comprehensive/comprehesive-edit-icon.svg">
               </span>
             </div>
@@ -168,12 +168,12 @@
           </div>
         </div>
 
-        <div class="summary-details mt20" *ngIf="summaryDetails.minor">
+        <div class="summary-details mt20" *ngIf="isMinor">
           <div class="primary-holder-details">
             <div class="widget-title">
               <span>{{ 'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.TITLE' |
                           translate}}</span>
-              <span class="edit-icon" (click)="editMinorHolderDetails()">
+              <span class="edit-icon" (click)="ediSecondaryHolderDetails()">
                 <img src="assets/images/comprehensive/comprehesive-edit-icon.svg">
               </span>
             </div>
@@ -197,9 +197,10 @@
 
               <!-- CHANGE NAME TEXT AS PER FOREIGNER AND SINGAPORE PR -->
               <div class="mt15">
-                <div class="primary-holder">{{
-                          'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.NAME_AS_PER_BIRTH_CERT_TEXT' |
-                          translate}}</div>
+                <div class="primary-holder">{{ isForeignerCheck() ?
+                          ('PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.NAME_AS_PER_BIRTH_CERT_TEXT' |
+                          translate) : ('PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.NAME_AS_PER_PASSPORT_TEXT' |
+                          translate)}}</div>
                 <div class="primary-holder-value">{{summaryDetails?.minorSecondaryHolderSummary.fullName}}</div>
               </div>
 
@@ -278,11 +279,15 @@
                 <div class="primary-holder-value">{{summaryDetails.secondaryHolderRelationship}}</div>
               </div>
 
-              <div *ngFor="let tax of summaryDetails.minorSecondaryHolderSummary.taxDetails">
+              <div *ngFor="let tax of taxDetails; let i = index;">
                 <div class="mt15">
                   <div class="primary-holder">{{
                             'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.FIRST_TAX_RESIDENCE_COUNTRY_TEXT' |
-                            translate}}</div>
+                            translate}}
+                    <span>
+                      {{tax?.precedence}}
+                    </span>
+                  </div>
                   <div class="primary-holder-value">{{tax.taxCountryName}}</div>
                 </div>
 

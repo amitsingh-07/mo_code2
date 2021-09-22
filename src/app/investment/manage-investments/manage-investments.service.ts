@@ -306,6 +306,12 @@ export class ManageInvestmentsService {
     return this.apiService.saveNewBankProfile(payload, customerPortfolioId, isJAAccount);
   }
 
+  // TO SAVE BANK ACCOUNT DETAILS WHEN CREATING JA PORTFOLIO
+  saveJAWithdrawalBank(data, customerPortfolioId, isJAAccount, isEngagementJourney) {
+    const payload = this.constructSaveNewBankRequest(data);
+    return this.apiService.saveJAWithdrawalBank(payload, customerPortfolioId, isJAAccount, isEngagementJourney);
+  }
+
   constructSaveNewBankRequest(data) {
     const request = {};
     request['bank'] = data.bank;
