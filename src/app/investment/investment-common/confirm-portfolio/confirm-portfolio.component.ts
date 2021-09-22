@@ -355,7 +355,6 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.investmentCommonService.acceptAndGetPortfolioDetails(customerPortfolioId).subscribe((data) => {
       this.acceptJAHolderDetails = data.objectList;
       this.primaryHolderName = {
-        //primaryName: this.acceptJAHolderDetails?.bankName
         primaryName: this.acceptJAHolderDetails?.primaryHolderName
       };
     });
@@ -364,25 +363,48 @@ export class ConfirmPortfolioComponent implements OnInit {
   // decline
   decline(portfolioName, customerPortfolioId){
     this.manageInvestmentsService.setActionByHolder(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.DECLINE).subscribe(resp => {     
-      const toastMessage: IToastMessage = {
-        isShown: true,
-        desc: this.translate.instant('TOAST_MESSAGES.PORTFOLIO_DECLINED', {userGivenPortfolioName : portfolioName} ),       
-      };
-      this.manageInvestmentsService.setToastMessage(toastMessage);
-      this.emitToastMessage.emit(portfolioName);
-      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
+      if(resp && resp.responseMessage && resp.responseMessage.responseCode == 6000) {
+        const toastMessage: IToastMessage = {
+          isShown: true,
+          desc: this.translate.instant('TOAST_MESSAGES.PORTFOLIO_DECLINED', {userGivenPortfolioName : portfolioName} ),       
+        };
+        this.manageInvestmentsService.setToastMessage(toastMessage);
+        this.emitToastMessage.emit(portfolioName);
+        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
+      } else {
+        this.showErrorModal();
+      }
     });
   }
 
   // accept to join
   acceptToJoin(portfolioName, customerPortfolioId){
     this.manageInvestmentsService.setActionByHolder(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.ACCEPT).subscribe(resp => {     
-      const toastMessage: IToastMessage = {
-        isShown: true,
-        desc: this.translate.instant('TOAST_MESSAGES.PORTFOLIO_ACCEPTED', {userGivenPortfolioName : portfolioName} ),       
-      };
-      this.manageInvestmentsService.setToastMessage(toastMessage);
-      this.emitToastMessage.emit(portfolioName);
+      if(resp && resp.responseMessage && resp.responseMessage.responseCode == 6000) {
+        const toastMessage: IToastMessage = {
+          isShown: true,
+          desc: this.translate.instant('TOAST_MESSAGES.PORTFOLIO_ACCEPTED', {userGivenPortfolioName : portfolioName} ),       
+        };
+        this.manageInvestmentsService.setToastMessage(toastMessage);
+        this.emitToastMessage.emit(portfolioName);
+        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
+      } else {
+        this.showErrorModal();
+      }
+    });
+  }
+  showErrorModal() {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'PORTFOLIO_RECOMMENDATION.JOINT_ACCOUNT.API_FAILED.TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'PORTFOLIO_RECOMMENDATION.JOINT_ACCOUNT.API_FAILED.DESC'
+    );
+    ref.componentInstance.primaryActionLabel = this.translate.instant(
+      'PORTFOLIO_RECOMMENDATION.JOINT_ACCOUNT.API_FAILED.BUTTON_TEXT'
+    );
+    ref.componentInstance.primaryAction.subscribe(() => {
       this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
     });
   }
