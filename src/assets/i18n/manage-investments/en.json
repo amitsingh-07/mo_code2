@@ -322,7 +322,8 @@
     },
     "WITHDRAW_REQUEST_LOADER": {
       "TITLE": "Submitting Request",
-      "DESC": "Please wait while we submit the withdraw request"
+      "DESC": "Please wait while we submit the withdraw request",
+      "FETCHING_DATA": "Loading..."
     },
     "MIN_WITHDRAWAL_INFO": "Please note that minimum withdrawal amount is ${{MIN_WITHDRAW_AMOUNT}}.",
     "REDEEM_ALL_INFO": "Please note that minimum portfolio amount is ${{MIN_BALANCE_AMOUNT}}. If you wish to maintain your portfolio, you are to maintain a minimum portfolio value of ${{MIN_BALANCE_AMOUNT}} or continue to redeem all. Final amount executed in redeem all is after all other pending withdrawal request is completed.",

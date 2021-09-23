@@ -128,6 +128,9 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
 
   getUserBankList(customerPortfolioId, isJointAccount) {
     this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
+      this.loaderService.showLoader({
+        title: this.translate.instant('WITHDRAW.WITHDRAW_REQUEST_LOADER.FETCHING_DATA'), autoHide: false
+      });
       this.manageInvestmentsService.getUserBankList(customerPortfolioId, isJointAccount).subscribe((data) => {
         if (data.responseMessage.responseCode >= 6000) {
           this.userBankList = data.objectList;
@@ -137,8 +140,10 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
           this.pageTitle = this.getTitle();
           this.setPageTitle(this.pageTitle);
         }
+        this.loaderService.hideLoaderForced();
       },
         (err) => {
+          this.loaderService.hideLoaderForced();
           this.investmentAccountService.showGenericErrorModal();
         });
     });
