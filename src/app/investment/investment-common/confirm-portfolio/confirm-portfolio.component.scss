@@ -2,6 +2,33 @@
 @import '../../../../mixins';
 app-confirm-portfolio {
     .app-confirm-portfolio {
+        .accept-holder{
+            letter-spacing: -0.31px;
+            text-align: center;
+            color: $white-color;
+            @include min568max767{
+                padding-top: 50px;
+            }
+            .ja-sub-lbl{
+                font-size: 24px;
+                line-height: normal;
+                letter-spacing: -0.18px;
+                margin-bottom: 20px;
+            }
+            .txt-bold{
+                font-family: $muli-bold;
+            }
+            .desc-lbl{
+                letter-spacing: -0.3px;
+                max-width: 670px;
+                margin: 0 auto 30px;
+                .ja-icon{
+                    width: 12px;
+                    height: 11px;
+                    margin-right: 5px;
+                }
+            }
+        }
         .container-fluid {
             @include allmobiles {
                 padding-right: 15px !important;
@@ -213,5 +240,106 @@ app-confirm-portfolio {
             text-decoration: underline !important;
         }
     }
-    
+    .accept-holder-btn-block{
+        flex-direction: column;
+        padding-bottom: 15px;
+        @include allmobiles{
+            padding-bottom: 0;
+            margin-bottom: -46px;
+            z-index: 1;
+        }
+        .btn{
+            width: 340px;
+            font-family: $muli-bold;
+            @include allmobiles{
+                width: 100%;
+            }
+        }
+        .btn-orange{
+            padding: 0.9rem;
+            font-size: 22px;
+            letter-spacing: -0.16px;
+            box-shadow: 0 12px 14px 0 rgb(0 0 0 / 21%) !important;
+            @include allmobiles{
+                letter-spacing: -0.17px;
+            }
+            &:disabled{
+                background-color: $crusta-orange-color !important;
+                cursor: not-allowed;
+            }
+        }
+        .btn-outline-primary{
+            border: 1px solid $white-color;
+            background: transparent;
+            color: $white-color;
+            box-shadow: none !important;
+            margin-top: 30px;
+            &:disabled{
+                background-color: transparent !important;
+                cursor: not-allowed;
+            }
+        }
+    }
+    .withdraw-bank-details{
+        .title {
+            font-family: $muli-bold;
+            font-size: 18px;
+            letter-spacing: -0.4px;
+            color: $asset-allocation-title-txt-color;
+            @include allmobiles{
+                font-size: 19px;
+            }
+        }
+        .summary-details {     
+            .primary-holder-details {
+              .widget-title {
+                background-color: $white-color;
+                letter-spacing: -0.3px;
+                border-top-left-radius: 6px;
+                border-top-right-radius: 6px;
+                padding: 20px 22px;
+                display: flex;
+                justify-content: space-between;
+                line-height: normal;
+                letter-spacing: -0.34px;
+                font-family: $muli;
+                color: $teal-color;
+     
+                span:last-of-type {
+                  cursor: pointer;
+                }
+     
+                .delete-icon {
+                  cursor: pointer;
+                }
+              }
+     
+              .widget-body {
+                margin: 15px 0 30px;
+                padding: 20px;
+                background-color: $bond-container-bg;
+                font-family: $muli-semi-bold;
+                font-size: 18px;
+                letter-spacing: -0.34px;
+                color: $teal-color;
+                border-radius: 6px;
+                text-align: left;
+
+                .primary-holder {
+                    font-size: 16px;
+                    display: flex;
+                    line-height: 23px;
+                    letter-spacing: -0.3px;
+                }
+     
+                .primary-holder-value {
+                  font-size: 16px;
+                  line-height: 23px;
+                  letter-spacing: -0.13px;
+                  color: $black-color;
+                }
+              }
+            }
+          }
+    }
 }

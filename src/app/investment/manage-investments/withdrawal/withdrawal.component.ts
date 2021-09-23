@@ -166,7 +166,6 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
   // Set selected portfolio's entitlements, cash balance
   setSelectedPortfolio() {
     if (this.formValues) {
-      console.log(this.formValues);
       // Set the customerPortfolioId depend on which is the portfolio
       const customerPortfolioId = this.formValues.withdrawPortfolio && this.formValues.withdrawPortfolio.customerPortfolioId ?
         this.formValues.withdrawPortfolio.customerPortfolioId : this.formValues.selectedCustomerPortfolioId;

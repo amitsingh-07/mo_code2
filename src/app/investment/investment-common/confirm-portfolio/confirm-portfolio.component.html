@@ -1,15 +1,20 @@
 <div class="app-confirm-portfolio investment-account">
-    <div class="step-indicator-container">
+    <div class="step-indicator-container" *ngIf="!isAcceptPortfolio">
         <div class="container-fluid max-width--1024">
             <app-step-indicator [count]="isJAEnabled ? 3 : 2 " [activeStepIndex]="0" [mode]="0"></app-step-indicator>
         </div>
     </div>
     <div class="container-fluid max-width--1024" *ngIf="portfolio">
-        <div class="hidden-sm-md page-details">
+        <div class="hidden-sm-md page-details" *ngIf="!isAcceptPortfolio">
             <div>{{ 'PORTFOLIO_RECOMMENDATION.STEP1' | translate}}</div>
             <div class="page-title">{{ 'PORTFOLIO_RECOMMENDATION.CONFIRM_PORTFOLIO' | translate}}</div>
         </div>
-        <div class="portfolio-allocation-details" [ngClass]="{'ja-type': isJAEnabled}">
+        <div class="accept-holder" *ngIf="isAcceptPortfolio">
+            <h2 class="hidden-sm-md mb30 mt15">{{ 'PORTFOLIO_RECOMMENDATION.JOINT_ACCOUNT_LBL' | translate}}</h2>
+            <div class="ja-sub-lbl txt-bold">{{ 'PORTFOLIO_RECOMMENDATION.JA_SUB_LBL' | translate}}</div>
+            <div class="desc-lbl" [innerHTML]="'PORTFOLIO_RECOMMENDATION.JA_DESC_LBL' | translate : primaryHolderName"></div>
+        </div>
+        <div class="portfolio-allocation-details" [ngClass]="{'ja-type': isJAEnabled || isAcceptPortfolio}">
             <div class="flex-col-12 portfolio-allocation-details__container" *ngIf="!wiseIncomeEnabled">
                 <div class="portfolio-allocation-details__content white-bg">
                     <div class="flex-col-12 portfolio-allocation-details__content__desc">
@@ -57,6 +62,33 @@
                 <a target="_blank" routerLink="/faq-investment-wiseincome">
                     {{ 'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a>
             </div>
+            <div class="withdraw-bank-details" *ngIf="isAcceptPortfolio">
+                <div class="title">{{'PORTFOLIO_RECOMMENDATION.WITHDRAWAL_BANK_DETAILS.CARD_TITLE' | translate}}</div>
+                <div class="summary-details">
+                    <div class="primary-holder-details">
+                      <div class="widget-body">
+                        <div>
+                          <div class="primary-holder">{{
+                                'PORTFOLIO_RECOMMENDATION.WITHDRAWAL_BANK_DETAILS.ACCOUNT_HOLDER_NAME_TEXT' |
+                                translate}}</div>
+                          <div class="primary-holder-value">{{acceptJAHolderDetails?.accountName}}</div>
+                        </div>
+                        <div class="mt15">
+                          <div class="primary-holder">{{
+                                'PORTFOLIO_RECOMMENDATION.WITHDRAWAL_BANK_DETAILS.BANK_NAME_TEXT' |
+                                translate}}</div>
+                          <div class="primary-holder-value">{{acceptJAHolderDetails?.bankName}}</div>
+                        </div>
+                        <div class="mt15">
+                          <div class="primary-holder">{{
+                                'PORTFOLIO_RECOMMENDATION.WITHDRAWAL_BANK_DETAILS.ACCOUNT_NUMBER_TEXT' |
+                                translate}}</div>
+                          <div class="primary-holder-value">{{acceptJAHolderDetails?.accountNo}}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
             <div class="ja-disclaimer" [innerHTML]="'PORTFOLIO_RECOMMENDATION.JA_DISCLAIMER' | translate"></div>
             <form name="tncCheckboxForm" [formGroup]="tncCheckboxForm" id="tncCheckboxForm">
                 <div class="checkbox-button one-label tnc-checkbox" >
@@ -68,9 +100,15 @@
                 </div>
             </form>
         </div>
-        <div class="text-center">
+        <div class="text-center" *ngIf="!isAcceptPortfolio">
             <button type="button" [disabled]="!tncChkBox.checked" (click)="showPayoutModal()" class="btn btn__footer--fixed btn-primary width100">{{
             'PORTFOLIO_RECOMMENDATION.CONTINUE' | translate}}</button>
+        </div>
+        <div class="text-center flex accept-holder-btn-block" *ngIf="isAcceptPortfolio">
+            <button type="button" [disabled]="!tncChkBox.checked" (click)="acceptToJoin()" class="btn btn-orange">{{
+            'PORTFOLIO_RECOMMENDATION.ACCEPT' | translate}}</button>
+            <button type="button" [disabled]="!tncChkBox.checked" (click)="decline()" class="btn btn-primary btn-outline-primary">{{
+                'PORTFOLIO_RECOMMENDATION.DECLINE' | translate}}</button>
         </div>
     </div>
 </div>

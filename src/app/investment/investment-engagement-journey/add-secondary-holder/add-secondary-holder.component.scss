@@ -106,6 +106,9 @@ app-add-secondary-holder {
           }
         }
       }
+      input::placeholder {
+        color: $form-input-placeholder-txt-color !important;
+      }
     }
 
     .minor-tab-content {
@@ -130,6 +133,9 @@ app-add-secondary-holder {
               max-height: 52px;
             }
           }
+        }
+        input::placeholder {
+          color: $form-input-placeholder-txt-color !important;
         }
       }
 
@@ -244,10 +250,6 @@ app-add-secondary-holder {
           font-size: 16px;
           margin-top: 12px;
           margin-bottom: 12px;
-        }
-
-        input::placeholder {
-          color: $teal-grey-color !important;
         }
 
         .add-tax-box {
