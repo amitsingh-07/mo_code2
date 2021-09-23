@@ -72,12 +72,12 @@
                   <div class="">
                     {{'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.ONE_TIME_AMOUNT_TITLE' |
                       translate}}
-                    <span>{{summaryDetails?.oneTimeAmount}}</span>
+                    <span>{{summaryDetails?.oneTimeAmount | formatCurrency}}</span>
                   </div>
                   <div class="">
                     {{'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.MONTHLY_AMOUNT_TITLE' |
                       translate}}
-                    <span>{{summaryDetails?.monthlyAmount}}</span>
+                    <span>{{summaryDetails?.monthlyAmount | formatCurrency}}</span>
                   </div>
                 </div>
               </div>

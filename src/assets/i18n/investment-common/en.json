@@ -298,8 +298,8 @@
       "PORTFOLIO_TITLE": "Portfolio",
       "FUNDING_METHOD_TITLE": "Funding Method",
       "FUNDING_AMOUNT_TITLE": "Funding Amount",
-      "ONE_TIME_AMOUNT_TITLE": "One-Time Amount: $",
-      "MONTHLY_AMOUNT_TITLE": "Monthly Amount: $",
+      "ONE_TIME_AMOUNT_TITLE": "One-Time Amount:",
+      "MONTHLY_AMOUNT_TITLE": "Monthly Amount:",
       "PROMO_CODE_TITLE": "Promo Code"
     },
     "PRIMARY_HOLDER": {

@@ -4,7 +4,7 @@
       <app-step-indicator [count]="isJAAccount ? 3 : 2 " [activeStepIndex]="1" [mode]="0"></app-step-indicator>
     </div>
   </div>
-  <div class="container-fluid max-width--1024">
+  <div class="container-fluid ja-withdrawal">
     <div class="hidden-sm-md page-details">
       <div>{{ 'CONFIRM_WITHDRAWAL.STEP_NO' | translate}}</div>
       <div class="page-title">{{ 'CONFIRM_WITHDRAWAL.PAGE_TITLE' | translate}}</div>
@@ -92,11 +92,10 @@
         </form>
       </div>
     </div>
-  </div>
-
-  <div class="text-center">
-    <button type="button" (click)="goToNext()" [disabled]="!withdrawalAccountForm.valid"
-      class="btn btn__footer--fixed btn-primary width100">{{
-'CONFIRM_WITHDRAWAL.CONTINUE' | translate}}</button>
+    <div class="text-center mt30">
+      <button type="button" (click)="goToNext()" [disabled]="!withdrawalAccountForm.valid"
+        class="btn btn__footer--fixed btn-primary width100">{{
+  'CONFIRM_WITHDRAWAL.CONTINUE' | translate}}</button>
+    </div>
   </div>
 </div>
