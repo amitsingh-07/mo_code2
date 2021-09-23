@@ -306,11 +306,20 @@ export class ManageInvestmentsService {
     return this.apiService.saveNewBankProfile(payload, customerPortfolioId, isJAAccount);
   }
 
+  // TO SAVE BANK ACCOUNT DETAILS WHEN CREATING JA PORTFOLIO
+  saveJAWithdrawalBank(data, customerPortfolioId, isJAAccount, isEngagementJourney) {
+    const payload = this.constructSaveNewBankRequest(data);
+    return this.apiService.saveJAWithdrawalBank(payload, customerPortfolioId, isJAAccount, isEngagementJourney);
+  }
+
   constructSaveNewBankRequest(data) {
     const request = {};
     request['bank'] = data.bank;
     request['accountName'] = data.accountHolderName;
     request['accountNumber'] = data.accountNo;
+    if (data && data.id) {
+      request['id'] =  data.id;
+    }
     return request;
   }
   updateBankInfo(bank, fullName, accountNum, id, customerPortfolioId, isJointAccount) {

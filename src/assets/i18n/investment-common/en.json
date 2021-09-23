@@ -298,8 +298,8 @@
       "PORTFOLIO_TITLE": "Portfolio",
       "FUNDING_METHOD_TITLE": "Funding Method",
       "FUNDING_AMOUNT_TITLE": "Funding Amount",
-      "ONE_TIME_AMOUNT_TITLE": "One-Time Amount: $",
-      "MONTHLY_AMOUNT_TITLE": "Monthly Amount: $",
+      "ONE_TIME_AMOUNT_TITLE": "One-Time Amount:",
+      "MONTHLY_AMOUNT_TITLE": "Monthly Amount:",
       "PROMO_CODE_TITLE": "Promo Code"
     },
     "PRIMARY_HOLDER": {
@@ -326,7 +326,7 @@
       "GENDER_TEXT": "Gender",
       "BIRTH_COUNTRY_TEXT": "Country of Birth",
       "RACE_TEXT": "Race",
-      "FIRST_TAX_RESIDENCE_COUNTRY_TEXT": "Country of Tax Residence (First)",
+      "FIRST_TAX_RESIDENCE_COUNTRY_TEXT": "Country of Tax Residence",
       "TIN_TEXT": "Taxpayer Identification Number",
       "TIN_TEXT_YES": "Yes",
       "TIN_TEXT_NO": "No",
@@ -335,7 +335,14 @@
       "PASSPORT_NO_TEXT": "Passport Number",
       "PASSPORT_EXPIRY_TEXT": "Passport Expiry",
       "US_PR_YES": "Yes",
-      "US_PR_NO": "No"
+      "US_PR_NO": "No",
+      "TAX_FORM_PRECENDENCE": {
+        "TAX_FIRST": "(First)",
+        "TAX_SECOND": "(Second)",
+        "TAX_THIRD": "(Third)",
+        "TAX_FOURTH": "(Fourth)",
+        "TAX_FIFTH": "(Fifth)"
+      }
     },
     "WITHDRAWAL_BANK_DETAILS": {
       "TITLE": "Withdrawal Bank Details",

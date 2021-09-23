@@ -227,6 +227,15 @@ export class InvestmentApiService {
       );
   }
 
+  getJABankDetails(customerPortfolioId, isJointAccount, isEngagementJourney) {
+    let url =investmentApiConstants.endpoint.investment.getJABankDetails.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    url= url.replace('$IS_JA_ACCOUNT$', isJointAccount).replace('$IS_ENGAGEMENT_JOURNEY$', isEngagementJourney);
+    return this.http.get(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   getUserAddress() {
     return this.http.get(investmentApiConstants.endpoint.investment.getUserAddress)
       .pipe(
