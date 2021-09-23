@@ -45,4 +45,7 @@ export class InvestmentEngagementJourneyFormData {
 
   // SET MINOR SECONDARY HOLDER DATA
   minorSecondaryHolderFormData: any;
+
+  // PROMO CODE SETTER
+  promoCode: any;
 }

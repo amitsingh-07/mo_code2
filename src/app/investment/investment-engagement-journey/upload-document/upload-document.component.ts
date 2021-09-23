@@ -8,15 +8,13 @@ import { LoaderService } from '../../../shared/components/loader/loader.service'
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
-import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { Util } from 'src/app/shared/utils/util';
+import { Util } from '../../../shared/utils/util';
 import { InvestmentAccountCommon } from '../../investment-account/investment-account-common';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../investment-account/investment-account.constant';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
@@ -62,6 +60,7 @@ export class UploadDocumentComponent implements OnInit {
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private loaderService: LoaderService,
     private route: ActivatedRoute,
+    private investmentCommonService: InvestmentCommonService,
     public manageInvestmentsService: ManageInvestmentsService
   ) {
     this.translate.use('en');
@@ -104,7 +103,7 @@ export class UploadDocumentComponent implements OnInit {
         this.customerPortfolioId = this.routeParams.get('customerPortfolioId');
       }
     });
-    this.navigationType = this.route.snapshot.paramMap.get('navigationType');
+    this.navigationType =  this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.EDIT_JA_UPLOAD_DOCUMENT);
   }
 
   setDropDownValue(event, key) {

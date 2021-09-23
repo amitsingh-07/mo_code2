@@ -587,6 +587,16 @@ export class InvestmentEngagementJourneyService {
     return this.investmentApiService.uploadDocument(formData);
   }
     /*Upload Document Method end*/
+
+    // SETTING AND GETTING PROMO CODE VALUE
+    setPromoCode(promoCode) {
+      this.investmentEngagementJourneyFormData.promoCode = promoCode;
+      this.commit();
+    }
+
+    getPromoCode() {
+      return this.investmentEngagementJourneyFormData.promoCode
+    }
   /** VERIFY METHOD PREFILL DETAILS */
   getVerifyDetails(customerPortfolioId, jointAccountAction) {
     return this.verifyEditAndSubmit(customerPortfolioId, jointAccountAction);

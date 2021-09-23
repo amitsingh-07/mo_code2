@@ -14,7 +14,8 @@ import { InvestmentAccountCommon } from '../../investment-account/investment-acc
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../investment-account/investment-account.constant';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
+import { InvestmentCommonService } from '../../investment-common/investment-common.service';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { INVESTMENT_COMMON_CONSTANTS } from './../../../investment/investment-common/investment-common.constants';
@@ -78,7 +79,8 @@ export class AddSecondaryHolderComponent implements OnInit {
     public readonly translate: TranslateService,
     private loaderService: LoaderService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private investmentCommonService: InvestmentCommonService
   ) {
     this.userProfileType = investmentEngagementService.getUserPortfolioType();
     this.translate.use('en');
@@ -140,7 +142,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.navigationType = this.route.snapshot.paramMap.get('navigationType');
+    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.EDIT_SECONDARY_HOLDER);
   }
 
   buildMinorForm() {
@@ -325,7 +327,9 @@ export class AddSecondaryHolderComponent implements OnInit {
           this.investmentEngagementService.setMinorSecondaryHolderData(this.secondaryHolderMinorForm.value);
           if (this.customerPortfolioId) {
             this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.JA_UPLOAD_DOCUMENT + "/" + this.customerPortfolioId]);
-          } else {
+          } else if (!Util.isEmptyOrNull(this.navigationType)) {
+            this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.EDIT_UPLOAD_DOCUMENT]);
+          }else {
             this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.JA_UPLOAD_DOCUMENT]);
           }
         });
