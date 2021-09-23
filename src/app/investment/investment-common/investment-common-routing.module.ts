@@ -52,6 +52,10 @@ const routes: Routes = [
     path: INVESTMENT_COMMON_ROUTES.FUNDING_ACCOUNT_DETAILS,
     component: FundingAccountDetailsComponent,
     canActivate: [AuthGuard]
+  },{
+    path: INVESTMENT_COMMON_ROUTES.ACCEPT_JA_HOLDER + '/:customerPortfolioId',
+    component: ConfirmPortfolioComponent,
+    canActivate: [InvestmentCommonGuardService]
   },
   {
     path: INVESTMENT_COMMON_ROUTES.EDIT_FUNDING_ACCOUNT_DETAILS,

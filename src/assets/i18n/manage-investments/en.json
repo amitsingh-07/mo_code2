@@ -322,7 +322,8 @@
     },
     "WITHDRAW_REQUEST_LOADER": {
       "TITLE": "Submitting Request",
-      "DESC": "Please wait while we submit the withdraw request"
+      "DESC": "Please wait while we submit the withdraw request",
+      "FETCHING_DATA": "Loading..."
     },
     "MIN_WITHDRAWAL_INFO": "Please note that minimum withdrawal amount is ${{MIN_WITHDRAW_AMOUNT}}.",
     "REDEEM_ALL_INFO": "Please note that minimum portfolio amount is ${{MIN_BALANCE_AMOUNT}}. If you wish to maintain your portfolio, you are to maintain a minimum portfolio value of ${{MIN_BALANCE_AMOUNT}} or continue to redeem all. Final amount executed in redeem all is after all other pending withdrawal request is completed.",
@@ -480,9 +481,6 @@
     "DELETE_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been Deleted.",
     "WITHDRAW_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been withdrawn.",
     "DELETE_PORTFOLIO_BY_HOLDER": "You have deleted \"{{userGivenPortfolioName}}\".",
-    "PORTFOLIO_SUBMITTED_TO_MINOR": "We have submitted your Joint Account Application for \"{{userGivenPortfolioName}}\".",    
-    "PORTFOLIO_SUBMITTED_TO_MAJOR": "The Joint Investment Account Application has been sent to \"{{secondaryHolderName}}\".",
-    "VERIFY_SUBMISSION": "Joint account application in progress",
     "REMINDER_TEXT": "The reminder has been sent to {{secondaryHolderName}}. You may send one reminder per day.",
     "ONE_REMINDER_PER_DAY": "You can only send one reminder per day, please try again tomorrow."
   },

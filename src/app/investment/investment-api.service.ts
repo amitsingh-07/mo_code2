@@ -520,6 +520,11 @@ export class InvestmentApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  // Accept secondary holder portfolio
+  acceptAndGetPortfolioDetails(customerPortfolioId) {
+    return this.http.get(investmentApiConstants.endpoint.portfolio.acceptJAPortfolio.replace('$customerPortfolioId$', customerPortfolioId))
+  }
   //trigger action by primary/secondary holder 
   setActionByHolder(data) {
     return this.http.post(investmentApiConstants.endpoint.portfolio.setActionByHolder, data)

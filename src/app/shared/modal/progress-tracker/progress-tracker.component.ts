@@ -61,8 +61,18 @@ export class ProgressTrackerComponent implements OnInit {
      */
     public navigate(subItem: IProgressTrackerSubItem) {
         if (subItem.completed && !this.data.properties.readOnly) {
+            this.setRiskProfileFlag(subItem);
             this.progressService.hide();
             this.progressService.navigate(subItem.path);
+        }
+    }
+ 
+    /**
+    * Set Risk Profile Flag.
+    */
+    private setRiskProfileFlag(subItem: IProgressTrackerSubItem) {
+        if (subItem.title == COMPREHENSIVE_CONST.PROGRESS_TRACKER.STEPS.RISK_PROFILE.TITLE) {
+            this.comprehensiveService.setRiskProfileFlag(false);
         }
     }
 
