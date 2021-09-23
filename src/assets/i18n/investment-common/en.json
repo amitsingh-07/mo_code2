@@ -242,7 +242,9 @@
   },
   "TOAST_MESSAGES": {
     "ADD_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been added.",
-    "VIEW": "View"
+    "VIEW": "View",
+    "PORTFOLIO_SUBMITTED_TO_MINOR": "We have submitted your Joint Account Application for \"{{userGivenPortfolioName}}\".",    
+    "PORTFOLIO_SUBMITTED_TO_MAJOR": "The Joint Investment Account Application has been sent to \"{{secondaryHolderName}}\"."  
   },
   "CONFIRM_ACCOUNT_DETAILS": {
     "TITLE": "Confirm Funding Details",

@@ -532,5 +532,8 @@
         "MESSAGE": "The selected file type is not allowed."
       }
     }
+  },
+  "TOAST_MESSAGES": {
+    "VERIFY_SUBMISSION": "Joint account verification details has been submitted."
   }
 }
