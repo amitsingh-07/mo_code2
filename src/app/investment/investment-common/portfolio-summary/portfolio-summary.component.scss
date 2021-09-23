@@ -21,9 +21,10 @@ app-portfolio-summary {
       margin: 0px auto;
       position: relative;
 
-      @include allmobiles{
+      @include allmobiles {
         width: 100%;
       }
+
       .portfolio-naming {
         margin: 0 auto;
       }
@@ -35,8 +36,6 @@ app-portfolio-summary {
           font-family: $muli-regular;
           font-size: 16px;
           font-weight: normal;
-          font-stretch: normal;
-          font-style: normal;
           line-height: normal;
           letter-spacing: -0.3px;
           color: $white-color;
@@ -45,6 +44,7 @@ app-portfolio-summary {
       }
 
       .summary-details {
+
         //width: 450px;
         .edit-icon {
           width: 24px;
@@ -67,8 +67,6 @@ app-portfolio-summary {
             display: flex;
             justify-content: space-between;
             font-weight: 600;
-            font-stretch: normal;
-            font-style: normal;
             line-height: normal;
             letter-spacing: -0.34px;
             font-family: $muli;
@@ -99,12 +97,10 @@ app-portfolio-summary {
               color: $light-orange;
               text-decoration: underline;
               font-size: 16px;
-              font-weight: normal;
-              font-stretch: normal;
-              font-style: normal;
               line-height: normal;
               letter-spacing: -0.3px;
-              font-family: $muli;
+              font-family: $muli-regular;
+              cursor: pointer;
             }
 
             .primary-holder {
@@ -115,8 +111,6 @@ app-portfolio-summary {
             .primary-holder-value {
               font-size: 16px;
               font-weight: 600;
-              font-stretch: normal;
-              font-style: normal;
               line-height: normal;
               letter-spacing: -0.3px;
               color: $black-color;
@@ -153,28 +147,27 @@ app-portfolio-summary {
   }
 
   .invest-bg-image {
-    // background-image: url("/assets/images/ja-summary-bg.svg");
-    // background-position: right top;
-    // background-attachment: scroll;
-    // background-repeat: no-repeat;
-
     position: relative;
     bottom: -30px;
     z-index: -1;
-    .ja-bg{
+
+    .ja-bg {
       width: 450px;
-        height: 193px;
-        display: flex;
-        @include allmobiles{
-          width: 100%;
-        }
+      height: 193px;
+      display: flex;
+
+      @include allmobiles {
+        width: 100%;
+      }
     }
-    .review-label{
+
+    .review-label {
       position: absolute;
       top: 0px;
       padding: 40px 0px 30px 20px;
       max-width: 365px;
-      @include allmobiles{
+
+      @include allmobiles {
         top: 30px;
         padding: 18px 45px 24px 20px;
       }

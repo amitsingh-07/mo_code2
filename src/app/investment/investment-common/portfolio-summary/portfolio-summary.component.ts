@@ -16,6 +16,7 @@ import { IInvestmentCriteria } from '../investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
 import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
+import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
 
 @Component({
   selector: 'app-portfolio-summary',
@@ -30,6 +31,10 @@ export class PortfolioSummaryComponent implements OnInit {
   secondaryHolderMajorFormValues: any;
   summaryDetails: any;
   investmentCriteria: IInvestmentCriteria;
+  isMinor: boolean;
+  taxDetails: any;
+  taxPrecedenceTitles: any;
+  promoCode: any;
   constructor(
     public readonly translate: TranslateService,
     public navbarService: NavbarService,
@@ -45,6 +50,7 @@ export class PortfolioSummaryComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('PORTFOLIO_SUMMARY.TITLE');
+      this.taxPrecedenceTitles = this.translate.instant('PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.TAX_FORM_PRECENDENCE');
       this.setPageTitle(this.pageTitle);
     });
     this.secondaryHolderMinorFormValues = investmentEngagementJourneyService.getMinorSecondaryHolderData();
@@ -56,6 +62,7 @@ export class PortfolioSummaryComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.getPortFolioSummaryDetails(this.investmentAccountService.getCustomerPortfolioId());
+    this.promoCode = this.investmentEngagementJourneyService.getPromoCode();
   }
 
   setPageTitle(title: string) {
@@ -63,7 +70,11 @@ export class PortfolioSummaryComponent implements OnInit {
   }
 
   editWithdrawDetails() {
-    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_WITHDRAWAL, { navigationType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT }]);
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.EDIT_WITHDRAWAL]);
+  }
+
+  changePortfolio() {
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
   }
 
   goToNext() {
@@ -85,20 +96,16 @@ export class PortfolioSummaryComponent implements OnInit {
     }
   }
 
-  ediMajorHolderDetails() {
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.ADD_SECONDARY_HOLDER_DETAILS, { navigationType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT }]);
-  }
-
-  editMinorHolderDetails() {
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.ADD_SECONDARY_HOLDER_DETAILS, { navigationType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT }]);
+  ediSecondaryHolderDetails() {
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.EDIT_SECONDARY_HOLDER_DETAILS]);
   }
 
   editPortfolioName() {
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
   }
 
   editPromoCode() {
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.EDIT_FUNDING_ACCOUNT_DETAILS]);
   }
 
   clearData() {
@@ -117,6 +124,16 @@ export class PortfolioSummaryComponent implements OnInit {
     this.investmentCommonService.getPortFolioSummaryDetails(customerPortfolioId).subscribe(response => {
       if (response.responseMessage.responseCode === 6000) {
         this.summaryDetails = response.objectList;
+        this.isMinor = this.summaryDetails.minor;
+        this.taxDetails = this.summaryDetails.minorSecondaryHolderSummary.taxDetails;
+        if(this.taxDetails && this.taxDetails.length > 1) {
+          this.getTaxPrecendence();
+        }
+        this.summaryDetails.formattedAccountNumber = this.manageInvestmentsService.srsAccountFormat(this.summaryDetails.accountNo, this.summaryDetails.bankName)
+        const portfolioIndex = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO.findIndex(x => x.KEY === this.summaryDetails.portfolio);
+        if (this.summaryDetails && this.summaryDetails.portfolio && portfolioIndex >= 0) {
+          this.summaryDetails.portfolioDisplayName = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO[portfolioIndex].VALUE;
+        }
         this.getInvestmentCriteria(this.summaryDetails);
       }
     });
@@ -127,8 +144,8 @@ export class PortfolioSummaryComponent implements OnInit {
       centered: true
     });
     ref.componentInstance.investmentData = {
-      oneTimeInvestment: 1000,
-      monthlyInvestment: 0
+      oneTimeInvestment: this.summaryDetails?.oneTimeAmount,
+      monthlyInvestment: this.summaryDetails?.monthlyAmount
     };
     ref.componentInstance.investmentCriteria = this.investmentCriteria;
     ref.componentInstance.modifiedInvestmentData.subscribe((emittedValue) => {
@@ -151,7 +168,7 @@ export class PortfolioSummaryComponent implements OnInit {
     const params = this.constructUpdateInvestmentParams(updatedData);
     const customerPortfolioId = this.investmentAccountService.getCustomerPortfolioId();
     this.investmentAccountService.updateInvestment(customerPortfolioId, params).subscribe((data) => {
-      this.getPortFolioSummaryDetails(this.investmentAccountService.getCustomerPortfolioId());
+      this.getPortFolioSummaryDetails(customerPortfolioId);
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
@@ -175,11 +192,38 @@ export class PortfolioSummaryComponent implements OnInit {
   }
 
   isForeignerCheck() {
-    if (this.summaryDetails && this.summaryDetails.nationality && [INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_NAME, INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_CODE]
-      .indexOf(this.summaryDetails.nationality) < 0) {
-      return this.summaryDetails.singaporePR;
+    if (this.summaryDetails && this.summaryDetails.minorSecondaryHolderSummary 
+      && this.summaryDetails.minorSecondaryHolderSummary.nationality
+       && [INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_NAME, INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_CODE]
+      .indexOf(this.summaryDetails.minorSecondaryHolderSummary.nationality) < 0) {
+      return this.summaryDetails.minorSecondaryHolderSummary.singaporePR;
     } else {
-      return true;
+      return false;
     }
+  }
+
+  getTaxPrecendence() {
+    this.taxDetails.forEach((element, index) => {
+      switch (index) {
+        case 0:
+          element.precedence = this.taxPrecedenceTitles.TAX_FIRST;
+          break;
+        case 1:
+          element.precedence = this.taxPrecedenceTitles.TAX_SECOND;
+          break;
+        case 2:
+          element.precedence = this.taxPrecedenceTitles.TAX_THIRD;
+          break;
+        case 3:
+          element.precedence = this.taxPrecedenceTitles.TAX_FOURTH;
+          break;
+        case 4:
+          element.precedence = this.taxPrecedenceTitles.TAX_FIFTH;
+          break;
+        default:
+          element.precedence = '';
+          break;
+      }
+    });
   }
 }

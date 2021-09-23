@@ -58,12 +58,22 @@ const routes: Routes = [
     canActivate: [InvestmentCommonGuardService]
   },
   {
+    path: INVESTMENT_COMMON_ROUTES.EDIT_FUNDING_ACCOUNT_DETAILS,
+    component: FundingAccountDetailsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: INVESTMENT_COMMON_ROUTES.PORTFOLIO_SUMMARY,
     component: PortfolioSummaryComponent,
     canActivate: [AuthGuard]
   },
   {
     path: INVESTMENT_COMMON_ROUTES.CONFIRM_WITHDRAWAL,
+    component: ConfirmWithdrawalComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: INVESTMENT_COMMON_ROUTES.EDIT_WITHDRAWAL,
     component: ConfirmWithdrawalComponent,
     canActivate: [AuthGuard]
   },

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Util } from '../../../shared/utils/util';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -12,7 +12,8 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment-engagement-journey/investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
+import { INVESTMENT_COMMON_ROUTES, INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
+import { InvestmentCommonService } from '../investment-common.service';
 
 @Component({
   selector: 'app-confirm-withdrawal',
@@ -27,11 +28,11 @@ export class ConfirmWithdrawalComponent implements OnInit {
   banks: any;
   accountNumberCharCount = 0;
   userPortfolioType: any;
-  isJAEnabled: boolean;
   userProfileInfo: any;
   navigationType: any;
   customerPortfolioId: any;
   isJAAccount: boolean;
+  bankDetails: any;
   constructor(
     private router: Router,
     public readonly translate: TranslateService,
@@ -42,7 +43,7 @@ export class ConfirmWithdrawalComponent implements OnInit {
     private signUpService: SignUpService,
     public manageInvestmentsService: ManageInvestmentsService,
     private investmentEngagementService: InvestmentEngagementJourneyService,
-    private route: ActivatedRoute
+    private investmentCommonService: InvestmentCommonService,
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -50,17 +51,19 @@ export class ConfirmWithdrawalComponent implements OnInit {
       this.setPageTitle(this.pageTitle);
     });
     this.userProfileInfo = signUpService.getUserProfileInfo();
+    this.customerPortfolioId = this.investmentAccountService.getCustomerPortfolioId();
     this.userPortfolioType = investmentEngagementService.getUserPortfolioType();
-    this.isJAEnabled = (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID);
+    this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID ? this.isJAAccount = true : this.isJAAccount = false;
     this.getOptionList();
     this.buildAccountDetailsForm();
+    this.getExistingBankDetails(this.customerPortfolioId, this.isJAAccount);
   }
 
   ngOnInit(): void {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.navigationType = this.route.snapshot.paramMap.get('navigationType');
+    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_COMMON_ROUTES.EDIT_WITHDRAWAL);
   }
 
   setPageTitle(title: string) {
@@ -72,17 +75,13 @@ export class ConfirmWithdrawalComponent implements OnInit {
       accountHolderName: new FormControl('', [Validators.required]),
       bank: new FormControl('', Validators.required),
       accountNo: new FormControl('', [Validators.required, this.signUpService.validateBankAccNo]),
-      customerPortfolioId: new FormControl(''),
-      isJointAccount: new FormControl('')
     });
     this.withdrawalAccountForm.controls.accountHolderName.setValue(this.userProfileInfo?.fullName);
-    this.customerPortfolioId = this.investmentAccountService.getCustomerPortfolioId();
-    this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID ? this.isJAAccount = true : this.isJAAccount = false;
   }
 
   goToNext() {
     if (this.withdrawalAccountForm.valid) {
-      this.manageInvestmentsService.saveProfileNewBank(this.withdrawalAccountForm.value, this.customerPortfolioId, this.isJAAccount).subscribe((response) => {
+      this.manageInvestmentsService.saveJAWithdrawalBank(this.withdrawalAccountForm.value, this.customerPortfolioId, this.isJAAccount, true).subscribe((response) => {
         if (!Util.isEmptyOrNull(this.navigationType)) {
           this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.PORTFOLIO_SUMMARY]);
         } else {
@@ -119,5 +118,19 @@ export class ConfirmWithdrawalComponent implements OnInit {
 
   onAccountNumberChange(accountNumber) {
     this.accountNumberCharCount = accountNumber ? accountNumber.length : 0;
+  }
+
+  getExistingBankDetails(customerPortfolioId, isJointAccount) {
+    this.investmentCommonService.getJAAccountDetails(customerPortfolioId, isJointAccount, true).subscribe((data) => {
+      this.bankDetails = data.objectList;
+      if (this.bankDetails && this.bankDetails.length > 0) {
+        this.withdrawalAccountForm.controls.accountHolderName.setValue(this.bankDetails[0].accountName);
+        this.withdrawalAccountForm.controls.accountNo.setValue(this.bankDetails[0].accountNumber);
+        this.withdrawalAccountForm.controls.bank.setValue(this.bankDetails[0].bank);
+        this.withdrawalAccountForm.addControl(
+          'id', new FormControl(this.bankDetails[0].id)
+        );
+      }
+    });
   }
 }

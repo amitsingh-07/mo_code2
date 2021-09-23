@@ -409,4 +409,15 @@ export class InvestmentCommonService {
   getPortFolioSummaryDetails(customerPortfolioId) {
     return this.investmentApiService.getPortFolioSummaryDetails(customerPortfolioId);
   }
+
+  getJAAccountDetails(customerPortfolioId, isJAAccount, isEngagementJourney) {
+    return this.investmentApiService.getJABankDetails(customerPortfolioId, isJAAccount, isEngagementJourney);
+  }
+
+  setNavigationType(url, expectedURL) {
+    if (url.indexOf(expectedURL) >= 0) {
+      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT;
+    }
+    return null;
+  }
 }
