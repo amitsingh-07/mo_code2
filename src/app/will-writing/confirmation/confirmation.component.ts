@@ -32,7 +32,6 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   createWillTriggered = false;
 
   abtMeInfo: IAboutMe;
-  isNotEngSpeaker: boolean = false;
 
   constructor(
     private translate: TranslateService,
@@ -58,9 +57,6 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
     this.willWritingService.setFromConfirmPage(false);
     this.willWritingFormData = this.willWritingService.getWillWritingFormData();
     this.abtMeInfo = this.willWritingFormData.aboutMe;
-    if (this.abtMeInfo['isEngSpeaker'] === false) {
-      this.isNotEngSpeaker = true;
-    }
     const estateDistribution = this.willWritingFormData.beneficiary.filter((beneficiary) => beneficiary.selected === true);
     this.willBeneficiary = estateDistribution;
     for (const beneficiary of estateDistribution) {
@@ -91,7 +87,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   goNext() {
     if (!this.createWillTriggered && this.willWritingService.checkDuplicateUinAll()) {
       this.createWillTriggered = true;
-      this.abtMeInfo.isEngSpeaker = !this.isNotEngSpeaker;
+      this.abtMeInfo.isEngSpeaker = true;
       this.willWritingService.setAboutMeInfo(this.abtMeInfo);
       if (this.authService.isSignedUser()) {
         let createUpdateWill;
