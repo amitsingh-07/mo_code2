@@ -1,7 +1,7 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
 app-dashboard {
-    .toast-msg-top-space-checkout {
+    .toast-msg-top-space-dashboard {
         .toast-msg-container {
           box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
           background-color: $light-green-color;
@@ -18,15 +18,15 @@ app-dashboard {
           }
         }
         @include desktop {
-          top: 154px;
+          top: 104px;
           right: 30px;
         }
         @include tablet {
-          top: 154px;
+          top: 104px;
           right: 15px;
         }
         @include phablet {
-          top: 116px;
+          top: 56px;
           right: 15px;
         }
       }
