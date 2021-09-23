@@ -26,6 +26,7 @@ import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from './../../../investment/i
 import { ModelWithButtonComponent } from './../../modal/model-with-button/model-with-button.component';
 import { IToastMessage } from '../../../investment/manage-investments/manage-investments-form-data';
 import { ManageInvestmentsService } from '../../../investment/manage-investments/manage-investments.service';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../../investment/investment-common/investment-common-routes.constants';
 
 @Component({
   selector: 'app-portfolio-list',
@@ -350,7 +351,9 @@ export class PortfolioListComponent implements OnInit, OnChanges {
       return (isStaticTextEnabled) ? this.awaitingMsg : hoursToDay + ' ' + this.hours + ' ' + minutesToDay + ' ' + this.minutes;
     }
   }
-
+  acceptJAPortfolio(customerPortfolioId){
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACCEPT_JA_HOLDER + '/' + customerPortfolioId]);
+  }
   sendReminderModal(customerPortfolioId, secondaryHolderName) {
     this.manageInvestmentsService.setActionByHolder(customerPortfolioId, MANAGE_INVESTMENTS_CONSTANTS.JOINT_ACCOUNT.ACTIONS.SEND_REMINDER).subscribe((response) => {
       if(response && response.responseMessage && response.responseMessage.responseCode == 6000) {

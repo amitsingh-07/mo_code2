@@ -33,6 +33,12 @@
     "EXPENSIVE_RATIO_WISE_INCOME": " This excludes fund level fees (such as annual management fees of {{expensiveRatio}} p.a.) which are factored into the price of the fund.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
     "FUND_EXPENSIVE_RATIO": "Fund Expense Ratio",
     "TOTAL_FEE": "Total Fee",
+    "JA_ACCEPTANCE_TITLE": "Joint Account Portfolio",
+    "JOINT_ACCOUNT_LBL": "Joint Account Portfolio",
+    "JA_SUB_LBL": "JA Investment Plan for My Family and Future",
+    "JA_DESC_LBL": "<span class=\"ja-icon\"><img src=\"assets/images/investment-account/ja-icon-white.svg\"></span>You are invited to a Joint Account with {{primaryName}}. Review and join portfolio by clicking on <span class=\"txt-bold\">Accept to Join</span> below.",
+    "ACCEPT": "Accept to Join",
+    "DECLINE": "Decline",
     "EDIT_INVESTMENT": {
       "TITLE": "Review My Inputs",
       "ONE_TIME_INVESTMENT": "One-time Amount",
@@ -154,7 +160,20 @@
       }
     },
     "I_AGREE": "I agree to the ",
-    "TNC": "Terms and Conditions"
+    "TNC": "Terms and Conditions",
+    "WITHDRAWAL_BANK_DETAILS": {
+      "CARD_TITLE": "Withdrawal Bank Account",
+      "ACCOUNT_HOLDER_NAME_TEXT": "Bank Account Holder Name(s)",
+      "BANK_NAME_TEXT": "Bank Name",
+      "ACCOUNT_NUMBER_TEXT": "Account No."
+    },
+    "JOINT_ACCOUNT": {
+      "API_FAILED": {
+        "TITLE": "Oops! Something went wrong",
+        "DESC": "Please refresh the page and try again",
+        "BUTTON_TEXT": "Refresh"
+      }
+    }
   },
   "FUND_INTRO": {
     "TITLE": "Fund Your Account",
@@ -243,6 +262,8 @@
   "TOAST_MESSAGES": {
     "ADD_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been added.",
     "VIEW": "View",
+    "PORTFOLIO_DECLINED": "\"{{userGivenPortfolioName}}\" has been declined.",
+    "PORTFOLIO_ACCEPTED": "We have submitted your Joint Account Application for \"{{userGivenPortfolioName}}\".",
     "PORTFOLIO_SUBMITTED_TO_MINOR": "We have submitted your Joint Account Application for \"{{userGivenPortfolioName}}\".",    
     "PORTFOLIO_SUBMITTED_TO_MAJOR": "The Joint Investment Account Application has been sent to \"{{secondaryHolderName}}\"."  
   },
