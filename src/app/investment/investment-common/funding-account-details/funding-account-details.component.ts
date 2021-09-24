@@ -88,7 +88,8 @@ export class FundingAccountDetailsComponent implements OnInit {
       (this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.FOUR_PERCENT
         || this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.EIGHT_PERCENT)) || (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID);
     this.getSrsAccDetailsAndOptionListCol();
-    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_COMMON_ROUTES.EDIT_FUNDING_ACCOUNT_DETAILS);
+    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_COMMON_ROUTES.EDIT_FUNDING_ACCOUNT_DETAILS, 
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
   }
 
   getSrsAccDetailsAndOptionListCol() {

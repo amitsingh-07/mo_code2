@@ -108,7 +108,11 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
       this.savePortfolioName(userPortfolioName);
     } else {
       this.portfolioNameToBeSaved = this.formValues.defaultPortfolioName;
-      this.checkAmlAndCreateAccount();
+      if (!this.checkIfJointAccount()) {
+        this.checkAmlAndCreateAccount();
+      } else {
+        this.redirectToPortfolioSummary();
+      }
     }
   }
 
@@ -135,7 +139,11 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
       if (response.responseMessage.responseCode === 6000) {
         this.investmentAccountService.setDefaultPortfolioName(portfolioName);
         this.showErrorMessage = false;
-        this.checkAmlAndCreateAccount();
+        if (!this.checkIfJointAccount()) {
+          this.checkAmlAndCreateAccount();
+        } else {
+          this.redirectToPortfolioSummary();
+        }
       } else if (response.responseMessage.responseCode === 5120) {
         this.showErrorMessage = true;
       } else {
@@ -314,7 +322,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
     this.manageInvestmentsService.activateToastMessage();
     if (this.isSubsequentPortfolio) {
       if ((this.fundingMethod).toUpperCase() === 'CASH') {
-        if (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID) {
+        if (this.checkIfJointAccount()) {
           this.redirectToPortfolioSummary();
         } else {
           this.redirectToFundAccount();
@@ -396,4 +404,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
     this.renderer.removeClass(document.body, 'portfolioname-bg');
   }
 
+  checkIfJointAccount() {
+    return this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID;
+  }
 }

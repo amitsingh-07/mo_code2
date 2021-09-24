@@ -142,7 +142,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.EDIT_SECONDARY_HOLDER);
+    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.EDIT_SECONDARY_HOLDER, INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
   }
 
   buildMinorForm() {
@@ -307,6 +307,12 @@ export class AddSecondaryHolderComponent implements OnInit {
         this.showBlockedCountryErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.blockedCountryMessage);
       } else if (this.secondaryHolderMinorForm.value.unitedStatesResident) {
         this.showErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.unitedStatesPRYes);
+      } else if (!Util.isEmptyOrNull(this.validateMinimumAge(this.secondaryHolderMinorForm.controls['dob']))) {
+        const error = this.investmentEngagementService.getSecondaryHolderFormError('dob');
+        this.showErrorMessage(error.errorMessages[0].errorTitle, error.errorMessages[0].errorMessage);
+      } else if (this.secondaryHolderMinorForm.controls['passportExpiry'] && !Util.isEmptyOrNull(this.validateExpiry(this.secondaryHolderMinorForm.controls['passportExpiry']))) {
+        const error = this.investmentEngagementService.getSecondaryHolderFormError('passportExpiry');
+        this.showErrorMessage(error.errorMessages[0].errorTitle, error.errorMessages[0].errorMessage);
       } else {
         if (this.secondaryHolderMinorForm.value && this.secondaryHolderMinorForm.value.dob && typeof this.secondaryHolderMinorForm.value.dob !== 'object') {
           this.secondaryHolderMinorForm.get('dob').setValue(this.investmentEngagementService.convertStringToDateObj(this.secondaryHolderMinorForm.value.dob));
