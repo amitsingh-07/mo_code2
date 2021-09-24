@@ -414,9 +414,9 @@ export class InvestmentCommonService {
     return this.investmentApiService.getJABankDetails(customerPortfolioId, isJAAccount, isEngagementJourney);
   }
 
-  setNavigationType(url, expectedURL) {
+  setNavigationType(url, expectedURL, navigationType) {
     if (url.indexOf(expectedURL) >= 0) {
-      return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT;
+      return navigationType;
     }
     return null;
   }

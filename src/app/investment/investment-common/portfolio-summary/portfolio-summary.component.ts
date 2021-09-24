@@ -78,7 +78,14 @@ export class PortfolioSummaryComponent implements OnInit {
   }
 
   goToNext() {
-    this.clearData();
+    const customerPortfolioId = this.investmentAccountService.getCustomerPortfolioId();
+    this.manageInvestmentsService.setActionByHolder(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.SUBMISSION).subscribe(resp => {
+      this.clearData();
+      this.onPortfolioSubmission();
+    });
+  }
+
+  onPortfolioSubmission() {
     if (this.summaryDetails.minor) {
       const toastMessage: IToastMessage = {
         isShown: true,
@@ -126,7 +133,7 @@ export class PortfolioSummaryComponent implements OnInit {
         this.summaryDetails = response.objectList;
         this.isMinor = this.summaryDetails.minor;
         this.taxDetails = this.summaryDetails.minorSecondaryHolderSummary.taxDetails;
-        if(this.taxDetails && this.taxDetails.length > 1) {
+        if (this.taxDetails && this.taxDetails.length > 1) {
           this.getTaxPrecendence();
         }
         this.summaryDetails.formattedAccountNumber = this.manageInvestmentsService.srsAccountFormat(this.summaryDetails.accountNo, this.summaryDetails.bankName)
@@ -192,10 +199,10 @@ export class PortfolioSummaryComponent implements OnInit {
   }
 
   isForeignerCheck() {
-    if (this.summaryDetails && this.summaryDetails.minorSecondaryHolderSummary 
+    if (this.summaryDetails && this.summaryDetails.minorSecondaryHolderSummary
       && this.summaryDetails.minorSecondaryHolderSummary.nationality
-       && [INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_NAME, INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_CODE]
-      .indexOf(this.summaryDetails.minorSecondaryHolderSummary.nationality) < 0) {
+      && [INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_NAME, INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_CODE]
+        .indexOf(this.summaryDetails.minorSecondaryHolderSummary.nationality) < 0) {
       return this.summaryDetails.minorSecondaryHolderSummary.singaporePR;
     } else {
       return false;

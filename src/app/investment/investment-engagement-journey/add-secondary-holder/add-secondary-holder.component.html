@@ -270,7 +270,8 @@
                           </div>
                           <div #usrFrmDp class="flex-col-7">
                             <div class="datepicker-control">
-                              <div class="input-group date-picker mb0">
+                              <div class="input-group date-picker mb0"
+                                [ngClass]="{'inline-error': secondaryHolderMinorForm.get('dob').enabled && !secondaryHolderMinorForm.get('dob').valid && !secondaryHolderMinorForm.get('dob').pristine}">
                                 <input class="form-control" [minDate]="minDate" [maxDate]="maxDate"
                                   formControlName="dob" placeholder="{{
                                   'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.DOB_PATTERN'
@@ -373,7 +374,8 @@
                           </div>
                           <div #usrFrmDp class="flex-col-7">
                             <div class="datepicker-control">
-                              <div class="input-group date-picker mb0">
+                              <div class="input-group date-picker mb0"
+                                [ngClass]="{'inline-error': secondaryHolderMinorForm.get('passportExpiry').enabled && !secondaryHolderMinorForm.get('passportExpiry').valid && !secondaryHolderMinorForm.get('passportExpiry').pristine}">
                                 <input class="form-control" formControlName="passportExpiry" [minDate]=passportMinDate
                                   [maxDate]=passportMaxDate placeholder="{{
                                     'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.DOB_PATTERN'
