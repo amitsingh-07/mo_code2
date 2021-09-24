@@ -23,7 +23,8 @@
 
             <div class="flex-row mt15">
               <div class="flex-col-12">
-                <div>
+                <div
+                  [ngClass]="{'inline-error': withdrawalAccountForm.get('accountHolderName').enabled && !withdrawalAccountForm.get('accountHolderName').valid && !withdrawalAccountForm.get('accountHolderName').pristine}">
                   <div contenteditable="true" id="accountHolderName-" maxlength="100" class="content-editable"
                     (focusout)="setControlValue($event.target.textContent, 'accountHolderName', withdrawalAccountForm);"
                     [textContent]="withdrawalAccountForm.get('accountHolderName').value"

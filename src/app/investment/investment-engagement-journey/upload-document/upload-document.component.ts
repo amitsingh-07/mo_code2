@@ -103,7 +103,8 @@ export class UploadDocumentComponent implements OnInit {
         this.customerPortfolioId = this.routeParams.get('customerPortfolioId');
       }
     });
-    this.navigationType =  this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.EDIT_JA_UPLOAD_DOCUMENT);
+    this.navigationType =  this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.EDIT_JA_UPLOAD_DOCUMENT,
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
   }
 
   setDropDownValue(event, key) {

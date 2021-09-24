@@ -142,7 +142,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.EDIT_SECONDARY_HOLDER);
+    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.EDIT_SECONDARY_HOLDER, INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
   }
 
   buildMinorForm() {
@@ -307,12 +307,12 @@ export class AddSecondaryHolderComponent implements OnInit {
         this.showBlockedCountryErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.blockedCountryMessage);
       } else if (this.secondaryHolderMinorForm.value.unitedStatesResident) {
         this.showErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.unitedStatesPRYes);
-      } else if (Util.isEmptyOrNull(this.validateMinimumAge(this.secondaryHolderMinorForm.controls['dob']))) {
+      } else if (!Util.isEmptyOrNull(this.validateMinimumAge(this.secondaryHolderMinorForm.controls['dob']))) {
         const error = this.investmentEngagementService.getSecondaryHolderFormError('dob');
-        this.showErrorMessage(error?.errorMessages?.errorTitle, error?.errorMessages?.errorMessage);
+        this.showErrorMessage(error.errorMessages[0].errorTitle, error.errorMessages[0].errorMessage);
       } else if (this.secondaryHolderMinorForm.controls['passportExpiry'] && !Util.isEmptyOrNull(this.validateExpiry(this.secondaryHolderMinorForm.controls['passportExpiry']))) {
         const error = this.investmentEngagementService.getSecondaryHolderFormError('passportExpiry');
-        this.showErrorMessage(error?.errorMessages?.errorTitle, error?.errorMessages?.errorMessage);
+        this.showErrorMessage(error.errorMessages[0].errorTitle, error.errorMessages[0].errorMessage);
       } else {
         if (this.secondaryHolderMinorForm.value && this.secondaryHolderMinorForm.value.dob && typeof this.secondaryHolderMinorForm.value.dob !== 'object') {
           this.secondaryHolderMinorForm.get('dob').setValue(this.investmentEngagementService.convertStringToDateObj(this.secondaryHolderMinorForm.value.dob));
@@ -329,7 +329,7 @@ export class AddSecondaryHolderComponent implements OnInit {
             this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.JA_UPLOAD_DOCUMENT + "/" + this.customerPortfolioId]);
           } else if (!Util.isEmptyOrNull(this.navigationType)) {
             this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.EDIT_UPLOAD_DOCUMENT]);
-          }else {
+          } else {
             this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.JA_UPLOAD_DOCUMENT]);
           }
         });
@@ -415,17 +415,17 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   /* To Validate Minimum age of secondary holder */
-  private validateMinimumAge(control: AbstractControl) {
+  private validateMinimumAge(control: AbstractControl): { [s: string]: boolean } {
     const value = control.value;
     if (control.value !== undefined && isNaN(control.value) && !(control.errors && control.errors.ngbDate)) {
-      const isMinAge =
+      const isMaxAge =
         new Date(
           value.year + INVESTMENT_ACCOUNT_CONSTANTS.personal_info.min_age,
           value.month - 1,
           value.day
         ) <= new Date();
-      if (!isMinAge) {
-        return { isMinAge: true };
+      if (isMaxAge) {
+        return { isMaxAge: true };
       }
     }
     return null;
@@ -453,7 +453,11 @@ export class AddSecondaryHolderComponent implements OnInit {
 
   addNonSingaporeanControls() {
     this.removePersonaInfoControls();
-    this.addPersonalInfoControls();
+    setTimeout(() => {
+      this.addPersonalInfoControls();
+      this.secondaryHolderMinorForm.removeControl('nricNumber');
+      this.secondaryHolderMinorForm.removeControl('issuedCountry');
+    });
     let passportNumber = '';
     let passportExpiry;
     let passportIssuedCountry = '';
@@ -466,8 +470,6 @@ export class AddSecondaryHolderComponent implements OnInit {
     if (this.secondaryHolderMinorFormValues && this.secondaryHolderMinorFormValues.passportExpiry) {
       passportExpiry = this.secondaryHolderMinorFormValues.passportExpiry;
     }
-    this.secondaryHolderMinorForm.removeControl('nricNumber');
-    this.secondaryHolderMinorForm.removeControl('issuedCountry');
     this.secondaryHolderMinorForm.addControl(
       'passportNumber', new FormControl(passportNumber !== '' ? passportNumber : '', [Validators.required, Validators.pattern(RegexConstants.PassportNumber)])
     );
@@ -505,7 +507,7 @@ export class AddSecondaryHolderComponent implements OnInit {
       'gender', new FormControl(this.secondaryHolderMinorFormValues?.gender ? this.secondaryHolderMinorFormValues?.gender : '', Validators.required)
     );
     this.secondaryHolderMinorForm.addControl(
-      'dob', new FormControl(dob ? dob : '', [Validators.required])
+      'dob', new FormControl(dob ? dob : '', [Validators.required, this.validateMinimumAge])
     );
     this.secondaryHolderMinorForm.addControl(
       'issuedCountry', new FormControl(this.secondaryHolderMinorFormValues?.issuedCountry ? this.secondaryHolderMinorFormValues?.issuedCountry : '', Validators.required)
@@ -796,7 +798,7 @@ export class AddSecondaryHolderComponent implements OnInit {
           );
 
           this.secondaryHolderMinorForm.addControl(
-            'dob', new FormControl(dob ? dob : '', [Validators.required])
+            'dob', new FormControl(dob ? dob : '', [Validators.required, this.validateMinimumAge])
           );
           this.secondaryHolderMinorForm.addControl(
             'gender', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.gender, Validators.required)
@@ -805,7 +807,7 @@ export class AddSecondaryHolderComponent implements OnInit {
           const birthCountryId = this.verifyApplicantData.minorSecondaryHolderSummary.birthCountryId;
           this.secondaryHolderMinorForm.addControl(
             'birthCountry', new FormControl('', [Validators.required])
-          );          
+          );
           if (this.countryList && birthCountryId) {
             const birthCountry = this.countryList.find(x => x.id == birthCountryId);
             this.secondaryHolderMinorForm.controls.birthCountry.setValue(birthCountry);
@@ -886,7 +888,7 @@ export class AddSecondaryHolderComponent implements OnInit {
             );
             let passportExpiryDate = this.investmentEngagementService.convertStringToDateObj(this.verifyApplicantData.minorSecondaryHolderSummary.passportExpiryDate);
             this.secondaryHolderMinorForm.addControl(
-              'passportExpiry', new FormControl(passportExpiryDate, Validators.required)
+              'passportExpiry', new FormControl(passportExpiryDate, [Validators.required, this.validateExpiry])
             );
             if (this.countryList) {
               const issuedCountryId = this.verifyApplicantData.minorSecondaryHolderSummary.passportIssuedCountry;
