@@ -48,7 +48,7 @@
                 <div class="primary-holder">{{
                           'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.PORTFOLIO_TITLE' |
                           translate}}</div>
-                <div class="primary-holder-value">{{summaryDetails?.portfolioDisplayName}}</div>
+                <div class="primary-holder-value">{{portfolioDisplayName}}</div>
               </div>
 
               <div class="mt15">
@@ -277,41 +277,43 @@
                 <div class="primary-holder-value">{{summaryDetails.secondaryHolderRelationship}}</div>
               </div>
 
-              <div *ngFor="let tax of taxDetails; let i = index;">
-                <div class="mt15">
-                  <div class="primary-holder">
-                    <span> 
+              <div *ngIf="taxDetails && taxDetails.length > 0">
+                <div *ngFor="let tax of taxDetails; let i = index;">
+                  <div class="mt15">
+                    <div class="primary-holder">
+                      <span>
                         {{ 'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.FIRST_TAX_RESIDENCE_COUNTRY_TEXT' |
                             translate}}
-                    </span>
-                    <span>
-                      {{tax?.precedence}}
-                    </span>
+                      </span>
+                      <span>
+                        {{tax?.precedence}}
+                      </span>
+                    </div>
+                    <div class="primary-holder-value">{{tax.taxCountryName}}</div>
                   </div>
-                  <div class="primary-holder-value">{{tax.taxCountryName}}</div>
-                </div>
 
-                <div class="mt15">
-                  <div class="primary-holder">{{
+                  <div class="mt15">
+                    <div class="primary-holder">{{
                             'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.TIN_TEXT' |
                             translate}}</div>
-                  <div class="primary-holder-value">
-                    {{tax.isTinNumberPresent ? ('PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.TIN_TEXT_YES' | translate) : ('PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.TIN_TEXT_NO' | translate)}}
+                    <div class="primary-holder-value">
+                      {{tax.isTinNumberPresent ? ('PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.TIN_TEXT_YES' | translate) : ('PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.TIN_TEXT_NO' | translate)}}
+                    </div>
                   </div>
-                </div>
 
-                <div class="mt15" *ngIf="tax.isTinNumberPresent">
-                  <div class="primary-holder">{{
+                  <div class="mt15" *ngIf="tax.isTinNumberPresent">
+                    <div class="primary-holder">{{
                             'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.TIN_NO_TEXT' |
                             translate}}</div>
-                  <div class="primary-holder-value">{{tax.tinNumber}}</div>
-                </div>
+                    <div class="primary-holder-value">{{tax.tinNumber}}</div>
+                  </div>
 
-                <div class="mt15" *ngIf="!tax.isTinNumberPresent">
-                  <div class="primary-holder">{{
+                  <div class="mt15" *ngIf="!tax.isTinNumberPresent">
+                    <div class="primary-holder">{{
                               'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.NO_TIN_REASON_TEXT' |
                               translate}}</div>
-                  <div class="primary-holder-value">{{tax.noTinReason}}</div>
+                    <div class="primary-holder-value">{{tax.noTinReason}}</div>
+                  </div>
                 </div>
               </div>
             </div>
