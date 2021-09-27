@@ -29,7 +29,7 @@ app-select-portfolio-type {
     display: flex;
     width: 50%;
     min-height: 200px;
-    margin-bottom: 11px;
+    margin-bottom: 0px;
 
     &:nth-child(1) input[type="radio"] + label,
     &:nth-child(2) input[type="radio"] + label {

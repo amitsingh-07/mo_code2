@@ -105,7 +105,6 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.tncCheckboxForm = this.formBuilder.group({
       tncCheckboxFlag: ['']
     });
-    this.getPortfolioDetails();
     if (this.router.url.indexOf(INVESTMENT_COMMON_ROUTES.ACCEPT_JA_HOLDER) >= 0) {
       this.isAcceptPortfolio = true;
       this.route.paramMap
@@ -115,6 +114,8 @@ export class ConfirmPortfolioComponent implements OnInit {
             this.acceptAndGetPortfolioDetails(this.customerPortfolioId);
           }
         );
+    } else{
+      this.getPortfolioDetails();
     }
   }
 
@@ -367,10 +368,47 @@ export class ConfirmPortfolioComponent implements OnInit {
   // accept or decline from dashboard
   acceptAndGetPortfolioDetails(customerPortfolioId) {
     this.investmentCommonService.acceptAndGetPortfolioDetails(customerPortfolioId).subscribe((data) => {
-      this.acceptJAHolderDetails = data.objectList;
-      this.primaryHolderName = {
-        primaryName: this.acceptJAHolderDetails?.primaryHolderName
-      };
+      // this.acceptJAHolderDetails = data.objectList;
+      // this.primaryHolderName = {
+      //   primaryName: this.acceptJAHolderDetails?.primaryHolderName
+      // };
+        if (data.objectList && data.objectList.enquiryId) { /* Overwriting enquiry id */
+          this.authService.saveEnquiryId(data.objectList.enquiryId);
+        }
+        this.portfolio = data.objectList;
+        this.primaryHolderName = {
+            primaryName: this.portfolio?.primaryHolderName
+        };
+        this.investmentCommonService.setPortfolioType(this.portfolio.portfolioType)
+        this.investmentCommonService.setPortfolioDetails(this.portfolio);
+        this.isJAEnabled = this.checkIfJointAccount();
+        this.investmentEnabled = (this.portfolio.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVESTMENT.toLowerCase());
+        this.wiseSaverEnabled = (this.portfolio.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER.toLowerCase());
+        this.wiseIncomeEnabled = (this.portfolio.portfolioType.toLowerCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME.toLowerCase());
+        this.getInvestmentCriteria(this.portfolio);
+        if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.INVESTMENT) {
+          this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO });
+          this.iconImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
+        } else if (this.portfolio.portfolioType === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISESAVER) {
+          this.getWiseSaverDetails();
+          this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO });
+        } else {
+          this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO });
+        }
+        const fundingParams = this.constructFundingParams(data.objectList);
+        this.manageInvestmentsService.setFundingDetails(fundingParams);
+        if (this.portfolio.fundingTypeId) {
+          this.investmentCommonService.setInitialFundingMethod({ initialFundingMethodId: this.portfolio.fundingTypeId });
+        }
+        this.userInputSubtext = {
+          onetime: this.formatCurrencyPipe.transform(
+            this.portfolio.initialInvestment
+          ),
+          monthly: this.formatCurrencyPipe.transform(
+            this.portfolio.monthlyInvestment
+          ),
+          period: this.portfolio.investmentPeriod
+        };
     });
   }
 
