@@ -206,7 +206,7 @@ export class PromoDetailsComponent implements OnInit {
   // Remove applied promo code
   removePromoCode(e) {
     this.promoSvc.removeAppliedPromo();
-    this.investmentEngagementService.setPromoCode('-');
+    this.investmentEngagementService.setPromoCode(null);
     this.activeModal.dismiss();
     e.preventDefault();
     e.stopPropagation();

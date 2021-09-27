@@ -874,6 +874,11 @@ export class InvestmentAccountService {
     return this.investmentApiService.getPortfolioDetailsWithAuth();
   }
 
+  // CHANGING API TO HANDLE JOIN ACCOUNT ID FOR JA FLOW
+  getPortfolioAllocationDetailsWithAuthAndJA(jointAccountId) {
+    return this.investmentApiService.getPortfolioDetailsWithAuthAndJA(jointAccountId);
+  }
+
   updateInvestment(customerPortfolioId, params) {
     return this.investmentApiService.updateInvestment(customerPortfolioId, params);
   }

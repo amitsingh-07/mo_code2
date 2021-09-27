@@ -98,5 +98,8 @@ export let INVESTMENT_COMMON_CONSTANTS = {
         KEY: "WiseIncome R1- 8 percent (Payout) Portfolio",
         VALUE: "WiseIncome - 8% p.a. Income Payout"
       }
-    ]
+    ],
+    PROMO_CODE: {
+      NOT_APPLIED: "Not Applied"
+    }
 };
