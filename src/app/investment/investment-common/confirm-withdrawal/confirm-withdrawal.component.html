@@ -40,13 +40,13 @@
           <div class="bank-details">
             <div class="account-details">
               <div class="widget-body">
-                <div class="flex-row">
-                  <div class="flex-col-4">
-                    <label class="bank-name-details pb10" for="name" id="tax-info-reason_label">{{
+                <div class="flex-row space-between">
+                  <div class="flex-col-2">
+                    <label class="bank-name-details" for="name" id="tax-info-reason_label">{{
                       'CONFIRM_WITHDRAWAL.WITHDRAWAL_BANK_DETAILS.BANK_NAME_TEXT' |
                       translate}}</label>
                   </div>
-                  <div class="flex-col-8">
+                  <div class="flex-col-9">
                     <div class="dropdown-control">
                       <div ngbDropdown>
                         <button class="btn btn-dropdown" id="residentialAddress-country-drpdown" ngbDropdownToggle>
@@ -65,13 +65,13 @@
                   </div>
                 </div>
 
-                <div class="flex-row mt22">
-                  <div class="flex-col-4">
-                    <label class="bank-name-details pb10" for="name" id="tax-info-reason_label">{{
+                <div class="flex-row mt22 space-between">
+                  <div class="flex-col-2">
+                    <label class="bank-name-details" for="name" id="tax-info-reason_label">{{
                       'CONFIRM_WITHDRAWAL.WITHDRAWAL_BANK_DETAILS.ACCOUNT_NO_TEXT' |
                       translate}}</label>
                   </div>
-                  <div class="flex-col-8">
+                  <div class="flex-col-9">
                     <div class="dropdown-control"
                       [ngClass]="{'inline-error': withdrawalAccountForm.get('accountNo').enabled && !withdrawalAccountForm.get('accountNo').valid && !withdrawalAccountForm.get('accountNo').pristine}">
                       <input type="text" class="form-control" placeholder="{{
