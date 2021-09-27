@@ -340,6 +340,9 @@ app-investment-overview {
                         padding: 7px 15px;
                         border: 0px;
                         min-width: 132px;
+                        @include min300max350{
+                            min-width: 115px;
+                        }
                     }
                     .withdraw-btn {
                         border-radius: 6px;
@@ -351,6 +354,9 @@ app-investment-overview {
                         padding: 7px 15px;
                         border: 0px;
                         min-width: 132px;
+                        @include min300max350{
+                            min-width: 115px;
+                        }
                     }
                     .awaiting-period {
                         font-size: 14px;
