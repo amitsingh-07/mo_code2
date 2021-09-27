@@ -52,7 +52,7 @@ export class PromoCodeSelectComponent implements OnInit {
   // On remove btn press remove applied promo code
   removePromoCode(e) {
     this.promoSvc.removeAppliedPromo();
-    this.investmentEngagementService.setPromoCode('-');
+    this.investmentEngagementService.setPromoCode(null);
     e.preventDefault();
     e.stopPropagation();
   }

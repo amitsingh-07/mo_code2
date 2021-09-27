@@ -17,6 +17,7 @@ import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.const
 import { InvestmentCommonService } from '../investment-common.service';
 import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
 import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
+import { Util } from '../../../shared/utils/util';
 
 @Component({
   selector: 'app-portfolio-summary',
@@ -35,6 +36,7 @@ export class PortfolioSummaryComponent implements OnInit {
   taxDetails: any;
   taxPrecedenceTitles: any;
   promoCode: any;
+  portfolioDisplayName: any;
   constructor(
     public readonly translate: TranslateService,
     public navbarService: NavbarService,
@@ -62,7 +64,16 @@ export class PortfolioSummaryComponent implements OnInit {
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
     this.getPortFolioSummaryDetails(this.investmentAccountService.getCustomerPortfolioId());
-    this.promoCode = this.investmentEngagementJourneyService.getPromoCode();
+    this.setPromoCode();
+  }
+
+  setPromoCode() {
+    const promo = this.investmentEngagementJourneyService.getPromoCode();
+    if(Util.isEmptyOrNull(promo)) {
+      this.promoCode = INVESTMENT_COMMON_CONSTANTS.PROMO_CODE.NOT_APPLIED;
+    } else {
+      this.promoCode = promo;
+    }
   }
 
   setPageTitle(title: string) {
@@ -132,14 +143,13 @@ export class PortfolioSummaryComponent implements OnInit {
       if (response.responseMessage.responseCode === 6000) {
         this.summaryDetails = response.objectList;
         this.isMinor = this.summaryDetails.minor;
-        this.taxDetails = this.summaryDetails.minorSecondaryHolderSummary.taxDetails;
+        this.taxDetails = this.summaryDetails.minorSecondaryHolderSummary?.taxDetails;
         if (this.taxDetails && this.taxDetails.length > 1) {
           this.getTaxPrecendence();
         }
-        this.summaryDetails.formattedAccountNumber = this.manageInvestmentsService.srsAccountFormat(this.summaryDetails.accountNo, this.summaryDetails.bankName)
         const portfolioIndex = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO.findIndex(x => x.KEY === this.summaryDetails.portfolio);
-        if (this.summaryDetails && this.summaryDetails.portfolio && portfolioIndex >= 0) {
-          this.summaryDetails.portfolioDisplayName = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO[portfolioIndex].VALUE;
+        if (this.summaryDetails && portfolioIndex >= 0) {
+          this.portfolioDisplayName = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO[portfolioIndex].VALUE;
         }
         this.getInvestmentCriteria(this.summaryDetails);
       }

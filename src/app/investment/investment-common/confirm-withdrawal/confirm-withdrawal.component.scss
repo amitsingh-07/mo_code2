@@ -103,6 +103,14 @@ app-confirm-withdrawal {
         letter-spacing: -0.34px;
         margin-bottom: 15px;
       }
+
+      .form-control {
+        max-height: 52px;
+  
+        .input-control {
+          text-align: left;
+        }
+      }
     }
   }
 

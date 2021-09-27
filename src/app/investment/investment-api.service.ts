@@ -79,6 +79,15 @@ export class InvestmentApiService {
       );
   }
 
+  // CHANGING API TO HANDLE JOIN ACCOUNT ID FOR JA FLOW
+  getPortfolioDetailsWithAuthAndJA(jointAccountId) {
+    const url = investmentApiConstants.endpoint.investmentAccount.getPortfolioDetailsWithAuthAndJA.replace('$JA_ACCOUNT_ID$', jointAccountId);
+    return this.http.get(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   saveRiskAssessment(data) {
     return this.http.post(investmentApiConstants.endpoint.portfolio.updateRiskAssessment, data)
       .pipe(
