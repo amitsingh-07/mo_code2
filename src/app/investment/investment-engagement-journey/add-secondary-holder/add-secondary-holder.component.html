@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
-        <h6 [ngClass]="{'edit-holder': navigationType}">{{'SECONDARY_HOLDER.PAGE_LBL' | translate}}</h6>
+        <h6 class="question-lbl" [ngClass]="{'edit-holder': navigationType}">{{'SECONDARY_HOLDER.PAGE_LBL' | translate}}</h6>
         <div class="secondary-holder-tabs">
           <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTabId">
             <ng-container [ngbNavItem]="1">
@@ -202,7 +202,7 @@
                         </div>
                       </div>
 
-                      <div class="minor-details">
+                      <div class="minor-details" *ngIf="secondaryHolderMinorForm.get('fullName')">
                         <!-- personal info -->
                         <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('fullName')">
                           <div class="flex-col-5">
@@ -468,7 +468,7 @@
                             </span>
                           </div>
                           <div class="widget-body" [formGroupName]="x">
-                            <div class="flex-row">
+                            <div class="flex-row pl10">
                               <div class="flex-col-5">
                                 <label for="name" id="tax-info-label">{{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.COUNTRY_TEXT' |
                                   translate}}
@@ -488,7 +488,7 @@
                             </div>
                             <!-- PLACEHOLDER -->
                             <!-- Do you have a TIN question -->
-                            <div class="flex-row mb10">
+                            <div class="flex-row mb10 pl10">
                               <div class="flex-col-11 mt5">
                                 <div class="tin_question_text" id="tax_Info_question-one">
                                   {{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.TIN_QUESTION' | translate}}
@@ -523,7 +523,7 @@
                               </div>
                             </div>
                             <!-- Second Dropdown -->
-                            <div class="flex-row" *ngIf="taxInfoItem.get('noTinReason')">
+                            <div class="flex-row pl10" *ngIf="taxInfoItem.get('noTinReason')">
                               <div class="flex-col-4">
                                 <label class="tin_question_text pb10" for="name" id="tax-info-reason_label">{{
                                   'SECONDARY_HOLDER.MINOR.TAX_INFO.REASON_TEXT' |
@@ -553,7 +553,7 @@
                             </div>
                             <!-- Tin text box -->
                             <!-- Second Dropdown -->
-                            <div class="flex-row" *ngIf="taxInfoItem.get('tinNumber')">
+                            <div class="flex-row pl10" *ngIf="taxInfoItem.get('tinNumber')">
                               <div class="flex-col-4">
                                 <label class="tin_question_text pb10" for="name" id="tax-info-reason_label">{{
                                   'SECONDARY_HOLDER.MINOR.TAX_INFO.TIN_TEXT' |
@@ -569,7 +569,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="mt15 tin-hint" *ngIf="secondaryHolderMinorForm.get('passportExpiry')">
+                            <div class="mt15 pl10 tin-hint" *ngIf="secondaryHolderMinorForm.get('passportExpiry')">
                               {{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.NRIC_HINT' | translate}}</div>
                             <div class="thumb-close-icon">
                               <img src="assets/images/close-button-dark.svg" alt="x" />
@@ -590,13 +590,13 @@
               </ng-template>
             </ng-container>
           </nav>
-          <div [ngbNavOutlet]="nav" class="mt-2"></div>
+          <div [ngbNavOutlet]="nav"></div>
 
           <button *ngIf="activeTabId === 1 || activeTabId === 3" [disabled]="!secondaryHolderMajorForm.valid"
             (click)="majorHolderGoToNext()"
-            class="btn btn-primary btn__footer--fixed width100">{{'SECONDARY_HOLDER.CONTINUE' | translate}}</button>
+            class="btn btn-primary btn__footer--fixed width100 mt30">{{'SECONDARY_HOLDER.CONTINUE' | translate}}</button>
           <button *ngIf="activeTabId === 2" (click)="minorHolderGoToNext()" [disabled]="!secondaryHolderMinorForm.valid"
-            class="btn btn-primary btn__footer--fixed width100">{{'SECONDARY_HOLDER.CONTINUE' | translate}}</button>
+            class="btn btn-primary btn__footer--fixed width100 mt30">{{'SECONDARY_HOLDER.CONTINUE' | translate}}</button>
         </div>
       </div>
     </div>

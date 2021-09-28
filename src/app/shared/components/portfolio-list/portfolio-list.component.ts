@@ -296,7 +296,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   }
 
   withDrawModal(portfolioName, customerPortfolioId) {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'limited-width' });
     ref.componentInstance.errorTitle = this.translate.instant('YOUR_INVESTMENT.WITHDRAW_JOINT_ACCOUNT_APPLICATION');
     ref.componentInstance.errorMessage = this.translate.instant(
       'YOUR_INVESTMENT.WITHDRAW_JOINT_ACCOUNT_APPLICATION_DESC'

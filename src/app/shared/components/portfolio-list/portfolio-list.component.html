@@ -29,8 +29,8 @@
                                     currency:'USD':'symbol-narrow':'1.0-2'}} </div>
                                 <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
                                     currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-                                <div class="row">
-                                    <div class='col-md-6 awaiting-period mt10'>{{ portfolio.awaitingPeriod }} {{'YOUR_INVESTMENT.PRIMARY_AWAITING_PERIOD' | translate}}</div>
+                                <div class="flex-row">
+                                    <div class='col-md-6 awaiting-period mt10 pl0 pr0'>{{ portfolio.awaitingPeriod }} {{'YOUR_INVESTMENT.PRIMARY_AWAITING_PERIOD' | translate}}</div>
                                     <div class='col-md-6 ja-btn-group' *ngIf='portfolio.primaryHolder'>
                                         <button class="send-reminder-btn cursorPointer" (click)="sendReminderModal(portfolio.customerPortfolioId, portfolio.secondaryHolderName)">{{'YOUR_INVESTMENT.SEND_REMINDER' | translate}}</button>
                                         <button class="withdraw-btn cursorPointer ml10" (click)="withDrawModal(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.WITHDRAW' | translate}}</button>
@@ -50,7 +50,7 @@
 
                 <div class="multiple-portfolio-type" *ngIf="filteredWithdrawnList?.length > 0">
                     <div class="multiple-portfolio-type-title withdrawn-list">{{'YOUR_INVESTMENT.PORTFOLIO_WITHDRAWN_BY_PRIMARY_HOLDER' | translate}}</div>
-                    <div class="portfolio-list" *ngFor="let portfolio of filteredWithdrawnList; let i = index;">
+                    <div class="portfolio-list delete-portfolio" *ngFor="let portfolio of filteredWithdrawnList; let i = index;">
                         <div *ngIf="(i <= 4) || showAllForWithdrawn" class="portfolio">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
                             <div class="portfolio-details">
@@ -82,7 +82,7 @@
 
                 <div class="multiple-portfolio-type" *ngIf="filteredDeclinedList?.length > 0">
                     <div class="multiple-portfolio-type-title declined-list">{{'YOUR_INVESTMENT.APPLICATION_DECLINED' | translate}}</div>
-                    <div class="portfolio-list" *ngFor="let portfolio of filteredDeclinedList; let i = index;">
+                    <div class="portfolio-list delete-portfolio" *ngFor="let portfolio of filteredDeclinedList; let i = index;">
                         <div *ngIf="(i <= 4) || showAllForDeclined" class="portfolio">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
                             <div class="portfolio-details">
@@ -114,7 +114,7 @@
 
                 <div class="multiple-portfolio-type" *ngIf="filteredExpiredList?.length > 0">
                     <div class="multiple-portfolio-type-title expired-list">{{'YOUR_INVESTMENT.APPLICATION_EXPIRED' | translate}}</div>
-                    <div class="portfolio-list" *ngFor="let portfolio of filteredExpiredList; let i = index;">
+                    <div class="portfolio-list delete-portfolio" *ngFor="let portfolio of filteredExpiredList; let i = index;">
                         <div *ngIf="(i <= 4) || showAllForExpired" class="portfolio">
                             <div class="portfolio-icon" [ngClass]="setBorderClass(portfolio)"><img [src]="getImg(portfolio?.riskProfileId, portfolio?.portfolioCategory)" /></div>
                             <div class="portfolio-details">
@@ -184,8 +184,8 @@
                          </span>
                          </div>
                          <div class="ja-logo" *ngIf="portfolio?.entitlements?.jointAccount"><span class="ja-icon"><img src="assets/images/investment-account/ja-icon.svg" /></span><span>{{ (portfolio.primaryHolder) ? (portfolio.primaryHolderName | titlecase) : (portfolio.secondaryHolderName | titlecase) }}</span></div>
-                         <div class="row">
-                            <div class='col-md-6'>
+                         <div class="flex-row">
+                            <div class='col-md-6 pl0 pr0'>
                                 <div class="ja-investment mt10">{{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT === portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType : ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME === portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory + ' - ' + portfolio.payoutTypeValue)  : portfolio.portfolioCategory ) }}</div>
                                 <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
                                     currency:'USD':'symbol-narrow':'1.0-2'}} </div>
