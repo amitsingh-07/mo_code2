@@ -19,6 +19,9 @@ import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES, INVESTMENT_ENGAGEMENT_JOURNEY_ROU
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { INVESTMENT_COMMON_CONSTANTS } from './../../../investment/investment-common/investment-common.constants';
+import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
+import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-investments-routes.constants';
 
 @Component({
   selector: 'app-add-secondary-holder',
@@ -80,7 +83,8 @@ export class AddSecondaryHolderComponent implements OnInit {
     private loaderService: LoaderService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private investmentCommonService: InvestmentCommonService
+    private investmentCommonService: InvestmentCommonService,
+    public manageInvestmentsService: ManageInvestmentsService
   ) {
     this.userProfileType = investmentEngagementService.getUserPortfolioType();
     this.translate.use('en');
@@ -357,7 +361,9 @@ export class AddSecondaryHolderComponent implements OnInit {
         if (resp.responseMessage.responseCode === 6000) {
           this.secondaryHolderMajorForm.addControl('jaAccountId', new FormControl(resp.objectList));
           this.investmentEngagementService.setMajorSecondaryHolderData(this.secondaryHolderMajorForm.value);
-          if (!Util.isEmptyOrNull(this.navigationType)) {
+          if (this.customerPortfolioId) {
+            this.verifyFlowSubmission();
+          } else if (!Util.isEmptyOrNull(this.navigationType)) {
             this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.PORTFOLIO_SUMMARY]);
           } else {
             this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
@@ -926,5 +932,23 @@ export class AddSecondaryHolderComponent implements OnInit {
     } else {
       this.addTaxForm(null);
     }
+  }
+
+  verifyFlowSubmission() {
+    this.investmentEngagementService.verifyFlowSubmission(Number(this.customerPortfolioId), INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.SUBMISSION).subscribe((response) => {
+      this.loaderService.hideLoader();
+      if (response) {
+        const toastMessage: IToastMessage = {
+          isShown: true,
+          desc: this.translate.instant('TOAST_MESSAGES.VERIFY_SUBMISSION'),
+        };
+        this.manageInvestmentsService.setToastMessage(toastMessage);
+        this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
+      }
+    },
+      (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 }
