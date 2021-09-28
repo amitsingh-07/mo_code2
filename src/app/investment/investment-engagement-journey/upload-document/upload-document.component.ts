@@ -274,7 +274,7 @@ export class UploadDocumentComponent implements OnInit {
   }
 
   verifyFlowSubmission() {
-    this.investmentEngagementJourneyService.verifyFlowSubmission(this.customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.SUBMISSION).subscribe((response) => {
+    this.investmentEngagementJourneyService.verifyFlowSubmission(Number(this.customerPortfolioId), INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.SUBMISSION).subscribe((response) => {
       this.loaderService.hideLoader();
       if (response) {
         const toastMessage: IToastMessage = {
