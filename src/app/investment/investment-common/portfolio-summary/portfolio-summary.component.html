@@ -283,10 +283,7 @@
                     <div class="primary-holder">
                       <span>
                         {{ 'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.FIRST_TAX_RESIDENCE_COUNTRY_TEXT' |
-                            translate}}
-                      </span>
-                      <span>
-                        {{tax?.precedence}}
+                            translate}} {{tax?.precedence}}
                       </span>
                     </div>
                     <div class="primary-holder-value">{{tax.taxCountryName}}</div>
