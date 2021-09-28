@@ -20,26 +20,33 @@ app-confirm-withdrawal {
           border-radius: 6px;
 
           .widget-body {
-            padding: 20px 21px 20px 20px;
+            padding: 20px;
             background-color: $bond-container-bg;
-            font-family: $muli-semi-bold;
+            font-family: $muli-regular;
             font-size: 18px;
-            font-weight: 400;
             letter-spacing: -0.34px;
             color: $dark-teal-color;
-            border-bottom-left-radius: 6px;
-            border-bottom-right-radius: 6px;
+            border-radius: 6px;
+            .flex-row{
+              .flex-col-9{
+                @include min300max350{
+                  padding-left: 10px;
+                }
+              }
+            }
           }
 
           .ensure-details {
             font-size: 14px;
             font-family: $muli-italic;
+            color: $text-color-secondary;
           }
         }
 
         .bank-name-details {
-          font-size: 16px;
-          margin-bottom: 12px;
+          font-family: $muli-semi-bold;
+          font-size: 18px;
+          margin-bottom: 0px;
         }
 
         .dropdown-control {
