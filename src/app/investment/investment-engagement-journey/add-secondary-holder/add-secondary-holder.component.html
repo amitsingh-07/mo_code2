@@ -123,7 +123,7 @@
                       <!-- other coutryquestion -->
                       <div *ngIf="secondaryHolderMinorForm.get('unitedStatesResident')">
                         <div class="flex-row mb10">
-                          <div class="flex-col-12 mt15">
+                          <div class="flex-col-12 mt15 sec-holder-questions">
                             <label class="form-group-with-bg--content-label" id="select_nationality_question-one"
                               for="name">{{'SECONDARY_HOLDER.MINOR.QUESTION_ONE'
                               | translate}}
@@ -157,7 +157,7 @@
                       </div>
                       <div *ngIf="secondaryHolderMinorForm.get('singaporeanResident')">
                         <div class="flex-row mb10">
-                          <div class=flex-col-10>
+                          <div class="flex-col-10 sec-holder-questions">
                             <label class="form-group-with-bg--content-label" id="select_nationality_question-two"
                               for="name">
                               {{ 'SECONDARY_HOLDER.MINOR.QUESTION_TWO' |
@@ -472,7 +472,7 @@
                           <div class="widget-body" [formGroupName]="x">
                             <div class="flex-row pl10">
                               <div class="flex-col-5">
-                                <label for="name" id="tax-info-label">{{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.COUNTRY_TEXT' |
+                                <label class="tax-country-label" for="name" id="tax-info-label">{{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.COUNTRY_TEXT' |
                                   translate}}
                                   <i class="tooltip-block-icon" id="countryHelpIcon"
                                     (click)="showHelpModalCountry()"></i></label>
