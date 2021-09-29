@@ -268,7 +268,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
             this.customerJointAccBankDetails = data.objectList.customerJointAccountBankDetails;
           }
           this.showBankInfo = data.objectList.cashPortfolioAvailable ? data.objectList.cashPortfolioAvailable : false;
-          this.showJAccInfo = data.objectList.jointAccount ? data.objectList.jointAccount : false;
+          this.showJAccInfo = this.customerJointAccBankDetails.length ? true : false;
 
           // Hidden the mailing address for future use
           // if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
