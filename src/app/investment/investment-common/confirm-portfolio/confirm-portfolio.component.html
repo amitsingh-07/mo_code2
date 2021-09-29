@@ -64,30 +64,7 @@
             </div>
             <div class="withdraw-bank-details" *ngIf="isAcceptPortfolio">
                 <div class="title">{{'PORTFOLIO_RECOMMENDATION.WITHDRAWAL_BANK_DETAILS.CARD_TITLE' | translate}}</div>
-                <div class="summary-details">
-                    <div class="primary-holder-details">
-                      <div class="widget-body">
-                        <div>
-                          <div class="primary-holder">{{
-                                'PORTFOLIO_RECOMMENDATION.WITHDRAWAL_BANK_DETAILS.ACCOUNT_HOLDER_NAME_TEXT' |
-                                translate}}</div>
-                          <div class="primary-holder-value">{{portfolio?.accountName}}</div>
-                        </div>
-                        <div class="mt15">
-                          <div class="primary-holder">{{
-                                'PORTFOLIO_RECOMMENDATION.WITHDRAWAL_BANK_DETAILS.BANK_NAME_TEXT' |
-                                translate}}</div>
-                          <div class="primary-holder-value">{{portfolio?.bankName}}</div>
-                        </div>
-                        <div class="mt15">
-                          <div class="primary-holder">{{
-                                'PORTFOLIO_RECOMMENDATION.WITHDRAWAL_BANK_DETAILS.ACCOUNT_NUMBER_TEXT' |
-                                translate}}</div>
-                          <div class="primary-holder-value">{{portfolio?.accountNo}}</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <app-bank-details [bankDetails]="bankDetails"></app-bank-details>
             </div>
             <div class="ja-disclaimer" [innerHTML]="'PORTFOLIO_RECOMMENDATION.JA_DISCLAIMER' | translate"></div>
             <form name="tncCheckboxForm" [formGroup]="tncCheckboxForm" id="tncCheckboxForm">
