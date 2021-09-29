@@ -1,11 +1,10 @@
-<div class="portfolio-naming-backdrop">
+<div class="ja-portfolio-summary">
   <div class="container-fluid max-width--1024">
-    <div class="portfolio-naming-wrapper">
+    <div class="ja-portfolio-summary-wrapper">
       <div class="portfolio-block">
         <div class="portfolio-naming hidden-sm">
           <div class="title">{{pageTitle}}</div>
         </div>
-
         <div class="review-text invest-bg-image">
           <div class="ja-bg">
             <img src="assets/images/ja-summary-bg.svg" />
@@ -13,7 +12,6 @@
           <div class="review-label" [innerHtml]="'PORTFOLIO_SUMMARY.REVIEW_DETAILS_LABEL' |
           translate"> </div>
         </div>
-
         <div class="summary-details">
           <div class="primary-holder-details">
             <div class="widget-body">
@@ -23,7 +21,6 @@
                               translate}}</div>
                 <div class="primary-holder-value">{{summaryDetails?.dateOfApplication}}</div>
               </div>
-
               <div class="mt15">
                 <div class="primary-holder">{{
                           'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.PORTFOLIO_TYPE_TITLE' |
@@ -31,7 +28,6 @@
                 <div class="primary-holder-value">{{'PORTFOLIO_SUMMARY.ACCOUNT_TYPE' |
                   translate}}</div>
               </div>
-
               <div class="mt15">
                 <div class="primary-holder">
                   <div> {{'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.PORTFOLIO_NAME_TEXT' |
@@ -43,21 +39,18 @@
                 </div>
                 <div class="primary-holder-value">{{summaryDetails?.portfolioName}}</div>
               </div>
-
               <div class="mt15">
                 <div class="primary-holder">{{
                           'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.PORTFOLIO_TITLE' |
                           translate}}</div>
                 <div class="primary-holder-value">{{portfolioDisplayName}}</div>
               </div>
-
               <div class="mt15">
                 <div class="primary-holder">{{
                           'PORTFOLIO_SUMMARY.PORTFOLIO_DETAILS.FUNDING_METHOD_TITLE' |
                           translate}}</div>
                 <div class="primary-holder-value">{{summaryDetails?.fundingMethod}}</div>
               </div>
-
               <div class="mt15">
                 <div class="primary-holder">
                   <div> {{
@@ -81,7 +74,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="mt15">
                 <div class="primary-holder">
                   <div>{{
@@ -94,7 +86,6 @@
                 </div>
                 <div class="primary-holder-value">{{promoCode}}</div>
               </div>
-
               <div class="change-portfolio mt30">
                 <span (click)="changePortfolio()">
                   {{
@@ -105,7 +96,6 @@
             </div>
           </div>
         </div>
-
         <div class="summary-details mt20">
           <div class="primary-holder-details">
             <div class="widget-title">
@@ -122,7 +112,6 @@
             </div>
           </div>
         </div>
-
         <div class="summary-details mt20" *ngIf="!isMinor">
           <div class="primary-holder-details">
             <div class="widget-title">
@@ -139,21 +128,18 @@
                             translate}}</div>
                 <div class="primary-holder-value">{{summaryDetails?.secondaryHolderName}}</div>
               </div>
-
               <div class="mt15">
                 <div class="primary-holder">{{
                         'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MAJOR.NRIC_PASSPORT_NO_TEXT' |
                         translate}}</div>
                 <div class="primary-holder-value">{{summaryDetails?.secondaryHolderNricOrPassport}}</div>
               </div>
-
               <div class="mt15">
                 <div class="primary-holder">{{
                         'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MAJOR.RELATIONSHIP_TEXT' |
                         translate}}</div>
                 <div class="primary-holder-value">{{summaryDetails?.secondaryHolderRelationship}}</div>
               </div>
-
               <div class="mt15">
                 <div class="primary-holder">{{
                         'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MAJOR.EMAIL_TEXT' |
@@ -163,7 +149,6 @@
             </div>
           </div>
         </div>
-
         <div class="summary-details mt20" *ngIf="isMinor">
           <div class="primary-holder-details">
             <div class="widget-title">
@@ -180,7 +165,6 @@
                               translate}}</div>
                 <div class="primary-holder-value">{{summaryDetails?.minorSecondaryHolderSummary.nationality}}</div>
               </div>
-
               <div class="mt15">
                 <div class="primary-holder">{{
                           'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.US_PR_TEXT' |
@@ -190,7 +174,6 @@
                   translate) : ('PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.US_PR_NO' |
                   translate)}}</div>
               </div>
-
               <!-- CHANGE NAME TEXT AS PER FOREIGNER AND SINGAPORE PR -->
               <div class="mt15">
                 <div class="primary-holder">{{ isForeignerCheck() ?
@@ -199,7 +182,6 @@
                           translate)}}</div>
                 <div class="primary-holder-value">{{summaryDetails?.minorSecondaryHolderSummary.fullName}}</div>
               </div>
-
               <!-- START OF SINGAPORE PR FIELDS -->
               <div class="mt15" *ngIf="isForeignerCheck()">
                 <div class="primary-holder">{{
@@ -207,7 +189,6 @@
                           translate}}</div>
                 <div class="primary-holder-value">{{summaryDetails?.minorSecondaryHolderSummary.nricNumber}}</div>
               </div>
-
               <div class="mt15" *ngIf="isForeignerCheck()">
                 <div class="primary-holder">{{
                             'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.ISSUED_COUNTRY_TEXT' |
@@ -216,28 +197,24 @@
                 </div>
               </div>
               <!-- END OF SINGAPORE PR FIELDS -->
-
               <div class="mt15">
                 <div class="primary-holder">{{
                             'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.DOB_TEXT' |
                             translate}}</div>
                 <div class="primary-holder-value">{{summaryDetails?.minorSecondaryHolderSummary.dob}}</div>
               </div>
-
               <div class="mt15">
                 <div class="primary-holder">{{
                             'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.GENDER_TEXT' |
                             translate}}</div>
                 <div class="primary-holder-value">{{summaryDetails?.minorSecondaryHolderSummary.gender}}</div>
               </div>
-
               <div class="mt15">
                 <div class="primary-holder">{{
                             'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.BIRTH_COUNTRY_TEXT' |
                             translate}}</div>
                 <div class="primary-holder-value">{{summaryDetails?.minorSecondaryHolderSummary.birthCountry}}</div>
               </div>
-
               <!-- START OF FOREIGNER FIELDS -->
               <div class="mt15" *ngIf="!isForeignerCheck()">
                 <div class="primary-holder">{{
@@ -245,7 +222,6 @@
                             translate}}</div>
                 <div class="primary-holder-value">{{summaryDetails?.minorSecondaryHolderSummary.passportNumber}}</div>
               </div>
-
               <div class="mt15" *ngIf="!isForeignerCheck()">
                 <div class="primary-holder">{{
                             'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.ISSUED_COUNTRY_TEXT' |
@@ -253,7 +229,6 @@
                 <div class="primary-holder-value">{{summaryDetails?.minorSecondaryHolderSummary.passportIssuedCountry}}
                 </div>
               </div>
-
               <div class="mt15" *ngIf="!isForeignerCheck()">
                 <div class="primary-holder">{{
                             'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.PASSPORT_EXPIRY_TEXT' |
@@ -262,21 +237,18 @@
                 </div>
               </div>
               <!-- END OF FOREIGNER FIELDS -->
-
               <div class="mt15">
                 <div class="primary-holder">{{
                             'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.RACE_TEXT' |
                             translate}}</div>
                 <div class="primary-holder-value">{{summaryDetails?.minorSecondaryHolderSummary.race}}</div>
               </div>
-
               <div class="mt15">
                 <div class="primary-holder">{{
                             'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.RELATIONSHIP_TEXT' |
                             translate}}</div>
                 <div class="primary-holder-value">{{summaryDetails.secondaryHolderRelationship}}</div>
               </div>
-
               <div *ngIf="taxDetails && taxDetails.length > 0">
                 <div *ngFor="let tax of taxDetails; let i = index;">
                   <div class="mt15">
@@ -288,7 +260,6 @@
                     </div>
                     <div class="primary-holder-value">{{tax.taxCountryName}}</div>
                   </div>
-
                   <div class="mt15">
                     <div class="primary-holder">{{
                             'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.TIN_TEXT' |
@@ -297,14 +268,12 @@
                       {{tax.isTinNumberPresent ? ('PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.TIN_TEXT_YES' | translate) : ('PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.TIN_TEXT_NO' | translate)}}
                     </div>
                   </div>
-
                   <div class="mt15" *ngIf="tax.isTinNumberPresent">
                     <div class="primary-holder">{{
                             'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.TIN_NO_TEXT' |
                             translate}}</div>
                     <div class="primary-holder-value">{{tax.tinNumber}}</div>
                   </div>
-
                   <div class="mt15" *ngIf="!tax.isTinNumberPresent">
                     <div class="primary-holder">{{
                               'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.NO_TIN_REASON_TEXT' |
@@ -316,7 +285,6 @@
             </div>
           </div>
         </div>
-
         <div class="summary-details mt20">
           <div class="primary-holder-details">
             <div class="widget-title">
@@ -331,7 +299,6 @@
             </div>
           </div>
         </div>
-
         <div class="mt30">
           <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary width100">{{
       'PORTFOLIO_SUMMARY.CONTINUE' | translate}}</button>
