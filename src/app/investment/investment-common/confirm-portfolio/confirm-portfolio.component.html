@@ -64,7 +64,7 @@
             </div>
             <div class="withdraw-bank-details" *ngIf="isAcceptPortfolio">
                 <div class="title">{{'PORTFOLIO_RECOMMENDATION.WITHDRAWAL_BANK_DETAILS.CARD_TITLE' | translate}}</div>
-                  <app-bank-details [bankDetails]="bankDetails"></app-bank-details>
+                  <app-ja-bank-details [bankDetails]="bankDetails"></app-ja-bank-details>
             </div>
             <div class="ja-disclaimer" [innerHTML]="'PORTFOLIO_RECOMMENDATION.JA_DISCLAIMER' | translate"></div>
             <form name="tncCheckboxForm" [formGroup]="tncCheckboxForm" id="tncCheckboxForm">

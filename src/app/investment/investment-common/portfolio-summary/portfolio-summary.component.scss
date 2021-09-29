@@ -114,6 +114,9 @@ app-portfolio-summary {
               color: $black-color;
               text-transform: capitalize;
               font-family: $muli-semi-bold;
+              &.text-lower{
+                text-transform: lowercase;
+              }
             }
           }
         }
