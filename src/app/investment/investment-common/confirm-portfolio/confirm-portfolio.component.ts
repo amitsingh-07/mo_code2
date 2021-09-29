@@ -368,10 +368,6 @@ export class ConfirmPortfolioComponent implements OnInit {
   // accept or decline from dashboard
   acceptAndGetPortfolioDetails(customerPortfolioId) {
     this.investmentCommonService.acceptAndGetPortfolioDetails(customerPortfolioId).subscribe((data) => {
-      // this.acceptJAHolderDetails = data.objectList;
-      // this.primaryHolderName = {
-      //   primaryName: this.acceptJAHolderDetails?.primaryHolderName
-      // };
         if (data.objectList && data.objectList.enquiryId) { /* Overwriting enquiry id */
           this.authService.saveEnquiryId(data.objectList.enquiryId);
         }
