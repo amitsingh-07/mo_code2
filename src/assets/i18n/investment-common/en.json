@@ -36,7 +36,7 @@
     "JA_ACCEPTANCE_TITLE": "Joint Account Portfolio",
     "JOINT_ACCOUNT_LBL": "Joint Account Portfolio",
     "JA_SUB_LBL": "JA Investment Plan for My Family and Future",
-    "JA_DESC_LBL": "<span class=\"ja-icon\"><img src=\"assets/images/investment-account/ja-icon-white.svg\"></span>You are invited to a Joint Account with {{primaryName}}. Review and join portfolio by clicking on <span class=\"txt-bold\">Accept to Join</span> below.",
+    "JA_DESC_LBL": "<span class=\"ja-icon\"><img src=\"assets/images/investment-account/ja-icon-white.svg\"></span><span>You are invited to a Joint Account with {{primaryName}}. Review and join portfolio by clicking on <span class=\"txt-bold\">Accept to Join</span> below.</span>",
     "ACCEPT": "Accept to Join",
     "DECLINE": "Decline",
     "EDIT_INVESTMENT": {

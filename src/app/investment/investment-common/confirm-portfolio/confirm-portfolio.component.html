@@ -71,19 +71,19 @@
                           <div class="primary-holder">{{
                                 'PORTFOLIO_RECOMMENDATION.WITHDRAWAL_BANK_DETAILS.ACCOUNT_HOLDER_NAME_TEXT' |
                                 translate}}</div>
-                          <div class="primary-holder-value">{{acceptJAHolderDetails?.accountName}}</div>
+                          <div class="primary-holder-value">{{portfolio?.accountName}}</div>
                         </div>
                         <div class="mt15">
                           <div class="primary-holder">{{
                                 'PORTFOLIO_RECOMMENDATION.WITHDRAWAL_BANK_DETAILS.BANK_NAME_TEXT' |
                                 translate}}</div>
-                          <div class="primary-holder-value">{{acceptJAHolderDetails?.bankName}}</div>
+                          <div class="primary-holder-value">{{portfolio?.bankName}}</div>
                         </div>
                         <div class="mt15">
                           <div class="primary-holder">{{
                                 'PORTFOLIO_RECOMMENDATION.WITHDRAWAL_BANK_DETAILS.ACCOUNT_NUMBER_TEXT' |
                                 translate}}</div>
-                          <div class="primary-holder-value">{{acceptJAHolderDetails?.accountNo}}</div>
+                          <div class="primary-holder-value">{{portfolio?.accountNo}}</div>
                         </div>
                       </div>
                     </div>
@@ -105,9 +105,9 @@
             'PORTFOLIO_RECOMMENDATION.CONTINUE' | translate}}</button>
         </div>
         <div class="text-center flex accept-holder-btn-block" *ngIf="isAcceptPortfolio">
-            <button type="button" [disabled]="!tncChkBox.checked" (click)="acceptToJoin()" class="btn btn-orange">{{
+            <button type="button" [disabled]="!tncChkBox.checked" (click)="acceptToJoin(portfolio.portfolioName, portfolio.customerPortfolioId)" class="btn btn-orange">{{
             'PORTFOLIO_RECOMMENDATION.ACCEPT' | translate}}</button>
-            <button type="button" [disabled]="!tncChkBox.checked" (click)="decline()" class="btn btn-primary btn-outline-primary">{{
+            <button type="button" [disabled]="!tncChkBox.checked" (click)="decline(portfolio.portfolioName, portfolio.customerPortfolioId)" class="btn btn-primary btn-outline-primary">{{
                 'PORTFOLIO_RECOMMENDATION.DECLINE' | translate}}</button>
         </div>
     </div>

@@ -1381,3 +1381,13 @@ body.modal-open::-webkit-scrollbar {
     }
   }
 }
+
+.limited-width{
+  .modal-body {
+    width: 375px !important;
+      margin: 0 auto !important;
+    @include allmobiles {
+      width: 100% !important;
+    }
+  }
+}
