@@ -155,7 +155,7 @@
     "ASSET_ALLOCATION": "Asset Allocation",
     "HOLDINGS": "Holdings",
     "WISE_INCOME_HEADER":"Unable To Delete Portfolio",
-    "WISE_INCOME_TEXT":"Please note that you are unable to delete any WiseIncome portfolio between <span class=\"text-bold\">30 Jun</span> to <span class=\"text-bold\">2 Aug</span>. Your portfolio may be eligible for the dividends that are being distributed during this period.",
+    "WISE_INCOME_TEXT":"Please note that you are unable to delete any WiseIncome portfolio between <span class=\"text-bold\">30 Sep</span> to <span class=\"text-bold\">1 Nov</span>. Your portfolio may be eligible for the dividends that are being distributed during this period.",
     "DELETE_HEADER":"Unable To Delete Portfolio ",
     "DELETE_TEXT":"Please note that you have withdrawals in progress. You may proceed with deletion once withdrawal is fully completed.",
     "OKAY_GOT_IT": "Okay, Got it",
