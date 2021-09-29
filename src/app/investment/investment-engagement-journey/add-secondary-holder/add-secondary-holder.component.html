@@ -276,7 +276,7 @@
                                   formControlName="dob" placeholder="{{
                                   'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.DOB_PATTERN'
                                   | translate}}" name="dp" ngbDatepicker #dobInput="ngbDatepicker"
-                                  id="invPersInfoInpt7">
+                                  id="invPersInfoInpt7" (blur)="onBlurMethod(dobInput._inputValue, 'dob')">
                                 <div class="input-group-append">
                                   <button class="btn btn-primary" type="button" (click)="dobInput.toggle()"
                                     id="invPersInfoBtn1">
@@ -379,7 +379,8 @@
                                 <input class="form-control" formControlName="passportExpiry" [minDate]=passportMinDate
                                   [maxDate]=passportMaxDate placeholder="{{
                                     'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.DOB_PATTERN'
-                                    | translate}}" ngbDatepicker id="invPersInfoInpt6" #expiryInput="ngbDatepicker">
+                                    | translate}}" ngbDatepicker id="invPersInfoInpt6" #expiryInput="ngbDatepicker"
+                                  (blur)="onBlurMethod(expiryInput._inputValue, 'passportExpiry')">
                                 <div class="input-group-append">
                                   <button (click)="toggleDate(expiryInput, dobInput)" class="btn btn-primary"
                                     type="button" id="invPersInfoBtn1">

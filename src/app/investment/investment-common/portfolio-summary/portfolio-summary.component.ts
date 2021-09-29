@@ -37,6 +37,7 @@ export class PortfolioSummaryComponent implements OnInit {
   taxPrecedenceTitles: any;
   promoCode: any;
   portfolioDisplayName: any;
+  bankDetails: any;
   constructor(
     public readonly translate: TranslateService,
     public navbarService: NavbarService,
@@ -49,14 +50,18 @@ export class PortfolioSummaryComponent implements OnInit {
     public authService: AuthenticationService,
     public modal: NgbModal
   ) {
+    this.secondaryHolderMinorFormValues = investmentEngagementJourneyService.getMinorSecondaryHolderData();
+    this.secondaryHolderMajorFormValues = investmentEngagementJourneyService.getMajorSecondaryHolderData();
+    if (Util.isEmptyOrNull(this.secondaryHolderMinorFormValues) && Util.isEmptyOrNull(this.secondaryHolderMajorFormValues)) {
+      router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
+    }
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('PORTFOLIO_SUMMARY.TITLE');
       this.taxPrecedenceTitles = this.translate.instant('PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.TAX_FORM_PRECENDENCE');
       this.setPageTitle(this.pageTitle);
     });
-    this.secondaryHolderMinorFormValues = investmentEngagementJourneyService.getMinorSecondaryHolderData();
-    this.secondaryHolderMajorFormValues = investmentEngagementJourneyService.getMajorSecondaryHolderData();
+
   }
 
   ngOnInit(): void {
@@ -69,7 +74,7 @@ export class PortfolioSummaryComponent implements OnInit {
 
   setPromoCode() {
     const promo = this.investmentEngagementJourneyService.getPromoCode();
-    if(Util.isEmptyOrNull(promo)) {
+    if (Util.isEmptyOrNull(promo)) {
       this.promoCode = INVESTMENT_COMMON_CONSTANTS.PROMO_CODE.NOT_APPLIED;
     } else {
       this.promoCode = promo;
@@ -148,8 +153,15 @@ export class PortfolioSummaryComponent implements OnInit {
           this.getTaxPrecendence();
         }
         const portfolioIndex = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO.findIndex(x => x.KEY === this.summaryDetails.portfolio);
-        if (this.summaryDetails && portfolioIndex >= 0) {
+        if (portfolioIndex >= 0) {
           this.portfolioDisplayName = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO[portfolioIndex].VALUE;
+        } else {
+          this.portfolioDisplayName = this.summaryDetails.portfolio;
+        }
+        this.bankDetails = {
+          bank: this.summaryDetails?.bankName,
+          accountNo: this.summaryDetails?.accountNo,
+          nameOnAccount: this.summaryDetails?.accountName
         }
         this.getInvestmentCriteria(this.summaryDetails);
       }

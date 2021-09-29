@@ -1,0 +1,31 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+app-bank-details {
+  .widget-body {
+    padding: 20px 20px 20px 20px;
+    background-color: $bond-container-bg;
+    font-family: $muli-semi-bold;
+    font-size: 18px;
+    letter-spacing: -0.34px;
+    color: $dark-teal-color;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    text-align: left;
+
+    .primary-holder {
+      font-size: 16px;
+      display: flex;
+      font-family: $muli-semi-bold;
+    }
+
+    .primary-holder-value {
+      font-size: 16px;
+      line-height: normal;
+      letter-spacing: -0.3px;
+      color: $black-color;
+      text-transform: capitalize;
+      font-family: $muli-semi-bold;
+    }
+  }
+}

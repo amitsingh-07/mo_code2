@@ -53,7 +53,7 @@ export class InvestmentEngagementJourneyFormErrors {
       dob: {
         errorTitle: 'Invalid Date of Birth',
         errorMessage:
-          'Secondary holder must be below 18 years to proceed.'
+          'Date of Birth provided is not below 18 years old.'
       },
       passportExpiry: {
         errorTitle: 'Invalid Passport Expiry',

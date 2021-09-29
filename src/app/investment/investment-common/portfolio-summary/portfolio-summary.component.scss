@@ -30,22 +30,19 @@ app-portfolio-summary {
       }
 
       .review-text {
-        // padding: 18px 45px 24px 20px;
 
         .review-label {
           font-family: $muli-regular;
           font-size: 16px;
-          font-weight: normal;
           line-height: normal;
           letter-spacing: -0.3px;
           color: $white-color;
           text-align: left;
+          font-family: $muli-regular;
         }
       }
 
       .summary-details {
-
-        //width: 450px;
         .edit-icon {
           width: 24px;
           height: 24px;
@@ -66,11 +63,10 @@ app-portfolio-summary {
             padding: 20px 22px;
             display: flex;
             justify-content: space-between;
-            font-weight: 600;
             line-height: normal;
-            letter-spacing: -0.34px;
-            font-family: $muli;
             color: $teal-color;
+            font-family: $muli-semi-bold;
+            font-size: 18px;
 
             span:last-of-type {
               cursor: pointer;
@@ -86,7 +82,6 @@ app-portfolio-summary {
             background-color: $bond-container-bg;
             font-family: $muli-semi-bold;
             font-size: 18px;
-            font-weight: 400;
             letter-spacing: -0.34px;
             color: $dark-teal-color;
             border-bottom-left-radius: 6px;
@@ -106,14 +101,16 @@ app-portfolio-summary {
             .primary-holder {
               font-size: 16px;
               display: flex;
+              font-family: $muli-semi-bold;
             }
 
             .primary-holder-value {
               font-size: 16px;
-              font-weight: 600;
               line-height: normal;
               letter-spacing: -0.3px;
               color: $black-color;
+              text-transform: capitalize;
+              font-family: $muli-semi-bold;
             }
           }
         }

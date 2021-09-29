@@ -25,6 +25,7 @@ import { RiskAcknowledgementComponent } from './risk-acknowledgement/risk-acknow
 import { WiseIncomePayoutComponent } from './wise-income-payout/wise-income-payout.component';
 import { AddSecondaryHolderComponent } from './add-secondary-holder/add-secondary-holder.component';
 import { UploadDocumentComponent} from './upload-document/upload-document.component';
+import { AuthGuardService as AuthGuard } from '../../sign-up/auth-guard.service';
 const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.ROOT,
@@ -35,7 +36,7 @@ const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.SELECT_PORTFOLIO_TYPE,
     component: SelectPortfolioTypeComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.SELECT_PORTFOLIO,
@@ -112,32 +113,32 @@ const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.ADD_SECONDARY_HOLDER,
     component: AddSecondaryHolderComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.ADD_SECONDARY_HOLDER + '/:customerPortfolioId',
     component: AddSecondaryHolderComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.EDIT_SECONDARY_HOLDER,
     component: AddSecondaryHolderComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.JA_UPLOAD_DOCUMENT,
     component: UploadDocumentComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.JA_UPLOAD_DOCUMENT + '/:customerPortfolioId',
     component: UploadDocumentComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.EDIT_JA_UPLOAD_DOCUMENT,
     component: UploadDocumentComponent,
-    canActivate: [InvestmentEngagementJourneyGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }
 ];
