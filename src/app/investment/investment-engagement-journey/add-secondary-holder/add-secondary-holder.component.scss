@@ -16,17 +16,31 @@ app-add-secondary-holder {
     }
   }
 
+  .question-lbl{
+    padding-left: 5px;
+    margin-bottom: 0;
+    @include allmobiles{
+      padding-left: 0;
+    }
+  }
+  .secondary-holder-tabs{
+    padding: 0 5px;
+    @include allmobiles{
+      padding: 0;
+    }
+  }
+
   .nav-tabs {
     border-bottom: 0;
 
     .btn-outline-primary {
       &.fixed-btn--sm {
-        max-width: calc(50% - 10px);
+        max-width: calc(50% - 5px);
         height: 52px;
         border-color: $white-color;
         opacity: 0.6;
         border-radius: 6px;
-        margin: 20px 0;
+        margin: 20px 0 0;
 
         &:active,
         &.active {
@@ -79,7 +93,7 @@ app-add-secondary-holder {
       font-size: 18px;
       line-height: normal;
       letter-spacing: -0.34px;
-      margin-bottom: 15px;
+      margin: 30px 0 15px;
 
       .tooltip-icon {
         width: 15px;
@@ -106,6 +120,7 @@ app-add-secondary-holder {
           }
         }
       }
+
       input::placeholder {
         color: $form-input-placeholder-txt-color !important;
       }
@@ -114,18 +129,22 @@ app-add-secondary-holder {
     .minor-tab-content {
 
       .restrict-notice {
+        align-items: flex-start;
         .flex-col-11 {
           line-height: normal;
           padding: 0 10px 0 15px;
 
           .desc-sub-lbl {
             letter-spacing: -0.11px;
+            u{
+              cursor: pointer;
+            }
           }
         }
       }
 
       .minor-details {
-        margin-top: 35px;
+        margin-top: 30px;
 
         .datepicker-control {
           .input-group-append {
@@ -134,8 +153,20 @@ app-add-secondary-holder {
             }
           }
         }
+
         input::placeholder {
           color: $form-input-placeholder-txt-color !important;
+        }
+
+        .flex-row {
+          align-items: center;
+          justify-content: space-between;
+          .flex-col-5{
+            max-width: 133px;
+            @include allmobiles{
+              max-width: 110px;
+            }
+          }
         }
       }
 
@@ -169,7 +200,6 @@ app-add-secondary-holder {
         label {
           font-size: 16px;
           letter-spacing: -0.3px;
-          padding-right: 10px;
         }
 
         .form-group {
@@ -192,7 +222,7 @@ app-add-secondary-holder {
 
         .fixed-btn--sm {
           color: $form-backgrnd-color !important;
-          background-color: $white-color !important;
+          background-color: transparent !important;
           border: 1px solid $fixed-btn-brdr-color !important;
 
           &:hover {
@@ -250,21 +280,23 @@ app-add-secondary-holder {
           font-size: 16px;
           margin-top: 12px;
           margin-bottom: 12px;
+          color: $teal-color;
         }
 
         .add-tax-box {
           padding: 18px;
           border-radius: 6px;
-          box-shadow: 0 8px 12px 0 $post-login-shadow;
           background-color: $white-color;
           font-family: $muli-regular;
           font-size: 16px;
           letter-spacing: -0.3px;
           text-align: center;
           color: $black-color;
-          margin-top: 33px !important;
-          margin: 20px 0;
+          margin-top: 20px;
           cursor: pointer;
+          @include allmobiles{
+            margin-bottom: 14px;
+          }
         }
 
         .add-tax-text {
@@ -280,7 +312,7 @@ app-add-secondary-holder {
 
           .tax-lbl {
             color: $white-color;
-            padding-top: 24px;
+            padding-top: 30px;
             display: none;
           }
 
@@ -327,30 +359,45 @@ app-add-secondary-holder {
             color: $black-color;
             border-top-left-radius: 6px;
             border-top-right-radius: 6px;
-            padding: 25px 20px;
+            padding: 20px 23px;
             display: flex;
             justify-content: space-between;
-
+            @include allmobiles{
+              padding: 24px 23px 25px;
+            }
             .delete-icon {
               cursor: pointer;
             }
           }
 
           .widget-body {
-            padding: 20px 10px 25px 20px;
+            padding: 20px 13px 30px;
             background-color: $bond-container-bg;
             font-family: $muli-semi-bold;
             font-size: 18px;
-            font-weight: 400;
             letter-spacing: -0.34px;
             color: $dark-teal-color;
             border-bottom-left-radius: 6px;
             border-bottom-right-radius: 6px;
+
+            .tax-country-label {
+              color: $teal-color;
+            }
           }
         }
 
         .btn__footer--fixed {
           font-family: $muli-bold !important;
+        }
+
+        input::placeholder {
+          color: $form-input-placeholder-txt-color !important;
+        }
+      }
+
+      .sec-holder-questions {
+        label {
+          font-size: 18px;
         }
       }
     }

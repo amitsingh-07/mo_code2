@@ -64,7 +64,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   pageTitle: any;
   investmentStatus: string;
   showBankInfo = false;
-  showJAccInfo = false;
   dobFormat: any;
   private subscription: Subscription;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
@@ -268,7 +267,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
             this.customerJointAccBankDetails = data.objectList.customerJointAccountBankDetails;
           }
           this.showBankInfo = data.objectList.cashPortfolioAvailable ? data.objectList.cashPortfolioAvailable : false;
-          this.showJAccInfo = data.objectList.jointAccount ? data.objectList.jointAccount : false;
 
           // Hidden the mailing address for future use
           // if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {

@@ -12,6 +12,9 @@ import { InvestmentEngagementJourneyFormErrors } from './investment-engagement-j
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from './investment-engagement-journey.constants';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account/investment-account.constant';
 import { PersonalInfo } from './investment-period/investment-period';
+import { AbstractControl } from '@angular/forms';
+import { InvestmentAccountCommon } from '../investment-account/investment-account-common';
+import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
 
 const PORTFOLIO_RECOMMENDATION_COUNTER_KEY = 'portfolio_recommendation-counter';
 const SESSION_STORAGE_KEY = 'app_engage_journey_session';
@@ -21,6 +24,7 @@ const SESSION_STORAGE_KEY = 'app_engage_journey_session';
 export class InvestmentEngagementJourneyService {
   private investmentEngagementJourneyFormData: InvestmentEngagementJourneyFormData = new InvestmentEngagementJourneyFormData();
   private investmentEngagementJourneyFormErrors: any = new InvestmentEngagementJourneyFormErrors();
+  investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
     private http: HttpClient,
     private apiService: ApiService,
@@ -577,26 +581,26 @@ export class InvestmentEngagementJourneyService {
   isSingaporeResident() {
     const selectedNationality = this.investmentEngagementJourneyFormData.minorSecondaryHolderFormData.nationality.nationalityCode;
     return (
-      selectedNationality === INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_NATIONALITY_CODE 
-       || this.investmentEngagementJourneyFormData.minorSecondaryHolderFormData.singaporeanResident
+      selectedNationality === INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_NATIONALITY_CODE
+      || this.investmentEngagementJourneyFormData.minorSecondaryHolderFormData.singaporeanResident
     );
   }
 
-   // Upload Document
-   uploadDocument(formData) {
+  // Upload Document
+  uploadDocument(formData) {
     return this.investmentApiService.uploadDocument(formData);
   }
-    /*Upload Document Method end*/
+  /*Upload Document Method end*/
 
-    // SETTING AND GETTING PROMO CODE VALUE
-    setPromoCode(promoCode) {
-      this.investmentEngagementJourneyFormData.promoCode = promoCode;
-      this.commit();
-    }
+  // SETTING AND GETTING PROMO CODE VALUE
+  setPromoCode(promoCode) {
+    this.investmentEngagementJourneyFormData.promoCode = promoCode;
+    this.commit();
+  }
 
-    getPromoCode() {
-      return this.investmentEngagementJourneyFormData.promoCode
-    }
+  getPromoCode() {
+    return this.investmentEngagementJourneyFormData.promoCode
+  }
   /** VERIFY METHOD PREFILL DETAILS */
   getVerifyDetails(customerPortfolioId, jointAccountAction) {
     return this.verifyEditAndSubmit(customerPortfolioId, jointAccountAction);
@@ -612,5 +616,87 @@ export class InvestmentEngagementJourneyService {
     };
     return this.investmentApiService.setActionByHolder(payload);
   }
- /** VERIFY METHOD PREFILL DETAILS END */
+  /** VERIFY METHOD PREFILL DETAILS END */
+
+  /* To Validate Passport Expiry */
+  validateExpiry(control: AbstractControl): { [s: string]: boolean } {
+    const value = control.value;
+    const today = new Date();
+    if (control.value !== undefined && isNaN(control.value) && !(control.errors && control.errors.ngbDate)) {
+      const isMinExpiry =
+        new Date(value.year, value.month - 1, value.day) >=
+        new Date(
+          today.getFullYear(),
+          today.getMonth() + INVESTMENT_ACCOUNT_CONSTANTS.personal_info.min_passport_expiry,
+          today.getDate()
+        );
+      if (!isMinExpiry) {
+        return { isMinExpiry: true };
+      }
+    }
+    return null;
+  }
+
+  /* To validate the NRIC number entered */
+  validateNric(control: AbstractControl) {
+    const value = control.value;
+    if (value && value !== undefined) {
+      const isValidNric = this.investmentAccountCommon.isValidNric(value);
+      if (!isValidNric) {
+        return { nric: true };
+      }
+    }
+    return null;
+  }
+
+  validateTin(control: AbstractControl) {
+    const value = control.value;
+    let isValidTin;
+    if (value) {
+      if (control && control.parent && control.parent.controls && control.parent.controls['taxCountry'].value) {
+        const countryCode = control.parent.controls['taxCountry'].value.countryCode;
+        switch (countryCode) {
+          case INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_COUNTRY_CODE:
+            isValidTin = this.investmentAccountCommon.isValidNric(value);
+            break;
+          case INVESTMENT_ACCOUNT_CONSTANTS.MALAYSIA_COUNTRY_CODE:
+            isValidTin = new RegExp(RegexConstants.MalaysianTin).test(value);
+            break;
+          case INVESTMENT_ACCOUNT_CONSTANTS.INDONESIA_COUNTRY_CODE:
+            isValidTin = new RegExp(RegexConstants.IndonesianTin).test(value);
+            break;
+          case INVESTMENT_ACCOUNT_CONSTANTS.INDIA_COUNTRY_CODE:
+            isValidTin = new RegExp(RegexConstants.IndianTin).test(value);
+            break;
+          case INVESTMENT_ACCOUNT_CONSTANTS.CHINA_COUNTRY_CODE:
+            isValidTin = new RegExp(RegexConstants.ChineseTin).test(value);
+            break;
+          default:
+            isValidTin = true;
+            break;
+        }
+      }
+      if (!isValidTin) {
+        return { tinFormat: true };
+      }
+    }
+    return null;
+  }
+
+  /* To Validate Minimum age of secondary holder */
+  validateMinimumAge(control: AbstractControl): { [s: string]: boolean } {
+    const value = control.value;
+    if (control.value !== undefined && isNaN(control.value) && !(control.errors && control.errors.ngbDate)) {
+      const isMaxAge =
+        new Date(
+          value.year + INVESTMENT_ACCOUNT_CONSTANTS.personal_info.min_age,
+          value.month - 1,
+          value.day
+        ) <= new Date();
+      if (isMaxAge) {
+        return { isMaxAge: true };
+      }
+    }
+    return null;
+  }
 }

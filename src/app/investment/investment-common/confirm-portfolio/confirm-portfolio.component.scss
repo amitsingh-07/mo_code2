@@ -14,6 +14,9 @@ app-confirm-portfolio {
                 line-height: normal;
                 letter-spacing: -0.18px;
                 margin-bottom: 20px;
+                @include allmobiles{
+                    padding-top: 10px;
+                }
             }
             .txt-bold{
                 font-family: $muli-bold;
@@ -22,6 +25,9 @@ app-confirm-portfolio {
                 letter-spacing: -0.3px;
                 max-width: 670px;
                 margin: 0 auto 30px;
+                @include allmobiles{
+                    max-width: 300px;
+                }
                 .ja-icon{
                     width: 12px;
                     height: 11px;
@@ -239,6 +245,9 @@ app-confirm-portfolio {
         .title a {
             text-decoration: underline !important;
         }
+        input[type=checkbox] + label{
+            padding: 0px 0 0px 42px;
+        }
     }
     .accept-holder-btn-block{
         flex-direction: column;
@@ -262,6 +271,7 @@ app-confirm-portfolio {
             box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
             @include allmobiles{
                 letter-spacing: -0.17px;
+                box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15) !important;
             }
             &:disabled{
                 background-color: $crusta-orange-color !important;
@@ -277,6 +287,9 @@ app-confirm-portfolio {
             &:disabled{
                 background-color: transparent !important;
                 cursor: not-allowed;
+            }
+            @include allmobiles{
+                margin-top: 15px;
             }
         }
     }

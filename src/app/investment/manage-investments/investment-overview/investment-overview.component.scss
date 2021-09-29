@@ -316,8 +316,8 @@ app-investment-overview {
                     .ja-btn-group {
                         display: flex;
                         justify-content: flex-end;
+                        padding: 0;
                         @include allmobiles {
-                            justify-content: flex-start;
                             margin-top: 22px;
                         }
                     }               
@@ -412,6 +412,10 @@ app-investment-overview {
                         background-color: $white-smoke-color;
                         &.invested {
                             background-color: $white-color;
+                        }
+                        &.delete-portfolio{
+                            border: 1px solid $mercury-solid-color;
+                            background-color: $gallery-grey-color;
                         }
                         .portfolio {
                             font-family: $muli-regular;

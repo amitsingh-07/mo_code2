@@ -283,10 +283,7 @@
                     <div class="primary-holder">
                       <span>
                         {{ 'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.FIRST_TAX_RESIDENCE_COUNTRY_TEXT' |
-                            translate}}
-                      </span>
-                      <span>
-                        {{tax?.precedence}}
+                            translate}} {{tax?.precedence}}
                       </span>
                     </div>
                     <div class="primary-holder-value">{{tax.taxCountryName}}</div>
@@ -329,27 +326,8 @@
                 <img src="assets/images/comprehensive/comprehesive-edit-icon.svg">
               </span>
             </div>
-            <div class="widget-body">
-              <div class="">
-                <div class="primary-holder">{{
-                      'PORTFOLIO_SUMMARY.WITHDRAWAL_BANK_DETAILS.ACCOUNT_HOLDER_NAME_TEXT' |
-                      translate}}</div>
-                <div class="primary-holder-value">{{summaryDetails?.accountName}}</div>
-              </div>
-
-              <div class="mt15">
-                <div class="primary-holder">{{
-                      'PORTFOLIO_SUMMARY.WITHDRAWAL_BANK_DETAILS.BANK_NAME_TEXT' |
-                      translate}}</div>
-                <div class="primary-holder-value">{{summaryDetails?.bankName}}</div>
-              </div>
-
-              <div class="mt15">
-                <div class="primary-holder">{{
-                      'PORTFOLIO_SUMMARY.WITHDRAWAL_BANK_DETAILS.ACCOUNT_NUMBER_TEXT' |
-                      translate}}</div>
-                <div class="primary-holder-value">{{summaryDetails?.accountNo}}</div>
-              </div>
+            <div>
+              <app-bank-details [bankDetails]="bankDetails"></app-bank-details>
             </div>
           </div>
         </div>
