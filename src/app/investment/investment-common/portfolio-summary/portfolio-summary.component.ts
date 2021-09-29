@@ -37,6 +37,7 @@ export class PortfolioSummaryComponent implements OnInit {
   taxPrecedenceTitles: any;
   promoCode: any;
   portfolioDisplayName: any;
+  bankDetails: any;
   constructor(
     public readonly translate: TranslateService,
     public navbarService: NavbarService,
@@ -51,7 +52,7 @@ export class PortfolioSummaryComponent implements OnInit {
   ) {
     this.secondaryHolderMinorFormValues = investmentEngagementJourneyService.getMinorSecondaryHolderData();
     this.secondaryHolderMajorFormValues = investmentEngagementJourneyService.getMajorSecondaryHolderData();
-    if (Util.isEmptyOrNull(this.secondaryHolderMinorFormValues) && Util.isEmptyOrNull(this.secondaryHolderMinorFormValues)) {
+    if (Util.isEmptyOrNull(this.secondaryHolderMinorFormValues) && Util.isEmptyOrNull(this.secondaryHolderMajorFormValues)) {
       router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
     }
     this.translate.use('en');
@@ -156,6 +157,11 @@ export class PortfolioSummaryComponent implements OnInit {
           this.portfolioDisplayName = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO[portfolioIndex].VALUE;
         } else {
           this.portfolioDisplayName = this.summaryDetails.portfolio;
+        }
+        this.bankDetails = {
+          bank: this.summaryDetails?.bankName,
+          accountNo: this.summaryDetails?.accountNo,
+          nameOnAccount: this.summaryDetails?.accountName
         }
         this.getInvestmentCriteria(this.summaryDetails);
       }
