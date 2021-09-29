@@ -114,7 +114,7 @@
                           <div class="dropdown-control"
                             [ngClass]="{'inline-error': secondaryHolderMinorForm.get('nationality').enabled && !secondaryHolderMinorForm.get('nationality').valid && !secondaryHolderMinorForm.get('nationality').pristine}">
                             <app-dropdown-with-search controlName="nationality" [optionList]="nationalityList"
-                              displayKey="name" placement="top-right" placeholderText="{{ 'Select' | translate}}"
+                              displayKey="name" placement="bottom-right" placeholderText="{{ 'Select' | translate}}"
                               (itemSelected)="selectNationality($event)">
                             </app-dropdown-with-search>
                           </div>
@@ -212,7 +212,8 @@
                                 | translate}}</div>
                               <div class="sub-label" id="invPersInfoSubLbl1">
                                 <span
-                                  *ngIf="!secondaryHolderMinorForm.get('passportExpiry')">{{ isNationalitySingapore() || secondaryHolderMinorForm.value?.singaporeanResident ? ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.FULL_NAME_NRIC_BIRTH_CERT' | translate) : ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.FULL_NAME_NRIC' | translate)}}
+                                  *ngIf="!secondaryHolderMinorForm.get('passportExpiry')"
+                                  [innerHtml]="(isNationalitySingapore() || secondaryHolderMinorForm.value?.singaporeanResident) ? ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.FULL_NAME_NRIC_BIRTH_CERT' | translate) : ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.FULL_NAME_NRIC' | translate)">
                                 </span>
                                 <span
                                   *ngIf="secondaryHolderMinorForm.get('passportExpiry')">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.FULL_NAME_PASSPORT' | translate}}</span>
@@ -235,7 +236,7 @@
                         <div class="flex-row" *ngIf="secondaryHolderMinorForm.get('nricNumber')">
                           <div class="flex-col-5">
                             <label
-                              id="invPersInfoLbl4">{{ isNationalitySingapore() || checkSingaporePR() ? ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.NRIC_BIRTH_CERTIFICATE_NUMBER' | translate) : ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.NRIC_NUMBER' | translate)}}</label>
+                              id="invPersInfoLbl4" [innerHtml]="(isNationalitySingapore() || checkSingaporePR()) ? ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.NRIC_BIRTH_CERTIFICATE_NUMBER' | translate) : ('SECONDARY_HOLDER.MINOR.PERSONAL_INFO.NRIC_NUMBER' | translate)"></label>
                           </div>
                           <div class="flex-col-7"
                             [ngClass]="{'inline-error': secondaryHolderMinorForm.get('nricNumber').enabled && !secondaryHolderMinorForm.get('nricNumber').valid && !secondaryHolderMinorForm.get('nricNumber').pristine}">

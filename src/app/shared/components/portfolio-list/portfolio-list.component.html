@@ -35,7 +35,7 @@
                                         <button class="send-reminder-btn cursorPointer" (click)="sendReminderModal(portfolio.customerPortfolioId, portfolio.secondaryHolderName)">{{'YOUR_INVESTMENT.SEND_REMINDER' | translate}}</button>
                                         <button class="withdraw-btn cursorPointer ml10" (click)="withDrawModal(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.WITHDRAW' | translate}}</button>
                                     </div>
-                                    <div class='col-md-6 flex justify-right' *ngIf='!portfolio.primaryHolder' (click)="acceptJAPortfolio(portfolio.customerPortfolioId)">
+                                    <div class='col-md-6 flex justify-right plo pr0' *ngIf='!portfolio.primaryHolder' (click)="acceptJAPortfolio(portfolio.customerPortfolioId)">
                                         <button class="accept-decline-btn cursorPointer">{{'YOUR_INVESTMENT.ACCEPT_DECLINE' | translate}}</button>                                        
                                     </div>
                                 </div>
@@ -66,8 +66,8 @@
                                     currency:'USD':'symbol-narrow':'1.0-2'}} </div>
                                 <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
                                     currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-                                <div class="row">                                    
-                                    <div class='col-md-12 flex justify-right'>
+                                <div class="flex-row">                                    
+                                    <div class='col-md-12 flex justify-right pl0 pr0'>
                                         <button class="delete-btn cursorPointer" (click)="deleteByHolder(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.APPLICATION_DELETE' | translate}}</button>                                        
                                     </div>
                                 </div>
@@ -98,8 +98,8 @@
                                     currency:'USD':'symbol-narrow':'1.0-2'}} </div>
                                 <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
                                     currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-                                <div class="row">                                    
-                                    <div class='col-md-12 flex justify-right'>
+                                <div class="flex-row">                                    
+                                    <div class='col-md-12 flex justify-right pl0 pr0'>
                                         <button class="delete-btn cursorPointer" (click)="deleteByHolder(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.APPLICATION_DELETE' | translate}}</button>                                        
                                     </div>
                                 </div>
@@ -130,8 +130,8 @@
                                     currency:'USD':'symbol-narrow':'1.0-2'}} </div>
                                 <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
                                     currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-                                <div class="row">                                    
-                                    <div class='col-md-12 flex justify-right'>
+                                <div class="flex-row">                                    
+                                    <div class='col-md-12 flex justify-right pl0 pr0'>
                                         <button class="delete-btn cursorPointer" (click)="deleteByHolder(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.APPLICATION_DELETE' | translate}}</button>                                        
                                     </div>
                                 </div>

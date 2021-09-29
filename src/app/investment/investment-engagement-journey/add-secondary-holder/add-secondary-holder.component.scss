@@ -155,6 +155,17 @@ app-add-secondary-holder {
         input::placeholder {
           color: $form-input-placeholder-txt-color !important;
         }
+
+        .flex-row {
+          align-items: center;
+          justify-content: space-between;
+          .flex-col-5{
+            max-width: 133px;
+            @include allmobiles{
+              max-width: 110px;
+            }
+          }
+        }
       }
 
       .tax-info {
@@ -171,13 +182,6 @@ app-add-secondary-holder {
 
         .flex-row {
           align-items: center;
-          justify-content: space-between;
-          .flex-col-5{
-            max-width: 133px;
-            @include allmobiles{
-              max-width: 110px;
-            }
-          }
         }
 
         .tin-hint {
@@ -194,7 +198,6 @@ app-add-secondary-holder {
         label {
           font-size: 16px;
           letter-spacing: -0.3px;
-          padding-right: 10px;
         }
 
         .form-group {
@@ -280,7 +283,6 @@ app-add-secondary-holder {
         .add-tax-box {
           padding: 18px;
           border-radius: 6px;
-          box-shadow: 0 8px 12px 0 $post-login-shadow;
           background-color: $white-color;
           font-family: $muli-regular;
           font-size: 16px;
