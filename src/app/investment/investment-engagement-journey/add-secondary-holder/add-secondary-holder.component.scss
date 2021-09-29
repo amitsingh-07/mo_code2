@@ -120,6 +120,7 @@ app-add-secondary-holder {
           }
         }
       }
+
       input::placeholder {
         color: $form-input-placeholder-txt-color !important;
       }
@@ -152,6 +153,7 @@ app-add-secondary-holder {
             }
           }
         }
+
         input::placeholder {
           color: $form-input-placeholder-txt-color !important;
         }
@@ -220,7 +222,7 @@ app-add-secondary-holder {
 
         .fixed-btn--sm {
           color: $form-backgrnd-color !important;
-          background-color: $white-color !important;
+          background-color: transparent !important;
           border: 1px solid $fixed-btn-brdr-color !important;
 
           &:hover {
@@ -278,6 +280,7 @@ app-add-secondary-holder {
           font-size: 16px;
           margin-top: 12px;
           margin-bottom: 12px;
+          color: $teal-color;
         }
 
         .add-tax-box {
@@ -376,11 +379,25 @@ app-add-secondary-holder {
             color: $dark-teal-color;
             border-bottom-left-radius: 6px;
             border-bottom-right-radius: 6px;
+
+            .tax-country-label {
+              color: $teal-color;
+            }
           }
         }
 
         .btn__footer--fixed {
           font-family: $muli-bold !important;
+        }
+
+        input::placeholder {
+          color: $form-input-placeholder-txt-color !important;
+        }
+      }
+
+      .sec-holder-questions {
+        label {
+          font-size: 18px;
         }
       }
     }
