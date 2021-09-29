@@ -2,15 +2,18 @@
 @import '../../../../mixins';
 
 app-portfolio-summary {
-  .portfolio-naming-backdrop {
+  .ja-portfolio-summary {
     .container-fluid {
       @include allmobiles {
         padding-top: 50px;
       }
+      @include min300max350{
+        padding-top: 30px;
+      }
     }
   }
 
-  .portfolio-naming-wrapper {
+  .ja-portfolio-summary-wrapper {
     text-align: center;
     display: flex;
     justify-content: center;
@@ -111,6 +114,9 @@ app-portfolio-summary {
               color: $black-color;
               text-transform: capitalize;
               font-family: $muli-semi-bold;
+              &.text-lower{
+                text-transform: lowercase;
+              }
             }
           }
         }
@@ -156,6 +162,14 @@ app-portfolio-summary {
       @include allmobiles {
         width: 100%;
       }
+      img{
+        @include allmobiles {
+          width: 100%;
+        }
+        @include min300max350{
+          height: 210px;
+        }
+      }
     }
 
     .review-label {
@@ -167,6 +181,9 @@ app-portfolio-summary {
       @include allmobiles {
         top: 30px;
         padding: 18px 45px 24px 20px;
+      }
+      @include min300max350{
+        padding: 30px 30px 0px 20px;
       }
     }
   }

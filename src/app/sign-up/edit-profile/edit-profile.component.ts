@@ -596,4 +596,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.closeMyInfoPopup(false);
     });
   }
+
+  showJointAccountDetailsCard: () => boolean = (): boolean => {
+    return this.customerJointAccBankDetails && this.customerJointAccBankDetails.length > 0;
+  }
 }

@@ -63,6 +63,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   customerPortfolioId: any;
   primaryHolderName;
   jaAcceptanceTitle: any;
+  bankDetails: any;
 
   @Output() emitToastMessage = new EventEmitter<boolean>();
   constructor(
@@ -405,6 +406,11 @@ export class ConfirmPortfolioComponent implements OnInit {
           ),
           period: this.portfolio.investmentPeriod
         };
+        this.bankDetails = {
+          bank: this.portfolio?.bankName,
+          accountNo: this.portfolio?.accountNo,
+          nameOnAccount: this.portfolio?.accountName
+        }
     });
   }
 

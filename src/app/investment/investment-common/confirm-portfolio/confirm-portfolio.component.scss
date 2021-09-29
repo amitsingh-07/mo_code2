@@ -303,56 +303,30 @@ app-confirm-portfolio {
                 font-size: 19px;
             }
         }
-        .summary-details {     
-            .primary-holder-details {
-              .widget-title {
-                background-color: $white-color;
-                letter-spacing: -0.3px;
-                border-top-left-radius: 6px;
-                border-top-right-radius: 6px;
-                padding: 20px 22px;
-                display: flex;
-                justify-content: space-between;
-                line-height: normal;
-                letter-spacing: -0.34px;
-                font-family: $muli;
-                color: $teal-color;
-     
-                span:last-of-type {
-                  cursor: pointer;
-                }
-     
-                .delete-icon {
-                  cursor: pointer;
-                }
-              }
-     
-              .widget-body {
-                margin: 15px 0 30px;
-                padding: 20px;
-                background-color: $bond-container-bg;
-                font-family: $muli-semi-bold;
-                font-size: 18px;
-                letter-spacing: -0.34px;
-                color: $teal-color;
-                border-radius: 6px;
-                text-align: left;
+        .widget-body {
+            margin: 15px 0 30px;
+            padding: 20px;
+            background-color: $bond-container-bg;
+            font-family: $muli-semi-bold;
+            font-size: 18px;
+            letter-spacing: -0.34px;
+            color: $teal-color;
+            border-radius: 6px;
+            text-align: left;
 
-                .primary-holder {
-                    font-size: 16px;
-                    display: flex;
-                    line-height: 23px;
-                    letter-spacing: -0.3px;
-                }
-     
-                .primary-holder-value {
-                  font-size: 16px;
-                  line-height: 23px;
-                  letter-spacing: -0.13px;
-                  color: $black-color;
-                }
-              }
+            .primary-holder {
+                font-size: 16px;
+                display: flex;
+                line-height: 23px;
+                letter-spacing: -0.3px;
             }
-          }
+
+            .primary-holder-value {
+                font-size: 16px;
+                line-height: 23px;
+                letter-spacing: -0.13px;
+                color: $black-color;
+            }
+        }
     }
 }
