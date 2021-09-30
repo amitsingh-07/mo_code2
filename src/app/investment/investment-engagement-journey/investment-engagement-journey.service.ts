@@ -683,8 +683,8 @@ export class InvestmentEngagementJourneyService {
     return null;
   }
 
-  /* To Validate Minimum age of secondary holder */
-  validateMinimumAge(control: AbstractControl): { [s: string]: boolean } {
+  /* To Validate Maximum age of secondary holder */
+  validateMaximumAge(control: AbstractControl): { [s: string]: boolean } {
     const value = control.value;
     if (control.value !== undefined && isNaN(control.value) && !(control.errors && control.errors.ngbDate)) {
       const isMaxAge =
@@ -695,6 +695,23 @@ export class InvestmentEngagementJourneyService {
         ) <= new Date();
       if (isMaxAge) {
         return { isMaxAge: true };
+      }
+    }
+    return null;
+  }
+
+   /* To Validate Minimum age of secondary holder */
+  validateMinimumAge(control: AbstractControl) {
+    const value = control.value;
+    if (control.value !== undefined && isNaN(control.value) && !(control.errors && control.errors.ngbDate)) {
+      const isMinAge =
+        new Date(
+          value.year + INVESTMENT_ACCOUNT_CONSTANTS.personal_info.min_age,
+          value.month - 1,
+          value.day
+        ) <= new Date();
+      if (!isMinAge) {
+        return { isMinAge: true };
       }
     }
     return null;

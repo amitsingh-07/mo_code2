@@ -224,8 +224,8 @@ export class PortfolioSummaryComponent implements OnInit {
     if (this.summaryDetails && this.summaryDetails.minorSecondaryHolderSummary
       && this.summaryDetails.minorSecondaryHolderSummary.nationality
       && [INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_NAME, INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_CODE]
-        .indexOf(this.summaryDetails.minorSecondaryHolderSummary.nationality) < 0) {
-      return this.summaryDetails.minorSecondaryHolderSummary.singaporePR;
+        .indexOf(this.summaryDetails.minorSecondaryHolderSummary.nationality.toUpperCase()) < 0) {
+      return !this.summaryDetails.minorSecondaryHolderSummary.singaporePR;
     } else {
       return false;
     }
