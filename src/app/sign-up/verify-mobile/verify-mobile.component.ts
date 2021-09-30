@@ -91,7 +91,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     private investmentCommonService: InvestmentCommonService,
     private stateStoreService: StateStoreService,
     private apiService: ApiService,
-    private hubspotService: HubspotService) {    
+    private hubspotService: HubspotService) {
     this.roleTwoFAEnabled = this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA);
     this.translate.use('en');
     this.translate.get('VERIFY_MOBILE').subscribe((result: any) => {
@@ -113,7 +113,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
             button: results.SEND_2FA_FAILED.BUTTON,
           };
           this.authService.openErrorModal(error2fa.title, error2fa.subtitle, error2fa.button);
-          if(this.roleTwoFAEnabled) {
+          if (this.roleTwoFAEnabled) {
             if (this.signUpService.getUserType() === appConstants.USERTYPE.FINLIT) {
               this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_LOGIN]);
             } else {
@@ -149,7 +149,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     if (this.route.snapshot.data[0]) {
       this.finlitEnabled = this.route.snapshot.data[0]['finlitEnabled'];
       this.accountCreationPage = (this.route.snapshot.data[0]['twoFactorEnabled'] === SIGN_UP_CONFIG.VERIFY_MOBILE.TWO_FA);
-      if(!this.roleTwoFAEnabled) {
+      if (!this.roleTwoFAEnabled) {
         this.appService.clearJourneys();
         this.appService.clearPromoCode();
       } else {
@@ -161,7 +161,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if(this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA)) {
+    if (this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA)) {
       this.authService.clearTokenID();
       this.signUpService.removeFromLoginPage();
       this.signUpService.removeFromMobileNumber();
@@ -197,9 +197,9 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
         if (value === 'otp6') {
           const otp = otpArr.join('');
           if (this.authService.get2faVerifyAllowed()) {
-            if(this.roleTwoFAEnabled) {
+            if (this.roleTwoFAEnabled) {
               this.validate2faLogin(otp);
-            } else if(this.authService.isSignedUser()){
+            } else if (this.authService.isSignedUser()) {
               this.verify2FA(otp);
             }
           } else {
@@ -272,10 +272,10 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     }
   }
 
-    /**
-   * request a new OTP though Email. 
-     */
-    
+  /**
+ * request a new OTP though Email. 
+   */
+
   requestEmailOTP() {
     const getAccountInfo = this.signUpService.getAccountInfo();
     const journeyType = this.authService.get2faVerifyAllowed() ? SIGN_UP_CONFIG.VERIFY_MOBILE.TWO_FA : getAccountInfo.editContact ? SIGN_UP_CONFIG.VERIFY_MOBILE.UPDATE_CONTACT : SIGN_UP_CONFIG.VERIFY_MOBILE.SIGN_UP;
@@ -285,7 +285,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       this.isOtpSent = true;
     });
   }
- 
+
   requestNewVerifyOTP() {
     this.signUpApiService.requestNewOTP(this.editProfile).subscribe((data) => {
       this.verifyMobileForm.reset();
@@ -299,13 +299,13 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   requestNew2faOTP() {
     this.progressModal = true;
     this.mobileNumberVerifiedMessage = this.loading['sending'];
-    if(this.roleTwoFAEnabled) {
+    if (this.roleTwoFAEnabled) {
       this.authService.send2faRequestLogin().subscribe((data) => {
         this.verifyMobileForm.reset();
         this.progressModal = false;
         this.isOtpSent = true;
       });
-    } else if(this.authService.isSignedUser()){
+    } else if (this.authService.isSignedUser()) {
       this.authService.send2faRequest().subscribe((data) => {
         this.verifyMobileForm.reset();
         this.progressModal = false;
@@ -318,12 +318,12 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
    * redirect to password creation page.
    */
   redirectToPasswordPage() {
-    if(this.authService.get2faVerifyAllowed() && this.roleTwoFAEnabled) {
-      if(this.redirectAfterLogin === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
+    if (this.authService.get2faVerifyAllowed() && this.roleTwoFAEnabled) {
+      if (this.redirectAfterLogin === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
         this.loaderService.showLoader({ title: 'Loading', autoHide: false });
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT], { skipLocationChange: true });
       } else if (this.redirectAfterLogin === appConstants.JOURNEY_TYPE_INVESTMENT) {
-          this.investmentCommonService.redirectToInvestmentFromLogin(this.authService.getEnquiryId());
+        this.investmentCommonService.redirectToInvestmentFromLogin(this.authService.getEnquiryId());
       } else {
         this.router.navigate([this.redirectAfterLogin]);
       }
@@ -458,13 +458,13 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
       this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
       const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-      if (insuranceEnquiry && ( (insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0) )) {
+      if (insuranceEnquiry && ((insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0))) {
         journeyType = (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT) ?
-        appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
+          appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
         enqId = insuranceEnquiry.enquiryId;
       }
     }
-    
+
     // If the journeyType is not set, default it to 'direct'
     if (Util.isEmptyOrNull(journeyType)) {
       journeyType = appConstants.JOURNEY_TYPE_DIRECT;
@@ -478,8 +478,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     if (window.sessionStorage && sessionStorage.getItem('email')) {
       userEmail = sessionStorage.getItem('email');
     }
-    this.authService.doValidate2faLogin(otp, userEmail, journeyType, enqId  ).subscribe((data: any) => {
-      if (data.responseMessage.responseCode  >= 6000) {
+    this.authService.doValidate2faLogin(otp, userEmail, journeyType, enqId).subscribe((data: any) => {
+      if (data.responseMessage.responseCode >= 6000) {
         this.mobileNumberVerified = true;
         this.mobileNumberVerifiedMessage = this.loading['verified2fa'];
         this.authService.removeAccessCode();
@@ -554,11 +554,11 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       journeyType: journeyType
     };
     this.apiService.updateInsuranceEnquiry(payload).subscribe(() => {
-        this.selectedPlansService.clearData();
-        this.stateStoreService.clearAllStates();
-        this.redirectAfterLogin = 'email-enquiry/success';
-        this.progressModal = true;
-        this.loaderService.hideLoader();
+      this.selectedPlansService.clearData();
+      this.stateStoreService.clearAllStates();
+      this.redirectAfterLogin = 'email-enquiry/success';
+      this.progressModal = true;
+      this.loaderService.hideLoader();
     });
   }
 
@@ -625,11 +625,11 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
         this.investmentAccountService.showGenericErrorModal();
       });
   }
-  
+
   showCustomErrorModal(title, desc) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessage = desc;
   }
-  
+
 }
