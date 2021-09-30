@@ -16,6 +16,15 @@ app-upload-document {
 
     }
 
+    .flex-col-5{
+      label{
+        font-family: $muli-semi-bold;
+        letter-spacing: -0.3px;
+        font-size: 16px;
+        padding-right: 10px;
+      }
+    }
+
 
     .doc-upload-instructions {
       background: $review-block-bg;
@@ -24,11 +33,18 @@ app-upload-document {
       margin-bottom: 21px;
       font-family: $muli-bold;
       line-height: 18px;
+      @include allmobiles{
+        font-family: $muli-regular;
+      }
 
       .sub-title {
         font-size: 16px;
         letter-spacing: -0.3px;
         margin-bottom: 3px;
+        font-family: $muli-bold;
+        @include allmobiles{
+          font-family: $muli-semi-bold;
+        }
       }
 
       .file-logs {
@@ -40,6 +56,9 @@ app-upload-document {
           &:first-child {
             font-family: $muli-semi-bold;
             padding-right: 4px;
+            @include allmobiles{
+              font-family: $muli-regular;
+            }
           }
         }
       }
@@ -155,7 +174,7 @@ app-upload-document {
     }
 
     .title-small{
-      font-family: $muli;
+      font-family: $muli-semi-bold;
       font-size: 13px;
       max-width: 340px;
       a{
