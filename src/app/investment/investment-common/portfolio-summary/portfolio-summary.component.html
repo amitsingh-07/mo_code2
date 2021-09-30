@@ -176,20 +176,20 @@
               </div>
               <!-- CHANGE NAME TEXT AS PER FOREIGNER AND SINGAPORE PR -->
               <div class="mt15">
-                <div class="primary-holder">{{ isForeignerCheck() ?
+                <div class="primary-holder">{{ !isForeignerCheck() ?
                           ('PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.NAME_AS_PER_BIRTH_CERT_TEXT' |
                           translate) : ('PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.NAME_AS_PER_PASSPORT_TEXT' |
                           translate)}}</div>
                 <div class="primary-holder-value">{{summaryDetails?.minorSecondaryHolderSummary.fullName}}</div>
               </div>
               <!-- START OF SINGAPORE PR FIELDS -->
-              <div class="mt15" *ngIf="isForeignerCheck()">
+              <div class="mt15" *ngIf="!isForeignerCheck()">
                 <div class="primary-holder">{{
                           'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.NRIC_BIRT_CERT_TEXT' |
                           translate}}</div>
                 <div class="primary-holder-value">{{summaryDetails?.minorSecondaryHolderSummary.nricNumber}}</div>
               </div>
-              <div class="mt15" *ngIf="isForeignerCheck()">
+              <div class="mt15" *ngIf="!isForeignerCheck()">
                 <div class="primary-holder">{{
                             'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.ISSUED_COUNTRY_TEXT' |
                             translate}}</div>
@@ -216,20 +216,20 @@
                 <div class="primary-holder-value">{{summaryDetails?.minorSecondaryHolderSummary.birthCountry}}</div>
               </div>
               <!-- START OF FOREIGNER FIELDS -->
-              <div class="mt15" *ngIf="!isForeignerCheck()">
+              <div class="mt15" *ngIf="isForeignerCheck()">
                 <div class="primary-holder">{{
                             'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.PASSPORT_NO_TEXT' |
                             translate}}</div>
                 <div class="primary-holder-value">{{summaryDetails?.minorSecondaryHolderSummary.passportNumber}}</div>
               </div>
-              <div class="mt15" *ngIf="!isForeignerCheck()">
+              <div class="mt15" *ngIf="isForeignerCheck()">
                 <div class="primary-holder">{{
                             'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.ISSUED_COUNTRY_TEXT' |
                             translate}}</div>
                 <div class="primary-holder-value">{{summaryDetails?.minorSecondaryHolderSummary.passportIssuedCountry}}
                 </div>
               </div>
-              <div class="mt15" *ngIf="!isForeignerCheck()">
+              <div class="mt15" *ngIf="isForeignerCheck()">
                 <div class="primary-holder">{{
                             'PORTFOLIO_SUMMARY.SECONDARY_HOLDER_MINOR.PASSPORT_EXPIRY_TEXT' |
                             translate}}</div>
