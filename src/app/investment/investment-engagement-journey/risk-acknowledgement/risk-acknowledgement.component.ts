@@ -19,6 +19,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 
 @Component({
   selector: 'app-risk-acknowledgement',
@@ -29,6 +30,7 @@ export class RiskAcknowledgementComponent implements OnInit {
 
   loaderTitle: string;
   loaderDesc: string;
+  userPortfolioType: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -53,6 +55,7 @@ export class RiskAcknowledgementComponent implements OnInit {
       self.loaderTitle = this.translate.instant('FUNDING_METHOD.LOADER_TITLE');
       self.loaderDesc = this.translate.instant('FUNDING_METHOD.LOADER_DESC');
     });
+    this.userPortfolioType = investmentEngagementJourneyService.getUserPortfolioType();
   }
 
   ngOnInit() {
@@ -76,14 +79,32 @@ export class RiskAcknowledgementComponent implements OnInit {
     this._location.back();
   }
   getPortfolioAllocationDetails() {
-    const params = this.constructgetAllocationParams();
-    this.investmentEngagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
-      this.loaderService.hideLoader();
-    },
-      (err) => {
+    const params: any = this.constructParamsWithUserPortfolioType();
+    if (params && params.jaAccountId) {
+      this.investmentEngagementJourneyService.getJAPortfolioAllocationDetails(params).subscribe((data) => {
+        let secondaryHolderMajorData = this.investmentEngagementJourneyService.getMajorSecondaryHolderData();
+        let secondaryHolderMinorData = this.investmentEngagementJourneyService.getMinorSecondaryHolderData();
+        if (secondaryHolderMajorData) {
+          secondaryHolderMajorData.customerPortfolioId = data.objectList.customerPortfolioId;
+          this.investmentEngagementJourneyService.setMajorSecondaryHolderData(secondaryHolderMajorData);
+        }
+        if (secondaryHolderMinorData) {
+          secondaryHolderMinorData.customerPortfolioId = data.objectList.customerPortfolioId;
+          this.investmentEngagementJourneyService.setMinorSecondaryHolderData(secondaryHolderMinorData);
+        }
+        this.loaderService.hideLoader();
+      }, (err) => {
         this.loaderService.hideLoader();
         this.investmentAccountService.showGenericErrorModal();
       });
+    } else {
+      this.investmentEngagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
+        this.loaderService.hideLoader();
+      }, (err) => {
+        this.loaderService.hideLoader();
+        this.investmentAccountService.showGenericErrorModal();
+      });
+    }
   }
 
   constructgetAllocationParams() {
@@ -91,6 +112,37 @@ export class RiskAcknowledgementComponent implements OnInit {
       enquiryId: this.authService.getEnquiryId()
     };
   }
+
+  constructGetAllocationParamsWithJAAccountId() {
+    const majorHolderData = this.investmentEngagementJourneyService.getMajorSecondaryHolderData();
+    const minorHolderData = this.investmentEngagementJourneyService.getMinorSecondaryHolderData();
+    let jaAccountId;
+    if (majorHolderData && majorHolderData.jaAccountId) {
+      jaAccountId = majorHolderData.jaAccountId;
+    } else if (minorHolderData && minorHolderData.jaAccountId) {
+      jaAccountId = minorHolderData.jaAccountId;
+    }
+    return {
+      enquiryId: this.authService.getEnquiryId(),
+      jaAccountId: jaAccountId
+    };
+  }
+
+  constructParamsWithUserPortfolioType() {
+    if (this.checkIfJointAccount()) {
+      return this.constructGetAllocationParamsWithJAAccountId();
+    } else {
+      return this.constructgetAllocationParams();
+    }
+  }
+
+  checkIfJointAccount() {
+    if (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID) {
+      return true;
+    }
+    return false;
+  }
+
   goNext() {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
     if (this.authService.isSignedUser()) {
@@ -100,7 +152,7 @@ export class RiskAcknowledgementComponent implements OnInit {
         } else if (this.investmentCommonService.isUsersFirstPortfolio(data)) {
           this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
         } else {
-          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
         }
       });
     } else {

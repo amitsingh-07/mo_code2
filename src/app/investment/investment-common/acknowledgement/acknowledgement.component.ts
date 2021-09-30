@@ -30,7 +30,6 @@ export class AcknowledgementComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
       this.pageTitle = this.translate.instant('ACKNOWLEDGEMENT.TITLE');
-      this.setPageTitle(this.pageTitle);
     });
   }
   setPageTitle(title: string) {

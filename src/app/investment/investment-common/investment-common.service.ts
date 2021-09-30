@@ -163,7 +163,7 @@ export class InvestmentCommonService {
     if( data.accountCreationState ===  INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_PURCHASED){
       this.navbarService.setMenuItemInvestUser(true);
     }
-    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
   }
 
   setInvestmentsSummary(investmentsSummary) {
@@ -401,5 +401,23 @@ export class InvestmentCommonService {
     } else {
       return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO
     }
+  }
+  acceptAndGetPortfolioDetails(customerPortfolioId) {
+    return this.investmentApiService.acceptAndGetPortfolioDetails(customerPortfolioId);
+  }
+  // GET THE PORTFOLIO SUMMARY DETAILS FOR PORTFOLIO SUMMARY PAGE
+  getPortFolioSummaryDetails(customerPortfolioId) {
+    return this.investmentApiService.getPortFolioSummaryDetails(customerPortfolioId);
+  }
+
+  getJAAccountDetails(customerPortfolioId, isJAAccount, isEngagementJourney) {
+    return this.investmentApiService.getJABankDetails(customerPortfolioId, isJAAccount, isEngagementJourney);
+  }
+
+  setNavigationType(url, expectedURL, navigationType) {
+    if (url.indexOf(expectedURL) >= 0) {
+      return navigationType;
+    }
+    return null;
   }
 }

@@ -1,0 +1,181 @@
+<div class="upload-doc-nric investment-account">
+  <div class="step-indicator-container">
+    <div class="container-fluid max-width--1024">
+      <div class="page-caption hidden-lg">{{ 'UPLOAD_DOCUMENTS.PAGE_SUB_CAPTION' | translate}}</div>
+    </div>
+  </div>
+  <div class="container-fluid max-width--1024">
+    <div class="content">
+      <div class="row">
+        <div class="col-md-6 hidden-sm-md">
+          <h2>{{'UPLOAD_DOCUMENTS.PAGE_TITLE' | translate}}</h2>
+          <div class="banner-image">
+            <img src="assets/images/investment-account/secondary-holder-banner.svg" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+              <form id="upload_doc_form" name="uploadForm" [formGroup]="uploadForm">
+                <div class="flex-row center">
+                  <div class="flex-col-5">
+                    <label for="salutation-drpdown" class="mb0" id="salutation-lbl">{{
+                'UPLOAD_DOCUMENTS.TITLE'
+                | translate}}</label>
+                  </div>
+                  <div class="flex-col-7">
+                    <div class="dropdown-control">
+                      <div ngbDropdown>
+                        <button class="btn btn-dropdown without-border" id="salutation-drpdown" ngbDropdownToggle>
+                          <span *ngIf="!uploadForm.controls.uploadDocument.value">
+                            {{'UPLOAD_DOCUMENTS.DROP_DOWN_TITLE'  | translate}}
+                          </span>
+                          <span *ngIf="uploadForm.controls.uploadDocument.value">
+                            {{uploadForm.controls.uploadDocument.value.name}}
+                          </span>
+                        </button>
+                        <div class="dropdown" ngbDropdownMenu aria-labelledby="salutation-drpdown">
+                          <button class="dropdown-item"
+                            *ngFor="let uploadDocument of uploadDocumentList; let i = index;"
+                            (click)="setDropDownValue(uploadDocument, 'uploadDocument')">{{uploadDocument.name}}</button>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="uploadContent"> 
+                  <div class="col-12 doc-upload-instructions mt20">
+                    <div class="sub-title">
+                      {{ 'UPLOAD_DOCUMENTS.SPECIFICATION' | translate}}</div>
+                    <div class="file-logs"><span>{{ 'UPLOAD_DOCUMENTS.FILE_LESS-THAN' | translate}}</span><span>{{
+              'UPLOAD_DOCUMENTS.TEN_MB' | translate}}</span></div>
+                    <div class="file-logs"><span>{{ 'UPLOAD_DOCUMENTS.FILE_TYPE' | translate}}</span><span>{{
+              'UPLOAD_DOCUMENTS.SUPPORTED_FILES' | translate}}</span></div>
+                  </div>
+                  <!--NRIC-->
+                  <div *ngIf="nricDiv" class="upload-doc">
+                    <!-- FRONT IMAGE UPLOAD -->
+                    <div class="upload-desc" *ngIf="isUserNationalitySingapore" (click)="openFileDialog(nricFront)">
+                      <div class="thumb-container">
+                        <div class="thumb-close-icon"
+                          (click)="clearFileSelection(uploadForm.controls.nricFrontImage, 'NRIC_FRONT', $event, frontThumb, nricFront)"
+                          *ngIf="uploadForm.controls.nricFrontImage.value">
+                          <img src="assets/images/close-button.svg" alt="x" />
+                        </div>
+                        <img #frontThumb class="thumbnail image-fluid" src="assets/images/{{defaultThumb}}" />
+                      </div>
+                      <div class="upload-content">
+                        <div class="title">{{ 'UPLOAD_DOCUMENTS.FRONT_NRIC' | translate}}</div>
+                        <div class="sub-text" *ngIf="!uploadForm.controls.nricFrontImage.value">{{
+                          'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
+                        <div class="sub-text" *ngIf="uploadForm.controls.nricFrontImage.value"
+                          [innerHtml]="getFileName(nricFront)"></div>
+                        <input type="file" #nricFront
+                          (change)="fileSelected(uploadForm.controls.nricFrontImage, 'NRIC_FRONT', $event, frontThumb)"
+                          name="nricFront" accept="image/*, .pdf" class="is-hidden">
+                        <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="nricFrontHidden"
+                          formControlName="nricFrontImage" />
+                      </div>
+                    </div>
+                    <!-- BACK IMAGE UPLOAD -->
+                    <div class="upload-desc" *ngIf="isUserNationalitySingapore" (click)="openFileDialog(nricBack)">
+                      <div class="thumb-container">
+                        <div class="thumb-close-icon"
+                          (click)="clearFileSelection(uploadForm.controls.nricBackImage, 'NRIC_BACK', $event, backThumb, nricBack)"
+                          *ngIf="uploadForm.controls.nricBackImage.value">
+                          <img src="assets/images/close-button.svg" alt="x" />
+                        </div>
+                        <img #backThumb class="thumbnail image-fluid" src="assets/images/{{defaultThumb}}" />
+                      </div>
+                      <div class="upload-content">
+                        <div class="title">{{ 'UPLOAD_DOCUMENTS.BACK_NRIC' | translate}}</div>
+                        <div class="sub-text" *ngIf="!uploadForm.controls.nricBackImage.value">{{
+                  'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
+                        <div class="sub-text" *ngIf="uploadForm.controls.nricBackImage.value"
+                          [innerHtml]="getFileName(nricBack)"></div>
+                        <input type="file" #nricBack
+                          (change)="fileSelected(uploadForm.controls.nricBackImage, 'NRIC_BACK', $event, backThumb )"
+                          name="nricBack" accept="image/*, .pdf" class="is-hidden">
+                        <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="nricBackHidden"
+                          formControlName="nricBackImage" />
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <!-- DateofBirth  PROOF UPLOAD -->
+                  <div *ngIf="dobDiv" class="upload-doc">
+                    <!-- Brith Certificate IMAGE UPLOAD -->
+                    <div class="upload-desc" *ngIf="isUserNationalitySingapore"
+                      (click)="openFileDialog(birthCertificate)">
+                      <div class="thumb-container">
+                        <div class="thumb-close-icon"
+                          (click)="clearFileSelection(uploadForm.controls.birthCertificateImage, 'BIRTH_CERTIFICATE', $event, passportThumb, birthCertificate)"
+                          *ngIf="uploadForm.controls.birthCertificateImage.value">
+                          <img src="assets/images/close-button.svg" alt="x" />
+                        </div>
+                        <img #passportThumb class="thumbnail image-fluid" src="assets/images/{{defaultThumb}}" />
+                      </div>
+                      <div class="upload-content">
+                        <div class="title">{{ 'UPLOAD_DOCUMENTS.BIRTH_CERTIFICATE' | translate}}</div>
+                        <div class="sub-text" *ngIf="!uploadForm.controls.birthCertificateImage.value">{{
+                  'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
+                        <div class="sub-text" *ngIf="uploadForm.controls.birthCertificateImage.value"
+                          [innerHtml]="getFileName(birthCertificate)"></div>
+                        <input type="file" #birthCertificate
+                          (change)="fileSelected(uploadForm.controls.birthCertificateImage, 'BIRTH_CERTIFICATE', $event, passportThumb)"
+                          name="birthCertificate" accept="image/*, .pdf" class="is-hidden">
+                        <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="passportHidden"
+                          formControlName="birthCertificateImage" />
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- PASSPORT IMAGE UPLOAD -->
+                  <div *ngIf="passportDiv" class="upload-doc">
+                    <div class="upload-desc" *ngIf="!isUserNationalitySingapore" (click)="openFileDialog(passport)">
+                      <div class="thumb-container">
+                        <div class="thumb-close-icon"
+                          (click)="clearFileSelection(uploadForm.controls.passportImage, 'PASSPORT', $event, passportThumb, passport)"
+                          *ngIf="uploadForm.controls.passportImage.value">
+                          <img src="assets/images/close-button.svg" alt="x" />
+                        </div>
+                        <img #passportThumb class="thumbnail image-fluid" src="assets/images/{{defaultThumb}}" />
+                      </div>
+                      <div class="upload-content">
+                        <div class="title">{{ 'UPLOAD_DOCUMENTS.PASSPORT' | translate}}</div>
+                        <div class="sub-text" *ngIf="!uploadForm.controls.passportImage.value">{{
+                  'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
+                        <div class="sub-text" *ngIf="uploadForm.controls.passportImage.value"
+                          [innerHtml]="getFileName(passport)"></div>
+                        <input type="file" #passport
+                          (change)="fileSelected(uploadForm.controls.passportImage, 'PASSPORT', $event, passportThumb)"
+                          name="passport" accept="image/*, .pdf" class="is-hidden">
+                        <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="passportHidden"
+                          formControlName="passportImage" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="uploadContent">
+                  <p class="title-small" [innerHtml]="'UPLOAD_DOCUMENTS.INFO' | translate">
+                    <!-- {{ 'UPLOAD_DOCUMENTS.INFO' | translate }} -->
+                  </p>
+                </div>
+              </form>
+              <div  class="text-center">
+                <button type="button" id="uploadDocumentNextBtn" [disabled]="!uploadForm.valid"
+                  (click)="goToNext(uploadForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+                  id="uploadDocument_submit_btn">{{ 'UPLOAD_DOCUMENTS.CONTINUE' | translate}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
