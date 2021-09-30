@@ -328,4 +328,44 @@ app-verify-mobile{
     transform-origin: 100% 50%;
   }
 }
+.verify-mobile-otp {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+.button-with-otp-seconds {
+  font-family: $muli-regular;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: -0.12px;
+  text-align: center;
+  color: $otp-seconds-text-color;
+  border-radius: 21px;
+  background-color: $otp-seconds-bg-color;
+  cursor: none!important;
+  padding: 4px 21px !important;
+}
+.button-with-otp-seconds:hover {
+    color: $otp-seconds-text-color!important;
+    cursor: none!important;
+}
+.button-with-otp {
+  font-family: $muli-regular;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: -0.12px;
+  text-align: center;
+  color: $white-color;
+  border-radius: 21px;
+  background-color: $blue-stone-color;
+  padding: 4px 20px !important;
+}
+.button-with-otp:hover {
+    color: $white-color!important;
+}
 }

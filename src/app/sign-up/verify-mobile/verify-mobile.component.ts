@@ -55,7 +55,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   verifyMobileForm: FormGroup;
   mobileNumber: any;
   mobileNumberVerifiedMessage: string;
-  showCodeSentText = false;
+  isOtpSent = false;
   mobileNumberVerified: boolean;
   progressModal: boolean;
   newCodeRequested: boolean;
@@ -262,6 +262,9 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
    */
   requestNewCode() {
     this.progressModal = true;
+    setTimeout(() => {
+      this.isOtpSent = false;
+    }, appConstants.OTP_WAITING_SECONDS);
     if (this.authService.get2faVerifyAllowed()) {
       this.requestNew2faOTP();
     } else {
@@ -279,7 +282,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     this.signUpApiService.requestEmailOTP(journeyType, getAccountInfo).subscribe((data) => {
       this.verifyMobileForm.reset();
       this.progressModal = false;
-      this.showCodeSentText = true;
+      this.isOtpSent = true;
     });
   }
  
@@ -287,7 +290,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     this.signUpApiService.requestNewOTP(this.editProfile).subscribe((data) => {
       this.verifyMobileForm.reset();
       this.progressModal = false;
-      this.showCodeSentText = true;
+      this.isOtpSent = true;
     });
   }
   /** 
@@ -300,13 +303,13 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       this.authService.send2faRequestLogin().subscribe((data) => {
         this.verifyMobileForm.reset();
         this.progressModal = false;
-        this.showCodeSentText = true;
+        this.isOtpSent = true;
       });
     } else if(this.authService.isSignedUser()){
       this.authService.send2faRequest().subscribe((data) => {
         this.verifyMobileForm.reset();
         this.progressModal = false;
-        this.showCodeSentText = true;
+        this.isOtpSent = true;
       });
     }
   }
