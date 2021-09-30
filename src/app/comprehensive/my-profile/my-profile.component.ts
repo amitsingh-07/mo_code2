@@ -54,6 +54,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
     getComprehensiveData: any;
     saveData: string;
     getCurrentVersionType: any;
+    fetchData: string;
 
     @HostListener('window:popstate', ['$event'])
     onPopState(event) {
@@ -101,6 +102,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                 this.pageTitle = this.translate.instant('CMP.GETTING_STARTED.TITLE');
                 this.nationalityList = this.translate.instant('CMP.NATIONALITY');
                 this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
+                this.fetchData = this.translate.instant('COMMON_LOADER.FETCH_DATA');                
                 this.setPageTitle(this.pageTitle);
             });
         });
@@ -111,7 +113,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
 
     ngOnInit() {
         this.progressService.setProgressTrackerData(this.comprehensiveService.generateProgressTrackerData());
-        this.loaderService.showLoader({ title: 'Fetching Data' });
+        this.loaderService.showLoader({ title: this.fetchData, autoHide: false });
         this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
         this.comprehensiveApiService.getComprehensiveSummary().subscribe((data: any) => {
             if (data && data.objectList[0]) {
@@ -122,10 +124,11 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
                     === COMPREHENSIVE_CONST.REPORT_STATUS.ERROR || (!this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry
                         .isLocked && this.comprehensiveService.getComprehensiveSummary().comprehensiveEnquiry.reportStatus
                     === COMPREHENSIVE_CONST.REPORT_STATUS.READY) ) {
+                    this.loaderService.hideLoaderForced();
                     this.redirectToDashboard();
                 }
-                this.loaderService.hideLoader();
                 this.checkRedirect();
+                this.loaderService.hideLoaderForced();
             }
         });
 
@@ -153,7 +156,7 @@ export class MyProfileComponent implements IPageComponent, OnInit, OnDestroy {
         const redirectUrl = this.signUpService.getRedirectUrl();
         if (redirectUrl) {
             this.signUpService.clearRedirectUrl();
-            this.loaderService.hideLoader();
+            this.loaderService.hideLoaderForced();
             this.router.navigate([redirectUrl]);
         } else {
             this.getUserProfileData();
