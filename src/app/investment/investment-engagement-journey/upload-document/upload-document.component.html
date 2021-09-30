@@ -7,24 +7,24 @@
   <div class="container-fluid max-width--1024">
     <div class="content">
       <div class="row">
-        <div class="col-md-5 hidden-sm-md">
-          <h3>{{'UPLOAD_DOCUMENTS.PAGE_TITLE' | translate}}</h3>
+        <div class="col-md-6 hidden-sm-md">
+          <h2>{{'UPLOAD_DOCUMENTS.PAGE_TITLE' | translate}}</h2>
           <div class="banner-image">
             <img src="assets/images/investment-account/secondary-holder-banner.svg" />
           </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
           <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-11">
               <form id="upload_doc_form" name="uploadForm" [formGroup]="uploadForm">
                 <div class="flex-row center">
-                  <div class="flex-col-4">
+                  <div class="flex-col-5">
                     <label for="salutation-drpdown" class="mb0" id="salutation-lbl">{{
                 'UPLOAD_DOCUMENTS.TITLE'
                 | translate}}</label>
                   </div>
-                  <div class="flex-col-8">
+                  <div class="flex-col-7">
                     <div class="dropdown-control">
                       <div ngbDropdown>
                         <button class="btn btn-dropdown without-border" id="salutation-drpdown" ngbDropdownToggle>
