@@ -7,7 +7,7 @@ import { AuthenticationService } from '../../shared/http/auth/authentication.ser
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { InvestmentCommonService } from './../investment-common/investment-common.service';
 import { INVESTMENT_COMMON_CONSTANTS } from './investment-common.constants';
-import { SignUpService } from 'src/app/sign-up/sign-up.service';
+import { SignUpService } from '../../sign-up/sign-up.service';
 import { INVESTMENT_COMMON_ROUTES } from './investment-common-routes.constants';
 
 @Injectable({
