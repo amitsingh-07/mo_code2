@@ -311,7 +311,7 @@ export class AddSecondaryHolderComponent implements OnInit {
         this.showBlockedCountryErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.blockedCountryMessage);
       } else if (this.secondaryHolderMinorForm.value.unitedStatesResident) {
         this.showErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.unitedStatesPRYes);
-      } else if (!Util.isEmptyOrNull(this.investmentEngagementService.validateMinimumAge(this.secondaryHolderMinorForm.controls['dob']))) {
+      } else if (!Util.isEmptyOrNull(this.investmentEngagementService.validateMaximumAge(this.secondaryHolderMinorForm.controls['dob']))) {
         const error = this.investmentEngagementService.getSecondaryHolderFormError('dob');
         this.showErrorMessage(error.errorMessages[0].errorTitle, error.errorMessages[0].errorMessage);
       } else if (this.secondaryHolderMinorForm.controls['passportExpiry'] && !Util.isEmptyOrNull(this.investmentEngagementService.validateExpiry(this.secondaryHolderMinorForm.controls['passportExpiry']))) {
@@ -465,7 +465,7 @@ export class AddSecondaryHolderComponent implements OnInit {
       'gender', new FormControl(this.secondaryHolderMinorFormValues?.gender ? this.secondaryHolderMinorFormValues?.gender : '', Validators.required)
     );
     this.secondaryHolderMinorForm.addControl(
-      'dob', new FormControl(dob ? dob : '', [Validators.required, this.investmentEngagementService.validateMinimumAge])
+      'dob', new FormControl(dob ? dob : '', [Validators.required, this.investmentEngagementService.validateMaximumAge])
     );
     this.secondaryHolderMinorForm.addControl(
       'issuedCountry', new FormControl(this.secondaryHolderMinorFormValues?.issuedCountry ? this.secondaryHolderMinorFormValues?.issuedCountry : '', Validators.required)
@@ -696,16 +696,11 @@ export class AddSecondaryHolderComponent implements OnInit {
             this.secondaryHolderMajorForm.controls.relationship.setValue(relationship);
           }
           this.secondaryHolderMajorForm.controls.email.setValue(this.verifyApplicantData.secondaryHolderEmail);
-          this.secondaryHolderMajorForm.addControl(
-            'customerPortfolioId', new FormControl(customerPortfolioId)
-          )
-
+          this.secondaryHolderMajorForm.controls.customerPortfolioId.setValue(customerPortfolioId);
         } else {//else - Major Minor
           this.activeTabId = 2;
           this.buildMinorForm();
-          this.secondaryHolderMinorForm.addControl(
-            'customerPortfolioId', new FormControl(customerPortfolioId)
-          )
+          this.secondaryHolderMinorForm.controls.customerPortfolioId.setValue(customerPortfolioId);
           this.secondaryHolderMinorForm.controls.isMinor.setValue(true);
           let dob = this.investmentEngagementService.convertStringToDateObj(this.verifyApplicantData.minorSecondaryHolderSummary.dob);
           this.secondaryHolderMinorForm.controls.isMinor.setValue(this.verifyApplicantData.minor);
@@ -722,7 +717,7 @@ export class AddSecondaryHolderComponent implements OnInit {
           );
 
           this.secondaryHolderMinorForm.addControl(
-            'dob', new FormControl(dob ? dob : '', [Validators.required, this.investmentEngagementService.validateMinimumAge])
+            'dob', new FormControl(dob ? dob : '', [Validators.required, this.investmentEngagementService.validateMaximumAge])
           );
           this.secondaryHolderMinorForm.addControl(
             'gender', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.gender, Validators.required)
