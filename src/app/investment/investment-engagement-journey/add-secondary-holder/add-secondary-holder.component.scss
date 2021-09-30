@@ -294,6 +294,7 @@ app-add-secondary-holder {
           color: $black-color;
           margin-top: 20px;
           cursor: pointer;
+          border: solid 1px $inline-error-border-color;
           @include allmobiles{
             margin-bottom: 14px;
           }
