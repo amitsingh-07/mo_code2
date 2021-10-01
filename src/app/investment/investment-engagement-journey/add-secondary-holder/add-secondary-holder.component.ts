@@ -371,7 +371,7 @@ export class AddSecondaryHolderComponent implements OnInit {
     this.minorForeignerRelationships = this.optionList?.jointAccountMinorForeignerRelationship;
     this.majorRelationships = this.optionList?.jointAccountMajorRelationship;
     this.minorSGRelationships = this.optionList?.jointAccountMinorRelationship;
-    this.noTinReasonlist = data.objectList.noTinReason;
+    this.noTinReasonlist = data.objectList.noTinReasonForJA;
   }
 
   /* Handle Continue button of Major holder */

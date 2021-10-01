@@ -269,6 +269,7 @@
   },
   "CONFIRM_ACCOUNT_DETAILS": {
     "TITLE": "Confirm Funding Details",
+    "EDIT_TITLE": "Edit Funding Details",
     "FUND_METHOD": "Funding Method",
     "SELECT_FUNDING_LAB": "You have selected the following funding method for this portfolio.",
     "ACCOUNT_DETAILS": "Please provide your account details.",
@@ -293,6 +294,7 @@
   },
   "CONFIRM_WITHDRAWAL": {
     "PAGE_TITLE": "Confirm Withdrawal Account",
+    "EDIT_PAGE_TITLE": "Edit Withdrawal Account",
     "STEP_NO": "Step 2",
     "CONTINUE": "Continue",
     "SAVE": "Save",

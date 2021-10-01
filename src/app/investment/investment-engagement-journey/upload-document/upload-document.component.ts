@@ -34,6 +34,7 @@ export class UploadDocumentComponent implements OnInit {
   uploadForm: FormGroup;
   uploadFormValues: any;
   pageTitle: string;
+  editPageTitle: string;
   formValues: any;
   countries: any;
   isUserNationalitySingapore: any;
@@ -63,10 +64,17 @@ export class UploadDocumentComponent implements OnInit {
     private investmentCommonService: InvestmentCommonService,
     public manageInvestmentsService: ManageInvestmentsService
   ) {
+    this.navigationType =  this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.EDIT_JA_UPLOAD_DOCUMENT,
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('UPLOAD_DOCUMENTS.PAGE_TITLE');
-      this.setPageTitle(this.pageTitle);
+      this.editPageTitle = this.translate.instant('UPLOAD_DOCUMENTS.EDIT_PAGE_TITLE');
+      if (this.navigationType) {
+        this.setPageTitle(this.editPageTitle);
+      } else {
+        this.setPageTitle(this.pageTitle);
+      }
       this.defaultThumb = INVESTMENT_ACCOUNT_CONSTANTS.upload_documents.default_thumb;
     });
   }
@@ -103,8 +111,6 @@ export class UploadDocumentComponent implements OnInit {
         this.customerPortfolioId = this.routeParams.get('customerPortfolioId');
       }
     });
-    this.navigationType =  this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.EDIT_JA_UPLOAD_DOCUMENT,
-      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
   }
 
   setDropDownValue(event, key) {

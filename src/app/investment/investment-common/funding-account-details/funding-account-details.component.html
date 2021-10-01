@@ -1,5 +1,5 @@
 <div class="funding-account-details investment-account">
-  <div class="step-indicator-container">
+  <div class="step-indicator-container" [hidden]="navigationType">
     <div class="container-fluid max-width--1024">
       <app-step-indicator [count]="isJAEnabled ? 3 : 2 " [activeStepIndex]="isJAEnabled ? 2 : 1" [mode]="0">
       </app-step-indicator>
@@ -8,9 +8,10 @@
   <div class="container-fluid invest-web-width">
     <div class="content">
       <div class="hidden-sm-md page-details">
-        <div>{{
+        <div [hidden]="navigationType">{{
           'CONFIRM_ACCOUNT_DETAILS.STEP_2' | translate}}</div>
-        <div class="page-title">{{pageTitle}}</div>
+        <div class="page-title">{{navigationType ? ('CONFIRM_ACCOUNT_DETAILS.EDIT_TITLE' | translate) 
+          : ('CONFIRM_ACCOUNT_DETAILS.TITLE' | translate)}}</div>
       </div>
       <div class="row" *ngIf="fundingMethods">
         <div class="col-md-12">
