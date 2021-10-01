@@ -269,6 +269,7 @@
   },
   "CONFIRM_ACCOUNT_DETAILS": {
     "TITLE": "Confirm Funding Details",
+    "EDIT_TITLE": "Edit Funding Details",
     "FUND_METHOD": "Funding Method",
     "SELECT_FUNDING_LAB": "You have selected the following funding method for this portfolio.",
     "ACCOUNT_DETAILS": "Please provide your account details.",
@@ -279,7 +280,9 @@
     "CASH_DESC": "You can fund using any bank account (registered under your name).",
     "SRS_DESC": "You <u>MUST</u> ensure sufficient fund in your SRS Account. Amount will be deducted immediately to process the buy request.",
     "CONTINUE": "Continue",
+    "SAVE": "Save",
     "STEP_2": "Step 2",
+    "STEP_3": "Step 3",
     "SELECT": "Select Funding Method",
     "SELECT_SRS_OPERATOR": "Select SRS Operator",
     "SHOW_MODAL": {
@@ -293,6 +296,7 @@
   },
   "CONFIRM_WITHDRAWAL": {
     "PAGE_TITLE": "Confirm Withdrawal Account",
+    "EDIT_PAGE_TITLE": "Edit Withdrawal Account",
     "STEP_NO": "Step 2",
     "CONTINUE": "Continue",
     "SAVE": "Save",
