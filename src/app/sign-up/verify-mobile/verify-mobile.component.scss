@@ -346,6 +346,7 @@ app-verify-mobile {
     border-radius: 21px;
     background-color: $blue-stone-color;
     padding: 4px 20px !important;
+    min-width: 119px;
 
     &:hover {
       color: $white-color !important;
@@ -356,6 +357,7 @@ app-verify-mobile {
       background-color: $otp-seconds-bg-color;
       cursor: none !important;
       padding: 4px 21px !important;
+      min-width: 153px;
 
       &:hover {
         color: $otp-seconds-text-color !important;

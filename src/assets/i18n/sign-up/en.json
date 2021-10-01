@@ -135,7 +135,6 @@
       "RETRY_IN": "Retry in",
       "SECONDS_SUFFIX": "s",
       "OR": " or ",
-      "RESEND_OTP_WITH_SECONDS": "Resend OTP(30s)",
       "RESEND_OTP": "Resend OTP"
     },
     "ERROR_MODAL": {
