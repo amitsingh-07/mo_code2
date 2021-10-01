@@ -24,9 +24,10 @@ import {
 import {
   IAccountCreationActions, IInvestmentCriteria, InvestmentCommonFormData
 } from './investment-common-form-data';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from './investment-common-routes.constants';
+import { INVESTMENT_COMMON_ROUTES, INVESTMENT_COMMON_ROUTE_PATHS } from './investment-common-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from './investment-common.constants';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SignUpService } from '../../sign-up/sign-up.service';
 
 const SESSION_STORAGE_KEY = 'app_inv_common_session';
 @Injectable({
@@ -42,7 +43,8 @@ export class InvestmentCommonService {
     private router: Router,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private loaderService: LoaderService,
-    public navbarService: NavbarService
+    public navbarService: NavbarService,
+    private signUpService: SignUpService
   ) {
     this.getInvestmentCommonFormData();
   }
@@ -160,8 +162,13 @@ export class InvestmentCommonService {
   }
 
   goToAdditionalAccountCreation(data) {
-    if( data.accountCreationState ===  INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_PURCHASED){
+    if (data.accountCreationState === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_PURCHASED) {
       this.navbarService.setMenuItemInvestUser(true);
+    }
+    if (this.signUpService.getRedirectUrl() && this.signUpService.getRedirectUrl().indexOf(INVESTMENT_COMMON_ROUTES.ACCEPT_JA_HOLDER) >= 0) {
+      const redirectURL = this.signUpService.getRedirectUrl();
+      this.signUpService.clearRedirectUrl();
+      this.router.navigate([redirectURL]);
     }
     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
   }
@@ -358,11 +365,11 @@ export class InvestmentCommonService {
     }
     if (formData && formData.investmentPeriod) {
       this.investmentEngagementJourneyService.setPersonalInfo({ investmentPeriod: formData.investmentPeriod });
-    }   
+    }
     const investmentFormData = this.setYourInvestmentAmount(formData);
     this.investmentEngagementJourneyService.setYourInvestmentAmount(investmentFormData);
     if (!this.investmentAccountService.isReassessActive()) {
-    this.setInitialFundingMethod({ initialFundingMethodId: formData.fundingTypeId });
+      this.setInitialFundingMethod({ initialFundingMethodId: formData.fundingTypeId });
     }
     const portfolioType = this.toDecidedPortfolioType(formData.portfolioType);
     this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: portfolioType })

@@ -22,6 +22,9 @@ import { INVESTMENT_COMMON_CONSTANTS } from './../../../investment/investment-co
 import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-investments-routes.constants';
+import { FooterService } from 'src/app/shared/footer/footer.service';
+import { HeaderService } from 'src/app/shared/header/header.service';
+import { NavbarService } from 'src/app/shared/navbar/navbar.service';
 
 @Component({
   selector: 'app-add-secondary-holder',
@@ -34,6 +37,8 @@ import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-
 })
 export class AddSecondaryHolderComponent implements OnInit {
 
+  pageTitle: string;
+  editPageTitle: any;
   nationalityList: any;
   countryList: any;
   secondaryHolderMinorForm: FormGroup;
@@ -83,12 +88,23 @@ export class AddSecondaryHolderComponent implements OnInit {
     private loaderService: LoaderService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
+    public headerService: HeaderService,
+    public navbarService: NavbarService,
+    public footerService: FooterService,
     private investmentCommonService: InvestmentCommonService,
     public manageInvestmentsService: ManageInvestmentsService
   ) {
     this.userProfileType = investmentEngagementService.getUserPortfolioType();
+    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.EDIT_SECONDARY_HOLDER, INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
+      this.pageTitle = this.translate.instant('SECONDARY_HOLDER.PAGE_TITLE');
+      this.editPageTitle = this.translate.instant('SECONDARY_HOLDER.EDIT_PAGE_TITLE');
+      if (this.navigationType) {
+        this.setPageTitle(this.editPageTitle);
+      } else {
+        this.setPageTitle(this.pageTitle);
+      }
       this.blockedNationalityModal = this.translate.instant('SELECT_NATIONALITY.blockedNationality');
       this.blockedCountryModal = this.translate.instant('SECONDARY_HOLDER.blockedCountry');
       this.editModalData = this.translate.instant('SELECT_NATIONALITY.editModalData');
@@ -146,7 +162,13 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.EDIT_SECONDARY_HOLDER, INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
+  }
+
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
   }
 
   buildMinorForm() {
@@ -639,7 +661,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   showHelpModalTinNumber() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'minor-tax-tooltip' });
     ref.componentInstance.errorTitle = this.taxInfoModal.TAX_MODEL_TITLE;
     // tslint:disable-next-line:max-line-length
     ref.componentInstance.errorDescription = this.taxInfoModal.TAX_MODEL_DESC;

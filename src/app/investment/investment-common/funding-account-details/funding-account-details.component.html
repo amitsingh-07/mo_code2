@@ -41,7 +41,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="form-control" *ngIf="disableFundingMethod">
+                  <div class="form-control disabled" *ngIf="disableFundingMethod">
                     <input class="input-control" type="text" id="funding_method_cash"
                       [value]="getFundingMethodNameById(this.fundingAccountDetailsForm.controls.confirmedFundingMethodId.value, fundingMethods)"
                       disabled>

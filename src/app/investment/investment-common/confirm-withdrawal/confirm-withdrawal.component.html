@@ -95,8 +95,8 @@
     </div>
     <div class="text-center mt30">
       <button type="button" (click)="goToNext()" [disabled]="!withdrawalAccountForm.valid"
-        class="btn btn__footer--fixed btn-primary width100">{{
-  'CONFIRM_WITHDRAWAL.CONTINUE' | translate}}</button>
+        class="btn btn__footer--fixed btn-primary width100">{{ navigationType ?
+  ('CONFIRM_WITHDRAWAL.SAVE' | translate) : ('CONFIRM_WITHDRAWAL.CONTINUE' | translate)}}</button>
     </div>
   </div>
 </div>

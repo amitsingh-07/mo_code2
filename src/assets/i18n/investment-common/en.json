@@ -295,6 +295,7 @@
     "PAGE_TITLE": "Confirm Withdrawal Account",
     "STEP_NO": "Step 2",
     "CONTINUE": "Continue",
+    "SAVE": "Save",
     "WITHDRAWAL_BANK_DETAILS": {
       "TITLE": "Withdrawal Bank Details",
       "ACCOUNT_HOLDER_NAME_TITLE": "Bank Account Holder Name(s)",
