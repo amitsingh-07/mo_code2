@@ -1,12 +1,12 @@
 <div class="app-confirm-withdrawal investment-account">
-  <div class="step-indicator-container" [hidden]="navigationType">
+  <div class="step-indicator-container" *ngIf="!navigationType">
     <div class="container-fluid max-width--1024">
       <app-step-indicator [count]="isJAAccount ? 3 : 2 " [activeStepIndex]="1" [mode]="0"></app-step-indicator>
     </div>
   </div>
   <div class="container-fluid ja-withdrawal">
     <div class="hidden-sm-md page-details">
-      <div [hidden]="navigationType">{{ 'CONFIRM_WITHDRAWAL.STEP_NO' | translate}}</div>
+      <div *ngIf="!navigationType">{{ 'CONFIRM_WITHDRAWAL.STEP_NO' | translate}}</div>
       <div class="page-title">{{ navigationType ? ('CONFIRM_WITHDRAWAL.EDIT_PAGE_TITLE' | translate) : 
         ('CONFIRM_WITHDRAWAL.PAGE_TITLE' | translate)}}</div>
     </div>

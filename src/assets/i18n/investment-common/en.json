@@ -280,7 +280,9 @@
     "CASH_DESC": "You can fund using any bank account (registered under your name).",
     "SRS_DESC": "You <u>MUST</u> ensure sufficient fund in your SRS Account. Amount will be deducted immediately to process the buy request.",
     "CONTINUE": "Continue",
+    "SAVE": "Save",
     "STEP_2": "Step 2",
+    "STEP_3": "Step 3",
     "SELECT": "Select Funding Method",
     "SELECT_SRS_OPERATOR": "Select SRS Operator",
     "SHOW_MODAL": {

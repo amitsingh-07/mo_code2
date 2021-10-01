@@ -1,5 +1,5 @@
 <div class="funding-account-details investment-account">
-  <div class="step-indicator-container" [hidden]="navigationType">
+  <div class="step-indicator-container" *ngIf="!navigationType">
     <div class="container-fluid max-width--1024">
       <app-step-indicator [count]="isJAEnabled ? 3 : 2 " [activeStepIndex]="isJAEnabled ? 2 : 1" [mode]="0">
       </app-step-indicator>
@@ -8,8 +8,9 @@
   <div class="container-fluid invest-web-width">
     <div class="content">
       <div class="hidden-sm-md page-details">
-        <div [hidden]="navigationType">{{
-          'CONFIRM_ACCOUNT_DETAILS.STEP_2' | translate}}</div>
+        <div *ngIf="!navigationType">{{
+          isJAEnabled ? ('CONFIRM_ACCOUNT_DETAILS.STEP_3' | translate) 
+          : ('CONFIRM_ACCOUNT_DETAILS.STEP_2' | translate)}}</div>
         <div class="page-title">{{navigationType ? ('CONFIRM_ACCOUNT_DETAILS.EDIT_TITLE' | translate) 
           : ('CONFIRM_ACCOUNT_DETAILS.TITLE' | translate)}}</div>
       </div>
@@ -126,8 +127,8 @@
             <div class="text-center mt15">
               <button type="button" id="personalInforNextBtn" (click)="goToNext(fundingAccountDetailsForm)"
                 class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-                [disabled]="!fundingAccountDetailsForm.valid" id="getStrdBtn3">{{
-                  'CONFIRM_ACCOUNT_DETAILS.CONTINUE' | translate}}</button>
+                [disabled]="!fundingAccountDetailsForm.valid" id="getStrdBtn3">{{ navigationType ? ('CONFIRM_ACCOUNT_DETAILS.SAVE' | translate)
+                  : ('CONFIRM_ACCOUNT_DETAILS.CONTINUE' | translate)}}</button>
             </div>
           </form>
         </div>
