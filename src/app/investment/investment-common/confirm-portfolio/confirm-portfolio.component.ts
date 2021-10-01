@@ -126,9 +126,9 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   getPortfolioDetails() {
     let apiCall = this.investmentAccountService.getPortfolioAllocationDetailsWithAuth();
+    let majorHolderData = this.investmentEngagementJourneyService.getMajorSecondaryHolderData();
+    let minorHolderData = this.investmentEngagementJourneyService.getMinorSecondaryHolderData();
     if (this.checkIfJointAccount()) {
-      const majorHolderData = this.investmentEngagementJourneyService.getMajorSecondaryHolderData();
-      const minorHolderData = this.investmentEngagementJourneyService.getMinorSecondaryHolderData();
       let jaAccountId;
       if (majorHolderData && majorHolderData.jaAccountId) {
         jaAccountId = majorHolderData.jaAccountId;
@@ -140,6 +140,14 @@ export class ConfirmPortfolioComponent implements OnInit {
     apiCall.subscribe((data) => {
       if (data.objectList && data.objectList.enquiryId) { /* Overwriting enquiry id */
         this.authService.saveEnquiryId(data.objectList.enquiryId);
+      }
+      if(majorHolderData) {
+        majorHolderData.customerPortfolioId = data.objectList.customerPortfolioId;
+        this.investmentEngagementJourneyService.setMajorSecondaryHolderData(majorHolderData);
+      }
+      if(minorHolderData) {
+        minorHolderData.customerPortfolioId = data.objectList.customerPortfolioId;
+        this.investmentEngagementJourneyService.setMinorSecondaryHolderData(minorHolderData);
       }
       this.portfolio = data.objectList;
       this.investmentCommonService.setPortfolioType(this.portfolio.portfolioType)
@@ -369,6 +377,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   // accept or decline from dashboard
   acceptAndGetPortfolioDetails(customerPortfolioId) {
     this.investmentCommonService.acceptAndGetPortfolioDetails(customerPortfolioId).subscribe((data) => {
+      // if response code 6000 follow below code else show error modal
         if (data.objectList && data.objectList.enquiryId) { /* Overwriting enquiry id */
           this.authService.saveEnquiryId(data.objectList.enquiryId);
         }
