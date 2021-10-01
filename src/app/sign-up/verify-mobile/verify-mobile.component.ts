@@ -67,6 +67,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   roleTwoFAEnabled: boolean;
   redirectAfterLogin = '';
   retrySecondsLeft: any;
+  retrySeconds = 's';
 
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
