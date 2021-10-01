@@ -123,9 +123,10 @@ app-confirm-withdrawal {
 
   .note-info {
     @extend .flex;
-    font-size: 13px;
+    font-size: 14px;
     letter-spacing: -0.11px;
     align-items: center;
+    font-family: $muli-semi-bold;
 
     u {
       font-family: $muli-bold;

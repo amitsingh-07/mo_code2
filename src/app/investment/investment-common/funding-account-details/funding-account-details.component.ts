@@ -35,6 +35,7 @@ import { Util } from '../../../shared/utils/util';
 })
 export class FundingAccountDetailsComponent implements OnInit {
   pageTitle: string;
+  editPageTitle: string;
   fundingAccountDetailsForm: FormGroup;
   formValues;
   investmentAccountFormValues;
@@ -64,10 +65,17 @@ export class FundingAccountDetailsComponent implements OnInit {
     public investmentAccountService: InvestmentAccountService,
     public manageInvestmentsService: ManageInvestmentsService
   ) {
+    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_COMMON_ROUTES.EDIT_FUNDING_ACCOUNT_DETAILS, 
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('Confirm Account Details');
-      this.setPageTitle(this.pageTitle);
+      this.pageTitle = this.translate.instant('CONFIRM_ACCOUNT_DETAILS.TITLE');
+      this.editPageTitle = this.translate.instant('CONFIRM_ACCOUNT_DETAILS.EDIT_TITLE');
+      if (this.navigationType) {
+        this.setPageTitle(this.editPageTitle);
+      } else {
+        this.setPageTitle(this.pageTitle);
+      }
     });
     this.userPortfolioType = investmentEngagementJourneyService.getUserPortfolioType();
     this.isJAEnabled = (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID);
@@ -88,8 +96,6 @@ export class FundingAccountDetailsComponent implements OnInit {
       (this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.FOUR_PERCENT
         || this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.EIGHT_PERCENT)) || (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID);
     this.getSrsAccDetailsAndOptionListCol();
-    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_COMMON_ROUTES.EDIT_FUNDING_ACCOUNT_DETAILS, 
-      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
   }
 
   getSrsAccDetailsAndOptionListCol() {

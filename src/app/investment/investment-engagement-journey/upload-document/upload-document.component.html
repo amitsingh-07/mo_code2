@@ -8,7 +8,8 @@
     <div class="content">
       <div class="row">
         <div class="col-md-6 hidden-sm-md">
-          <h2>{{'UPLOAD_DOCUMENTS.PAGE_TITLE' | translate}}</h2>
+          <h2>{{navigationType ? ('UPLOAD_DOCUMENTS.EDIT_PAGE_TITLE' | translate) 
+            : ('UPLOAD_DOCUMENTS.PAGE_TITLE' | translate)}}</h2>
           <div class="banner-image">
             <img src="assets/images/investment-account/secondary-holder-banner.svg" />
           </div>
@@ -170,7 +171,8 @@
               <div  class="text-center">
                 <button type="button" id="uploadDocumentNextBtn" [disabled]="!uploadForm.valid"
                   (click)="goToNext(uploadForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-                  id="uploadDocument_submit_btn">{{ 'UPLOAD_DOCUMENTS.CONTINUE' | translate}}</button>
+                  id="uploadDocument_submit_btn">{{ navigationType ? ('UPLOAD_DOCUMENTS.SAVE' | translate) 
+                  : ('UPLOAD_DOCUMENTS.CONTINUE' | translate)}}</button>
               </div>
             </div>
           </div>
