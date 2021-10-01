@@ -11,6 +11,7 @@ import { HeaderService } from '../../../shared/header/header.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
+import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { InvestmentAccountCommon } from '../investment-account-common';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
@@ -50,7 +51,8 @@ export class TaxInfoComponent implements OnInit {
     private router: Router,
     private investmentAccountService: InvestmentAccountService,
     private modal: NgbModal,
-    public readonly translate: TranslateService
+    public readonly translate: TranslateService,
+    private investmentEngagementService: InvestmentEngagementJourneyService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
@@ -179,7 +181,7 @@ export class TaxInfoComponent implements OnInit {
           'tinNumber',
           new FormControl('', [
             Validators.required,
-            this.validateTin.bind(this)
+            this.investmentEngagementService.validateTin.bind(this)
           ])
         );
         formgroup.controls.tinNumber.setValue(data);
@@ -253,40 +255,6 @@ export class TaxInfoComponent implements OnInit {
   }
   hasDuplicates(array) {
     return new Set(array).size !== array.length;
-  }
-
-  validateTin(control: AbstractControl) {
-    const value = control.value;
-    let isValidTin;
-    if (value) {
-      if (control && control.parent && control.parent.controls && control.parent.controls['taxCountry'].value) {
-        const countryCode = control.parent.controls['taxCountry'].value.countryCode;
-        switch (countryCode) {
-          case INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_COUNTRY_CODE:
-            isValidTin = this.investmentAccountCommon.isValidNric(value);
-            break;
-          case INVESTMENT_ACCOUNT_CONSTANTS.MALAYSIA_COUNTRY_CODE:
-            isValidTin = new RegExp(RegexConstants.MalaysianTin).test(value);
-            break;
-          case INVESTMENT_ACCOUNT_CONSTANTS.INDONESIA_COUNTRY_CODE:
-            isValidTin = new RegExp(RegexConstants.IndonesianTin).test(value);
-            break;
-          case INVESTMENT_ACCOUNT_CONSTANTS.INDIA_COUNTRY_CODE:
-            isValidTin = new RegExp(RegexConstants.IndianTin).test(value);
-            break;
-          case INVESTMENT_ACCOUNT_CONSTANTS.CHINA_COUNTRY_CODE:
-            isValidTin = new RegExp(RegexConstants.ChineseTin).test(value);
-            break;
-          default:
-            isValidTin = true;
-            break;
-        }
-      }
-      if (!isValidTin) {
-        return { tinFormat: true };
-      }
-    }
-    return null;
   }
 
   setDefaultTinNoAndPlaceholder(taxInfoItem, data) {
