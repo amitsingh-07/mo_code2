@@ -24,6 +24,7 @@ import { InvestmentCommonService } from '../investment-common.service';
 export class ConfirmWithdrawalComponent implements OnInit {
 
   pageTitle: string;
+  editPageTitle: string;
   withdrawalAccountForm: FormGroup;
   banks: any;
   accountNumberCharCount = 0;
@@ -45,10 +46,17 @@ export class ConfirmWithdrawalComponent implements OnInit {
     private investmentEngagementService: InvestmentEngagementJourneyService,
     private investmentCommonService: InvestmentCommonService,
   ) {
+    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_COMMON_ROUTES.EDIT_WITHDRAWAL, 
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('CONFIRM_WITHDRAWAL.PAGE_TITLE');
-      this.setPageTitle(this.pageTitle);
+      this.editPageTitle = this.translate.instant('CONFIRM_WITHDRAWAL.EDIT_PAGE_TITLE');
+      if (this.navigationType) {
+        this.setPageTitle(this.editPageTitle);
+      } else {
+        this.setPageTitle(this.pageTitle);
+      }
     });
     this.userProfileInfo = signUpService.getUserProfileInfo();
     this.customerPortfolioId = this.investmentAccountService.getCustomerPortfolioId();
@@ -63,8 +71,6 @@ export class ConfirmWithdrawalComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
-    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_COMMON_ROUTES.EDIT_WITHDRAWAL, 
-      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
   }
 
   setPageTitle(title: string) {

@@ -403,8 +403,10 @@
   },
   "SECONDARY_HOLDER": {
     "PAGE_TITLE": "Add Secondary Holder",
+    "EDIT_PAGE_TITLE": "Edit Secondary Holder",
     "PAGE_LBL": "What is the age of secondary holder?",
     "CONTINUE": "Continue",
+    "SAVE": "Save",
     "blockedCountry": {
       "error_title": "Oops, Unable To Proceed",
       "unitedStatesPRYes": "Due to compliance issues, MoneyOwl is unable to accept customers who are US Citizens, Permanent Residents or Tax Residents.",
@@ -469,7 +471,7 @@
         "TAX_MODEL_TITLE": "Taxpayer Identification No.",
         "TAX_MODEL_DESC": "<p>For Singapore Tax Residents, please note that your NRIC/FIN No. is your Taxpayer Identification No.</p><p>Taxpayer Identification No. is a personal tax account number that has been assigned to you by the country that you are a tax resident of. For more information, please refer to <a  class=\"hyperlink_color\" target='_blank' href='http://www.oecd.org'>http://www.oecd.org</a>.</p>",
         "COUNTRY_TEXT": "Country Of Tax Residence",
-        "TIN_QUESTION": "Do you have a Taxpayer Identification Number (TIN) for the above country?",
+        "TIN_QUESTION": "Does secondary holder have a Taxpayer Identification Number (TIN) for the above country?",
         "YES_lABEL": "Yes",
         "NO_LABEL": "No",
         "REASON_TEXT": "Reason",
@@ -493,6 +495,7 @@
   },
   "UPLOAD_DOCUMENTS": {
     "PAGE_TITLE": "Add Secondary Holder",
+    "EDIT_PAGE_TITLE": "Edit Secondary Holder",
     "TITLE": "Upload Document",
     "INFO": "The doctrine of survivorship shall apply to accounts opened in joint names of more than one person. For more information refer to <a href='https://www.moneyowl.com.sg/faq-investment/#investment|3'>FAQ</a>",
     "PAGE_SUB_CAPTION": "Help us verify your identity and prevent fraud.",
@@ -517,6 +520,7 @@
     "SUPPORTED_FILES": "pdf, jpg, jpeg, png, gif, bmp",
     "VERIFICATION_DOC": "Verification Document",
     "CONTINUE": "Continue",
+    "SAVE": "Save",
     "DROP_DOWN_TITLE" : "Select Document",
     "MODAL": {
       "UPLOADING_LOADER": {

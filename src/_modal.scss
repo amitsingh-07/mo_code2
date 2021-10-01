@@ -1382,6 +1382,15 @@ body.modal-open::-webkit-scrollbar {
   }
 }
 
+.minor-tax-tooltip {
+  .hyperlink_color {
+    color: $orange-color;
+    &:hover {
+      color: $orange-color;
+    }
+  }
+}
+
 .limited-width{
   .modal-body {
     width: 375px !important;
