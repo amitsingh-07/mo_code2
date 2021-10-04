@@ -141,7 +141,15 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   }
 
   getCustomerPortfolioDetailsById(customerPortfolioId) {
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.loaderService.showLoader({
+        title: this.translate.instant('YOUR_PORTFOLIO.MODAL.INVESTMENT_OVERVIEW.TITLE'),
+        desc: this.translate.instant('YOUR_PORTFOLIO.MODAL.INVESTMENT_OVERVIEW.MESSAGE'),
+        autoHide: false
+      });
+    });
     this.manageInvestmentsService.getCustomerPortfolioDetailsById(customerPortfolioId).subscribe((data) => {
+      this.loaderService.hideLoaderForced();
       this.portfolio = data.objectList;
       this.nextPayoutLabel = (this.portfolio && this.portfolio.nextPayoutOrReinvestMonth) ? this.portfolio.nextPayoutOrReinvestMonth : '';
       this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);

@@ -148,6 +148,11 @@ export class AddSecondaryHolderComponent implements OnInit {
     let apiCalls = [];
     apiCalls.push(this.investmentAccountService.getAllDropDownList());
     apiCalls.push(this.investmentAccountService.getNationalityCountryList());
+    this.loaderService.showLoader({
+      title: this.translate.instant('LOADER_MESSAGES.LOADING.TITLE'),
+      desc: this.translate.instant('LOADER_MESSAGES.LOADING.MESSAGE'),
+      autoHide: false
+    });
     forkJoin(apiCalls).subscribe(results => {
       this.setDropdownLists(results[0]);
       this.getNationalityCountriesList(results[1]);
@@ -156,6 +161,8 @@ export class AddSecondaryHolderComponent implements OnInit {
         if (this.routeParams && this.routeParams.get('customerPortfolioId')) {
           this.customerPortfolioId = this.routeParams.get('customerPortfolioId');
           this.verifyCall(this.customerPortfolioId);
+        } else {
+          this.loaderService.hideLoaderForced();
         }
       });
     });
@@ -218,7 +225,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   showBlockedCountryErrorMessage(modalTitle: any, modalMessage: any) {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true , windowClass: 'limited-width' });
     ref.componentInstance.errorTitle = modalTitle;
     ref.componentInstance.errorMessage = modalMessage;
   }
@@ -242,6 +249,10 @@ export class AddSecondaryHolderComponent implements OnInit {
     if (nationality.blocked) {
       this.showBlockedCountryErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.blockedCountryMessage);
       this.secondaryHolderMinorForm.removeControl('singaporeanResident');
+    } else if (nationality.nationalityCode.indexOf('US') >= 0) {
+      this.secondaryHolderMinorForm.removeControl('unitedStatesResident');
+      this.showErrorMessage(this.blockedCountryModal.error_title,
+        this.blockedCountryModal.unitedStatesPRYes);
     } else {
       if (!this.isNationalitySingapore()) {
         this.secondaryHolderMinorForm.addControl(
@@ -331,7 +342,7 @@ export class AddSecondaryHolderComponent implements OnInit {
     if (this.secondaryHolderMinorForm.valid) {
       if (this.secondaryHolderMinorForm.value.nationality?.blocked) {
         this.showBlockedCountryErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.blockedCountryMessage);
-      } else if (this.secondaryHolderMinorForm.value.unitedStatesResident) {
+      } else if (this.secondaryHolderMinorForm.value.nationality?.nationalityCode.indexOf('US') >= 0 || this.secondaryHolderMinorForm.value.unitedStatesResident) {
         this.showErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.unitedStatesPRYes);
       } else if (!Util.isEmptyOrNull(this.investmentEngagementService.validateMaximumAge(this.secondaryHolderMinorForm.controls['dob']))) {
         const error = this.investmentEngagementService.getSecondaryHolderFormError('dob');
@@ -411,7 +422,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   showHelpModal() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'major-tooltip' });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'major-tooltip limited-width' });
     ref.componentInstance.errorTitle = this.helpData.modalTitle;
     ref.componentInstance.errorDescription = this.helpData.modalDesc;
     return false;
@@ -457,7 +468,11 @@ export class AddSecondaryHolderComponent implements OnInit {
       'passportExpiry', new FormControl(passportExpiry ? passportExpiry : '', [Validators.required, this.investmentEngagementService.validateExpiry])
     );
     this.secondaryHolderMinorForm.addControl(
-      'passportIssuedCountry', new FormControl(passportIssuedCountry ? passportIssuedCountry : {}, [Validators.required])
+      'passportIssuedCountry', new FormControl(passportIssuedCountry ?
+        passportIssuedCountry
+        : this.investmentEngagementService.getCountryFromCountryCode(
+          this.secondaryHolderMinorForm.value.nationality?.nationalityCode, this.countryList),
+        [Validators.required])
     );
   }
 
@@ -661,7 +676,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   showHelpModalTinNumber() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'minor-tax-tooltip' });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'minor-tax-tooltip limited-width' });
     ref.componentInstance.errorTitle = this.taxInfoModal.TAX_MODEL_TITLE;
     // tslint:disable-next-line:max-line-length
     ref.componentInstance.errorDescription = this.taxInfoModal.TAX_MODEL_DESC;
@@ -701,6 +716,7 @@ export class AddSecondaryHolderComponent implements OnInit {
 
   verifyCall(customerPortfolioId) {
     this.investmentEngagementService.getVerifyDetails(Number(customerPortfolioId), INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.VERIFY).subscribe(resp => {
+      this.loaderService.hideLoaderForced();
       if (resp.responseMessage.responseCode === 6000) {
         this.secondaryHolderMajorFormValues = null;
         this.secondaryHolderMinorFormValues = null;
@@ -788,55 +804,36 @@ export class AddSecondaryHolderComponent implements OnInit {
 
           if (this.checkSingaporeNationality()) {
             this.secondaryHolderMinorForm.addControl('isSingaporean', new FormControl(true));
-            this.secondaryHolderMinorForm.addControl(
-              'nricNumber', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.nricNumber, [Validators.required, this.investmentEngagementService.validateNric.bind(this)])
-            );
-
-            this.secondaryHolderMinorForm.addControl(
-              'issuedCountry', new FormControl('', [Validators.required])
-            );
-            if (this.countryList) {
-              const issuedCountryId = this.verifyApplicantData.minorSecondaryHolderSummary.passportIssuedCountryId;
-              const issuedCountry = this.countryList.find(x => x.id == issuedCountryId);
-              this.secondaryHolderMinorForm.controls.issuedCountry.setValue(issuedCountry);
-            }
-
-            this.secondaryHolderMinorForm.addControl(
-              'relationship', new FormControl('', [Validators.required])
-            );
-            if (this.minorSGRelationships) {
-              const relationshipId = this.verifyApplicantData.secondaryHolderRelationshipId;
-              const relationship = this.minorSGRelationships.find(x => x.id == relationshipId);
-              this.secondaryHolderMinorForm.controls.relationship.setValue(relationship);
-            }
+            this.setSingaporeanData();
           } else {
             this.secondaryHolderMinorForm.addControl('isSingaporean', new FormControl(false));
+            this.secondaryHolderMinorForm.addControl(
+              'singaporeanResident', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.singaporePR, Validators.required)
+            );
             if (this.checkSingaporeResident()) {
+              this.setSingaporeanData();
+            } else {
+              if (this.minorForeignerRelationships) {
+                const relationshipId = this.verifyApplicantData.secondaryHolderRelationshipId;
+                const relationship = this.minorForeignerRelationships.find(x => x.id == relationshipId);
+                this.secondaryHolderMinorForm.addControl(
+                  'relationship', new FormControl(relationship, [Validators.required])
+                );
+              }
               this.secondaryHolderMinorForm.addControl(
-                'singaporeanResident', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.singaporePR, Validators.required)
+                'passportNumber', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.passportNumber, Validators.required)
               );
-            }
-
-            if (this.minorForeignerRelationships) {
-              const relationshipId = this.verifyApplicantData.secondaryHolderRelationshipId;
-              const relationship = this.minorForeignerRelationships.find(x => x.name == relationshipId);
+              let passportExpiryDate = this.investmentEngagementService.convertStringToDateObj(this.verifyApplicantData.minorSecondaryHolderSummary.passportExpiryDate);
               this.secondaryHolderMinorForm.addControl(
-                'relationship', new FormControl(relationship, [Validators.required])
+                'passportExpiry', new FormControl(passportExpiryDate, [Validators.required, this.investmentEngagementService.validateExpiry])
               );
-            }
-            this.secondaryHolderMinorForm.addControl(
-              'passportNumber', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.passportNumber, Validators.required)
-            );
-            let passportExpiryDate = this.investmentEngagementService.convertStringToDateObj(this.verifyApplicantData.minorSecondaryHolderSummary.passportExpiryDate);
-            this.secondaryHolderMinorForm.addControl(
-              'passportExpiry', new FormControl(passportExpiryDate, [Validators.required, this.investmentEngagementService.validateExpiry])
-            );
-            if (this.countryList) {
-              const issuedCountryId = this.verifyApplicantData.minorSecondaryHolderSummary.passportIssuedCountry;
-              const issuedCountry = this.countryList.find(x => x.name == issuedCountryId);
-              this.secondaryHolderMinorForm.addControl(
-                'passportIssuedCountry', new FormControl(issuedCountry, [Validators.required])
-              );
+              if (this.countryList) {
+                const issuedCountryId = this.verifyApplicantData.minorSecondaryHolderSummary.passportIssuedCountryId;
+                const issuedCountry = this.countryList.find(x => x.id == issuedCountryId);
+                this.secondaryHolderMinorForm.addControl(
+                  'passportIssuedCountry', new FormControl(issuedCountry, [Validators.required])
+                );
+              }
             }
           }
         }
@@ -844,6 +841,29 @@ export class AddSecondaryHolderComponent implements OnInit {
     });
   }
 
+  setSingaporeanData() {
+    this.secondaryHolderMinorForm.addControl(
+      'nricNumber', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.nricNumber, [Validators.required, this.investmentEngagementService.validateNric.bind(this)])
+    );
+
+    this.secondaryHolderMinorForm.addControl(
+      'issuedCountry', new FormControl('', [Validators.required])
+    );
+    if (this.countryList) {
+      const issuedCountryId = this.verifyApplicantData.minorSecondaryHolderSummary.passportIssuedCountryId;
+      const issuedCountry = this.countryList.find(x => x.id == issuedCountryId);
+      this.secondaryHolderMinorForm.controls.issuedCountry.setValue(issuedCountry);
+    }
+
+    this.secondaryHolderMinorForm.addControl(
+      'relationship', new FormControl('', [Validators.required])
+    );
+    if (this.minorSGRelationships) {
+      const relationshipId = this.verifyApplicantData.secondaryHolderRelationshipId;
+      const relationship = this.minorSGRelationships.find(x => x.id == relationshipId);
+      this.secondaryHolderMinorForm.controls.relationship.setValue(relationship);
+    }
+  }
   checkSingaporeNationality() {
     return this.verifyApplicantData.minorSecondaryHolderSummary.nationalityCode != null &&
       this.verifyApplicantData.minorSecondaryHolderSummary.nationalityCode == INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_NATIONALITY_CODE

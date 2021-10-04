@@ -378,5 +378,11 @@
       "BANK_NAME_TEXT": "Bank Name",
       "ACCOUNT_NUMBER_TEXT": "Account No."
     }
+  },
+  "LOADER_MESSAGES": {
+    "LOADING": {
+      "TITLE": "Loading.",
+      "MESSAGE": "Please wait."
+    }
   }
 }

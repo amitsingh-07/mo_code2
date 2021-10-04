@@ -205,6 +205,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
       name: this.userProfileInfo.firstName,
       total: this.totalPortfolio
     };
+    this.manageInvestmentsService.setJointAccountUser(this.investmentoverviewlist.jauser);
     this.manageInvestmentsService.setUserPortfolioList(this.portfolioList);
     if (this.investmentoverviewlist.cashAccountDetails) {
       this.manageInvestmentsService.setUserCashBalance(

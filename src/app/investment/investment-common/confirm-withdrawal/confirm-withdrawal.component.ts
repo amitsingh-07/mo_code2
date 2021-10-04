@@ -14,6 +14,7 @@ import { InvestmentEngagementJourneyService } from '../../investment-engagement-
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import { INVESTMENT_COMMON_ROUTES, INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { InvestmentCommonService } from '../investment-common.service';
+import { LoaderService } from '../../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-confirm-withdrawal',
@@ -45,6 +46,7 @@ export class ConfirmWithdrawalComponent implements OnInit {
     public manageInvestmentsService: ManageInvestmentsService,
     private investmentEngagementService: InvestmentEngagementJourneyService,
     private investmentCommonService: InvestmentCommonService,
+    private loaderService: LoaderService
   ) {
     this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_COMMON_ROUTES.EDIT_WITHDRAWAL, 
       INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
@@ -115,7 +117,13 @@ export class ConfirmWithdrawalComponent implements OnInit {
   }
 
   getOptionList() {
+    this.loaderService.showLoader({
+      title: this.translate.instant('LOADER_MESSAGES.LOADING.TITLE'),
+      desc: this.translate.instant('LOADER_MESSAGES.LOADING.MESSAGE'),
+      autoHide: false
+    });
     this.manageInvestmentsService.getAllDropDownList().subscribe((data) => {
+      this.loaderService.hideLoaderForced();
       this.banks = data.objectList.bankList;
     },
       (err) => {
