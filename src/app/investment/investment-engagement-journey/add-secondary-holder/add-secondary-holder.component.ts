@@ -225,7 +225,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   showBlockedCountryErrorMessage(modalTitle: any, modalMessage: any) {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true , windowClass: 'limited-width' });
     ref.componentInstance.errorTitle = modalTitle;
     ref.componentInstance.errorMessage = modalMessage;
   }
@@ -422,7 +422,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   showHelpModal() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'major-tooltip' });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'major-tooltip limited-width' });
     ref.componentInstance.errorTitle = this.helpData.modalTitle;
     ref.componentInstance.errorDescription = this.helpData.modalDesc;
     return false;
@@ -676,7 +676,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   showHelpModalTinNumber() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'minor-tax-tooltip' });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'minor-tax-tooltip limited-width' });
     ref.componentInstance.errorTitle = this.taxInfoModal.TAX_MODEL_TITLE;
     // tslint:disable-next-line:max-line-length
     ref.componentInstance.errorDescription = this.taxInfoModal.TAX_MODEL_DESC;

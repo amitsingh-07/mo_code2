@@ -5,11 +5,14 @@ app-select-portfolio-type {
      &.col-md-6{
        padding: 0 20px;
        @include allmobiles{
-         padding: 0 15px;
+         padding: 0 10px;
        }
        @include min568max767{
         padding-top: 40px;
-      }
+       }
+       @include tablet{
+        padding: 0;
+       }
      }
   }
   h6 {
@@ -45,12 +48,18 @@ app-select-portfolio-type {
       @include min568max767{
         margin: 10px auto 0;
       }
+      @include allmobiles{
+        margin-right: 8.5px;
+      }
     }
 
     &:nth-child(2) input[type="radio"] + label {
       margin-left: 4.5px;
       @include min568max767{
         margin: 10px auto 0;
+      }
+      @include allmobiles{
+        margin-left: 8.5px;
       }
     }
     input[type="radio"] + label,
@@ -75,6 +84,9 @@ app-select-portfolio-type {
       }
       @include min400max425{
         max-width: 164px;
+      }
+      @include tablet{
+        padding: 20px 14px;
       }
 
       .input-label-white {

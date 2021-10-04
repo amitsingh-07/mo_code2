@@ -132,7 +132,7 @@ app-add-secondary-holder {
         align-items: flex-start;
         .flex-col-11 {
           line-height: normal;
-          padding: 0 10px 0 15px;
+          padding: 0 0 0 15px;
 
           .desc-sub-lbl {
             letter-spacing: -0.11px;
@@ -179,7 +179,7 @@ app-add-secondary-holder {
           width: 18px;
           cursor: pointer;
           display: inline-block;
-          margin: 5px 0 0 8px;
+          margin: 5px 0 0 -5px;
         }
 
         .flex-row {
@@ -281,6 +281,8 @@ app-add-secondary-holder {
           margin-top: 12px;
           margin-bottom: 12px;
           color: $teal-color;
+          letter-spacing: -0.3px;
+          line-height: normal;
         }
 
         .add-tax-box {
@@ -383,6 +385,7 @@ app-add-secondary-holder {
 
             .tax-country-label {
               color: $teal-color;
+              max-width: 100px;
             }
           }
         }

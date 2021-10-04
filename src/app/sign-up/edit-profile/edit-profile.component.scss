@@ -76,6 +76,13 @@ app-edit-profile {
       .flex-row {
         padding: 0;
       }
+      hr {
+        margin: 20px 0;
+        border-top:0.5px solid $mailing-address-text-brdr-color;
+      }
+      div:not(:first-child) .flex-row:first-child  {
+        padding-top: 0;
+      }
     }
     &.singpass-login-block {
       font-family: $muli-regular;
@@ -367,7 +374,7 @@ app-edit-profile {
     font-size: 14px;
     letter-spacing: -0.26px;
     color: $silver-grey-color;
-    padding: 16px 0px 20px;
+    padding: 30px 0px 20px;
     text-decoration: none;
     a {
       font-family: $muli-bold-italic;
