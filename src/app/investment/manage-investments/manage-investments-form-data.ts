@@ -40,6 +40,9 @@ export class ManageInvestmentsFormData {
   transferTo: any;
   transferAmount: number;
   TransferAll: boolean;
+
+  //JA User
+  isJointAccountUser: boolean;
 }
 
 export interface IToastMessage {
