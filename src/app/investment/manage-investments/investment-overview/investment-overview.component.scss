@@ -323,6 +323,9 @@ app-investment-overview {
                     }               
                     .awaiting-list, .progress-list {
                         background-color: $awaiting-bg-color;
+                        @include allmobiles {
+                            font-family: $muli-semi-bold;
+                        }
                     }
                     .ja-investment {
                         font-size: 14px;
@@ -340,6 +343,9 @@ app-investment-overview {
                         padding: 7px 15px;
                         border: 0px;
                         min-width: 132px;
+                        @include allmobiles{
+                            width: 50% !important;
+                        }
                         @include min300max350{
                             min-width: 115px;
                         }
@@ -354,6 +360,9 @@ app-investment-overview {
                         padding: 7px 15px;
                         border: 0px;
                         min-width: 132px;
+                        @include allmobiles{
+                            width: 50% !important;
+                        }
                         @include min300max350{
                             min-width: 115px;
                         }
@@ -381,6 +390,9 @@ app-investment-overview {
                     .withdrawn-list, .expired-list {                        
                         background-color: $withdrawn-bg-color;
                         color: $black-color;
+                        @include allmobiles{
+                            font-family: $muli-semi-bold;
+                        }
                     }
                     .delete-btn  {
                         border-radius: 6px;
@@ -400,10 +412,16 @@ app-investment-overview {
                     .declined-list {                        
                         background-color: $withdrawn-bg-color;
                         color: $tuna-color;
+                        @include allmobiles{
+                            font-family: $muli-semi-bold;
+                        }
                     }
                     .verify-list {                        
                         background-color: $verify-bg-color;
                         color: $white-color;
+                        @include allmobiles{
+                            font-family: $muli-semi-bold;
+                        }
                     }
                     .verify-btn-align{
                         align-items: flex-end;
