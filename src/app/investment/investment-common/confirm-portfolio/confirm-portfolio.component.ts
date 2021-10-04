@@ -115,7 +115,7 @@ export class ConfirmPortfolioComponent implements OnInit {
             this.acceptAndGetPortfolioDetails(this.customerPortfolioId);
           }
         );
-    } else{
+    } else {
       this.getPortfolioDetails();
     }
   }
@@ -141,11 +141,11 @@ export class ConfirmPortfolioComponent implements OnInit {
       if (data.objectList && data.objectList.enquiryId) { /* Overwriting enquiry id */
         this.authService.saveEnquiryId(data.objectList.enquiryId);
       }
-      if(majorHolderData) {
+      if (majorHolderData) {
         majorHolderData.customerPortfolioId = data.objectList.customerPortfolioId;
         this.investmentEngagementJourneyService.setMajorSecondaryHolderData(majorHolderData);
       }
-      if(minorHolderData) {
+      if (minorHolderData) {
         minorHolderData.customerPortfolioId = data.objectList.customerPortfolioId;
         this.investmentEngagementJourneyService.setMinorSecondaryHolderData(minorHolderData);
       }
@@ -377,13 +377,15 @@ export class ConfirmPortfolioComponent implements OnInit {
   // accept or decline from dashboard
   acceptAndGetPortfolioDetails(customerPortfolioId) {
     this.investmentCommonService.acceptAndGetPortfolioDetails(customerPortfolioId).subscribe((data) => {
-      // if response code 6000 follow below code else show error modal
+      if (data.responseMessage.responseCode < 6000) {
+        this.showErrorModal();
+      } else {
         if (data.objectList && data.objectList.enquiryId) { /* Overwriting enquiry id */
           this.authService.saveEnquiryId(data.objectList.enquiryId);
         }
         this.portfolio = data.objectList;
         this.primaryHolderName = {
-            primaryName: this.portfolio?.primaryHolderName
+          primaryName: this.portfolio?.primaryHolderName
         };
         this.investmentCommonService.setPortfolioType(this.portfolio.portfolioType)
         this.investmentCommonService.setPortfolioDetails(this.portfolio);
@@ -420,6 +422,7 @@ export class ConfirmPortfolioComponent implements OnInit {
           accountNo: this.portfolio?.accountNo,
           nameOnAccount: this.portfolio?.accountName
         }
+      }
     });
   }
 
@@ -468,6 +471,9 @@ export class ConfirmPortfolioComponent implements OnInit {
       'PORTFOLIO_RECOMMENDATION.JOINT_ACCOUNT.API_FAILED.BUTTON_TEXT'
     );
     ref.componentInstance.primaryAction.subscribe(() => {
+      this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
+    });
+    ref.componentInstance.closeAction.subscribe(() => {
       this.router.navigate([MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_INVESTMENT]);
     });
   }
