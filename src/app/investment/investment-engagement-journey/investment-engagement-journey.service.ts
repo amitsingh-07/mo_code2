@@ -716,4 +716,16 @@ export class InvestmentEngagementJourneyService {
     }
     return null;
   }
+
+  // TO GET COUNTRY FROM COUNTRY CODE
+  getCountryFromCountryCode(countryCode, countryList) {
+    let country = '';
+    const selectedCountry = countryList.filter(
+      (countries) => countries.countryCode === countryCode
+    );
+    if (selectedCountry[0]) {
+      country = selectedCountry[0];
+    }
+    return country;
+  }
 }

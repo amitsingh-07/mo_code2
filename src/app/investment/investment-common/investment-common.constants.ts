@@ -87,7 +87,7 @@ export let INVESTMENT_COMMON_CONSTANTS = {
     },
     PORTFOLIO: [
       {
-        KEY: "WiseIncome R- 4.5 percent (Payout)",
+        KEY: "WiseIncome R - 4.5 percent (Payout) - Cash",
         VALUE: "WiseIncome - 4.5% p.a. Income Payout"
       },
       {
@@ -95,8 +95,12 @@ export let INVESTMENT_COMMON_CONSTANTS = {
         VALUE: "WiseIncome - Grow & Invest Payout"
       },
       {
-        KEY: "WiseIncome R1- 8 percent (Payout) Portfolio",
+        KEY: "WiseIncome R1 - 8 percent (Payout) - Cash",
         VALUE: "WiseIncome - 8% p.a. Income Payout"
+      },
+      {
+        KEY: "Wisesaver – Cash",
+        VALUE: "Wisesaver"
       }
     ],
     PROMO_CODE: {

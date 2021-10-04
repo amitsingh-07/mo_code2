@@ -210,6 +210,10 @@
   margin-right: 5px !important;
 }
 
+.ml5 {
+  margin-left: 5px !important;
+}
+
 .ml10 {
   margin-left: 10px !important;
 }
@@ -538,6 +542,10 @@ nouislider {
     position: inherit !important;
     min-width: 45%;
   }
+}
+
+.align-items-end{
+  align-items: flex-end !important;
 }
 
 .text-bold {

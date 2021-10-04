@@ -218,7 +218,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   showBlockedCountryErrorMessage(modalTitle: any, modalMessage: any) {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true , windowClass: 'limited-width' });
     ref.componentInstance.errorTitle = modalTitle;
     ref.componentInstance.errorMessage = modalMessage;
   }
@@ -242,6 +242,10 @@ export class AddSecondaryHolderComponent implements OnInit {
     if (nationality.blocked) {
       this.showBlockedCountryErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.blockedCountryMessage);
       this.secondaryHolderMinorForm.removeControl('singaporeanResident');
+    } else if (nationality.nationalityCode.indexOf('US') >= 0) {
+      this.secondaryHolderMinorForm.removeControl('unitedStatesResident');
+      this.showErrorMessage(this.blockedCountryModal.error_title,
+        this.blockedCountryModal.unitedStatesPRYes);
     } else {
       if (!this.isNationalitySingapore()) {
         this.secondaryHolderMinorForm.addControl(
@@ -331,7 +335,7 @@ export class AddSecondaryHolderComponent implements OnInit {
     if (this.secondaryHolderMinorForm.valid) {
       if (this.secondaryHolderMinorForm.value.nationality?.blocked) {
         this.showBlockedCountryErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.blockedCountryMessage);
-      } else if (this.secondaryHolderMinorForm.value.unitedStatesResident) {
+      } else if (this.secondaryHolderMinorForm.value.nationality?.nationalityCode.indexOf('US') >= 0 || this.secondaryHolderMinorForm.value.unitedStatesResident) {
         this.showErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.unitedStatesPRYes);
       } else if (!Util.isEmptyOrNull(this.investmentEngagementService.validateMaximumAge(this.secondaryHolderMinorForm.controls['dob']))) {
         const error = this.investmentEngagementService.getSecondaryHolderFormError('dob');
@@ -411,7 +415,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   showHelpModal() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'major-tooltip' });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'major-tooltip limited-width' });
     ref.componentInstance.errorTitle = this.helpData.modalTitle;
     ref.componentInstance.errorDescription = this.helpData.modalDesc;
     return false;
@@ -457,7 +461,11 @@ export class AddSecondaryHolderComponent implements OnInit {
       'passportExpiry', new FormControl(passportExpiry ? passportExpiry : '', [Validators.required, this.investmentEngagementService.validateExpiry])
     );
     this.secondaryHolderMinorForm.addControl(
-      'passportIssuedCountry', new FormControl(passportIssuedCountry ? passportIssuedCountry : {}, [Validators.required])
+      'passportIssuedCountry', new FormControl(passportIssuedCountry ?
+        passportIssuedCountry
+        : this.investmentEngagementService.getCountryFromCountryCode(
+          this.secondaryHolderMinorForm.value.nationality?.nationalityCode, this.countryList),
+        [Validators.required])
     );
   }
 
@@ -661,7 +669,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   showHelpModalTinNumber() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'minor-tax-tooltip' });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'minor-tax-tooltip limited-width' });
     ref.componentInstance.errorTitle = this.taxInfoModal.TAX_MODEL_TITLE;
     // tslint:disable-next-line:max-line-length
     ref.componentInstance.errorDescription = this.taxInfoModal.TAX_MODEL_DESC;

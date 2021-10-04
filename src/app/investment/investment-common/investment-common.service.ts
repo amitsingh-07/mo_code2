@@ -169,6 +169,7 @@ export class InvestmentCommonService {
       const redirectURL = this.signUpService.getRedirectUrl();
       this.signUpService.clearRedirectUrl();
       this.router.navigate([redirectURL]);
+      return;
     }
     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
   }
