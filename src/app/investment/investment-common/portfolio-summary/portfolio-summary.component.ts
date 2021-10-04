@@ -152,11 +152,13 @@ export class PortfolioSummaryComponent implements OnInit {
         if (this.taxDetails && this.taxDetails.length > 1) {
           this.getTaxPrecendence();
         }
-        const portfolioIndex = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO.findIndex(x => x.KEY === this.summaryDetails.portfolio);
+        const portFolio = this.summaryDetails.portfolio;
+        const portfolioList = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO;
+        const portfolioIndex = portfolioList.findIndex(x => (portFolio && x.KEY.toUpperCase().replace(/\s/g, '') == portFolio.toUpperCase().replace(/\s/g, '')));
         if (portfolioIndex >= 0) {
-          this.portfolioDisplayName = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO[portfolioIndex].VALUE;
+          this.portfolioDisplayName = portfolioList[portfolioIndex].VALUE;
         } else {
-          this.portfolioDisplayName = this.summaryDetails.portfolio;
+          this.portfolioDisplayName = portFolio;
         }
         this.bankDetails = {
           bank: this.summaryDetails?.bankName,
