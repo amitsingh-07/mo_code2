@@ -539,5 +539,11 @@
   },
   "TOAST_MESSAGES": {
     "VERIFY_SUBMISSION": "Joint account verification details has been submitted."
+  },
+  "LOADER_MESSAGES": {
+    "LOADING": {
+      "TITLE": "Loading.",
+      "MESSAGE": "Please wait."
+    }
   }
 }
