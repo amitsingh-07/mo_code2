@@ -725,11 +725,9 @@ export class ManageInvestmentsService {
 
   isInvestAndJointAccount() {
     let isInvestAndJointAccountHolder = false;
-    this.manageInvestmentsFormData.userPortfolios.forEach(portfolio => {
-      if (portfolio.entitlements && portfolio.entitlements.jointAccount) {
-        isInvestAndJointAccountHolder = true;
-      }
-    });
+    if (this.manageInvestmentsFormData.isJointAccountUser) {
+      isInvestAndJointAccountHolder = true;
+    }
     return isInvestAndJointAccountHolder;
   }
   setActionByHolder(customerPortfolioId, jointAccountAction) {
@@ -738,5 +736,9 @@ export class ManageInvestmentsService {
       jointAccountAction: jointAccountAction      
     };
     return this.investmentApiService.setActionByHolder(payload);
+  }
+  setJointAccountUser(isJaUser: boolean) {
+    this.manageInvestmentsFormData.isJointAccountUser = isJaUser;
+    this.commit();
   }
 }
