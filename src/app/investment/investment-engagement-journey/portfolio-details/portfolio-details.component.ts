@@ -20,8 +20,6 @@ import {
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { FormatCurrencyPipe } from '../../../shared/Pipes/format-currency.pipe';
-import { SignUpApiService } from '../../../sign-up/sign-up.api.service';
-import { SIGN_UP_CONFIG } from '../../../sign-up/sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import {
@@ -33,16 +31,12 @@ import {
   INVESTMENT_COMMON_ROUTE_PATHS
 } from '../../investment-common/investment-common-routes.constants';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
-import {
-  MANAGE_INVESTMENTS_ROUTE_PATHS
-} from '../../manage-investments/manage-investments-routes.constants';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import {
   INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS
 } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { ProfileIcons } from '../recommendation/profileIcons';
-import { RiskProfile } from '../recommendation/riskprofile';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 
 @Component({
@@ -68,7 +62,6 @@ export class PortfolioDetailsComponent implements OnInit {
   wiseIncomeEnabled: boolean;
 
   constructor(
-    private signUpApiService: SignUpApiService,
     private appService: AppService,
     private router: Router,
     public headerService: HeaderService,

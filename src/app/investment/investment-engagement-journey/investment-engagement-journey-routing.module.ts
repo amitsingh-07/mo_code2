@@ -6,10 +6,10 @@ import { FundingMethodComponent } from './funding-method/funding-method.componen
 import { GetStartedStep1Component } from './get-started-step1/get-started-step1.component';
 import { GetStartedStep2Component } from './get-started-step2/get-started-step2.component';
 import {
-    InvestmentEngagementJourneyGuardService as InvestmentEngagementJourneyGuard
+  InvestmentEngagementJourneyGuardService as InvestmentEngagementJourneyGuard
 } from './investment-engagement-journey-guard.service';
 import {
-    INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES
+  INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES
 } from './investment-engagement-journey-routes.constants';
 import { InvestmentPeriodComponent } from './investment-period/investment-period.component';
 import { PortfolioDetailsComponent } from './portfolio-details/portfolio-details.component';
@@ -19,13 +19,14 @@ import { RiskWillingnessComponent } from './risk-willingness/risk-willingness.co
 import { StartJourneyComponent } from './start-journey/start-journey.component';
 import { YourFinancialsComponent } from './your-financials/your-financials.component';
 import {
-    YourInvestmentAmountComponent
+  YourInvestmentAmountComponent
 } from './your-investment-amount/your-investment-amount.component';
 import { RiskAcknowledgementComponent } from './risk-acknowledgement/risk-acknowledgement.component';
 import { WiseIncomePayoutComponent } from './wise-income-payout/wise-income-payout.component';
 import { AddSecondaryHolderComponent } from './add-secondary-holder/add-secondary-holder.component';
-import { UploadDocumentComponent} from './upload-document/upload-document.component';
+import { UploadDocumentComponent } from './upload-document/upload-document.component';
 import { AuthGuardService as AuthGuard } from '../../sign-up/auth-guard.service';
+
 const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.ROOT,
@@ -147,4 +148,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   declarations: []
 })
-export class InvestmentEngagementJourneyRoutingModule {}
+export class InvestmentEngagementJourneyRoutingModule { }

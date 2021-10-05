@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -10,7 +11,6 @@ import { AuthenticationService } from '../../../shared/http/auth/authentication.
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { AppService } from '../../../app.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import { appConstants } from '../../../app.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';

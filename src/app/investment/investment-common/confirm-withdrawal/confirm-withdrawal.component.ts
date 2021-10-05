@@ -48,7 +48,7 @@ export class ConfirmWithdrawalComponent implements OnInit {
     private investmentCommonService: InvestmentCommonService,
     private loaderService: LoaderService
   ) {
-    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_COMMON_ROUTES.EDIT_WITHDRAWAL, 
+    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_COMMON_ROUTES.EDIT_WITHDRAWAL,
       INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {

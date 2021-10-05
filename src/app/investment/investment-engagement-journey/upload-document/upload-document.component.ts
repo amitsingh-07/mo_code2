@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -51,7 +51,6 @@ export class UploadDocumentComponent implements OnInit {
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
     public readonly translate: TranslateService,
-    private formBuilder: FormBuilder,
     private router: Router,
     public headerService: HeaderService,
     private modal: NgbModal,
@@ -64,7 +63,7 @@ export class UploadDocumentComponent implements OnInit {
     private investmentCommonService: InvestmentCommonService,
     public manageInvestmentsService: ManageInvestmentsService
   ) {
-    this.navigationType =  this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.EDIT_JA_UPLOAD_DOCUMENT,
+    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.EDIT_JA_UPLOAD_DOCUMENT,
       INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -166,7 +165,7 @@ export class UploadDocumentComponent implements OnInit {
   getInlineErrorStatus(control) {
     return !control.pristine && !control.valid;
   }
-  
+
   setNestedDropDownValue(key, value, nestedKey) {
     this.uploadForm.controls[nestedKey]['controls'][key].setValue(value);
   }

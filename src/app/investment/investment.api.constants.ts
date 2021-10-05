@@ -2,7 +2,6 @@ const INVESTMENT_API_BASE_URL = 'svc/invest/investment-microservice/api';
 const ACCOUNT_API_BASE_URL = 'svc/account/account-microservice/api';
 
 
-
 export let investmentApiConstants = {
     endpoint: {
         portfolio: {
@@ -13,9 +12,9 @@ export let investmentApiConstants = {
             getFinancialDetails: INVESTMENT_API_BASE_URL + '/customer/getFinancialDetailsForInvestment',
             getAllocationDetails: INVESTMENT_API_BASE_URL + '/enquiries/$ENQUIRY_ID$/portfolios/recommend',
             getJAAllocationDetails: INVESTMENT_API_BASE_URL + '/enquiries/$ENQUIRY_ID$/portfolios/recommend?jointAccountId=$JA_ACCOUNT_ID$',
-            getWiseSaverValues : INVESTMENT_API_BASE_URL + '/bfaConfigurationListByKey',
-            getFundListMethod : INVESTMENT_API_BASE_URL + '/portfolio/$PORTFOLIO_TYPE_ID$/getFundList',
-            saveMajorSecondaryHolder : ACCOUNT_API_BASE_URL + '/jointAccount/validateAndSaveMajorSecondaryHolder',
+            getWiseSaverValues: INVESTMENT_API_BASE_URL + '/bfaConfigurationListByKey',
+            getFundListMethod: INVESTMENT_API_BASE_URL + '/portfolio/$PORTFOLIO_TYPE_ID$/getFundList',
+            saveMajorSecondaryHolder: ACCOUNT_API_BASE_URL + '/jointAccount/validateAndSaveMajorSecondaryHolder',
             acceptJAPortfolio: INVESTMENT_API_BASE_URL + '/secondary/customer/portfolio/$customerPortfolioId$/accept?handleError=true',
             setActionByHolder: INVESTMENT_API_BASE_URL + '/jointAccount/action?handleError=true',
             portfolioSummary: INVESTMENT_API_BASE_URL + '/customer/jointAccountPortfolios/$CUSTOMER_PORTFOLIO_ID$/summary'
