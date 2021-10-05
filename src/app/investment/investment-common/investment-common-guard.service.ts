@@ -20,7 +20,7 @@ export class InvestmentCommonGuardService implements CanActivate {
     private authService: AuthenticationService,
     private signUpService: SignUpService,
   ) { }
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  canActivate(activeRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.authService.isSignedUser()) {
       return this.investmentCommonService.getAccountCreationActions().pipe(map((data) => {
         if (data && INVESTMENT_COMMON_CONSTANTS.INVESTMENT_COMMON_GUARD.indexOf(data.accountCreationState) >= 0) {

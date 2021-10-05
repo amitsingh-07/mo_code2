@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -64,7 +64,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   readMore: any;
   wiseIncomePortfolio: any[];
   showBannerInfo = false;
-  wiseIncomeInfoMonth :any;
+  wiseIncomeInfoMonth: any;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -78,8 +78,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     public manageInvestmentsService: ManageInvestmentsService,
     private investmentAccountService: InvestmentAccountService,
     private signUpApiService: SignUpApiService,
-    private loaderService: LoaderService,
-    private route: ActivatedRoute
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -93,8 +92,8 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
           this.checkWiseIncomeStatus(wiseIncome.startTime, wiseIncome.endTime, wiseIncome.month);
         }
       });
-    });  
-   
+    });
+
   }
 
   setPageTitle(title: string) {
@@ -480,12 +479,12 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     if (Date.now() >= startDateTime.valueOf() && Date.now() <= endDateTime.valueOf()) {
       this.showBannerInfo = true;
       this.wiseIncomeInfo = this.wiseIncomeInfoMonth + month;
-    } 
+    }
   }
 
-  emitToastMessage($event) {    
+  emitToastMessage($event) {
     if ($event) {
-      this.getInvestmentOverview(true);      
+      this.getInvestmentOverview(true);
     } else {
       this.toastMsg = this.manageInvestmentsService.getToastMessage();
       this.showToastMessage();
@@ -493,7 +492,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   }
 
   emitMessage(event) {
-    if (event.action == MANAGE_INVESTMENTS_CONSTANTS.JOINT_ACCOUNT.REFRESH) {    
+    if (event.action == MANAGE_INVESTMENTS_CONSTANTS.JOINT_ACCOUNT.REFRESH) {
       this.getInvestmentOverview(false);
     }
   }
