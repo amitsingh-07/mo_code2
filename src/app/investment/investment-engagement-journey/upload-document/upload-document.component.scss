@@ -3,28 +3,35 @@
 
 app-upload-document {
   .upload-doc-nric {
-    .step-indicator-container {
-
-
-      .page-caption {
-        color: $text-color-secondary;
-        font-size: 16px;
-        font-family: $muli;
-        margin-bottom: 10px;
-        text-align: center;
+    .upload-form {
+      float: right;
+      @include allmobiles {
+        float: none;
       }
-
     }
-
-    .flex-col-5{
-      label{
+    .col-md-12 {
+      width: 367px;
+      @include allmobiles {
+        width: 100%;
+      }
+      .flex-row {
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+    .flex-col-5 {
+      label {
         font-family: $muli-semi-bold;
         letter-spacing: -0.3px;
         font-size: 16px;
-        padding-right: 10px;
+        @include allmobiles {
+          padding-right: 10px;
+        }
       }
     }
-
+    .flex-col-7 {
+      max-width: 188px;
+    }
 
     .doc-upload-instructions {
       background: $review-block-bg;
@@ -33,8 +40,9 @@ app-upload-document {
       margin-bottom: 21px;
       font-family: $muli-bold;
       line-height: 18px;
-      @include allmobiles{
+      @include allmobiles {
         font-family: $muli-regular;
+        background: $persian-dark-green-color;
       }
 
       .sub-title {
@@ -42,7 +50,7 @@ app-upload-document {
         letter-spacing: -0.3px;
         margin-bottom: 3px;
         font-family: $muli-bold;
-        @include allmobiles{
+        @include allmobiles {
           font-family: $muli-semi-bold;
         }
       }
@@ -56,7 +64,7 @@ app-upload-document {
           &:first-child {
             font-family: $muli-semi-bold;
             padding-right: 4px;
-            @include allmobiles{
+            @include allmobiles {
               font-family: $muli-regular;
             }
           }
@@ -90,8 +98,6 @@ app-upload-document {
         font-weight: 400;
         letter-spacing: -0.3px;
       }
-
-
     }
 
     .upload-doc {
@@ -109,11 +115,16 @@ app-upload-document {
         text-align: center;
         flex: 1;
         margin-right: 10px;
-        margin-bottom: 38px;
+        margin-bottom: 20px;
         cursor: pointer;
 
         @include desktop {
           min-height: 165px;
+        }
+
+        @include allmobiles {
+          border: 1px solid $fountain-blue-color;
+          margin-bottom: 34px;
         }
 
         &:last-child {
@@ -132,8 +143,11 @@ app-upload-document {
             }
 
             &.sub-text {
-              color: $upload-sub-title-desc-color;
+              color: $white-color;
               word-break: break-all;
+              @include allmobiles {
+                padding-top: 8px;
+              }
             }
           }
         }
@@ -154,15 +168,27 @@ app-upload-document {
 
           .thumb-close-icon {
             position: absolute;
-            padding: 1px 7px;
             border-radius: 100%;
             background-color: $white-color;
-            right: -25px;
-            top: -10px;
+            right: -10px;
+            top: -6px;
+            width: 23px;
+            height: 23px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @include allmobiles {
+              width: 16px;
+              height: 16px;
+            }
 
             img {
               width: 12px;
               height: 12px;
+              @include allmobiles{
+                width: 8px;
+                height: 8px;
+              }
             }
           }
         }
@@ -173,11 +199,15 @@ app-upload-document {
       font-family: $muli-bold !important;
     }
 
-    .title-small{
+    .title-small {
       font-family: $muli-semi-bold;
       font-size: 13px;
       max-width: 340px;
-      a{
+      margin: 0;
+      @include allmobiles {
+        margin-bottom: 16px;
+      }
+      a {
         color: $white-color;
         text-decoration: underline;
       }
