@@ -1,5 +1,5 @@
 import { Component, HostListener, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl, FormArray, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -22,9 +22,9 @@ import { INVESTMENT_COMMON_CONSTANTS } from './../../../investment/investment-co
 import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-investments-routes.constants';
-import { FooterService } from 'src/app/shared/footer/footer.service';
-import { HeaderService } from 'src/app/shared/header/header.service';
-import { NavbarService } from 'src/app/shared/navbar/navbar.service';
+import { FooterService } from '../../../shared/footer/footer.service';
+import { HeaderService } from '../../../shared/header/header.service';
+import { NavbarService } from '../../../shared/navbar/navbar.service';
 
 @Component({
   selector: 'app-add-secondary-holder',
@@ -225,7 +225,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   showBlockedCountryErrorMessage(modalTitle: any, modalMessage: any) {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true , windowClass: 'limited-width' });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'limited-width' });
     ref.componentInstance.errorTitle = modalTitle;
     ref.componentInstance.errorMessage = modalMessage;
   }

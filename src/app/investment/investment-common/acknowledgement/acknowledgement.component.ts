@@ -16,7 +16,6 @@ import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.const
   encapsulation: ViewEncapsulation.None
 })
 export class AcknowledgementComponent implements OnInit {
-  pageTitle: string;
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -26,14 +25,9 @@ export class AcknowledgementComponent implements OnInit {
     public footerService: FooterService,
     public readonly translate: TranslateService
   ) {
-    console.log("Acknowledgement component loaded");
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
-      this.pageTitle = this.translate.instant('ACKNOWLEDGEMENT.TITLE');
     });
-  }
-  setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
   }
 
   ngOnInit() {
