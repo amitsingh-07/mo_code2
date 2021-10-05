@@ -4,7 +4,6 @@ import { of as observableOf, Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { conformToMask } from 'text-mask-core';
 
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,8 +16,6 @@ import {
   TransferInstructionsModalComponent
 } from '../../shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import { SignUpService } from '../../sign-up/sign-up.service';
-import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
 import { InvestmentAccountService } from '../investment-account/investment-account-service';
 import { InvestmentApiService } from '../investment-api.service';
 import {
@@ -47,7 +44,6 @@ export class ManageInvestmentsService {
   userProfileInfo;
   formatedAccountNumber;
   private manageInvestmentsFormData: ManageInvestmentsFormData = new ManageInvestmentsFormData();
-  private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
   private topUPFormError: any = new TopUPFormError();
   private managementFormError: any = new ManageInvestmentsFormError();
   selectedPortfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.ALL;
@@ -55,7 +51,6 @@ export class ManageInvestmentsService {
 
   constructor(
     public readonly translate: TranslateService,
-    private http: HttpClient,
     private apiService: ApiService,
     private investmentApiService: InvestmentApiService,
     public authService: AuthenticationService,
@@ -63,7 +58,6 @@ export class ManageInvestmentsService {
     private investmentAccountService: InvestmentAccountService,
     private router: Router,
     private modal: NgbModal,
-    private signUpService: SignUpService,
     private promoCodeService: PromoCodeService
   ) {
     this.getAllDropDownList();
@@ -318,7 +312,7 @@ export class ManageInvestmentsService {
     request['accountName'] = data.accountHolderName;
     request['accountNumber'] = data.accountNo;
     if (data && data.id) {
-      request['id'] =  data.id;
+      request['id'] = data.id;
     }
     return request;
   }
@@ -733,7 +727,7 @@ export class ManageInvestmentsService {
   setActionByHolder(customerPortfolioId, jointAccountAction) {
     const payload = {
       customerPortfolioId: customerPortfolioId,
-      jointAccountAction: jointAccountAction      
+      jointAccountAction: jointAccountAction
     };
     return this.investmentApiService.setActionByHolder(payload);
   }

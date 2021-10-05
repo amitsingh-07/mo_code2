@@ -1,20 +1,18 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Util } from '../../shared/utils/util';
+import { AbstractControl } from '@angular/forms';
 
+import { Util } from '../../shared/utils/util';
 import { appConstants } from '../../app.constants';
 import { ApiService } from '../../shared/http/api.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-import { SignUpService } from '../../sign-up/sign-up.service';
 import { InvestmentApiService } from '../investment-api.service';
 import { InvestmentEngagementJourneyFormData } from './investment-engagement-journey-form-data';
 import { InvestmentEngagementJourneyFormErrors } from './investment-engagement-journey-form-errors';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from './investment-engagement-journey.constants';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account/investment-account.constant';
 import { PersonalInfo } from './investment-period/investment-period';
-import { AbstractControl } from '@angular/forms';
 import { InvestmentAccountCommon } from '../investment-account/investment-account-common';
-import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
 
 const PORTFOLIO_RECOMMENDATION_COUNTER_KEY = 'portfolio_recommendation-counter';
 const SESSION_STORAGE_KEY = 'app_engage_journey_session';
@@ -26,9 +24,7 @@ export class InvestmentEngagementJourneyService {
   private investmentEngagementJourneyFormErrors: any = new InvestmentEngagementJourneyFormErrors();
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
-    private http: HttpClient,
     private apiService: ApiService,
-    private signUpService: SignUpService,
     private investmentApiService: InvestmentApiService,
     public authService: AuthenticationService
   ) {
@@ -700,7 +696,7 @@ export class InvestmentEngagementJourneyService {
     return null;
   }
 
-   /* To Validate Minimum age of secondary holder */
+  /* To Validate Minimum age of secondary holder */
   validateMinimumAge(control: AbstractControl) {
     const value = control.value;
     if (control.value !== undefined && isNaN(control.value) && !(control.errors && control.errors.ngbDate)) {

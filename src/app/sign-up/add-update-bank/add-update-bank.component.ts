@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subject } from 'rxjs';
 
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
@@ -17,12 +18,10 @@ import {
 } from '../../shared/modal/ifast-error-modal/ifast-error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-add-update-bank',
@@ -96,39 +95,39 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
     });
 
     this.authService.get2faAuthEvent
-    .pipe(takeUntil(this.ngUnsubscribe))
-    .subscribe((token) => {
-      if (!token) {
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
-      }
-    });
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((token) => {
+        if (!token) {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+        }
+      });
 
     this.signUpService.getEditProfileInfo()
-    .pipe(takeUntil(this.ngUnsubscribe))
-    .subscribe((data) => {
-      if (data.objectList.customerBankDetail && data.objectList.customerBankDetail.length > 0) {
-        const bankDetails = data.objectList.customerBankDetail[0];
-        this.investmentAccountService.setEditProfileBankDetail(bankDetails.accountName, bankDetails.bank, bankDetails.accountNumber, bankDetails.id, false);
-        this.bankForm.patchValue({
-          accountHolderName: bankDetails.accountName,
-          bank: bankDetails.bank,
-          accountNo: bankDetails.accountNumber
-        });
-      }
-    });
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data) => {
+        if (data.objectList.customerBankDetail && data.objectList.customerBankDetail.length > 0) {
+          const bankDetails = data.objectList.customerBankDetail[0];
+          this.investmentAccountService.setEditProfileBankDetail(bankDetails.accountName, bankDetails.bank, bankDetails.accountNumber, bankDetails.id, false);
+          this.bankForm.patchValue({
+            accountHolderName: bankDetails.accountName,
+            bank: bankDetails.bank,
+            accountNo: bankDetails.accountNumber
+          });
+        }
+      });
 
     this.translate.get('ERROR').subscribe((results) => {
       this.authService.get2faErrorEvent
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((data) => {
-        if(data) {
-          this.authService.openErrorModal(
-            results.SESSION_2FA_EXPIRED.TITLE,
-            results.SESSION_2FA_EXPIRED.SUB_TITLE,
-            results.SESSION_2FA_EXPIRED.BUTTON
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe((data) => {
+          if (data) {
+            this.authService.openErrorModal(
+              results.SESSION_2FA_EXPIRED.TITLE,
+              results.SESSION_2FA_EXPIRED.SUB_TITLE,
+              results.SESSION_2FA_EXPIRED.BUTTON
             );
-        }
-      });
+          }
+        });
     });
   }
 
@@ -169,7 +168,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorTitle = error.title;
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
-    } else if(this.isEdit) {
+    } else if (this.isEdit) {
       this.isEdit = false;
       // tslint:disable-next-line:no-all-duplicated-branches
       if (this.addBank === 'true') {

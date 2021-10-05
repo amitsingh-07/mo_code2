@@ -8,13 +8,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 import {
   CurrencyInputPortfolioDirective
 } from '../../shared/directives/currency-input-p.directive';
 import { FormatCurrencyPipe } from '../../shared/Pipes/format-currency.pipe';
 import { SharedModule } from '../../shared/shared.module';
-import { SignUpService } from '../../sign-up/sign-up.service';
 import { FundingMethodComponent } from './funding-method/funding-method.component';
 import { GetStartedStep1Component } from './get-started-step1/get-started-step1.component';
 import { GetStartedStep2Component } from './get-started-step2/get-started-step2.component';
@@ -35,7 +35,6 @@ import {
 } from './your-investment-amount/your-investment-amount.component';
 import { SelectPortfolioComponent } from './select-portfolio/select-portfolio.component';
 import { RiskAcknowledgementComponent } from './risk-acknowledgement/risk-acknowledgement.component';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { WiseIncomePayoutComponent } from './wise-income-payout/wise-income-payout.component';
 import { SelectPortfolioTypeComponent } from './select-portfolio-type/select-portfolio-type.component';
 import { AddSecondaryHolderComponent } from './add-secondary-holder/add-secondary-holder.component';

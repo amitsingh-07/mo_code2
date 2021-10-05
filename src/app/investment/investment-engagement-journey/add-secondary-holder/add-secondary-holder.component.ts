@@ -1,5 +1,5 @@
 import { Component, HostListener, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl, FormArray, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -22,9 +22,9 @@ import { INVESTMENT_COMMON_CONSTANTS } from './../../../investment/investment-co
 import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../../manage-investments/manage-investments-routes.constants';
-import { FooterService } from 'src/app/shared/footer/footer.service';
-import { HeaderService } from 'src/app/shared/header/header.service';
-import { NavbarService } from 'src/app/shared/navbar/navbar.service';
+import { FooterService } from '../../../shared/footer/footer.service';
+import { HeaderService } from '../../../shared/header/header.service';
+import { NavbarService } from '../../../shared/navbar/navbar.service';
 
 @Component({
   selector: 'app-add-secondary-holder',
@@ -148,6 +148,11 @@ export class AddSecondaryHolderComponent implements OnInit {
     let apiCalls = [];
     apiCalls.push(this.investmentAccountService.getAllDropDownList());
     apiCalls.push(this.investmentAccountService.getNationalityCountryList());
+    this.loaderService.showLoader({
+      title: this.translate.instant('LOADER_MESSAGES.LOADING.TITLE'),
+      desc: this.translate.instant('LOADER_MESSAGES.LOADING.MESSAGE'),
+      autoHide: false
+    });
     forkJoin(apiCalls).subscribe(results => {
       this.setDropdownLists(results[0]);
       this.getNationalityCountriesList(results[1]);
@@ -156,6 +161,8 @@ export class AddSecondaryHolderComponent implements OnInit {
         if (this.routeParams && this.routeParams.get('customerPortfolioId')) {
           this.customerPortfolioId = this.routeParams.get('customerPortfolioId');
           this.verifyCall(this.customerPortfolioId);
+        } else {
+          this.loaderService.hideLoaderForced();
         }
       });
     });
@@ -218,7 +225,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   showBlockedCountryErrorMessage(modalTitle: any, modalMessage: any) {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true , windowClass: 'limited-width' });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'limited-width' });
     ref.componentInstance.errorTitle = modalTitle;
     ref.componentInstance.errorMessage = modalMessage;
   }
@@ -709,6 +716,7 @@ export class AddSecondaryHolderComponent implements OnInit {
 
   verifyCall(customerPortfolioId) {
     this.investmentEngagementService.getVerifyDetails(Number(customerPortfolioId), INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.VERIFY).subscribe(resp => {
+      this.loaderService.hideLoaderForced();
       if (resp.responseMessage.responseCode === 6000) {
         this.secondaryHolderMajorFormValues = null;
         this.secondaryHolderMinorFormValues = null;
@@ -796,55 +804,36 @@ export class AddSecondaryHolderComponent implements OnInit {
 
           if (this.checkSingaporeNationality()) {
             this.secondaryHolderMinorForm.addControl('isSingaporean', new FormControl(true));
-            this.secondaryHolderMinorForm.addControl(
-              'nricNumber', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.nricNumber, [Validators.required, this.investmentEngagementService.validateNric.bind(this)])
-            );
-
-            this.secondaryHolderMinorForm.addControl(
-              'issuedCountry', new FormControl('', [Validators.required])
-            );
-            if (this.countryList) {
-              const issuedCountryId = this.verifyApplicantData.minorSecondaryHolderSummary.passportIssuedCountryId;
-              const issuedCountry = this.countryList.find(x => x.id == issuedCountryId);
-              this.secondaryHolderMinorForm.controls.issuedCountry.setValue(issuedCountry);
-            }
-
-            this.secondaryHolderMinorForm.addControl(
-              'relationship', new FormControl('', [Validators.required])
-            );
-            if (this.minorSGRelationships) {
-              const relationshipId = this.verifyApplicantData.secondaryHolderRelationshipId;
-              const relationship = this.minorSGRelationships.find(x => x.id == relationshipId);
-              this.secondaryHolderMinorForm.controls.relationship.setValue(relationship);
-            }
+            this.setSingaporeanData();
           } else {
             this.secondaryHolderMinorForm.addControl('isSingaporean', new FormControl(false));
+            this.secondaryHolderMinorForm.addControl(
+              'singaporeanResident', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.singaporePR, Validators.required)
+            );
             if (this.checkSingaporeResident()) {
+              this.setSingaporeanData();
+            } else {
+              if (this.minorForeignerRelationships) {
+                const relationshipId = this.verifyApplicantData.secondaryHolderRelationshipId;
+                const relationship = this.minorForeignerRelationships.find(x => x.id == relationshipId);
+                this.secondaryHolderMinorForm.addControl(
+                  'relationship', new FormControl(relationship, [Validators.required])
+                );
+              }
               this.secondaryHolderMinorForm.addControl(
-                'singaporeanResident', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.singaporePR, Validators.required)
+                'passportNumber', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.passportNumber, Validators.required)
               );
-            }
-
-            if (this.minorForeignerRelationships) {
-              const relationshipId = this.verifyApplicantData.secondaryHolderRelationshipId;
-              const relationship = this.minorForeignerRelationships.find(x => x.name == relationshipId);
+              let passportExpiryDate = this.investmentEngagementService.convertStringToDateObj(this.verifyApplicantData.minorSecondaryHolderSummary.passportExpiryDate);
               this.secondaryHolderMinorForm.addControl(
-                'relationship', new FormControl(relationship, [Validators.required])
+                'passportExpiry', new FormControl(passportExpiryDate, [Validators.required, this.investmentEngagementService.validateExpiry])
               );
-            }
-            this.secondaryHolderMinorForm.addControl(
-              'passportNumber', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.passportNumber, Validators.required)
-            );
-            let passportExpiryDate = this.investmentEngagementService.convertStringToDateObj(this.verifyApplicantData.minorSecondaryHolderSummary.passportExpiryDate);
-            this.secondaryHolderMinorForm.addControl(
-              'passportExpiry', new FormControl(passportExpiryDate, [Validators.required, this.investmentEngagementService.validateExpiry])
-            );
-            if (this.countryList) {
-              const issuedCountryId = this.verifyApplicantData.minorSecondaryHolderSummary.passportIssuedCountry;
-              const issuedCountry = this.countryList.find(x => x.name == issuedCountryId);
-              this.secondaryHolderMinorForm.addControl(
-                'passportIssuedCountry', new FormControl(issuedCountry, [Validators.required])
-              );
+              if (this.countryList) {
+                const issuedCountryId = this.verifyApplicantData.minorSecondaryHolderSummary.passportIssuedCountryId;
+                const issuedCountry = this.countryList.find(x => x.id == issuedCountryId);
+                this.secondaryHolderMinorForm.addControl(
+                  'passportIssuedCountry', new FormControl(issuedCountry, [Validators.required])
+                );
+              }
             }
           }
         }
@@ -852,6 +841,29 @@ export class AddSecondaryHolderComponent implements OnInit {
     });
   }
 
+  setSingaporeanData() {
+    this.secondaryHolderMinorForm.addControl(
+      'nricNumber', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.nricNumber, [Validators.required, this.investmentEngagementService.validateNric.bind(this)])
+    );
+
+    this.secondaryHolderMinorForm.addControl(
+      'issuedCountry', new FormControl('', [Validators.required])
+    );
+    if (this.countryList) {
+      const issuedCountryId = this.verifyApplicantData.minorSecondaryHolderSummary.passportIssuedCountryId;
+      const issuedCountry = this.countryList.find(x => x.id == issuedCountryId);
+      this.secondaryHolderMinorForm.controls.issuedCountry.setValue(issuedCountry);
+    }
+
+    this.secondaryHolderMinorForm.addControl(
+      'relationship', new FormControl('', [Validators.required])
+    );
+    if (this.minorSGRelationships) {
+      const relationshipId = this.verifyApplicantData.secondaryHolderRelationshipId;
+      const relationship = this.minorSGRelationships.find(x => x.id == relationshipId);
+      this.secondaryHolderMinorForm.controls.relationship.setValue(relationship);
+    }
+  }
   checkSingaporeNationality() {
     return this.verifyApplicantData.minorSecondaryHolderSummary.nationalityCode != null &&
       this.verifyApplicantData.minorSecondaryHolderSummary.nationalityCode == INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_NATIONALITY_CODE

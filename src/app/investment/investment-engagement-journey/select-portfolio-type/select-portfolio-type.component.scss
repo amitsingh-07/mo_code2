@@ -67,7 +67,7 @@ app-select-portfolio-type {
       width: calc(100% - 5px);
       height: 200px;
       text-align: center;
-      padding: 20px 16px;
+      padding: 28px 19px 20px;
       background: $btn-primary-backgrnd-color;
       color: $white-color;
       font-family: $muli-bold;
@@ -88,6 +88,9 @@ app-select-portfolio-type {
       @include tablet{
         padding: 20px 14px;
       }
+      @include min788max1023 {
+        padding: 20px 16px;
+      }
 
       .input-label-white {
         color: $white-color;
@@ -101,7 +104,7 @@ app-select-portfolio-type {
           padding: 0 20px;
         }
         @include allmobiles {
-          margin-bottom: 30px;
+          margin-bottom: 35px;
         }
 
       }
@@ -115,7 +118,7 @@ app-select-portfolio-type {
         display: block;
         width: 100%;
         left: 0px;
-        padding: 0 8px;
+        padding: 0;
         letter-spacing: -0.3px;
         line-height: normal;
         font-size: 16px;
