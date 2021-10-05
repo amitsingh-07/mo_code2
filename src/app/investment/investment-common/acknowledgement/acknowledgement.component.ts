@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../../../shared/footer/footer.service';
@@ -19,7 +18,6 @@ export class AcknowledgementComponent implements OnInit {
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
-    private formBuilder: FormBuilder,
     public activeModal: NgbActiveModal,
     private router: Router,
     public footerService: FooterService,

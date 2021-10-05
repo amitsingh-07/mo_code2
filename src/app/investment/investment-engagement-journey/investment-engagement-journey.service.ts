@@ -696,7 +696,7 @@ export class InvestmentEngagementJourneyService {
     return null;
   }
 
-   /* To Validate Minimum age of secondary holder */
+  /* To Validate Minimum age of secondary holder */
   validateMinimumAge(control: AbstractControl) {
     const value = control.value;
     if (control.value !== undefined && isNaN(control.value) && !(control.errors && control.errors.ngbDate)) {

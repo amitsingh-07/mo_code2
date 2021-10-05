@@ -2,10 +2,10 @@ import { Location } from '@angular/common';
 import {
   Component, HostListener, OnInit, ViewChild, ViewEncapsulation
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { SlickCarouselComponent } from 'ngx-slick-carousel';
 
 import { appConstants } from '../../../app.constants';
 import { AppService } from '../../../app.service';
@@ -19,7 +19,6 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { SeoServiceService } from './../../../shared/Services/seo-service.service';
-import { SlickCarouselComponent } from 'ngx-slick-carousel';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
 
@@ -71,8 +70,6 @@ export class SelectPortfolioComponent implements OnInit {
     private investmentCommonService: InvestmentCommonService,
     private investmentAccountService: InvestmentAccountService,
     private _location: Location,
-    private formBuilder: FormBuilder,
-    private modal: NgbModal,
     private seoService: SeoServiceService
   ) {
     this.translate.use('en');
