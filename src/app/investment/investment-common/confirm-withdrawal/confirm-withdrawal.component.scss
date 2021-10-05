@@ -1,0 +1,157 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+app-confirm-withdrawal {
+  .app-confirm-withdrawal {
+    .container-fluid {
+      @include allmobiles {
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+        padding-bottom: 66px;
+      }
+
+      &.ja-withdrawal {
+        max-width: 600px;
+      }
+
+      .bank-details {
+        .account-details {
+          position: relative;
+          border-radius: 6px;
+
+          .widget-body {
+            padding: 20px;
+            background-color: $bond-container-bg;
+            font-family: $muli-regular;
+            font-size: 18px;
+            letter-spacing: -0.34px;
+            color: $dark-teal-color;
+            border-radius: 6px;
+            .flex-row{
+              .flex-col-9{
+                @include min300max350{
+                  padding-left: 10px;
+                }
+              }
+            }
+          }
+
+          .ensure-details {
+            font-size: 14px;
+            font-family: $muli-italic;
+            color: $text-color-secondary;
+          }
+        }
+
+        .bank-name-details {
+          font-family: $muli-semi-bold;
+          font-size: 18px;
+          margin-bottom: 0px;
+        }
+
+        .dropdown-control {
+          .dependent-count {
+            letter-spacing: -0.2px;
+          }
+
+          .account-no-char-count span {
+            float: right;
+            font-size: 15px;
+            font-family: $muli-italic;
+          }
+        }
+
+        .btn {
+          &.btn-dropdown {
+            padding-right: 41px;
+          }
+        }
+
+        label {
+          font-size: 16px;
+          letter-spacing: -0.3px;
+          padding-right: 10px;
+        }
+      }
+    }
+
+    .page-details {
+      font-size: 14px;
+      letter-spacing: -0.15px;
+      text-align: center;
+      padding-bottom: 30px;
+
+      .page-title {
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+        letter-spacing: -0.19px;
+      }
+    }
+
+    .btn__footer--fixed {
+      margin-top: 0 !important;
+      font-family: $muli-bold !important;
+      font-size: 22px;
+      width: 340px;
+
+      @include allmobiles {
+        width: 100%;
+      }
+    }
+
+    .funding-type {
+      line-height: 1.38;
+      letter-spacing: -0.16px;
+
+      .funding-lbl {
+        font-family: $muli-bold;
+        font-size: 22px;
+        line-height: normal;
+        letter-spacing: -0.34px;
+        margin-bottom: 15px;
+      }
+
+      .form-control {
+        max-height: 52px;
+  
+        .input-control {
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  .note-info {
+    @extend .flex;
+    font-size: 14px;
+    letter-spacing: -0.11px;
+    align-items: center;
+    font-family: $muli-semi-bold;
+
+    u {
+      font-family: $muli-bold;
+    }
+
+    .note-icon {
+      @extend .flex;
+      font-size: 13px;
+      width: 24px;
+      height: 24px;
+      margin-right: 15px;
+      letter-spacing: -0.11px;
+
+      u {
+        font-family: $muli-bold;
+      }
+    }
+  }
+
+  [placeholder]:empty::before {
+    content: attr(placeholder);
+    color: $form-input-placeholder-txt-color;
+  }
+
+  [placeholder]:empty:focus::before {
+    content: "";
+  }
+}

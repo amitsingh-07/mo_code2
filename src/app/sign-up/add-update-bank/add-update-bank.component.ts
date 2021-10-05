@@ -178,7 +178,9 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
           title: this.translate.instant('GENERAL_LOADER.TITLE'),
           desc: this.translate.instant('GENERAL_LOADER.DESC')
         });
-        this.manageInvestmentsService.saveProfileNewBank(form.getRawValue()).subscribe((response) => {
+        // PASSING NULL AND FALSE VALUES AS THIS API IS CALLED FROM PROFILE PAGE TO 
+        // EDIT OR ADD BANK DETAILS
+        this.manageInvestmentsService.saveProfileNewBank(form.getRawValue(), '', false).subscribe((response) => {
           this.loaderService.hideLoader();
           this.isEdit = true;
           if (response.responseMessage.responseCode < 6000) {
@@ -213,8 +215,10 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
           title: this.translate.instant('GENERAL_LOADER.TITLE'),
           desc: this.translate.instant('GENERAL_LOADER.DESC')
         });
+        // PASSING NULL AND FALSE VALUES AS THIS API IS CALLED FROM PROFILE PAGE TO 
+        // EDIT OR ADD BANK DETAILS
         this.signUpService.updateBankInfoProfile(form.value.bank,
-          form.value.accountHolderName, accountNum, this.updateId).subscribe((data) => {
+          form.value.accountHolderName, accountNum, this.updateId, '', false).subscribe((data) => {
             this.loaderService.hideLoader();
             this.isEdit = true;
             // tslint:disable-next-line:triple-equals

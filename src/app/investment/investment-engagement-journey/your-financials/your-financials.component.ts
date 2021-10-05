@@ -43,6 +43,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
   loaderDesc: string;
   selectedPortfolioType;
   loaderDescTwo: string;
+  userPortfolioType: any;
 
   constructor(
     private router: Router,
@@ -68,6 +69,7 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
       self.loaderDescTwo = this.translate.instant('MY_FINANCIALS.RESPONSE_LOADER.DESC_TWO');
       this.setPageTitle(self.pageTitle);
     });
+    this.userPortfolioType = investmentEngagementJourneyService.getUserPortfolioType();
   }
 
   setPageTitle(title: string) {
@@ -181,9 +183,9 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
         } else {
           if (this.investmentAccountService.isReassessActive()) {
             this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
-          } else{
+          } else {
             this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP2]);
-          } 
+          }
         }
       }
     },
@@ -196,12 +198,12 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     this.investmentCommonService.getAccountCreationActions().subscribe((data) => {
       if (this.investmentCommonService.isUserNotAllowed(data)) {
         this.investmentCommonService.goToDashboard();
-      } else if (this.investmentAccountService.isReassessActive()){
+      } else if (this.investmentAccountService.isReassessActive()) {
         this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
       } else if (this.investmentCommonService.isUsersFirstPortfolio(data)) {
         this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.START]);
-      }  else {
-        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+      } else {
+        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
       }
     });
   }
@@ -211,8 +213,27 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
       title: this.loaderTitle,
       desc: this.loaderDescTwo
     });
-    const params = this.constructGetAllocationParams();
-    if (params && params.enquiryId) {
+    const params: any = this.constructParamsWithUserPortfolioType();
+    if (params && params.enquiryId && params.jaAccountId) {
+      this.investmentEngagementJourneyService.getJAPortfolioAllocationDetails(params).subscribe((data) => {
+        let secondaryHolderMajorData = this.investmentEngagementJourneyService.getMajorSecondaryHolderData();
+        let secondaryHolderMinorData = this.investmentEngagementJourneyService.getMinorSecondaryHolderData();
+        if(secondaryHolderMajorData) {
+          secondaryHolderMajorData.customerPortfolioId = data.objectList.customerPortfolioId;
+          this.investmentEngagementJourneyService.setMajorSecondaryHolderData(secondaryHolderMajorData);
+        }
+        if(secondaryHolderMinorData) {
+          secondaryHolderMinorData.customerPortfolioId = data.objectList.customerPortfolioId;
+          this.investmentEngagementJourneyService.setMinorSecondaryHolderData(secondaryHolderMinorData);
+        }
+        this.loaderService.hideLoader();
+        this.redirectToNextPage();
+      },
+        (err) => {
+          this.loaderService.hideLoader();
+          this.investmentAccountService.showGenericErrorModal();
+        });
+    } else if (params && params.enquiryId) {
       this.investmentEngagementJourneyService.getPortfolioAllocationDetails(params).subscribe((data) => {
         this.loaderService.hideLoader();
         this.redirectToNextPage();
@@ -226,10 +247,33 @@ export class YourFinancialsComponent implements IPageComponent, OnInit {
     }
   }
 
+  constructGetAllocationParamsWithJAAccountId() {
+    const majorHolderData = this.investmentEngagementJourneyService.getMajorSecondaryHolderData();
+    const minorHolderData = this.investmentEngagementJourneyService.getMinorSecondaryHolderData();
+    let jaAccountId;
+    if (majorHolderData && majorHolderData.jaAccountId) {
+      jaAccountId = majorHolderData.jaAccountId;
+    } else if (minorHolderData && minorHolderData.jaAccountId) {
+      jaAccountId = minorHolderData.jaAccountId;
+    }
+    return {
+      enquiryId: this.authService.getEnquiryId(),
+      jaAccountId: jaAccountId
+    };
+  }
+
   constructGetAllocationParams() {
     return {
       enquiryId: this.authService.getEnquiryId()
     };
+  }
+
+  constructParamsWithUserPortfolioType() {
+    if (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID) {
+      return this.constructGetAllocationParamsWithJAAccountId();
+    } else {
+      return this.constructGetAllocationParams();
+    }
   }
 
   goBack(form) {

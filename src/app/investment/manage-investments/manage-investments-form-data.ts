@@ -40,15 +40,18 @@ export class ManageInvestmentsFormData {
   transferTo: any;
   transferAmount: number;
   TransferAll: boolean;
+
+  //JA User
+  isJointAccountUser: boolean;
 }
 
 export interface IToastMessage {
   /* TOAST MESSAGE */
   isShown: boolean;
   desc: string;
-  link_label: string;
-  link_url: any;
-  id: number;
+  link_label?: string;
+  link_url?: any;
+  id?: number;
 }
 export interface ISrsAccountDetails {
   srsAccountNumber: string;

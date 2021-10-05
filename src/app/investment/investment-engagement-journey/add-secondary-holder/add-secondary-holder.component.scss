@@ -1,0 +1,418 @@
+@import "../../../../_variables.scss";
+@import "../../../../_mixins.scss";
+
+app-add-secondary-holder {
+  .container-fluid {
+    @include min568max767 {
+      padding-top: 80px;
+    }
+  }
+
+  .edit-holder {
+
+    .nav-tabs,
+    h6 {
+      display: none;
+    }
+  }
+
+  .question-lbl{
+    padding-left: 5px;
+    margin-bottom: 0;
+    @include allmobiles{
+      padding-left: 0;
+    }
+  }
+  .secondary-holder-tabs{
+    padding: 0 5px;
+    @include allmobiles{
+      padding: 0;
+    }
+  }
+
+  .nav-tabs {
+    border-bottom: 0;
+
+    .btn-outline-primary {
+      &.fixed-btn--sm {
+        max-width: calc(50% - 5px);
+        height: 52px;
+        border-color: $white-color;
+        opacity: 0.6;
+        border-radius: 6px;
+        margin: 20px 0 0;
+
+        &:active,
+        &.active {
+          border-color: $white-color;
+          outline: none;
+          opacity: 1;
+        }
+
+        &:focus {
+          box-shadow: none !important;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .pannel-tab-content {
+    .form-control {
+      max-height: 52px;
+
+      .input-control {
+        text-align: left;
+      }
+    }
+
+    .flex-row {
+      margin-bottom: 10px;
+      align-items: center;
+
+      label {
+        font-family: $muli-semi-bold;
+        line-height: normal;
+        letter-spacing: -0.3px;
+
+        .sub-label {
+          font-family: $muli-regular;
+          font-size: 14px;
+          line-height: normal;
+          letter-spacing: -0.26px;
+        }
+      }
+
+      .btn-outline-primary {
+        font-family: $muli-regular;
+      }
+    }
+
+    .desc-lbl {
+      font-family: $muli-bold;
+      font-size: 18px;
+      line-height: normal;
+      letter-spacing: -0.34px;
+      margin: 30px 0 15px;
+
+      .tooltip-icon {
+        width: 15px;
+        height: 15px;
+        display: flex;
+        cursor: pointer;
+      }
+    }
+
+    .desc-sub-lbl {
+      font-size: 13px;
+      line-height: normal;
+      letter-spacing: -0.24px;
+      margin-bottom: 20px;
+    }
+
+    .major-tab-content {
+      .flex-row {
+        label {
+          font-size: 18px;
+
+          @include allmobiles {
+            font-size: 16px;
+          }
+        }
+      }
+
+      input::placeholder {
+        color: $form-input-placeholder-txt-color !important;
+      }
+    }
+
+    .minor-tab-content {
+
+      .restrict-notice {
+        align-items: flex-start;
+        .flex-col-11 {
+          line-height: normal;
+          padding: 0 0 0 15px;
+
+          .desc-sub-lbl {
+            letter-spacing: -0.11px;
+            u{
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .minor-details {
+        margin-top: 30px;
+
+        .datepicker-control {
+          .input-group-append {
+            .btn-primary {
+              max-height: 52px;
+            }
+          }
+        }
+
+        input::placeholder {
+          color: $form-input-placeholder-txt-color !important;
+        }
+
+        .flex-row {
+          align-items: center;
+          justify-content: space-between;
+          .flex-col-5{
+            max-width: 133px;
+            @include allmobiles{
+              max-width: 110px;
+            }
+          }
+        }
+      }
+
+      .tax-info {
+        margin-top: 40px;
+
+        .tooltip-block-icon {
+          background: url('/assets/images/restricted-help-icon.svg') no-repeat;
+          height: 18px;
+          width: 18px;
+          cursor: pointer;
+          display: inline-block;
+          margin: 5px 0 0 -5px;
+        }
+
+        .flex-row {
+          align-items: center;
+        }
+
+        .tin-hint {
+          font-size: 14px;
+          font-family: $muli-italic;
+        }
+
+        .dropdown-control {
+          .dependent-count {
+            letter-spacing: -0.2px;
+          }
+        }
+
+        label {
+          font-size: 16px;
+          letter-spacing: -0.3px;
+        }
+
+        .form-group {
+          @include allmobiles {
+            padding-bottom: 30px;
+          }
+        }
+
+        .btn-group--toggle {
+          label {
+            font-size: 16px;
+          }
+        }
+
+        .btn {
+          &.btn-dropdown {
+            padding-right: 41px;
+          }
+        }
+
+        .fixed-btn--sm {
+          color: $form-backgrnd-color !important;
+          background-color: transparent !important;
+          border: 1px solid $fixed-btn-brdr-color !important;
+
+          &:hover {
+            color: $white-color !important;
+            background: $teal-color !important;
+          }
+
+          &.active {
+            color: $white-color !important;
+            background: $teal-color !important;
+
+            &.disabled {
+              cursor: not-allowed;
+
+              &:hover {
+                color: $white-color !important;
+                background: $teal-color !important;
+              }
+            }
+          }
+
+          &.disabled {
+            cursor: not-allowed;
+
+            &:hover {
+              background: $white-color !important;
+              color: $teal-color !important;
+            }
+          }
+        }
+
+        .text {
+          font-family: $muli-regular;
+          font-size: 18px;
+          line-height: 1.17;
+          letter-spacing: -0.2px;
+          text-align: center;
+          padding-left: 17px;
+          padding-right: 14px;
+        }
+
+        .tooltip-icon {
+          background: url('/assets/images/restricted-help-icon.svg') no-repeat;
+          height: 18px;
+          width: 18px;
+          cursor: pointer;
+          display: block;
+        }
+
+        .country_text {
+          margin: 0px 10px 0px 0px;
+        }
+
+        .tin_question_text {
+          font-size: 16px;
+          margin-top: 12px;
+          margin-bottom: 12px;
+          color: $teal-color;
+          letter-spacing: -0.3px;
+          line-height: normal;
+        }
+
+        .add-tax-box {
+          padding: 18px;
+          border-radius: 6px;
+          background-color: $white-color;
+          font-family: $muli-regular;
+          font-size: 16px;
+          letter-spacing: -0.3px;
+          text-align: center;
+          color: $black-color;
+          margin-top: 20px;
+          cursor: pointer;
+          border: solid 1px $inline-error-border-color;
+          @include allmobiles{
+            margin-bottom: 14px;
+          }
+        }
+
+        .add-tax-text {
+          font-family: $muli-bold;
+          font-size: 18px;
+          color: $inline-error-border-color;
+        }
+
+        .tax-form {
+          position: relative;
+          border-radius: 6px;
+          margin-top: 20px;
+
+          .tax-lbl {
+            color: $white-color;
+            padding-top: 30px;
+            display: none;
+          }
+
+          &:first-child {
+            margin-top: 0px;
+
+            .thumb-close-icon {
+              display: none;
+            }
+
+            .tax-lbl {
+              display: flex;
+            }
+          }
+
+          .thumb-close-icon {
+            display: none !important;
+            position: absolute;
+            border-radius: 100%;
+            background-color: $white-color;
+            bottom: -12px;
+            width: 30px;
+            height: 30px;
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+              left: 0;
+              right: 0;
+              position: relative;
+              width: 14px;
+              height: 14px;
+            }
+          }
+
+          .widget-title {
+            background-color: $white-color;
+            font-family: $muli-bold;
+            letter-spacing: -0.3px;
+            color: $black-color;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            padding: 20px 23px;
+            display: flex;
+            justify-content: space-between;
+            @include allmobiles{
+              padding: 24px 23px 25px;
+            }
+            .delete-icon {
+              cursor: pointer;
+            }
+          }
+
+          .widget-body {
+            padding: 20px 13px 30px;
+            background-color: $bond-container-bg;
+            font-family: $muli-semi-bold;
+            font-size: 18px;
+            letter-spacing: -0.34px;
+            color: $dark-teal-color;
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+
+            .tax-country-label {
+              color: $teal-color;
+              max-width: 100px;
+            }
+          }
+        }
+
+        .btn__footer--fixed {
+          font-family: $muli-bold !important;
+        }
+
+        input::placeholder {
+          color: $form-input-placeholder-txt-color !important;
+        }
+      }
+
+      .sec-holder-questions {
+        label {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  [placeholder]:empty::before {
+    content: attr(placeholder);
+    color: $form-input-placeholder-txt-color;
+  }
+
+  [placeholder]:empty:focus::before {
+    content: "";
+  }
+}

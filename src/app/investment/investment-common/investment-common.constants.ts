@@ -66,5 +66,44 @@ export let INVESTMENT_COMMON_CONSTANTS = {
     PORTFOLIO_PURCHASED:"PORTFOLIO_PURCHASED",    
     NEXT_PAYOUT_START_TIME: "2021-09-01T00:00:00.000+08:00",
     NEXT_PAYOUT: 'Aug',
-    NEXT_PAYOUT_WITH_YEAR: 'Aug 2021'
+    NEXT_PAYOUT_WITH_YEAR: 'Aug 2021',
+    JA_PORTFOLIO_STATUS: {
+      AWAITING: 'AWAITING',
+      WITHDRAWN: 'WITHDRAWN',
+      DECLINED: 'DECLINED',
+      VERIFY: 'VERIFY',
+      EXPIRED: 'EXPIRED',
+      INACTIVE: 'INACTIVE',
+      IN_PROGRESS: 'INPROGRESS'
+    },
+    JA_ACTION_TYPES: {
+      SEND_REMINDER: 'SEND_REMINDER',
+      WITHDRAW: 'WITHDRAW',
+      DECLINE: 'DECLINE',
+      ACCEPT: 'ACCEPT',
+      VERIFY: 'VERIFY',
+      SUBMISSION: 'SUBMISSION',
+      DELETE: 'DELETE'
+    },
+    PORTFOLIO: [
+      {
+        KEY: "WiseIncome R - 4.5 percent (Payout) - Cash",
+        VALUE: "WiseIncome - 4.5% p.a. Income Payout"
+      },
+      {
+        KEY: "WiseIncome R- 4.5 percent (Reinvested) - Cash",
+        VALUE: "WiseIncome - Grow & Invest Payout"
+      },
+      {
+        KEY: "WiseIncome R1 - 8 percent (Payout) - Cash",
+        VALUE: "WiseIncome - 8% p.a. Income Payout"
+      },
+      {
+        KEY: "Wisesaver – Cash",
+        VALUE: "Wisesaver"
+      }
+    ],
+    PROMO_CODE: {
+      NOT_APPLIED: "Not Applied"
+    }
 };

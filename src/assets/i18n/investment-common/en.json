@@ -1,267 +1,388 @@
 {
-    "COMMON": {
-        "LABEL": {
-            "SUBMIT": "Submit",
-            "CONTINUE": "Continue",
-            "RETRIEVE": "Retrieve",
-            "VIEW_DETAILS": "View Details",
-            "SAVE_AND_CONTINUE": "Save and Continue",
-            "PROCEED": "Proceed",
-            "OR": "OR"
-        }
-    },
-    "ACKNOWLEDGEMENT": {
-        "TITLE": "IMPORTANT NOTICE",
-        "AGREE": "I Agree"
-    },
-    "PORTFOLIO_RECOMMENDATION": {
-        "STEP1": "Step 1",
-        "CONFIRM_PORTFOLIO": "Confirm Portfolio",
-        "ASSET_ALLOCATION_BREAKDOWN": "Asset Allocation Breakdown",
-        "PROJECTED_RETURNS": "Projected Returns",
-        "PROJECTED_VALUE": "Projected Value",
-        "YEAR": "Year",
-        "ONE_TIME_INVESTMENT": "One-time Amount",
-        "AND": "&",
-        "MONTHLY_INVESTMENT": "Monthly Amount",
-        "FOR": "for",
-        "CONFIRM": "Confirm",
-        "CONTINUE": "Continue",
-        "WISESAVER_PERCENTAGE_VALUE": "{{wiseSaverValue}}% p.a.",
-        "WISESAVER_VALUE_DATE": "5-day Moving Average as at",
-        "EXPENSIVE_RATIO":" Enjoy 0% fees for the 1st $10,000 until end of 2021. Fees include fund level fee of {{expensiveRatio}} p.a. which is incorporated into the NAV.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
-        "EXPENSIVE_RATIO_WISE_INCOME": " This excludes fund level fees (such as annual management fees of {{expensiveRatio}} p.a.) which are factored into the price of the fund.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
-        "FUND_EXPENSIVE_RATIO":"Fund Expense Ratio",
-        "TOTAL_FEE":"Total Fee",
-        "EDIT_INVESTMENT": {
-            "TITLE": "Review My Inputs",
-            "ONE_TIME_INVESTMENT": "One-time Amount",
-            "MONTHLY_INVESTMENT": "Monthly Amount"
-        },
-        "MODAL": {
-            "PROJECTED_RETURNS": {
-                "TITLE": "Projected Returns",
-                "MESSAGE": "This is an estimated percentage of gains that the portfolio will achieve. Do note that it is not guaranteed and the actual returns will depend on the actual performance of each asset."
-            }
-        },
-        "USER_INPUT_SUB_TEXT": "Here's your projected portfolio value for <strong> {{ onetime }} one-time amount </strong> &amp; <strong> {{ monthly }} monthly amount </strong> for {{ period }} years.",
-        "REVIEW_INPUTS": "Review My Inputs",
-        "ASSET_ALLOCATION": "Asset Allocation",
-        "FUND_ASSET_ALLOCATION_LBL": "Fund Details & Asset Allocation",
-        "ANNUAL_FEES": "Annual Fees",
-        "FAQ_DESC_TEXT": "For more information, visit our FAQs.",
-        "CONFIRM_SUB_TEXT": "By clicking on Confirm, you will add this portfolio to your account.",
-        "INVESTMENT_FUND_CONDITION": "Please note that your investment only starts after you have created and funded your account.",
-        "PORTFOLIO_PROJECTION_SUBTEXT": "Your investment returns may vary. The projected portfolio value ranges between {{ worst }} to {{ best }}. The average projected portfolio value is {{ median }}.",
-        "NOW": "Now",
-        "YEARS": "years",
-        "BEST": "Best",
-        "MEDIAN": "Median",
-        "WORST": "Worst",
-        "CAPITAL_INVESTED": "Capital Invested",
-        "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period. The median projected return (net of all fees) is {{investedPercentage}}. All projections are net of all fees (based on standard rate of 0.6% p.a). You may be enjoying a lower advisory fee, which means projected values would be higher than shown.",
-        "MEDIAN_PROJECTED_RETURN": "The median projected return (net of all fees) is {{investedPercentage}}.",
-        "VIEW_FUND_DETAILS": "View Fund Details",
-        "NUMBER_HOLDINGS_LBL": "Number of Holdings",
-        "TITLE": "Confirm Portfolio",
-        "PORTFOLIO": "Portfolio",
-        "WISE_SAVER_PORTOFOLIO": {
-            "TITLE_DESC": "The underlying cash fund holds assets primarily in <span class=\"bold-text\">Singapore Dollar</span> deposits. ",
-            "RATE_TITLE": "Current Rate",
-            "PORTFOLIO_DESC": "This rate is the gross indicative yield of the underlying cash fund, which may fluctuate as market and economic conditions change. We will update this rate periodically as the yield changes."
-        },
-        "ERRORS": {
-            "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
-            "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
-            "ATLEAST_ONE_SHOULD_INVEST": "Either you have to fund One-time amount or Monthly amount."
-        },
-        "ADD_PORTFOLIO_NAME": {
-            "TITLE": "Name Your Portfolio",
-            "PORTFOLIO_READY": "Your portfolio is almost ready.",
-            "ADD_PORTFOLIO_NAME_LAB": "Let’s name this portfolio! (optional)",
-            "VALIDATION_MESSAGE": "First character should not be space",
-            "ERROR_MESSAGE": "Sorry, this portfolio name is taken up by another existing portfolio. Please think of another name.",
-            "NAME_YOUR_PORTFOLIO": "Name Your Portfolio",
-            "CREATE_PORTFOLIO": "Create Portfolio"
-        },
-        "ADD_PORTFOLIO_STATUS": {
-            "TITLE": "Portfolio created successfully!",
-            "ADD_PORTFOLIO_NAME": "Jason’s Education Fund",
-            "CONTINUE": "Continue",
-            "ADD_PORTFOLIO_NAME_LAB": "has been added to your account."
-        },
-        "ACCOUNT_CREATION_ERROR_MODAL": {
-            "TITLE": "Error !",
-            "DESCRIPTION": "Please fix the below list of errors and then proceed."
-        },
-        "GENERAL_ERROR": {
-            "TITLE": "Error !",
-            "DESCRIPTION": "Sorry, Something went wrong. Please try again."
-        },
-        "CREATING_ACCOUNT_LOADER": {
-            "TITLE": "Submitting your application",
-            "DESCRIPTION": "Please wait while we try to create account."
-        },
-        "CREATING_ADDITIONAL_ACCOUNT_LOADER": {
-            "TITLE": "Creating portfolio.",
-            "DESCRIPTION": "Please wait while we set things up for you."
-        },
-        "WISE_INCOME_PORTFOLIO": {            
-            "DESC_LBL": "The fund invest in the following asset classes in this proportions.",
-            "ASSET_HOLDINGS_LBL": "Asset Class & Holdings",
-            "EQUITIES_LBL": "Equities",
-            "EQUITIES_DESC": "The equities component of the portfolio will seek to give investors exposure to companies and ETFs that are listed on recognised stock exchanges globally. The passive investing strategy adopted, coupled with broad diversification of the underlying ETFs allows investors to reap market-based returns without having to rely on guesswork.",
-            "SREITS_LBL": "S-REITs",
-            "SREITS_DESC": "The portfolio invests in Singapore REITs that are underpinned by dividend sustainability coupled with potential growth. The fund manager will consider a myriad of factors such as underlying asset quality, governance, strength of management team to determine the sustainability of the dividend. From the growth aspect, the fund manager will consider the REIT’s potential for accretive acquisitions as well as underlying sector or asset trends. The REITs invested would typically be about SGD$1bn market cap or larger with daily trading value of SGD1mill or more.",
-            "FIXED_INCOME_LBL": "Fixed Income",
-            "FIXED_INCOME_DESC": "The fixed income securities may be investment grade, non-investment grade and/or unrated securities primarily issued by companies, governments, quasi-governments, government agencies or supranationals, with primary focus in Asian companies. Foreign currency denominated fixed income securities will generally be hedged to SGD to reduce the exposure of the securities to the movement of foreign currencies and the overall credit rating of the fixed income portfolio will be BBB- (S&P) and above. This also includes US Treasury bonds and Singapore Government Securities which are AAA rated to provide additional stability for the portfolio.",
-            "CASH_LBL": "Cash",
-            "DISCLAIMER_LBL": "Click on link below for prospectus and product highlights sheet.",
-            "INVESTING_IN": "You are investing in",
-            "INVESTING_IN_WISE_INCOME": "Fullerton MoneyOwl WiseIncome",
-            "GROW_AND_FUND_PAYOUT": "I prefer to invest my income payout",
-            "GROW_AND_FUND_PAYOUT_DESC": "(Invest before {{investBeforeMonth}}, 3 PM to be eligible for {{nextPayoutOrReinvestMonth}} Dividend Reinvestment)",
-            "GROW_AND_FUND_PAYOUT_1": "Grow your investments at the projected long term expected returns in this multi-asset fund.",
-            "GROW_AND_FUND_PAYOUT_2": "Any income paid out of the fund will be immediately reinvested through the purchase of new units in the fund.",
-            "GROW_AND_FUND_PAYOUT_NOTE": "As your life stage changes, your need for payouts may change as well. You can always change your payout option then.",
-            "4_PERCENT_PAYOUT_NOTE_2": "*While the fund intends to distribute 4.5% p.a. payout, the fund manager has the discretion to deviate from this including reducing the payout rate to achieve sustainability of the fund in the interest of unitholders, or alternatively, paying a higher rate of up to 4.8% p.a. in good years.",
-            "4_PERCENT_PAYOUT": "I prefer an income payout of",
-            "4_PERCENT_PAYOUT_VALUE": "4.5%* p.a.",
-            "4_PERCENT_PAYOUT_DESC_1": "of my portfolio value",
-            "4_PERCENT_PAYOUT_DESC_2": "(Invest before {{investBeforeMonth}}, 3 PM to be eligible for {{nextPayoutOrReinvestMonth}} Dividend Payout)",
-            "4_PERCENT_PAYOUT_1": "Your payouts will be made out of income (coupons, dividends) and realised capital gains as much as possible though it may be possible that it can come from your investment capital.",
-            "4_PERCENT_PAYOUT_NOTE": "As your life stage changes, your need for payouts may change as well. You can always change your payout option then.",
-            "8_PERCENT_PAYOUT": "I prefer an income payout of",
-            "8_PERCENT_PAYOUT_VALUE": "8% p.a. ",
-            "8_PERCENT_PAYOUT_DESC_1": "of my portfolio value",
-            "8_PERCENT_PAYOUT_DESC_2": "(Invest before {{investBeforeMonth}}, 3 PM to be eligible for {{nextPayoutOrReinvestMonth}} Dividend Payout)",
-            "8_PERCENT_PAYOUT_1": "Your payouts will be made out of income (coupons, dividends), realised capital gains and partially out of your capital.",
-            "8_PERCENT_PAYOUT_2": "The potential drawdown from your investment capital is expected to be higher compared to a lower payout rate.",
-            "8_PERCENT_PAYOUT_NOTE": "As your life stage changes, your need for payouts may change as well. You can always change your payout option then.",
-            "REVIEW_PAYOUT_OPTION": "Review Payout Option",
-            "FUNDING": "You will be funding",
-            "ONE_TIME_INVESTMENT": "One-time Investment",
-            "MONTHLY_INVESTMENT": "Monthly Investment",
-            "REVIEW_MY_INPUTS": "Review My Inputs",
-            "POPUP": {
-                "PAYOUT_TITLE": "Please read before you proceed",               
-                "PAYOUT_DESC":"By proceeding, I agree that <span class=\"text-bold\">I am willing to accept temporary losses in the short term</span> to achieve investment gains in the long term and that <span class=\"text-bold\">this portfolio aligns with my willingness and ability to take risk.</span>",              
-                "8PERCENT_DESC2": "I understand that choosing a <span class=\"text-bold\">8% p.a. payout</span> would reduce my portfolio value over time as <span class=\"text-bold\">distributions would be made up of both income and return of capital.</span>",
-                "UNDERSTAND_PROCEED": "Proceed",
-                "CANCEL": "Cancel"
-            }
-        }
-    },
-    "FUND_INTRO": {
-        "TITLE": "Fund Your Account",
-        "DESC": "In the next step, follow the transfer instructions to fund your account.",
-        "BACK": "Proceed",
-        "SUCCESS": "Investment Account <br>Setup Successful"
-    },
-    "FUNDING_INSTRUCTIONS": {
-        "TITLE": "Fund Your Account",
-        "OK_GOT_IT": "Okay, Got It!",
-        "YOUR_INVESTMENT": "Buy Request",
-        "ONE_TIME": "one-time",
-        "MONTH": "mth",
-        "YOUR_PORTFOLIO": "Your Portfolio",
-        "VIA_BANK": "Via Bank Transfer",
-        "VIA_PAYNOW": "Via PayNow",
-        "LOGIN_TO_NETBANKING_PAYNOW": "Login to Mobile Banking app of a Singapore registered bank and select PayNow.",
-        "LOGIN_TO_NETBANKING_BANK": "Please note that your investment funds must originate from <b>an account in your legal name</b> and a <b>Singapore registered bank</b>. Accounts may be suspended if any suspicious activity is detected.",
-        "TAKE_SCREENSHOT": "Take a Screenshot to do it later",
-        "AMOUNT_TO_TRANSFER": "Amount to Transfer",
-        "UNIQUE_ENTITY_NO": "Unique Entity Number (UEN)",
-        "ENTITY_NAME": "Entity Name",
-        "REFERENCE_CODE": "Remarks (Reference Code)",
-        "ADD_REFERENCE_CODE_INFO": "Please indicate this Reference Code in the “Remarks / Descriptions / Comments” of your fund transfer.",
-        "SETUP_AUTO_DEPOSIT_LBL": "Set Up Auto-Deposit",
-        "SETUP_AUTO_DEPOSIT_DESC": "Hey, you can save time when you set up auto-deposits through your bank! Find out how in the bank transfer details below.",
-        "VIEW_TRANSFER_INST": "View Transfer Instructions",
-        "PROCESS_TIME_INFO": "Fund your account within 7 days to kickstart your investment!",
-        "SUCCESSFUL_TOPUP": "Your request will be processed within 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
-        "MONTHLY_TIME_INFO": "You have a monthly amount of {{month}}. Fund 1 or 2 days before 15th of the month.",
-        "RECIPENTS_NAME": "Recipient's Name",
-        "BANK_NAME": "Bank Name",
-        "BANK_ACC_NO": "Bank Account No.",
-        "TRANSFER_INSTRUCTION": "Transfer Instructions",
-        "VIA_BANK_ONE": "Sending money via Bank Transfer:",
-        "TRANSER_INSTRUCTION": "Transfer Instructions",
-        "VIA_PAYNOW_ONE": "Sending money via PayNow:",
-        "ONE_TIME_INVESTMENT": "One-time Amount",
-        "MONTHLY_INVESTMENT": "Monthly Amount",
-        "BANK_TRANSFER": "Bank Transfer",
-        "DESC": "Please transfer the following amount using your preferred payment method details:",
-        "FUNDING_DESC": "Please transfer the following amount using Bank Transfer or PayNow.",
-        "NOTE": "<span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments”</span> section in your funds transfer / PayNow screen.",
-        "CASH_ACCOUNT_BALANCE_LBL": "Cash Account Balance:",
-        "REFERENCE_CODE_LBL": "Reference Code: ",
-        "MODAL": {
-            "SHOW_BANK_TRANSCTIONS": {
-                "STEP_1": "STEP 1",
-                "STEP_2": "STEP 2",
-                "STEP_3": "STEP 3",
-                "STEP_4": "STEP 4",
-                "STEP_5": "STEP 5",
-                "RECIPENTS_NAME": "Recipient's Name:",
-                "BANK_NAME": "Bank Name:",
-                "BANK_ACC_NO": "Bank Account No.:",
-                "REFERENCE_CODE": "Remarks (Reference Code):",
-                "LBL_STEP_1": "Log in to your internet banking or mobile banking app of a Singapore registered bank.",
-                "LBL_STEP_2": "Select an <strong>account of your own (registered under your name)</strong> to transfer from and <strong>enter the amount</strong> to transfer.",
-                "LBL_STEP_3": "Enter the following transfer information.",
-                "LBL_STEP_4": "Verify and confirm the transaction details.",
-                "LBL_STEP_5": "We will notify you once your funds have been received.",
-                "SETUP_AUTO_DEPOSIT": "Set Up Auto Deposit",
-                "DESC_SETUP_AUTO_DEPOSIT": "For Monthly Amount - Set up a Standing Instruction to automate the transfer of investment funds on a monthly basis."
-            },
-            "SHOW_PAYNOW": {
-                "STEP_1": "STEP 1",
-                "STEP_2": "STEP 2",
-                "STEP_3": "STEP 3",
-                "STEP_4": "STEP 4",
-                "UNIQUE_ENTITY_NO": "Unique Entity Number (UEN):",
-                "ENTITY_NAME": "Entity Name:",
-                "REFERENCE_CODE": "Remarks (Reference Code):",
-                "LBL_STEP_1": "Login to Mobile Banking app of a Singapore registered bank and select PayNow.",
-                "LBL_STEP_2": "Enter the following transfer information.",
-                "LBL_STEP_3": "Verify and confirm the transaction details.",
-                "LBL_STEP_4": "We will notify you once your funds have been received.",
-                "SETUP_AUTO_DEPOSIT": "Set Up Auto Deposit",
-                "DESC_SETUP_AUTO_DEPOSIT": "For Monthly Amount - Set up a Standing Instruction to automate the transfer of investment funds on a monthly basis."
-            },
-            "SHOWPOPUP": {
-                "TITLE": "Recipient’s / Entity Name",
-                "MESSAGE": "iFast Financial Pte Ltd provides custodial services for MoneyOwl. For more information, please refer to our FAQ."
-            }
-        }
-    },
-    "TOAST_MESSAGES": {
-        "ADD_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been added.",
-        "VIEW": "View"
-    },
-    "CONFIRM_ACCOUNT_DETAILS": {
-        "TITLE": "Confirm Account Details",
-        "FUND_METHOD": "Funding Method",
-        "SELECT_FUNDING_LAB": "You have selected the following funding method for this portfolio.",
-        "ACCOUNT_DETAILS": "Please provide your account details.",
-        "SRS_ACCOUNT_DETAILS": "SRS Account Details",
-        "SRS_OPERATOR": "SRS Operator",
-        "SRS_ACCOUNT_NUMBER": "SRS Account Number",
-        "CORRECT_SRS_ACCOUNT_DETAILS_DESC": "Please ensure you have entered the correct SRS account information.",
-        "CASH_DESC": "You can fund using any bank account (registered under your name).",
-        "SRS_DESC": "You <u>MUST</u> ensure sufficient fund in your SRS Account. Amount will be deducted immediately to process the buy request.",
-        "CONTINUE": "Continue",
-        "STEP_2": "Step 2",
-        "SELECT": "Select Funding Method",
-        "SELECT_SRS_OPERATOR": "Select SRS Operator",
-        "SHOW_MODAL": {
-            "TITLE": "Reassess Risk Profile?",
-            "DESC": "You have just changed how you want to fund this {{userGivenPortfolioName}} to using {{userFundingMethod}}. Do you want to reassess your risk profile?"
-        }
-    },
-    "COMMON_LOADER": {
-        "TITLE": "Loading",
-        "DESC": "Please wait while we load the data"
+  "COMMON": {
+    "LABEL": {
+      "SUBMIT": "Submit",
+      "CONTINUE": "Continue",
+      "RETRIEVE": "Retrieve",
+      "VIEW_DETAILS": "View Details",
+      "SAVE_AND_CONTINUE": "Save and Continue",
+      "PROCEED": "Proceed",
+      "OR": "OR"
     }
+  },
+  "ACKNOWLEDGEMENT": {
+    "TITLE": "IMPORTANT NOTICE",
+    "AGREE": "I Agree"
+  },
+  "PORTFOLIO_RECOMMENDATION": {
+    "STEP1": "Step 1",
+    "CONFIRM_PORTFOLIO": "Confirm Portfolio",
+    "ASSET_ALLOCATION_BREAKDOWN": "Asset Allocation Breakdown",
+    "PROJECTED_RETURNS": "Projected Returns",
+    "PROJECTED_VALUE": "Projected Value",
+    "YEAR": "Year",
+    "ONE_TIME_INVESTMENT": "One-time Amount",
+    "AND": "&",
+    "MONTHLY_INVESTMENT": "Monthly Amount",
+    "FOR": "for",
+    "CONFIRM": "Confirm",
+    "CONTINUE": "Continue",
+    "WISESAVER_PERCENTAGE_VALUE": "{{wiseSaverValue}}% p.a.",
+    "WISESAVER_VALUE_DATE": "5-day Moving Average as at",
+    "EXPENSIVE_RATIO": " Enjoy 0% fees for the 1st $10,000 until end of 2021. Fees include fund level fee of {{expensiveRatio}} p.a. which is incorporated into the NAV.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
+    "EXPENSIVE_RATIO_WISE_INCOME": " This excludes fund level fees (such as annual management fees of {{expensiveRatio}} p.a.) which are factored into the price of the fund.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
+    "FUND_EXPENSIVE_RATIO": "Fund Expense Ratio",
+    "TOTAL_FEE": "Total Fee",
+    "JA_ACCEPTANCE_TITLE": "Joint Account Portfolio",
+    "JOINT_ACCOUNT_LBL": "Joint Account Portfolio",
+    "JA_SUB_LBL": "JA Investment Plan for My Family and Future",
+    "JA_DESC_LBL": "<span class=\"ja-icon\"><img src=\"assets/images/investment-account/ja-icon-white.svg\"></span><span>You are invited to a Joint Account with {{primaryName}}. Review and join portfolio by clicking on <span class=\"txt-bold\">Accept to Join</span> below.</span>",
+    "ACCEPT": "Accept to Join",
+    "DECLINE": "Decline",
+    "EDIT_INVESTMENT": {
+      "TITLE": "Review My Inputs",
+      "ONE_TIME_INVESTMENT": "One-time Amount",
+      "MONTHLY_INVESTMENT": "Monthly Amount"
+    },
+    "MODAL": {
+      "PROJECTED_RETURNS": {
+        "TITLE": "Projected Returns",
+        "MESSAGE": "This is an estimated percentage of gains that the portfolio will achieve. Do note that it is not guaranteed and the actual returns will depend on the actual performance of each asset."
+      }
+    },
+    "USER_INPUT_SUB_TEXT": "Here's your projected portfolio value for <strong> {{ onetime }} one-time amount </strong> &amp; <strong> {{ monthly }} monthly amount </strong> for {{ period }} years.",
+    "WISE_SAVER_USER_INPUT_SUB_TEXT": "You will be funding <div><strong> {{ onetime }}  for One-Time Investment </strong> and <strong> {{ monthly }} for Monthly Investment.</strong></div>",
+    "REVIEW_INPUTS": "Review My Inputs",
+    "ASSET_ALLOCATION": "Asset Allocation",
+    "FUND_ASSET_ALLOCATION_LBL": "Fund Details & Asset Allocation",
+    "ANNUAL_FEES": "Annual Fees",
+    "FAQ_DESC_TEXT": "For more information, visit our FAQs.",
+    "JA_DISCLAIMER": "The doctrine of survivorship shall apply to accounts opened in joint names of more than one person. For more information refer to <a target='_blank' href=\"https://www.moneyowl.com.sg/faq-investment/#investment|3\">FAQ</a>.",
+    "CONFIRM_SUB_TEXT": "By clicking on Confirm, you will add this portfolio to your account.",
+    "INVESTMENT_FUND_CONDITION": "Please note that your investment only starts after you have created and funded your account.",
+    "PORTFOLIO_PROJECTION_SUBTEXT": "Your investment returns may vary. The projected portfolio value ranges between {{ worst }} to {{ best }}. The average projected portfolio value is {{ median }}.",
+    "NOW": "Now",
+    "YEARS": "years",
+    "BEST": "Best",
+    "MEDIAN": "Median",
+    "WORST": "Worst",
+    "CAPITAL_INVESTED": "Capital Invested",
+    "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period. The median projected return (net of all fees) is {{investedPercentage}}. All projections are net of all fees (based on standard rate of 0.6% p.a). You may be enjoying a lower advisory fee, which means projected values would be higher than shown.",
+    "MEDIAN_PROJECTED_RETURN": "The median projected return (net of all fees) is {{investedPercentage}}.",
+    "VIEW_FUND_DETAILS": "View Fund Details",
+    "NUMBER_HOLDINGS_LBL": "Number of Holdings",
+    "TITLE": "Confirm Portfolio",
+    "PORTFOLIO": "Portfolio",
+    "WISE_SAVER_PORTOFOLIO": {
+      "TITLE_DESC": "The underlying cash fund holds assets primarily in <span class=\"bold-text\">Singapore Dollar</span> deposits. ",
+      "RATE_TITLE": "Current Rate",
+      "PORTFOLIO_DESC": "This rate is the gross indicative yield of the underlying cash fund, which may fluctuate as market and economic conditions change. We will update this rate periodically as the yield changes."
+    },
+    "ERRORS": {
+      "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
+      "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
+      "ATLEAST_ONE_SHOULD_INVEST": "Either you have to fund One-time amount or Monthly amount."
+    },
+    "ADD_PORTFOLIO_NAME": {
+      "TITLE": "Name Your Portfolio",
+      "PORTFOLIO_READY": "Your portfolio is almost ready.",
+      "ADD_PORTFOLIO_NAME_LAB": "Let’s name this portfolio! (optional)",
+      "VALIDATION_MESSAGE": "First character should not be space",
+      "ERROR_MESSAGE": "Sorry, this portfolio name is taken up by another existing portfolio. Please think of another name.",
+      "NAME_YOUR_PORTFOLIO": "Name Your Portfolio",
+      "CREATE_PORTFOLIO": "Create Portfolio"
+    },
+    "ADD_PORTFOLIO_STATUS": {
+      "TITLE": "Portfolio created successfully!",
+      "ADD_PORTFOLIO_NAME": "Jason’s Education Fund",
+      "CONTINUE": "Continue",
+      "ADD_PORTFOLIO_NAME_LAB": "has been added to your account."
+    },
+    "ACCOUNT_CREATION_ERROR_MODAL": {
+      "TITLE": "Error !",
+      "DESCRIPTION": "Please fix the below list of errors and then proceed."
+    },
+    "GENERAL_ERROR": {
+      "TITLE": "Error !",
+      "DESCRIPTION": "Sorry, Something went wrong. Please try again."
+    },
+    "CREATING_ACCOUNT_LOADER": {
+      "TITLE": "Submitting your application",
+      "DESCRIPTION": "Please wait while we try to create account."
+    },
+    "CREATING_ADDITIONAL_ACCOUNT_LOADER": {
+      "TITLE": "Creating portfolio.",
+      "DESCRIPTION": "Please wait while we set things up for you."
+    },
+    "WISE_INCOME_PORTFOLIO": {
+      "DESC_LBL": "The fund invest in the following asset classes in this proportions.",
+      "ASSET_HOLDINGS_LBL": "Asset Class & Holdings",
+      "EQUITIES_LBL": "Equities",
+      "EQUITIES_DESC": "The equities component of the portfolio will seek to give investors exposure to companies and ETFs that are listed on recognised stock exchanges globally. The passive investing strategy adopted, coupled with broad diversification of the underlying ETFs allows investors to reap market-based returns without having to rely on guesswork.",
+      "SREITS_LBL": "S-REITs",
+      "SREITS_DESC": "The portfolio invests in Singapore REITs that are underpinned by dividend sustainability coupled with potential growth. The fund manager will consider a myriad of factors such as underlying asset quality, governance, strength of management team to determine the sustainability of the dividend. From the growth aspect, the fund manager will consider the REIT’s potential for accretive acquisitions as well as underlying sector or asset trends. The REITs invested would typically be about SGD$1bn market cap or larger with daily trading value of SGD1mill or more.",
+      "FIXED_INCOME_LBL": "Fixed Income",
+      "FIXED_INCOME_DESC": "The fixed income securities may be investment grade, non-investment grade and/or unrated securities primarily issued by companies, governments, quasi-governments, government agencies or supranationals, with primary focus in Asian companies. Foreign currency denominated fixed income securities will generally be hedged to SGD to reduce the exposure of the securities to the movement of foreign currencies and the overall credit rating of the fixed income portfolio will be BBB- (S&P) and above. This also includes US Treasury bonds and Singapore Government Securities which are AAA rated to provide additional stability for the portfolio.",
+      "CASH_LBL": "Cash",
+      "DISCLAIMER_LBL": "Click on link below for prospectus and product highlights sheet.",
+      "INVESTING_IN": "You are investing in",
+      "INVESTING_IN_WISE_INCOME": "Fullerton MoneyOwl WiseIncome",
+      "GROW_AND_FUND_PAYOUT": "I prefer to invest my income payout",
+      "GROW_AND_FUND_PAYOUT_DESC": "(Invest before {{investBeforeMonth}}, 3 PM to be eligible for {{nextPayoutOrReinvestMonth}} Dividend Reinvestment)",
+      "GROW_AND_FUND_PAYOUT_1": "Grow your investments at the projected long term expected returns in this multi-asset fund.",
+      "GROW_AND_FUND_PAYOUT_2": "Any income paid out of the fund will be immediately reinvested through the purchase of new units in the fund.",
+      "GROW_AND_FUND_PAYOUT_NOTE": "As your life stage changes, your need for payouts may change as well. You can always change your payout option then.",
+      "4_PERCENT_PAYOUT_NOTE_2": "*While the fund intends to distribute 4.5% p.a. payout, the fund manager has the discretion to deviate from this including reducing the payout rate to achieve sustainability of the fund in the interest of unitholders, or alternatively, paying a higher rate of up to 4.8% p.a. in good years.",
+      "4_PERCENT_PAYOUT": "I prefer an income payout of",
+      "4_PERCENT_PAYOUT_VALUE": "4.5%* p.a.",
+      "4_PERCENT_PAYOUT_DESC_1": "of my portfolio value",
+      "4_PERCENT_PAYOUT_DESC_2": "(Invest before {{investBeforeMonth}}, 3 PM to be eligible for {{nextPayoutOrReinvestMonth}} Dividend Payout)",
+      "4_PERCENT_PAYOUT_1": "Your payouts will be made out of income (coupons, dividends) and realised capital gains as much as possible though it may be possible that it can come from your investment capital.",
+      "4_PERCENT_PAYOUT_NOTE": "As your life stage changes, your need for payouts may change as well. You can always change your payout option then.",
+      "8_PERCENT_PAYOUT": "I prefer an income payout of",
+      "8_PERCENT_PAYOUT_VALUE": "8% p.a. ",
+      "8_PERCENT_PAYOUT_DESC_1": "of my portfolio value",
+      "8_PERCENT_PAYOUT_DESC_2": "(Invest before {{investBeforeMonth}}, 3 PM to be eligible for {{nextPayoutOrReinvestMonth}} Dividend Payout)",
+      "8_PERCENT_PAYOUT_1": "Your payouts will be made out of income (coupons, dividends), realised capital gains and partially out of your capital.",
+      "8_PERCENT_PAYOUT_2": "The potential drawdown from your investment capital is expected to be higher compared to a lower payout rate.",
+      "8_PERCENT_PAYOUT_NOTE": "As your life stage changes, your need for payouts may change as well. You can always change your payout option then.",
+      "REVIEW_PAYOUT_OPTION": "Review Payout Option",
+      "FUNDING": "You will be funding",
+      "ONE_TIME_INVESTMENT": "One-time Investment",
+      "MONTHLY_INVESTMENT": "Monthly Investment",
+      "REVIEW_MY_INPUTS": "Review My Inputs",
+      "POPUP": {
+        "PAYOUT_TITLE": "Please read before you proceed",
+        "PAYOUT_DESC": "By proceeding, I agree that <span class=\"text-bold\">I am willing to accept temporary losses in the short term</span> to achieve investment gains in the long term and that <span class=\"text-bold\">this portfolio aligns with my willingness and ability to take risk.</span>",
+        "8PERCENT_DESC2": "I understand that choosing a <span class=\"text-bold\">8% p.a. payout</span> would reduce my portfolio value over time as <span class=\"text-bold\">distributions would be made up of both income and return of capital.</span>",
+        "UNDERSTAND_PROCEED": "Proceed",
+        "CANCEL": "Cancel"
+      }
+    },
+    "I_AGREE": "I agree to the ",
+    "TNC": "Terms and Conditions",
+    "WITHDRAWAL_BANK_DETAILS": {
+      "CARD_TITLE": "Withdrawal Bank Account",
+      "ACCOUNT_HOLDER_NAME_TEXT": "Bank Account Holder Name(s)",
+      "BANK_NAME_TEXT": "Bank Name",
+      "ACCOUNT_NUMBER_TEXT": "Account No."
+    },
+    "JOINT_ACCOUNT": {
+      "API_FAILED": {
+        "TITLE": "Oops! Something went wrong",
+        "DESC": "Please refresh the page and try again",
+        "BUTTON_TEXT": "Refresh"
+      }
+    }
+  },
+  "FUND_INTRO": {
+    "TITLE": "Fund Your Account",
+    "DESC": "In the next step, follow the transfer instructions to fund your account.",
+    "BACK": "Proceed",
+    "SUCCESS": "Investment Account <br>Setup Successful"
+  },
+  "FUNDING_INSTRUCTIONS": {
+    "TITLE": "Fund Your Account",
+    "OK_GOT_IT": "Okay, Got It!",
+    "YOUR_INVESTMENT": "Buy Request",
+    "ONE_TIME": "one-time",
+    "MONTH": "mth",
+    "YOUR_PORTFOLIO": "Your Portfolio",
+    "VIA_BANK": "Via Bank Transfer",
+    "VIA_PAYNOW": "Via PayNow",
+    "LOGIN_TO_NETBANKING_PAYNOW": "Login to Mobile Banking app of a Singapore registered bank and select PayNow.",
+    "LOGIN_TO_NETBANKING_BANK": "Please note that your investment funds must originate from <b>an account in your legal name</b> and a <b>Singapore registered bank</b>. Accounts may be suspended if any suspicious activity is detected.",
+    "TAKE_SCREENSHOT": "Take a Screenshot to do it later",
+    "AMOUNT_TO_TRANSFER": "Amount to Transfer",
+    "UNIQUE_ENTITY_NO": "Unique Entity Number (UEN)",
+    "ENTITY_NAME": "Entity Name",
+    "REFERENCE_CODE": "Remarks (Reference Code)",
+    "ADD_REFERENCE_CODE_INFO": "Please indicate this Reference Code in the “Remarks / Descriptions / Comments” of your fund transfer.",
+    "SETUP_AUTO_DEPOSIT_LBL": "Set Up Auto-Deposit",
+    "SETUP_AUTO_DEPOSIT_DESC": "Hey, you can save time when you set up auto-deposits through your bank! Find out how in the bank transfer details below.",
+    "VIEW_TRANSFER_INST": "View Transfer Instructions",
+    "PROCESS_TIME_INFO": "Fund your account within 7 days to kickstart your investment!",
+    "SUCCESSFUL_TOPUP": "Your request will be processed within 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
+    "MONTHLY_TIME_INFO": "You have a monthly amount of {{month}}. Fund 1 or 2 days before 15th of the month.",
+    "RECIPENTS_NAME": "Recipient's Name",
+    "BANK_NAME": "Bank Name",
+    "BANK_ACC_NO": "Bank Account No.",
+    "TRANSFER_INSTRUCTION": "Transfer Instructions",
+    "VIA_BANK_ONE": "Sending money via Bank Transfer:",
+    "TRANSER_INSTRUCTION": "Transfer Instructions",
+    "VIA_PAYNOW_ONE": "Sending money via PayNow:",
+    "ONE_TIME_INVESTMENT": "One-time Amount",
+    "MONTHLY_INVESTMENT": "Monthly Amount",
+    "BANK_TRANSFER": "Bank Transfer",
+    "DESC": "Please transfer the following amount using your preferred payment method details:",
+    "FUNDING_DESC": "Please transfer the following amount using Bank Transfer or PayNow.",
+    "NOTE": "<span>Note:</span> You <span><u>MUST</u></span> indicate this Reference Code in the <span>“Remarks / Descriptions / Comments”</span> section in your funds transfer / PayNow screen.",
+    "CASH_ACCOUNT_BALANCE_LBL": "Cash Account Balance:",
+    "REFERENCE_CODE_LBL": "Reference Code: ",
+    "MODAL": {
+      "SHOW_BANK_TRANSCTIONS": {
+        "STEP_1": "STEP 1",
+        "STEP_2": "STEP 2",
+        "STEP_3": "STEP 3",
+        "STEP_4": "STEP 4",
+        "STEP_5": "STEP 5",
+        "RECIPENTS_NAME": "Recipient's Name:",
+        "BANK_NAME": "Bank Name:",
+        "BANK_ACC_NO": "Bank Account No.:",
+        "REFERENCE_CODE": "Remarks (Reference Code):",
+        "LBL_STEP_1": "Log in to your internet banking or mobile banking app of a Singapore registered bank.",
+        "LBL_STEP_2": "Select an <strong>account of your own (registered under your name)</strong> to transfer from and <strong>enter the amount</strong> to transfer.",
+        "LBL_STEP_3": "Enter the following transfer information.",
+        "LBL_STEP_4": "Verify and confirm the transaction details.",
+        "LBL_STEP_5": "We will notify you once your funds have been received.",
+        "SETUP_AUTO_DEPOSIT": "Set Up Auto Deposit",
+        "DESC_SETUP_AUTO_DEPOSIT": "For Monthly Amount - Set up a Standing Instruction to automate the transfer of investment funds on a monthly basis."
+      },
+      "SHOW_PAYNOW": {
+        "STEP_1": "STEP 1",
+        "STEP_2": "STEP 2",
+        "STEP_3": "STEP 3",
+        "STEP_4": "STEP 4",
+        "UNIQUE_ENTITY_NO": "Unique Entity Number (UEN):",
+        "ENTITY_NAME": "Entity Name:",
+        "REFERENCE_CODE": "Remarks (Reference Code):",
+        "LBL_STEP_1": "Login to Mobile Banking app of a Singapore registered bank and select PayNow.",
+        "LBL_STEP_2": "Enter the following transfer information.",
+        "LBL_STEP_3": "Verify and confirm the transaction details.",
+        "LBL_STEP_4": "We will notify you once your funds have been received.",
+        "SETUP_AUTO_DEPOSIT": "Set Up Auto Deposit",
+        "DESC_SETUP_AUTO_DEPOSIT": "For Monthly Amount - Set up a Standing Instruction to automate the transfer of investment funds on a monthly basis."
+      },
+      "SHOWPOPUP": {
+        "TITLE": "Recipient’s / Entity Name",
+        "MESSAGE": "iFast Financial Pte Ltd provides custodial services for MoneyOwl. For more information, please refer to our FAQ."
+      }
+    }
+  },
+  "TOAST_MESSAGES": {
+    "ADD_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been added.",
+    "VIEW": "View",
+    "PORTFOLIO_DECLINED": "\"{{userGivenPortfolioName}}\" has been declined.",
+    "PORTFOLIO_ACCEPTED": "We have submitted your Joint Account Application for \"{{userGivenPortfolioName}}\".",
+    "PORTFOLIO_SUBMITTED_TO_MINOR": "We have submitted your Joint Account Application for \"{{userGivenPortfolioName}}\".",    
+    "PORTFOLIO_SUBMITTED_TO_MAJOR": "The Joint Investment Account Application has been sent to \"{{secondaryHolderName}}\"."  
+  },
+  "CONFIRM_ACCOUNT_DETAILS": {
+    "TITLE": "Confirm Funding Details",
+    "EDIT_TITLE": "Edit Funding Details",
+    "FUND_METHOD": "Funding Method",
+    "SELECT_FUNDING_LAB": "You have selected the following funding method for this portfolio.",
+    "ACCOUNT_DETAILS": "Please provide your account details.",
+    "SRS_ACCOUNT_DETAILS": "SRS Account Details",
+    "SRS_OPERATOR": "SRS Operator",
+    "SRS_ACCOUNT_NUMBER": "SRS Account Number",
+    "CORRECT_SRS_ACCOUNT_DETAILS_DESC": "Please ensure you have entered the correct SRS account information.",
+    "CASH_DESC": "You can fund using any bank account (registered under your name).",
+    "SRS_DESC": "You <u>MUST</u> ensure sufficient fund in your SRS Account. Amount will be deducted immediately to process the buy request.",
+    "CONTINUE": "Continue",
+    "SAVE": "Save",
+    "STEP_2": "Step 2",
+    "STEP_3": "Step 3",
+    "SELECT": "Select Funding Method",
+    "SELECT_SRS_OPERATOR": "Select SRS Operator",
+    "SHOW_MODAL": {
+      "TITLE": "Reassess Risk Profile?",
+      "DESC": "You have just changed how you want to fund this {{userGivenPortfolioName}} to using {{userFundingMethod}}. Do you want to reassess your risk profile?"
+    }
+  },
+  "COMMON_LOADER": {
+    "TITLE": "Loading",
+    "DESC": "Please wait while we load the data"
+  },
+  "CONFIRM_WITHDRAWAL": {
+    "PAGE_TITLE": "Confirm Withdrawal Account",
+    "EDIT_PAGE_TITLE": "Edit Withdrawal Account",
+    "STEP_NO": "Step 2",
+    "CONTINUE": "Continue",
+    "SAVE": "Save",
+    "WITHDRAWAL_BANK_DETAILS": {
+      "TITLE": "Withdrawal Bank Details",
+      "ACCOUNT_HOLDER_NAME_TITLE": "Bank Account Holder Name(s)",
+      "ACCOUNT_HOLDER_NAME_PLACEHOLDER": " Name of account holder(s)",
+      "ACCOUNT_DETAILS_DESC": "Please note that this bank account is for the crediting of your joint investment account redemption proceeds. The bank account should be under your own name; in the case of joint bank account, you should be the primary or secondary bank account holder.",
+      "BANK_NAME_TEXT": "Bank Name",
+      "BANK_NAME_PLACEHOLDER": "Choose Bank",
+      "ACCOUNT_NO_TEXT": "Account No.",
+      "ACCOUNT_NO_PLACEHOLDER": "Enter Account No",
+      "ACCOUNT_NO_CHAR_LENGTH": "CHAR_COUNT / 13",
+      "ENSURE_CORRECT_ACC_DETAILS_TEXT": "Please ensure you have entered the correct account information. "
+    }
+  },
+  "PORTFOLIO_SUMMARY": {
+    "TITLE": "Portfolio Summary",
+    "CONTINUE": "Continue",
+    "REVIEW_DETAILS_LABEL": "<strong>Please review all details carefully before you proceed.</strong> An Invitation will be sent to the secondary holder via email and expires after 7 days. ",
+    "CHANGE_PORTFOLIO_BUTTON_TEXT": "Change to another portfolio",
+    "ACCOUNT_TYPE": "Joint Account",
+    "PORTFOLIO_DETAILS": {
+      "DATE_OF_APPLICATION_TITLE": "Date of Application",
+      "PORTFOLIO_TYPE_TITLE": "Portfolio Type",
+      "PORTFOLIO_NAME_TEXT": "Portfolio Name",
+      "PORTFOLIO_TITLE": "Portfolio",
+      "FUNDING_METHOD_TITLE": "Funding Method",
+      "FUNDING_AMOUNT_TITLE": "Funding Amount",
+      "ONE_TIME_AMOUNT_TITLE": "One-Time Amount:",
+      "MONTHLY_AMOUNT_TITLE": "Monthly Amount:",
+      "PROMO_CODE_TITLE": "Promo Code"
+    },
+    "PRIMARY_HOLDER": {
+      "TITLE": "Primary Holder",
+      "NAME_TEXT": "Name"
+    },
+    "SECONDARY_HOLDER_MAJOR": {
+      "TITLE": "Secondary Holder",
+      "NAME_TEXT": "Name",
+      "NRIC_PASSPORT_NO_TEXT": "NRIC / Passport (Last 4 Chars)",
+      "RELATIONSHIP_TEXT": "Relationship",
+      "EMAIL_TEXT": "Email"
+    },
+    "SECONDARY_HOLDER_MINOR": {
+      "TITLE": "Secondary Holder (Below 18)",
+      "NAME_AS_PER_BIRTH_CERT_TEXT": "Full Name (As per NRIC/Birth Cert)",
+      "NAME_AS_PER_PASSPORT_TEXT": "Full Name (As per Passport)",
+      "NRIC_BIRT_CERT_TEXT": "NRIC/Birth Cert Number",
+      "RELATIONSHIP_TEXT": "Relationship",
+      "US_PR_TEXT": "United States Permanent / Tax Resident",
+      "NATIONALITY_TEXT": "Nationality",
+      "ISSUED_COUNTRY_TEXT": "Country of Issued",
+      "DOB_TEXT": "Date of Birth",
+      "GENDER_TEXT": "Gender",
+      "BIRTH_COUNTRY_TEXT": "Country of Birth",
+      "RACE_TEXT": "Race",
+      "FIRST_TAX_RESIDENCE_COUNTRY_TEXT": "Country of Tax Residence",
+      "TIN_TEXT": "Taxpayer Identification Number",
+      "TIN_TEXT_YES": "Yes",
+      "TIN_TEXT_NO": "No",
+      "NO_TIN_REASON_TEXT": "Reason",
+      "TIN_NO_TEXT": "TIN Number",
+      "PASSPORT_NO_TEXT": "Passport Number",
+      "PASSPORT_EXPIRY_TEXT": "Passport Expiry",
+      "US_PR_YES": "Yes",
+      "US_PR_NO": "No",
+      "TAX_FORM_PRECENDENCE": {
+        "TAX_FIRST": "(First)",
+        "TAX_SECOND": "(Second)",
+        "TAX_THIRD": "(Third)",
+        "TAX_FOURTH": "(Fourth)",
+        "TAX_FIFTH": "(Fifth)"
+      }
+    },
+    "WITHDRAWAL_BANK_DETAILS": {
+      "TITLE": "Withdrawal Bank Details",
+      "ACCOUNT_HOLDER_NAME_TEXT": "Bank Account Holder Name(s)",
+      "BANK_NAME_TEXT": "Bank Name",
+      "ACCOUNT_NUMBER_TEXT": "Account No."
+    }
+  },
+  "LOADER_MESSAGES": {
+    "LOADING": {
+      "TITLE": "Loading.",
+      "MESSAGE": "Please wait."
+    }
+  }
 }

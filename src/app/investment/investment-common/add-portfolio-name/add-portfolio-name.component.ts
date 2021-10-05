@@ -11,18 +11,20 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { SIGN_UP_CONFIG } from '../../../sign-up/sign-up.constant';
 import {
-    INVESTMENT_ACCOUNT_ROUTE_PATHS
+  INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../investment-account/investment-account.constant';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment-engagement-journey/investment-engagement-journey.constants';
+import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { ProfileIcons } from '../../investment-engagement-journey/recommendation/profileIcons';
 import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
 import {
-    MANAGE_INVESTMENTS_ROUTE_PATHS
+  MANAGE_INVESTMENTS_ROUTE_PATHS
 } from '../../manage-investments/manage-investments-routes.constants';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
 import {
-    AccountCreationErrorModalComponent
+  AccountCreationErrorModalComponent
 } from '../confirm-portfolio/account-creation-error-modal/account-creation-error-modal.component';
 import { IAccountCreationActions } from '../investment-common-form-data';
 import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
@@ -48,6 +50,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
   isRequestSubmitted = false;
   formValues;
   fundingMethod: string;
+  userPortfolioType: any;
 
   constructor(
     public investmentAccountService: InvestmentAccountService,
@@ -56,18 +59,20 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
     private modal: NgbModal,
     public readonly translate: TranslateService,
     private investmentCommonService: InvestmentCommonService,
+    private investmentEngagementService: InvestmentEngagementJourneyService,
     private manageInvestmentsService: ManageInvestmentsService,
     private loaderService: LoaderService,
     private renderer: Renderer2,
     public footerService: FooterService,
-    private navbarService: NavbarService, 
+    private navbarService: NavbarService,
     private promoCodeService: PromoCodeService) {
-      this.translate.use('en');
-      this.translate.get('COMMON').subscribe((result: string) => {
-        this.pageTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.TITLE');
-        this.setPageTitle(this.pageTitle);
-        this.renderer.addClass(document.body, 'portfolioname-bg');
-      });
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.ADD_PORTFOLIO_NAME.TITLE');
+      this.setPageTitle(this.pageTitle);
+      this.renderer.addClass(document.body, 'portfolioname-bg');
+    });
+    this.userPortfolioType = investmentEngagementService.getUserPortfolioType();
   }
 
   setPageTitle(title: string) {
@@ -103,7 +108,11 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
       this.savePortfolioName(userPortfolioName);
     } else {
       this.portfolioNameToBeSaved = this.formValues.defaultPortfolioName;
-      this.checkAmlAndCreateAccount();
+      if (!this.checkIfJointAccount()) {
+        this.checkAmlAndCreateAccount();
+      } else {
+        this.redirectToPortfolioSummary();
+      }
     }
   }
 
@@ -130,10 +139,14 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
       if (response.responseMessage.responseCode === 6000) {
         this.investmentAccountService.setDefaultPortfolioName(portfolioName);
         this.showErrorMessage = false;
-        this.checkAmlAndCreateAccount();
+        if (!this.checkIfJointAccount()) {
+          this.checkAmlAndCreateAccount();
+        } else {
+          this.redirectToPortfolioSummary();
+        }
       } else if (response.responseMessage.responseCode === 5120) {
         this.showErrorMessage = true;
-      }  else {
+      } else {
         this.investmentAccountService.showGenericErrorModal();
       }
     },
@@ -146,7 +159,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
   checkAmlAndCreateAccount() {
     this.investmentCommonService.getAccountCreationActions().subscribe((data: IAccountCreationActions) => {
       if (data.accountCreationState && [SIGN_UP_CONFIG.INVESTMENT.ACCOUNT_CREATION_FAILED,
-        SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_FAILED].indexOf(data.accountCreationState) >= 0) {
+      SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_FAILED].indexOf(data.accountCreationState) >= 0) {
         // tslint:disable-next-line: no-redundant-boolean
         const cddCheckFailed = (data.accountCreationState === SIGN_UP_CONFIG.INVESTMENT.CDD_CHECK_FAILED) ? true : false;
         const pepData = this.investmentAccountService.getPepData();
@@ -276,7 +289,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
                 response.objectList[response.objectList.length - 1].data.status.toUpperCase() ===
                 INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_confirmed.toUpperCase()
               ) {
-               this.handleAccountCreationSuccess();
+                this.handleAccountCreationSuccess();
               } else {
                 this.investmentAccountService.setAccountCreationStatus(
                   INVESTMENT_ACCOUNT_CONSTANTS.status.account_creation_pending
@@ -308,9 +321,12 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
     );
     this.manageInvestmentsService.activateToastMessage();
     if (this.isSubsequentPortfolio) {
-      this.clearData();
       if ((this.fundingMethod).toUpperCase() === 'CASH') {
-        this.redirectToFundAccount();
+        if (this.checkIfJointAccount()) {
+          this.redirectToPortfolioSummary();
+        } else {
+          this.redirectToFundAccount();
+        }
       } else {
         this.redirectToYourInvestment();
       }
@@ -322,7 +338,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
   setPortfolioSuccessToastMessage() {
     const toastMessage: IToastMessage = {
       isShown: false,
-      desc: this.translate.instant('TOAST_MESSAGES.ADD_PORTFOLIO_SUCCESS', {userGivenPortfolioName : this.portfolioNameToBeSaved} ),
+      desc: this.translate.instant('TOAST_MESSAGES.ADD_PORTFOLIO_SUCCESS', { userGivenPortfolioName: this.portfolioNameToBeSaved }),
       link_label: this.translate.instant('TOAST_MESSAGES.VIEW'),
       link_url: MANAGE_INVESTMENTS_ROUTE_PATHS.YOUR_PORTFOLIO,
       id: this.formValues.recommendedCustomerPortfolioId,
@@ -361,12 +377,16 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
 
   convertToTitleCase(str) {
     return str.toLowerCase().split(' ')
-            .map((name) => name.charAt(0).toUpperCase() + name.substring(1))
-            .join(' ').trim().replace(/  +/g, ' ');
+      .map((name) => name.charAt(0).toUpperCase() + name.substring(1))
+      .join(' ').trim().replace(/  +/g, ' ');
   }
 
   redirectToFundAccount() {
     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.FUND_INTRO]);
+  }
+
+  redirectToPortfolioSummary() {
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.PORTFOLIO_SUMMARY]);
   }
 
   redirectToYourInvestment() {
@@ -384,4 +404,7 @@ export class AddPortfolioNameComponent implements OnInit, OnDestroy {
     this.renderer.removeClass(document.body, 'portfolioname-bg');
   }
 
+  checkIfJointAccount() {
+    return this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID;
+  }
 }

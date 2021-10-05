@@ -109,7 +109,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     }
     this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
-    this.getInvestmentOverview();
+    this.getInvestmentOverview(false);
     this.headerSubscription();
     this.getMoreList();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
@@ -147,7 +147,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     }
   }
 
-  getInvestmentOverview() {
+  getInvestmentOverview(isToastMsgEnabled: boolean) {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.loaderService.showLoader({
         title: this.translate.instant('YOUR_PORTFOLIO.MODAL.INVESTMENT_OVERVIEW.TITLE'),
@@ -157,6 +157,10 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     });
     this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
       this.loaderService.hideLoaderForced();
+      if (isToastMsgEnabled) {
+        this.toastMsg = this.manageInvestmentsService.getToastMessage();
+        this.showToastMessage();
+      }
       if (data.responseMessage.responseCode >= 6000) {
         this.setInvestmentData(data);
       } else if (
@@ -201,6 +205,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
       name: this.userProfileInfo.firstName,
       total: this.totalPortfolio
     };
+    this.manageInvestmentsService.setJointAccountUser(this.investmentoverviewlist.jauser);
     this.manageInvestmentsService.setUserPortfolioList(this.portfolioList);
     if (this.investmentoverviewlist.cashAccountDetails) {
       this.manageInvestmentsService.setUserCashBalance(
@@ -478,4 +483,18 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     } 
   }
 
+  emitToastMessage($event) {    
+    if ($event) {
+      this.getInvestmentOverview(true);      
+    } else {
+      this.toastMsg = this.manageInvestmentsService.getToastMessage();
+      this.showToastMessage();
+    }
+  }
+
+  emitMessage(event) {
+    if (event.action == MANAGE_INVESTMENTS_CONSTANTS.JOINT_ACCOUNT.REFRESH) {    
+      this.getInvestmentOverview(false);
+    }
+  }
 }

@@ -64,8 +64,25 @@ export class InvestmentApiService {
       );
   }
 
+  getJAPortfolioAllocationDetails(param) {
+    const url = investmentApiConstants.endpoint.portfolio.getJAAllocationDetails.replace('$ENQUIRY_ID$', param.enquiryId).replace('$JA_ACCOUNT_ID$', param.jaAccountId);
+    return this.http.get(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   getPortfolioDetailsWithAuth() {
     return this.http.get(investmentApiConstants.endpoint.investmentAccount.getPortfolioDetailsWithAuth)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  // CHANGING API TO HANDLE JOIN ACCOUNT ID FOR JA FLOW
+  getPortfolioDetailsWithAuthAndJA(jointAccountId) {
+    const url = investmentApiConstants.endpoint.investmentAccount.getPortfolioDetailsWithAuthAndJA.replace('$JA_ACCOUNT_ID$', jointAccountId);
+    return this.http.get(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -210,8 +227,19 @@ export class InvestmentApiService {
       );
   }
 
-  getUserBankList() {
-    return this.http.get(investmentApiConstants.endpoint.investment.getUserBankList)
+  getUserBankList(customerPortfolioId, isJointAccount) {
+    let url =investmentApiConstants.endpoint.investment.getUserBankList.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    url= url.replace('$IS_JA_ACCOUNT$', isJointAccount);
+    return this.http.get(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getJABankDetails(customerPortfolioId, isJointAccount, isEngagementJourney) {
+    let url =investmentApiConstants.endpoint.investment.getJABankDetails.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    url= url.replace('$IS_JA_ACCOUNT$', isJointAccount).replace('$IS_ENGAGEMENT_JOURNEY$', isEngagementJourney);
+    return this.http.get(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -252,7 +280,7 @@ export class InvestmentApiService {
   }
   validateCustomerPortfolioDelete(data) {
     return this.http.get(
-      investmentApiConstants.endpoint.investmentAccount.validateCustomerPortfolioDelete.replace('$CUSTOMER_PORTFOLIO_ID$', data.customerPortfolioId)  + '?handleError=true')
+      investmentApiConstants.endpoint.investmentAccount.validateCustomerPortfolioDelete.replace('$CUSTOMER_PORTFOLIO_ID$', data.customerPortfolioId) + '?handleError=true')
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -278,6 +306,15 @@ export class InvestmentApiService {
 
   getTransactionHistory(customerPortfolioId) {
     const url = investmentApiConstants.endpoint.investment.getTransactions.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
+    return this.http.get(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  // GET THE PORTFOLIO SUMMARY DETAILS FOR PORTFOLIO SUMMARY PAGE
+  getPortFolioSummaryDetails(customerPortfolioId) {
+    const url = investmentApiConstants.endpoint.portfolio.portfolioSummary.replace('$CUSTOMER_PORTFOLIO_ID$', customerPortfolioId);
     return this.http.get(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
@@ -472,6 +509,34 @@ export class InvestmentApiService {
   // nric validation
   getUserNricValidationInfo(data) {
     return this.http.post(investmentApiConstants.endpoint.investmentAccount.getUserNricValidation, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  // Major Secondary Holder validation
+  saveMajorSecondaryHolder(data) {
+    return this.http.post(investmentApiConstants.endpoint.portfolio.saveMajorSecondaryHolder, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  // Save Minor Secondary holder
+  saveMinorSecondaryHolder(data) {
+    return this.http.post(investmentApiConstants.endpoint.investmentAccount.saveMinorSecondaryHolder, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  // Accept secondary holder portfolio
+  acceptAndGetPortfolioDetails(customerPortfolioId) {
+    return this.http.get(investmentApiConstants.endpoint.portfolio.acceptJAPortfolio.replace('$customerPortfolioId$', customerPortfolioId))
+  }
+  //trigger action by primary/secondary holder 
+  setActionByHolder(data) {
+    return this.http.post(investmentApiConstants.endpoint.portfolio.setActionByHolder, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

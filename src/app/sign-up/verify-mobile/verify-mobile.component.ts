@@ -40,6 +40,7 @@ import {
 } from '../../investment/investment-account/investment-account-routes.constants';
 import { InvestmentCommonService } from '../../investment/investment-common/investment-common.service';
 import { HubspotService } from './../../shared/analytics/hubspot.service';
+import { INVESTMENT_COMMON_ROUTES } from '../../investment/investment-common/investment-common-routes.constants';
 
 @Component({
   selector: 'app-verify-mobile',
@@ -567,12 +568,16 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
 
   goToNext() {
     const investmentRoutes = [INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT, INVESTMENT_ACCOUNT_ROUTE_PATHS.START];
+    const jointAccountRoutes = [INVESTMENT_COMMON_ROUTES.ACCEPT_JA_HOLDER];
     const redirect_url = this.signUpService.getRedirectUrl();
+    const routeIndex = jointAccountRoutes.findIndex(x => (redirect_url && redirect_url.indexOf(x) >= 0));
     const journeyType = this.appService.getJourneyType();
     if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_COMPREHENSIVE) {
       this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_COMPREHENSIVE);
     } else if (redirect_url && investmentRoutes.indexOf(redirect_url) >= 0) {
       this.signUpService.clearRedirectUrl();
+      this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_INVESTMENT);
+    } else if (redirect_url && routeIndex >= 0) {
       this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_INVESTMENT);
     } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING && this.willWritingService.getWillCreatedPrelogin()) {
       this.getUserProfileAndNavigate(appConstants.JOURNEY_TYPE_WILL_WRITING);

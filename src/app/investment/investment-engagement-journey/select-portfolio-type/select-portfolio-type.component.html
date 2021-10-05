@@ -1,0 +1,39 @@
+<div class="container-fluid max-width--1024 investment">
+  <div class="content">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 hidden-sm-md">
+        <h2>{{'SELECT_PORTFOLIO_TYPE.PAGE_TITLE' | translate}}</h2>
+        <div class="banner-image">
+          <img src="assets/images/investment-account/select-portfolio-type.svg" />
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-6">
+        <h6 class="mb10">{{'SELECT_PORTFOLIO_TYPE.DESC_LBL' | translate}}</h6>
+        <form name="portfolioTypeForm" [formGroup]="portfolioTypeForm" id="portfolioTypeForm">
+          <div class="form-group flex">
+            <div class="special-radio-button hidden">
+              <input type="radio" value=1 class="field radio" name="portfolioType" id="portfolio_type_1"
+                formControlName="portfolioType" />
+              <label for="portfolio_type_1">
+                <div class="input-label-white">{{'SELECT_PORTFOLIO_TYPE.PERSONAL_ACCOUNT.TITLE' | translate}}</div>
+                <div class="input-label-normal">{{'SELECT_PORTFOLIO_TYPE.PERSONAL_ACCOUNT.DESC' | translate}}</div>
+              </label>
+            </div>
+            <div class="special-radio-button hidden">
+              <input type="radio" value=2 class="field radio" name="portfolioType" id="portfolio_type_2"
+                formControlName="portfolioType" />
+              <label for="portfolio_type_2">
+                <div class="input-label-white">{{'SELECT_PORTFOLIO_TYPE.JOINT_ACCOUNT.TITLE' | translate}}</div>
+                <div class="input-label-normal">{{'SELECT_PORTFOLIO_TYPE.JOINT_ACCOUNT.DESC' | translate}}</div>
+              </label>
+            </div>
+          </div>
+          <div>
+            <button type="button" [disabled]="portfolioTypeForm.invalid" (click)="goToNext()"
+              class="btn btn-primary btn__footer--fixed width100">{{'SELECT_PORTFOLIO_TYPE.CONTINUE' | translate}}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
