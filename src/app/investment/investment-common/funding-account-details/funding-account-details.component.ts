@@ -1,5 +1,5 @@
 
-import { forkJoin as observableForkJoin, Observable } from 'rxjs';
+import { forkJoin as observableForkJoin } from 'rxjs';
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -65,7 +65,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     public investmentAccountService: InvestmentAccountService,
     public manageInvestmentsService: ManageInvestmentsService
   ) {
-    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_COMMON_ROUTES.EDIT_FUNDING_ACCOUNT_DETAILS, 
+    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_COMMON_ROUTES.EDIT_FUNDING_ACCOUNT_DETAILS,
       INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -251,7 +251,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     const params = this.constructSaveSrsAccountParams(form.value);
     const customerPortfolioId = this.investmentAccountFormValues.recommendedCustomerPortfolioId;
     this.investmentCommonService.saveSrsAccountDetails(params, customerPortfolioId).subscribe((data) => {
-      if(!Util.isEmptyOrNull(this.navigationType)) {
+      if (!Util.isEmptyOrNull(this.navigationType)) {
         this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.PORTFOLIO_SUMMARY]);
       } else {
         this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);

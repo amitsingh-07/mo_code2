@@ -4,6 +4,11 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import * as smoothscroll from "smoothscroll-polyfill";
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { appConstants } from '../../../app.constants';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
@@ -15,13 +20,10 @@ import { AppService } from './../../../app.service';
 import { AuthenticationService } from './../../../shared/http/auth/authentication.service';
 import { InvestmentCommonService } from './../../investment-common/investment-common.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import {  ModelWithButtonComponent} from '../../../shared/modal/model-with-button/model-with-button.component';
-import * as smoothscroll from "smoothscroll-polyfill";
+import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
+
 @Component({
   selector: 'app-wise-income-payout',
   templateUrl: './wise-income-payout.component.html',
@@ -91,7 +93,7 @@ export class WiseIncomePayoutComponent implements OnInit {
         if (!this.navbarHeight) {
           this.navbarHeight = navbarDetails.nativeElement.getBoundingClientRect().height;
         }
-      });
+    });
 
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
@@ -233,21 +235,21 @@ export class WiseIncomePayoutComponent implements OnInit {
   }
 
   // 8% imp note modal
-  openImpNoteModal(wiseIncomePayOutType){
+  openImpNoteModal(wiseIncomePayOutType) {
     if (wiseIncomePayOutType.key == INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.EIGHT_PERCENT) {
-        const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'imp-note-modal' });
-        ref.componentInstance.errorTitle = this.translate.instant(
-            'WISE_INCOME_PAYOUT.IMPNOTEMODAL.TITLE'
-        );
-        ref.componentInstance.errorMessage = this.translate.instant(
-            'WISE_INCOME_PAYOUT.IMPNOTEMODAL.DESC'
-        );
-        ref.componentInstance.primaryActionLabel = this.translate.instant(
-            'WISE_INCOME_PAYOUT.IMPNOTEMODAL.BTN-TEXT'
-        );
-        ref.componentInstance.disclaimerMessage = this.translate.instant(
-            'WISE_INCOME_PAYOUT.IMPNOTEMODAL.DISCLAIMER'
-        );
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true, windowClass: 'imp-note-modal' });
+      ref.componentInstance.errorTitle = this.translate.instant(
+        'WISE_INCOME_PAYOUT.IMPNOTEMODAL.TITLE'
+      );
+      ref.componentInstance.errorMessage = this.translate.instant(
+        'WISE_INCOME_PAYOUT.IMPNOTEMODAL.DESC'
+      );
+      ref.componentInstance.primaryActionLabel = this.translate.instant(
+        'WISE_INCOME_PAYOUT.IMPNOTEMODAL.BTN-TEXT'
+      );
+      ref.componentInstance.disclaimerMessage = this.translate.instant(
+        'WISE_INCOME_PAYOUT.IMPNOTEMODAL.DISCLAIMER'
+      );
     }
   }
 
