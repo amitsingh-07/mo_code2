@@ -3,24 +3,32 @@
     <div class="portfolio-subheading">{{'PORTFOLIO.SUB_HEADING' | translate}}</div>
     <!-- Investment Portfolio -->
     <form name="selectPortfolioForm" [formGroup]="selectPortfolioForm" id="selectPortfolioForm">
-        <div class="investment-portfolio" formControlName="selectPortfolioType" id="selectPortfolioType" name="selectPortfolioForm" value="investPortfolio" ngDefaultControl (click)="setSelectPortfolioType('investPortfolio')">
-            <div class="portfolio-cards" [ngClass]="{'active': investmentEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='investPortfolio', 'more-info-shadow': investmentMoreInfoShow}">
-                <div class="portfolio-cards__select" *ngIf="investmentEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='investPortfolio'">
+        <div class="investment-portfolio" formControlName="selectPortfolioType" id="selectPortfolioType"
+            name="selectPortfolioForm" value="investPortfolio" ngDefaultControl
+            (click)="setSelectPortfolioType('investPortfolio')">
+            <div class="portfolio-cards"
+                [ngClass]="{'active': investmentEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='investPortfolio', 'more-info-shadow': investmentMoreInfoShow}">
+                <div class="portfolio-cards__select"
+                    *ngIf="investmentEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='investPortfolio'">
                     <img src="assets/images/circle-tick-orange.svg"></div>
                 <div class="portfolio-cards__img"><img src="assets/images/wisesaver/investment-guy.svg"></div>
                 <div class="portfolio-cards__details">
                     <div class="portfolio-cards__details__portfolio-type">
-                        <img src="assets/images/dimensional-logo.svg"/>
+                        <img src="assets/images/dimensional-logo.svg" />
                     </div>
                     <div class="portfolio-cards__details__title">{{'PORTFOLIO.INVESTMENT.TITLE' | translate}}</div>
-                    <div class="portfolio-cards__details__desc" [innerHTML]="'PORTFOLIO.INVESTMENT.DESC' | translate"></div>
+                    <div class="portfolio-cards__details__desc" [innerHTML]="'PORTFOLIO.INVESTMENT.DESC' | translate">
+                    </div>
                     <div class="portfolio-cards__details__more" (click)="investmentMoreInfo($event)">
-                        {{'PORTFOLIO.INVESTMENT.MORE_INFO' | translate}}<i class="material-icons" *ngIf="!investmentMoreInfoShow">keyboard_arrow_down</i><i class="material-icons" *ngIf="investmentMoreInfoShow">keyboard_arrow_up</i></div>
+                        {{'PORTFOLIO.INVESTMENT.MORE_INFO' | translate}}<i class="material-icons"
+                            *ngIf="!investmentMoreInfoShow">keyboard_arrow_down</i><i class="material-icons"
+                            *ngIf="investmentMoreInfoShow">keyboard_arrow_up</i></div>
                 </div>
             </div>
         </div>
         <div class="portfolio-info" *ngIf="investmentMoreInfoShow">
-            <ngx-slick-carousel class="carousel" #carousel [config]="slideConfig" (beforeChange)="beforeSlideChange($event)">
+            <ngx-slick-carousel class="carousel" #carousel [config]="slideConfig"
+                (beforeChange)="beforeSlideChange($event)">
                 <div ngxSlickItem>
                     <div class="portfolio-info__slide-item">
                         <div class="portfolio-info__heading">{{'PORTFOLIO.INVESTMENT.SLIDES.HEADING' | translate}}</div>
@@ -42,26 +50,34 @@
                 </div>
             </ngx-slick-carousel>
         </div>
-     <!-- WiseIncome Portfolio -->
-        <div class="wiseIncome-portfolio" formControlName="selectPortfolioType" id="selectPortfolioType" name="selectPortfolioForm" value="wiseIncomePortfolio" ngDefaultControl (click)="setSelectPortfolioType('wiseIncomePortfolio')">
-            <div class="portfolio-cards" [ngClass]="{'active': wiseIncomeEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='wiseIncomePortfolio', 'more-info-shadow': wiseIncomeMoreInfoShow}">
+        <!-- WiseIncome Portfolio -->
+        <div class="wiseIncome-portfolio" formControlName="selectPortfolioType" id="selectPortfolioType"
+            name="selectPortfolioForm" value="wiseIncomePortfolio" ngDefaultControl
+            (click)="setSelectPortfolioType('wiseIncomePortfolio')">
+            <div class="portfolio-cards"
+                [ngClass]="{'active': wiseIncomeEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='wiseIncomePortfolio', 'more-info-shadow': wiseIncomeMoreInfoShow}">
                 <div class="portfolio-new"><img src="assets/images/wiseincome/portfolio-new.svg"></div>
-                <div class="portfolio-cards__select" *ngIf="wiseIncomeEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='wiseIncomePortfolio'">
+                <div class="portfolio-cards__select"
+                    *ngIf="wiseIncomeEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='wiseIncomePortfolio'">
                     <img src="assets/images/circle-tick-orange.svg"></div>
                 <div class="portfolio-cards__img"><img src="assets/images/wiseincome/investment-guy.svg"></div>
                 <div class="portfolio-cards__details">
                     <div class="portfolio-cards__details__portfolio-type">
-                        <img src="assets/images/wise-income-logo.svg"/>
+                        <img src="assets/images/wise-income-logo.svg" />
                     </div>
                     <div class="portfolio-cards__details__title">{{'PORTFOLIO.WISEINCOME.TITLE' | translate}}</div>
-                    <div class="portfolio-cards__details__desc" [innerHTML]="'PORTFOLIO.WISEINCOME.DESC' | translate"></div>
+                    <div class="portfolio-cards__details__desc" [innerHTML]="'PORTFOLIO.WISEINCOME.DESC' | translate">
+                    </div>
                     <div class="portfolio-cards__details__more" (click)="wiseIncomeMoreInfo($event)">
-                        {{'PORTFOLIO.INVESTMENT.MORE_INFO' | translate}}<i class="material-icons" *ngIf="!wiseIncomeMoreInfoShow">keyboard_arrow_down</i><i class="material-icons" *ngIf="wiseIncomeMoreInfoShow">keyboard_arrow_up</i></div>
+                        {{'PORTFOLIO.INVESTMENT.MORE_INFO' | translate}}<i class="material-icons"
+                            *ngIf="!wiseIncomeMoreInfoShow">keyboard_arrow_down</i><i class="material-icons"
+                            *ngIf="wiseIncomeMoreInfoShow">keyboard_arrow_up</i></div>
                 </div>
             </div>
         </div>
         <div class="portfolio-info" *ngIf="wiseIncomeMoreInfoShow">
-            <ngx-slick-carousel class="carousel" #carousel [config]="slideConfig" (beforeChange)="beforeSlideChange($event)">
+            <ngx-slick-carousel class="carousel" #carousel [config]="slideConfig"
+                (beforeChange)="beforeSlideChange($event)">
                 <div ngxSlickItem>
                     <div class="portfolio-info__slide-item">
                         <div class="portfolio-info__heading">{{'PORTFOLIO.INVESTMENT.SLIDES.HEADING' | translate}}</div>
@@ -83,28 +99,35 @@
                     </div>
                 </div>
             </ngx-slick-carousel>
-        </div>    
+        </div>
         <!-- WiseSaver Portfolio -->
-        <div class="wisesaver-portfolio" formControlName="selectPortfolioType" id="selectPortfolioType" name="selectPortfolioType" value="wiseSaverPortfolio" ngDefaultControl (click)="setSelectPortfolioType('wiseSaverPortfolio')">
+        <div class="wisesaver-portfolio" formControlName="selectPortfolioType" id="selectPortfolioType"
+            name="selectPortfolioType" value="wiseSaverPortfolio" ngDefaultControl
+            (click)="setSelectPortfolioType('wiseSaverPortfolio')">
             <div class="portfolio-cards" [ngClass]="{'active': wiseSaverEnabled  || selectPortfolioForm.controls.selectPortfolioType && 
         selectPortfolioForm.controls.selectPortfolioType.value ==='wiseSaverPortfolio',
         'more-info-shadow': wiseSaverMoreInfoShow }">
-                <div class="portfolio-cards__select" *ngIf="wiseSaverEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='wiseSaverPortfolio'">
+                <div class="portfolio-cards__select"
+                    *ngIf="wiseSaverEnabled || selectPortfolioForm.controls.selectPortfolioType && selectPortfolioForm.controls.selectPortfolioType.value ==='wiseSaverPortfolio'">
                     <img src="assets/images/circle-tick-orange.svg"></div>
                 <div class="portfolio-cards__img"><img src="assets/images/wisesaver/wisesaver-family.svg"></div>
                 <div class="portfolio-cards__details">
                     <div class="portfolio-cards__details__portfolio-type">
-                        <img src="assets/images/wise-saver-logo.svg"/>
+                        <img src="assets/images/wise-saver-logo.svg" />
                     </div>
                     <div class="portfolio-cards__details__title">{{'PORTFOLIO.WISESAVER.TITLE' | translate}}</div>
-                    <div class="portfolio-cards__details__desc" [innerHTML]="'PORTFOLIO.WISESAVER.DESC' | translate"></div>
+                    <div class="portfolio-cards__details__desc" [innerHTML]="'PORTFOLIO.WISESAVER.DESC' | translate">
+                    </div>
                     <div class="portfolio-cards__details__more" (click)="wiseSaverMoreInfo($event)">
-                        {{'PORTFOLIO.WISESAVER.MORE_INFO' | translate}}<i class="material-icons" *ngIf="!wiseSaverMoreInfoShow">keyboard_arrow_down</i><i class="material-icons" *ngIf="wiseSaverMoreInfoShow">keyboard_arrow_up</i></div>
+                        {{'PORTFOLIO.WISESAVER.MORE_INFO' | translate}}<i class="material-icons"
+                            *ngIf="!wiseSaverMoreInfoShow">keyboard_arrow_down</i><i class="material-icons"
+                            *ngIf="wiseSaverMoreInfoShow">keyboard_arrow_up</i></div>
                 </div>
             </div>
         </div>
         <div class="portfolio-info" *ngIf="wiseSaverMoreInfoShow">
-            <ngx-slick-carousel class="carousel" #carousel [config]="slideConfig" (beforeChange)="beforeSlideChange($event)">
+            <ngx-slick-carousel class="carousel" #carousel [config]="slideConfig"
+                (beforeChange)="beforeSlideChange($event)">
                 <div ngxSlickItem>
                     <div class="portfolio-info__slide-item">
                         <div class="portfolio-info__heading">{{'PORTFOLIO.WISESAVER.SLIDES.HEADING' | translate}}</div>
@@ -128,10 +151,13 @@
             </ngx-slick-carousel>
         </div>
         <!--Footer button-->
-        <div class="footer-btn-wrapper"><button type="button" class="btn btn__footer--fixed btn-primary width100" (click)="goNext(selectPortfolioForm)" [disabled]="!selectPortfolioForm.controls.selectPortfolioType.value">
-      <span
-        *ngIf="!selectPortfolioForm.controls.selectPortfolioType.value">{{'PORTFOLIO.TITLE' | translate}}</span>
-      <span *ngIf="selectPortfolioForm.controls.selectPortfolioType.value">{{'PORTFOLIO.WISESAVER.FOOTER_BTN_TXT' | translate}}</span>
-    </button></div>
+        <div class="footer-btn-wrapper"><button type="button" class="btn btn__footer--fixed btn-primary width100"
+                (click)="goNext(selectPortfolioForm)"
+                [disabled]="!selectPortfolioForm.controls.selectPortfolioType.value">
+                <span
+                    *ngIf="!selectPortfolioForm.controls.selectPortfolioType.value">{{'PORTFOLIO.TITLE' | translate}}</span>
+                <span
+                    *ngIf="selectPortfolioForm.controls.selectPortfolioType.value">{{'PORTFOLIO.WISESAVER.FOOTER_BTN_TXT' | translate}}</span>
+            </button></div>
     </form>
 </div>
