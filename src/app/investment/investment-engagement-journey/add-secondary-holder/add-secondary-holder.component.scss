@@ -283,6 +283,7 @@ app-add-secondary-holder {
           color: $teal-color;
           letter-spacing: -0.3px;
           line-height: normal;
+          font-family: $muli-semi-bold;
         }
 
         .add-tax-box {
@@ -376,7 +377,6 @@ app-add-secondary-holder {
           .widget-body {
             padding: 20px 13px 30px;
             background-color: $bond-container-bg;
-            font-family: $muli-semi-bold;
             font-size: 18px;
             letter-spacing: -0.34px;
             color: $dark-teal-color;

@@ -1,10 +1,5 @@
-<div class="upload-doc-nric investment-account">
-  <div class="step-indicator-container">
-    <div class="container-fluid max-width--1024">
-      <div class="page-caption hidden-lg">{{ 'UPLOAD_DOCUMENTS.PAGE_SUB_CAPTION' | translate}}</div>
-    </div>
-  </div>
-  <div class="container-fluid max-width--1024">
+<div class="upload-doc-nric">
+  <div class="container-fluid max-width--1024 investment">
     <div class="content">
       <div class="row">
         <div class="col-md-6 hidden-sm-md">
@@ -15,11 +10,10 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-11">
+          <div class="row upload-form">
+            <div class="col-md-12">
               <form id="upload_doc_form" name="uploadForm" [formGroup]="uploadForm">
-                <div class="flex-row center">
+                <div class="flex-row">
                   <div class="flex-col-5">
                     <label for="salutation-drpdown" class="mb0" id="salutation-lbl">{{
                 'UPLOAD_DOCUMENTS.TITLE'
@@ -63,7 +57,7 @@
                         <div class="thumb-close-icon"
                           (click)="clearFileSelection(uploadForm.controls.nricFrontImage, 'NRIC_FRONT', $event, frontThumb, nricFront)"
                           *ngIf="uploadForm.controls.nricFrontImage.value">
-                          <img src="assets/images/close-button.svg" alt="x" />
+                          <img src="assets/images/close-button-dark.svg" alt="x" />
                         </div>
                         <img #frontThumb class="thumbnail image-fluid" src="assets/images/{{defaultThumb}}" />
                       </div>
@@ -86,7 +80,7 @@
                         <div class="thumb-close-icon"
                           (click)="clearFileSelection(uploadForm.controls.nricBackImage, 'NRIC_BACK', $event, backThumb, nricBack)"
                           *ngIf="uploadForm.controls.nricBackImage.value">
-                          <img src="assets/images/close-button.svg" alt="x" />
+                          <img src="assets/images/close-button-dark.svg" alt="x" />
                         </div>
                         <img #backThumb class="thumbnail image-fluid" src="assets/images/{{defaultThumb}}" />
                       </div>
@@ -115,7 +109,7 @@
                         <div class="thumb-close-icon"
                           (click)="clearFileSelection(uploadForm.controls.birthCertificateImage, 'BIRTH_CERTIFICATE', $event, passportThumb, birthCertificate)"
                           *ngIf="uploadForm.controls.birthCertificateImage.value">
-                          <img src="assets/images/close-button.svg" alt="x" />
+                          <img src="assets/images/close-button-dark.svg" alt="x" />
                         </div>
                         <img #passportThumb class="thumbnail image-fluid" src="assets/images/{{defaultThumb}}" />
                       </div>
@@ -142,7 +136,7 @@
                         <div class="thumb-close-icon"
                           (click)="clearFileSelection(uploadForm.controls.passportImage, 'PASSPORT', $event, passportThumb, passport)"
                           *ngIf="uploadForm.controls.passportImage.value">
-                          <img src="assets/images/close-button.svg" alt="x" />
+                          <img src="assets/images/close-button-dark.svg" alt="x" />
                         </div>
                         <img #passportThumb class="thumbnail image-fluid" src="assets/images/{{defaultThumb}}" />
                       </div>
@@ -170,7 +164,7 @@
               </form>
               <div  class="text-center">
                 <button type="button" id="uploadDocumentNextBtn" [disabled]="!uploadForm.valid"
-                  (click)="goToNext(uploadForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+                  (click)="goToNext(uploadForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 mt30"
                   id="uploadDocument_submit_btn">{{ navigationType ? ('UPLOAD_DOCUMENTS.SAVE' | translate) 
                   : ('UPLOAD_DOCUMENTS.CONTINUE' | translate)}}</button>
               </div>
