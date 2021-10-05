@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {
-  AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators
-} from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,7 +8,6 @@ import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
-import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 import { InvestmentAccountCommon } from '../investment-account-common';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
@@ -177,22 +174,22 @@ export class TaxInfoComponent implements OnInit {
 
   isTinNumberAvailChanged(flag, formgroup, data) {
     if (flag) {
-        formgroup.addControl(
-          'tinNumber',
-          new FormControl('', [
-            Validators.required,
-            this.investmentEngagementService.validateTin.bind(this)
-          ])
-        );
-        formgroup.controls.tinNumber.setValue(data);
-        formgroup.removeControl('noTinReason');
+      formgroup.addControl(
+        'tinNumber',
+        new FormControl('', [
+          Validators.required,
+          this.investmentEngagementService.validateTin.bind(this)
+        ])
+      );
+      formgroup.controls.tinNumber.setValue(data);
+      formgroup.removeControl('noTinReason');
     } else {
-        formgroup.addControl(
-          'noTinReason',
-          new FormControl('', Validators.required)
-        );
-        formgroup.controls.noTinReason.setValue(data);
-        formgroup.removeControl('tinNumber');
+      formgroup.addControl(
+        'noTinReason',
+        new FormControl('', Validators.required)
+      );
+      formgroup.controls.noTinReason.setValue(data);
+      formgroup.removeControl('tinNumber');
     }
   }
   setDropDownValue(key, value) {
@@ -295,7 +292,7 @@ export class TaxInfoComponent implements OnInit {
       }
     }
   }
-  
+
   showHelpModalCountry() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.tooltipDetails.TITLE;
@@ -303,5 +300,5 @@ export class TaxInfoComponent implements OnInit {
     ref.componentInstance.errorDescription = this.tooltipDetails.DESC;
     ref.componentInstance.tooltipButtonLabel = this.tooltipDetails.GOT_IT;
     return false;
-  }  
+  }
 }

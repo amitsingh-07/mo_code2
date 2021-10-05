@@ -1,5 +1,5 @@
 
-import { forkJoin as observableForkJoin, Observable } from 'rxjs';
+import { forkJoin as observableForkJoin } from 'rxjs';
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
