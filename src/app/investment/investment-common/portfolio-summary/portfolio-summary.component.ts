@@ -18,6 +18,7 @@ import { InvestmentCommonService } from '../investment-common.service';
 import { IToastMessage } from '../../manage-investments/manage-investments-form-data';
 import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
 import { Util } from '../../../shared/utils/util';
+import { LoaderService } from '../../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-portfolio-summary',
@@ -48,6 +49,7 @@ export class PortfolioSummaryComponent implements OnInit {
     public manageInvestmentsService: ManageInvestmentsService,
     private router: Router,
     public authService: AuthenticationService,
+    private loaderService: LoaderService,
     public modal: NgbModal
   ) {
     this.secondaryHolderMinorFormValues = investmentEngagementJourneyService.getMinorSecondaryHolderData();
@@ -95,14 +97,20 @@ export class PortfolioSummaryComponent implements OnInit {
 
   goToNext() {
     const customerPortfolioId = this.investmentAccountService.getCustomerPortfolioId();
+    this.loaderService.showLoader({
+      title: this.translate.instant('LOADER_MESSAGES.LOADING.TITLE'),
+      desc: this.translate.instant('LOADER_MESSAGES.LOADING.MESSAGE'),
+      autoHide: false
+    });
     this.manageInvestmentsService.setActionByHolder(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.SUBMISSION).subscribe(resp => {
+      this.loaderService.hideLoaderForced();
       this.clearData();
       this.onPortfolioSubmission();
     });
   }
 
   onPortfolioSubmission() {
-    if (this.summaryDetails.minor) {
+    if (this.isMinor) {
       const toastMessage: IToastMessage = {
         isShown: true,
         desc: this.translate.instant('TOAST_MESSAGES.PORTFOLIO_SUBMITTED_TO_MINOR', { userGivenPortfolioName: this.summaryDetails.portfolioName }),
