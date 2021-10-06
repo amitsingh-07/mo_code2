@@ -5,7 +5,7 @@ import { catchError, map, shareReplay } from 'rxjs/operators';
 
 import { IProductCategory } from '../direct/product-info/product-category/product-category';
 import { HospitalPlan } from '../guide-me/hospital-plan/hospital-plan';
-import { environment } from 'src/environments/environment';
+import { environment } from './../../environments/environment';
 
 export interface IConfig {
   language: string;
