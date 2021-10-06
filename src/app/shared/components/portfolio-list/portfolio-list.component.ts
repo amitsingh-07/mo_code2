@@ -345,7 +345,9 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     const minutesToDay = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour) % this.SecondsInAMinute);
     const hoursToDay = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute) % this.hoursInADay);
     const daysToDay = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute * this.hoursInADay));
-    if (daysToDay > 0) {
+    if(daysToDay >= 2 && hoursToDay == 0 && minutesToDay == 0) {
+      return (daysToDay-1) + ' ' + this.days;
+    } else if (daysToDay > 0) {
       return daysToDay + ' ' + this.days;
     } else {
       return (isStaticTextEnabled) ? this.awaitingMsg : hoursToDay + ' ' + this.hours + ' ' + minutesToDay + ' ' + this.minutes;
