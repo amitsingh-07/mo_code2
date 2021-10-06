@@ -177,7 +177,6 @@ export class PromoDetailsComponent implements OnInit {
   // Check if detail page is from where
   checkPath() {
     this.promoSvc.usedPromo.next(this.selectedPromo);
-    this.investmentEngagementService.setPromoCode(this.selectedPromo.code);
     if (this.router.url === PROMO_ROUTE) {
       if (this.selectedPromo['topupReq'] === 'Y') {
         this.navigateToTopUp();
@@ -206,7 +205,6 @@ export class PromoDetailsComponent implements OnInit {
   // Remove applied promo code
   removePromoCode(e) {
     this.promoSvc.removeAppliedPromo();
-    this.investmentEngagementService.setPromoCode(null);
     this.activeModal.dismiss();
     e.preventDefault();
     e.stopPropagation();

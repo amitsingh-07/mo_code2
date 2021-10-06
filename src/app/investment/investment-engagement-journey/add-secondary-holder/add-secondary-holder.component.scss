@@ -14,18 +14,25 @@ app-add-secondary-holder {
     h6 {
       display: none;
     }
+
+    .desc-lbl {
+      margin-top: 0 !important;
+    }
   }
 
-  .question-lbl{
+  .question-lbl {
     padding-left: 5px;
     margin-bottom: 0;
-    @include allmobiles{
+
+    @include allmobiles {
       padding-left: 0;
     }
   }
-  .secondary-holder-tabs{
+
+  .secondary-holder-tabs {
     padding: 0 5px;
-    @include allmobiles{
+
+    @include allmobiles {
       padding: 0;
     }
   }
@@ -130,13 +137,15 @@ app-add-secondary-holder {
 
       .restrict-notice {
         align-items: flex-start;
+
         .flex-col-11 {
           line-height: normal;
           padding: 0 0 0 15px;
 
           .desc-sub-lbl {
             letter-spacing: -0.11px;
-            u{
+
+            u {
               cursor: pointer;
             }
           }
@@ -161,9 +170,11 @@ app-add-secondary-holder {
         .flex-row {
           align-items: center;
           justify-content: space-between;
-          .flex-col-5{
+
+          .flex-col-5 {
             max-width: 133px;
-            @include allmobiles{
+
+            @include allmobiles {
               max-width: 110px;
             }
           }
@@ -298,7 +309,8 @@ app-add-secondary-holder {
           margin-top: 20px;
           cursor: pointer;
           border: solid 1px $inline-error-border-color;
-          @include allmobiles{
+
+          @include allmobiles {
             margin-bottom: 14px;
           }
         }
@@ -366,9 +378,11 @@ app-add-secondary-holder {
             padding: 20px 23px;
             display: flex;
             justify-content: space-between;
-            @include allmobiles{
+
+            @include allmobiles {
               padding: 24px 23px 25px;
             }
+
             .delete-icon {
               cursor: pointer;
             }
