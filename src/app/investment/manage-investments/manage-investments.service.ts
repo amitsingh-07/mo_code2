@@ -731,6 +731,16 @@ export class ManageInvestmentsService {
     };
     return this.investmentApiService.setActionByHolder(payload);
   }
+
+  submitJAPortfolio(customerPortfolioId, jointAccountAction, promoCodeId) {
+    const payload: any = {
+      customerPortfolioId: customerPortfolioId,
+      jointAccountAction: jointAccountAction,
+      promoCodeId: promoCodeId
+    };
+    return this.investmentApiService.setActionByHolder(payload);
+  }
+  
   setJointAccountUser(isJaUser: boolean) {
     this.manageInvestmentsFormData.isJointAccountUser = isJaUser;
     this.commit();

@@ -19,6 +19,7 @@ import { IToastMessage } from '../../manage-investments/manage-investments-form-
 import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
 import { Util } from '../../../shared/utils/util';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
+import { PromoCodeService } from '../../../promo-code/promo-code.service';
 
 @Component({
   selector: 'app-portfolio-summary',
@@ -50,7 +51,8 @@ export class PortfolioSummaryComponent implements OnInit {
     private router: Router,
     public authService: AuthenticationService,
     private loaderService: LoaderService,
-    public modal: NgbModal
+    public modal: NgbModal,
+    private promoCodeService: PromoCodeService
   ) {
     this.secondaryHolderMinorFormValues = investmentEngagementJourneyService.getMinorSecondaryHolderData();
     this.secondaryHolderMajorFormValues = investmentEngagementJourneyService.getMajorSecondaryHolderData();
@@ -75,11 +77,11 @@ export class PortfolioSummaryComponent implements OnInit {
   }
 
   setPromoCode() {
-    const promo = this.investmentEngagementJourneyService.getPromoCode();
+    const promo: any = this.promoCodeService.usedPromo.getValue();
     if (Util.isEmptyOrNull(promo)) {
       this.promoCode = INVESTMENT_COMMON_CONSTANTS.PROMO_CODE.NOT_APPLIED;
     } else {
-      this.promoCode = promo;
+      this.promoCode = promo.code;
     }
   }
 
@@ -102,11 +104,13 @@ export class PortfolioSummaryComponent implements OnInit {
       desc: this.translate.instant('LOADER_MESSAGES.LOADING.MESSAGE'),
       autoHide: false
     });
-    this.manageInvestmentsService.setActionByHolder(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.SUBMISSION).subscribe(resp => {
-      this.loaderService.hideLoaderForced();
-      this.clearData();
-      this.onPortfolioSubmission();
-    });
+    const promo = this.promoCodeService.usedPromo.getValue();
+    this.manageInvestmentsService.submitJAPortfolio(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.SUBMISSION, promo['id'])
+      .subscribe(resp => {
+        this.loaderService.hideLoaderForced();
+        this.clearData();
+        this.onPortfolioSubmission();
+      });
   }
 
   onPortfolioSubmission() {
