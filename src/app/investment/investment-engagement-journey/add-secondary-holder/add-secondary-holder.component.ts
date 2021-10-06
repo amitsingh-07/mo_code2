@@ -134,8 +134,8 @@ export class AddSecondaryHolderComponent implements OnInit {
         day: today.getDate()
       };
     });
-    this.secondaryHolderMinorFormValues = investmentEngagementService.getMinorSecondaryHolderData();
-    this.secondaryHolderMajorFormValues = investmentEngagementService.getMajorSecondaryHolderData();
+    this.secondaryHolderMinorFormValues = investmentEngagementService.getMinorSecondaryHolderData() ? JSON.parse(JSON.stringify(investmentEngagementService.getMinorSecondaryHolderData())) : null;
+    this.secondaryHolderMajorFormValues = investmentEngagementService.getMajorSecondaryHolderData() ? JSON.parse(JSON.stringify(investmentEngagementService.getMajorSecondaryHolderData())) : null;
     if (this.secondaryHolderMinorFormValues && this.secondaryHolderMinorFormValues.isMinor) {
       this.activeTabId = 2;
       this.tabChange();
@@ -334,6 +334,9 @@ export class AddSecondaryHolderComponent implements OnInit {
 
   /* Method called when Singapore PR radio button is clicked */
   singaporeanPRChange(isSingaporePR) {
+    if (this.secondaryHolderMinorFormValues && this.secondaryHolderMinorFormValues.relationship) {
+      this.secondaryHolderMinorFormValues.relationship = null;
+    }
     isSingaporePR ? this.addSingaporeanControls() : this.addNonSingaporeanControls();
   }
 
@@ -403,7 +406,7 @@ export class AddSecondaryHolderComponent implements OnInit {
           }
         }
         else {
-          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'limited-width' });
           ref.componentInstance.errorTitle = this.errorModalData.modalTitle;
           ref.componentInstance.errorDescription = this.errorModalData.modalDesc;
         }
