@@ -274,8 +274,15 @@ app-confirm-portfolio {
                 box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15) !important;
             }
             &:disabled{
-                background-color: $crusta-orange-color !important;
+                background-color: $karry-orange-color !important;
                 cursor: not-allowed;
+                &:hover{
+                    background-color: $karry-orange-color !important;
+                    color: $pelorous-dark-blue-color;
+                }
+            }
+            &:hover , &:active{
+                background-color: $atomic-tangerine-color !important;
             }
         }
         .btn-outline-primary{
@@ -286,7 +293,18 @@ app-confirm-portfolio {
             margin-top: 30px;
             &:disabled{
                 background-color: transparent !important;
+                border: 1px solid $pelorous-dark-blue-color;
                 cursor: not-allowed;
+                color: $pelorous-dark-blue-color;
+                &:hover{
+                    background-color: transparent !important;
+                    border: 1px solid $pelorous-dark-blue-color;
+                    color: $pelorous-dark-blue-color !important;
+                }
+            }
+            &:hover , &:active{
+                background-color: $white-color !important;
+                color: $teal-color !important;
             }
             @include allmobiles{
                 margin-top: 15px;
