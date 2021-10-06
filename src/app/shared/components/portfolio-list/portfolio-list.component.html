@@ -38,15 +38,15 @@
                                 <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
                                     currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                                 <div class="flex-row">
-                                    <div class='col-md-6 awaiting-period mt10 pl0 pr0'>{{ portfolio.awaitingPeriod }}
+                                    <div class="col-md-6 awaiting-period mt10 pl0 pr0">{{ portfolio.awaitingPeriod }}
                                         {{'YOUR_INVESTMENT.PRIMARY_AWAITING_PERIOD' | translate}}</div>
-                                    <div class='col-md-6 ja-btn-group' *ngIf='portfolio.primaryHolder'>
+                                    <div class="col-md-6 ja-btn-group" *ngIf='portfolio.primaryHolder'>
                                         <button class="send-reminder-btn cursorPointer"
                                             (click)="sendReminderModal(portfolio.customerPortfolioId, portfolio.secondaryHolderName)">{{'YOUR_INVESTMENT.SEND_REMINDER' | translate}}</button>
                                         <button class="withdraw-btn cursorPointer ml10"
                                             (click)="withDrawModal(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.WITHDRAW' | translate}}</button>
                                     </div>
-                                    <div class='col-md-6 flex justify-right plo pr0' *ngIf='!portfolio.primaryHolder'
+                                    <div class="col-md-6 flex justify-right plo pr0" *ngIf='!portfolio.primaryHolder'
                                         (click)="acceptJAPortfolio(portfolio.customerPortfolioId)">
                                         <button
                                             class="accept-decline-btn cursorPointer">{{'YOUR_INVESTMENT.ACCEPT_DECLINE' | translate}}</button>
@@ -85,15 +85,17 @@
                                         class="ja-icon"><img
                                             src="assets/images/investment-account/ja-icon.svg" /></span><span>{{ (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) : (portfolio.primaryHolderName | titlecase) }}</span>
                                 </div>
-                                <div class="ja-investment mt10">
-                                    {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT === portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType : ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME === portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory + ' - ' + portfolio.payoutTypeValue)  : portfolio.portfolioCategory ) }}
-                                </div>
-                                <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
-                                    currency:'USD':'symbol-narrow':'1.0-2'}} </div>
-                                <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
-                                    currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                                 <div class="flex-row">
-                                    <div class='col-md-12 flex justify-right pl0 pr0'>
+                                    <div class="col-md-6 pl0 pr0">
+                                        <div class="ja-investment mt10">
+                                            {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT === portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType : ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME === portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory + ' - ' + portfolio.payoutTypeValue)  : portfolio.portfolioCategory ) }}
+                                        </div>
+                                        <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
+                                            currency:'USD':'symbol-narrow':'1.0-2'}} </div>
+                                        <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
+                                            currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                                    </div>
+                                    <div class="col-md-6 flex justify-right align-items-end pl0 pr0">
                                         <button class="delete-btn cursorPointer"
                                             (click)="deleteByHolder(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.APPLICATION_DELETE' | translate}}</button>
                                     </div>
@@ -131,15 +133,17 @@
                                         class="ja-icon"><img
                                             src="assets/images/investment-account/ja-icon.svg" /></span><span>{{ (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) : (portfolio.primaryHolderName | titlecase) }}</span>
                                 </div>
-                                <div class="ja-investment mt10">
-                                    {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT === portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType : ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME === portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory + ' - ' + portfolio.payoutTypeValue)  : portfolio.portfolioCategory ) }}
-                                </div>
-                                <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
-                                    currency:'USD':'symbol-narrow':'1.0-2'}} </div>
-                                <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
-                                    currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                                 <div class="flex-row">
-                                    <div class='col-md-12 flex justify-right pl0 pr0'>
+                                    <div class="col-md-6 pl0 pr0">
+                                        <div class="ja-investment mt10">
+                                            {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT === portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType : ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME === portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory + ' - ' + portfolio.payoutTypeValue)  : portfolio.portfolioCategory ) }}
+                                        </div>
+                                        <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
+                                            currency:'USD':'symbol-narrow':'1.0-2'}} </div>
+                                        <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
+                                            currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                                    </div>
+                                    <div class="col-md-6 flex justify-right align-items-end pl0 pr0">
                                         <button class="delete-btn cursorPointer"
                                             (click)="deleteByHolder(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.APPLICATION_DELETE' | translate}}</button>
                                     </div>
@@ -177,15 +181,17 @@
                                         class="ja-icon"><img
                                             src="assets/images/investment-account/ja-icon.svg" /></span><span>{{ (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) : (portfolio.primaryHolderName | titlecase) }}</span>
                                 </div>
-                                <div class="ja-investment mt10">
-                                    {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT === portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType : ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME === portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory + ' - ' + portfolio.payoutTypeValue)  : portfolio.portfolioCategory ) }}
-                                </div>
-                                <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
-                                    currency:'USD':'symbol-narrow':'1.0-2'}} </div>
-                                <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
-                                    currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                                 <div class="flex-row">
-                                    <div class='col-md-12 flex justify-right pl0 pr0'>
+                                    <div class="col-md-6 pl0 pr0">
+                                        <div class="ja-investment mt10">
+                                            {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT === portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType : ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME === portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory + ' - ' + portfolio.payoutTypeValue)  : portfolio.portfolioCategory ) }}
+                                        </div>
+                                        <div class="ja-investment">{{'YOUR_INVESTMENT.ONE_TIME_AMOUNT' | translate}} {{ (portfolio.initialInvestment ? portfolio.initialInvestment : 0) |
+                                            currency:'USD':'symbol-narrow':'1.0-2'}} </div>
+                                        <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
+                                            currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                                    </div>
+                                    <div class="col-md-6 flex justify-right align-items-end pl0 pr0">
                                         <button class="delete-btn cursorPointer"
                                             (click)="deleteByHolder(portfolio.portfolioName, portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.APPLICATION_DELETE' | translate}}</button>
                                     </div>
@@ -262,7 +268,7 @@
                                             src="assets/images/investment-account/ja-icon.svg" /></span><span>{{ (portfolio.primaryHolder) ? (portfolio.secondaryHolderName | titlecase) : (portfolio.primaryHolderName | titlecase) }}</span>
                                 </div>
                                 <div class="flex-row">
-                                    <div class='col-md-6 pl0 pr0'>
+                                    <div class="col-md-6 pl0 pr0">
                                         <div class="ja-investment mt10">
                                             {{ (portfolio.portfolioCategory && portfolioTypes.INVESTMENT === portfolio.portfolioCategory.toUpperCase())? portfolio.riskProfileType : ((portfolio.portfolioCategory && portfolioTypes.WISEINCOME === portfolio.portfolioCategory.toUpperCase()) ? (portfolio.portfolioCategory + ' - ' + portfolio.payoutTypeValue)  : portfolio.portfolioCategory ) }}
                                         </div>
@@ -271,7 +277,7 @@
                                         <div class="ja-investment">{{'YOUR_INVESTMENT.MONTHLY_AMOUNT' | translate}} {{ (portfolio.monthlyInvestment ? portfolio.monthlyInvestment : 0) |
                                     currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                                     </div>
-                                    <div class='col-md-6 ja-btn-group verify-btn-align' *ngIf='portfolio.primaryHolder'>
+                                    <div class="col-md-6 ja-btn-group verify-btn-align" *ngIf='portfolio.primaryHolder'>
                                         <button class="send-reminder-btn cursorPointer"
                                             (click)="verify(portfolio.customerPortfolioId)">{{'YOUR_INVESTMENT.APPLICATION_VERIFY' | translate}}</button>
                                         <button class="withdraw-btn cursorPointer ml10"
