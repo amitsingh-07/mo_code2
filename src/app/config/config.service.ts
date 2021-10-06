@@ -5,6 +5,7 @@ import { catchError, map, shareReplay } from 'rxjs/operators';
 
 import { IProductCategory } from '../direct/product-info/product-category/product-category';
 import { HospitalPlan } from '../guide-me/hospital-plan/hospital-plan';
+import { environment } from './../../environments/environment';
 
 export interface IConfig {
   language: string;
@@ -46,6 +47,7 @@ const CACHE_SIZE = 1;
 export class ConfigService {
   private cache$: Observable<IConfig> = null;
   private configUrl = 'assets/config.json';
+  private s3ConfigUrl = environment.configJsonUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -58,9 +60,33 @@ export class ConfigService {
     return this.cache$;
   }
 
+  fetchConfig() {
+    return new Observable<IConfig>((observer) => {
+      fetch(this.s3ConfigUrl)
+        .then(response => response.json())
+        .then(data => {
+          observer.next(data);
+          observer.complete();
+          shareReplay(CACHE_SIZE);
+        })
+        .catch(err => {
+          this.handleError;
+        });
+    });
+  }
+
   private readConfig() {
     return this.http.get<IConfig>(this.configUrl).pipe(
-      map((response) => response),
+      map((response) => {
+        this.fetchConfig().subscribe((res)=>{
+          if (res) {
+            response['iFastMaintenance'] = res['iFastMaintenance'];
+            response['maintenanceStartTime'] = res['maintenanceStartTime'];
+            response['maintenanceEndTime'] = res['maintenanceEndTime'];
+          }
+        });
+        return response;
+      }),
       catchError(this.handleError) // then handle the error
     );
   }
