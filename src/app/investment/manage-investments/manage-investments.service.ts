@@ -725,12 +725,25 @@ export class ManageInvestmentsService {
     return isInvestAndJointAccountHolder;
   }
   setActionByHolder(customerPortfolioId, jointAccountAction) {
-    const payload = {
+    const payload: any = {
       customerPortfolioId: customerPortfolioId,
       jointAccountAction: jointAccountAction
     };
+    if(jointAccountAction === INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.SUBMISSION) {
+      payload.promoCodeId = this.promoCodeService.usedPromo.getValue()['id']
+    }
     return this.investmentApiService.setActionByHolder(payload);
   }
+
+  submitJAPortfolio(customerPortfolioId, jointAccountAction, promoCodeId) {
+    const payload: any = {
+      customerPortfolioId: customerPortfolioId,
+      jointAccountAction: jointAccountAction,
+      promoCodeId: promoCodeId
+    };
+    return this.investmentApiService.setActionByHolder(payload);
+  }
+  
   setJointAccountUser(isJaUser: boolean) {
     this.manageInvestmentsFormData.isJointAccountUser = isJaUser;
     this.commit();

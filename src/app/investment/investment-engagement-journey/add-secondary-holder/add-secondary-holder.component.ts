@@ -180,6 +180,7 @@ export class AddSecondaryHolderComponent implements OnInit {
       nationality: new FormControl('', Validators.required),
       isSingaporean: new FormControl(''),
       customerPortfolioId: new FormControl(this.secondaryHolderMinorFormValues && this.secondaryHolderMinorFormValues.customerPortfolioId ? this.secondaryHolderMinorFormValues.customerPortfolioId : ''),
+      jaAccountId: new FormControl(this.secondaryHolderMinorFormValues && this.secondaryHolderMinorFormValues.jaAccountId ? this.secondaryHolderMinorFormValues.jaAccountId : ''),
     });
     this.secondaryHolderMinorForm.controls.isSingaporean.setValue(this.secondaryHolderMinorFormValues?.isSingaporean);
     this.secondaryHolderMinorForm.controls.isMinor.setValue(true);
@@ -190,7 +191,8 @@ export class AddSecondaryHolderComponent implements OnInit {
       isMinor: new FormControl('', Validators.required),
       email: new FormControl(this.secondaryHolderMajorFormValues && this.secondaryHolderMajorFormValues.email ? this.secondaryHolderMajorFormValues.email : '', [Validators.required, Validators.pattern(RegexConstants.Email)]),
       relationship: new FormControl(this.secondaryHolderMajorFormValues && this.secondaryHolderMajorFormValues.relationship ? this.secondaryHolderMajorFormValues.relationship : '', Validators.required),
-      customerPortfolioId: new FormControl(this.secondaryHolderMajorFormValues && this.secondaryHolderMajorFormValues.relationship ? this.secondaryHolderMajorFormValues.customerPortfolioId : ''),
+      customerPortfolioId: new FormControl(this.secondaryHolderMajorFormValues && this.secondaryHolderMajorFormValues.customerPortfolioId ? this.secondaryHolderMajorFormValues.customerPortfolioId : ''),
+      jaAccountId: new FormControl(this.secondaryHolderMajorFormValues && this.secondaryHolderMajorFormValues.jaAccountId ? this.secondaryHolderMajorFormValues.jaAccountId : ''),
       nricNumber: new FormControl(this.secondaryHolderMajorFormValues && this.secondaryHolderMajorFormValues.nricNumber ? this.secondaryHolderMajorFormValues.nricNumber : '', [Validators.required, Validators.minLength(4), Validators.pattern(RegexConstants.Alphanumeric)]),
     });
     this.secondaryHolderMajorForm.controls.isMinor.setValue(false);
@@ -361,7 +363,7 @@ export class AddSecondaryHolderComponent implements OnInit {
         this.showLoader();
         this.investmentEngagementService.saveMinorSecondaryHolder().subscribe(resp => {
           this.loaderService.hideLoaderForced();
-          this.secondaryHolderMinorForm.addControl('jaAccountId', new FormControl(resp.objectList));
+          this.secondaryHolderMinorForm.controls.jaAccountId.setValue(resp.objectList);
           this.investmentEngagementService.setMinorSecondaryHolderData(this.secondaryHolderMinorForm.value);
           if (this.customerPortfolioId) {
             this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.JA_UPLOAD_DOCUMENT + "/" + this.customerPortfolioId]);
@@ -405,7 +407,7 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.investmentEngagementService.saveMajorSecondaryHolder().subscribe(resp => {
         this.loaderService.hideLoaderForced();
         if (resp.responseMessage.responseCode === 6000) {
-          this.secondaryHolderMajorForm.addControl('jaAccountId', new FormControl(resp.objectList));
+          this.secondaryHolderMajorForm.controls.jaAccountId.setValue(resp.objectList);
           this.investmentEngagementService.setMajorSecondaryHolderData(this.secondaryHolderMajorForm.value);
           if (this.customerPortfolioId) {
             this.verifyFlowSubmission();
