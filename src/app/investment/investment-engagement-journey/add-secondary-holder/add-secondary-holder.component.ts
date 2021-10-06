@@ -148,11 +148,7 @@ export class AddSecondaryHolderComponent implements OnInit {
     let apiCalls = [];
     apiCalls.push(this.investmentAccountService.getAllDropDownList());
     apiCalls.push(this.investmentAccountService.getNationalityCountryList());
-    this.loaderService.showLoader({
-      title: this.translate.instant('LOADER_MESSAGES.LOADING.TITLE'),
-      desc: this.translate.instant('LOADER_MESSAGES.LOADING.MESSAGE'),
-      autoHide: false
-    });
+    this.showLoader();
     forkJoin(apiCalls).subscribe(results => {
       this.setDropdownLists(results[0]);
       this.getNationalityCountriesList(results[1]);
@@ -184,6 +180,7 @@ export class AddSecondaryHolderComponent implements OnInit {
       nationality: new FormControl('', Validators.required),
       isSingaporean: new FormControl(''),
       customerPortfolioId: new FormControl(this.secondaryHolderMinorFormValues && this.secondaryHolderMinorFormValues.customerPortfolioId ? this.secondaryHolderMinorFormValues.customerPortfolioId : ''),
+      jaAccountId: new FormControl(this.secondaryHolderMinorFormValues && this.secondaryHolderMinorFormValues.jaAccountId ? this.secondaryHolderMinorFormValues.jaAccountId : ''),
     });
     this.secondaryHolderMinorForm.controls.isSingaporean.setValue(this.secondaryHolderMinorFormValues?.isSingaporean);
     this.secondaryHolderMinorForm.controls.isMinor.setValue(true);
@@ -194,7 +191,8 @@ export class AddSecondaryHolderComponent implements OnInit {
       isMinor: new FormControl('', Validators.required),
       email: new FormControl(this.secondaryHolderMajorFormValues && this.secondaryHolderMajorFormValues.email ? this.secondaryHolderMajorFormValues.email : '', [Validators.required, Validators.pattern(RegexConstants.Email)]),
       relationship: new FormControl(this.secondaryHolderMajorFormValues && this.secondaryHolderMajorFormValues.relationship ? this.secondaryHolderMajorFormValues.relationship : '', Validators.required),
-      customerPortfolioId: new FormControl(this.secondaryHolderMajorFormValues && this.secondaryHolderMajorFormValues.relationship ? this.secondaryHolderMajorFormValues.customerPortfolioId : ''),
+      customerPortfolioId: new FormControl(this.secondaryHolderMajorFormValues && this.secondaryHolderMajorFormValues.customerPortfolioId ? this.secondaryHolderMajorFormValues.customerPortfolioId : ''),
+      jaAccountId: new FormControl(this.secondaryHolderMajorFormValues && this.secondaryHolderMajorFormValues.jaAccountId ? this.secondaryHolderMajorFormValues.jaAccountId : ''),
       nricNumber: new FormControl(this.secondaryHolderMajorFormValues && this.secondaryHolderMajorFormValues.nricNumber ? this.secondaryHolderMajorFormValues.nricNumber : '', [Validators.required, Validators.minLength(4), Validators.pattern(RegexConstants.Alphanumeric)]),
     });
     this.secondaryHolderMajorForm.controls.isMinor.setValue(false);
@@ -362,8 +360,10 @@ export class AddSecondaryHolderComponent implements OnInit {
         }
         this.investmentEngagementService.setMinorSecondaryHolderData(this.secondaryHolderMinorForm.value);
         this.investmentEngagementService.setMajorSecondaryHolderData(null);
+        this.showLoader();
         this.investmentEngagementService.saveMinorSecondaryHolder().subscribe(resp => {
-          this.secondaryHolderMinorForm.addControl('jaAccountId', new FormControl(resp.objectList));
+          this.loaderService.hideLoaderForced();
+          this.secondaryHolderMinorForm.controls.jaAccountId.setValue(resp.objectList);
           this.investmentEngagementService.setMinorSecondaryHolderData(this.secondaryHolderMinorForm.value);
           if (this.customerPortfolioId) {
             this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.JA_UPLOAD_DOCUMENT + "/" + this.customerPortfolioId]);
@@ -372,9 +372,19 @@ export class AddSecondaryHolderComponent implements OnInit {
           } else {
             this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.JA_UPLOAD_DOCUMENT]);
           }
+        }, (err) => {
+          this.investmentAccountService.showGenericErrorModal();
         });
       }
     }
+  }
+
+  showLoader() {
+    this.loaderService.showLoader({
+      title: this.translate.instant('LOADER_MESSAGES.LOADING.TITLE'),
+      desc: this.translate.instant('LOADER_MESSAGES.LOADING.MESSAGE'),
+      autoHide: false
+    });
   }
 
   setDropdownLists(data) {
@@ -393,9 +403,11 @@ export class AddSecondaryHolderComponent implements OnInit {
     if (this.secondaryHolderMajorForm.valid) {
       this.investmentEngagementService.setMinorSecondaryHolderData(null);
       this.investmentEngagementService.setMajorSecondaryHolderData(this.secondaryHolderMajorForm.value);
+      this.showLoader();
       this.investmentEngagementService.saveMajorSecondaryHolder().subscribe(resp => {
+        this.loaderService.hideLoaderForced();
         if (resp.responseMessage.responseCode === 6000) {
-          this.secondaryHolderMajorForm.addControl('jaAccountId', new FormControl(resp.objectList));
+          this.secondaryHolderMajorForm.controls.jaAccountId.setValue(resp.objectList);
           this.investmentEngagementService.setMajorSecondaryHolderData(this.secondaryHolderMajorForm.value);
           if (this.customerPortfolioId) {
             this.verifyFlowSubmission();
@@ -410,6 +422,8 @@ export class AddSecondaryHolderComponent implements OnInit {
           ref.componentInstance.errorTitle = this.errorModalData.modalTitle;
           ref.componentInstance.errorDescription = this.errorModalData.modalDesc;
         }
+      }, (err) => {
+        this.investmentAccountService.showGenericErrorModal();
       });
     }
   }
@@ -841,6 +855,8 @@ export class AddSecondaryHolderComponent implements OnInit {
           }
         }
       }
+    }, (err) => {
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -906,6 +922,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   verifyFlowSubmission() {
+    this.showLoader();
     this.investmentEngagementService.verifyFlowSubmission(Number(this.customerPortfolioId), INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.SUBMISSION).subscribe((response) => {
       this.loaderService.hideLoader();
       if (response) {

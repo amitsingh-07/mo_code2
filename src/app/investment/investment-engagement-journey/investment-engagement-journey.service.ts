@@ -494,6 +494,7 @@ export class InvestmentEngagementJourneyService {
     const formData = this.investmentEngagementJourneyFormData?.majorSecondaryHolderFormData;
     return {
       customerPortfolioId: formData.customerPortfolioId ? formData.customerPortfolioId : null,
+      jointAccountDetailsId: (formData && formData.jaAccountId) ? formData.jaAccountId : null,
       nricOrPassport: formData?.nricNumber,
       email: formData?.email,
       relationship: formData?.relationship?.id
@@ -511,6 +512,7 @@ export class InvestmentEngagementJourneyService {
     }
     return {
       customerPortfolioId: formData.customerPortfolioId ? formData.customerPortfolioId : null,
+      jointAccountDetailsId: (formData && formData.jaAccountId) ? formData.jaAccountId : null,
       singaporePR: !Util.isEmptyOrNull(formData?.singaporeanResident) ? formData?.singaporeanResident : null,
       usPR: !Util.isEmptyOrNull(formData?.unitedStatesResident) ? formData?.unitedStatesResident : null,
       minor: true,
@@ -587,16 +589,7 @@ export class InvestmentEngagementJourneyService {
     return this.investmentApiService.uploadDocument(formData);
   }
   /*Upload Document Method end*/
-
-  // SETTING AND GETTING PROMO CODE VALUE
-  setPromoCode(promoCode) {
-    this.investmentEngagementJourneyFormData.promoCode = promoCode;
-    this.commit();
-  }
-
-  getPromoCode() {
-    return this.investmentEngagementJourneyFormData.promoCode
-  }
+  
   /** VERIFY METHOD PREFILL DETAILS */
   getVerifyDetails(customerPortfolioId, jointAccountAction) {
     return this.verifyEditAndSubmit(customerPortfolioId, jointAccountAction);
