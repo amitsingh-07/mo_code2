@@ -416,7 +416,7 @@ export class AddSecondaryHolderComponent implements OnInit {
           }
         }
         else {
-          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'limited-width' });
           ref.componentInstance.errorTitle = this.errorModalData.modalTitle;
           ref.componentInstance.errorDescription = this.errorModalData.modalDesc;
         }
