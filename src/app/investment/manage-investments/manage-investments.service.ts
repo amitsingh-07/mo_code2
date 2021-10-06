@@ -725,13 +725,10 @@ export class ManageInvestmentsService {
     return isInvestAndJointAccountHolder;
   }
   setActionByHolder(customerPortfolioId, jointAccountAction) {
-    const payload: any = {
+    const payload = {
       customerPortfolioId: customerPortfolioId,
       jointAccountAction: jointAccountAction
     };
-    if(jointAccountAction === INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.SUBMISSION) {
-      payload.promoCodeId = this.promoCodeService.usedPromo.getValue()['id']
-    }
     return this.investmentApiService.setActionByHolder(payload);
   }
 
