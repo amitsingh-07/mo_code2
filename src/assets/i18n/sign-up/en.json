@@ -134,7 +134,8 @@
       "CODE_SENT": "Code sent!",
       "RETRY_IN": "Retry in",
       "SECONDS_SUFFIX": "s",
-       "OR": " or "
+      "OR": " or ",
+      "RESEND_OTP": "Resend OTP"
     },
     "ERROR_MODAL": {
       "ERROR_TITLE": "Incorrect OTP Code",

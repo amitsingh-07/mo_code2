@@ -18,6 +18,7 @@ export interface IEnvironment {
     expire2faPollRate?: number; // interval for checks
     expire2faMaxCheck?: number; // max number of checks
     promoCodeJsonUrl?: string; // Promo Code Json
+    configJsonUrl?: string; // Config Json
     hsPortalId?: string; // Hubspot Portal Id
     hsUrlTrack?: string; // Hubspot Tracking of HUKT Code
 }

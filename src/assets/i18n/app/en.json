@@ -355,7 +355,8 @@
     "COMMON_LOADER": {
         "TITLE": "Loading",
         "SAVE_DATA": "Saving Details...",
-        "DESC": "Please wait while we load the data"
+        "DESC": "Please wait while we load the data",
+        "FETCH_DATA": "Fetching Data"
     },
     "MYINFO": {
         "OPEN_MODAL_DATA": {
