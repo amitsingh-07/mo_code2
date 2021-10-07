@@ -5,7 +5,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { PromoCodeService } from './../promo-code.service';
 import { PromoCodeModalComponent } from './../promo-code-modal/promo-code-modal.component';
 import { PromoDetailsComponent } from './../promo-details/promo-details.component';
-import { InvestmentEngagementJourneyService } from '../..//investment/investment-engagement-journey/investment-engagement-journey.service';
 
 @Component({
   selector: 'app-promo-code-select',
@@ -23,7 +22,6 @@ export class PromoCodeSelectComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private translate: TranslateService,
     private promoSvc: PromoCodeService,
-    private investmentEngagementService: InvestmentEngagementJourneyService,
     private modal: NgbModal) {
     this.translate.use('en');
   }
