@@ -503,7 +503,7 @@
       "Transfer service will not be available from 11:30pm to 12:00am daily for system maintenance. In the event that the service is unavailable or unsuccesssful, please try again later.",
       "Transfer between Cash Accounts will be processed and completed immediately. ",
       "Transfers from Personal Investment Cash Account to Joint Investment Cash Account can be done offline. Please email to inv_ops@moneyowl.com.sg.",
-      "Transfer out from Joint Investment Cash Account is not allowed."
+      "Transfers out of Joint Investment Cash Account are not allowed."
     ],
     "MODAL": {
       "CONFIRM_TRANSFER": {
