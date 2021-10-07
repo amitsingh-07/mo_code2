@@ -335,7 +335,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
 
   getTimeDifference() {
     this.filteredAwaitingList.forEach((awaitList: any, index) => {
-      this.timeDifference = awaitList.applicationExpiryDate - Date.now();
+      this.timeDifference = awaitList.applicationExpiryDate - awaitList.currentSgtDate;
       this.filteredAwaitingList[index].awaitingPeriod = (this.timeDifference > 0) ? this.allocateTimeUnits(this.timeDifference, true) : this.awaitingMsg;
     });
   }

@@ -108,6 +108,7 @@ export class PortfolioSummaryComponent implements OnInit {
     this.manageInvestmentsService.submitJAPortfolio(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.SUBMISSION, promo['id'])
       .subscribe(resp => {
         this.loaderService.hideLoaderForced();
+        this.promoCodeService.removeAppliedPromo();
         this.clearData();
         this.onPortfolioSubmission();
       });
