@@ -201,6 +201,8 @@ export class AddSecondaryHolderComponent implements OnInit {
   getNationalityCountriesList(data) {
     this.nationalityList = data.objectList;
     this.countryList = this.investmentAccountService.getCountryList(data.objectList);
+    this.investmentAccountService.setNationalitiesCountries(this.nationalityList, this.countryList);
+    this.countries = this.investmentAccountService.getCountriesFormDataByFilter();
     if (this.secondaryHolderMinorFormValues && this.secondaryHolderMinorFormValues.nationality.nationalityCode && this.secondaryHolderMinorFormValues.nationality.nationalityCode) {
       const nationalityObj = this.getSelectedNationality(
         this.secondaryHolderMinorFormValues.nationality.nationalityCode

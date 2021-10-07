@@ -483,7 +483,7 @@
                                   [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.taxCountry)}">
                                   <app-dropdown-with-search placement="bottom" displayKey="name" [form]="taxInfoItem"
                                     placeholderText="{{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.SELECT_COUNTRY' |
-                                    translate}}" [optionList]="countryList"
+                                    translate}}" [optionList]="countries"
                                     (itemSelected)="selectCountry($event, taxInfoItem)" controlName="taxCountry">
                                   </app-dropdown-with-search>
                                 </div>
