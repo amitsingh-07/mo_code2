@@ -40,5 +40,5 @@ export let appConstants = {
    LOGOUT_BUTTON :'LOGOUT_BUTTON',
    FINLIT_ACCESS_CODE: 'finlit-access-code',
    SINGAPORE_COUNTRY_CODE: '+65',
-   OTP_WAITING_SECONDS: 30000
+   OTP_WAITING_SECONDS: 30
 };
