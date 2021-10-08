@@ -66,8 +66,8 @@
             </div>
             
             <div class="verify-mobile-otp text-center">       
-              <button class="btn button-with-otp seconds-timer" *ngIf="isOtpSent">{{ 'VERIFY_MOBILE.FORM.RESEND_OTP_WITH_SECONDS' | translate }}</button>
-              <button class="btn button-with-otp" (click)="requestNewCode()" *ngIf="!isOtpSent">{{ 'VERIFY_MOBILE.FORM.RESEND_OTP' | translate }}</button>
+              <button type="button" class="btn button-with-otp seconds-timer" *ngIf="isOtpSent">{{ 'VERIFY_MOBILE.FORM.RESEND_OTP' | translate }}({{ retrySecondsLeft }}{{ retrySeconds }})</button>
+              <button type="button" class="btn button-with-otp" (click)="requestNewCode()" *ngIf="!isOtpSent">{{ 'VERIFY_MOBILE.FORM.RESEND_OTP' | translate }}</button>
             </div>
 
             <button (click)="save(verifyMobileForm)" [disabled]="verifyMobileForm.invalid" type="button" class="btn btn__footer--fixed btn-primary width100">{{
