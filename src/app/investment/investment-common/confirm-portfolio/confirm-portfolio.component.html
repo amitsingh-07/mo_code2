@@ -84,7 +84,7 @@
         <div class="text-center flex accept-holder-btn-block" *ngIf="isAcceptPortfolio">
             <button type="button" [disabled]="!tncChkBox.checked" (click)="acceptToJoin(portfolio.portfolioName, portfolio.customerPortfolioId)" class="btn btn-orange">{{
             'PORTFOLIO_RECOMMENDATION.ACCEPT' | translate}}</button>
-            <button type="button" [disabled]="!tncChkBox.checked" (click)="decline(portfolio.portfolioName, portfolio.customerPortfolioId)" class="btn btn-primary btn-outline-primary">{{
+            <button type="button" (click)="decline(portfolio.portfolioName, portfolio.customerPortfolioId)" class="btn btn-primary btn-outline-primary">{{
                 'PORTFOLIO_RECOMMENDATION.DECLINE' | translate}}</button>
         </div>
     </div>
