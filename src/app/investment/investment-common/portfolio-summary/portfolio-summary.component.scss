@@ -7,7 +7,8 @@ app-portfolio-summary {
       @include allmobiles {
         padding-top: 50px;
       }
-      @include min300max350{
+
+      @include min300max350 {
         padding-top: 30px;
       }
     }
@@ -114,8 +115,13 @@ app-portfolio-summary {
               color: $black-color;
               text-transform: capitalize;
               font-family: $muli-semi-bold;
-              &.text-lower{
+
+              &.text-lower {
                 text-transform: lowercase;
+              }
+
+              &.text-normal {
+                text-transform: none;
               }
             }
           }
@@ -162,11 +168,13 @@ app-portfolio-summary {
       @include allmobiles {
         width: 100%;
       }
-      img{
+
+      img {
         @include allmobiles {
           width: 100%;
         }
-        @include min300max350{
+
+        @include min300max350 {
           height: 210px;
         }
       }
@@ -182,7 +190,8 @@ app-portfolio-summary {
         top: 30px;
         padding: 18px 45px 24px 20px;
       }
-      @include min300max350{
+
+      @include min300max350 {
         padding: 30px 30px 0px 20px;
       }
     }

@@ -100,7 +100,7 @@ export let INVESTMENT_COMMON_CONSTANTS = {
     },
     {
       KEY: "Wisesaver – Cash",
-      VALUE: "Wisesaver"
+      VALUE: "WiseSaver"
     }
   ],
   PROMO_CODE: {
