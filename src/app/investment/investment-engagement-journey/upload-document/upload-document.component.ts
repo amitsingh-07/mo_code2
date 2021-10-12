@@ -282,6 +282,8 @@ export class UploadDocumentComponent implements OnInit {
     this.investmentEngagementJourneyService.verifyFlowSubmission(Number(this.customerPortfolioId), INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.SUBMISSION).subscribe((response) => {
       this.loaderService.hideLoader();
       if (response) {
+        //clear the session data
+        this.investmentCommonService.clearJourneyData();
         const toastMessage: IToastMessage = {
           isShown: true,
           desc: this.translate.instant('TOAST_MESSAGES.VERIFY_SUBMISSION'),

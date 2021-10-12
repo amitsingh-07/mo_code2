@@ -131,7 +131,7 @@
     "READ_LESS" :"Read less",
     "AWAITING_TO_JOIN": "Awaiting Secondary Holder to join",
     "PRIMARY_AWAITING_TIME": "Few hours left",
-    "PRIMARY_AWAITING_PERIOD": "before invalid",
+    "PRIMARY_AWAITING_PERIOD": "before invalid.",
     "SEND_REMINDER": "Send Reminder",
     "WITHDRAW": "Withdraw",
     "ACCEPT_DECLINE": "Accept/Decline",
@@ -149,7 +149,8 @@
     "MONTHLY_AMOUNT": "Monthly Amount",
     "DAYS": "days",
     "MINUTES": "minutes",
-    "HOURS": "hours"
+    "HOURS": "hours",
+    "DAY": "day"
   },
   "YOUR_PORTFOLIO": {
     "TITLE": "Your Portfolio",
