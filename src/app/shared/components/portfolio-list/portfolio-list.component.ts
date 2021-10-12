@@ -91,6 +91,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
   days: any;
   hours: any;
   minutes: any;
+  day: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -109,6 +110,7 @@ export class PortfolioListComponent implements OnInit, OnChanges {
       this.days = this.translate.instant('YOUR_INVESTMENT.DAYS');
       this.hours = this.translate.instant('YOUR_INVESTMENT.HOURS');
       this.minutes = this.translate.instant('YOUR_INVESTMENT.MINUTES');
+      this.day = this.translate.instant('YOUR_INVESTMENT.DAY');
     });
   }
 
@@ -346,9 +348,9 @@ export class PortfolioListComponent implements OnInit, OnChanges {
     const hoursToDay = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute) % this.hoursInADay);
     const daysToDay = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute * this.hoursInADay));
     if(daysToDay >= 2 && hoursToDay == 0 && minutesToDay == 0) {
-      return (daysToDay-1) + ' ' + this.days;
+      return (daysToDay-1) + ' ' + ((daysToDay == 2) ? this.day : this.days);
     } else if (daysToDay > 0) {
-      return daysToDay + ' ' + this.days;
+      return daysToDay + ' ' + ((daysToDay == 1) ? this.day : this.days);
     } else {
       return (isStaticTextEnabled) ? this.awaitingMsg : hoursToDay + ' ' + this.hours + ' ' + minutesToDay + ' ' + this.minutes;
     }
