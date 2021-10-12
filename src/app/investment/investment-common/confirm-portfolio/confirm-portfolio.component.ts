@@ -145,12 +145,10 @@ export class ConfirmPortfolioComponent implements OnInit {
       }
       if (majorHolderData) {
         majorHolderData.customerPortfolioId = data.objectList.customerPortfolioId;
-        majorHolderData.jaAccountId = null;
         this.investmentEngagementJourneyService.setMajorSecondaryHolderData(majorHolderData);
       }
       if (minorHolderData) {
         minorHolderData.customerPortfolioId = data.objectList.customerPortfolioId;
-        minorHolderData.jaAccountId = null;
         this.investmentEngagementJourneyService.setMinorSecondaryHolderData(minorHolderData);
       }
       this.portfolio = data.objectList;
