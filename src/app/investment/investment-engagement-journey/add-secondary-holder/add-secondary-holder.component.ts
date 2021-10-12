@@ -537,7 +537,7 @@ export class AddSecondaryHolderComponent implements OnInit {
       'gender', new FormControl(this.secondaryHolderMinorFormValues?.gender ? this.secondaryHolderMinorFormValues?.gender : '', Validators.required)
     );
     this.secondaryHolderMinorForm.addControl(
-      'dob', new FormControl(dob ? dob : '', [Validators.required, this.investmentEngagementService.validateMaximumAge])
+      'dob', new FormControl(dob ? dob : '', [Validators.required])
     );
     this.secondaryHolderMinorForm.addControl(
       'issuedCountry', new FormControl(this.secondaryHolderMinorFormValues?.issuedCountry ? this.secondaryHolderMinorFormValues?.issuedCountry : '', Validators.required)
@@ -790,7 +790,7 @@ export class AddSecondaryHolderComponent implements OnInit {
           );
 
           this.secondaryHolderMinorForm.addControl(
-            'dob', new FormControl(dob ? dob : '', [Validators.required, this.investmentEngagementService.validateMaximumAge])
+            'dob', new FormControl(dob ? dob : '', [Validators.required])
           );
           this.secondaryHolderMinorForm.addControl(
             'gender', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.gender, Validators.required)
@@ -860,7 +860,7 @@ export class AddSecondaryHolderComponent implements OnInit {
               );
               let passportExpiryDate = this.investmentEngagementService.convertStringToDateObj(this.verifyApplicantData.minorSecondaryHolderSummary.passportExpiryDate);
               this.secondaryHolderMinorForm.addControl(
-                'passportExpiry', new FormControl(passportExpiryDate, [Validators.required, this.investmentEngagementService.validateExpiry])
+                'passportExpiry', new FormControl(passportExpiryDate, [Validators.required])
               );
               if (this.countryList) {
                 const issuedCountryId = this.verifyApplicantData.minorSecondaryHolderSummary.passportIssuedCountryId;
@@ -924,19 +924,6 @@ export class AddSecondaryHolderComponent implements OnInit {
     } else {
       this.addTaxForm(null);
     }
-  }
-
-  onBlurMethod(dateChanged, controlName) {
-    const dateChosen = new Date(dateChanged.split('/')[2], Number(dateChanged.split('/')[1]) - 1, dateChanged.split('/')[0]);
-    const dateObj = {
-      year: dateChosen.getFullYear(), month: dateChosen.getMonth() + 1,
-      day: dateChosen.getDate()
-    }
-    this.setSelectedDate(dateObj, controlName);
-  }
-
-  setSelectedDate(obj, controlName) {
-    this.secondaryHolderMinorForm.controls[controlName].setValue(obj);
   }
 
   verifyFlowSubmission() {
