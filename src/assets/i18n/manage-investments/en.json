@@ -149,7 +149,8 @@
     "MONTHLY_AMOUNT": "Monthly Amount",
     "DAYS": "days",
     "MINUTES": "minutes",
-    "HOURS": "hours"
+    "HOURS": "hours",
+    "DAY": "day"
   },
   "YOUR_PORTFOLIO": {
     "TITLE": "Your Portfolio",
