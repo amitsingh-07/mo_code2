@@ -161,6 +161,9 @@ export class AddSecondaryHolderComponent implements OnInit {
           this.loaderService.hideLoaderForced();
         }
       });
+    }, err => {
+      this.loaderService.hideLoaderForced();
+      investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -258,24 +261,18 @@ export class AddSecondaryHolderComponent implements OnInit {
     } else {
       if (!this.isNationalitySingapore()) {
         this.secondaryHolderMinorForm.addControl(
-          'singaporeanResident', new FormControl(this.secondaryHolderMinorFormValues && this.secondaryHolderMinorFormValues.singaporeanResident ?
+          'singaporeanResident', new FormControl(this.secondaryHolderMinorFormValues && !Util.isEmptyOrNull(this.secondaryHolderMinorFormValues.singaporeanResident) ?
             this.secondaryHolderMinorFormValues.singaporeanResident : '', Validators.required)
         );
         this.secondaryHolderMinorForm.controls.isSingaporean.setValue(false);
-        if (this.secondaryHolderMinorForm.value
-          && !Util.isEmptyOrNull(this.secondaryHolderMinorForm.value.singaporeanResident)
-        ) {
-          this.secondaryHolderMinorForm.value.singaporeanResident ?
-            this.addSingaporeanControls() : this.addNonSingaporeanControls();
+        if (this.secondaryHolderMinorFormValues && !Util.isEmptyOrNull(this.secondaryHolderMinorFormValues.singaporeanResident)) {
+          this.singaporeanPRChange(this.secondaryHolderMinorFormValues.singaporeanResident);
         }
       } else {
         this.secondaryHolderMinorForm.controls.isSingaporean.setValue(true);
         setTimeout(() => {
           this.secondaryHolderMinorForm.removeControl('singaporeanResident');
           if (this.secondaryHolderMinorForm.value && !Util.isEmptyOrNull(this.secondaryHolderMinorForm.value.unitedStatesResident) && !this.secondaryHolderMinorForm.value.unitedStatesResident) {
-            if (this.secondaryHolderMinorFormValues && this.secondaryHolderMinorFormValues.relationship) {
-              this.secondaryHolderMinorFormValues.relationship = null;
-            }
             this.addPersonalInfoControls();
           }
         });
@@ -304,7 +301,7 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.secondaryHolderMinorForm.addControl(
         'singaporeanResident', new FormControl(!Util.isEmptyOrNull(singaporeResident) ? singaporeResident : '', Validators.required)
       );
-      singaporeResident ? this.addSingaporeanControls() : this.addNonSingaporeanControls();
+      this.singaporeanPRChange(singaporeResident);
     } else {
       setTimeout(() => {
         this.secondaryHolderMinorForm.removeControl('singaporeanResident');
@@ -346,9 +343,6 @@ export class AddSecondaryHolderComponent implements OnInit {
 
   /* Method called when Singapore PR radio button is clicked */
   singaporeanPRChange(isSingaporePR) {
-    if (this.secondaryHolderMinorFormValues && this.secondaryHolderMinorFormValues.relationship) {
-      this.secondaryHolderMinorFormValues.relationship = null;
-    }
     isSingaporePR ? this.addSingaporeanControls() : this.addNonSingaporeanControls();
   }
 
@@ -384,6 +378,7 @@ export class AddSecondaryHolderComponent implements OnInit {
             this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.JA_UPLOAD_DOCUMENT]);
           }
         }, (err) => {
+          this.loaderService.hideLoaderForced();
           this.investmentAccountService.showGenericErrorModal();
         });
       }
@@ -434,6 +429,7 @@ export class AddSecondaryHolderComponent implements OnInit {
           ref.componentInstance.errorDescription = this.errorModalData.modalDesc;
         }
       }, (err) => {
+        this.loaderService.hideLoaderForced();
         this.investmentAccountService.showGenericErrorModal();
       });
     }
@@ -530,6 +526,7 @@ export class AddSecondaryHolderComponent implements OnInit {
     this.secondaryHolderMinorForm.addControl(
       'relationship', new FormControl(this.secondaryHolderMinorFormValues?.relationship ? this.secondaryHolderMinorFormValues?.relationship : '', Validators.required)
     );
+    this.resetRelationship();
     this.secondaryHolderMinorForm.addControl(
       'birthCountry', new FormControl(this.secondaryHolderMinorFormValues?.birthCountry ? this.secondaryHolderMinorFormValues?.birthCountry : '', Validators.required)
     );
@@ -874,6 +871,7 @@ export class AddSecondaryHolderComponent implements OnInit {
         }
       }
     }, (err) => {
+      this.loaderService.hideLoaderForced();
       this.investmentAccountService.showGenericErrorModal();
     });
   }
@@ -942,5 +940,22 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.loaderService.hideLoader();
       this.investmentAccountService.showGenericErrorModal();
     });
+  }
+
+  resetRelationship() {
+    debugger;
+    const selectedNationalityName = this.secondaryHolderMinorFormValues &&
+      this.secondaryHolderMinorFormValues.nationality &&
+      this.secondaryHolderMinorFormValues.nationality.name ?
+      this.secondaryHolderMinorFormValues.nationality.name.toUpperCase() : '';
+    const savedAsSG = [INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_NAME, INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_CODE]
+      .indexOf(selectedNationalityName) >= 0 ? true : false;
+    if (this.secondaryHolderMinorFormValues && ((!savedAsSG &&
+      this.secondaryHolderMinorForm.get('singaporeanResident') &&
+      this.secondaryHolderMinorForm.get('singaporeanResident').value == !this.secondaryHolderMinorFormValues.singaporeanResident)
+      || (savedAsSG && this.secondaryHolderMinorForm.get('singaporeanResident') &&
+        !this.secondaryHolderMinorForm.get('singaporeanResident').value))) {
+      this.secondaryHolderMinorForm.controls.relationship.setValue('');
+    }
   }
 }

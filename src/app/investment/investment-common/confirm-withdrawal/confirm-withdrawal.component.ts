@@ -127,6 +127,7 @@ export class ConfirmWithdrawalComponent implements OnInit {
       this.banks = data.objectList.bankList;
     },
       (err) => {
+        this.loaderService.hideLoaderForced();
         this.investmentAccountService.showGenericErrorModal();
       });
   }
@@ -146,6 +147,9 @@ export class ConfirmWithdrawalComponent implements OnInit {
           'id', new FormControl(this.bankDetails[0].id)
         );
       }
+    }, err => {
+      this.loaderService.hideLoaderForced();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 }

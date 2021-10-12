@@ -111,6 +111,9 @@ export class PortfolioSummaryComponent implements OnInit {
         this.promoCodeService.removeAppliedPromo();
         this.clearData();
         this.onPortfolioSubmission();
+      }, err => {
+        this.loaderService.hideLoaderForced();
+        this.investmentAccountService.showGenericErrorModal();
       });
   }
 
@@ -157,7 +160,13 @@ export class PortfolioSummaryComponent implements OnInit {
 
   // GET THE PORTFOLIO SUMMARY DETAILS FOR PORTFOLIO SUMMARY PAGE
   getPortFolioSummaryDetails(customerPortfolioId) {
+    this.loaderService.showLoader({
+      title: this.translate.instant('LOADER_MESSAGES.LOADING.TITLE'),
+      desc: this.translate.instant('LOADER_MESSAGES.LOADING.MESSAGE'),
+      autoHide: false
+    });
     this.investmentCommonService.getPortFolioSummaryDetails(customerPortfolioId).subscribe(response => {
+      this.loaderService.hideLoaderForced();
       if (response.responseMessage.responseCode === 6000) {
         this.summaryDetails = response.objectList;
         this.isMinor = this.summaryDetails.minor;
@@ -180,6 +189,9 @@ export class PortfolioSummaryComponent implements OnInit {
         }
         this.getInvestmentCriteria(this.summaryDetails);
       }
+    }, err => {
+      this.loaderService.hideLoaderForced();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
