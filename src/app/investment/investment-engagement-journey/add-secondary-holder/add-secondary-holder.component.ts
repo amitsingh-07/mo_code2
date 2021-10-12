@@ -754,6 +754,9 @@ export class AddSecondaryHolderComponent implements OnInit {
           }
           this.secondaryHolderMajorForm.controls.email.setValue(this.verifyApplicantData.secondaryHolderEmail);
           this.secondaryHolderMajorForm.controls.customerPortfolioId.setValue(customerPortfolioId);
+          //session save
+          this.investmentEngagementService.setMajorSecondaryHolderData(this.secondaryHolderMajorForm.value);
+          this.secondaryHolderMajorFormValues = this.secondaryHolderMajorForm.value;
         } else {//else - Major Minor
           this.activeTabId = 2;
           this.buildMinorForm();
@@ -855,6 +858,9 @@ export class AddSecondaryHolderComponent implements OnInit {
               }
             }
           }
+           //session save
+           this.investmentEngagementService.setMinorSecondaryHolderData(this.secondaryHolderMinorForm.value);
+           this.secondaryHolderMinorFormValues = this.secondaryHolderMinorForm.value;
         }
       }
     }, (err) => {
@@ -928,6 +934,8 @@ export class AddSecondaryHolderComponent implements OnInit {
     this.investmentEngagementService.verifyFlowSubmission(Number(this.customerPortfolioId), INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.SUBMISSION).subscribe((response) => {
       this.loaderService.hideLoader();
       if (response) {
+        //clear the session data
+        this.investmentCommonService.clearJourneyData();
         const toastMessage: IToastMessage = {
           isShown: true,
           desc: this.translate.instant('TOAST_MESSAGES.VERIFY_SUBMISSION'),
