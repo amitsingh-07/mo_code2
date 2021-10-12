@@ -135,7 +135,6 @@
       "RETRY_IN": "Retry in",
       "SECONDS_SUFFIX": "s",
       "OR": " or ",
-      "RESEND_OTP_WITH_SECONDS": "Resend OTP(30s)",
       "RESEND_OTP": "Resend OTP"
     },
     "ERROR_MODAL": {
@@ -404,6 +403,16 @@
         {
           "TITLE": "New Updates",
           "TITLE_IMG": "srs-joint-account/speaker.svg",
+          "IMAGE": "srs-joint-account/joint-account.svg",
+          "IMG_TITLE": "Apply For A Joint Account!",
+          "TEXT": "Apply for a Joint Investment Account with your loved ones today and enjoy all the good things that come in pairs.",
+          "URL": "/faq",
+          "URL_FRAGMENT": "srs-joint-account",
+          "URL_TEXT": "Learn More About Joint Account"
+        },
+        {
+          "TITLE": "New Updates",
+          "TITLE_IMG": "srs-joint-account/speaker.svg",
           "IMAGE": "srs-joint-account/gift-box.svg",
           "IMG_TITLE": "Refer and receive rewards",
           "TEXT": "You will now be able to share your MoneyOwl referral link and start earning rewards. Look for it at <strong>Dashboard > Menu > Refer a friend</strong> and start sharing!",
@@ -426,16 +435,6 @@
           "IMAGE": "srs-joint-account/srs.svg",
           "IMG_TITLE": "You can now open your SRS Investment Account online!",
           "TEXT": "Invest your Supplementary Retirement Scheme (SRS) savings to get potentially higher returns while enjoying tax savings."
-        },
-        {
-          "TITLE": "New Updates",
-          "TITLE_IMG": "srs-joint-account/speaker.svg",
-          "IMAGE": "srs-joint-account/joint-account.svg",
-          "IMG_TITLE": "Apply For A Joint Account!",
-          "TEXT": "Apply for a Joint Investment Account with your loved ones today and enjoy all the good things that come in pairs.",
-          "URL": "/faq",
-          "URL_FRAGMENT": "srs-joint-account",
-          "URL_TEXT": "Learn More About Joint Account"
         }
       ],
       "START_BTN": "Dismiss",

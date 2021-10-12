@@ -67,6 +67,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   accountCreationPage = false;
   roleTwoFAEnabled: boolean;
   redirectAfterLogin = '';
+  retrySecondsLeft: any;
+  retrySeconds = 's';
 
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
@@ -263,9 +265,6 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
    */
   requestNewCode() {
     this.progressModal = true;
-    setTimeout(() => {
-      this.isOtpSent = false;
-    }, appConstants.OTP_WAITING_SECONDS);
     if (this.authService.get2faVerifyAllowed()) {
       this.requestNew2faOTP();
     } else {
@@ -284,6 +283,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       this.verifyMobileForm.reset();
       this.progressModal = false;
       this.isOtpSent = true;
+      this.startRetryCounter();
     });
   }
 
@@ -292,6 +292,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       this.verifyMobileForm.reset();
       this.progressModal = false;
       this.isOtpSent = true;
+      this.startRetryCounter();
     });
   }
   /** 
@@ -305,12 +306,14 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
         this.verifyMobileForm.reset();
         this.progressModal = false;
         this.isOtpSent = true;
+        this.startRetryCounter();
       });
     } else if (this.authService.isSignedUser()) {
       this.authService.send2faRequest().subscribe((data) => {
         this.verifyMobileForm.reset();
         this.progressModal = false;
         this.isOtpSent = true;
+        this.startRetryCounter();
       });
     }
   }
@@ -635,6 +638,21 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.errorMessage = desc;
+  }
+
+  /**
+   * Run Animated counter for 30s.
+   */
+  startRetryCounter() {
+    this.retrySecondsLeft = appConstants.OTP_WAITING_SECONDS;
+    const self = this;
+    const downloadTimer = setInterval(() => {      
+      --self.retrySecondsLeft;
+      if (self.retrySecondsLeft <= 0) {
+        clearInterval(downloadTimer);
+        this.isOtpSent = false;
+      }
+    }, 1000);
   }
 
 }

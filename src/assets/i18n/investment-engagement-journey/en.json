@@ -429,7 +429,7 @@
       },
       "errorModalData": {
         "modalTitle": "Oops! Please verify your information again.",
-        "modalDesc": "The information you entered may be incorrect or the proposed secondary account holder does not have a MoneyOwl account and personal investment account.</br>Please verify again."
+        "modalDesc": "The information you entered may be incorrect or the proposed secondary account holder does not have a MoneyOwl account and personal investment account.<br>Please verify again."
       }
     },
     "MINOR": {

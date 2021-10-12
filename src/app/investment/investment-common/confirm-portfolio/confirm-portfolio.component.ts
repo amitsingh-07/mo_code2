@@ -33,6 +33,7 @@ import { IToastMessage } from '../../../investment/manage-investments/manage-inv
 import {
   MANAGE_INVESTMENTS_ROUTE_PATHS
 } from '../../../investment/manage-investments/manage-investments-routes.constants';
+import { LoaderService } from '../../../shared/components/loader/loader.service';
 @Component({
   selector: 'app-confirm-portfolio',
   templateUrl: './confirm-portfolio.component.html',
@@ -80,7 +81,8 @@ export class ConfirmPortfolioComponent implements OnInit {
     private authService: AuthenticationService,
     private formatCurrencyPipe: FormatCurrencyPipe,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -143,12 +145,10 @@ export class ConfirmPortfolioComponent implements OnInit {
       }
       if (majorHolderData) {
         majorHolderData.customerPortfolioId = data.objectList.customerPortfolioId;
-        majorHolderData.jaAccountId = null;
         this.investmentEngagementJourneyService.setMajorSecondaryHolderData(majorHolderData);
       }
       if (minorHolderData) {
         minorHolderData.customerPortfolioId = data.objectList.customerPortfolioId;
-        minorHolderData.jaAccountId = null;
         this.investmentEngagementJourneyService.setMinorSecondaryHolderData(minorHolderData);
       }
       this.portfolio = data.objectList;
@@ -430,7 +430,13 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   // decline
   decline(portfolioName, customerPortfolioId) {
+    this.loaderService.showLoader({
+      title: this.translate.instant('LOADER_MESSAGES.LOADING.TITLE'),
+      desc: this.translate.instant('LOADER_MESSAGES.LOADING.MESSAGE'),
+      autoHide: false
+    });
     this.manageInvestmentsService.setActionByHolder(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.DECLINE).subscribe(resp => {
+      this.loaderService.hideLoaderForced();
       if (resp && resp.responseMessage && resp.responseMessage.responseCode == 6000) {
         const toastMessage: IToastMessage = {
           isShown: true,
@@ -447,7 +453,13 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   // accept to join
   acceptToJoin(portfolioName, customerPortfolioId) {
+    this.loaderService.showLoader({
+      title: this.translate.instant('LOADER_MESSAGES.LOADING.TITLE'),
+      desc: this.translate.instant('LOADER_MESSAGES.LOADING.MESSAGE'),
+      autoHide: false
+    });
     this.manageInvestmentsService.setActionByHolder(customerPortfolioId, INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.ACCEPT).subscribe(resp => {
+      this.loaderService.hideLoaderForced();
       if (resp && resp.responseMessage && resp.responseMessage.responseCode == 6000) {
         const toastMessage: IToastMessage = {
           isShown: true,
