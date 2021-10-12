@@ -951,7 +951,6 @@ export class AddSecondaryHolderComponent implements OnInit {
   }
 
   resetRelationship() {
-    debugger;
     const selectedNationalityName = this.secondaryHolderMinorFormValues &&
       this.secondaryHolderMinorFormValues.nationality &&
       this.secondaryHolderMinorFormValues.nationality.name ?
