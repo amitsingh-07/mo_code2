@@ -27,9 +27,10 @@ app-confirm-withdrawal {
             letter-spacing: -0.34px;
             color: $dark-teal-color;
             border-radius: 6px;
-            .flex-row{
-              .flex-col-9{
-                @include min300max350{
+
+            .flex-row {
+              .flex-col-9 {
+                @include min300max350 {
                   padding-left: 10px;
                 }
               }
@@ -111,9 +112,17 @@ app-confirm-withdrawal {
         margin-bottom: 15px;
       }
 
+      .funding-sub-lbl {
+        @include allmobiles {
+          font-family: $muli-semi-bold;
+          line-height: normal;
+          letter-spacing: -0.3px;
+        }
+      }
+
       .form-control {
         max-height: 52px;
-  
+
         .input-control {
           text-align: left;
         }
