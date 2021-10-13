@@ -345,7 +345,8 @@
                             <label for="name"
                               id="invPersInfoLbl5">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.PASSPORT_NUMBER' | translate}}</label>
                           </div>
-                          <div class="flex-col-7">
+                          <div class="flex-col-7"
+                            [ngClass]="{'inline-error': secondaryHolderMinorForm.get('passportNumber').enabled && !secondaryHolderMinorForm.get('passportNumber').valid && !secondaryHolderMinorForm.get('passportNumber').pristine}">
                             <input type="text" id="invPersInfoInpt5" formControlName="passportNumber"
                               class="form-control" #passportNumber maxLength="30"
                               placeholder="{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.PASSPORT_NUMBER' | translate}}">
@@ -476,8 +477,7 @@
                               <div class="flex-col-5 flex align-items-end">
                                 <label class="tax-country-label flex-col-10" for="name" id="tax-info-label">{{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.COUNTRY_TEXT' |
                                   translate}}</label>
-                                <i class="tooltip-block-icon flex-col-2" id="countryHelpIcon"
-                                  (click)="showHelpModalCountry()"></i>
+                                <i class="tooltip-block-icon flex-col-2" id="countryHelpIcon" (click)="openModal()"></i>
                               </div>
                               <div class="flex-col-7">
                                 <div class="dropdown-control"
@@ -499,7 +499,8 @@
                                 </div>
                               </div>
                               <div class="flex-col-1">
-                                <i class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModalTinNumber()"></i>
+                                <i class="tooltip-icon" id="myFinancialHelpIcon"
+                                  (click)="showErrorMessage(taxInfoModal.TAX_MODEL_TITLE, taxInfoModal.TAX_MODEL_DESC)"></i>
                               </div>
                             </div>
                             <!-- Button part -->
@@ -534,7 +535,8 @@
                                   translate}}</label>
                               </div>
                               <div class="flex-col-8 flex-col-moz">
-                                <div class="dropdown-control">
+                                <div class="dropdown-control"
+                                  [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.noTinReason)}">
                                   <div ngbDropdown>
                                     <button class="btn btn-dropdown" ngbDropdownToggle>
                                       <span *ngIf="taxInfoItem.controls.noTinReason?.value" class="dependent-count"
@@ -566,8 +568,8 @@
                               <div class="flex-col-8">
                                 <div class="dropdown-control"
                                   [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.tinNumber)}">
-                                  <input type="text" formControlName="tinNumber" id="invPersInfoInpt1"
-                                    class="form-control" maxLength="50" placeholder="{{
+                                  <input type="text" formControlName="tinNumber" id="tinNumber" class="form-control"
+                                    maxLength="50" placeholder="{{
                                       'SECONDARY_HOLDER.MINOR.TAX_INFO.TIN_TEXT' |
                                       translate}}">
                                 </div>
@@ -599,7 +601,7 @@
           <button *ngIf="activeTabId === 1 || activeTabId === 3" [disabled]="!secondaryHolderMajorForm.valid"
             (click)="majorHolderGoToNext()" class="btn btn-primary btn__footer--fixed width100 mt30">{{navigationType ? ('SECONDARY_HOLDER.SAVE' | translate) 
             : ('SECONDARY_HOLDER.CONTINUE' | translate)}}</button>
-          <button *ngIf="activeTabId === 2" (click)="minorHolderGoToNext()" [disabled]="!secondaryHolderMinorForm.valid"
+          <button *ngIf="activeTabId === 2" (click)="minorHolderGoToNext()" [disabled]="disableMinorSave()"
             class="btn btn-primary btn__footer--fixed width100 mt30">{{navigationType ? ('SECONDARY_HOLDER.SAVE' | translate) 
             : ('SECONDARY_HOLDER.CONTINUE' | translate)}}</button>
         </div>
