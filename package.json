@@ -22,6 +22,7 @@
     "@angular/platform-browser": "^9.1.12",
     "@angular/platform-browser-dynamic": "^9.1.12",
     "@angular/router": "^9.1.12",
+    "@angular/service-worker": "^9.1.12",
     "@auth0/angular-jwt": "^5.0.1",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "@ng-bootstrap/schematics": "^2.0.0-alpha.1",

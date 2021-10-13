@@ -29,7 +29,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/myinfo"
+              "src/myinfo",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               {
@@ -85,7 +86,9 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             },
             "prod": {
               "budgets": [
@@ -308,7 +311,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/myinfo"
+              "src/myinfo",
+              "src/manifest.webmanifest"
             ]
           }
         },
