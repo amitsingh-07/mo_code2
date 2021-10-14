@@ -569,8 +569,8 @@ export class InvestmentEngagementJourneyService {
   getSecondaryHolderFormError(control) {
     const errors: any = {};
     errors.errorMessages = [];
-    errors.errorMessages.push(this.investmentEngagementJourneyFormErrors.formFieldErrors.
-      secondaryHolderValidations[control]);
+    errors.title = this.investmentEngagementJourneyFormErrors.formFieldErrors.secondaryHolderValidations.errorTitle;
+    errors.errorMessages.push(this.investmentEngagementJourneyFormErrors.formFieldErrors.secondaryHolderValidations[control]['isMaxAge'].errorMessage);
     return errors;
   }
 

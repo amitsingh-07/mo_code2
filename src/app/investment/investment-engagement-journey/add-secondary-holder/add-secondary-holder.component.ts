@@ -256,6 +256,7 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.secondaryHolderMinorForm.removeControl('singaporeanResident');
     } else if (nationality.nationalityCode.indexOf('US') >= 0) {
       this.secondaryHolderMinorForm.removeControl('unitedStatesResident');
+      this.secondaryHolderMinorForm.removeControl('singaporeanResident');
       this.showErrorMessage(this.blockedCountryModal.error_title,
         this.blockedCountryModal.unitedStatesPRYes);
     } else {
@@ -348,29 +349,34 @@ export class AddSecondaryHolderComponent implements OnInit {
 
   /* Handle Continue button of Minor holder */
   minorHolderGoToNext() {
-    const form = this.secondaryHolderMinorForm.getRawValue();
-    const selTaxCountryArr = [];
-    if (form) {
-      // Existing Value
-      form.addTax.map((item) => {
-        selTaxCountryArr.push(item.taxCountry.countryCode);
-      });
-    }
-    const duplicateCountryErr: any = this.setDuplicateTaxCountryError(selTaxCountryArr);
-    if ((!this.secondaryHolderMinorForm.valid)) {
-      this.markAllFieldsDirty(this.secondaryHolderMinorForm);
-      let error = this.investmentEngagementService.getJAFormErrorList(this.secondaryHolderMinorForm);
-      let taxError = this.investmentEngagementService.getJAFormErrorList(this.secondaryHolderMinorForm.controls.addTax);
-      taxError = this.setErrorData(taxError, duplicateCountryErr);
-      error = this.setErrorData(error, taxError);
-      this.showFormErrorMsg(error);
-    } else if (duplicateCountryErr) {
-      this.showFormErrorMsg(duplicateCountryErr);
+    if (this.secondaryHolderMinorForm.value.nationality?.blocked) {
+      this.showBlockedCountryErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.blockedCountryMessage);
+    } else if (this.secondaryHolderMinorForm.value.nationality?.nationalityCode.indexOf('US') >= 0 || this.secondaryHolderMinorForm.value.unitedStatesResident) {
+      this.showErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.unitedStatesPRYes);
     } else {
-      if (this.secondaryHolderMinorForm.value.nationality?.blocked) {
-        this.showBlockedCountryErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.blockedCountryMessage);
-      } else if (this.secondaryHolderMinorForm.value.nationality?.nationalityCode.indexOf('US') >= 0 || this.secondaryHolderMinorForm.value.unitedStatesResident) {
-        this.showErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.unitedStatesPRYes);
+      const form = this.secondaryHolderMinorForm.getRawValue();
+      const selTaxCountryArr = [];
+      if (form) {
+        // Existing Value
+        form.addTax.map((item) => {
+          selTaxCountryArr.push(item.taxCountry.countryCode);
+        });
+      }
+      const duplicateCountryErr: any = this.setDuplicateTaxCountryError(selTaxCountryArr);
+      if ((!this.secondaryHolderMinorForm.valid)) {
+        this.markAllFieldsDirty(this.secondaryHolderMinorForm);
+        let error = this.investmentEngagementService.getJAFormErrorList(this.secondaryHolderMinorForm);
+        let taxError = this.investmentEngagementService.getJAFormErrorList(this.secondaryHolderMinorForm.controls.addTax);
+        taxError = this.setErrorData(taxError, duplicateCountryErr);
+        error = this.setErrorData(error, taxError);
+        this.showFormErrorMsg(error);
+      } else if (duplicateCountryErr) {
+        this.showFormErrorMsg(duplicateCountryErr);
+      } else if (!Util.isEmptyOrNull(this.investmentEngagementService.validateMaximumAge(this.secondaryHolderMinorForm.controls['dob']))) {
+        this.secondaryHolderMinorForm.controls.dob.markAsDirty();
+        this.secondaryHolderMinorForm.controls.dob.setErrors({ invalid: true });
+        const error = this.investmentEngagementService.getSecondaryHolderFormError('dob');
+        this.showFormErrorMsg(error);
       } else {
         if (this.secondaryHolderMinorForm.value && this.secondaryHolderMinorForm.value.dob && typeof this.secondaryHolderMinorForm.value.dob !== 'object') {
           this.secondaryHolderMinorForm.get('dob').setValue(this.investmentEngagementService.convertStringToDateObj(this.secondaryHolderMinorForm.value.dob));
