@@ -366,6 +366,11 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.showFormErrorMsg(error);
     } else if (duplicateCountryErr) {
       this.showFormErrorMsg(duplicateCountryErr);
+    } else if (!Util.isEmptyOrNull(this.investmentEngagementService.validateMaximumAge(this.secondaryHolderMinorForm.controls['dob']))) {
+      this.secondaryHolderMinorForm.controls.dob.markAsDirty();
+      this.secondaryHolderMinorForm.controls.dob.setErrors({invalid: true});
+      const error = this.investmentEngagementService.getSecondaryHolderFormError('dob');
+      this.showFormErrorMsg(error);
     } else {
       if (this.secondaryHolderMinorForm.value.nationality?.blocked) {
         this.showBlockedCountryErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.blockedCountryMessage);
