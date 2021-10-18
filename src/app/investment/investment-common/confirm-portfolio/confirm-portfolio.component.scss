@@ -9,6 +9,9 @@ app-confirm-portfolio {
             @include min568max767{
                 padding-top: 50px;
             }
+            h2{
+                font-size: 30px;
+            }
             .ja-sub-lbl{
                 font-size: 24px;
                 line-height: normal;
@@ -251,6 +254,7 @@ app-confirm-portfolio {
         }
         input[type=checkbox] + label{
             padding: 0px 0 0px 42px;
+            line-height: 24px;
         }
     }
     .accept-holder-btn-block{

@@ -170,7 +170,7 @@
     "JOINT_ACCOUNT": {
       "API_FAILED": {
         "TITLE": "Oops! Something went wrong",
-        "DESC": "Please refresh the page and try again",
+        "DESC": "Please refresh the page and try again.",
         "BUTTON_TEXT": "Refresh"
       }
     }
