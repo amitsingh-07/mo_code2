@@ -326,13 +326,25 @@ export class AddSecondaryHolderComponent implements OnInit {
   /* Method called when user clicks on United States PR */
   unitedStatesPRChange(isUnitedStatesPR) {
     if (isUnitedStatesPR) {
+      this.secondaryHolderMinorForm.removeControl('singaporeanResident');
       this.removePersonaInfoControls();
       this.showErrorMessage(this.blockedCountryModal.error_title,
         this.blockedCountryModal.unitedStatesPRYes);
-    } else if (this.isNationalitySingapore() && !isUnitedStatesPR) {
-      setTimeout(() => {
-        this.addPersonalInfoControls();
-      });
+    } else {
+      if (this.isNationalitySingapore()) {
+        setTimeout(() => {
+          this.addPersonalInfoControls();
+        });
+      } else {
+        this.secondaryHolderMinorForm.addControl(
+          'singaporeanResident', new FormControl(this.secondaryHolderMinorFormValues && !Util.isEmptyOrNull(this.secondaryHolderMinorFormValues.singaporeanResident) ?
+            this.secondaryHolderMinorFormValues.singaporeanResident : '', Validators.required)
+        );
+        if (this.secondaryHolderMinorFormValues && !Util.isEmptyOrNull(this.secondaryHolderMinorFormValues.singaporeanResident)) {
+          const singaporeResident = this.secondaryHolderMinorFormValues.singaporeanResident;
+          this.singaporeanPRChange(singaporeResident);
+        }
+      }
     }
   }
 
