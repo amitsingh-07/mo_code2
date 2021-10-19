@@ -445,11 +445,11 @@
       "PERSONAL_INFO":{
         "FULL_NAME": "Full Name",
         "FULL_NAME_NRIC": "as per NRIC",
-        "FULL_NAME_NRIC_BIRTH_CERT": "(as per NRIC/<br>Birth Cert)",
+        "FULL_NAME_NRIC_BIRTH_CERT": "(as per NRIC /<br>Birth Cert)",
         "FULL_NAME_PASSPORT": "(as per Passport)",
         "NRIC_NUMBER": "NRIC Number",
         "NRIC_FORMAT": "e.g S****244F",
-        "NRIC_BIRTH_CERTIFICATE_NUMBER": "NRIC/ Birth<br>Cert Number",
+        "NRIC_BIRTH_CERTIFICATE_NUMBER": "NRIC / Birth<br>Cert Number",
         "PASSPORT_NUMBER": "Passport Number",
         "PASSPORT_EXPIRY": "Passport Expiry",
         "DOB": "Date of Birth",
