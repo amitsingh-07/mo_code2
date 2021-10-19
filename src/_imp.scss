@@ -598,3 +598,11 @@ input::-ms-clear {
 .hand-cursor {
   cursor: pointer;
 }
+
+/* Sentence Case */
+.sentence-case {
+  text-transform: lowercase !important;
+  &:first-letter {
+    text-transform: uppercase;
+  }
+}
