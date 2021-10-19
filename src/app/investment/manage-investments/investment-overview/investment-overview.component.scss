@@ -414,7 +414,7 @@ app-investment-overview {
                     }
                     .declined-list {                        
                         background-color: $withdrawn-bg-color;
-                        color: $tuna-color;
+                        color: $black-color;
                         @include allmobiles{
                             font-family: $muli-semi-bold;
                         }
