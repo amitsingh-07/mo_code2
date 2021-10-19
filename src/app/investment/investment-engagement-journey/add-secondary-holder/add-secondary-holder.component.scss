@@ -82,9 +82,9 @@ app-add-secondary-holder {
         font-family: $muli-semi-bold;
         line-height: normal;
         letter-spacing: -0.3px;
+        font-size: 18px;
 
         .sub-label {
-          font-family: $muli-regular;
           font-size: 14px;
           line-height: normal;
           letter-spacing: -0.26px;
@@ -214,7 +214,6 @@ app-add-secondary-holder {
         }
 
         label {
-          font-size: 16px;
           letter-spacing: -0.3px;
         }
 
@@ -293,7 +292,6 @@ app-add-secondary-holder {
         }
 
         .tin_question_text {
-          font-size: 16px;
           margin-top: 12px;
           margin-bottom: 12px;
           color: $teal-color;
