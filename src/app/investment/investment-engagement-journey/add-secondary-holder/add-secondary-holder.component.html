@@ -1,4 +1,5 @@
-<div class="container-fluid max-width--1024 investment" [ngClass]="{'edit-holder': navigationType || customerPortfolioId}">
+<div class="container-fluid max-width--1024 investment"
+  [ngClass]="{'edit-holder': navigationType || customerPortfolioId}">
   <div class="content">
     <div class="row">
       <div class="col-lg-7 col-md-6 hidden-sm-md">
@@ -9,7 +10,8 @@
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
-        <h6 class="question-lbl" [ngClass]="{'edit-holder': navigationType || customerPortfolioId}">{{'SECONDARY_HOLDER.PAGE_LBL' | translate}}
+        <h6 class="question-lbl" [ngClass]="{'edit-holder': navigationType || customerPortfolioId}">
+          {{'SECONDARY_HOLDER.PAGE_LBL' | translate}}
         </h6>
         <div class="secondary-holder-tabs">
           <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTabId">
@@ -278,7 +280,7 @@
                                   formControlName="dob" placeholder="{{
                                   'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.DOB_PATTERN'
                                   | translate}}" name="dp" ngbDatepicker #dobInput="ngbDatepicker"
-                                  id="invPersInfoInpt7" (blur)="onBlurMethod(dobInput._inputValue, 'dob')">
+                                  id="invPersInfoInpt7">
                                 <div class="input-group-append">
                                   <button class="btn btn-primary" type="button" (click)="dobInput.toggle()"
                                     id="invPersInfoBtn1">
@@ -343,7 +345,8 @@
                             <label for="name"
                               id="invPersInfoLbl5">{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.PASSPORT_NUMBER' | translate}}</label>
                           </div>
-                          <div class="flex-col-7">
+                          <div class="flex-col-7"
+                            [ngClass]="{'inline-error': secondaryHolderMinorForm.get('passportNumber').enabled && !secondaryHolderMinorForm.get('passportNumber').valid && !secondaryHolderMinorForm.get('passportNumber').pristine}">
                             <input type="text" id="invPersInfoInpt5" formControlName="passportNumber"
                               class="form-control" #passportNumber maxLength="30"
                               placeholder="{{ 'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.PASSPORT_NUMBER' | translate}}">
@@ -381,8 +384,7 @@
                                 <input class="form-control" formControlName="passportExpiry" [minDate]=passportMinDate
                                   [maxDate]=passportMaxDate placeholder="{{
                                     'SECONDARY_HOLDER.MINOR.PERSONAL_INFO.DOB_PATTERN'
-                                    | translate}}" ngbDatepicker id="invPersInfoInpt6" #expiryInput="ngbDatepicker"
-                                  (blur)="onBlurMethod(expiryInput._inputValue, 'passportExpiry')">
+                                    | translate}}" ngbDatepicker id="invPersInfoInpt6" #expiryInput="ngbDatepicker">
                                 <div class="input-group-append">
                                   <button (click)="toggleDate(expiryInput, dobInput)" class="btn btn-primary"
                                     type="button" id="invPersInfoBtn1">
@@ -475,8 +477,7 @@
                               <div class="flex-col-5 flex align-items-end">
                                 <label class="tax-country-label flex-col-10" for="name" id="tax-info-label">{{ 'SECONDARY_HOLDER.MINOR.TAX_INFO.COUNTRY_TEXT' |
                                   translate}}</label>
-                                <i class="tooltip-block-icon flex-col-2" id="countryHelpIcon"
-                                  (click)="showHelpModalCountry()"></i>
+                                <i class="tooltip-block-icon flex-col-2" id="countryHelpIcon" (click)="openModal()"></i>
                               </div>
                               <div class="flex-col-7">
                                 <div class="dropdown-control"
@@ -498,7 +499,8 @@
                                 </div>
                               </div>
                               <div class="flex-col-1">
-                                <i class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModalTinNumber()"></i>
+                                <i class="tooltip-icon" id="myFinancialHelpIcon"
+                                  (click)="showErrorMessage(taxInfoModal.TAX_MODEL_TITLE, taxInfoModal.TAX_MODEL_DESC)"></i>
                               </div>
                             </div>
                             <!-- Button part -->
@@ -533,7 +535,8 @@
                                   translate}}</label>
                               </div>
                               <div class="flex-col-8 flex-col-moz">
-                                <div class="dropdown-control">
+                                <div class="dropdown-control"
+                                  [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.noTinReason)}">
                                   <div ngbDropdown>
                                     <button class="btn btn-dropdown" ngbDropdownToggle>
                                       <span *ngIf="taxInfoItem.controls.noTinReason?.value" class="dependent-count"
@@ -565,8 +568,8 @@
                               <div class="flex-col-8">
                                 <div class="dropdown-control"
                                   [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.tinNumber)}">
-                                  <input type="text" formControlName="tinNumber" id="invPersInfoInpt1"
-                                    class="form-control" maxLength="50" placeholder="{{
+                                  <input type="text" formControlName="tinNumber" id="tinNumber" class="form-control"
+                                    maxLength="50" placeholder="{{
                                       'SECONDARY_HOLDER.MINOR.TAX_INFO.TIN_TEXT' |
                                       translate}}">
                                 </div>
@@ -598,7 +601,7 @@
           <button *ngIf="activeTabId === 1 || activeTabId === 3" [disabled]="!secondaryHolderMajorForm.valid"
             (click)="majorHolderGoToNext()" class="btn btn-primary btn__footer--fixed width100 mt30">{{navigationType ? ('SECONDARY_HOLDER.SAVE' | translate) 
             : ('SECONDARY_HOLDER.CONTINUE' | translate)}}</button>
-          <button *ngIf="activeTabId === 2" (click)="minorHolderGoToNext()" [disabled]="!secondaryHolderMinorForm.valid"
+          <button *ngIf="activeTabId === 2" (click)="minorHolderGoToNext()" [disabled]="disableMinorSave()"
             class="btn btn-primary btn__footer--fixed width100 mt30">{{navigationType ? ('SECONDARY_HOLDER.SAVE' | translate) 
             : ('SECONDARY_HOLDER.CONTINUE' | translate)}}</button>
         </div>

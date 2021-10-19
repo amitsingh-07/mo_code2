@@ -429,7 +429,7 @@
       },
       "errorModalData": {
         "modalTitle": "Oops! Please verify your information again.",
-        "modalDesc": "The information you entered may be incorrect or the proposed secondary account holder does not have a MoneyOwl account and personal investment account.</br>Please verify again."
+        "modalDesc": "The information you entered may be incorrect or the proposed secondary account holder does not have a MoneyOwl account and personal investment account.<br>Please verify again."
       }
     },
     "MINOR": {
@@ -478,7 +478,7 @@
         "SELECT_REASON_TEXT": "Reason",
         "TIN_TEXT": "TIN Number",
         "CONTINUE": "Continue",
-        "COUNTRY_ERROR": "Country can not be same",
+        "COUNTRY_ERROR": "Country Of Tax Residence can not be same",
         "COUNTRY_ERROR_MSG": "Please check your selected countries",
         "SELECT_COUNTRY": "Select Country",
         "TAX_OTHER_COUNTRY": "Are you paying tax in another country?",

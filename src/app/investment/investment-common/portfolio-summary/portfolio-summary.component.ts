@@ -111,6 +111,9 @@ export class PortfolioSummaryComponent implements OnInit {
         this.promoCodeService.removeAppliedPromo();
         this.clearData();
         this.onPortfolioSubmission();
+      }, err => {
+        this.loaderService.hideLoaderForced();
+        this.investmentAccountService.showGenericErrorModal();
       });
   }
 
@@ -157,7 +160,13 @@ export class PortfolioSummaryComponent implements OnInit {
 
   // GET THE PORTFOLIO SUMMARY DETAILS FOR PORTFOLIO SUMMARY PAGE
   getPortFolioSummaryDetails(customerPortfolioId) {
+    this.loaderService.showLoader({
+      title: this.translate.instant('LOADER_MESSAGES.LOADING.TITLE'),
+      desc: this.translate.instant('LOADER_MESSAGES.LOADING.MESSAGE'),
+      autoHide: false
+    });
     this.investmentCommonService.getPortFolioSummaryDetails(customerPortfolioId).subscribe(response => {
+      this.loaderService.hideLoaderForced();
       if (response.responseMessage.responseCode === 6000) {
         this.summaryDetails = response.objectList;
         this.isMinor = this.summaryDetails.minor;
@@ -165,14 +174,7 @@ export class PortfolioSummaryComponent implements OnInit {
         if (this.taxDetails && this.taxDetails.length > 1) {
           this.getTaxPrecendence();
         }
-        const portFolio = this.summaryDetails.portfolio;
-        const portfolioList = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO;
-        const portfolioIndex = portfolioList.findIndex(x => (portFolio && x.KEY.toUpperCase().replace(/\s/g, '') == portFolio.toUpperCase().replace(/\s/g, '')));
-        if (portfolioIndex >= 0) {
-          this.portfolioDisplayName = portfolioList[portfolioIndex].VALUE;
-        } else {
-          this.portfolioDisplayName = portFolio;
-        }
+        this.portfolioDisplayName = this.summaryDetails.portfolio;
         this.bankDetails = {
           bank: this.summaryDetails?.bankName,
           accountNo: this.summaryDetails?.accountNo,
@@ -180,6 +182,9 @@ export class PortfolioSummaryComponent implements OnInit {
         }
         this.getInvestmentCriteria(this.summaryDetails);
       }
+    }, err => {
+      this.loaderService.hideLoaderForced();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 

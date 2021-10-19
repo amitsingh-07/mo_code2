@@ -62,7 +62,7 @@ export class AddSecondaryHolderComponent implements OnInit {
   minorSGRelationships: any;
   majorRelationships: any;
   countries: any;
-  tabChangeCount = 0;
+  previousTabValue: number;
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   noTinReasonlist: any;
   formCount: any;
@@ -161,6 +161,9 @@ export class AddSecondaryHolderComponent implements OnInit {
           this.loaderService.hideLoaderForced();
         }
       });
+    }, err => {
+      this.loaderService.hideLoaderForced();
+      investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -184,6 +187,10 @@ export class AddSecondaryHolderComponent implements OnInit {
     });
     this.secondaryHolderMinorForm.controls.isSingaporean.setValue(this.secondaryHolderMinorFormValues?.isSingaporean);
     this.secondaryHolderMinorForm.controls.isMinor.setValue(true);
+    if (this.secondaryHolderMinorFormValues) {
+      this.secondaryHolderMinorForm.controls.nationality.setValue(this.secondaryHolderMinorFormValues.nationality);
+      this.setSingaporeanResidentControl();
+    }
   }
 
   buildMajorForm() {
@@ -208,8 +215,6 @@ export class AddSecondaryHolderComponent implements OnInit {
         this.secondaryHolderMinorFormValues.nationality.nationalityCode
       );
       this.secondaryHolderMinorForm.controls.nationality.setValue(nationalityObj);
-      this.secondaryHolderMinorForm.controls.isMinor.setValue(nationalityObj);
-      this.setSingaporeanResidentControl();
     }
   }
 
@@ -251,14 +256,19 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.secondaryHolderMinorForm.removeControl('singaporeanResident');
     } else if (nationality.nationalityCode.indexOf('US') >= 0) {
       this.secondaryHolderMinorForm.removeControl('unitedStatesResident');
+      this.secondaryHolderMinorForm.removeControl('singaporeanResident');
       this.showErrorMessage(this.blockedCountryModal.error_title,
         this.blockedCountryModal.unitedStatesPRYes);
     } else {
       if (!this.isNationalitySingapore()) {
         this.secondaryHolderMinorForm.addControl(
-          'singaporeanResident', new FormControl('', Validators.required)
+          'singaporeanResident', new FormControl(this.secondaryHolderMinorFormValues && !Util.isEmptyOrNull(this.secondaryHolderMinorFormValues.singaporeanResident) ?
+            this.secondaryHolderMinorFormValues.singaporeanResident : '', Validators.required)
         );
         this.secondaryHolderMinorForm.controls.isSingaporean.setValue(false);
+        if (this.secondaryHolderMinorFormValues && !Util.isEmptyOrNull(this.secondaryHolderMinorFormValues.singaporeanResident)) {
+          this.singaporeanPRChange(this.secondaryHolderMinorFormValues.singaporeanResident);
+        }
       } else {
         this.secondaryHolderMinorForm.controls.isSingaporean.setValue(true);
         setTimeout(() => {
@@ -316,13 +326,25 @@ export class AddSecondaryHolderComponent implements OnInit {
   /* Method called when user clicks on United States PR */
   unitedStatesPRChange(isUnitedStatesPR) {
     if (isUnitedStatesPR) {
+      this.secondaryHolderMinorForm.removeControl('singaporeanResident');
       this.removePersonaInfoControls();
       this.showErrorMessage(this.blockedCountryModal.error_title,
         this.blockedCountryModal.unitedStatesPRYes);
-    } else if (this.isNationalitySingapore() && !isUnitedStatesPR) {
-      setTimeout(() => {
-        this.addPersonalInfoControls();
-      });
+    } else {
+      if (this.isNationalitySingapore()) {
+        setTimeout(() => {
+          this.addPersonalInfoControls();
+        });
+      } else {
+        this.secondaryHolderMinorForm.addControl(
+          'singaporeanResident', new FormControl(this.secondaryHolderMinorFormValues && !Util.isEmptyOrNull(this.secondaryHolderMinorFormValues.singaporeanResident) ?
+            this.secondaryHolderMinorFormValues.singaporeanResident : '', Validators.required)
+        );
+        if (this.secondaryHolderMinorFormValues && !Util.isEmptyOrNull(this.secondaryHolderMinorFormValues.singaporeanResident)) {
+          const singaporeResident = this.secondaryHolderMinorFormValues.singaporeanResident;
+          this.singaporeanPRChange(singaporeResident);
+        }
+      }
     }
   }
 
@@ -334,25 +356,39 @@ export class AddSecondaryHolderComponent implements OnInit {
 
   /* Method called when Singapore PR radio button is clicked */
   singaporeanPRChange(isSingaporePR) {
-    if (this.secondaryHolderMinorFormValues && this.secondaryHolderMinorFormValues.relationship) {
-      this.secondaryHolderMinorFormValues.relationship = null;
-    }
     isSingaporePR ? this.addSingaporeanControls() : this.addNonSingaporeanControls();
   }
 
   /* Handle Continue button of Minor holder */
   minorHolderGoToNext() {
-    if (this.secondaryHolderMinorForm.valid) {
-      if (this.secondaryHolderMinorForm.value.nationality?.blocked) {
-        this.showBlockedCountryErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.blockedCountryMessage);
-      } else if (this.secondaryHolderMinorForm.value.nationality?.nationalityCode.indexOf('US') >= 0 || this.secondaryHolderMinorForm.value.unitedStatesResident) {
-        this.showErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.unitedStatesPRYes);
+    if (this.secondaryHolderMinorForm.value.nationality?.blocked) {
+      this.showBlockedCountryErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.blockedCountryMessage);
+    } else if (this.secondaryHolderMinorForm.value.nationality?.nationalityCode.indexOf('US') >= 0 || this.secondaryHolderMinorForm.value.unitedStatesResident) {
+      this.showErrorMessage(this.blockedCountryModal.error_title, this.blockedCountryModal.unitedStatesPRYes);
+    } else {
+      const form = this.secondaryHolderMinorForm.getRawValue();
+      const selTaxCountryArr = [];
+      if (form) {
+        // Existing Value
+        form.addTax.map((item) => {
+          selTaxCountryArr.push(item.taxCountry.countryCode);
+        });
+      }
+      const duplicateCountryErr: any = this.setDuplicateTaxCountryError(selTaxCountryArr);
+      if ((!this.secondaryHolderMinorForm.valid)) {
+        this.markAllFieldsDirty(this.secondaryHolderMinorForm);
+        let error = this.investmentEngagementService.getJAFormErrorList(this.secondaryHolderMinorForm);
+        let taxError = this.investmentEngagementService.getJAFormErrorList(this.secondaryHolderMinorForm.controls.addTax);
+        taxError = this.setErrorData(taxError, duplicateCountryErr);
+        error = this.setErrorData(error, taxError);
+        this.showFormErrorMsg(error);
+      } else if (duplicateCountryErr) {
+        this.showFormErrorMsg(duplicateCountryErr);
       } else if (!Util.isEmptyOrNull(this.investmentEngagementService.validateMaximumAge(this.secondaryHolderMinorForm.controls['dob']))) {
+        this.secondaryHolderMinorForm.controls.dob.markAsDirty();
+        this.secondaryHolderMinorForm.controls.dob.setErrors({ invalid: true });
         const error = this.investmentEngagementService.getSecondaryHolderFormError('dob');
-        this.showErrorMessage(error.errorMessages[0].errorTitle, error.errorMessages[0].errorMessage);
-      } else if (this.secondaryHolderMinorForm.controls['passportExpiry'] && !Util.isEmptyOrNull(this.investmentEngagementService.validateExpiry(this.secondaryHolderMinorForm.controls['passportExpiry']))) {
-        const error = this.investmentEngagementService.getSecondaryHolderFormError('passportExpiry');
-        this.showErrorMessage(error.errorMessages[0].errorTitle, error.errorMessages[0].errorMessage);
+        this.showFormErrorMsg(error);
       } else {
         if (this.secondaryHolderMinorForm.value && this.secondaryHolderMinorForm.value.dob && typeof this.secondaryHolderMinorForm.value.dob !== 'object') {
           this.secondaryHolderMinorForm.get('dob').setValue(this.investmentEngagementService.convertStringToDateObj(this.secondaryHolderMinorForm.value.dob));
@@ -375,10 +411,43 @@ export class AddSecondaryHolderComponent implements OnInit {
             this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.JA_UPLOAD_DOCUMENT]);
           }
         }, (err) => {
+          this.loaderService.hideLoaderForced();
           this.investmentAccountService.showGenericErrorModal();
         });
       }
     }
+  }
+
+  showFormErrorMsg(error) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = error.title;
+    ref.componentInstance.errorMessageList = error.errorMessages;
+    return false;
+  }
+
+  setDuplicateTaxCountryError(countryArr) {
+    if (this.hasDuplicates(countryArr)) {
+      return {
+        title: this.translate.instant('SECONDARY_HOLDER.MINOR.TAX_INFO.COUNTRY_ERROR'),
+        errorMessages: [this.translate.instant('SECONDARY_HOLDER.MINOR.TAX_INFO.COUNTRY_ERROR_MSG')]
+      }
+    }
+    return null;
+  }
+
+  setErrorData(src, dest) {
+    if (src && src.errorMessages && src.errorMessages.length > 0 && dest && dest.errorMessages && dest.errorMessages.length > 0) {
+      dest.errorMessages.forEach(element => {
+        src.errorMessages.push(element);
+      });
+    } else if (src.errorMessages && src.errorMessages.length == 0) {
+      src = dest;
+    }
+    return src;
+  }
+
+  hasDuplicates(array) {
+    return new Set(array).size !== array.length;
   }
 
   showLoader() {
@@ -425,6 +494,7 @@ export class AddSecondaryHolderComponent implements OnInit {
           ref.componentInstance.errorDescription = this.errorModalData.modalDesc;
         }
       }, (err) => {
+        this.loaderService.hideLoaderForced();
         this.investmentAccountService.showGenericErrorModal();
       });
     }
@@ -432,12 +502,12 @@ export class AddSecondaryHolderComponent implements OnInit {
 
   /* Method called when user selects below 18 or Above 18 */
   tabChange() {
-    if (this.activeTabId === 2) {
+    if (this.activeTabId === 2 && this.previousTabValue != this.activeTabId) {
       this.buildMinorForm();
-    } else {
+    } else if (this.activeTabId === 1) {
       this.buildMajorForm();
     }
-    this.tabChangeCount++;
+    this.previousTabValue = this.activeTabId;
   }
 
   showHelpModal() {
@@ -484,7 +554,7 @@ export class AddSecondaryHolderComponent implements OnInit {
       'passportNumber', new FormControl(passportNumber !== '' ? passportNumber : '', [Validators.required, Validators.pattern(RegexConstants.PassportNumber)])
     );
     this.secondaryHolderMinorForm.addControl(
-      'passportExpiry', new FormControl(passportExpiry ? passportExpiry : '', [Validators.required, this.investmentEngagementService.validateExpiry])
+      'passportExpiry', new FormControl(passportExpiry ? passportExpiry : '', [Validators.required])
     );
     this.secondaryHolderMinorForm.addControl(
       'passportIssuedCountry', new FormControl(passportIssuedCountry ?
@@ -506,14 +576,16 @@ export class AddSecondaryHolderComponent implements OnInit {
       'fullName', new FormControl(this.secondaryHolderMinorFormValues?.fullName ? this.secondaryHolderMinorFormValues?.fullName : '', [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)])
     );
     this.secondaryHolderMinorForm.addControl(
-      'nricNumber', new FormControl(this.secondaryHolderMinorFormValues?.nricNumber ? this.secondaryHolderMinorFormValues?.nricNumber : '', [Validators.required, this.investmentEngagementService.validateNric.bind(this)])
+      'nricNumber', new FormControl(this.secondaryHolderMinorFormValues?.nricNumber ? this.secondaryHolderMinorFormValues?.nricNumber : '')
     );
+    this.setNricValidation();
     this.secondaryHolderMinorForm.addControl(
       'race', new FormControl(this.secondaryHolderMinorFormValues?.race ? this.secondaryHolderMinorFormValues?.race : '', Validators.required)
     );
     this.secondaryHolderMinorForm.addControl(
       'relationship', new FormControl(this.secondaryHolderMinorFormValues?.relationship ? this.secondaryHolderMinorFormValues?.relationship : '', Validators.required)
     );
+    this.resetRelationship();
     this.secondaryHolderMinorForm.addControl(
       'birthCountry', new FormControl(this.secondaryHolderMinorFormValues?.birthCountry ? this.secondaryHolderMinorFormValues?.birthCountry : '', Validators.required)
     );
@@ -537,6 +609,16 @@ export class AddSecondaryHolderComponent implements OnInit {
       });
     } else {
       this.addTaxForm(null);
+    }
+  }
+
+  setNricValidation() {
+    if (this.isNationalitySingapore()) {
+      this.secondaryHolderMinorForm.controls.nricNumber.clearValidators();
+      this.secondaryHolderMinorForm.controls.nricNumber.setValidators([Validators.required, this.investmentEngagementService.validateNric.bind(this)]);
+    } else {
+      this.secondaryHolderMinorForm.controls.nricNumber.clearValidators();
+      this.secondaryHolderMinorForm.controls.nricNumber.setValidators([Validators.required]);
     }
   }
 
@@ -622,7 +704,10 @@ export class AddSecondaryHolderComponent implements OnInit {
     Object.keys(form.controls).forEach((key) => {
       if (form.get(key).controls) {
         Object.keys(form.get(key).controls).forEach((nestedKey) => {
-          form.get(key).controls[nestedKey].markAsDirty();
+          let nestedControls = (<FormArray>form.get(key).controls[nestedKey]).controls;
+          for (const taxcontrol in nestedControls) {
+            nestedControls[taxcontrol].markAsDirty();
+          }
         });
       } else {
         form.get(key).markAsDirty();
@@ -664,42 +749,11 @@ export class AddSecondaryHolderComponent implements OnInit {
     this.formCount = this.secondaryHolderMinorForm.controls.addTax.value.length;
   }
 
-  hasDuplicates(array) {
-    return new Set(array).size !== array.length;
-  }
-
   setTinNoValue(taxInfoItem, value) {
     if (taxInfoItem.controls.tinNumber) {
       taxInfoItem.controls.tinNumber.setValue(value);
       taxInfoItem.controls.tinNumber.updateValueAndValidity();
     }
-  }
-
-  setControlEnableDisable(taxInfoItem, controlName, enableFlag) {
-    if (taxInfoItem.controls[controlName]) {
-      if (enableFlag) {
-        taxInfoItem.controls[controlName].enable(true);
-      } else {
-        taxInfoItem.controls[controlName].disable(true);
-      }
-    }
-  }
-
-  showHelpModalCountry() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.taxInfoModal.BLOCKED_COUNTRY_TOOLTIP.TITLE;
-    // tslint:disable-next-line:max-line-length
-    ref.componentInstance.errorDescription = this.taxInfoModal.BLOCKED_COUNTRY_TOOLTIP.DESC;
-    ref.componentInstance.tooltipButtonLabel = this.taxInfoModal.BLOCKED_COUNTRY_TOOLTIP.GOT_IT;
-    return false;
-  }
-
-  showHelpModalTinNumber() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'minor-tax-tooltip limited-width' });
-    ref.componentInstance.errorTitle = this.taxInfoModal.TAX_MODEL_TITLE;
-    // tslint:disable-next-line:max-line-length
-    ref.componentInstance.errorDescription = this.taxInfoModal.TAX_MODEL_DESC;
-    return false;
   }
 
   toggleDate(openEle, closeEle) {
@@ -754,6 +808,9 @@ export class AddSecondaryHolderComponent implements OnInit {
           }
           this.secondaryHolderMajorForm.controls.email.setValue(this.verifyApplicantData.secondaryHolderEmail);
           this.secondaryHolderMajorForm.controls.customerPortfolioId.setValue(customerPortfolioId);
+          //session save
+          this.investmentEngagementService.setMajorSecondaryHolderData(this.secondaryHolderMajorForm.value);
+          this.secondaryHolderMajorFormValues = this.secondaryHolderMajorForm.value;
         } else {//else - Major Minor
           this.activeTabId = 2;
           this.buildMinorForm();
@@ -840,11 +897,11 @@ export class AddSecondaryHolderComponent implements OnInit {
                 );
               }
               this.secondaryHolderMinorForm.addControl(
-                'passportNumber', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.passportNumber, Validators.required)
+                'passportNumber', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.passportNumber, [Validators.required, Validators.pattern(RegexConstants.PassportNumber)])
               );
               let passportExpiryDate = this.investmentEngagementService.convertStringToDateObj(this.verifyApplicantData.minorSecondaryHolderSummary.passportExpiryDate);
               this.secondaryHolderMinorForm.addControl(
-                'passportExpiry', new FormControl(passportExpiryDate, [Validators.required, this.investmentEngagementService.validateExpiry])
+                'passportExpiry', new FormControl(passportExpiryDate, [Validators.required])
               );
               if (this.countryList) {
                 const issuedCountryId = this.verifyApplicantData.minorSecondaryHolderSummary.passportIssuedCountryId;
@@ -855,17 +912,22 @@ export class AddSecondaryHolderComponent implements OnInit {
               }
             }
           }
+          //session save
+          this.investmentEngagementService.setMinorSecondaryHolderData(this.secondaryHolderMinorForm.value);
+          this.secondaryHolderMinorFormValues = this.secondaryHolderMinorForm.value;
         }
       }
     }, (err) => {
+      this.loaderService.hideLoaderForced();
       this.investmentAccountService.showGenericErrorModal();
     });
   }
 
   setSingaporeanData() {
     this.secondaryHolderMinorForm.addControl(
-      'nricNumber', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.nricNumber, [Validators.required, this.investmentEngagementService.validateNric.bind(this)])
+      'nricNumber', new FormControl(this.verifyApplicantData.minorSecondaryHolderSummary.nricNumber, [Validators.required])
     );
+    this.setNricValidation();
 
     this.secondaryHolderMinorForm.addControl(
       'issuedCountry', new FormControl('', [Validators.required])
@@ -910,24 +972,13 @@ export class AddSecondaryHolderComponent implements OnInit {
     }
   }
 
-  onBlurMethod(dateChanged, controlName) {
-    const dateChosen = new Date(dateChanged.split('/')[2], Number(dateChanged.split('/')[1]) - 1, dateChanged.split('/')[0]);
-    const dateObj = {
-      year: dateChosen.getFullYear(), month: dateChosen.getMonth() + 1,
-      day: dateChosen.getDate()
-    }
-    this.setSelectedDate(dateObj, controlName);
-  }
-
-  setSelectedDate(obj, controlName) {
-    this.secondaryHolderMinorForm.controls[controlName].setValue(obj);
-  }
-
   verifyFlowSubmission() {
     this.showLoader();
     this.investmentEngagementService.verifyFlowSubmission(Number(this.customerPortfolioId), INVESTMENT_COMMON_CONSTANTS.JA_ACTION_TYPES.SUBMISSION).subscribe((response) => {
       this.loaderService.hideLoader();
       if (response) {
+        //clear the session data
+        this.investmentCommonService.clearJourneyData();
         const toastMessage: IToastMessage = {
           isShown: true,
           desc: this.translate.instant('TOAST_MESSAGES.VERIFY_SUBMISSION'),
@@ -939,5 +990,27 @@ export class AddSecondaryHolderComponent implements OnInit {
       this.loaderService.hideLoader();
       this.investmentAccountService.showGenericErrorModal();
     });
+  }
+
+  resetRelationship() {
+    const selectedNationalityName = this.secondaryHolderMinorFormValues &&
+      this.secondaryHolderMinorFormValues.nationality &&
+      this.secondaryHolderMinorFormValues.nationality.name ?
+      this.secondaryHolderMinorFormValues.nationality.name.toUpperCase() : '';
+    const savedAsSG = [INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_NAME, INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NATIONALITY.COUNTRY_CODE]
+      .indexOf(selectedNationalityName) >= 0 ? true : false;
+    if (this.secondaryHolderMinorFormValues && ((!savedAsSG &&
+      this.secondaryHolderMinorForm.get('singaporeanResident') &&
+      this.secondaryHolderMinorForm.get('singaporeanResident').value == !this.secondaryHolderMinorFormValues.singaporeanResident)
+      || (savedAsSG && this.secondaryHolderMinorForm.get('singaporeanResident') &&
+        !this.secondaryHolderMinorForm.get('singaporeanResident').value))) {
+      this.secondaryHolderMinorForm.controls.relationship.setValue('');
+    }
+  }
+
+  disableMinorSave() {
+    return (this.secondaryHolderMinorForm.get('nationality') && !this.secondaryHolderMinorForm.get('nationality').valid)
+      || (this.secondaryHolderMinorForm.get('singaporeanResident') && !this.secondaryHolderMinorForm.get('singaporeanResident').valid)
+      || (this.secondaryHolderMinorForm.get('unitedStatesResident') && !this.secondaryHolderMinorForm.get('unitedStatesResident').valid)
   }
 }

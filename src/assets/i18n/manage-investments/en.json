@@ -131,7 +131,7 @@
     "READ_LESS" :"Read less",
     "AWAITING_TO_JOIN": "Awaiting Secondary Holder to Join",
     "PRIMARY_AWAITING_TIME": "Few hours left",
-    "PRIMARY_AWAITING_PERIOD": "before invalid",
+    "PRIMARY_AWAITING_PERIOD": "before invalid.",
     "SEND_REMINDER": "Send Reminder",
     "WITHDRAW": "Withdraw",
     "ACCEPT_DECLINE": "Accept/Decline",
@@ -149,7 +149,8 @@
     "MONTHLY_AMOUNT": "Monthly Amount",
     "DAYS": "days",
     "MINUTES": "minutes",
-    "HOURS": "hours"
+    "HOURS": "hours",
+    "DAY": "day"
   },
   "YOUR_PORTFOLIO": {
     "TITLE": "Your Portfolio",
@@ -479,7 +480,7 @@
   "TOAST_MESSAGES": {
     "RENAME_PORTFOLIO_SUCCESS": "\"{{oldPortfolioName}}\" has been renamed to \"{{newPortfolioName}}\".",
     "DELETE_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been Deleted.",
-    "WITHDRAW_PORTFOLIO_SUCCESS": "Portfolio \"{{userGivenPortfolioName}}\" has been withdrawn.",
+    "WITHDRAW_PORTFOLIO_SUCCESS": "\"{{userGivenPortfolioName}}\" has been withdrawn.",
     "DELETE_PORTFOLIO_BY_HOLDER": "You have deleted \"{{userGivenPortfolioName}}\".",
     "REMINDER_TEXT": "The reminder has been sent to {{secondaryHolderName}}. You may send one reminder per day.",
     "ONE_REMINDER_PER_DAY": "You can only send one reminder per day, please try again tomorrow."
