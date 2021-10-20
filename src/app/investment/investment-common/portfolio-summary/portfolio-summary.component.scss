@@ -31,6 +31,9 @@ app-portfolio-summary {
 
       .portfolio-naming {
         margin: 0 auto;
+        .title {
+          padding-bottom: 0 !important;
+        }
       }
 
       .review-text {
