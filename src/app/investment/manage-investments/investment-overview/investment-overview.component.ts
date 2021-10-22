@@ -483,8 +483,12 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   }
 
   emitToastMessage($event) {
-    if ($event) {      
-      this.navbarService.setNavbarMode(103);
+    if ($event) { 
+      if (environment.hideHomepage) {
+        this.navbarService.setNavbarMode(105);
+      } else {
+        this.navbarService.setNavbarMode(103);
+      }
       this.getInvestmentOverview(true);
     } else {
       this.toastMsg = this.manageInvestmentsService.getToastMessage();
@@ -493,8 +497,12 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   }
 
   emitMessage(event) {
-    if (event.action == MANAGE_INVESTMENTS_CONSTANTS.JOINT_ACCOUNT.REFRESH) {
-      this.navbarService.setNavbarMode(103);
+    if (event.action == MANAGE_INVESTMENTS_CONSTANTS.JOINT_ACCOUNT.REFRESH) {      
+      if (environment.hideHomepage) {
+        this.navbarService.setNavbarMode(105);
+      } else {
+        this.navbarService.setNavbarMode(103);
+      }
       this.getInvestmentOverview(false);
     }
   }
