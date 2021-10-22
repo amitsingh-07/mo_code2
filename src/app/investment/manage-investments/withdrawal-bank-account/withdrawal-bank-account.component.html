@@ -32,7 +32,7 @@
               </div>
               <div class="user_bank">{{ userBank.bank && userBank.bank.name}}</div>
               <div class="user_account">{{userBank.accountNumber}}</div>
-              <div class="user_name">{{userBank.accountName | titlecase}}</div>
+              <div class="user_name">{{userBank.accountName | uppercase}}</div>
               <div *ngIf="isInvestAndJointAccountHolder" class="joint-account-desc"
                 innerHTML="{{'WITHDRAW_PAYMENT_METHOD.JOINT_ACCOUNT_DESC' | translate}}"></div>
             </div>
