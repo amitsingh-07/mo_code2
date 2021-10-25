@@ -1,15 +1,19 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
 
+import { Util } from '../../shared/utils/util';
 import { appConstants } from '../../app.constants';
 import { ApiService } from '../../shared/http/api.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-import { SignUpService } from '../../sign-up/sign-up.service';
 import { InvestmentApiService } from '../investment-api.service';
 import { InvestmentEngagementJourneyFormData } from './investment-engagement-journey-form-data';
 import { InvestmentEngagementJourneyFormErrors } from './investment-engagement-journey-form-errors';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from './investment-engagement-journey.constants';
+import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account/investment-account.constant';
 import { PersonalInfo } from './investment-period/investment-period';
+import { InvestmentAccountCommon } from '../investment-account/investment-account-common';
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { InvestmentAccountFormError } from '../investment-account/investment-account-form-error';
 
 const PORTFOLIO_RECOMMENDATION_COUNTER_KEY = 'portfolio_recommendation-counter';
 const SESSION_STORAGE_KEY = 'app_engage_journey_session';
@@ -19,10 +23,9 @@ const SESSION_STORAGE_KEY = 'app_engage_journey_session';
 export class InvestmentEngagementJourneyService {
   private investmentEngagementJourneyFormData: InvestmentEngagementJourneyFormData = new InvestmentEngagementJourneyFormData();
   private investmentEngagementJourneyFormErrors: any = new InvestmentEngagementJourneyFormErrors();
+  investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
-    private http: HttpClient,
     private apiService: ApiService,
-    private signUpService: SignUpService,
     private investmentApiService: InvestmentApiService,
     public authService: AuthenticationService
   ) {
@@ -297,7 +300,7 @@ export class InvestmentEngagementJourneyService {
         enquiryId: enquiryIdValue,
         fundingTypeId: invCommonFormValues.initialFundingMethodId,
         portfolioTypeId: formData.portfolioTypeId,
-        
+
       };
     } else if (selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO) {
       return {
@@ -307,7 +310,7 @@ export class InvestmentEngagementJourneyService {
         fundingTypeId: invCommonFormValues.initialFundingMethodId,
         portfolioTypeId: formData.portfolioTypeId
       };
-    } else  {
+    } else {
       return {
         investmentPeriod: formData.investmentPeriod,
         monthlyIncome: formData.monthlyIncome,
@@ -335,6 +338,11 @@ export class InvestmentEngagementJourneyService {
   }
   getPortfolioAllocationDetails(params) {
     return this.investmentApiService.getPortfolioAllocationDetails(params);
+  }
+
+  // CALL ALLOCATION DETAILS API WITH JA ACCOUNT ID
+  getJAPortfolioAllocationDetails(params) {
+    return this.investmentApiService.getJAPortfolioAllocationDetails(params);
   }
 
   getFundDetails() {
@@ -448,5 +456,302 @@ export class InvestmentEngagementJourneyService {
   }// wiseincome fundlist
   getFundListMethod(portfolioTypeId) {
     return this.investmentApiService.getFundListMethod(portfolioTypeId);
+  }
+
+  /* ******* START SECONDARY HOLDER FUNCTIONALITY AND METHODS******* */
+
+  /* Set user account type */
+  setUserPortfolioType(portfolioType) {
+    this.investmentEngagementJourneyFormData.userPortfolioType = portfolioType;
+    this.commit();
+  }
+
+  /* Get user account type */
+  getUserPortfolioType() {
+    return this.investmentEngagementJourneyFormData?.userPortfolioType;
+  }
+
+  setMajorSecondaryHolderData(majorHolderFormData) {
+    this.investmentEngagementJourneyFormData.majorSecondaryHolderFormData = majorHolderFormData;
+    this.commit();
+  }
+
+  /* Get Major holder data */
+  getMajorSecondaryHolderData() {
+    return this.investmentEngagementJourneyFormData.majorSecondaryHolderFormData;
+  }
+
+  setMinorSecondaryHolderData(minorHolderFormData) {
+    this.investmentEngagementJourneyFormData.minorSecondaryHolderFormData = minorHolderFormData;
+    this.commit();
+  }
+
+  /* Get user account type */
+  getMinorSecondaryHolderData() {
+    return this.investmentEngagementJourneyFormData?.minorSecondaryHolderFormData;
+  }
+
+  buildMajorHolderData() {
+    const formData = this.investmentEngagementJourneyFormData?.majorSecondaryHolderFormData;
+    return {
+      customerPortfolioId: formData.customerPortfolioId ? formData.customerPortfolioId : null,
+      jointAccountDetailsId: (formData && formData.jaAccountId) ? formData.jaAccountId : null,
+      nricOrPassport: formData?.nricNumber,
+      email: formData?.email,
+      relationship: formData?.relationship?.id
+    }
+  }
+
+  buildMinorHolderData() {
+    const formData = this.investmentEngagementJourneyFormData?.minorSecondaryHolderFormData;
+    let taxInfo = this.setAddTaxData(formData?.addTax);
+    let passporIssuedCountry;
+    if (formData && formData.issuedCountry) {
+      passporIssuedCountry = formData.issuedCountry.id
+    } else if (formData && formData.passportIssuedCountry) {
+      passporIssuedCountry = formData.passportIssuedCountry.id
+    }
+    return {
+      customerPortfolioId: formData.customerPortfolioId ? formData.customerPortfolioId : null,
+      jointAccountDetailsId: (formData && formData.jaAccountId) ? formData.jaAccountId : null,
+      singaporePR: !Util.isEmptyOrNull(formData?.singaporeanResident) ? formData?.singaporeanResident : null,
+      usPR: !Util.isEmptyOrNull(formData?.unitedStatesResident) ? formData?.unitedStatesResident : null,
+      minor: true,
+      relationship: formData?.relationship?.id,
+      personalInfo: {
+        nationalityCode: formData?.nationality?.nationalityCode,
+        fullName: formData?.fullName,
+        nricNumber: formData?.nricNumber,
+        passportNumber: formData?.passportNumber,
+        passportIssuedCountryId: passporIssuedCountry,
+        gender: formData?.gender,
+        birthCountryId: formData?.birthCountry?.id,
+        race: formData?.race?.name,
+        passportExpiryDate: formData.passportExpiry ? `${formData?.passportExpiry?.day}-${formData?.passportExpiry?.month}-${formData?.passportExpiry?.year}` : null,
+        dateOfBirth: formData.dob ? `${formData?.dob?.day}-${formData?.dob?.month}-${formData?.dob?.year}` : null
+      },
+      taxDetails: taxInfo
+    }
+  }
+
+  setAddTaxData(taxData) {
+    let taxInfo = []
+    taxData.forEach(element => {
+      taxInfo.push({
+        taxCountryId: element?.taxCountry?.id,
+        tinNumber: element?.tinNumber,
+        noTinReason: element?.noTinReason?.id
+      })
+    });
+    return taxInfo;
+  }
+
+  // Save Major Secondary Holder
+  saveMajorSecondaryHolder() {
+    const data = this.buildMajorHolderData();
+    return this.investmentApiService.saveMajorSecondaryHolder(data);
+  }
+  // Save Minor Secondary Holder
+  saveMinorSecondaryHolder() {
+    const data = this.buildMinorHolderData();
+    return this.investmentApiService.saveMinorSecondaryHolder(data);
+  }
+
+  convertStringToDateObj(dateString) {
+    let dateObj = new Date(dateString);
+    return {
+      year: dateObj.getFullYear(),
+      month: dateObj.getMonth() + 1,
+      day: dateObj.getDate()
+    }
+  }
+
+  getSecondaryHolderFormError(control) {
+    const errors: any = {};
+    errors.errorMessages = [];
+    errors.title = this.investmentEngagementJourneyFormErrors.formFieldErrors.secondaryHolderValidations.errorTitle;
+    errors.errorMessages.push(this.investmentEngagementJourneyFormErrors.formFieldErrors.secondaryHolderValidations[control]['isMaxAge'].errorMessage);
+    return errors;
+  }
+
+  /* ******* END SECONDARY HOLDER FUNCTIONALITY AND METHODS******* */
+
+  /*Upload Document Method start*/
+  isSingaporeResident() {
+    const selectedNationality = this.investmentEngagementJourneyFormData.minorSecondaryHolderFormData.nationality.nationalityCode;
+    return (
+      selectedNationality === INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_NATIONALITY_CODE
+      || this.investmentEngagementJourneyFormData.minorSecondaryHolderFormData.singaporeanResident
+    );
+  }
+
+  // Upload Document
+  uploadDocument(formData) {
+    return this.investmentApiService.uploadDocument(formData);
+  }
+  /*Upload Document Method end*/
+
+  /** VERIFY METHOD PREFILL DETAILS */
+  getVerifyDetails(customerPortfolioId, jointAccountAction) {
+    return this.verifyEditAndSubmit(customerPortfolioId, jointAccountAction);
+  }
+  //Verify - Submission
+  verifyFlowSubmission(customerPortfolioId, jointAccountAction) {
+    return this.verifyEditAndSubmit(customerPortfolioId, jointAccountAction);
+  }
+  verifyEditAndSubmit(customerPortfolioId, jointAccountAction) {
+    const payload = {
+      customerPortfolioId: customerPortfolioId,
+      jointAccountAction: jointAccountAction
+    };
+    return this.investmentApiService.setActionByHolder(payload);
+  }
+  /** VERIFY METHOD PREFILL DETAILS END */
+
+  /* To Validate Passport Expiry */
+  validateExpiry(control: AbstractControl): { [s: string]: boolean } {
+    const value = control.value;
+    const today = new Date();
+    if (control.value !== undefined && isNaN(control.value) && !(control.errors && control.errors.ngbDate)) {
+      const isMinExpiry =
+        new Date(value.year, value.month - 1, value.day) >=
+        new Date(
+          today.getFullYear(),
+          today.getMonth() + INVESTMENT_ACCOUNT_CONSTANTS.personal_info.min_passport_expiry,
+          today.getDate()
+        );
+      if (!isMinExpiry) {
+        return { isMinExpiry: true };
+      }
+    }
+    return null;
+  }
+
+  /* To validate the NRIC number entered */
+  validateNric(control: AbstractControl) {
+    const value = control.value;
+    if (value && value !== undefined) {
+      const isValidNric = this.investmentAccountCommon.isValidNric(value);
+      if (!isValidNric) {
+        return { nric: true };
+      }
+    }
+    return null;
+  }
+
+  validateTin(control: AbstractControl) {
+    const value = control.value;
+    let isValidTin;
+    if (value) {
+      if (control && control.parent && control.parent.controls && control.parent.controls['taxCountry'].value) {
+        const countryCode = control.parent.controls['taxCountry'].value.countryCode;
+        switch (countryCode) {
+          case INVESTMENT_ACCOUNT_CONSTANTS.SINGAPORE_COUNTRY_CODE:
+            isValidTin = this.investmentAccountCommon.isValidNric(value);
+            break;
+          case INVESTMENT_ACCOUNT_CONSTANTS.MALAYSIA_COUNTRY_CODE:
+            isValidTin = new RegExp(RegexConstants.MalaysianTin).test(value);
+            break;
+          case INVESTMENT_ACCOUNT_CONSTANTS.INDONESIA_COUNTRY_CODE:
+            isValidTin = new RegExp(RegexConstants.IndonesianTin).test(value);
+            break;
+          case INVESTMENT_ACCOUNT_CONSTANTS.INDIA_COUNTRY_CODE:
+            isValidTin = new RegExp(RegexConstants.IndianTin).test(value);
+            break;
+          case INVESTMENT_ACCOUNT_CONSTANTS.CHINA_COUNTRY_CODE:
+            isValidTin = new RegExp(RegexConstants.ChineseTin).test(value);
+            break;
+          default:
+            isValidTin = true;
+            break;
+        }
+      }
+      if (!isValidTin) {
+        return { tinFormat: true };
+      }
+    }
+    return null;
+  }
+
+  /* To Validate Maximum age of secondary holder */
+  validateMaximumAge(control: AbstractControl): { [s: string]: boolean } {
+    const value = control.value;
+    if (control.value !== undefined && isNaN(control.value) && !(control.errors && control.errors.ngbDate)) {
+      const isMaxAge =
+        new Date(
+          value.year + INVESTMENT_ACCOUNT_CONSTANTS.personal_info.min_age,
+          value.month - 1,
+          value.day
+        ) <= new Date();
+      if (isMaxAge) {
+        return { isMaxAge: true };
+      }
+    }
+    return null;
+  }
+
+  /* To Validate Minimum age of secondary holder */
+  validateMinimumAge(control: AbstractControl) {
+    const value = control.value;
+    if (control.value !== undefined && isNaN(control.value) && !(control.errors && control.errors.ngbDate)) {
+      const isMinAge =
+        new Date(
+          value.year + INVESTMENT_ACCOUNT_CONSTANTS.personal_info.min_age,
+          value.month - 1,
+          value.day
+        ) <= new Date();
+      if (!isMinAge) {
+        return { isMinAge: true };
+      }
+    }
+    return null;
+  }
+
+  // TO GET COUNTRY FROM COUNTRY CODE
+  getCountryFromCountryCode(countryCode, countryList) {
+    let country = '';
+    const selectedCountry = countryList.filter(
+      (countries) => countries.countryCode === countryCode
+    );
+    if (selectedCountry[0]) {
+      country = selectedCountry[0];
+    }
+    return country;
+  }
+
+  getJAFormErrorList(form) {
+    const controls = form.controls;
+    const errors: any = {};
+    errors.errorMessages = [];
+    errors.title = this.investmentEngagementJourneyFormErrors.formFieldErrors.secondaryHolderValidations.errorTitle;
+    for (const name in controls) {
+      if (controls[name].invalid) {
+        // HAS NESTED CONTROLS ?
+        if (controls[name].controls) {
+          if (name != 'addTax') {
+            const nestedControls = controls[name].controls;
+            for (const nestedControlName in nestedControls) {
+              if (nestedControls[nestedControlName].invalid) {
+                // tslint:disable-next-line
+                errors.errorMessages.push(
+                  this.investmentEngagementJourneyFormErrors.formFieldErrors.secondaryHolderValidations[nestedControlName][
+                    Object.keys(nestedControls[nestedControlName]['errors'])[0]
+                  ].errorMessage
+                );
+              }
+            }
+          }
+        } else {
+          // NO NESTED CONTROLS
+          // tslint:disable-next-line
+          errors.errorMessages.push(
+            this.investmentEngagementJourneyFormErrors.formFieldErrors.secondaryHolderValidations[name][
+              Object.keys(controls[name]['errors'])[0]
+            ].errorMessage
+          );
+        }
+      }
+    }
+    return errors;
   }
 }

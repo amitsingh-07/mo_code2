@@ -31,6 +31,7 @@ import {
   ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { TitleCasePipe } from '@angular/common';
+import { CustomerJointAccountInfo } from '../signup-types';
 
 @Component({
   selector: 'app-edit-profile',
@@ -47,6 +48,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   residentialAddress: any;
   empolymentDetails: any;
   bankDetails: any;
+  customerJointAccBankDetails: CustomerJointAccountInfo[] = [];
   mailingAddress: any;
   contactDetails: any;
   employerAddress: any;
@@ -260,6 +262,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
           if (data.objectList.customerBankDetail) {
             this.bankDetails = data.objectList.customerBankDetail[0];
+          }
+          if (data.objectList.customerJointAccountBankDetails) {
+            this.customerJointAccBankDetails = data.objectList.customerJointAccountBankDetails;
           }
           this.showBankInfo = data.objectList.cashPortfolioAvailable ? data.objectList.cashPortfolioAvailable : false;
 
@@ -590,5 +595,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.myInfoService.loadingModalRef.componentInstance.primaryAction.subscribe(() => {
       this.closeMyInfoPopup(false);
     });
+  }
+
+  showJointAccountDetailsCard: () => boolean = (): boolean => {
+    return this.customerJointAccBankDetails && this.customerJointAccBankDetails.length > 0;
   }
 }

@@ -1372,3 +1372,31 @@ body.modal-open::-webkit-scrollbar {
     }
   }
 }
+
+.major-tooltip {
+  .hyperlink_color {
+    color: $orange-color;
+    &:hover {
+      color: $orange-color;
+    }
+  }
+}
+
+.minor-tax-tooltip {
+  .hyperlink_color {
+    color: $orange-color;
+    &:hover {
+      color: $orange-color;
+    }
+  }
+}
+
+.limited-width{
+  .modal-body {
+    width: 375px !important;
+      margin: 0 auto !important;
+    @include allmobiles {
+      width: 100% !important;
+    }
+  }
+}

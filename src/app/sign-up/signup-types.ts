@@ -73,3 +73,13 @@ export interface IProtectionType {
     protectionTypeId: number;
     protectionType: string;
 }
+
+export interface CustomerJointAccountInfo {
+    bankId: number;
+    bankName: string;
+    accountHolderName: string;
+    bankAccountNumber: string;
+    customerPortfolioId: number;
+    accountType: string;
+    customerPortfolioName: string;
+}

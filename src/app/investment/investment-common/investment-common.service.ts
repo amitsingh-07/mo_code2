@@ -1,9 +1,6 @@
 
 import { of as observableOf, Observable } from 'rxjs';
-
 import { catchError, map } from 'rxjs/operators';
-
-
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -24,9 +21,10 @@ import {
 import {
   IAccountCreationActions, IInvestmentCriteria, InvestmentCommonFormData
 } from './investment-common-form-data';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from './investment-common-routes.constants';
+import { INVESTMENT_COMMON_ROUTES, INVESTMENT_COMMON_ROUTE_PATHS } from './investment-common-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from './investment-common.constants';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SignUpService } from '../../sign-up/sign-up.service';
 
 const SESSION_STORAGE_KEY = 'app_inv_common_session';
 @Injectable({
@@ -42,7 +40,8 @@ export class InvestmentCommonService {
     private router: Router,
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     private loaderService: LoaderService,
-    public navbarService: NavbarService
+    public navbarService: NavbarService,
+    private signUpService: SignUpService
   ) {
     this.getInvestmentCommonFormData();
   }
@@ -160,10 +159,16 @@ export class InvestmentCommonService {
   }
 
   goToAdditionalAccountCreation(data) {
-    if( data.accountCreationState ===  INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_PURCHASED){
+    if (data.accountCreationState === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_PURCHASED) {
       this.navbarService.setMenuItemInvestUser(true);
     }
-    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+    if (this.signUpService.getRedirectUrl() && this.signUpService.getRedirectUrl().indexOf(INVESTMENT_COMMON_ROUTES.ACCEPT_JA_HOLDER) >= 0) {
+      const redirectURL = this.signUpService.getRedirectUrl();
+      this.signUpService.clearRedirectUrl();
+      this.router.navigate([redirectURL]);
+      return;
+    }
+    this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
   }
 
   setInvestmentsSummary(investmentsSummary) {
@@ -358,11 +363,11 @@ export class InvestmentCommonService {
     }
     if (formData && formData.investmentPeriod) {
       this.investmentEngagementJourneyService.setPersonalInfo({ investmentPeriod: formData.investmentPeriod });
-    }   
+    }
     const investmentFormData = this.setYourInvestmentAmount(formData);
     this.investmentEngagementJourneyService.setYourInvestmentAmount(investmentFormData);
     if (!this.investmentAccountService.isReassessActive()) {
-    this.setInitialFundingMethod({ initialFundingMethodId: formData.fundingTypeId });
+      this.setInitialFundingMethod({ initialFundingMethodId: formData.fundingTypeId });
     }
     const portfolioType = this.toDecidedPortfolioType(formData.portfolioType);
     this.investmentEngagementJourneyService.setSelectPortfolioType({ selectPortfolioType: portfolioType })
@@ -401,5 +406,23 @@ export class InvestmentCommonService {
     } else {
       return INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO
     }
+  }
+  acceptAndGetPortfolioDetails(customerPortfolioId) {
+    return this.investmentApiService.acceptAndGetPortfolioDetails(customerPortfolioId);
+  }
+  // GET THE PORTFOLIO SUMMARY DETAILS FOR PORTFOLIO SUMMARY PAGE
+  getPortFolioSummaryDetails(customerPortfolioId) {
+    return this.investmentApiService.getPortFolioSummaryDetails(customerPortfolioId);
+  }
+
+  getJAAccountDetails(customerPortfolioId, isJAAccount, isEngagementJourney) {
+    return this.investmentApiService.getJABankDetails(customerPortfolioId, isJAAccount, isEngagementJourney);
+  }
+
+  setNavigationType(url, expectedURL, navigationType) {
+    if (url.indexOf(expectedURL) >= 0) {
+      return navigationType;
+    }
+    return null;
   }
 }

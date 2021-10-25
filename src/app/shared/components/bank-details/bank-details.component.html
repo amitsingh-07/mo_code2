@@ -1,0 +1,22 @@
+<div class="widget-body">
+  <div>
+    <div class="primary-holder">{{
+            'PORTFOLIO_SUMMARY.WITHDRAWAL_BANK_DETAILS.ACCOUNT_HOLDER_NAME_TEXT' |
+            translate}}</div>
+    <div class="primary-holder-value">{{bankDetails?.nameOnAccount | uppercase}}</div>
+  </div>
+
+  <div class="mt15">
+    <div class="primary-holder">{{
+            'PORTFOLIO_SUMMARY.WITHDRAWAL_BANK_DETAILS.BANK_NAME_TEXT' |
+            translate}}</div>
+    <div class="primary-holder-value">{{bankDetails?.bank}}</div>
+  </div>
+
+  <div class="mt15">
+    <div class="primary-holder">{{
+            'PORTFOLIO_SUMMARY.WITHDRAWAL_BANK_DETAILS.ACCOUNT_NUMBER_TEXT' |
+            translate}}</div>
+    <div class="primary-holder-value">{{bankDetails?.accountNo}}</div>
+  </div>
+</div>

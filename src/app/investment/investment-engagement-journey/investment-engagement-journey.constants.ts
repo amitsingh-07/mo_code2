@@ -12,25 +12,46 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
   risk_assessment: {
     special_question_order: 4
   },
-  SELECT_POROFOLIO_TYPE :{
-    INVEST_PORTFOLIO:'investPortfolio',
-    WISESAVER_PORTFOLIO:'wiseSaverPortfolio',
-    WISEINCOME_PORTFOLIO:'wiseIncomePortfolio',
-    INVESTMENT:'Investment',
-    WISESAVER:'Wisesaver',
-    WISEINCOME:'WiseIncome'
+  SELECT_POROFOLIO_TYPE: {
+    INVEST_PORTFOLIO: 'investPortfolio',
+    WISESAVER_PORTFOLIO: 'wiseSaverPortfolio',
+    WISEINCOME_PORTFOLIO: 'wiseIncomePortfolio',
+    INVESTMENT: 'Investment',
+    WISESAVER: 'Wisesaver',
+    WISEINCOME: 'WiseIncome'
   },
-  PROSPECTUS_FILE:{
+  PROSPECTUS_FILE: {
     INVESTMENT: 'prospectus_investment.pdf',
     WISESAVER: 'prospectus_wise_saver.pdf',
-    WISEINCOME: 'prospectus_wise_income.pdf'      
-                },
+    WISEINCOME: 'prospectus_wise_income.pdf'
+  },
   PAYOUT_FUNDLIST: {
     GROW: 'Grow & invest payout_Cash',
     FOUR_PERCENT: '4.5%* p.a. income payout_Cash',
     EIGHT_PERCENT: '8% p.a. income payout_Cash',
   },
   DEFAULT_PAYOUT: {
-    GROW : '0%'
+    GROW: '0%'
+  },
+  PORTFOLIO_TYPE: {
+    JOINT_ACCOUNT: 'joint-account',
+    PERSONAL_ACCOUNT: 'personal-account',
+    JOINT_ACCOUNT_ID: '2',
+    PERSONAL_ACCOUNT_ID: '1'
+  },
+  NAVIGATION_TYPE: {
+    EDIT: "edit",
+    CREATE: "create"
+  },
+  UPLOAD_TYPE: {
+    NRIC: 'NRIC',
+    BIRTH_CERTIFICATE: 'Birth Certificate',
+    PASSPORT: 'Passport'
+  },
+  UPLOAD_SINGAPOREAN_DOC_LIST: [{ "name": "NRIC", "value": "NRIC" }, { "name": "Birth Certificate", "value": "Birth Certificate" }],
+  UPLOAD_NON_SINGAPOREAN_DOC_LIST: [{ "name": "Passport", "value": "Passport" }],
+  NATIONALITY: {
+    COUNTRY_NAME: "SINGAPOREAN",
+    COUNTRY_CODE: "SG"
   }
 };

@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -15,7 +14,7 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { MANAGE_INVESTMENTS_ROUTE_PATHS, MANAGE_INVESTMENTS_ROUTES } from '../manage-investments-routes.constants';
+import { MANAGE_INVESTMENTS_ROUTE_PATHS } from '../manage-investments-routes.constants';
 import { ManageInvestmentsService } from '../manage-investments.service';
 import { ConfirmWithdrawalModalComponent } from '../withdrawal/confirm-withdrawal-modal/confirm-withdrawal-modal.component';
 import {
@@ -42,14 +41,15 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
   isRequestSubmitted = false;
   error2fa: any;
   activeRef: any;
+  customerPortfolioId: any;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
   private subscription: Subscription;
   isInvestAndJointAccountHolder;
   isEdit = true;
+  isJAAccount: boolean
 
   constructor(
     public readonly translate: TranslateService,
-    private formBuilder: FormBuilder,
     private router: Router,
     public headerService: HeaderService,
     private modal: NgbModal,
@@ -69,12 +69,14 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
     this.navbarService.setNavbarMode(10);
     this.footerService.setFooterVisibility(false);
     this.getLookupList();
-    this.getUserBankList();
     this.getUserAddress();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
+    this.customerPortfolioId = this.formValues.selectedCustomerPortfolioId;
+    this.isJAAccount = this.formValues.selectedCustomerPortfolio.entitlements.jointAccount;
+    this.isInvestAndJointAccountHolder = this.manageInvestmentsService.isInvestAndJointAccount();
+    this.getUserBankList(this.customerPortfolioId,this.isJAAccount);
     this.userInfo = this.signUpService.getUserProfileInfo();
     this.fullName = this.userInfo.fullName ? this.userInfo.fullName : this.userInfo.firstName + ' ' + this.userInfo.lastName;
-    this.isInvestAndJointAccountHolder = this.manageInvestmentsService.isInvestAndJointAccount();
     this.signUpService.getEditProfileInfo()
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((data) => {
@@ -122,9 +124,12 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
       });
   }
 
-  getUserBankList() {
+  getUserBankList(customerPortfolioId, isJointAccount) {
     this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
-      this.manageInvestmentsService.getUserBankList().subscribe((data) => {
+      this.loaderService.showLoader({
+        title: this.translate.instant('WITHDRAW.WITHDRAW_REQUEST_LOADER.FETCHING_DATA'), autoHide: false
+      });
+      this.manageInvestmentsService.getUserBankList(customerPortfolioId, isJointAccount).subscribe((data) => {
         if (data.responseMessage.responseCode >= 6000) {
           this.userBankList = data.objectList;
           if (this.userBankList.length > 0) {
@@ -133,8 +138,10 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
           this.pageTitle = this.getTitle();
           this.setPageTitle(this.pageTitle);
         }
+        this.loaderService.hideLoaderForced();
       },
         (err) => {
+          this.loaderService.hideLoaderForced();
           this.investmentAccountService.showGenericErrorModal();
         });
     });
@@ -249,10 +256,10 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
       this.activeRef.close();
       if (this.isEdit) {
         this.isEdit = false;
-        this.manageInvestmentsService.saveProfileNewBank(data).subscribe((response) => {
+        this.manageInvestmentsService.saveProfileNewBank(data, this.customerPortfolioId, this.isJAAccount).subscribe((response) => {
           this.isEdit = true;
           if (response.responseMessage.responseCode >= 6000) {
-            this.getUserBankList(); // refresh updated bank list
+            this.getUserBankList(this.customerPortfolioId, this.isJAAccount); // refresh updated bank list
           } else if (
             response.objectList &&
             response.objectList.serverStatus &&
@@ -301,10 +308,10 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
       if (this.isEdit) {
         this.isEdit = false;
         this.manageInvestmentsService.updateBankInfo(data.bank, data.accountHolderName,
-          data.accountNo, this.userBankList[index].id).subscribe((response) => {
+          data.accountNo, this.userBankList[index].id, this.customerPortfolioId, this.isJAAccount).subscribe((response) => {
             this.isEdit = true;
             if (response.responseMessage.responseCode >= 6000) {
-              this.getUserBankList(); // refresh updated bank list
+              this.getUserBankList(this.customerPortfolioId, this.isJAAccount); // refresh updated bank list
             } else if (
               response.objectList &&
               response.objectList.serverStatus &&

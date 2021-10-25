@@ -7,20 +7,24 @@ app-funding-account-details {
       padding-left: 15px !important;
       padding-right: 15px !important;
     }
+
     .page-details {
       font-size: 14px;
       letter-spacing: -0.15px;
       text-align: center;
       padding-bottom: 30px;
+
       .page-title {
         font-family: $muli-semi-bold;
         font-size: 18px;
         letter-spacing: -0.19px;
       }
     }
+
     .funding-type {
       line-height: 1.38;
       letter-spacing: -0.16px;
+
       .funding-lbl {
         font-family: $muli-bold;
         font-size: 22px;
@@ -29,6 +33,7 @@ app-funding-account-details {
         margin-bottom: 15px;
       }
     }
+
     .srs-block {
       position: relative;
       border-radius: 6px;
@@ -53,18 +58,22 @@ app-funding-account-details {
           color: $dark-teal-color;
           border-bottom-left-radius: 6px;
           border-bottom-right-radius: 6px;
+
           @include allmobiles {
             padding: 20px 16px 26px 20px;
           }
+
           .flex-row {
             justify-content: space-between;
             align-items: center;
             line-height: normal;
             margin-bottom: 6px;
+
             @include desktop {
               margin-bottom: 15px;
             }
           }
+
           .characters {
             text-align: right;
             padding-right: 8px;
@@ -72,6 +81,7 @@ app-funding-account-details {
             font-size: 15px;
             color: $portfolio-name-length-color;
           }
+
           .txt-italic {
             font-family: $muli-italic;
             font-size: 14px;
@@ -80,18 +90,26 @@ app-funding-account-details {
             color: $silver-grey-color;
             margin-top: 15px;
           }
+
           .form-control {
             color: #00a7a7;
             font-family: $muli-regular;
-            &:disabled {
+
+            &:disabled, &.disabled {
               background-color: $iceberg-blue-color !important;
               border-color: $form-control-disabled-border-color !important;
               cursor: not-allowed;
+              padding: 0;
+              input {
+                padding: 0 !important;
+              }
             }
+
             &:focus {
               border-color: $form-control-disabled-border-color !important;
             }
           }
+
           .btn-dropdown {
             &:disabled {
               background-color: $iceberg-blue-color !important;
@@ -103,26 +121,30 @@ app-funding-account-details {
     }
 
 
-  .note-info{
-    @extend .flex;
-    font-size: 13px;
-    letter-spacing: -0.11px;
-    align-items: center;
-    u{
-      font-family: $muli-bold;
-    }
-    .note-icon{
+    .note-info {
       @extend .flex;
       font-size: 13px;
-      width: 24px;
-      height: 24px;
-      margin-right: 15px;
       letter-spacing: -0.11px;
+      align-items: center;
+
       u {
         font-family: $muli-bold;
       }
+
+      .note-icon {
+        @extend .flex;
+        font-size: 13px;
+        width: 24px;
+        height: 24px;
+        margin-right: 15px;
+        letter-spacing: -0.11px;
+
+        u {
+          font-family: $muli-bold;
+        }
+      }
     }
-  }
+
     .dropdown-control .btn-dropdown {
       padding-right: 28px;
     }
@@ -130,16 +152,24 @@ app-funding-account-details {
     .btn-primary {
       max-width: 340px;
       font-family: $muli-bold !important;
+
       @include allmobiles {
         max-width: 100%;
       }
     }
   }
+
   .input-control {
     &#funding_method_cash {
       text-align: left !important;
       font-family: $muli-regular;
     }
-  }
 
+    &:disabled {
+      background-color: $iceberg-blue-color !important;
+      border-color: $form-control-disabled-border-color !important;
+      cursor: not-allowed;
+      padding: 0 !important;
+    }
+  }
 }

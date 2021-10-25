@@ -400,9 +400,10 @@ export class SignUpService {
     const data = this.constructUpdateBankPayload(bank, fullName, accountNum, id);
     return this.apiService.saveNewBank(data);
   }
-  updateBankInfoProfile(bank, fullName, accountNum, id) {
+  updateBankInfoProfile(bank, fullName, accountNum, id, customerPortfolioId, isJAAccount) {
     const data = this.constructUpdateBankPayload(bank, fullName, accountNum, id);
-    return this.apiService.saveNewBankProfile(data);
+    // PASSING NULL VALUES IF EDIT BANK DETAILS IS CALLED FROM PROFILE TAB
+    return this.apiService.saveNewBankProfile(data, customerPortfolioId, isJAAccount);
   }
 
   // tslint:disable-next-line:no-identical-functions

@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -18,6 +18,7 @@ import {
   ModelWithButtonComponent
 } from '../../../shared/modal/model-with-button/model-with-button.component';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
+import { InvestmentEngagementJourneyService } from '../../investment-engagement-journey/investment-engagement-journey.service';
 @Component({
   selector: 'app-inv-personal-info',
   templateUrl: './personal-info.component.html',
@@ -56,7 +57,8 @@ export class PersonalInfoComponent implements OnInit {
     private investmentAccountService: InvestmentAccountService,
     public readonly translate: TranslateService,
     private loaderService: LoaderService,
-    private investmentCommonService: InvestmentCommonService
+    private investmentCommonService: InvestmentCommonService,
+    private investmentEngagementService: InvestmentEngagementJourneyService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -132,14 +134,14 @@ export class PersonalInfoComponent implements OnInit {
             value: this.formValues.nricNumber,
             disabled: this.investmentAccountService.isDisabled('nricNumber')
           },
-          [Validators.required, this.validateNric.bind(this)]
+          [Validators.required, this.investmentEngagementService.validateNric.bind(this)]
         ],
         dob: [
           {
             value: this.formValues.dob,
             disabled: this.investmentAccountService.isDisabled('dob')
           },
-          [Validators.required, this.validateMinimumAge]
+          [Validators.required, this.investmentEngagementService.validateMinimumAge]
         ],
         gender: [
           {
@@ -197,7 +199,7 @@ export class PersonalInfoComponent implements OnInit {
             value: this.formValues.dob,
             disabled: this.investmentAccountService.isDisabled('dob')
           },
-          [Validators.required, this.validateMinimumAge]
+          [Validators.required, this.investmentEngagementService.validateMinimumAge]
         ],
         gender: [
           {
@@ -236,7 +238,7 @@ export class PersonalInfoComponent implements OnInit {
             value: this.formValues.passportExpiry,
             disabled: this.investmentAccountService.isDisabled('passportExpiry')
           },
-          [Validators.required, this.validateExpiry]
+          [Validators.required, this.investmentEngagementService.validateExpiry]
         ],
         race: [
           {
@@ -314,51 +316,6 @@ export class PersonalInfoComponent implements OnInit {
         this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.RESIDENTIAL_ADDRESS]);
       }
     }
-  }
-
-  private validateMinimumAge(control: AbstractControl) {
-    const value = control.value;
-    if (control.value !== undefined && isNaN(control.value) && !(control.errors && control.errors.ngbDate)) {
-      const isMinAge =
-        new Date(
-          value.year + INVESTMENT_ACCOUNT_CONSTANTS.personal_info.min_age,
-          value.month - 1,
-          value.day
-        ) <= new Date();
-      if (!isMinAge) {
-        return { isMinAge: true };
-      }
-    }
-    return null;
-  }
-
-  private validateExpiry(control: AbstractControl) {
-    const value = control.value;
-    const today = new Date();
-    if (control.value !== undefined && isNaN(control.value) && !(control.errors && control.errors.ngbDate)) {
-      const isMinExpiry =
-        new Date(value.year, value.month - 1, value.day) >=
-        new Date(
-          today.getFullYear(),
-          today.getMonth() + INVESTMENT_ACCOUNT_CONSTANTS.personal_info.min_passport_expiry,
-          today.getDate()
-        );
-      if (!isMinExpiry) {
-        return { isMinExpiry: true };
-      }
-    }
-    return null;
-  }
-
-  validateNric(control: AbstractControl) {
-    const value = control.value;
-    if (value && value !== undefined) {
-      const isValidNric = this.investmentAccountCommon.isValidNric(value);
-      if (!isValidNric) {
-        return { nric: true };
-      }
-    }
-    return null;
   }
 
   setOptionList() {

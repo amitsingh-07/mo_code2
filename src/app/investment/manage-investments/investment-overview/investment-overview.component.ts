@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -64,7 +64,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
   readMore: any;
   wiseIncomePortfolio: any[];
   showBannerInfo = false;
-  wiseIncomeInfoMonth :any;
+  wiseIncomeInfoMonth: any;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -78,8 +78,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     public manageInvestmentsService: ManageInvestmentsService,
     private investmentAccountService: InvestmentAccountService,
     private signUpApiService: SignUpApiService,
-    private loaderService: LoaderService,
-    private route: ActivatedRoute
+    private loaderService: LoaderService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -93,8 +92,8 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
           this.checkWiseIncomeStatus(wiseIncome.startTime, wiseIncome.endTime, wiseIncome.month);
         }
       });
-    });  
-   
+    });
+
   }
 
   setPageTitle(title: string) {
@@ -109,7 +108,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     }
     this.navbarService.setNavbarMobileVisibility(false);
     this.footerService.setFooterVisibility(false);
-    this.getInvestmentOverview();
+    this.getInvestmentOverview(false);
     this.headerSubscription();
     this.getMoreList();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
@@ -147,7 +146,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     }
   }
 
-  getInvestmentOverview() {
+  getInvestmentOverview(isToastMsgEnabled: boolean) {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.loaderService.showLoader({
         title: this.translate.instant('YOUR_PORTFOLIO.MODAL.INVESTMENT_OVERVIEW.TITLE'),
@@ -157,6 +156,10 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     });
     this.manageInvestmentsService.getInvestmentOverview().subscribe((data) => {
       this.loaderService.hideLoaderForced();
+      if (isToastMsgEnabled) {
+        this.toastMsg = this.manageInvestmentsService.getToastMessage();
+        this.showToastMessage();
+      }
       if (data.responseMessage.responseCode >= 6000) {
         this.setInvestmentData(data);
       } else if (
@@ -201,6 +204,7 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
       name: this.userProfileInfo.firstName,
       total: this.totalPortfolio
     };
+    this.manageInvestmentsService.setJointAccountUser(this.investmentoverviewlist.jauser);
     this.manageInvestmentsService.setUserPortfolioList(this.portfolioList);
     if (this.investmentoverviewlist.cashAccountDetails) {
       this.manageInvestmentsService.setUserCashBalance(
@@ -475,7 +479,31 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
     if (Date.now() >= startDateTime.valueOf() && Date.now() <= endDateTime.valueOf()) {
       this.showBannerInfo = true;
       this.wiseIncomeInfo = this.wiseIncomeInfoMonth + month;
-    } 
+    }
   }
 
+  emitToastMessage($event) {
+    if ($event) { 
+      if (environment.hideHomepage) {
+        this.navbarService.setNavbarMode(105);
+      } else {
+        this.navbarService.setNavbarMode(103);
+      }
+      this.getInvestmentOverview(true);
+    } else {
+      this.toastMsg = this.manageInvestmentsService.getToastMessage();
+      this.showToastMessage();
+    }
+  }
+
+  emitMessage(event) {
+    if (event.action == MANAGE_INVESTMENTS_CONSTANTS.JOINT_ACCOUNT.REFRESH) {      
+      if (environment.hideHomepage) {
+        this.navbarService.setNavbarMode(105);
+      } else {
+        this.navbarService.setNavbarMode(103);
+      }
+      this.getInvestmentOverview(false);
+    }
+  }
 }

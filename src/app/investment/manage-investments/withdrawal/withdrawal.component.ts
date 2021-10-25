@@ -25,6 +25,7 @@ import {
 import {
   ForwardPricingModalComponent
 } from './forward-pricing-modal/forward-pricing-modal.component';
+import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
 
 @Component({
   selector: 'app-withdrawal',
@@ -54,6 +55,8 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
   isBankDetailsAvailable;
   isInvestAndJointAccountHolder;
   fundingMethods: any;
+  customerPortfolioId: any;
+  isJAAccount: boolean;
 
   private destroySubscription$ = new Subject();
 
@@ -94,7 +97,21 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
     this.getLookupList();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.formValues = this.manageInvestmentsService.getTopUpFormData();
-    this.portfolioList = this.manageInvestmentsService.getUserPortfolioList();
+    this.customerPortfolioId = this.formValues.selectedCustomerPortfolioId;
+    this.portfolioList = [];
+    const pList = this.manageInvestmentsService.getUserPortfolioList();    
+    for (const portfolio of pList) {
+      if (portfolio.portfolioStatus != INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.AWAITING && 
+          portfolio.portfolioStatus != INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.WITHDRAWN && 
+          portfolio.portfolioStatus != INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.DECLINED && 
+          portfolio.portfolioStatus != INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.VERIFY && 
+          portfolio.portfolioStatus != INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.EXPIRED && 
+          portfolio.portfolioStatus != INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.INACTIVE && 
+          portfolio.portfolioStatus != INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.IN_PROGRESS
+        ) {
+        this.portfolioList.push(portfolio);
+      }
+    }
     this.translateParams = {
       MIN_WITHDRAW_AMOUNT: MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_WITHDRAW_AMOUNT,
       MIN_BALANCE_AMOUNT: MANAGE_INVESTMENTS_CONSTANTS.WITHDRAW.MIN_BALANCE_AMOUNT
@@ -103,10 +120,8 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
     this.setSelectedPortfolio();
     this.getAndSetSrsDetails();
     this.isInvestAndJointAccountHolder = this.manageInvestmentsService.isInvestAndJointAccount();
-    if (this.isInvestAndJointAccountHolder) {
-      this.getUserBankList();
-    }
-
+    this.isJAAccount = this.formValues.selectedCustomerPortfolio.entitlements.jointAccount;
+    this.getUserBankList(this.customerPortfolioId,this.isJAAccount);
     this.withdrawForm.get('withdrawRedeem').valueChanges.subscribe((value) => {
       if(value && !this.withdrawForm.controls['withdrawAmount'].disabled) {
         this.withdrawForm.get('withdrawAmount').disable();
@@ -124,9 +139,9 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
     this.destroySubscription$.complete();
   }
 
-  getUserBankList() {
+  getUserBankList(customerPortfolioId, isJointAccount) {
     this.subscription = this.authService.get2faUpdateEvent.subscribe((token) => {
-      this.manageInvestmentsService.getUserBankList().subscribe((data) => {
+      this.manageInvestmentsService.getUserBankList(customerPortfolioId, isJointAccount).subscribe((data) => {
         if (data.responseMessage.responseCode >= 6000) {
           this.userBankList = data.objectList;
           if (this.userBankList.length > 0) {
@@ -166,9 +181,9 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
   setSelectedPortfolio() {
     if (this.formValues) {
       // Set the customerPortfolioId depend on which is the portfolio
-      const customerPortfolioId = this.formValues.withdrawPortfolio ?
+      const customerPortfolioId = this.formValues.withdrawPortfolio && this.formValues.withdrawPortfolio.customerPortfolioId ?
         this.formValues.withdrawPortfolio.customerPortfolioId : this.formValues.selectedCustomerPortfolioId;
-      const data = this.portfolioList.find((portfolio) => {
+        const data = this.portfolioList.find((portfolio) => {
         return portfolio.customerPortfolioId === customerPortfolioId;
       });
       this.setDropDownValue('withdrawPortfolio', data);
@@ -359,6 +374,7 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
       this.entitlements = value['entitlements'];
       this.entitlements.portfolioType = value.portfolioType;
       this.withdrawForm.controls.withdrawType.value = null;
+      this.getUserBankList(value.customerPortfolioId,this.entitlements.jointAccount);
       this.cashBalance = parseFloat(this.decimalPipe.transform(value.cashAccountBalance || 0, '1.2-2').replace(/,/g, ''));
       this.withdrawForm.removeControl('withdrawAmount');
       if (value.portfolioType === 'SRS') {

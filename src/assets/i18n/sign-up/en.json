@@ -403,6 +403,16 @@
         {
           "TITLE": "New Updates",
           "TITLE_IMG": "srs-joint-account/speaker.svg",
+          "IMAGE": "srs-joint-account/joint-account.svg",
+          "IMG_TITLE": "Apply For A Joint Account!",
+          "TEXT": "Apply for a Joint Investment Account with your loved ones today and enjoy all the good things that come in pairs.",
+          "URL": "/faq",
+          "URL_FRAGMENT": "srs-joint-account",
+          "URL_TEXT": "Learn More About Joint Account"
+        },
+        {
+          "TITLE": "New Updates",
+          "TITLE_IMG": "srs-joint-account/speaker.svg",
           "IMAGE": "srs-joint-account/gift-box.svg",
           "IMG_TITLE": "Refer and receive rewards",
           "TEXT": "You will now be able to share your MoneyOwl referral link and start earning rewards. Look for it at <strong>Dashboard > Menu > Refer a friend</strong> and start sharing!",
@@ -425,23 +435,6 @@
           "IMAGE": "srs-joint-account/srs.svg",
           "IMG_TITLE": "You can now open your SRS Investment Account online!",
           "TEXT": "Invest your Supplementary Retirement Scheme (SRS) savings to get potentially higher returns while enjoying tax savings."
-        },
-        {
-          "TITLE": "New Updates",
-          "TITLE_IMG": "srs-joint-account/speaker.svg",
-          "IMAGE": "srs-joint-account/joint-account.svg",
-          "IMG_TITLE": "Apply For A Joint Account!",
-          "TEXT": "Apply for a Joint Investment Account with your loved ones today and enjoy all the good things that come in pairs.",
-          "URL": "/faq",
-          "URL_FRAGMENT": "srs-joint-account",
-          "URL_TEXT": "Learn More About Joint Account"
-        },
-        {
-          "TITLE": "Apply Now!",
-          "TEXT": "Please note that Joint Investment Accounts are currently handled offline.",
-          "CONTACT": "Contact us to apply:",
-          "TEL": "(65) 6329 9188",
-          "EMAIL": "enquiries@moneyowl.com.sg"
         }
       ],
       "START_BTN": "Dismiss",
@@ -453,7 +446,7 @@
     "GENDER": "Gender",
     "NATIONALITY": "Nationality",
     "DOB": "Date of Birth",
-    "UPDATE_USER_ID": "Update User ID",
+    "USER_ID": "User ID",
     "MOB": "Mobile Number",
     "EMAIL": "Email Address",
     "EDIT": "Edit",
@@ -478,9 +471,10 @@
     "INDUSTRY": "Industry",
     "EMP_CONTRACT": "Employer Contact",
     "OCCUPATUION": "Occupation",
-    "UPDATE_BANK": "Update Bank Details",
+    "UPDATE_BANK": "Bank Account (Personal Investment)",
     "BANK": "Bank Name",
     "BANK_ACC": " Bank Account",
+    "ACC_NUMBER": "Account Number",
     "NO_BANK": "No bank added",
     "NO_BANK_DETAILS": "No bank details",
     "ADD_BANK": " Add Bank",
@@ -498,7 +492,10 @@
       "PENDING": "Pending investment account application to complete",
       "LINK_LBL": "Link",
       "LINKED_LBL": "Linked"
-    }
+    },
+    "JA_BANK_INFO": "Bank Account (Joint Investment)",
+    "PORTFOLIO_NAME": "Portfolio Name",
+    "HOLDER_NAMES": "Holder Name(s)"
   },
   "ADD_BANK": {
     "ACCOUNT_NAME": "Account Holders Name",
@@ -534,7 +531,7 @@
     }
   },
   "UPDATE_SRS": {
-    "TITLE": "Update SRS Account",
+    "TITLE": "SRS Account",
     "SRS_OPERATOR": "SRS Operator",
     "SRS_ACCOUNT_NUMBER": "SRS Account Number",
     "NOTE": "No account added",
