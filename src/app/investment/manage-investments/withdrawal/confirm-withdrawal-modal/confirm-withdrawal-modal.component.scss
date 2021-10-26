@@ -6,6 +6,7 @@ app-confirm-withdrawal-modal {
     @include desktop {
       width: 500px;
     }
+    padding-left: 25px;
   }
   .edit-investment-modal {
     font-family: $muli;

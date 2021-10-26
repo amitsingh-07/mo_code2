@@ -13,6 +13,7 @@ import { INVESTMENT_ACCOUNT_CONSTANTS } from '../investment-account/investment-a
 import { PersonalInfo } from './investment-period/investment-period';
 import { InvestmentAccountCommon } from '../investment-account/investment-account-common';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { InvestmentAccountFormError } from '../investment-account/investment-account-form-error';
 
 const PORTFOLIO_RECOMMENDATION_COUNTER_KEY = 'portfolio_recommendation-counter';
 const SESSION_STORAGE_KEY = 'app_engage_journey_session';
@@ -568,8 +569,8 @@ export class InvestmentEngagementJourneyService {
   getSecondaryHolderFormError(control) {
     const errors: any = {};
     errors.errorMessages = [];
-    errors.errorMessages.push(this.investmentEngagementJourneyFormErrors.formFieldErrors.
-      secondaryHolderValidations[control]);
+    errors.title = this.investmentEngagementJourneyFormErrors.formFieldErrors.secondaryHolderValidations.errorTitle;
+    errors.errorMessages.push(this.investmentEngagementJourneyFormErrors.formFieldErrors.secondaryHolderValidations[control]['isMaxAge'].errorMessage);
     return errors;
   }
 
@@ -589,7 +590,7 @@ export class InvestmentEngagementJourneyService {
     return this.investmentApiService.uploadDocument(formData);
   }
   /*Upload Document Method end*/
-  
+
   /** VERIFY METHOD PREFILL DETAILS */
   getVerifyDetails(customerPortfolioId, jointAccountAction) {
     return this.verifyEditAndSubmit(customerPortfolioId, jointAccountAction);
@@ -716,5 +717,41 @@ export class InvestmentEngagementJourneyService {
       country = selectedCountry[0];
     }
     return country;
+  }
+
+  getJAFormErrorList(form) {
+    const controls = form.controls;
+    const errors: any = {};
+    errors.errorMessages = [];
+    errors.title = this.investmentEngagementJourneyFormErrors.formFieldErrors.secondaryHolderValidations.errorTitle;
+    for (const name in controls) {
+      if (controls[name].invalid) {
+        // HAS NESTED CONTROLS ?
+        if (controls[name].controls) {
+          if (name != 'addTax') {
+            const nestedControls = controls[name].controls;
+            for (const nestedControlName in nestedControls) {
+              if (nestedControls[nestedControlName].invalid) {
+                // tslint:disable-next-line
+                errors.errorMessages.push(
+                  this.investmentEngagementJourneyFormErrors.formFieldErrors.secondaryHolderValidations[nestedControlName][
+                    Object.keys(nestedControls[nestedControlName]['errors'])[0]
+                  ].errorMessage
+                );
+              }
+            }
+          }
+        } else {
+          // NO NESTED CONTROLS
+          // tslint:disable-next-line
+          errors.errorMessages.push(
+            this.investmentEngagementJourneyFormErrors.formFieldErrors.secondaryHolderValidations[name][
+              Object.keys(controls[name]['errors'])[0]
+            ].errorMessage
+          );
+        }
+      }
+    }
+    return errors;
   }
 }
