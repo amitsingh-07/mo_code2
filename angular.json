@@ -18,6 +18,8 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "aot": true,
+            "baseHref": "/app/",
+            "deployUrl": "/app/",
             "outputPath": "dist/NTUCDev",
             "index": "src/index.html",
             "main": "src/main.ts",
