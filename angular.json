@@ -18,8 +18,6 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "aot": true,
-            "baseHref": "/app/",
-            "deployUrl": "/app/",
             "outputPath": "dist/NTUCDev",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -29,7 +27,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/myinfo"
+              "src/myinfo",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               {
@@ -85,7 +84,9 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             },
             "prod": {
               "budgets": [
@@ -308,7 +309,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/myinfo"
+              "src/myinfo",
+              "src/manifest.webmanifest"
             ]
           }
         },
