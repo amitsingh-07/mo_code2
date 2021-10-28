@@ -3,59 +3,61 @@
   <div class="content">
     <div class="row">
       <div class="col-12">
-        <div class="update-user-id-text">{{ 'UPDATE_USER_ID.YOUR_USER_ID' | translate}}</div>
         <form id="updateUserIdForm" name="updateUserIdForm" [formGroup]="updateUserIdForm">
-          <div class="flex-row mb20 stretch existing-mobile">
-              <div class=" flex-col-12" [formGroup]="updateUserIdForm">
-                <div [ngClass]="{'inline-error':editNumber}" class="form-group-floating-label disabled">
-                  <input type="input" maxlength="15" id="crtAccInpt1" #existingmobileNumber formControlName="existingMobileNumber" class="form-control" disabled>
-                  <label class="form-control-placeholder" for="name">{{ 'UPDATE_USER_ID.CURRENT_MOBILE_NUMBER' | translate}}</label>
+          <div class="mobile-block">
+            <div class="update-user-id-text">{{ 'UPDATE_USER_ID.YOUR_USER_ID' | translate}}</div>
+            <div class="flex-row mb20 stretch existing-mobile">
+                <div class=" flex-col-12" [formGroup]="updateUserIdForm">
+                  <div [ngClass]="{'inline-error':editNumber}" class="form-group-floating-label disabled">
+                    <input type="input" maxlength="15" id="crtAccInpt1" #existingmobileNumber formControlName="existingMobileNumber" class="form-control" disabled>
+                    <label class="form-control-placeholder" for="name">{{ 'UPDATE_USER_ID.CURRENT_MOBILE_NUMBER' | translate}}</label>
+                  </div>
                 </div>
-              </div>
-          </div>
-          <div class="flex-row mb20">
-            <div class="flex-col-3 stretch mr15">
-              <div class="dropdown-control form-control-left" style="pointer-events:none;">
-                <div ngbDropdown id="countryCode">
-                  <button class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false" disabled>
-                    <span>{{defaultCountryCode}}</span>
-                  </button>
-                  <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1" style="height: auto;">
-                    <button class="dropdown-item" *ngFor="let option of countryCodeOptions" (click)="setCountryCode(option.code)">{{option.code}}</button>
+            </div>
+            <div class="flex-row mb20">
+              <div class="flex-col-3 stretch mr15">
+                <div class="dropdown-control form-control-left" style="pointer-events:none;">
+                  <div ngbDropdown id="countryCode">
+                    <button class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false" disabled>
+                      <span>{{defaultCountryCode}}</span>
+                    </button>
+                    <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1" style="height: auto;">
+                      <button class="dropdown-item" *ngFor="let option of countryCodeOptions" (click)="setCountryCode(option.code)">{{option.code}}</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="flex-col-8 stretch" [formGroup]="updateUserIdForm">
-              <div [ngClass]="{'inline-error':editNumber}" class="form-group-floating-label">
-                <input type="input" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber" class="form-control"
-                  (keyup)="onlyNumber(mobileNumber)" required>
-                <label class="form-control-placeholder" for="name">{{ 'UPDATE_USER_ID.NEW_MOBILE_NUMBER' | translate}}</label>
-              </div>
-            </div>
-          </div>
-          <div class="flex-row mb20">
-            <div class="flex-col-3 stretch mr15">
-              <div class="dropdown-control form-control-left" style="pointer-events:none;">
-                <div ngbDropdown id="countryCode">
-                  <button class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false" disabled>
-                    <span>{{defaultCountryCode}}</span>
-                  </button>
-                  <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1" style="height: auto;">
-                    <button class="dropdown-item" *ngFor="let option of countryCodeOptions" (click)="setCountryCode(option.code)">{{option.code}}</button>
-                  </div>
+              <div class="flex-col-8 stretch" [formGroup]="updateUserIdForm">
+                <div [ngClass]="{'inline-error':editNumber}" class="form-group-floating-label">
+                  <input type="input" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber" class="form-control"
+                    (keyup)="onlyNumber(mobileNumber)" required>
+                  <label class="form-control-placeholder" for="name">{{ 'UPDATE_USER_ID.NEW_MOBILE_NUMBER' | translate}}</label>
                 </div>
               </div>
             </div>
-            <div class="flex-col-8 stretch" [formGroup]="updateUserIdForm">
-              <div [ngClass]="{'inline-error':editNumber}" class="form-group-floating-label">
-                <input type="input" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber" class="form-control"
-                  (keyup)="onlyNumber(mobileNumber)" required>
-                <label class="form-control-placeholder" for="name">{{ 'UPDATE_USER_ID.CONFIRM_MOBILE_NUMBER' | translate}}</label>
+            <div class="flex-row mb20">
+              <div class="flex-col-3 stretch mr15">
+                <div class="dropdown-control form-control-left" style="pointer-events:none;">
+                  <div ngbDropdown id="countryCode">
+                    <button class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false" disabled>
+                      <span>{{defaultCountryCode}}</span>
+                    </button>
+                    <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1" style="height: auto;">
+                      <button class="dropdown-item" *ngFor="let option of countryCodeOptions" (click)="setCountryCode(option.code)">{{option.code}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-col-8 stretch" [formGroup]="updateUserIdForm">
+                <div [ngClass]="{'inline-error':editNumber}" class="form-group-floating-label">
+                  <input type="input" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber" class="form-control"
+                    (keyup)="onlyNumber(mobileNumber)" required>
+                  <label class="form-control-placeholder" for="name">{{ 'UPDATE_USER_ID.CONFIRM_MOBILE_NUMBER' | translate}}</label>
+                </div>
               </div>
             </div>
           </div>
-          <div class="update-user-id-text mt10">{{ 'UPDATE_USER_ID.AUTHENTICATE' | translate}}</div>
+          <div class="update-user-id-text pt10">{{ 'UPDATE_USER_ID.AUTHENTICATE' | translate}}</div>
           <div class="flex-row mb15">
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label">

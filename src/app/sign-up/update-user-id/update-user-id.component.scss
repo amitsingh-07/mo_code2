@@ -12,24 +12,15 @@ app-update-user-id{
 input[type='checkbox']+label {
   background-position: left top;
 }
-// .dropdown-menu.show {
-//   height: 200px;
-//   overflow-y: auto;
-// }
 .update-user-id-text {
   font-family: $muli-regular;
   font-size: 14px;
   line-height: 22px;
   letter-spacing: -0.26px;
   color: $white-color;
-  // border-bottom: 0.5px solid $white-color;
   margin-bottom: 10px;
-  // @include allmobiles{
-  //   margin-bottom: 15px;
-  // }
 }
 .flex-row{
-  //padding: 0 11px;
   .flex-col-3{
     max-width: 105px;
     @include allmobiles{
@@ -41,15 +32,13 @@ input[type='checkbox']+label {
   width: 100%;
   display: flex;
   align-items: center;
-  // position: relative;
   
   border-radius: 6px;
   .form-group-floating-label{
-    // padding-left: 50px;
     &.disabled{
       color: $teal-color;
-      border: solid 1px #e0f3f3;
-      background-color: #e0f3f3;
+      border: solid 1px $aqua-squeeze-color;
+      background-color: $aqua-squeeze-color;
     }
     .form-control-placeholder{
       font-size: 10px;
@@ -59,25 +48,25 @@ input[type='checkbox']+label {
       z-index: 999;
     }
   }
-  // .country-code{
-  //   position: absolute;
-  //   z-index: 1;
-  //   left: 16px;
-  //   padding-top: 10px;
-  // }
 }
 .dropdown-control{
   &.form-control-left{
     .btn-dropdown{
       &:disabled{
-        border: solid 1px#e0f3f3 !important;
-        background-color: #e0f3f3;
+        border: solid 1px $aqua-squeeze-color !important;
+        background-color: $aqua-squeeze-color;
         color: $teal-color !important;
         &:after{
           display: none;
         }
       }
     }
+  }
+}
+.btn-primary{
+  margin-top: 60px !important;
+  @include allmobiles{
+    margin-top: 14px!important;
   }
 }
 }
