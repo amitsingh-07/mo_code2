@@ -329,8 +329,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
   editUserDetails() {
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
-    this.authService.set2faVerifyAllowed(true);
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_ID]);
+    // this.authService.set2faVerifyAllowed(true);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_MOBILE]);
   }
 
   editPassword() {

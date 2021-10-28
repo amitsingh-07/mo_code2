@@ -88,13 +88,13 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
     this.getCountryCode();
     this.footerService.setFooterVisibility(false);
 
-    this.authService.get2faAuthEvent
-    .pipe(takeUntil(this.ngUnsubscribe))
-    .subscribe((token) => {
-      if (!token) {
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
-      }
-    });
+    // this.authService.get2faAuthEvent
+    // .pipe(takeUntil(this.ngUnsubscribe))
+    // .subscribe((token) => {
+    //   if (!token) {
+    //     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+    //   }
+    // });
     this.signUpService.getEditProfileInfo()
     .pipe(takeUntil(this.ngUnsubscribe))
     .subscribe((data) => {
@@ -105,12 +105,14 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
             ValidateGroupChange({
               'countryCode': personalData.countryCode,
               'mobileNumber': personalData.mobileNumber,
+              'existingMobileNumber': `${personalData.countryCode} ${personalData.mobileNumber}`,
               'email': personalData.email
             }));
         }
         this.updateUserIdForm.patchValue({
           countryCode: personalData.countryCode,
           mobileNumber: personalData.mobileNumber,
+          existingMobileNumber: `${personalData.countryCode} ${personalData.mobileNumber}`,
           email: personalData.email
         });
 
@@ -120,19 +122,19 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
         this.OldMobileNumber = personalData.mobileNumber;
       }
     });
-    this.translate.get('ERROR').subscribe((results) => {
-      this.authService.get2faErrorEvent
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((data) => {
-        if(data) {
-          this.authService.openErrorModal(
-            results.SESSION_2FA_EXPIRED.TITLE,
-            results.SESSION_2FA_EXPIRED.SUB_TITLE,
-            results.SESSION_2FA_EXPIRED.BUTTON
-            );
-        }
-      });
-    });
+    // this.translate.get('ERROR').subscribe((results) => {
+    //   this.authService.get2faErrorEvent
+    //   .pipe(takeUntil(this.ngUnsubscribe))
+    //   .subscribe((data) => {
+    //     if(data) {
+    //       this.authService.openErrorModal(
+    //         results.SESSION_2FA_EXPIRED.TITLE,
+    //         results.SESSION_2FA_EXPIRED.SUB_TITLE,
+    //         results.SESSION_2FA_EXPIRED.BUTTON
+    //         );
+    //     }
+    //   });
+    // });
   }
 
   ngOnDestroy() {
@@ -154,11 +156,15 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
     this.updateUserIdForm = this.formBuilder.group({
       countryCode: [this.formValues.countryCode, [Validators.required]],
       mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
+      newMobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
+      confirmMobileNumber: [this.formValues.mobileNumber, [Validators.required]],
+      existingMobileNumber: [this.formValues.existingMobileNumber],
       email: [this.formValues.email, [Validators.required, Validators.email]]
     }, {
       validator: ValidateGroupChange({
         'countryCode': this.OldCountryCode,
         'mobileNumber': this.OldMobileNumber,
+        'existingMobileNumber': `${this.OldCountryCode} ${this.OldMobileNumber}`,
         'email': this.OldEmail
       })
     });
