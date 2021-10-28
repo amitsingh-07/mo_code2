@@ -323,6 +323,7 @@
   "UPDATE_USER_ID": {
     "TITLE": "Change Mobile Number/ID",
     "YOUR_USER_ID": "An OTP verification will be sent your new mobile number in the next step.",
+    "EMAIL_TXT_LBL": "An email verification will be sent to your new email address in the next step.",
     "MOBILE_NUMBER": "Mobile Number",
     "CURRENT_MOBILE_NUMBER": "Current Mobile Number",
     "NEW_MOBILE_NUMBER": "New Mobile Number",
