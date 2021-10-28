@@ -2,7 +2,7 @@ import {
   AfterViewInit, ChangeDetectorRef, Component, OnInit, Renderer2, ViewEncapsulation
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { appConstants } from '../../../app.constants';
@@ -55,7 +55,6 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
     private investmentEngagementJourneyService: InvestmentEngagementJourneyService,
     public navbarService: NavbarService,
     public footerService: FooterService,
-    private modal: NgbModal,
     private cd: ChangeDetectorRef,
     private renderer: Renderer2,
     private investmentAccountService: InvestmentAccountService
@@ -116,7 +115,7 @@ export class RecommendationComponent implements OnInit, AfterViewInit {
           if (this.investmentAccountService.isReassessActive()) {
             this.investmentAccountService.deactivateReassess();
           }
-          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
         }
       });
     } else {

@@ -36,4 +36,16 @@ export class InvestmentEngagementJourneyFormData {
 
   // SELECT PORTFOLIO
   selectPortfolioType:any;
+
+  // SET USER SELECTED PORTFOLIO TYPE, JA || PA
+  userPortfolioType: any;
+
+  // SET MAJOR SECONDARY HOLDER DATA
+  majorSecondaryHolderFormData: any;
+
+  // SET MINOR SECONDARY HOLDER DATA
+  minorSecondaryHolderFormData: any;
+
+  // PROMO CODE SETTER
+  promoCode: any;
 }

@@ -270,7 +270,7 @@ export class ReferalRedirectingPartComponent implements OnInit {
         if (beneficialOwner) {
           this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
         } else {
-          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
         }
       } else {
         this.loaderService.hideLoaderForced();

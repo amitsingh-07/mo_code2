@@ -1,5 +1,5 @@
 
-import { forkJoin as observableForkJoin, Observable } from 'rxjs';
+import { forkJoin as observableForkJoin } from 'rxjs';
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -20,11 +20,12 @@ import {
 import {
   InvestmentEngagementJourneyService
 } from '../../investment-engagement-journey/investment-engagement-journey.service';
-import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
+import { INVESTMENT_COMMON_ROUTES, INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
 import { InvestmentCommonService } from '../investment-common.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../../investment-engagement-journey/investment-engagement-journey.constants';
 import { ManageInvestmentsService } from '../../manage-investments/manage-investments.service';
+import { Util } from '../../../shared/utils/util';
 
 @Component({
   selector: 'app-funding-account-details',
@@ -34,6 +35,7 @@ import { ManageInvestmentsService } from '../../manage-investments/manage-invest
 })
 export class FundingAccountDetailsComponent implements OnInit {
   pageTitle: string;
+  editPageTitle: string;
   fundingAccountDetailsForm: FormGroup;
   formValues;
   investmentAccountFormValues;
@@ -47,7 +49,10 @@ export class FundingAccountDetailsComponent implements OnInit {
   isSrsAccountAvailable = false;
   srsAccountDetails;
   portfolio: any;
-  disableFundingMethod :boolean;
+  disableFundingMethod: boolean;
+  userPortfolioType: any;
+  isJAEnabled: boolean;
+  navigationType: any;
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -60,11 +65,20 @@ export class FundingAccountDetailsComponent implements OnInit {
     public investmentAccountService: InvestmentAccountService,
     public manageInvestmentsService: ManageInvestmentsService
   ) {
+    this.navigationType = this.investmentCommonService.setNavigationType(this.router.url, INVESTMENT_COMMON_ROUTES.EDIT_FUNDING_ACCOUNT_DETAILS,
+      INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.NAVIGATION_TYPE.EDIT);
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('Confirm Account Details');
-      this.setPageTitle(this.pageTitle);
+      this.pageTitle = this.translate.instant('CONFIRM_ACCOUNT_DETAILS.TITLE');
+      this.editPageTitle = this.translate.instant('CONFIRM_ACCOUNT_DETAILS.EDIT_TITLE');
+      if (this.navigationType) {
+        this.setPageTitle(this.editPageTitle);
+      } else {
+        this.setPageTitle(this.pageTitle);
+      }
     });
+    this.userPortfolioType = investmentEngagementJourneyService.getUserPortfolioType();
+    this.isJAEnabled = (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID);
   }
 
   setPageTitle(title: string) {
@@ -78,9 +92,9 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.formValues = this.investmentCommonService.getInvestmentCommonFormData();
     this.investmentAccountFormValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.portfolio = this.investmentCommonService.getPortfolioDetails();
-    this.disableFundingMethod = this.portfolio && this.portfolio.portfolioDetails && this.portfolio.portfolioDetails.payoutType && 
-    (this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.FOUR_PERCENT  
-     ||this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.EIGHT_PERCENT);
+    this.disableFundingMethod = (this.portfolio && this.portfolio.portfolioDetails && this.portfolio.portfolioDetails.payoutType &&
+      (this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.FOUR_PERCENT
+        || this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.EIGHT_PERCENT)) || (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID);
     this.getSrsAccDetailsAndOptionListCol();
   }
 
@@ -118,9 +132,9 @@ export class FundingAccountDetailsComponent implements OnInit {
   buildForm() {
     this.fundingAccountDetailsForm = this.formBuilder.group({
       // tslint:disable-next-line:max-line-length
-      confirmedFundingMethodId: [this.formValues.confirmedFundingMethodId ? 
-        this.formValues.confirmedFundingMethodId : this.formValues.initialFundingMethodId, 
-        Validators.required]
+      confirmedFundingMethodId: [this.formValues.confirmedFundingMethodId ?
+        this.formValues.confirmedFundingMethodId : this.formValues.initialFundingMethodId,
+      Validators.required]
     });
   }
 
@@ -172,8 +186,8 @@ export class FundingAccountDetailsComponent implements OnInit {
           userGivenPortfolioName: this.investmentAccountFormValues.defaultPortfolioName,
           userFundingMethod: this.getFundingMethodNameById(value, this.fundingMethods)
         };
-        if(this.portfolio.portfolioDetails.portfolioType.toUpperCase() !== INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME.toUpperCase()){
-        this.showReassessRiskModal(key, value);
+        if (this.portfolio.portfolioDetails.portfolioType.toUpperCase() !== INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.WISEINCOME.toUpperCase()) {
+          this.showReassessRiskModal(key, value);
         }
       }
     }
@@ -198,7 +212,7 @@ export class FundingAccountDetailsComponent implements OnInit {
       this.investmentAccountService.activateReassess();
       this.investmentCommonService.setInitialFundingMethod({ initialFundingMethodId: value });
       this.investmentCommonService.clearConfirmedFundingMethod();
-      const selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();     
+      const selectedPortfolioType = this.investmentEngagementJourneyService.getSelectPortfolioType();
       this.investmentCommonService.saveUpdateSessionData(this.portfolio.portfolioDetails);
       if (selectedPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
         this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.PERSONAL_INFO]);
@@ -221,7 +235,7 @@ export class FundingAccountDetailsComponent implements OnInit {
       return '';
     }
   }
- 
+
   getOperatorIdByName(operatorId, OperatorOptions) {
     if (operatorId && OperatorOptions) {
       const OperatorBank = OperatorOptions.filter(
@@ -237,7 +251,11 @@ export class FundingAccountDetailsComponent implements OnInit {
     const params = this.constructSaveSrsAccountParams(form.value);
     const customerPortfolioId = this.investmentAccountFormValues.recommendedCustomerPortfolioId;
     this.investmentCommonService.saveSrsAccountDetails(params, customerPortfolioId).subscribe((data) => {
-      this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
+      if (!Util.isEmptyOrNull(this.navigationType)) {
+        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.PORTFOLIO_SUMMARY]);
+      } else {
+        this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ADD_PORTFOLIO_NAME]);
+      }
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();

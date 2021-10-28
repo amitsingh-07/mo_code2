@@ -3,7 +3,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { NgModule, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -33,6 +33,8 @@ export function createTranslateLoader(http: HttpClient) {
   ]);
 }
 import { PromoCodeModule } from './../../promo-code/promo-code.module';
+import { ConfirmWithdrawalComponent } from './confirm-withdrawal/confirm-withdrawal.component';
+import { PortfolioSummaryComponent } from './portfolio-summary/portfolio-summary.component';
 
 @NgModule({
   imports: [
@@ -60,7 +62,9 @@ import { PromoCodeModule } from './../../promo-code/promo-code.module';
     AccountCreationErrorModalComponent,
     AddPortfolioNameComponent,
     FundingIntroComponent,
-    FundingAccountDetailsComponent
+    FundingAccountDetailsComponent,
+    ConfirmWithdrawalComponent,
+    PortfolioSummaryComponent
   ],
   entryComponents: [AccountCreationErrorModalComponent],
   providers: [CurrencyPipe, FormatCurrencyPipe]

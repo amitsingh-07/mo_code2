@@ -4,7 +4,6 @@ import { of as observableOf, Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { conformToMask } from 'text-mask-core';
 
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,8 +16,6 @@ import {
   TransferInstructionsModalComponent
 } from '../../shared/modal/transfer-instructions-modal/transfer-instructions-modal.component';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import { SignUpService } from '../../sign-up/sign-up.service';
-import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
 import { InvestmentAccountService } from '../investment-account/investment-account-service';
 import { InvestmentApiService } from '../investment-api.service';
 import {
@@ -47,7 +44,6 @@ export class ManageInvestmentsService {
   userProfileInfo;
   formatedAccountNumber;
   private manageInvestmentsFormData: ManageInvestmentsFormData = new ManageInvestmentsFormData();
-  private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
   private topUPFormError: any = new TopUPFormError();
   private managementFormError: any = new ManageInvestmentsFormError();
   selectedPortfolioCategory = INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY.ALL;
@@ -55,7 +51,6 @@ export class ManageInvestmentsService {
 
   constructor(
     public readonly translate: TranslateService,
-    private http: HttpClient,
     private apiService: ApiService,
     private investmentApiService: InvestmentApiService,
     public authService: AuthenticationService,
@@ -63,7 +58,6 @@ export class ManageInvestmentsService {
     private investmentAccountService: InvestmentAccountService,
     private router: Router,
     private modal: NgbModal,
-    private signUpService: SignUpService,
     private promoCodeService: PromoCodeService
   ) {
     this.getAllDropDownList();
@@ -293,17 +287,23 @@ export class ManageInvestmentsService {
     this.commit();
   }
 
-  getUserBankList() {
-    return this.investmentApiService.getUserBankList();
+  getUserBankList(customerPortfolioId, isJointAccount) {
+    return this.investmentApiService.getUserBankList(customerPortfolioId, isJointAccount);
   }
 
   getUserAddress() {
     return this.investmentApiService.getUserAddress();
   }
 
-  saveProfileNewBank(data) {
+  saveProfileNewBank(data, customerPortfolioId, isJAAccount) {
     const payload = this.constructSaveNewBankRequest(data);
-    return this.apiService.saveNewBankProfile(payload);
+    return this.apiService.saveNewBankProfile(payload, customerPortfolioId, isJAAccount);
+  }
+
+  // TO SAVE BANK ACCOUNT DETAILS WHEN CREATING JA PORTFOLIO
+  saveJAWithdrawalBank(data, customerPortfolioId, isJAAccount, isEngagementJourney) {
+    const payload = this.constructSaveNewBankRequest(data);
+    return this.apiService.saveJAWithdrawalBank(payload, customerPortfolioId, isJAAccount, isEngagementJourney);
   }
 
   constructSaveNewBankRequest(data) {
@@ -311,12 +311,15 @@ export class ManageInvestmentsService {
     request['bank'] = data.bank;
     request['accountName'] = data.accountHolderName;
     request['accountNumber'] = data.accountNo;
+    if (data && data.id) {
+      request['id'] = data.id;
+    }
     return request;
   }
-  updateBankInfo(bank, fullName, accountNum, id) {
+  updateBankInfo(bank, fullName, accountNum, id, customerPortfolioId, isJointAccount) {
     // API Call here
     const data = this.constructUpdateBankPayload(bank, fullName, accountNum, id);
-    return this.apiService.saveNewBankProfile(data);
+    return this.apiService.saveNewBankProfile(data, customerPortfolioId, isJointAccount);
   }
   // tslint:disable-next-line:no-identical-functions
   constructUpdateBankPayload(bank, fullName, accountNum, id) {
@@ -706,7 +709,7 @@ export class ManageInvestmentsService {
     this.manageInvestmentsFormData.TransferAll = null;
     this.commit();
   }
-  
+
   getWrapFeeDetails(customerId) {
     const payload = {
       customer_id: customerId,
@@ -716,11 +719,30 @@ export class ManageInvestmentsService {
 
   isInvestAndJointAccount() {
     let isInvestAndJointAccountHolder = false;
-    this.manageInvestmentsFormData.userPortfolios.forEach(portfolio => {
-      if (portfolio.entitlements && portfolio.entitlements.jointAccount) {
-        isInvestAndJointAccountHolder = true;
-      }
-    });
+    if (this.manageInvestmentsFormData.isJointAccountUser) {
+      isInvestAndJointAccountHolder = true;
+    }
     return isInvestAndJointAccountHolder;
+  }
+  setActionByHolder(customerPortfolioId, jointAccountAction) {
+    const payload = {
+      customerPortfolioId: customerPortfolioId,
+      jointAccountAction: jointAccountAction
+    };
+    return this.investmentApiService.setActionByHolder(payload);
+  }
+
+  submitJAPortfolio(customerPortfolioId, jointAccountAction, promoCodeId) {
+    const payload: any = {
+      customerPortfolioId: customerPortfolioId,
+      jointAccountAction: jointAccountAction,
+      promoCodeId: promoCodeId
+    };
+    return this.investmentApiService.setActionByHolder(payload);
+  }
+  
+  setJointAccountUser(isJaUser: boolean) {
+    this.manageInvestmentsFormData.isJointAccountUser = isJaUser;
+    this.commit();
   }
 }

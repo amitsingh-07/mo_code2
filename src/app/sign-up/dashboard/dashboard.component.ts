@@ -44,7 +44,6 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { environment } from './../../../environments/environment';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
-import { HubspotService } from '../../shared/analytics/hubspot.service';
 import { ComprehensiveService } from '../../comprehensive/comprehensive.service';
 
 @Component({
@@ -112,7 +111,6 @@ export class DashboardComponent implements OnInit {
     public errorHandler: CustomErrorHandlerService,
     private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService,
-    private hubspotService: HubspotService,
     private comprehensiveService: ComprehensiveService
   ) {
     this.translate.use('en');
@@ -311,7 +309,7 @@ export class DashboardComponent implements OnInit {
         if (beneficialOwner) {
           this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
         } else {
-          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+          this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
         }
       } else {
         this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);

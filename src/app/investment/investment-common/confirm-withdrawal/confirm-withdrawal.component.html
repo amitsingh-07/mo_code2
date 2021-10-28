@@ -1,0 +1,103 @@
+<div class="app-confirm-withdrawal investment-account">
+  <div class="step-indicator-container" *ngIf="!navigationType">
+    <div class="container-fluid max-width--1024">
+      <app-step-indicator [count]="isJAAccount ? 3 : 2 " [activeStepIndex]="1" [mode]="0"></app-step-indicator>
+    </div>
+  </div>
+  <div class="container-fluid ja-withdrawal">
+    <div class="hidden-sm-md page-details">
+      <div *ngIf="!navigationType">{{ 'CONFIRM_WITHDRAWAL.STEP_NO' | translate}}</div>
+      <div class="page-title">{{ navigationType ? ('CONFIRM_WITHDRAWAL.EDIT_PAGE_TITLE' | translate) : 
+        ('CONFIRM_WITHDRAWAL.PAGE_TITLE' | translate)}}</div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <form name="funding account-detai ls" [formGroup]="withdrawalAccountForm">
+          <div class="funding-type mb20">
+            <div class="flex-col-12">
+              <div class="funding-lbl">{{
+                'CONFIRM_WITHDRAWAL.WITHDRAWAL_BANK_DETAILS.TITLE' | translate}}</div>
+              <div class="funding-sub-lbl">{{
+                'CONFIRM_WITHDRAWAL.WITHDRAWAL_BANK_DETAILS.ACCOUNT_HOLDER_NAME_TITLE' | translate}}</div>
+            </div>
+
+            <div class="flex-row mt15">
+              <div class="flex-col-12">
+                <div
+                  [ngClass]="{'inline-error': withdrawalAccountForm.get('accountHolderName').enabled && !withdrawalAccountForm.get('accountHolderName').valid && !withdrawalAccountForm.get('accountHolderName').pristine}">
+                  <div contenteditable="true" id="accountHolderName-" maxlength="100" class="content-editable"
+                    (focusout)="setControlValue($event.target.textContent, 'accountHolderName', withdrawalAccountForm);"
+                    [textContent]="withdrawalAccountForm.get('accountHolderName').value"
+                    placeholder=" Name of account holder(s)"
+                    (keypress)="onKeyPressEvent($event, $event.target.textContent)">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="note-info pb30">
+            <span>{{
+                'CONFIRM_WITHDRAWAL.WITHDRAWAL_BANK_DETAILS.ACCOUNT_DETAILS_DESC' | translate}}</span>
+          </div>
+
+          <div class="bank-details">
+            <div class="account-details">
+              <div class="widget-body">
+                <div class="flex-row space-between">
+                  <div class="flex-col-2">
+                    <label class="bank-name-details" for="name" id="tax-info-reason_label">{{
+                      'CONFIRM_WITHDRAWAL.WITHDRAWAL_BANK_DETAILS.BANK_NAME_TEXT' |
+                      translate}}</label>
+                  </div>
+                  <div class="flex-col-9">
+                    <div class="dropdown-control">
+                      <div ngbDropdown>
+                        <button class="btn btn-dropdown" id="residentialAddress-country-drpdown" ngbDropdownToggle>
+                          <span
+                            *ngIf="!withdrawalAccountForm.controls.bank.value">{{ 'CONFIRM_WITHDRAWAL.WITHDRAWAL_BANK_DETAILS.BANK_NAME_PLACEHOLDER' | translate}}</span>
+                          <span
+                            *ngIf="withdrawalAccountForm.controls.bank.value">{{withdrawalAccountForm.controls.bank.value.key}}</span>
+                        </button>
+                        <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="courseDropdown">
+                          <button class="dropdown-item" *ngFor="let bank of banks; let i = index;"
+                            (click)="setDropDownValue('bank',bank)"
+                            id="residentialAddress-country-option-{{i}}">{{bank.key}}</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex-row mt22 space-between">
+                  <div class="flex-col-2">
+                    <label class="bank-name-details" for="name" id="tax-info-reason_label">{{
+                      'CONFIRM_WITHDRAWAL.WITHDRAWAL_BANK_DETAILS.ACCOUNT_NO_TEXT' |
+                      translate}}</label>
+                  </div>
+                  <div class="flex-col-9">
+                    <div class="dropdown-control"
+                      [ngClass]="{'inline-error': withdrawalAccountForm.get('accountNo').enabled && !withdrawalAccountForm.get('accountNo').valid && !withdrawalAccountForm.get('accountNo').pristine}">
+                      <input type="text" class="form-control" placeholder="{{
+                        'CONFIRM_WITHDRAWAL.WITHDRAWAL_BANK_DETAILS.ACCOUNT_NO_PLACEHOLDER' |
+                        translate}}" formControlName="accountNo" #accNo (input)="onAccountNumberChange(accNo.value)">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt15 ensure-details">
+                  {{ 'CONFIRM_WITHDRAWAL.WITHDRAWAL_BANK_DETAILS.ENSURE_CORRECT_ACC_DETAILS_TEXT' | translate}}</div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="text-center mt30">
+      <button type="button" (click)="goToNext()" [disabled]="!withdrawalAccountForm.valid"
+        class="btn btn__footer--fixed btn-primary width100">{{ navigationType ?
+  ('CONFIRM_WITHDRAWAL.SAVE' | translate) : ('CONFIRM_WITHDRAWAL.CONTINUE' | translate)}}</button>
+    </div>
+  </div>
+</div>
