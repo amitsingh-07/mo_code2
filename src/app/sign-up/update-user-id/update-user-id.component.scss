@@ -28,11 +28,10 @@ input[type='checkbox']+label {
     }
   }
 }
-.existing-mobile{
+.existing-data{
   width: 100%;
   display: flex;
   align-items: center;
-  
   border-radius: 6px;
   .form-group-floating-label{
     &.disabled{

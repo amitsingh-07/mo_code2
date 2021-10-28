@@ -6,7 +6,7 @@
         <form id="updateUserIdForm" name="updateUserIdForm" [formGroup]="updateUserIdForm">
           <div class="mobile-block">
             <div class="update-user-id-text">{{ 'UPDATE_USER_ID.YOUR_USER_ID' | translate}}</div>
-            <div class="flex-row mb20 stretch existing-mobile">
+            <div class="flex-row mb15 stretch existing-data">
                 <div class=" flex-col-12" [formGroup]="updateUserIdForm">
                   <div [ngClass]="{'inline-error':editNumber}" class="form-group-floating-label disabled">
                     <input type="input" maxlength="15" id="crtAccInpt1" #existingmobileNumber formControlName="existingMobileNumber" class="form-control" disabled>
@@ -14,7 +14,7 @@
                   </div>
                 </div>
             </div>
-            <div class="flex-row mb20">
+            <div class="flex-row mb15">
               <div class="flex-col-3 stretch mr15">
                 <div class="dropdown-control form-control-left" style="pointer-events:none;">
                   <div ngbDropdown id="countryCode">
@@ -35,7 +35,7 @@
                 </div>
               </div>
             </div>
-            <div class="flex-row mb20">
+            <div class="flex-row mb15">
               <div class="flex-col-3 stretch mr15">
                 <div class="dropdown-control form-control-left" style="pointer-events:none;">
                   <div ngbDropdown id="countryCode">
