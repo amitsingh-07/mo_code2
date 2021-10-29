@@ -6,7 +6,7 @@ import { IEnvironment } from './environment.interface';
 // The list of file replacements can be found in `angular.json`.
 
 export const environment: IEnvironment = {
-  production: false,
+  production: true,
   isDebugMode: true,
   apiBaseUrl: 'https://bfa-dev2.ntucbfa.cloud',
   myInfoClientId: 'STG2-MYINFO-SELF-TEST',
