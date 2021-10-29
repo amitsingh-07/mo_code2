@@ -132,15 +132,14 @@ export class LongTermCareFormComponent implements OnInit, OnDestroy {
 
   setPayoutType() {
     const today: Date = new Date();
-      const inputDateFormat = this.parserFormatter.format(this.longTermCareForm.controls.dob.value);
-      const getAge = this.aboutAge.calculateAge(inputDateFormat, today);
+    const inputDateFormat = this.parserFormatter.format(this.longTermCareForm.controls.dob.value);
+    const getAge = this.aboutAge.calculateAge(inputDateFormat, today);
     const payoutTypeControl = this.longTermCareForm.controls.payoutType;
-    if(this.longTermCareForm.controls.dob.value && getAge >= LONG_TERM_CARE_SHIELD.AGE && this.longTermCareForm.controls.dob.value.year >= LONG_TERM_CARE_SHIELD.MIN_YEAR  && this.longTermCareForm.controls.dob.value.year <= LONG_TERM_CARE_SHIELD.MAX_YEAR ) {		
+    if (this.longTermCareForm.controls.dob.value && (getAge >= LONG_TERM_CARE_SHIELD.AGE) && (this.longTermCareForm.controls.dob.value.year >= LONG_TERM_CARE_SHIELD.MIN_YEAR)) {
       payoutTypeControl.setValue(this.formValues.payoutType);
       payoutTypeControl.setValidators([Validators.required]);
       payoutTypeControl.updateValueAndValidity();
       this.payoutEnabled = true;
-      
     } else {
       payoutTypeControl.markAsDirty();
       payoutTypeControl.setValue('');
