@@ -26,6 +26,7 @@ import { environment } from './../../../../environments/environment';
 import { SignUpService } from './../../../sign-up/sign-up.service';
 import { RenameInvestmentModalComponent } from './rename-investment-modal/rename-investment-modal.component';
 import { INVESTMENT_COMMON_CONSTANTS } from './../../investment-common/investment-common.constants';
+import { Util } from '../../../shared/utils/util';
 
 @Component({
   selector: 'app-your-portfolio',
@@ -461,8 +462,8 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   }
 
   showDeletePortfolioModal(portfolio) {
-    if (portfolio.portfolioType.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY_TYPE.WISEINCOME.toUpperCase()
-      && this.checkDeleteStatus(this.startTime, this.endTime)) {
+    if (!Util.isEmptyOrNull(portfolio.wiPayoutEligible) && portfolio.wiPayoutEligible && (portfolio.portfolioType.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY_TYPE.WISEINCOME.toUpperCase()
+      && this.checkDeleteStatus(this.startTime, this.endTime))) {
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
       ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.WISE_INCOME_HEADER');
       ref.componentInstance.errorMessage = this.translate.instant(
