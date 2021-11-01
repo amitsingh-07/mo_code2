@@ -9,7 +9,7 @@ export const COMPREHENSIVE_CONST = {
     },
     YOUR_PROFILE: {
         APP_MIN_AGE: 18,
-        APP_MAX_AGE: 70,
+        APP_MAX_AGE: 65,
         DATE_PICKER_MIN_YEAR: 0,
         DATE_PICKER_MAX_YEAR: 100
     },
