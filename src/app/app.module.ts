@@ -210,7 +210,7 @@ export function tokenGetterFn() {
         tokenGetter: tokenGetterFn
       }
     }),
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('/app/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     {
