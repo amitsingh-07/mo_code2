@@ -73,6 +73,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   nextPayoutLabel = '';
   startTime: string;
   endTime: string;
+  wiPayoutEligible: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -152,6 +153,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
     this.manageInvestmentsService.getCustomerPortfolioDetailsById(customerPortfolioId).subscribe((data) => {
       this.loaderService.hideLoaderForced();
       this.portfolio = data.objectList;
+      this.wiPayoutEligible = this.manageInvestmentsService.getWiPayoutEligible(this.portfolio);
       this.nextPayoutLabel = (this.portfolio && this.portfolio.nextPayoutOrReinvestMonth) ? this.portfolio.nextPayoutOrReinvestMonth : '';
       this.manageInvestmentsService.setSelectedCustomerPortfolio(this.portfolio);
       this.holdingValues = this.portfolio.dPMSPortfolio ? this.portfolio.dPMSPortfolio.dpmsDetailsDisplay : null;
@@ -462,7 +464,7 @@ export class YourPortfolioComponent implements OnInit, OnDestroy {
   }
 
   showDeletePortfolioModal(portfolio) {
-    if (!Util.isEmptyOrNull(portfolio.wiPayoutEligible) && portfolio.wiPayoutEligible && (portfolio.portfolioType.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY_TYPE.WISEINCOME.toUpperCase()
+    if (!Util.isEmptyOrNull(this.wiPayoutEligible) && this.wiPayoutEligible && (portfolio.portfolioType.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.PORTFOLIO_CATEGORY_TYPE.WISEINCOME.toUpperCase()
       && this.checkDeleteStatus(this.startTime, this.endTime))) {
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
       ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.WISE_INCOME_HEADER');
