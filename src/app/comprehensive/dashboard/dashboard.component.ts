@@ -196,7 +196,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
   }
 
   getComprehensiveCall() {
-    this.loaderService.showLoader({ title: this.fetchData });
+    this.loaderService.showLoader({ title: this.fetchData, autoHide: false });
     let reportStatusValue = COMPREHENSIVE_CONST.REPORT_STATUS.NEW;
     if ((this.comprehensivePlanning === 0) || this.comprehensivePlanning === 1) {
       reportStatusValue = COMPREHENSIVE_CONST.REPORT_STATUS.EDIT;
@@ -210,14 +210,14 @@ export class ComprehensiveDashboardComponent implements OnInit {
             this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
             this.comprehensiveService.setReportStatus(COMPREHENSIVE_CONST.REPORT_STATUS.EDIT);
             this.comprehensiveService.setViewableMode(true);
-            this.loaderService.hideLoader();
             this.comprehensiveService.setRiskQuestions().subscribe((riskQues) => {
+              this.loaderService.hideLoaderForced();
               this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.GETTING_STARTED]);
             });
           }
         });
       } else {
-        this.loaderService.hideLoader();
+        this.loaderService.hideLoaderForced();
       }
     });
 
@@ -239,7 +239,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
   }
   setComprehensiveSummary(routerEnabled: boolean, routerUrlPath: any) {
     if (routerEnabled) {
-      this.loaderService.showLoader({ title: this.fetchData });
+      this.loaderService.showLoader({ title: this.fetchData, autoHide: false });
     } else {
       this.isLoadComplete = false;
     }
@@ -292,7 +292,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
         }
         if (routerEnabled) {
           this.comprehensiveService.setRiskQuestions().subscribe((riskQues) => {
-            this.loaderService.hideLoader();
+            this.loaderService.hideLoaderForced();
             this.router.navigate([routerUrlPath]);
           });
         } else {
@@ -300,7 +300,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
         }
       } else {
         if (routerEnabled) {
-          this.loaderService.hideLoader();
+          this.loaderService.hideLoaderForced();
           this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT]);
         } else {
           this.isLoadComplete = true;
