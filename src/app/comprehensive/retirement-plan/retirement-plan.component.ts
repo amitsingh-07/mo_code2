@@ -47,7 +47,6 @@ export class RetirementPlanComponent
   retirementPlanForm: FormGroup;
   retireModal: any;
   summaryRouterFlag: boolean;
-  routerEnabled = false;
   retirementDetails: IRetirementPlan;
   retirementValueChanges = false;
   viewMode: boolean;
@@ -92,7 +91,7 @@ export class RetirementPlanComponent
     private modal: NgbModal,
     private loaderService: LoaderService
   ) {
-    this.routerEnabled = this.summaryRouterFlag =
+    this.summaryRouterFlag =
       COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP4;
     this.pageId = this.route.routeConfig.component.name;
     this.viewMode = this.comprehensiveService.getViewableMode();
@@ -118,13 +117,6 @@ export class RetirementPlanComponent
         );
         this.retireModal = this.translate.instant('CMP.MODAL.RETIREMENT_MODAL');
         this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
-        if (
-          this.route.snapshot.paramMap.get('summary') === 'summary' &&
-          this.summaryRouterFlag === true
-        ) {
-          this.routerEnabled = !this.summaryRouterFlag;
-          this.showSummaryModal();
-        }
       });
     });
     this.progressService.setProgressTrackerData(
@@ -376,19 +368,13 @@ export class RetirementPlanComponent
     return true;
   }
   showSummaryModal() {
-    if (this.routerEnabled) {
-      this.router.navigate([
-        COMPREHENSIVE_ROUTE_PATHS.RETIREMENT_PLAN + '/summary'
-      ]);
-    } else {
-      this.summaryModalDetails = {
-        setTemplateModal: 4,
-        contentObj: this.retireModal,
-        nextPageURL: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/5',
-        routerEnabled: this.summaryRouterFlag
-      };
-      this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
-    }
+    this.summaryModalDetails = {
+      setTemplateModal: 4,
+      contentObj: this.retireModal,
+      nextPageURL: COMPREHENSIVE_ROUTE_PATHS.STEPS + '/5',
+      routerEnabled: this.summaryRouterFlag
+    };
+    this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
   }
   showToolTipModal(toolTipTitle, toolTipMessage) {
     const toolTipParams = {

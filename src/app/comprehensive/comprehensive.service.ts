@@ -984,19 +984,8 @@ export class ComprehensiveService {
               accessibleUrl = urlList[index];
             }
             break;
-
-          // 'dependant-selection/summary'
-          case 3:
-            if (
-              isEditAccess && accessPage && enquiry.hasDependents === false &&
-              dependantProgressData.subItems[2].value === '0'
-            ) {
-              accessibleUrl = urlList[index];
-            }
-            break;
-
           // 'dependant-details'
-          case 4:
+          case 3:
             if (
               isEditAccess && accessPage && enquiry.hasDependents !== null &&
               enquiry.hasDependents !== false
@@ -1004,42 +993,21 @@ export class ComprehensiveService {
               accessibleUrl = urlList[index];
             }
             break;
-
-          // 'dependant-details/summary'
-          case 5:
-            if (isEditAccess && accessPage && !this.hasChildDependant() && enquiry.hasDependents) {
-              accessibleUrl = urlList[index];
-            }
-            break;
-
           // 'dependant-education-selection'
-          case 6:
+          case 4:
             if (isEditAccess && accessPage && this.hasChildDependant()) {
               accessibleUrl = urlList[index];
             }
             break;
-
-          // 'dependant-education-selection/summary'
-          case 7:
-            if (
-              isEditAccess && accessPage && this.hasChildDependant() &&
-              (this.hasEndowment() === '0' || this.hasEndowment() === '2')
-            ) {
-              accessibleUrl = urlList[index];
-            }
-            break;
-
           // 'dependant-education-preference'
-          case 8:
+          case 5:
             if (isEditAccess && accessPage && this.hasChildDependant() && this.hasEndowment() === '1') {
               accessibleUrl = urlList[index];
             }
             break;
 
           // 'dependant-education-list'
-          case 9:
-          // 'dependant-education-list/summary'
-          case 10:
+          case 6:
             let eduPref = '';
             if (
               childEndowmentData.length > 0 &&
@@ -1057,118 +1025,108 @@ export class ComprehensiveService {
             break;
 
           // 'steps/2'
-          case 11:
+          case 7:
             if (isEditAccess && accessPage && canAccess) {
               accessibleUrl = urlList[index];
             }
             break;
           // 'my-earnings'
-          case 12:
+          case 8:
             if (isEditAccess && accessPage && canAccess && stepCompleted > 0) {
               accessibleUrl = urlList[index];
             }
             break;
           // 'my-spendings'
-          case 13:
+          case 9:
             if (isEditAccess && accessPage && canAccess && financeProgressData.subItems[0].completed && stepCompleted > 0) {
               accessibleUrl = urlList[index];
             }
             break;
           // 'regular-saving-plan'
-          case 14:
+          case 10:
             if (isEditAccess && accessPage && canAccess && financeProgressData.subItems[1].completed && stepCompleted > 0) {
               accessibleUrl = urlList[index];
             }
             break;
           // 'bad-mood-fund'
-          case 15:
+          case 11:
             if (isEditAccess && accessPage && canAccess && financeProgressData.subItems[2].completed && stepCompleted > 0) {
               accessibleUrl = urlList[index];
             }
             break;
           // 'my-assets'
-          case 16:
+          case 12:
             if (isEditAccess && accessPage && canAccess && financeProgressData.subItems[4].completed && stepCompleted > 0) {
               accessibleUrl = urlList[index];
             }
             break;
           // 'my-liabilities'
-          case 17:
+          case 13:
             if (isEditAccess && accessPage && canAccess && financeProgressData.subItems[5].completed && stepCompleted > 0) {
               accessibleUrl = urlList[index];
             }
             break;
-          // 'my-liabilities/summary'
-          case 18:
           // 'steps/3'
-          case 19:
+          case 14:
             if (isEditAccess && accessPage && canAccess && financeProgressData.subItems[6].completed && stepCompleted > 0) {
               accessibleUrl = urlList[index];
             }
             break;
           // 'insurance-plan'
-          case 20:
+          case 15:
             if (isEditAccess && accessPage && canAccess && financeProgressData.subItems[6].completed && stepCompleted > 1) {
               accessibleUrl = urlList[index];
             }
             break;
-          // 'insurance-plan/summary'
-          case 21:
           // 'steps/4'
-          case 22:
+          case 16:
             if (isEditAccess && accessPage && canAccess && fireProofingProgressData.subItems[0].completed && stepCompleted > 1) {
               accessibleUrl = urlList[index];
             }
             break;
           // 'retirement-plan'
-          case 23:
+          case 17:
             if (isEditAccess && accessPage && canAccess && fireProofingProgressData.subItems[0].completed && stepCompleted > 2) {
               accessibleUrl = urlList[index];
             }
             break;
-          // 'retirement-plan/summary'
-          case 24:
-            if (isEditAccess && accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted >= 3 && accessRetirementAge) {
-              accessibleUrl = urlList[index];
-            }
-            break;
           // 'Step 5'
-          case 25:
+          case 18:
             if (isEditAccess && accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted >= 3) {
               accessibleUrl = urlList[index];
             }
             break;
           // 'Risk Profile'
-          case 26:
+          case 19:
             if (isEditAccess && accessPage && canAccess && retirementProgressData.subItems[0].completed && stepCompleted > 3 && accessRetirementAge) {
               accessibleUrl = urlList[index];
             }
             break;
-          case 27:
+          case 20:
             if (isEditAccess && accessPage && canAccess && riskProfileProgressData.subItems[0].completed && stepCompleted > 3 && accessRetirementAge) {
               accessibleUrl = urlList[index];
             }
             break;
-          case 28:
+          case 21:
             if (isEditAccess && accessPage && canAccess && riskProfileProgressData.subItems[1].completed && stepCompleted > 3 && accessRetirementAge) {
               accessibleUrl = urlList[index];
             }
             break;
-          case 29:
+          case 22:
             if (isEditAccess && accessPage && canAccess && riskProfileProgressData.subItems[2].completed && stepCompleted >= 4 && accessRetirementAge) {
               accessibleUrl = urlList[index];
             }
             break;
-          case 30:
-          case 31:
-          case 32:
+          case 23:
+          case 24:
+          case 25:
             if (
               accessPage && canAccess &&
               (cmpSummary.riskAssessmentAnswer.riskProfileSkipped || riskProfileProgressData.subItems[2].completed) && stepCompleted >= 4 && accessRetirementAge
             ) {
               accessibleUrl = urlList[index];
             }
-          case 33:
+          case 26:
             if (
               accessPage && canAccess &&
               (cmpSummary.riskAssessmentAnswer.riskProfileSkipped || riskProfileProgressData.subItems[2].completed) &&

@@ -46,7 +46,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   childrenEducationNonDependantModal: any;
   summaryRouterFlag: boolean;
-  routerEnabled = false;
   viewMode: boolean;
   houseHold: IDependantSummaryList;
   minDate: any;
@@ -69,7 +68,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
     this.pageId = this.route.routeConfig.component.name;
     this.viewMode = this.comprehensiveService.getViewableMode();
     this.dependantDetails = [];
-    this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP1;
+    this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP1;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -83,10 +82,6 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
         this.setPageTitle(this.pageTitle);
         this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
         this.childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
-        if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
-          this.routerEnabled = !this.summaryRouterFlag;
-          this.showSummaryModal();
-        }
       });
     });
     this.dependantDetails = this.comprehensiveService.getMyDependant();
@@ -226,7 +221,7 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
           form.value.dependentMappingList[index].dateOfBirth = this.parserFormatter.format(dependant.dateOfBirth);
         });
         if (!form.pristine || (this.comprehensiveService.getMySteps() === 0
-        && this.comprehensiveService.getMySubSteps() < 2)) {
+          && this.comprehensiveService.getMySubSteps() < 2)) {
           this.hasDependant = form.value.dependentMappingList.length > 0;
           this.houseHold = this.comprehensiveService.gethouseHoldDetails();
 
@@ -272,25 +267,21 @@ export class DependantsDetailsComponent implements OnInit, OnDestroy {
   }
 
   showSummaryModal() {
-    if (this.routerEnabled) {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_DETAILS + '/summary']);
-    } else {
-      this.summaryModalDetails = {
-        setTemplateModal: 1, dependantModelSel: false,
-        contentObj: this.childrenEducationNonDependantModal,
-        nonDependantDetails: {
-          livingCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.EXPENSE,
-          livingPercent: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.PERCENT,
-          livingEstimatedCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.COMPUTED_EXPENSE,
-          medicalBill: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.EXPENSE,
-          medicalYear: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.PERCENT,
-          medicalCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.COMPUTED_EXPENSE
-        },
-        nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2',
-        routerEnabled: this.summaryRouterFlag
-      };
-      this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
-    }
+    this.summaryModalDetails = {
+      setTemplateModal: 1, dependantModelSel: false,
+      contentObj: this.childrenEducationNonDependantModal,
+      nonDependantDetails: {
+        livingCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.EXPENSE,
+        livingPercent: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.PERCENT,
+        livingEstimatedCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.COMPUTED_EXPENSE,
+        medicalBill: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.EXPENSE,
+        medicalYear: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.PERCENT,
+        medicalCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.COMPUTED_EXPENSE
+      },
+      nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2',
+      routerEnabled: this.summaryRouterFlag
+    };
+    this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
   }
   getWrapText(name: any) {
     name.value = name.value.replace(/\n/g, '');
