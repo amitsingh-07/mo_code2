@@ -161,7 +161,7 @@
     },
     "MY_PROFILE": {
       "NATIONALITY_ALERT": "Seems like you have changed your input for “Nationality”. Changes will be applied to all platforms upon saving.",
-      "DOB_ALERT": "Sorry, this tool is currently only available to those aged 18 to 70 years old. For other enquiries, you may wish to contact us at enquiries@moneyowl.com.sg."
+      "DOB_ALERT": "Sorry, this tool is currently only available to those aged 18 to 65 years old. For other enquiries, you may wish to contact us at enquiries@moneyowl.com.sg."
     },
     "ROAD_MAP": {
       "TITLE": "Your Road Map"
