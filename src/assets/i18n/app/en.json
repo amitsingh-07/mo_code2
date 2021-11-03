@@ -348,6 +348,10 @@
         "DOWNLOAD_SECONDARY": "Download Prospectus"
     },
     "IFAST_ERROR_TITLE": "Error !",
+    "FACEBOOK_IN_APP_BROWSER_WARNING": {
+        "TITLE": "Note !",
+        "DESC": "You may experience issues while using Facebook In-App Browser to serve our website. Kindly switch to your local browser to have a smoother experience. Click on the \"3 dots\" icon > Choose \"Open in browser\" from the options."
+    },
     "UNSUPPORTED_DEVICE_MODAL": {
         "TITLE": "Note !",
         "DESC": "This is mobile optimized web-page and recommended to view in mobile browsers such as safari or chrome for better experience."
