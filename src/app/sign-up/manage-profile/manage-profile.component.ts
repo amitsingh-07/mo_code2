@@ -1,7 +1,4 @@
-import { Location } from '@angular/common';
-import {
-    AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
-} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
