@@ -40,7 +40,7 @@ export interface ICustomer {
     uin?:string;
     fullName?:string;
     dob: string;
-    gender: string;
+    sex: string;
   
 }
 

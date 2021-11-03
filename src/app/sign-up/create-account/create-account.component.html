@@ -125,7 +125,7 @@
                 <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                 <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.DOB.ERROR.REQUIRED' | translate}}</span>
               </div>
-              <div *ngIf="account.dob.errors?.ngbDate">
+              <div *ngIf="!account.dob.errors?.required && account.dob.errors?.ngbDate">
                 <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                 <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.DOB.ERROR.INVALID' | translate}}</span>
               </div>
