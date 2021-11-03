@@ -38,6 +38,7 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { CreateAccountMyinfoComponent } from './create-account-myinfo/create-account-myinfo.component';
 import { ReferAFriendComponent } from './refer-a-friend/refer-a-friend.component';
 import { ReferalRedirectingPartComponent } from './referal-redirecting-part/referal-redirecting-part.component';
+import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 
 const routes: Routes = [
   {
@@ -211,6 +212,11 @@ const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.REFER_REDIRECT +'/:term',
     component: ReferalRedirectingPartComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: SIGN_UP_ROUTES.MANAGE_PROFILE,
+    component: ManageProfileComponent,
     canActivate: [AuthGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }

@@ -12,8 +12,18 @@
             <div class="overlap-grass">
                 <div class="user-profile-bg">
                     <div class="circle"> {{compinedName}} </div>
-                    <div class="heading">{{fullName|titlecase}}</div>
-
+                    <div class="heading mb10">{{fullName|titlecase}}</div>
+                    <div class="mobile-number">
+                        {{'EDIT_PROFILE.MOBILE_NO' | translate}} {{personalData.mobileNumber}}   
+                    </div>
+                    <div class="email-address">
+                        {{'EDIT_PROFILE.EMAIL_ADDRESS' | translate}} {{personalData.email}}
+                    </div>
+                    <div>
+                        <button type="button" class="password-button" (click)="editPassword()">
+                            {{'EDIT_PROFILE.CHANGE_PASSWORD' | translate}}
+                        </button>
+                    </div>
                 </div>
             </div>
             <div *ngIf="false" class="edit-profile-section-bg singpass-login-block">
@@ -31,6 +41,22 @@
                         <div class="flex space-between" *ngIf="entireUserData.singpassLinkStatus.toUpperCase() === linkCatagories.LINKED.toUpperCase()" >
                             <span><img src="assets/images/green-tick-icon.svg" /></span>
                             <span  class="txt-green ml10">{{'EDIT_PROFILE.SINGPASS.LINKED_LBL' | translate}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Manage Profile-->
+            <div class="edit-profile-section-bg" (click)="manageProfile()">
+                <div class="flex-row cursor_pointer">
+                    <div class="flex-col-11">
+                        <div class="form-group-heading">
+                            {{'EDIT_PROFILE.MANAGE_PROFILE' | translate}}
+                        </div>
+                    </div>
+                    <div class="flex-col-1">
+                        <div class="dropdown-img">
+                            <span class="arrow-right"></span>
+                            <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideUser) /> -->
                         </div>
                     </div>
                 </div>
@@ -75,7 +101,7 @@
                 </div>
             </div>
             <!-- Change Password Section  -->
-            <div class="edit-profile-section-bg">
+            <!-- <div class="edit-profile-section-bg">
                 <div class="flex-row cursor_pointer" (click)=showHide(showHidePassword)>
                     <div class="flex-col-11">
                         <div class="form-group-heading">
@@ -86,7 +112,6 @@
                         <div class="dropdown-img">
                             <span id="showHidePassword" class="arrow"
                                 [class.active]="showHidePassword.style.display === 'block' || showHidePassword.style.display === ''"></span>
-                            <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHidePassword) /> -->
                         </div>
                     </div>
                 </div>
@@ -103,7 +128,7 @@
                         {{'EDIT_PROFILE.EDIT' | translate}}
                     </button>
                 </div>
-            </div>
+            </div> -->
         </div>
         <!-- Update contact section  -->
         <div *ngIf="contactDetails">
