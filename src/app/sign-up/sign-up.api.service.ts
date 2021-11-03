@@ -80,6 +80,8 @@ export class SignUpApiService {
           uin: getAccountInfo.nricNumber,
           fullName: getAccountInfo.fullName,
           emailAddress: getAccountInfo.email,
+          dob: getAccountInfo.dob,
+          gender: getAccountInfo.gender,
           password: this.cryptoService.encrypt(pwd),
           acceptMarketingNotifications: getAccountInfo.marketingAcceptance
         },
@@ -99,6 +101,8 @@ export class SignUpApiService {
           firstName: getAccountInfo.firstName,
           lastName: getAccountInfo.lastName,
           emailAddress: getAccountInfo.email,
+          dob: getAccountInfo.dob,
+          gender: getAccountInfo.gender,
           password: this.cryptoService.encrypt(pwd),
           acceptMarketingNotifications: getAccountInfo.marketingAcceptance
         },

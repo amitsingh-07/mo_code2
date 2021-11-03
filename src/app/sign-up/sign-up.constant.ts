@@ -2,7 +2,9 @@ export let SIGN_UP_CONFIG = {
     MY_INFO_ATTRIBUTES: [
         'name',
         'email',
-        'mobileno'   
+        'mobileno',
+        'dob',
+        'sex'   
       ],
     SHOW_BANK_DETAILS: [
         'PORTFOLIO_PURCHASED',
@@ -91,5 +93,11 @@ export let SIGN_UP_CONFIG = {
     },
     AUTH_2FA_ENABLED: true,
     ROLE_2FA: 'ROLE_2FA',
-    LOGIN_TYPE_2FA: 'MANUAL'
+    LOGIN_TYPE_2FA: 'MANUAL',
+    ACCOUNT_CREATION: {
+      DOB:{
+        DATE_PICKER_MIN_YEAR: 0,
+        DATE_PICKER_MAX_YEAR: 100
+      }
+    }
 };
