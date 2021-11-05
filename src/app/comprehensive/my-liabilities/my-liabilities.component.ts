@@ -35,7 +35,6 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
   validationFlag: boolean;
   financeModal: any;
   summaryRouterFlag: boolean;
-  routerEnabled = false;
   bucketImage: string;
   viewMode: boolean;
   saveData: string;
@@ -51,17 +50,13 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
       this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
     });
     this.viewMode = this.comprehensiveService.getViewableMode();
-    this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP2;
+    this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP2;
     this.translate.get('COMMON').subscribe((result: string) => {
       // meta tag and title
       this.pageTitle = this.translate.instant('CMP.COMPREHENSIVE_STEPS.STEP_2_TITLE');
       this.setPageTitle(this.pageTitle);
       this.validationFlag = this.translate.instant('CMP.MY_LIABILITIES.OPTIONAL_VALIDATION_FLAG');
       this.financeModal = this.translate.instant('CMP.MODAL.FINANCES_MODAL');
-      if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
-        this.routerEnabled = !this.summaryRouterFlag;
-        this.routerPath();
-      }
     });
     this.liabilitiesDetails = this.comprehensiveService.getMyLiabilities();
   }
@@ -217,22 +212,18 @@ export class MyLiabilitiesComponent implements OnInit, OnDestroy {
     this.bucketImage = this.comprehensiveService.setBucketImage(bucketParams, this.myLiabilitiesForm.value, this.totalOutstanding);
   }
   showSummaryModal() {
-    if (this.routerEnabled) {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.MY_LIABILITIES + '/summary']);
-    } else {
-      const liquidCash = this.comprehensiveService.getLiquidCash();
-      const spareCash = this.comprehensiveService.getComputeSpareCash();
-      this.summaryModalDetails = {
-        setTemplateModal: 2,
-        contentObj: this.financeModal,
-        liabilitiesEmergency: (liquidCash > 0),
-        liabilitiesLiquidCash: liquidCash,
-        liabilitiesMonthlySpareCash: spareCash,
-        nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/3',
-        routerEnabled: this.summaryRouterFlag
-      };
-      this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
-    }
+    const liquidCash = this.comprehensiveService.getLiquidCash();
+    const spareCash = this.comprehensiveService.getComputeSpareCash();
+    this.summaryModalDetails = {
+      setTemplateModal: 2,
+      contentObj: this.financeModal,
+      liabilitiesEmergency: (liquidCash > 0),
+      liabilitiesLiquidCash: liquidCash,
+      liabilitiesMonthlySpareCash: spareCash,
+      nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/3',
+      routerEnabled: this.summaryRouterFlag
+    };
+    this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
   }
   routerPath() {
     this.showSummaryModal();

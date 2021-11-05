@@ -337,6 +337,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PASSWORD]);
   }
 
+  manageProfile() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.MANAGE_PROFILE]);
+  }
   getNationalityCountryList() {
     this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
       this.nationalityList = data.objectList;

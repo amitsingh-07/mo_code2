@@ -501,7 +501,13 @@
     },
     "JA_BANK_INFO": "Bank Account (Joint Investment)",
     "PORTFOLIO_NAME": "Portfolio Name",
-    "HOLDER_NAMES": "Holder Name(s)"
+    "HOLDER_NAMES": "Holder Name(s)",
+    "MOBILE_NO": "Mobile Number:",
+    "EMAIL_ADDRESS": "Email Address:",
+    "CHANGE_PASSWORD": "Change Password",
+    "MANAGE_PROFILE": "Manage Profile",
+    "MF_MOBILE_NO": "Mobile Number",
+    "MF_EMAIL_ADDRESS": "Email Address"
   },
   "ADD_BANK": {
     "ACCOUNT_NAME": "Account Holders Name",

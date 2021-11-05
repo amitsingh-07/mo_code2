@@ -209,6 +209,17 @@ export class ManageInvestmentsService {
     return CashPortfolioList;
   }
 
+  getWiPayoutEligible(currentPortfolio) {
+    let wiPayoutEligible;
+    for (const portfolio of this.manageInvestmentsFormData.userPortfolios) {
+      if (portfolio.customerPortfolioId === currentPortfolio.customerPortfolioId) {
+        wiPayoutEligible = portfolio.wiPayoutEligible;
+        break;
+      }
+    }
+    return wiPayoutEligible;
+  }
+
   getUserPortfolioList() {
     // Sort portfolio by ascending alphabetical order order
     const sortedArray = this.manageInvestmentsFormData.userPortfolios.sort((a, b) => {
@@ -740,7 +751,7 @@ export class ManageInvestmentsService {
     };
     return this.investmentApiService.setActionByHolder(payload);
   }
-  
+
   setJointAccountUser(isJaUser: boolean) {
     this.manageInvestmentsFormData.isJointAccountUser = isJaUser;
     this.commit();
