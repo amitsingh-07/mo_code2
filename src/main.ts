@@ -63,7 +63,7 @@ if (environment.production) {
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule).then(() => {
-	if ('serviceWorker' in navigator && environment.production) {
+	/*if ('serviceWorker' in navigator && environment.production) {
 		navigator.serviceWorker.register('./ngsw-worker.js', {scope: './'})
 	  .then((reg) => {
 		// registration worked
@@ -72,5 +72,5 @@ platformBrowserDynamic().bootstrapModule(AppModule).then(() => {
 		// registration failed
 		console.log('Registration failed with ' + error);
 	  });
-	}
+	}*/
 }).catch((err) => console.log(err));

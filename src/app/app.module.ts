@@ -132,7 +132,7 @@ import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard
 import { SessionsService } from './shared/Services/sessions/sessions.service';
 import { NotSupportedComponent } from './not-supported/not-supported.component';
 import { RefereeComponent } from './shared/modal/referee/referee.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
+import { ServiceWorkerModule, SwRegistrationOptions } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
 // tslint:disable-next-line:max-line-length
@@ -210,6 +210,7 @@ export function tokenGetterFn() {
         tokenGetter: tokenGetterFn
       }
     }),
+	ServiceWorkerModule.register('ngsw-worker.js')
     //ServiceWorkerModule.register('./ngsw-worker.js', { scope: './', enabled: environment.production, registrationStrategy: 'registerWhenStable:30000' })
   ],
   providers: [
@@ -252,7 +253,11 @@ export function tokenGetterFn() {
     PaymentChildEnableGuard,
     InvestmentMaintenanceGuard,
     ExternalRouteGuard,
-    DatePipe
+    DatePipe,
+	{
+      provide: SwRegistrationOptions,
+      useFactory: () => ({enabled: location.search.includes('sw=true')}),
+    },
   ],
   bootstrap: [AppComponent],
   entryComponents: [RefereeComponent,HelpModalComponent, LoaderComponent, ErrorModalComponent, BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
