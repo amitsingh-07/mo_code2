@@ -4,6 +4,10 @@ export class CreateAccountFormError {
       errorTitle: 'Not Changed',
       errorMessage: 'Update Mobile Number / Email address'
     },
+    emailNotChanged: {
+      errorTitle: 'Email address is not Updated',
+      errorMessage: 'Please review the email address that you have provided and try again'
+    },
     mobileNotChanged: {
       errorTitle: 'Mobile number is not Updated',
       errorMessage: 'Please review the mobile number that you have provided and try again'
@@ -61,6 +65,16 @@ export class CreateAccountFormError {
         errorTitle: 'Invalid E-mail',
         errorMessage: 'Please enter your email address'
       },
+      email: {
+        errorTitle: 'Invalid E-mail',
+        errorMessage: 'Please enter a valid email address in the format yourname@example.com'
+      },
+      notChanged: {
+        errorTitle: 'Not Changed',
+        errorMessage: 'Update Mobile Number / Email address'
+      }
+    },
+    newEmail: {
       email: {
         errorTitle: 'Invalid E-mail',
         errorMessage: 'Please enter a valid email address in the format yourname@example.com'

@@ -62,4 +62,9 @@ export class ManageProfileComponent implements OnInit {
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_DETAILS + '/mobile']);
   }
+
+  editEmailDetails() {
+    this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_DETAILS + '/email']);
+  }
 }

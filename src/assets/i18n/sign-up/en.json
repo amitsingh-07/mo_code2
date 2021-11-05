@@ -188,7 +188,9 @@
     "TITLE": "Account Updated!",
     "SUB_TITLE1": "Mobile number updated successfully",
     "SUB_TITLE2": "E-mail verification link has been sent to your email address. Please verify",
-    "EDIT_PROFILE": "Back to Edit Profile"
+    "EDIT_PROFILE": "Back to Edit Profile",
+    "EMAIL_CHANGED": "Email Address Successfully Changed!",
+    "MOBILE_CHANGED": "Mobile Number Successfully Changed!"
   },
   "LOGIN": {
     "WELCOME_LBL": "Welcome to MoneyOwl!",
@@ -322,6 +324,7 @@
   },
   "UPDATE_USER_ID": {
     "TITLE": "Change Mobile Number/ID",
+    "EMAIL_TITLE": "Change Email Address",
     "YOUR_USER_ID": "An OTP verification will be sent your new mobile number in the next step.",
     "EMAIL_TXT_LBL": "An email verification will be sent to your new email address in the next step.",
     "MOBILE_NUMBER": "Mobile Number",
@@ -329,9 +332,14 @@
     "NEW_MOBILE_NUMBER": "New Mobile Number",
     "CONFIRM_MOBILE_NUMBER": "Confirm New Mobile Number",
     "AUTHENTICATE": "Authenticate with Login Password",
-    "EMAIL": "Email Address",
+    "EMAIL": "Current Email Address",
+    "NEW_EMAIL": "New Email Address",
+    "CONFIRM_EMAIL": "Confirm New Email Address",
     "PASSWORD": "Password",
     "APPLY_CHANGES": "Apply Changes",
+    "CONFIRM_EMAIL_ERROR": {
+      "MUST_MATCH": "Email must match"
+    },
     "CONFIRM_MOBILE_ERROR": {
       "MUST_MATCH": "Mobile number must match"
     }

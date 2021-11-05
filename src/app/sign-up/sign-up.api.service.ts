@@ -56,8 +56,8 @@ export class SignUpApiService {
     let enquiryId = -1;
 
     if ((this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
-      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) && ( (insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) 
-      || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0) )) {
+      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) && ((insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0)
+        || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0))) {
       enquiryId = insuranceEnquiry.enquiryId;
     } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
       this.willWritingService.getWillCreatedPrelogin()) {
@@ -116,15 +116,21 @@ export class SignUpApiService {
   /**
    * form create user account request.
    */
-  updateAccountBodyRequest(data) {
-    return {
-      emailId: data.email,
-      mobileNumber: data.mobileNumber,
-      countryCode: data.countryCode,
-      callbackUrl: environment.apiBaseUrl + this.emailVerifyUrl,
-      notificationByEmail: true,
-      notificationByPhone: true
-    };
+  updateAccountBodyRequest(data, editType) {
+    if (editType) {
+      return {
+        emailId: data.email,
+        callbackUrl: environment.apiBaseUrl + this.emailVerifyUrl,
+        encryptedPassword: data.password
+      };
+    } else {
+      return {
+        mobileNumber: data.mobileNumber,
+        countryCode: data.countryCode,
+        callbackUrl: environment.apiBaseUrl + this.emailVerifyUrl,
+        encryptedPassword: data.password
+      };
+    }
   }
 
   /**
@@ -138,13 +144,13 @@ export class SignUpApiService {
       editProfile: editProf
     };
   }
-   /**
-   * request a new OTP though Email. 
-     */
- requestEmailOTPBodyRequest(journeyType, getAccountInfo): IEmailRequestOTP {   
-  return  {      
-        emailAddress:  (getAccountInfo && getAccountInfo.userProfileInfo)? getAccountInfo.userProfileInfo.emailAddress  : getAccountInfo.email,
-        actionType: journeyType   
+  /**
+  * request a new OTP though Email. 
+    */
+  requestEmailOTPBodyRequest(journeyType, getAccountInfo): IEmailRequestOTP {
+    return {
+      emailAddress: (getAccountInfo && getAccountInfo.userProfileInfo) ? getAccountInfo.userProfileInfo.emailAddress : getAccountInfo.email,
+      actionType: journeyType
     };
   }
   /**
@@ -180,7 +186,7 @@ export class SignUpApiService {
       {
         name: "email",
         value: payload.customer.emailAddress
-      }, 
+      },
       {
         name: "phone",
         value: payload.customer.mobileNumber
@@ -201,8 +207,8 @@ export class SignUpApiService {
    * update user account.
    * @param data - Country code, Mobile number and Email address.
    */
-  updateAccount(data) {
-    const payload = this.updateAccountBodyRequest(data);
+  updateAccount(data, editType) {
+    const payload = this.updateAccountBodyRequest(data, editType);
     return this.apiService.updateAccount(payload);
   }
 
@@ -213,10 +219,10 @@ export class SignUpApiService {
     const payload = this.requestNewOTPBodyRequest(editProfile);
     return this.apiService.requestNewOTP(payload);
   }
-    /**
-     * request a new OTP though Email. 
-     */
- requestEmailOTP(journeyType, getAccountInfo) {
+  /**
+   * request a new OTP though Email. 
+   */
+  requestEmailOTP(journeyType, getAccountInfo) {
     const payload = this.requestEmailOTPBodyRequest(journeyType, getAccountInfo);
     return this.apiService.requestEmailOTP(payload);
   }
@@ -273,9 +279,9 @@ export class SignUpApiService {
     } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
       this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
       const insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-      if (insuranceEnquiry && ( (insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0) )) {
+      if (insuranceEnquiry && ((insuranceEnquiry.plans && insuranceEnquiry.plans.length > 0) || (insuranceEnquiry.enquiryProtectionTypeData && insuranceEnquiry.enquiryProtectionTypeData.length > 0))) {
         journeyType = (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT) ?
-        appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
+          appConstants.INSURANCE_JOURNEY_TYPE.DIRECT : appConstants.INSURANCE_JOURNEY_TYPE.GUIDED;
         enqId = insuranceEnquiry.enquiryId;
       }
     }

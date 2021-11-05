@@ -1,17 +1,25 @@
 @import "../../../variables";
 @import "../../../mixins";
+
 app-update-user-id {
+  .email-text {
+    text-transform: lowercase;
+  }
+
   .container-fluid {
     &.max-width--1024 {
       max-width: 800px;
     }
+
     @include allmobiles {
       padding-top: 80px;
     }
   }
-  input[type="checkbox"] + label {
+
+  input[type="checkbox"]+label {
     background-position: left top;
   }
+
   .update-user-id-text {
     font-family: $muli-regular;
     font-size: 14px;
@@ -20,25 +28,39 @@ app-update-user-id {
     color: $white-color;
     margin-bottom: 10px;
   }
+
+  .update-user-id-text-email {
+    font-family: $muli-regular;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.26px;
+    color: $white-color;
+    margin-bottom: 10px;
+  }
+
   .flex-row {
     .flex-col-3 {
       max-width: 105px;
+
       @include allmobiles {
         max-width: 95px;
       }
     }
   }
+
   .existing-data {
     width: 100%;
     display: flex;
     align-items: center;
     border-radius: 6px;
+
     .form-group-floating-label {
       &.disabled {
         color: $teal-color;
         border: solid 1px $aqua-squeeze-color;
         background-color: $aqua-squeeze-color;
       }
+
       .form-control-placeholder {
         font-size: 10px;
         transform: translate3d(0, -50%, 0);
@@ -48,6 +70,17 @@ app-update-user-id {
       }
     }
   }
+
+  .form-control:focus+.form-control-placeholder,
+  .form-control:valid+.form-control-placeholder,
+  .form-control:read-only+.form-control-placeholder {
+    font-size: 10px;
+    transform: translate3d(0, -50%, 0);
+    opacity: 1;
+    color: #5e5e5e;
+    z-index: 999;
+  }
+
   .dropdown-control {
     &.form-control-left {
       .btn-dropdown {
@@ -55,6 +88,7 @@ app-update-user-id {
           border: solid 1px $aqua-squeeze-color !important;
           background-color: $aqua-squeeze-color;
           color: $teal-color !important;
+
           &:after {
             display: none;
           }
@@ -62,19 +96,38 @@ app-update-user-id {
       }
     }
   }
+
   .btn-primary {
     margin-top: 60px !important;
+
     @include allmobiles {
       margin-top: 14px !important;
     }
   }
+
+  .inline-error {
+    .show-password {
+      background: url("../../../assets/images/show-password.svg") !important;
+      background-repeat: no-repeat !important;
+      background-color: transparent !important;
+    }
+
+    .hide-password {
+      background-image: url("../../../assets/images/hide-password.svg") !important;
+      background-repeat: no-repeat !important;
+      background-color: transparent !important;
+    }
+  }
+
   .alert-msg {
     font-family: $muli-italic;
     font-size: 14px;
     padding-top: 5px;
+
     div {
       display: flex;
       align-items: center;
+
       .alert-icon {
         width: 15px;
         height: 15px;
@@ -83,13 +136,16 @@ app-update-user-id {
       }
     }
   }
+
   .error-tooltip {
     position: absolute;
     bottom: 56px;
     z-index: 1060;
     width: 100%;
+
     .error-tooltip__desc-one {
       margin-left: 0 !important;
+
       .error-tooltip__title__warning-icon {
         text-align: center;
         border-radius: 100%;
