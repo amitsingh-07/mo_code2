@@ -4,12 +4,12 @@
     <div class="row">
       <div class="col-12">
         <form id="updateUserIdForm" name="updateUserIdForm" [formGroup]="updateUserIdForm">
-          <div class="mobile-block">
+          <div class="mobile-block" *ngIf="!checkEditType()">
             <div class="update-user-id-text">{{ 'UPDATE_USER_ID.YOUR_USER_ID' | translate}}</div>
             <div class="flex-row mb15 stretch existing-data">
                 <div class=" flex-col-12" [formGroup]="updateUserIdForm">
-                  <div [ngClass]="{'inline-error':editNumber}" class="form-group-floating-label disabled">
-                    <input type="input" maxlength="15" id="crtAccInpt1" #existingmobileNumber formControlName="existingMobileNumber" class="form-control" disabled>
+                  <div class="form-group-floating-label disabled">
+                    <input type="input" id="mobileNumber" #mobileNumber formControlName="mobileNumber" class="form-control" disabled>
                     <label class="form-control-placeholder" for="name">{{ 'UPDATE_USER_ID.CURRENT_MOBILE_NUMBER' | translate}}</label>
                   </div>
                 </div>
@@ -28,10 +28,12 @@
                 </div>
               </div>
               <div class="flex-col-8 stretch" [formGroup]="updateUserIdForm">
-                <div [ngClass]="{'inline-error':editNumber}" class="form-group-floating-label">
-                  <input type="input" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber" class="form-control"
-                    (keyup)="onlyNumber(mobileNumber)" required>
-                  <label class="form-control-placeholder" for="name">{{ 'UPDATE_USER_ID.NEW_MOBILE_NUMBER' | translate}}</label>
+                <div class="form-group-floating-label">
+                  <!-- <input type="input" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber" class="form-control"
+                    (keyup)="onlyNumber(mobileNumber)" required> -->
+                    <input type="input" maxlength="15" id="newMobileNumber" #newMobileNumber formControlName="newMobileNumber" class="form-control" 
+                     (keyup)="onlyNumber(newMobileNumber)" required autocomplete="off">
+                    <label class="form-control-placeholder" for="name">{{ 'UPDATE_USER_ID.NEW_MOBILE_NUMBER' | translate}}</label>
                 </div>
               </div>
             </div>
@@ -49,15 +51,33 @@
                 </div>
               </div>
               <div class="flex-col-8 stretch" [formGroup]="updateUserIdForm">
-                <div [ngClass]="{'inline-error':editNumber}" class="form-group-floating-label">
+                <!-- <div [ngClass]="{'inline-error':editNumber}" class="form-group-floating-label">
                   <input type="input" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber" class="form-control"
                     (keyup)="onlyNumber(mobileNumber)" required>
                   <label class="form-control-placeholder" for="name">{{ 'UPDATE_USER_ID.CONFIRM_MOBILE_NUMBER' | translate}}</label>
+                </div> -->
+                <div [ngClass]="{'inline-error':  (submitted && updateUserIdForm.controls.confirmMobileNumber.errors?.required) || (confirmMobileFocus && !updateUserIdForm.controls.newMobileNumber.errors && updateUserIdForm.controls.confirmMobileNumber.errors?.mobileMismatch)}"
+                  class="form-group-floating-label">
+                  <input type="input" maxlength="15" id="confirmMobileNumber" #confirmMobileNumber
+                    formControlName="confirmMobileNumber" class="form-control" required
+                    (paste)="onPaste($event, 'confirmMobileNumber')" (focus)="showValidity('confirmMobileNumber')"
+                    (blur)="showValidity('confirmMobileNumber')" (keyup)="onKeyupEvent($event, 'confirmMobileNumber')"
+                    autocomplete="off">
+                  <label class="form-control-placeholder" for="name">{{ 'UPDATE_USER_ID.CONFIRM_MOBILE_NUMBER' | translate}}</label>
+                  <div class="error-tooltip"
+                    *ngIf="confirmMobileFocus && !updateUserIdForm.controls.newMobileNumber.errors && updateUserIdForm.controls.confirmMobileNumber.errors?.mobileMismatch">
+                    <div class="error-tooltip__desc">
+                      <p class="error-tooltip__desc-one">
+                        <span class="error-tooltip__title__warning-icon">!</span>
+                        {{ 'UPDATE_USER_ID.CONFIRM_MOBILE_ERROR.MUST_MATCH' | translate}}</p>
+                      <span class="error-tooltip__arrow"></span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="mail-block">
+          <div class="mail-block" *ngIf="checkEditType()">
             <div class="update-user-id-text">{{ 'UPDATE_USER_ID.EMAIL_TXT_LBL' | translate}}</div>
             <div class="flex-row mb15 existing-data">
               <div class="flex-col-12 stretch" [formGroup]="updateUserIdForm">
@@ -87,28 +107,24 @@
           <div class="update-user-id-text pt10">{{ 'UPDATE_USER_ID.AUTHENTICATE' | translate}}</div>
           <div class="flex-row mb15">
             <div class="flex-col-12 stretch">
-              <div class="form-group-floating-label">
-                <!-- (capsLock)="capsOn=$event" -->
-                <input type="password" appInputFocus #loginPassword id="login_password_txt" class="form-control">
-                  <!--  formControlName="loginPassword" required (focus)="onFocus()" (blur)="onBlur()" -->
+              <div class="form-group-floating-label" (capsLock)="capsOn=$event">
+                <input type="password" formControlName="password" appInputFocus #password id="login_password_txt"
+                  class="form-control" required (focus)="onFocus()" (blur)="onBlur()">
                 <label class="form-control-placeholder" for="login_password_txt" id="login_password_lbl">{{
                   'UPDATE_USER_ID.PASSWORD' | translate}}</label>
-                <span id="login_showpassword_button">
-                  <!-- [ngClass]="(loginPassword.type === 'text') ? 'show-password' : 'hide-password'"
-                  (click)="showHidePassword(loginPassword)" -->
+                <span id="login_showpassword_button" [ngClass]="(password.type === 'text') ? 'show-password' : 'hide-password'">
+                  <!-- (click)="showHidePassword(loginPassword)" -->
                 </span>
               </div>
             </div>
-          </div>
-          <!-- <div class="flex-row mb20">
-            <div class="flex-col-12 stretch" [formGroup]="updateUserIdForm">
-              <div class="form-group-floating-label">
-                <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email" required>
-                <label class="form-control-placeholder" for="lastName">{{ 'UPDATE_USER_ID.EMAIL' | translate}}</label>
+            <div class="alert-msg" *ngIf="capsOn && capslockFocus">
+              <div>
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{'COMMON.CAPS_LOCK_IS_ON' | translate}}</span>
               </div>
             </div>
-          </div> -->
-          <button id="nextDependentBtn" (click)="save(updateUserIdForm)" type="button" class="btn btn__footer--fixed btn-primary width100">{{
+          </div>
+          <button id="nextDependentBtn" [disabled]="isApplyDisabled()" (click)="save(updateUserIdForm)" type="button" class="btn btn__footer--fixed btn-primary width100">{{
             'UPDATE_USER_ID.APPLY_CHANGES' | translate }}</button>
         </form>
       </div>

@@ -4,6 +4,8 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { SignUpService } from '../sign-up.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-manage-profile',
   templateUrl: './manage-profile.component.html',
@@ -21,6 +23,7 @@ export class ManageProfileComponent implements OnInit {
     public footerService: FooterService,
     private translate: TranslateService,
     private signUpService: SignUpService,
+    private router: Router
   ) {     
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
@@ -54,5 +57,9 @@ export class ManageProfileComponent implements OnInit {
         }
       } 
     });
+  }
+  editMobileDetails() {
+    this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_DETAILS + '/mobile']);
   }
 }

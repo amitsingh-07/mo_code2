@@ -3,6 +3,10 @@ export class CreateAccountFormError {
     notChanged: {
       errorTitle: 'Not Changed',
       errorMessage: 'Update Mobile Number / Email address'
+    },
+    mobileNotChanged: {
+      errorTitle: 'Mobile number is not Updated',
+      errorMessage: 'Please review the mobile number that you have provided and try again'
     }
   };
   formFieldErrors: object = {

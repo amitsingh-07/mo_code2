@@ -17,9 +17,10 @@ import { FooterService } from './../../shared/footer/footer.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 import { ValidateRange } from './range.validator';
-import { ValidateGroupChange } from './formGroup.change.validator';
+import { ValidateMobileChange } from './formGroup.change.validator';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Util } from '../../shared/utils/util';
 
 @Component({
   selector: 'app-update-user-id',
@@ -35,12 +36,17 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
   formValues: any;
   defaultCountryCode;
   countryCodeOptions;
-  editNumber;
   OldCountryCode;
   OldMobileNumber;
   OldEmail;
   updateMobile: boolean;
   updateEmail: boolean;
+  capslockFocus: boolean;
+  capsOn: boolean;
+  editType;
+  confirmEmailFocus: boolean = false;
+  confirmMobileFocus: boolean = false;
+
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
@@ -63,9 +69,6 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
       this.pageTitle = this.translate.instant('UPDATE_USER_ID.TITLE');
       this.setPageTitle(this.pageTitle);
     });
-    this.route.params.subscribe((params) => {
-      this.editNumber = params.editNumber;
-    });
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.distribution = config.distribution;
     });
@@ -85,7 +88,9 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
       this.navbarService.setNavbarMode(102);
     }
     this.buildUpdateAccountForm();
-    this.getCountryCode();
+    if (!this.checkEditType()) {
+      this.getCountryCode();
+    }
     this.footerService.setFooterVisibility(false);
 
     // this.authService.get2faAuthEvent
@@ -96,32 +101,31 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
     //   }
     // });
     this.signUpService.getEditProfileInfo()
-    .pipe(takeUntil(this.ngUnsubscribe))
-    .subscribe((data) => {
-      const personalData = data.objectList.personalInformation;
-      if (personalData) {
-        if (this.updateUserIdForm) {
-          this.updateUserIdForm.setValidators(
-            ValidateGroupChange({
-              'countryCode': personalData.countryCode,
-              'mobileNumber': personalData.mobileNumber,
-              'existingMobileNumber': `${personalData.countryCode} ${personalData.mobileNumber}`,
-              'email': personalData.email
-            }));
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data) => {
+        const personalData = data.objectList.personalInformation;
+        if (personalData) {
+          if (this.updateUserIdForm) {
+            if (this.checkEditType()) {
+              
+            } else {
+              this.updateUserIdForm.setValidators([
+                this.validateMatchPasswordEmail(),
+                ValidateMobileChange({
+                  'mobileNumber': personalData.mobileNumber
+                })]);
+            }
+            this.updateUserIdForm.patchValue({
+              countryCode: personalData.countryCode,
+              mobileNumber: `${personalData.countryCode} ${personalData.mobileNumber}`
+            });
+          }
+          this.signUpService.setContactDetails(personalData.countryCode, personalData.mobileNumber, personalData.email);
+          this.OldCountryCode = personalData.countryCode;
+          this.OldEmail = personalData.email;
+          this.OldMobileNumber = personalData.mobileNumber;
         }
-        this.updateUserIdForm.patchValue({
-          countryCode: personalData.countryCode,
-          mobileNumber: personalData.mobileNumber,
-          existingMobileNumber: `${personalData.countryCode} ${personalData.mobileNumber}`,
-          email: personalData.email
-        });
-
-        this.signUpService.setContactDetails(personalData.countryCode, personalData.mobileNumber, personalData.email);
-        this.OldCountryCode = personalData.countryCode;
-        this.OldEmail = personalData.email;
-        this.OldMobileNumber = personalData.mobileNumber;
-      }
-    });
+      });
     // this.translate.get('ERROR').subscribe((results) => {
     //   this.authService.get2faErrorEvent
     //   .pipe(takeUntil(this.ngUnsubscribe))
@@ -138,7 +142,7 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if(this.signUpService.getRedirectUrl() !== SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED) {
+    if (this.signUpService.getRedirectUrl() !== SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED) {
       this.signUpService.clearRedirectUrl();
     }
     this.ngUnsubscribe.next();
@@ -153,21 +157,22 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
     this.OldCountryCode = this.formValues.OldCountryCode;
     this.OldMobileNumber = this.formValues.OldMobileNumber;
     this.OldEmail = this.formValues.OldEmail;
-    this.updateUserIdForm = this.formBuilder.group({
-      countryCode: [this.formValues.countryCode, [Validators.required]],
-      mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
-      newMobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
-      confirmMobileNumber: [this.formValues.mobileNumber, [Validators.required]],
-      existingMobileNumber: [this.formValues.existingMobileNumber],
-      email: [this.formValues.email, [Validators.required, Validators.email]]
-    }, {
-      validator: ValidateGroupChange({
-        'countryCode': this.OldCountryCode,
-        'mobileNumber': this.OldMobileNumber,
-        'existingMobileNumber': `${this.OldCountryCode} ${this.OldMobileNumber}`,
-        'email': this.OldEmail
-      })
-    });
+    if (this.checkEditType()) {
+
+    } else {
+      this.updateUserIdForm = this.formBuilder.group({
+        countryCode: [this.formValues.countryCode, [Validators.required]],
+        mobileNumber: [`${this.formValues.countryCode} ${this.formValues.mobileNumber}`],
+        newMobileNumber: ['', [Validators.required, ValidateRange]],
+        confirmMobileNumber: ['', [Validators.required]],
+        password: ['', Validators.required],
+        encryptedPassword: ['']
+      }, {
+        validator: [this.validateMatchPasswordEmail(), ValidateMobileChange({
+          'mobileNumber': this.OldMobileNumber,
+        })]
+      });
+    }
   }
 
   /**
@@ -185,11 +190,14 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
-      if (this.OldMobileNumber !== form.value.mobileNumber) {
-        this.updateMobile = true;
-      }
-      if (this.OldEmail !== form.value.email) {
-        this.updateEmail = true;
+      if (this.checkEditType()) {
+        if (this.OldEmail !== form.value.email) {
+          this.updateEmail = true;
+        }
+      } else{
+        if (this.OldMobileNumber !== form.value.mobileNumber) {
+          this.updateMobile = true;
+        }
       }
       this.updateUserAccount();
     }
@@ -199,7 +207,7 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
    * @param countryCode - country code detail.
    */
   setCountryCode(countryCode) {
-    const mobileControl = this.updateUserIdForm.controls['mobileNumber'];
+    const mobileControl = this.updateUserIdForm.controls['newMobileNumber'];
     this.defaultCountryCode = countryCode;
     this.updateUserIdForm.controls['countryCode'].setValue(countryCode);
     if (countryCode === '+65') {
@@ -225,7 +233,16 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
    * request one time password.
    */
   updateUserAccount() {
-    let formValues = this.updateUserIdForm.value;
+    let formValues = {};
+    if(this.checkEditType){
+
+    } else{
+      formValues = {
+        countryCode: this.updateUserIdForm.value.countryCode,
+        mobileNumber: this.updateUserIdForm.value.newMobileNumber,
+        password: this.updateUserIdForm.controls.encryptedPassword.value
+      }
+    }
     if (this.distribution) {
       const newValues = {
         'countryCode': this.updateUserIdForm.controls['countryCode'].value,
@@ -258,10 +275,63 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
   }
 
   onlyNumber(el) {
-    this.updateUserIdForm.controls['mobileNumber'].setValue(el.value.replace(RegexConstants.OnlyNumeric, ''));
+    this.updateUserIdForm.controls['newMobileNumber'].setValue(el.value.replace(RegexConstants.OnlyNumeric, ''));
   }
 
   goBack() {
     this._location.back();
+  }
+
+  onFocus() {
+    this.capslockFocus = true;
+  }
+
+  onBlur() {
+    this.capslockFocus = false;
+  }
+  checkEditType() {
+    if (this.editType === 'email') {
+      return true;
+    }
+    return false;
+  }
+  private validateMatchPasswordEmail() {
+    return (group: FormGroup) => {
+      const mobileNumberInput = group.controls['newMobileNumber'];
+      const confirmMbileNumberInput = group.controls['confirmMobileNumber'];
+      // Mobile Number
+      if (!this.checkEditType()) {
+        if (!confirmMbileNumberInput.value) {
+          confirmMbileNumberInput.setErrors({ required: true });
+        } else if (mobileNumberInput.value && mobileNumberInput.value.toLowerCase() !== confirmMbileNumberInput.value.toLowerCase()) {
+          confirmMbileNumberInput.setErrors({ mobileMismatch: true });
+          return { mobileNotEquivalent: true };
+        } else {
+          confirmMbileNumberInput.setErrors(null);
+        }
+      }
+      return null;
+    };
+  }
+  isApplyDisabled() {
+    let isDisabled = false;
+    if (this.checkEditType()) {
+
+    } else {
+      if (Util.isEmptyOrNull(this.updateUserIdForm.controls.newMobileNumber.value) ||
+        Util.isEmptyOrNull(this.updateUserIdForm.controls.confirmMobileNumber.value) ||
+        Util.isEmptyOrNull(this.updateUserIdForm.controls.password.value) ||
+        (this.updateUserIdForm.controls.newMobileNumber.value !== this.updateUserIdForm.controls.confirmMobileNumber.value)) {
+          isDisabled = true;
+        }
+    }
+    return isDisabled;
+  } 
+  showValidity(controlName) {
+    if (controlName === 'confirmEmail') {
+      this.confirmEmailFocus = !this.confirmEmailFocus;
+    } else if (controlName === 'confirmMobileNumber') {
+      this.confirmMobileFocus = !this.confirmMobileFocus;
+    }
   }
 }

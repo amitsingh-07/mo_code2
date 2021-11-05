@@ -331,7 +331,10 @@
     "AUTHENTICATE": "Authenticate with Login Password",
     "EMAIL": "Email Address",
     "PASSWORD": "Password",
-    "APPLY_CHANGES": "Apply Changes"
+    "APPLY_CHANGES": "Apply Changes",
+    "CONFIRM_MOBILE_ERROR": {
+      "MUST_MATCH": "Mobile number must match"
+    }
   },
   "DASHBOARD": {
     "TOAST_MESSAGE" :"Your report is ready to be downloaded",
