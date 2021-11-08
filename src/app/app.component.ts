@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
@@ -45,7 +45,8 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     private translate: TranslateService, private navbarService: NavbarService, private _location: Location,
     private googleAnalyticsService: GoogleAnalyticsService,
     private modal: NgbModal, public route: Router, public routingService: RoutingService, private location: Location,
-    private configService: ConfigService, private authService: AuthenticationService, private sessionsService: SessionsService) {
+    private configService: ConfigService, private authService: AuthenticationService, private sessionsService: SessionsService,
+    public activatedRoute: ActivatedRoute) {
     this.translate.setDefaultLang('en');
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.translate.setDefaultLang(config.language);
@@ -86,6 +87,20 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     window.failed.namespace = window.failed.namespace || {};
     window.success = window.success || {};
     window.success.namespace = window.success.namespace || {};
+
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      if (config.affiliateEnabled) {
+        this.activatedRoute.queryParams.subscribe(params => {
+          if (params['irclickid'] && typeof(Storage) !== "undefined") {
+            const item = {
+              irClickId: params['irclickid'],
+              clickIdCreatedDate: new Date().toISOString()
+            };
+            localStorage.setItem('irclickid_json', JSON.stringify(item));
+          }
+        });
+      }
+    });
   }
 
   ngAfterViewInit() {
