@@ -81,7 +81,7 @@ export class SignUpApiService {
           fullName: getAccountInfo.fullName,
           emailAddress: getAccountInfo.email,
           dob: getAccountInfo.dob,
-          sex: getAccountInfo.sex,
+          gender: getAccountInfo.gender,
           password: this.cryptoService.encrypt(pwd),
           acceptMarketingNotifications: getAccountInfo.marketingAcceptance
         },
@@ -102,7 +102,7 @@ export class SignUpApiService {
           lastName: getAccountInfo.lastName,
           emailAddress: getAccountInfo.email,
           dob: getAccountInfo.dob,
-          sex: getAccountInfo.sex,
+          gender: getAccountInfo.gender,
           password: this.cryptoService.encrypt(pwd),
           acceptMarketingNotifications: getAccountInfo.marketingAcceptance
         },
