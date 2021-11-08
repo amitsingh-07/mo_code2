@@ -78,10 +78,11 @@
                   </div>
                 </div>
               </div>
-              <div class="alert-msg"
-                *ngIf="!confirmMobileFocus && !updateUserIdForm.controls.newMobileNumber.errors && updateUserIdForm.controls.confirmMobileNumber.errors?.mobileMismatch">
-                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                <span class="err-msg">{{ 'UPDATE_USER_ID.CONFIRM_MOBILE_ERROR.MUST_MATCH' | translate}}</span>
+              <div class="alert-msg">
+                <div *ngIf="!confirmMobileFocus && !updateUserIdForm.controls.newMobileNumber.errors && updateUserIdForm.controls.confirmMobileNumber.errors?.mobileMismatch">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{ 'UPDATE_USER_ID.CONFIRM_MOBILE_ERROR.MUST_MATCH' | translate}}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -139,10 +140,11 @@
                   </div>
                 </div>
               </div>
-              <div class="alert-msg"
-                *ngIf="!confirmEmailFocus && !updateUserIdForm.controls.newEmail.errors && updateUserIdForm.controls.confirmEmail.errors?.emailMismatch">
-                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                <span class="err-msg">{{ 'UPDATE_USER_ID.CONFIRM_EMAIL_ERROR.MUST_MATCH' | translate}}</span>
+              <div class="alert-msg">
+                <div *ngIf="!confirmEmailFocus && !updateUserIdForm.controls.newEmail.errors && updateUserIdForm.controls.confirmEmail.errors?.emailMismatch">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{ 'UPDATE_USER_ID.CONFIRM_EMAIL_ERROR.MUST_MATCH' | translate}}</span>
+                </div>
               </div>
             </div>
           </div>

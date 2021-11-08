@@ -59,6 +59,10 @@ app-update-user-id {
         color: $teal-color;
         border: solid 1px $aqua-squeeze-color;
         background-color: $aqua-squeeze-color;
+        cursor: not-allowed;
+        .form-control{
+          cursor: not-allowed;
+        }
       }
 
       .form-control-placeholder {
@@ -83,12 +87,13 @@ app-update-user-id {
 
   .dropdown-control {
     &.form-control-left {
+      cursor: not-allowed;
       .btn-dropdown {
         &:disabled {
           border: solid 1px $aqua-squeeze-color !important;
           background-color: $aqua-squeeze-color;
           color: $teal-color !important;
-
+          cursor: not-allowed;
           &:after {
             display: none;
           }
@@ -139,9 +144,13 @@ app-update-user-id {
 
   .error-tooltip {
     position: absolute;
-    bottom: 56px;
+    bottom: 59px;
     z-index: 1060;
     width: 100%;
+
+    .error-tooltip__desc{
+      padding: 15px 10px !important;
+    }
 
     .error-tooltip__desc-one {
       margin-left: 0 !important;
