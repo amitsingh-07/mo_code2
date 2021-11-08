@@ -32,7 +32,8 @@
                 </div>
               </div>
               <div class="flex-col-8 stretch">
-                <div class="form-group-floating-label">
+                <div class="form-group-floating-label"
+                  [ngClass]="{'inline-error': submitted && updateUserIdForm.controls.newMobileNumber.errors}">
                   <input type="input" maxlength="15" id="newMobileNumber" #newMobileNumber
                     formControlName="newMobileNumber" class="form-control"
                     (keyup)="onlyNumber(newMobileNumber, 'newMobileNumber')" required autocomplete="off">
