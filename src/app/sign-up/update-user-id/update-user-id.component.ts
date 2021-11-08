@@ -47,7 +47,6 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
   editType;
   confirmEmailFocus = false;
   confirmMobileFocus = false;
-  newMobileFocus = false;
   submitted = false;
 
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
@@ -409,8 +408,6 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
       this.confirmEmailFocus = !this.confirmEmailFocus;
     } else if (controlName === 'confirmMobileNumber') {
       this.confirmMobileFocus = !this.confirmMobileFocus;
-    } else if (controlName === 'newMobileNumber') {
-      this.newMobileFocus = !this.newMobileFocus;
     }
   }
 
