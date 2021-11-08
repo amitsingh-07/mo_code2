@@ -14,6 +14,10 @@ app-update-user-id {
     @include allmobiles {
       padding-top: 80px;
     }
+
+    @include min568max767{
+      padding-top: 90px;
+    }
   }
 
   input[type="checkbox"]+label {

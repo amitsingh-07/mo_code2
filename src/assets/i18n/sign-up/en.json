@@ -323,7 +323,7 @@
     }
   },
   "UPDATE_USER_ID": {
-    "TITLE": "Change Mobile Number/ID",
+    "TITLE": "Change Mobile Number",
     "EMAIL_TITLE": "Change Email Address",
     "YOUR_USER_ID": "An OTP verification will be sent your new mobile number in the next step.",
     "EMAIL_TXT_LBL": "An email verification will be sent to your new email address in the next step.",
