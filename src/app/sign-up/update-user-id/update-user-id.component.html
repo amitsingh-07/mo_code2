@@ -165,7 +165,7 @@
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label" (capsLock)="capsOn=$event">
                 <input type="password" formControlName="password" appInputFocus #password id="password_txt"
-                  class="form-control" required (focus)="onFocus()" (blur)="onBlur()" autocomplete="off">
+                  class="form-control" required (focus)="onFocus()" (blur)="onBlur()" autocomplete="new-password">
                 <label class="form-control-placeholder" for="login_password_txt" id="login_password_lbl">{{
                   'UPDATE_USER_ID.PASSWORD' | translate}}</label>
                 <span id="login_showpassword_button" (click)="showHidePassword(password)"

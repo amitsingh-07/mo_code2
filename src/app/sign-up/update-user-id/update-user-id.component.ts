@@ -287,6 +287,7 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
       formValues = newValues;
     }
     this.updateUserIdForm.controls.password.reset();
+    this.updateUserIdForm.controls.encryptedPassword.reset();
     this.showLoader();
     this.signUpApiService.updateAccount(formValues, this.checkEditType()).subscribe((data: any) => {
       this.loaderService.hideLoaderForced();
