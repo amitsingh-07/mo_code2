@@ -40,6 +40,21 @@ export class CreateAccountFormError {
         errorMessage: 'Update Mobile Number / Email address'
       }
     },
+    newMobileNumber: {
+      required: {
+        // tslint:disable-next-line:no-duplicate-string
+        errorTitle: 'Invalid Mobile Number',
+        errorMessage: 'Please enter your mobile number'
+      },
+      pattern: {
+        errorTitle: 'Invalid Mobile Number',
+        errorMessage: 'Mobile number field should container 8 to 15 digits'
+      },
+      mobileRange: {
+        errorTitle: 'Invalid Mobile Number',
+        errorMessage: 'Invalid Mobile Number'
+      },
+    },
     firstName: {
       required: {
         errorTitle: 'Invalid First Name',

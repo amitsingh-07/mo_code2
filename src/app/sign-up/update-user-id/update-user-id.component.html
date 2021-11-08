@@ -5,7 +5,7 @@
       <div class="col-12">
         <form id="updateUserIdForm" name="updateUserIdForm" [formGroup]="updateUserIdForm">
           <div class="mobile-block" *ngIf="!checkEditType()">
-            <div class="update-user-id-text">{{ 'UPDATE_USER_ID.YOUR_USER_ID' | translate}}</div>
+            <div class="update-user-id-text-email">{{ 'UPDATE_USER_ID.YOUR_USER_ID' | translate}}</div>
             <div class="flex-row mb15 stretch existing-data">
               <div class=" flex-col-12">
                 <div class="form-group-floating-label disabled">
@@ -34,10 +34,20 @@
               <div class="flex-col-8 stretch">
                 <div class="form-group-floating-label">
                   <input type="input" maxlength="15" id="newMobileNumber" #newMobileNumber
-                    formControlName="newMobileNumber" class="form-control" (keyup)="onlyNumber(newMobileNumber)"
-                    required autocomplete="off">
+                    formControlName="newMobileNumber" class="form-control"
+                    (keyup)="onlyNumber(newMobileNumber, 'newMobileNumber')" required autocomplete="off">
                   <label class="form-control-placeholder"
                     for="name">{{ 'UPDATE_USER_ID.NEW_MOBILE_NUMBER' | translate}}</label>
+                </div>
+              </div>
+              <div class="alert-msg" *ngIf="submitted && updateUserIdForm.controls.newMobileNumber.errors">
+                <div *ngIf="updateUserIdForm.controls.newMobileNumber.errors?.required">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{ 'UPDATE_USER_ID.MOBILE_NUMBER_VALIDATIONS.ERROR.REQUIRED' | translate}}</span>
+                </div>
+                <div *ngIf="updateUserIdForm.controls.newMobileNumber.errors?.mobileRange">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{ 'UPDATE_USER_ID.MOBILE_NUMBER_VALIDATIONS.ERROR.INVALID' | translate}}</span>
                 </div>
               </div>
             </div>
@@ -63,12 +73,12 @@
                   <input type="input" maxlength="15" id="confirmMobileNumber" #confirmMobileNumber
                     formControlName="confirmMobileNumber" class="form-control" required
                     (paste)="onPaste($event, 'confirmMobileNumber')" (focus)="showValidity('confirmMobileNumber')"
-                    (blur)="showValidity('confirmMobileNumber')" (keyup)="onKeyupEvent($event, 'confirmMobileNumber')"
-                    autocomplete="off">
+                    (blur)="showValidity('confirmMobileNumber')"
+                    (keyup)="onlyNumber(confirmMobileNumber, 'confirmMobileNumber')" autocomplete="off">
                   <label class="form-control-placeholder"
                     for="name">{{ 'UPDATE_USER_ID.CONFIRM_MOBILE_NUMBER' | translate}}</label>
                   <div class="error-tooltip"
-                    *ngIf="confirmMobileFocus && !updateUserIdForm.controls.newMobileNumber.errors && updateUserIdForm.controls.confirmMobileNumber.errors?.mobileMismatch">
+                    *ngIf="confirmMobileFocus && updateUserIdForm.controls.confirmMobileNumber.errors?.mobileMismatch">
                     <div class="error-tooltip__desc">
                       <p class="error-tooltip__desc-one">
                         <span class="error-tooltip__title__warning-icon">!</span>
@@ -79,7 +89,7 @@
                 </div>
               </div>
               <div class="alert-msg"
-                *ngIf="!confirmMobileFocus && !updateUserIdForm.controls.newMobileNumber.errors && updateUserIdForm.controls.confirmMobileNumber.errors?.mobileMismatch">
+                *ngIf="!confirmMobileFocus && updateUserIdForm.controls.confirmMobileNumber.errors?.mobileMismatch">
                 <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                 <span class="err-msg">{{ 'UPDATE_USER_ID.CONFIRM_MOBILE_ERROR.MUST_MATCH' | translate}}</span>
               </div>
@@ -109,11 +119,11 @@
               <div class="alert-msg" *ngIf="submitted && updateUserIdForm.controls.newEmail.errors">
                 <div *ngIf="updateUserIdForm.controls.newEmail.errors?.required">
                   <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                  <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.REQUIRED' | translate}}</span>
+                  <span class="err-msg">{{ 'UPDATE_USER_ID.EMAIL_VALIDATIONS.ERROR.REQUIRED' | translate}}</span>
                 </div>
                 <div *ngIf="updateUserIdForm.controls.newEmail.errors?.email">
                   <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                  <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.INVALID' | translate}}</span>
+                  <span class="err-msg">{{ 'UPDATE_USER_ID.EMAIL_VALIDATIONS.ERROR.INVALID' | translate}}</span>
                 </div>
               </div>
             </div>
@@ -129,7 +139,7 @@
                   <label class="form-control-placeholder"
                     for="lastName">{{ 'UPDATE_USER_ID.CONFIRM_EMAIL' | translate}}</label>
                   <div class="error-tooltip"
-                    *ngIf="confirmEmailFocus && !updateUserIdForm.controls.newEmail.errors && updateUserIdForm.controls.confirmEmail.errors?.emailMismatch">
+                    *ngIf="confirmEmailFocus && updateUserIdForm.controls.confirmEmail.errors?.emailMismatch">
                     <div class="error-tooltip__desc">
                       <p class="error-tooltip__desc-one">
                         <span class="error-tooltip__title__warning-icon">!</span>
@@ -140,7 +150,7 @@
                 </div>
               </div>
               <div class="alert-msg"
-                *ngIf="!confirmEmailFocus && !updateUserIdForm.controls.newEmail.errors && updateUserIdForm.controls.confirmEmail.errors?.emailMismatch">
+                *ngIf="!confirmEmailFocus && updateUserIdForm.controls.confirmEmail.errors?.emailMismatch">
                 <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                 <span class="err-msg">{{ 'UPDATE_USER_ID.CONFIRM_EMAIL_ERROR.MUST_MATCH' | translate}}</span>
               </div>
@@ -150,8 +160,8 @@
           <div class="flex-row mb15">
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label" (capsLock)="capsOn=$event">
-                <input type="password" formControlName="password" appInputFocus #password id="login_password_txt"
-                  class="form-control" required (focus)="onFocus()" (blur)="onBlur()">
+                <input type="password" formControlName="password" appInputFocus #password id="password_txt"
+                  class="form-control" required (focus)="onFocus()" (blur)="onBlur()" autocomplete="off">
                 <label class="form-control-placeholder" for="login_password_txt" id="login_password_lbl">{{
                   'UPDATE_USER_ID.PASSWORD' | translate}}</label>
                 <span id="login_showpassword_button" (click)="showHidePassword(password)"

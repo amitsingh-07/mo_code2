@@ -342,6 +342,20 @@
     },
     "CONFIRM_MOBILE_ERROR": {
       "MUST_MATCH": "Mobile number must match"
+    },
+    "MOBILE_NUMBER_VALIDATIONS": {
+      "LABEL": "Mobile Number",
+      "ERROR": {
+        "REQUIRED": "Enter a mobile number",
+        "INVALID": "Enter a valid mobile number"
+      }
+    },
+    "EMAIL_VALIDATIONS": {
+      "LABEL": "Email Address",
+      "ERROR": {
+        "REQUIRED": "Enter an email address",
+        "INVALID": "Enter a valid email address"
+      }
     }
   },
   "DASHBOARD": {
@@ -695,5 +709,11 @@
     "SHOW_MORE_BTN_LBL": "Show More",
     "SPREAD_WORDS_LBL":"Oops, pretty lonely here. Go on, help us spread the word.",
     "WELCOME_REWARDS": "You’ve welcome rewards"
+  },
+  "LOADER_MESSAGES": {
+    "LOADING": {
+      "TITLE": "Loading.",
+      "MESSAGE": "Please wait."
+    }
   }
 }

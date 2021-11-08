@@ -21,6 +21,7 @@ import { ValidateRange } from './range.validator';
 import { ValidateMobileChange, ValidateEmailChange } from './formGroup.change.validator';
 import { Util } from '../../shared/utils/util';
 import { CryptoService } from '../../shared/utils/crypto';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-update-user-id',
@@ -44,8 +45,9 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
   capslockFocus: boolean;
   capsOn: boolean;
   editType;
-  confirmEmailFocus: boolean = false;
-  confirmMobileFocus: boolean = false;
+  confirmEmailFocus = false;
+  confirmMobileFocus = false;
+  newMobileFocus = false;
   submitted = false;
 
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
@@ -63,7 +65,8 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
     private _location: Location,
     private investmentAccountService: InvestmentAccountService,
     private configService: ConfigService,
-    public cryptoService: CryptoService
+    public cryptoService: CryptoService,
+    private loaderService: LoaderService,
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -135,6 +138,14 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
           this.OldMobileNumber = personalData.mobileNumber;
         }
       });
+  }
+
+  showLoader() {
+    this.loaderService.showLoader({
+      title: this.translate.instant('LOADER_MESSAGES.LOADING.TITLE'),
+      desc: this.translate.instant('LOADER_MESSAGES.LOADING.MESSAGE'),
+      autoHide: false
+    });
   }
 
   ngOnDestroy() {
@@ -230,10 +241,15 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
    * get country code.
    */
   getCountryCode() {
+    this.showLoader();
     this.signUpApiService.getCountryCodeList().subscribe((data) => {
+      this.loaderService.hideLoaderForced();
       this.countryCodeOptions = [data[0]];
       const countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.countryCodeOptions[0].code;
       this.setCountryCode(countryCode);
+    }, (err) => {
+      this.loaderService.hideLoaderForced();
+      this.investmentAccountService.showGenericErrorModal();
     });
   }
 
@@ -272,7 +288,9 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
       formValues = newValues;
     }
     this.updateUserIdForm.controls.password.reset();
+    this.showLoader();
     this.signUpApiService.updateAccount(formValues, this.checkEditType()).subscribe((data: any) => {
+      this.loaderService.hideLoaderForced();
       if (data.responseMessage.responseCode === 6000) {
         if (this.checkEditType()) {
           this.signUpService.setEmailDetails(this.updateUserIdForm.value.newEmail);
@@ -296,13 +314,16 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
       } else {
         this.investmentAccountService.showGenericErrorModal();
       }
+    }, (err) => {
+      this.loaderService.hideLoaderForced();
+      this.investmentAccountService.showGenericErrorModal();
     }).add(() => {
       this.submitted = false;
-    });;
+    });
   }
 
-  onlyNumber(el) {
-    this.updateUserIdForm.controls['newMobileNumber'].setValue(el.value.replace(RegexConstants.OnlyNumeric, ''));
+  onlyNumber(el, key) {
+    this.updateUserIdForm.controls[key].setValue(el.value.replace(RegexConstants.OnlyNumeric, ''));
   }
 
   goBack() {
@@ -388,6 +409,8 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
       this.confirmEmailFocus = !this.confirmEmailFocus;
     } else if (controlName === 'confirmMobileNumber') {
       this.confirmMobileFocus = !this.confirmMobileFocus;
+    } else if (controlName === 'newMobileNumber') {
+      this.newMobileFocus = !this.newMobileFocus;
     }
   }
 
