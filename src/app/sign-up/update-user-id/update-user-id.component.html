@@ -43,7 +43,8 @@
               <div class="alert-msg" *ngIf="submitted && updateUserIdForm.controls.newMobileNumber.errors">
                 <div *ngIf="updateUserIdForm.controls.newMobileNumber.errors?.required">
                   <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                  <span class="err-msg">{{ 'UPDATE_USER_ID.MOBILE_NUMBER_VALIDATIONS.ERROR.REQUIRED' | translate}}</span>
+                  <span
+                    class="err-msg">{{ 'UPDATE_USER_ID.MOBILE_NUMBER_VALIDATIONS.ERROR.REQUIRED' | translate}}</span>
                 </div>
                 <div *ngIf="updateUserIdForm.controls.newMobileNumber.errors?.mobileRange">
                   <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
@@ -88,10 +89,12 @@
                   </div>
                 </div>
               </div>
-              <div class="alert-msg"
-                *ngIf="!confirmMobileFocus && updateUserIdForm.controls.confirmMobileNumber.errors?.mobileMismatch">
-                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                <span class="err-msg">{{ 'UPDATE_USER_ID.CONFIRM_MOBILE_ERROR.MUST_MATCH' | translate}}</span>
+              <div class="alert-msg">
+                <div
+                  *ngIf="!confirmMobileFocus && updateUserIdForm.controls.confirmMobileNumber.errors?.mobileMismatch">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{ 'UPDATE_USER_ID.CONFIRM_MOBILE_ERROR.MUST_MATCH' | translate}}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -149,10 +152,11 @@
                   </div>
                 </div>
               </div>
-              <div class="alert-msg"
-                *ngIf="!confirmEmailFocus && updateUserIdForm.controls.confirmEmail.errors?.emailMismatch">
-                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                <span class="err-msg">{{ 'UPDATE_USER_ID.CONFIRM_EMAIL_ERROR.MUST_MATCH' | translate}}</span>
+              <div class="alert-msg">
+                <div *ngIf="!confirmEmailFocus && updateUserIdForm.controls.confirmEmail.errors?.emailMismatch">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{ 'UPDATE_USER_ID.CONFIRM_EMAIL_ERROR.MUST_MATCH' | translate}}</span>
+                </div>
               </div>
             </div>
           </div>
