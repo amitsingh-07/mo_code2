@@ -1,14 +1,14 @@
 <div class="content">
-    <div class="container-fluid max-width--1024">
-        <div class="mf-card">
-            <div class="mf-card__title">{{'EDIT_PROFILE.MF_MOBILE_NO' | translate}}</div>
-            <div class="mf-card__info">{{personalData?.mobileNumber}}</div>
-            <div class="mf-card__edit" (click)="editMobileDetails()"><img src="assets/images/button-edit.svg"></div>
-        </div>
-        <div class="mf-card">
-            <div class="mf-card__title">{{'EDIT_PROFILE.MF_EMAIL_ADDRESS' | translate}}</div>
-            <div class="mf-card__info">{{personalData?.email}}</div>
-            <div (click)="editEmailDetails()" class="mf-card__edit"><img src="assets/images/button-edit.svg"></div>
-        </div>
+  <div class="container-fluid max-width--1024">
+    <div class="mf-card">
+      <div class="mf-card__title">{{'EDIT_PROFILE.MF_MOBILE_NO' | translate}}</div>
+      <div class="mf-card__info">{{personalData?.mobileNumber}}</div>
+      <div class="mf-card__edit" (click)="editMobileDetails()"><img src="assets/images/button-edit.svg"></div>
     </div>
+    <div class="mf-card">
+      <div class="mf-card__title">{{'EDIT_PROFILE.MF_EMAIL_ADDRESS' | translate}}</div>
+      <div class="mf-card__info">{{personalData?.email}}</div>
+      <div (click)="editEmailDetails()" class="mf-card__edit"><img src="assets/images/button-edit.svg"></div>
+    </div>
+  </div>
 </div>

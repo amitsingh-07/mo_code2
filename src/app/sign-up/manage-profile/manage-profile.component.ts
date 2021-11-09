@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from '../../shared/footer/footer.service';
@@ -24,15 +24,15 @@ export class ManageProfileComponent implements OnInit {
     private translate: TranslateService,
     private signUpService: SignUpService,
     private router: Router
-  ) {     
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
-    this.pageTitle = this.translate.instant('EDIT_PROFILE.MANAGE_PROFILE');
-    this.setPageTitle(this.pageTitle);
-  });
-}
+      this.pageTitle = this.translate.instant('EDIT_PROFILE.MANAGE_PROFILE');
+      this.setPageTitle(this.pageTitle);
+    });
+  }
 
-  ngOnInit(){
+  ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(102);
     this.footerService.setFooterVisibility(false);
@@ -55,7 +55,7 @@ export class ManageProfileComponent implements OnInit {
           }
           this.empolymentDetails = null;
         }
-      } 
+      }
     });
   }
   editMobileDetails() {

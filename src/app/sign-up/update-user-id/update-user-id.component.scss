@@ -1,5 +1,5 @@
-@import "../../../variables";
-@import "../../../mixins";
+@import '../../../variables';
+@import '../../../mixins';
 
 app-update-user-id {
   .email-text {
@@ -15,7 +15,7 @@ app-update-user-id {
       padding-top: 80px;
     }
 
-    @include min568max767{
+    @include min568max767 {
       padding-top: 90px;
     }
   }
@@ -64,7 +64,8 @@ app-update-user-id {
         border: solid 1px $aqua-squeeze-color;
         background-color: $aqua-squeeze-color;
         cursor: not-allowed;
-        .form-control{
+
+        .form-control {
           cursor: not-allowed;
         }
       }
@@ -92,12 +93,14 @@ app-update-user-id {
   .dropdown-control {
     &.form-control-left {
       cursor: not-allowed;
+
       .btn-dropdown {
         &:disabled {
           border: solid 1px $aqua-squeeze-color !important;
           background-color: $aqua-squeeze-color;
           color: $teal-color !important;
           cursor: not-allowed;
+
           &:after {
             display: none;
           }
@@ -156,7 +159,7 @@ app-update-user-id {
     z-index: 1060;
     width: 100%;
 
-    .error-tooltip__desc{
+    .error-tooltip__desc {
       padding: 15px 10px !important;
     }
 

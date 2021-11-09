@@ -1,9 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { environment } from '../../environments/environment';
 import { ConfigService, IConfig } from '../config/config.service';
-import { GuideMeService } from '../guide-me/guide-me.service';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SelectedPlansService } from '../shared/Services/selected-plans.service';
@@ -12,8 +10,6 @@ import { IEmailRequestOTP, IResendEmail, ISignUp, IUpdateMobileNumber, IVerifyCo
 import { WillWritingService } from '../will-writing/will-writing.service';
 import { appConstants } from './../app.constants';
 import { AppService } from './../app.service';
-import { DirectService } from './../direct/direct.service';
-import { SignUpFormData } from './sign-up-form-data';
 import { SignUpService } from './sign-up.service';
 import { Util } from '../shared/utils/util';
 import { HubspotService } from '../shared/analytics/hubspot.service';
@@ -23,15 +19,14 @@ import { SIGN_UP_CONFIG } from './sign-up.constant';
   providedIn: 'root'
 })
 export class SignUpApiService {
-  private signUpFormData: SignUpFormData = new SignUpFormData();
   private emailVerifyUrl: String;
 
   constructor(
-    private http: HttpClient, private configService: ConfigService, private hubspotService: HubspotService,
+    private configService: ConfigService, private hubspotService: HubspotService,
     private apiService: ApiService, private authService: AuthenticationService,
-    private signUpService: SignUpService, private guideMeService: GuideMeService,
+    private signUpService: SignUpService,
     private selectedPlansService: SelectedPlansService, public cryptoService: CryptoService,
-    private directService: DirectService, private appService: AppService, private willWritingService: WillWritingService
+    private appService: AppService, private willWritingService: WillWritingService
   ) {
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.emailVerifyUrl = config.verifyEmailUrl;

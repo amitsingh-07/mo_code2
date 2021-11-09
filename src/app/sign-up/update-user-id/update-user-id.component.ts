@@ -36,11 +36,11 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
 
   updateUserIdForm: FormGroup;
   formValues: any;
-  defaultCountryCode;
-  countryCodeOptions;
-  OldCountryCode;
-  OldMobileNumber;
-  OldEmail;
+  defaultCountryCode: any;
+  countryCodeOptions: any;
+  oldCountryCode: any;
+  oldMobileNumber: any;
+  oldEmail: any;
   updateMobile: boolean;
   updateEmail: boolean;
   capslockFocus: boolean;
@@ -133,9 +133,9 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
           }
 
           this.signUpService.setContactDetails(personalData.countryCode, personalData.mobileNumber, personalData.email);
-          this.OldCountryCode = personalData.countryCode;
-          this.OldEmail = personalData.email;
-          this.OldMobileNumber = personalData.mobileNumber;
+          this.oldCountryCode = personalData.countryCode;
+          this.oldEmail = personalData.email;
+          this.oldMobileNumber = personalData.mobileNumber;
         }
       });
   }
@@ -161,9 +161,9 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
   buildUpdateAccountForm() {
     this.formValues = this.signUpService.getAccountInfo();
     this.formValues.countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.defaultCountryCode;
-    this.OldCountryCode = this.formValues.OldCountryCode;
-    this.OldMobileNumber = this.formValues.OldMobileNumber;
-    this.OldEmail = this.formValues.OldEmail;
+    this.oldCountryCode = this.formValues.OldCountryCode;
+    this.oldMobileNumber = this.formValues.OldMobileNumber;
+    this.oldEmail = this.formValues.OldEmail;
     if (this.checkEditType()) {
       this.updateUserIdForm = this.formBuilder.group({
         email: [this.formValues.email],
@@ -173,7 +173,7 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
         encryptedPassword: ['']
       }, {
         validator: [this.validateMatchPasswordEmail(), ValidateEmailChange({
-          'email': this.OldEmail
+          'email': this.oldEmail
         })]
       });
     } else {
@@ -186,7 +186,7 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
         encryptedPassword: ['']
       }, {
         validator: [this.validateMatchPasswordEmail(), ValidateMobileChange({
-          'mobileNumber': this.OldMobileNumber,
+          'mobileNumber': this.oldMobileNumber,
         })]
       });
     }
@@ -210,11 +210,11 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
     } else {
       this.updateUserIdForm.controls.encryptedPassword.setValue(this.cryptoService.encrypt(this.updateUserIdForm.controls.password.value));
       if (this.checkEditType()) {
-        if (this.OldEmail !== form.value.newEmail) {
+        if (this.oldEmail !== form.value.newEmail) {
           this.updateEmail = true;
         }
       } else {
-        if (this.OldMobileNumber !== form.value.newMobileNumber) {
+        if (this.oldMobileNumber !== form.value.newMobileNumber) {
           this.updateMobile = true;
         }
       }
