@@ -138,9 +138,9 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: SIGN_UP_ROUTES.UPDATE_USER_ID,
+    path: SIGN_UP_ROUTES.UPDATE_USER_DETAILS + '/:editType',
     component: UpdateUserIdComponent,
-    canActivate: [AuthGuard, TwoFactorAuthGuardService]
+    canActivate: [AuthGuard]
   },
   {
     path: SIGN_UP_ROUTES.ACCOUNT_UPDATED,
