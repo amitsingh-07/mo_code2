@@ -22,6 +22,7 @@ import { ValidateMobileChange, ValidateEmailChange } from './formGroup.change.va
 import { Util } from '../../shared/utils/util';
 import { CryptoService } from '../../shared/utils/crypto';
 import { LoaderService } from '../../shared/components/loader/loader.service';
+import { SIGN_UP_CONFIG } from '../sign-up.constant';
 
 @Component({
   selector: 'app-update-user-id',
@@ -228,7 +229,7 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
     const mobileControl = this.updateUserIdForm.controls['newMobileNumber'];
     this.defaultCountryCode = countryCode;
     this.updateUserIdForm.controls['countryCode'].setValue(countryCode);
-    if (countryCode === '+65') {
+    if (countryCode === SIGN_UP_CONFIG.SINGAPORE_COUNTRY_CODE) {
       mobileControl.setValidators([Validators.required, ValidateRange]);
     } else {
       mobileControl.setValidators([Validators.required, Validators.pattern(RegexConstants.CharactersLimit)]);
@@ -338,8 +339,9 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
     this.capslockFocus = false;
   }
 
+  // CHECK ROUTE TYPE, EMAIL OR MOBILE
   checkEditType() {
-    if (this.editType === 'email') {
+    if (this.editType === SIGN_UP_CONFIG.EDIT_ROUTE_TYPE.EMAIL) {
       return true;
     }
     return false;
@@ -385,6 +387,7 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
     event.preventDefault();
   }
 
+  // DISABLE 'APPLY CHANGES' BTN IF EMPTY OR UNMATCHED FIELDS
   isApplyDisabled() {
     let isDisabled = false;
     if (this.checkEditType()) {
