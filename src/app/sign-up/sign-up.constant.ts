@@ -91,5 +91,10 @@ export let SIGN_UP_CONFIG = {
     },
     AUTH_2FA_ENABLED: true,
     ROLE_2FA: 'ROLE_2FA',
-    LOGIN_TYPE_2FA: 'MANUAL'
+    LOGIN_TYPE_2FA: 'MANUAL',
+    EDIT_ROUTE_TYPE: {
+      EMAIL: 'email',
+      MOBILE: 'mobile'
+    },
+    SINGAPORE_COUNTRY_CODE: '+65'
 };
