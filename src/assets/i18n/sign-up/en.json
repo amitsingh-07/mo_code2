@@ -188,9 +188,7 @@
     "TITLE": "Account Updated!",
     "SUB_TITLE1": "Mobile number updated successfully",
     "SUB_TITLE2": "E-mail verification link has been sent to your email address. Please verify",
-    "EDIT_PROFILE": "Back to Edit Profile",
-    "EMAIL_CHANGED": "Email Address Successfully Changed!",
-    "MOBILE_CHANGED": "Mobile Number Successfully Changed!"
+    "EDIT_PROFILE": "Back to Edit Profile"
   },
   "LOGIN": {
     "WELCOME_LBL": "Welcome to MoneyOwl!",
