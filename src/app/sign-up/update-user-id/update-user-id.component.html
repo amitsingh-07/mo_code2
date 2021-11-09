@@ -42,12 +42,14 @@
                 </div>
               </div>
               <div class="alert-msg" *ngIf="submitted && updateUserIdForm.controls.newMobileNumber.errors">
-                <div *ngIf="updateUserIdForm.controls.newMobileNumber.errors?.required">
+                <div
+                  *ngIf="updateUserIdForm.controls.newMobileNumber.errors && updateUserIdForm.controls.newMobileNumber.errors.required">
                   <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                  <span
-                    class="err-msg">{{ 'UPDATE_USER_ID.MOBILE_NUMBER_VALIDATIONS.ERROR.REQUIRED' | translate}}</span>
+                  <span class="err-msg">
+                    {{ 'UPDATE_USER_ID.MOBILE_NUMBER_VALIDATIONS.ERROR.REQUIRED' | translate}}</span>
                 </div>
-                <div *ngIf="updateUserIdForm.controls.newMobileNumber.errors?.mobileRange">
+                <div
+                  *ngIf="updateUserIdForm.controls.newMobileNumber.errors && updateUserIdForm.controls.newMobileNumber.errors.mobileRange">
                   <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                   <span class="err-msg">{{ 'UPDATE_USER_ID.MOBILE_NUMBER_VALIDATIONS.ERROR.INVALID' | translate}}</span>
                 </div>
