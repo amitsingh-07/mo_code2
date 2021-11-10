@@ -30,7 +30,9 @@
     "VAlID_UNTIL": "Valid until ",
     "APPLIED_ON": "Applied on ",
     "REMOVE_PROMO": "Remove Promo",
-    "USE_PROMO": "Use Promo"
+    "USE_PROMO": "Use Promo",
+    "PROMO_CODE_OPEN_BRACKET": " (",
+    "PROMO_CODE_CLOSE_BRACKET": ")"
   },
   "PROMO_CODE_OVERWRITE": {
     "OVERWRITE_TXT_1": "<p>You have an existing promo code applied with ",
