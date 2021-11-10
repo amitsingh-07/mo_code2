@@ -385,7 +385,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
    */
   editNumber() {
     if (this.editProfile) {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_ID]);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_DETAILS + '/' + SIGN_UP_CONFIG.EDIT_ROUTE_TYPE.MOBILE]);
     } else {
       const ref = this.modal.open(EditMobileNumberComponent, {
         centered: true, backdrop: 'static',
