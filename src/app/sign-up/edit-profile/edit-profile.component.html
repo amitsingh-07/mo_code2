@@ -14,7 +14,7 @@
                     <div class="circle"> {{compinedName}} </div>
                     <div class="heading mb10">{{fullName|titlecase}}</div>
                     <div class="mobile-number">
-                        {{'EDIT_PROFILE.MOBILE_NO' | translate}} {{personalData.mobileNumber}}   
+                        {{'EDIT_PROFILE.MOBILE_NO' | translate}} {{personalData?.countryCode}} {{personalData.mobileNumber}}   
                     </div>
                     <div class="email-address">
                         {{'EDIT_PROFILE.EMAIL_ADDRESS' | translate}} {{personalData.email}}
