@@ -3,38 +3,188 @@
   <div class="content">
     <div class="row">
       <div class="col-12">
-        <div class="update-user-id-text pb10">{{ 'UPDATE_USER_ID.YOUR_USER_ID' | translate}}</div>
         <form id="updateUserIdForm" name="updateUserIdForm" [formGroup]="updateUserIdForm">
-          <div class="flex-row mb20">
-            <div class="flex-col-4 stretch mr15">
-              <div class="dropdown-control form-control-left" style="pointer-events:none;">
-                <div ngbDropdown id="countryCode">
-                  <button class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false">
-                    <span>{{defaultCountryCode}}</span>
-                  </button>
-                  <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1" style="height: auto;">
-                    <button class="dropdown-item" *ngFor="let option of countryCodeOptions" (click)="setCountryCode(option.code)">{{option.code}}</button>
-                  </div>
+          <div class="mobile-block" *ngIf="!checkEditType()">
+            <div class="update-user-id-text-email">{{ 'UPDATE_USER_ID.YOUR_USER_ID' | translate}}</div>
+            <div class="flex-row mb15 stretch existing-data">
+              <div class=" flex-col-12">
+                <div class="form-group-floating-label disabled">
+                  <input type="input" id="mobileNumber" #mobileNumber formControlName="mobileNumber"
+                    class="form-control" disabled>
+                  <label class="form-control-placeholder"
+                    for="name">{{ 'UPDATE_USER_ID.CURRENT_MOBILE_NUMBER' | translate}}</label>
                 </div>
               </div>
             </div>
-            <div class="flex-col-7 stretch" [formGroup]="updateUserIdForm">
-              <div [ngClass]="{'inline-error':editNumber}" class="form-group-floating-label">
-                <input type="input" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber" class="form-control"
-                  (keyup)="onlyNumber(mobileNumber)" required>
-                <label class="form-control-placeholder" for="name">{{ 'UPDATE_USER_ID.MOBILE_NUMBER' | translate}}</label>
+            <div class="flex-row mb15">
+              <div class="flex-col-3 stretch mr15">
+                <div class="dropdown-control form-control-left" style="pointer-events:none;">
+                  <div ngbDropdown id="countryCode">
+                    <button class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle
+                      aria-expanded="false" disabled>
+                      <span>{{defaultCountryCode}}</span>
+                    </button>
+                    <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1" style="height: auto;">
+                      <button class="dropdown-item" *ngFor="let option of countryCodeOptions"
+                        (click)="setCountryCode(option.code)">{{option.code}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-col-8 stretch">
+                <div class="form-group-floating-label"
+                  [ngClass]="{'inline-error': submitted && updateUserIdForm.controls.newMobileNumber.errors}">
+                  <input type="input" maxlength="15" id="newMobileNumber" #newMobileNumber
+                    formControlName="newMobileNumber" class="form-control"
+                    (keyup)="onlyNumber(newMobileNumber, 'newMobileNumber')" required autocomplete="off">
+                  <label class="form-control-placeholder"
+                    for="name">{{ 'UPDATE_USER_ID.NEW_MOBILE_NUMBER' | translate}}</label>
+                </div>
+              </div>
+              <div class="alert-msg" *ngIf="submitted && updateUserIdForm.controls.newMobileNumber.errors">
+                <div
+                  *ngIf="updateUserIdForm.controls.newMobileNumber.errors && updateUserIdForm.controls.newMobileNumber.errors.required">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">
+                    {{ 'UPDATE_USER_ID.MOBILE_NUMBER_VALIDATIONS.ERROR.REQUIRED' | translate}}</span>
+                </div>
+                <div
+                  *ngIf="updateUserIdForm.controls.newMobileNumber.errors && updateUserIdForm.controls.newMobileNumber.errors.mobileRange">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{ 'UPDATE_USER_ID.MOBILE_NUMBER_VALIDATIONS.ERROR.INVALID' | translate}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex-row mb15">
+              <div class="flex-col-3 stretch mr15">
+                <div class="dropdown-control form-control-left" style="pointer-events:none;">
+                  <div ngbDropdown id="countryCode">
+                    <button class="btn btn-dropdown without-border" id="dropdownBasic2" ngbDropdownToggle
+                      aria-expanded="false" disabled>
+                      <span>{{defaultCountryCode}}</span>
+                    </button>
+                    <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic2" style="height: auto;">
+                      <button class="dropdown-item" *ngFor="let option of countryCodeOptions"
+                        (click)="setCountryCode(option.code)">{{option.code}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-col-8 stretch">
+                <div
+                  [ngClass]="{'inline-error':  (submitted && updateUserIdForm.controls.confirmMobileNumber.errors?.required) || (confirmMobileFocus && !updateUserIdForm.controls.newMobileNumber.errors && updateUserIdForm.controls.confirmMobileNumber.errors?.mobileMismatch)}"
+                  class="form-group-floating-label">
+                  <input type="input" maxlength="15" id="confirmMobileNumber" #confirmMobileNumber
+                    formControlName="confirmMobileNumber" class="form-control" required
+                    (paste)="onPaste($event, 'confirmMobileNumber')" (focus)="showValidity('confirmMobileNumber')"
+                    (blur)="showValidity('confirmMobileNumber')"
+                    (keyup)="onlyNumber(confirmMobileNumber, 'confirmMobileNumber')" autocomplete="off">
+                  <label class="form-control-placeholder"
+                    for="name">{{ 'UPDATE_USER_ID.CONFIRM_MOBILE_NUMBER' | translate}}</label>
+                  <div class="error-tooltip"
+                    *ngIf="confirmMobileFocus && updateUserIdForm.controls.confirmMobileNumber.errors?.mobileMismatch">
+                    <div class="error-tooltip__desc">
+                      <p class="error-tooltip__desc-one">
+                        <span class="error-tooltip__title__warning-icon">!</span>
+                        {{ 'UPDATE_USER_ID.CONFIRM_MOBILE_ERROR.MUST_MATCH' | translate}}</p>
+                      <span class="error-tooltip__arrow"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="alert-msg">
+                <div
+                  *ngIf="!confirmMobileFocus && updateUserIdForm.controls.confirmMobileNumber.errors?.mobileMismatch">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{ 'UPDATE_USER_ID.CONFIRM_MOBILE_ERROR.MUST_MATCH' | translate}}</span>
+                </div>
               </div>
             </div>
           </div>
-          <div class="flex-row mb20">
-            <div class="flex-col-12 stretch" [formGroup]="updateUserIdForm">
-              <div class="form-group-floating-label">
-                <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email" required>
-                <label class="form-control-placeholder" for="lastName">{{ 'UPDATE_USER_ID.EMAIL' | translate}}</label>
+          <div class="mail-block" *ngIf="checkEditType()">
+            <div class="update-user-id-text-email">{{ 'UPDATE_USER_ID.EMAIL_TXT_LBL' | translate}}</div>
+            <div class="flex-row mb15 existing-data">
+              <div class="flex-col-12 stretch">
+                <div class="form-group-floating-label disabled">
+                  <input type="text" id="email" class="form-control" disabled #email required formControlName="email">
+                  <label class="form-control-placeholder" for="lastName">{{ 'UPDATE_USER_ID.EMAIL' | translate}}</label>
+                </div>
+              </div>
+            </div>
+            <div class="flex-row mb15">
+              <div class="flex-col-12 stretch">
+                <div class="form-group-floating-label"
+                  [ngClass]="{'inline-error': submitted && updateUserIdForm.controls.newEmail.errors}">
+                  <input type="text" id="newEmail" autocomplete="off" class="form-control email-text" #newEmail
+                    formControlName="newEmail" (paste)="onPaste($event, 'newEmail')" required
+                    (keyup)="onKeyupEvent($event, 'newEmail')">
+                  <label class="form-control-placeholder"
+                    for="lastName">{{ 'UPDATE_USER_ID.NEW_EMAIL' | translate}}</label>
+                </div>
+              </div>
+              <div class="alert-msg" *ngIf="submitted && updateUserIdForm.controls.newEmail.errors">
+                <div *ngIf="updateUserIdForm.controls.newEmail.errors?.required">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{ 'UPDATE_USER_ID.EMAIL_VALIDATIONS.ERROR.REQUIRED' | translate}}</span>
+                </div>
+                <div *ngIf="updateUserIdForm.controls.newEmail.errors?.email">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{ 'UPDATE_USER_ID.EMAIL_VALIDATIONS.ERROR.INVALID' | translate}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex-row mb15">
+              <div class="flex-col-12 stretch">
+                <div class="form-group-floating-label"
+                  [ngClass]="{'inline-error':  (submitted && updateUserIdForm.controls.confirmEmail.errors?.required) || (confirmEmailFocus && !updateUserIdForm.controls.newEmail.errors && updateUserIdForm.controls.confirmEmail.errors?.emailMismatch)
+                  || (!confirmEmailFocus && !updateUserIdForm.controls.newEmail.errors && updateUserIdForm.controls.confirmEmail.errors?.emailMismatch)}">
+                  <input type="text" id="confirmEmail" class="form-control email-text" #confirmEmail
+                    formControlName="confirmEmail" autocomplete="off" (paste)="onPaste($event, 'confirmEmail')"
+                    (focus)="showValidity('confirmEmail')" (blur)="showValidity('confirmEmail')"
+                    (keyup)="onKeyupEvent($event, 'confirmEmail')" required>
+                  <label class="form-control-placeholder"
+                    for="lastName">{{ 'UPDATE_USER_ID.CONFIRM_EMAIL' | translate}}</label>
+                  <div class="error-tooltip"
+                    *ngIf="confirmEmailFocus && updateUserIdForm.controls.confirmEmail.errors?.emailMismatch">
+                    <div class="error-tooltip__desc">
+                      <p class="error-tooltip__desc-one">
+                        <span class="error-tooltip__title__warning-icon">!</span>
+                        {{ 'UPDATE_USER_ID.CONFIRM_EMAIL_ERROR.MUST_MATCH' | translate}}</p>
+                      <span class="error-tooltip__arrow"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="alert-msg">
+                <div *ngIf="!confirmEmailFocus && updateUserIdForm.controls.confirmEmail.errors?.emailMismatch">
+                  <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                  <span class="err-msg">{{ 'UPDATE_USER_ID.CONFIRM_EMAIL_ERROR.MUST_MATCH' | translate}}</span>
+                </div>
               </div>
             </div>
           </div>
-          <button id="nextDependentBtn" (click)="save(updateUserIdForm)" type="button" class="btn btn__footer--fixed btn-primary width100">{{
+          <div class="update-user-id-text pt10">{{ 'UPDATE_USER_ID.AUTHENTICATE' | translate}}</div>
+          <div class="flex-row mb15">
+            <div class="flex-col-12 stretch">
+              <div class="form-group-floating-label" (capsLock)="capsOn=$event">
+                <input type="password" formControlName="password" appInputFocus #password id="password_txt"
+                  class="form-control" required (focus)="onFocus()" (blur)="onBlur()" autocomplete="new-password">
+                <label class="form-control-placeholder" for="login_password_txt" id="login_password_lbl">{{
+                  'UPDATE_USER_ID.PASSWORD' | translate}}</label>
+                <span id="login_showpassword_button" (click)="showHidePassword(password)"
+                  [ngClass]="(password.type === 'text') ? 'show-password' : 'hide-password'">
+                </span>
+              </div>
+            </div>
+            <div class="alert-msg" *ngIf="capsOn && capslockFocus">
+              <div>
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{'COMMON.CAPS_LOCK_IS_ON' | translate}}</span>
+              </div>
+            </div>
+          </div>
+          <button id="nextDependentBtn" [disabled]="isApplyDisabled()" (click)="save(updateUserIdForm)" type="button"
+            class="btn btn__footer--fixed btn-primary width100">{{
             'UPDATE_USER_ID.APPLY_CHANGES' | translate }}</button>
         </form>
       </div>

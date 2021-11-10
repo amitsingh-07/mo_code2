@@ -3,6 +3,14 @@ export class CreateAccountFormError {
     notChanged: {
       errorTitle: 'Not Changed',
       errorMessage: 'Update Mobile Number / Email address'
+    },
+    emailNotChanged: {
+      errorTitle: 'Email address is not Updated',
+      errorMessage: 'Please review the email address that you have provided and try again'
+    },
+    mobileNotChanged: {
+      errorTitle: 'Mobile number is not Updated',
+      errorMessage: 'Please review the mobile number that you have provided and try again'
     }
   };
   formFieldErrors: object = {
@@ -32,6 +40,21 @@ export class CreateAccountFormError {
         errorMessage: 'Update Mobile Number / Email address'
       }
     },
+    newMobileNumber: {
+      required: {
+        // tslint:disable-next-line:no-duplicate-string
+        errorTitle: 'Invalid Mobile Number',
+        errorMessage: 'Please enter your mobile number'
+      },
+      pattern: {
+        errorTitle: 'Invalid Mobile Number',
+        errorMessage: 'Mobile number field should container 8 to 15 digits'
+      },
+      mobileRange: {
+        errorTitle: 'Invalid Mobile Number',
+        errorMessage: 'Invalid Mobile Number'
+      },
+    },
     firstName: {
       required: {
         errorTitle: 'Invalid First Name',
@@ -57,6 +80,16 @@ export class CreateAccountFormError {
         errorTitle: 'Invalid E-mail',
         errorMessage: 'Please enter your email address'
       },
+      email: {
+        errorTitle: 'Invalid E-mail',
+        errorMessage: 'Please enter a valid email address in the format yourname@example.com'
+      },
+      notChanged: {
+        errorTitle: 'Not Changed',
+        errorMessage: 'Update Mobile Number / Email address'
+      }
+    },
+    newEmail: {
       email: {
         errorTitle: 'Invalid E-mail',
         errorMessage: 'Please enter a valid email address in the format yourname@example.com'

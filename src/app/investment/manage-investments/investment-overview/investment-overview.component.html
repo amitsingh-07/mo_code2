@@ -3,16 +3,17 @@
     <div class="flex-col-1">
       <img src="assets/images/topupwithdraw/check_orange.svg" alt="" />
     </div>
-    <div [ngClass]="{'flex-col-8': (toastMsg && toastMsg.link_label), 'flex-col-11': !(toastMsg && toastMsg.link_label)}" >
-      <div class="toast-msg"  [ngClass]="{'toast-msg-full': !(toastMsg && toastMsg.link_label)}">{{toastMsg?.desc}}</div>
+    <div
+      [ngClass]="{'flex-col-8': (toastMsg && toastMsg.link_label), 'flex-col-11': !(toastMsg && toastMsg.link_label)}">
+      <div class="toast-msg" [ngClass]="{'toast-msg-full': !(toastMsg && toastMsg.link_label)}">{{toastMsg?.desc}}</div>
     </div>
     <div class="flex-col-3 cursor_pointer" *ngIf="toastMsg?.link_label" (click)="yourPortfolioDynamic()">
       {{toastMsg?.link_label}}</div>
   </div>
 </div>
-<div class="record-date-banner" *ngIf="((selectedCategory === portfolioCategories.ALL || 
-selectedCategory === portfolioCategories.WISEINCOME) && (wiseIncomePortfolio && wiseIncomePortfolio.length)) && 
-showBannerInfo">
+<div class="record-date-banner" *ngIf="(selectedCategory === portfolioCategories.ALL || 
+selectedCategory === portfolioCategories.WISEINCOME) && (checkIfInvestedWiseIncomePortfolio(wiseIncomePortfolio) &&  
+showBannerInfo)">
   <div class="record-date-banner__text" [ngClass]="{'full-content': showFullContent}">
     <img src="assets/images/alert-black.svg" />
     <span [innerHTML]="wiseIncomeInfo"></span>
@@ -149,7 +150,8 @@ showBannerInfo">
   [portfolioCategory]="selectedCategory" [showTotalReturn]="investmentoverviewlist.showTotalReturn"
   (detailSelected)="yourPortfolio($event)" (investAgainSelected)="investAgain($event)"
   (transferInstSelected)="ViewTransferInst($event)" (topUpSelected)="gotoTopUp($event)"
-  [portfolioData]="investmentoverviewlist" (emitToastMessage)="emitToastMessage($event)" (emitMessage)="emitMessage($event)">
+  [portfolioData]="investmentoverviewlist" (emitToastMessage)="emitToastMessage($event)"
+  (emitMessage)="emitMessage($event)">
 </app-portfolio-list>
 <div *ngIf="investmentoverviewlist" class="srs-block">
   <div class="container-fluid max-width--1024">
