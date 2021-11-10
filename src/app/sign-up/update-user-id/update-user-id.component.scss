@@ -111,6 +111,7 @@ app-update-user-id {
 
   .btn:disabled {
     box-shadow: none !important;
+    color: $btn-disabled-teal-color;
   }
 
   .btn-primary {
