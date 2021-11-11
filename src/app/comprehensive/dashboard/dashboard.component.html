@@ -114,7 +114,7 @@
             <!-- LIMITED OFFER -->
             <div class="flex-row align-start"
               [ngClass]="{'limit-offer' : getComprehensiveSummaryDashboard && getComprehensiveSummaryDashboard.showPaymentDashBoard && !paymentWaived}"
-              *ngIf="getComprehensiveSummaryDashboard && getComprehensiveSummaryDashboard.showPaymentDashBoard && !paymentWaived">
+              *ngIf="getComprehensiveSummaryDashboard && getComprehensiveSummaryDashboard.showPaymentDashBoard && !paymentWaived && getComprehensiveSummaryDashboard.paymentAmount && getComprehensiveSummaryDashboard.paymentAmount > 0">
               <div class="flex-col-12">
                 <div class="limited_value"><img src='assets/images/comprehensive/limited-offer.svg'>
                   {{ getComprehensiveSummaryDashboard.paymentAmount | currency:'USD':'symbol-narrow':'1.0-2'}}{{ 'COMPREHENSIVE.DASHBOARD.INCL_GST' | translate}}
