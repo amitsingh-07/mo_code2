@@ -217,7 +217,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       captcha: ['', [Validators.required]],
       referralCode: [''],
       gender: [myInfoGender, [Validators.required]],
-      dob: [myInfoDob,, [Validators.required]]
+      dob: [myInfoDob, [Validators.required]]
     }, { validator: this.validateMatchPasswordEmail() })
     this.buildFormSingPass();
     return true;
