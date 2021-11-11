@@ -39,6 +39,8 @@ export interface ICustomer {
     acceptMarketingNotifications: boolean;
     uin?:string;
     fullName?:string;
+    dob: string;
+    gender: string;
   
 }
 

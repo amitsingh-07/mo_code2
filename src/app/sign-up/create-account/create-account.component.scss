@@ -30,7 +30,6 @@ app-create-account {
   .form-group-captcha-wrapper {
     display: flex;
     align-items: center;
-    height: 60%;
   }
 
   .link-white {
@@ -207,7 +206,7 @@ app-create-account {
     color: $silver-grey-color !important;
   }
 
-  .btn:disabled, .btn:disabled:hover {
+  .btn-primary.btn:disabled, .btn-primary.btn:disabled:hover {
     border: solid 1px $btn-disabled-teal-color !important;
     background-color: $btn-disabled-light-bg !important;
     color: $btn-disabled-teal-color !important;
@@ -241,6 +240,7 @@ app-create-account {
         -webkit-box-shadow: inset 0 0 0px  $iceberg-blue-color !important;
         padding-bottom: 9px;
         padding-top: 12px;
+        cursor: not-allowed;
         &:hover {
           background-color: $iceberg-blue-color !important;
         }
@@ -248,5 +248,59 @@ app-create-account {
     }
     
   }
+  .form-control{
+    &.gender{
+      padding: 0.9rem !important;
+      color: $teal-color;
+      flex-direction: row;
+      &:disabled,
+      &.disabled {
+        color: $app-backgrnd-color !important;
+        -webkit-text-fill-color:$app-backgrnd-color !important;
+        background-color: $iceberg-blue-color !important;
+        opacity: 1 !important;
+        box-shadow: inset 0 0 0px  $iceberg-blue-color;
+        -webkit-box-shadow: inset 0 0 0px  $iceberg-blue-color !important;
+        cursor: not-allowed;
+        &:hover {
+          background-color: $iceberg-blue-color !important;
+        }
+        input{
+          &:disabled{
+            color: $app-backgrnd-color !important;
+            -webkit-text-fill-color:$app-backgrnd-color !important;
+            background-color: $iceberg-blue-color !important;
+            opacity: 1 !important;
+            box-shadow: inset 0 0 0px  $iceberg-blue-color;
+            -webkit-box-shadow: inset 0 0 0px  $iceberg-blue-color !important;
+            cursor: not-allowed;
+            &:hover {
+              background-color: $iceberg-blue-color !important;
+            }
+          }
+        }
+        input[type=radio]:disabled + label{
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+
+  .dob{
+    .form-group-floating-label{
+      .datepicker-control{
+        .input-group{
+          flex-wrap: nowrap;
+        }
+        .form-control-placeholder{
+           top: 20px;
+        }
+          .form-control:focus + .form-control-placeholder , 
+          .form-control:valid + .form-control-placeholder {
+            top: 14px
+          }
+      }
+    }
+    }
 }
 

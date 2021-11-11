@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from '../../app.service';
-import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { FileUtil } from '../../shared/utils/file.util';
 import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
@@ -100,7 +99,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
     this.comprehensiveLiteEnabled = false;
     this.getCurrentVersionType = COMPREHENSIVE_CONST.VERSION_TYPE.FULL;
     this.isCorporate = this.comprehensiveService.isCorporateRole();
-    this.setComprehensivePlan(true);
+    this.setComprehensivePlan();
     this.getReferralCodeData();
     this.reportStatusTypes = COMPREHENSIVE_CONST.REPORT_STATUS;
   }
@@ -234,7 +233,7 @@ export class ComprehensiveDashboardComponent implements OnInit {
       }
     }
   }
-  setComprehensivePlan(versionType: boolean) {
+  setComprehensivePlan() {
     this.setComprehensiveDashboard();
   }
   setComprehensiveSummary(routerEnabled: boolean, routerUrlPath: any) {
@@ -327,6 +326,9 @@ export class ComprehensiveDashboardComponent implements OnInit {
       if (dashboardData && dashboardData.objectList[0]) {
         this.getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', this.getCurrentVersionType);
         if (this.getComprehensiveSummaryDashboard !== '') {
+          if( this.getComprehensiveSummaryDashboard.specialPromoCode ) {
+            this.isCorporate = this.getComprehensiveSummaryDashboard.specialPromoCode;
+          }
           this.islocked = this.getComprehensiveSummaryDashboard.isLocked;
           this.isSpeakToAdvisor = (this.isCorporate && (this.getComprehensiveSummaryDashboard.advisorPaymentStatus === '' || this.getComprehensiveSummaryDashboard.advisorPaymentStatus === null));
           this.isAdvisorAppointment = (this.islocked && this.isCorporate && this.getComprehensiveSummaryDashboard.advisorPaymentStatus
