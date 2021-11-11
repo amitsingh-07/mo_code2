@@ -219,26 +219,8 @@ app-update-user-id {
   .mail-block{
     .error-tooltip {
       bottom: 63px !important;
-      // @include min300max350{
-      //   bottom: 60px !important;
-      // }
-      // @include min350max375{
-      //   bottom: 60px !important;
-      // }
-      // @include iphone6{
-      //   bottom: 60px !important;
-      // }
       .error-tooltip__desc {
         padding: 15px 10px !important;
-        // @include min300max350{
-        //   padding: 10px !important;
-        // }
-        // @include min350max375{
-        //   padding: 10px !important;
-        // }
-        // @include iphone6{
-        //   padding: 10px !important;
-        // }
       }
     }
   }
