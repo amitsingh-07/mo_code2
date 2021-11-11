@@ -139,7 +139,7 @@
                   <label for="gender" id="invPersInfoLbl8" class="mb0">{{ 'CREATE_ACCOUNT.FORM.GENDER.LABEL' | translate}}</label>
                 </div>
                 <div class="checkbox-button one-label mr10">
-                  <input type="radio" value=male class="field radio"  name="gender" id="gender_type_1" formControlName="gender" 
+                  <input type="radio" value="male" class="field radio"  name="gender" id="gender_type_1" formControlName="gender" 
                   [disabled]="formValue && formValue.isMyInfoEnabled && formValue.gender"/>
                   <label for="gender_type_1">
                     <div><span class="input-label-black">{{ 'CREATE_ACCOUNT.FORM.GENDER.MALE' | translate}}</span>
@@ -147,7 +147,7 @@
                   </label>
                 </div>
                 <div class="checkbox-button one-label">
-                  <input type="radio" value=female class="field radio" name="gender" id="gender_type_2" formControlName="gender" 
+                  <input type="radio" value="female" class="field radio" name="gender" id="gender_type_2" formControlName="gender" 
                   [disabled]="formValue && formValue.isMyInfoEnabled && formValue.gender"/>
                   <label for="gender_type_2">
                     <div><span class="input-label-black">{{ 'CREATE_ACCOUNT.FORM.GENDER.FEMALE' | translate}}</span>
