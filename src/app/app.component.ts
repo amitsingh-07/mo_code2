@@ -1,18 +1,14 @@
 import { Location } from '@angular/common';
 import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
-import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 
-import { AppService } from './app.service';
 import { IComponentCanDeactivate } from './changes.guard';
 import { ConfigService, IConfig } from './config/config.service';
-import { FBPixelService } from './shared/analytics/fb-pixel.service';
 import { GoogleAnalyticsService } from './shared/analytics/google-analytics.service';
 import { AuthenticationService } from './shared/http/auth/authentication.service';
-import { LoggerService } from './shared/logger/logger.service';
 import { DiyModalComponent } from './shared/modal/diy-modal/diy-modal.component';
 import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.component';
 import { TermsModalComponent } from './shared/modal/terms-modal/terms-modal.component';
@@ -20,11 +16,9 @@ import { INavbarConfig } from './shared/navbar/config/navbar.config.interface';
 import { NavbarConfig } from './shared/navbar/config/presets';
 import { NavbarService } from './shared/navbar/navbar.service';
 import { RoutingService } from './shared/Services/routing.service';
-import { SignUpService } from './sign-up/sign-up.service';
 import { SessionsService } from './shared/Services/sessions/sessions.service';
-import { HubspotService } from './shared/analytics/hubspot.service';
 import { appConstants } from './app.constants';
-
+import { UnsupportedDeviceModalComponent } from './shared/modal/unsupported-device-modal/unsupported-device-modal.component';
 
 declare global {
   interface Window {
@@ -48,12 +42,11 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
   navbarMode = null;
 
   constructor(
-    private log: LoggerService, private translate: TranslateService, private appService: AppService,
-    private signUpService: SignUpService, private navbarService: NavbarService, private _location: Location,
-    private facebookPixelService: FBPixelService, private googleAnalyticsService: GoogleAnalyticsService, 
-    private hubspotService: HubspotService,
+    private translate: TranslateService, private navbarService: NavbarService, private _location: Location,
+    private googleAnalyticsService: GoogleAnalyticsService,
     private modal: NgbModal, public route: Router, public routingService: RoutingService, private location: Location,
-    private configService: ConfigService, private authService: AuthenticationService, private sessionsService: SessionsService) {
+    private configService: ConfigService, private authService: AuthenticationService, private sessionsService: SessionsService,
+    public activatedRoute: ActivatedRoute) {
     this.translate.setDefaultLang('en');
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.translate.setDefaultLang(config.language);
@@ -79,7 +72,12 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
       this.navbarMode = navbarMode;
     });
 
-    
+    this.translate.get('COMMON').subscribe(() => {
+      let ua = navigator.userAgent || navigator.vendor || window["opera"];
+      if ((ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1)) {
+        this.showFbWarning();
+      }
+    });
   }
 
   ngOnInit() {
@@ -89,6 +87,20 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     window.failed.namespace = window.failed.namespace || {};
     window.success = window.success || {};
     window.success.namespace = window.success.namespace || {};
+
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      if (config.affiliateEnabled) {
+        this.activatedRoute.queryParams.subscribe(params => {
+          if (params['irclickid'] && typeof(Storage) !== "undefined") {
+            const item = {
+              irClickId: params['irclickid'],
+              clickIdCreatedDate: new Date().toISOString()
+            };
+            localStorage.setItem('irclickid_json', JSON.stringify(item));
+          }
+        });
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -191,18 +203,15 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     this.sessionsService.destroyInstance();
   }
 
-
-  // @HostListener('window:beforeunload', ['$event'])
-  // unloadNotification($event: any) {
-  //   if (!this.canDeactivate()) {
-  //     $event.preventDefault();
-  //     $event.returnValue = 'Changes you made will not be saved. Do you want to continue?';
-  //   }
-  // }
-
   @HostListener('window:focus', ['$event'])
    onFocus(event: FocusEvent): void {
     const instId = this.sessionsService.getInstance();
     this.sessionsService.setActiveInstance(instId);
    }
+
+   showFbWarning() {
+    const ref = this.modal.open(UnsupportedDeviceModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('FACEBOOK_IN_APP_BROWSER_WARNING.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('FACEBOOK_IN_APP_BROWSER_WARNING.DESC');
+  }
 }

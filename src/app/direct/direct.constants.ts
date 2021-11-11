@@ -10,7 +10,6 @@ export const PRODUCT_CATEGORY_INDEX = {
 };
 
 export const LONG_TERM_CARE_SHIELD = {
-    MAX_YEAR: 1990,
-    MIN_YEAR: 1980,
+    MIN_YEAR: 1970,
 	AGE: 30
 };

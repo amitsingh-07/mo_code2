@@ -99,5 +99,10 @@ export let SIGN_UP_CONFIG = {
         DATE_PICKER_MIN_YEAR: 0,
         DATE_PICKER_MAX_YEAR: 100
       }
-    }
+    },
+    EDIT_ROUTE_TYPE: {
+      EMAIL: 'email',
+      MOBILE: 'mobile'
+    },
+    SINGAPORE_COUNTRY_CODE: '+65'
 };

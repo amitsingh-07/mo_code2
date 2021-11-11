@@ -12,8 +12,18 @@
             <div class="overlap-grass">
                 <div class="user-profile-bg">
                     <div class="circle"> {{compinedName}} </div>
-                    <div class="heading">{{fullName|titlecase}}</div>
-
+                    <div class="heading mb10">{{fullName|titlecase}}</div>
+                    <div class="mobile-number">
+                        {{'EDIT_PROFILE.MOBILE_NO' | translate}} {{personalData?.countryCode}} {{personalData.mobileNumber}}   
+                    </div>
+                    <div class="email-address">
+                        {{'EDIT_PROFILE.EMAIL_ADDRESS' | translate}} {{personalData.email}}
+                    </div>
+                    <div>
+                        <button type="button" class="password-button" (click)="editPassword()">
+                            {{'EDIT_PROFILE.CHANGE_PASSWORD' | translate}}
+                        </button>
+                    </div>
                 </div>
             </div>
             <div *ngIf="false" class="edit-profile-section-bg singpass-login-block">
@@ -35,73 +45,20 @@
                     </div>
                 </div>
             </div>
-            <!-- Update user id section -->
-            <div class="edit-profile-section-bg">
-                <div class="flex-row cursor_pointer" (click)=showHide(showHideUser)>
+            <!--Manage Profile-->
+            <div class="edit-profile-section-bg" (click)="manageProfile()">
+                <div class="flex-row cursor_pointer">
                     <div class="flex-col-11">
                         <div class="form-group-heading">
-                            {{'EDIT_PROFILE.USER_ID' | translate}}
+                            {{'EDIT_PROFILE.MANAGE_PROFILE' | translate}}
                         </div>
                     </div>
                     <div class="flex-col-1">
                         <div class="dropdown-img">
-                            <span id="showHideUser" class="arrow"
-                                [class.active]="showHideUser.style.display === 'block' || showHideUser.style.display === ''"></span>
+                            <span class="arrow-right"></span>
                             <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideUser) /> -->
                         </div>
                     </div>
-                </div>
-                <div class="dots" #showHideUser>
-                    <div class="section-margin">
-                        <div class="update-contact-title">
-                            {{'EDIT_PROFILE.MOB' | translate}}
-                        </div>
-                        <div class="update-contact-value">
-                            {{personalData.mobileNumber}}
-                        </div>
-                    </div>
-                    <div class="section-margin">
-                        <div class="update-contact-title">
-                            {{'EDIT_PROFILE.EMAIL' | translate}}
-                        </div>
-                        <div class="update-contact-value">
-                            {{personalData.email}}
-                        </div>
-                    </div>
-                    <button type="button" class="edit-button" id="editEmployeButton" (click)="editUserDetails()">
-                        {{'EDIT_PROFILE.EDIT' | translate}}
-                        <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock.svg" />
-                    </button>
-                </div>
-            </div>
-            <!-- Change Password Section  -->
-            <div class="edit-profile-section-bg">
-                <div class="flex-row cursor_pointer" (click)=showHide(showHidePassword)>
-                    <div class="flex-col-11">
-                        <div class="form-group-heading">
-                            {{'EDIT_PROFILE.PASSWORD' | translate}}
-                        </div>
-                    </div>
-                    <div class="flex-col-1">
-                        <div class="dropdown-img">
-                            <span id="showHidePassword" class="arrow"
-                                [class.active]="showHidePassword.style.display === 'block' || showHidePassword.style.display === ''"></span>
-                            <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHidePassword) /> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="dots" #showHidePassword>
-                    <div class="section-margin">
-                        <div class="update-contact-title">
-                            {{'EDIT_PROFILE.PASSWORD' | translate}}
-                        </div>
-                        <div class="update-contact-value">
-                            ******
-                        </div>
-                    </div>
-                    <button type="button" class="edit-button" id="editEmployeButton" (click)="editPassword()">
-                        {{'EDIT_PROFILE.EDIT' | translate}}
-                    </button>
                 </div>
             </div>
         </div>

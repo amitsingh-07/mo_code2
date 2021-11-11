@@ -54,7 +54,7 @@ export class SignUpService {
     private datePipe: DatePipe,
     public modal: NgbModal,
     private translate: TranslateService,
-    ) {
+  ) {
     this.getAccountInfo();
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.resetPasswordUrl = config.resetPasswordUrl;
@@ -66,7 +66,7 @@ export class SignUpService {
    */
   commit() {
     if (window.sessionStorage) {
-      sessionStorage.setItem(SIGNUP_SESSION_STORAGE_KEY, JSON.stringify(this.signUpFormData));    
+      sessionStorage.setItem(SIGNUP_SESSION_STORAGE_KEY, JSON.stringify(this.signUpFormData));
     }
   }
 
@@ -186,7 +186,7 @@ export class SignUpService {
     errors.title = this.createAccountFormError.formFieldErrors.errorTitle;
 
     for (const name in controls) {
-      if (controls[name].invalid &&
+      if (controls[name].invalid && Object.keys(controls[name]['errors']) &&
         this.createAccountFormError.formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage) {
         errors.errorMessages.push(this.createAccountFormError.formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage);
       }
@@ -249,7 +249,7 @@ export class SignUpService {
   constructResetEmailInfo(data, captchaValue, oldLoginEmail) {
     return {
       oldEmail: (oldLoginEmail && this.authService.isUserNameEmail(oldLoginEmail)) ? oldLoginEmail : '',
-      mobileNo: (oldLoginEmail && !this.authService.isUserNameEmail(oldLoginEmail)) ? oldLoginEmail : '',      
+      mobileNo: (oldLoginEmail && !this.authService.isUserNameEmail(oldLoginEmail)) ? oldLoginEmail : '',
       updatedEmail: data,
       captcha: captchaValue,
       sessionId: this.authService.getSessionId(),
@@ -419,6 +419,17 @@ export class SignUpService {
   setContactDetails(countryCode, mobileNumber, email) {
     this.signUpFormData.countryCode = countryCode;
     this.signUpFormData.mobileNumber = mobileNumber;
+    this.signUpFormData.email = email;
+    this.commit();
+  }
+
+  setMobileDetails(countryCode, mobileNumber) {
+    this.signUpFormData.countryCode = countryCode;
+    this.signUpFormData.mobileNumber = mobileNumber;
+    this.commit();
+  }
+
+  setEmailDetails(email) {
     this.signUpFormData.email = email;
     this.commit();
   }
@@ -717,7 +728,7 @@ export class SignUpService {
     return this.apiService.validateReferralCode(data);
   }
 
-// create account my_info details
+  // create account my_info details
   setCreateAccountMyInfoFormData(data) {
     if (data.name && data.name.value) {
       this.signUpFormData.fullName = data.name.value;

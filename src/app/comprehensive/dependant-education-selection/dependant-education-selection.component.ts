@@ -37,7 +37,6 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   summaryModalDetails: IMySummaryModal;
   childrenEducationNonDependantModal: any;
   summaryRouterFlag: boolean;
-  routerEnabled = false;
   viewMode: boolean;
   saveData: any;
   constructor(
@@ -47,7 +46,7 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
     private aboutAge: AboutAge, private comprehensiveApiService: ComprehensiveApiService,
     private loaderService: LoaderService, private progressService: ProgressTrackerService) {
     this.viewMode = this.comprehensiveService.getViewableMode();
-    this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP1;
+    this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP1;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -57,10 +56,6 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
         this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
         this.setPageTitle(this.pageTitle);
         this.childrenEducationNonDependantModal = this.translate.instant('CMP.MODAL.CHILDREN_EDUCATION_MODAL.NO_DEPENDANTS');
-        if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
-          this.routerEnabled = !this.summaryRouterFlag;
-          this.showSummaryModal();
-        }
       });
     });
     this.dependantSelection();
@@ -312,24 +307,20 @@ export class DependantEducationSelectionComponent implements OnInit, OnDestroy {
   }
 
   showSummaryModal() {
-    if (this.routerEnabled) {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_EDUCATION_SELECTION + '/summary']);
-    } else {
-      this.summaryModalDetails = {
-        setTemplateModal: 1, dependantModelSel: false,
-        contentObj: this.childrenEducationNonDependantModal,
-        nonDependantDetails: {
-          livingCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.EXPENSE,
-          livingPercent: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.PERCENT,
-          livingEstimatedCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.COMPUTED_EXPENSE,
-          medicalBill: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.EXPENSE,
-          medicalYear: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.PERCENT,
-          medicalCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.COMPUTED_EXPENSE
-        },
-        nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2',
-        routerEnabled: this.summaryRouterFlag
-      };
-      this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
-    }
+    this.summaryModalDetails = {
+      setTemplateModal: 1, dependantModelSel: false,
+      contentObj: this.childrenEducationNonDependantModal,
+      nonDependantDetails: {
+        livingCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.EXPENSE,
+        livingPercent: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.PERCENT,
+        livingEstimatedCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.LIVING_EXPENSES.COMPUTED_EXPENSE,
+        medicalBill: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.EXPENSE,
+        medicalYear: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.PERCENT,
+        medicalCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.EDUCATION_ENDOWMENT.NON_DEPENDANT.MEDICAL_BILL.COMPUTED_EXPENSE
+      },
+      nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/2',
+      routerEnabled: this.summaryRouterFlag
+    };
+    this.comprehensiveService.openSummaryPopUpModal(this.summaryModalDetails);
   }
 }
