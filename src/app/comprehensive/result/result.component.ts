@@ -56,7 +56,7 @@ export class ResultComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.isCorporate = this.comprehensiveService.isCorporateRole();
+    this.isCorporate = (this.comprehensiveService.isCorporateRole() || this.comprehensiveService.getSpecialPromoCodeStatus());
     const advisorStatus = (this.comprehensiveService.getAdvisorStatus()) ? this.comprehensiveService.getAdvisorStatus().toLowerCase() : '';
     this.lockedWithWaived = (this.comprehensiveService.getLocked() && advisorStatus === COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED);
     if (!this.isCorporate) {
