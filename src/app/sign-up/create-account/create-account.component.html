@@ -133,7 +133,7 @@
           </div>
           <div class="flex-col-12 mb15">
             <div [ngClass]="{'inline-error': submitted && account.gender.errors}">
-              <div class="flex-row form-control gender disabled" #gender formControlName="gender"
+              <div class="flex-row form-control gender disabled" #gender
                [ngClass]="{'disabled': formValue && formValue.isMyInfoEnabled && formValue.gender}">
                 <div class="mr20">
                   <label for="gender" id="invPersInfoLbl8" class="mb0">{{ 'CREATE_ACCOUNT.FORM.GENDER.LABEL' | translate}}</label>

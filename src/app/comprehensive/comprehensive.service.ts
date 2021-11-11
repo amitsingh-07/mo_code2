@@ -2560,5 +2560,12 @@ export class ComprehensiveService {
   getToastMessage() {
     return this.comprehensiveFormData.toastMessage;
   }
+  setSpecialPromoCodeStatus(specialPromoCode: boolean) {
+    this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.specialPromoCode = specialPromoCode;
+    this.commit();
+  }
+  getSpecialPromoCodeStatus() {
+    return this.comprehensiveFormData.comprehensiveDetails.comprehensiveEnquiry.specialPromoCode;
+  }
 
 }
