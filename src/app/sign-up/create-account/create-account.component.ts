@@ -33,6 +33,7 @@ import { Util } from '../../shared/utils/util';
 import { AffiliateService } from '../../shared/Services/affiliate.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 
 declare var require: any;
 const bodymovin = require("../../../assets/scripts/lottie_svg.min.js");
@@ -91,7 +92,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private apiService: ApiService,
     private selectedPlansService: SelectedPlansService,
     private changeDetectorRef: ChangeDetectorRef,
-    private affiliateService: AffiliateService
+    private affiliateService: AffiliateService,
+    private investmentAccountService: InvestmentAccountService
+
+
   ) {
     const today: Date = new Date();
     this.minDate = {
@@ -194,8 +198,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         marketingAcceptance: [false],
         captcha: ['', [Validators.required]],
         referralCode: [''],
-        gender: [myInfoDob, [Validators.required]],
-        dob: [myInfoGender, [Validators.required]]
+        gender: [myInfoGender, [Validators.required]],
+        dob: [myInfoDob, [Validators.required]]
       }, { validator: this.validateMatchPasswordEmail() })
       this.buildFormSingPass();
       return false;
@@ -252,6 +256,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       form.value.userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : appConstants.USERTYPE.NORMAL;
       form.value.accountCreationType = (this.formValue && this.formValue.isMyInfoEnabled) ? appConstants.USERTYPE.SINGPASS : appConstants.USERTYPE.MANUAL;
       form.value.isMyInfoEnabled = (this.formValue && this.formValue.isMyInfoEnabled);
+      if (form.value && form.value.dob && typeof form.value.dob === 'object') {
+        form.controls['dob'].setValue(`${form.value.dob.day}/${form.value.dob.month}/${form.value.dob.year}`);
+      }
       this.signUpService.setAccountInfo(form.value);
       this.openTermsOfConditions();
     }
@@ -342,6 +349,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
           }
         }, (err) => {
           this.createAccBtnDisabled = false;
+          this.investmentAccountService.showGenericErrorModal();
         }).add(() => {
           this.submitted = false;
         });

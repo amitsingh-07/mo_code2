@@ -20,7 +20,7 @@
           <div class="flex-row mb15" *ngIf="showSingPassDetails">
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label disabled">
-                <input type="text" id="fullName" class="form-control" #fullName formControlName="fullName" disabled  required>
+                <input type="text" id="fullName" class="form-control" #fullName formControlName="fullName" disabled required>
                 <label class="form-control-placeholder"
                   for="fullName">{{ 'CREATE_ACCOUNT.FORM.FULLNAME.LABEL' | translate}}</label>
               </div>
@@ -101,13 +101,13 @@
                 <div class="datepicker-control">
                   <div class="input-group date-picker mb0" #dob
                   [ngClass]="{'inline-error': submitted && account.dob.errors}">
-                    <input  class="form-control" [disabled]= "this.formValue && this.formValue.isMyInfoEnabled && this.formValue.dob"
+                    <input  class="form-control" [disabled]= "formValue && formValue.isMyInfoEnabled && formValue.dob"
                         name="dp" ngbDatepicker [minDate]="minDate" [maxDate]="maxDate" formControlName="dob"
                       #dobInput="ngbDatepicker" id="invPersInfoInpt7" required>
                       <label class="form-control-placeholder">{{ 'CREATE_ACCOUNT.FORM.DOB.PLACEHOLDER_LBL' | translate}}</label>
                     <div class="input-group-append">
                       <button  class="btn btn-primary" type="button" (click)="dobInput.toggle()"
-                      [disabled]= "this.formValue && this.formValue.isMyInfoEnabled && this.formValue.dob" id="createDobBtn1">
+                      [disabled]= "formValue && formValue.isMyInfoEnabled && formValue.dob" id="createDobBtn1">
                         <img class="date-picker-image--valid" id="createDobImg1"
                         *ngIf="!submitted || !account.dob.errors"
                           src="assets/images/calendar-normal.svg" />
@@ -134,21 +134,21 @@
           <div class="flex-col-12 mb15">
             <div [ngClass]="{'inline-error': submitted && account.gender.errors}">
               <div class="flex-row form-control gender disabled" #gender formControlName="gender"
-               [ngClass]="{'disabled': this.formValue && this.formValue.isMyInfoEnabled && this.formValue.gender}">
+               [ngClass]="{'disabled': formValue && formValue.isMyInfoEnabled && formValue.gender}">
                 <div class="mr20">
                   <label for="gender" id="invPersInfoLbl8" class="mb0">{{ 'CREATE_ACCOUNT.FORM.GENDER.LABEL' | translate}}</label>
                 </div>
                 <div class="checkbox-button one-label mr10">
-                  <input type="radio" value=1 class="field radio"  name="gender" id="gender_type_1" formControlName="gender" 
-                  [disabled]="this.formValue && this.formValue.isMyInfoEnabled && this.formValue.gender"/>
+                  <input type="radio" value="male" class="field radio"  name="gender" id="gender_type_1" formControlName="gender" 
+                  [disabled]="formValue && formValue.isMyInfoEnabled && formValue.gender"/>
                   <label for="gender_type_1">
                     <div><span class="input-label-black">{{ 'CREATE_ACCOUNT.FORM.GENDER.MALE' | translate}}</span>
                     </div>
                   </label>
                 </div>
                 <div class="checkbox-button one-label">
-                  <input type="radio" value=2 class="field radio" name="gender" id="gender_type_2" formControlName="gender" 
-                  [disabled]="this.formValue && this.formValue.isMyInfoEnabled && this.formValue.gender"/>
+                  <input type="radio" value="female" class="field radio" name="gender" id="gender_type_2" formControlName="gender" 
+                  [disabled]="formValue && formValue.isMyInfoEnabled && formValue.gender"/>
                   <label for="gender_type_2">
                     <div><span class="input-label-black">{{ 'CREATE_ACCOUNT.FORM.GENDER.FEMALE' | translate}}</span>
                     </div>
