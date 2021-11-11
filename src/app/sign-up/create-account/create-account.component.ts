@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ApiService } from '../../../app/shared/http/api.service';
@@ -31,6 +31,9 @@ import { ValidateRange } from './range.validator';
 import { ANIMATION_DATA } from '../../../assets/animation/animationData';
 import { Util } from '../../shared/utils/util';
 import { AffiliateService } from '../../shared/Services/affiliate.service';
+import { SIGN_UP_CONFIG } from '../sign-up.constant';
+import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
+import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 
 declare var require: any;
 const bodymovin = require("../../../assets/scripts/lottie_svg.min.js");
@@ -38,7 +41,10 @@ const bodymovin = require("../../../assets/scripts/lottie_svg.min.js");
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
-  styleUrls: ['./create-account.component.scss'],
+  styleUrls: ['./create-account.component.scss'], 
+  providers: [
+    { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }
+  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class CreateAccountComponent implements OnInit, AfterViewInit {
@@ -65,6 +71,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   finlitEnabled = false;
   showSingPassDetails = false;
   formValue: any;
+  maxDate: any;
+  minDate: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -84,8 +92,20 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     private apiService: ApiService,
     private selectedPlansService: SelectedPlansService,
     private changeDetectorRef: ChangeDetectorRef,
-    private affiliateService: AffiliateService
+    private affiliateService: AffiliateService,
+    private investmentAccountService: InvestmentAccountService
+
+
   ) {
+    const today: Date = new Date();
+    this.minDate = {
+      year: today.getFullYear() - SIGN_UP_CONFIG.ACCOUNT_CREATION.DOB.DATE_PICKER_MAX_YEAR,
+      month: today.getMonth() + 1, day: today.getDate()
+    };
+    this.maxDate = {
+      year: today.getFullYear() - SIGN_UP_CONFIG.ACCOUNT_CREATION.DOB.DATE_PICKER_MIN_YEAR,
+      month: today.getMonth() + 1, day: today.getDate()
+    };
     this.translate.use('en');
     this.configService.getConfig().subscribe((config) => {
       this.distribution = config.distribution;
@@ -164,6 +184,8 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   buildAccountInfoForm() {
     const myInfoEmail =  (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.email) ? this.formValue.email: '';
     const myInfoMobile =  (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.mobileNumber) ? this.formValue.mobileNumber: '';
+    const myInfoDob =  (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.dob) ? this.formValue.dob: '';
+    const myInfoGender =  (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.gender) ? this.formValue.gender: '';
     if (this.distribution && this.distribution.login) {
       this.createAccountForm = this.formBuilder.group({
         countryCode: ['', [Validators.required]],
@@ -175,7 +197,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         termsOfConditions: [true],
         marketingAcceptance: [false],
         captcha: ['', [Validators.required]],
-        referralCode: ['']
+        referralCode: [''],
+        gender: [myInfoGender, [Validators.required]],
+        dob: [myInfoDob, [Validators.required]]
       }, { validator: this.validateMatchPasswordEmail() })
       this.buildFormSingPass();
       return false;
@@ -191,7 +215,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       termsOfConditions: [true],
       marketingAcceptance: [false],
       captcha: ['', [Validators.required]],
-      referralCode: ['']
+      referralCode: [''],
+      gender: ['', [Validators.required]],
+      dob: ['', [Validators.required]]
     }, { validator: this.validateMatchPasswordEmail() })
     this.buildFormSingPass();
     return true;
@@ -230,6 +256,9 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       form.value.userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : appConstants.USERTYPE.NORMAL;
       form.value.accountCreationType = (this.formValue && this.formValue.isMyInfoEnabled) ? appConstants.USERTYPE.SINGPASS : appConstants.USERTYPE.MANUAL;
       form.value.isMyInfoEnabled = (this.formValue && this.formValue.isMyInfoEnabled);
+      if (form.value && form.value.dob && typeof form.value.dob === 'object') {
+        form.controls['dob'].setValue(`${form.value.dob.day}/${form.value.dob.month}/${form.value.dob.year}`);
+      }
       this.signUpService.setAccountInfo(form.value);
       this.openTermsOfConditions();
     }
@@ -320,6 +349,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
           }
         }, (err) => {
           this.createAccBtnDisabled = false;
+          this.investmentAccountService.showGenericErrorModal();
         }).add(() => {
           this.submitted = false;
         });
@@ -579,5 +609,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       animationData: animationData
     })
   }
+  
 }
 
