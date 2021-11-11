@@ -48,6 +48,21 @@
           "INVALID": "Enter a valid NRIC or FIN"
         }
       },
+      "DOB": {
+        "PLACEHOLDER_LBL": "Date of Birth (DD/MM/YYYY)",
+        "ERROR": {
+          "REQUIRED": "Select Date of Birth",
+          "INVALID": "Select valid Date of Birth"
+        }
+      },
+      "GENDER":{
+        "LABEL": "Gender",
+        "MALE": "Male",
+        "FEMALE": "Female",
+        "ERROR": {
+          "REQUIRED": "Select Gender"
+        }
+      },
       "MOBILE_NUMBER": {
         "LABEL": "Mobile Number",
         "ERROR": {
