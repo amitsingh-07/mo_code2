@@ -45,7 +45,7 @@ app-update-user-id {
   .flex-row {
     .flex-col-3 {
       max-width: 105px;
-
+      margin-right: 15px;
       @include allmobiles {
         max-width: 95px;
         margin-right: 15px;
@@ -158,13 +158,27 @@ app-update-user-id {
   }
 
   .error-tooltip {
-    position: absolute;
-    bottom: 59px;
-    z-index: 1060;
-    width: 100%;
-
+    bottom: 63px !important;
+    @include min300max350{
+      bottom: 60px !important;
+    }
+    @include min350max375{
+      bottom: 60px !important;
+    }
+    @include iphone6{
+      bottom: 60px !important;
+    }
     .error-tooltip__desc {
       padding: 15px 10px !important;
+      @include min300max350{
+        padding: 10px !important;
+      }
+      @include min350max375{
+        padding: 10px !important;
+      }
+      @include iphone6{
+        padding: 10px !important;
+      }
     }
 
     .error-tooltip__desc-one {
@@ -182,6 +196,12 @@ app-update-user-id {
         margin-right: 5px;
       }
     }
+    .error-tooltip__arrow{
+      border-left: 20px solid transparent !important;
+      border-right: 20px solid transparent !important;
+      border-top: 20px solid $darker-teal-color !important;
+      bottom: -18px !important;
+    }
   }
   .mobile-block{
     .form-group-floating-label{
@@ -193,6 +213,32 @@ app-update-user-id {
       .form-control-placeholder {
         padding: 0 0 0 7px;
         letter-spacing: -0.3px !important;
+      }
+    }
+  }
+  .mail-block{
+    .error-tooltip {
+      bottom: 63px !important;
+      // @include min300max350{
+      //   bottom: 60px !important;
+      // }
+      // @include min350max375{
+      //   bottom: 60px !important;
+      // }
+      // @include iphone6{
+      //   bottom: 60px !important;
+      // }
+      .error-tooltip__desc {
+        padding: 15px 10px !important;
+        // @include min300max350{
+        //   padding: 10px !important;
+        // }
+        // @include min350max375{
+        //   padding: 10px !important;
+        // }
+        // @include iphone6{
+        //   padding: 10px !important;
+        // }
       }
     }
   }
