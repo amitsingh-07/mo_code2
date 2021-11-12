@@ -41,7 +41,7 @@ const bodymovin = require("../../../assets/scripts/lottie_svg.min.js");
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
-  styleUrls: ['./create-account.component.scss'], 
+  styleUrls: ['./create-account.component.scss'],
   providers: [
     { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }
   ],
@@ -116,16 +116,16 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       this.appService.clearJourneys();
       this.appService.clearPromoCode();
     }
-    
+
     // Set referral code base on the query param
     this.route.queryParams.subscribe((params) => {
       if (params['referral_code'] && !Util.isEmptyOrNull(params['referral_code'])) {
-        if(this.finlitEnabled) {
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_CREATE_ACCOUNT_MY_INFO], { queryParams: {referral_code: params['referral_code']} });
+        if (this.finlitEnabled) {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.FINLIT_CREATE_ACCOUNT_MY_INFO], { queryParams: { referral_code: params['referral_code'] } });
         } else {
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO], { queryParams: {referral_code: params['referral_code']} });
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT_MY_INFO], { queryParams: { referral_code: params['referral_code'] } });
         }
-        
+
       }
     });
   }
@@ -147,7 +147,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.buildAccountInfoForm();
     this.getCountryCode();
     //Referral Code snapshot param
-    if (this.route.snapshot.paramMap.get('referralCode') !== '' && !Util.isEmptyOrNull(this.route.snapshot.paramMap.get('referralCode')) && this.createAccountForm.controls['referralCode']) {      
+    if (this.route.snapshot.paramMap.get('referralCode') !== '' && !Util.isEmptyOrNull(this.route.snapshot.paramMap.get('referralCode')) && this.createAccountForm.controls['referralCode']) {
       this.createAccountForm.controls['referralCode'].setValue(this.route.snapshot.paramMap.get('referralCode'));
       this.showClearBtn = true;
     }
@@ -182,10 +182,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
 
   buildAccountInfoForm() {
-    const myInfoEmail =  (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.email) ? this.formValue.email: '';
-    const myInfoMobile =  (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.mobileNumber) ? this.formValue.mobileNumber: '';
-    const myInfoDob =  (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.dob) ? this.formValue.dob: '';
-    const myInfoGender =  (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.gender) ? this.formValue.gender: '';
+    const myInfoEmail = (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.email) ? this.formValue.email : '';
+    const myInfoMobile = (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.mobileNumber) ? this.formValue.mobileNumber : '';
+    const myInfoDob = (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.dob) ? this.formValue.dob : '';
+    const myInfoGender = (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.gender) ? this.formValue.gender : '';
     if (this.distribution && this.distribution.login) {
       this.createAccountForm = this.formBuilder.group({
         countryCode: ['', [Validators.required]],
@@ -198,8 +198,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         marketingAcceptance: [false],
         captcha: ['', [Validators.required]],
         referralCode: [''],
-        gender: [myInfoGender, [Validators.required]],
-        dob: [myInfoDob, [Validators.required]]
+        gender: [{
+          value: myInfoGender,
+          disabled: this.signUpService.isDisabled('gender')
+        }, [Validators.required]],
+        dob: [{
+          value: myInfoDob,
+          disabled: this.signUpService.isDisabled('dob')
+        }, [Validators.required]]
       }, { validator: this.validateMatchPasswordEmail() })
       this.buildFormSingPass();
       return false;
@@ -216,8 +222,14 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       marketingAcceptance: [false],
       captcha: ['', [Validators.required]],
       referralCode: [''],
-      gender: [myInfoGender, [Validators.required]],
-      dob: [myInfoDob, [Validators.required]]
+      gender: [{
+        value: myInfoGender,
+        disabled: this.signUpService.isDisabled('gender')
+      }, [Validators.required]],
+      dob: [{
+        value: myInfoDob,
+        disabled: this.signUpService.isDisabled('dob')
+      }, [Validators.required]]
     }, { validator: this.validateMatchPasswordEmail() })
     this.buildFormSingPass();
     return true;
@@ -225,10 +237,10 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   /**
    * build account form.
    */
-  buildFormSingPass() {   
+  buildFormSingPass() {
     if (this.formValue && this.formValue.isMyInfoEnabled) {
       this.showSingPassDetails = true;
-      this.createAccountForm.addControl('fullName', new FormControl(this.formValue.fullName,Validators.required));
+      this.createAccountForm.addControl('fullName', new FormControl(this.formValue.fullName, Validators.required));
       this.createAccountForm.addControl('nricNumber', new FormControl(this.formValue.nricNumber, Validators.required));
       this.createAccountForm.removeControl('firstName');
       this.createAccountForm.removeControl('lastName');
@@ -244,7 +256,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         Validators.maxLength(40), Validators.pattern(RegexConstants.NameWithSymbol)]));
     }
   }
-  
+
   /**
    * validate createAccountForm.
    * @param form - user account form detail.
@@ -609,6 +621,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       animationData: animationData
     })
   }
-  
+
 }
 
