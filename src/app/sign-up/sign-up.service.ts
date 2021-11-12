@@ -747,13 +747,17 @@ export class SignUpService {
       this.signUpFormData.mobileNumber = data.mobileno.nbr;
     }if (data.dob.value) {
       this.signUpFormData.dob = this.investmentAccountService.dateFormat(data.dob.value);
+      this.disableAttributes.push('dob');
     }
     if (data.sex.value === SIGN_UP_CONFIG.GENDER.MALE.VALUE) {
       this.signUpFormData.gender = SIGN_UP_CONFIG.GENDER.MALE.DESC;
+      this.disableAttributes.push('gender');
     } else if (data.sex.value === SIGN_UP_CONFIG.GENDER.FEMALE.VALUE) {
       this.signUpFormData.gender = SIGN_UP_CONFIG.GENDER.FEMALE.DESC;
+      this.disableAttributes.push('gender');
     }
     this.signUpFormData.isMyInfoEnabled = true;
+    this.signUpFormData.disableAttributes = this.disableAttributes;
     this.commit();
   }
   isDisabled(fieldName): boolean {
