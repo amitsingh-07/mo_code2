@@ -104,5 +104,15 @@ export let SIGN_UP_CONFIG = {
       EMAIL: 'email',
       MOBILE: 'mobile'
     },
-    SINGAPORE_COUNTRY_CODE: '+65'
+    SINGAPORE_COUNTRY_CODE: '+65',
+    GENDER:{
+      MALE: {
+        DESC:'male',
+        VALUE: 'M'
+      },
+      FEMALE: {
+        DESC:'female',
+        VALUE: 'F'
+      }
+    }
 };
