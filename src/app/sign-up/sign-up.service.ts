@@ -17,6 +17,7 @@ import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
+import { InvestmentAccountService } from '../investment/investment-account/investment-account-service';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -54,6 +55,7 @@ export class SignUpService {
     private datePipe: DatePipe,
     public modal: NgbModal,
     private translate: TranslateService,
+    private investmentAccountService: InvestmentAccountService
   ) {
     this.getAccountInfo();
     this.configService.getConfig().subscribe((config: IConfig) => {
@@ -743,8 +745,19 @@ export class SignUpService {
     }
     if (data.mobileno && data.mobileno.nbr) {
       this.signUpFormData.mobileNumber = data.mobileno.nbr;
+    }if (data.dob.value) {
+      this.signUpFormData.dob = this.investmentAccountService.dateFormat(data.dob.value);
+      this.disableAttributes.push('dob');
+    }
+    if (data.sex.value === SIGN_UP_CONFIG.GENDER.MALE.VALUE) {
+      this.signUpFormData.gender = SIGN_UP_CONFIG.GENDER.MALE.DESC;
+      this.disableAttributes.push('gender');
+    } else if (data.sex.value === SIGN_UP_CONFIG.GENDER.FEMALE.VALUE) {
+      this.signUpFormData.gender = SIGN_UP_CONFIG.GENDER.FEMALE.DESC;
+      this.disableAttributes.push('gender');
     }
     this.signUpFormData.isMyInfoEnabled = true;
+    this.signUpFormData.disableAttributes = this.disableAttributes;
     this.commit();
   }
   isDisabled(fieldName): boolean {
