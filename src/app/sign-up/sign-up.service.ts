@@ -763,7 +763,7 @@ export class SignUpService {
   isDisabled(fieldName): boolean {
     let disable: boolean;
     if (this.signUpFormData &&
-      this.signUpFormData.isMyInfoEnabled &&
+      this.signUpFormData.isMyInfoEnabled && this.signUpFormData.disableAttributes &&
       this.signUpFormData.disableAttributes.indexOf(fieldName) >= 0
     ) {
       disable = true;
