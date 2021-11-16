@@ -127,7 +127,8 @@
                   <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                   <span class="err-msg">{{ 'UPDATE_USER_ID.EMAIL_VALIDATIONS.ERROR.REQUIRED' | translate}}</span>
                 </div>
-                <div *ngIf="updateUserIdForm.controls.newEmail.errors?.email">
+                <div
+                  *ngIf="updateUserIdForm.controls.newEmail.errors?.email || updateUserIdForm.controls.newEmail.errors?.pattern">
                   <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                   <span class="err-msg">{{ 'UPDATE_USER_ID.EMAIL_VALIDATIONS.ERROR.INVALID' | translate}}</span>
                 </div>

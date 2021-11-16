@@ -214,7 +214,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.createAccountForm = this.formBuilder.group({
       countryCode: ['', [Validators.required]],
       mobileNumber: [myInfoMobile, [Validators.required]],
-      email: [myInfoEmail, [Validators.required, Validators.email]],
+      email: [myInfoEmail, [Validators.required, Validators.email, Validators.pattern(RegexConstants.Email)]],
       confirmEmail: [''],
       password: ['', [Validators.required, ValidatePassword]],
       confirmPassword: [''],
@@ -268,8 +268,12 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       form.value.userType = this.finlitEnabled ? appConstants.USERTYPE.FINLIT : appConstants.USERTYPE.NORMAL;
       form.value.accountCreationType = (this.formValue && this.formValue.isMyInfoEnabled) ? appConstants.USERTYPE.SINGPASS : appConstants.USERTYPE.MANUAL;
       form.value.isMyInfoEnabled = (this.formValue && this.formValue.isMyInfoEnabled);
+      if (this.formValue && this.formValue.isMyInfoEnabled) {
+        form.value.dob = (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.dob) ? this.formValue.dob : '';
+        form.value.gender = (this.formValue && this.formValue.isMyInfoEnabled && this.formValue.gender) ? this.formValue.gender : '';
+      }
       if (form.value && form.value.dob && typeof form.value.dob === 'object') {
-        form.controls['dob'].setValue(`${form.value.dob.day}/${form.value.dob.month}/${form.value.dob.year}`);
+        form.value.dob = `${form.value.dob.day}/${form.value.dob.month}/${form.value.dob.year}`;
       }
       this.signUpService.setAccountInfo(form.value);
       this.openTermsOfConditions();
