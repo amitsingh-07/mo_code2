@@ -167,7 +167,7 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
     if (this.checkEditType()) {
       this.updateUserIdForm = this.formBuilder.group({
         email: [this.formValues.email],
-        newEmail: ['', [Validators.required, Validators.email]],
+        newEmail: ['', [Validators.required, Validators.email, Validators.pattern(RegexConstants.Email)]],
         confirmEmail: ['', Validators.required],
         password: ['', Validators.required],
         encryptedPassword: ['']
