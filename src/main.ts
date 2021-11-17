@@ -62,5 +62,18 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch((err) => console.log(err));
+platformBrowserDynamic().bootstrapModule(AppModule).then(() => {
+	if ('serviceWorker' in navigator && environment.production) {
+			navigator.serviceWorker.register('./ngsw-worker.js');
+		}
+	/*if ('serviceWorker' in navigator && environment.production) {
+		navigator.serviceWorker.register('./ngsw-worker.js', {scope: './'})
+	  .then((reg) => {
+		// registration worked
+		console.log('Registration succeeded. Scope is ' + reg.scope);
+	  }).catch((error) => {
+		// registration failed
+		console.log('Registration failed with ' + error);
+	  });
+	}*/
+}).catch((err) => console.log(err));
