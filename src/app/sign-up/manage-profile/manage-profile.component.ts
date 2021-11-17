@@ -8,6 +8,7 @@ import { SignUpService } from '../sign-up.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { LoaderService } from '../../shared/components/loader/loader.service';
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
+import { environment } from './../../../environments/environment';
 @Component({
   selector: 'app-manage-profile',
   templateUrl: './manage-profile.component.html',
@@ -37,8 +38,11 @@ export class ManageProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(102);
+    if (environment.hideHomepage) {
+      this.navbarService.setNavbarMode(104);
+    } else {
+      this.navbarService.setNavbarMode(102);
+    }
     this.footerService.setFooterVisibility(false);
     this.setPageTitle(this.pageTitle);
     this.getEditProfileData();
