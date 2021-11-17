@@ -37,7 +37,6 @@ export class ManageProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(102);
     this.footerService.setFooterVisibility(false);
     this.setPageTitle(this.pageTitle);
