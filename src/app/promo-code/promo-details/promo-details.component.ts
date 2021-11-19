@@ -31,6 +31,7 @@ export class PromoDetailsComponent implements OnInit {
   promoCodeStatus: any;
   selectedPromoDetails: any;
   loading: any;
+  compreTypePromo: any;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -48,6 +49,7 @@ export class PromoDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.promoCodeStatus = PROMO_CODE_STATUS;
+    this.compreTypePromo = appConstants.COMPREHENSIVE_PROMO_CODE_TYPE
     this.selectedPromo = this.promoSvc.getSelectedPromo();
     this.selectedPromoDetails = this.promoSvc.getPromoDetails();
     this.usedPromo = this.promoSvc.usedPromo;
@@ -57,11 +59,6 @@ export class PromoDetailsComponent implements OnInit {
         // If campaignCode exist, use campaignCode to match the promo detail json
         if (this.selectedPromo['campaignCode']) {
           if (element['promoType'] === promoCategory && element['promoCode'] === this.selectedPromo['campaignCode']) {
-            // If compre, add the promo code behind the header
-            if (element['promoType'] === appConstants.COMPREHENSIVE_PROMO_CODE_TYPE) {
-              element['header'] += this.translate.instant('PROMO_CODE_DETAILS.PROMO_CODE_OPEN_BRACKET') + this.selectedPromo['promoCode'] 
-              + this.translate.instant('PROMO_CODE_DETAILS.PROMO_CODE_CLOSE_BRACKET');
-            }
             return element;
           }
         } else {
@@ -74,7 +71,7 @@ export class PromoDetailsComponent implements OnInit {
       });
     });
   }
-
+  
   close() {
     this.activeModal.dismiss();
   }
