@@ -6,7 +6,7 @@
         src="assets/images/comprehensive/summary-page/step-tick.svg" /></div>
     <div class="modal-title text-center mt10 mb20" *ngIf="summaryModalDetails.contentObj.TITLE_IMAGE"><img
         src="assets/images/comprehensive/summary-page/{{ summaryModalDetails.contentObj.TITLE_IMAGE }}" /></div>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('dismiss')">
+    <button type="button" class="close" aria-label="Close" (click)="goNextPage()">
       <span aria-hidden="true"></span>
     </button>
     <div class="modal-body-message pr0" *ngIf="summaryModalDetails.setTemplateModal == 2">

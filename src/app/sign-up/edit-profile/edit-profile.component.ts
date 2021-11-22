@@ -327,16 +327,13 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS], { queryParams: { enableEditProfile: true }, fragment: 'loading' });
   }
 
-  editUserDetails() {
-    this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
-    this.authService.set2faVerifyAllowed(true);
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_ID]);
-  }
-
   editPassword() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PASSWORD]);
   }
 
+  manageProfile() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.MANAGE_PROFILE]);
+  }
   getNationalityCountryList() {
     this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
       this.nationalityList = data.objectList;

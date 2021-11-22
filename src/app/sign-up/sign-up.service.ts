@@ -17,6 +17,7 @@ import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
 import { SIGN_UP_CONFIG } from './sign-up.constant';
+import { InvestmentAccountService } from '../investment/investment-account/investment-account-service';
 
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
@@ -54,7 +55,8 @@ export class SignUpService {
     private datePipe: DatePipe,
     public modal: NgbModal,
     private translate: TranslateService,
-    ) {
+    private investmentAccountService: InvestmentAccountService
+  ) {
     this.getAccountInfo();
     this.configService.getConfig().subscribe((config: IConfig) => {
       this.resetPasswordUrl = config.resetPasswordUrl;
@@ -66,7 +68,7 @@ export class SignUpService {
    */
   commit() {
     if (window.sessionStorage) {
-      sessionStorage.setItem(SIGNUP_SESSION_STORAGE_KEY, JSON.stringify(this.signUpFormData));    
+      sessionStorage.setItem(SIGNUP_SESSION_STORAGE_KEY, JSON.stringify(this.signUpFormData));
     }
   }
 
@@ -186,7 +188,7 @@ export class SignUpService {
     errors.title = this.createAccountFormError.formFieldErrors.errorTitle;
 
     for (const name in controls) {
-      if (controls[name].invalid &&
+      if (controls[name].invalid && Object.keys(controls[name]['errors']) &&
         this.createAccountFormError.formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage) {
         errors.errorMessages.push(this.createAccountFormError.formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage);
       }
@@ -249,7 +251,7 @@ export class SignUpService {
   constructResetEmailInfo(data, captchaValue, oldLoginEmail) {
     return {
       oldEmail: (oldLoginEmail && this.authService.isUserNameEmail(oldLoginEmail)) ? oldLoginEmail : '',
-      mobileNo: (oldLoginEmail && !this.authService.isUserNameEmail(oldLoginEmail)) ? oldLoginEmail : '',      
+      mobileNo: (oldLoginEmail && !this.authService.isUserNameEmail(oldLoginEmail)) ? oldLoginEmail : '',
       updatedEmail: data,
       captcha: captchaValue,
       sessionId: this.authService.getSessionId(),
@@ -419,6 +421,17 @@ export class SignUpService {
   setContactDetails(countryCode, mobileNumber, email) {
     this.signUpFormData.countryCode = countryCode;
     this.signUpFormData.mobileNumber = mobileNumber;
+    this.signUpFormData.email = email;
+    this.commit();
+  }
+
+  setMobileDetails(countryCode, mobileNumber) {
+    this.signUpFormData.countryCode = countryCode;
+    this.signUpFormData.mobileNumber = mobileNumber;
+    this.commit();
+  }
+
+  setEmailDetails(email) {
     this.signUpFormData.email = email;
     this.commit();
   }
@@ -717,7 +730,7 @@ export class SignUpService {
     return this.apiService.validateReferralCode(data);
   }
 
-// create account my_info details
+  // create account my_info details
   setCreateAccountMyInfoFormData(data) {
     if (data.name && data.name.value) {
       this.signUpFormData.fullName = data.name.value;
@@ -732,14 +745,25 @@ export class SignUpService {
     }
     if (data.mobileno && data.mobileno.nbr) {
       this.signUpFormData.mobileNumber = data.mobileno.nbr;
+    }if (data.dob.value) {
+      this.signUpFormData.dob = this.investmentAccountService.dateFormat(data.dob.value);
+      this.disableAttributes.push('dob');
+    }
+    if (data.sex.value === SIGN_UP_CONFIG.GENDER.MALE.VALUE) {
+      this.signUpFormData.gender = SIGN_UP_CONFIG.GENDER.MALE.DESC;
+      this.disableAttributes.push('gender');
+    } else if (data.sex.value === SIGN_UP_CONFIG.GENDER.FEMALE.VALUE) {
+      this.signUpFormData.gender = SIGN_UP_CONFIG.GENDER.FEMALE.DESC;
+      this.disableAttributes.push('gender');
     }
     this.signUpFormData.isMyInfoEnabled = true;
+    this.signUpFormData.disableAttributes = this.disableAttributes;
     this.commit();
   }
   isDisabled(fieldName): boolean {
     let disable: boolean;
     if (this.signUpFormData &&
-      this.signUpFormData.isMyInfoEnabled &&
+      this.signUpFormData.isMyInfoEnabled && this.signUpFormData.disableAttributes &&
       this.signUpFormData.disableAttributes.indexOf(fieldName) >= 0
     ) {
       disable = true;

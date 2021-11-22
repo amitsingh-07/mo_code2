@@ -1,20 +1,18 @@
 import { Location } from '@angular/common';
 import {
-    AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
+  AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { environment } from '../../../environments/environment';
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { ConfigService, IConfig } from '../../config/config.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import {
-    ModelWithButtonComponent
-} from '../../shared/modal/model-with-button/model-with-button.component';
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
@@ -29,8 +27,6 @@ import { SignUpService } from '../sign-up.service';
 export class ForgotPasswordComponent implements OnInit, AfterViewInit {
 
   private distribution: any;
-  private pageTitle: string;
-  private description: string;
   emailNotFoundTitle: any;
   emailNotFoundDesc: any;
   forgotPasswordForm: FormGroup;
@@ -100,7 +96,7 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
       }
     }
     this.forgotPasswordForm = this.formBuilder.group({
-      email: [this.formValues.email, [Validators.required, Validators.email]],
+      email: [this.formValues.email, [Validators.required, Validators.email, Validators.pattern(RegexConstants.Email)]],
       captcha: ['', [Validators.required]]
     });
     return true;

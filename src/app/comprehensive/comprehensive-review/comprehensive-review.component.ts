@@ -57,7 +57,7 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     private loaderService: LoaderService,
     private modal: NgbModal
   ) {
-    this.isCorporateUser = comprehensiveService.isCorporateRole();
+    this.isCorporateUser = (comprehensiveService.isCorporateRole() || comprehensiveService.getSpecialPromoCodeStatus());
     this.adviserPaymentStatus = comprehensiveService.getAdvisorStatus();
     this.skipProfileStatus = comprehensiveService.getRiskProfileFlag();
     const reportStatus = this.comprehensiveService.getReportStatus();
@@ -195,9 +195,8 @@ export class ComprehensiveReviewComponent implements OnInit, OnDestroy {
     const enquiryId = {
       enquiryId: this.comprehensiveService.getEnquiryId(),
       promoCode: this.comprehensiveService.getCfpPromoCode(),
-      waivedPromo: this.isCorporateUser
-        ? this.comprehensiveService.getWaivedSpeakToAdvisorPromo()
-        : this.comprehensiveService.getWaivedPromo(),
+      waivedPromo: this.comprehensiveService.getWaivedPromo(),
+      specialPromoCode: this.comprehensiveService.getSpecialPromoCodeStatus() 
     };
     const cashPayload = {
       enquiryId: this.comprehensiveService.getEnquiryId(),

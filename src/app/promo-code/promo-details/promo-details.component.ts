@@ -15,7 +15,6 @@ import { LoaderService } from '../../shared/components/loader/loader.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { appConstants } from '../../app.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
-import { InvestmentEngagementJourneyService } from '../../investment/investment-engagement-journey/investment-engagement-journey.service';
 
 @Component({
   selector: 'app-promo-details',
@@ -32,6 +31,7 @@ export class PromoDetailsComponent implements OnInit {
   promoCodeStatus: any;
   selectedPromoDetails: any;
   loading: any;
+  compreTypePromo: any;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -41,7 +41,6 @@ export class PromoDetailsComponent implements OnInit {
     private datePipe: DatePipe,
     private promoSvc: PromoCodeService,
     private manageInvestmentsService: ManageInvestmentsService,
-    private investmentEngagementService: InvestmentEngagementJourneyService,
     private loaderService: LoaderService,
     public authService: AuthenticationService) {
     this.translate.use('en');
@@ -50,21 +49,29 @@ export class PromoDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.promoCodeStatus = PROMO_CODE_STATUS;
+    this.compreTypePromo = appConstants.COMPREHENSIVE_PROMO_CODE_TYPE
     this.selectedPromo = this.promoSvc.getSelectedPromo();
     this.selectedPromoDetails = this.promoSvc.getPromoDetails();
     this.usedPromo = this.promoSvc.usedPromo;
     const promoCategory = (this.router.url === PAYMENT_CHECKOUT) ? appConstants.COMPREHENSIVE_PROMO_CODE_TYPE : appConstants.INVESTMENT_PROMO_CODE_TYPE;
     this.promoSvc.fetchPromoListJSON().then((data) => {
       this.details = data.promoList.find(element => {
-        if (this.selectedPromo['promoCode']) {
-          return element['promoType'] === promoCategory && element['promoCode'] === this.selectedPromo['promoCode'];
+        // If campaignCode exist, use campaignCode to match the promo detail json
+        if (this.selectedPromo['campaignCode']) {
+          if (element['promoType'] === promoCategory && element['promoCode'] === this.selectedPromo['campaignCode']) {
+            return element;
+          }
         } else {
-          return element['promoType'] === promoCategory && element['promoCode'] === this.selectedPromo['code'];
+          if (this.selectedPromo['promoCode']) {
+            return element['promoType'] === promoCategory && element['promoCode'] === this.selectedPromo['promoCode'];
+          } else {
+            return element['promoType'] === promoCategory && element['promoCode'] === this.selectedPromo['code'];
+          }
         }
       });
     });
   }
-
+  
   close() {
     this.activeModal.dismiss();
   }

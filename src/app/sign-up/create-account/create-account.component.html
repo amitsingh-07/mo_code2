@@ -17,10 +17,10 @@
       <div class="col-lg-5 col-md-6">
         <form id="createAccountForm" name="createAccountForm" [formGroup]="createAccountForm">
           <!-- myinfo data -->
-          <div class="flex-row mb10" *ngIf="showSingPassDetails">
+          <div class="flex-row mb15" *ngIf="showSingPassDetails">
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label disabled">
-                <input type="text" id="fullName" class="form-control" #fullName formControlName="fullName" disabled  required>
+                <input type="text" id="fullName" class="form-control" #fullName formControlName="fullName" disabled required>
                 <label class="form-control-placeholder"
                   for="fullName">{{ 'CREATE_ACCOUNT.FORM.FULLNAME.LABEL' | translate}}</label>
               </div>
@@ -32,7 +32,7 @@
               </div>
             </div>
           </div>
-          <div class="flex-row mb10" *ngIf="showSingPassDetails">
+          <div class="flex-row mb15" *ngIf="showSingPassDetails">
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label disabled">
                 <input type="text" id="nricNumber" class="form-control" #nricNumber formControlName="nricNumber" disabled required>
@@ -48,42 +48,7 @@
             </div>
           </div>
           <!-- myinfo data -->
-          <div class="flex-row mb10">
-            <div class="flex-col-4 stretch mr15">
-              <div class="dropdown-control form-control-left" style="pointer-events:none;">
-                <div ngbDropdown id="countryCode">
-                  <button class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle
-                    aria-expanded="false">
-                    <span>{{defaultCountryCode}}</span>
-                  </button>
-                  <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1" style="height: auto;">
-                    <button class="dropdown-item" *ngFor="let option of countryCodeOptions"
-                      (click)="setCountryCode(option.code)">{{option.code}}</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="flex-col-7 stretch">
-              <div class="form-group-floating-label"
-                [ngClass]="{'inline-error': submitted && account.mobileNumber.errors}">
-                <input type="number" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber"
-                  class="form-control" (keyup)="onlyNumber(mobileNumber)" required>
-                <label class="form-control-placeholder"
-                  for="name">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER.LABEL' | translate}}</label>
-              </div>
-            </div>
-            <div class="alert-msg" *ngIf="submitted && account.mobileNumber.errors">
-              <div *ngIf="account.mobileNumber.errors?.required">
-                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER.ERROR.REQUIRED' | translate}}</span>
-              </div>
-              <div *ngIf="account.mobileNumber.errors?.mobileRange">
-                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
-                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER.ERROR.INVALID' | translate}}</span>
-              </div>
-            </div>
-          </div>
-          <div class="flex-row mb10" *ngIf="!showSingPassDetails">
+          <div class="flex-row mb15" *ngIf="!showSingPassDetails">
             <div class="flex-col-5 stretch mr15">
               <div class="form-group-floating-label"
                 [ngClass]="{'inline-error': submitted && account.firstName.errors}">
@@ -130,7 +95,109 @@
               </div>
             </div>
           </div>
-          <div class="flex-row mb10">
+          <div class="flex-row mb15">
+            <div #usrFrmDp class="flex-col-12 dob">
+              <div class="form-group-floating-label pt0">
+                <div class="datepicker-control">
+                  <div class="input-group date-picker mb0" #dob
+                  [ngClass]="{'inline-error': submitted && account.dob.errors}">
+                    <input  class="form-control"
+                        name="dp" ngbDatepicker [minDate]="minDate" [maxDate]="maxDate" formControlName="dob"
+                      #dobInput="ngbDatepicker" id="invPersInfoInpt7" required>
+                      <label class="form-control-placeholder">{{ 'CREATE_ACCOUNT.FORM.DOB.PLACEHOLDER_LBL' | translate}}</label>
+                    <div class="input-group-append">
+                      <button  class="btn btn-primary" type="button" (click)="dobInput.toggle()"
+                      [disabled]= "formValue && formValue.isMyInfoEnabled && formValue.dob" id="createDobBtn1">
+                        <img class="date-picker-image--valid" id="createDobImg1"
+                        *ngIf="!submitted || !account.dob.errors"
+                          src="assets/images/calendar-normal.svg" />
+                        <img class="date-picker-image--invalid" id="createDobImg1"
+                          *ngIf="submitted && account.dob.errors"
+                          src="assets/images/calendar-error.svg" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="alert-msg" *ngIf="submitted && account.dob.errors">
+              <div *ngIf="account.dob.errors?.required">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.DOB.ERROR.REQUIRED' | translate}}</span>
+              </div>
+              <div *ngIf="!account.dob.errors?.required && account.dob.errors?.ngbDate">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.DOB.ERROR.INVALID' | translate}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex-col-12 mb15">
+            <div [ngClass]="{'inline-error': submitted && account.gender.errors}">
+              <div class="flex-row form-control gender disabled" #gender
+               [ngClass]="{'disabled': formValue && formValue.isMyInfoEnabled && formValue.gender}">
+                <div class="mr20">
+                  <label for="gender" id="invPersInfoLbl8" class="mb0">{{ 'CREATE_ACCOUNT.FORM.GENDER.LABEL' | translate}}</label>
+                </div>
+                <div class="checkbox-button one-label mr10">
+                  <input type="radio" value="male" class="field radio"  name="gender" id="gender_type_1" formControlName="gender"/>
+                  <label for="gender_type_1">
+                    <div><span class="input-label-black">{{ 'CREATE_ACCOUNT.FORM.GENDER.MALE' | translate}}</span>
+                    </div>
+                  </label>
+                </div>
+                <div class="checkbox-button one-label">
+                  <input type="radio" value="female" class="field radio" name="gender" id="gender_type_2" formControlName="gender"/>
+                  <label for="gender_type_2">
+                    <div><span class="input-label-black">{{ 'CREATE_ACCOUNT.FORM.GENDER.FEMALE' | translate}}</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="alert-msg" *ngIf="submitted && account.gender.errors">
+              <div *ngIf="account.gender.errors?.required">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.GENDER.ERROR.REQUIRED' | translate}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex-row mb15">
+            <div class="flex-col-4 stretch mr15">
+              <div class="dropdown-control form-control-left" style="pointer-events:none;">
+                <div ngbDropdown id="countryCode">
+                  <button class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle
+                    aria-expanded="false">
+                    <span>{{defaultCountryCode}}</span>
+                  </button>
+                  <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1" style="height: auto;">
+                    <button class="dropdown-item" *ngFor="let option of countryCodeOptions"
+                      (click)="setCountryCode(option.code)">{{option.code}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex-col-7 stretch">
+              <div class="form-group-floating-label"
+                [ngClass]="{'inline-error': submitted && account.mobileNumber.errors}">
+                <input type="number" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber"
+                  class="form-control" (keyup)="onlyNumber(mobileNumber)" required>
+                <label class="form-control-placeholder"
+                  for="name">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER.LABEL' | translate}}</label>
+              </div>
+            </div>
+            <div class="alert-msg" *ngIf="submitted && account.mobileNumber.errors">
+              <div *ngIf="account.mobileNumber.errors?.required">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER.ERROR.REQUIRED' | translate}}</span>
+              </div>
+              <div *ngIf="account.mobileNumber.errors?.mobileRange">
+                <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
+                <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER.ERROR.INVALID' | translate}}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex-row mb15">
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label" [ngClass]="{'inline-error': submitted && account.email.errors}">
                 <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email"  (paste)="onPaste($event, 'email')" (keyup)="onKeyupEvent($event, 'email')" required>
@@ -143,13 +210,13 @@
                 <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                 <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.REQUIRED' | translate}}</span>
               </div>
-              <div *ngIf="account.email.errors?.email">
+              <div *ngIf="account.email.errors?.email || account.email.errors?.pattern">
                 <span class="alert-icon"><img src="assets/images/alert.svg" /></span>
                 <span class="err-msg">{{ 'CREATE_ACCOUNT.FORM.EMAIL.ERROR.INVALID' | translate}}</span>
               </div>
             </div>
           </div>
-          <div class="flex-row mb10">
+          <div class="flex-row mb15">
             <div class="flex-col-12 stretch">
               <div
                 [ngClass]="{'inline-error': (submitted && account.confirmEmail.errors?.required) || (!confirmEmailFocus && !account.email.errors && account.confirmEmail.errors?.notEquivalent)}"
@@ -181,7 +248,7 @@
               </div>
             </div>
           </div>
-          <div class="flex-row mb10">
+          <div class="flex-row mb15">
             <div class="flex-col-12 stretch">
               <div
                 [ngClass]="{'inline-error': (submitted && isPasswordValid && account.password.errors?.required) || (!isPasswordValid && !passwordFocus) }"
@@ -289,7 +356,7 @@
             </div>
           </div>
           <div class="flex-row mb10">
-            <span class="captcha-title mb20">{{ 'COMMON.CAPTCHA_TITLE' | translate}}</span>
+            <span class="captcha-title mb15">{{ 'COMMON.CAPTCHA_TITLE' | translate}}</span>
             <div class="flex-col-6 stretch">
               <div class="form-group-captcha-wrapper">
                 <img [src]="(captchaSrc | secure | async) || ''" class="captcha-img" />

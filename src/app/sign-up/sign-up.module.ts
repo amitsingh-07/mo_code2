@@ -50,6 +50,7 @@ import { ActivateSingpassModalComponent } from './edit-profile/activate-singpass
 import { CreateAccountMyinfoComponent } from './create-account-myinfo/create-account-myinfo.component';
 import { ReferAFriendComponent } from './refer-a-friend/refer-a-friend.component';
 import { ReferalRedirectingPartComponent } from './referal-redirecting-part/referal-redirecting-part.component';
+import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -105,7 +106,8 @@ export function createTranslateLoader(http: HttpClient) {
     ActivateSingpassModalComponent,
     CreateAccountMyinfoComponent,
     ReferAFriendComponent,
-    ReferalRedirectingPartComponent
+    ReferalRedirectingPartComponent,
+    ManageProfileComponent
   ],
   providers: [SignUpAccessGuard, AuthGuardService, TwoFactorAuthGuardService],
   entryComponents: [EditMobileNumberComponent, SrsSuccessModalComponent]
