@@ -1,0 +1,32 @@
+@import '../variables';
+@import '../mixins';
+
+.home-add-button {
+    background: $teal-color;
+    color: $white-color;
+    padding: 20px;
+    text-align: center;
+    font-family: $muli-bold;
+    font-size: 20px;
+    cursor: pointer;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 99;
+}
+@include allmobiles {
+    .home-add-button {
+        position: fixed;
+    }
+}
+@include desktop {
+    .home-add-button {
+        right: 100px;
+        width: auto;
+        border-radius: 5px;
+        box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+        bottom: 10px;
+        font-size: 16px;
+        font-family: $muli-semi-bold;
+    }
+}
