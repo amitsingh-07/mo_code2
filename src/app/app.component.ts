@@ -209,6 +209,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
   deferredPrompt: any;
   showButton = false;
   addBtn = document.querySelector('.home-add-button');
+  this.addBtn.style.display = 'none';
   @HostListener('window:beforeinstallprompt', ['$event'])
   onbeforeinstallprompt(e) {
     console.log(e);
@@ -217,21 +218,21 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     // Stash the event so it can be triggered later.
     this.deferredPrompt = e;
     this.showButton = true;
-	addBtn.style.display = 'block';
+	this.addBtn.style.display = 'block';
 
-	  addBtn.addEventListener('click', (e) => {
+	  this.addBtn.addEventListener('click', (e) => {
 		// hide our user interface that shows our A2HS button
-		addBtn.style.display = 'none';
+		this.addBtn.style.display = 'none';
 		// Show the prompt
-		deferredPrompt.prompt();
+		this.deferredPrompt.prompt();
 		// Wait for the user to respond to the prompt
-		deferredPrompt.userChoice.then((choiceResult) => {
+		this.deferredPrompt.userChoice.then((choiceResult) => {
 			if (choiceResult.outcome === 'accepted') {
 			  console.log('User accepted the A2HS prompt');
 			} else {
 			  console.log('User dismissed the A2HS prompt');
 			}
-			deferredPrompt = null;
+			this.deferredPrompt = null;
 		  });
 	  });
   }
