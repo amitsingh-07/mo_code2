@@ -209,7 +209,6 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
   deferredPrompt: any;
   showButton = false;
   addBtn = document.querySelector('.home-add-button');
-  addBtn.style.display = 'none';
   @HostListener('window:beforeinstallprompt', ['$event'])
   onbeforeinstallprompt(e) {
     console.log(e);
