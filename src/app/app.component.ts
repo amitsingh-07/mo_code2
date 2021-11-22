@@ -206,7 +206,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     this.sessionsService.setActiveInstance(instId);
    }
     //A2HS
-  let deferredPrompt;
+  deferredPrompt: any;
   const addBtn = document.querySelector('.home-add-button');
   addBtn.style.display = 'none';
   window.addEventListener('beforeinstallprompt', (e) => {
