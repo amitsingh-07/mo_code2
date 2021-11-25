@@ -305,7 +305,7 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
           this.signUpService.setCustomerRef(data.objectList[0].customerRef);
         }
         if (this.updateMobile) {
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE], { skipLocationChange: true });
         } else {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED]);
         }
