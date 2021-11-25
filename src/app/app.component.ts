@@ -46,12 +46,6 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
   initRoute = false;
   redirect = '';
   navbarMode = null;
-    isIos = () => {
-	  const userAgent = window.navigator.userAgent.toLowerCase();
-	  return /iphone|ipad|ipod/.test( userAgent );
-  }
-  // Detects if device is in standalone mode
-   isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
 
   constructor(
     private log: LoggerService, private translate: TranslateService, private appService: AppService,
@@ -85,9 +79,9 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
       this.navbarMode = navbarMode;
     });
 	}
-
+	const userAgent = window.navigator.userAgent.toLowerCase();
 	// Checks if should display install popup notification:
-	if (this.isIos() && !this.isInStandaloneMode()) {
+	if ((/iphone|ipad|ipod/.test( userAgent )) && !(('standalone' in window.navigator) && (window.navigator.standalone))) {
 	  this.setState({ showInstallMessage: true });
 	}
     
