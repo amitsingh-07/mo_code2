@@ -78,12 +78,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     this.navbarService.currentNavbarMode.subscribe((navbarMode) => {
       this.navbarMode = navbarMode;
     });
-	}
-	const userAgent = window.navigator.userAgent.toLowerCase();
-	// Checks if should display install popup notification:
-	if ((/iphone|ipad|ipod/.test( userAgent )) && !(('standalone' in window.navigator) && (window.navigator.standalone))) {
-	  this.setState({ showInstallMessage: true });
-	}
+
     
   }
 
@@ -237,5 +232,5 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     }
     this.deferredPrompt = null;
   });
-  
+  }
 }
