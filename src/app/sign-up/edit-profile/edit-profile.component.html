@@ -443,6 +443,18 @@
                     <div class="dots" #showHideBank>
                         <div *ngIf="bankDetails">
                             <div class="flex-row">
+                                <div class="flex-col-6">
+                                    <div class="bank-account txt-bold">
+                                    </div>
+                                </div>
+                                <div class="flex-col-6">
+                                    <div class="bank-account-num">
+                                        <span><img src="assets/images/button-edit.svg"></span>
+                                        <span><img src="assets/images/accounts/edit-locked.svg"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-row">
                                 <div class="flex-col-4">
                                     <div class="bank-account">
                                         {{'EDIT_PROFILE.BANK' | translate}}
@@ -466,13 +478,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <button *ngIf="!entireUserData.jointAccount" type="button" class="edit-button"
+                            <!-- *ngIf="!entireUserData.jointAccount" -->
+                            <button type="button" class="edit-button"
                                 id="editEmployeButton" (click)="editBankDetails()" [disabled]="disableBankSrsEdit">
                                 {{'EDIT_PROFILE.EDIT' | translate}}
                                 <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock.svg" />
                             </button>
-                            <div *ngIf="entireUserData.jointAccount" class="joint-account-desc"
-                                innerHTML="{{'EDIT_PROFILE.JOINT_ACCOUNT_DESC' | translate}}"></div>
+                            <!-- <div *ngIf="entireUserData.jointAccount" class="joint-account-desc"
+                                innerHTML="{{'EDIT_PROFILE.JOINT_ACCOUNT_DESC' | translate}}"></div> -->
                         </div>
                         <div class="no-details" *ngIf="!bankDetails">
                             <div class="flex-row">
@@ -484,13 +497,14 @@
                                         {{'EDIT_PROFILE.NO_BANK_DETAILS' | translate}}
                                     </div>
                                 </div>
-                                <button *ngIf="!entireUserData.jointAccount" type="button" class="edit-button"
+                                <!--  *ngIf="!entireUserData.jointAccount"  -->
+                                <button type="button" class="edit-button"
                                     id="editEmployeButton" (click)="addBankDetails()" [disabled]="disableBankSrsEdit">
                                     {{'EDIT_PROFILE.ADD_BANK' | translate}}
-                                    <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock.svg" />
+                                    <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock-outline.svg" />
                                 </button>
-                                <div *ngIf="entireUserData.jointAccount" class="joint-account-desc"
-                                    innerHTML="{{'EDIT_PROFILE.JOINT_ACCOUNT_DESC' | translate}}"></div>
+                                <!-- <div *ngIf="entireUserData.jointAccount" class="joint-account-desc"
+                                    innerHTML="{{'EDIT_PROFILE.JOINT_ACCOUNT_DESC' | translate}}"></div> -->
                             </div>
                         </div>
                     </div>
@@ -516,6 +530,20 @@
                     </div>
                     <div class="dots" #showHideJABank>
                         <div *ngFor="let jaBankDetail of customerJointAccBankDetails, let i = index">
+                            <div class="flex-row">
+                                <div class="flex-col-6">
+                                    <div class="bank-account txt-bold">
+                                        {{jaBankDetail.customerPortfolioName}}
+                                    </div>
+                                </div>
+                                <div class="flex-col-6">
+                                    <div class="bank-account-num">
+                                        <span><img src="assets/images/button-edit.svg"></span>
+                                        <span><img src="assets/images/accounts/edit-locked.svg"></span>
+                                        <span><img src="assets/images/accounts/lock-outline.svg"></span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="flex-row">
                                 <div class="flex-col-6">
                                     <div class="bank-account">
@@ -552,22 +580,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex-row">
-                                <div class="flex-col-6">
-                                    <div class="bank-account">
-                                        {{'EDIT_PROFILE.PORTFOLIO_NAME' | translate}}
-                                    </div>
-                                </div>
-                                <div class="flex-col-6">
-                                    <div class="bank-account-num">
-                                        {{jaBankDetail.customerPortfolioName}}
-                                    </div>
-                                </div>
-                            </div>
                             <hr *ngIf="customerJointAccBankDetails.length !== i + 1">
                         </div>
-                        <div class="joint-account-desc"
-                            innerHTML="{{'EDIT_PROFILE.JOINT_ACCOUNT_DESC' | translate}}"></div>
+                        <div class="pb20"></div>
+                        <!-- <div class="joint-account-desc"
+                            innerHTML="{{'EDIT_PROFILE.JOINT_ACCOUNT_DESC' | translate}}"></div> -->
                     </div>
                 </div>
             </div>
@@ -589,6 +606,18 @@
                     </div>
                     <div class="dots" #showHideSrs>
                         <div>
+                            <div class="flex-row">
+                                <div class="flex-col-6">
+                                    <div class="bank-account txt-bold">
+                                    </div>
+                                </div>
+                                <div class="flex-col-6">
+                                    <div class="bank-account-num">
+                                        <span><img src="assets/images/button-edit.svg"></span>
+                                        <span><img src="assets/images/accounts/edit-locked.svg"></span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="flex-row">
                                 <div class="flex-col-4">
                                     <div id="srs-operator-lbl" class="bank-account">
