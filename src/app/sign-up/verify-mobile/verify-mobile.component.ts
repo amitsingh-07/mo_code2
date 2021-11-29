@@ -222,8 +222,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     this.mobileNumberVerifiedMessage = this.loading['verifying'];
     this.signUpApiService.verifyOTP(otp, this.editProfile).subscribe((data: any) => {
       if (data.responseMessage.responseCode === 6003) {
-        this.mobileNumberVerified = true;
-        this.mobileNumberVerifiedMessage = this.loading['verified'];
+        this.redirectToPasswordPage();
       } else if (data.responseMessage.responseCode === 5007 || data.responseMessage.responseCode === 5009) {
         const title = data.responseMessage.responseCode === 5007 ? this.errorModal['title'] : this.errorModal['expiredTitle'];
         const message = data.responseMessage.responseCode === 5007 ? this.errorModal['message'] : this.errorModal['expiredMessage'];
@@ -245,9 +244,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     this.mobileNumberVerifiedMessage = this.loading['verifying'];
     this.authService.doValidate2fa(otp).subscribe((data: any) => {
       if (data.responseMessage.responseCode === 6011) {
-        this.mobileNumberVerified = true;
-        this.authService.set2FAToken(data.responseMessage.responseCode);
-        this.mobileNumberVerifiedMessage = this.loading['verified2fa'];
+        this.authService.set2FAToken(data.responseMessage.responseCode);        
+        this.redirectToPasswordPage();
         this.authService.setFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE, false);
       } else if (data.responseMessage.responseCode === 5123 || data.responseMessage.responseCode === 5009) {
         const title = data.responseMessage.responseCode === 5123 ? this.errorModal['title'] : this.errorModal['expiredTitle'];
@@ -563,6 +561,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       this.redirectAfterLogin = 'email-enquiry/success';
       this.progressModal = true;
       this.loaderService.hideLoader();
+      this.router.navigate([this.redirectAfterLogin]);
     });
   }
 
@@ -585,6 +584,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       this.redirectAfterLogin = SIGN_UP_ROUTE_PATHS.DASHBOARD;
       this.progressModal = true;
       this.loaderService.hideLoader();
+      this.router.navigate([this.redirectAfterLogin]);
     }
   }
 
@@ -614,18 +614,23 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
           this.redirectAfterLogin = appConstants.JOURNEY_TYPE_COMPREHENSIVE;
           this.progressModal = true;
           this.loaderService.hideLoader();
+          this.loaderService.showLoader({ title: 'Loading', autoHide: false });
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT], { skipLocationChange: true });
         } else if (journeyType === appConstants.JOURNEY_TYPE_INVESTMENT) {
           this.redirectAfterLogin = appConstants.JOURNEY_TYPE_INVESTMENT;
           this.progressModal = true;
           this.loaderService.hideLoader();
+          this.investmentCommonService.redirectToInvestmentFromLogin(this.authService.getEnquiryId());
         } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING) {
           this.redirectAfterLogin = WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL;
           this.progressModal = true;
           this.loaderService.hideLoader();
+          this.router.navigate([this.redirectAfterLogin]);
         } else {
           this.redirectAfterLogin = SIGN_UP_ROUTE_PATHS.DASHBOARD;
           this.progressModal = true;
           this.loaderService.hideLoader();
+          this.router.navigate([this.redirectAfterLogin]);
         }
       }
     },
