@@ -550,7 +550,7 @@
   "DIVIDEND": {
     "TITLE": "Dividend History",
     "PAYOUT_DATE": "Date",
-    "DIVIDEND_RATE": "Dividend Rate Per Unit",
+    "DIVIDEND_RATE": "Dividend Per Unit",
     "DIVIDEND_RECEIVED": "Dividends Received",
     "NO_HISTORY": "No Dividend History!"
   }
