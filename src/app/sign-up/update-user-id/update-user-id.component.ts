@@ -167,7 +167,7 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
     if (this.checkEditType()) {
       this.updateUserIdForm = this.formBuilder.group({
         email: [this.formValues.email],
-        newEmail: ['', [Validators.required, Validators.email]],
+        newEmail: ['', [Validators.required, Validators.email, Validators.pattern(RegexConstants.Email)]],
         confirmEmail: ['', Validators.required],
         password: ['', Validators.required],
         encryptedPassword: ['']
@@ -305,7 +305,7 @@ export class UpdateUserIdComponent implements OnInit, OnDestroy {
           this.signUpService.setCustomerRef(data.objectList[0].customerRef);
         }
         if (this.updateMobile) {
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE], { skipLocationChange: true });
         } else {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED]);
         }

@@ -84,6 +84,10 @@ export class CreateAccountFormError {
         errorTitle: 'Invalid E-mail',
         errorMessage: 'Please enter a valid email address in the format yourname@example.com'
       },
+      pattern: {
+        errorTitle: 'Invalid E-mail',
+        errorMessage: 'Please enter a valid email address in the format yourname@example.com'
+      },
       notChanged: {
         errorTitle: 'Not Changed',
         errorMessage: 'Update Mobile Number / Email address'
@@ -91,6 +95,10 @@ export class CreateAccountFormError {
     },
     newEmail: {
       email: {
+        errorTitle: 'Invalid E-mail',
+        errorMessage: 'Please enter a valid email address in the format yourname@example.com'
+      },
+      pattern: {
         errorTitle: 'Invalid E-mail',
         errorMessage: 'Please enter a valid email address in the format yourname@example.com'
       },
