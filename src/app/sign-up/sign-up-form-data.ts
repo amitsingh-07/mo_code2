@@ -8,6 +8,8 @@ export class SignUpFormData {
   password: string;
   fullName:string;
   nricNumber:any;
+  dob: any;
+  gender: string;
   disableAttributes :any;
   isMyInfoEnabled :boolean;
   

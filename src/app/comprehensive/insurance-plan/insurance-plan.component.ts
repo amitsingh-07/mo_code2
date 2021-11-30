@@ -36,7 +36,6 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
   insurancePlanningDependantModal: any;
   insurancePlanningNonDependantModal: any;
   summaryRouterFlag: boolean;
-  routerEnabled = false;
   hospitalType: string;
   hospitalPlanList: IHospitalPlanList[];
   DownLuck: HospitalPlan;
@@ -52,7 +51,7 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder, private configService: ConfigService, private router: Router,
     private comprehensiveService: ComprehensiveService, private comprehensiveApiService: ComprehensiveApiService,
     private age: AboutAge, private route: ActivatedRoute, private loaderService: LoaderService) {
-    this.routerEnabled = this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP3;
+    this.summaryRouterFlag = COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.ROUTER_CONFIG.STEP3;
     this.configService.getConfig().subscribe((config: any) => {
       this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
@@ -66,10 +65,6 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
         this.careShieldTitle = this.translate.instant('CARE_SHIELD_TITLE');
         this.careShieldMessage = this.translate.instant('CARE_SHIELD_MESSAGE');
         this.saveData = this.translate.instant('COMMON_LOADER.SAVE_DATA');
-        if (this.route.snapshot.paramMap.get('summary') === 'summary' && this.summaryRouterFlag === true) {
-          this.routerEnabled = !this.summaryRouterFlag;
-          this.showSummaryModal();
-        }
       });
     });
 
@@ -299,43 +294,39 @@ export class InsurancePlanComponent implements OnInit, OnDestroy {
     }
   }
   showSummaryModal() {
-    if (this.routerEnabled) {
-      this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.INSURANCE_PLAN + '/summary']);
+    const fireProofingDetails = this.comprehensiveService.getCurrentFireProofing();
+    if (!fireProofingDetails.dependant) {
+      const summaryModalDetails = {
+        setTemplateModal: 3,
+        contentObj: this.insurancePlanningDependantModal,
+        dependantModelSel: true,
+        nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/4',
+        routerEnabled: this.summaryRouterFlag
+      };
+      this.comprehensiveService.openSummaryPopUpModal(summaryModalDetails);
     } else {
-      const fireProofingDetails = this.comprehensiveService.getCurrentFireProofing();
-      if (!fireProofingDetails.dependant) {
-        const summaryModalDetails = {
-          setTemplateModal: 3,
-          contentObj: this.insurancePlanningDependantModal,
-          dependantModelSel: true,
-          nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/4',
-          routerEnabled: this.summaryRouterFlag
-        };
-        this.comprehensiveService.openSummaryPopUpModal(summaryModalDetails);
-      } else {
-        this.loaderService.showLoader({ title: this.saveData });
-        this.comprehensiveApiService.getInsurancePlanning().subscribe(
-          (data: any) => {
-            this.loaderService.hideLoader();
-            if (data && data[fireProofingDetails.gender][fireProofingDetails.age]) {
-              const termLifeDetails = data[fireProofingDetails.gender][fireProofingDetails.age];
-              const Regexp = new RegExp('[,]', 'g');
-              const wholeLifeInsurance: any = (termLifeDetails['WHOLELIFE'] + '').replace(Regexp, '');
-              const summaryModalDetails = {
-                setTemplateModal: 3,
-                contentObj: this.insurancePlanningNonDependantModal,
-                dependantModelSel: false,
-                estimatedCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.INSURANCE_PLAN.ESTIMATED_COST,
-                termInsurance: termLifeDetails['TERM'],
-                wholeLife: wholeLifeInsurance,
-                nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/4',
-                routerEnabled: this.summaryRouterFlag
-              };
-              this.comprehensiveService.openSummaryPopUpModal(summaryModalDetails);
-            }
+      this.loaderService.showLoader({ title: this.saveData });
+      this.comprehensiveApiService.getInsurancePlanning().subscribe(
+        (data: any) => {
+          this.loaderService.hideLoader();
+          if (data && data[fireProofingDetails.gender][fireProofingDetails.age]) {
+            const termLifeDetails = data[fireProofingDetails.gender][fireProofingDetails.age];
+            const Regexp = new RegExp('[,]', 'g');
+            const wholeLifeInsurance: any = (termLifeDetails['WHOLELIFE'] + '').replace(Regexp, '');
+            const summaryModalDetails = {
+              setTemplateModal: 3,
+              contentObj: this.insurancePlanningNonDependantModal,
+              dependantModelSel: false,
+              estimatedCost: COMPREHENSIVE_CONST.SUMMARY_CALC_CONST.INSURANCE_PLAN.ESTIMATED_COST,
+              termInsurance: termLifeDetails['TERM'],
+              wholeLife: wholeLifeInsurance,
+              nextPageURL: (COMPREHENSIVE_ROUTE_PATHS.STEPS) + '/4',
+              routerEnabled: this.summaryRouterFlag
+            };
+            this.comprehensiveService.openSummaryPopUpModal(summaryModalDetails);
           }
-        );
-      }
+        }
+      );
     }
   }
   showToolTipModal(toolTipTitle, toolTipMessage) {

@@ -1,0 +1,37 @@
+@import '../../../_variables.scss';
+@import '../../../_mixins.scss';
+
+app-manage-profile{
+  .container-fluid {
+    &.max-width--1024 {
+      max-width: 800px;
+    }
+  }
+  .mf-card {
+    padding: 16px 20px 18px;
+    border-radius: 6px;
+    background-color: $white-color;
+    position: relative;
+    margin-bottom: 20px;
+
+    &__title {
+      color: $tuna-color;
+      font-family: $muli-semi-bold;
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    &__info {
+      color: $teal-color;
+      font-family: $muli-semi-bold;
+      font-size: 14px;
+    }
+
+    &__edit {
+      position: absolute;
+      right: 20px;
+      top: 28px;
+      cursor: pointer;
+    }
+  }
+}

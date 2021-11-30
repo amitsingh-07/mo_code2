@@ -23,6 +23,7 @@ import { ManageInvestmentsService } from '../manage-investments.service';
 import { environment } from './../../../../environments/environment';
 import { CarouselModalComponent } from './../../../shared/modal/carousel-modal/carousel-modal.component';
 import { INVESTMENT_COMMON_CONSTANTS } from './../../investment-common/investment-common.constants';
+import { Util } from '../../../shared/utils/util';
 
 @Component({
   selector: 'app-investment-overview',
@@ -505,5 +506,18 @@ export class InvestmentOverviewComponent implements OnInit, OnDestroy {
       }
       this.getInvestmentOverview(false);
     }
+  }
+
+  checkIfInvestedWiseIncomePortfolio(wiseIncPortfolio) {
+    let showWIBanner = false;
+    if(wiseIncPortfolio && wiseIncPortfolio.length) {
+      for (const portfolio of wiseIncPortfolio) {
+        if(!Util.isEmptyOrNull(portfolio.wiPayoutEligible) && portfolio.wiPayoutEligible) {
+          showWIBanner = true;
+          break;
+        }
+      }
+    }
+    return showWIBanner;
   }
 }
