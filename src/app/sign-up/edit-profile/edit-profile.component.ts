@@ -32,6 +32,7 @@ import {
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { TitleCasePipe } from '@angular/common';
 import { CustomerJointAccountInfo } from '../signup-types';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 
 @Component({
   selector: 'app-edit-profile',
@@ -596,5 +597,11 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
   showJointAccountDetailsCard: () => boolean = (): boolean => {
     return this.customerJointAccBankDetails && this.customerJointAccBankDetails.length > 0;
+  }
+
+  openSecodaryUserLockModal(){
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('EDIT_PROFILE.SECONDARY_USER_LOCK_MODAL.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('EDIT_PROFILE.SECONDARY_USER_LOCK_MODAL.DESC');
   }
 }

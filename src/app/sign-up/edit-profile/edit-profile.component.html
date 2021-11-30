@@ -441,16 +441,18 @@
                         </div>
                     </div>
                     <div class="dots" #showHideBank>
-                        <div *ngIf="bankDetails">
+                        <div *ngIf="bankDetails" class="pb20">
                             <div class="flex-row">
                                 <div class="flex-col-6">
                                     <div class="bank-account txt-bold">
                                     </div>
                                 </div>
                                 <div class="flex-col-6">
-                                    <div class="bank-account-num">
-                                        <span><img src="assets/images/button-edit.svg"></span>
-                                        <span><img src="assets/images/accounts/edit-locked.svg"></span>
+                                    <div class="icon-block">
+                                        <span (click)="editBankDetails()">
+                                            <span *ngIf="is2faAuthorized"><img src="assets/images/button-edit.svg"></span>
+                                            <span *ngIf="!is2faAuthorized"><img src="assets/images/accounts/edit-locked.svg"></span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -479,11 +481,11 @@
                                 </div>
                             </div>
                             <!-- *ngIf="!entireUserData.jointAccount" -->
-                            <button type="button" class="edit-button"
+                            <!-- <button type="button" class="edit-button"
                                 id="editEmployeButton" (click)="editBankDetails()" [disabled]="disableBankSrsEdit">
                                 {{'EDIT_PROFILE.EDIT' | translate}}
                                 <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock.svg" />
-                            </button>
+                            </button> -->
                             <!-- <div *ngIf="entireUserData.jointAccount" class="joint-account-desc"
                                 innerHTML="{{'EDIT_PROFILE.JOINT_ACCOUNT_DESC' | translate}}"></div> -->
                         </div>
@@ -537,10 +539,12 @@
                                     </div>
                                 </div>
                                 <div class="flex-col-6">
-                                    <div class="bank-account-num">
-                                        <span><img src="assets/images/button-edit.svg"></span>
-                                        <span><img src="assets/images/accounts/edit-locked.svg"></span>
-                                        <span><img src="assets/images/accounts/lock-outline.svg"></span>
+                                    <div class="icon-block">
+                                        <span>
+                                            <span *ngIf="is2faAuthorized"><img src="assets/images/button-edit.svg"></span>
+                                            <span *ngIf="!is2faAuthorized"><img src="assets/images/accounts/edit-locked.svg"></span>
+                                        </span>
+                                        <span (click)="openSecodaryUserLockModal()"><img src="assets/images/accounts/lock-outline.svg"></span>
                                     </div>
                                 </div>
                             </div>
@@ -605,16 +609,18 @@
                         </div>
                     </div>
                     <div class="dots" #showHideSrs>
-                        <div>
+                        <div class="pb20">
                             <div class="flex-row">
                                 <div class="flex-col-6">
                                     <div class="bank-account txt-bold">
                                     </div>
                                 </div>
                                 <div class="flex-col-6">
-                                    <div class="bank-account-num">
-                                        <span><img src="assets/images/button-edit.svg"></span>
-                                        <span><img src="assets/images/accounts/edit-locked.svg"></span>
+                                    <div class="icon-block">
+                                        <span (click)="updateSrsDetails(srsDetails?.srsAccountNumber?.conformedValue, {name: srsDetails?.srsOperator}, srsDetails?.customerId, false)">
+                                            <span *ngIf="is2faAuthorized"><img src="assets/images/button-edit.svg"></span>
+                                            <span *ngIf="!is2faAuthorized"><img src="assets/images/accounts/edit-locked.svg"></span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -638,12 +644,12 @@
                                         {{srsDetails?.srsAccountNumber?.conformedValue}}</div>
                                 </div>
                             </div>
-                            <button type="button" class="edit-button" id="editEmployeButton"
+                            <!-- <button type="button" class="edit-button" id="editEmployeButton"
                                 (click)="updateSrsDetails(srsDetails?.srsAccountNumber?.conformedValue, {name: srsDetails?.srsOperator}, srsDetails?.customerId, false)"
                                 [disabled]="disableBankSrsEdit">
                                 {{'EDIT_PROFILE.EDIT' | translate}}
                                 <img *ngIf="!is2faAuthorized" class="lock" src="assets/images/accounts/lock.svg" />
-                            </button>
+                            </button> -->
                         </div>
                     </div>
                 </div>

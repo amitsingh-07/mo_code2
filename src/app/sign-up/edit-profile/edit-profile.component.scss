@@ -313,6 +313,12 @@ app-edit-profile {
     text-align: right;
     color: $teal-color;
   }
+  .icon-block{
+    text-align: right;
+    span{
+      cursor: pointer;
+    }
+  }
   .bank_details,
   .srs_details {
     .dots {
