@@ -105,7 +105,28 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
     this.signUpService.getEditProfileInfo()
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((data) => {
-        if (data.objectList.customerBankDetail && data.objectList.customerBankDetail.length > 0) {
+        if (this.formValues && this.formValues.customerPortfolioId && data.objectList.customerJointAccountBankDetails && data.objectList.customerJointAccountBankDetails.length > 0) {
+          data.objectList.customerJointAccountBankDetails.forEach(portfolio => {
+            if (portfolio.customerPortfolioId == this.formValues.customerPortfolioId) {
+              this.investmentAccountService.setJAPortfolioBankDetail(portfolio.accountHolderName, {
+                id: 47,
+                key: 'DBS',
+                name: 'Development Bank of Singapore Ltd',
+                value: '7171'
+              }, portfolio.bankAccountNumber, portfolio.customerPortfolioId);
+              this.bankForm.patchValue({
+                accountHolderName: portfolio.accountHolderName,
+                bank: {
+                  id: 47,
+                  key: 'DBS',
+                  name: 'Development Bank of Singapore Ltd',
+                  value: '7171'
+                },
+                accountNo: portfolio.bankAccountNumber
+              });
+            }
+          });
+        } else if (data.objectList.customerBankDetail && data.objectList.customerBankDetail.length > 0) {
           const bankDetails = data.objectList.customerBankDetail[0];
           this.investmentAccountService.setEditProfileBankDetail(bankDetails.accountName, bankDetails.bank, bankDetails.accountNumber, bankDetails.id, false);
           this.bankForm.patchValue({

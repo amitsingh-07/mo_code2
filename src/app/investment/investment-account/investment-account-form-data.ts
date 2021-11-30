@@ -139,6 +139,7 @@ export class InvestmentAccountFormData {
   accountNumber: any;
   bankUpdateId: any;
   accountHolderName: any;
+  customerPortfolioId: any;
 
   // Account Creation Status
   accountCreationStatus: string;

@@ -603,16 +603,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     return this.authService.get2faVerifyAllowed();
   }
 
-  showSecondaryUserLockPopup() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.translate.instant(
-      'EDIT_PROFILE.UNABLE_TO_UPDATE_JA_ACCOUNT.TITLE'
-    );
-    ref.componentInstance.errorMessage = this.translate.instant(
-      'EDIT_PROFILE.UNABLE_TO_UPDATE_JA_ACCOUNT.DESC'
-    );
-  }
-
   editJABankDetails(portfolioBankDetails) {
     console.log('ja bank', portfolioBankDetails);
     let accountHolderName;
@@ -629,8 +619,18 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         key: 'DBS',
         name: 'Development Bank of Singapore Ltd',
         value: '7171'
-      }, portfolioBankDetails.bankAccountNumber, portfolioBankDetails.bankId);
+      }, portfolioBankDetails.bankAccountNumber, portfolioBankDetails.customerPortfolioId);
     this.authService.set2faVerifyAllowed(true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: false }, fragment: 'bank' });
+  }
+
+  openSecodaryUserLockModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('EDIT_PROFILE.SECONDARY_USER_LOCK_MODAL.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('EDIT_PROFILE.SECONDARY_USER_LOCK_MODAL.DESC');
+  }
+
+  showEditIcon() {
+    return this.is2faAuthorized ? 'assets/images/button-edit.svg' : 'assets/images/accounts/edit-locked.svg';
   }
 }
