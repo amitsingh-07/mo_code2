@@ -545,7 +545,11 @@
     "CHANGE_PASSWORD": "Change Password",
     "MANAGE_PROFILE": "Manage Profile",
     "MF_MOBILE_NO": "Mobile Number",
-    "MF_EMAIL_ADDRESS": "Email Address"
+    "MF_EMAIL_ADDRESS": "Email Address",
+    "UNABLE_TO_UPDATE_JA_ACCOUNT": {
+      "TITLE": "Oops, Unable to Update",
+      "DESC": "Only primary holder of this joint account can amend the bank details. As you are the secondary holder, kindly advise your primary holder to edit the bank details for this joint account."
+    }
   },
   "ADD_BANK": {
     "ACCOUNT_NAME": "Account Holders Name",

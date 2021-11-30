@@ -564,6 +564,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <button *ngIf="is2faAuthorized" (click)="editJABankDetails(jaBankDetail)" class="btn btn-primary-dark width100 mt5">Edit</button>
+                            <button *ngIf="!is2faAuthorized" (click)="editJABankDetails(jaBankDetail)" class="btn btn-primary-dark width100 mt5">Edit With Lock</button>
+                            <button class="btn btn-primary-dark width100 mt5" (click)="showSecondaryUserLockPopup()">Lock</button>
                             <hr *ngIf="customerJointAccBankDetails.length !== i + 1">
                         </div>
                         <div class="joint-account-desc"
