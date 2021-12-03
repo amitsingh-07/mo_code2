@@ -108,20 +108,10 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
         if (this.formValues && this.formValues.customerPortfolioId && data.objectList.customerJointAccountBankDetails && data.objectList.customerJointAccountBankDetails.length > 0) {
           data.objectList.customerJointAccountBankDetails.forEach(portfolio => {
             if (portfolio.customerPortfolioId == this.formValues.customerPortfolioId) {
-              this.investmentAccountService.setJAPortfolioBankDetail(portfolio.accountHolderName, {
-                id: 47,
-                key: 'DBS',
-                name: 'Development Bank of Singapore Ltd',
-                value: '7171'
-              }, portfolio.bankAccountNumber, portfolio.customerPortfolioId);
+              this.investmentAccountService.setJAPortfolioBankDetail(portfolio.accountHolderName, portfolio.bank, portfolio.bankAccountNumber, portfolio.customerPortfolioId);
               this.bankForm.patchValue({
                 accountHolderName: portfolio.accountHolderName,
-                bank: {
-                  id: 47,
-                  key: 'DBS',
-                  name: 'Development Bank of Singapore Ltd',
-                  value: '7171'
-                },
+                bank: portfolio.bank,
                 accountNo: portfolio.bankAccountNumber
               });
             }
@@ -164,7 +154,9 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
     this.bankForm = this.formBuilder.group({
       accountHolderName: [this.formValues.fullName, [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
       bank: [this.formValues.bank, [Validators.required]],
-      accountNo: [this.formValues.accountNumber, [Validators.required]]
+      accountNo: [this.formValues.accountNumber, [Validators.required]],
+      customerPortfolioId: this.formValues && this.formValues.customerPortfolioId ? this.formValues.customerPortfolioId : '',
+      isJAAccount: this.formValues && this.formValues.customerPortfolioId ? true : false
     });
   }
   getInlineErrorStatus(control) {
@@ -238,7 +230,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
         // PASSING NULL AND FALSE VALUES AS THIS API IS CALLED FROM PROFILE PAGE TO 
         // EDIT OR ADD BANK DETAILS
         this.signUpService.updateBankInfoProfile(form.value.bank,
-          form.value.accountHolderName, accountNum, this.updateId, '', false).subscribe((data) => {
+          form.value.accountHolderName, accountNum, this.updateId, form.value.customerPortfolioId, form.value.isJAAccount).subscribe((data) => {
             this.loaderService.hideLoader();
             this.isEdit = true;
             // tslint:disable-next-line:triple-equals

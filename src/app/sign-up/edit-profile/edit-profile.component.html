@@ -535,11 +535,10 @@
                 </div>
                 <div class="flex-col-6">
                   <div class="icon-block">
-                    <span>
+                    <span *ngIf="isEditable(jaBankDetail)">
                       <img (click)="editJABankDetails(jaBankDetail)" [src]="showEditIcon()">
-                      <!-- <span *ngIf="!is2faAuthorized"><img src="assets/images/accounts/edit-locked.svg"></span> -->
                     </span>
-                    <span (click)="openSecodaryUserLockModal()"><img
+                    <span *ngIf="isSecondaryHolder(jaBankDetail)" (click)="openSecodaryUserLockModal()"><img
                         src="assets/images/accounts/lock-outline.svg"></span>
                   </div>
                 </div>
@@ -552,7 +551,7 @@
                 </div>
                 <div class="flex-col-6">
                   <div class="bank-account-num">
-                    {{ jaBankDetail.bankName }}
+                    {{ jaBankDetail.bank?.name }}
                   </div>
                 </div>
               </div>

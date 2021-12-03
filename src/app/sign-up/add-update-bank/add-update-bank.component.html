@@ -10,12 +10,11 @@
           </div>
           <div class="flex-col-12">
             <div>
-             <div contenteditable="true"
-                       id="fullname" [textContent]="bankForm.get('accountHolderName').value"
-                       (focusout)="setAccountHolderName($event.target.textContent);" maxlength="100"
-                       (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
-                        placeholder="Enter AccountHolder Name">
-                     </div>
+              <div contenteditable="true" id="fullname" [textContent]="bankForm.get('accountHolderName').value"
+                (focusout)="setAccountHolderName($event.target.textContent);" maxlength="100"
+                (keypress)="onKeyPressEvent($event, $event.target.textContent)" class="content-editable"
+                placeholder="Enter AccountHolder Name">
+              </div>
             </div>
           </div>
         </div>
@@ -66,7 +65,7 @@
         </div>
       </div>
     </div>
-  </form> 
+  </form>
   <button (click)="applyChanges(bankForm)" type="button" class="btn btn__footer--fixed btn-primary width100"
     id="forgotPasswordButton">{{buttonTitle}}</button>
 </div>

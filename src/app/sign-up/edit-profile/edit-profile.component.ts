@@ -1,7 +1,8 @@
+import { TitleCasePipe } from '@angular/common';
 import { Component, NgZone, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -26,11 +27,10 @@ import { SessionsService } from './../../shared/Services/sessions/sessions.servi
 
 import { ActivateSingpassModalComponent } from './activate-singpass-modal/activate-singpass-modal.component';
 import { MyInfoService } from '../../shared/Services/my-info.service';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 import {
   ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
-import { TitleCasePipe } from '@angular/common';
 import { CustomerJointAccountInfo } from '../signup-types';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 
@@ -613,13 +613,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     }
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     // tslint:disable-next-line:max-line-length accountName
-    this.investmentAccountService.setJAPortfolioBankDetail(accountHolderName,
-      {
-        id: 47,
-        key: 'DBS',
-        name: 'Development Bank of Singapore Ltd',
-        value: '7171'
-      }, portfolioBankDetails.bankAccountNumber, portfolioBankDetails.customerPortfolioId);
+    this.investmentAccountService.setJAPortfolioBankDetail(accountHolderName, portfolioBankDetails.bank, portfolioBankDetails.bankAccountNumber, portfolioBankDetails.customerPortfolioId);
     this.authService.set2faVerifyAllowed(true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: false }, fragment: 'bank' });
   }
@@ -632,5 +626,13 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
   showEditIcon() {
     return this.is2faAuthorized ? 'assets/images/button-edit.svg' : 'assets/images/accounts/edit-locked.svg';
+  }
+
+  isEditable(jaBankDetail) {
+    return jaBankDetail.jaStatus === SIGN_UP_CONFIG.CUSTOMER_PORTFOLIOS.JOINT_ACCOUNT.SATUS && jaBankDetail.primaryCustomer;
+  }
+
+  isSecondaryHolder(jaBankDetail) {
+    return jaBankDetail.jaStatus === SIGN_UP_CONFIG.CUSTOMER_PORTFOLIOS.JOINT_ACCOUNT.SATUS && !jaBankDetail.primaryCustomer;
   }
 }
