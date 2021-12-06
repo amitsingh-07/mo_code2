@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
-        <form id="verifyMobileForm" name="verifyMobileForm" [formGroup]="verifyMobileForm">
+        <form id="verifyMobileForm" name="verifyMobileForm" (keyup.enter)="save(verifyMobileForm)" [formGroup]="verifyMobileForm">
           <div class="verify-mobile-block">
             <div class="text-center verify-mobile-block__otp__title mb15">
               {{ 'VERIFY_MOBILE.FORM.INSTRUCTION' | translate}}
@@ -49,28 +49,16 @@
                   'VERIFY_MOBILE.FORM.EDIT_NUMBER' | translate }}</div>
               </ng-container>
             </div>
-            <div class="verify-mobile-block__otp">
-
-              <input type="number" step="0.01" class="input-control text-align-center" #otp1 formControlName="otp1"
-                (keyup)="onlyNumber(otp1,otp2)" size="1">
-              <input type="number" step="0.01" class="input-control text-align-center" #otp2 formControlName="otp2"
-                (keyup)="onlyNumber(otp2,otp3)" size="1">
-              <input type="number" step="0.01" class="input-control text-align-center" #otp3 formControlName="otp3"
-                (keyup)="onlyNumber(otp3,otp4)" size="1">
-              <input type="number" step="0.01" class="input-control text-align-center" #otp4 formControlName="otp4"
-                (keyup)="onlyNumber(otp4,otp5)" size="1">
-              <input type="number" step="0.01" class="input-control text-align-center" #otp5 formControlName="otp5"
-                (keyup)="onlyNumber(otp5,otp6)" size="1">
-              <input type="number" step="0.01" class="input-control text-align-center" #otp6 formControlName="otp6"
-                (keyup)="onlyNumber(otp6, 'undefined')" size="1">
+            <div class="verify-mobile-block__otp_directive">
+              <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config" ></ng-otp-input>
             </div>
             
             <div class="verify-mobile-otp text-center">       
-              <button type="button" class="btn button-with-otp seconds-timer" *ngIf="isOtpSent">{{ 'VERIFY_MOBILE.FORM.RESEND_OTP' | translate }}({{ retrySecondsLeft }}{{ retrySeconds }})</button>
-              <button type="button" class="btn button-with-otp" (click)="requestNewCode()" *ngIf="!isOtpSent">{{ 'VERIFY_MOBILE.FORM.RESEND_OTP' | translate }}</button>
+              <span class="btn button-with-otp seconds-timer" *ngIf="isOtpSent">{{ 'VERIFY_MOBILE.FORM.RESEND_OTP' | translate }}({{ retrySecondsLeft }}{{ retrySeconds }})</span>
+              <span class="btn button-with-otp" (click)="requestNewCode()" *ngIf="!isOtpSent">{{ 'VERIFY_MOBILE.FORM.RESEND_OTP' | translate }}</span>
             </div>
 
-            <button (click)="save(verifyMobileForm)" [disabled]="verifyMobileForm.invalid" type="button" class="btn btn__footer--fixed btn-primary width100">{{
+            <button (click)="save(verifyMobileForm)" [disabled]="!showOtpComponent" type="button" class="btn btn__footer--fixed btn-primary width100">{{
               'COMMON.VERIFY' | translate }}</button>
           </div>          
         </form>
