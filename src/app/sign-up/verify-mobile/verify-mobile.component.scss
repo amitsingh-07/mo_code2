@@ -17,7 +17,7 @@ app-verify-mobile {
       font-size: 18px;
     }
 
-    .verify-mobile-block__otp {
+    .verify-mobile-block__otp, .verify-mobile-block__otp_directive .wrapper {
       @extend .flex;
       @extend .space-btwn;
 
@@ -365,5 +365,11 @@ app-verify-mobile {
       }
     }
   }
-
+  
+  .wrapper .otp-input:not(:last-child) {
+    margin-right: 10.5px!important; 
+    @include allmobiles {
+      margin-right: 5.5px!important; 
+      }
+    }
 }
