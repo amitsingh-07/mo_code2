@@ -28,13 +28,16 @@
     <div class="row">
       <div class="col-lg-7 col-md-6">
         <div class="signup-wrapper">
-          <h2 *ngIf="!two2faAuth" class="signup-wrapper__title order1 sm-order2 ml10 mb30">{{ 'VERIFY_MOBILE.TITLE' | translate }}</h2>
-          <h2 *ngIf="two2faAuth" class="signup-wrapper__title order1 sm-order2 ml10 mb30">{{ 'VERIFY_MOBILE.2FA_TITLE' | translate}}</h2>
+          <h2 *ngIf="!two2faAuth" class="signup-wrapper__title order1 sm-order2 ml10 mb30">
+            {{ 'VERIFY_MOBILE.TITLE' | translate }}</h2>
+          <h2 *ngIf="two2faAuth" class="signup-wrapper__title order1 sm-order2 ml10 mb30">
+            {{ 'VERIFY_MOBILE.2FA_TITLE' | translate}}</h2>
           <img class="signup-wrapper__header-icon order3 sm-order1" src="assets/images/createAccount-icon.svg" />
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
-        <form id="verifyMobileForm" name="verifyMobileForm" (keyup.enter)="save(verifyMobileForm)" [formGroup]="verifyMobileForm">
+        <form id="verifyMobileForm" name="verifyMobileForm" (keyup.enter)="save(verifyMobileForm)"
+          [formGroup]="verifyMobileForm">
           <div class="verify-mobile-block">
             <div class="text-center verify-mobile-block__otp__title mb15">
               {{ 'VERIFY_MOBILE.FORM.INSTRUCTION' | translate}}
@@ -50,17 +53,20 @@
               </ng-container>
             </div>
             <div class="verify-mobile-block__otp_directive">
-              <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config" ></ng-otp-input>
-            </div>
-            
-            <div class="verify-mobile-otp text-center">       
-              <span class="btn button-with-otp seconds-timer" *ngIf="isOtpSent">{{ 'VERIFY_MOBILE.FORM.RESEND_OTP' | translate }}({{ retrySecondsLeft }}{{ retrySeconds }})</span>
-              <span class="btn button-with-otp" (click)="requestNewCode()" *ngIf="!isOtpSent">{{ 'VERIFY_MOBILE.FORM.RESEND_OTP' | translate }}</span>
+              <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config"></ng-otp-input>
             </div>
 
-            <button (click)="save(verifyMobileForm)" [disabled]="!showOtpComponent" type="button" class="btn btn__footer--fixed btn-primary width100">{{
+            <div class="verify-mobile-otp text-center">
+              <span class="btn button-with-otp seconds-timer"
+                *ngIf="isOtpSent">{{ 'VERIFY_MOBILE.FORM.RESEND_OTP' | translate }}({{ retrySecondsLeft }}{{ retrySeconds }})</span>
+              <span class="btn button-with-otp" (click)="requestNewCode()"
+                *ngIf="!isOtpSent">{{ 'VERIFY_MOBILE.FORM.RESEND_OTP' | translate }}</span>
+            </div>
+
+            <button (click)="save(verifyMobileForm)" [disabled]="!showOtpComponent" type="button"
+              class="btn btn__footer--fixed btn-primary width100">{{
               'COMMON.VERIFY' | translate }}</button>
-          </div>          
+          </div>
         </form>
       </div>
     </div>
