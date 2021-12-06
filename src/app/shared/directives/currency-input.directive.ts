@@ -29,6 +29,10 @@ export class CurrencyInputDirective implements AfterViewInit {
             this.el.nativeElement.value = this.el.nativeElement.value.replace(regPattern, '');
             this.el.nativeElement.dispatchEvent(new Event('input'));
         }
+        const amount = this.el.nativeElement.value;
+        if(amount != null && amount !== '' && parseFloat(amount) >= 10000000 && !isNaN(parseFloat(amount))) {
+            this.el.nativeElement.value = amount.substring(0, 7);
+        }
     }
 
     @HostListener('focus', ['$event'])

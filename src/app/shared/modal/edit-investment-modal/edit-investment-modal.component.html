@@ -24,8 +24,8 @@
               <i>$</i>
               <div name="cpf">
                 <input id="editInvestment-oneTimeInv-txt" autocomplete="off" class="input-control" type="text"
-                  maxLength="10" name="oneTimeInvestment" appCurrencyInput formControlName="oneTimeInvestment"
-                  value="0">
+                  maxLength="10" name="oneTimeInvestment" appCurrencyInput [allowDecimal]=true
+                  decimalFormat="1.2-2" formControlName="oneTimeInvestment" value="0">
               </div>
 
             </div>
@@ -44,10 +44,9 @@
             <div class="form-control">
               <i>$</i>
               <div name="cpf">
-                <input id="editInvestment-monthlyTimeInv-txt" autocomplete="off" class="input-control monthly-input"
-                  type="text" maxLength="10" name="monthlyInvestment" appCurrencyInput
-                  formControlName="monthlyInvestment" value="0">
-                <i class="right">/mth</i>
+                <input id="editInvestment-monthlyTimeInv-txt" autocomplete="off" class="input-control"
+                  type="text" maxLength="10" name="monthlyInvestment" appCurrencyInput [allowDecimal]=true
+                  decimalFormat="1.2-2" formControlName="monthlyInvestment" value="0">
               </div>
             </div>
           </div>
