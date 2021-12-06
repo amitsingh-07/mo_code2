@@ -382,7 +382,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   goToExternal(url) {
-    window.open(url, '_blank');
+    if (this.authService.isSignedUser()) {
+      this.isLoggedIn = true;
+      this.checkCurrentRouteAndNavigate(DASHBOARD_PATH);
+    }
+    else {
+      window.open(url, '_blank');
+    }
   }
 
   goToHome(in_fragment?: string) {
