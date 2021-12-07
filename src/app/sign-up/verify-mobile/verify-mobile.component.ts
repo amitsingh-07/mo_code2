@@ -680,25 +680,50 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   @HostListener('keyup', ['$event'])
   onKeyUp(event: KeyboardEvent) {
     if (event.keyCode === 46) {
-      const el = document.querySelector('#' + event.srcElement['id']);      
-      const rowNumber = event.srcElement['id'].split('_');
-      if (el === document.activeElement) {
-        const rowCount = (parseInt(rowNumber[1]) < 5) ? parseInt(rowNumber[1]) + 1 : parseInt(rowNumber[1]);
-        const element = this.renderer.selectRootElement('#' + (rowNumber[0] + '_' + rowCount + '_' + rowNumber[2]));
-        if (rowNumber[1] < 5) {
-          this.otp = null; this.showOtpComponent = false;
-          setTimeout(() => { element.value = null; element.setSelectionRange(0, 1); element.focus(); }, 0);
+      if(event.srcElement['id']) {
+        const el = document.querySelector('#' + event.srcElement['id']);      
+        const rowNumber = event.srcElement['id'].split('_');
+        const element_0 = this.renderer.selectRootElement('#' + event.srcElement['id']);
+        const startPosition = element_0.selectionStart;
+        const endPosition = element_0.selectionEnd;
+        if (el === document.activeElement) {
+          const rowCount = (parseInt(rowNumber[1]) < 5) ? parseInt(rowNumber[1]) + 1 : parseInt(rowNumber[1]);
+          const element = this.renderer.selectRootElement('#' + (rowNumber[0] + '_' + rowCount + '_' + rowNumber[2]));
+          if (parseInt(rowNumber[1]) == 0) {
+            if(startPosition == 0 && endPosition == 0) {
+              setTimeout(() => { element.setSelectionRange(0, 1); element.focus(); }, 0);
+            } else {this.otp = null; this.showOtpComponent = false;
+              setTimeout(() => { element.value = null; element.setSelectionRange(0, 1); element.focus(); }, 0);
+            }
+          } else if (parseInt(rowNumber[1]) < 5 && parseInt(rowNumber[1]) > 0) {
+            this.otp = null; this.showOtpComponent = false;
+            setTimeout(() => { element.value = null; element.setSelectionRange(0, 1); element.focus(); }, 0);
+          } else {
+            setTimeout(() => { element.focus(); }, 0);
+          }
         } else {
-          setTimeout(() => { element.focus(); }, 0);
+          const rowCount = (parseInt(rowNumber[1]) < 5) ? parseInt(rowNumber[1]) + 1 : parseInt(rowNumber[1]);
+          const element = this.renderer.selectRootElement('#' + (rowNumber[0] + '_' + rowCount + '_' + rowNumber[2]));        
+          setTimeout(() => { element.setSelectionRange(0, 1); element.focus(); }, 0);
         }
-      } else {
-        //const element = this.renderer.selectRootElement('#' + event.srcElement['id']);
-        const rowCount = (parseInt(rowNumber[1]) < 5) ? parseInt(rowNumber[1]) + 1 : parseInt(rowNumber[1]);
-        const element = this.renderer.selectRootElement('#' + (rowNumber[0] + '_' + rowCount + '_' + rowNumber[2]));
-        setTimeout(() => { element.setSelectionRange(0, 1); element.focus(); }, 0);
+        event.preventDefault();
+        return false;
       }
-      event.preventDefault();
-      return false;
+    }
+  }
+  @HostListener('keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent) {
+    if (event.keyCode === 46) { 
+      if(event.srcElement['id']) {    
+        const rowNumber = event.srcElement['id'].split('_');
+        const element_0 = this.renderer.selectRootElement('#' + event.srcElement['id']);
+        const startPosition = element_0.selectionStart;
+        const endPosition = element_0.selectionEnd;
+        if (parseInt(rowNumber[1]) == 5 && startPosition == 0 && endPosition == 0 && (element_0.value == '' || element_0.value == null)) {
+          event.preventDefault();
+          return false;
+        }
+      }
     }
   }
 }
