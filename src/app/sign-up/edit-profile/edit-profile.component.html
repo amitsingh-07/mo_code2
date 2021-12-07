@@ -536,7 +536,7 @@
                 <div class="flex-col-6">
                   <div class="icon-block">
                     <span *ngIf="isEditable(jaBankDetail)">
-                      <img (click)="editJABankDetails(jaBankDetail)" [src]="showEditIcon()">
+                      <img (click)="editJABankDetails(jaBankDetail)" [src]="is2faAuthorized ? 'assets/images/button-edit.svg' : 'assets/images/accounts/edit-locked.svg'">
                     </span>
                     <span *ngIf="isSecondaryHolder(jaBankDetail)" (click)="openSecodaryUserLockModal()"><img
                         src="assets/images/accounts/lock-outline.svg"></span>

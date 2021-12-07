@@ -599,12 +599,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     return this.customerJointAccBankDetails && this.customerJointAccBankDetails.length > 0;
   }
 
-  changeEditIcons() {
-    return this.authService.get2faVerifyAllowed();
-  }
-
   editJABankDetails(portfolioBankDetails) {
-    console.log('ja bank', portfolioBankDetails);
     let accountHolderName;
     if (portfolioBankDetails && portfolioBankDetails.accountHolderName) {
       accountHolderName = portfolioBankDetails.accountHolderName;
@@ -622,10 +617,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translate.instant('EDIT_PROFILE.SECONDARY_USER_LOCK_MODAL.TITLE');
     ref.componentInstance.errorMessage = this.translate.instant('EDIT_PROFILE.SECONDARY_USER_LOCK_MODAL.DESC');
-  }
-
-  showEditIcon() {
-    return this.is2faAuthorized ? 'assets/images/button-edit.svg' : 'assets/images/accounts/edit-locked.svg';
   }
 
   isEditable(jaBankDetail) {
