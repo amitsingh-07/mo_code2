@@ -106,7 +106,8 @@
                       <div class="form-control">
                         <i id="myFinancialDollerSymbThree">$</i>
                         <div name="totalLiabilities">
-                          <input class="input-control" type="text" appCurrencyInput maxLength="6"
+                          <input class="input-control" type="text" appCurrencyInput [allowDecimal]=true
+                            [allowMaxLimit]=10000000 decimalFormat="1.2-2" maxLength="10"
                             #oneTimeInvestmentAmount value="0" formControlName="oneTimeInvestmentAmount"
                             (keyup)="validateAmount(topForm.controls.oneTimeInvestmentAmount.value)"
                             id="onetime_investment">
@@ -117,12 +118,12 @@
                   <!-- Monthlyinvestment -->
                   <div class="flex-row mt10" *ngIf="showMonthlyInvestmentAmount">
                     <div class="flex-col-12">
-                      <div class="form-control form-control-right">
+                      <div class="form-control">
                         <i id="topup_symb">$</i>
-                        <input type="text" class="input-control" appCurrencyInput maxLength="6" #MonthlyInvestmentAmount
+                        <input type="text" class="input-control" appCurrencyInput [allowDecimal]=true
+                          [allowMaxLimit]=10000000 decimalFormat="1.2-2" maxLength="10" #MonthlyInvestmentAmount
                           value="0" formControlName="MonthlyInvestmentAmount" id="Monthlyinvestment"
                           (keyup)="validateAmount(topForm.controls.MonthlyInvestmentAmount.value)">
-                        <i class="right year">/ mth</i>
                       </div>
                     </div>
                   </div>
