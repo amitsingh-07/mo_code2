@@ -1,4 +1,3 @@
-import { TitleCasePipe } from '@angular/common';
 import { Component, NgZone, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -6,6 +5,7 @@ import { NgbActiveModal, NgbModal, NgbModalOptions, NgbModalRef } from '@ng-boot
 import { TranslateService } from '@ngx-translate/core';
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { TitleCasePipe } from '@angular/common';
 import { InvestmentCommonService } from './../../investment/investment-common/investment-common.service';
 
 import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
