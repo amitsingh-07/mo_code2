@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { NgOtpInputModule } from 'ng-otp-input';
 
 import { InputFocusDirective } from '../shared/directives/input-focus.directive';
 import { SharedModule } from '../shared/shared.module';
@@ -77,7 +78,8 @@ export function createTranslateLoader(http: HttpClient) {
         useFactory: createTranslateLoader,
         deps: [HttpClient]
       }
-    })
+    }),
+    NgOtpInputModule
   ],
   declarations: [
     AccountCreatedComponent,
