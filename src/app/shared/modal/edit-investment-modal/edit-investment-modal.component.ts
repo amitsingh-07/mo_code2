@@ -36,8 +36,8 @@ export class EditInvestmentModalComponent implements OnInit {
 
   ngOnInit() {
     this.editInvestmentForm = new FormGroup({
-      oneTimeInvestment: new FormControl(this.investmentData.oneTimeInvestment),
-      monthlyInvestment: new FormControl(this.investmentData.monthlyInvestment)
+      oneTimeInvestment: new FormControl(this.investmentData.oneTimeInvestment > 0 ? this.investmentData.oneTimeInvestment : null),
+      monthlyInvestment: new FormControl(this.investmentData.monthlyInvestment > 0 ? this.investmentData.monthlyInvestment : null)
     }, [this.validateAtleastOne.bind(this)]);
     this.editInvestmentForm.controls['oneTimeInvestment'].setValidators(
       [this.validateInitialAmount.bind(this)]
