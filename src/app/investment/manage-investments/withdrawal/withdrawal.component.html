@@ -77,10 +77,9 @@
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <ng-container *ngFor="let type of withdrawalTypes; let i = index">
                           <button class="dropdown-item"
-                            [disabled]="(type.value === 'CASH_TO_BANK_ACCOUNT' || type.value === 'PORTFOLIO_TO_BANK_ACCOUNT') && isInvestAndJointAccountHolder && !isBankDetailsAvailable"
-                            [class.hide]="(type.value === 'PORTFOLIO_TO_BANK_ACCOUNT' && !entitlements.showWithdrawPvToBa && (!isInvestAndJointAccountHolder || (isInvestAndJointAccountHolder && isBankDetailsAvailable))) 
+                            [class.hide]="(type.value === 'PORTFOLIO_TO_BANK_ACCOUNT' && !entitlements.showWithdrawPvToBa)
                             || (type.value === 'PORTFOLIO_TO_CASH_ACCOUNT' && !entitlements.showWithdrawPvToCa)
-                            || (type.value === 'CASH_TO_BANK_ACCOUNT' && !entitlements.showWithdrawCaToBa &&  (!isInvestAndJointAccountHolder || (isInvestAndJointAccountHolder && isBankDetailsAvailable)))
+                            || (type.value === 'CASH_TO_BANK_ACCOUNT' && !entitlements.showWithdrawCaToBa)
                             || type.value === 'PORTFOLIO_TO_SRS_ACCOUNT' && !entitlements.showWithdrawPvToSRS"
                             (click)="setDropDownValue('withdrawType',type, i)" id="withdraw-type-option-{{i}}">
                             {{type.name}}
