@@ -391,4 +391,15 @@ export class WithdrawalBankAccountComponent implements OnInit, OnDestroy {
   goToNext() {
     this.showConfirmWithdrawModal();
   }
+
+  isPrimaryUserOrPABank() {
+    const portfolios = this.manageInvestmentsService.getUserPortfolioList();
+    let showEditFlag = false;
+    portfolios.forEach((element: any) => {
+      if(element.customerPortfolioId == this.customerPortfolioId && (!element.jointAccount || (element.jointAccount && element.primaryHolder))) {
+        showEditFlag = true;
+      }
+    });
+    return showEditFlag;
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, NgZone, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -109,8 +109,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     // singpass
     private myInfoService: MyInfoService,
     public activeModal: NgbActiveModal,
-    private titleCasePipe: TitleCasePipe,
-    private ngZone: NgZone
+    private titleCasePipe: TitleCasePipe
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
@@ -382,14 +381,14 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   addBankDetails() {
-    let AccountHolderName;
+    let accountHolderName;
     if (this.bankDetails && this.bankDetails.accountName) {
-      AccountHolderName = this.bankDetails.accountName;
+      accountHolderName = this.bankDetails.accountName;
     } else {
-      AccountHolderName = this.fullName;
+      accountHolderName = this.fullName;
     }
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
-    this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, null, null, null, true);
+    this.investmentAccountService.setEditProfileBankDetail(accountHolderName, null, null, null, true);
     this.authService.set2faVerifyAllowed(true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: true }, fragment: 'bank' });
   }
@@ -608,7 +607,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     }
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     // tslint:disable-next-line:max-line-length accountName
-    this.investmentAccountService.setJAPortfolioBankDetail(accountHolderName, portfolioBankDetails.bank, portfolioBankDetails.bankAccountNumber, portfolioBankDetails.customerPortfolioId);
+    this.investmentAccountService.setJAPortfolioBankDetail(accountHolderName, portfolioBankDetails.bank, portfolioBankDetails.bankAccountNumber, portfolioBankDetails.customerPortfolioId, portfolioBankDetails.id);
     this.authService.set2faVerifyAllowed(true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: false }, fragment: 'bank' });
   }
