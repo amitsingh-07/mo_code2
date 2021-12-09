@@ -108,7 +108,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
         if (this.formValues && this.formValues.customerPortfolioId && data.objectList.customerJointAccountBankDetails && data.objectList.customerJointAccountBankDetails.length > 0) {
           data.objectList.customerJointAccountBankDetails.forEach(portfolio => {
             if (portfolio.customerPortfolioId == this.formValues.customerPortfolioId) {
-              this.investmentAccountService.setJAPortfolioBankDetail(portfolio.accountHolderName, portfolio.bank, portfolio.bankAccountNumber, portfolio.customerPortfolioId);
+              this.investmentAccountService.setJAPortfolioBankDetail(portfolio.accountHolderName, portfolio.bank, portfolio.bankAccountNumber, portfolio.customerPortfolioId, portfolio.id);
               this.bankForm.patchValue({
                 accountHolderName: portfolio.accountHolderName,
                 bank: portfolio.bank,
