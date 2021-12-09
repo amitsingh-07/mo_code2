@@ -1302,10 +1302,13 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.bankUpdateId = id;
       }
     }
+    if (this.investmentAccountFormData.customerPortfolioId) {
+      this.investmentAccountFormData.customerPortfolioId = null;
+    }
     this.commit();
   }
 
-  setJAPortfolioBankDetail(fullName, bank, accountNumber, id) {
+  setJAPortfolioBankDetail(fullName, bank, accountNumber, customerPortfolioId, id) {
     if (fullName) {
       this.investmentAccountFormData.accountHolderName = fullName;
     }
@@ -1315,8 +1318,11 @@ export class InvestmentAccountService {
     if (accountNumber) {
       this.investmentAccountFormData.accountNumber = accountNumber;
     }
+    if (customerPortfolioId) {
+      this.investmentAccountFormData.customerPortfolioId = customerPortfolioId;
+    }
     if (id) {
-      this.investmentAccountFormData.customerPortfolioId = id;
+      this.investmentAccountFormData.bankUpdateId = id;
     }
     this.commit();
   }
