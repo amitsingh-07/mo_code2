@@ -529,7 +529,7 @@
     "CONFIRM_PASSWORD": "Confirm Password",
     "FORGET_PASSWORD": "Forgot your password?",
     "APPLY_CHANGES": "Apply Changes",
-    "JOINT_ACCOUNT_DESC": "While we upgrade our systems, please email <a  target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> if you would like to update your bank details.",
+    "JOINT_ACCOUNT_DESC": "Only primary holder of this joint account can amend the bank details. As you are the secondary holder, kindly advise your primary holder to edit the bank details for this joint account.",
     "SINGPASS": {
       "TITLE": "Log In using Singpass Mobile",
       "ACTIVATE": "Link to activate your account",
@@ -545,7 +545,11 @@
     "CHANGE_PASSWORD": "Change Password",
     "MANAGE_PROFILE": "Manage Profile",
     "MF_MOBILE_NO": "Mobile Number",
-    "MF_EMAIL_ADDRESS": "Email Address"
+    "MF_EMAIL_ADDRESS": "Email Address",
+    "SECONDARY_USER_LOCK_MODAL": {
+      "TITLE": "Oops, Unable to Update",
+      "DESC": "Only primary holder of this joint account can amend the bank details. As you are the secondary holder, kindly advise your primary holder to edit the bank details for this joint account."
+    }
   },
   "ADD_BANK": {
     "ACCOUNT_NAME": "Account Holders Name",
