@@ -375,6 +375,7 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
       this.entitlements.portfolioType = value.portfolioType;
       this.withdrawForm.controls.withdrawType.value = null;
       this.manageInvestmentsService.setSelectedCustomerPortfolioId(value.customerPortfolioId);
+      this.manageInvestmentsService.setSelectedCustomerPortfolio(value);
       this.getUserBankList(value.customerPortfolioId,this.entitlements.jointAccount);
       this.cashBalance = parseFloat(this.decimalPipe.transform(value.cashAccountBalance || 0, '1.2-2').replace(/,/g, ''));
       this.withdrawForm.removeControl('withdrawAmount');

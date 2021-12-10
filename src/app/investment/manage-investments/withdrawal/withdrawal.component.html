@@ -16,12 +16,6 @@
         <div class="max-width col-lg-6 col-md-6">
           <!-- HOLIDAY AND OTHER IMPORTANT NOTE --> 
           <app-notes category="withdraw" [noteInSession]="formValues?.investmentNote"></app-notes>
-          <div *ngIf="isInvestAndJointAccountHolder"
-            class="joint_account">
-            <img src="assets/images/alert-black.svg" />
-            <div class="joint_account-note"
-              innerHTML="{{'WITHDRAW.JOINT_ACCOUNT_DESC' | translate}}"></div>
-          </div>
           <form id="withdraw_form" name="withdrawForm" [formGroup]="withdrawForm">
             <!-- PORTFOLIO -->
             <div class="form-group" *ngIf="withdrawForm.get('withdrawPortfolio')">
