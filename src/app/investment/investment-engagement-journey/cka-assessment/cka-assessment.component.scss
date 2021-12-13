@@ -1,0 +1,81 @@
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
+
+app-cka-assessment{
+    .container-fluid{
+        &.max-width--1024{
+            @include allmobiles{
+                padding-bottom: 30px;
+            }
+        }
+    }
+    .text-lyt{
+        font-size: 18px;
+        line-height: 22px;
+        letter-spacing: -0.18px;
+      }
+    .tiles{
+        .btn{
+            &.tile{
+                background: #ffffff;
+                padding: 20px;
+                margin-bottom: 10px;
+                border-radius: 6px;
+                font-family: $muli-regular;
+                font-size: 16px;
+                line-height: normal;
+                letter-spacing: -0.3px;
+                color: #757575;
+                align-items: center;
+                text-align: left;
+                max-width: 337px;
+                margin-left: auto;
+                @include allmobiles{
+                    width: 100%;
+                }
+                &:last-child{
+                    margin-bottom: 0;
+                }
+                .title{
+                    font-family: $muli-semi-bold;
+                    letter-spacing: -0.17px;
+                    color: #00a7a7;
+                    margin-bottom: 10px;
+                }
+                .dropdown-img {
+                    width: 16px;
+                    height: 10px;
+                    border: none;
+                  }
+                  .arrow-right {
+                    display: block;
+                    border-style: solid;
+                    // border-color: $teal-color;
+                    border-color: #b1dfe1;
+                    border-width: 0 0 3px 3px;
+                    width: 10px;
+                    height: 10px;
+                    line-height: 0;
+                    font-size: 0;
+                    -webkit-transform: rotate(225deg);
+                    -ms-transform: rotate(225deg);
+                    -o-transform: rotate(225deg);
+                    transform: rotate(225deg);
+                    float: right;
+                    margin-top: 6px;
+                  }
+                &:active{
+                    background-color: #e0f3f3;
+                    color: #005960;
+                    .title{
+                        color: #00a7a7;  
+                    }
+                    .arrow-right{
+                        border-color: #005960;
+                    }
+                }
+            }
+        }
+    }
+  
+}

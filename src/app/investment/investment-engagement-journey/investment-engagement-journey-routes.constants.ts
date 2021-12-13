@@ -25,7 +25,8 @@ export const INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES = {
   ADD_SECONDARY_HOLDER: 'add-secondary-holder',
   EDIT_SECONDARY_HOLDER: 'edit-secondary-holder',
   JA_UPLOAD_DOCUMENT: 'upload-document',
-  EDIT_JA_UPLOAD_DOCUMENT: 'edit-uploaded-document'
+  EDIT_JA_UPLOAD_DOCUMENT: 'edit-uploaded-document',
+  CKA_ASSESSMENT: 'cka-assessment'
 };
 
 export const INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS = {
