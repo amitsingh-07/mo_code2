@@ -117,6 +117,8 @@ export class AddUpdateSrsComponent implements OnInit, OnDestroy {
     this.signUpService.clearRedirectUrl();
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
+    this.navbarService.unsubscribeBackPress();
+    this.subscription.unsubscribe();
   }
 
   subscribeBackEvent() {
