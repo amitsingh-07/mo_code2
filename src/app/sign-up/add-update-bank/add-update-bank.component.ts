@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
@@ -39,6 +39,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
   buttonTitle;
   updateId: any;
   isEdit = true;
+  subscription: Subscription;
 
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
@@ -66,6 +67,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.subscribeBackEvent();
     this.navbarService.setNavbarMobileVisibility(true);
     if (environment.hideHomepage) {
       this.navbarService.setNavbarMode(104);
@@ -142,10 +144,20 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
     });
   }
 
+  subscribeBackEvent() {
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE])
+      }
+    });
+  }
+
   ngOnDestroy() {
     this.signUpService.clearRedirectUrl();
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
+    this.navbarService.unsubscribeBackPress();
+    this.subscription.unsubscribe();
   }
 
   buildBankForm() {
