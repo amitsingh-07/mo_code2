@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { InvestmentEngagementJourneyService } from '../../investment/investment-engagement-journey/investment-engagement-journey.service';
@@ -37,6 +37,7 @@ export class AddUpdateSrsComponent implements OnInit, OnDestroy {
   srsAgentBankList;
   srsDetail;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
+  subscription: Subscription;
 
   isEdit = true;
 
@@ -63,6 +64,7 @@ export class AddUpdateSrsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.subscribeBackEvent();
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(6);
     this.footerService.setFooterVisibility(false);
@@ -115,6 +117,14 @@ export class AddUpdateSrsComponent implements OnInit, OnDestroy {
     this.signUpService.clearRedirectUrl();
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
+  }
+
+  subscribeBackEvent() {
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE])
+      }
+    });
   }
 
   buildForm() {
