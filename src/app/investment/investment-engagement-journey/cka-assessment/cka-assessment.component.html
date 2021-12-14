@@ -1,8 +1,8 @@
 <div class="container-fluid max-width--1024 investment">
     <div class="row">
       <div class="col-lg-7 col-md-6 hidden-sm">
-        <h2>Client Knowledge Assessment</h2>
-        <div class="text-lyt">Please select a method of assessment applicable to you:</div>
+        <h2>{{'CKA_ASSESSMENT.PAGE_TITLE' | translate}}</h2>
+        <div class="text-lyt">{{'CKA_ASSESSMENT.PAGE_DESC' | translate}}</div>
         <div class="banner-image">
           <img src="assets/images/investment-account/cka-banner.svg" />
         </div>
@@ -10,12 +10,12 @@
       <div class="col-lg-5 col-md-6">
         <!-- <form name="fundingMethodForm" [formGroup]="fundingMethodForm" id="fundingMethodForm"> -->
           <div class="form-group-single-column flex-col">
-                <div class="text-lyt hidden-lg mb20">Please select a method of assessment applicable to you: </div>
+                <div class="text-lyt hidden-lg mb20 pt10">{{'CKA_ASSESSMENT.PAGE_DESC' | translate}}</div>
                 <div class="tiles">
                     <button type="button" class="btn flex-row tile">
                             <div class="flex-col-11">
-                                <div class="title">Education Qualification</div>
-                                <div>I have an finance-related diploma or higher qualification.</div>
+                                <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_1' | translate}}</div>
+                                <div>{{'CKA_ASSESSMENT.SELECT_OPTION_1_DESC' | translate}}</div>
                             </div>
                             <div class="flex-col-1">
                                 <div class="dropdown-img">
@@ -25,8 +25,8 @@
                     </button>
                     <button type="button" class="btn flex-row tile">
                             <div class="flex-col-11">
-                                <div class="title">Professional Qualification</div>
-                                <div>I have a finance-related professional qualification.</div>
+                                <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_2' | translate}}</div>
+                                <div>{{'CKA_ASSESSMENT.SELECT_OPTION_2_DESC' | translate}}</div>
                             </div>
                             <div class="flex-col-1">
                                 <div class="dropdown-img">
@@ -36,8 +36,8 @@
                     </button>
                     <button type="button" class="btn flex-row tile">
                             <div class="flex-col-11">
-                                <div class="title">Investment Experience</div>
-                                <div>I have traded 6 or more transactions in Collective Investment Schemes (CIS) or Investment-linked Policies (ILPs) in the past 3 years.</div>
+                                <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_3' | translate}}</div>
+                                <div>{{'CKA_ASSESSMENT.SELECT_OPTION_3_DESC' | translate}}</div>
                             </div>
                             <div class="flex-col-1">
                                 <div class="dropdown-img">
@@ -47,8 +47,8 @@
                     </button>
                     <button type="button" class="btn flex-row tile">
                             <div class="flex-col-11">
-                                <div class="title">Work Experience</div>
-                                <div>I have a minimum of 3 continuous years of relevant working experience in finance over the past 10 years.</div>
+                                <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_4' | translate}}</div>
+                                <div>{{'CKA_ASSESSMENT.SELECT_OPTION_4_DESC' | translate}}</div>
                             </div>
                             <div class="flex-col-1">
                                 <div class="dropdown-img">
@@ -58,8 +58,8 @@
                     </button>
                     <button type="button" class="btn flex-row tile">
                             <div class="flex-col-11">
-                                <div class="title">Upload e-Learning Certificate</div>
-                                <div>I have undergone and passed the ABS e-Learning module <div>(Module 5).</div></div>
+                                <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_5' | translate}}</div>
+                                <div [innerHtml]="'CKA_ASSESSMENT.SELECT_OPTION_5_DESC' | translate"></div>
                             </div>
                             <div class="flex-col-1">
                                 <div class="dropdown-img">
@@ -67,11 +67,10 @@
                                 </div>
                             </div>
                     </button>
-                    <button type="button" class="btn flex-row tile">
+                    <button type="button" class="btn flex-row tile" (click)="noneOfTheAbove()">
                             <div class="flex-col-11">
-                                <div class="title">None of the Above Applies</div>
-                                <div>You will be guided through the ABS 
-                                    e-Learning Module in order to pass your CKA. (est. time ~20min)</div>
+                                <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_6' | translate}}</div>
+                                <div>{{'CKA_ASSESSMENT.SELECT_OPTION_6_DESC' | translate}}</div>
                             </div>
                             <div class="flex-col-1">
                                 <div class="dropdown-img">

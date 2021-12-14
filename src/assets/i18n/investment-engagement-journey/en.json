@@ -545,5 +545,21 @@
       "TITLE": "Loading.",
       "MESSAGE": "Please wait."
     }
+  },
+  "CKA_ASSESSMENT": {
+    "PAGE_TITLE": "Customer Knowledge Assessment",
+    "PAGE_DESC": "Please select a method of assessment applicable to you:",
+    "SELECT_OPTION_1": "Education Qualification",
+    "SELECT_OPTION_1_DESC": "I have an finance-related diploma or higher qualification.",
+    "SELECT_OPTION_2": "Professional Qualification",
+    "SELECT_OPTION_2_DESC": "I have a finance-related professional qualification.",
+    "SELECT_OPTION_3": "Investment Experience",
+    "SELECT_OPTION_3_DESC": "I have traded 6 or more transactions in Collective Investment Schemes (CIS) or Investment-linked Policies (ILPs) in the past 3 years.",
+    "SELECT_OPTION_4": "Work Experience",
+    "SELECT_OPTION_4_DESC": "I have a minimum of 3 continuous years of relevant working experience in finance over the past 10 years.",
+    "SELECT_OPTION_5": "Upload e-Learning Certificate",
+    "SELECT_OPTION_5_DESC": "I have undergone and passed the ABS e-Learning module <br>(Module 5).",
+    "SELECT_OPTION_6": "None of the Above Applies",
+    "SELECT_OPTION_6_DESC": "You will be guided through the ABS e-Learning Module in order to pass your CKA. (est. time ~20min)"
   }
 }

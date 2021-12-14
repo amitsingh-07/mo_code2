@@ -33,6 +33,9 @@ app-cka-assessment{
                 @include allmobiles{
                     width: 100%;
                 }
+                @include minMobilemaxPhablet{
+                    margin-right: auto;
+                }
                 &:last-child{
                     margin-bottom: 0;
                 }
