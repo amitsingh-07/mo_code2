@@ -1,0 +1,10 @@
+@import "../../../../_variables.scss";
+@import "../../../../_mixins.scss";
+
+app-cka-method-qna {
+  .container-fluid {
+    @include min568max767 {
+      padding-top: 80px;
+    }
+  }
+}

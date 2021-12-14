@@ -384,5 +384,8 @@
       "TITLE": "Loading.",
       "MESSAGE": "Please wait."
     }
+  },
+  "CKA": {
+    "CKA_PAGE_TITLE": "Customer Knowledge Assessment"
   }
 }

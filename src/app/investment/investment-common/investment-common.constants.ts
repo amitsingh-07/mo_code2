@@ -105,5 +105,13 @@ export let INVESTMENT_COMMON_CONSTANTS = {
   ],
   PROMO_CODE: {
     NOT_APPLIED: "Not Applied"
+  },
+  CKA: {
+    METHODS: {
+      EDUCATIONAL: "educational",
+      PROFESSIONAL: "professional",
+      INV_EPERIENCE: "investment-experience",
+      WORK_EXPERIENCE: "work-experience"
+    }
   }
 };
