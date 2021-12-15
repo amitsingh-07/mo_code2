@@ -101,9 +101,31 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
       .subscribe((token) => {
         if (!token) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+        } else {
+          if (this.formValues && this.formValues.customerPortfolioId) {
+            this.getUserBankList(this.formValues.customerPortfolioId, true);
+          } else {
+            this.getUserBankList('', false);
+          }
         }
       });
 
+    this.translate.get('ERROR').subscribe((results) => {
+      this.authService.get2faErrorEvent
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe((data) => {
+          if (data) {
+            this.authService.openErrorModal(
+              results.SESSION_2FA_EXPIRED.TITLE,
+              results.SESSION_2FA_EXPIRED.SUB_TITLE,
+              results.SESSION_2FA_EXPIRED.BUTTON
+            );
+          }
+        });
+    });
+  }
+
+  getUnmaskedBankDetails() {
     this.signUpService.getEditProfileInfo()
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((data) => {
@@ -128,20 +150,6 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
           });
         }
       });
-
-    this.translate.get('ERROR').subscribe((results) => {
-      this.authService.get2faErrorEvent
-        .pipe(takeUntil(this.ngUnsubscribe))
-        .subscribe((data) => {
-          if (data) {
-            this.authService.openErrorModal(
-              results.SESSION_2FA_EXPIRED.TITLE,
-              results.SESSION_2FA_EXPIRED.SUB_TITLE,
-              results.SESSION_2FA_EXPIRED.BUTTON
-            );
-          }
-        });
-    });
   }
 
   subscribeBackEvent() {
@@ -150,6 +158,25 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE])
       }
     });
+  }
+
+  getUserBankList(customerPortfolioId, isJointAccount) {
+    this.manageInvestmentsService.getUserBankList(customerPortfolioId, isJointAccount).subscribe((data) => {
+      if (data.responseMessage.responseCode >= 6000) {
+        if (data && data.objectList && data.objectList.length > 0) {
+          const bank = data.objectList[0]
+          this.investmentAccountService.setJAPortfolioBankDetail(bank.accountName, bank.bank, bank.accountNumber, bank.customerPortfolioId, bank.id);
+          this.bankForm.patchValue({
+            accountHolderName: bank.accountName,
+            bank: bank.bank,
+            accountNo: bank.accountNumber
+          });
+        }
+      }
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
   }
 
   ngOnDestroy() {
