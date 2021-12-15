@@ -26,8 +26,6 @@ export class CkaAssessmentComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('CKA_ASSESSMENT.PAGE_TITLE');
-      // this.loaderTitle = this.translate.instant('FUNDING_METHOD.LOADER_TITLE');
-      // this.loaderDesc = this.translate.instant('FUNDING_METHOD.LOADER_DESC');
       this.setPageTitle(this.pageTitle);
     });
    }
@@ -43,6 +41,6 @@ export class CkaAssessmentComponent implements OnInit {
   }
 
   noneOfTheAbove(){
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO]);
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.NONE_OF_THE_ABOVE]);
   }
 }

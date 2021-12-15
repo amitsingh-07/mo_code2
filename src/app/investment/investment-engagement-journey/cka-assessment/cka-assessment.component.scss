@@ -15,9 +15,17 @@ app-cka-assessment{
         letter-spacing: -0.18px;
       }
     .tiles{
+        max-width: 337px;
+        margin-left: auto;
+        @include allmobiles{
+            width: 100%;
+        }
+        @include minMobilemaxPhablet{
+            margin-right: auto;
+        }
         .btn{
             &.tile{
-                background: #ffffff;
+                background: $white-color;
                 padding: 20px;
                 margin-bottom: 10px;
                 border-radius: 6px;
@@ -25,27 +33,19 @@ app-cka-assessment{
                 font-size: 16px;
                 line-height: normal;
                 letter-spacing: -0.3px;
-                color: #757575;
+                color: $boulder-grey-color;
                 align-items: center;
                 text-align: left;
-                max-width: 337px;
-                margin-left: auto;
-                @include allmobiles{
-                    width: 100%;
-                }
-                @include minMobilemaxPhablet{
-                    margin-right: auto;
-                }
                 &:last-child{
                     margin-bottom: 0;
                 }
                 .title{
                     font-family: $muli-semi-bold;
                     letter-spacing: -0.17px;
-                    color: #00a7a7;
+                    color: $teal-color;
                     margin-bottom: 10px;
                 }
-                .dropdown-img {
+                .icon-block {
                     width: 16px;
                     height: 10px;
                     border: none;
@@ -53,8 +53,7 @@ app-cka-assessment{
                   .arrow-right {
                     display: block;
                     border-style: solid;
-                    // border-color: $teal-color;
-                    border-color: #b1dfe1;
+                    border-color: $lite-jagged-ice-color;
                     border-width: 0 0 3px 3px;
                     width: 10px;
                     height: 10px;
@@ -68,13 +67,13 @@ app-cka-assessment{
                     margin-top: 6px;
                   }
                 &:active{
-                    background-color: #e0f3f3;
-                    color: #005960;
+                    background-color: $aqua-squeeze-color;
+                    color: $blue-stone-color;
                     .title{
-                        color: #00a7a7;  
+                        color: $teal-color;  
                     }
                     .arrow-right{
-                        border-color: #005960;
+                        border-color: $blue-stone-color;
                     }
                 }
             }
