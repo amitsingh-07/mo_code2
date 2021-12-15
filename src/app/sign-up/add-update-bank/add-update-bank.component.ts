@@ -107,7 +107,6 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
           } else {
             this.getUserBankList('', false);
           }
-          // this.getUnmaskedBankDetails();
         }
       });
 
@@ -164,7 +163,6 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
   getUserBankList(customerPortfolioId, isJointAccount) {
     this.manageInvestmentsService.getUserBankList(customerPortfolioId, isJointAccount).subscribe((data) => {
       if (data.responseMessage.responseCode >= 6000) {
-        console.log('data', data.objectList);
         if (data && data.objectList && data.objectList.length > 0) {
           const bank = data.objectList[0]
           this.investmentAccountService.setJAPortfolioBankDetail(bank.accountName, bank.bank, bank.accountNumber, bank.customerPortfolioId, bank.id);
