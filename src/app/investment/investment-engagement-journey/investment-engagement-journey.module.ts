@@ -40,6 +40,7 @@ import { SelectPortfolioTypeComponent } from './select-portfolio-type/select-por
 import { AddSecondaryHolderComponent } from './add-secondary-holder/add-secondary-holder.component';
 import { UploadDocumentComponent } from './upload-document/upload-document.component';
 import { CkaAssessmentComponent } from './cka-assessment/cka-assessment.component';
+import { NoneOfTheAboveComponent } from './none-of-the-above/none-of-the-above.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
@@ -88,7 +89,8 @@ export function createTranslateLoader(http: HttpClient) {
     SelectPortfolioTypeComponent,
     AddSecondaryHolderComponent,
     UploadDocumentComponent,
-    CkaAssessmentComponent
+    CkaAssessmentComponent,
+    NoneOfTheAboveComponent
   ],
   providers: [CurrencyPipe, FormatCurrencyPipe],
   entryComponents: [SrsTooltipComponent]
