@@ -145,13 +145,13 @@ const routes: Routes = [
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.CKA_ASSESSMENT,
-    component: CkaAssessmentComponent
-    // canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
+    component: CkaAssessmentComponent,
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.NONE_OF_THE_ABOVE,
     component: NoneOfTheAboveComponent,
-    // canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }
 ];
