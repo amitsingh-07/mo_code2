@@ -132,8 +132,6 @@ import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard
 import { SessionsService } from './shared/Services/sessions/sessions.service';
 import { NotSupportedComponent } from './not-supported/not-supported.component';
 import { RefereeComponent } from './shared/modal/referee/referee.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -209,8 +207,7 @@ export function tokenGetterFn() {
       config: {
         tokenGetter: tokenGetterFn
       }
-    }),
-    ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production })
+    })
   ],
   providers: [
     {

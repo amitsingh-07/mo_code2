@@ -29,8 +29,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/myinfo",
-              "src/manifest.webmanifest"
+              "src/myinfo"
             ],
             "styles": [
               {
@@ -86,9 +85,7 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
-              "serviceWorker": true,
-              "ngswConfigPath": "ngsw-config.json"
+              "buildOptimizer": true
             },
             "prod": {
               "budgets": [
@@ -195,17 +192,15 @@
                   "with": "src/environments/environment.newmodev2.ts"
                 }
               ],
-              "optimization": true,
+              "optimization": false,
               "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
+              "sourceMap": true,
+              "extractCss": false,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
-              "serviceWorker": true,
-              "ngswConfigPath": "ngsw-config.json"
+              "buildOptimizer": false
             },
             "newmouat3": {
               "budgets": [
@@ -313,8 +308,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/myinfo",
-              "src/manifest.webmanifest"
+              "src/myinfo"
             ]
           }
         },
