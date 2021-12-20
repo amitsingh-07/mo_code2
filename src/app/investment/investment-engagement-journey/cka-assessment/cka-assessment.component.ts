@@ -43,4 +43,8 @@ export class CkaAssessmentComponent implements OnInit {
   noneOfTheAbove(){
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.NONE_OF_THE_ABOVE]);
   }
+
+  uploadDoc() {
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT]);
+  }
 }

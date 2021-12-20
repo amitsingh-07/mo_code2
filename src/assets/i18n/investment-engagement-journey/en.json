@@ -562,6 +562,8 @@
     "SELECT_OPTION_6": "None of the Above Applies",
     "SELECT_OPTION_6_DESC": "You will be guided through the ABS e-Learning Module in order to pass your CKA. (est. time ~20min)"
   },
+  "CKA_UPLOAD_DOCUMENT":{
+  },
   "NONE_OF_THE_ABOVE":{
     "PAGE_TITLE": "Customer Knowledge Assessment",
     "PAGE_DESC": "Please follow the guide to complete the ABS e-Learning module and upload your certificate thereafter.",

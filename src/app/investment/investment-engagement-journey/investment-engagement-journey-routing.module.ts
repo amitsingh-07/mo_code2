@@ -28,6 +28,7 @@ import { UploadDocumentComponent } from './upload-document/upload-document.compo
 import { AuthGuardService as AuthGuard } from '../../sign-up/auth-guard.service';
 import { CkaAssessmentComponent } from './cka-assessment/cka-assessment.component';
 import { NoneOfTheAboveComponent } from './none-of-the-above/none-of-the-above.component';
+import { CkaUploadDocumentComponent } from './cka-upload-document/cka-upload-document.component';
 
 const routes: Routes = [
   {
@@ -147,6 +148,11 @@ const routes: Routes = [
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.CKA_ASSESSMENT,
     component: CkaAssessmentComponent,
     canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
+  },
+  {
+    path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.CKA_UPLOAD,
+    component: CkaUploadDocumentComponent,
+    // canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.NONE_OF_THE_ABOVE,
