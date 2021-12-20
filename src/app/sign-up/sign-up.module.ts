@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { NgOtpInputModule } from 'ng-otp-input';
 
 import { InputFocusDirective } from '../shared/directives/input-focus.directive';
 import { SharedModule } from '../shared/shared.module';
@@ -50,6 +51,7 @@ import { ActivateSingpassModalComponent } from './edit-profile/activate-singpass
 import { CreateAccountMyinfoComponent } from './create-account-myinfo/create-account-myinfo.component';
 import { ReferAFriendComponent } from './refer-a-friend/refer-a-friend.component';
 import { ReferalRedirectingPartComponent } from './referal-redirecting-part/referal-redirecting-part.component';
+import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -76,7 +78,8 @@ export function createTranslateLoader(http: HttpClient) {
         useFactory: createTranslateLoader,
         deps: [HttpClient]
       }
-    })
+    }),
+    NgOtpInputModule
   ],
   declarations: [
     AccountCreatedComponent,
@@ -105,7 +108,8 @@ export function createTranslateLoader(http: HttpClient) {
     ActivateSingpassModalComponent,
     CreateAccountMyinfoComponent,
     ReferAFriendComponent,
-    ReferalRedirectingPartComponent
+    ReferalRedirectingPartComponent,
+    ManageProfileComponent
   ],
   providers: [SignUpAccessGuard, AuthGuardService, TwoFactorAuthGuardService],
   entryComponents: [EditMobileNumberComponent, SrsSuccessModalComponent]

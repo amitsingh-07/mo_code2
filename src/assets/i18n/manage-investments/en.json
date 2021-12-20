@@ -177,7 +177,7 @@
     "ASSET_ALLOCATION": "Asset Allocation",
     "HOLDINGS": "Holdings",
     "WISE_INCOME_HEADER":"Unable To Delete Portfolio",
-    "WISE_INCOME_TEXT":"Please note that you are unable to delete any WiseIncome portfolio between <span class=\"text-bold\">30 Sep</span> to <span class=\"text-bold\">1 Nov</span>. Your portfolio may be eligible for the dividends that are being distributed during this period.",
+    "WISE_INCOME_TEXT":"Please note that you are unable to delete any WiseIncome portfolio between <span class=\"text-bold\">31 Dec</span> to <span class=\"text-bold\">1 Feb</span>. Your portfolio may be eligible for the dividends that are being distributed during this period.",
     "DELETE_HEADER":"Unable To Delete Portfolio ",
     "DELETE_TEXT":"Please note that you have withdrawals in progress. You may proceed with deletion once withdrawal is fully completed.",
     "OKAY_GOT_IT": "Okay, Got it",
@@ -367,7 +367,7 @@
       "ACCOUNT_NO": "Account No.",
       "APPLY_CHANGE": "Apply Changes"
     },
-    "JOINT_ACCOUNT_DESC": "While we upgrade our systems, please email <a target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> if you would like to update your bank details."
+    "JOINT_ACCOUNT_DESC": "Only primary holder of this joint account can amend the bank details. As you are the secondary holder, kindly advise your primary holder to edit the bank details for this joint account."
   },
   "TRANSACTIONS": {
     "TITLE": "Transactions",
@@ -403,7 +403,7 @@
   "PORTFOLIO_RECOMMENDATION": {
     "VIEW_FUND_DETAILS": "View Fund Details",
     "NUMBER_HOLDINGS_LBL": "Number of Holdings",
-    "EXPENSIVE_RATIO": " Enjoy 0% fees for the 1st $10,000 until end of 2021. Fees include fund level fee of {{expensiveRatio}} p.a. which is incorporated into the NAV.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
+    "EXPENSIVE_RATIO": " Fees include fund level fee of {{expensiveRatio}} p.a. which is incorporated into the NAV.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
     "EXPENSIVE_RATIO_WISE_INCOME": " This excludes fund level fees (such as annual management fees of {{expensiveRatio}} p.a.) which are factored into the price of the fund.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
     "FUND_EXPENSIVE_RATIO": "Fund Expense Ratio",
     "TOTAL_FEE": "Total Fee",
@@ -550,7 +550,7 @@
   "DIVIDEND": {
     "TITLE": "Dividend History",
     "PAYOUT_DATE": "Date",
-    "DIVIDEND_RATE": "Dividend Rate Per Unit",
+    "DIVIDEND_RATE": "Dividend Per Unit",
     "DIVIDEND_RECEIVED": "Dividends Received",
     "NO_HISTORY": "No Dividend History!"
   }

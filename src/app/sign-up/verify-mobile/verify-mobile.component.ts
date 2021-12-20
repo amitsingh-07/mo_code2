@@ -1,5 +1,5 @@
 
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation, HostListener, Renderer2, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -69,7 +69,16 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   redirectAfterLogin = '';
   retrySecondsLeft: any;
   retrySeconds = 's';
-
+  otp: string;
+  @ViewChild('ngOtpInput') ngOtpInput: any;
+  config = {
+    allowNumbersOnly: true,
+    length: 6,
+    isPasswordInput: false,
+    disableAutoFocus: false,
+    placeholder: ''
+  };
+  showOtpComponent = false;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
@@ -94,7 +103,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     private investmentCommonService: InvestmentCommonService,
     private stateStoreService: StateStoreService,
     private apiService: ApiService,
-    private hubspotService: HubspotService) {
+    private hubspotService: HubspotService,
+    private renderer: Renderer2, ) {
     this.roleTwoFAEnabled = this.authService.isSignedUserWithRole(SIGN_UP_CONFIG.ROLE_2FA);
     this.translate.use('en');
     this.translate.get('VERIFY_MOBILE').subscribe((result: any) => {
@@ -180,12 +190,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
    */
   buildVerifyMobileForm() {
     this.verifyMobileForm = this.formBuilder.group({
-      otp1: ['', [Validators.required, Validators.pattern(RegexConstants.OTP)]],
-      otp2: ['', [Validators.required, Validators.pattern(RegexConstants.OTP)]],
-      otp3: ['', [Validators.required, Validators.pattern(RegexConstants.OTP)]],
-      otp4: ['', [Validators.required, Validators.pattern(RegexConstants.OTP)]],
-      otp5: ['', [Validators.required, Validators.pattern(RegexConstants.OTP)]],
-      otp6: ['', [Validators.required, Validators.pattern(RegexConstants.OTP)]]
+      ngOtpInput: ['', [Validators.required, Validators.pattern(RegexConstants.OTP)]]      
     });
   }
 
@@ -193,21 +198,17 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
    * verify user mobile number.
    */
   save(form: any) {
-    if (form.valid) {
-      const otpArr = [];
-      for (const value of Object.keys(form.value)) {
-        otpArr.push(form.value[value]);
-        if (value === 'otp6') {
-          const otp = otpArr.join('');
-          if (this.authService.get2faVerifyAllowed()) {
-            if (this.roleTwoFAEnabled) {
-              this.validate2faLogin(otp);
-            } else if (this.authService.isSignedUser()) {
-              this.verify2FA(otp);
-            }
-          } else {
-            this.verifyOTP(otp);
+    if (this.otp && this.otp.length == 6) {
+      const isValidOtp = new RegExp(RegexConstants.OTP).test(this.otp);
+      if (isValidOtp) {
+        if (this.authService.get2faVerifyAllowed()) {
+          if (this.roleTwoFAEnabled) {
+            this.validate2faLogin(this.otp);
+          } else if (this.authService.isSignedUser()) {
+            this.verify2FA(this.otp);
           }
+        } else {
+          this.verifyOTP(this.otp);
         }
       }
     }
@@ -222,8 +223,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     this.mobileNumberVerifiedMessage = this.loading['verifying'];
     this.signUpApiService.verifyOTP(otp, this.editProfile).subscribe((data: any) => {
       if (data.responseMessage.responseCode === 6003) {
-        this.mobileNumberVerified = true;
-        this.mobileNumberVerifiedMessage = this.loading['verified'];
+        this.redirectToPasswordPage();
       } else if (data.responseMessage.responseCode === 5007 || data.responseMessage.responseCode === 5009) {
         const title = data.responseMessage.responseCode === 5007 ? this.errorModal['title'] : this.errorModal['expiredTitle'];
         const message = data.responseMessage.responseCode === 5007 ? this.errorModal['message'] : this.errorModal['expiredMessage'];
@@ -245,9 +245,8 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
     this.mobileNumberVerifiedMessage = this.loading['verifying'];
     this.authService.doValidate2fa(otp).subscribe((data: any) => {
       if (data.responseMessage.responseCode === 6011) {
-        this.mobileNumberVerified = true;
         this.authService.set2FAToken(data.responseMessage.responseCode);
-        this.mobileNumberVerifiedMessage = this.loading['verified2fa'];
+        this.redirectToPasswordPage();
         this.authService.setFromJourney(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE, false);
       } else if (data.responseMessage.responseCode === 5123 || data.responseMessage.responseCode === 5009) {
         const title = data.responseMessage.responseCode === 5123 ? this.errorModal['title'] : this.errorModal['expiredTitle'];
@@ -385,7 +384,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
    */
   editNumber() {
     if (this.editProfile) {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_ID]);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_DETAILS + '/' + SIGN_UP_CONFIG.EDIT_ROUTE_TYPE.MOBILE]);
     } else {
       const ref = this.modal.open(EditMobileNumberComponent, {
         centered: true, backdrop: 'static',
@@ -563,6 +562,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       this.redirectAfterLogin = 'email-enquiry/success';
       this.progressModal = true;
       this.loaderService.hideLoader();
+      this.router.navigate([this.redirectAfterLogin]);
     });
   }
 
@@ -585,6 +585,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       this.redirectAfterLogin = SIGN_UP_ROUTE_PATHS.DASHBOARD;
       this.progressModal = true;
       this.loaderService.hideLoader();
+      this.router.navigate([this.redirectAfterLogin]);
     }
   }
 
@@ -614,18 +615,23 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
           this.redirectAfterLogin = appConstants.JOURNEY_TYPE_COMPREHENSIVE;
           this.progressModal = true;
           this.loaderService.hideLoader();
+          this.loaderService.showLoader({ title: 'Loading', autoHide: false });
+          this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.ROOT], { skipLocationChange: true });
         } else if (journeyType === appConstants.JOURNEY_TYPE_INVESTMENT) {
           this.redirectAfterLogin = appConstants.JOURNEY_TYPE_INVESTMENT;
           this.progressModal = true;
           this.loaderService.hideLoader();
+          this.investmentCommonService.redirectToInvestmentFromLogin(this.authService.getEnquiryId());
         } else if (journeyType === appConstants.JOURNEY_TYPE_WILL_WRITING) {
           this.redirectAfterLogin = WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL;
           this.progressModal = true;
           this.loaderService.hideLoader();
+          this.router.navigate([this.redirectAfterLogin]);
         } else {
           this.redirectAfterLogin = SIGN_UP_ROUTE_PATHS.DASHBOARD;
           this.progressModal = true;
           this.loaderService.hideLoader();
+          this.router.navigate([this.redirectAfterLogin]);
         }
       }
     },
@@ -646,7 +652,7 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
   startRetryCounter() {
     this.retrySecondsLeft = appConstants.OTP_WAITING_SECONDS;
     const self = this;
-    const downloadTimer = setInterval(() => {      
+    const downloadTimer = setInterval(() => {
       --self.retrySecondsLeft;
       if (self.retrySecondsLeft <= 0) {
         clearInterval(downloadTimer);
@@ -654,5 +660,70 @@ export class VerifyMobileComponent implements OnInit, OnDestroy {
       }
     }, 1000);
   }
-
+  onOtpChange(otp) {
+    this.otp = otp; // When all 4 digits are filled, trigger OTP validation method 
+    this.showOtpComponent = false;
+    if (otp.length == 6) {
+      this.showOtpComponent = true;
+      this.validateOtp();
+    }
+  }
+  setVal(val) {
+    this.ngOtpInput.setValue(val);
+  }
+  onConfigChange() {
+    this.otp = null;
+  }
+  validateOtp() {
+    // write your logic here to validate it, you can integrate sms API here if you want 
+  }
+  @HostListener('keyup', ['$event'])
+  onKeyUp(event: KeyboardEvent) {
+    if (event.keyCode === 46) {
+      if(event.srcElement['id']) {
+        const el = document.querySelector('#' + event.srcElement['id']);      
+        const rowNumber = event.srcElement['id'].split('_');
+        const element_0 = this.renderer.selectRootElement('#' + event.srcElement['id']);
+        const startPosition = element_0.selectionStart;
+        const endPosition = element_0.selectionEnd;
+        if (el === document.activeElement) {
+          const rowCount = (parseInt(rowNumber[1]) < 5) ? parseInt(rowNumber[1]) + 1 : parseInt(rowNumber[1]);
+          const element = this.renderer.selectRootElement('#' + (rowNumber[0] + '_' + rowCount + '_' + rowNumber[2]));
+          if (parseInt(rowNumber[1]) == 0) {
+            if(startPosition == 0 && endPosition == 0) {
+              setTimeout(() => { element.setSelectionRange(0, 1); element.focus(); }, 0);
+            } else {this.otp = null; this.showOtpComponent = false;
+              setTimeout(() => { element.value = null; element.setSelectionRange(0, 1); element.focus(); }, 0);
+            }
+          } else if (parseInt(rowNumber[1]) < 5 && parseInt(rowNumber[1]) > 0) {
+            this.otp = null; this.showOtpComponent = false;
+            setTimeout(() => { element.value = null; element.setSelectionRange(0, 1); element.focus(); }, 0);
+          } else {
+            setTimeout(() => { element.focus(); }, 0);
+          }
+        } else {
+          const rowCount = (parseInt(rowNumber[1]) < 5) ? parseInt(rowNumber[1]) + 1 : parseInt(rowNumber[1]);
+          const element = this.renderer.selectRootElement('#' + (rowNumber[0] + '_' + rowCount + '_' + rowNumber[2]));        
+          setTimeout(() => { element.setSelectionRange(0, 1); element.focus(); }, 0);
+        }
+        event.preventDefault();
+        return false;
+      }
+    }
+  }
+  @HostListener('keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent) {
+    if (event.keyCode === 46) { 
+      if(event.srcElement['id']) {    
+        const rowNumber = event.srcElement['id'].split('_');
+        const element_0 = this.renderer.selectRootElement('#' + event.srcElement['id']);
+        const startPosition = element_0.selectionStart;
+        const endPosition = element_0.selectionEnd;
+        if (parseInt(rowNumber[1]) == 5 && startPosition == 0 && endPosition == 0 && (element_0.value == '' || element_0.value == null)) {
+          event.preventDefault();
+          return false;
+        }
+      }
+    }
+  }
 }

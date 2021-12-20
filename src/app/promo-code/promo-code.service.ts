@@ -159,7 +159,7 @@ export class PromoCodeService {
       promoCode: promoCode,
       promoCodeCategory:appConstants.COMPREHENSIVE_PROMO_CODE_TYPE,
       profileType: PROMO_PROFILE_TYPE.PUBLIC.toUpperCase(),
-      subCategory: this.comprehensiveService.isCorporateRole() ?
+      subCategory: (this.comprehensiveService.isCorporateRole() || this.comprehensiveService.getSpecialPromoCodeStatus()) ?
        COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_ADVISOR :
         COMPREHENSIVE_CONST.ROLES.COMPREHENSIVE_REPORT
 

@@ -48,6 +48,21 @@
           "INVALID": "Enter a valid NRIC or FIN"
         }
       },
+      "DOB": {
+        "PLACEHOLDER_LBL": "Date of Birth (DD/MM/YYYY)",
+        "ERROR": {
+          "REQUIRED": "Select Date of Birth",
+          "INVALID": "Select valid Date of Birth"
+        }
+      },
+      "GENDER":{
+        "LABEL": "Gender",
+        "MALE": "Male",
+        "FEMALE": "Female",
+        "ERROR": {
+          "REQUIRED": "Select Gender"
+        }
+      },
       "MOBILE_NUMBER": {
         "LABEL": "Mobile Number",
         "ERROR": {
@@ -321,11 +336,40 @@
     }
   },
   "UPDATE_USER_ID": {
-    "TITLE": "Update User ID",
-    "YOUR_USER_ID": "Your User ID",
+    "TITLE": "Change Mobile Number",
+    "EMAIL_TITLE": "Change Email Address",
+    "YOUR_USER_ID": "An OTP verification will be sent to your new mobile number in the next step.",
+    "EMAIL_TXT_LBL": "An email verification will be sent to your new email address in the next step.",
     "MOBILE_NUMBER": "Mobile Number",
-    "EMAIL": "Email Address",
-    "APPLY_CHANGES": "Apply Changes"
+    "CURRENT_MOBILE_NUMBER": "Current Mobile Number",
+    "NEW_MOBILE_NUMBER": "New Mobile Number",
+    "CONFIRM_MOBILE_NUMBER": "Confirm New Mobile Number",
+    "AUTHENTICATE": "Authenticate with Login Password",
+    "EMAIL": "Current Email Address",
+    "NEW_EMAIL": "New Email Address",
+    "CONFIRM_EMAIL": "Confirm New Email Address",
+    "PASSWORD": "Password",
+    "APPLY_CHANGES": "Apply Changes",
+    "CONFIRM_EMAIL_ERROR": {
+      "MUST_MATCH": "Email must match"
+    },
+    "CONFIRM_MOBILE_ERROR": {
+      "MUST_MATCH": "Mobile number must match"
+    },
+    "MOBILE_NUMBER_VALIDATIONS": {
+      "LABEL": "Mobile Number",
+      "ERROR": {
+        "REQUIRED": "Enter a mobile number",
+        "INVALID": "Enter a valid mobile number"
+      }
+    },
+    "EMAIL_VALIDATIONS": {
+      "LABEL": "Email Address",
+      "ERROR": {
+        "REQUIRED": "Enter an email address",
+        "INVALID": "Enter a valid email address"
+      }
+    }
   },
   "DASHBOARD": {
     "TOAST_MESSAGE" :"Your report is ready to be downloaded",
@@ -485,7 +529,7 @@
     "CONFIRM_PASSWORD": "Confirm Password",
     "FORGET_PASSWORD": "Forgot your password?",
     "APPLY_CHANGES": "Apply Changes",
-    "JOINT_ACCOUNT_DESC": "While we upgrade our systems, please email <a  target='_blank' href='mailto:inv_ops@moneyowl.com.sg'>inv_ops@moneyowl.com.sg</a> if you would like to update your bank details.",
+    "JOINT_ACCOUNT_DESC": "Only primary holder of this joint account can amend the bank details. As you are the secondary holder, kindly advise your primary holder to edit the bank details for this joint account.",
     "SINGPASS": {
       "TITLE": "Log In using Singpass Mobile",
       "ACTIVATE": "Link to activate your account",
@@ -495,7 +539,17 @@
     },
     "JA_BANK_INFO": "Bank Account (Joint Investment)",
     "PORTFOLIO_NAME": "Portfolio Name",
-    "HOLDER_NAMES": "Holder Name(s)"
+    "HOLDER_NAMES": "Holder Name(s)",
+    "MOBILE_NO": "Mobile Number:",
+    "EMAIL_ADDRESS": "Email Address:",
+    "CHANGE_PASSWORD": "Change Password",
+    "MANAGE_PROFILE": "Manage Profile",
+    "MF_MOBILE_NO": "Mobile Number",
+    "MF_EMAIL_ADDRESS": "Email Address",
+    "SECONDARY_USER_LOCK_MODAL": {
+      "TITLE": "Oops, Unable to Update",
+      "DESC": "Only primary holder of this joint account can amend the bank details. As you are the secondary holder, kindly advise your primary holder to edit the bank details for this joint account."
+    }
   },
   "ADD_BANK": {
     "ACCOUNT_NAME": "Account Holders Name",
@@ -586,7 +640,7 @@
     "BACK_TO_LOG_ON": "Back To Log In",
     "SKIP_MY_INFO": " Skip Myinfo",
     "MODAL_TITLE": "Retrieve Myinfo with Singpass<span class=\"lock\"><img src=\"assets/images/lock.svg\"></span>",
-    "MODAL_DESCRIPTION": "<strong class=\"text-bold\">Applicable to all Singpass Registered users.</strong><br><br>You will now proceed to login via Myinfo and retrieve your following details.<strong class=\"text-bold\"> Please use your own account only.</strong><div class=\"my_info_details\">Name<br>NRIC/FIN<br>Mobile Number<br>Email Address</div><br>Would you like to proceed?",
+    "MODAL_DESCRIPTION": "<strong class=\"text-bold\">Applicable to all Singpass Registered users.</strong><br><br>You will now proceed to login via Myinfo and retrieve your following details.<strong class=\"text-bold\"> Please use your own account only.</strong><div class=\"my_info_details\">Name<br>NRIC/FIN<br>Date of Birth<br>Gender<br>Mobile Number<br>Email Address</div><br>Would you like to proceed?",
     "MODAL_BTN-TEXT": "Let's go!",
     "FETCH_MODAL_DATA": {
       "TITLE": "Fetching Data...",
@@ -672,5 +726,11 @@
     "SHOW_MORE_BTN_LBL": "Show More",
     "SPREAD_WORDS_LBL":"Oops, pretty lonely here. Go on, help us spread the word.",
     "WELCOME_REWARDS": "You’ve welcome rewards"
+  },
+  "LOADER_MESSAGES": {
+    "LOADING": {
+      "TITLE": "Loading.",
+      "MESSAGE": "Please wait."
+    }
   }
 }

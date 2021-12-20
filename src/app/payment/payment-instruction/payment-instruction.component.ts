@@ -49,6 +49,10 @@ export class PaymentInstructionComponent implements OnInit, OnDestroy {
     this.comprehensiveApiService.getComprehensiveSummaryDashboard().subscribe((dashboardData: any) => {
       if (dashboardData && dashboardData.objectList[0]) {
         this.getComprehensiveSummaryDashboard = this.comprehensiveService.filterDataByInput(dashboardData.objectList, 'type', COMPREHENSIVE_CONST.VERSION_TYPE.FULL);
+        const specialPromoCode = this.getComprehensiveSummaryDashboard.specialPromoCode;
+        if (specialPromoCode) {
+          this.isCorporate = specialPromoCode;
+        }
         if (!(this.getComprehensiveSummaryDashboard && ((!this.isCorporate && this.getComprehensiveSummaryDashboard.paymentStatus
           && (this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PENDING ||
             this.getComprehensiveSummaryDashboard.paymentStatus.toLowerCase() === COMPREHENSIVE_CONST.PAYMENT_STATUS.PARTIAL_PENDING)

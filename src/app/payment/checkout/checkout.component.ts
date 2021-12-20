@@ -62,6 +62,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   usedPromo: {};
   promoSubscription: Subscription;
   isCorporate: boolean;
+  specialPromoCode = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -274,6 +275,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.promoCodeDescription = checkOutData.discountMessage;
         this.appliedPromoCode = !(Util.isEmptyOrNull(checkOutData.shortDescription)) ? checkOutData.shortDescription : '';
         this.isWaivedPromo = checkOutData.isWaivedPromo;
+        this.specialPromoCode = checkOutData.specialPromoCode;
       }
     }, (err) => {
       this.loaderService.hideLoaderForced();
@@ -287,6 +289,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.comprehensiveService.setComprehensiveSummary(summaryData.objectList[0]);
         const reportStatus = this.comprehensiveService.getReportStatus();
         const advisorPaymentStatus = this.comprehensiveService.getAdvisorStatus();
+        const specialPromoCode = this.comprehensiveService.getSpecialPromoCodeStatus();
+        if (specialPromoCode) {
+          this.isCorporate = specialPromoCode;
+        }
         this.loaderService.hideLoaderForced();
         if (reportStatus === COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED) {
           this.backToDashboard();
@@ -341,20 +347,27 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
 
   initiateReport() {
-    const enquiryId = { enquiryId: this.comprehensiveService.getEnquiryId(), promoCode: this.cfpPromoCode, waivedPromo: this.isWaivedPromo };
+    const enquiryId = { enquiryId: this.comprehensiveService.getEnquiryId(), promoCode: this.cfpPromoCode, waivedPromo: this.isWaivedPromo, specialPromoCode: this.specialPromoCode };
     const cashPayload = {
       enquiryId: this.comprehensiveService.getEnquiryId(), liquidCashAmount: this.comprehensiveService.getLiquidCash(),
       spareCashAmount: this.comprehensiveService.getComputeSpareCash()
     };
     this.comprehensiveApiService.generateComprehensiveCashflow(cashPayload).subscribe((cashData) => {
     });
-    this.comprehensiveApiService.generateComprehensiveReport(enquiryId).subscribe((data) => {
-      const reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED;
-      const viewMode = true;
+    this.comprehensiveApiService.generateComprehensiveReport(enquiryId).subscribe((data) => {      
+      let reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.SUBMITTED;
+      let viewMode = true;
+      if (this.specialPromoCode) {
+        reportStatus = COMPREHENSIVE_CONST.REPORT_STATUS.READY;
+        viewMode = false;
+        this.comprehensiveService.setSpecialPromoCodeStatus(this.specialPromoCode);
+      }
       this.comprehensiveService.setReportStatus(reportStatus);
-      this.comprehensiveService.setLocked(true);
+      this.comprehensiveService.setLocked(viewMode);
       this.comprehensiveService.setViewableMode(viewMode);
-      this.loaderService.hideLoaderForced();
+      this.loaderService.hideLoaderForced();      
+      this.promoSubscription.unsubscribe();
+      this.navbarService.setPromoCodeCpf('');
       if (this.isWaivedPromo) {
         this.comprehensiveService.setPaymentStatus(COMPREHENSIVE_CONST.PAYMENT_STATUS.WAIVED);
         this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.RESULT]);
@@ -374,6 +387,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.promoCodeDescription = '';
     this.appliedPromoCode = '';
     this.isWaivedPromo = false;
+    this.specialPromoCode = false;
   }
 
   goToPaymentInstructions() {

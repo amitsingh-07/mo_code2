@@ -40,7 +40,8 @@
                         <i id="myFinancialDollerSymbFour">$</i>
                         <div name="initialInvestment">
                           <input class="input-control" id="myFinancialInitialDepositInput" type="text"
-                            appCurrencyInputPortfolio maxLength="7" #initialInvestment
+                            appCurrencyInput  [allowDecimal]=true [allowMaxLimit]=10000000
+                            decimalFormat="1.2-2" maxLength="10" #initialInvestment
                             formControlName="initialInvestment" value="0">
                         </div>
                       </div>
@@ -57,13 +58,13 @@
                       </label>
                     </div>
                     <div class="flex-col-6">
-                      <div class="form-control form-control-right">
+                      <div class="form-control">
                         <i id="myFinancialDollerSymbFour">$</i>
                         <div name="monthlyInvestment">
                           <input class="input-control " id="myFinancialMonthlyDepositInput" type="text"
-                            appCurrencyInputPortfolio maxLength="6" #monthlyInvestment
+                            appCurrencyInput [allowDecimal]=true [allowMaxLimit]=10000000
+                            decimalFormat="1.2-2" maxLength="10" #monthlyInvestment
                             formControlName="monthlyInvestment" value="0">
-                          <i class="right">{{ 'INVESTMENT_AMOUNT.MONTH' | translate}}</i>
                         </div>
                       </div>
                     </div>

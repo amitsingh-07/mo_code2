@@ -220,7 +220,7 @@ export class WiseIncomePayoutComponent implements OnInit {
   goToNext(form) {
     this.investmentCommonService.setWiseIncomePayOut(form.value, this.activeTabId);
     const payoutKey = this.getPayoutMethodNameById(form.value.initialWiseIncomePayoutTypeId, this.wiseIncomePayOutTypes);
-    if (payoutKey === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.GROW && this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.PERSONAL_ACCOUNT_ID) {
+    if (payoutKey === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.GROW && this.userPortfolioType !== INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID) {
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
     } else {
       const fundingMethod = this.getFundingMethodNameByName(INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CASH, this.fundingMethods);

@@ -1,10 +1,11 @@
-import { Component, NgZone, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { TitleCasePipe } from '@angular/common';
 import { InvestmentCommonService } from './../../investment/investment-common/investment-common.service';
 
 import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
@@ -26,12 +27,12 @@ import { SessionsService } from './../../shared/Services/sessions/sessions.servi
 
 import { ActivateSingpassModalComponent } from './activate-singpass-modal/activate-singpass-modal.component';
 import { MyInfoService } from '../../shared/Services/my-info.service';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 import {
   ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
-import { TitleCasePipe } from '@angular/common';
 import { CustomerJointAccountInfo } from '../signup-types';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 
 @Component({
   selector: 'app-edit-profile',
@@ -108,8 +109,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     // singpass
     private myInfoService: MyInfoService,
     public activeModal: NgbActiveModal,
-    private titleCasePipe: TitleCasePipe,
-    private ngZone: NgZone
+    private titleCasePipe: TitleCasePipe
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
@@ -164,7 +164,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const initialMessage = this.investmentAccountService.getInitialMessageToShowDashboard();
     if (initialMessage && initialMessage.dashboardInitMessageShow) {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD], {replaceUrl: true});
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD], { replaceUrl: true });
     }
     if (environment.hideHomepage) {
       this.navbarService.setNavbarMode(104);
@@ -225,7 +225,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.complete();
     this.navbarService.unsubscribeBackPress();
     // singpass
-     if (this.myinfoChangeListener) {
+    if (this.myinfoChangeListener) {
       this.myinfoChangeListener.unsubscribe();
     }
   }
@@ -327,16 +327,13 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS], { queryParams: { enableEditProfile: true }, fragment: 'loading' });
   }
 
-  editUserDetails() {
-    this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
-    this.authService.set2faVerifyAllowed(true);
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_ID]);
-  }
-
   editPassword() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PASSWORD]);
   }
 
+  manageProfile() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.MANAGE_PROFILE]);
+  }
   getNationalityCountryList() {
     this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
       this.nationalityList = data.objectList;
@@ -384,14 +381,14 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   addBankDetails() {
-    let AccountHolderName;
+    let accountHolderName;
     if (this.bankDetails && this.bankDetails.accountName) {
-      AccountHolderName = this.bankDetails.accountName;
+      accountHolderName = this.bankDetails.accountName;
     } else {
-      AccountHolderName = this.fullName;
+      accountHolderName = this.fullName;
     }
     this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
-    this.investmentAccountService.setEditProfileBankDetail(AccountHolderName, null, null, null, true);
+    this.investmentAccountService.setEditProfileBankDetail(accountHolderName, null, null, null, true);
     this.authService.set2faVerifyAllowed(true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: true }, fragment: 'bank' });
   }
@@ -504,49 +501,49 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
   getMyInfoData() {
     this.showFetchPopUp();
-    this.myInfoSubscription = this.myInfoService.getSingpassAccountData().subscribe((data) => {  
-        if(data.responseMessage.responseCode === 6000 && data && data.objectList[0]){
-          this.closeMyInfoPopup(false);
-          this.getEditProfileData();
-          const ref = this.modal.open(ActivateSingpassModalComponent, { centered: true , windowClass: 'linked-singpass-modal' });
-          ref.componentInstance.errorMessage = this.translate.instant(
-            'SUCCESS_SINGPASS_MODAL.MESSAGE', 
-            { name: this.titleCasePipe.transform(data.objectList[0].name.value), nric: data.objectList[0].uin.toUpperCase() }
-          );
-          ref.componentInstance.secondaryActionLabel = this.translate.instant(
-            'SUCCESS_SINGPASS_MODAL.BTN_TXT'
-          );
-          ref.componentInstance.isLinked = true;
-        }
-        else if (data.responseMessage.responseCode === 6014) {
-          this.closeMyInfoPopup(false);
-          const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-          ref.componentInstance.errorTitle = this.translate.instant(
-            'LINK_ACCOUNT_MYINFO.ALREADY_EXISTING.TITLE'
-          );
-          ref.componentInstance.errorMessage = this.translate.instant(
-            'LINK_ACCOUNT_MYINFO.ALREADY_EXISTING.DESC'
-          );
-          ref.componentInstance.primaryActionLabel = this.translate.instant(
-            'LINK_ACCOUNT_MYINFO.ALREADY_EXISTING.BTN-TEXT'
-          );
-        }
-        else if(data.responseMessage.responseCode === 6015){
-          this.closeMyInfoPopup(false);
-          const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-          ref.componentInstance.errorTitle = this.translate.instant(
-            'LINK_ACCOUNT_MYINFO.DIFFERENT_USER.TITLE'
-          );
-          ref.componentInstance.errorMessage = this.translate.instant(
-            'LINK_ACCOUNT_MYINFO.DIFFERENT_USER.DESC'
-          );
-          ref.componentInstance.primaryActionLabel = this.translate.instant(
-            'LINK_ACCOUNT_MYINFO.DIFFERENT_USER.BTN-TEXT'
-          );
-        }
-        else{
-          this.closeMyInfoPopup(true);
-        }
+    this.myInfoSubscription = this.myInfoService.getSingpassAccountData().subscribe((data) => {
+      if (data.responseMessage.responseCode === 6000 && data && data.objectList[0]) {
+        this.closeMyInfoPopup(false);
+        this.getEditProfileData();
+        const ref = this.modal.open(ActivateSingpassModalComponent, { centered: true, windowClass: 'linked-singpass-modal' });
+        ref.componentInstance.errorMessage = this.translate.instant(
+          'SUCCESS_SINGPASS_MODAL.MESSAGE',
+          { name: this.titleCasePipe.transform(data.objectList[0].name.value), nric: data.objectList[0].uin.toUpperCase() }
+        );
+        ref.componentInstance.secondaryActionLabel = this.translate.instant(
+          'SUCCESS_SINGPASS_MODAL.BTN_TXT'
+        );
+        ref.componentInstance.isLinked = true;
+      }
+      else if (data.responseMessage.responseCode === 6014) {
+        this.closeMyInfoPopup(false);
+        const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+        ref.componentInstance.errorTitle = this.translate.instant(
+          'LINK_ACCOUNT_MYINFO.ALREADY_EXISTING.TITLE'
+        );
+        ref.componentInstance.errorMessage = this.translate.instant(
+          'LINK_ACCOUNT_MYINFO.ALREADY_EXISTING.DESC'
+        );
+        ref.componentInstance.primaryActionLabel = this.translate.instant(
+          'LINK_ACCOUNT_MYINFO.ALREADY_EXISTING.BTN-TEXT'
+        );
+      }
+      else if (data.responseMessage.responseCode === 6015) {
+        this.closeMyInfoPopup(false);
+        const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+        ref.componentInstance.errorTitle = this.translate.instant(
+          'LINK_ACCOUNT_MYINFO.DIFFERENT_USER.TITLE'
+        );
+        ref.componentInstance.errorMessage = this.translate.instant(
+          'LINK_ACCOUNT_MYINFO.DIFFERENT_USER.DESC'
+        );
+        ref.componentInstance.primaryActionLabel = this.translate.instant(
+          'LINK_ACCOUNT_MYINFO.DIFFERENT_USER.BTN-TEXT'
+        );
+      }
+      else {
+        this.closeMyInfoPopup(true);
+      }
     }, (error) => {
       this.closeMyInfoPopup(true);
     });
@@ -599,5 +596,33 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
   showJointAccountDetailsCard: () => boolean = (): boolean => {
     return this.customerJointAccBankDetails && this.customerJointAccBankDetails.length > 0;
+  }
+
+  editJABankDetails(portfolioBankDetails) {
+    let accountHolderName;
+    if (portfolioBankDetails && portfolioBankDetails.accountHolderName) {
+      accountHolderName = portfolioBankDetails.accountHolderName;
+    } else {
+      accountHolderName = this.fullName;
+    }
+    this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
+    // tslint:disable-next-line:max-line-length accountName
+    this.investmentAccountService.setJAPortfolioBankDetail(accountHolderName, portfolioBankDetails.bank, portfolioBankDetails.bankAccountNumber, portfolioBankDetails.customerPortfolioId, portfolioBankDetails.id);
+    this.authService.set2faVerifyAllowed(true);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], { queryParams: { addBank: false }, fragment: 'bank' });
+  }
+
+  openSecodaryUserLockModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('EDIT_PROFILE.SECONDARY_USER_LOCK_MODAL.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('EDIT_PROFILE.SECONDARY_USER_LOCK_MODAL.DESC');
+  }
+
+  isEditable(jaBankDetail) {
+    return jaBankDetail.jaStatus === SIGN_UP_CONFIG.CUSTOMER_PORTFOLIOS.JOINT_ACCOUNT.SATUS && jaBankDetail.primaryCustomer;
+  }
+
+  isSecondaryHolder(jaBankDetail) {
+    return jaBankDetail.jaStatus === SIGN_UP_CONFIG.CUSTOMER_PORTFOLIOS.JOINT_ACCOUNT.SATUS && !jaBankDetail.primaryCustomer;
   }
 }
