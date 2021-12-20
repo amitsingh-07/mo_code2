@@ -29,7 +29,7 @@ export class AddBankModalComponent implements OnInit {
 
   ngOnInit() {
     this.addBankForm = new FormGroup({
-      accountHolderName: new FormControl(this.bankDetails.accountName, [
+      accountHolderName: new FormControl(this.bankDetails ? this.bankDetails.accountName : this.fullName, [
         Validators.required,
         Validators.pattern(RegexConstants.NameWithSymbol)
       ]),
