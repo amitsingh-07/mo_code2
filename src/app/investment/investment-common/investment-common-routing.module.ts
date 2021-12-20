@@ -83,7 +83,7 @@ const routes: Routes = [
   {
     path: INVESTMENT_COMMON_ROUTES.CKA_METHOD_BASED_QNA + '/:methodname',
     component: CkaMethodQnaComponent,
-    canActivate: [InvestmentEngagementJourneyGuardService, AuthGuard]
+    canActivate: [AuthGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }
 ];

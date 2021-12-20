@@ -425,4 +425,8 @@ export class InvestmentCommonService {
     }
     return null;
   }
+
+  saveCKAMethodQNA(json: any) {
+    return this.investmentApiService.saveCKAMethodQNA(json);
+  }
 }
