@@ -101,14 +101,7 @@ export class WithdrawalComponent implements OnInit, OnDestroy {
     this.portfolioList = [];
     const pList = this.manageInvestmentsService.getUserPortfolioList();    
     for (const portfolio of pList) {
-      if (portfolio.portfolioStatus != INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.AWAITING && 
-          portfolio.portfolioStatus != INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.WITHDRAWN && 
-          portfolio.portfolioStatus != INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.DECLINED && 
-          portfolio.portfolioStatus != INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.VERIFY && 
-          portfolio.portfolioStatus != INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.EXPIRED && 
-          portfolio.portfolioStatus != INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.INACTIVE && 
-          portfolio.portfolioStatus != INVESTMENT_COMMON_CONSTANTS.JA_PORTFOLIO_STATUS.IN_PROGRESS
-        ) {
+      if (portfolio.entitlements && (portfolio.entitlements.showWithdrawPvToBa || portfolio.entitlements.showWithdrawPvToCa || portfolio.entitlements.showWithdrawCaToBa || portfolio.entitlements.showWithdrawPvToSRS)) {
         this.portfolioList.push(portfolio);
       }
     }
