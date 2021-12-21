@@ -563,6 +563,17 @@
     "SELECT_OPTION_6_DESC": "You will be guided through the ABS e-Learning Module in order to pass your CKA. (est. time ~20min)"
   },
   "CKA_UPLOAD_DOCUMENT":{
+    "PAGE_TITLE": "Customer Knowledge Assessment",
+    "PAGE_DESC": "Please upload you ABS e-Learning Certificate.",
+    "SELECT_OPTION": "Upload e-Learning Certificate",
+    "SELECT_OPTION_DESC": "I have undergone and passed the ABS Unit Trusts and Investment-Linked Insurance Policy e-Learning module (Module 5).",
+    "RESELECT_LBL": "Reselect CKA Method",
+    "QUE_1": "Please ensure each document upload:",
+    "STEP_1": "File less than <span class=\"text-semi-bold\">10MB</span></br>Allowed file types: <span class=\"text-semi-bold\">pdf, jpg, jpeg, png, gif, bmp</span>",
+    "CERTIFICATE_LBL": "UT & ILP Certificate",
+    "TAP_TO_UPLOAD":"Tap To Upload",
+    "I_AGREE": "I declare that I have passed the ABS e-learning course within the first 3 attempts and not been disallowed to transact in SIP by another FI for more than 3 times.",
+    "SAVE_CONTINUE": "Save & Continue"
   },
   "NONE_OF_THE_ABOVE":{
     "PAGE_TITLE": "Customer Knowledge Assessment",
