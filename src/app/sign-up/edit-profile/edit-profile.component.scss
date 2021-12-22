@@ -219,6 +219,12 @@ app-edit-profile {
     letter-spacing: -0.3px;
     color: $form-block-title-color;
   }
+  .form-group-sub-heading {
+    font-family: $muli-italic;
+    font-size: 13px;
+    letter-spacing: -0.24px;
+    color: $profile-page-card-sub-heading;
+  }
   .dropdown-img {
     width: 16px;
     height: 10px;
@@ -408,9 +414,6 @@ app-edit-profile {
     text-align: center;
     color: $no-bank-account-color;
     margin: 50px 30px 10px 30px;
-    &.no-bank-details {
-      margin-bottom: 4px;
-    }
   }
   .joint-account-desc {
     font-family: $muli-italic;

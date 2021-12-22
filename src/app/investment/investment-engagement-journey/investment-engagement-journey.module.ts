@@ -39,6 +39,7 @@ import { WiseIncomePayoutComponent } from './wise-income-payout/wise-income-payo
 import { SelectPortfolioTypeComponent } from './select-portfolio-type/select-portfolio-type.component';
 import { AddSecondaryHolderComponent } from './add-secondary-holder/add-secondary-holder.component';
 import { UploadDocumentComponent } from './upload-document/upload-document.component';
+import { CkaPassedResultComponent } from './cka-passed-result/cka-passed-result.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
@@ -86,7 +87,8 @@ export function createTranslateLoader(http: HttpClient) {
     WiseIncomePayoutComponent,
     SelectPortfolioTypeComponent,
     AddSecondaryHolderComponent,
-    UploadDocumentComponent
+    UploadDocumentComponent,
+    CkaPassedResultComponent
   ],
   providers: [CurrencyPipe, FormatCurrencyPipe],
   entryComponents: [SrsTooltipComponent]

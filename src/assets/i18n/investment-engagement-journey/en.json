@@ -277,7 +277,7 @@
     "TITLE": "Your Portfolio Details",
     "PORTFOLIO": "Portfolio",
     "PROCEED": "Proceed",
-    "EXPENSIVE_RATIO": " Enjoy 0% fees for the 1st $10,000 until end of 2021. Fees include fund level fee of {{expensiveRatio}} p.a. which is incorporated into the NAV.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
+    "EXPENSIVE_RATIO": " Fees include fund level fee of {{expensiveRatio}} p.a. which is incorporated into the NAV.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
     "EXPENSIVE_RATIO_WISE_INCOME": " This excludes fund level fees (such as annual management fees of {{expensiveRatio}} p.a.) which are factored into the price of the fund.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
     "FUND_EXPENSIVE_RATIO": "Fund Expense Ratio",
     "TOTAL_FEE": "Total Fee",
@@ -545,5 +545,10 @@
       "TITLE": "Loading.",
       "MESSAGE": "Please wait."
     }
+  },
+  "CKA_RESULT": {
+    "TITLE": "You have passed CKA!",
+    "DESC": " Congratulations on completing your e-Learning! Please continue to the next step of investing CPF portfolio.",
+    "BTN_CONTINUE": "Continue"
   }
 }
