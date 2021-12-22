@@ -545,5 +545,10 @@
       "TITLE": "Loading.",
       "MESSAGE": "Please wait."
     }
+  },
+  "CKA_RESULT": {
+    "TITLE": "You have passed CKA!",
+    "DESC": " Congratulations on completing your e-Learning! Please continue to the next step of investing CPF portfolio.",
+    "BTN_CONTINUE": "Continue"
   }
 }
