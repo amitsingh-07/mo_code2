@@ -151,6 +151,14 @@ export class InvestmentApiService {
       );
   }
 
+  saveCKAMethodQNA(json) {
+    const url = investmentApiConstants.endpoint.investment.saveCKAMethodQNA;
+    return this.http.post(url, json)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   getFundMethodList() {
     return this.http.get(investmentApiConstants.endpoint.investmentAccount.fundingMethodList)
       .pipe(
