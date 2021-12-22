@@ -384,5 +384,39 @@
       "TITLE": "Loading.",
       "MESSAGE": "Please wait."
     }
+  },
+  "CKA": {
+    "QNA": {
+      "PAGE_TITLE": "Customer Knowledge Assessment",
+      "DESC": "What finance-related education qualification(s) have you obtained?",
+      "SUBMIT": "Submit",
+      "EDUCATIONAL": {
+        "TITLE": "Education Qualification",
+        "DESC": "I have a finance-related diploma or higher qualification.",
+        "SUB_TITLE_1": "Finance-related education qualification(s) obtained:",
+        "SUB_TITLE_2": "Education Institution(s) in which the above qualification(s) were obtained:",
+        "PLACEHOLDER": "Specify Education Institution"
+      },
+      "PROFESSIONAL": {
+        "TITLE": "Professional Qualification",
+        "DESC": "I have a finance-related professional qualification.",
+        "SUB_TITLE_1": "Finance-related professional qualification(s) obtained:",
+        "SUB_TITLE_2": "Education Institution(s) in which the above qualification(s) were obtained:",
+        "PLACEHOLDER": "Specify Education Institution"
+      },
+      "WORK_EXPERIENCE": {
+        "TITLE": "Work Experience",
+        "DESC": "I have a minimum of 3 continuous years of relevant working experience in finance over the past 10 years.",
+        "SUB_TITLE_1": "I have relevant experience in the following area:",
+        "SUB_TITLE_2": "Name of Employer:",
+        "PLACEHOLDER": "Specify Financial Institution"
+      },
+      "INVESTMENT_EXPERIENCE": {
+        "TITLE": "Investment Experience",
+        "DESC": "I have traded 6 or more transactions in Collective Investment Schemes (CIS) or Investment-linked Policies (ILPs) in the past 3 years.",
+        "SUB_TITLE_1": "Name of the Financial Institution(s) where these transactions were carried out:",
+        "PLACEHOLDER": "Specify Financial Institution"
+      }
+    }
   }
 }

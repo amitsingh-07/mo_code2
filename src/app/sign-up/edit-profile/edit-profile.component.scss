@@ -219,6 +219,12 @@ app-edit-profile {
     letter-spacing: -0.3px;
     color: $form-block-title-color;
   }
+  .form-group-sub-heading {
+    font-family: $muli-italic;
+    font-size: 13px;
+    letter-spacing: -0.24px;
+    color: $profile-page-card-sub-heading;
+  }
   .dropdown-img {
     width: 16px;
     height: 10px;
