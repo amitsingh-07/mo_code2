@@ -40,6 +40,7 @@ export let INVESTMENT_ACCOUNT_CONSTANTS = {
   employmentDetails: {},
   upload_documents: {
     default_thumb: 'cam-icon.svg',
+    default_cka_thumb: 'cam-icon-dark-teal.svg',
     max_file_size: 10, // in MB
     file_types: ['JPG', 'JPEG', 'PNG', 'GIF', 'BMP', 'PDF']
   },
