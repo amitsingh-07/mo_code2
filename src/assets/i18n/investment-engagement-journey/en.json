@@ -277,7 +277,7 @@
     "TITLE": "Your Portfolio Details",
     "PORTFOLIO": "Portfolio",
     "PROCEED": "Proceed",
-    "EXPENSIVE_RATIO": " Enjoy 0% fees for the 1st $10,000 until end of 2021. Fees include fund level fee of {{expensiveRatio}} p.a. which is incorporated into the NAV.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
+    "EXPENSIVE_RATIO": " Fees include fund level fee of {{expensiveRatio}} p.a. which is incorporated into the NAV.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
     "EXPENSIVE_RATIO_WISE_INCOME": " This excludes fund level fees (such as annual management fees of {{expensiveRatio}} p.a.) which are factored into the price of the fund.<span> <a target='_blank' href=\"/pricing/\">View our fees table.</a></span>",
     "FUND_EXPENSIVE_RATIO": "Fund Expense Ratio",
     "TOTAL_FEE": "Total Fee",
@@ -585,8 +585,13 @@
     "STEP_2": "<span class=\"text-bold\">Step 2: </span><a class=\"hyperlink_color\" target='_blank' href='https://sips.abs.org.sg/Default.aspx'>Complete only Module 5</a> - Unit Trusts and Investment-linked Insurance Policies. Estimated 15 minutes time to complete.",
     "STEP_3": "<span class=\"text-bold\">Step 3: </span>A certification of completion will be provided once you pass the assessment. <span class=\"hyperlink_color\">Upload your certificate</span> by creating a new CPF investment portfolio.",
     "QUE_2": "How do I find out more?",
-    "STEP_4": "Visit our website for more <a class=\"hyperlink_color\" target=\"_blank\" routerLink=\"/faq\" fragment=\"investment\">Frequently Asked Questions</a> on investing with MoneyOwl.",
+    "STEP_4": "Visit our website for more <a class=\"hyperlink_color\" target=\"_blank\" href=\"https://www.moneyowl.com.sg/faq-investment/#investment|8\">Frequently Asked Questions</a> on investing with MoneyOwl.",
     "STEP_5": "For assistance on investment pre-requisites, please email <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a>.",
     "BACK_TO_PROFILE_LBL": "Back to profile"
+  },
+  "CKA_RESULT": {
+    "TITLE": "You have passed CKA!",
+    "DESC": " Congratulations on completing your e-Learning! Please continue to the next step of investing CPF portfolio.",
+    "BTN_CONTINUE": "Continue"
   }
 }

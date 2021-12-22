@@ -163,6 +163,7 @@ app-plan-details-widget {
                     @extend .justify-center;
                     @extend .align-center;
                     flex-direction: column;
+                    align-self: auto;
                     flex: 1;
                     width: 25%;
                     margin-right: 10px;

@@ -42,6 +42,7 @@ import { UploadDocumentComponent } from './upload-document/upload-document.compo
 import { CkaAssessmentComponent } from './cka-assessment/cka-assessment.component';
 import { CkaUploadDocumentComponent } from './cka-upload-document/cka-upload-document.component';
 import { NoneOfTheAboveComponent } from './none-of-the-above/none-of-the-above.component';
+import { CkaPassedResultComponent } from './cka-passed-result/cka-passed-result.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
@@ -92,7 +93,8 @@ export function createTranslateLoader(http: HttpClient) {
     UploadDocumentComponent,
     CkaAssessmentComponent,
     CkaUploadDocumentComponent,
-    NoneOfTheAboveComponent
+    NoneOfTheAboveComponent,
+    CkaPassedResultComponent
   ],
   providers: [CurrencyPipe, FormatCurrencyPipe],
   entryComponents: [SrsTooltipComponent]
