@@ -26,6 +26,8 @@ import { WiseIncomePayoutComponent } from './wise-income-payout/wise-income-payo
 import { AddSecondaryHolderComponent } from './add-secondary-holder/add-secondary-holder.component';
 import { UploadDocumentComponent } from './upload-document/upload-document.component';
 import { AuthGuardService as AuthGuard } from '../../sign-up/auth-guard.service';
+import { CkaAssessmentComponent } from './cka-assessment/cka-assessment.component';
+import { NoneOfTheAboveComponent } from './none-of-the-above/none-of-the-above.component';
 
 const routes: Routes = [
   {
@@ -139,6 +141,16 @@ const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.EDIT_JA_UPLOAD_DOCUMENT,
     component: UploadDocumentComponent,
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
+  },
+  {
+    path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.CKA_ASSESSMENT,
+    component: CkaAssessmentComponent,
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
+  },
+  {
+    path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.NONE_OF_THE_ABOVE,
+    component: NoneOfTheAboveComponent,
     canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }
