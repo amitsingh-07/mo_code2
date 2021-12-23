@@ -1,14 +1,15 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators, ControlContainer } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { UploadDocumentService } from '../../../investment/upload-document.service';
+import { UploadDocumentService } from '../../../shared/Services/upload-document.service';
 
 export interface DocumentInfo {
   documentType: String;
   defaultThumb: String;
   formData: FormData;
+  streamResponse?: any;
 }
 
 @Component({
@@ -21,10 +22,12 @@ export interface DocumentInfo {
 export class UploadDocComponent implements OnInit {
   defaultThumb: any;
   documentName: String;
+  fileName: string;
   uploadForm: FormGroup;
 
   @Input('documentInfo') documentInfo: DocumentInfo;
-
+  @ViewChild('documentThumb') documentThumb;
+  
   constructor(public readonly translate: TranslateService,
     public modal: NgbModal,
     private uploadDocService: UploadDocumentService,
@@ -34,6 +37,15 @@ export class UploadDocComponent implements OnInit {
   ngOnInit(): void {
     this.uploadForm = this.controlContainer.control as FormGroup;
     this.documentName = this.uploadDocService.getDocumentName(this.documentInfo.documentType);
+
+    this.uploadDocService.streamResponseObserv.subscribe((response) => {
+      this.getBlob(response);
+    });
+  }
+
+  getBlob(streamResponse) {
+    this.uploadDocService.blobToThumbNail(streamResponse, this.uploadForm.controls.document, this.documentInfo, this.documentThumb);
+    this.fileName = this.uploadDocService.blobToFile(streamResponse).name;   
   }
 
   openFileDialog(elem) {
@@ -42,12 +54,13 @@ export class UploadDocComponent implements OnInit {
     }
   }
 
-  getFileName(fileElem) {
-    return this.uploadDocService.getFileName(fileElem);
+  setFileName(fileElem) {
+    this.fileName = this.uploadDocService.getFileName(fileElem);
   }
 
   fileSelect(control, controlname, fileElem, thumbElem?) {
-    this.uploadDocService.fileSelect(this.documentInfo.formData, control, controlname, fileElem, thumbElem);
+    this.uploadDocService.fileSelect(this.documentInfo.formData, control, controlname, fileElem.target.files[0], thumbElem);
+    this.setFileName(fileElem.target);
   }
 
   clearFileSelection(control, controlName, event, thumbElem?, fileElem?) {

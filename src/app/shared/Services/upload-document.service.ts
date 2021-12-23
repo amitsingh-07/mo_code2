@@ -2,21 +2,26 @@ import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
-import { INVESTMENT_ACCOUNT_CONSTANTS } from './investment-account/investment-account.constant';
+import { ErrorModalComponent } from '../modal/error-modal/error-modal.component';
+import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../investment/investment-account/investment-account.constant';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class UploadDocumentService {
+  private streamResponse = new Subject();
+  streamResponseObserv = this.streamResponse.asObservable();
+
   constructor(
     public readonly translate: TranslateService,
     private modal: NgbModal,
   ) {
-    this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {
-    });
+  }
+
+  setStreamResponse(response) {
+    this.streamResponse.next(response);
   }
 
   getDocumentName(docType) {
@@ -69,17 +74,25 @@ export class UploadDocumentService {
     return payloadKey;
   }
 
-  setThumbnail(thumbElem, file) {
+  setThumbnail(thumbElem, file, isBlob?) {
     // Set Thumbnail
     const defaultThumb = INVESTMENT_ACCOUNT_CONSTANTS.upload_documents.default_thumb;
     const reader: FileReader = new FileReader();
     reader.onloadend = () => {
       thumbElem.src = reader.result;
+      if (isBlob) {
+        thumbElem.nativeElement.src = reader.result;
+      }
     };
+    
     if (file) {
       reader.readAsDataURL(file);
     } else {
-      thumbElem.src = window.location.origin + '/assets/images/' + defaultThumb;
+      const thumbPath = window.location.origin + '/assets/images/' + defaultThumb;
+      thumbElem.src = thumbPath;
+      if (isBlob) {
+        thumbElem.nativeElement.src = thumbPath;
+      }
     }
   }
 
@@ -92,7 +105,7 @@ export class UploadDocumentService {
   }
 
   selectedFile(formData, controlname, fileElem, thumbElem?) {
-    const selectedFile: File = fileElem.target.files[0];
+    const selectedFile: File = fileElem;
     const fileSize: number = selectedFile.size / 1024 / 1024; // in MB
     const fileType = selectedFile.name.split('.')[selectedFile.name.split('.').length - 1].toUpperCase();
     const isValidFileSize =
@@ -141,9 +154,33 @@ export class UploadDocumentService {
       ref.componentInstance.errorDescription = errorDesc;
       control.setValue('');
     } else {
-      const selFile = fileElem.target.files[0];
-      control.setValue(selFile ? selFile.name : '');
+      control.setValue(fileElem ? fileElem.name : '');
     }
+  }
+
+  blobToThumbNail(streamResponse, control, documentInfo, thumbElem) {
+    let file = this.blobToFile(streamResponse);
+    this.fileSelect(documentInfo.formData, control, documentInfo.documentType, file, thumbElem);
+    this.setThumbnail(thumbElem, file, true);
+  }
+
+  blobToFile(streamResponse: any) {
+    let extension = streamResponse.headers.get('FILE_TYPE').split('.')[1].toLowerCase();
+    const blob = new Blob([streamResponse.body], { type: this.createFileType(extension) });
+    let file = new File([blob], streamResponse.headers.get('FILE_TYPE'), { type: this.createFileType(extension) });
+    return file;
+  }
+
+  createFileType(e): string {
+    let fileType: string = "";
+    if (e == 'pdf') {
+      fileType = `application/${e}`;
+    }
+    else if (e == 'jpeg' || e == 'jpg' || e == 'png' || e == 'gif' || e == 'bmp') {
+      fileType = `image/${e}`;
+    }
+
+    return fileType;
   }
 
   clearFileSelection(control, event, defaultThumb, thumbElem?, fileElem?) {

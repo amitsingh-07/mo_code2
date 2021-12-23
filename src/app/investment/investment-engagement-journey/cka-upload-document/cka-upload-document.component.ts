@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
@@ -8,10 +9,12 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { InvestmentCommonService } from '../../investment-common/investment-common.service';
+
+import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../../investment/investment-account/investment-account.constant';
-import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UploadDocumentService } from '../../../shared/Services/upload-document.service';
 @Component({
   selector: 'app-cka-upload-document',
   templateUrl: './cka-upload-document.component.html',
@@ -21,6 +24,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class CkaUploadDocumentComponent implements OnInit {
   defaultThumb: any;
   ckaDocumentInfo: any;
+  streamResponse: any;
   pageTitle: string;
   ckaUploadForm: FormGroup;
   formData: FormData = new FormData();
@@ -33,7 +37,9 @@ export class CkaUploadDocumentComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loaderService: LoaderService,
     public investmentEngagementJourneyService: InvestmentEngagementJourneyService,
-    public investmentAccountService: InvestmentAccountService) {
+    public investmentAccountService: InvestmentAccountService,
+    public investmentCommonService: InvestmentCommonService,
+    public uploadDocumentService: UploadDocumentService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('NONE_OF_THE_ABOVE.PAGE_TITLE');
@@ -48,6 +54,12 @@ export class CkaUploadDocumentComponent implements OnInit {
 
     this.buildDocumentInfo();
     this.buildForm();
+
+    this.investmentCommonService.getCKADocument("CKA_CERTIFICATE").subscribe((response) => {
+      if (response) {
+        this.uploadDocumentService.setStreamResponse(response);
+      }
+    });
   }
 
   private buildDocumentInfo() {
@@ -65,7 +77,7 @@ export class CkaUploadDocumentComponent implements OnInit {
       ckaDoc: this.formBuilder.group({
         document: ['', Validators.required]
       }),
-      tncCheckboxFlag: ['', Validators.required]
+      tncCheckboxFlag: ['']
     });
   }
 
@@ -85,13 +97,13 @@ export class CkaUploadDocumentComponent implements OnInit {
       desc: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE')
     });
 
-    if (this.formData.get('ckaCert')) {
-      this.investmentEngagementJourneyService.uploadDocument(this.formData.get('ckaCert')).subscribe((response) => {
+    if (this.formData) {
+      this.investmentEngagementJourneyService.uploadDocument(this.formData).subscribe((response) => {
         this.loaderService.hideLoader();
         if (response && response.objectList &&
           response.objectList.length &&
           response.objectList[response.objectList.length - 1].responseInfo) {
-            
+
           const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
           ref.componentInstance.imgType = 1;
           ref.componentInstance.errorTitle = "Gentle Reminder";

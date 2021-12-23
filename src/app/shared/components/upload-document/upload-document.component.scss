@@ -32,6 +32,7 @@ app-upload-doc {
       }
 
       .upload-content {
+        padding-top: 20px;
         color: $persian-green-color;
         div {
           font-size: 16px;
@@ -54,7 +55,6 @@ app-upload-doc {
         max-height: 85px;
         display: flex;
         align-items: center;
-        padding: 10px 0 20px;
 
         .thumbnail {
           margin: 0 auto;

@@ -429,4 +429,8 @@ export class InvestmentCommonService {
   saveCKAMethodQNA(json: any) {
     return this.investmentApiService.saveCKAMethodQNA(json);
   }
+
+  getCKADocument(documentType) {
+    return this.investmentApiService.getCKADocument(documentType);
+  }
 }
