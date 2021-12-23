@@ -395,27 +395,34 @@
         "DESC": "I have a finance-related diploma or higher qualification.",
         "SUB_TITLE_1": "Finance-related education qualification(s) obtained:",
         "SUB_TITLE_2": "Education Institution(s) in which the above qualification(s) were obtained:",
-        "PLACEHOLDER": "Specify Education Institution"
+        "PLACEHOLDER": "Specify Education Institution",
+        "DROPDOWN1_PLACEHOLDER": "Education Qualification",
+        "DROPDOWN2_PLACEHOLDER": "Education Institution"
       },
       "PROFESSIONAL": {
         "TITLE": "Professional Qualification",
         "DESC": "I have a finance-related professional qualification.",
         "SUB_TITLE_1": "Finance-related professional qualification(s) obtained:",
         "SUB_TITLE_2": "Education Institution(s) in which the above qualification(s) were obtained:",
-        "PLACEHOLDER": "Specify Education Institution"
+        "PLACEHOLDER": "Specify Education Institution",
+        "DROPDOWN1_PLACEHOLDER": "Professional Qualification",
+        "DROPDOWN2_PLACEHOLDER": "Education Institution"
       },
       "WORK_EXPERIENCE": {
         "TITLE": "Work Experience",
         "DESC": "I have a minimum of 3 continuous years of relevant working experience in finance over the past 10 years.",
         "SUB_TITLE_1": "I have relevant experience in the following area:",
         "SUB_TITLE_2": "Name of Employer:",
-        "PLACEHOLDER": "Specify Financial Institution"
+        "PLACEHOLDER": "Specify Name of Employer",
+        "DROPDOWN1_PLACEHOLDER": "Work Experience",
+        "DROPDOWN2_PLACEHOLDER": "Name of Employer"
       },
       "INVESTMENT_EXPERIENCE": {
         "TITLE": "Investment Experience",
         "DESC": "I have traded 6 or more transactions in Collective Investment Schemes (CIS) or Investment-linked Policies (ILPs) in the past 3 years.",
         "SUB_TITLE_1": "Name of the Financial Institution(s) where these transactions were carried out:",
-        "PLACEHOLDER": "Specify Financial Institution"
+        "PLACEHOLDER": "Specify Financial Institution",
+        "DROPDOWN1_PLACEHOLDER": "Name of Financial Institution"
       }
     }
   }

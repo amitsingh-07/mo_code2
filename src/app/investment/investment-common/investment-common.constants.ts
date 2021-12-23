@@ -107,12 +107,13 @@ export let INVESTMENT_COMMON_CONSTANTS = {
     NOT_APPLIED: "Not Applied"
   },
   CKA: {
-    METHODS: {
-      EDUCATIONAL: "educational",
-      PROFESSIONAL: "professional",
-      INV_EPERIENCE: "investment-experience",
-      WORK_EXPERIENCE: "work-experience"
-    },
+    OTHERS: 'OTHERS',
+    METHODS: [
+      "educational",
+      "professional",
+      "work-experience",
+      "investment-experience"
+    ],
     DROPDOWN_GROUPS: {
       EDUCATIONAL: {
         QUALIFICATION: "ckaEducationQualification",

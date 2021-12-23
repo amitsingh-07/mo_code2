@@ -1,84 +1,84 @@
 <div class="container-fluid max-width--1024 investment">
-    <div class="row">
-      <div class="col-lg-7 col-md-6 hidden-sm">
-        <h2>{{'CKA_ASSESSMENT.PAGE_TITLE' | translate}}</h2>
-        <div class="text-lyt">{{'CKA_ASSESSMENT.PAGE_DESC' | translate}}</div>
-        <div class="banner-image">
-          <img src="assets/images/investment-account/cka-banner.svg" />
-        </div>
+  <div class="row">
+    <div class="col-lg-7 col-md-6 hidden-sm">
+      <h2>{{'CKA_ASSESSMENT.PAGE_TITLE' | translate}}</h2>
+      <div class="text-lyt">{{'CKA_ASSESSMENT.PAGE_DESC' | translate}}</div>
+      <div class="banner-image">
+        <img src="assets/images/investment-account/cka-banner.svg" />
       </div>
-      <div class="col-lg-5 col-md-6">
-          <div class="form-group-single-column flex-col">
-                <div class="text-lyt hidden-lg mb20 pt10">{{'CKA_ASSESSMENT.PAGE_DESC' | translate}}</div>
-                <div class="tiles">
-                    <button type="button" class="btn flex-row tile">
-                            <div class="flex-col-11">
-                                <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_1' | translate}}</div>
-                                <div>{{'CKA_ASSESSMENT.SELECT_OPTION_1_DESC' | translate}}</div>
-                            </div>
-                            <div class="flex-col-1">
-                                <div class="icon-block">
-                                <span class="arrow-right"></span>
-                                </div>
-                            </div>
-                    </button>
-                    <button type="button" class="btn flex-row tile">
-                            <div class="flex-col-11">
-                                <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_2' | translate}}</div>
-                                <div>{{'CKA_ASSESSMENT.SELECT_OPTION_2_DESC' | translate}}</div>
-                            </div>
-                            <div class="flex-col-1">
-                                <div class="icon-block">
-                                <span class="arrow-right"></span>
-                                </div>
-                            </div>
-                    </button>
-                    <button type="button" class="btn flex-row tile">
-                            <div class="flex-col-11">
-                                <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_3' | translate}}</div>
-                                <div>{{'CKA_ASSESSMENT.SELECT_OPTION_3_DESC' | translate}}</div>
-                            </div>
-                            <div class="flex-col-1">
-                                <div class="icon-block">
-                                <span class="arrow-right"></span>
-                                </div>
-                            </div>
-                    </button>
-                    <button type="button" class="btn flex-row tile">
-                            <div class="flex-col-11">
-                                <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_4' | translate}}</div>
-                                <div>{{'CKA_ASSESSMENT.SELECT_OPTION_4_DESC' | translate}}</div>
-                            </div>
-                            <div class="flex-col-1">
-                                <div class="icon-block">
-                                <span class="arrow-right"></span>
-                                </div>
-                            </div>
-                    </button>
-                    <button type="button" class="btn flex-row tile">
-                            <div class="flex-col-11">
-                                <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_5' | translate}}</div>
-                                <div [innerHtml]="'CKA_ASSESSMENT.SELECT_OPTION_5_DESC' | translate"></div>
-                            </div>
-                            <div class="flex-col-1">
-                                <div class="icon-block">
-                                <span class="arrow-right"></span>
-                                </div>
-                            </div>
-                    </button>
-                    <button type="button" class="btn flex-row tile" (click)="noneOfTheAbove()">
-                            <div class="flex-col-11">
-                                <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_6' | translate}}</div>
-                                <div>{{'CKA_ASSESSMENT.SELECT_OPTION_6_DESC' | translate}}</div>
-                            </div>
-                            <div class="flex-col-1">
-                                <div class="icon-block">
-                                <span class="arrow-right"></span>
-                                </div>
-                            </div>
-                    </button>
-                </div>
-          </div>
+    </div>
+    <div class="col-lg-5 col-md-6">
+      <div class="form-group-single-column flex-col">
+        <div class="text-lyt hidden-lg mb20 pt10">{{'CKA_ASSESSMENT.PAGE_DESC' | translate}}</div>
+        <div class="tiles">
+          <button type="button" class="btn flex-row tile" (click)="goToNext(0)">
+            <div class="flex-col-11">
+              <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_1' | translate}}</div>
+              <div>{{'CKA_ASSESSMENT.SELECT_OPTION_1_DESC' | translate}}</div>
+            </div>
+            <div class="flex-col-1">
+              <div class="icon-block">
+                <span class="arrow-right"></span>
+              </div>
+            </div>
+          </button>
+          <button type="button" class="btn flex-row tile" (click)="goToNext(1)">
+            <div class="flex-col-11">
+              <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_2' | translate}}</div>
+              <div>{{'CKA_ASSESSMENT.SELECT_OPTION_2_DESC' | translate}}</div>
+            </div>
+            <div class="flex-col-1">
+              <div class="icon-block">
+                <span class="arrow-right"></span>
+              </div>
+            </div>
+          </button>
+          <button type="button" class="btn flex-row tile" (click)="goToNext(2)">
+            <div class="flex-col-11">
+              <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_3' | translate}}</div>
+              <div>{{'CKA_ASSESSMENT.SELECT_OPTION_3_DESC' | translate}}</div>
+            </div>
+            <div class="flex-col-1">
+              <div class="icon-block">
+                <span class="arrow-right"></span>
+              </div>
+            </div>
+          </button>
+          <button type="button" class="btn flex-row tile" (click)="goToNext(3)">
+            <div class="flex-col-11">
+              <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_4' | translate}}</div>
+              <div>{{'CKA_ASSESSMENT.SELECT_OPTION_4_DESC' | translate}}</div>
+            </div>
+            <div class="flex-col-1">
+              <div class="icon-block">
+                <span class="arrow-right"></span>
+              </div>
+            </div>
+          </button>
+          <button type="button" class="btn flex-row tile" (click)="goToNext(4)">
+            <div class="flex-col-11">
+              <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_5' | translate}}</div>
+              <div [innerHtml]="'CKA_ASSESSMENT.SELECT_OPTION_5_DESC' | translate"></div>
+            </div>
+            <div class="flex-col-1">
+              <div class="icon-block">
+                <span class="arrow-right"></span>
+              </div>
+            </div>
+          </button>
+          <button type="button" class="btn flex-row tile" (click)="goToNext(5)">
+            <div class="flex-col-11">
+              <div class="title">{{'CKA_ASSESSMENT.SELECT_OPTION_6' | translate}}</div>
+              <div>{{'CKA_ASSESSMENT.SELECT_OPTION_6_DESC' | translate}}</div>
+            </div>
+            <div class="flex-col-1">
+              <div class="icon-block">
+                <span class="arrow-right"></span>
+              </div>
+            </div>
+          </button>
+        </div>
       </div>
     </div>
   </div>
+</div>

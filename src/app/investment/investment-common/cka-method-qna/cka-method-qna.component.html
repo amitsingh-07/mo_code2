@@ -23,26 +23,26 @@
           </div>
           <div class="tile-content">
             <form [formGroup]="methodForm">
-              <div *ngIf="methodForm.get('subject')">
+              <div *ngIf="methodForm.get('question1')">
                 <div class="qna-institution-title-text pb20">{{methodMetaData?.subTitle1}}</div>
                 <div class="method-qna-dropdown">
                   <div class="dropdown-control"
-                    [ngClass]="{'inline-error': methodForm.get('subject').enabled && !methodForm.get('subject').valid && !methodForm.get('subject').pristine}">
-                    <app-dropdown-with-search controlName="subject" [optionList]="dropdownList1" displayKey="name"
-                      placement="bottom-right" placeholderText="{{ 'Select' | translate}}"
-                      (itemSelected)="selectedSubject($event, 'subject')">
+                    [ngClass]="{'inline-error': methodForm.get('question1').enabled && !methodForm.get('question1').valid && !methodForm.get('question1').pristine}">
+                    <app-dropdown-with-search controlName="question1" [optionList]="dropdownList1" displayKey="name"
+                      placement="bottom-right" placeholderText="{{ methodMetaData?.dropdown1placeholder}}"
+                      (itemSelected)="selectedQuestion1($event, 'question1')">
                     </app-dropdown-with-search>
                   </div>
                 </div>
               </div>
-              <div *ngIf="methodForm.get('institution')">
+              <div *ngIf="methodForm.get('question2')">
                 <div class="qna-institution-title-text pb20">{{methodMetaData?.subTitle2}}</div>
                 <div class="method-qna-dropdown">
                   <div class="dropdown-control"
-                    [ngClass]="{'inline-error': methodForm.get('institution').enabled && !methodForm.get('institution').valid && !methodForm.get('institution').pristine}">
-                    <app-dropdown-with-search controlName="institution" [optionList]="dropdownList2" displayKey="name"
-                      placement="bottom-right" placeholderText="{{ 'Select' | translate}}"
-                      (itemSelected)="selectedInstitution($event, 'institution')">
+                    [ngClass]="{'inline-error': methodForm.get('question2').enabled && !methodForm.get('question2').valid && !methodForm.get('question2').pristine}">
+                    <app-dropdown-with-search controlName="question2" [optionList]="dropdownList2" displayKey="name"
+                      placement="bottom-right" placeholderText="{{ methodMetaData?.dropdown2placeholder}}"
+                      (itemSelected)="selectedQuestion2($event, 'question2')">
                     </app-dropdown-with-search>
                   </div>
                 </div>
