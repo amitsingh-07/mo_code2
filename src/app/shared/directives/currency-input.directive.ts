@@ -10,6 +10,7 @@ export class CurrencyInputDirective implements AfterViewInit {
     @Input() maxLength;
     @Input() decimalFormat;
     @Input() allowDecimal;
+    @Input() allowMaxLimit;
     [x: string]: any;
 
     constructor(
@@ -28,6 +29,10 @@ export class CurrencyInputDirective implements AfterViewInit {
             const regPattern = this.allowDecimal ? /[^0-9.]/g : /[^0-9]/g;
             this.el.nativeElement.value = this.el.nativeElement.value.replace(regPattern, '');
             this.el.nativeElement.dispatchEvent(new Event('input'));
+        }
+        const amount = this.el.nativeElement.value;
+        if(amount != null && amount !== '' && parseFloat(amount) >= (this.allowMaxLimit*1) && !isNaN(parseFloat(amount))) {
+            this.el.nativeElement.value = amount.substring(0, 7);
         }
     }
 

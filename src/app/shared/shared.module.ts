@@ -69,6 +69,7 @@ import {
 import { NavbarComponent } from './navbar/navbar.component';
 import { FormatDatePipe } from './Pipes/date-format.pipe';
 import { FormatCurrencyPipe } from './Pipes/format-currency.pipe';
+import { FormatCurrencyPipe4dp } from './Pipes/format-currency-4dp.pipe';
 import { GroupByPipe } from './Pipes/group-by.pipe';
 import { OrderByPipe } from './Pipes/order-by.pipe';
 import { PlanFilterPipe } from './Pipes/plan-filter.pipe';
@@ -147,6 +148,7 @@ export function createTranslateLoader(http: HttpClient) {
     PortfolioListComponent,
     InstructionStepsComponent,
     FormatCurrencyPipe,
+    FormatCurrencyPipe4dp,
     NotesComponent,
     CopyClipboardDirective,
     SpinnerComponent,
@@ -205,6 +207,7 @@ export function createTranslateLoader(http: HttpClient) {
     CarouselModalComponent,
     ReviewBuyRequestModalComponent,
     FormatCurrencyPipe,
+    FormatCurrencyPipe4dp,
     NotesComponent,
     CapsLockInputDirective,
     CopyClipboardDirective,
