@@ -508,6 +508,7 @@
     "FRONT_NRIC": "Front NRIC",
     "BACK_NRIC": "Back NRIC",
     "BIRTH_CERTIFICATE" : "Birth Certificate",
+    "CKA_CERTIFICATE": "CKA_CERTIFICATE",
     "TAP_TO_UPLOAD": "Tap to Upload",
     "PROOF_OF_RESIDENT_SUBTEXT": "<p>This document must be from a billing organisation and clearly display your name, current residential address and be dated no more than 90 days prior to today's date.</p><p>You may use utility bills, phone bills, credit card bills etc.</p>",
     "CHOOSE_FILE": "Choose File",
@@ -573,7 +574,9 @@
     "CERTIFICATE_LBL": "UT & ILP Certificate",
     "TAP_TO_UPLOAD":"Tap To Upload",
     "I_AGREE": "I declare that I have passed the ABS e-learning course within the first 3 attempts and not been disallowed to transact in SIP by another FI for more than 3 times.",
-    "SAVE_CONTINUE": "Save & Continue"
+    "SAVE_CONTINUE": "Save & Continue",
+    "GENTLE_REMINDER_TITLE": "Gentle Reminder",
+    "GENTLE_REMINDER_DESC": "Please ensure that you have uploaded the correct file as it may causes delays in creating your portfolio. Congratulations on completing your e-Learning!"
   },
   "NONE_OF_THE_ABOVE":{
     "PAGE_TITLE": "Customer Knowledge Assessment",

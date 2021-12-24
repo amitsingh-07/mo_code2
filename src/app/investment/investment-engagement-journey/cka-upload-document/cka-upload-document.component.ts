@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
@@ -10,11 +11,12 @@ import { LoaderService } from '../../../shared/components/loader/loader.service'
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { InvestmentCommonService } from '../../investment-common/investment-common.service';
+import { UploadDocumentService } from '../../../shared/Services/upload-document.service';
 
 import { ModelWithButtonComponent } from '../../../shared/modal/model-with-button/model-with-button.component';
 
+import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../../investment/investment-account/investment-account.constant';
-import { UploadDocumentService } from '../../../shared/Services/upload-document.service';
 @Component({
   selector: 'app-cka-upload-document',
   templateUrl: './cka-upload-document.component.html',
@@ -26,11 +28,16 @@ export class CkaUploadDocumentComponent implements OnInit {
   ckaDocumentInfo: any;
   streamResponse: any;
   pageTitle: string;
+  showTnc = false;
+  saveAndContinue = false;
+  certificateName: String;
+
   ckaUploadForm: FormGroup;
   formData: FormData = new FormData();
 
   constructor(public readonly translate: TranslateService,
     public modal: NgbModal,
+    private router: Router,
     public headerService: HeaderService,
     public navbarService: NavbarService,
     public footerService: FooterService,
@@ -44,6 +51,7 @@ export class CkaUploadDocumentComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('NONE_OF_THE_ABOVE.PAGE_TITLE');
       this.setPageTitle(this.pageTitle);
+      this.certificateName = this.translate.instant('UPLOAD_DOCUMENTS.CKA_CERTIFICATE');
     });
   }
 
@@ -54,19 +62,14 @@ export class CkaUploadDocumentComponent implements OnInit {
 
     this.buildDocumentInfo();
     this.buildForm();
-
-    this.investmentCommonService.getCKADocument("CKA_CERTIFICATE").subscribe((response) => {
-      if (response) {
-        this.uploadDocumentService.setStreamResponse(response);
-      }
-    });
+    this.getCKADocumentFromS3();
   }
 
   private buildDocumentInfo() {
     this.defaultThumb = INVESTMENT_ACCOUNT_CONSTANTS.upload_documents.default_cka_thumb;
 
     this.ckaDocumentInfo = {
-      documentType: 'CKA_CERTIFICATE',
+      documentType: this.certificateName,
       defaultThumb: this.defaultThumb,
       formData: this.formData
     };
@@ -76,9 +79,26 @@ export class CkaUploadDocumentComponent implements OnInit {
     this.ckaUploadForm = this.formBuilder.group({
       ckaDoc: this.formBuilder.group({
         document: ['', Validators.required]
-      }),
-      tncCheckboxFlag: ['']
+      })
     });
+  }
+
+  private getCKADocumentFromS3() {
+    this.investmentCommonService.getCKADocument(this.certificateName).subscribe((response) => {
+      if (response) {
+        this.uploadDocumentService.setStreamResponse(response);
+      }
+    });
+  }
+
+  private addTncControllToForm() {
+    this.showTnc = true;
+    this.ckaUploadForm.addControl('tncCheckboxFlag', this.formBuilder.control('', Validators.requiredTrue));
+  }
+
+  private removeTncControllToForm() {
+    this.showTnc = false;
+    this.ckaUploadForm.removeControl('tncCheckboxFlag');
   }
 
   setPageTitle(title: string) {
@@ -86,8 +106,19 @@ export class CkaUploadDocumentComponent implements OnInit {
   }
 
   goToNext() {
-    if (this.ckaUploadForm.valid) {
+    if (this.saveAndContinue) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+    }
+
+    if (this.ckaUploadForm.valid && !this.saveAndContinue) {
       this.uploadDocument();
+    }
+  }
+
+  eventTriggered(event) {
+    if (event && event.clearBtn && this.ckaUploadForm.controls.tncCheckboxFlag) {
+      this.removeTncControllToForm();
+       this.saveAndContinue = false;
     }
   }
 
@@ -103,22 +134,25 @@ export class CkaUploadDocumentComponent implements OnInit {
         if (response && response.objectList &&
           response.objectList.length &&
           response.objectList[response.objectList.length - 1].responseInfo) {
-
-          const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-          ref.componentInstance.imgType = 1;
-          ref.componentInstance.errorTitle = "Gentle Reminder";
-          ref.componentInstance.errorMessageHTML = "Please ensure that you have uploaded the correct file as it may causes delays in creating your portfolio. Congratulations on completing your e-Learning!";
-          ref.componentInstance.primaryActionLabel = this.translate.instant('UPLOAD_DOCUMENTS.OKAY_GOT_IT_BTN');
-
-          ref.componentInstance.primaryAction.subscribe(() => {
-            console.log('got it');
-          });
-
+          this.gentleReminderPopup();
         }
       }, (err) => {
         this.loaderService.hideLoader();
         this.investmentAccountService.showGenericErrorModal();
       });
     }
+  }
+
+  private gentleReminderPopup() {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.imgType = 1;
+    ref.componentInstance.errorTitle = this.translate.instant('CKA_UPLOAD_DOCUMENT.GENTLE_REMINDER_TITLE');
+    ref.componentInstance.errorMessageHTML = this.translate.instant('CKA_UPLOAD_DOCUMENT.GENTLE_REMINDER_DESC');
+    ref.componentInstance.primaryActionLabel = this.translate.instant('UPLOAD_DOCUMENTS.OKAY_GOT_IT_BTN');
+
+    ref.componentInstance.primaryAction.subscribe(() => {
+      this.addTncControllToForm();
+      this.saveAndContinue = true;
+    });
   }
 }

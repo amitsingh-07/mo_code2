@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormControl, Validators, ControlContainer } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormGroup, ControlContainer } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -10,6 +10,9 @@ export interface DocumentInfo {
   defaultThumb: String;
   formData: FormData;
   streamResponse?: any;
+}
+export interface EmitInfo {
+  clearBtn: boolean;
 }
 
 @Component({
@@ -24,8 +27,10 @@ export class UploadDocComponent implements OnInit {
   documentName: String;
   fileName: string;
   uploadForm: FormGroup;
-
+  emitObject: EmitInfo = { clearBtn: false };
+  
   @Input('documentInfo') documentInfo: DocumentInfo;
+  @Output('eventTrigger') eventTrigger: EventEmitter<Object> = new EventEmitter();
   @ViewChild('documentThumb') documentThumb;
   
   constructor(public readonly translate: TranslateService,
@@ -68,5 +73,8 @@ export class UploadDocComponent implements OnInit {
     const payloadKey = this.uploadDocService.getPayloadKey(controlName);
     this.documentInfo.formData.delete(payloadKey);
     this.uploadDocService.clearFileSelection(control, event, defaultThumb, thumbElem, fileElem);
+    
+    this.emitObject.clearBtn = true;
+    this.eventTrigger.emit(this.emitObject);
   }
 }

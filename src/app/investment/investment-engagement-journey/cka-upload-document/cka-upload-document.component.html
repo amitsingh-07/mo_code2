@@ -39,9 +39,9 @@
 
             <!-- upload doc -->
             <form name="ckaUploadForm" [formGroup]="ckaUploadForm" id="ckaUploadForm">
-              <app-upload-doc [documentInfo]="ckaDocumentInfo" [formGroup]="ckaUploadForm.get('ckaDoc')"></app-upload-doc>
+              <app-upload-doc [documentInfo]="ckaDocumentInfo" (eventTrigger)="eventTriggered($event)" [formGroup]="ckaUploadForm.get('ckaDoc')"></app-upload-doc>
 
-              <div class="checkbox-button one-label tnc-checkbox">
+              <div class="checkbox-button one-label tnc-checkbox" *ngIf="showTnc">
                 <input id="tncCheckboxFlag" name="tncCheckboxFlag" formControlName="tncCheckboxFlag" type="checkbox"
                   class="field checkbox" #tncChkBox>
                 <label for="tncCheckboxFlag">
@@ -50,7 +50,7 @@
               </div>
             </form>
           </div>
-          <button type="button" (click)="goToNext()"
+          <button type="button" [disabled]="ckaUploadForm.invalid" (click)="goToNext()"
             class="btn btn-primary btn__footer--fixed width100">{{'CKA_UPLOAD_DOCUMENT.SAVE_CONTINUE' |
             translate}}</button>
         </div>

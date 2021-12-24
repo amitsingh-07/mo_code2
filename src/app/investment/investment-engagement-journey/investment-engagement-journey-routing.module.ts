@@ -152,7 +152,7 @@ const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.CKA_UPLOAD,
     component: CkaUploadDocumentComponent,
-    // canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.NONE_OF_THE_ABOVE,
