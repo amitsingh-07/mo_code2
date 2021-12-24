@@ -66,7 +66,9 @@ app-cka-method-qna {
 
       .qna-institution-title-text {
         font-family: $muli-regular;
-        color: $silver-grey-color;
+        color: $boulder-grey-color;
+        letter-spacing: -0.3px;
+        line-height: normal;
       }
 
       .method-qna-dropdown {
@@ -83,4 +85,7 @@ app-cka-method-qna {
     }
   }
 
+  input::placeholder {
+    color: $dusty-grey-color !important;
+  }
 }

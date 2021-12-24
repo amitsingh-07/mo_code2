@@ -151,6 +151,14 @@ export class InvestmentApiService {
       );
   }
 
+  getArrayOfDropdownList(groupName) {
+    const url = investmentApiConstants.endpoint.investmentAccount.getArrayOfDropList.replace('$GROUP_NAME$', groupName)
+    return this.http.get(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   saveCKAMethodQNA(json) {
     const url = investmentApiConstants.endpoint.investment.saveCKAMethodQNA;
     return this.http.post(url, json)

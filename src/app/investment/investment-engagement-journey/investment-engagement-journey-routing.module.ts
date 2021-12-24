@@ -28,6 +28,7 @@ import { UploadDocumentComponent } from './upload-document/upload-document.compo
 import { AuthGuardService as AuthGuard } from '../../sign-up/auth-guard.service';
 import { CkaAssessmentComponent } from './cka-assessment/cka-assessment.component';
 import { NoneOfTheAboveComponent } from './none-of-the-above/none-of-the-above.component';
+import { CkaPassedResultComponent } from './cka-passed-result/cka-passed-result.component';
 
 const routes: Routes = [
   {
@@ -151,6 +152,11 @@ const routes: Routes = [
   {
     path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.NONE_OF_THE_ABOVE,
     component: NoneOfTheAboveComponent,
+    canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
+  },
+  {
+    path: INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES.CKA_PASSED_SCREEN,
+    component: CkaPassedResultComponent,
     canActivate: [InvestmentEngagementJourneyGuard, AuthGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }
