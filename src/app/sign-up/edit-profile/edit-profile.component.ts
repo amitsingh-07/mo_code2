@@ -89,6 +89,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   myInfoStatus1: string;
   myInfoStatus2: string;
   isMyInfoEnabled = false;
+  ckaInfo: any;
 
   constructor(
     private modal: NgbModal,
@@ -291,6 +292,10 @@ export class EditProfileComponent implements OnInit, OnDestroy {
             //   this.isSingaporeResident = this.personalData.isSingaporeResident;
             // }
             this.constructDate(this.personalData.dateOfBirth);
+          }
+          //CKA Status
+          if (data.objectList.ckaInformation) {
+            this.ckaInfo = data.objectList.ckaInformation;
           }
         }
         // Hidden employer address for future use

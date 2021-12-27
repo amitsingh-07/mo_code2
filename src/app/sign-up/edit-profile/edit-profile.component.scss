@@ -81,6 +81,10 @@ app-edit-profile {
       }
       &.cursor_pointer {
         cursor: pointer;
+        &.disabled {
+          cursor: not-allowed;
+          pointer-events: none;
+        }
       }
     }
     .dots {
