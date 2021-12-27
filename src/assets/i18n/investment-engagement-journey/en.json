@@ -571,6 +571,7 @@
     "RESELECT_LBL": "Reselect CKA Method",
     "QUE_1": "Please ensure each document upload:",
     "STEP_1": "File less than <span class=\"text-semi-bold\">10MB</span></br>Allowed file types: <span class=\"text-semi-bold\">pdf, jpg, jpeg, png, gif, bmp</span>",
+    "NOTE_DESC": "Please ensure that your certificate is valid for at least 6 months.",
     "CERTIFICATE_LBL": "UT & ILP Certificate",
     "TAP_TO_UPLOAD":"Tap To Upload",
     "I_AGREE": "I declare that I have passed the ABS e-learning course within the first 3 attempts and not been disallowed to transact in SIP by another FI for more than 3 times.",
