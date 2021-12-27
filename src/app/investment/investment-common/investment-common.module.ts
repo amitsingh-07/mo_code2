@@ -35,6 +35,7 @@ export function createTranslateLoader(http: HttpClient) {
 import { PromoCodeModule } from './../../promo-code/promo-code.module';
 import { ConfirmWithdrawalComponent } from './confirm-withdrawal/confirm-withdrawal.component';
 import { PortfolioSummaryComponent } from './portfolio-summary/portfolio-summary.component';
+import { CkaMethodQnaComponent } from './cka-method-qna/cka-method-qna.component';
 
 @NgModule({
   imports: [
@@ -64,7 +65,8 @@ import { PortfolioSummaryComponent } from './portfolio-summary/portfolio-summary
     FundingIntroComponent,
     FundingAccountDetailsComponent,
     ConfirmWithdrawalComponent,
-    PortfolioSummaryComponent
+    PortfolioSummaryComponent,
+    CkaMethodQnaComponent
   ],
   entryComponents: [AccountCreationErrorModalComponent],
   providers: [CurrencyPipe, FormatCurrencyPipe]

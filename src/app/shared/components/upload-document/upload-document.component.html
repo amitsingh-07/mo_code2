@@ -1,0 +1,24 @@
+<div class="upload-doc" [formGroup]="uploadForm">
+    <!-- IMAGE UPLOAD -->
+    <div class="upload-desc" (click)="openFileDialog(doc)">
+        <div class="thumb-container">
+            <div class="thumb-close-icon"
+                (click)="clearFileSelection(uploadForm.controls.document, documentInfo.documentType, $event, documentThumb, doc)"
+                *ngIf="uploadForm.controls.document.value">
+                <img src="assets/images/close-button-dark.svg" alt="x" />
+            </div>
+            <img #documentThumb class="thumbnail image-fluid" [class.mb20]="!uploadForm.controls.document.value" src="assets/images/{{documentInfo.defaultThumb}}" />
+        </div>
+        <div class="upload-content">
+            <div class="title">{{ documentName }}</div>
+            <div class="sub-text" *ngIf="!uploadForm.controls.document.value">{{
+                'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
+            <div class="sub-text" *ngIf="uploadForm.controls.document.value" [innerHtml]="fileName"></div>
+            <input type="file" #doc
+                (change)="fileSelect(uploadForm.controls.document, documentInfo.documentType, $event, documentThumb)" name="document"
+                accept="image/*, .pdf" class="is-hidden">
+            <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL -->
+            <input type="hidden" name="documentHidden" formControlName="document" />
+        </div>
+    </div>
+</div>

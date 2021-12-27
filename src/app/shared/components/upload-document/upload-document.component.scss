@@ -1,0 +1,88 @@
+@import "../../../../variables";
+@import "../../../../mixins";
+
+app-upload-doc {
+  .upload-doc {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+
+    .upload-desc {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 14px;
+      border: 1px solid $sinbad-dark-teal-color;
+      padding: 20px;
+      text-align: center;
+      flex: 1;
+      margin-right: 10px;
+      margin-bottom: 20px;
+      cursor: pointer;
+      min-height: 185px;
+      justify-content: center;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      .upload-content {
+        padding-top: 10px;
+        color: $persian-green-color;
+        div {
+          font-size: 16px;
+          letter-spacing: -0.3px;
+
+          &.title {
+            font-family: $muli-semi-bold;
+            font-size: 18px;
+          }
+
+          &.sub-text {
+            word-break: break-all;
+          }
+        }
+      }
+
+      .thumb-container {
+        position: relative;
+        max-width: 85px;
+        max-height: 85px;
+        display: flex;
+        align-items: center;
+
+        .thumbnail {
+          margin: 0 auto;
+          max-width: 85px;
+          max-height: 85px;
+        }
+
+        .thumb-close-icon {
+          position: absolute;
+          border-radius: 100%;
+          background-color: $white-color;
+          right: -10px;
+          top: -6px;
+          width: 23px;
+          height: 23px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          @include allmobiles {
+            width: 16px;
+            height: 16px;
+          }
+
+          img {
+            width: 12px;
+            height: 12px;
+            @include allmobiles {
+              width: 8px;
+              height: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

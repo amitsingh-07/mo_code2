@@ -1,0 +1,83 @@
+@import '../../../../_variables.scss';
+@import '../../../../_mixins.scss';
+
+app-cka-assessment{
+    .container-fluid{
+        &.max-width--1024{
+            @include allmobiles{
+                padding-bottom: 30px;
+            }
+        }
+    }
+    .text-lyt{
+        font-size: 18px;
+        line-height: 22px;
+        letter-spacing: -0.18px;
+      }
+    .tiles{
+        max-width: 337px;
+        margin-left: auto;
+        @include allmobiles{
+            width: 100%;
+        }
+        @include minMobilemaxPhablet{
+            margin-right: auto;
+        }
+        .btn{
+            &.tile{
+                background: $white-color;
+                padding: 20px;
+                margin-bottom: 10px;
+                border-radius: 6px;
+                font-family: $muli-regular;
+                font-size: 16px;
+                line-height: normal;
+                letter-spacing: -0.3px;
+                color: $boulder-grey-color;
+                align-items: center;
+                text-align: left;
+                &:last-child{
+                    margin-bottom: 0;
+                }
+                .title{
+                    font-family: $muli-semi-bold;
+                    letter-spacing: -0.17px;
+                    color: $teal-color;
+                    margin-bottom: 10px;
+                }
+                .icon-block {
+                    width: 16px;
+                    height: 10px;
+                    border: none;
+                  }
+                  .arrow-right {
+                    display: block;
+                    border-style: solid;
+                    border-color: $lite-jagged-ice-color;
+                    border-width: 0 0 3px 3px;
+                    width: 10px;
+                    height: 10px;
+                    line-height: 0;
+                    font-size: 0;
+                    -webkit-transform: rotate(225deg);
+                    -ms-transform: rotate(225deg);
+                    -o-transform: rotate(225deg);
+                    transform: rotate(225deg);
+                    float: right;
+                    margin-top: 6px;
+                  }
+                &:hover, &:active{
+                    background-color: $aqua-squeeze-color;
+                    color: $blue-stone-color;
+                    .title{
+                        color: $teal-color;  
+                    }
+                    .arrow-right{
+                        border-color: $blue-stone-color;
+                    }
+                }
+            }
+        }
+    }
+  
+}

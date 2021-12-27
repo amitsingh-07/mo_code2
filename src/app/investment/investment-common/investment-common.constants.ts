@@ -105,5 +105,32 @@ export let INVESTMENT_COMMON_CONSTANTS = {
   ],
   PROMO_CODE: {
     NOT_APPLIED: "Not Applied"
+  },
+  CKA: {
+    OTHERS: 'OTHERS',
+    METHODS: [
+      "educational",
+      "professional",
+      "work-experience",
+      "investment-experience"
+    ],
+    DROPDOWN_GROUPS: {
+      EDUCATIONAL: {
+        QUALIFICATION: "ckaEducationQualification",
+        INSTITUE: "ckaEducationInstitute"
+      },
+      PROFESSIONAL: {
+        QUALIFICATION: "ckaFinancialQualification",
+        INSTITUTE: "ckaFinancialEducation"
+      },
+      INV_EPERIENCE: {
+        LISTED: "ckaInvestmentListed",
+        UNLISTED: "ckaInvestmentUnlisted"
+      },
+      WORK_EXPERIENCE: {
+        WORK_EXPERIENCE: "ckaWorkExperience",
+        EMPLOYER: "ckaWork"
+      }
+    }
   }
 };

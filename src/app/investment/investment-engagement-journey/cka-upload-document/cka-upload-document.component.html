@@ -1,0 +1,60 @@
+<div class="container-fluid max-width--1024 investment">
+  <div class="row">
+    <div class="col-lg-7 col-md-6 hidden-sm">
+      <h2>{{ "CKA_UPLOAD_DOCUMENT.PAGE_TITLE" | translate }}</h2>
+      <div class="text-lyt">
+        {{ "CKA_UPLOAD_DOCUMENT.PAGE_DESC" | translate }}
+      </div>
+      <div class="banner-image">
+        <img src="assets/images/investment-account/cka-banner.svg" />
+      </div>
+    </div>
+    <div class="col-lg-5 col-md-6">
+      <div class="form-group-single-column flex-col">
+        <div class="tiles">
+          <div class="flex-row tile">
+            <div class="flex-col-11">
+              <div class="title">{{'CKA_UPLOAD_DOCUMENT.SELECT_OPTION' | translate}}</div>
+              <div>{{'CKA_UPLOAD_DOCUMENT.SELECT_OPTION_DESC' | translate}}</div>
+              <div class="reselect-option" (click)="reselect()">{{'CKA_UPLOAD_DOCUMENT.RESELECT_LBL' | translate}}</div>
+            </div>
+            <div class="flex-col-1">
+              <div class="icon-block">
+                <img src="assets/images/circle-tick-dark.svg">
+              </div>
+            </div>
+          </div>
+          <div class="tile-content">
+            <div class="sample-img-block">
+              <img src="assets/images/investment-account/cert-copy.png">
+            </div>
+            <div class="text-bold pb15">{{'CKA_UPLOAD_DOCUMENT.QUE_1' | translate}}</div>
+            <div class="steps">
+              <div class="step" [innerHtml]="'CKA_UPLOAD_DOCUMENT.STEP_1' | translate"></div>
+            </div>
+            <div class="flex mb15">
+              <div class="note-icon"><img src="assets/images/investment-account/note-icon.svg" /></div>
+              <div class="note">Please ensure that your certificate is valid for at least 6 months.</div>
+            </div>
+
+            <!-- upload doc -->
+            <form name="ckaUploadForm" [formGroup]="ckaUploadForm" id="ckaUploadForm">
+              <app-upload-doc [documentInfo]="ckaDocumentInfo" (eventTrigger)="eventTriggered($event)" [formGroup]="ckaUploadForm.get('ckaDoc')"></app-upload-doc>
+
+              <div class="checkbox-button one-label tnc-checkbox" *ngIf="showTnc">
+                <input id="tncCheckboxFlag" name="tncCheckboxFlag" formControlName="tncCheckboxFlag" type="checkbox"
+                  class="field checkbox" #tncChkBox>
+                <label for="tncCheckboxFlag">
+                  <div class="title">{{ 'CKA_UPLOAD_DOCUMENT.I_AGREE' | translate}}</div>
+                </label>
+              </div>
+            </form>
+          </div>
+          <button type="button" [disabled]="ckaUploadForm.invalid" (click)="goToNext()"
+            class="btn btn-primary btn__footer--fixed width100">{{'CKA_UPLOAD_DOCUMENT.SAVE_CONTINUE' |
+            translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

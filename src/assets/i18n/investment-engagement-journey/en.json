@@ -508,6 +508,7 @@
     "FRONT_NRIC": "Front NRIC",
     "BACK_NRIC": "Back NRIC",
     "BIRTH_CERTIFICATE" : "Birth Certificate",
+    "CKA_CERTIFICATE": "CKA_CERTIFICATE",
     "TAP_TO_UPLOAD": "Tap to Upload",
     "PROOF_OF_RESIDENT_SUBTEXT": "<p>This document must be from a billing organisation and clearly display your name, current residential address and be dated no more than 90 days prior to today's date.</p><p>You may use utility bills, phone bills, credit card bills etc.</p>",
     "CHOOSE_FILE": "Choose File",
@@ -545,5 +546,55 @@
       "TITLE": "Loading.",
       "MESSAGE": "Please wait."
     }
+  },
+  "CKA_ASSESSMENT": {
+    "PAGE_TITLE": "Customer Knowledge Assessment",
+    "PAGE_DESC": "Please select a method of assessment applicable to you:",
+    "SELECT_OPTION_1": "Education Qualification",
+    "SELECT_OPTION_1_DESC": "I have an finance-related diploma or higher qualification.",
+    "SELECT_OPTION_2": "Professional Qualification",
+    "SELECT_OPTION_2_DESC": "I have a finance-related professional qualification.",
+    "SELECT_OPTION_3": "Investment Experience",
+    "SELECT_OPTION_3_DESC": "I have traded 6 or more transactions in Collective Investment Schemes (CIS) or Investment-linked Policies (ILPs) in the past 3 years.",
+    "SELECT_OPTION_4": "Work Experience",
+    "SELECT_OPTION_4_DESC": "I have a minimum of 3 continuous years of relevant working experience in finance over the past 10 years.",
+    "SELECT_OPTION_5": "Upload e-Learning Certificate",
+    "SELECT_OPTION_5_DESC": "I have undergone and passed the ABS e-Learning module <br>(Module 5).",
+    "SELECT_OPTION_6": "None of the Above Applies",
+    "SELECT_OPTION_6_DESC": "You will be guided through the ABS e-Learning Module in order to pass your CKA. (est. time ~20min)"
+  },
+  "CKA_UPLOAD_DOCUMENT":{
+    "PAGE_TITLE": "Customer Knowledge Assessment",
+    "PAGE_DESC": "Please upload you ABS e-Learning Certificate.",
+    "SELECT_OPTION": "Upload e-Learning Certificate",
+    "SELECT_OPTION_DESC": "I have undergone and passed the ABS Unit Trusts and Investment-Linked Insurance Policy e-Learning module (Module 5).",
+    "RESELECT_LBL": "Reselect CKA Method",
+    "QUE_1": "Please ensure each document upload:",
+    "STEP_1": "File less than <span class=\"text-semi-bold\">10MB</span></br>Allowed file types: <span class=\"text-semi-bold\">pdf, jpg, jpeg, png, gif, bmp</span>",
+    "CERTIFICATE_LBL": "UT & ILP Certificate",
+    "TAP_TO_UPLOAD":"Tap To Upload",
+    "I_AGREE": "I declare that I have passed the ABS e-learning course within the first 3 attempts and not been disallowed to transact in SIP by another FI for more than 3 times.",
+    "SAVE_CONTINUE": "Save & Continue",
+    "GENTLE_REMINDER_TITLE": "Gentle Reminder",
+    "GENTLE_REMINDER_DESC": "Please ensure that you have uploaded the correct file as it may causes delays in creating your portfolio. Congratulations on completing your e-Learning!"
+  },
+  "NONE_OF_THE_ABOVE":{
+    "PAGE_TITLE": "Customer Knowledge Assessment",
+    "PAGE_DESC": "Please follow the guide to complete the ABS e-Learning module and upload your certificate thereafter.",
+    "SELECT_OPTION": "None of the Above Applies",
+    "SELECT_OPTION_DESC": "You will be guided to complete the ABS Unit Trusts and Investment-Linked Insurance Policy e-Learning module in order to pass your CKA.",
+    "QUE_1": "How do I get the certificate?",
+    "STEP_1": "<span class=\"text-bold\">Step 1: </span><a class=\"hyperlink_color\" target='_blank' href='https://sips.abs.org.sg/Default.aspx'>Open an account</a> with the e-learning portal by the Association Bank of Singapore (ABS).",
+    "STEP_2": "<span class=\"text-bold\">Step 2: </span><a class=\"hyperlink_color\" target='_blank' href='https://sips.abs.org.sg/Default.aspx'>Complete only Module 5</a> - Unit Trusts and Investment-linked Insurance Policies. Estimated 15 minutes time to complete.",
+    "STEP_3": "<span class=\"text-bold\">Step 3: </span>A certification of completion will be provided once you pass the assessment. <span class=\"hyperlink_color\">Upload your certificate</span> by creating a new CPF investment portfolio.",
+    "QUE_2": "How do I find out more?",
+    "STEP_4": "Visit our website for more <a class=\"hyperlink_color\" target=\"_blank\" href=\"https://www.moneyowl.com.sg/faq-investment/#investment|8\">Frequently Asked Questions</a> on investing with MoneyOwl.",
+    "STEP_5": "For assistance on investment pre-requisites, please email <a class=\"hyperlink_color\" target='_blank' href='mailto:enquiries@moneyowl.com.sg'>enquiries@moneyowl.com.sg</a>.",
+    "BACK_TO_PROFILE_LBL": "Back to profile"
+  },
+  "CKA_RESULT": {
+    "TITLE": "You have passed CKA!",
+    "DESC": " Congratulations on completing your e-Learning! Please continue to the next step of investing CPF portfolio.",
+    "BTN_CONTINUE": "Continue"
   }
 }
