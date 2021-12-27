@@ -48,6 +48,7 @@ app-cka-upload-document {
         line-height: normal;
         letter-spacing: -0.15px;
         color: $crusta-orange-color;
+        cursor: pointer;
       }
     }
     .tile-content {
@@ -71,7 +72,7 @@ app-cka-upload-document {
       }
       .steps {
         .step {
-          padding-bottom: 20px;
+          padding-bottom: 15px;
           .text-semi-bold {
             color: $boulder-grey-color;
             font-family: $muli-semi-bold;

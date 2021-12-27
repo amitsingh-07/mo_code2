@@ -22,17 +22,12 @@ app-upload-doc {
       min-height: 185px;
       justify-content: center;
 
-      //   @include allmobiles {
-      //     border: 1px solid $fountain-blue-color;
-      //     margin-bottom: 34px;
-      //   }
-
       &:last-child {
         margin-right: 0;
       }
 
       .upload-content {
-        padding-top: 20px;
+        padding-top: 10px;
         color: $persian-green-color;
         div {
           font-size: 16px;

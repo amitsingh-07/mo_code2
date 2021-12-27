@@ -17,6 +17,7 @@ import { ModelWithButtonComponent } from '../../../shared/modal/model-with-butto
 
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { INVESTMENT_ACCOUNT_CONSTANTS } from '../../../investment/investment-account/investment-account.constant';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 @Component({
   selector: 'app-cka-upload-document',
   templateUrl: './cka-upload-document.component.html',
@@ -103,6 +104,10 @@ export class CkaUploadDocumentComponent implements OnInit {
 
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
+  }
+
+  reselect() {
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_ASSESSMENT]);
   }
 
   goToNext() {
