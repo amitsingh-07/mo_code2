@@ -204,6 +204,13 @@ export class InvestmentApiService {
       );
   }
 
+  getCKADocument(documentType) {
+    return this.http.getBlob(investmentApiConstants.endpoint.investment.getCKADocument.replace('$DOCUMENT_TYPE$', documentType))
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   saveInvestmentAccount(data) {
     return this.http.post(investmentApiConstants.endpoint.investmentAccount.saveInvestmentAccount, data)
       .pipe(

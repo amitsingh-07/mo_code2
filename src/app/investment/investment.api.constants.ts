@@ -72,7 +72,8 @@ export let investmentApiConstants = {
             getFirstInvAccountCreationStatus: INVESTMENT_API_BASE_URL + '/customer/investmentAccount/actions',
             featurePromotions: INVESTMENT_API_BASE_URL + '/featurePromotions?handleError=true',
             wrapFrees: INVESTMENT_API_BASE_URL + '/wrapfees/getCustomerWrapFees',
-            saveCKAMethodQNA: ACCOUNT_API_BASE_URL + '/saveCKA/'
+            saveCKAMethodQNA: ACCOUNT_API_BASE_URL + '/saveCKA/',
+            getCKADocument: ACCOUNT_API_BASE_URL + '/s3/fetchDocument?docType=$DOCUMENT_TYPE$'
         }
     }
 };

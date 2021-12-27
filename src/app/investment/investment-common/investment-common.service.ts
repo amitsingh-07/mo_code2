@@ -512,4 +512,8 @@ export class InvestmentCommonService {
     const req = this.formCKASaveReq(json);
     return this.investmentApiService.saveCKAMethodQNA(req);
   }
+
+  getCKADocument(documentType) {
+    return this.investmentApiService.getCKADocument(documentType);
+  }
 }

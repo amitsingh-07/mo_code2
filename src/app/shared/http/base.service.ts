@@ -42,7 +42,7 @@ export class BaseService {
   getBlob(url) {
     this.helperService.showLoader();
     return this.httpClient
-      .get(`${this.apiBaseUrl}/${url}`, { responseType: 'blob' }).pipe(
+      .get(`${this.apiBaseUrl}/${url}`, { responseType: 'blob', observe: 'response' }).pipe(
       finalize(() => {
         this.helperService.hideLoader();
       }))
