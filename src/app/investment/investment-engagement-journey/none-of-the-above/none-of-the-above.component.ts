@@ -45,4 +45,8 @@ export class NoneOfTheAboveComponent implements OnInit {
   backToProfile(){
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
   }
+
+  uploadCertificate(){
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT]);
+  }
 }
