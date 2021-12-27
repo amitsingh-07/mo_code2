@@ -45,14 +45,10 @@ export class CkaAssessmentComponent implements OnInit {
       this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CKA_METHOD_BASED_QNA + '/' + INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[methodId]]);
     } else if (methodId == 4) {
       // to Upload screen
-      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.NONE_OF_THE_ABOVE]);
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT]);
     } else if (methodId == 5) {
       // to NA screen
       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.NONE_OF_THE_ABOVE]);
     }
-  }
-
-  uploadDoc() {
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT]);
   }
 }
