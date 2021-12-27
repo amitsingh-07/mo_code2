@@ -642,5 +642,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_ASSESSMENT
           this.router.navigate([routerURL]);
         });
+        ref.componentInstance.closeBtn = false;
   }
 }

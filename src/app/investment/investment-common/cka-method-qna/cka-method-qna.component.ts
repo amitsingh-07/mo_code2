@@ -3,13 +3,13 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
-import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
 import { InvestmentCommonService } from '../investment-common.service';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
 
 @Component({
   selector: 'app-cka-method-qna',
@@ -47,6 +47,7 @@ export class CkaMethodQnaComponent implements OnInit {
         if (params) {
           this.ckaMethodName = params.get('methodname');
           this.checkMethodName(this.ckaMethodName);
+          this.methodForm.addControl('method', new FormControl(this.ckaMethodName));
         }
       });
     });
@@ -58,7 +59,7 @@ export class CkaMethodQnaComponent implements OnInit {
 
   buildMethodForm() {
     this.methodForm = this.formBuilder.group({
-      subject: new FormControl('', Validators.required),
+      question1: new FormControl('', Validators.required),
     });
   }
 
@@ -74,25 +75,27 @@ export class CkaMethodQnaComponent implements OnInit {
       desc: this.translate.instant('CKA.QNA.' + methodName + '.DESC'),
       subTitle1: this.translate.instant('CKA.QNA.' + methodName + '.SUB_TITLE_1'),
       subTitle2: this.translate.instant('CKA.QNA.' + methodName + '.SUB_TITLE_2'),
-      placeholder: this.translate.instant('CKA.QNA.' + methodName + '.PLACEHOLDER')
+      placeholder: this.translate.instant('CKA.QNA.' + methodName + '.PLACEHOLDER'),
+      dropdown1placeholder: this.translate.instant('CKA.QNA.' + methodName + '.DROPDOWN1_PLACEHOLDER'),
+      dropdown2placeholder: this.ckaMethodName !== INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[2] ? this.translate.instant('CKA.QNA.' + methodName + '.DROPDOWN2_PLACEHOLDER') : null
     }
   }
 
   checkMethodName(method) {
-    if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS.EDUCATIONAL) {
-      const group = `${INVESTMENT_COMMON_CONSTANTS.CKA.DROPDOWN_GROUPS.EDUCATIONAL.QUALIFICATION},${INVESTMENT_COMMON_CONSTANTS.CKA.DROPDOWN_GROUPS.EDUCATIONAL.QUALIFICATION}`
+    if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[0]) {
+      const group = `${INVESTMENT_COMMON_CONSTANTS.CKA.DROPDOWN_GROUPS.EDUCATIONAL.QUALIFICATION},${INVESTMENT_COMMON_CONSTANTS.CKA.DROPDOWN_GROUPS.EDUCATIONAL.INSTITUE}`
       this.loadMethodBasedText('EDUCATIONAL');
       this.getOptionList(group, method);
-    } else if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS.PROFESSIONAL) {
+    } else if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[1]) {
       const group = `${INVESTMENT_COMMON_CONSTANTS.CKA.DROPDOWN_GROUPS.PROFESSIONAL.QUALIFICATION},${INVESTMENT_COMMON_CONSTANTS.CKA.DROPDOWN_GROUPS.PROFESSIONAL.INSTITUTE}`
       this.loadMethodBasedText('PROFESSIONAL');
       this.getOptionList(group, method);
-    } else if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS.WORK_EXPERIENCE) {
+    } else if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[3]) {
       const group = `${INVESTMENT_COMMON_CONSTANTS.CKA.DROPDOWN_GROUPS.WORK_EXPERIENCE.WORK_EXPERIENCE},${INVESTMENT_COMMON_CONSTANTS.CKA.DROPDOWN_GROUPS.WORK_EXPERIENCE.EMPLOYER}`
       this.loadMethodBasedText('WORK_EXPERIENCE');
       this.getOptionList(group, method);
-    } else if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS.INV_EPERIENCE) {
-      const group = `${INVESTMENT_COMMON_CONSTANTS.CKA.DROPDOWN_GROUPS.INV_EPERIENCE.LISTED},${INVESTMENT_COMMON_CONSTANTS.CKA.DROPDOWN_GROUPS.INV_EPERIENCE.UNLISTED}`
+    } else if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[2]) {
+      const group = INVESTMENT_COMMON_CONSTANTS.CKA.DROPDOWN_GROUPS.INV_EPERIENCE.UNLISTED
       this.loadMethodBasedText('INVESTMENT_EXPERIENCE');
       this.getOptionList(group, method);
     }
@@ -100,22 +103,21 @@ export class CkaMethodQnaComponent implements OnInit {
 
   getOptionList(groupName, method) {
     this.showLoader();
-    this.investmentAccountService.getSpecificDropList(groupName).subscribe((result: any) => {
+    this.investmentAccountService.getArrayOfDropdownList(groupName).subscribe((result: any) => {
       this.loaderService.hideLoaderForced();
       if (result.objectList) {
         this.institutionList = result.objectList?.jointAccountMinorForeignerRelationship;
-        if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS.EDUCATIONAL) {
+        if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[0]) {
           this.dropdownList1 = result.objectList.ckaEducationQualification;
           this.dropdownList2 = result.objectList.ckaEducationInstitute;
-        } else if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS.PROFESSIONAL) {
+        } else if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[1]) {
           this.dropdownList1 = result.objectList.ckaFinancialQualification;
           this.dropdownList2 = result.objectList.ckaFinancialEducation
-        } else if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS.WORK_EXPERIENCE) {
+        } else if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[3]) {
           this.dropdownList1 = result.objectList.ckaWorkExperience;
           this.dropdownList2 = result.objectList.ckaWork
-        } else if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS.INV_EPERIENCE) {
-          this.dropdownList1 = result.objectList.ckaInvestmentListed;
-          this.dropdownList2 = result.objectList.ckaInvestmentUnlisted
+        } else if (method === INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[2]) {
+          this.dropdownList1 = result.objectList.ckaInvestmentUnlisted;
         }
       }
     }, () => {
@@ -123,25 +125,29 @@ export class CkaMethodQnaComponent implements OnInit {
       this.investmentAccountService.showGenericErrorModal();
     });
   }
-  selectedInstitution(event, control) {
+  selectedQuestion2(event, control) {
     this.methodForm.controls[control].setValue(event);
-    if (event.name.toUpperCase() === 'OTHERS') {
+    if (event.name.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.CKA.OTHERS) {
       this.methodForm.addControl('others', new FormControl('', Validators.required));
     }
   }
-  selectedSubject(event, control) {
+  selectedQuestion1(event, control) {
     this.methodForm.controls[control].setValue(event);
-    if (this.ckaMethodName !== INVESTMENT_COMMON_CONSTANTS.CKA.METHODS.INV_EPERIENCE) {
-      this.methodForm.addControl('institution', new FormControl('', Validators.required));
+    if (this.ckaMethodName !== INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[2]) {
+      this.methodForm.addControl('question2', new FormControl('', Validators.required));
+    } else {
+      if (event.name.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.CKA.OTHERS) {
+        this.methodForm.addControl('others', new FormControl('', Validators.required));
+      }
     }
   }
 
   submitQNAForm() {
     this.showLoader();
-    this.investmentCommonService.saveCKAMethodQNA(null).subscribe((resp: any) => {
+    this.investmentCommonService.saveCKAMethodQNA(this.methodForm.value).subscribe((resp: any) => {
       this.loaderService.hideLoaderForced();
-      if (resp.responseCode >= 6000) {
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+      if (resp.responseMessage.responseCode >= 6000) {
+        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_PASSED_SCREEN]);
       }
     }, () => {
       this.loaderService.hideLoaderForced();

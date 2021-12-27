@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
-import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
+import { Router } from '@angular/router';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
+import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
 @Component({
   selector: 'app-cka-assessment',
   templateUrl: './cka-assessment.component.html',
@@ -17,7 +17,6 @@ export class CkaAssessmentComponent implements OnInit {
   pageTitle: string;
   constructor(
     public readonly translate: TranslateService,
-    private investmentEngagementService: InvestmentEngagementJourneyService,
     private router: Router,
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -40,8 +39,17 @@ export class CkaAssessmentComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
 
-  noneOfTheAbove(){
-    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.NONE_OF_THE_ABOVE]);
+  goToNext(methodId) {
+    if (methodId >= 0 && methodId <= 3) {
+      // to QNA screen
+      this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CKA_METHOD_BASED_QNA + '/' + INVESTMENT_COMMON_CONSTANTS.CKA.METHODS[methodId]]);
+    } else if (methodId == 4) {
+      // to Upload screen
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.NONE_OF_THE_ABOVE]);
+    } else if (methodId == 5) {
+      // to NA screen
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.NONE_OF_THE_ABOVE]);
+    }
   }
 
   uploadDoc() {
