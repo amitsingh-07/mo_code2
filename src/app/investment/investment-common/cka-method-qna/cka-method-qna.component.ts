@@ -10,6 +10,8 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { INVESTMENT_COMMON_CONSTANTS } from '../investment-common.constants';
 import { InvestmentCommonService } from '../investment-common.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
+import { Util } from '../../../shared/utils/util';
+import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 
 @Component({
   selector: 'app-cka-method-qna',
@@ -38,6 +40,9 @@ export class CkaMethodQnaComponent implements OnInit {
     private loaderService: LoaderService,
     private investmentCommonService: InvestmentCommonService
   ) {
+    if (!Util.isEmptyOrNull(investmentCommonService.getCKAStatus()) && investmentCommonService.getCKAStatus() === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS) {
+      router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+    }
     this.buildMethodForm();
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
@@ -147,7 +152,13 @@ export class CkaMethodQnaComponent implements OnInit {
     this.investmentCommonService.saveCKAMethodQNA(this.methodForm.value).subscribe((resp: any) => {
       this.loaderService.hideLoaderForced();
       if (resp.responseMessage.responseCode >= 6000) {
+        this.investmentCommonService.setCKAStatus(resp.objectList);
         this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_PASSED_SCREEN]);
+      } else {
+        if (resp && resp.objectList) {
+          this.investmentCommonService.setCKAStatus(resp.objectList);
+          this.investmentAccountService.showGenericErrorModal();
+        }
       }
     }, () => {
       this.loaderService.hideLoaderForced();

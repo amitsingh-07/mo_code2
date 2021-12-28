@@ -108,6 +108,8 @@ export let INVESTMENT_COMMON_CONSTANTS = {
   },
   CKA: {
     OTHERS: 'OTHERS',
+    CKA_PASSED_STATUS: 'CKA_PASSED',
+    CKA_FAILED_STATUS: 'CKA_FAILED',
     METHODS: [
       "educational",
       "professional",
