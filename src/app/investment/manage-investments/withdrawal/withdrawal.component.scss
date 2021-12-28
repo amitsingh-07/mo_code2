@@ -201,6 +201,8 @@ app-withdrawal {
 
     .input-control {
       &#withdraw-type-srs {
+        color: $teal-color !important;
+        -webkit-text-fill-color: $teal-color !important;
         text-align: left !important;
       }
     }
