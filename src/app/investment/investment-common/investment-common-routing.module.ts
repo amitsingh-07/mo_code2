@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuardService as AuthGuard } from '../../sign-up/auth-guard.service';
 import { FundingIntroComponent } from '../investment-common/funding-intro/funding-intro.component';
-import { InvestmentEngagementJourneyGuardService } from '../investment-engagement-journey/investment-engagement-journey-guard.service';
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
 import { AddPortfolioNameComponent } from './add-portfolio-name/add-portfolio-name.component';
 import { CkaMethodQnaComponent } from './cka-method-qna/cka-method-qna.component';

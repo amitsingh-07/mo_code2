@@ -516,4 +516,13 @@ export class InvestmentCommonService {
   getCKADocument(documentType) {
     return this.investmentApiService.getCKADocument(documentType);
   }
+
+  setCKAStatus(ckaStatus) {
+    this.investmentCommonFormData.ckaStatus = ckaStatus;
+    this.commit();
+  }
+
+  getCKAStatus() {
+    return this.investmentCommonFormData.ckaStatus;
+  }
 }

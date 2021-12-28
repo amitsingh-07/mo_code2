@@ -33,7 +33,8 @@ import {
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { CustomerJointAccountInfo } from '../signup-types';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment/investment-engagement-journey/investment-engagement-journey-routes.constants';
+import { INVESTMENT_COMMON_CONSTANTS } from '../../investment/investment-common/investment-common.constants';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -296,6 +297,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           //CKA Status
           if (data.objectList.ckaInformation) {
             this.ckaInfo = data.objectList.ckaInformation;
+            if (this.ckaInfo && this.ckaInfo.cKAStatusMessage && this.ckaInfo.cKAStatusMessage === INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS) {
+              this.investmentCommonService.setCKAStatus(INVESTMENT_COMMON_CONSTANTS.CKA.CKA_PASSED_STATUS);
+            }
           }
         }
         // Hidden employer address for future use
@@ -631,22 +635,22 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     return jaBankDetail.jaStatus === SIGN_UP_CONFIG.CUSTOMER_PORTFOLIOS.JOINT_ACCOUNT.SATUS && !jaBankDetail.primaryCustomer;
   }
 
-  openCKAModal(){
+  openCKAModal() {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant(
-          'OPEN_CKA.TITLE'
-        );
-        ref.componentInstance.errorMessage = this.translate.instant(
-          'OPEN_CKA.DESC'
-        );
-        ref.componentInstance.primaryActionLabel = this.translate.instant(
-          'OPEN_CKA.BTN-TEXT'
-        );
-        ref.componentInstance.primaryAction.subscribe(() => {
-          const routerURL =
-          INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_ASSESSMENT
-          this.router.navigate([routerURL]);
-        });
-        ref.componentInstance.closeBtn = false;
+    ref.componentInstance.errorTitle = this.translate.instant(
+      'OPEN_CKA.TITLE'
+    );
+    ref.componentInstance.errorMessage = this.translate.instant(
+      'OPEN_CKA.DESC'
+    );
+    ref.componentInstance.primaryActionLabel = this.translate.instant(
+      'OPEN_CKA.BTN-TEXT'
+    );
+    ref.componentInstance.primaryAction.subscribe(() => {
+      const routerURL =
+        INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_ASSESSMENT
+      this.router.navigate([routerURL]);
+    });
+    ref.componentInstance.closeBtn = false;
   }
 }
