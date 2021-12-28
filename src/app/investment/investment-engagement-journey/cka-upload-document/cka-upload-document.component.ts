@@ -132,7 +132,7 @@ export class CkaUploadDocumentComponent implements OnInit {
       title: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE'),
       desc: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE')
     });
-
+    
     if (this.formData) {
       this.investmentEngagementJourneyService.uploadDocument(this.formData).subscribe((response) => {
         this.loaderService.hideLoader();
