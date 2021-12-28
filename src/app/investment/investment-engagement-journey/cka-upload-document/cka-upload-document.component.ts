@@ -154,7 +154,7 @@ export class CkaUploadDocumentComponent implements OnInit {
     ref.componentInstance.errorTitle = this.translate.instant('CKA_UPLOAD_DOCUMENT.GENTLE_REMINDER_TITLE');
     ref.componentInstance.errorMessageHTML = this.translate.instant('CKA_UPLOAD_DOCUMENT.GENTLE_REMINDER_DESC');
     ref.componentInstance.primaryActionLabel = this.translate.instant('UPLOAD_DOCUMENTS.OKAY_GOT_IT_BTN');
-
+    ref.componentInstance.closeBtn = false;
     ref.componentInstance.primaryAction.subscribe(() => {
       this.addTncControllToForm();
       this.saveAndContinue = true;
