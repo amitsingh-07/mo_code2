@@ -85,8 +85,8 @@ export class CkaUploadDocumentComponent implements OnInit {
   }
 
   private getCKADocumentFromS3() {
-    this.investmentCommonService.getCKADocument(this.certificateName).subscribe((response) => {
-      if (response) {
+    this.investmentCommonService.getCKADocument(this.certificateName).subscribe((response: any) => {
+      if (response && response.body && response.body.type && response.body.type.split('/')[1].toLowerCase() != 'json') {
         this.uploadDocumentService.setStreamResponse(response);
       }
     });
@@ -123,7 +123,7 @@ export class CkaUploadDocumentComponent implements OnInit {
   eventTriggered(event) {
     if (event && event.clearBtn && this.ckaUploadForm.controls.tncCheckboxFlag) {
       this.removeTncControllToForm();
-       this.saveAndContinue = false;
+      this.saveAndContinue = false;
     }
   }
 
@@ -132,7 +132,7 @@ export class CkaUploadDocumentComponent implements OnInit {
       title: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE'),
       desc: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE')
     });
-    
+
     if (this.formData) {
       this.investmentEngagementJourneyService.uploadDocument(this.formData).subscribe((response) => {
         this.loaderService.hideLoader();
