@@ -93,6 +93,10 @@ app-cka-upload-document {
         display: flex;
         display: -webkit-flex;
         margin: 0 auto 20px;
+        img{
+          width: 120px;
+          height: 90px;
+        }
       }
       .note-icon {
         width: 25px;
