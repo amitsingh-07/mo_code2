@@ -79,20 +79,22 @@ export class UploadDocumentService {
     const defaultThumb = INVESTMENT_ACCOUNT_CONSTANTS.upload_documents.default_thumb;
     const reader: FileReader = new FileReader();
     reader.onloadend = () => {
-      thumbElem.src = reader.result;
-      if (isBlob) {
-        thumbElem.nativeElement.src = reader.result;
-      }
+      this.setSRC(isBlob, thumbElem, reader.result);
     };
-    
+
     if (file) {
       reader.readAsDataURL(file);
     } else {
       const thumbPath = window.location.origin + '/assets/images/' + defaultThumb;
+      this.setSRC(isBlob, thumbElem, thumbPath);
+    }
+  }
+
+  private setSRC(isBlob: any, thumbElem: any, thumbPath: string | ArrayBuffer) {
+    if (isBlob) {
+      thumbElem.nativeElement.src = thumbPath;
+    } else {
       thumbElem.src = thumbPath;
-      if (isBlob) {
-        thumbElem.nativeElement.src = thumbPath;
-      }
     }
   }
 
@@ -104,8 +106,8 @@ export class UploadDocumentService {
     return fileName;
   }
 
-  selectedFile(formData, controlname, fileElem, thumbElem?) {
-    const selectedFile: File = fileElem;
+  selectedFile(formData, controlname, file, isBlob, fileElem?, thumbElem?) {
+    const selectedFile: File = file;
     const fileSize: number = selectedFile.size / 1024 / 1024; // in MB
     const fileType = selectedFile.name.split('.')[selectedFile.name.split('.').length - 1].toUpperCase();
     const isValidFileSize =
@@ -117,10 +119,12 @@ export class UploadDocumentService {
       const payloadKey = this.getPayloadKey(controlname);
       formData.append(payloadKey, selectedFile);
       if (fileType !== 'PDF') {
-        this.setThumbnail(thumbElem, selectedFile);
+        this.setThumbnail(thumbElem, selectedFile, isBlob);
       }
     } else {
-      fileElem.currentTarget.value = '';
+      if (fileElem && fileElem.currentTarget) {
+        fileElem.currentTarget.value = '';
+      }
     }
     return {
       validFileSize: isValidFileSize,
@@ -128,8 +132,8 @@ export class UploadDocumentService {
     };
   }
 
-  fileSelect(formData, control, controlname, fileElem, thumbElem?) {
-    const response = this.selectedFile(formData, controlname, fileElem, thumbElem);
+  fileSelect(formData, control, controlname, file, isBlob, fileElem?, thumbElem?) {
+    const response = this.selectedFile(formData, controlname, file, isBlob, fileElem, thumbElem);
 
     if (!response.validFileSize) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
@@ -154,14 +158,13 @@ export class UploadDocumentService {
       ref.componentInstance.errorDescription = errorDesc;
       control.setValue('');
     } else {
-      control.setValue(fileElem ? fileElem.name : '');
+      control.setValue(file ? file.name : '');
     }
   }
 
   blobToThumbNail(streamResponse, control, documentInfo, thumbElem) {
     let file = this.blobToFile(streamResponse);
-    this.fileSelect(documentInfo.formData, control, documentInfo.documentType, file, thumbElem);
-    this.setThumbnail(thumbElem, file, true);
+    this.fileSelect(documentInfo.formData, control, documentInfo.documentType, file, true, null, thumbElem);
   }
 
   blobToFile(streamResponse: any) {

@@ -85,8 +85,8 @@ export class CkaUploadDocumentComponent implements OnInit {
   }
 
   private getCKADocumentFromS3() {
-    this.investmentCommonService.getCKADocument(this.certificateName).subscribe((response) => {
-      if (response) {
+    this.investmentCommonService.getCKADocument(this.certificateName).subscribe((response: any) => {
+      if (response && response.body && response.body.type && response.body.type.split('/')[1].toLowerCase() != 'json') {
         this.uploadDocumentService.setStreamResponse(response);
       }
     });
@@ -123,7 +123,7 @@ export class CkaUploadDocumentComponent implements OnInit {
   eventTriggered(event) {
     if (event && event.clearBtn && this.ckaUploadForm.controls.tncCheckboxFlag) {
       this.removeTncControllToForm();
-       this.saveAndContinue = false;
+      this.saveAndContinue = false;
     }
   }
 
@@ -154,7 +154,7 @@ export class CkaUploadDocumentComponent implements OnInit {
     ref.componentInstance.errorTitle = this.translate.instant('CKA_UPLOAD_DOCUMENT.GENTLE_REMINDER_TITLE');
     ref.componentInstance.errorMessageHTML = this.translate.instant('CKA_UPLOAD_DOCUMENT.GENTLE_REMINDER_DESC');
     ref.componentInstance.primaryActionLabel = this.translate.instant('UPLOAD_DOCUMENTS.OKAY_GOT_IT_BTN');
-
+    ref.componentInstance.closeBtn = false;
     ref.componentInstance.primaryAction.subscribe(() => {
       this.addTncControllToForm();
       this.saveAndContinue = true;

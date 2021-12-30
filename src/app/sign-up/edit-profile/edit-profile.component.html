@@ -631,7 +631,8 @@
     <!--CKA Card-->
     <div class="cka-card">
       <div class="edit-profile-section-bg">
-        <div class="flex-row cursor_pointer" [ngClass]="{'disabled': ckaInfo?.cKAStatusMessage === 'CKA_PASSED'}" (click)="openCKAModal()">
+        <div class="flex-row cursor_pointer" [ngClass]="{'disabled': ckaInfo?.cKAStatusMessage === 'CKA_PASSED'}"
+          (click)="openCKAModal()">
           <div class="flex-col-11 align-items-center">
             <div class="flex">
               <div class="mr10 flex align-items-center"><img src="assets/images/cka/icon-profile-cka.svg"></div>
@@ -639,16 +640,24 @@
                 <div class="form-group-heading">{{'CKA.HEADING' | translate}}</div>
                 <div class="form-group-sub-heading">
                   <span *ngIf="ckaInfo == null">{{'CKA.NOT_STARTED' | translate}}</span>
-                  <span *ngIf="ckaInfo?.cKAStatusMessage === 'CKA_PASSED'">{{'CKA.CKA_PASSED' | translate}}{{ckaInfo?.cKAExpiryDate}}{{'CKA.CKA_BRACKET' | translate}}</span>
-                  <span *ngIf="ckaInfo?.cKAStatusMessage === 'CKA_CERTIFICATE_UPLOAD'">{{'CKA.CKA_UPLOAD' | translate}}</span>
+                  <span
+                    *ngIf="ckaInfo?.cKAStatusMessage === 'CKA_PASSED'">{{'CKA.CKA_PASSED' | translate}}{{ckaInfo?.cKAExpiryDate}}{{'CKA.CKA_BRACKET' | translate}}</span>
+                  <span
+                    *ngIf="ckaInfo?.cKAStatusMessage === 'CKA_CERTIFICATE_UPLOAD'">{{'CKA.CKA_UPLOAD' | translate}}</span>
                 </div>
               </div>
+            </div>
           </div>
-          </div>
-          <div class="flex-col-1 align-items-center" *ngIf="ckaInfo == null || ckaInfo?.cKAStatusMessage === 'CKA_CERTIFICATE_UPLOAD'">
+          <div class="flex-col-1 align-items-center"
+            *ngIf="ckaInfo == null || ckaInfo?.cKAStatusMessage === 'CKA_CERTIFICATE_UPLOAD'">
             <div class="dropdown-img">
               <span class="arrow-right mt0"></span>
             </div>
+        </div>
+        </div>
+        <div class="flex-col-1 align-items-center" *ngIf="ckaInfo == null || ckaInfo?.cKAStatusMessage === 'CKA_CERTIFICATE_UPLOAD'">
+          <div class="dropdown-img">
+            <span class="arrow-right mt0"></span>
           </div>
         </div>
       </div>
