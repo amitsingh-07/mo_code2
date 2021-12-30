@@ -12,6 +12,7 @@ import { InvestmentCommonService } from '../investment-common.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../../investment-engagement-journey/investment-engagement-journey-routes.constants';
 import { Util } from '../../../shared/utils/util';
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
+import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 
 @Component({
   selector: 'app-cka-method-qna',
@@ -142,7 +143,7 @@ export class CkaMethodQnaComponent implements OnInit {
       this.methodForm.addControl('question2', new FormControl('', Validators.required));
     } else {
       if (event.name.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.CKA.OTHERS) {
-        this.methodForm.addControl('others', new FormControl('', Validators.required));
+        this.methodForm.addControl('others', new FormControl('', [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]));
       }
     }
   }
