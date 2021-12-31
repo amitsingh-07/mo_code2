@@ -51,7 +51,7 @@
                 <div class="form-control"
                   [ngClass]="{'inline-error': methodForm.get('others').enabled && !methodForm.get('others').valid && !methodForm.get('others').pristine}">
                   <div name="nricOrFin">
-                    <input id="last-four-characters-of-nric" class="input-control" type="text" maxLength="4"
+                    <input id="last-four-characters-of-nric" class="input-control" type="text"
                       name="nricOrFin" formControlName="others" placeholder="{{methodMetaData?.placeholder}}">
                   </div>
                 </div>
