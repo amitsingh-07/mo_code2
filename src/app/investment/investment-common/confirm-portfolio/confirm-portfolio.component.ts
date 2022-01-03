@@ -122,6 +122,12 @@ export class ConfirmPortfolioComponent implements OnInit {
     }
   }
 
+  ngOnDestroy() {
+    if (this.modal) {
+      this.modal.dismissAll();
+    }
+  }
+
   checkIfJointAccount() {
     return this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID;
   }
