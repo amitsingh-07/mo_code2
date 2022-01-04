@@ -40,6 +40,8 @@ app-upload-doc {
 
           &.sub-text {
             word-break: break-all;
+            margin-top: 2px;
+            opacity: 0.75;
           }
         }
       }
@@ -63,23 +65,15 @@ app-upload-doc {
           background-color: $white-color;
           right: -10px;
           top: -6px;
-          width: 23px;
+          width: 22px;
           height: 23px;
           display: flex;
           align-items: center;
           justify-content: center;
-          @include allmobiles {
-            width: 16px;
-            height: 16px;
-          }
 
           img {
-            width: 12px;
-            height: 12px;
-            @include allmobiles {
-              width: 8px;
-              height: 8px;
-            }
+            width: 10px;
+            height: 10px;
           }
         }
       }
