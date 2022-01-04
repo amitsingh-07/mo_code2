@@ -11,7 +11,7 @@ app-none-of-the-above{
         max-width: 335px;
         margin-left: auto;
         @include allmobiles{
-            width: 100%;
+            max-width: 100%;
         }
         @include minMobilemaxPhablet{
             margin-right: auto;
@@ -59,12 +59,14 @@ app-none-of-the-above{
                 .text-bold{
                     font-family: $muli-bold;
                     color: $silver-grey-color;
+                    letter-spacing: -0.3px;
                 }
                 .steps{
                     .step{
                         padding-bottom: 20px;
                         .text-bold{
                             color: $boulder-grey-color;
+                            letter-spacing: normal;
                         }
                         .hyperlink_color{
                             font-family: $muli-bold;
@@ -73,6 +75,9 @@ app-none-of-the-above{
                             &:hover{
                                 text-decoration: none;
                             }
+                        }
+                        .text-italic{
+                            font-family: $muli-italic;
                         }
                     }
                 }
