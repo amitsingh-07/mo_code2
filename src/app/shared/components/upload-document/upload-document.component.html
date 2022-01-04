@@ -5,7 +5,7 @@
             <div class="thumb-close-icon"
                 (click)="clearFileSelection(uploadForm.controls.document, documentInfo.documentType, $event, documentThumb, doc)"
                 *ngIf="uploadForm.controls.document.value">
-                <img src="assets/images/close-button-dark.svg" alt="x" />
+                <img src="assets/images/close-btn-dark.svg" alt="x" />
             </div>
             <img #documentThumb class="thumbnail image-fluid" [class.mb20]="!uploadForm.controls.document.value || fileType == 'pdf'"
                 src="assets/images/{{documentInfo.defaultThumb}}" />

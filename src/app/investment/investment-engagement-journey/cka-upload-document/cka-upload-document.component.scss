@@ -11,7 +11,7 @@ app-cka-upload-document {
     max-width: 335px;
     margin-left: auto;
     @include allmobiles {
-      width: 100%;
+      max-width: 100%;
     }
     @include minMobilemaxPhablet {
       margin-right: auto;
