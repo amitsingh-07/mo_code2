@@ -593,7 +593,7 @@
   },
   "CKA": {
     "HEADING": "Customer Knowledge Assessment",
-    "NOT_STARTED": "Not Started",
+    "NOT_STARTED": "Not started",
     "CKA_PASSED": "CKA Passed (Expires ",
     "CKA_UPLOAD": "CKA Certificate Uploaded",
     "CKA_BRACKET":")"
