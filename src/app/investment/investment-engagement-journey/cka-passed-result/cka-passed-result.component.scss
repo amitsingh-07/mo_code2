@@ -27,10 +27,11 @@
     letter-spacing: -0.12px;
     text-align: center;
     font-family: "Muli Regular", sans-serif;
+    padding: 0 5px;
 }
 .banner-image {
     position: relative;
-    padding-top: 84px;
+    padding-top: 20px;
     img {
         padding-top: 0 !important;
         width: 180px;
@@ -38,7 +39,7 @@
     }
     .tick-icon {
         position: absolute;
-        top: 42px;
+        top: -20px;
         right: 65px;
         img {
             width: 80px;
@@ -46,7 +47,7 @@
         }
     }
     @include desktop {
-        padding-top: 110px;
+        padding-top: 80px;
         img {
             width: 220px;
             height: 220px;
@@ -58,7 +59,7 @@
                 height: 60px;
             }
             position: absolute;
-            top: 90px;
+            top: 60px;
             right: 125px
         }
     }
