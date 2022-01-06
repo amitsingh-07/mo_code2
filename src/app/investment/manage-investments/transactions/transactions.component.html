@@ -96,7 +96,7 @@
                               {{fund.splitAmount | formatCurrency }}
                             </div>
                             <div class="flex-col-12 text-left unit-price">
-                              <span>{{ 'TRANSACTIONS.UNIT_PRICE' | translate}} {{'$'+fund.unitPrice}} </span>
+                              <span>{{ 'TRANSACTIONS.UNIT_PRICE' | translate}} {{fund.unitPrice | formatCurrency4dp}} </span>
                               <span>{{ 'TRANSACTIONS.UNITS' | translate}} {{fund.unit}}</span>
                             </div>
                           </div>

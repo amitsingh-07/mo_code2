@@ -274,7 +274,7 @@ app-edit-profile {
     border: 1px solid $teal-color;
     margin-top: 15px;
     font-family: $muli-bold;
-    font-size: 22px;
+    font-size: 16px;
     letter-spacing: -0.3px;
     text-align: center;
     color: $teal-color;
@@ -283,6 +283,8 @@ app-edit-profile {
       display: inline-block;
       margin-left: 10px;
       margin-top: 2px;
+      width: 20px;
+      height: 20px;
     }
     &[disabled] {
       color: #c1eaea;
@@ -299,6 +301,9 @@ app-edit-profile {
     font-weight: 300;
     letter-spacing: -0.3px;
     color: $dark-teal-color;
+    &.txt-bold{
+      font-family: $muli-bold;
+    }
   }
   .bank-account-num {
     font-family: $muli-semi-bold;
@@ -307,6 +312,12 @@ app-edit-profile {
     letter-spacing: -0.3px;
     text-align: right;
     color: $teal-color;
+  }
+  .icon-block{
+    text-align: right;
+    span{
+      cursor: pointer;
+    }
   }
   .bank_details,
   .srs_details {
@@ -397,9 +408,6 @@ app-edit-profile {
     text-align: center;
     color: $no-bank-account-color;
     margin: 50px 30px 10px 30px;
-    &.no-bank-details {
-      margin-bottom: 4px;
-    }
   }
   .joint-account-desc {
     font-family: $muli-italic;

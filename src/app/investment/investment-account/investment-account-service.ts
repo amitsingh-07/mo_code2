@@ -1302,14 +1302,38 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.bankUpdateId = id;
       }
     }
+    if (this.investmentAccountFormData.customerPortfolioId) {
+      this.investmentAccountFormData.customerPortfolioId = null;
+    }
     this.commit();
   }
+
+  setJAPortfolioBankDetail(fullName, bank, accountNumber, customerPortfolioId, id) {
+    if (fullName) {
+      this.investmentAccountFormData.accountHolderName = fullName;
+    }
+    if (bank) {
+      this.investmentAccountFormData.bank = bank;
+    }
+    if (accountNumber) {
+      this.investmentAccountFormData.accountNumber = accountNumber;
+    }
+    if (customerPortfolioId) {
+      this.investmentAccountFormData.customerPortfolioId = customerPortfolioId;
+    }
+    if (id) {
+      this.investmentAccountFormData.bankUpdateId = id;
+    }
+    this.commit();
+  }
+
   getBankInfo() {
     return {
       fullName: this.investmentAccountFormData.accountHolderName,
       bank: this.investmentAccountFormData.bank,
       accountNumber: this.investmentAccountFormData.accountNumber,
-      id: this.investmentAccountFormData.bankUpdateId
+      id: this.investmentAccountFormData.bankUpdateId,
+      customerPortfolioId: this.investmentAccountFormData.customerPortfolioId
     };
   }
   // tslint:disable-next-line:no-identical-functions

@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 import { InvestmentAccountService } from '../../investment/investment-account/investment-account-service';
 import { ManageInvestmentsService } from '../../investment/manage-investments/manage-investments.service';
@@ -39,6 +39,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
   buttonTitle;
   updateId: any;
   isEdit = true;
+  subscription: Subscription;
 
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
 
@@ -66,6 +67,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.subscribeBackEvent();
     this.navbarService.setNavbarMobileVisibility(true);
     if (environment.hideHomepage) {
       this.navbarService.setNavbarMode(104);
@@ -99,20 +101,12 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
       .subscribe((token) => {
         if (!token) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
-        }
-      });
-
-    this.signUpService.getEditProfileInfo()
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((data) => {
-        if (data.objectList.customerBankDetail && data.objectList.customerBankDetail.length > 0) {
-          const bankDetails = data.objectList.customerBankDetail[0];
-          this.investmentAccountService.setEditProfileBankDetail(bankDetails.accountName, bankDetails.bank, bankDetails.accountNumber, bankDetails.id, false);
-          this.bankForm.patchValue({
-            accountHolderName: bankDetails.accountName,
-            bank: bankDetails.bank,
-            accountNo: bankDetails.accountNumber
-          });
+        } else {
+          if (this.formValues && this.formValues.customerPortfolioId) {
+            this.getUserBankList(this.formValues.customerPortfolioId, true);
+          } else {
+            this.getUserBankList('', false);
+          }
         }
       });
 
@@ -131,10 +125,66 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
     });
   }
 
+  getUnmaskedBankDetails() {
+    this.signUpService.getEditProfileInfo()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data) => {
+        if (this.formValues && this.formValues.customerPortfolioId && data.objectList.customerJointAccountBankDetails && data.objectList.customerJointAccountBankDetails.length > 0) {
+          data.objectList.customerJointAccountBankDetails.forEach(portfolio => {
+            if (portfolio.customerPortfolioId == this.formValues.customerPortfolioId) {
+              this.investmentAccountService.setJAPortfolioBankDetail(portfolio.accountHolderName, portfolio.bank, portfolio.bankAccountNumber, portfolio.customerPortfolioId, portfolio.id);
+              this.bankForm.patchValue({
+                accountHolderName: portfolio.accountHolderName,
+                bank: portfolio.bank,
+                accountNo: portfolio.bankAccountNumber
+              });
+            }
+          });
+        } else if (data.objectList.customerBankDetail && data.objectList.customerBankDetail.length > 0) {
+          const bankDetails = data.objectList.customerBankDetail[0];
+          this.investmentAccountService.setEditProfileBankDetail(bankDetails.accountName, bankDetails.bank, bankDetails.accountNumber, bankDetails.id, false);
+          this.bankForm.patchValue({
+            accountHolderName: bankDetails.accountName,
+            bank: bankDetails.bank,
+            accountNo: bankDetails.accountNumber
+          });
+        }
+      });
+  }
+
+  subscribeBackEvent() {
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE])
+      }
+    });
+  }
+
+  getUserBankList(customerPortfolioId, isJointAccount) {
+    this.manageInvestmentsService.getUserBankList(customerPortfolioId, isJointAccount).subscribe((data) => {
+      if (data.responseMessage.responseCode >= 6000) {
+        if (data && data.objectList && data.objectList.length > 0) {
+          const bank = data.objectList[0]
+          this.investmentAccountService.setJAPortfolioBankDetail(bank.accountName, bank.bank, bank.accountNumber, bank.customerPortfolioId, bank.id);
+          this.bankForm.patchValue({
+            accountHolderName: bank.accountName,
+            bank: bank.bank,
+            accountNo: bank.accountNumber
+          });
+        }
+      }
+    },
+      (err) => {
+        this.investmentAccountService.showGenericErrorModal();
+      });
+  }
+
   ngOnDestroy() {
     this.signUpService.clearRedirectUrl();
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
+    this.navbarService.unsubscribeBackPress();
+    this.subscription.unsubscribe();
   }
 
   buildBankForm() {
@@ -143,7 +193,9 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
     this.bankForm = this.formBuilder.group({
       accountHolderName: [this.formValues.fullName, [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
       bank: [this.formValues.bank, [Validators.required]],
-      accountNo: [this.formValues.accountNumber, [Validators.required]]
+      accountNo: [this.formValues.accountNumber, [Validators.required]],
+      customerPortfolioId: this.formValues && this.formValues.customerPortfolioId ? this.formValues.customerPortfolioId : '',
+      isJAAccount: this.formValues && this.formValues.customerPortfolioId ? true : false
     });
   }
   getInlineErrorStatus(control) {
@@ -217,7 +269,7 @@ export class AddUpdateBankComponent implements OnInit, OnDestroy {
         // PASSING NULL AND FALSE VALUES AS THIS API IS CALLED FROM PROFILE PAGE TO 
         // EDIT OR ADD BANK DETAILS
         this.signUpService.updateBankInfoProfile(form.value.bank,
-          form.value.accountHolderName, accountNum, this.updateId, '', false).subscribe((data) => {
+          form.value.accountHolderName, accountNum, this.updateId, form.value.customerPortfolioId, form.value.isJAAccount).subscribe((data) => {
             this.loaderService.hideLoader();
             this.isEdit = true;
             // tslint:disable-next-line:triple-equals

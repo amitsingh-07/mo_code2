@@ -150,20 +150,24 @@ export class YourInvestmentAmountComponent implements OnInit {
     this.cd.detectChanges();
   }
   secondChkBoxChange() {
+    const monthlyAmount = this.investmentAmountForm.controls.monthlyInvestment.value;
     if (this.investmentAmountForm.controls.secondChkBox.value === true) {
       this.investmentAmountForm.controls.monthlyInvestment.enable();
-      this.investmentAmountForm.controls.monthlyInvestment.setValue(0);
     } else {
       this.investmentAmountForm.controls.monthlyInvestment.disable();
+    }
+    if (monthlyAmount && monthlyAmount > 0) {
       this.investmentAmountForm.controls.monthlyInvestment.setValue(0);
     }
   }
   firstChkBoxChange() {
+    const oneTimeAmount = this.investmentAmountForm.controls.initialInvestment.value;
     if (this.investmentAmountForm.controls.firstChkBox.value === true) {
       this.investmentAmountForm.controls.initialInvestment.enable();
-      this.investmentAmountForm.controls.initialInvestment.setValue(0);
     } else {
       this.investmentAmountForm.controls.initialInvestment.disable();
+    }
+    if (oneTimeAmount && oneTimeAmount > 0) {
       this.investmentAmountForm.controls.initialInvestment.setValue(0);
     }
   }
