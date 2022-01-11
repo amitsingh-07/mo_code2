@@ -425,5 +425,22 @@
         "DROPDOWN1_PLACEHOLDER": "Name of Financial Institution"
       }
     }
+  },
+  "CPF_PREREQUISITES": {
+    "TITLE": "Investment Pre-requisites",
+    "DESC": "Before you invest using your CPF-OA monies, it is important to assess that you have the knowledge in investing in Unlisted Specified Investment Products (SIPs). You should have also set up your CPF Investment Account.",
+    "STEP_TEXT": "Please complete the 2 steps below:",
+    "STEP1_TEXT": "Step 1: Complete Customer Knowledge Assessment (CKA)",
+    "STEP2_TEXT": "Step 2: Fill in CPF Investment Account details",
+    "START_NOW_BTN": "Start Now",
+    "CKA_PASSED": "",
+    "CERT_UPLOADED_BTN": "",
+    "ESTIMATED_TIME_TEXT": "Estimated 2 mins",
+    "CPFIA_OPERATOR_TITLE": "CPFIA Operator",
+    "CPFIA_OPERATOR_PLACEHOLDER": "Select CPFIA Operator",
+    "CPFIA_NUMBER_TITLE": "CPFIA Number ",
+    "CPFIA_NUMBER_PLACEHOLDER": "Enter Account No.",
+    "INFO_TEXT": "Please ensure you have entered the correct account information. ",
+    "CONTINUE": "Continue"
   }
 }
