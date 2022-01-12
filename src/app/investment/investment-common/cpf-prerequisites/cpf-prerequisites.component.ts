@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,7 +9,8 @@ import { NavbarService } from '../../../shared/navbar/navbar.service';
 @Component({
   selector: 'app-cpf-prerequisites',
   templateUrl: './cpf-prerequisites.component.html',
-  styleUrls: ['./cpf-prerequisites.component.scss']
+  styleUrls: ['./cpf-prerequisites.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CpfPrerequisitesComponent implements OnInit {
 
