@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,7 +17,8 @@ import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.const
 @Component({
   selector: 'app-cpf-prerequisites',
   templateUrl: './cpf-prerequisites.component.html',
-  styleUrls: ['./cpf-prerequisites.component.scss']
+  styleUrls: ['./cpf-prerequisites.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CpfPrerequisitesComponent implements OnInit {
 
