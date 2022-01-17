@@ -3,7 +3,9 @@
     <div class="prod-cat-list-title hidden-lg">{{'COVERAGE.TITLE' | translate}}</div> 
     <div class="prod-cat-list-close hidden-lg" (click)="openProductCategory(0)"></div>
     <div class="prod-cat-list">
-      <app-product-category [data]="productCategory" *ngFor="let productCategory of productCategoryList; let i = index" (click)="openProductCategory(i)"></app-product-category>
+      <ng-container *ngFor="let productCategory of productCategoryList; let i = index">
+        <app-product-category [data]="productCategory" (click)="openProductCategory(i)" *ngIf="productCategory && !productCategory.isHidden"></app-product-category>
+      </ng-container>
     </div>
   </div>
   <div class="prod-form__wrapper" [ngClass]="{'show': toggleFormVisibility}">
@@ -34,9 +36,9 @@
       <app-ocp-disability-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 3"></app-ocp-disability-form>
       <app-hospital-plan-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 4"></app-hospital-plan-form>
       <app-long-term-care-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 5"></app-long-term-care-form>
-      <!-- <app-education-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 6"></app-education-form> -->
-      <app-retirement-income-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 6"></app-retirement-income-form>
-      <app-srs-approved-plans-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 7"></app-srs-approved-plans-form>
+      <app-education-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 6"></app-education-form>
+      <app-retirement-income-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 7"></app-retirement-income-form>
+      <app-srs-approved-plans-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 8"></app-srs-approved-plans-form>
     </div>
   </div> 
   <button class="btn search-btn" [ngClass]="{'show': toggleFormVisibility}" (click)="search(selectedCategoryId)">

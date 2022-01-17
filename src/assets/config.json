@@ -95,13 +95,21 @@
     },
     {
       "id": 6,
+      "prodCatName": "Education Fund",
+      "prodCatIcon": "EducationFund-icon--teal.svg",
+      "prodCatIconAlt": "EducationFund-icon--white.svg",
+      "prodLink": "education",
+      "isHidden": true
+    },
+    {
+      "id": 7,
       "prodCatName": "Retirement Income Plans",
       "prodCatIcon": "RetirementIncomePlan-icon--teal.svg",
       "prodCatIconAlt": "RetirementIncomePlan-icon--white.svg",
       "prodLink": "retirement-income-plan"
     },
     {
-      "id": 7,
+      "id": 8,
       "prodCatName": "SRS-Approved Plans",
       "prodCatIcon": "SRS-icon--teal.svg",
       "prodCatIconAlt": "SRS-icon--white.svg",
