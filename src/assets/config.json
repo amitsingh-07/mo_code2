@@ -98,7 +98,8 @@
       "prodCatName": "Education Fund",
       "prodCatIcon": "EducationFund-icon--teal.svg",
       "prodCatIconAlt": "EducationFund-icon--white.svg",
-      "prodLink": "education"
+      "prodLink": "education",
+      "isHidden": true
     },
     {
       "id": 7,

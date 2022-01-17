@@ -17,12 +17,13 @@ export class ProductCategoryComponent implements DoCheck, OnInit {
   link;
   active;
   @Output() Details = new EventEmitter();
-
+  isHidden: boolean= false;
   ngDoCheck() {
     if (this.data) {
       this.active = this.data.active;
       this.title = this.data.prodCatName;
       this.link = this.data.prodLink;
+      this.isHidden = this.data.isHidden ? this.data.isHidden : this.isHidden;
       if (this.active) {
         this.icon = this.data.prodCatIconAlt;
       } else {
@@ -30,9 +31,7 @@ export class ProductCategoryComponent implements DoCheck, OnInit {
       }
     }
   }
-
   constructor() { }
-
   ngOnInit() {
   }
 }
