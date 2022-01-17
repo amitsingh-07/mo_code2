@@ -215,7 +215,7 @@ app-plan-details-widget {
             padding-top: 5px;
             @include allmobiles {
                 position: absolute;
-                bottom: -5px;
+                bottom: 27px;
             }
         }
         .plan-value-main {
@@ -224,7 +224,7 @@ app-plan-details-widget {
             float: left;
             margin-bottom: 0px;
             @include allmobiles {
-                width: 100%;
+                width: 50%;
                 margin-bottom: 10px;
             }
         }
@@ -253,5 +253,11 @@ app-plan-details-widget {
         @include allmobiles {
             text-align: center;
         }
+    }
+    .drp-left {
+        margin-left: 0px!important;
+    }
+    .prd-left {
+        margin-left: 15px!important;
     }
 }

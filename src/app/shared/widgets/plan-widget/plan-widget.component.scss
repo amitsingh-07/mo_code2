@@ -310,4 +310,14 @@ app-plan-widget {
         margin: 0px 10px 20px 10px!important;
         z-index: 1;
     }
+    .irr-left {
+        margin-left: 15px;
+    }
+    .rp-left {
+        margin-left: 0px!important;
+        @include allmobiles {
+            width: 90% !important;
+            margin: 0 10px 0 10px !important;
+        }
+    }
 }
