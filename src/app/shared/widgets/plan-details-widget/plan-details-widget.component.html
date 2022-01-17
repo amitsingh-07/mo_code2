@@ -22,12 +22,7 @@
       </div>
       <div class="row with-sub-sections col-md-12" [hidden]="type !== 'retirement income plan' && type.indexOf('education fund') < 0 && type.indexOf('srs') < 0">
           <h2>
-            <div class="plan-value-main">{{data.premium.intrestRateOfReturn}}%
-              <span class="text-small">{{ 'COMMON.LBL_PERCENTAGE_PER_ANNUM' | translate}}</span>
-              <br />
-              <span class="text-small subtitle">{{ 'COMMON.LBL_PROJECTED_RETURN' | translate}}</span>
-            </div>
-            <div [hidden]="type !== 'retirement income plan'" class="plan-value-sub hidden-sm-md">
+            <div [hidden]="type !== 'retirement income plan'" class="plan-value-sub drp-left">
               <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
                 <br class="hidden-lg" />
                 <span [hidden]="data.premium.premiumFrequency == 'single'">{{ 'SUFFIX.PER_MONTH' |
@@ -45,7 +40,12 @@
                 <span class="text-small">{{ 'COMMON.LBL_PREMIUM' | translate}}</span>
               </h2>
             </div>
-            <div [hidden]="type.indexOf('srs') < 0" class="plan-value-sub hidden-sm-md">
+            <div class="plan-value-main" [ngClass]="{'prd-left': type === 'retirement income plan' }">{{data.premium.intrestRateOfReturn}}%
+              <span class="text-small">{{ 'COMMON.LBL_PERCENTAGE_PER_ANNUM' | translate}}</span>
+              <br />
+              <span class="text-small subtitle">{{ 'COMMON.LBL_PROJECTED_RETURN' | translate}}</span>
+            </div>            
+            <div [hidden]="type.indexOf('srs') < 0" class="plan-value-sub">
               <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
                 <br class="hidden-lg" />
                 <br />

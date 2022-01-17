@@ -42,6 +42,24 @@
       <div class="heading">&nbsp;</div>
     </div>
 
+    <div class="flex-col-12 flex title"  [hidden] = "protectionType.toLowerCase() !== 'retirement income plan'">
+      <div [ngClass]="{'wide' : plansData && plansData.length === 4}">{{ 'COMPARE_PLANS.PREMIUMS' |
+        translate}}</div>
+      </div>
+      <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
+        [ngClass]="{'hidden-sm-md': i > 1}" [hidden] = "protectionType.toLowerCase() !== 'retirement income plan'">
+        <div class="plan-content">
+          <span [hidden]="frequencyFilter !== 'monthly'">{{plan.premium.premiumAmount | currency}}</span>
+          <span [hidden]="frequencyFilter !== 'yearly'">{{plan.premium.premiumAmountYearly | currency}}</span>
+          <br />
+          <span class="text-small">
+            <span [hidden]="frequencyFilter !== 'monthly'">{{ 'SUFFIX.PER_MONTH' | translate}}</span>
+            <span [hidden]="frequencyFilter !== 'yearly'">{{ 'SUFFIX.PER_YEAR' | translate}}</span>
+          </span>
+        </div>
+        <div class="heading">&nbsp;</div>
+    </div>
+
     <div class="flex-col-12 flex title">
       <div [ngClass]="{'wide' : plansData && plansData.length === 4}">{{ 'COMPARE_PLANS.INSURER_FINANCIAL_RATING' |
         translate}}</div>
