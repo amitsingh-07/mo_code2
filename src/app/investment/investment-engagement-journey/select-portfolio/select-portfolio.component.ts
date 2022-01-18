@@ -21,6 +21,7 @@ import { InvestmentEngagementJourneyService } from '../investment-engagement-jou
 import { SeoServiceService } from './../../../shared/Services/seo-service.service';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
 import { INVESTMENT_COMMON_CONSTANTS } from '../../investment-common/investment-common.constants';
+import { INVESTMENT_COMMON_ROUTE_PATHS } from '../../investment-common/investment-common-routes.constants';
 
 @Component({
   selector: 'app-select-portfolio',
@@ -35,9 +36,11 @@ export class SelectPortfolioComponent implements OnInit {
   investmentEnabled: boolean = false;
   wiseSaverEnabled: boolean = false;
   wiseIncomeEnabled: boolean = false;
+  cpfEnabled = false;
   investmentMoreInfoShow: boolean = false;
   wiseSaverMoreInfoShow: boolean = false;
   wiseIncomeMoreInfoShow: boolean = false;
+  activeTabId = 1;
   @ViewChild('carousel') carousel: SlickCarouselComponent;
 
   selectPortfolioForm: FormGroup;
@@ -148,6 +151,14 @@ export class SelectPortfolioComponent implements OnInit {
         this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
       }
     }
+    // meed to change when CPF is available
+    // CPF_PORTFOLIO
+    else if (this.selectPortfolioForm.controls.selectPortfolioType && this.selectPortfolioForm.controls.selectPortfolioType.value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) {
+      // redirecting to pre trquisite screen but the entire logic in this Method
+      // should be given in your portfolio goal screen
+      // INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES
+      this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.WISE_INCOME_PAYOUT]);
+    }
     else {
       if (this.selectPortfolioForm.controls.selectPortfolioType && this.selectPortfolioForm.controls.selectPortfolioType.value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) {
         this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.WISE_INCOME_PAYOUT]);
@@ -183,23 +194,33 @@ export class SelectPortfolioComponent implements OnInit {
     this.wiseIncomeMoreInfoShow = !this.wiseIncomeMoreInfoShow;
     event.stopPropagation();
   }
-  setSelectPortfolioType(value) {
+  setSelectPortfolioType(value,form) {
     this.selectPortfolioForm.controls.selectPortfolioType.setValue(value);
     if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
       this.investmentEnabled = !this.investmentEnabled;
       this.wiseSaverEnabled = false;
       this.wiseIncomeEnabled = false;
+      this.cpfEnabled = false; // cpf portfolio flag
     }
     if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO) {
       this.wiseSaverEnabled = !this.wiseSaverEnabled;
       this.investmentEnabled = false;
       this.wiseIncomeEnabled = false;
+      this.cpfEnabled = false; // cpf portfolio flag
     }
     if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) {
       this.wiseIncomeEnabled = !this.wiseIncomeEnabled;
       this.investmentEnabled = false;
       this.wiseSaverEnabled = false;
+      this.cpfEnabled = false; // cpf portfolio flag
     }
+    if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO) {
+      this.cpfEnabled = !this.cpfEnabled;
+      this.investmentEnabled = false;
+      this.wiseSaverEnabled = false;
+      this.wiseIncomeEnabled = false;
+    }
+    this.goNext(form);
   }
   // Go to next slide
   nextSlide() {
@@ -218,4 +239,9 @@ export class SelectPortfolioComponent implements OnInit {
     this.currentSlide = e.nextSlide;
   }
 
+  isJointAccount(){
+    const userPortfolioType = this.investmentEngagementJourneyService.getUserPortfolioType();
+    return userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID;
+    
+  }
 }
