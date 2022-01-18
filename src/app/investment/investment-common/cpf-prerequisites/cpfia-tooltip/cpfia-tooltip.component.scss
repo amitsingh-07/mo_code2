@@ -1,0 +1,45 @@
+@import '../../../../../_variables.scss';
+@import '../../../../../mixins';
+
+app-cpfia-tooltip {
+  .modal-body {
+    .para1 {
+      p {
+        font-size: 16px;
+        font-family: $muli-regular;
+        color: $boulder-grey-color;
+      }
+    }
+
+    .quest1 {
+      line-height: 22px;
+
+      p:first-child {
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+        letter-spacing: -0.18px;
+      }
+
+      b {
+        color: $silver-grey-color !important;
+      }
+
+      p {
+        font-family: $muli-regular;
+        font-size: 16px;
+        letter-spacing: -0.16px;
+        color: $boulder-grey-color;
+      }
+
+      span {
+        cursor: pointer;
+        color: $crusta-orange-color;
+        font-family: $muli-bold;
+      }
+    }
+
+    .got-it-btn {
+      box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15);
+    }
+  }
+}
