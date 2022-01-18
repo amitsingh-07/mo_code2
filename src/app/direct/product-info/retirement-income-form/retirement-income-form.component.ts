@@ -7,6 +7,7 @@ import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-mod
 import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from '../../direct.service';
 import { Subscription } from 'rxjs';
+import { RETIREMENT_INCOME_CONST } from '../../direct.constants';
 
 @Component({
   selector: 'app-retirement-income-form',
@@ -24,11 +25,13 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
   payoutDuration = '';
   retirementIncomeList = Array(11).fill(500).map((x, i) => x += i * 100);
   selectedRetirementIncome = '';
-  payoutAgeList = [50, 55, 60, 65];
+  payoutAgeList = RETIREMENT_INCOME_CONST.PAYOUT_AGE_LIST;
   selectedPayoutAge = '';
-  payoutDurationList;
   payoutFeatureList;
   doberror = false;
+  premiumDuration = '';
+  premiumDurationList = RETIREMENT_INCOME_CONST.PREMIUM_DURATION_LIST;
+  payoutDurationList = RETIREMENT_INCOME_CONST.PAYOUT_DURATION_LIST;
 
   minDate;
   maxDate;
@@ -45,7 +48,6 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
     config.outsideDays = 'collapsed';
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.payoutDurationList = this.translate.instant('RETIREMENT_INCOME.PAYOUT_DURATION_LIST');
       this.payoutFeatureList = this.translate.instant('RETIREMENT_INCOME.PAYOUT_FEATURE_LIST');
     });
   }
@@ -61,19 +63,33 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
       retirementIncome: [this.formValues.retirementIncome, Validators.required],
       payoutAge: [this.formValues.payoutAge, Validators.required],
       payoutDuration: [this.formValues.payoutDuration, Validators.required],
-      payoutFeature: [this.formValues.payoutFeature, Validators.required]
+      payoutFeature: [this.formValues.payoutFeature, Validators.required],
+      premiumDuration: [this.formValues.premiumDuration, Validators.required]
     });
-    if (this.formValues.retirementIncome !== undefined) {
+    if (this.formValues.retirementIncome !== undefined && this.formValues.retirementIncome !== '') {
       this.selectRetirementIncome(this.formValues.retirementIncome);
+    } else  {      
+      this.selectRetirementIncome(RETIREMENT_INCOME_CONST.DEFAULT_VALUES.RETIREMENT_INCOME);
     }
-    if (this.formValues.payoutAge !== undefined) {
+    if (this.formValues.payoutAge !== undefined && this.formValues.payoutAge !== '') {
       this.selectPayoutAge(this.formValues.payoutAge);
+    } else  {      
+      this.selectPayoutAge(RETIREMENT_INCOME_CONST.DEFAULT_VALUES.PAYOUT_AGE);
     }
-    if (this.formValues.payoutDuration !== undefined) {
+    if (this.formValues.payoutDuration !== undefined && this.formValues.payoutDuration !== '') {
       this.selectPayoutDuration(this.formValues.payoutDuration);
+    } else  {      
+      this.selectPayoutDuration(RETIREMENT_INCOME_CONST.DEFAULT_VALUES.PAYOUT_DURATION);
     }
-    if (this.formValues.payoutFeature !== undefined) {
+    if (this.formValues.payoutFeature !== undefined && this.formValues.payoutFeature !== '') {
       this.selectPayoutFeature(this.formValues.payoutFeature);
+    } else  {      
+      this.selectPayoutFeature(RETIREMENT_INCOME_CONST.DEFAULT_VALUES.PAYOUT_FEATURE);
+    }
+    if (this.formValues.premiumDuration !== undefined && this.formValues.premiumDuration !== '') {
+      this.selectPremiumDuration(this.formValues.premiumDuration);
+    } else  {      
+      this.selectPremiumDuration(RETIREMENT_INCOME_CONST.DEFAULT_VALUES.PREMIUM_DURATION);
     }
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '' && data === '7') {
@@ -128,6 +144,10 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
     this.payoutFeature = payoutFeature;
     this.retirementIncomeForm.controls.payoutFeature.setValue(this.payoutFeature);
   }
+  selectPremiumDuration(premiumDuration) {
+    this.premiumDuration = premiumDuration;
+    this.retirementIncomeForm.controls.premiumDuration.setValue(this.premiumDuration);
+  }
 
   showPayoutFeatureModal() {
     this.directService.showToolTipModal(
@@ -161,6 +181,7 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
     form.value.payoutAge = this.selectedPayoutAge;
     form.value.payoutDuration = this.payoutDuration;
     form.value.payoutFeature = this.payoutFeature;
+    form.value.premiumDuration = this.premiumDuration;
     this.directService.setRetirementIncomeForm(form.value);
     return true;
   }
