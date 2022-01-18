@@ -8,6 +8,7 @@ import { AddPortfolioNameComponent } from './add-portfolio-name/add-portfolio-na
 import { CkaMethodQnaComponent } from './cka-method-qna/cka-method-qna.component';
 import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
 import { ConfirmWithdrawalComponent } from './confirm-withdrawal/confirm-withdrawal.component';
+import { CpfPrerequisitesComponent } from './cpf-prerequisites/cpf-prerequisites.component';
 import {
   FundingAccountDetailsComponent
 } from './funding-account-details/funding-account-details.component';
@@ -82,6 +83,11 @@ const routes: Routes = [
   {
     path: INVESTMENT_COMMON_ROUTES.CKA_METHOD_BASED_QNA + '/:methodname',
     component: CkaMethodQnaComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: INVESTMENT_COMMON_ROUTES.CPF_PREREQUISITES,
+    component: CpfPrerequisitesComponent,
     canActivate: [AuthGuard]
   },
   { path: '**', redirectTo: '/page-not-found' }

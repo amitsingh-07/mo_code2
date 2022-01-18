@@ -198,6 +198,15 @@ export class InvestmentCommonService {
     this.commit();
   }
 
+  setCKARedirectFromLocation(redirectLocation) {
+    this.investmentCommonFormData.ckaRedirectFromLocation = redirectLocation;
+    this.commit();
+  }
+
+  getCKARedirectFromLocation() {
+    return this.investmentCommonFormData.ckaRedirectFromLocation;
+  }
+
   isUsersFirstPortfolio(data: IAccountCreationActions) {
     if (data.showInvestmentAccountCreationForm
       && INVESTMENT_COMMON_CONSTANTS.FIRST_PORTFOLIO_GUARD.indexOf(data.accountCreationState) < 0) {
