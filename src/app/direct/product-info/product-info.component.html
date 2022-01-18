@@ -21,9 +21,11 @@
                     <span class="coverage_amt">{{productCategorySelected}}</span>
                   </button>
                   <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <button type="button" class="dropdown-item" *ngFor="let productCategory of productCategoryList; let i = index" (click)="selectProductCategory(productCategory, i)">
-                      {{productCategory.prodCatName}}
-                    </button>
+                    <ng-container  *ngFor="let productCategory of productCategoryList; let i = index">
+                      <button type="button" class="dropdown-item" (click)="selectProductCategory(productCategory, i)" *ngIf="productCategory && !productCategory.isHidden">
+                        {{productCategory.prodCatName}}
+                      </button>
+                    </ng-container>
                   </div>
                 </div>
               </div>
