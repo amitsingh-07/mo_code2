@@ -270,6 +270,13 @@ app-plan-widget {
                 width: 100%;
                 margin-bottom: 10px;
             }
+            &.irr-left{
+                border: 1px solid #c2d9ec;
+                padding: 10px;
+                border-radius: 6px;
+                font-size: 22px;
+                font-family: $muli-light;
+            }
         }
         .plan-value-sub {
             margin-left: 15px;
@@ -288,6 +295,23 @@ app-plan-widget {
                     color: #2d8289;
                     font-size: 16px;
                     font-family: $muli-regular;
+                }
+            }
+            &.rp-left{
+                border: none;
+                padding: 0;
+                h2 {
+                    font-size: 36px;
+                    font-family: $muli-semi-bold;
+                    @include allmobiles{
+                        font-size: 24px;
+                    }
+                }
+                .text-small{
+                    font-size: 18px;
+                    &.subtitle{
+                        bottom: 5px;
+                    }
                 }
             }
         }
