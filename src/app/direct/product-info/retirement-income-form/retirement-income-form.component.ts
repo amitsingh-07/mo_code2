@@ -68,27 +68,27 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
     });
     if (this.formValues.retirementIncome !== undefined && this.formValues.retirementIncome !== '') {
       this.selectRetirementIncome(this.formValues.retirementIncome);
-    } else  {      
+    } else {
       this.selectRetirementIncome(RETIREMENT_INCOME_CONST.DEFAULT_VALUES.RETIREMENT_INCOME);
     }
     if (this.formValues.payoutAge !== undefined && this.formValues.payoutAge !== '') {
       this.selectPayoutAge(this.formValues.payoutAge);
-    } else  {      
+    } else {
       this.selectPayoutAge(RETIREMENT_INCOME_CONST.DEFAULT_VALUES.PAYOUT_AGE);
     }
     if (this.formValues.payoutDuration !== undefined && this.formValues.payoutDuration !== '') {
       this.selectPayoutDuration(this.formValues.payoutDuration);
-    } else  {      
+    } else {
       this.selectPayoutDuration(RETIREMENT_INCOME_CONST.DEFAULT_VALUES.PAYOUT_DURATION);
     }
     if (this.formValues.payoutFeature !== undefined && this.formValues.payoutFeature !== '') {
       this.selectPayoutFeature(this.formValues.payoutFeature);
-    } else  {      
+    } else {
       this.selectPayoutFeature(RETIREMENT_INCOME_CONST.DEFAULT_VALUES.PAYOUT_FEATURE);
     }
     if (this.formValues.premiumDuration !== undefined && this.formValues.premiumDuration !== '') {
       this.selectPremiumDuration(this.formValues.premiumDuration);
-    } else  {      
+    } else {
       this.selectPremiumDuration(RETIREMENT_INCOME_CONST.DEFAULT_VALUES.PREMIUM_DURATION);
     }
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
