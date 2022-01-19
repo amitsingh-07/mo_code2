@@ -275,6 +275,7 @@ app-plan-widget {
                 padding: 10px;
                 border-radius: 6px;
                 font-size: 22px;
+                font-family: $muli-light;
             }
         }
         .plan-value-sub {
@@ -298,8 +299,10 @@ app-plan-widget {
             }
             &.rp-left{
                 border: none;
+                padding: 0;
                 h2 {
                     font-size: 36px;
+                    font-family: $muli-semi-bold;
                     @include allmobiles{
                         font-size: 24px;
                     }

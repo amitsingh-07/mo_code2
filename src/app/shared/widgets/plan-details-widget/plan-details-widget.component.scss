@@ -232,6 +232,13 @@ app-plan-details-widget {
                 padding: 10px;
                 border-radius: 6px;
                 font-size: 22px;
+                font-family: $muli-light;
+                @include allmobiles{
+                    float: right;
+                }
+                .text-small{
+                    font-size: 16px;
+                }
             }
         }
         .plan-value-sub {
@@ -258,10 +265,29 @@ app-plan-details-widget {
             }
             &.drp-left{
                 border: none;
+                padding: 0;
                 h2{
+                    font-family: $muli-semi-bold;
                     font-size: 36px;
                     @include max360{
                         font-size: 32px;
+                    }
+                    .text-small{
+                        font-size: 18px;
+                        &.unit-lable{
+                            @include allmobiles{
+                                position: relative;
+                                top: -20px;
+                            }
+                            @include max360{
+                                top: -15px;
+                            }
+                        }
+                        &.subtitle{
+                            @include allmobiles{
+                             bottom: 16px;
+                            }
+                        }
                     }
                 }
             }
