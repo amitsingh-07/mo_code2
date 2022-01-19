@@ -16,11 +16,10 @@ export let INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS = {
     INVEST_PORTFOLIO: 'investPortfolio',
     WISESAVER_PORTFOLIO: 'wiseSaverPortfolio',
     WISEINCOME_PORTFOLIO: 'wiseIncomePortfolio',
-    CPF_PORTFOLIO: 'CPFPortfolio',
     INVESTMENT: 'Investment',
     WISESAVER: 'Wisesaver',
     WISEINCOME: 'WiseIncome',
-    CPF: 'CPF'
+    CPF_PORTFOLIO: 'CPF'
   },
   PROSPECTUS_FILE: {
     INVESTMENT: 'prospectus_investment.pdf',

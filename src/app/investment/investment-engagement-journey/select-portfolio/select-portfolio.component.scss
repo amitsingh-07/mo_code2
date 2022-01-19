@@ -266,4 +266,9 @@ app-select-portfolio {
         }
     }
   }
+  .hide-tabs{
+    .nav-tabs{
+      display: none;
+    }
+  }
 }

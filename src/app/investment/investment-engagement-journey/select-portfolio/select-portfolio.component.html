@@ -2,7 +2,7 @@
     <div class="portfolio-page-title hidden-sm">{{'PORTFOLIO.TITLE' | translate}}</div>
     <div class="portfolio-subheading">
         <!-- {{'PORTFOLIO.SUB_HEADING' | translate}} -->
-        <span  *ngIf="activeTabId === 1">I am using Cash / SRS to fund the portfolio</span>
+        <span  *ngIf="activeTabId === 1 && !isJointAccount()">I am using Cash / SRS to fund the portfolio</span>
         <span *ngIf="activeTabId === 2">I am using CPF OA to fund the portfolio</span>
         <span *ngIf="isJointAccount()">I am using Cash to fund the portfolio</span>
     </div>
