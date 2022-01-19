@@ -307,6 +307,12 @@ app-plan-widget {
                         font-size: 24px;
                     }
                 }
+                .text-small{
+                    font-size: 18px;
+                    &.subtitle{
+                        bottom: 5px;
+                    }
+                }
             }
         }
     }
