@@ -86,8 +86,8 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       this.temp = this.data;
       this.type = this.type.toLowerCase();
 
-       // Coverage Duration field should not be displayed for all Retirement and SRS types
-       if (this.type.indexOf('retirement') < 0 && this.type.indexOf('srs') < 0) {
+      // Coverage Duration field should not be displayed for all Retirement and SRS types
+      if (this.type.indexOf('retirement') < 0 && this.type.indexOf('srs') < 0) {
         this.highlights.push(
           { title: 'Coverage Duration:', description: this.titleCasePipe.transform(this.coverageDuration) }
         );
@@ -190,7 +190,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       }
       this.highlights.push({ title: 'Needs Medical Underwriting:', description: this.data.underWritting });
       if (this.type === 'long-term care' && this.data.premium.payoutType) {
-          this.highlights.push({ title: 'Payout Type:', description: this.data.premium.payoutType });
+        this.highlights.push({ title: 'Payout Type:', description: this.data.premium.payoutType });
       }
     }
   }

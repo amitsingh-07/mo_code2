@@ -6,7 +6,8 @@
     </button>
   </div>
   <div class="flex-row compare-modal">
-    <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget" [ngClass]="{'rt-round': i == plansData.length - 1, 'hidden-sm-md': i > 1}">
+    <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget"
+      [ngClass]="{'rt-round': i == plansData.length - 1, 'hidden-sm-md': i > 1}">
       <img class="best-value-icon" *ngIf="plan.bestValue" src="assets/images/best_value.svg" />
       <div class="bg-white flex insurance-plan-widget__container flex__box--vert">
         <div class="mt20 insurer-logo">
@@ -31,7 +32,7 @@
             </h2>
           </div>
         </div>
-                  
+
         <div class="flex-row">
           <div class="col-md-12 col-md-push-3 details-main">
             <button type="button" (click)="viewDetails(plan)" class="btn btn-secondary details-btn">{{ 'BUTTON.DETAILS' | translate
@@ -42,22 +43,22 @@
       <div class="heading">&nbsp;</div>
     </div>
 
-    <div class="flex-col-12 flex title"  [hidden] = "protectionType.toLowerCase() !== 'retirement income plan'">
+    <div class="flex-col-12 flex title" [hidden]="protectionType.toLowerCase() !== 'retirement income plan'">
       <div [ngClass]="{'wide' : plansData && plansData.length === 4}">{{ 'COMPARE_PLANS.PREMIUMS' |
         translate}}</div>
+    </div>
+    <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
+      [ngClass]="{'hidden-sm-md': i > 1}" [hidden]="protectionType.toLowerCase() !== 'retirement income plan'">
+      <div class="plan-content">
+        <span [hidden]="frequencyFilter !== 'monthly'">{{plan.premium.premiumAmount | currency}}</span>
+        <span [hidden]="frequencyFilter !== 'yearly'">{{plan.premium.premiumAmountYearly | currency}}</span>
+        <br />
+        <span class="text-small">
+          <span [hidden]="frequencyFilter !== 'monthly'">{{ 'SUFFIX.PER_MONTH' | translate}}</span>
+          <span [hidden]="frequencyFilter !== 'yearly'">{{ 'SUFFIX.PER_YEAR' | translate}}</span>
+        </span>
       </div>
-      <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
-        [ngClass]="{'hidden-sm-md': i > 1}" [hidden] = "protectionType.toLowerCase() !== 'retirement income plan'">
-        <div class="plan-content">
-          <span [hidden]="frequencyFilter !== 'monthly'">{{plan.premium.premiumAmount | currency}}</span>
-          <span [hidden]="frequencyFilter !== 'yearly'">{{plan.premium.premiumAmountYearly | currency}}</span>
-          <br />
-          <span class="text-small">
-            <span [hidden]="frequencyFilter !== 'monthly'">{{ 'SUFFIX.PER_MONTH' | translate}}</span>
-            <span [hidden]="frequencyFilter !== 'yearly'">{{ 'SUFFIX.PER_YEAR' | translate}}</span>
-          </span>
-        </div>
-        <div class="heading">&nbsp;</div>
+      <div class="heading">&nbsp;</div>
     </div>
 
     <div class="flex-col-12 flex title">
@@ -86,12 +87,13 @@
     </div>
 
     <div class="flex-col-12 flex title">
-      <div [ngClass]="{'wide' : plansData && plansData.length === 4}">{{ 'COMPARE_PLANS.PREMIUM_DURATION' | translate}}</div>
+      <div [ngClass]="{'wide' : plansData && plansData.length === 4}">{{ 'COMPARE_PLANS.PREMIUM_DURATION' | translate}}
+      </div>
     </div>
     <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
       [ngClass]="{'hidden-sm-md': i > 1}">
       <div class="plan-content">
-        <span>{{plan.premiumDuration}}</span>
+        <span>{{ (protectionType.toLowerCase() === 'retirement income plan') ? plan.premium.premiumTerm : plan.premiumDuration}}</span>
       </div>
       <div class="heading">&nbsp;</div>
     </div>
@@ -125,7 +127,7 @@
       <div class="heading">&nbsp;</div>
     </div>
 
-    <div class="flex-col-12 flex title" *ngIf = "protectionType.toLowerCase() === 'long-term care'">
+    <div class="flex-col-12 flex title" *ngIf="protectionType.toLowerCase() === 'long-term care'">
       <div [ngClass]="{'wide' : plansData && plansData.length === 4}">{{ 'COMPARE_PLANS.PAYOUT_TYPE' | translate}}</div>
     </div>
     <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
@@ -137,7 +139,8 @@
     </div>
 
     <div class="flex-col-12 flex title">
-      <div [ngClass]="{'wide' : plansData && plansData.length === 4}">{{ 'COMPARE_PLANS.PAYOUT_DETAILS' | translate}}</div>
+      <div [ngClass]="{'wide' : plansData && plansData.length === 4}">{{ 'COMPARE_PLANS.PAYOUT_DETAILS' | translate}}
+      </div>
     </div>
     <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
       [ngClass]="{'hidden-sm-md': i > 1}">
@@ -148,17 +151,18 @@
     </div>
 
     <div class="flex-col-12 flex title">
-      <div [ngClass]="{'wide' : plansData && plansData.length === 4}">{{ 'COMPARE_PLANS.UNIQUE_FEATURES' | translate}}</div>
+      <div [ngClass]="{'wide' : plansData && plansData.length === 4}">{{ 'COMPARE_PLANS.UNIQUE_FEATURES' | translate}}
+      </div>
     </div>
     <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
       [ngClass]="{'lb-round': i == 0, 'hidden-sm-md': i > 1, 'rb-round': i == plansData.length - 1}">
       <div class="plan-content feature-list">
         <div *ngIf="plan.features && plan.features != ''">
-        <div *ngFor="let feature of plan.features.split('~')">
-          <div class="features" *ngIf="feature && feature != ''">
-            <span><img src="assets/images/Yes.svg" /></span>
-            <span class="text-left word-break">{{feature}}</span>
-          </div>
+          <div *ngFor="let feature of plan.features.split('~')">
+            <div class="features" *ngIf="feature && feature != ''">
+              <span><img src="assets/images/Yes.svg" /></span>
+              <span class="text-left word-break">{{feature}}</span>
+            </div>
           </div>
         </div>
         <div *ngIf="!plan.features || plan.features == ''">
