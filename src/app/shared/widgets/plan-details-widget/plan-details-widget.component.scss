@@ -227,6 +227,12 @@ app-plan-details-widget {
                 width: 50%;
                 margin-bottom: 10px;
             }
+            &.prd-left{
+                border: 1px solid #c2d9ec;
+                padding: 10px;
+                border-radius: 6px;
+                font-size: 22px;
+            }
         }
         .plan-value-sub {
             margin-left: 15px;
@@ -248,6 +254,15 @@ app-plan-details-widget {
                     color: #2d8289;
                     font-size: 16px;
                     font-family: $muli-regular;
+                }
+            }
+            &.drp-left{
+                border: none;
+                h2{
+                    font-size: 36px;
+                    @include max360{
+                        font-size: 32px;
+                    }
                 }
             }
         }

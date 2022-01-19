@@ -270,6 +270,12 @@ app-plan-widget {
                 width: 100%;
                 margin-bottom: 10px;
             }
+            &.irr-left{
+                border: 1px solid #c2d9ec;
+                padding: 10px;
+                border-radius: 6px;
+                font-size: 22px;
+            }
         }
         .plan-value-sub {
             margin-left: 15px;
@@ -288,6 +294,15 @@ app-plan-widget {
                     color: #2d8289;
                     font-size: 16px;
                     font-family: $muli-regular;
+                }
+            }
+            &.rp-left{
+                border: none;
+                h2 {
+                    font-size: 36px;
+                    @include allmobiles{
+                        font-size: 24px;
+                    }
                 }
             }
         }

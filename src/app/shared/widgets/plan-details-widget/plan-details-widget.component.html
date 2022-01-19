@@ -25,7 +25,7 @@
             <div [hidden]="type !== 'retirement income plan'" class="plan-value-sub drp-left">
               <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
                 <br class="hidden-lg" />
-                <span [hidden]="data.premium.premiumFrequency == 'single'">{{ 'SUFFIX.PER_MONTH' |
+                <span class="text-small" [hidden]="data.premium.premiumFrequency == 'single'">{{ 'SUFFIX.PER_MONTH' |
                   translate }}</span>
                 <span [hidden]="data.premium.premiumFrequency != 'single'">{{ 'SUFFIX.SINGLE' |
                   translate
@@ -43,7 +43,7 @@
             <div class="plan-value-main" [ngClass]="{'prd-left': type === 'retirement income plan' }">{{data.premium.intrestRateOfReturn}}%
               <span class="text-small">{{ 'COMMON.LBL_PERCENTAGE_PER_ANNUM' | translate}}</span>
               <br />
-              <span class="text-small subtitle">{{ 'COMMON.LBL_PROJECTED_RETURN' | translate}}</span>
+              <span class="text-small">{{ 'COMMON.LBL_PROJECTED_RETURN' | translate}}</span>
             </div>            
             <div [hidden]="type.indexOf('srs') < 0" class="plan-value-sub">
               <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
