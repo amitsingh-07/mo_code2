@@ -25,7 +25,7 @@
             <div [hidden]="type !== 'retirement income plan'" class="plan-value-sub drp-left">
               <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
                 <br class="hidden-lg" />
-                <span class="text-small unit-lable" [hidden]="data.premium.premiumFrequency == 'single'">{{ 'SUFFIX.PER_MONTH' |
+                <span class="text-small unit-label" [hidden]="data.premium.premiumFrequency == 'single'">{{ 'SUFFIX.PER_MONTH' |
                   translate }}</span>
                 <span [hidden]="data.premium.premiumFrequency != 'single'">{{ 'SUFFIX.SINGLE' |
                   translate
