@@ -6,4 +6,5 @@ export interface IRetirementIncome {
     payoutAge: number;
     payoutDuration: string;
     payoutFeature: string;
+    premiumDuration: string;
 }
