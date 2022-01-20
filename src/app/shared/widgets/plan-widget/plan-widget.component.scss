@@ -276,6 +276,10 @@ app-plan-widget {
                 border-radius: 6px;
                 font-size: 22px;
                 font-family: $muli-light;
+                .text-small{
+                    font-size: 16px;
+                    font-family: $muli-regular; 
+                }
             }
         }
         .plan-value-sub {
@@ -309,8 +313,8 @@ app-plan-widget {
                 }
                 .text-small{
                     font-size: 18px;
-                    &.subtitle{
-                        bottom: 5px;
+                    @include allmobiles{
+                        font-size: 16px;
                     }
                 }
             }
