@@ -90,7 +90,37 @@ app-cpf-prerequisites {
       font-size: 13px;
 
       .note-icon {
-          padding-right: 15px;
+        padding-right: 15px;
+      }
+    }
+
+    .btn-dropdown {
+      &:disabled {
+        background-color: $iceberg-blue-color !important;
+        border-color: $form-control-disabled-border-color !important;
+        cursor: not-allowed;
+        color: $app-backgrnd-color !important;
+        opacity: 1 !important;
+      }
+    }
+
+    .form-control {
+      color: $app-backgrnd-color;
+      font-family: $muli-regular;
+
+      &:disabled,
+      &.disabled {
+        background-color: $iceberg-blue-color !important;
+        border-color: $form-control-disabled-border-color !important;
+        cursor: not-allowed;
+
+        input {
+          padding: 0 !important;
+        }
+      }
+
+      &:focus {
+        border-color: $form-control-disabled-border-color !important;
       }
     }
   }

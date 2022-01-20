@@ -16,6 +16,7 @@ import { INVESTMENT_COMMON_ROUTE_PATHS } from '../investment-common-routes.const
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { LoaderService } from '../../../shared/components/loader/loader.service';
 import { CpfiaTooltipComponent } from './cpfia-tooltip/cpfia-tooltip.component';
+import { Util } from 'src/app/shared/utils/util';
 
 @Component({
   selector: 'app-cpf-prerequisites',
@@ -140,7 +141,7 @@ export class CpfPrerequisitesComponent implements OnInit {
   getCPFBankList() {
     this.investmentAccountService.getAllDropDownList().subscribe((resp: any) => {
       if (resp.responseMessage.responseCode >= 6000 && resp.objectList) {
-        this.cpfBankOperators = resp.objectList.srsAgentBank;
+        this.cpfBankOperators = resp.objectList.cpfAgentBank;
       }
     });
   }
@@ -213,5 +214,19 @@ export class CpfPrerequisitesComponent implements OnInit {
 
   showTooltip() {
     const ref = this.modal.open(CpfiaTooltipComponent, { centered: true });
+  }
+
+  disableContinue() {
+    if (Util.isEmptyOrNull(this.ckaInfo) || !this.preRequisitesForm.valid) {
+      return true;
+    }
+    return false;
+  }
+
+  disableOperatorBank() {
+    if (Util.isEmptyOrNull(this.ckaInfo)) {
+      return true;
+    }
+    return false;
   }
 }
