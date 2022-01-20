@@ -41,7 +41,8 @@
                             <div class="step" [innerHtml]="'NONE_OF_THE_ABOVE.STEP_5' | translate"></div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary btn__footer--fixed width100" (click)="backToProfile()">{{'NONE_OF_THE_ABOVE.BACK_TO_PROFILE_LBL' | translate}}</button>
+                    <button type="button" class="btn btn-primary btn__footer--fixed width100" *ngIf="changeRedirectLocationBtn()" (click)="backToProfile()">{{'NONE_OF_THE_ABOVE.BACK_TO_PROFILE_LBL' | translate}}</button>
+                    <button type="button" class="btn btn-primary btn__footer--fixed width100" *ngIf="!changeRedirectLocationBtn()">Take Certification</button>
                 </div>
           </div>
       </div>

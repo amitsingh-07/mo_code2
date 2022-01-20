@@ -3,8 +3,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_ROUTES, INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS } from '../investment-engagement-journey-routes.constants';
 import { INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS } from '../investment-engagement-journey.constants';
-import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
+import { SIGN_UP_ROUTES, SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { InvestmentEngagementJourneyService } from '../investment-engagement-journey.service';
+import { InvestmentCommonService } from '../../investment-common/investment-common.service';
 import { FooterService } from '../../../shared/footer/footer.service';
 import { HeaderService } from '../../../shared/header/header.service';
 import { NavbarService } from '../../../shared/navbar/navbar.service';
@@ -20,6 +21,7 @@ export class NoneOfTheAboveComponent implements OnInit {
   constructor(
     public readonly translate: TranslateService,
     private investmentEngagementService: InvestmentEngagementJourneyService,
+    public investmentCommonService: InvestmentCommonService,
     private router: Router,
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -48,5 +50,13 @@ export class NoneOfTheAboveComponent implements OnInit {
 
   uploadCertificate(){
     this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.CKA_UPLOAD_DOCUMENT]);
+  }
+  changeRedirectLocationBtn() {
+    const redirectURL = this.investmentCommonService.getCKARedirectFromLocation();
+    const index = redirectURL ? redirectURL.indexOf(SIGN_UP_ROUTES.EDIT_PROFILE) : -1;
+    if(index >= 0) {
+      return true
+    }
+    return false;
   }
 }

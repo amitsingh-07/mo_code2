@@ -28,7 +28,7 @@
               </div>
             </div>
             <ng-template #ckapassed>
-              <div class="flex-col">
+              <div class="flex-col" (click)="startAssessment()">
                 <div>{{'CPF_PREREQUISITES.START_NOW_BTN' | translate}}</div>
                 <div class="sub-txt">{{'CPF_PREREQUISITES.ESTIMATED_TIME_TEXT' | translate}}</div>
               </div>

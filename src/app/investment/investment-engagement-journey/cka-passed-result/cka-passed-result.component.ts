@@ -39,6 +39,7 @@ export class CkaPassedResultComponent implements OnInit {
 
   goToNext() {
     const redirectURL = this.investmentCommonService.getCKARedirectFromLocation();
+    this.investmentCommonService.setCKARedirectFromLocation(null);
     this.router.navigate([redirectURL]);
   }
 }
