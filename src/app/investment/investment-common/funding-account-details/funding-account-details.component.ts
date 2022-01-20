@@ -2,7 +2,7 @@
 import { forkJoin as observableForkJoin } from 'rxjs';
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -41,18 +41,22 @@ export class FundingAccountDetailsComponent implements OnInit {
   investmentAccountFormValues;
   fundingMethods: any;
   srsAgentBankList;
+  cpfAgentBankList: any;
   characterLength;
   srsBank;
   showMaxLength;
   fundingSubText;
   selectedFundingMethod;
   isSrsAccountAvailable = false;
+  isCPFAccountAvailable = false;
   srsAccountDetails;
+  cpfAccountDetails: any;
   portfolio: any;
   disableFundingMethod: boolean;
   userPortfolioType: any;
   isJAEnabled: boolean;
   navigationType: any;
+  selectedPortfolio: any;
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
@@ -79,6 +83,7 @@ export class FundingAccountDetailsComponent implements OnInit {
     });
     this.userPortfolioType = investmentEngagementJourneyService.getUserPortfolioType();
     this.isJAEnabled = (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID);
+    this.selectedPortfolio = investmentEngagementJourneyService.getSelectPortfolioType();
   }
 
   setPageTitle(title: string) {
@@ -94,17 +99,20 @@ export class FundingAccountDetailsComponent implements OnInit {
     this.portfolio = this.investmentCommonService.getPortfolioDetails();
     this.disableFundingMethod = (this.portfolio && this.portfolio.portfolioDetails && this.portfolio.portfolioDetails.payoutType &&
       (this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.FOUR_PERCENT
-        || this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.EIGHT_PERCENT)) || (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID);
+        || this.portfolio.portfolioDetails.payoutType === INVESTMENT_COMMON_CONSTANTS.WISE_INCOME_PAYOUT.EIGHT_PERCENT)) || (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID) || (this.selectedPortfolio === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO);
     this.getSrsAccDetailsAndOptionListCol();
   }
 
   getSrsAccDetailsAndOptionListCol() {
     observableForkJoin(
       this.manageInvestmentsService.getProfileSrsAccountDetails(),
-      this.investmentAccountService.getAllDropDownList()
+      this.investmentAccountService.getAllDropDownList(),
+      // Below API call to be changed as provided by BE to fetch CPF bank details
+      this.manageInvestmentsService.getProfileSrsAccountDetails()
     ).subscribe((response) => {
       this.callbackForGetSrsAccountDetails(response[0]);
       this.callbackForOptionListCollection(response[1]);
+      this.callbackToGetCPFAccountDetails(response[2]);
     },
       (err) => {
         this.investmentAccountService.showGenericErrorModal();
@@ -123,8 +131,10 @@ export class FundingAccountDetailsComponent implements OnInit {
     if (data.responseMessage.responseCode >= 6000 && data.objectList) {
       this.fundingMethods = data.objectList.portfolioFundingMethod;
       this.srsAgentBankList = data.objectList.srsAgentBank;
+      this.cpfAgentBankList = data.objectList.cpfAgentBank;
       this.investmentEngagementJourneyService.sortByProperty(this.fundingMethods, 'name', 'asc');
       this.buildForm();
+      this.addAndRemoveCPFForm(this.fundingAccountDetailsForm.get('confirmedFundingMethodId').value);
       this.addAndRemoveSrsForm(this.fundingAccountDetailsForm.get('confirmedFundingMethodId').value);
     }
   }
@@ -371,6 +381,141 @@ export class FundingAccountDetailsComponent implements OnInit {
       const fundingMethod = this.getFundingMethodNameById(form.getRawValue().confirmedFundingMethodId, this.fundingMethods);
       this.investmentCommonService.setFundingAccountDetails(form.getRawValue(), fundingMethod);
       this.saveSRSAccountDetails(form);
+    }
+  }
+
+  // CPFIA block
+  checkIfCPFPortfolio() {
+    return this.selectedPortfolio && this.selectedPortfolio.toUpperCase() === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO;
+  }
+
+  buildCPFIAForm() {
+    this.fundingAccountDetailsForm.addControl(
+      'cpfIADetails', this.formBuilder.group({
+        cpfOperatorBank: ['' , Validators.required],
+        cpfAccountNumber: ['', Validators.required],
+      })
+    );
+    this.setCPFAccountDetails(this.cpfAccountDetails);
+  }
+
+  selectCPFOperator(key, value, nestedKey) {
+    this.fundingAccountDetailsForm.controls[nestedKey]['controls'][key].setValue(value);
+    this.fundingAccountDetailsForm.get(nestedKey).get('cpfAccountNumber').setValue(null);
+    this.getCPFAccNoMaxLength(nestedKey, key);
+    this.addorRemoveCPFAccNoValidator(nestedKey);
+  }
+
+  getCPFAccNoMaxLength(nestedKey, key) {
+    let accNoMaxLength;
+    switch (this.fundingAccountDetailsForm.get(nestedKey).get(key).value.name) {
+      case INVESTMENT_COMMON_CONSTANTS.CPF_BANK_KEYS.DBS:
+        accNoMaxLength = 13;
+        break;
+      case INVESTMENT_COMMON_CONSTANTS.CPF_BANK_KEYS.OCBC:
+        accNoMaxLength = 9;
+        break;
+      case INVESTMENT_COMMON_CONSTANTS.CPF_BANK_KEYS.UOB:
+        accNoMaxLength = 9;
+        break;
+    }
+    return accNoMaxLength;
+  }
+
+  addorRemoveCPFAccNoValidator(nestedKey) {
+    if (this.fundingAccountDetailsForm.get(nestedKey)) {
+      const accNoControl = this.fundingAccountDetailsForm.get(nestedKey).get('cpfAccountNumber');
+      const selectedBank = this.fundingAccountDetailsForm.get(nestedKey).get('cpfOperatorBank').value;
+      if (selectedBank) {
+        switch (selectedBank.name.toUpperCase()) {
+          case INVESTMENT_COMMON_CONSTANTS.CPF_BANK_KEYS.DBS:
+            accNoControl.setValidators(
+              [Validators.required, Validators.pattern(RegexConstants.cpfOperatorMaskForValidation.DBS)]);
+            break;
+          case INVESTMENT_COMMON_CONSTANTS.CPF_BANK_KEYS.OCBC:
+            accNoControl.setValidators(
+              [Validators.required, Validators.pattern(RegexConstants.cpfOperatorMaskForValidation.OCBC)]);
+            break;
+          case INVESTMENT_COMMON_CONSTANTS.CPF_BANK_KEYS.UOB:
+            accNoControl.setValidators(
+              [Validators.required, Validators.pattern(RegexConstants.cpfOperatorMaskForValidation.UOB)]);
+            break;
+        }
+      } else {
+        accNoControl.setValidators([Validators.required]);
+      }
+      this.fundingAccountDetailsForm.updateValueAndValidity();
+    }
+  }
+
+  addAndRemoveCPFForm(fundingMethodId) {
+    if (this.isCPFAccount(fundingMethodId, this.fundingMethods)) {
+      this.buildCPFIAForm();
+    } else if (this.isCashAccount(fundingMethodId, this.fundingMethods)) {
+      this.fundingAccountDetailsForm.removeControl('cpfIADetails');
+    }
+    this.addorRemoveCPFAccNoValidator('cpfIADetails');
+  }  
+
+  isCPFAccount(fundingMethodId, fundingMethods) {
+    const fundingMethodName = this.getFundingMethodNameById(fundingMethodId, fundingMethods);
+    // const fundingMethodName = 'CPFOA';
+    if (fundingMethodName.toUpperCase() === INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CPFOA) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  cpfMaskConfig() {
+    const config = {
+      mask: RegexConstants.cpfOperatorMask.DBS
+    };
+    if (this.fundingAccountDetailsForm.get('cpfIADetails').get('cpfOperatorBank').value) {
+      const operator = this.fundingAccountDetailsForm.get('cpfIADetails').get('cpfOperatorBank').value.name;
+      switch (operator.toUpperCase()) {
+        case INVESTMENT_COMMON_CONSTANTS.CPF_BANK_KEYS.DBS:
+          config.mask = RegexConstants.cpfOperatorMask.DBS;
+          break;
+        case INVESTMENT_COMMON_CONSTANTS.CPF_BANK_KEYS.OCBC:
+          config.mask = RegexConstants.cpfOperatorMask.OCBC;
+          break;
+        case INVESTMENT_COMMON_CONSTANTS.CPF_BANK_KEYS.UOB:
+          config.mask = RegexConstants.cpfOperatorMask.UOB;
+          break;
+      }
+    }
+    return config;
+  }
+
+  getCPFAccNoLength() {
+    if (this.fundingAccountDetailsForm.get('cpfIADetails').get('cpfOperatorBank').value) {
+      const accNo = this.fundingAccountDetailsForm.get('cpfIADetails').get('cpfAccountNumber').value;
+      if (accNo) {
+        return accNo.match(/\d/g).join('').length;
+      } else {
+        return 0;
+      }
+    }
+  }
+
+  setCPFAccountDetails(data) {
+    if (data) {
+      // Below const value set should be changed as per response from BE for CPF
+      const operatorBank = this.getOperatorIdByName(data.srsOperatorId, this.cpfAgentBankList);
+      if (operatorBank && this.fundingAccountDetailsForm.get('cpfIADetails')) {
+        this.fundingAccountDetailsForm.controls.cpfIADetails.get('cpfOperatorBank').setValue(operatorBank);
+        this.fundingAccountDetailsForm.controls.cpfIADetails.get('cpfAccountNumber').setValue(data.srsAccountNumber.conformedValue);
+      }
+    }
+  }
+
+  callbackToGetCPFAccountDetails(data) {
+    // Code to set CPF bank details will come here
+    if (data && data['srsAccountNumber'] && data['srsOperator']) {
+      this.isCPFAccountAvailable = true;
+      this.cpfAccountDetails = data;
+      this.setCPFAccountDetails(data);
     }
   }
 }
