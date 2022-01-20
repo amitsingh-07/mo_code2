@@ -173,7 +173,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
         this.highlights.push({ title: 'Escalating Benefit:', description: this.data.premium.escalatingBenefit });
       }
       if (this.type.indexOf('retirement') > -1) {
-        this.highlights.push({ title: 'Payout Period:', description: this.data.premium.retirementPayPeriodDisplay + ' Years' });
+        this.highlights.push({ title: 'Payout Period:', description: this.data.premium.retirementPayPeriodDisplay });
         if (this.data.premium.retirementPayoutDuration
           && this.data.premium.retirementPayoutDuration.toLowerCase() === 'limited years') {
           this.highlights.push({
