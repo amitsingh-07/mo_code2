@@ -238,6 +238,9 @@ app-plan-details-widget {
                 }
                 .text-small{
                     font-size: 16px;
+                    &.subtitle{
+                        position: unset;
+                    }
                 }
             }
         }

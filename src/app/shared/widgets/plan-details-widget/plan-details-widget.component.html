@@ -22,7 +22,7 @@
       </div>
       <div class="row with-sub-sections col-md-12" [hidden]="type !== 'retirement income plan' && type.indexOf('education fund') < 0 && type.indexOf('srs') < 0">
           <h2>
-            <div [hidden]="type !== 'retirement income plan'" class="plan-value-sub drp-left" [ngClass]="{'ri-font34': premiumAmountLength == 7, 'ri-font30': premiumAmountLength >= 8 }">
+            <div [hidden]="type !== 'retirement income plan'" class="plan-value-sub drp-left" [ngClass]="{'ri-font34': premiumAmountLength == 7 , 'ri-font30': premiumAmountLength >= 8 }">
               <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
                 <br class="hidden-lg" />
                 <span class="text-small unit-label" [hidden]="data.premium.premiumFrequency == 'single'">{{ 'SUFFIX.PER_MONTH' |
@@ -35,7 +35,7 @@
               </h2>
               <h2 [hidden]="!frequencyType || frequencyType !== 'yearly'">{{premiumAmountYearly | currency}}
                 <br class="hidden-lg" />
-                <span>{{ 'SUFFIX.PER_YEAR' | translate }}</span>
+                <span class="text-small">{{ 'SUFFIX.PER_YEAR' | translate }}</span>
                 <br />
                 <span class="text-small">{{ 'COMMON.LBL_PREMIUM' | translate}}</span>
               </h2>
@@ -43,7 +43,7 @@
             <div class="plan-value-main" [ngClass]="{'prd-left': type === 'retirement income plan' }">{{data.premium.intrestRateOfReturn}}%
               <span class="text-small">{{ 'COMMON.LBL_PERCENTAGE_PER_ANNUM' | translate}}</span>
               <br />
-              <span class="text-small">{{ 'COMMON.LBL_PROJECTED_RETURN' | translate}}</span>
+              <span class="text-small subtitle">{{ 'COMMON.LBL_PROJECTED_RETURN' | translate}}</span>
             </div>            
             <div [hidden]="type.indexOf('srs') < 0" class="plan-value-sub">
               <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
@@ -52,7 +52,7 @@
               </h2>
               <h2 [hidden]="!frequencyType || frequencyType !== 'yearly'">{{premiumAmountYearly | currency}}
                 <br class="hidden-lg" />
-                <span>{{ 'SUFFIX.PER_YEAR' | translate }}</span>
+                <span class="text-small">{{ 'SUFFIX.PER_YEAR' | translate }}</span>
                 <br />
                 <span class="text-small">{{ 'COMMON.LBL_PREMIUM' | translate}}</span>
               </h2>

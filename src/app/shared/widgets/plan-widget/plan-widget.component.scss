@@ -279,6 +279,9 @@ app-plan-widget {
                 .text-small{
                     font-size: 16px;
                     font-family: $muli-regular; 
+                    &.subtitle{
+                        position: unset;
+                    }
                 }
             }
         }
