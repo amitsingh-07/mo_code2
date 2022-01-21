@@ -54,6 +54,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
 
   perMonth = '';
   perYear = '';
+  premiumAmountLength = 0;
 
   constructor(
     private currency: CurrencyPipe, private translate: TranslateService, public modal: NgbModal,
@@ -74,6 +75,9 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       this.icon = this.data.icon;
       this.insurerLogo = 'assets/images/' + this.data.insurer.logoName;
       this.premiumAmount = this.data.premium.premiumAmount;
+      if(this.premiumAmount > 0){
+        this.premiumAmountLength = this.premiumAmount.toString().length;
+      }
       if (this.data.promotion && this.data.promotion.promoDiscount) {
         this.promoDiscount = this.data.promotion.promoDiscount;
         this.isPromoDiscountHidden = this.data.promotion.expired === 'FALSE' ? false : true;

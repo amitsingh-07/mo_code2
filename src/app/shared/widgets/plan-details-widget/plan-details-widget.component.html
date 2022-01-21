@@ -22,7 +22,7 @@
       </div>
       <div class="row with-sub-sections col-md-12" [hidden]="type !== 'retirement income plan' && type.indexOf('education fund') < 0 && type.indexOf('srs') < 0">
           <h2>
-            <div [hidden]="type !== 'retirement income plan'" class="plan-value-sub drp-left">
+            <div [hidden]="type !== 'retirement income plan'" class="plan-value-sub drp-left" [ngClass]="{'ri-font34': premiumAmountLength == 7, 'ri-font30': premiumAmountLength >= 8 }">
               <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
                 <br class="hidden-lg" />
                 <span class="text-small unit-label" [hidden]="data.premium.premiumFrequency == 'single'">{{ 'SUFFIX.PER_MONTH' |
@@ -47,7 +47,6 @@
             </div>            
             <div [hidden]="type.indexOf('srs') < 0" class="plan-value-sub">
               <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
-                <br class="hidden-lg" />
                 <br />
                 <span class="text-small">{{ 'COMMON.LBL_SINGLE_PREMIUM' | translate}}</span>
               </h2>
