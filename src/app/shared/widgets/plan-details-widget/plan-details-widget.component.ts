@@ -76,7 +76,8 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       this.insurerLogo = 'assets/images/' + this.data.insurer.logoName;
       this.premiumAmount = this.data.premium.premiumAmount;
       if(this.premiumAmount > 0){
-        this.premiumAmountLength = this.premiumAmount.toString().length;
+        const tempValue = this.premiumAmount.toFixed(2);
+        this.premiumAmountLength = tempValue.toString().length;
       }
       if (this.data.promotion && this.data.promotion.promoDiscount) {
         this.promoDiscount = this.data.promotion.promoDiscount;
