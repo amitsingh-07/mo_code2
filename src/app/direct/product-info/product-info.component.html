@@ -3,7 +3,9 @@
     <div class="prod-cat-list-title hidden-lg">{{'COVERAGE.TITLE' | translate}}</div> 
     <div class="prod-cat-list-close hidden-lg" (click)="openProductCategory(0)"></div>
     <div class="prod-cat-list">
-      <app-product-category [data]="productCategory" *ngFor="let productCategory of productCategoryList; let i = index" (click)="openProductCategory(i)"></app-product-category>
+      <ng-container *ngFor="let productCategory of productCategoryList; let i = index">
+        <app-product-category [data]="productCategory" (click)="openProductCategory(i)" *ngIf="productCategory && !productCategory.isHidden"></app-product-category>
+      </ng-container>
     </div>
   </div>
   <div class="prod-form__wrapper" [ngClass]="{'show': toggleFormVisibility}">
@@ -19,9 +21,11 @@
                     <span class="coverage_amt">{{productCategorySelected}}</span>
                   </button>
                   <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <button type="button" class="dropdown-item" *ngFor="let productCategory of productCategoryList; let i = index" (click)="selectProductCategory(productCategory, i)">
-                      {{productCategory.prodCatName}}
-                    </button>
+                    <ng-container  *ngFor="let productCategory of productCategoryList; let i = index">
+                      <button type="button" class="dropdown-item" (click)="selectProductCategory(productCategory, i)" *ngIf="productCategory && !productCategory.isHidden">
+                        {{productCategory.prodCatName}}
+                      </button>
+                    </ng-container>
                   </div>
                 </div>
               </div>
