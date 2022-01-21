@@ -86,6 +86,10 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       this.coverageDuration = this.data.premium.durationName;
       this.premiumDuration = this.data.premium.premiumTerm;
       this.premiumAmountYearly = this.data.premium.premiumAmountYearly;
+      if(this.premiumAmountYearly > 0 && this.frequencyType == "yearly"){
+        const tempValue = this.premiumAmountYearly.toFixed(2);
+        this.premiumAmountLength = tempValue.toString().length;
+      }
 
       this.temp = this.data;
       this.type = this.type.toLowerCase();
