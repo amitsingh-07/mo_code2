@@ -35,9 +35,9 @@
               </h2>
               <h2 [hidden]="!frequencyType || frequencyType !== 'yearly'">{{premiumAmountYearly | currency}}
                 <br class="hidden-lg" />
-                <span class="text-small">{{ 'SUFFIX.PER_YEAR' | translate }}</span>
+                <span class="text-small unit-label">{{ 'SUFFIX.PER_YEAR' | translate }}</span>
                 <br />
-                <span class="text-small">{{ 'COMMON.LBL_PREMIUM' | translate}}</span>
+                <span class="text-small subtitle">{{ 'COMMON.LBL_PREMIUM' | translate}}</span>
               </h2>
             </div>
             <div class="plan-value-main" [ngClass]="{'prd-left': type === 'retirement income plan' }">{{data.premium.intrestRateOfReturn}}%
