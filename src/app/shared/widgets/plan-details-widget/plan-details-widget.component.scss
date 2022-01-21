@@ -290,6 +290,26 @@ app-plan-details-widget {
                         }
                     }
                 }
+                &.ri-font34{
+                    @include allmobiles{
+                        h2{
+                            font-size: 34px;
+                            .unit-label{
+                                top: -14px
+                            }
+                        }
+                    }
+                }
+                &.ri-font30{
+                    @include allmobiles{
+                        h2{
+                            font-size: 30px;
+                            .unit-label{
+                                top: -12px
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -303,5 +323,8 @@ app-plan-details-widget {
     }
     .prd-left {
         margin-left: 15px!important;
+        @include allmobiles{
+            margin-left: 0 !important;
+        }
     }
 }
