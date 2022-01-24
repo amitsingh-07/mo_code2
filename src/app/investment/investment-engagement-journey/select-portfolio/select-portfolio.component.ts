@@ -97,7 +97,7 @@ export class SelectPortfolioComponent implements OnInit {
       selectPortfolioType: new FormControl(
         this.selectedPortfolioType, Validators.required)
     });
-    this.getOptionListCollection();
+    // this.getOptionListCollection();
   }
   @HostListener('input', ['$event'])
 
@@ -110,116 +110,117 @@ export class SelectPortfolioComponent implements OnInit {
   goNext(Form) {
     this.investmentEngagementJourneyService.setSelectPortfolioType(Form.value);
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
-    this.redirectToNextScreen();
+    this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.SELECT_PORTFOLIO_GOAL_MORE_INFO]);
+    // this.redirectToNextScreen();
   }
-  getOptionListCollection() {
-    this.loaderService.showLoader({
-      title: this.loaderTitle,
-      desc: this.loaderDesc
-    });
-    this.investmentAccountService.getSpecificDropList('portfolioFundingMethod').subscribe((data) => {
-      this.loaderService.hideLoader();
-      this.fundingMethods = data.objectList.portfolioFundingMethod;
-      this.investmentEngagementJourneyService.sortByProperty(this.fundingMethods, 'name', 'asc');
+  // getOptionListCollection() {
+  //   this.loaderService.showLoader({
+  //     title: this.loaderTitle,
+  //     desc: this.loaderDesc
+  //   });
+  //   this.investmentAccountService.getSpecificDropList('portfolioFundingMethod').subscribe((data) => {
+  //     this.loaderService.hideLoader();
+  //     this.fundingMethods = data.objectList.portfolioFundingMethod;
+  //     this.investmentEngagementJourneyService.sortByProperty(this.fundingMethods, 'name', 'asc');
 
-    },
-      (err) => {
-        this.loaderService.hideLoader();
-        this.investmentAccountService.showGenericErrorModal();
-      });
-  }
-  getFundingMethodNameByName(fundingMethodName, fundingOptions) {
-    if (fundingMethodName && fundingOptions) {
-      const fundingMethod = fundingOptions.filter(
-        (prop) => prop.name.toUpperCase() === fundingMethodName.toUpperCase()
-      );
-      return fundingMethod[0].id;
-    } else {
-      return '';
-    }
-  }
-  redirectToNextScreen() {
-    if (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID) {
-      const fundingMethod = this.getFundingMethodNameByName(INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CASH, this.fundingMethods);
-      this.investmentCommonService.setInitialFundingMethod({ initialFundingMethodId: fundingMethod });
-      if (this.selectPortfolioForm.controls.selectPortfolioType && this.selectPortfolioForm.controls.selectPortfolioType.value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
-        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
-      } else if (this.selectPortfolioForm.controls.selectPortfolioType && this.selectPortfolioForm.controls.selectPortfolioType.value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) {
-        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.WISE_INCOME_PAYOUT]);
-      }
-      else {
-        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
-      }
-    }
-    // meed to change when CPF is available
-    // CPF_PORTFOLIO
-    else if (this.selectPortfolioForm.controls.selectPortfolioType && this.selectPortfolioForm.controls.selectPortfolioType.value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO) {
-      // redirecting to pre trquisite screen but the entire logic in this Method
-      // should be given in your portfolio goal screen
-      // INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES
-      this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES]);
-    }
-    else {
-      if (this.selectPortfolioForm.controls.selectPortfolioType && this.selectPortfolioForm.controls.selectPortfolioType.value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) {
-        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.WISE_INCOME_PAYOUT]);
-      } else {
-        this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
-      }
-    }
-  }
-  investPortfolio(event) {
-    this.investmentEnabled = !this.investmentEnabled;
-    this.wiseSaverEnabled = false;
-    this.wiseIncomeEnabled = false;
-  }
-  wiseSaverPortfolio(event) {
-    this.wiseSaverEnabled = !this.wiseSaverEnabled;
-    this.investmentEnabled = false;
-    this.wiseIncomeEnabled = false;
-  }
-  wiseIncomePortfolio(event) {
-    this.wiseIncomeEnabled = !this.wiseIncomeEnabled;
-    this.investmentEnabled = false;
-    this.wiseSaverEnabled = false;
-  }
-  investmentMoreInfo(event) {
-    this.investmentMoreInfoShow = !this.investmentMoreInfoShow;
-    event.stopPropagation();
-  }
-  wiseSaverMoreInfo(event) {
-    this.wiseSaverMoreInfoShow = !this.wiseSaverMoreInfoShow;
-    event.stopPropagation();
-  }
-  wiseIncomeMoreInfo(event) {
-    this.wiseIncomeMoreInfoShow = !this.wiseIncomeMoreInfoShow;
-    event.stopPropagation();
-  }
+  //   },
+  //     (err) => {
+  //       this.loaderService.hideLoader();
+  //       this.investmentAccountService.showGenericErrorModal();
+  //     });
+  // }
+  // getFundingMethodNameByName(fundingMethodName, fundingOptions) {
+  //   if (fundingMethodName && fundingOptions) {
+  //     const fundingMethod = fundingOptions.filter(
+  //       (prop) => prop.name.toUpperCase() === fundingMethodName.toUpperCase()
+  //     );
+  //     return fundingMethod[0].id;
+  //   } else {
+  //     return '';
+  //   }
+  // }
+  // redirectToNextScreen() {
+  //   if (this.userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID) {
+  //     const fundingMethod = this.getFundingMethodNameByName(INVESTMENT_COMMON_CONSTANTS.FUNDING_METHODS.CASH, this.fundingMethods);
+  //     this.investmentCommonService.setInitialFundingMethod({ initialFundingMethodId: fundingMethod });
+  //     if (this.selectPortfolioForm.controls.selectPortfolioType && this.selectPortfolioForm.controls.selectPortfolioType.value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
+  //       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.GET_STARTED_STEP1]);
+  //     } else if (this.selectPortfolioForm.controls.selectPortfolioType && this.selectPortfolioForm.controls.selectPortfolioType.value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) {
+  //       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.WISE_INCOME_PAYOUT]);
+  //     }
+  //     else {
+  //       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.INVESTMENT_AMOUNT]);
+  //     }
+  //   }
+  //   // meed to change when CPF is available
+  //   // CPF_PORTFOLIO
+  //   else if (this.selectPortfolioForm.controls.selectPortfolioType && this.selectPortfolioForm.controls.selectPortfolioType.value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO) {
+  //     // redirecting to pre trquisite screen but the entire logic in this Method
+  //     // should be given in your portfolio goal screen
+  //     // INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES
+  //     this.router.navigate([INVESTMENT_COMMON_ROUTE_PATHS.CPF_PREREQUISITES]);
+  //   }
+  //   else {
+  //     if (this.selectPortfolioForm.controls.selectPortfolioType && this.selectPortfolioForm.controls.selectPortfolioType.value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) {
+  //       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.WISE_INCOME_PAYOUT]);
+  //     } else {
+  //       this.router.navigate([INVESTMENT_ENGAGEMENT_JOURNEY_ROUTE_PATHS.FUNDING_METHOD]);
+  //     }
+  //   }
+  // }
+  // investPortfolio(event) {
+  //   this.investmentEnabled = !this.investmentEnabled;
+  //   this.wiseSaverEnabled = false;
+  //   this.wiseIncomeEnabled = false;
+  // }
+  // wiseSaverPortfolio(event) {
+  //   this.wiseSaverEnabled = !this.wiseSaverEnabled;
+  //   this.investmentEnabled = false;
+  //   this.wiseIncomeEnabled = false;
+  // }
+  // wiseIncomePortfolio(event) {
+  //   this.wiseIncomeEnabled = !this.wiseIncomeEnabled;
+  //   this.investmentEnabled = false;
+  //   this.wiseSaverEnabled = false;
+  // }
+  // investmentMoreInfo(event) {
+  //   this.investmentMoreInfoShow = !this.investmentMoreInfoShow;
+  //   event.stopPropagation();
+  // }
+  // wiseSaverMoreInfo(event) {
+  //   this.wiseSaverMoreInfoShow = !this.wiseSaverMoreInfoShow;
+  //   event.stopPropagation();
+  // }
+  // wiseIncomeMoreInfo(event) {
+  //   this.wiseIncomeMoreInfoShow = !this.wiseIncomeMoreInfoShow;
+  //   event.stopPropagation();
+  // }
   setSelectPortfolioType(value,form) {
     this.selectPortfolioForm.controls.selectPortfolioType.setValue(value);
-    if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
-      this.investmentEnabled = !this.investmentEnabled;
-      this.wiseSaverEnabled = false;
-      this.wiseIncomeEnabled = false;
-      this.cpfEnabled = false; // cpf portfolio flag
-    }
-    if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO) {
-      this.wiseSaverEnabled = !this.wiseSaverEnabled;
-      this.investmentEnabled = false;
-      this.wiseIncomeEnabled = false;
-      this.cpfEnabled = false; // cpf portfolio flag
-    }
-    if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) {
-      this.wiseIncomeEnabled = !this.wiseIncomeEnabled;
-      this.investmentEnabled = false;
-      this.wiseSaverEnabled = false;
-      this.cpfEnabled = false; // cpf portfolio flag
-    }
-    if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO) {
-      this.cpfEnabled = !this.cpfEnabled;
-      this.investmentEnabled = false;
-      this.wiseSaverEnabled = false;
-      this.wiseIncomeEnabled = false;
-    }
+    // if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.INVEST_PORTFOLIO) {
+    //   this.investmentEnabled = !this.investmentEnabled;
+    //   this.wiseSaverEnabled = false;
+    //   this.wiseIncomeEnabled = false;
+    //   this.cpfEnabled = false; // cpf portfolio flag
+    // }
+    // if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISESAVER_PORTFOLIO) {
+    //   this.wiseSaverEnabled = !this.wiseSaverEnabled;
+    //   this.investmentEnabled = false;
+    //   this.wiseIncomeEnabled = false;
+    //   this.cpfEnabled = false; // cpf portfolio flag
+    // }
+    // if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.WISEINCOME_PORTFOLIO) {
+    //   this.wiseIncomeEnabled = !this.wiseIncomeEnabled;
+    //   this.investmentEnabled = false;
+    //   this.wiseSaverEnabled = false;
+    //   this.cpfEnabled = false; // cpf portfolio flag
+    // }
+    // if (value === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.SELECT_POROFOLIO_TYPE.CPF_PORTFOLIO) {
+    //   this.cpfEnabled = !this.cpfEnabled;
+    //   this.investmentEnabled = false;
+    //   this.wiseSaverEnabled = false;
+    //   this.wiseIncomeEnabled = false;
+    // }
     this.goNext(form);
   }
   // Go to next slide
@@ -242,6 +243,5 @@ export class SelectPortfolioComponent implements OnInit {
   isJointAccount(){
     const userPortfolioType = this.investmentEngagementJourneyService.getUserPortfolioType();
     return userPortfolioType === INVESTMENT_ENGAGEMENT_JOURNEY_CONSTANTS.PORTFOLIO_TYPE.JOINT_ACCOUNT_ID;
-    
   }
 }

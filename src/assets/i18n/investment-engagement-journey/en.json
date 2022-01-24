@@ -20,7 +20,7 @@
     }
   },
   "PORTFOLIO": {
-    "TITLE": "Select Portfolio",
+    "TITLE": "Select Portfolio Goal",
     "SUB_HEADING": "What is your investment goal?",
     "INVESTMENT": {
       "TITLE": "Grow your wealth",
@@ -71,8 +71,26 @@
         "LIST_ITEM_5": "No lock-in period",
         "LIST_ITEM_6": "Exclusive to MoneyOwl"
       }
-    }
+    },
+    "CPFOA": {
+      "TITLE": "Grow your CPF",
+      "DESC": "Invest in our globally diversified portfolios that tracks the MSCI World to grow your CPF OA savings faster.",
+      "MORE_INFO": "More info",
+      "FOOTER_BTN_TXT": "Continue",
+      "SLIDES": {
+        "P1": "Invest in a portfolio of global indexed equities, Asian bonds, Singapore/US Government bonds and Singapore REITs designed to provide a stream of passive income for the long term.",
+        "P2": "Choose the right asset allocation based on your financial situation so that you can stay invested for the long haul with as little guesswork and and as little stress as possible.",
+        "HEADING": "What's great?",
+        "LIST_ITEM_1": "Grow your CPF OA savings faster at potential returns of more than 2.5% p.a.",
+        "LIST_ITEM_2": "Suitable for longer term investing",
+        "LIST_ITEM_3": "Globally diversified portfolios",
+        "LIST_ITEM_4": "Tracks the MSCI World Index",
+        "LIST_ITEM_5": "Low costs"
+      }
+    },
+    "LEARN_MORE": "Learn More"
   },
+
   "WISE_INCOME_PAYOUT": {
     "TITLE": "WiseIncome Portfolio",
     "CAPTION": "Select a Payout Option",
